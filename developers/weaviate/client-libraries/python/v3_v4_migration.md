@@ -1,5 +1,5 @@
 ---
-title: v3 to v4 migration guide
+title: Migrate from v3 to v4
 sidebar_position: 12
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
@@ -10,12 +10,11 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
 :::
 
-The `v4` Weaviate Python client API is very different to the `v3` API. This guide will help you understand the major changes and how to migrate your code at a high level.
+The `v4` Weaviate Python client API is very different from the `v3` API. This guide will help you understand the major changes and how to migrate your code at a high level.
 
 ## Installation
 
@@ -62,6 +61,8 @@ You can directly instantiate the client, but in most cases you can use helper fu
   language="py"
 />
 
+To configure connection timeout values, see [Timeout values](/developers/weaviate/client-libraries/python#timeout-values).
+
 </TabItem>
 <TabItem value="local" label="Local">
 
@@ -95,11 +96,9 @@ You can directly instantiate the client, but in most cases you can use helper fu
 </TabItem>
 </Tabs>
 
-Once it has been instantiated, you will notice that the client API is different from `v3`.
-
 ## Major changes
 
-From a user's perspective, major changes with the `v4` client include:
+The `v4` client API is very different from the `v3` API. Major user-facing changes in the `v4` client include:
 
 - Extensive use of helper classes
 - Interaction with collections
@@ -148,7 +147,7 @@ import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.
 import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={ManageDataCode}
       startMarker="# ReadObject START"
@@ -157,7 +156,7 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={ManageDataCodeV3}
       startMarker="# ReadObject START"
@@ -169,9 +168,20 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
 
 Note here that the collection object can be re-used throughout the codebase.
 
+### Collection creation from JSON
+
+You can still create a collection from a JSON definition. This may be a useful way to migrate your existing data, for example. You could [fetch an existing definition](../../manage-data/collections.mdx#read-a-single-collection-definition) and then use it to create a new collection.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START CreateCollectionFromJSON"
+  endMarker="# END CreateCollectionFromJSON"
+  language="py"
+/>
+
 ### Removal of builder patterns
 
-The builder patterns for constructing queries as been removed, as they could be confusing and potentially lead to invalid queries.
+The builder patterns for constructing queries have been removed, as they could be confusing and potentially lead to invalid queries.
 
 In `v4`, queries are constructed using specific methods and its parameters.
 
@@ -179,7 +189,7 @@ import SearchSimilarityCode from '!!raw-loader!/_includes/code/howto/search.simi
 import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={SearchSimilarityCode}
       startMarker="# GetNearTextPython"
@@ -188,7 +198,7 @@ import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.si
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={SearchSimilarityCodeV3}
       startMarker="# GetNearTextPython"
@@ -216,11 +226,8 @@ In particular, check out the pages for:
 - [Similarity search](../../search/similarity.md)
 - [Filters](../../search/filters.md)
 
-## Can we help?
+## Questions and feedback
 
-If you have any questions, please don't hesitate to reach out to us on the [Weaviate Community Forum](https://forum.weaviate.io/c/support/6).
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-
-import DocsMoreResources from '/_includes/more-resources-docs.md';
-
-<DocsMoreResources />
+<DocsFeedback/>

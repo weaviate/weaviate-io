@@ -13,7 +13,7 @@ You can interact with Weaviate by using the GraphQL or RESTful API directly, or 
 Currently, Weaviate supports:
 
 - [Python](/developers/weaviate/client-libraries/python/index.md)
-- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript/index.mdx)
 - [Go](/developers/weaviate/client-libraries/go.md)
 - [Java](/developers/weaviate/client-libraries/java.md)
 
@@ -74,6 +74,8 @@ print(result)
 Additional to complete reflection of the RESTful and GraphQL API, the clients have some client-specific functions. These functions are documented on the client pages.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

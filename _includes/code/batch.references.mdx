@@ -4,7 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/rest.batch.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchCreateReference"
@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/rest.batch.py';
       language="py"
     />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
@@ -23,17 +23,17 @@ client = weaviate.Client("http://localhost:8080")
 # the settings can be applied to both `objects` AND `references`.
 # You have to only set them once.
 client.batch.configure(
-  # `batch_size` takes an `int` value to enable auto-batching
-  # (`None` is used for manual batching)
-  batch_size=100,
-  # dynamically update the `batch_size` based on import speed
-  dynamic=False,
-  # `timeout_retries` takes an `int` value to retry on time outs
-  timeout_retries=3,
-  # checks for batch-item creation errors
-  # this is the default in weaviate-client >= 3.6.0
-  callback=weaviate.util.check_batch_result,
-  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+    # `batch_size` takes an `int` value to enable auto-batching
+    # (`None` is used for manual batching)
+    batch_size=100,
+    # dynamically update the `batch_size` based on import speed
+    dynamic=False,
+    # `timeout_retries` takes an `int` value to retry on time outs
+    timeout_retries=3,
+    # checks for batch-item creation errors
+    # this is the default in weaviate-client >= 3.6.0
+    callback=weaviate.util.check_batch_result,
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
 with client.batch as batch:
@@ -44,20 +44,23 @@ with client.batch as batch:
     #   from_property_name=<from_property_name>
     #   to_object_uuid=<to_object_uuid>,
     #   to_object_class_name=<to_object_class_name>,
+    #   tenant=<TenantName>  # Only required for multi-tenancy
     # )
     batch.add_reference(
-      from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
-      from_object_class_name="Author",
-      from_property_name="wroteArticles",
-      to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
-      to_object_class_name="Article",
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
     )
     batch.add_reference(
-      from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
-      from_object_class_name="Author",
-      from_property_name="wroteArticles",
-      to_object_uuid="b72912b9-e5d7-304e-a654-66dc63c55b32",
-      to_object_class_name="Article",
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="b72912b9-e5d7-304e-a654-66dc63c55b32",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
     )
 ```
 
@@ -90,6 +93,7 @@ const response = await client.batch
     // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
   })
   .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
   .do();
 console.log(JSON.stringify(response, null, 2));
 
@@ -127,6 +131,7 @@ const response = await client.batch
       .payload()
   )
   .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
   .do();
 console.log(JSON.stringify(response, null, 2));
 */
@@ -180,6 +185,7 @@ func main() {
     WithReference(ref[1]).
     WithReference(ref[2]).
     WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+    // WithTenant("tenantA").  // Optional; specify the tenant in multi-tenancy collections
     Do(context.Background())
 
   if err != nil {
@@ -240,6 +246,7 @@ public class App {
       .withReference(refs.get(1))
       .withReference(refs.get(2))
       .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
+      // .withTenant("tenantA")  // Optional; specify the tenant in multi-tenancy collections
       .run();
 
     if (result.hasErrors()) {

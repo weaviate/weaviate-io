@@ -1,0 +1,56 @@
+---
+title: Overview of tokenization
+---
+
+Tokenization is the process of breaking text into smaller units, called tokens. This is an important step that impacts how text is processed in a variety of contexts.
+
+Consider text like:
+
+```text
+Ankh-Morpork's police captain
+```
+
+This text could be tokenized in a variety of ways. All of the following are perfectly valid tokenizations:
+
+1. `["Ankh-Morpork's", "police", "captain"]`
+1. `["ankh", "morpork", "police", "captain"]`
+1. `['An', '##kh', '-', 'Mo', '##rp', '##or', '##k', "'", 's', 'police', 'captain']`
+
+Methods 1 and 2 are examples of *word tokenization*, while method 3 is an example of *subword tokenization*.
+
+The choice of tokenization method will depend on the context in which the text is being used.
+
+### <i class="fa-solid fa-chalkboard"></i> For keyword search & filtering
+
+The choice of tokenization method will significantly impact the result of keyword search and filtering. This can cause it to either meet or miss the user's expectations.
+
+In a database of television shows, you would expect a search for `"Superman"`, or `"Clark"` to include the show `"Lois & Clark: The New Adventures of Superman"`. Selecting the right tokenization method will ensure that this is the case.
+
+But, in a database of email addresses, you would not expect a search for `"john@example.com"` to include `"john.doe@example.com"`. In this case, your tokenization strategy might be different to above.
+
+And what about all the cases in between? Should a search for `"clark"`, or `"lois and clark"` include the show? That might depend on how you want the search to behave.
+
+Because of varying needs like these, Weaviate allows you to configure the tokenization method to suit your use case. From the next section onwards, we will discuss the different tokenization methods available in Weaviate, and how to configure them.
+
+### <i class="fa-solid fa-chalkboard"></i> For language models
+
+Language models digest and work with the overall meaning of the text to embed or produce text. So, each token for a language model is designed to represent meaning.
+
+To balance the need for a manageable vocabulary size with the need to capture the meaning of the text, subword tokenization (method 3 above) is often used. This is a key part of the architecture of language models.
+
+At a user level, however, the choice of tokenization method is abstracted away. Because the tokenization method must be consistent between model development (training) and usage (inference), it is baked into the model.
+
+This means that as you use Weaviate to vectorize text, or perform retrieval augmented generation (RAG) tasks, you don't need to worry about the tokenization method. The chosen model will simply take care of this for you.
+
+As a result, this course does not go into detail on tokenization in the context of language models.
+
+:::info Interested in tokenization for language models?
+This is a rich area of study. So if you would like to read more about tokenization in the context of language models, this [Hugging Face conceptual guide on the topic](https://huggingface.co/transformers/tokenizer_summary.html) is a great resource. Hugging Face also provides this guide on [using tokenizers](https://huggingface.co/learn/nlp-course/en/chapter2/4) in its `transformers` library.
+:::
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

@@ -1,0 +1,115 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    WikiArticle {
+      title
+      wiki_summary
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+result = client.query.get("WikiArticle", ["title", "wiki_summary"]).do()
+```
+
+</TabItem>
+{/* <TabItem value="js" label="JavaScript/TypeScript">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('WikiArticle')
+  .withFields('title wiki_summary')
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "WEAVIATE_INSTANCE_URL",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    Scheme: "http",
+  }
+  client := weaviate.New(cfg)
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "wiki_summary"},
+  }
+  ctx := context.Background()
+  result, err := client.GraphQL().Get().
+    WithClassName("WikiArticle").
+    WithFields(fields...).
+    Do(ctx)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package technology.semi.weaviate;
+
+import technology.semi.weaviate.client.Config;
+import technology.semi.weaviate.client.WeaviateClient;
+import technology.semi.weaviate.client.base.Result;
+import technology.semi.weaviate.client.v1.graphql.model.GraphQLResponse;
+import technology.semi.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    WeaviateClient client = new WeaviateClient(config);
+
+    Field title = Field.builder().name("title").build();
+    Field url = Field.builder().name("wiki_summary").build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("WikiArticle")
+      .withFields(title, url, wordCount)
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem> */}
+</Tabs>

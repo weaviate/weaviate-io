@@ -5,7 +5,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+<TabItem value="py4" label="Python Client v4">
    <FilteredTextBlock
      text={PyCode}
      startMarker="# START ConnectWithOIDC"
@@ -13,17 +13,17 @@ import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
      language="py"
    />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=weaviate.AuthClientPassword(
-        username = "WCS_USERNAME",  # Replace w/ your WCS username
-        password = "WCS_PASSWORD",  # Replace w/ your WCS password
+        username = wcs_username,  # Replace with your Weaviate Cloud username
+        password = wcs_password,  # Replace with your Weaviate Cloud password
     ),
 )
 ```
@@ -36,10 +36,10 @@ import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: "https",
-  host: "some-endpoint.weaviate.network",  // Replace w/ your endpoint
+  host: "WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   authClientSecret: new AuthUserPasswordCredentials({
-    username: "WCS_USERNAME",  // Replace w/ your WCS username
-    password: "WCS_PASSWORD",  // Replace w/ your WCS password
+    username: wcsUsername,  // Replace with your Weaviate Cloud username
+    password: wcsPassword,  // Replace with your Weaviate Cloud password
   })
 });
 ```
@@ -57,11 +57,11 @@ import (
 )
 
 cfg := weaviate.Config{
-  Host:"some-endpoint.weaviat}e.network",  // Replace w/ your endpoint
+  Host:"WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   Scheme: "https",
   AuthConfig: auth.ResourceOwnerPasswordFlow{
-    Username: "WCS_USERNAME",  // Replace w/ your WCS username
-    Password: "WCS_PASSWORD",  // Replace w/ your WCS password
+    Username: wcsUsername,  // Replace with your Weaviate Cloud username
+    Password: wcsPassword,  // Replace with your Weaviate Cloud password
   }
 }
 
@@ -78,11 +78,11 @@ if err != nil {
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 
-Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace w/ your endpoint
+Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate endpoint
 WeaviateAuthClient.clientPassword(
     config,
-    "WCS_USERNAME",  // Replace w/ your WCS username
-    "WCS_PASSWORD",  // Replace w/ your WCS password
+    wcsUsername,  // Replace with your Weaviate Cloud username
+    wcsPassword,  // Replace with your Weaviate Cloud password
 );
 ```
 

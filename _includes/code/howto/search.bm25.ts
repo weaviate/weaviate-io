@@ -6,16 +6,17 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client/node';
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+ {
+   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 let result;
 
@@ -24,19 +25,14 @@ let result;
 // ============================
 
 // START Basic
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
+const myCollection = client.collections.get('JeopardyQuestion');
 // highlight-start
-  .withBm25({
-    query: 'food',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer')
-  .do();
+const result = await myCollection.query.bm25('food',{
+// highlight-start
+ limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result.objects, null, 2));
 // END Basic
 
 // Tests
@@ -50,19 +46,16 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 // ================================
 
 // START Score
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'food',
-  })
-// highlight-start
-  .withFields('question answer _additional { score }')
-// highlight-end
-  .withLimit(3)
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25('food',{
+ limit: 3,
+ // highlight-start
+ returnMetadata: ['score']
+ // highlight-end
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END Score
 
 // Tests
@@ -78,20 +71,17 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 // ===============================================
 
 // START Properties
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'food',
-    // highlight-start
-    properties: ['question'],
-    // highlight-end
-  })
-  .withLimit(3)
-  .withFields('question answer _additional { score }')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25('safety',{
+ limit: 3,
+ // highlight-start
+ queryProperties: ['question^2', 'answer'],
+  // highlight-end
+ returnMetadata: ['score']
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END Properties
 
 // Tests
@@ -110,20 +100,17 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ==============================================
 
 // START Boost
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'food',
-    // highlight-start
-    properties: ['question^2', 'answer'],
-    // highlight-end
-  })
-  .withLimit(3)
-  .withFields('question answer _additional { score }')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25('food',{
+ limit: 3,
+ returnMetadata: ['score'],
+  // highlight-start
+ queryProperties: ['question^2', 'answer']
+  // highlight-end
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END Boost
 
 // Tests
@@ -171,24 +158,18 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ==================================
 
 // START Filter
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'food',
-  })
-// highlight-start
-  .withWhere({
-    path: ['round'],
-    operator: 'Equal',
-    valueText: 'Double Jeopardy!',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round _additional { score }')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25('food',{
+ limit: 3,
+ returnMetadata: ['score'],
+     // highlight-start
+ filters: myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
+     // highlight-end
+ returnProperties: ['question', 'answer', 'round'],
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END Filter
 
 // Tests
@@ -210,19 +191,16 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // =================================
 
 // START limit
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'safety',
-  })
-  .withFields('question answer _additional { score }')
-// highlight-start
-  .withLimit(3)
-// highlight-end
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25('safety',{
+  // highlight-start
+ limit: 3,
+  // highlight-end
+ returnMetadata: ['score']
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END limit
 
 // Tests
@@ -239,19 +217,16 @@ assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));
 // ===================================
 
 // START autocut
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'safety',
-  })
-  .withFields('question answer _additional { score }')
-// highlight-start
-  .withAutocut(1)
-// highlight-end
-  .do();
 
-console.log(JSON.stringify(result, null, 2));
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.bm25('safety',{
+  // highlight-start
+ autoLimit: 1,
+   // highlight-end
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END autocut
 
 // Tests
@@ -261,3 +236,4 @@ additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._additi
 assert.deepEqual(additionalKeys, new Set(['score']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 1);
 assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));
+

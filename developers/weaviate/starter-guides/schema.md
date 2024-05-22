@@ -243,9 +243,11 @@ The following resources include more detailed information on schema settings and
 
 - [Schema - Reference: Configuration](../config-refs/schema/index.md): A reference of all available schema settings.
 - [Collections - How-to: manage data](../manage-data/collections.mdx): Code examples for creating and managing collections, including how to configure various settings using client libraries.
-- [Schema - Reference: REST](../api/rest/schema.md): A reference of all available schema settings for the REST API.
+- [Schema - Reference: REST](/developers/weaviate/api/rest#tag/schema): A reference of all available schema settings for the REST API.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

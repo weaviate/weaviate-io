@@ -21,7 +21,7 @@ This code deletes a collection and its objects.
 ```
 
 </TabItem> */}
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
   <FilteredTextBlock
       text={ManageCollectionsCode}
@@ -31,7 +31,7 @@ This code deletes a collection and its objects.
   />
 
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 # delete class "Article" - THIS WILL DELETE ALL DATA IN THIS CLASS
@@ -39,7 +39,16 @@ client.schema.delete_class("Article")  # Replace with your class name
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+await client.collections.delete('Article')
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 const className: string = 'YourClassName';  // Replace with your class name
@@ -51,6 +60,7 @@ await client.schema
 ```
 
 </TabItem>
+
 <TabItem value="go" label="Go">
 
 ```go
@@ -66,19 +76,40 @@ if err := client.Schema().ClassDeleter().WithClassName(className).Do(context.Bac
 ```
 
 </TabItem>
-{/* <TabItem value="java" label="Java">
+<TabItem value="java" label="Java">
 
 ```java
+package io.weaviate;
 
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<Boolean> result = client.schema().classDeleter()
+      .withClassName("Article")
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
 ```
 
-</TabItem> */}
+</TabItem>
 <TabItem value="curl" label="Curl">
 
 ```bash
 curl \
   -X DELETE \
-  https://some-endpoint.weaviate.network/v1/schema/YourClassName
+  https://WEAVIATE_INSTANCE_URL/v1/schema/YourClassName  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>

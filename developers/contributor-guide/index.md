@@ -39,3 +39,7 @@ If at any time you face any difficulties, don't hesitate to reach out in the `#g
 ## License
 
 Please refer to each individual repository for relevant licensing information.
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

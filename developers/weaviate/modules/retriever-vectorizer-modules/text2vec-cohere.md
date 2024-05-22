@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
 
 ## Overview
 
@@ -15,7 +18,7 @@ Key notes:
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `embed-multilingual-v3.0`.
 - Set the appropriate [distance metric](#distance-metric) in your class configuration, depending on the model used.
@@ -26,8 +29,8 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -49,7 +52,7 @@ This configuration enables `text2vec-cohere`, sets it as the default vectorizer,
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -248,6 +251,8 @@ import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearTe
 <GraphQLFiltersNearNextCohere/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

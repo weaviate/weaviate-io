@@ -1,6 +1,6 @@
 ---
 title: Distance metrics
-sidebar_position: 4
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
@@ -8,14 +8,14 @@ image: og/docs/configuration.jpg
 
 :::info Related pages
 - [Configuration: Schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](../api/rest/schema.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
 ## Available distance metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) field as part of the  schema (here's an [example adding a class to the schema](../api/rest/schema.md#create-a-class)) to any of the following types:
+`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) field as part of the schema ([example](../manage-data/collections.mdx#specify-a-distance-metric)) to any of the following types:
 
 :::tip Comparing distances
 In all cases, larger distance values indicate lower similarity. Conversely, smaller distance values indicate higher similarity.
@@ -36,7 +36,7 @@ If you're missing your favorite distance type and would like to contribute it to
 
 :::note Additional notes
 
-1. If `cosine` is chosen, all vectors are normalized to length 1 at import/read time and dot product is used to calculate the distance for computational efficiency.
+1. If `cosine` is chosen, all vectors are normalized to length 1 at read time and dot product is used to calculate the distance for computational efficiency.
 2. Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
 
 :::
@@ -83,6 +83,8 @@ For backward compatibility, `certainty` can still be used when the distance is
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

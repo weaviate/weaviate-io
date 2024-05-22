@@ -17,6 +17,48 @@ client = weaviate.Client(
     }
 )
 
+
+# ==============================
+# ===== Named Vector Hybrid Query =====
+# ==============================
+
+# NamedVectorHybridPython
+# Named vectors are not supported in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# END NamedVectorHybridPython
+
+
+expected_results = """
+# Expected NamedVectorHybrid results
+TODO
+# END Expected NamedVectorHybrid results
+"""
+
+
+gql_query = """
+# NamedVectorHybridGraphQL
+{
+  Get {
+    WineReviewNV(
+      limit: 2
+# highlight-start
+      hybrid: {
+        targetVectors: ["title_country"]
+        query: "A French Riesling"
+      }
+# highlight-end
+    ) {
+      title
+      review_body
+      country
+    }
+  }
+}
+# END NamedVectorHybridGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+
+
 # ==============================
 # ===== Basic Hybrid Query =====
 # ==============================
@@ -847,3 +889,77 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
+
+
+################################
+### VECTOR SIMILARITY SEARCH ###
+################################
+
+gql_query = """
+# VectorSimilarityGraphQL
+{
+    Get {
+      JeopardyQuestion(
+        limit: 5
+        hybrid: {
+          # highlight-start
+          searches: {
+             nearText: {
+                concepts: [ "large animal" ]
+             }
+           # highlight-end
+           }
+           alpha: 0.75,
+           query: "California"
+         }
+       )
+         {
+           question
+           answer
+           points
+         }
+     }
+}
+# END VectorSimilarityGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+
+
+expected_results = """
+# Expected VectorSimilarityGraphQL results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Rhinoceros",
+          "points": 400,
+          "question": "The \"black\" species of this large horned mammal can grasp twigs with its upper lip"
+        },
+        {
+          "answer": "the hippopotamus",
+          "points": 400,
+          "question": "Close relative of the pig, though its name means \"river horse\""
+        },
+        {
+          "answer": "buffalo",
+          "points": 400,
+          "question": "Animal that was the main staple of the Plains Indians economy"
+        },
+        {
+          "answer": "California",
+          "points": 200,
+          "question": "Its state animal is the grizzly bear, & the state tree is a type of redwood"
+        },
+        {
+          "answer": "California",
+          "points": 200,
+          "question": "This western state sent its first refrigerated trainload of oranges back east February 14, 1886"
+        }
+      ]
+    }
+  }
+}
+
+# END Expected VectorSimilarityGraphQL results
+"""

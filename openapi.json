@@ -1,0 +1,5219 @@
+{
+  "servers": [
+      {
+        "url": "http://localhost:8080/v1"
+      }
+  ],
+  "basePath": "/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "target of the link"
+        },
+        "rel": {
+          "type": "string",
+          "description": "relationship if both resources are related, e.g. 'next', 'previous', 'parent', etc."
+        },
+        "name": {
+          "type": "string",
+          "description": "human readable name of the resource group"
+        },
+        "documentationHref": {
+          "type": "string",
+          "description": "weaviate documentation about this resource group"
+        }
+      }
+    },
+    "Principal": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "The username that was extracted either from the authentication information"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "C11yWordsResponse": {
+      "description": "An array of available words and contexts.",
+      "properties": {
+        "concatenatedWord": {
+          "description": "Weighted results for all words",
+          "type": "object",
+          "properties": {
+            "concatenatedWord": {
+              "type": "string"
+            },
+            "singleWords": {
+              "type": "array",
+              "items": {
+                "format": "string"
+              }
+            },
+            "concatenatedVector": {
+              "$ref": "#/definitions/C11yVector"
+            },
+            "concatenatedNearestNeighbors": {
+              "$ref": "#/definitions/C11yNearestNeighbors"
+            }
+          }
+        },
+        "individualWords": {
+          "description": "Weighted results for per individual word",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "word": {
+                "type": "string"
+              },
+              "present": {
+                "type": "boolean"
+              },
+              "info": {
+                "type": "object",
+                "properties": {
+                  "vector": {
+                    "$ref": "#/definitions/C11yVector"
+                  },
+                  "nearestNeighbors": {
+                    "$ref": "#/definitions/C11yNearestNeighbors"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "C11yExtension": {
+      "description": "A resource describing an extension to the contextinoary, containing both the identifier and the definition of the extension",
+      "properties": {
+        "concept": {
+          "description": "The new concept you want to extend. Must be an all-lowercase single word, or a space delimited compound word. Examples: 'foobarium', 'my custom concept'",
+          "type": "string",
+          "example": "foobarium"
+        },
+        "definition": {
+          "description": "A list of space-delimited words or a sentence describing what the custom concept is about. Avoid using the custom concept itself. An Example definition for the custom concept 'foobarium': would be 'a naturally occurring element which can only be seen by programmers'",
+          "type": "string"
+        },
+        "weight": {
+          "description": "Weight of the definition of the new concept where 1='override existing definition entirely' and 0='ignore custom definition'. Note that if the custom concept is not present in the contextionary yet, the weight cannot be less than 1.",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "C11yNearestNeighbors": {
+      "description": "C11y function to show the nearest neighbors to a word.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "type": "string"
+          },
+          "distance": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "C11yVector": {
+      "description": "A vector representation of the object. If provided at object creation, this wil take precedence over any vectorizer setting.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "Vector": {
+      "description": "A vector representation of the object. If provided at object creation, this wil take precedence over any vectorizer setting.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      }
+    },
+    "Vectors": {
+      "description": "A map of named vectors for multi-vector representations.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Vector"
+      }
+    },
+    "C11yVectorBasedQuestion": {
+      "description": "Receive question based on array of classes, properties and values.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "classVectors": {
+            "description": "Vectorized classname.",
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            },
+            "minItems": 300,
+            "maxItems": 300
+          },
+          "classProps": {
+            "description": "Vectorized properties.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "propsVectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                },
+                "value": {
+                  "description": "String with valuename.",
+                  "type": "string"
+                }
+              }
+            },
+            "minItems": 300,
+            "maxItems": 300
+          }
+        }
+      }
+    },
+    "Deprecation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The id that uniquely identifies this particular deprecations (mostly used internally)"
+        },
+        "status": {
+          "type": "string",
+          "description": "Whether the problematic API functionality is deprecated (planned to be removed) or already removed"
+        },
+        "apiType": {
+          "type": "string",
+          "description": "Describes which API is effected, usually one of: REST, GraphQL"
+        },
+        "msg": {
+          "type": "string",
+          "description": "What this deprecation is about"
+        },
+        "mitigation": {
+          "type": "string",
+          "description": "User-required object to not be affected by the (planned) removal"
+        },
+        "sinceVersion": {
+          "type": "string",
+          "description": "The deprecation was introduced in this version"
+        },
+        "plannedRemovalVersion": {
+          "type": "string",
+          "description": "A best-effort guess of which upcoming version will remove the feature entirely"
+        },
+        "removedIn": {
+          "type": "string",
+          "description": "If the feature has already been removed, it was removed in this version",
+          "x-nullable": true
+        },
+        "removedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "If the feature has already been removed, it was removed at this timestamp",
+          "x-nullable": true
+        },
+        "sinceTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The deprecation was introduced in this version"
+        },
+        "locations": {
+          "type": "array",
+          "description": "The locations within the specified API affected by this deprecation",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ErrorResponse": {
+      "description": "An error response given by Weaviate end-points.",
+      "properties": {
+        "error": {
+          "items": {
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GraphQLError": {
+      "description": "An error response caused by a GraphQL query.",
+      "properties": {
+        "locations": {
+          "items": {
+            "properties": {
+              "column": {
+                "format": "int64",
+                "type": "integer"
+              },
+              "line": {
+                "format": "int64",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "type": "string"
+        },
+        "path": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "GraphQLQuery": {
+      "description": "GraphQL query based on: http://facebook.github.io/graphql/.",
+      "properties": {
+        "operationName": {
+          "description": "The name of the operation if multiple exist in the query.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Query based on GraphQL syntax.",
+          "type": "string"
+        },
+        "variables": {
+          "description": "Additional variables for the query.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GraphQLQueries": {
+      "description": "A list of GraphQL queries.",
+      "items": {
+        "$ref": "#/definitions/GraphQLQuery"
+      },
+      "type": "array"
+    },
+    "GraphQLResponse": {
+      "description": "GraphQL based response: http://facebook.github.io/graphql/.",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "$ref": "#/definitions/JsonObject"
+          },
+          "description": "GraphQL data object.",
+          "type": "object"
+        },
+        "errors": {
+          "description": "Array with errors.",
+          "items": {
+            "$ref": "#/definitions/GraphQLError"
+          },
+          "x-omitempty": true,
+          "type": "array"
+        }
+      }
+    },
+    "GraphQLResponses": {
+      "description": "A list of GraphQL responses.",
+      "items": {
+        "$ref": "#/definitions/GraphQLResponse"
+      },
+      "type": "array"
+    },
+    "InvertedIndexConfig": {
+      "description": "Configure the inverted index built into Weaviate",
+      "properties": {
+        "cleanupIntervalSeconds": {
+          "default": 60,
+          "description": "Asynchronous index clean up happens every n seconds",
+          "format": "int",
+          "type": "number"
+        },
+        "bm25": {
+          "$ref": "#/definitions/BM25Config"
+        },
+        "stopwords": {
+          "$ref": "#/definitions/StopwordConfig"
+        },
+        "indexTimestamps": {
+          "default": false,
+          "description": "Index each object by its internal timestamps",
+          "type": "boolean"
+        },
+        "indexNullState": {
+          "default": false,
+          "description": "Index each object with the null state",
+          "type": "boolean"
+        },
+        "indexPropertyLength": {
+          "default": false,
+          "description": "Index length of properties",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ShardingConfig": {
+      "description": "Specify how the index should be sharded and distributed in the cluster",
+      "properties": {
+        "desiredCount": {
+          "description": "(Defaults to the number of nodes in the cluster.) Controls how many shards should be created for this collection index. The typical setting is that a collection should be distributed across all the nodes in the cluster, but you can explicitly set this value to a lower value. If the `desiredCount` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.",
+          "type": "integer"
+        },
+        "virtualPerPhysical": {
+          "description": "Weaviate uses virtual shards. This helps in reducing the amount of data moved when resharding",
+          "default": 128,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReplicationConfig": {
+      "description": "Configure how replication is executed in a cluster",
+      "properties": {
+        "factor": {
+          "default": 1,
+          "description": "Number of times a class is replicated",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BM25Config": {
+      "description": "tuning parameters for the BM25 algorithm",
+      "properties": {
+        "k1": {
+          "default": 1.2,
+          "description": "Calibrates term-weight scaling based on the term frequency within a document",
+          "format": "float",
+          "type": "number"
+        },
+        "b": {
+          "default": 0.75,
+          "description": "Calibrates term-weight scaling based on the document length",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "StopwordConfig": {
+      "description": "fine-grained control over stopword list usage",
+      "properties": {
+        "preset": {
+          "default": "en",
+          "enum": ["en", "none"],
+          "description": "pre-existing list of common words by language",
+          "type": "string"
+        },
+        "additions": {
+          "default": [],
+          "description": "Stopwords to be considered additionally. Can be any array of custom strings.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "removals": {
+          "default": [],
+          "description": "stopwords to be removed from consideration. Can be any array of custom strings.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "MultiTenancyConfig": {
+      "description": "Configuration related to multi-tenancy within a class",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Whether or not multi-tenancy is enabled for this class",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "JsonObject": {
+      "description": "JSON object value.",
+      "type": "object"
+    },
+    "Meta": {
+      "description": "Contains meta information of the current Weaviate instance.",
+      "properties": {
+        "hostname": {
+          "description": "The url of the host.",
+          "format": "url",
+          "type": "string"
+        },
+        "version": {
+          "description": "The Weaviate server version.",
+          "type": "string"
+        },
+        "modules": {
+          "description": "Module-specific meta information.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "MultipleRef": {
+      "description": "Multiple instances of references to other objects.",
+      "items": {
+        "$ref": "#/definitions/SingleRef"
+      },
+      "type": "array"
+    },
+    "PatchDocumentObject": {
+      "description": "Either a JSONPatch document as defined by RFC 6902 (from, op, path, value), or a merge document (RFC 7396).",
+      "properties": {
+        "from": {
+          "description": "A string containing a JSON Pointer value.",
+          "type": "string"
+        },
+        "op": {
+          "description": "The operation to be performed.",
+          "enum": [
+            "add",
+            "remove",
+            "replace",
+            "move",
+            "copy",
+            "test"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "A JSON-Pointer.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value to be used within the operations.",
+          "type": "object"
+        },
+        "merge": {
+          "$ref": "#/definitions/Object"
+        }
+      },
+      "required": [
+        "op",
+        "path"
+      ]
+    },
+    "PatchDocumentAction": {
+      "description": "Either a JSONPatch document as defined by RFC 6902 (from, op, path, value), or a merge document (RFC 7396).",
+      "properties": {
+        "from": {
+          "description": "A string containing a JSON Pointer value.",
+          "type": "string"
+        },
+        "op": {
+          "description": "The operation to be performed.",
+          "enum": [
+            "add",
+            "remove",
+            "replace",
+            "move",
+            "copy",
+            "test"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "A JSON-Pointer.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value to be used within the operations.",
+          "type": "object"
+        },
+        "merge": {
+          "$ref": "#/definitions/Object"
+        }
+      },
+      "required": [
+        "op",
+        "path"
+      ]
+    },
+    "PeerUpdate": {
+      "description": "A single peer in the network.",
+      "properties": {
+        "id": {
+          "description": "The session ID of the peer.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "description": "Human readable name.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The location where the peer is exposed to the internet.",
+          "type": "string",
+          "format": "uri"
+        },
+        "schemaHash": {
+          "description": "The latest known hash of the peer's schema.",
+          "type": "string"
+        }
+      }
+    },
+    "PeerUpdateList": {
+      "description": "List of known peers.",
+      "items": {
+        "$ref": "#/definitions/PeerUpdate"
+      },
+      "type": "array"
+    },
+    "VectorWeights": {
+      "description": "Allow custom overrides of vector weights as math expressions in word-based vectorization models. E.g. \"pancake\": \"7\" will set the weight for the word pancake to 7 in the vectorization, whereas \"w * 3\" would triple the originally calculated word.",
+      "type": "object"
+    },
+    "PropertySchema": {
+      "description": "Names and values of an individual property. A returned response may also contain additional metadata, such as from classification or feature projection.",
+      "type": "object"
+    },
+    "SchemaHistory": {
+      "description": "This is an open object, with OpenAPI Specification 3.0 this will be more detailed. See Weaviate docs for more info. In the future this will become a key/value OR a SingleRef definition.",
+      "type": "object"
+    },
+    "Schema": {
+      "description": "Definitions of semantic schemas (also see: https://github.com/weaviate/weaviate-semantic-schemas).",
+      "properties": {
+        "classes": {
+          "description": "Semantic classes that are available.",
+          "items": {
+            "$ref": "#/definitions/Class"
+          },
+          "type": "array"
+        },
+        "maintainer": {
+          "description": "Email of the maintainer.",
+          "format": "email",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaClusterStatus": {
+      "description": "Indicates the health of the schema in a cluster.",
+      "properties": {
+        "healthy": {
+          "description": "True if the cluster is in sync, false if there is an issue (see error).",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "error": {
+          "description": "Contains the sync check error if one occurred",
+          "type": "string",
+          "x-omitempty": true
+        },
+        "hostname": {
+          "description": "Hostname of the coordinating node, i.e. the one that received the cluster. This can be useful information if the error message contains phrases such as 'other nodes agree, but local does not', etc.",
+          "type": "string"
+        },
+        "nodeCount": {
+          "description": "Number of nodes that participated in the sync check",
+          "type": "number",
+          "format": "int"
+        },
+        "ignoreSchemaSync": {
+          "description": "The cluster check at startup can be ignored (to recover from an out-of-sync situation).",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "type": "object"
+    },
+    "Class": {
+      "required": ["class"],
+      "properties": {
+        "class": {
+          "description": "Name of the collection (a.k.a. class). Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`.",
+          "type": "string"
+        },
+        "vectorConfig": {
+          "description": "Configure named vectors (https://weaviate.io/developers/weaviate/config-refs/schema/multi-vector). Either use this field or `vectorizer`, `vectorIndexType`, and `vectorIndexConfig` fields. Available from `v1.24.0`.",
+          "type": "object",
+          "properties": {
+            "<vector_name>": {
+              "$ref": "#/definitions/VectorConfig"
+            }
+          }
+        },
+        "vectorIndexType": {
+          "$ref": "#/definitions/VectorIndexType"
+        },
+        "vectorIndexConfig": {
+          "$ref": "#/definitions/VectorIndexConfig"
+        },
+        "shardingConfig": {
+          "$ref": "#/definitions/ShardingConfig"
+        },
+        "replicationConfig": {
+          "$ref": "#/definitions/ReplicationConfig"
+        },
+        "invertedIndexConfig": {
+          "$ref": "#/definitions/InvertedIndexConfig"
+        },
+        "multiTenancyConfig": {
+          "$ref": "#/definitions/MultiTenancyConfig"
+        },
+        "vectorizer": {
+          "$ref": "#/definitions/Vectorizer"
+        },
+        "moduleConfig": {
+          "description": "Configuration specific to modules in a collection context.",
+          "type": "object",
+          "properties": {
+            "<module_name>": {
+              "$ref": "#/definitions/CollectionModuleConfig"
+            }
+          }
+        },
+        "description": {
+          "description": "Description of the collection for documentation purposes.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Define properties of the collection.",
+          "items": {
+            "$ref": "#/definitions/Property"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Property": {
+      "required": ["name", "dataType"],
+      "properties": {
+        "dataType": {
+          "$ref": "#/definitions/DataType"
+        },
+        "description": {
+          "$ref": "#/definitions/PropertyDescription"
+        },
+        "moduleConfig": {
+          "description": "Configuration specific to modules in a property context.",
+          "type": "object",
+          "properties": {
+            "<module_name>": {
+              "$ref": "#/definitions/PropertyModuleConfig"
+            }
+          }
+        },
+        "name": {
+          "$ref": "#/definitions/PropertyName"
+        },
+        "indexInverted": {
+          "description": "(Deprecated) Whether to include this property in the inverted index. If `false`, this property cannot be used in `where` filters, `bm25` or `hybrid` search. <br/><br/>Unrelated to vectorization behavior (deprecated as of v1.19; use indexFilterable or/and indexSearchable instead)",
+          "type": "boolean",
+          "default": true,
+          "x-nullable": true
+        },
+        "indexFilterable": {
+          "$ref": "#/definitions/IndexFilterable"
+        },
+        "indexSearchable": {
+          "$ref": "#/definitions/IndexSearchable"
+        },
+        "tokenization": {
+          "$ref": "#/definitions/Tokenization"
+        },
+        "nestedProperties": {
+          "description": "The properties of the nested object(s). Applies to object and object[] data types.",
+          "items": {
+            "$ref": "#/definitions/NestedProperty"
+          },
+          "type": "array",
+          "x-omitempty": true
+        }
+      },
+      "type": "object"
+    },
+    "CollectionModuleConfig": {
+      "description": "E.g. `text2vec-transformers`, `text2vec-openai`.",
+      "properties": {
+        "vectorizeClassName": {
+          "description": "Whether the name of the collection is used in determining the object vector.",
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PropertyModuleConfig": {
+      "description": "E.g. `text2vec-transformers`, `text2vec-openai`.",
+      "properties": {
+        "skip": {
+          "description": "If true, the whole property will NOT be included in vectorization.",
+          "default": false,
+          "type": "boolean"
+        },
+        "vectorizePropertyName": {
+          "description": "Whether the name of the property is used in determining the object vector.",
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "VectorConfig": {
+      "description": "Configuration of each named vector.",
+      "properties": {
+        "vectorizer": {
+          "$ref": "#/definitions/Vectorizer"
+        },
+        "vectorIndexType": {
+          "$ref": "#/definitions/VectorIndexType"
+        },
+        "vectorIndexConfig": {
+          "$ref": "#/definitions/VectorIndexConfig"
+        }
+      },
+      "type": "object"
+    },
+    "Vectorizer": {
+      "description": "Vectorizer for this collection (e.g. `text2vec-transformers`). This will override any cluster-wide default set by an environment variable. <br/><br/>If `none`, you must import a vector with each object yourself.",
+      "type": "string",
+      "enum": ["none", "<vectorizer_module_name>"]
+    },
+    "VectorIndexType": {
+      "description": "Name of the vector index to use, eg. (HNSW)",
+      "default": "hnsw",
+      "type": "string",
+      "enum": ["hnsw", "flat"]
+    },
+    "VectorIndexConfig": {
+      "description": "Vector index type specific settings. See the [vector index configuration page](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index) for more details",
+      "type": "object"
+    },
+    "Tokenization": {
+      "description": "Set tokenization of the property as separate words or whole field. Applies to text and text[] data types.",
+      "type": "string",
+      "default": "word",
+      "enum": [
+        "word",
+        "lowercase",
+        "whitespace",
+        "field",
+        "trigram",
+        "gse"
+      ]
+    },
+    "IndexFilterable": {
+      "description": "Whether to include this property in the filterable, Roaring Bitmap index. If `false`, this property cannot be used in `where` filters. <br/><br/>Unrelated to vectorization behavior.",
+      "default": true,
+      "type": "boolean",
+      "x-nullable": true
+    },
+    "IndexSearchable": {
+      "description": "Whether to include this property in the searchable, inverted index. If `false`, this property cannot be used in `bm25` or `hybrid` searches. <br/><br/>Unrelated to vectorization behavior.",
+      "default": true,
+      "type": "boolean",
+      "x-nullable": true
+    },
+    "PropertyName": {
+      "description": "The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`.",
+      "type": "string"
+    },
+    "DataType": {
+      "description": "Data type of the property. If it starts with a capital (for example Person), may be a reference to another type.",
+      "items": {
+        "type": "string",
+        "enum": ["string", "string[]", "object", "object[]", "int", "int[]", "number", "number[]", "date", "date[]", "uuid", "uuid[]", "geoCoordinates", "phoneNumber", "blob", "<cross_reference>"]
+      },
+      "type": "array"
+    },
+    "PropertyDescription": {
+      "description": "Description of the property for documentation purposes.",
+      "type": "string"
+    },
+    "NestedProperty": {
+      "required": ["name", "dataType"],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/PropertyName"
+        },
+        "dataType": {
+          "$ref": "#/definitions/DataType"
+        },
+        "description": {
+          "$ref": "#/definitions/PropertyDescription"
+        },
+        "indexFilterable": {
+          "$ref": "#/definitions/IndexFilterable"
+        },
+        "indexSearchable": {
+          "$ref": "#/definitions/IndexSearchable"
+        },
+        "tokenization": {
+          "$ref": "#/definitions/Tokenization"
+        },
+        "nestedProperties": {
+          "description": "Specify the properties of the nested object(s) as required.",
+          "items": {
+            "$ref": "#/definitions/NestedProperty"
+          },
+          "type": "array",
+          "x-omitempty": true
+        }
+      },
+      "type": "object"
+    },
+    "ShardStatusList": {
+      "description": "The status of all the shards of a Class",
+      "items": {
+        "$ref": "#/definitions/ShardStatusGetResponse"
+      },
+      "type": "array"
+    },
+    "ShardStatusGetResponse": {
+      "description": "Response body of shard status get request",
+      "properties": {
+        "name": {
+          "description": "Name of the shard",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the shard",
+          "type": "string"
+        },
+        "vectorQueueSize": {
+          "description": "Size of the vector queue of the shard",
+          "type": "integer",
+          "x-omitempty": false
+        }
+      }
+    },
+    "ShardStatus": {
+      "description": "The status of a single shard",
+      "properties": {
+        "status": {
+          "description": "Status of the shard",
+          "type": "string"
+        }
+      }
+    },
+    "BackupCreateStatusResponse": {
+      "description": "The definition of a backup create metadata",
+      "properties": {
+        "id": {
+          "description": "The ID of the backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed.",
+          "type": "string"
+        },
+        "backend": {
+          "description": "Backup backend name e.g. filesystem, gcs, s3.",
+          "type": "string"
+        },
+        "path": {
+          "description": "destination path of backup files proper to selected backend",
+          "type": "string"
+        },
+        "error": {
+          "description": "error message if creation failed",
+          "type": "string"
+        },
+        "status": {
+          "description": "phase of backup creation process",
+          "type": "string",
+          "default": "STARTED",
+          "enum": [
+            "STARTED",
+            "TRANSFERRING",
+            "TRANSFERRED",
+            "SUCCESS",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "BackupRestoreStatusResponse": {
+      "description": "The definition of a backup restore metadata",
+      "properties": {
+        "id": {
+          "description": "The ID of the backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed.",
+          "type": "string"
+        },
+        "backend": {
+          "description": "Backup backend name e.g. filesystem, gcs, s3.",
+          "type": "string"
+        },
+        "path": {
+          "description": "destination path of backup files proper to selected backup backend",
+          "type": "string"
+        },
+        "error": {
+          "description": "error message if restoration failed",
+          "type": "string"
+        },
+        "status": {
+          "description": "phase of backup restoration process",
+          "type": "string",
+          "default": "STARTED",
+          "enum": [
+            "STARTED",
+            "TRANSFERRING",
+            "TRANSFERRED",
+            "SUCCESS",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "BackupConfig": {
+      "description": "Backup custom configuration",
+      "type": "object",
+      "properties": {
+        "CPUPercentage": {
+          "description": "Desired CPU core utilization ranging from 1%-80%",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 80,
+          "x-nullable": false
+        },
+        "ChunkSize": {
+          "description": "Aimed chunk size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB. The actual chunk size may vary.",
+          "type": "integer",
+          "default": 128,
+          "minimum": 2,
+          "maximum": 512,
+          "x-nullable": false
+        },
+        "CompressionLevel": {
+          "description": "Compression level used by compression algorithm",
+          "type": "string",
+          "default": "DefaultCompression",
+          "x-nullable": false,
+          "enum": [
+            "DefaultCompression",
+            "BestSpeed",
+            "BestCompression"
+          ]
+        }
+      }
+    },
+    "RestoreConfig": {
+      "description": "Backup custom configuration",
+      "type": "object",
+      "properties": {
+        "CPUPercentage": {
+          "description": "Desired CPU core utilization ranging from 1%-80%",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 80,
+          "x-nullable": false
+        }
+      }
+    },
+    "BackupCreateRequest": {
+      "required": ["id"],
+      "description": "Request body for creating a backup of a set of classes",
+      "properties": {
+        "id": {
+          "description": "The ID of the backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed.",
+          "type": "string"
+        },
+        "config": {
+          "description": "Custom configuration for the backup creation process.",
+          "type": "object",
+          "$ref": "#/definitions/BackupConfig"
+        },
+        "include": {
+          "description": "List of collections to include in the backup creation process. If not set, all collections are included. Cannot be used together with `exclude`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude": {
+          "description": "List of collections to exclude from the backup creation process. If not set, all collections are included. Cannot be used together with `include`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "BackupCreateResponse": {
+      "description": "The definition of a backup create response body",
+      "properties": {
+        "id": {
+          "description": "The ID of the backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed.",
+          "type": "string"
+        },
+        "classes": {
+          "description": "The list of classes for which the backup creation process was started",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "backend": {
+          "description": "Backup backend name e.g. filesystem, gcs, s3.",
+          "type": "string"
+        },
+        "path": {
+          "description": "destination path of backup files proper to selected backend",
+          "type": "string"
+        },
+        "error": {
+          "description": "error message if creation failed",
+          "type": "string"
+        },
+        "status": {
+          "description": "phase of backup creation process",
+          "type": "string",
+          "default": "STARTED",
+          "enum": [
+            "STARTED",
+            "TRANSFERRING",
+            "TRANSFERRED",
+            "SUCCESS",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "BackupRestoreRequest": {
+      "description": "Request body for restoring a backup for a set of classes",
+      "properties": {
+        "config": {
+          "description": "Custom configuration for the backup restoration process",
+          "type": "object",
+          "$ref": "#/definitions/RestoreConfig"
+        },
+        "include": {
+          "description": "List of collections to include in the backup restoration process. If not set, all collections are included. Cannot be used together with `exclude`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude": {
+          "description": "List of collections to exclude from the backup restoration process. If not set, all collections are included. Cannot be used together with `include`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "node_mapping": {
+          "description": "Allows overriding the node names stored in the backup with different ones. Useful when restoring backups to a different environment.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "BackupRestoreResponse": {
+      "description": "The definition of a backup restore response body",
+      "properties": {
+        "id": {
+          "description": "The ID of the backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed.",
+          "type": "string"
+        },
+        "classes": {
+          "description": "The list of classes for which the backup restoration process was started",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "backend": {
+          "description": "Backup backend name e.g. filesystem, gcs, s3.",
+          "type": "string"
+        },
+        "path": {
+          "description": "destination path of backup files proper to selected backend",
+          "type": "string"
+        },
+        "error": {
+          "description": "error message if restoration failed",
+          "type": "string"
+        },
+        "status": {
+          "description": "phase of backup restoration process",
+          "type": "string",
+          "default": "STARTED",
+          "enum": [
+            "STARTED",
+            "TRANSFERRING",
+            "TRANSFERRED",
+            "SUCCESS",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "NodeStats": {
+      "description": "The summary of Weaviate's statistics.",
+      "properties": {
+        "shardCount": {
+          "description": "The count of Weaviate's shards. To see this value, set `output` to `verbose`.",
+          "format": "int",
+          "type": "number",
+          "x-omitempty": false
+        },
+        "objectCount": {
+          "description": "The total number of objects in DB.",
+          "format": "int64",
+          "type": "number",
+          "x-omitempty": false
+        }
+      }
+    },
+    "BatchStats": {
+      "description": "The summary of a nodes batch queue congestion status.",
+      "properties": {
+        "queueLength": {
+          "description": "How many objects are currently in the batch queue.",
+          "format": "int",
+          "type": "number",
+          "x-omitempty": true,
+          "x-nullable": true
+        },
+        "ratePerSecond": {
+          "description": "How many objects are approximately processed from the batch queue per second.",
+          "format": "int",
+          "type": "number",
+          "x-omitempty": false
+        }
+      }
+    },
+    "NodeShardStatus": {
+      "description": "The definition of a node shard status response body",
+      "properties": {
+        "name": {
+          "description": "The name of the shard.",
+          "type": "string",
+          "x-omitempty": false
+        },
+        "class": {
+          "description": "The name of shard's class.",
+          "type": "string",
+          "x-omitempty": false
+        },
+        "objectCount": {
+          "description": "The number of objects in shard.",
+          "format": "int64",
+          "type": "number",
+          "x-omitempty": false
+        },
+        "vectorIndexingStatus": {
+          "description": "The status of the vector indexing process.",
+          "format": "string",
+          "x-omitempty": false
+        },
+        "compressed": {
+          "description": "The status of vector compression/quantization.",
+          "format": "boolean",
+          "x-omitempty": false
+        },
+        "vectorQueueLength": {
+          "description": "The length of the vector indexing queue.",
+          "format": "int64",
+          "type": "number",
+          "x-omitempty": false
+        },
+        "loaded": {
+          "description": "The load status of the shard.",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "NodeStatus": {
+      "description": "The definition of a backup node status response body",
+      "properties": {
+        "name": {
+          "description": "The name of the node.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Node's status.",
+          "type": "string",
+          "default": "HEALTHY",
+          "enum": [
+            "HEALTHY",
+            "UNHEALTHY",
+            "UNAVAILABLE",
+            "TIMEOUT",
+            "INDEXING"
+          ]
+        },
+        "version": {
+          "description": "The version of Weaviate.",
+          "type": "string"
+        },
+        "gitHash": {
+          "description": "The gitHash of Weaviate.",
+          "type": "string"
+        },
+        "stats": {
+          "description": "Weaviate overall statistics.",
+          "type": "object",
+          "$ref": "#/definitions/NodeStats"
+        },
+        "batchStats": {
+          "description": "Weaviate batch statistics.",
+          "type": "object",
+          "$ref": "#/definitions/BatchStats"
+        },
+        "shards": {
+          "description": "The list of the shards with it's statistics.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NodeShardStatus"
+          }
+        }
+      }
+    },
+    "NodesStatusResponse": {
+      "description": "The status of all of the Weaviate nodes",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NodeStatus"
+          }
+        }
+      }
+    },
+    "SingleRef": {
+      "description": "Either set beacon (direct reference) or set class and schema (concept reference)",
+      "properties": {
+        "class": {
+          "description": "If using a concept reference (rather than a direct reference), specify the desired class name here",
+          "format": "uri",
+          "type": "string"
+        },
+        "schema": {
+          "description": "If using a concept reference (rather than a direct reference), specify the desired properties here",
+          "$ref": "#/definitions/PropertySchema"
+        },
+        "beacon": {
+          "description": "If using a direct reference, specify the URI to point to the cross-ref here. Should be in the form of weaviate://localhost/<uuid> for the example of a local cross-ref to an object",
+          "format": "uri",
+          "type": "string"
+        },
+        "href": {
+          "description": "If using a direct reference, this read-only fields provides a link to the referenced resource. If 'origin' is globally configured, an absolute URI is shown - a relative URI otherwise.",
+          "format": "uri",
+          "type": "string"
+        },
+        "classification": {
+          "description": "Additional Meta information about classifications if the item was part of one",
+          "$ref": "#/definitions/ReferenceMetaClassification"
+        }
+      }
+    },
+    "AdditionalProperties": {
+      "description": "(Response only) Additional meta information about a single object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "ReferenceMetaClassification": {
+      "description": "This meta field contains additional info about the classified reference property",
+      "properties": {
+        "overallCount": {
+          "description": "overall neighbors checked as part of the classification. In most cases this will equal k, but could be lower than k - for example if not enough data was present",
+          "type": "number",
+          "format": "int64"
+        },
+        "winningCount": {
+          "description": "size of the winning group, a number between 1..k",
+          "type": "number",
+          "format": "int64"
+        },
+        "losingCount": {
+          "description": "size of the losing group, can be 0 if the winning group size equals k",
+          "type": "number",
+          "format": "int64"
+        },
+        "closestOverallDistance": {
+          "description": "The lowest distance of any neighbor, regardless of whether they were in the winning or losing group",
+          "type": "number",
+          "format": "float32"
+        },
+        "winningDistance": {
+          "description": "deprecated - do not use, to be removed in 0.23.0",
+          "type": "number",
+          "format": "float32"
+        },
+        "meanWinningDistance": {
+          "description": "Mean distance of all neighbors from the winning group",
+          "type": "number",
+          "format": "float32"
+        },
+        "closestWinningDistance": {
+          "description": "Closest distance of a neighbor from the winning group",
+          "type": "number",
+          "format": "float32"
+        },
+        "closestLosingDistance": {
+          "description": "The lowest distance of a neighbor in the losing group. Optional. If k equals the size of the winning group, there is no losing group",
+          "type": "number",
+          "format": "float32",
+          "x-nullable": true
+        },
+        "losingDistance": {
+          "description": "deprecated - do not use, to be removed in 0.23.0",
+          "type": "number",
+          "format": "float32",
+          "x-nullable": true
+        },
+        "meanLosingDistance": {
+          "description": "Mean distance of all neighbors from the losing group. Optional. If k equals the size of the winning group, there is no losing group.",
+          "type": "number",
+          "format": "float32",
+          "x-nullable": true
+        }
+      }
+    },
+    "BatchReference": {
+      "properties": {
+        "from": {
+          "description": "Long-form beacon-style URI to identify the source of the cross-ref including the property name. Should be in the form of weaviate://localhost/<kinds>/<uuid>/<className>/<propertyName>, where <kinds> must be one of 'objects', 'objects' and <className> and <propertyName> must represent the cross-ref property of source class to be used.",
+          "format": "uri",
+          "type": "string",
+          "example": "weaviate://localhost/Zoo/a5d09582-4239-4702-81c9-92a6e0122bb4/hasAnimals"
+        },
+        "to": {
+          "description": "Short-form URI to point to the cross-ref. Should be in the form of weaviate://localhost/<uuid> for the example of a local cross-ref to an object",
+          "example": "weaviate://localhost/97525810-a9a5-4eb0-858a-71449aeb007f",
+          "format": "uri",
+          "type": "string"
+        },
+        "tenant": {
+          "type": "string",
+          "description": "Name of the reference tenant."
+        }
+      }
+    },
+    "BatchReferenceResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BatchReference"
+        },
+        {
+          "properties": {
+            "result": {
+              "description": "Results for this specific reference.",
+              "format": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "default": "SUCCESS",
+                  "enum": [
+                    "SUCCESS",
+                    "PENDING",
+                    "FAILED"
+                  ]
+                },
+                "errors": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "GeoCoordinates": {
+      "properties": {
+        "latitude": {
+          "description": "The latitude of the point on earth in decimal form",
+          "format": "float",
+          "type": "number",
+          "x-nullable": true
+        },
+        "longitude": {
+          "description": "The longitude of the point on earth in decimal form",
+          "format": "float",
+          "type": "number",
+          "x-nullable": true
+        }
+      }
+    },
+    "PhoneNumber": {
+      "properties": {
+        "input": {
+          "description": "The raw input as the phone number is present in your raw data set. It will be parsed into the standardized formats if valid.",
+          "type": "string"
+        },
+        "internationalFormatted": {
+          "description": "Read-only. Parsed result in the international format (e.g. +49 123 ...)",
+          "type": "string"
+        },
+        "defaultCountry": {
+          "description": "Optional. The ISO 3166-1 alpha-2 country code. This is used to figure out the correct countryCode and international format if only a national number (e.g. 0123 4567) is provided",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Read-only. The numerical country code (e.g. 49)",
+          "format": "uint64",
+          "type": "number"
+        },
+        "national": {
+          "description": "Read-only. The numerical representation of the national part",
+          "format": "uint64",
+          "type": "number"
+        },
+        "nationalFormatted": {
+          "description": "Read-only. Parsed result in the national format (e.g. 0123 456789)",
+          "type": "string"
+        },
+        "valid": {
+          "description": "Read-only. Indicates whether the parsed number is a valid phone number",
+          "type": "boolean"
+        }
+      }
+    },
+    "Object": {
+      "properties": {
+        "class": {
+          "description": "The object collection name.",
+          "type": "string"
+        },
+        "vectorWeights": {
+          "$ref": "#/definitions/VectorWeights"
+        },
+        "properties": {
+          "$ref": "#/definitions/PropertySchema"
+        },
+        "id": {
+          "description": "ID of the object.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "creationTimeUnix": {
+          "description": "(Response only) Timestamp of creation of this object in milliseconds since epoch UTC.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "lastUpdateTimeUnix": {
+          "description": "(Response only) Timestamp of the last object update in milliseconds since epoch UTC.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "vector": {
+          "description": "This field returns vectors associated with the Object. C11yVector, Vector or Vectors values are possible.",
+          "$ref": "#/definitions/C11yVector"
+        },
+        "vectors": {
+          "description": "This field returns vectors associated with the Object.",
+          "$ref": "#/definitions/Vectors"
+        },
+        "tenant": {
+          "description": "Name of the tenant.",
+          "type": "string"
+        },
+        "additional": {
+          "$ref": "#/definitions/AdditionalProperties"
+        }
+      },
+      "type": "object"
+    },
+    "ObjectsGetResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Object"
+        },
+        {
+          "properties": {
+            "deprecations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deprecation"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "result": {
+              "description": "Results for this specific Object.",
+              "format": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "default": "SUCCESS",
+                  "enum": [
+                    "SUCCESS",
+                    "PENDING",
+                    "FAILED"
+                  ]
+                },
+                "errors": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "BatchDelete": {
+      "type": "object",
+      "properties": {
+        "match": {
+          "description": "Outlines how to find the objects to be deleted.",
+          "type": "object",
+          "properties": {
+            "class": {
+              "description": "Class (name) which objects will be deleted.",
+              "type": "string",
+              "example": "City"
+            },
+            "where": {
+              "description": "Filter to limit the objects to be deleted.",
+              "type": "object",
+              "$ref": "#/definitions/WhereFilter"
+            }
+          }
+        },
+        "output": {
+          "description": "Controls the verbosity of the output.",
+          "type": "string",
+          "default": "minimal",
+          "enum": [
+            "minimal",
+            "verbose"
+          ]
+        },
+        "dryRun": {
+          "description": "If true, the call will show which objects would be matched using the specified filter without deleting any objects. <br/><br/>Depending on the configured verbosity, you will either receive a count of affected objects, or a list of IDs.",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "BatchDeleteResponse": {
+      "description": "Delete Objects response.",
+      "type": "object",
+      "properties": {
+        "match": {
+          "description": "Outlines how to find the objects to be deleted.",
+          "type": "object",
+          "properties": {
+            "class": {
+              "description": "Class (name) which objects will be deleted.",
+              "type": "string",
+              "example": "City"
+            },
+            "where": {
+              "description": "Filter to limit the objects to be deleted.",
+              "type": "object",
+              "$ref": "#/definitions/WhereFilter"
+            }
+          }
+        },
+        "output": {
+          "description": "Controls the verbosity of the output.",
+          "type": "string",
+          "default": "minimal",
+          "enum": [
+            "minimal",
+            "verbose"
+          ]
+        },
+        "dryRun": {
+          "description": "If true, objects will not be deleted yet, but merely listed. Defaults to false.",
+          "type": "boolean",
+          "default": false
+        },
+        "results": {
+          "type": "object",
+          "properties": {
+            "matches": {
+              "description": "How many objects were matched by the filter.",
+              "type": "number",
+              "format": "int64",
+              "x-omitempty": false
+            },
+            "limit": {
+              "description": "The most amount of objects that can be deleted in a single query, equals QUERY_MAXIMUM_RESULTS.",
+              "type": "number",
+              "format": "int64",
+              "x-omitempty": false
+            },
+            "successful": {
+              "description": "How many objects were successfully deleted in this round.",
+              "type": "number",
+              "format": "int64",
+              "x-omitempty": false
+            },
+            "failed": {
+              "description": "How many objects should have been deleted but could not be deleted.",
+              "type": "number",
+              "format": "int64",
+              "x-omitempty": false
+            },
+            "objects": {
+              "description": "With output set to \"minimal\" only objects with error occurred will the be described. Successfully deleted objects would be omitted. Output set to \"verbose\" will list all of the objets with their respective statuses.",
+              "type": "array",
+              "items": {
+                "description": "Results for this specific Object.",
+                "format": "object",
+                "properties": {
+                  "id": {
+                    "description": "ID of the Object.",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "default": "SUCCESS",
+                    "enum": [
+                      "SUCCESS",
+                      "DRYRUN",
+                      "FAILED"
+                    ]
+                  },
+                  "errors": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ObjectsListResponse": {
+      "description": "List of Objects.",
+      "properties": {
+        "objects": {
+          "description": "The actual list of Objects.",
+          "items": {
+            "$ref": "#/definitions/Object"
+          },
+          "type": "array"
+        },
+        "deprecations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Deprecation"
+          }
+        },
+        "totalResults": {
+          "description": "The total number of Objects for the query. The number of items in a response may be smaller due to paging.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Classification": {
+      "description": "Manage classifications, trigger them and view status of past classifications.",
+      "properties": {
+        "id": {
+          "description": "ID to uniquely identify this classification run",
+          "format": "uuid",
+          "type": "string",
+          "example": "ee722219-b8ec-4db1-8f8d-5150bb1a9e0c"
+        },
+        "class": {
+          "description": "class (name) which is used in this classification",
+          "type": "string",
+          "example": "City"
+        },
+        "classifyProperties": {
+          "description": "which ref-property to set as part of the classification",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "inCountry"
+          ]
+        },
+        "basedOnProperties": {
+          "description": "base the text-based classification on these fields (of type text)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "description"
+          ]
+        },
+        "status": {
+          "description": "status of this classification",
+          "type": "string",
+          "enum": [
+            "running",
+            "completed",
+            "failed"
+          ],
+          "example": "running"
+        },
+        "meta": {
+          "description": "additional meta information about the classification",
+          "type": "object",
+          "$ref": "#/definitions/ClassificationMeta"
+        },
+        "type": {
+          "description": "which algorithm to use for classifications",
+          "type": "string"
+        },
+        "settings": {
+          "description": "classification-type specific settings",
+          "type": "object"
+        },
+        "error": {
+          "description": "error message if status == failed",
+          "type": "string",
+          "default": "",
+          "example": "classify xzy: something went wrong"
+        },
+        "filters": {
+          "type": "object",
+          "properties": {
+            "sourceWhere": {
+              "description": "limit the objects to be classified",
+              "type": "object",
+              "$ref": "#/definitions/WhereFilter"
+            },
+            "trainingSetWhere": {
+              "description": "Limit the training objects to be considered during the classification. Can only be used on types with explicit training sets, such as 'knn'",
+              "type": "object",
+              "$ref": "#/definitions/WhereFilter"
+            },
+            "targetWhere": {
+              "description": "Limit the possible sources when using an algorithm which doesn't really on training data, e.g. 'contextual'. When using an algorithm with a training set, such as 'knn', limit the training set instead",
+              "type": "object",
+              "$ref": "#/definitions/WhereFilter"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "ClassificationMeta": {
+      "description": "Additional information to a specific classification",
+      "properties": {
+        "started": {
+          "description": "time when this classification was started",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-07-21T17:32:28Z"
+        },
+        "completed": {
+          "description": "time when this classification finished",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-07-21T17:32:28Z"
+        },
+        "count": {
+          "description": "number of objects which were taken into consideration for classification",
+          "type": "integer",
+          "example": 147
+        },
+        "countSucceeded": {
+          "description": "number of objects successfully classified",
+          "type": "integer",
+          "example": 140
+        },
+        "countFailed": {
+          "description": "number of objects which could not be classified - see error message for details",
+          "type": "integer",
+          "example": 7
+        }
+      },
+      "type": "object"
+    },
+    "WhereFilter": {
+      "description": "Filter search results using a where filter",
+      "properties": {
+        "operands": {
+          "description": "combine multiple where filters, requires 'And' or 'Or' operator",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WhereFilter"
+          }
+        },
+        "operator": {
+          "description": "operator to use",
+          "type": "string",
+          "enum": [
+            "And",
+            "Or",
+            "Equal",
+            "Like",
+            "NotEqual",
+            "GreaterThan",
+            "GreaterThanEqual",
+            "LessThan",
+            "LessThanEqual",
+            "WithinGeoRange",
+            "IsNull",
+            "ContainsAny",
+            "ContainsAll"
+          ],
+          "example": "GreaterThanEqual"
+        },
+        "path": {
+          "description": "path to the property currently being filtered",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "inCity",
+            "City",
+            "name"
+          ]
+        },
+        "valueInt": {
+          "description": "value as integer",
+          "type": "integer",
+          "format": "int64",
+          "example": 2000,
+          "x-nullable": true
+        },
+        "valueNumber": {
+          "description": "value as number/float",
+          "type": "number",
+          "format": "float64",
+          "example": 3.14,
+          "x-nullable": true
+        },
+        "valueBoolean": {
+          "description": "value as boolean",
+          "type": "boolean",
+          "example": false,
+          "x-nullable": true
+        },
+        "valueString": {
+          "description": "value as text (deprecated as of v1.19; alias for valueText)",
+          "type": "string",
+          "example": "my search term",
+          "x-nullable": true
+        },
+        "valueText": {
+          "description": "value as text",
+          "type": "string",
+          "example": "my search term",
+          "x-nullable": true
+        },
+        "valueDate": {
+          "description": "value as date (as string)",
+          "type": "string",
+          "example": "TODO",
+          "x-nullable": true
+        },
+        "valueIntArray": {
+          "description": "value as integer",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "example": "[100, 200]",
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueNumberArray": {
+          "description": "value as number/float",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float64"
+          },
+          "example": [
+            3.14
+          ],
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueBooleanArray": {
+          "description": "value as boolean",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "example": [
+            true,
+            false
+          ],
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueStringArray": {
+          "description": "value as text (deprecated as of v1.19; alias for valueText)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "my search term"
+          ],
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueTextArray": {
+          "description": "value as text",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "my search term"
+          ],
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueDateArray": {
+          "description": "value as date (as string)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": "TODO",
+          "x-nullable": true,
+          "x-omitempty": true
+        },
+        "valueGeoRange": {
+          "description": "value as geo coordinates and distance",
+          "type": "object",
+          "$ref": "#/definitions/WhereFilterGeoRange",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "WhereFilterGeoRange": {
+      "type": "object",
+      "description": "filter within a distance of a georange",
+      "properties": {
+        "geoCoordinates": {
+          "$ref": "#/definitions/GeoCoordinates",
+          "x-nullable": false
+        },
+        "distance": {
+          "type": "object",
+          "properties": {
+            "max": {
+              "type": "number",
+              "format": "float64"
+            }
+          }
+        }
+      }
+    },
+    "Tenant": {
+      "type": "object",
+      "required": ["name"],
+      "description": "attributes representing a single tenant within weaviate",
+      "properties": {
+        "name": {
+          "description": "name of the tenant",
+          "type": "string"
+        },
+        "activityStatus": {
+          "description": "Activity status of the tenant's shard. Optional for creating tenant (implicit `HOT`) and required for updating tenant. <br/><br/>Allowed values are `HOT` - tenant is fully active, `WARM` - tenant is active, some restrictions are imposed (TBD; not supported yet), `COLD` - tenant is inactive; no actions can be performed on tenant, tenant's files are stored locally, `FROZEN` - as COLD, but files are stored on cloud storage (not supported yet)",
+          "type": "string",
+          "enum": [
+            "HOT",
+            "WARM",
+            "COLD",
+            "FROZEN"
+          ]
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "url": "https://github.com/weaviate/weaviate"
+  },
+  "info": {
+    "contact": {
+      "name": "Weaviate",
+      "url": "https://weaviate.io"
+    },
+    "description": "# Introduction\n Weaviate is an open source, AI-native vector database that helps developers create intuitive and reliable AI-powered applications. \n ### Base Path \nThe base path for the Weaviate server is structured as `[YOUR-WEAVIATE-HOST]:[PORT]/v1`. As an example, if you wish to access the `schema` endpoint on a local instance, you would navigate to `http://localhost:8080/v1/schema`. Ensure you replace `[YOUR-WEAVIATE-HOST]` and `[PORT]` with your actual server host and port number respectively. \n ### Questions? \nIf you have any comments or questions, please feel free to reach out to us at the community forum [https://forum.weaviate.io/](https://forum.weaviate.io/). \n### Issues? \nIf you find a bug or want to file a feature request, please open an issue on our GitHub repository for [Weaviate](https://github.com/weaviate/weaviate). \n### Want more documentation? \nFor a quickstart, code examples, concepts and more, please visit our [documentation page](https://weaviate.io/developers/weaviate).",
+    "title": "Weaviate",
+    "version": "1.24.8"
+  },
+  "parameters": {
+    "CommonAfterParameterQuery": {
+      "description": "A threshold UUID of the objects to retrieve after, using an UUID-based ordering. This object is not part of the set. <br/><br/>Must be used with `class`, typically in conjunction with `limit`. <br/><br/>Note `after` cannot be used with `offset` or `sort`. <br/><br/>For a null value similar to offset=0, set an empty string in the request, i.e. `after=` or `after`.",
+      "in": "query",
+      "name": "after",
+      "required": false,
+      "type": "string"
+    },
+    "CommonOffsetParameterQuery": {
+      "description": "The starting index of the result window. Note `offset` will retrieve `offset+limit` results and return `limit` results from the object with index `offset` onwards. Limited by the value of `QUERY_MAXIMUM_RESULTS`. <br/><br/>Should be used in conjunction with `limit`. <br/><br/>Cannot be used with `after`.",
+      "format": "int64",
+      "in": "query",
+      "name": "offset",
+      "required": false,
+      "type": "integer",
+      "default": 0
+    },
+    "CommonLimitParameterQuery": {
+      "description": "The maximum number of items to be returned per page. The default is 25 unless set otherwise as an environment variable.",
+      "format": "int64",
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "type": "integer",
+      "default": 25
+    },
+    "CommonIncludeParameterQuery": {
+      "description": "Include additional information, such as classification infos. Allowed values include: `classification`, `vector`, `interpretation`, `featureProjection` and other module-specific additional properties.",
+      "in": "query",
+      "name": "include",
+      "required": false,
+      "type": "string"
+    },
+    "CommonConsistencyLevelParameterQuery": {
+      "description": "Determines how many replicas must acknowledge a request before it is considered successful",
+      "in": "query",
+      "name": "consistency_level",
+      "required": false,
+      "type": "string",
+      "enum": ["ONE", "QUORUM", "ALL"],
+      "default": "QUORUM"
+    },
+    "CommonTenantParameterQuery": {
+      "description": "Specifies the tenant in a request targeting a multi-tenant collection",
+      "in": "query",
+      "name": "tenant",
+      "required": false,
+      "type": "string"
+    },
+    "CommonNodeNameParameterQuery": {
+      "description": "The target node which should fulfill the request",
+      "in": "query",
+      "name": "node_name",
+      "required": false,
+      "type": "string"
+    },
+    "CommonSortParameterQuery": {
+      "description": "Name(s) of the property to sort by - e.g. `city`, or `country,city`.",
+      "in": "query",
+      "name": "sort",
+      "required": false,
+      "type": "string"
+    },
+    "CommonOrderParameterQuery": {
+      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter. If providing multiple `sort` values, provide multiple `order` values in corresponding order, e.g.: `sort=author_name,title&order=desc,asc`.",
+      "in": "query",
+      "name": "order",
+      "required": false,
+      "type": "string",
+      "enum": ["asc", "desc"]
+    },
+    "CommonClassParameterQuery": {
+      "description": "The collection from which to query objects.  <br/><br/>Note that if `class` is not provided, the response will not include any objects.",
+      "in": "query",
+      "name": "class",
+      "required": false,
+      "type": "string"
+    },
+    "CommonOutputVerbosityParameterQuery": {
+      "description": "Controls the verbosity of the output.",
+      "in": "query",
+      "name": "output",
+      "required": false,
+      "type": "string",
+      "enum": ["minimal", "verbose"],
+      "default": "minimal"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "List available endpoints",
+        "description": "Get links to other endpoints to help discover the REST API",
+        "operationId": "weaviate.root",
+        "responses": {
+          "200": {
+            "description": "Weaviate is alive and ready to serve content",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Link"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["root"]
+      }
+    },
+    "/.well-known/live": {
+      "get": {
+        "summary": "Get application liveness.",
+        "description": "Determines whether the application is alive. Can be used for kubernetes liveness probe",
+        "operationId": "weaviate.wellknown.liveness",
+        "responses": {
+          "200": {
+            "description": "The application is able to respond to HTTP requests"
+          }
+        },
+        "tags": ["well-known"]
+      }
+    },
+    "/.well-known/ready": {
+      "get": {
+        "summary": "Get application readiness.",
+        "description": "Determines whether the application is ready to receive traffic. Can be used for kubernetes readiness probe.",
+        "operationId": "weaviate.wellknown.readiness",
+        "responses": {
+          "200": {
+            "description": "The application has completed its start-up routine and is ready to accept traffic."
+          },
+          "503": {
+            "description": "The application is currently not able to serve traffic. If other horizontal replicas of weaviate are available and they are capable of receiving traffic, all traffic should be redirected there instead."
+          }
+        },
+        "tags": ["well-known"]
+      }
+    },
+    "/.well-known/openid-configuration": {
+      "get": {
+        "description": "OIDC Discovery page, redirects to the token issuer if one is configured",
+        "responses": {
+          "200": {
+            "description": "Successful response, inspect body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "description": "The Location to redirect to",
+                  "type": "string"
+                },
+                "clientId": {
+                  "description": "OAuth Client ID",
+                  "type": "string"
+                },
+                "scopes": {
+                  "description": "OAuth Scopes",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-omitempty": true
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found, no oidc provider present"
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "OIDC discovery information (if OIDC auth is enabled)",
+        "tags": [
+          "well-known"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/objects": {
+      "get": {
+        "description": "Lists all objects in reverse order of creation. The data will be returned as an array of objects. <br/><br/>Tip: If you are looking to list all objects in a collection, use the `after` parameter.",
+        "operationId": "objects.list",
+        "x-serviceIds": [
+          "weaviate.local.query"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/CommonAfterParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonOffsetParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonLimitParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonIncludeParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonSortParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonOrderParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonClassParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response. <br/><br/>If `class` is not provided, the response will not include any objects.",
+            "schema": {
+              "$ref": "#/definitions/ObjectsListResponse"
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Get a list of objects.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "post": {
+        "description": "Create a new object. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: Use `/batch` for importing many objects**: <br/>If you plan on importing a large number of objects, it's much more efficient to use the `/batch` endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty. <br/><br/>**Note: idempotence of `/objects`**: <br/>POST /objects will fail if an id is provided which already exists in the class. To update an existing object with the objects endpoint, use the PUT or PATCH method.",
+        "operationId": "objects.create",
+        "x-serviceIds": [
+          "weaviate.local.add"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object created.",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Create a new object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/objects/{id}": {
+      "delete": {
+        "description": "Deletes an object from the database based on its UUID.",
+        "operationId": "objects.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Delete an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": true,
+        "x-available-in-websocket": true,
+        "deprecated": true
+      },
+      "get": {
+        "description": "Get a specific object based on its UUID. Also available as Websocket bus.",
+        "operationId": "objects.get",
+        "x-serviceIds": [
+          "weaviate.local.query"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonIncludeParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "List objects.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      },
+      "patch": {
+        "description": "Update an object based on its UUID (using patch semantics). This method supports json-merge style patch semantics (RFC 7396). Provided meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
+        "operationId": "objects.patch",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "RFC 7396-style patch, the body contains the object to merge into the existing object.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully applied. No content provided."
+          },
+          "400": {
+            "description": "The patch-JSON is malformed."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "The patch-JSON is valid but unprocessable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update an object using patch semantics.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      },
+      "put": {
+        "description": "Updates an object based on its UUID. Given meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
+        "operationId": "objects.update",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully received.",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      },
+      "head": {
+        "description": "Checks if an object exists in the system based on its UUID.",
+        "operationId": "objects.head",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Object exists."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Object doesn't exist."
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Check if object exists.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": true,
+        "x-available-in-websocket": true,
+        "deprecated": true
+      }
+    },
+    "/objects/{className}/{id}": {
+      "get": {
+        "description": "Get a data object based on its collection and UUID. Also available as Websocket bus.",
+        "operationId": "objects.class.get",
+        "x-serviceIds": [
+          "weaviate.local.query"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonIncludeParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonNodeNameParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "Request is well-formed (i.e., syntactically correct), but erroneous.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Get an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "delete": {
+        "description": "Delete an object based on its collection and UUID. <br/><br/>Note: For backward compatibility, beacons also support an older, deprecated format without the collection name. As a result, when deleting a reference, the beacon specified has to match the beacon to be deleted exactly. In other words, if a beacon is present using the old format (without collection name) you also need to specify it the same way. <br/><br/>In the beacon format, you need to always use `localhost` as the host, rather than the actual hostname. `localhost` here refers to the fact that the beacon's target is on the same Weaviate instance, as opposed to a foreign instance.",
+        "operationId": "objects.class.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted."
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "Request is well-formed (i.e., syntactically correct), but erroneous.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Delete an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": true,
+        "x-available-in-websocket": true
+      },
+      "put": {
+        "description": "Update an object based on its uuid and collection. This (`put`) method replaces the object with the provided object.",
+        "operationId": "objects.class.put",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The uuid of the data object to update.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully received.",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "patch": {
+        "description": "Update an individual data object based on its collection and uuid. This method supports json-merge style patch semantics (RFC 7396). Provided meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
+        "operationId": "objects.class.patch",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "The class name as defined in the schema",
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The uuid of the data object to update.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "RFC 7396-style patch, the body contains the object to merge into the existing object.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully applied. No content provided."
+          },
+          "400": {
+            "description": "The patch-JSON is malformed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found."
+          },
+          "422": {
+            "description": "The patch-JSON is valid but unprocessable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Update an object using patch semantics.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "head": {
+        "description": "Checks if a data object exists based on its collection and uuid without retrieving it. <br/><br/>Internally it skips reading the object from disk other than checking if it is present. Thus it does not use resources on marshalling, parsing, etc., and is faster. Note the resulting HTTP request has no body; the existence of an object is indicated solely by the status code.",
+        "operationId": "objects.class.head",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "The class name as defined in the schema",
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The uuid of the data object",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Object exists."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Object doesn't exist."
+          },
+          "422": {
+            "description": "Request is well-formed (i.e., syntactically correct), but erroneous.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Check if an object exists.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": true,
+        "x-available-in-websocket": true
+      }
+    },
+    "/objects/{id}/references/{propertyName}": {
+      "post": {
+        "description": "Add a cross-reference.",
+        "operationId": "objects.references.create",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SingleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added the reference."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the property exists or that it is a class?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Add a cross-reference.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      },
+      "put": {
+        "description": "Replace all references in cross-reference property of an object.",
+        "operationId": "objects.references.update",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultipleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully replaced all the references."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the property exists or that it is a class?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Replace cross-references.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      },
+      "delete": {
+        "description": "Delete the single reference that is given in the body from the list of references that this property has.",
+        "operationId": "objects.references.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SingleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Delete a cross-reference.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false,
+        "deprecated": true
+      }
+    },
+    "/objects/{className}/{id}/references/{propertyName}": {
+      "post": {
+        "description": "Add a single reference to an object. This adds a reference to the array of cross-references of the given property in the source object specified by its collection name and id",
+        "operationId": "objects.class.references.create",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "The class name as defined in the schema",
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SingleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added the reference."
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Source object doesn't exist."
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the property exists or that it is a class?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Add a cross-reference.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "put": {
+        "description": "Replace **all** references in cross-reference property of an object.",
+        "operationId": "objects.class.references.put",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "The class name as defined in the schema",
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultipleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully replaced all the references."
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Source object doesn't exist."
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the property exists or that it is a class?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Replace cross-references.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "delete": {
+        "description": "Delete the single reference that is given in the body from the list of references that this property has.",
+        "operationId": "objects.class.references.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "description": "The class name as defined in the schema",
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique ID of the Object.",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique name of the property related to the Object.",
+            "in": "path",
+            "name": "propertyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SingleRef"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted."
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Successful query result but no resource was found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the property exists or that it is a class?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Delete a cross-reference.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/objects/validate": {
+      "post": {
+        "description": "Validate an object's schema and meta-data without creating it. <br/><br/>If the schema of the object is valid, the request should return nothing with a plain RESTful request. Otherwise, an error object will be returned.",
+        "operationId": "objects.validate",
+        "x-serviceIds": [
+          "weaviate.local.query.meta"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully validated."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Validate an object.",
+        "tags": [
+          "objects"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/batch/objects": {
+      "post": {
+        "description": "Create new objects in bulk. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: idempotence of `/batch/objects`**: <br/>`POST /batch/objects` is idempotent, and will overwrite any existing object given the same id.",
+        "operationId": "batch.objects.create",
+        "x-serviceIds": [
+          "weaviate.local.add"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fields": {
+                  "description": "Define which fields need to be returned. Default value is ALL",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "default": "ALL",
+                    "enum": [
+                      "ALL",
+                      "class",
+                      "schema",
+                      "id",
+                      "creationTimeUnix"
+                    ]
+                  }
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Object"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request succeeded, see response body to get detailed information about each batched item.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ObjectsGetResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Batch create new objects.",
+        "tags": [
+          "batch"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      },
+      "delete": {
+        "description": "Batch delete objects that match a particular filter. <br/><br/>The request body takes a single `where` filter and will delete all objects matched. <br/><br/>Note that there is a limit to the number of objects to be deleted at once using this filter, in order to protect against unexpected memory surges and very-long-running requests. The default limit is 10,000 and may be configured by setting the `QUERY_MAXIMUM_RESULTS` environment variable. <br/><br/>Objects are deleted in the same order that they would be returned in an equivalent Get query. To delete more objects than the limit, run the same query multiple times.",
+        "operationId": "batch.objects.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BatchDelete"
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          },
+          {
+            "$ref": "#/parameters/CommonTenantParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request succeeded, see response body to get detailed information about each batched item.",
+            "schema": {
+              "$ref": "#/definitions/BatchDeleteResponse"
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Batch delete objects.",
+        "tags": [
+          "batch"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/batch/references": {
+      "post": {
+        "description": "Batch create cross-references between collections items (objects or objects) in bulk.",
+        "operationId": "batch.references.create",
+        "x-serviceIds": [
+          "weaviate.local.add"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "A list of references to be batched. The ideal size depends on the used database connector. Please see the documentation of the used connector for help",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BatchReference"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/CommonConsistencyLevelParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Successful. Warning: A successful request does not guarantee that every batched reference was successfully created. Inspect the response body to see which references succeeded and which failed.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BatchReferenceResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Batch create cross-references.",
+        "tags": [
+          "batch"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/graphql": {
+      "post": {
+        "description": "Get a response based on a GraphQL query",
+        "operationId": "graphql.post",
+        "x-serviceIds": [
+          "weaviate.local.query",
+          "weaviate.local.query.meta",
+          "weaviate.network.query",
+          "weaviate.network.query.meta"
+        ],
+        "parameters": [
+          {
+            "description": "The GraphQL query request parameters.",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GraphQLQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful query (with select).",
+            "schema": {
+              "$ref": "#/definitions/GraphQLResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Perform a GraphQL query.",
+        "tags": [
+          "graphql"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/graphql/batch": {
+      "post": {
+        "description": "Perform batched GraphQL query",
+        "operationId": "graphql.batch",
+        "x-serviceIds": [
+          "weaviate.local.query",
+          "weaviate.local.query.meta",
+          "weaviate.network.query",
+          "weaviate.network.query.meta"
+        ],
+        "parameters": [
+          {
+            "description": "The GraphQL queries.",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GraphQLQueries"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful query (with select).",
+            "schema": {
+              "$ref": "#/definitions/GraphQLResponses"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Request body is well-formed (i.e., syntactically correct), but semantically erroneous. Are you sure the class is defined in the configuration file?",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Perform batched GraphQL queries.",
+        "tags": [
+          "graphql"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/meta": {
+      "get": {
+        "description": "Returns meta information about the server. Can be used to provide information to another Weaviate instance that wants to interact with the current instance.",
+        "operationId": "meta.get",
+        "x-serviceIds": [
+          "weaviate.local.query.meta"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "schema": {
+              "$ref": "#/definitions/Meta"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Get instance metadata.",
+        "tags": [
+          "meta"
+        ],
+        "x-available-in-mqtt": false,
+        "x-available-in-websocket": false
+      }
+    },
+    "/schema/cluster-status": {
+      "get": {
+        "summary": "Get schema synchronization status.",
+        "operationId": "schema.cluster.status",
+        "tags": [
+          "schema"
+        ],
+        "responses": {
+          "200": {
+            "description": "The schema in the cluster is in sync.",
+            "schema": {
+              "$ref": "#/definitions/SchemaClusterStatus"
+            }
+          },
+          "500": {
+            "description": "The schema is either out of sync (see response body) or the sync check could not be completed.",
+            "schema": {
+              "$ref": "#/definitions/SchemaClusterStatus"
+            }
+          }
+        }
+      }
+    },
+    "/schema": {
+      "get": {
+        "summary": "Get the entire schema.",
+        "description": "Fetch an array of all collection definitions from the schema.",
+        "operationId": "schema.dump",
+        "x-serviceIds": [
+          "weaviate.local.query.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully dumped the database schema.",
+            "schema": {
+              "$ref": "#/definitions/Schema"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a collection.",
+        "description": "Create a new data object collection. <br/><br/>If [AutoSchema](https://weaviate.io/developers/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate will attempt to infer the schema from the data at import time. However, manual schema definition is recommended for production environments. <br/><br/>For further discussions of parameters, please see the [schema reference page](https://weaviate.io/developers/weaviate/config-refs/schema).",
+        "operationId": "schema.objects.create",
+        "x-serviceIds": [
+          "weaviate.local.add.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "objectClass",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Class"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added the new Object class to the schema.",
+            "schema": {
+              "$ref": "#/definitions/Class"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid Object class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}": {
+      "get": {
+        "summary": "Get a single collection schema.",
+        "operationId": "schema.objects.get",
+        "x-serviceIds": [
+          "weaviate.local.get.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the Class, returned as body",
+            "schema": {
+              "$ref": "#/definitions/Class"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "This class does not exist"
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove a collection (and its data).",
+        "description": "Remove a collection from the schema. This will also delete all the objects in the collection.",
+        "operationId": "schema.objects.delete",
+        "x-serviceIds": [
+          "weaviate.local.manipulate.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Removed the Object class from the schema."
+          },
+          "400": {
+            "description": "Could not delete the Object class.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing collection.",
+        "description": "Alter an existing collection definition. <br/><br/>Note that not all settings are mutable ([see this list](https://weaviate.io/developers/weaviate/config-refs/schema#mutability)). To update any other (i.e. immutable) setting, you need to delete the collection, re-create it with the correct setting and then re-import the data. <br/><br/>This endpoint cannot be used to modify properties. Instead use POST /v1/schema/{className}/properties. A typical use case for this endpoint is to update a index configuration, such as `vectorIndexConfig/dynamicEfFactor`. <br/><br/>You should attach a body to this PUT request with the entire new configuration of the collection.",
+        "operationId": "schema.objects.update",
+        "x-serviceIds": [
+          "weaviate.local.manipulate.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "objectClass",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Class"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Class was updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Class"
+            }
+          },
+          "422": {
+            "description": "Invalid update attempt",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Class to be updated does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}/properties": {
+      "post": {
+        "summary": "Add a property.",
+        "description": "Add a property to an existing collection. <br/><br/>If possible, we encourage you to create all required properties at collection creation time. Adding a property after collection creation can lead to [some indexing limitations](https://weaviate.io/developers/weaviate/config-refs/schema).",
+        "operationId": "schema.objects.properties.add",
+        "x-serviceIds": [
+          "weaviate.local.manipulate.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added the property.",
+            "schema": {
+              "$ref": "#/definitions/Property"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid property.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}/shards": {
+      "get": {
+        "summary": "Get the shard status",
+        "description": "Get the status of every shard in the cluster.",
+        "operationId": "schema.objects.shards.get",
+        "x-serviceIds": [
+          "weaviate.local.get.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenant",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the status of the shards, returned as body",
+            "schema": {
+              "$ref": "#/definitions/ShardStatusList"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "This class does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}/shards/{shardName}": {
+      "put": {
+        "summary": "Update a shard status.",
+        "description": "Update a shard status for a collection. For example, a shard may have been marked as `READONLY` because its disk was full. After providing more disk space, use this endpoint to set the shard status to `READY` again. There is also a convenience function in each client to set the status of all shards of a collection.",
+        "operationId": "schema.objects.shards.update",
+        "x-serviceIds": [
+          "weaviate.local.manipulate.meta"
+        ],
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "shardName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShardStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shard status was updated successfully",
+            "schema": {
+              "$ref": "#/definitions/ShardStatus"
+            }
+          },
+          "422": {
+            "description": "Invalid update attempt",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Shard to be updated does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}/tenants": {
+      "post": {
+        "summary": "Create a new tenant",
+        "description": "Create a new tenant for a collection. Multi-tenancy must be enabled in the collection definition.",
+        "operationId": "tenants.create",
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tenant"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added new tenants to the specified class",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tenant"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid Tenant class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a tenant.",
+        "description": "Update a tenant for a collection",
+        "operationId": "tenants.update",
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tenant"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated tenants of the specified class",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tenant"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid Tenant class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete tenant(s).",
+        "description": "Delete tenants from a collection",
+        "operationId": "tenants.delete",
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "tenants",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted tenants from specified class."
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid Tenant class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get the list of tenants.",
+        "description": "Get all tenants from a collection.",
+        "operationId": "tenants.get",
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "tenants from specified class.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tenant"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid Tenant class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/schema/{className}/tenants/{tenantName}": {
+      "head": {
+        "summary": "Check if a tenant exists.",
+        "description": "Check if a tenant exists in a collection",
+        "operationId": "tenant.exists",
+        "tags": [
+          "schema"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The tenant exists in the specified class"
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "The tenant not found"
+          },
+          "422": {
+            "description": "Invalid Tenant class",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backend}": {
+      "post": {
+        "summary": "Start a backup process",
+        "description": "Start creating a backup for a set of collections. <br/><br/>Notes: <br/>- Weaviate uses gzip compression by default. <br/>- Weaviate stays usable while a backup process is ongoing.",
+        "operationId": "backups.create",
+        "x-serviceIds": [
+          "weaviate.local.backup"
+        ],
+        "tags": [
+          "backups"
+        ],
+        "parameters": [
+          {
+            "name": "backend",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BackupCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup create process successfully started.",
+            "schema": {
+              "$ref": "#/definitions/BackupCreateResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid backup creation attempt.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backend}/{id}": {
+      "get": {
+        "summary": "Get backup process status",
+        "description": "Returns status of backup creation attempt for a set of collections. <br/><br/>All client implementations have a `wait for completion` option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully). If you set the `wait for completion` option to false, you can also check the status yourself using this endpoint.",
+        "operationId": "backups.create.status",
+        "x-serviceIds": [
+          "weaviate.local.backup"
+        ],
+        "tags": [
+          "backups"
+        ],
+        "parameters": [
+          {
+            "name": "backend",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of a backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup creation status successfully returned",
+            "schema": {
+              "$ref": "#/definitions/BackupCreateStatusResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found - Backup does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid backup restoration status attempt.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backend}/{id}/restore": {
+      "post": {
+        "summary": "Start a restoration process",
+        "description": "Starts a process of restoring a backup for a set of collections. <br/><br/>Any backup can be restored to any machine, as long as the number of nodes between source and target are identical.<br/><br/>Requrements:<br/><br/>- None of the collections to be restored already exist on the target restoration node(s).<br/>- The node names of the backed-up collections' must match those of the target restoration node(s).",
+        "operationId": "backups.restore",
+        "x-serviceIds": [
+          "weaviate.local.backup"
+        ],
+        "tags": [
+          "backups"
+        ],
+        "parameters": [
+          {
+            "name": "backend",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of a backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed."
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BackupRestoreRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup restoration process successfully started.",
+            "schema": {
+              "$ref": "#/definitions/BackupRestoreResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found - Backup does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid backup restoration attempt.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get restore process status",
+        "description": "Returns status of a backup restoration attempt for a set of classes. <br/><br/>All client implementations have a `wait for completion` option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully). If you set the `wait for completion` option to false, you can also check the status yourself using the this endpoint.",
+        "operationId": "backups.restore.status",
+        "x-serviceIds": [
+          "weaviate.local.backup"
+        ],
+        "tags": [
+          "backups"
+        ],
+        "parameters": [
+          {
+            "name": "backend",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Backup backend name e.g. filesystem, gcs, s3."
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of a backup. Must be URL-safe and work as a filesystem path, only lowercase, numbers, underscore, minus characters allowed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup restoration status successfully returned",
+            "schema": {
+              "$ref": "#/definitions/BackupRestoreStatusResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found - Backup does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/nodes": {
+      "get": {
+        "summary": "Node information for the database.",
+        "description": "Returns node information for the entire database.",
+        "operationId": "nodes.get",
+        "x-serviceIds": [
+          "weaviate.nodes.status.get"
+        ],
+        "tags": [
+          "nodes"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/CommonOutputVerbosityParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nodes status successfully returned",
+            "schema": {
+              "$ref": "#/definitions/NodesStatusResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found - Backup does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid backup restoration status attempt.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/nodes/{className}": {
+      "get": {
+        "summary": "Node information for a collection.",
+        "description": "Returns node information for the nodes relevant to the collection.",
+        "operationId": "nodes.get.class",
+        "x-serviceIds": [
+          "weaviate.nodes.status.get.class"
+        ],
+        "tags": [
+          "nodes"
+        ],
+        "parameters": [
+          {
+            "name": "className",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/CommonOutputVerbosityParameterQuery"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nodes status successfully returned",
+            "schema": {
+              "$ref": "#/definitions/NodesStatusResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found - Backup does not exist",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid backup restoration status attempt.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/classifications/": {
+      "post": {
+        "description": "Trigger a classification based on the specified params. Classifications will run in the background, use GET /classifications/<id> to retrieve the status of your classification.",
+        "operationId": "classifications.post",
+        "x-serviceIds": [
+          "weaviate.classifications.post"
+        ],
+        "parameters": [
+          {
+            "description": "parameters to start a classification",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Classification"
+            },
+            "name": "params",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully started classification.",
+            "schema": {
+              "$ref": "#/definitions/Classification"
+            }
+          },
+          "400": {
+            "description": "Incorrect request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "Starts a classification.",
+        "tags": [
+          "classifications"
+        ]
+      }
+    },
+    "/classifications/{id}": {
+      "get": {
+        "description": "Get status, results and metadata of a previously created classification",
+        "operationId": "classifications.get",
+        "x-serviceIds": [
+          "weaviate.classifications.get"
+        ],
+        "parameters": [
+          {
+            "description": "classification id",
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the classification, returned as body",
+            "schema": {
+              "$ref": "#/definitions/Classification"
+            }
+          },
+          "404": {
+            "description": "Not Found - Classification does not exist"
+          },
+          "401": {
+            "description": "Unauthorized or invalid credentials."
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "An error has occurred while trying to fulfill the request. Most likely the ErrorResponse will contain more information about the error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "summary": "View previously created classification",
+        "tags": [
+          "classifications"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "https"
+  ],
+  "security": [
+    {},
+    {
+      "oidc": []
+    }
+  ],
+  "securityDefinitions": {
+    "oidc": {
+      "type": "oauth2",
+      "description": "OIDC (OpenConnect ID - based on OAuth2)",
+      "flow": "implicit",
+      "authorizationUrl": "http://to-be-configured-in-the-application-config"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "root",
+      "description": "The root of the API. Note the base url is `/v1`."
+    },
+    {
+      "name": "schema",
+      "description": "Operate on the database schema. <br/><br/>Note an 'Object class' in Weaviate is being renamed to a 'collection'. <br/><br/>See <a href='https://weaviate.io/developers/weaviate/manage-data/collections'>this page</a> for client code examples."
+    },
+    {
+      "name": "objects",
+      "description": "Create, update and delete objects and cross-references."
+    },
+    {
+      "name": "batch",
+      "description": "Create, update and delete multiple objects and references at once. <br/><br/>Note that object-level errors may be reported even in a successful batch request. Accordingly, we recommend you check the response body for errors."
+    },
+    {
+      "name": "backups",
+      "description": "Create, restore and check the status of backups. <br/><br/>See the [backups page](https://weaviate.io/developers/weaviate/configuration/backups) for a general introduction, configuration, and tech background of backups."
+    },
+    {
+      "name": "meta",
+      "description": "Retrieve information about the server such as the hostname, location, versions and modules."
+    },
+    {
+      "name": "nodes",
+      "description": "Retrieve information about relevant nodes in the cluster. The query can be for the entire cluster, or for a particular collection."
+    },
+    {
+      "name": "well-known",
+      "description": "`.well-known` endpoints. If OpenID Connect (OIDC) authentication is enabled, this endpoint includes OIDC configuration details."
+    },
+    {
+      "name": "graphql",
+      "description": "Query data using the GraphQL query language. See the [Weaviate GraphQL documentation](https://weaviate.io/developers/weaviate/api/graphql) for query syntax details."
+    },
+    {
+      "name": "classifications",
+      "description": "Perform classification operations"
+    }
+  ]
+}

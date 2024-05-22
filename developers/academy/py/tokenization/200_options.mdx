@@ -1,0 +1,139 @@
+---
+title: Available tokenization options
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Weaviate offers a variety of tokenization options to choose from. These options allow you to configure how keyword searches and filters are performed in Weaviate for each property.
+
+The main options are:
+
+- `word`: alphanumeric, lowercased tokens
+- `lowercase`: lowercased tokens
+- `whitespace`: whitespace-separated, case-sensitive tokens
+- `field`: the entire value of the property is treated as a single token
+
+Let's explore each of these options in more detail, including how they work and when you might want to use them.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization methods
+
+### <i class="fa-solid fa-chalkboard"></i> `word`
+
+The `word` tokenization method splits the text by any non-alphanumeric characters, and then lowercases each token.
+
+Here are some examples of how the `word` tokenization method works:
+
+| Text | Tokens |
+| ---- | ------ |
+| `"Why, hello there!"` | `["why", "hello", "there"]` |
+| `"Lois & Clark: The New Adventures of Superman"` | `["lois", "clark", "the", "new", "adventures", "of", "superman"]` |
+| `"variable_name"` | `["variable", "name"]` |
+| `"Email: john.doe@example.com"` | `["email", "john", "doe", "example", "com"]` |
+
+#### When to use `word` tokenization
+
+The `word` tokenization is the default tokenization method in Weaviate.
+
+Generally, if you are searching or filtering "typical" text data, `word` tokenization is a good starting point.
+
+But if symbols (such as `&`, `@` or `_`) are important to your data and search, or distinguishing between different cases is important, you may want to consider using a different tokenization method such as `lowercase` or `whitespace`.
+
+### <i class="fa-solid fa-chalkboard"></i> `lowercase`
+
+The `lowercase` tokenization method splits the text by whitespace, and then lowercases each token.
+
+Here are some examples of how the `lowercase` tokenization method works:
+
+| Text | Tokens |
+| ---- | ------ |
+| `"Why, hello there!"` | `["why,", "hello", "there!"]` |
+| `"Lois & Clark: The New Adventures of Superman"` | `["lois", "&", "clark:", "the", "new", "adventures", "of", "superman"]` |
+| `"variable_name"` | `["variable_name"]` |
+| `"Email: john.doe@example.com"` | `["email:", "john.doe@example.com"]` |
+
+#### When to use `lowercase` tokenization
+
+The `lowercase` tokenization can be thought of as `word`, but including symbols. A key use case for `lowercase` is when symbols such as `&`, `@` or `_` are significant for your data.
+
+This might include cases where your database contains code snippets, email addresses, or any other symbolic notations with meaning.
+
+As an example, consider filtering for objects containing `"database_address"`:
+
+| Text | Tokenization | Matched by `"database_address"` |
+| ---- | ------------ | ------- |
+| `"database_address"` | `word` | ✅ |
+| `"database_address"` | `lowercase` | ✅ |
+| `"database_company_address"` | `word` | ✅ |
+| `"database_company_address"` | `lowercase` | ❌ |
+
+Note how the filtering behavior changes. A careful choice of tokenization method can ensure that the search results meet your and the users' expectations.
+
+### <i class="fa-solid fa-chalkboard"></i> `whitespace`
+
+The `whitespace` tokenization method splits the text by whitespace.
+
+Here are some examples of how the `whitespace` tokenization method works:
+
+| Text | Tokens |
+| ---- | ------ |
+| `"Why, hello there!"` | `["Why,", "hello", "there!"]` |
+| `"Lois & Clark: The New Adventures of Superman"` | `["Lois", "&", "Clark:", "The", "New", "Adventures", "of", "Superman"]` |
+| `"variable_name"` | `["variable_name"]` |
+| `"Email: john.doe@example.com"` | `["Email:", "john.doe@example.com"]` |
+
+#### When to use `whitespace` tokenization
+
+The `whitespace` tokenization method adds case-sensitivity to `lowercase`. This is useful when your data distinguishes between cases, such as for names of entities or acronyms.
+
+A risk of using `whitespace` tokenization is that it can be too strict. For example, a search for `"superman"` will not match `"Superman"`, as the tokens are case-sensitive.
+
+But this could be managed on a case-by-case basis. It would be possible to construct queries that are case-insensitive, such as by having the query create two versions of the search term: one in lowercase and one in uppercase.
+
+On the other hand, it will not be possible to construct case-sensitive queries using `word` or `lowercase` tokenization.
+
+### <i class="fa-solid fa-chalkboard"></i> `field`
+
+The `field` tokenization method simply treats the entire value of the property as a single token.
+
+Here are some examples of how the `field` tokenization method works:
+
+| Text | Tokens |
+| ---- | ------ |
+| `"Why, hello there!"` | `["Why, hello there!"]` |
+| `"Lois & Clark: The New Adventures of Superman"` | `["Lois & Clark: The New Adventures of Superman"]` |
+| `"variable_name"` | `["variable_name"]` |
+| `"Email: john.doe@example.com"` | `["Email: john.doe@example.com"]` |
+
+#### When to use `field` tokenization
+
+The `field` tokenization is useful when exact matches of strings in the exact order are important. Typically, this is useful for properties that contain unique identifiers, such as email addresses, URLs, or other unique strings.
+
+Generally, `field` tokenization should be used judiciously due to its strictness.
+
+For keyword searches, `field` tokenization has limited use. A keyword search for `"computer mouse"` will not match `"mouse for a computer"`, nor will it match `"computer mouse pad"` or even `"a computer mouse"`.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Stop words
+
+Weaviate supports [stop words](https://en.wikipedia.org/wiki/Stop_word). Stop words are common words which are often filtered out from search queries because they occur frequently and do not carry much meaning.
+
+By default, Weaviate uses a [list of English stop words](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go). You can [configure your own list of stop words](../../../weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists) in the schema definition.
+
+This means that after tokenization, any stop words in the text behave as if they were not present. For example, a filter for `"a computer mouse"` will behave identically to a filter for `"computer mouse"`.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Language-specific tokenization
+
+The above tokenization methods work well for English, or other languages that use spaces to separate words.
+
+However, not all languages rely on spaces to define natural semantic boundaries. For languages like Japanese or Chinese, where words are not separated by spaces, you may need to use a different tokenization method.
+
+Starting with `v1.24` Weaviate provides `gse` and `trigram` tokenization methods for this reason.
+
+`gse` implements the "Jieba" algorithm, which is a popular Chinese text segmentation algorithm. `trigram` splits text into all possible trigrams, which can be useful for languages like Japanese.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

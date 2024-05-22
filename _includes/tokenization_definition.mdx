@@ -4,3 +4,5 @@
 | `lowercase`         | Lowercase the entire text and split on whitespace.                           | `hello,`, `(beautiful)`, `world` |
 | `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` |
 | `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       |
+| `trigram`           | Split the property as rolling trigrams.                                      | `Hel`, `ell`, `llo`, `lo,`, ...   |
+| `gse`               | Use the `gse` tokenizer to split the property.                               | [See `gse` docs](https://pkg.go.dev/github.com/go-ego/gse#section-readme) |

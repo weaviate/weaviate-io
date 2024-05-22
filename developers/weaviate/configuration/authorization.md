@@ -5,9 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['authorization']
 ---
 
-
-## Overview
-
 The authorization plugin allows Weaviate to provide differentiated access to users based on their [authentication](./authentication.md) status. Along with allowing or disallowing anonymous access, Weaviate can differentiate between a user who is in the admin list, or on the read-only list.
 
 ## Admin list
@@ -59,6 +56,8 @@ only possible distinction is between Admins (CRUD), Read-Only Users and
 entirely unauthorized users.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -13,29 +13,17 @@ image: og/docs/concepts.jpg
   - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
 ::: -->
 
-:::info Related pages
-- [Configuration: Schema](../manage-data/collections.mdx)
-:::
-
-## Overview
-
-This document lays out how Weaviate deals with data objects, including how they are stored, represented, and linked to each other.
-
 ## Data object nomenclature
 
-Each data object in Weaviate always belongs to a Class, and has one or more Properties.
+Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
 
-Weaviate stores _data objects_ (represented as JSON-documents) in _class-based collections_, where each object can be represented by a machine learning _vector_ (i.e., an embedding).
+Weaviate stores `data objects` in class-based collections. Data objects are represented as JSON-documents. Objects normally include a `vector` that is derived from a machine learning model. The vector is also called an `embedding` or a `vector embedding`.
 
-Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
-
-Let's unpack this with an example.
+Each collection contains objects of the same `class`. The objects are defined by a common `schema`.
 
 ### JSON documents as objects
 
-Imagine we need to store information about the following author: Alice Munro.
-
-The data about this author can be represented in JSON like this:
+Imagine we need to store information about an author named Alice Munro. In JSON format the data looks like this:
 
 ```json
 {
@@ -49,7 +37,9 @@ The data about this author can be represented in JSON like this:
 
 ### Vectors
 
-As mentioned earlier, we can also attach `vector` representations to our data objects. This is represented as an array of numbers under a `"vector"` property, like this:
+You can also attach `vector` representations to your data objects. Vectors are arrays of numbers that are stored under the `"vector"` property.
+
+In this example, the `Alice Munro` data object has a small vector. The vector is some information about Alice, maybe a story or an image, that a machine learning model has transformed into an array of numerical values.
 
 ```json
 {
@@ -67,11 +57,13 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 }
 ```
 
-You can generate vectors yourself outside of Weaviate, or use one of Weaviate's vectorizer [modules](./modules.md).
+To generate vectors for your data, use one of Weaviate's vectorizer [modules](./modules.md). You can also use your own vectorizer.
 
-### Class Collections
+### Collections
 
-Weaviate groups all Authors under the `Author` class and places them in the same _class collection_.
+Collections are groups of objects that share a schema definition.
+
+In this example, the `Author` collection holds objects that represent different authors.
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -87,7 +79,7 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-Following on our author example, Weaviate can store multiple authors like this:
+The collection looks like this:
 
 ```json
 [{
@@ -123,21 +115,23 @@ Following on our author example, Weaviate can store multiple authors like this:
 }]
 ```
 
+Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
+
 :::tip
-Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
+Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
 :::
 
 ### Cross-references
 
-:::note Cross-references do not affect vectors
-Creating cross-references does not affect object vectors in either direction.
-:::
+If data objects are related, use [cross-references](/weaviate/manage-data/cross-references.mdx) to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
 
-Where data objects have relationships with each other, they can be represented in Weaviate with cross-references.
+To create a reference, use a property from one collection to specify the value of a related property in the other collection.
 
-For example, let's say that we want to represent the fact that *"Paul Krugman writes for the New York Times"*. We can do this by establishing a cross-reference relationship that Paul Krugman writes for the New York Times. More specifically, a `Publication` object representing the New York Times can have a cross-reference to an `Author` object representing Paul Krugman.
+#### Cross-reference example
 
-So, given the following `Publication` object for the New York Times:
+For example, *"Paul Krugman writes for the New York Times"* describes a relationship between Paul Krugman and the New York Times. To capture that relationship, create a cross-reference between the `Publication` object that represents the New York Times and the `Author` object that represents Paul Krugman.
+
+The New York Times `Publication` object looks like this. Note the UUID in the `"id"` field:
 
 ```json
 {
@@ -150,7 +144,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author`. An object containing a cross-reference may look like this:
+The Paul Krugman `Author` object adds a new property, `writesFor`, to capture the relationship.
 
 ```json
 {
@@ -172,50 +166,46 @@ We can identify it with its `UUID`, and specify it in the `writesFor` property f
 }
 ```
 
-Each cross-reference relationship in Weaviate is directional.
+The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object.
 
-So, in addition to the `Author` class having a `writesFor` property that points to the `Publication` class, you could have a `hasAuthors` property in the `Publication` class that points to the `Author` class.
+Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
-Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
+### Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
 
 ## Weaviate Schema
 
-Weaviate requires a data schema to be built before adding data.
+Weaviate requires a data schema before you add data. However, you don't have to create a data schema manually. If you don't provide one, Weaviate generates a schema based on the incoming data.
 
 import SchemaDef from '/_includes/definition-schema.md';
 
 <SchemaDef/>
 
-Designing and adding a data schema does not need to be done manually. In the absence of a data schema specification, Weaviate will generate a schema automatically from the provided data.
-
 :::note Schema vs. Taxonomy
-A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
+A Weaviate data schema is slightly different from a taxonomy. A taxonomy has a hierarchy. Read more about how taxonomies, ontologies and schemas are related in this Weaviate [blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-To learn how to build a schema, [see our schema tutorial](../starter-guides/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
+Schemas fulfill several roles:
 
-For now, what's important to know is this:
+1. Schemas define collections and properties.
+1. Schemas define cross-references that link collections, even collections that use different embeddings.
+1. Schemas let you configure module behavior, ANN index settings, reverse indexes, and other features on a collection level.
 
-1. Classes and properties (as explained above) are defined in the schema.
-1. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
-1. You can link classes (even if they use different embeddings) by setting cross-references.
-1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the [schema tutorial](../starter-guides/schema.md)).
+For details on configuring your schema, see the [schema tutorial](../starter-guides/schema.md) or [schema configuration](../manage-data/collections.mdx).
 
 ## Multi-tenancy
 
-:::info Related pages
-- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
-:::
-
 :::info Multi-tenancy availability
 - Multi-tenancy added in `v1.20`
-- Tenant activity status setting added in `v1.21`
+- The tenant activity status setting added in `v1.21`
 :::
 
-If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
+To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant.
 
-When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. Sharding has several benefits:
+Sharding has several benefits:
 
 - Data isolation
 - Fast, efficient querying
@@ -229,49 +219,51 @@ Multi-tenancy is especially useful when you want to store data for multiple cust
 
 ### Tenancy and IDs
 
-Each tenancy works like a namespace. So, different tenants could have objects with the same IDs. What makes an object’s ID unique is not just the object ID itself, but the combination of the tenant and the object ID.
+Each tenancy is like a namespace, so different tenants could, in theory, have objects with the same IDs. To avoid naming problems, object IDs in multi-tenant clusters combine the tenant ID and the object ID to create an ID that is unique across tenants.
 
 ### Tenancy and cross-references
 
-When using multi-tenancy, cross-references can be made as follows:
+Multi-tenancy supports some cross-references.
+
+Cross-references like these are supported:
 
 - From a multi-tenancy object to a non-multi-tenancy object.
-- From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
+- From a multi-tenancy object to another multi-tenancy object, as long as they belong to the same tenant.
 
-You **cannot** create cross-references:
+Cross-references like these are not supported:
 
-- From a non-multi-tenancy object to a multi-tenancy object, or
-- From a multi-tenancy object to a multi-tenancy object, if they belong to different tenants.
+- From a non-multi-tenancy object to a multi-tenancy object.
+- From a multi-tenancy object to another multi-tenancy object if they belong to different tenants.
 
 ### Key features
 
-- Each tenant has a dedicated high-performance vector index providing query speeds as if the tenant was the only user on the cluster.
-- As each tenant's data is isolated to a dedicated shard, deletes are fast, easy and do not affect other tenants.
-- To scale up, add a new node to your cluster. Weaviate will automatically schedule new tenants on the node with the least resource usage.
+- Each tenant has a dedicated, high-performance vector index. Dedicated indexes mean faster query speeds. Instead of searching a shared index space, each tenant responds as if it was the only user on the cluster.
+- Each tenant's data is isolated on a dedicated shard. This means that deletes are fast and do not affect other tenants.
+- To scale out, add a new node to your cluster. Weaviate does not redistribute existing tenants, however Weaviate adds new tenants to the node with the least resource usage.
 
 :::info Related pages
 - [How-to: Manage Data | Multi-tenancy operations](../manage-data/multi-tenancy.md)
 - [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
 :::
 
-### Monitoring metrics with multi-tenancy
+### Monitoring metrics
 
-When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+To group tenants together for monitoring, set [`PROMETHEUS_MONITORING_GROUP = true`](../config-refs/env-vars.md) in your system configuration file.
 
-### Tenancy size per node
+### Number of tenants per node
 
-Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
+The number of tenants per node is limited by operating system constraints. The number of tenants cannot exceed the Linux open file limit per process.
 
-Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
+For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. The size of tenants per node can be increased by [setting unused tenants as inactive](../api/rest/schema.md#update-tenants).
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#update-tenant-activity-status), the open file per process limit does not apply.
 
 ### Lazy shard loading
 
 :::info Added in `v1.23`
 :::
 
-When Weaviate starts up, it loads data from all of the shards in your deployment. This process can take a long time. Prior to v1.23, you have to wait until all of the shards are loaded before you can query your data. Since every tenant is a shard, multi-tenant deployments can have reduced availability after a restart.
+When Weaviate starts, it loads data from all of the shards in your deployment. This process can take a long time. Prior to v1.23, you have to wait until all of the shards are loaded before you can query your data. Since every tenant is a shard, multi-tenant deployments can have reduced availability after a restart.
 
 Lazy shard loading allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results sooner. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
 
@@ -282,23 +274,33 @@ To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your sys
 :::info Added in `v1.21`
 :::
 
-A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active
+Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the shard.
 
-## Recap
+| Status | State | Description |
+| :-- | :-- | :-- |
+|`HOT`| Active | Weaviate can read and write. |
+|`COLD`| Inactive | Weaviate cannot read or write. Access attempts return an error message. |
 
-* Inside Weaviate, you can store _data objects_ which can be represented by a machine learning vector.
-* Weaviate represents data objects as JSON documents.
-* Every data object can contain a vector.
-* You can set cross-references as datatypes to link to other objects.
-* You will define classes and properties in a schema.
-* Different classes can represent different vector spaces.
-* The schema has a class-property data structure.
-* You define classes and properties in the schema.
-* We can query using the GraphQL-interface or -in some cases- the RESTful API.
-* Vectors come from machine learning models that you inference yourself or through a Weaviate module.
-* You can use multi-tenancy to isolate data for each tenant.
+## Related pages
 
+For more information, see the following:
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
+- [Configuration: Schema](../manage-data/collections.mdx)
 
-<DocsMoreResources />
+## Summary
+
+* The schema defines collections and properties.
+* Collections contain data objects that are describe in JSON documents.
+* Data objects can contain a vector and properties.
+* Vectors come from machine learning models.
+* Different collections represent different vector spaces.
+* Cross-references link objects between schemas.
+* Multi-tenancy isolates data for each tenant.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

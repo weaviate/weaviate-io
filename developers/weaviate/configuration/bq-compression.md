@@ -1,5 +1,5 @@
 ---
-title: BQ vector compression
+title: Binary Quantization (compression)
 sidebar_position: 6
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'bq']
@@ -8,16 +8,19 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/bq-compression.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/bq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/bq-compression.ts';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.ts';
+import TSCodeBQOptions from '!!raw-loader!/_includes/code/howto/configure.bq-compression.options.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
-import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 :::info Added in `v1.23`
+BQ is available for the [`flat` index](../concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](../concepts/vector-index.md#hnsw-index)  type from `v1.24`.
 :::
 
-Binary quantization (BQ) is a technique that reduces the size of a vector index. BQ is available for the `flat` index type.
+Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector.
 
 To use BQ, enable it as shown below and add data to the collection.
 
@@ -33,10 +36,10 @@ To use BQ, enable it as shown below and add data to the collection.
 
 Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
 
-This can be done by setting the `vector index config` of the collection to enable BQ compression.
+This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START EnableBQ"
@@ -45,7 +48,7 @@ This can be done by setting the `vector index config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START EnableBQ"
@@ -54,9 +57,18 @@ This can be done by setting the `vector index config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
       <FilteredTextBlock
         text={TSCode}
+        startMarker="// START EnableBQ"
+        endMarker="// END EnableBQ"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+      <FilteredTextBlock
+        text={TSCodeLegacy}
         startMarker="// START EnableBQ"
         endMarker="// END EnableBQ"
         language="ts"
@@ -98,7 +110,7 @@ The following parameters are available for BQ compression, under `vectorIndexCon
 For example:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START BQWithOptions"
@@ -107,7 +119,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START BQWithOptions"
@@ -116,9 +128,18 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
       <FilteredTextBlock
-        text={TSCode}
+        text={TSCodeBQOptions}
+        startMarker="// START BQWithOptions"
+        endMarker="// END BQWithOptions"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+      <FilteredTextBlock
+        text={TSCodeLegacy}
         startMarker="// START BQWithOptions"
         endMarker="// END BQWithOptions"
         language="ts"
@@ -144,13 +165,22 @@ For example:
   </TabItem>
 </Tabs>
 
+## Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
+
+Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
-- [Tutorial: Schema](../starter-guides/schema.md)
+- [Concepts: Vector quantization](../concepts/vector-quantization.md)
+- [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

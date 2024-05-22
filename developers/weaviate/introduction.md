@@ -25,8 +25,8 @@ Have their own sections, and others such as the
 
 And more can be found in the [More Resources](./more-resources/index.md) section.
 
-:::tip Looking for Weaviate Cloud Services docs?
-The Weaviate Cloud Services (WCS) documentation now has its own section! [Check it out here](../wcs/index.mdx).
+:::tip Looking for Weaviate Cloud docs?
+The Weaviate Cloud (WCD) documentation now has its own section! [Check it out here](../wcs/index.mdx).
 :::
 
 ### For new users
@@ -124,7 +124,7 @@ Weaviate lets you search through your data even if it's currently being imported
 
 Within Weaviate, all individual data objects are based on a class property structure where a vector represents each data object. You can connect data objects (like in a traditional graph) and search for data objects in the vector space.
 
-You can add data to Weaviate through the [RESTful API](./api/rest/index.md) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md).
+You can add data to Weaviate through the [RESTful API](/developers/weaviate/api/rest) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md).
 
 Weaviate's [vector indexing mechanism is modular](./concepts/vector-index.md), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
@@ -168,6 +168,8 @@ Want to get started or want to learn more? These resources might help you furthe
     - [Concepts](./concepts/index.md)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

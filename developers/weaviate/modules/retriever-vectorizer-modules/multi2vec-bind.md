@@ -15,7 +15,7 @@ The `multi2vec-bind` module enables Weaviate to use the [ImageBind](https://gith
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable multiple [`near<Media>` search operators](#additional-search-operators).
 - Model encapsulated in Docker container.
 - This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
@@ -31,9 +31,13 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
+
+### Memory requirements
+
+The `multi2vec-bind` module requires a significant amount of memory to run. You may need to increase the memory limit for the `multi2vec-bind` container to 12 GB or more, such as through Docker Desktop's settings. You can additionally set a limit on your Docker Compose file as shown below, however your Docker Desktop memory limit must be equal to or higher than the limit set in the Docker Compose file.
 
 ### Docker Compose file
 
@@ -54,6 +58,7 @@ Weaviate:
 Inference container:
 
 - `image` (Required): The image name of the inference container.
+- `mem_limit` (Optional): The memory limit for the inference container. Suggest setting to `12G` or higher. (Also review the memory limit in Docker Desktop settings.)
 - `ENABLE_CUDA` (Optional): Set to `1` to enable GPU usage. Default is `0` (CPU only).
 
 
@@ -69,7 +74,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -86,7 +91,8 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   multi2vec-bind:
-    image: semitechnologies/multi2vec-bind:imagebind
+    mem_limit: 12g
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
 # highlight-end
@@ -220,6 +226,8 @@ The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookrese
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 
 export default function LearnMore() {

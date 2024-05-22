@@ -18,7 +18,7 @@ The `text2vec-gpt4all` module enables Weaviate to obtain vectors using the [gpt4
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - By default, **input text longer than 256 tokens is mean-pooled with an overlapping context window up to the number of tokens in your input.**
@@ -26,8 +26,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
@@ -55,7 +55,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -72,7 +72,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   text2vec-gpt4all:
-    image: semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
+    image: cr.weaviate.io/semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
 # highlight-end
 ...
 ```
@@ -180,6 +180,8 @@ The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4a
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

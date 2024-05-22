@@ -1,36 +1,42 @@
 ---
 title: Cluster server version
-sidebar_position: 10
+sidebar_position: 40
 # image: og/wcs/user_guides.jpg
 ---
 
-Weaviate Cloud Services (WCS) hosts clusters that run the Weaviate core database server. WCS runs the current production version of Weaviate core. 
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) hosts clusters that run the Weaviate core database server. WCD runs the current production version of Weaviate core.
 
 ## New clusters
 
-When you provision a new cluster, WCS uses the current version of Weaviate core to set up the new cluster. You cannot select another Weaviate core version when you create a new cluster. 
+When you provision a new cluster, WCD uses the current version of Weaviate core to set up the new cluster. You cannot select another Weaviate core version when you create a new cluster.
 
 ## Upgrade
 
-WCS does not automatically update existing clusters when a new version of Weaviate core is released. 
+WCD does not automatically update existing clusters when a new version of Weaviate core is released.
 
-To check if you are running the latest version of Weaviate core, follow these steps. 
+The WCD console informs you when a newer version is available. Consider your business needs, and [upgrade your cluster](/developers/wcs/platform/version) when you have a suitable maintenance window.
 
-1. Connect to the WCS console, and find your cluster in the Dashboard tab.
-1. Click the "Details" button.
-1. Find the version tile in the details panel. 
-
-The tile has an "Update!" button when a newer version is available. Consider your business needs, and upgrade your cluster when you have a suitable maintenance window.  
+![WCD Upgrade available indicator](../img/wcs-upgrade-details.jpg)
 
 ## Security upgrades
 
- WCS does not automatically update clusters, however if an existing cluster has a security vulnerability, WCS upgrades the cluster when a fix is released.
- 
- For security updates, WCS upgrades the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, WCS upgrades the cluster to the most recent compatible version. 
+ WCD does not automatically update clusters, however if an existing cluster has a security vulnerability, WCD upgrades the cluster when a fix is released.
+
+ For security updates, WCD upgrades the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, WCD upgrades the cluster to the most recent compatible version.
 
 ## Additional considerations
 
-- **Billing**. If your cluster's Weaviate core version cannot support the billing requirements for your pricing plan, WCS upgrades your cluster to the current production version or the most recent compatible version. 
-- **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, WCS upgrades the cluster when a fix is released.
-- **Downgrade**. You cannot downgrade your WCS cluster to an earlier version of Weaviate core.
-- **Enterprise customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, WCS can install a specific Weaviate core version.
+- **Billing**. If your cluster's Weaviate core version cannot support the billing requirements for your pricing plan, WCD upgrades your cluster to the current production version or the most recent compatible version.
+- **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, WCD upgrades the cluster when a fix is released.
+- **Downgrade**. You cannot downgrade your WCD cluster to an earlier version of Weaviate core.
+- **Enterprise cloud customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, WCD can install a specific Weaviate core version.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

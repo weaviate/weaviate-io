@@ -4,24 +4,11 @@ sidebar_position: 15
 image: og/docs/concepts.jpg
 # tags: ['modules']
 ---
-
-
 <!-- :::caution Migrated From:
 - Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:
   - `Introduction` is from `Configuration/Modules`
   - `Vectorization modules (Dense Retriever modules)` is from `Modules/Index`
 ::: -->
-
-## Overview
-
-This page explains what modules are, and what purpose they serve in Weaviate.
-
-:::info Related pages
-- [Configuration: Modules](../configuration/modules.md)
-- [References: Modules](../modules/index.md)
-:::
-
-## Introduction
 
 Weaviate has a modularized structure. Functionality such as vectorization or backups is handled by *optional* modules.
 
@@ -31,6 +18,9 @@ The core of Weaviate, without any modules attached, is a pure vector-native data
 Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object.
 
 Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate.
+
+This page explains what modules are, and what purpose they serve in Weaviate.
+
 
 ## Available module types
 
@@ -66,7 +56,15 @@ Weaviate can also be used without any modules, as pure vector native database an
 
 It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/other-modules/custom-modules.md) to see how you can create and use your own modules.
 
+## Further resources
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+:::info Related pages
+- [Configuration: Modules](../configuration/modules.md)
+- [References: Modules](../modules/index.md)
+:::
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

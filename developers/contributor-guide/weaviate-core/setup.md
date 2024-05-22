@@ -75,9 +75,14 @@ The above commands are subject to change as we add more modules and require spec
 
 To make queries from a web interface, use the [WCS console](https://console.weaviate.cloud) to connect to `localhost:8080`.
 
-
 ## More Resources
 
 import ContributorGuideMoreResources from '/_includes/more-resources-contributor-guide.md';
 
 <ContributorGuideMoreResources />
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

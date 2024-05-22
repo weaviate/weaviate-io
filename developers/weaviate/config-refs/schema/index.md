@@ -1,6 +1,6 @@
 ---
 title: Collection schema
-sidebar_position: 2
+sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-A collection describes how a set of data objects are to be stored and indexed in Weaviate. This page includes details related to the collection schema, such as parameters and available configurations.
+A collection schema describes how to store and index a set of data objects in Weaviate. This page discuses the collection schema, collection parameters and collection configuration.
 
 import Terminology from '/_includes/collection-class-terminology.md';
 
@@ -78,14 +78,20 @@ An example of a complete collection object including properties:
 }
 ```
 
-## Collection creation
+## Create a collection
 
 ### Mutability
 
-Please note that only some of the parameters are mutable after creation. Other parameters cannot be changed after collection creation. If you wish to change these parameters, you must delete the collection and create it again.
+Some parameters are mutable after creation, other parameters cannot be changed after collection creation. To change immutable parameters, delete the collection and recreate it.
 
 <details>
-  <summary>List of the mutable parameters</summary>
+  <summary>Mutable parameters</summary>
+
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
+<RaftRFChangeWarning/>
 
 - `description`
 - `invertedIndexConfig`
@@ -98,7 +104,7 @@ Please note that only some of the parameters are mutable after creation. Other p
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
@@ -107,7 +113,6 @@ Please note that only some of the parameters are mutable after creation. Other p
   - `skip`
   - `vectorCacheMaxObjects`
   - `pq`
-    - `bitCompression`
     - `centroids`
     - `enabled`
     - `segments`
@@ -118,7 +123,7 @@ Please note that only some of the parameters are mutable after creation. Other p
 
 </details>
 
-Properties can be added to a collection after creation, but existing properties cannot be modified after creation.
+After you create a collection, you can add new properties. You cannot modify existing properties after you create the collection.
 
 ### Auto-schema
 
@@ -131,8 +136,8 @@ It will:
 
 * Create a collection if an object is added to a non-existent collection.
 * Add any missing property from an object being added.
-* Infer array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
-* Infer nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
+* Infer array data types, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
+* Infer nested properties for `object` and `object[]` data types (introduced in `v1.22.0`).
 * Throw an error if an object being added contains a property that conflicts with an existing schema type. (e.g. trying to import text into a field that exists in the schema as `int`).
 
 :::tip Define the collection manually for production use
@@ -151,6 +156,24 @@ Additional configurations are available to help the auto-schema infer properties
 The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
+
+### Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
+
+### Adding a property after collection creation
+
+Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+
+This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+
+To avoid this, you can either:
+- Add the property before importing objects.
+- Delete the collection, re-create it with the new property and then re-import the data.
+
+We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
 
 ## Available parameters
 
@@ -220,7 +243,7 @@ This feature was introduced in `v1.12.0`.
 
 `text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
-The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language. If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
+The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language (e.g. [`"en"` preset](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go)). If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
 
 ```json
   "invertedIndexConfig": {
@@ -245,9 +268,11 @@ This configuration allows stopwords to be configured by collection. If not set, 
 - If the same item is included in both `additions` and `removals`, Weaviate returns an error.
 :::
 
-As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
+As of `v1.18`, stopwords are indexed. Thus stopwords are included in the inverted index, but not in the tokenized query. As a result, when the BM25 algorithm is applied, stopwords are ignored in the input for relevance ranking but will affect the score.
 
-Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed.
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest#tag/schema/put/schema/%7BclassName%7D) the list of stopwords after your data has been indexed.
+
+Note that stopwords are only removed when [tokenization](#tokenization) is set to `word`.
 
 Below is an example request on how to update the list of stopwords:
 
@@ -324,7 +349,7 @@ Using these features requires more resources. The additional inverted indices mu
 
 The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](../../modules/index.md) for available vectorizer modules.
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../manage-data/import.mdx#specify-a-vector)), or if you want to create a collection without any vectors.
 
 ### `vectorIndexType`
 
@@ -376,6 +401,8 @@ These parameters are explained below:
 * `"function"`: *string, optional, immutable*. Only `"murmur3"` is supported as a hashing function. It describes the hashing function used on the `"key"` property to determine the hash which in turn determines the target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit hash making hash collisions very unlikely.
 
 ### `replicationConfig`
+
+<RaftRFChangeWarning/>
 
 [Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
@@ -463,7 +490,10 @@ This feature was introduced in `v1.12.0`.
 
 You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../../api/graphql/search-operators.md#bm25) and [`hybrid`](../../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../../api/graphql/filters.md).
 
-The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
+Tokenization is a property-level configuration for `text` properties. [See how to set the tokenization option using a client library](../../manage-data/collections.mdx#property-level-settings)
+
+<details>
+  <summary>Example property configuration</summary>
 
 ```json
 {
@@ -485,6 +515,8 @@ The tokenization of `text` properties can be customized via the `tokenization` f
   ]
 }
 ```
+
+</details>
 
 Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
 
@@ -539,6 +571,14 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 </details>
 :::
 
+### `gse` and `trigram` tokenization methods
+
+:::info Added in `1.24`
+:::
+
+For Japanese and Chinese text, we recommend use of `gse` or `trigram` tokenization methods. These methods work better with these languages than the other methods as these languages are not easily able to be tokenized using whitespaces.
+
+
 ### `indexFilterable` and `indexSearchable`
 
 :::info `indexInverted` is deprecated
@@ -568,7 +608,7 @@ Article = {
 will be vectorized as:
 
 ```md
-article cows lose their jobs as milk prices drop as his diary cows lumbered over for their monday...
+article cows lose their jobs as milk prices drop as his 100 diary cows lumbered over for their monday...
 ```
 
 By default, the calculation includes the  `collection name` and all property `values`, but the property `names` *are not* indexed.
@@ -593,12 +633,14 @@ client.schema.create_class(collection_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](/developers/weaviate/tutorials/schema)
+- [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
-- [References: REST API: Schema](/developers/weaviate/api/rest/schema)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

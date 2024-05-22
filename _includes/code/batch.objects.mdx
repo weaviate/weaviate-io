@@ -4,7 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/rest.batch.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchCreateObject"
@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/rest.batch.py';
       language="py"
     />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
@@ -37,26 +37,37 @@ second_object_props = {
 # the settings can be applied to both `objects` AND `references`.
 # You have to only set them once.
 client.batch.configure(
-  # `batch_size` takes an `int` value to enable auto-batching
-  # (`None` is used for manual batching)
-  batch_size=100,
-  # dynamically update the `batch_size` based on import speed
-  dynamic=False,
-  # `timeout_retries` takes an `int` value to retry on time outs
-  timeout_retries=3,
-  # checks for batch-item creation errors
-  # this is the default in weaviate-client >= 3.6.0
-  callback=weaviate.util.check_batch_result,
-  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+    # `batch_size` takes an `int` value to enable auto-batching
+    # (`None` is used for manual batching)
+    batch_size=100,
+    # dynamically update the `batch_size` based on import speed
+    dynamic=False,
+    # `timeout_retries` takes an `int` value to retry on time outs
+    timeout_retries=3,
+    # checks for batch-item creation errors
+    # this is the default in weaviate-client >= 3.6.0
+    callback=weaviate.util.check_batch_result,
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
 with client.batch as batch:
-  # Add object without a custom vector.
-  # When using vectorization modules this can be used
-  # or when you don't want to set a vector
-  batch.add_data_object(first_object_props, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
-  # Add object with a custom vector
-  batch.add_data_object(second_object_props, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4304", vector=[0.1, 0.2, 0.3])
+    # Add object without a custom vector.
+    # When using vectorization modules this can be used
+    # or when you don't want to set a vector
+    batch.add_data_object(
+        data_object=first_object_props,
+        class_name="Author",
+        uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
+    # Add object with a custom vector
+    batch.add_data_object(
+        data_object=second_object_props,
+        class_name="Author",
+        uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4304",
+        vector=[0.1, 0.2, 0.3],
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
 ```
 
 </TabItem>
@@ -96,6 +107,7 @@ const response = await client.batch
   .withObject(toImport[0])
   .withObject(toImport[1])
   .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
   .do();
 console.log(JSON.stringify(response, null, 2));
 
@@ -130,6 +142,7 @@ const response = await client.batch
   .withObject(toImport[0])
   .withObject(toImport[1])
   .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
   .do();
 console.log(JSON.stringify(response, null, 2));
 */
@@ -187,6 +200,7 @@ func main() {
     WithObject(objects[0]).
     WithObject(objects[1]).
     WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+    // WithTenant("tenantA").  // Optional; specify the tenant in multi-tenancy collections
     Do(context.Background())
 
   if err != nil {
@@ -233,6 +247,7 @@ public class App {
                 });
               }
             })
+            // .withTenant("tenantA")  // Optional; specify the tenant in multi-tenancy collections
             .build()
         );
         add(
@@ -249,6 +264,7 @@ public class App {
                 });
               }
             })
+            // .withTenant("tenantA")  // Optional; specify the tenant in multi-tenancy collections
             .build()
         );
       }
@@ -285,7 +301,7 @@ curl \
         "writesFor": [{
           "beacon": "weaviate://localhost/f81bfe5e-16ba-4615-a516-46c2ae2e5a80"
         }]
-    }
+    },
   }, {
     "class": "Author",
     "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4304",

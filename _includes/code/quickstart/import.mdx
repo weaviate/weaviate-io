@@ -4,9 +4,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
+
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
   text={EndToEndPyCode}
@@ -16,7 +18,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={EndToEndPy3Code}
@@ -26,10 +28,21 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
+  startMarker="// Import data function"
+  endMarker="// END Import data function"
+  language="ts"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={EndToEndTSCodeLegacy}
   startMarker="// Import data function"
   endMarker="// END Import data function"
   language="ts"
@@ -54,9 +67,9 @@ import (
 
 func main() {
 	cfg := weaviate.Config{
-		Host:       "some-endpoint.weaviate.network/", // Replace with your endpoint
+		Host:       "WEAVIATE_INSTANCE_URL/", // Replace with your Weaviate endpoint
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
 		Headers: map[string]string{
 			"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY", // Replace with your inference API key
 		},
@@ -123,7 +136,8 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -147,8 +161,8 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-# Replace with your endpoint
-API_URL="http://some-endpoint.weaviate.network/v1/batch/objects"
+# Replace with your Weaviate endpoint
+API_URL="http://WEAVIATE_INSTANCE_URL/v1/batch/objects"
 # Replace with your Inference API token
 OPENAI_API_TOKEN="<OpenAI-API-Token>"
 # Set batch size

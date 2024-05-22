@@ -12,7 +12,7 @@ description: "Learn how to fine-tune Cohere's reranker and generate synthetic da
 
 ## Introduction
 
-Search engines and retrieval augmented generation (RAG) applications rely heavily on retrieval accuracy. There are many techniques for achieving highly accurate retrieval. One of the most common patterns we’ve seen is multi-stage search. Typically this is in two stages: 1. Gather the relevant objects with the first-stage retriever 2. Send the relevant objects to the reranker to improve the output. Adding reranking to the second-stage is a quick and effective method to boost search relevance. 
+Search engines and retrieval augmented generation (RAG) applications rely heavily on retrieval accuracy. There are many techniques for achieving highly accurate retrieval. One of the most common patterns we’ve seen is multi-stage search. Typically this is in two stages: 1. Gather the relevant objects with the first-stage retriever 2. Send the relevant objects to the reranker to improve the output. Adding reranking to the second-stage is a quick and effective method to boost search relevance.
 
 In version `1.20`, Weaviate introduced the ability to run reranking at the second stage. To get started, Weaviate developers simply need to add one line of code to their schema `reranker-cohere`:
 
@@ -40,9 +40,9 @@ Now you have a third option to pass in your fine-tuned reranker model! In this b
 
 In [May 2023](https://txt.cohere.com/rerank/), Cohere released their rerank endpoint. It enabled users to build search systems that added reranking at the last stage.
 
-Then in [December of 2023](https://txt.cohere.com/rerank-fine-tuning/), Cohere announced the ability to fine-tune their rerank endpoint. Fine-tuning boosts the model’s performance, especially in unique domains. Here is a screenshot of the [pricing page](https://cohere.com/pricing). Both the zero shot and fine-tuned model are priced at $1 per 1,000 queries (at the time of writing this blog post).
+Then in [December of 2023](https://txt.cohere.com/rerank-fine-tuning/), Cohere announced the ability to fine-tune their rerank endpoint. Fine-tuning boosts the model’s performance, especially in unique domains. Here is a screenshot of the [pricing page](https://cohere.com/pricing). Both the zero-shot and fine-tuned models are priced at $1 per 1,000 queries (at the time of writing this blog post).
 
-Fine-tuning a reranker on domain specific data can enhance the precision and relevance of search results. It enables the model to better understand and align with the complexities and phrases of specific terminologoy. 
+Fine-tuning a reranker on domain specific data can enhance the precision and relevance of search results. It enables the model to better understand and align with the complexities and phrases of specific terminology.
 
 In this demo, we’re fine-tuning the model on the Weaviate blogs dataset. Using the Weaviate blogs to fine-tune the reranker, enables the model to grasp and prioritize the unique terminology. This approach ensures that the reranker becomes skilled at identifying content that is most relevant to queries, like "What is Ref2Vec." This will improve the performance of the search system by narrowing the focus to this particular information.
 
@@ -60,7 +60,7 @@ I’m using the Cohere, DSPy, and Weaviate tech stack for this demo. Please do t
 3. Generate a [Cohere API key](https://dashboard.cohere.com/api-keys)
 
 :::caution
-The total cost for this demo was $0.03 — this includes the vectorization and a few rerank inference. 
+The total cost for this demo was $0.03 — this includes the vectorization and a few rerank inference.
 :::
 
 ### Connect to your Weaviate Instance and Load your Data
@@ -73,18 +73,18 @@ First we’ll need to connect to our Weaviate cluster:
 
 ```python
 import weaviate
-import json 
+import json
 
 client = weaviate.Client(
     url = "WEAVIATE_URL",  # Replace with your cluster url
-    auth_client_secret=weaviate.AuthApiKey(api_key="WEAVIATE_AUTH_KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.AuthApiKey(api_key="WEAVIATE_AUTH_KEY"),  # Replace with your Weaviate instance API key
     additional_headers = {
         "X-Cohere-Api-Key": "API_KEY" # Replace with your inference API key
     }
 )
 ```
 
-Read in each markdown file and chunk the blog after five sentences: 
+Read in each markdown file and chunk the blog after five sentences:
 
 ```python
 import os
@@ -147,17 +147,17 @@ schema = {
                    "description": "Synthetic query generated from a LM."
                }
            ]
-       }      
+       }
    ]
 }
-    
+
 client.schema.create(schema)
 ```
 
 If you need to reset your schema and delete objects in a collection, run:
 `client.schema.delete_all()` or `client.schema.delete_class("Blogs")`
 
-#### Synthetic Queries 
+#### Synthetic Queries
 
 We are using DSPy’s signature and chain-of-thought module to generate synthetic queries using Cohere’s `command-nightly` model. The signature implements the prompt that: 1. Describes the task, 2. Gives an example of the `input` and `output` fields and 3. Prompts the model to reason before answering. As DSPy is generating the synthetic queries, we will upload it to our instance:
 
@@ -169,15 +169,12 @@ cohere_key = "api-key"
 class WriteQuery(dspy.Signature):
     """Write a query that this document would have the answer to."""
 
-    document = dspy.InputField(desc="A document containing information.") 
+    document = dspy.InputField(desc="A document containing information.")
     query = dspy.OutputField(desc="A short question uniquely answered by the document.")
 
 command_nightly = dspy.Cohere(model="command-nightly",max_tokens=1000, api_key=cohere_key)
 
-for idx, blog_chunk in enumerate(blogs):
-    if idx > 400:
-        break
-    print(idx)
+for blog_chunk in blogs:
     with dspy.context(lm=command_nightly):
         llm_query = dspy.ChainOfThought(WriteQuery)(document=blog_chunk)
     print(llm_query)
@@ -191,7 +188,7 @@ for idx, blog_chunk in enumerate(blogs):
 
 Here is an example of the prompt and generation (`produce` is the first word sampled from the LLM as it writes the reasoning and then the query):
 
-Input: 
+Input:
 
 ```python
 with dspy.context(lm=command_nightly):
@@ -224,7 +221,7 @@ Query: What are the benefits of combining LangChain with Weaviate in the context
 
 #### Grab Data out of Weaviate
 
-Now that we have the synthetic query + relevant chunk, we can export the data to fine-tune the model. We’ll grab 80% of the objects for training and 20% for validation. 
+Now that we have the synthetic query + relevant chunk, we can export the data to fine-tune the model. We’ll grab 80% of the objects for training and 20% for validation.
 
 ```python
 '''
@@ -330,15 +327,15 @@ with open("./validation.jsonl", "w") as validation_file:
 ### Fine-Tune the Reranker in Cohere
 By now, you should have your training and validation dataset. We can now go to [Cohere’s dashboard](https://dashboard.cohere.com/fine-tuning) and navigate to `Create a Rerank Model`. There are a few requirements to follow before your model is training:
 
-1. Have at least 256 unique queries 
-2. At least 1 relevant passage per query 
+1. Have at least 256 unique queries
+2. At least 1 relevant passage per query
 3. You can include hard negatives for each query (this is optional)
 4. Make sure the text in the relevant passages is different from the hard negatives for the same query
 5. At least 64 unique queries for the validation dataset (can’t have overlap from the training set)
 
-If you followed the previous section, we have satisfied the first, second, and fifth requirements. You can simply upload the training and validation files and click on `Review data`. 
+If you followed the previous section, we have satisfied the first, second, and fifth requirements. You can simply upload the training and validation files and click on `Review data`.
 
-It may take a few hours for the model to be ready — it took 2 hours for me. Keep an eye out for an email stating your model is ready. You will see the `model_id` under the `API` section (screenshot below). Cohere provides an amazing dashboard that covers shows your models performance. 
+It may take a few hours for the model to be ready — it took 2 hours for me. Keep an eye out for an email stating your model is ready. You will see the `model_id` under the `API` section (screenshot below). Cohere provides an amazing dashboard that covers shows your models performance.
 
 ![Cohere dashboard](img/cohere-dashboard.png)
 
@@ -369,11 +366,11 @@ schema = {
                    "description": "Content from the blogs.",
                }
            ]
-       }      
+       }
    ]
 }
-    
-client.schema.create(schema) 
+
+client.schema.create(schema)
 ```
 #### Import
 
@@ -398,7 +395,7 @@ We are working on a solution to avoid re-indexing your data. You can leave your 
 
 Now it’s time to query our database and use the reranker! Please confirm you’re referencing the collection that has the fine-tuned model.
 
-#### Query without Reranking 
+#### Query without Reranking
 
 ```python
 response = (
@@ -411,7 +408,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2)) 
+print(json.dumps(response, indent=2))
 ```
 
 ##### Output
@@ -458,7 +455,7 @@ response = (
 print(json.dumps(response, indent=2))
 ```
 
-##### Output 
+##### Output
 ```json
 {
   "data": {
@@ -520,18 +517,18 @@ print(json.dumps(response, indent=2))
 }
 ```
 
-My query was about the Ref2Vec feature in Weaviate. Without reranking, the objects were about Ref2Vec, but it wasn’t in detail about the module. In the reranking query, I first searched for concepts about Ref2Vec and then reranked the objects that were about how users are represented by their product interactions. 
+My query was about the Ref2Vec feature in Weaviate. Without reranking, the objects were about Ref2Vec, but it wasn’t in detail about the module. In the reranking query, I first searched for concepts about Ref2Vec and then reranked the objects that were about how users are represented by their product interactions.
 
 As you can see, the output is different for each query. The first object from pure vector search outputted the first chunk from the Ref2Vec blog post, which is relevant but doesn’t answer my query. The query with reranking went into depth on how Ref2Vec gives Weaviate another way to vectorize a class.
 
 ## Pointwise versus Listwise Reranking
 
-The reranker model described in this blog post is a pointwise reranker. Pointwise rerankers take as input the query and each candidate document, **separately**, and output a relevance score. Another interesting opportunity for ranking models are listwise rerankers. Listwise rerankers take as input the query and **all** the candidate documents at once as input, and output a reranked list! 
+The reranker model described in this blog post is a pointwise reranker. Pointwise rerankers take as input the query and each candidate document, **separately**, and output a relevance score. Another interesting opportunity for ranking models are listwise rerankers. Listwise rerankers take as input the query and **all** the candidate documents at once as input, and output a reranked list!
 
 ![Pointwise](img/pointwise%20(2).png)
 ![Listwise](img/listwise.jpeg)
 
-Here is a [quick summary](https://twitter.com/ecardenas300/status/1750237408459706554) I made on RankZephyr, where Pradeep et al. trained a 7 billion parameter LLM to copy outputs from a two-stage training process with GPT-3.5 and GPT-4. 
+Here is a [quick summary](https://twitter.com/ecardenas300/status/1750237408459706554) I made on RankZephyr, where Pradeep et al. trained a 7 billion parameter LLM to copy outputs from a two-stage training process with GPT-3.5 and GPT-4.
 
 Stay tuned as we continue to investigate supporting these models in Weaviate and the emerging research landscape!
 
@@ -539,7 +536,7 @@ Stay tuned as we continue to investigate supporting these models in Weaviate and
 
 This blog post walked you through how to generate synthetic data using DSPy, fine-tune Cohere’s reranker, and run a vector search query with reranking in Weaviate!
 
-If you’d like to learn more about DSPy, check out this [DSPy Explained]([https://www.youtube.com/watch?v=41EfOY0Ldkc](https://www.youtube.com/watch?v=41EfOY0Ldkc)) video from Connor Shorten.
+If you’d like to learn more about DSPy, check out this DSPy Explained([https://www.youtube.com/watch?v=41EfOY0Ldkc](https://www.youtube.com/watch?v=41EfOY0Ldkc)) video from Connor Shorten.
 
 
 import WhatNext from '/_includes/what-next.mdx'

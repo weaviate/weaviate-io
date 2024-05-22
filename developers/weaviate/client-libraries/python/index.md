@@ -9,10 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 
 ## Overview
 
-This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md).
+This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
 ## Installation
 
@@ -121,7 +122,7 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 - [Python client v4 helper methods](#python-client-v4-helper-methods)
 - [Python client v4 explicit connection](#python-client-v4-explicit-connection)
-- [Python client v3 style connection](#python-client-v3-style-connection)
+- [Python client v3 style connection](#python-client-v3-api)
 
 ### Python client v4 helper functions
 
@@ -192,9 +193,7 @@ To add API keys for services such as Cohere or OpenAI, use the `headers` paramet
 
 #### Timeout values
 
-Set timeout values, in seconds, for the client.
-
-The syntax is: `timeout=(<connection timeout>, <read timeout>)`
+You can set timeout values, in seconds, for the client. Use the `Timeout` class to configure the timeout values for initialization checks as well as query and insert operations.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -205,10 +204,7 @@ The syntax is: `timeout=(<connection timeout>, <read timeout>)`
 
 :::tip Timeouts on `generate` (RAG) queries
 
-If you are seeing errors while using the `generate` submodule, try increasing the timeout values (e.g. to `(60, 120)`). The `generate` submodule uses a large language model to generate text.
-<br/>
-
-Accordingly, the speed of the `generate` submodule is dependent on the speed of the language model (and any API that is serving the language model). Increasing the timeout values will allow the client to wait longer for the language model to respond.
+If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). <br/><br/>The `generate` submodule uses a large language model to generate text. The submodule is dependent on the speed of the language model and any API that serves the language model. <br/><br/>Increase the timeout values to allow the client to wait longer for the language model to respond.
 :::
 
 #### Authentication
@@ -264,7 +260,24 @@ To create an older, `v3` style `Client` object, use the `weaviate.Client` class.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
-## Batching
+### Initial connection checks
+
+When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
+
+You can set `skip_init_checks` to `True` to skip these checks.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# LocalInstantiationSkipChecks"
+  endMarker="# END LocalInstantiationSkipChecks"
+  language="py"
+/>
+
+In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.  
+
+For additional connection configuration, see [Timeout values](#timeout-values).
+
+## Batch imports
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
 
@@ -272,12 +285,12 @@ We recommend using the collection object to perform batch imports of single coll
 
 ### Batch sizing
 
-There are three ways to configure the batch size. They are `dynamic`, `fixed_size` and `rate_limit`.
+There are three methods to configure the batching behavior. They are `dynamic`, `fixed_size` and `rate_limit`.
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
-| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Recommended starting point. |
+| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
 #### Usage
@@ -307,7 +320,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limitd">
+<TabItem value="ratelimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -319,11 +332,13 @@ These methods return completely localized context managers. Accordingly, attribu
 </TabItem>
 </Tabs>
 
-In the batching process, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread.
+If the background thread that is responsible for sending the batches raises an exception during batch processing, the error is raised to the main thread.
 
 ### Error handling
 
-During a batch import, any failed objects or references will be stored for retrieval.
+During a batch import, any failed objects or references will be stored for retrieval. Additionally, a running count of failed objects and references is maintained.
+
+The counter can be accessed through `batch.number_errors` within the context manager.
 
 A list of failed objects can be obtained through `batch.failed_objects` and a list of failed references can be obtained through `batch.failed_references`.
 
@@ -335,6 +350,45 @@ Note that these lists are reset when a batching process is initialized. So make 
   endMarker="# END BatchErrorHandling"
   language="py"
 />
+
+### Batch vectorization
+
+:::info Added in `v1.25`.
+:::
+
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
+
+<BatchVectorizationOverview />
+
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import. 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Create a client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectClient"
+      endMarker="# END BatchVectClient"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+
+- **Cohere**. Set the service API key. Set the request rate.
+- **OpenAI**. Set the service API key. Set the base URL.
+- **VoyageAI**. Set the service API key.
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Modify the client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Working with collections
 
@@ -670,8 +724,8 @@ You can also get the size of the collection by using the built-in `len` function
 
 <FilteredTextBlock
     text={PythonCode}
-    startMarker="# START LenCollectonExample"
-    endMarker="# END LenCollectonExample"
+    startMarker="# START LenCollectionExample"
+    endMarker="# END LenCollectionExample"
     language="py"
 />
 
@@ -701,7 +755,7 @@ If you are migrating from the `v3` client to the `v4`, please see this [dedicate
 
 ##### `weaviate.connect_to_x` methods
 
-The `timeout` argument has been moved into the `additional_config` argument that takes the class `weaviate.config.AdditionalConfig` as input.
+The `timeout` argument in now a part of the `additional_config` argument. It takes the class `weaviate.config.AdditionalConfig` as input.
 
 ##### Queries
 
@@ -742,7 +796,7 @@ with client.batch as batch:
 `client.batch.rate_limit() as batch` is a new way to help avoid hitting third-party vectorization API rate limits. By specifying `request_per_minute` in the
 `rate_limit()` method, you can force the batching algorithm to send objects to Weaviate at the speed your third-party API is capable of processing objects.
 
-These methods now return completely localised context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
+These methods now return completely localized context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
 in any subsequent calls.
 
 Finally, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread rather than silently erroring.
@@ -821,7 +875,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-**NOTE**: The [filter reference syntax](../../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |
@@ -928,6 +982,28 @@ Use `ReferenceToMulti` for multi-target references.
 
 ## Best practices and notes
 
+### Exception handling
+
+The client library raises exceptions for various error conditions. These include, for example:
+
+- `weaviate.exceptions.WeaviateConnectionError` for failed connections.
+- `weaviate.exceptions.WeaviateQueryError` for failed queries.
+- `weaviate.exceptions.WeaviateBatchError` for failed batch operations.
+- `weaviate.exceptions.WeaviateClosedClientError` for operations on a closed client.
+
+Each of these exceptions inherit from `weaviate.exceptions.WeaviateBaseError`, and can be caught using this base class, as shown below.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BrokenQueryExample"
+    endMarker="# END BrokenQueryExample"
+    language="py"
+/>
+
+You can review [this module](https://github.com/weaviate/weaviate-python-client/blob/main/weaviate/exceptions.py) which defines the exceptions that can be raised by the client library.
+
+The client library doc strings also provide information on the exceptions that can be raised by each method. You can view these by using the `help` function in Python, by using the `?` operator in Jupyter notebooks, or by using an IDE, such as hover-over tooltips in VSCode.
+
 ### Thread-safety
 
 While the Python client is fundamentally designed to be thread-safe, it's important to note that due to its dependency on the `requests` library, complete thread safety isn't guaranteed.
@@ -978,10 +1054,47 @@ This is the formatted output.
   language="bash"
 /> -->
 
+### Input argument validation
+
+The client library performs input argument validation by default to make sure that the input types match the expected types.
+
+You can disable this validation to improve performance. You can do this by setting the `skip_argument_validation` parameter to `True` when you instantiate a collection object, with `collections.get`, or with `collections.create` for example.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START SkipValidationExample"
+  endMarker="# END SkipValidationExample"
+  language="bash"
+/>
+
+This may be useful in cases where you are using the client library in a production environment, where you can be confident that the input arguments are typed correctly.
+
 ### Tab completion in Jupyter notebooks
 
 If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion.
 
+### Raw GraphQL queries
+
+To provide raw GraphQL queries, you can use the `client.graphql_raw_query` method (previously `client.query.raw` in the `v3` client). This method takes a string as input.
+
+
+## Code examples & resources
+
+Usage information for various operations and features can be found throughout the Weaviate documentation.
+
+Some frequently used sections are the how-to guides for [Managing data](../../manage-data/index.md) and [Queries](../../search/index.md). The how-to guides include concise examples for common operations.
+
+In particular, check out the pages for:
+
+- [Client instantiation](./index.md#instantiate-a-client),
+- [Manage collections](../../manage-data/collections.mdx),
+- [Batch import](../../manage-data/import.mdx)
+- [Cross-reference](../../manage-data/cross-references.mdx)
+- [Basic search](../../search/basics.md)
+- [Similarity search](../../search/similarity.md)
+- [Filters](../../search/filters.md)
+
+The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](/developers/weaviate/api/rest) may also be useful starting points.
 
 ## Client releases
 
@@ -998,6 +1111,8 @@ are hosted here:
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

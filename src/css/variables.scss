@@ -5,20 +5,20 @@
 
 //********************* Themed colour variables *********************
 [data-theme='light'] {
-  --site-base-color: #1C1468;
-  --site-base-color-shade: #2C3854;
+  --site-base-color: #1c1468;
+  --site-base-color-shade: #2c3854;
 
-  --site-primary: #00A142;
-  --site-primary-dark: #00C342;
+  --site-primary: #00a142;
+  --site-primary-dark: #00c342;
   --site-accent: #fc3988;
   --site-accent-dark: #fb0b6d;
 
-  --site-background: #F5F5F5;
+  --site-background: #f5f5f5;
 
-  --site-font-main-color: #1C1468;
-  --site-font-header-color: #2C3854;
-  --site-font-accent-color: #00A142;
-  --site-font-link-color: #00A142;
+  --site-font-main-color: #1c1468;
+  --site-font-header-color: #2c3854;
+  --site-font-accent-color: #00a142;
+  --site-font-link-color: #00a142;
 
   --docs-base-color: #000000;
   --docs-header-color: #160f52;
@@ -26,20 +26,20 @@
   --docs-body-bg: #ffffff;
 }
 [data-theme='dark'] {
-  --site-base-color: #F7F9FD;
-  --site-base-color-shade: #F5F5F5;
+  --site-base-color: #f7f9fd;
+  --site-base-color-shade: #f5f5f5;
 
-  --site-primary: #00C342;
-  --site-primary-dark: #00A142;
+  --site-primary: #00c342;
+  --site-primary-dark: #00a142;
   --site-accent: #fc3988;
   --site-accent-dark: #fb0b6d;
 
-  --site-background: #0C1428;
+  --site-background: #0c1428;
 
-  --site-font-main-color: #C3C5D8;
-  --site-font-header-color: #F7F9FD;
-  --site-font-accent-color: #00C342;
-  --site-font-link-color: #00C342;
+  --site-font-main-color: #c3c5d8;
+  --site-font-header-color: #f7f9fd;
+  --site-font-accent-color: #00c342;
+  --site-font-link-color: #00c342;
 
   --docs-base-color: #ffffff;
   --docs-header-color: #dddddd;
@@ -69,8 +69,11 @@
 }
 
 :root {
-  --site-font-base-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
-  --site-font-heading-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  --site-font-base-family: 'Inter', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --site-font-heading-family: 'Plus Jakarta Sans', ui-monospace, SFMono-Regular,
+    SF Mono, Menlo, Consolas, Liberation Mono, monospace;
   --site-font-fun-heading-family: 'Plus Jakarta Sans';
   --site-font-fun-base-family: 'Inter';
 }

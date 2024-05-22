@@ -3,58 +3,55 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
+
 
 <Tabs groupId="languages">
-
-  <TabItem value="py" label="Python (v4)">
-
-import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
-
-<FilteredTextBlock
-  text={ByovAllPyCode}
-  startMarker="# ===== Import data ====="
-  endMarker="# ===== Query ====="
-  language="py"
-/>
-
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ByovAllPyCode}
+      startMarker="# ===== Import data ====="
+      endMarker="# ===== Query ====="
+      language="py"
+    />
   </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-
-import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
-
-<FilteredTextBlock
-  text={ByovAllPy3Code}
-  startMarker="# ===== Import data ====="
-  endMarker="# ===== Query ====="
-  language="py"
-/>
-
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={ByovAllPy3Code}
+      startMarker="# ===== Import data ====="
+      endMarker="# ===== Query ====="
+      language="py"
+    />
   </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+The import uses the `node-fetch` library.<br/><br/>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+```bash
+npm install node-fetch
+```
 
-import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
-
-<FilteredTextBlock
-  text={ByovAllTsCode}
-  startMarker="// Import data"
-  endMarker="// Query using nearVector"
-  language="ts"
-/>
-
+ <FilteredTextBlock
+   text={ByovAllTsCode}
+   startMarker="// Import data"
+   endMarker="// Query using nearVector"
+   language="ts"
+ />
   </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+The import uses the `node-fetch` library.<br/><br/>
 
-  <TabItem value="curl" label="Curl">
+```bash
+npm install node-fetch
+```
 
-import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
-
-<FilteredTextBlock
-  text={ByovAllShCode}
-  startMarker="# Send to the batch endpoint"
-  endMarker='echo "Import finished. Querying..."'
-  language="bash"
-/>
-
+ <FilteredTextBlock
+   text={ByovAllTsCodeLegacy}
+   startMarker="// Import data"
+   endMarker="// Query using nearVector"
+   language="ts"
+ />
   </TabItem>
 </Tabs>

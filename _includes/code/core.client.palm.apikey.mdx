@@ -8,10 +8,11 @@ import TabItem from '@theme/TabItem';
 import weaviate
 
 client = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+  url = "https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
   # highlight-start
   additional_headers = {
-    "X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  # Replace with your API key
+    "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  # Replace with your API key
+    "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  # Replace with your API key
   }
   # highlight-end
 )
@@ -25,11 +26,12 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'WEAVIATE_INSTANCE_URL',
   // highlight-start
   // Replace with your API key
   headers: {
-    'X-PaLM-Api-Key': 'YOUR-PALM-API-KEY',
+    'X-Google-Vertex-Api-Key': 'YOUR-VERTEX-API-KEY',  // Replace with your API key
+    'X-Google-Studio-Api-Key': 'YOUR-AI-STUDIO-API-KEY',  // Replace with your API key
   },
   // highlight-end
 });
@@ -50,12 +52,13 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+        Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
         Scheme: "https",
         // highlight-start
         // Replace with your API key
         Headers: map[string]string{
-          "X-PaLM-Api-Key": "YOUR-PALM-API-KEY",
+          "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  // Replace with your API key
+          "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // Replace with your API key
         }
         // highlight-end
     }
@@ -82,11 +85,13 @@ public class App {
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       // Replace with your API key
-      put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");
+      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
     // highlight-end
 
-    Config config = new Config("https", "some-endpoint.weaviate.network/", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/", headers);
+    // Replace WEAVIATE_INSTANCE_URL with the URL
     WeaviateClient client = new WeaviateClient(config);
   }
 }

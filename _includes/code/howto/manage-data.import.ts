@@ -8,7 +8,7 @@ const MAX_ROWS_TO_IMPORT = 50;  // limit vectorization calls
 // ================================
 
 // START JSON streaming  // START CSV streaming
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 import fs from 'fs';
 // END JSON streaming  // END CSV streaming
 
@@ -22,14 +22,15 @@ import csv from 'csv-parser';
 // END CSV streaming
 
 // ===== Instantiation, not shown in snippet
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
-
+const client = await weaviate.connectToWCS(
+ 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 // ============================
 // ===== Define the class =====
@@ -57,23 +58,19 @@ try {
 // ==============================
 
 // BasicBatchImportExample
-let className = 'YourName';  // Replace with your class name
-let dataObjs = [];
-for (let i = 1; i <= 5; i++)
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+const collection = 'myCollectionName'
+let dataObject = []
 
-// highlight-start
-let batcher5 = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
-  batcher5 = batcher5.withObject({
-    class: className,
-    properties: dataObj,
-    // tenant: 'tenantA'  // If multi-tenancy is enabled, specify the tenant to which the object will be added.
-  });
+for (let i = 1; i <= 10; i++) {
+  dataObject.push({ title: `Object ${i}`})
+}
 
-// Flush
-await batcher5.do();
+// highlight-start 
+const myCollection = client.collections.get(collection)
+const response = await myCollection.data.insertMany(dataObject);
 // highlight-end
+
+console.log(response);
 // END BasicBatchImportExample
 
 let result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
@@ -88,26 +85,23 @@ await client.schema.classDeleter().withClassName(className).do();
 
 // BatchImportWithIDExample
 // highlight-start
-import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
+import { generateUuid5 } from 'weaviate-client';  // requires v1.3.2+
 // highlight-end
-className = 'YourName';  // Replace with your class name
-dataObjs = [];
-for (let i = 1; i <= 5; i++)
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+const questions = client.collections.get("JeopardyQuestion")
+let dataObject = []
 
-// highlight-start
-let batcherId = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
-  batcherId = batcherId.withObject({
-    class: className,
-    properties: dataObj,
+for (let i = 1; i <= 10; i++) {
+  dataObject.push({
     // highlight-start
-    id: generateUuid5(dataObj.title),
+    id: generateUuid5(questions.name, `Object ${i}`),
     // highlight-end
-  });
+    properties: {
+      title: `Object ${i}`
+    }
+  })
+}
 
-// Flush
-await batcherId.do();
+await questions.data.insertMany(dataObject)
 // END BatchImportWithIDExample
 
 result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
@@ -124,27 +118,21 @@ await client.schema.classDeleter().withClassName(className).do();
 // ===========================================
 
 // BatchImportWithVectorExample
-className = 'YourName';  // Replace with your class name
-dataObjs = [];
-const vectors = [];
-for (let i = 1; i <= 5; i++) {
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
-  vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
+const questions = client.collections.get("JeopardyQuestion")
+let dataObject = []
+
+for (let i = 1; i <= 10; i++) {
+  dataObject.push({
+    properties: {
+      title: `Object ${i}`
+    },
+    // highlight-start
+    vectors: Array(100).fill(0.25136 + i / 100) 
+    // highlight-end
+  })
 }
 
-// highlight-start
-let batcherVectors = client.batch.objectsBatcher();
-for (let i = 0; i < 5; i++)
-  batcherVectors = batcherVectors.withObject({
-    class: className,
-    properties: dataObjs[i],
-    // highlight-start
-    vector: vectors[i],
-    // highlight-end
-  });
-
-// Flush
-await batcherVectors.do();
+await questions.data.insertMany(dataObject)
 // END BatchImportWithVectorExample
 
 result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
@@ -153,6 +141,88 @@ result = await client.graphql.get().withClassName(className).withFields('_additi
 for (const obj of result.data.Get[className]) {
   assert.ok(obj['_additional']['vector'][0] > 0.25);
   assert.ok(obj['_additional']['vector'][9] <= 0.3);
+}
+
+await client.schema.classDeleter().withClassName(className).do();
+
+
+// ===========================================
+// ===== Batch import with named vectors =====
+// ===========================================
+
+
+const classDefinitionNV = {
+  class: 'YourCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+    {
+      name: 'body',
+      dataType: ['text'],
+    },
+  ],
+  vectorConfig: {
+    // Set a named vector
+    title: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['title'], // Set the source property(ies)
+        },
+      },
+    },
+    // Set another named vector
+    body: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['body'], // Set the source property(ies)
+        },
+      },
+    },
+  },
+};
+
+// Clean slate
+try {
+  await client.schema.classDeleter().withClassName(classDefinitionNV.class).do();
+} catch (e) {
+  // ignore error if class doesn't exist
+} finally {
+  await client.schema.classCreator().withClass(classDefinitionNV).do();
+}
+
+// BatchImportWithNamedVectors
+const questions = client.collections.get("JeopardyQuestion")
+let dataObject = []
+
+for (let i = 1; i <= 10; i++) {
+  dataObject.push({
+    properties: {
+      title: `Object ${i}`
+    },
+    // highlight-start
+    vectors: {
+      title: Array(100).fill(0.25136 + i / 100),
+      body: Array(100).fill(0.89137 + i / 100) 
+    }
+    // highlight-end
+  })
+}
+
+await questions.data.insertMany(dataObject)
+// END BatchImportWithNamedVectors
+
+// Aggregate not working with named vectors as of 2024-02-28
+// result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+// assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+
+result = await client.graphql.get().withClassName(className).withFields('_additional { vectors { title body } }').do();
+for (const obj of result.data.Get[className]) {
+  assert.ok(obj['_additional']['vectors']['title']);
+  assert.ok(obj['_additional']['vectors']['body']);
 }
 
 await client.schema.classDeleter().withClassName(className).do();

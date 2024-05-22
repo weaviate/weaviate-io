@@ -5,14 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-
-:::info Related pages
-- [Concepts: Vector Indexing](./vector-index.md)
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
-:::
-
-## Introduction
-
 Weaviate supports two types of indices.
 
 1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
@@ -32,13 +24,6 @@ What's important to know, is that the "A" in ANN (i.e., the "approximate") comes
 
 :::tip
 There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>. Only those algorithms which support [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) can be used in Weaviate (we want that sweet database UX) and Weaviate's ANN system is [completely plug-and-playable](../concepts/index.md#weaviate-architecture) so that we can always add other algorithms in the future.
-:::
-
-<!-- TODO: Not sure if we need this here -->
-<!-- If you always want total recall (i.e., a 100% recall, not to be confused with the Arnold Schwarzenegger movie), you need brute-force vector comparisons that are super slow (as in, _really_ slow) and not useful for production settings (hence ANN algorithms exist). -->
-
-:::note
-Because vector search use cases are growing rapidly, more and more ANN-algorithm are produced. A "good" ANN algorithm means that the recall is high _and_ that it's fast. You can dive into the rabbit hole right [here](https://arxiv.org/search/?query=approximate+nearest+neighbor&searchtype=all). But! Don't be like Alice; just make sure to come back here.
 :::
 
 Let's take a look a few ANN settings in an example schema.
@@ -248,7 +233,17 @@ To create a collection without any indexes, skip indexing on the collection and 
 * You can enable or disable the index based on your use case
 * You can configure Weaviate modules in the schema
 
+## Further resources
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+:::info Related pages
+- [Concepts: Vector Indexing](./vector-index.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+:::
 
-<DocsMoreResources />
+
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

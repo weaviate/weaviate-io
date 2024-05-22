@@ -44,6 +44,21 @@ try:
 finally:
     client.close()
 
+
+# LocalInstantiationSkipChecks
+import weaviate
+
+client = weaviate.connect_to_local(
+    skip_init_checks=True
+)
+# END LocalInstantiationSkipChecks
+
+try:
+    assert client.is_ready()
+finally:
+    client.close()
+
+
 """
 # EmbeddedInstantiationBasic
 import weaviate
@@ -67,8 +82,9 @@ import weaviate
 import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
+    headers={'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 )
 # END WCSInstantiation
 
@@ -81,10 +97,10 @@ finally:
 import weaviate
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your Weaviate Cloud URL
     auth_credentials=weaviate.auth.AuthClientPassword(
-        username=os.getenv("WCS_USERNAME"),  # Your WCS username
-        password=os.getenv("WCS_PASSWORD")   # Your WCS password
+        username=os.getenv("WCS_USERNAME"),  # Your Weaviate Cloud username
+        password=os.getenv("WCS_PASSWORD")   # Your Weaviate Cloud password
     )
 )
 # END WCSwOIDCInstantiation
@@ -137,7 +153,7 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
+    headers={"X-OpenAI-Api-key": os.getenv("OPENAI_APIKEY")}
 )
 # END LocalInstantiationWithHeaders
 
@@ -148,11 +164,14 @@ finally:
 
 # LocalInstantiationWithTimeout
 import weaviate
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
+    )
 )
 # END LocalInstantiationWithTimeout
 
@@ -164,6 +183,7 @@ finally:
 # DirectInstantiationFull
 import weaviate
 from weaviate.connect import ConnectionParams
+from weaviate.classes.init import AdditionalConfig, Timeout
 import os
 
 client = weaviate.WeaviateClient(
@@ -179,9 +199,8 @@ client = weaviate.WeaviateClient(
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
-    additional_config=weaviate.config.AdditionalConfig(
-        startup_period=10,
-        timeout=(5, 15)
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=2, query=45, insert=120),  # Values in seconds
     ),
 )
 
@@ -199,8 +218,8 @@ import weaviate
 import os
 
 with weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your Weaviate Cloud key
 ) as client:  # Use this context manager to ensure the connection is closed
     client.collections.list_all()
 # END WCSQuickStartInstantiation
@@ -303,6 +322,8 @@ try:
 finally:
     client.close()
 
+source_iterable = range(100)  # Dummy iterable
+
 # START BatchErrorHandling
 import weaviate
 import weaviate.classes as wvc
@@ -312,8 +333,15 @@ client = weaviate.connect_to_local()
 try:
     # ===== First batch import block =====
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
-        pass  # Batch import objects/references
+        # Batch import objects/references
+        # highlight-start
+        for i in source_iterable:  # Some insertion loop
+            if batch.number_errors > 10:  # Monitor errors during insertion
+                # Break or raise an exception
+                # highlight-end
+                pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the first batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the first batch import
     # highlight-end
@@ -321,8 +349,15 @@ try:
     # ===== Second batch import block =====
     # This will clear the failed objects/references
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
-        pass  # Batch import objects/references
+        # Batch import objects/references
+        # highlight-start
+        for i in source_iterable:  # Some insertion loop
+            if batch.number_errors > 10:  # Monitor errors during insertion
+                # Break or raise an exception
+                # highlight-end
+                pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_b = client.batch.failed_objects  # Get failed objects from the second batch import
     failed_refs_b = client.batch.failed_references  # Get failed references from the second batch import
     # highlight-end
@@ -366,6 +401,7 @@ try:
         pass  # Batch import objects/references
 
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the batch import
     # highlight-end
@@ -378,6 +414,43 @@ finally:
 # =====================================================================================
 # Collection instantiation
 # =====================================================================================
+
+
+
+# START CreateCollectionFromJSON
+import weaviate
+
+client = weaviate.connect_to_local()
+
+# END CreateCollectionFromJSON
+
+client.collections.delete("TestArticle")
+
+# START CreateCollectionFromJSON
+try:
+    collection_definition = {
+        "class": "TestArticle",
+        "properties": [
+            {
+                "name": "title",
+                "dataType": ["text"],
+            },
+            {
+                "name": "body",
+                "dataType": ["text"],
+            },
+        ],
+    }
+
+    # highlight-start
+    client.collections.create_from_dict(collection_definition)
+    # highlight-end
+
+finally:
+    client.close()
+
+# END CreateCollectionFromJSON
+
 
 # START CreateCollectionExample
 import weaviate
@@ -393,6 +466,7 @@ try:
     assert not client.collections.exists("TestArticle")
 
     # START CreateCollectionExample
+    # Note that you can use `client.collections.create_from_dict()` to create a collection from a v3-client-style JSON object
     collection = client.collections.create(
         name="TestArticle",
         vectorizer_config=wvcc.Configure.Vectorizer.text2vec_cohere(),
@@ -888,10 +962,23 @@ try:
     # END IteratorWithMetadata
 
 
-    # START LenCollectonExample
+    # START LenCollectionExample
     articles = client.collections.get("Article")
     print(len(articles))
-    # END LenCollectonExample
+    # END LenCollectionExample
+
+    # START SkipValidationExample
+    # Configure the `performant_articles` to skip argument validation on its methods
+    performant_articles = client.collections.get("Article", skip_argument_validation=True)
+    # END SkipValidationExample
+
+    # START BrokenQueryExample
+    try:
+        collection = client.collections.get("NonExistentCollection")
+        collection.query.fetch_objects(limit=2)
+    except weaviate.exceptions.WeaviateBaseError as e:
+        print(f"Caught a Weaviate error: {e.message}")
+    # END BrokenQueryExample
 
 
     # GenericsExample

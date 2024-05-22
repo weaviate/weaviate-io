@@ -11,13 +11,6 @@ image: og/docs/configuration.jpg
 - Previous `Configuration/Modules` content has been migrated to `References:Modules/index`
 ::: -->
 
-:::info Related pages
-- [Concepts: Modules](../concepts/modules.md)
-- [References: Modules](../modules/index.md)
-- [References: REST API: Modules](../api/rest/modules.md)
-:::
-
-## Introduction
 
 Weaviate's functionality can be customized by using [modules](../concepts/modules.md). This page explains how to enable and configure modules.
 
@@ -32,7 +25,7 @@ At the instance (i.e. Weaviate cluster) level, you can:
 This can be done by setting the appropriate [environment variables](../config-refs/env-vars.md) as shown below.
 
 :::tip What about WCS?
-Weaviate Cloud Services (WCS) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
+Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
 :::
 
 ### Enable modules
@@ -46,7 +39,7 @@ services:
       ENABLE_MODULES: 'text2vec-contextionary'
 ```
 
-If multiple modules are to be used, each of them can be separate by a comma.
+To enable multiple modules, add them in a comma-separated list.
 
 This example code enables the `'text2vec-huggingface`, `generative-cohere`, and `qna-openai` modules.
 
@@ -123,7 +116,12 @@ Your choice of the `text2vec` module does not restrict your choice of `generativ
 ## Custom modules
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
+## Related pages
+- [Concepts: Modules](../concepts/modules.md)
+- [References: Modules](../modules/index.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

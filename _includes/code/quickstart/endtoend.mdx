@@ -4,9 +4,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
+
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
   text={EndToEndPyCode}
@@ -16,7 +18,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={EndToEndPy3Code}
@@ -26,10 +28,21 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
+  startMarker="// EndToEndExample"
+  endMarker="// END EndToEndExample"
+  language="ts"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={EndToEndTSCodeLegacy}
   startMarker="// EndToEndExample"
   endMarker="// END EndToEndExample"
   language="ts"
@@ -53,9 +66,9 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:   "some-endpoint.weaviate.network/", // Replace with your endpoint
+    Host:   "WEAVIATE_INSTANCE_URL/", // Replace with your Weaviate endpoint
     Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
     Headers: map[string]string{
       "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
     },
@@ -142,7 +155,7 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");  // replace with your endpoint
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -171,8 +184,8 @@ public class App {
 echo "Downloading the data file..."
 curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json" --no-progress-meter
 
-# Replace with your endpoint and API keys
-WEAVIATE_URL=https://some-endpoint.weaviate.network
+# Replace with your Weaviate endpoint and API keys
+WEAVIATE_URL=https://WEAVIATE_INSTANCE_URL  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 WEAVIATE_API_KEY=YOUR_WEAVIATE_API_KEY
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 

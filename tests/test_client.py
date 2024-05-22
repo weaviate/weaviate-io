@@ -7,6 +7,7 @@ import utils
     "script_loc",
     [
         "./_includes/code/client-libraries/python_v4.py",
+        "./_includes/code/client-libraries/python_slow_connection.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):

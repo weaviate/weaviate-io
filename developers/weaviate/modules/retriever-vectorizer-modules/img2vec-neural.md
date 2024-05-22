@@ -5,6 +5,10 @@ image: og/docs/modules/img2vec-neural.jpg
 # tags: ['img2vec', 'img2vec-neural']
 ---
 
+:::caution CLIP recommended for new projects
+For new projects, we recommend using the [multi2vec-clip](./multi2vec-clip.md) module instead of `img2vec-neural`. This uses CLIP models, which uses a more modern model architecture than `resnet` models used in `img2vec-neural`. CLIP models are also multi-modal, meaning they can handle both images and text and therefore applicable to a wider range of use cases.
+:::
+
 
 ## Overview
 
@@ -14,7 +18,7 @@ The `img2vec-neural` module enables Weaviate to obtain vectors locally images us
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearImage` search operator](#additional-search-operator).
 - Model encapsulated in a Docker container.
 - This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
@@ -22,13 +26,13 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
 
-To use `multi2vec-clip`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
+To use `img2vec-neural`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
 While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
@@ -54,7 +58,7 @@ This configuration enables `img2vec-neural`, sets it as the default vectorizer, 
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -71,7 +75,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   i2v-neural:
-    image: semitechnologies/img2vec-pytorch:resnet50
+    image: cr.weaviate.io/semitechnologies/img2vec-pytorch:resnet50
 # highlight-end
 ...
 ```
@@ -85,7 +89,7 @@ As an alternative, you can run the inference container independently from Weavia
 - Run the inference container separately, e.g. using Docker, and
 - Set `IMAGE_INFERENCE_API` to the URL of the inference container.
 
-Then, for example if Weaviate is running outside of Docker, set `IMAGE_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `IMAGE_INFERENCE_API=http://i2v-clip:8080`.
+Then, for example if Weaviate is running outside of Docker, set `IMAGE_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `IMAGE_INFERENCE_API=http://i2v-neural:8080`.
 
 For example, can spin up an inference container with the following command:
 
@@ -210,6 +214,8 @@ The `img2vec-neural` module uses the `resnet50` model.
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

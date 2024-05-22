@@ -8,7 +8,9 @@ image: og/docs/api.jpg
 
 :::note Vector spaces and Explore
 
-The `Explore` function is disabled where multiple inference modules are enabled. This includes Weaviate Cloud Services (WCS)
+The `Explore` function is disabled where multiple inference (e.g. `text2vec-xxx`) modules are enabled.
+
+As a result, `Explore` is not available on [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) as its clusters are pre-configured with multiple inference modules for AWS, Cohere, Google, OpenAI and so on.
 
 :::
 
@@ -99,6 +101,8 @@ Pagination (i.e. `limit` with `offset`) is not possible in `Explore` queries.
 Because pagination is not possible in multidimensional storage, we recommend using `moveTo` and `moveAwayFrom` if further query refinement is sought. They work as they do in other queries. See [search operators#nearText](search-operators.md#neartext) for more information.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

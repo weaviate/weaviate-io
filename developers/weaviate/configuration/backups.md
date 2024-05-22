@@ -10,17 +10,13 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/configure.backups.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.backups-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/configure.backups.ts';
+import TSCodeBackup from '!!raw-loader!/_includes/code/howto/configure.backups.backup.ts';
+import TSCodeRestore from '!!raw-loader!/_includes/code/howto/configure.backups.restore.ts';
+import TSCodeStatus from '!!raw-loader!/_includes/code/howto/configure.backups.status.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.backups-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
 import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
-
-
-:::info Related pages
-- [References: REST API: Backups](../api/rest/backups.md)
-:::
-
-## Introduction
 
 Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
 
@@ -228,7 +224,7 @@ You cannot set `include` and `exclude` at the same time. Set none or exactly one
 Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.
 :::
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateBackup"
@@ -237,7 +233,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateBackup"
@@ -246,9 +242,18 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeBackup}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START CreateBackup"
       endMarker="// END CreateBackup"
       language="ts"
@@ -309,15 +314,15 @@ GET /v1/backups/{backend}/{backup_id}
 The response contains a `"status"` field. If the status is `SUCCESS`, the backup is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusCreateBackup"
+      endMarker="# END StatusCreateBackup"
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
@@ -326,9 +331,18 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeStatus}
+      startMarker="// START StatusCreateBackup"
+      endMarker="// END StatusCreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START StatusCreateBackup"
       endMarker="// END StatusCreateBackup"
       language="ts"
@@ -403,15 +417,15 @@ The request takes a json object with the following properties:
 | `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START RestoreBackup"
+      endMarker="# END RestoreBackup"
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START RestoreBackup"
@@ -420,9 +434,18 @@ The request takes a json object with the following properties:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeRestore}
+      startMarker="// START RestoreBackup"
+      endMarker="// END RestoreBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START RestoreBackup"
       endMarker="// END RestoreBackup"
       language="ts"
@@ -480,15 +503,15 @@ GET /v1/backups/{backend}/{backup_id}/restore
 The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusRestoreBackup"
+      endMarker="# END StatusRestoreBackup"
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
@@ -497,9 +520,18 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeStatus}
+      startMarker="// START StatusRestoreBackup"
+      endMarker="// END StatusRestoreBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START StatusRestoreBackup"
       endMarker="// END StatusRestoreBackup"
       language="ts"
@@ -571,7 +603,11 @@ The flexibility around backup providers opens up new use cases. Besides using th
 
 For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
 
+## Related pages
+- [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -25,9 +25,7 @@ Follow these examples to migrate data manually when using a backup is not possib
 
   The examples use two different Weaviate instances, exposed through different ports. The same process can be used for two different instances as well.
 
-  Cross-references in Weaviate are properties. As such, you can retrieve cross-reference in one of two ways:
-  1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to.
-  1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.
+  Cross-references in Weaviate are properties. As such, you can [retrieve cross-reference](./cross-references.mdx#read-cross-references) as a part of the object.
 
 </details>
 
@@ -49,7 +47,7 @@ During restoration, restore the cross-referenced (i.e. "to") object first, then 
 Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionCollectionToCollection"
@@ -57,7 +55,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionCollectionToCollection"
@@ -74,7 +72,7 @@ Migrate:
 - to `target collection` in the `client_tgt` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CollectionToCollection"
@@ -82,7 +80,7 @@ Migrate:
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -103,7 +101,7 @@ Migrate:
 Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance, and enable multi-tenancy for the target collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionCollectionToTenant"
@@ -111,7 +109,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionCollectionToTenant"
@@ -126,7 +124,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 Add tenants at the target instance before adding data objects.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateTenants"
@@ -134,7 +132,7 @@ Add tenants at the target instance before adding data objects.
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateTenants"
@@ -151,7 +149,7 @@ Migrate:
 - to `target tenant` data from `target collection` in the `client_tgt` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CollectionToTenant"
@@ -159,7 +157,7 @@ Migrate:
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -180,7 +178,7 @@ Migrate:
 Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance, and enable multi-tenancy for the target collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionTenantToCollection"
@@ -188,7 +186,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionTenantToCollection"
@@ -205,7 +203,7 @@ Migrate:
 - to `target collection` in the `client_tgt` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START TenantToCollection"
@@ -213,7 +211,7 @@ Migrate:
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -234,7 +232,7 @@ Migrate:
 Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance including enabling multi-tenancy.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionTenantToTenant"
@@ -242,7 +240,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionTenantToTenant"
@@ -257,7 +255,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 Add tenants at the target instance before adding data objects.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateTenants"
@@ -265,7 +263,7 @@ Add tenants at the target instance before adding data objects.
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateTenants"
@@ -282,7 +280,7 @@ Migrate:
 - to `target tenant` data from `target collection` in the `client_tgt` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START TenantToTenant"
@@ -290,7 +288,7 @@ Migrate:
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -306,9 +304,12 @@ Migrate:
 
 ## Related pages
 
-- [Cursor API](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Cursor API](./read-all-objects.mdx)
 - [Multi-tenancy operations](./multi-tenancy.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

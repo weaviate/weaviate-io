@@ -10,7 +10,7 @@ import json
 
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),  # Replace w/ your Weaviate API key
+    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),  # Replace with your Weaviate API key
 )
 
 # =======================
@@ -48,6 +48,16 @@ print(json.dumps(data_object, indent=2))
 
 # Test
 assert len(data_object["vector"]) == 1536
+
+
+# ===================================
+# ===== Read object with named vectors =====
+# ===================================
+
+# ReadObjectNamedVectors START
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# ReadObjectNamedVectors END
 
 
 # ==================================

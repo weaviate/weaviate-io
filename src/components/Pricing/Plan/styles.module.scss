@@ -87,7 +87,7 @@
     width: 17.1875rem;
     height: 0.03125rem;
     background: #61bd73;
-    margin: auto;
+    margin: 6% auto;
   }
 }
 
@@ -207,6 +207,15 @@
 
   .buttonBox {
     margin: auto;
+    height: 70px;
+  }
+
+  .enterpriseButton {
+    margin-top: -40px;
+  }
+
+  .byocButton {
+    margin-top: -17px;
   }
   .buttonTry {
     border-radius: 0.3125rem;
@@ -296,7 +305,6 @@
 }
 
 .sandbox {
-  border: 1px solid rgba(46, 49, 143);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -388,7 +396,6 @@
 
 [data-theme='light'] {
   .sandbox {
-    border: 1px solid #130c49;
     background: #ffffff;
     filter: drop-shadow(0px 24px 64px rgba(22, 27, 45, 0.08));
 

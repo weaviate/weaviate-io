@@ -5,9 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
-
-## Overview
-
 Weaviate can expose Prometheus-compatible metrics for monitoring. A standard
 Prometheus/Grafana setup can be used to visualize metrics on various
 dashboards.
@@ -120,12 +117,14 @@ your uses perfectly:
 
 ## `nodes` API Endpoint
 
-To get collection details programmatically, use the [`nodes`](/weaviate/api/rest/nodes.md) REST endpoint. 
+To get collection details programmatically, use the [`nodes`](../config-refs/nodes.md) REST endpoint.
 
 import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
 <APIOutputs />
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

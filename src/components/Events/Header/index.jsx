@@ -1,31 +1,27 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
-import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
-export default function PlatformHeader() {
+export default function WorkshopsHeader() {
   return (
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <p className={styles.topText}>Events & webinars</p>
-          <h1>
-            Weaviate around the world,<br></br>meet us where you are!
-          </h1>
+          <h1>Online Workshops & Events</h1>
 
           <div className={styles.headerBox}>
-            <p className="text-center">
-              We are actively engaging in the open-source<br></br> and AI
-              community around the World
+            <p>
+              We hold workshops for different experience levels.<br />
+              Sign up below to learn how to build AI-native apps.
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link
-              className={styles.buttonOutline}
+            {/* <Link
+              className={styles.buttonGradient}
               to="https://newsletter.weaviate.io/subscribe"
             >
               Subscribe to Newsletter
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

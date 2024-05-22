@@ -1,30 +1,34 @@
 ---
-title: Weaviate Cloud Services
+title: Weaviate Cloud
 sidebar_position: 1
 image: og/docs/installation.jpg
-# tags: ['installation', 'Weaviate Cloud Services']
+# tags: ['installation', 'Weaviate Cloud']
 ---
 
+import WCSLandingIntro from '/_includes/wcs/wcs-landing-intro.mdx'
 
-## Overview
+<WCSLandingIntro/>
 
-Weaviate Cloud Services (WCS) is a managed SaaS service that requires no maintenance at your end. Accordingly, it may be the easiest way to run Weaviate.
+## WCD and Weaviate open-source
 
-:::tip How to access
+import WCSLandingOpenSource from '/_includes/wcs/wcs-landing-open-source.mdx'
 
-Head to [https://console.weaviate.cloud](https://console.weaviate.cloud) to sign up and create your own Weaviate instance.
+<WCSLandingOpenSource/>
 
-Note: WCS offers free sandboxes with a 14-day expiry date.
+## WCD solutions
 
-:::
+import WCSLandingSolutions from '/_includes/wcs/wcs-landing-solutions.mdx'
 
-:::info Learn More
+<WCSLandingSolutions/>
 
-You can learn more about WCS from the dedicated [WCS documentation](/developers/wcs/index.mdx).
+## Get started
 
-:::
+import WCSLandingGetStarted from '/_includes/wcs/wcs-landing-get-started.mdx'
 
+<WCSLandingGetStarted/>
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Support
 
-<DocsMoreResources />
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

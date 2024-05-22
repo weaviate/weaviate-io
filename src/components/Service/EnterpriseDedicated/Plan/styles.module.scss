@@ -1,0 +1,69 @@
+.header {
+  text-align: left;
+  color: #ffffff;
+  width: 85%;
+  margin: 0px 0px 40px 0px;
+
+  h2 {
+    color: #ffffff;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+    gap: 55px;
+  }
+  span {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+
+  p {
+    color: #fff;
+    width: 90%;
+    font-size: 1rem;
+  }
+}
+.bgColor {
+  background: #130c49;
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  flex: 1;
+}
+
+.rightContent {
+  flex: 1;
+
+  .diagram {
+    background-image: url('/img/site/enterprise-dedicated-diagram.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    width: 42rem;
+    height: 27rem;
+
+    @media screen and (max-width: 1024px) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 560px) {
+      width: 300px;
+      height: 15rem;
+    }
+  }
+}

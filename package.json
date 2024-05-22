@@ -27,9 +27,11 @@
     "@mdx-js/react": "^1.6.22",
     "@notionhq/client": "^2.2.15",
     "@radix-ui/react-tabs": "^1.0.1",
+    "@scalar/docusaurus": "^0.1.41",
     "@types/gtag.js": "^0.0.18",
     "clipboard": "^2.0.11",
     "clsx": "^1.2.1",
+    "csv-parser": "^3.0.0",
     "docusaurus-plugin-sass": "^0.2.3",
     "express": "^4.19.2",
     "hast-util-is-element": "1.1.0",
@@ -48,11 +50,13 @@
     "react-slick": "^0.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-twitter-embed": "^4.0.4",
+    "redocusaurus": "^2.0.2",
     "rehype-katex": "5",
     "remark-math": "3",
     "rxjs": "^7.8.0",
     "sass": "^1.56.1",
     "slick-carousel": "^1.8.1",
+    "stream-json": "^1.8.0",
     "styled-components": "^6.0.5"
   },
   "devDependencies": {
@@ -68,7 +72,8 @@
     "tailwindcss": "^3.2.7",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
-    "weaviate-ts-client": "^1.4.0",
+    "weaviate-client": "^3.0.0-beta.23",
+    "weaviate-ts-client": "^2.1.0",
     "weaviate-ts-embedded": "^1.2.0"
   },
   "browserslist": {
@@ -84,7 +89,7 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18"
   },
   "resolutions": {
     "eta": "1.13.0"

@@ -56,21 +56,19 @@ If you haven't already, make sure to download the dataset and unzip the file. Yo
 
 ## Create a Weaviate instance
 
-We can create a Weaviate instance locally using the [embedded](../installation/embedded.md) option on Linux (transparent and fastest), Docker on any OS (fastest import and search), or in the cloud using the Weaviate Cloud Services (easiest setup, but importing may be slower due to the network speed). Each option is explained on its [Installation](../installation/index.md) page.
+We can create a Weaviate instance locally using the [embedded](../installation/embedded.md) option on Linux (transparent and fastest), Docker on any OS (fastest import and search), or in the cloud using the Weaviate Cloud (easiest setup, but importing may be slower due to the network speed). Each option is explained on its [Installation](../installation/index.md) page.
 
 :::caution text2vec-openai
 If using the Docker option, make sure to select "With Modules" (instead of standalone), and the `text2vec-openai` module when using the Docker configurator, at the "Vectorizer & Retriever Text Module" step. At the "OpenAI Requires an API Key" step, you can choose to "provide the key with each request", as we'll do so in the next section.
 :::
 
-
 ## Connect to the instance and OpenAI
 
-To pave the way for using OpenAI later when querying, let's make sure we provide the OpenAI API key to the client.
+Add the OpenAI API key to the client so you can use the OpenAI vectorizer API when you send queries to Weaviate.
 
 import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
 <ProvideOpenAIAPIKey />
-
 
 ## Create the schema
 
@@ -111,7 +109,7 @@ The [`jq`](https://stedolan.github.io/jq/) command used after `curl` is a handy 
 
 ## Import the articles
 
-We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../api/rest/batch.md).
+We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../manage-data/import.mdx).
 
 import ImportArticles from '/_includes/code/tutorials.wikipedia.import.mdx';
 
@@ -125,7 +123,9 @@ Two quick sanity checks that the import went as expected:
 1. Get the number of articles
 2. Get 5 articles
 
-Go to the [Weaviate GraphQL console](https://console.weaviate.io), connect to your Weaviate endpoint (e.g. `http://localhost:8080` or `https://some-endpoint.weaviate.network`), then run the GraphQL query below:
+- Open the [Weaviate Query app](https://weaviate.io/developers/wcs/console)
+- Connect to your Weaviate endpoint, either `http://localhost:8080` or `https://WEAVIATE_INSTANCE_URL`. (Replace WEAVIATE_INSTANCE_URL with your instance URL.)
+- Run this GraphQL query:
 
 ```graphql
 query {
@@ -182,6 +182,8 @@ In this tutorial, we've learned
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

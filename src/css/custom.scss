@@ -281,10 +281,14 @@
 
 .custom-page .navbar__items.navbar__items--right {
   flex: 0 0 auto;
-  gap: 40px;
+  gap: 20px;
   justify-content: flex-start;
 
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  @media screen and (max-width: 1223px) {
+    gap: 8px;
+  }
+
+  @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     flex: 0 0 auto;
     gap: 21px;
     justify-content: flex-start;
@@ -297,8 +301,18 @@
 
 .navbar__items.navbar__items--right {
   flex: 0 0 auto;
-  gap: 13px;
+  gap: 0px;
   justify-content: flex-start;
+
+  @media screen and (max-width: 1100px) {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar__item {
+    padding: 0.2rem 0.4rem;
+  }
 }
 
 .custom-page .navbar__item {
@@ -331,7 +345,7 @@
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
   background: #61bd73;
-  margin: 0 70px;
+  margin: 0 20px;
   width: 8rem;
   height: 2.625rem;
   flex-shrink: 0;
@@ -342,11 +356,40 @@
   transition: background-color 1s ease-out, border-color 1s ease-out,
     color 1s ease-out;
 
-  @media screen and (max-width: 1160px) {
-    margin: 0px 9px;
+  @media screen and (max-width: 1190px) {
+    margin: 0px;
   }
 
-  @media screen and (max-width: 1020px) {
+  @media screen and (max-width: 1150px) {
+    display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.custom-page .tryNow {
+  margin: 0px 70px 0px 0px;
+
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 10.625rem;
+  height: 3.5rem;
+
+  border-radius: 0.3125rem;
+  background: #130c49;
+  color: #ffffff;
+
+  @media screen and (max-width: 1160px) {
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 999px) {
     display: none;
   }
 
@@ -402,6 +445,11 @@ button.close {
 .footer__copyright,
 .footer__link-item {
   color: var(--site-base-color-shade);
+}
+
+.subtitle {
+  margin: 1rem auto;
+  display: block;
 }
 
 /* Styling for both modes  */
@@ -665,7 +713,7 @@ button.close {
 }
 
 .custom-page .footer__title {
-  color: #ffffff;
+  color: #61bd73;
 }
 
 .custom-page .footer__link-item {
@@ -738,21 +786,72 @@ Dropdown style removed.
   }
 }
 
-[data-theme='light'] {
-  .docHome,
-  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module
-    .container {
-    background-color: #ededed !important;
-  }
-
-  .docHome,
-  .docMainContainer_gTbr .container {
-    background-color: #ededed !important;
-  }
-}
-
 .privacyPolicy {
   thead {
     display: none;
   }
+}
+
+[data-theme='light']
+  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none !important;
+}
+
+[data-theme='light'] .lightToggleIcon_pyhR {
+  display: none !important;
+}
+
+[data-theme='light']
+  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: block !important;
+}
+[data-theme='light'] .darkToggleIcon_wfgR {
+  display: block !important;
+}
+
+[data-theme='dark']
+  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none !important;
+}
+
+[data-theme='dark'] .darkToggleIcon_wfgR {
+  display: none !important;
+}
+
+[data-theme='dark']
+  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: block !important;
+}
+[data-theme='dark'] .lightToggleIcon_pyhR {
+  display: block !important;
+}
+
+.githubStars {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: auto;
+  fill: #2c3854;
+
+  @media screen and (max-width: 768px) {
+    width: 18px;
+  }
+}
+
+[data-theme='dark'] .githubStars {
+  fill: white;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+}
+
+.announcementBar_mb4j,
+.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  z-index: 1;
+  position: relative;
 }

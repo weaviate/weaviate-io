@@ -1,0 +1,26 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+# Only if authentication enabled; assuming API key authentication
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace with your Weaviate instance API key
+
+# Instantiate the client
+client = weaviate.Client(
+    url="https://example.weaviate.network",
+    auth_client_secret=auth_config,  # Only necessary if authentication enabled
+    additional_headers={
+        "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",            # Replace with your Cohere key
+        "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  # Replace with your Hugging Face key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",            # Replace with your OpenAI key
+    }
+)
+```
+
+</TabItem>
+</Tabs>

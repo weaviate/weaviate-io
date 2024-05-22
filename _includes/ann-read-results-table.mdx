@@ -1,13 +1,16 @@
-:::info How to read the results table
+<details>
+  <summary>How to read the results table</summary>
 <ul>
   <li>
     <strong>Choose the desired limit using the tab selector above the table.</strong> <br/>
-    Different use cases require different levels of Queries per Second (QPS)
-    and returned objects per query. For example, at 100 QPS and <code>limit 100</code>
-    10,000 objects will be returned in total. At 1,000 QPS and <code>limit 10</code>, you
+    The limit describes how many objects are returned for a query.
+    Different use cases require different levels of QPS
+    and returned objects per query. <br/>
+    For example, at 100 QPS and <code>limit 100</code> (100 objects per query) 10,000 objects will be returned in total. 
+    At 1,000 QPS and <code>limit 10</code> (10 objects per query), you
     will also receive 10,000 objects in total as each request contains fewer
-    objects, but you can send more requests in the same timespan. Pick the
-    value that matches your desired limit in production most closely.
+    objects, but you can send more requests in the same timespan. <br/>
+    Pick the value that matches your desired limit in production most closely.
   </li>
   <li>
     <strong>Pick the desired configuration</strong> <br/>
@@ -41,4 +44,5 @@
     time it takes to import the dataset. This is shown in the last column.
   </li>
 </ul>
-:::
+
+</details>
