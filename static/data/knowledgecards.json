@@ -10,10 +10,10 @@
       "text": "Data without a predefined structure, making them difficult to manage conventionally...",
       "longText": "Data without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Vector Databases", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/understand-your-unstructured-data#intro",
+      "blogTitle": "Understand Your Unstructured Data",
+      "tags": ["Vector Databases", "Weaviate", "Image"],
+      "cardImage": "unstructured-data-objects.jpg"
     },
     {
       "id": "vector-databases-2",
@@ -24,10 +24,10 @@
       "text": "A quantity having both magnitude and direction represented by an array of numerical values...",
       "longText": "A quantity having both magnitude and direction represented by an array of numerical values.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Vector Databases", "Weaviate", "Image"]
+      "doclink": "https://weaviate.io/developers/weaviate/search/similarity#search-with-a-vector",
+      "docTitle": "Search with a Vector",
+      "tags": ["Vector Databases", "Weaviate", "Image"],
+      "cardImage": "vector.jpg"
     },
     {
       "id": "vector-databases-3",
@@ -38,10 +38,10 @@
       "text": "Numerical representations of objects, such as words or images, in a vector space...",
       "longText": "Numerical representations of objects, such as words or images, in a vector space. These representations capture semantic relationships and are used in machine-learning tasks.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Vector Databases", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/vector-embeddings-explained",
+      "blogTitle": "Vector Embeddings Explained",
+      "tags": ["Vector Databases", "Weaviate", "Image"],
+      "cardImage": "vector-embedding.jpg"
     },
     {
       "id": "vector-databases-4",
@@ -52,10 +52,14 @@
       "text": "An algorithm or model that transforms objects (like words) into vector embeddings...",
       "longText": "An algorithm or model that transforms objects (like words) into vector embeddings. This enables capturing contextual and semantic information.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Vector Databases", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/vector-embeddings-explained",
+      "blogTitle": "Vector Embeddings Explained",
+      "doclink": "https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules",
+      "docTitle": "Retriever Vectorizer Modules",
+      "videolink": "https://www.youtube.com/watch?v=lpdN3aw-yTg",
+      "videoTitle": "Vector Embeddings Explained",
+      "tags": ["Vector Databases", "Weaviate", "Image"],
+      "cardImage": "embeddings-model.jpg"
     },
     {
       "id": "search-1",
@@ -66,10 +70,10 @@
       "text": "Sparse embeddings are generated from algorithms like BM25 and SPLADE...",
       "longText": "Sparse vectors are often high-dimensional with many zeros. Sparse embeddings are generated from algorithms like BM25 and SPLADE. These algorithms are used in keyword-based search to represent text documents.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Hybrid Search", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/hybrid-search-explained#sparse-and-dense-vectors",
+      "blogTitle": "Hybrid Search Explained",
+      "tags": ["Hybrid Search", "Weaviate", "Image"],
+      "cardImage": "sparse-vectors.jpg"
     },
     {
       "id": "search-2",
@@ -80,10 +84,10 @@
       "text": "In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers...",
       "longText": "In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers. These vectors capture the semantic meaning of text and are used in vector search techniques.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Hybrid Search", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/hybrid-search-explained#sparse-and-dense-vectors",
+      "blogTitle": "Hybrid Search Explained",
+      "tags": ["Hybrid Search", "Weaviate", "Image"],
+      "cardImage": "dense-vectors.jpg"
     },
     {
       "id": "search-3",
@@ -94,10 +98,12 @@
       "text": "BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models...",
       "longText": "BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models. BM25F is a variant of BM25 that can handle fields with different weights, such as title and body in documents.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Hybrid Search", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/hybrid-search-explained#bm25",
+      "blogTitle": "Hybrid Search Explained",
+      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#bm25",
+      "docTitle": "BM25",
+      "tags": ["Hybrid Search", "Weaviate", "Image"],
+      "cardImage": "BM25-BM25F.jpg"
     },
     {
       "id": "search-4",
@@ -108,10 +114,12 @@
       "text": "This is an optional parameter in hybrid search queries that determines the weighting of each search algorithm during the re-ranking process...",
       "longText": "This is an optional parameter in hybrid search queries that determines the weighting of each search algorithm during the re-ranking process. An alpha value of 0 gives full weight to the sparse vector (BM25), 1 gives full weight to the dense vector, and 0.5 gives equal weight to both.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Hybrid Search", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/hybrid-search-for-web-developers#changing-alpha",
+      "blogTitle": "Hybrid Search for Web Developers",
+      "doclink": "https://weaviate.io/developers/weaviate/search/hybrid#balance-keyword-and-vector-search",
+      "docTitle": "Balance Keyword and Vector Search",
+      "tags": ["Hybrid Search", "Weaviate", "Image"],
+      "cardImage": "alpha-parameter.jpg"
     },
     {
       "id": "search-5",
@@ -122,10 +130,12 @@
       "text": "In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results...",
       "longText": "In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["Hybrid Search", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/hybrid-search-fusion-algorithms",
+      "blogTitle": "Hybrid Search Fusion Algorithms",
+      "doclink": "https://weaviate.io/developers/weaviate/search/hybrid#change-the-fusion-method",
+      "docTitle": "Change the Fusion Method",
+      "tags": ["Hybrid Search", "Weaviate", "Image"],
+      "cardImage": "fusion-algorithm.jpg"
     },
     {
       "id": "hnsw-1",
@@ -136,10 +146,12 @@
       "text": "HNSW utilizes a multi-layered graph structure where each layer is a graph of the data points. The top layers contain fewer points with long-range connections...",
       "longText": "HNSW utilizes a multi-layered graph structure where each layer is a graph of the data points. The top layers contain fewer points with long-range connections, and as you go down the layers, the number of points increases, and the connections become more local. This hierarchical structure allows for efficient navigation during search queries.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["HNSW", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw#hnsw-indexing--in-short",
+      "blogTitle": "ANN Algorithms: Vamana vs HNSW",
+      "doclink": "https://weaviate.io/developers/weaviate/introduction#how-does-weaviate-work",
+      "docTitle": "How Does Weaviate Work?",
+      "tags": ["HNSW", "Weaviate", "Image"],
+      "cardImage": "hierarchical-graph-structure.jpg"
     },
     {
       "id": "hnsw-2",
@@ -150,10 +162,12 @@
       "text": "ANN algorithms calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors...",
       "longText": "ANN algorithms calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors. ANN algorithms enable the quick and efficient identification of the closest data points at scale. This makes ANN suitable for big data where speed matters more than perfect accuracy.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["HNSW", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/why-is-vector-search-so-fast",
+      "blogTitle": "Why is Vector Search so Fast?",
+      "doclink": "https://weaviate.io/developers/weaviate/concepts/indexing#ann-indexing",
+      "docTitle": "ANN Indexing",
+      "tags": ["HNSW", "Weaviate", "Image"],
+      "cardImage": "approximate-nearest-neighbor.jpg"
     },
     {
       "id": "hnsw-3",
@@ -164,10 +178,10 @@
       "text": "During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region...",
       "longText": "During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["HNSW", "Weaviate", "Image"]
+      "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index",
+      "docTitle": "HNSW Index",
+      "tags": ["HNSW", "Weaviate", "Image"],
+      "cardImage": "layered-navigation.jpg"
     },
     {
       "id": "hnsw-4",
@@ -178,10 +192,14 @@
       "text": "HNSW is a graph-based indexing technique, meaning that it organizes the data points in a graph structure rather than traditional tree-based or hash-based structures...",
       "longText": "HNSW is a graph-based indexing technique, meaning that it organizes the data points in a graph structure rather than traditional tree-based or hash-based structures. This graph-based approach is key to its performance in high-dimensional vector space searches.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["HNSW", "Weaviate", "Image"]
+      "bloglink": "https://weaviate.io/blog/why-is-vector-search-so-fast",
+      "blogTitle": "Why is Vector Search so Fast?",
+      "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index",
+      "docTitle": "HNSW Index",
+      "videolink": "",
+      "videoTitle": "",
+      "tags": ["HNSW", "Weaviate", "Image"],
+      "cardImage": "graph-based-index.jpg"
     },
     {
       "id": "hnsw-5",
@@ -192,10 +210,8 @@
       "text": "A vector index is a type of data structure for efficiently storing high-dimensional vector data generated by machine learning models. Its main purpose is facilitating quick and accurate similarity searches...",
       "longText": "A vector index is a type of data structure for efficiently storing high-dimensional vector data generated by machine learning models. Its main purpose is facilitating quick and accurate similarity searches, using algorithms like trees or hashing to reduce complexity in high-dimensional spaces.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["HNSW", "Weaviate", "Image"]
+      "tags": ["HNSW", "Weaviate", "Image"],
+      "cardImage": "vector-index.jpg"
     },
     {
       "id": "rag-1",
@@ -206,10 +222,8 @@
       "text": "Cross-modal reasoning refers to the ability to make connections by integrating information from different modalities or sources including text, images, audio and video...",
       "longText": "Cross-modal reasoning refers to the ability to make connections by integrating information from different modalities or sources including text, images, audio and video. It involves leveraging knowledge from one modality to understand or reason about data from another modality.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["RAG", "Weaviate", "Image"]
+      "tags": ["RAG", "Weaviate", "Image"],
+      "cardImage": "cross-modal-reasoning.jpg"
     },
     {
       "id": "rag-2",
@@ -220,10 +234,8 @@
       "text": "Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more...",
       "longText": "Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more. Objects that are similar are closer together and dissimilar objects are farther apart, this means that the model preserves semantic similarity within and across modalities.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["RAG", "Weaviate", "Image"]
+      "tags": ["RAG", "Weaviate", "Image"],
+      "cardImage": "multimodal-embeddings-models.jpg"
     },
     {
       "id": "rag-3",
@@ -234,10 +246,8 @@
       "text": "Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more...",
       "longText": "Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more. Objects that are similar are closer together and dissimilar objects are farther apart, this means that the model preserves semantic similarity within and across modalities.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["RAG", "Weaviate", "Image"]
+      "tags": ["RAG", "Weaviate", "Image"],
+      "cardImage": "multimodal-contrastive-finetuning.jpg"
     },
     {
       "id": "rag-4",
@@ -248,10 +258,8 @@
       "text": "In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search...",
       "longText": "In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["RAG", "Weaviate", "Image"]
+      "tags": ["RAG", "Weaviate", "Image"],
+      "cardImage": "any-to-any-search.jpg"
     },
     {
       "id": "rag-5",
@@ -262,10 +270,8 @@
       "text": "Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by...",
       "longText": "Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-      "tags": ["RAG", "Weaviate", "Image"]
+      "tags": ["RAG", "Weaviate", "Image"],
+      "cardImage": "multimodal-rag.jpg"
     },
     {
       "id": "databases-1",
@@ -276,9 +282,8 @@
       "text": "A graph database stores data in nodes and edges, representing entities and their relationships. It's optimized for...",
       "longText": "A graph database stores data in nodes and edges, representing entities and their relationships. It's optimized for querying connections and patterns within the data, making it powerful for network, social, and recommendation systems.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "doclink": "https://weaviate.io/developers/weaviate/more-resources/performance#cost-of-resolving-referencing",
+      "docTitle": "Cost of resolving referencing",
       "tags": ["Databases", "Weaviate", "Image"]
     },
     {
@@ -290,9 +295,8 @@
       "text": "An inverted index is a database indexing structure that maps keywords to their locations in documents...",
       "longText": "An inverted index is a database indexing structure that maps keywords to their locations in documents, enabling fast full-text searches by listing all documents containing a given word, optimizing retrieval times. In Weaviate, it's used for keyword searches and fast filtering.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "doclink": "https://weaviate.io/developers/weaviate/more-resources/performance#inverted-index",
+      "docTitle": "Inverted index",
       "tags": ["Databases", "Weaviate", "Image"]
     },
     {
@@ -304,9 +308,8 @@
       "text": "Sharding is splitting a database into smaller, faster, more easily managed parts called shards...",
       "longText": "Sharding is splitting a database into smaller, faster, more easily managed parts called shards. Each shard is a self-contained unit with a subset of data, allowing for distribution across servers or data centers for improved performance and scalability.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "doclink": "https://weaviate.io/developers/weaviate/starter-guides/schema#sharding",
+      "docTitle": "Sharding",
       "tags": ["Databases", "Weaviate", "Image"]
     },
     {
@@ -318,9 +321,10 @@
       "text": "With multi-tenancy, a single database instance serves multiple clients or 'tenants'...",
       "longText": "With multi-tenancy, a single database instance serves multiple clients or 'tenants' simultaneously, while ensuring that each tenant's data remains isolated and secure. It also enables efficient resource use and cost savings over large datasets at scale.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/multi-tenancy-vector-search",
+      "blogTitle": "Multi-tenancy and Vector Search",
+      "doclink": "https://weaviate.io/developers/weaviate/manage-data/read-all-objects#read-all-objects---multi-tenant-collections",
+      "docTitle": "Read All Objects - Multi-tenant collections",
       "tags": ["Databases", "Weaviate", "Image"]
     },
     {
@@ -332,9 +336,6 @@
       "text": "A relational database organizes data into tables linked by relationships...",
       "longText": "A relational database organizes data into tables linked by relationships, enabling complex queries like finding students with both cats and dogs. It uses SQL for structured, precise data management, optimizing operations like filtering and joining for efficient data retrieval.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
       "tags": ["Databases", "Weaviate", "Image"]
     },
     {
@@ -346,9 +347,10 @@
       "text": "A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language...",
       "longText": "A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/llms-and-search",
+      "blogTitle": "LLMs and Search",
+      "doclink": "https://weaviate.io/developers/weaviate/starter-guides/generative#why-generative-search",
+      "docTitle": "Why generative search?",
       "tags": ["LLMs", "Weaviate", "Image"]
     },
     {
@@ -360,9 +362,8 @@
       "text": "Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset...",
       "longText": "Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model's performance on the related task while being more cost-efficient than training it from scratch.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/multimodal-models#2-model-architecture",
+      "blogTitle": "Multimodal Models",
       "tags": ["LLMs", "Weaviate", "Image"]
     },
     {
@@ -374,9 +375,10 @@
       "text": "Multi-modal learning involves integrating various data types like images, text, audio, and sensory inputs...",
       "longText": "Multi-modal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/multimodal-models",
+      "blogTitle": "Multimodal Embedding Models",
+      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#multimodal-search",
+      "docTitle": "Multimodal Search",
       "tags": ["LLMs", "Weaviate", "Image"]
     },
     {
@@ -388,9 +390,12 @@
       "text": "An embedding model, or vectorizer, transforms text or images into vector embeddings, capturing semantic...",
       "longText": "An embedding model, or vectorizer, transforms text or images into vector embeddings, capturing semantic meaning through statistical analysis, converting conceptual significance into numerical representations.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/vector-embeddings-explained",
+      "blogTitle": "Vector Embeddings Explained",
+      "doclink": "https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules",
+      "docTitle": "Retriever Vectorizer Modules",
+      "videolink": "https://www.youtube.com/watch?v=lpdN3aw-yTg",
+      "videoTitle": "Vector embedding models for AI",
       "tags": ["LLMs", "Weaviate", "Image"]
     },
     {
@@ -402,9 +407,8 @@
       "text": "Chunking is the process of dividing large texts into smaller, manageable pieces, called 'chunks'...",
       "longText": "Chunking is the process of dividing large texts into smaller, manageable pieces, called 'chunks', for storage or processing in vector databases and language models. It improves search performance and the quality of language model outputs by defining the granularity of information retrieval.",
       "link": "/developers/weaviate/quickstart",
-      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
-      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "bloglink": "https://weaviate.io/blog/llms-and-search#index-construction",
+      "blogTitle": "LLMs and Search",
       "tags": ["LLMs", "Weaviate", "Image"]
     }
   ],

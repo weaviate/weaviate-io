@@ -118,12 +118,17 @@ export default function KnowledgeBase({ searchQuery }) {
 
     const categoryDescriptions = {
       'Intro to Vector Databases':
-        'Description for Intro to Vector Databases...',
-      'Hybrid Search': 'Description for Hybrid Search...',
-      'Hierarchical Navigable Small World': 'Description for HNSW...',
-      'Multimodal RAG': 'Description for Multimodal RAG...',
-      Databases: 'Description for Databases...',
-      'Large Language Models': 'Description for LLMS...',
+        'Databases designed to store and search data using vector embeddings, enabling efficient similarity search for unstructured data like text and images.',
+      'Hybrid Search':
+        'A search method that combines vector search with traditional keyword search to improve retrieval accuracy and relevance.',
+      'Hierarchical Navigable Small World':
+        'An indexing algorithm used in vector databases to enable fast and efficient similarity search.',
+      'Multimodal RAG':
+        'A technique that combines retrieval of relevant multimodal data, such as images, text, audio, or video, with generative large language models to generate natural language responses or content to a query.',
+      Databases:
+        'Systems for storing and storing, organizing, and retrieving structured or unstructured data efficiently.',
+      'Large Language Models':
+        'Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.',
       // Add other categories as needed
     };
 
