@@ -226,7 +226,7 @@ df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.W
 
 - Arbitrary headers can be supplied with the option prefix `header:`. For example to provide an `OPENAI_APIKEY` header the following can be used `.option("header:OPENAI_APIKEY", ...)`.
 
-- Additionally OIDC options are supported `.option("oidc:username", ...)`, `.option("oidc:password", ...)`, `.option("oidc:clientSecret", ...)`, `.option("oidc:accessToken", ...)`, `.option("oidc:accessTokenLifetime", ...)`, `.option("oidc:refreshToken", ...)`. For more information on these options please refer to the [Java client documentation](../client-libraries/java.md#oidc-authentication).
+- Additionally OIDC options are supported `.option("oidc:username", ...)`, `.option("oidc:password", ...)`, `.option("oidc:clientSecret", ...)`, `.option("oidc:accessToken", ...)`, `.option("oidc:accessTokenLifetime", ...)`, `.option("oidc:refreshToken", ...)`. For more information on these options See the [Java client documentation](../client-libraries/java.md#oidc-authentication).
 
 
 ## Questions and feedback

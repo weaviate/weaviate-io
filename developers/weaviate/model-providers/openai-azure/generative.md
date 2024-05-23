@@ -203,7 +203,7 @@ For further details on these parameters, please consult the [Azure OpenAI API do
 
 ### Available models
 
-Please refer to the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
+See the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
 
 ## Further resources
 

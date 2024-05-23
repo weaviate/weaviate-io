@@ -141,7 +141,7 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ### Available models
 
-Please refer to the [Ollama documentation](https://ollama.com/library) for a list of available models. Note that this list includes both generative models and embedding models; specify a generative model for the `generative-ollama` module.
+See the [Ollama documentation](https://ollama.com/library) for a list of available models. Note that this list includes both generative models and embedding models; specify a generative model for the `generative-ollama` module.
 
 Download the desired model with `ollama pull <model-name>`.
 
