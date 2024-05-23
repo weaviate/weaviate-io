@@ -16,19 +16,22 @@ import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
 Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
 
-You can pass pre-existing vectors at import time or generate new ones. This guide discusses importing data that already has pre-existing vectors.
+When you import data, you can pass pre-existing vectors or generate new ones. "Bring your own vectors" means you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
 
-If you "bring your own vectors," you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
+This guide discusses importing data that has pre-existing vectors.
 
-To import data that has pre-existing vectors, follow these steps:
+## Guide steps
 
+To use this guide to import data that has pre-existing vectors, follow these steps:
+
+1. [Review the setup steps.](#setup)
 1. [Connect to a Weaviate instance.](#connect-to-weaviate)
 1. [Import data that specifies its own vectors.](#import-data-and-vectors)
 1. [Perform a vector search.](#query)
 
 ## Setup
 
-This section introduces setup requirements and the data that this example uses.
+This section introduces setup requirements and the example data that this guide uses.
 
 ### Example Data
 
