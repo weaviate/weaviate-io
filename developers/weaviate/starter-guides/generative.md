@@ -432,7 +432,7 @@ And the `generative-openai` module may be configured as follows:
     }
 ```
 
-Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
+See the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
 
 </details>
 
@@ -863,4 +863,3 @@ To learn more about specific search capabilities, check out the [How-to: search 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

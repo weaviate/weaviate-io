@@ -21,7 +21,7 @@ We will install the python `weaviate-client` and also run Spark locally for whic
 pip3 install pyspark weaviate-client
 ```
 
-For demonstration purposes this tutorial runs Spark locally. Please see the Apache Spark docs or consult your cloud environment for installation and deploying a Spark cluster and choosing a language runtime other than Python.
+For demonstration purposes this tutorial runs Spark locally. See the Apache Spark docs or consult your cloud environment for installation and deploying a Spark cluster and choosing a language runtime other than Python.
 
 We will also need the Weaviate Spark connector. You can download this by running the following command in your terminal:
 

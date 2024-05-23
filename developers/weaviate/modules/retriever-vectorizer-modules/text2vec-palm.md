@@ -254,7 +254,7 @@ During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type.
 
 #### Note
 
-For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
+For more information, See the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 
 ### API rate limits
 
