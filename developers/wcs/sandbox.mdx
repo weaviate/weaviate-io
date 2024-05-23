@@ -1,6 +1,6 @@
 ---
 title: Sandboxes
-sidebar_position: 80
+sidebar_position: 70
 image: og/wcs/user_guides.jpg
 ---
 
@@ -135,16 +135,21 @@ The managed cluster has new API keys. Update the API keys in your client code to
 
 ### Recreate your schema
 
-Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
+Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster.
+
+For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START CreateCollectionWithProperties"
-      endMarker="# END CreateCollectionWithProperties"
-      language="py"
-    />
+
+Refer to the exported schema to recreate the property definitions.<br/><br/>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START CreateCollectionWithProperties"
+  endMarker="# END CreateCollectionWithProperties"
+  language="py"
+/>
   </TabItem>
 
   <TabItem value="py3" label="Python Client v3">

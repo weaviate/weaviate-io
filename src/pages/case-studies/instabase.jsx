@@ -12,8 +12,7 @@ export default function CaseStudyPage() {
     <div className="custom-page noBG">
       <Layout
         title="Case Study - Instabase"
-        description="Learn how Instabase excel
-with Weaviate"
+        description="How Instabase delivers enterprise-ready AI with Weaviate"
       >
         <StudyHeader />
         <Study />

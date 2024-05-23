@@ -153,7 +153,7 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
+    headers={"X-OpenAI-Api-key": os.getenv("OPENAI_APIKEY")}
 )
 # END LocalInstantiationWithHeaders
 

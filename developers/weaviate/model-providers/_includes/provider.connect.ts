@@ -14,7 +14,8 @@ const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your A
 const cohereApiKey = process.env.COHERE_APIKEY || '';  // Replace with your inference API key
 // END CohereInstantiation
 // START GoogleInstantiation
-const googleApiKey = process.env.GOOGLE_APIKEY || '';  // Replace with your inference API key
+const vertexApiKey = process.env.VERTEX_APIKEY || '';  // Replace with your inference API key
+const studioApiKey = process.env.STUDIO_APIKEY || '';  // Replace with your inference API key
 // END GoogleInstantiation
 // START HuggingFaceInstantiation
 const huggingFaceApiKey = process.env.HUGGINGFACE_APIKEY || '';  // Replace with your inference API key
@@ -58,7 +59,8 @@ const client = await weaviate.connectToWCS(
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
       // START GoogleInstantiation
-      'X-Google-Api-Key': googleApiKey,
+      'X-Vertex-Api-Key': vertexApiKey,
+      'X-Studio-Api-Key': studioApiKey,
       // END GoogleInstantiation
       // START JinaAIInstantiation
       'X-JinaAI-Api-Key': jinaaiApiKey,

@@ -518,7 +518,7 @@ assert articles_config.name == "Article"
 # ================================
 
 # START ReadAllCollections
-response = client.collections.list_all()
+response = client.collections.list_all(simple=False)
 
 print(response)
 # END ReadAllCollections
@@ -625,4 +625,3 @@ print(article_shards)
 
 
 client.close()
-
