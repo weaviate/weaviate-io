@@ -32,16 +32,14 @@ This section introduces setup requirements and the data that this example uses.
 
 ### Example Data
 
-
-The example data is based on a set of ten questions from the "Jeopardy!" television program. [The data file](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json) is a JSON formatted document that contains the vectors and the underlying data.
-The example dataset is 10 questions from the popular quiz show "Jeopardy!". Each of the questions has an associated vector embedding.
+The example data is based on a set of ten questions from the "Jeopardy!" television program. The [import data file](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json) is a JSON formatted document that contains the vectors and the underlying data.
 
 <details>
   <summary>The sample data</summary>
 
-  In this example, the vector embeddings come from OpenAI API. The embeddings use the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
+The JSON file is based on this data. The vector embeddings are generated with the OpenAI API [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
   <br/>
-  Your vectors can come from any source, including your own vectorizer model or another service provider such as Cohere or Hugging Face.
+  Your vectors can come from any source, including your own vectorizer model or another model provider such as Cohere or Hugging Face.
   <br/>
 
   | Category | Question | Answer | Vector |
@@ -149,11 +147,11 @@ When you specify the elements of your batch import, be careful not to mislabel v
 
 ## Query
 
-In order to query a vector, Weaviate needs a vector representation of the query. If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding for the query. However, the example collection in this guide does not specify a vectorizer. Since Weaviate cannot vectorize the query, you have to supply a query vector.
+In order to query a vector, Weaviate needs a vector representation of the query. If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding for the query. If the collection doesn't specify a vectorizer, provide a query vector when you search.
 
-For example, to search the database for questions related to biology, use the same vectorizer that you used to create the data embedding to vectorize "biology" (the query term). Since the sample vectors are created with the `ada-002` model, the query ("biology") is also vectorized using the `ada-002` model.
+Use the same vectorizer to create the query vector that you use to create the data embeddings.
 
-This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) query use the vector embedding of "biology" to search the database:
+This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) query uses a vector embedding of "biology" to search the database:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
