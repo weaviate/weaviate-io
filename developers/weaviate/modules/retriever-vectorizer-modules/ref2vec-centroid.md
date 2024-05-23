@@ -139,7 +139,7 @@ An object whose class is configured to use ref2vec-centroid will have its vector
   - Object `PUT`: update all of the object's properties, removing all references
   - Reference `DELETE`: delete an existing reference from the object's list of references
 
-**Note:** Adding references in batches is not currently supported. This is because the batch reference feature is specifically built to avoid the cost of updating the vector index. If this is an important use case for you that you'd like to see in production, please feel free to open up a [feature request](https://github.com/weaviate/weaviate/issues/new) on GitHub.
+**Note:** Adding references in batches is not currently supported. This is because the batch reference feature is specifically built to avoid the cost of updating the vector index. If this is an important use case for you, open a [feature request](https://github.com/weaviate/weaviate/issues/new) on GitHub.
 
 ### Making queries
 

@@ -189,7 +189,7 @@ On the other hand, be aware that providing an input of insufficient length and d
 
 ## Model license(s)
 
-The `sum-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+The `sum-transformers` module is compatible with various models, each with their own license. For detailed information, see the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

@@ -199,11 +199,11 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on these parameters, please consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
+For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ### Available models
 
-Please refer to the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
+See the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
 
 ## Further resources
 
@@ -213,7 +213,7 @@ Please refer to the [Azure OpenAI documentation](https://learn.microsoft.com/en-
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

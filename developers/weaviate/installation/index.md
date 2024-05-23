@@ -32,7 +32,7 @@ import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
 
 <RunUnreleasedImages />
 
-When try out upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
+When you try upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 
 ## Related pages
 - [Connect to Weaviate](../starter-guides/connect.mdx)

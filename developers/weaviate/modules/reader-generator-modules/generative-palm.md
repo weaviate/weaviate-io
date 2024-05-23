@@ -16,7 +16,7 @@ import ModuleDocDeprecation from '/developers/weaviate/modules/_components/modul
 * The module enables generative search operations on the Weaviate instance.
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
-    * Please check the vendor pricing.
+    * Check the vendor pricing.
 * You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=).
 
 :::info Releases and versions
