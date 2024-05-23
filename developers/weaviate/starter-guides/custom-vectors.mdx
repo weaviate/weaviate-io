@@ -14,11 +14,13 @@ import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
 import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
-Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. When you import a data object, you normally include a vector representation of that object as well. The vector representation is also called an "embedding."
+Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
 
-Weaviate has [integrations](/developers/weaviate/model-providers) with [vectorizer](../modules/retriever-vectorizer-modules/index.md) models so you can create vector embeddings at import time. An alternative approach is to "bring your own vectors," and supply the vector embeddings when you upload your data. The embeddings could be custom vectors or pre-existing vectors from one of the popular model providers. This guide discusses importing data that already has vectors.
+You can pass pre-existing vectors at import time or generate new ones. This guide discusses importing data that already has pre-existing vectors.
 
-To import data with your own vectors, follow these steps:
+If you "bring your own vectors," you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
+
+To import data that has pre-existing vectors, follow these steps:
 
 1. [Connect to a Weaviate instance.](#connect-to-weaviate)
 1. [Import data that specifies its own vectors.](#import-data-and-vectors)
