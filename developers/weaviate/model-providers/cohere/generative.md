@@ -199,7 +199,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/chat).
+For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/chat).
 
 ### Available models
 

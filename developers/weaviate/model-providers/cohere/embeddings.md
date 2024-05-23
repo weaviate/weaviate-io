@@ -229,7 +229,7 @@ The following examples show how to configure Cohere-specific options.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/embed).
+For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/embed).
 
 ### Available models
 

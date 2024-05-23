@@ -240,7 +240,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [relevant AWS documentation](#further-resources).
+For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 
 ### Available models
 

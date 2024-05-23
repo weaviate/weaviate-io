@@ -229,7 +229,7 @@ The following examples show how to configure Voyage AI-specific options.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
+For further details on model parameters, see the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
 
 ### Available models
 

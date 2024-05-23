@@ -243,7 +243,7 @@ The following examples show how to configure OpenAI-specific options.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
+For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
 
 ### Available models
 

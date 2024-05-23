@@ -199,7 +199,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
+For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
 
 ### Available models
 

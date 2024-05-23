@@ -204,7 +204,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
+For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
 
 ### Available models
 

@@ -238,7 +238,7 @@ The following examples show how to configure OctoAI-specific options.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/getting-started).
+For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/getting-started).
 
 ### Available models
 

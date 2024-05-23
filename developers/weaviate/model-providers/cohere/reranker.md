@@ -153,7 +153,7 @@ You can also select a fine-tuned reranker model_id, such as:
 
 Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
 
 ## Further resources
 

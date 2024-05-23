@@ -199,7 +199,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Mistral API documentation](https://docs.mistral.ai/api/).
+For further details on model parameters, see the [Mistral API documentation](https://docs.mistral.ai/api/).
 
 ### Available models
 
