@@ -1011,7 +1011,7 @@ While the Python client is fundamentally designed to be thread-safe, it's import
 This is an area that we are looking to improve in the future.
 
 :::warning Thread safety
-The batching algorithm in our client is not thread-safe. Keeping this in mind to help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+The batching algorithm in our client is not thread-safe. Keep this in mind to help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
 :::
 
 If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
