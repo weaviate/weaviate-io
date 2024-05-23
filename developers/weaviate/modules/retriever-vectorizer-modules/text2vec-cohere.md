@@ -17,7 +17,7 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - See the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
+    - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `embed-multilingual-v3.0`.

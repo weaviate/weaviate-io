@@ -406,14 +406,14 @@ See [HuggingFaceVectorizer.vectorizer()](https://github.com/weaviate/t2v-transfo
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
 ### Model licenses
 
-Each of the compatible models has its own license. For detailed information, review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+Each of the compatible models has its own license. For detailed information, please review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

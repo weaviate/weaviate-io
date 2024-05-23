@@ -9,7 +9,7 @@ image: og/docs/more-resources.jpg
 
 This page illustrates various use cases for [vector databases](https://weaviate.io/blog/what-is-a-vector-database) by way of open-source demo projects. You can fork and modify any of them.
 
-If you would like to contribute your own project to this page, create an issue on [GitHub](https://github.com/weaviate/weaviate-io/issues).
+If you would like to contribute your own project to this page, please let us know by creating an issue on [GitHub](https://github.com/weaviate/weaviate-io/issues).
 
 ## Similarity search
 
@@ -52,7 +52,7 @@ Weaviate can leverage its vectorization capabilities to enable automatic, real-t
 
 |Title | Description | Modality | Code |
 | --- | --- | --- | --- |
-| Toxic Comment Classification | Classify whether a comment is toxic or non-toxic. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-classification-toxic-comment) |
+| Toxic Comment Classification | Clasify whether a comment is toxic or non-toxic. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-classification-toxic-comment) |
 | Audio Genre Classification | Classify the music genre of an audio file. | Image | [Python](https://github.com/weaviate-tutorials/DEMO-classification-audio-genre/) |
 
 ## Other use cases

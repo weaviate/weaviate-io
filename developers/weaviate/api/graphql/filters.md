@@ -135,7 +135,7 @@ If the operator is `And` or `Or`, the operands are a list of `where` filters.
 </details>
 
 :::note `Not` operator
-Weaviate doesn't have an operator to invert a filter (e.g. `Not Like ...` ). If you would like us to add one, please [upvote the issue](https://github.com/weaviate/weaviate/issues/3683).
+An operator to invert a filter (e.g. `Not Like ...` ) is not supported in Weaviate. If you would to see such an operator to be implemented, please let us know by [upvoting the issue here](https://github.com/weaviate/weaviate/issues/3683).
 :::
 
 ### Filter behaviors

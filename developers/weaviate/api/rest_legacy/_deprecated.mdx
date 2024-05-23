@@ -7,7 +7,7 @@ export default function DocDeprecationNote({ tagname, client_examples }) {
       <Admonition type="caution">
         This section of the documentation is deprecated and will be removed in the future.
         {tagname && (
-          <div>Refer to the {``}<a href={url} target="_blank" rel="noreferrer">OpenAPI documentation</a> for the most up-to-date information.
+          <div>Please refer to the {``}<a href={url} target="_blank" rel="noreferrer">OpenAPI documentation</a> for the most up-to-date information.
           </div>
         )}
         {client_examples && (

@@ -194,7 +194,7 @@ You can only set one of `inferenceUrl` or (`queryInferenceUrl` and `passageInfer
 
 ## Select a model
 
-To select a model, direct `text2vec-transformers` to the appropriate Docker container.
+To select a model, please point `text2vec-transformers` to the appropriate Docker container.
 
 You can use one of our pre-built Docker images, or build your own (with just a few lines of code).
 
@@ -264,7 +264,7 @@ Look for the `-onnx` suffix in the image name.
 
 #### Is your preferred model missing?
 
-If your preferred model is missing, [open an issue](https://github.com/weaviate/weaviate/issues) to ask us to include it. Alternatively, follow the [steps below to build](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#build-a-model) a custom image.
+If your preferred model is missing, please [open an issue](https://github.com/weaviate/weaviate/issues) to ask us to include it. Alternatively, follow the [steps below to build](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#build-a-model) a custom image.
 
 #### How to set the version
 
@@ -358,7 +358,7 @@ See [HuggingFaceVectorizer.vectorizer()](https://github.com/weaviate/t2v-transfo
 
 ## Model licenses
 
-The `text2vec-transformers` module is compatible with various models. Each of the models has its own license. For detailed information, see the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+The `text2vec-transformers` module is compatible with various models. Each of the models has its own license. For detailed information, please review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

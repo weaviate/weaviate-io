@@ -151,9 +151,9 @@ You can also select a fine-tuned reranker model_id, such as:
 
 - `500df123-afr3-...`
 
-See [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
+Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
 
-For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
 
 ## Further resources
 
@@ -164,7 +164,7 @@ For further details on model parameters, see the [Cohere API documentation](http
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

@@ -453,12 +453,12 @@ More concretely: If you had to pick between a machine that has 16 GB of RAM and 
 
 </details>
 
-#### Q: My Weaviate instance uses more memory than I think is reasonable. How can I debug this?
+#### Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
 
 <details>
   <summary>Answer</summary>
 
-> Check that your import uses the latest version of Weaviate. `v1.12.0` and `v1.12.1` fix an [issue](https://github.com/weaviate/weaviate/issues/1868) where excessive amounts of data are written to disk, resulting in unreasonable memory consumption after restarts. If upgrading does not fix the issue, see this post on [how to profile memory use](https://stackoverflow.com/a/71793178/5322199).
+> First of all, make sure your import runs with the latest version of Weaviate, since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to disk](https://github.com/weaviate/weaviate/issues/1868) which then lead to unreasonable memory consumption after restarts. If this did not fix the issue yet, please see this post on [how to profile the memory usage of a Weaviate setup](https://stackoverflow.com/a/71793178/5322199).
 
 </details>
 

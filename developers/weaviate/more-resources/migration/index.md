@@ -126,11 +126,12 @@ If you see the error message `"shard Knuw6a360eCY: resolve node name
 
 #### Should you upgrade or reimport?
 
-In addition to new features, `v1.8.0` also contains a large collection of
-bugfixes. Some of the bugs affect how Weaviate writes the HNSW index to disk.
-A pre-1.18.0 index on disk may not be as good a freshly built `v1.8.0` index.
-If you can import using a script, we generally recommend starting with a fresh
-`v1.8.0` instance and reimporting instead of migrating.
+Please note that besides new features, `v1.8.0` also contains a large
+collection of bugfixes. Some of those bugs also affected how the HNSW index was
+written to disk. Therefore, it cannot be ruled out that the index on disk has a
+subpar quality compared to a freshly built index in version `v1.8.0`.
+As such, if you can import using a script, we generally recommend starting
+with a fresh `v1.8.0` setup and reimporting instead of migrating.
 
 #### Is downgrading possible after upgrading?
 

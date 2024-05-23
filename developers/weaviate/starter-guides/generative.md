@@ -326,7 +326,7 @@ For this example, you will need access to a Weaviate instance that you can write
 Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
 <br/>
 
-If you would like us to prioritize this issue, upvote it on [GitHub](https://github.com/weaviate/weaviate/issues/3364).
+If you would like for us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
 :::
 
 To use generative search, the appropriate `generative-xxx` module must be:
@@ -432,7 +432,7 @@ And the `generative-openai` module may be configured as follows:
     }
 ```
 
-See the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
+Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
 
 </details>
 
@@ -863,3 +863,4 @@ To learn more about specific search capabilities, check out the [How-to: search 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+

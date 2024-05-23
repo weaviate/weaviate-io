@@ -40,7 +40,9 @@ If you are new to Weaviate, we recommend starting with these sections:
 We suggest you browse through the [concepts](./concepts/index.md) section if you are interested in how Weaviate works.
 
 :::info Help us to help you!
-If you have questions, visit our [forum](https://forum.weaviate.io) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
+If the documentation does not quite suit **your** needs, we would love to hear from you.
+
+Please reach out on our [forum](https://forum.weaviate.io) - we can help you with your specific problem, and help make the documentation better. Plus you'll meet our amazing, helpful community of users just like you!
 :::
 
 :::note

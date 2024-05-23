@@ -39,7 +39,7 @@ This will set up the following resources:
 
 ### Video
 
-If you prefer a video, you can watch the following walkthrough. This video is recorded in September 2023, some details may have changed since then.
+If you prefer to follow along with a video, you can watch the following video. Please note that it was recorded in September 2023, and some details may have changed since then.
 
 <ReactPlayer className="react-player" url='https://youtu.be/_2rBrKp83iM' controls='true' />
 <br/>
@@ -134,12 +134,12 @@ The load balancer URL (e.g. `a520f010285b8475eb4b86095cabf265-854109584.eu-north
 
 You can delete the cluster by deleting the CloudFormation stack.
 
-Caution. This action deletes your data from Weaviate. If you want to keep your data, back it up or export the data before you delete the cluster.
+Please note that this will delete your data in Weaviate. If you want to keep your data, you should back it up or export the data before deleting the cluster.
 
 ### Some resources many require manual deletion
 
 :::caution
-Verify that all unused resources are deleted. You continue to incur costs for undeleted resources.
+Please make sure that all unused resources are deleted. You will continue to incur costs for any remaining resources.
 :::
 
 There may be some AWS resources that are not deleted automatically when the CloudFormation stack is deleted. For example, EBS volumes, and Key Management Service (KMS) keys may not be deleted from time to time.
@@ -165,3 +165,4 @@ This will, for example, include the EC2 instances, EBS volumes, and any other re
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+

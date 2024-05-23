@@ -541,7 +541,7 @@ The following table shows an example scenario showing whether a filter or keywor
 | `field`                | ❌          | ❌            | ❌             | ✅                         |
 
 :::caution `string` is deprecated
-The `string` data type has been deprecated from Weaviate `v1.19` onwards. Use `text` instead.
+The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
 
 <details>
   <summary>
@@ -643,3 +643,4 @@ client.schema.create_class(collection_obj)
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+
