@@ -175,7 +175,7 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 ## Model license(s)
 
-The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4all_python_embedding.html) library, which in turn uses the [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model. See the respective documentation for more information on their respective licenses.
+The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4all_python_embedding.html) library, which in turn uses the [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model. Please refer to the respective documentation for more information on their respective licenses.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

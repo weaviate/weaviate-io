@@ -33,7 +33,7 @@ If you are using a vectorizer module, your choices will depend on your input med
 
 Generally speaking, an API-based vectorizer will be more convenient to use, but will incur additional costs. On the other hand, a local vectorizer will be lower cost, but may require specialized hardware (such as a GPU) to run at comparable speeds.
 
-For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Remember, domain-specific and real-world performance may vary.
+For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Please do keep in mind that domain-specific, or real-world performance may vary.
 
 ## By use case
 

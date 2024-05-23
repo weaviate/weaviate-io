@@ -74,16 +74,18 @@ some of the individual areas and see *how* we can write better reports.
 - Make sure that all the versions used are explicitly listed. This includes at
   the minimum the version of the Weaviate server and the client.
 - Is there a chance that the bug was introduced in a recent version? In this
-  case, report the last version that does not have the specified issue.
-- Is there module involved that is vital to reproducing the bug? If so, specify
-  the module. If the module uses different models, specify the model names too.
+  case please specify the last version that did not have the specified issue.
+- Is there module involved that is vital to reproducing the bug? If so, please
+  specify the module. If the module makes use of different models, please also
+  specify the model name if you believe it to be relevant to the bug.
 
 ## How do I provide a good reproducing example?
 
 - A great reproducing example makes zero assumptions about state. This means
   that the example always starts with an empty Weaviate instance and imports
-  any object that is required to reproduce the bug. Our engineers cannot predict
-  what kind of objects should be imported based on a read/search query.
+  any object that is required to reproduce the bug. Please do not assume that
+  our engineers can predict what kind of objects should be imported based on
+  only providing a read/search query.
 - Anything that is required to reproduce the error is part of the reproducing
   example. Our engineers should be able to copy/paste the example and
   immediately see that something is wrong.
@@ -91,10 +93,10 @@ some of the individual areas and see *how* we can write better reports.
   language clients or a series of `curl` commands.
 - The reproducing example tells us what you expected to happen. In some cases
   it might not be obvious why the actual behavior is not the desired behavior.
-  Let us know what you expected to happen instead. This can be either in
-  the form of code, a code comment, or text accompanying your example.
+  Please let us know what you expected to happen instead. This can be either in
+  the form of code, a code comment, or text accompanying your example?
 
-## How do I know if a problem occurs in Weaviate, a client or somewhere else?
+## How do I know if a problem occurs within Weaviate or one of the clients or somewhere different?
 
 - If you have a suspicion that a problem doesn't actually occur in the Weaviate
   server, but possibly in one of the clients, you can verify sending a similar
@@ -114,14 +116,14 @@ some of the individual areas and see *how* we can write better reports.
   the `weaviate-helm` repository to run on Kubernetes, there is also a chance
   that something goes wrong there. If you think that the bug might be specific
   to the runtime and its manifests, it might make sense to also try the setup
-  on a different runtime. Let us know what you have already tried.
+  on a different runtime. Please indicate what you have already tried.
 
 ## What if it's not feasible to provide the information mentioned above?
 
 Don't worry about it. We know that sometimes bugs are tricky and not so easy to
-reproduce. If it is simply not feasible to write a perfect bug report, write one
-anyway. We are very happy when we see that you made an effort to write a good
-report.
+reproduce. If it is simply not feasible to write a perfect bug report, please
+still write the bug report. We are very happy when we see that you made an
+effort to write a good report.
 
 ## Thank you
 

@@ -541,11 +541,11 @@ Where you should be able to confirm that you have imported all `10` objects.
 <details>
   <summary>See answer</summary>
 
-To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
+To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your class.
 
-Make sure the vectorizer is configured [like this](#define-a-class).
+Make sure you configured it as shown in [this section](#define-a-class).
 
-If the search still doesn't work, [contact us](#questions-and-feedback)!
+If it still doesn't work - please [reach out to us](#more-resources)!
 
 </details>
 

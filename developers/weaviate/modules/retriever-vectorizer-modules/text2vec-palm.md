@@ -25,7 +25,7 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - See the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
+    - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Model names differ between Vertex AI and AI Studio.
@@ -254,7 +254,7 @@ During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type.
 
 #### Note
 
-For more information, See the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
+For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 
 ### API rate limits
 

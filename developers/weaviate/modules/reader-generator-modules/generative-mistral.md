@@ -237,7 +237,7 @@ import MistralGroupedResult from '/_includes/code/generative.mistral.groupedresu
 
 #### Further examples
 
-For further usage examples, see the [how-to search: generative](../../search/generative.md) page.
+For further usage examples, please see the [how-to search: generative](../../search/generative.md) page.
 
 
 

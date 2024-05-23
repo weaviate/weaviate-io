@@ -443,7 +443,7 @@ To combat this noise, a neighbor filtering feature was introduced in the context
 
 ## Model license(s)
 
-The `text2vec-contextionary` module is based on the [`fastText`](https://github.com/facebookresearch/fastText/tree/main) library, which is released under the MIT license. See the [license file](https://github.com/facebookresearch/fastText/blob/main/LICENSE) for more information.
+The `text2vec-contextionary` module is based on the [`fastText`](https://github.com/facebookresearch/fastText/tree/main) library, which is released under the MIT license. Please refer to the [license file](https://github.com/facebookresearch/fastText/blob/main/LICENSE) for more information.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

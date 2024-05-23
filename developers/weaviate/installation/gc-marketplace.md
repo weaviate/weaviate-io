@@ -121,7 +121,7 @@ The load balancer URL (e.g. `34.38.6.240`) will be the Weaviate URL (e.g. `http:
 ## Removing Weaviate and the cluster
 
 :::caution
-Verify that all unused resources are deleted. You continue to incur costs for any remaining resources.
+Please make sure that all unused resources are deleted. You will continue to incur costs for any remaining resources.
 :::
 
 ### Removing Weaviate
@@ -146,3 +146,4 @@ This will, for example, include the compute instances, volumes, and any other re
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+
