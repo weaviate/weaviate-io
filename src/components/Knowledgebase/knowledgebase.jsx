@@ -174,6 +174,105 @@ export default function KnowledgeBase({ searchQuery }) {
     );
   };
 
+  if (filteredCards.length === 0 && searchQuery) {
+    return (
+      <div className={styles.knowledgeBG}>
+        <div className="container">
+          <div className={styles.knowledgebase}>
+            <div className={styles.filterBox}>
+              <div className={styles.cardFilter}>
+                <h3>Categories</h3>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterAll"
+                    name="cardFilter"
+                    value="All"
+                    checked={selectedCard === 'All'}
+                    onChange={() => handleCardFilter('All')}
+                  />
+                  <label htmlFor="filterAll">All</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterIntroduction"
+                    name="cardFilter"
+                    value="Introduction"
+                    checked={selectedCard === 'Introduction'}
+                    onChange={() => handleCardFilter('Introduction')}
+                  />
+                  <label htmlFor="filterIntroduction">
+                    Intro to Vector Databases
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterSearch"
+                    name="cardFilter"
+                    value="Search"
+                    checked={selectedCard === 'Search'}
+                    onChange={() => handleCardFilter('Search')}
+                  />
+                  <label htmlFor="filterSearch">Hybrid Search</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterHNSW"
+                    name="cardFilter"
+                    value="HNSW"
+                    checked={selectedCard === 'HNSW'}
+                    onChange={() => handleCardFilter('HNSW')}
+                  />
+                  <label htmlFor="filterHNSW">HNSW</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterRAG"
+                    name="cardFilter"
+                    value="RAG"
+                    checked={selectedCard === 'RAG'}
+                    onChange={() => handleCardFilter('RAG')}
+                  />
+                  <label htmlFor="filterRAG">Multimodal RAG</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterDatabases"
+                    name="cardFilter"
+                    value="Databases"
+                    checked={selectedCard === 'Databases'}
+                    onChange={() => handleCardFilter('Databases')}
+                  />
+                  <label htmlFor="filterDatabases">Databases</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterLLMS"
+                    name="cardFilter"
+                    value="LLMS"
+                    checked={selectedCard === 'LLMS'}
+                    onChange={() => handleCardFilter('LLMS')}
+                  />
+                  <label htmlFor="filterLLMS">LLMS</label>
+                </div>
+              </div>
+            </div>
+            <div className={styles.filterLine}></div>
+            <div className={styles.noResults}>
+              <h3>No results found.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.knowledgeBG}>
       <div className="container">
