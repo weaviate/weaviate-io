@@ -18,7 +18,7 @@ This page broadly covers the Weaviate Python client (`v4` release). For usage in
 ## Installation
 
 :::tip Migrating from `v3` to `v4`
-If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+If you are migrating from the `v3` client to the `v4`, see this [dedicated guide](./v3_v4_migration.md).
 :::
 
 The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
@@ -245,7 +245,7 @@ If the helper functions do not provide the customization you need, use the [`Wea
 
 If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
-Please note that when directly instantiating a connection, you must connect to the server manually by calling the `.connect()` method.
+When you instantiate a connection directly, you have to call the `.connect()` method to connect to the server.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -273,7 +273,7 @@ You can set `skip_init_checks` to `True` to skip these checks.
   language="py"
 />
 
-In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.  
+In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.
 
 For additional connection configuration, see [Timeout values](#timeout-values).
 
@@ -360,7 +360,7 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 <BatchVectorizationOverview />
 
-The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import. 
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Create a client">
@@ -743,7 +743,7 @@ You can choose to provide a generic type to a query or data operation. This can 
 ## Migration guides
 
 :::tip Migrating from `v3` to `v4`
-If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+If you are migrating from the `v3` client to the `v4`, see this [dedicated guide](./v3_v4_migration.md).
 :::
 
 ### Beta releases
@@ -1010,7 +1010,9 @@ While the Python client is fundamentally designed to be thread-safe, it's import
 
 This is an area that we are looking to improve in the future.
 
-Please be particularly aware that the batching algorithm within our client is not thread-safe. Keeping this in mind will help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+:::warning Thread safety
+The batching algorithm in our client is not thread-safe. Keeping this in mind to help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+:::
 
 If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
 
