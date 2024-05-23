@@ -33,36 +33,6 @@
   }
 }
 
-.innerBar {
-  height: 10rem;
-  display: flex;
-  flex-direction: row;
-  gap: 80px;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  margin: auto;
-
-  @media screen and (max-width: 800px) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    animation: scrollSide 13s linear infinite;
-
-    @keyframes scrollSide {
-      0% {
-        transform: translateX(70%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  }
-}
-
 .buttons {
   margin-top: 30px;
   gap: 20px;
@@ -297,6 +267,8 @@
   color: #130c49;
   font-size: 1rem;
   font-weight: 400;
+  display: block;
+  margin: 10px 0px;
 }
 
 .linkCard {
@@ -574,6 +546,10 @@
   }
 }
 
+.initialAnimation {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
 .modals {
   display: flex;
   z-index: 240;
@@ -584,11 +560,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  animation: mymove 0.2s ease-in-out 1;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-@keyframes mymove {
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -620,6 +594,10 @@
   border-radius: 0.4375rem;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 
   h3 {
     color: #1b1464;
@@ -669,6 +647,10 @@
     border-radius: 0.4375rem;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+
+    @media screen and (max-width: 500px) {
+      width: 112%;
+    }
   }
   .cardText {
     color: #1b1464;
@@ -761,6 +743,10 @@
     background: rgb(255, 255, 255);
     box-shadow: rgba(22, 27, 45, 0.08) 0px 18.341px 48.908px 0px;
     flex-direction: column;
+
+    @media screen and (max-width: 500px) {
+      width: 6.8rem;
+    }
   }
 
   .relatedImage {
@@ -772,6 +758,11 @@
     flex-shrink: 0;
     border-top-left-radius: 0.71644rem;
     border-top-right-radius: 0.71644rem;
+
+    @media screen and (max-width: 500px) {
+      width: 6.8rem;
+      height: 4.24613rem;
+    }
   }
 
   .nextContainer {
@@ -780,6 +771,10 @@
     gap: 20px;
     justify-content: center;
     width: 100%;
+
+    @media screen and (max-width: 500px) {
+      width: 95%;
+    }
   }
 
   .nextText {
@@ -797,6 +792,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      width: 10.47769rem;
+      height: 2.84969rem;
+    }
   }
 }
 

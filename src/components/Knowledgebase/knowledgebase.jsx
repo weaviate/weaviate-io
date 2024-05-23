@@ -74,9 +74,9 @@ export default function KnowledgeBase({ searchQuery }) {
   // Helper function to create URL-friendly names
   function formatTitleForUrl(title) {
     return title
-      .replace(/[^\w\s]/gi, '') // Remove all non-word characters except spaces
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .toLowerCase(); // Convert to lowercase to standardize
+      .replace(/[^\w\s]/gi, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
   }
   const renderCards = (category) => {
     const categoryCards = filteredCards.filter(
@@ -129,7 +129,6 @@ export default function KnowledgeBase({ searchQuery }) {
         'Systems for storing and storing, organizing, and retrieving structured or unstructured data efficiently.',
       'Large Language Models':
         'Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.',
-      // Add other categories as needed
     };
 
     const totalCards = categoryCards.length;
