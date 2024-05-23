@@ -16,9 +16,6 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 const newCollection = await client.collections.create({
   name: 'Question',
   vectorizer: weaviate.configure.vectorizer.none(),
-  vectorIndex: weaviate.configure.vectorIndex.hnsw({
-    distanceMetric: 'cosine',
-  })
 });
 
 console.log('We have a new class!', newCollection['name']);

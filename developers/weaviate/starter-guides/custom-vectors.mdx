@@ -34,10 +34,10 @@ This section introduces setup requirements and the data that this example uses.
 
 The example dataset is 10 questions from the popular quiz show "Jeopardy!". Each of the questions has an associated vector embedding.
 
-In this example, the vector embeddings were obtained from OpenAI API, by using the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Your vectors can come from any source, perhaps from your own vectorizer model or a different service provider such as Cohere or Hugging Face.
-
 <details>
   <summary>The sample data</summary>
+
+  In this example, the vector embeddings were obtained from OpenAI API, by using the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Your vectors can come from any source, perhaps from your own vectorizer model or a different service provider such as Cohere or Hugging Face.
 
   |    | Category   | Question                                                                                                          | Answer                  | Vector                                             |
   |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------| ---------------------------------------------------|
@@ -56,7 +56,7 @@ In this example, the vector embeddings were obtained from OpenAI API, by using t
 
 ### Weaviate Instance
 
-Weaviate is open source. You can [run Weaviate](/developers/weaviate/installation) locally, in the cloud, or as a service. If you want to follow this guide without setting up an instance of your own, consider using a free, Sandbox instance in [Weaviate Cloud]/developers/wcs/quickstart).
+Weaviate is open source. You can [run Weaviate](/developers/weaviate/installation) locally, in the cloud, or as a service. If you want to follow this guide without setting up an instance of your own, consider using a free, Sandbox instance in [Weaviate Cloud](/developers/wcs/quickstart).
 
 ### Client library
 
@@ -66,7 +66,7 @@ To install a client library, use the installer for the client language:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
-The v4 client requires Weaviate 1.23 or higher.<br/><br/>
+The v4 client requires Weaviate 1.23.7 or higher.<br/><br/>
 
 ```bash
 pip install -U weaviate-client
@@ -94,7 +94,7 @@ npm install weaviate-ts-client
 
 ## Connect to Weaviate
 
-To connect to your Weaviate instance, you need the following information:
+To connect to a Weaviate Cloud instance, you need the following information:
 
 - The Weaviate URL
 - The Weaviate API key
