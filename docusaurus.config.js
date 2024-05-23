@@ -92,7 +92,7 @@ const config = {
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
                 hideModels: true,
-                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
                 // hiddenClients: [...],
               },
             },
