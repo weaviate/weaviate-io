@@ -1,5 +1,125 @@
 [
   {
+    "title": "Google Cloud Marketplace with Dai Vu and Bob van Luijt",
+    "description": "Welcome to the 95th Weaviate Podcast! We are beyond honored to feature Dai Vu from Google on this one, alongside Weaviate Co-Founder Bob van Luijt!",
+    "youtube": "UdAtsuoEd38",
+    "date": "24-05-07",
+    "cover_image": "/img/podcasts/podcast-95.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Parlay ANN with Magdalen Dobson Manohar",
+    "description": "We are super excited to share our 94th Weaviate podcast with Magdalen Dobson Manohar!",
+    "youtube": "HTVVMALsrlE",
+    "date": "24-04-24",
+    "cover_image": "/img/podcasts/podcast-94.png",
+    "is_use_case": false
+  },
+  {
+    "title": "RAGKit with Kyle Davis",
+    "description": "So pleased to publish our newest Weaviate podcast with Kyle Davis, the creator of RAGKit!",
+    "youtube": "oEsJqMLYAfc",
+    "date": "24-04-15",
+    "cover_image": "/img/podcasts/podcast-93.png",
+    "is_use_case": false
+  },
+  {
+    "title": "VetRec with David de Matheu",
+    "description": "Our 92nd episode of the Weaviate podcast with David de Matheu!",
+    "youtube": "cWtVAQOyAIg",
+    "date": "24-03-28",
+    "cover_image": "/img/podcasts/podcast-92.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Tengyu Ma on Voyage AI",
+    "description": "We are super excited to publish our latest Weaviate podcast with Tengyu Ma, Co-Founder of Voyage AI and Assistant Professor at Stanford University!",
+    "youtube": "xPdyivfheqI",
+    "date": "24-03-20",
+    "cover_image": "/img/podcasts/podcast-91.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Self-Discover DSPy with Chris Dossman",
+    "description": "Our 90th Weaviate Podcast with Chris Dossman! Self-Discover is a fascinating new algorithm from researchers at Google DeepMind and USC.",
+    "youtube": "iC64q1gFWiY",
+    "date": "24-03-06",
+    "cover_image": "/img/podcasts/podcast-90.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Matryoshka Embeddings with Aditya Kusupati, Zach Nussbaum, and Zain Hasan",
+    "description": "Hey everyone! Our 89th Weaviate Podcast on Matryoshka Representation Learning!",
+    "youtube": "0m2dZJ6zos",
+    "date": "24-02-20",
+    "cover_image": "/img/podcasts/podcast-89.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Instructor with Jason Liu",
+    "description": "Jason Liu is the creator of Instructor, one of the world's leading LLM frameworks, particularly focused on structured output parsing with LLMs.",
+    "youtube": "higlHgYDc5E",
+    "date": "24-02-14",
+    "cover_image": "/img/podcasts/podcast-88.png",
+    "is_use_case": false
+  },
+  {
+    "title": "XMC.dspy with Karel D'Oosterlinck",
+    "description": "Welcome to the 87th episode of the Weaviate Podcast! I am SUPER excited to welcome Karel D'Oosterlinck! Karel is the creator of IReRa (Infer-Retrieve-Rank)!",
+    "youtube": "_ye26_8XPcs",
+    "date": "24-02-06",
+    "cover_image": "/img/podcasts/podcast-87.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Open-Source AI with Vinod Valloppillil and Bob van Luijt",
+    "description": "We are super excited to publish this podcast with Vinod Valloppillil and Bob van Luijt on Open-Source AI and future directions for RAG!",
+    "youtube": "ySNX2cPh5Tk",
+    "date": "24-01-23",
+    "cover_image": "/img/podcasts/podcast-86.png",
+    "is_use_case": false
+  },
+  {
+    "title": "DSPy and ColBERT with Omar Khattab",
+    "description": "Hey everyone! I am beyond excited to present this interview with Omar Khattab from Stanford University!",
+    "youtube": "CDung1LnLbY",
+    "date": "24-01-15",
+    "cover_image": "/img/podcasts/podcast-85.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Subjectivity in AI with Dan Shipper and Bob van Luijt",
+    "description": "The fourth and final episode of the AI-Native Database series with Dan Shipper! This was another epic one! ",
+    "youtube": "prV5R3T6UqM",
+    "date": "23-12-21",
+    "cover_image": "/img/podcasts/podcast-84.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Humans and AI with John Maeda and Bob van Luijt",
+    "description": "The 3rd episode of the AI-Native Database series featuring John Maeda and Bob van Luijt!",
+    "youtube": "c9t0VViIP9c",
+    "date": "23-12-20",
+    "cover_image": "/img/podcasts/podcast-83.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Structure in Data with Paul Groth and Bob van Luijt",
+    "description": "Watch the second episode of AI-Native Databases with Paul Groth! This was another epic one, diving deep into the role of structure in our data! ",
+    "youtube": "3ET69F7smk8",
+    "date": "23-12-19",
+    "cover_image": "/img/podcasts/podcast-82.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Self-Driving Databases with Andy Pavlo and Bob van Luijt",
+    "description": "The first episode of AI-Native Databases with Andy Pavlo!",
+    "youtube": "QBZv5DrCUM",
+    "date": "23-12-18",
+    "cover_image": "/img/podcasts/podcast-81.png",
+    "is_use_case": false
+  },
+  {
     "title": "Weaviate at NeurIPS 2023 (Interview Series)",
     "description": "Our interview series from the NeurIPS (Neural Information Processing Systems) conference 2023!",
     "youtube": "xrZxk0H2cmY",
