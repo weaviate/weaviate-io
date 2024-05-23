@@ -326,7 +326,7 @@ For this example, you will need access to a Weaviate instance that you can write
 Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
 <br/>
 
-If you would like for us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
+If you would like us to prioritize this issue, upvote it on [GitHub](https://github.com/weaviate/weaviate/issues/3364).
 :::
 
 To use generative search, the appropriate `generative-xxx` module must be:
