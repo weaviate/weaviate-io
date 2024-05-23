@@ -202,7 +202,7 @@ The `text2vec-huggingface` module also supports [Hugging Face Inference Endpoint
 
 To use your own Hugging Face Inference Endpoint for vectorization with the `text2vec-huggingface` module, pass the endpoint url in the class configuration as the `endpointURL` setting.
 
-Please note that only `feature extraction` inference endpoint types are supported.
+Note that only the `feature extraction` inference endpoint types are supported.
 
 ## Usage example
 
