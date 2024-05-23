@@ -17,7 +17,7 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - Please check the inference [pricing page](https://huggingface.co/inference-api#pricing), especially before vectorizing large amounts of data.
+    - See the inference [pricing page](https://huggingface.co/inference-api#pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
@@ -212,7 +212,7 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.huggingface.m
 
 ## Model license(s)
 
-The `text2vec-huggingface` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+The `text2vec-huggingface` module is compatible with various models, each with their own license. For detailed information, see the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
