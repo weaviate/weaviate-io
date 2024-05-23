@@ -109,7 +109,7 @@ docker push my-inference-image
 #### (Optional) Use the `sentence-transformers` vectorizer
 
 :::caution Experimental feature
-This is an experimental feature. Please use with caution.
+This is an experimental feature. Use with caution.
 :::
 
 When using a custom image, you may set the `USE_SENTENCE_TRANSFORMERS_VECTORIZER` environment variable to use the [`sentence-transformers` vectorizer](https://sbert.net/) instead of the default vectorizer from the `transformers` library.
