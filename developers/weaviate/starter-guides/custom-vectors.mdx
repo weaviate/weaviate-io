@@ -32,25 +32,30 @@ This section introduces setup requirements and the data that this example uses.
 
 ### Example Data
 
+
+The example data is based on a set of ten questions from the "Jeopardy!" television program. [The data file](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json) is a JSON formatted document that contains the vectors and the underlying data.
 The example dataset is 10 questions from the popular quiz show "Jeopardy!". Each of the questions has an associated vector embedding.
 
 <details>
   <summary>The sample data</summary>
 
-  In this example, the vector embeddings were obtained from OpenAI API, by using the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Your vectors can come from any source, perhaps from your own vectorizer model or a different service provider such as Cohere or Hugging Face.
+  In this example, the vector embeddings come from OpenAI API. The embeddings use the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
+  <br/>
+  Your vectors can come from any source, including your own vectorizer model or another service provider such as Cohere or Hugging Face.
+  <br/>
 
-  |    | Category   | Question                                                                                                          | Answer                  | Vector                                             |
-  |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------| ---------------------------------------------------|
-  |  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   | [ -0.006632288, -0.0042016874, ..., -0.020163147 ] |
-  |  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                | [ -0.0166891, -0.00092290324, ..., -0.032253385 ]  |
-  |  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       | [ -0.015592773, 0.019883318, ..., 0.0033349802 ]   |
-  |  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                | [ 0.014535263, -0.016103541, ..., -0.025882969 ]   |
-  |  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler | [ -0.0030859283, 0.015239313, ..., -0.021798335 ]  |
-  |  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 | [ -0.0090561025, 0.011155112, ..., -0.023036297 ]  |
-  |  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    | [ -0.02735741, 0.01199829, ..., 0.010396339 ]      |
-  |  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     | [ -0.014227471, 0.020493254, ..., -0.0027445166 ]  |
-  |  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          | [ 0.009625228, 0.027518686, ..., -0.0068922946 ]   |
-  |  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
+  | Category | Question | Answer | Vector |
+  | :- |:- |:- | :- |
+  | SCIENCE | This organ removes excess glucose from the blood & stores it as glycogen | Liver | [ -0.006632288, -0.0042016874, ..., -0.020163147 ] |
+  | ANIMALS | It's the only living mammal in the order Proboseidea | Elephant | [ -0.0166891, -0.00092290324, ..., -0.032253385 ] |
+  | ANIMALS | The gavial looks very much like a crocodile except for this bodily  feature | the nose or snout | [ -0.015592773, 0.019883318, ..., 0.0033349802 ] |
+  | ANIMALS | Weighing around a ton, the eland is the largest species of this animal in Africa | Antelope | [ 0.014535263, -0.016103541, ..., -0.025882969 ] |
+  | ANIMALS | Heaviest of all poisonous snakes is this North American rattlesnake | the diamondback rattler | [ -0.0030859283, 0.015239313, ..., -0.021798335 ] |
+  | SCIENCE | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species | [ -0.0090561025, 0.011155112, ..., -0.023036297 ] |
+  | SCIENCE | A metal that is "ductile" can be pulled into this while cold & under  pressure | wire  | [ -0.02735741, 0.01199829, ..., 0.010396339 ] |
+  | SCIENCE | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance | DNA | [ -0.014227471, 0.020493254, ..., -0.0027445166 ] |
+  | SCIENCE | Changes in the tropospheric layer of this are what gives us weather  | the atmosphere          | [ 0.009625228, 0.027518686, ..., -0.0068922946 ] |
+  | SCIENCE | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it | Sound barrier  | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
 
 </details>
 
@@ -111,9 +116,9 @@ import ConnectToWeaviate from '/_includes/code/quickstart/connect.partial.mdx'
 
 Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector representation. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the data properties for the collection.
 
-The data property definitions are called a schema. Although vectorizers are defined at the collection level, details, such as the specific model or behavior, are sometimes defined at the property level.
+The data property definitions are called a schema. Vectorizers are defined at the collection level. Additional details, such as the specific model or behavior, are sometimes defined at the property level.
 
-This is a guide to using your own vectors. It assumes you already have vector embeddings for your data, so the sample configuration code sets the vectorizer to `none` on the collection level because the vector embeddings are included with the import file.
+This guide assumes you already have vector embeddings for your data. Since the vector embeddings are included with the import file, the sample configuration code sets the vectorizer to `none` on the collection level .
 
 For more on configurations, see [vectorizer settings](/developers/weaviate/manage-data/collections#specify-vectorizer-settings).
 
@@ -124,15 +129,13 @@ import CreateSchema from '/_includes/code/quickstart.byov.schema.mdx'
 <CreateSchema />
 
 ### Optional: Set a compatible vectorizer
-If Weaviate has an [integration](/developers/weaviate/model-providers) for the vectorizer that generates your custom vectors, consider adding your vectorizer to the collection definition. If you specify a vectorizer, Weaviate can generate new vectors when it needs them.
+If Weaviate has an [integration](/developers/weaviate/model-providers) for the vectorizer that you use to generate your custom vectors, consider adding your vectorizer to the collection definition. If you specify a vectorizer, Weaviate can generate new vectors when it needs them.
 
 In this example, the vectors are generated by an OpenAI model, `ada-002`. Weaviate provides an OpenAI integration, `text2vec-openai`, that can access the `ada-002` model so you would specify `text2vec-openai` in the collection definition.
 
 Weaviate uses the vectors you provide at import even if the collection specifies a vectorizer.
 
 ## Import data and vectors
-
-The example data is based on a set of ten questions from the "Jeopardy!" television program. [The data file](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json) is a JSON formatted document that contains the vectors and the underlying data.
 
 For large datasets, batch import is more efficient than importing individual objects. This [batch import](/developers/weaviate/tutorials/import#batch-import-process) code imports the question objects, including their vectors.
 
