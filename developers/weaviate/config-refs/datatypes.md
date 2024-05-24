@@ -35,7 +35,7 @@ Refer to [this section](../config-refs/schema/index.md#property-tokenization) on
 
 Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
 
-Please use `text` instead, which now supports all tokenizations options previously available through `string`.
+Use `text` instead of `string`. `text` supports the tokenization options that are available through `string`.
 :::
 
 ## DataType: `cross-reference`

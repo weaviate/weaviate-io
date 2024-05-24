@@ -170,7 +170,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 
 ### Available models
 
-Please refer to the [Ollama documentation](https://ollama.com/library) for a list of available models. This list includes both large language models and embedding models; look for the word `embed` in the name or description to identify embedding models.
+See the [Ollama documentation](https://ollama.com/library) for a list of available models. This list includes both large language models and embedding models; look for the word `embed` in the name or description to identify embedding models.
 
 Download the desired model with `ollama pull <model-name>`.
 
@@ -191,7 +191,7 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 ## Model license(s)
 
-The `text2vec-ollama` module uses various models though Ollama. Please refer to the respective documentation for Ollama and the specific model for more information on their respective licenses.
+The `text2vec-ollama` module uses various models though Ollama. See the respective documentation for Ollama and the specific model for more information on their respective licenses.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
