@@ -271,7 +271,7 @@ export default function PricingCalculator({ props }) {
                   onChange={(event) => setSlaTier(event.target.value)}
                 >
                   <option value="standard">Standard</option>
-                  <option value="enterprise">Enterprise</option>
+                  <option value="enterprise">Professional</option>
                   <option value="businessCritical">Business Critical</option>
                 </select>
               </div>

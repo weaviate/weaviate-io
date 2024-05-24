@@ -21,16 +21,16 @@ import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
 
-## Install 
+## Install
 
-To install the TypeScript client v3, follow these steps: 
+To install the TypeScript client v3, follow these steps:
 
 1. **Update Node.js**
 
-   The v3 client requires `Node v18` or higher. 
+   The v3 client requires `Node v18` or higher.
 
 1. **Install the new client package**
-    
+
   ```bash
   npm install weaviate-client --tag next
   ```
@@ -56,10 +56,10 @@ To install the TypeScript client v3, follow these steps:
     </details>
 
 ## Instantiate a client
- 
+
 The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/starter-guides/connect) to your Weaviate instance.
 
-In most cases, you should use one of the connection helper functions to connect to your Weaviate instance: 
+In most cases, you should use one of the connection helper functions to connect to your Weaviate instance:
 
 - `connectToWCS`
 - `connectToLocal`
@@ -184,7 +184,7 @@ For more information on batch processing, see [Batch Inserts](/developers/weavia
 
 ### Client Close Method
 
-import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 <TSClientClose />
 
@@ -213,7 +213,7 @@ The `Filter` helper class makes it easier to use filters with conditions. The v3
 
 ### Generate Namespace
 
-The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
+The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches.
 
 <Tabs groupId="generateNameEx">
 <TabItem value="three" label="Client v3">
@@ -234,7 +234,7 @@ The v3 client adds a new namespace, `generate` for generative queries. This make
 </TabItem>
 </Tabs>
 
-### Return object 
+### Return object
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
@@ -392,8 +392,8 @@ The comparison samples omit sections of the code that are the same for both clie
 
 ### Sample scripts
 
-These scripts are complete versions of the client comparison code from this section. 
- 
+These scripts are complete versions of the client comparison code from this section.
+
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="Client v3">
 <FilteredTextBlock
@@ -423,10 +423,10 @@ For more code examples, see the following:
 
 To update v2 client code to v3, follow these steps:
 
-1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
-1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
-1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
-1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
+1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client).
+1. Edit your v2 code to [import](./developers/weaviate/client-libraries/typescript/typescript-v3#import-the-client) the v3 client package.
+1. Edit your v2 [client instantiation](/developers/weaviate/client-libraries/typescript/typescript-v3#connect-to-weaviate) code.
+1. Edit your code to reflect the [collection first](/developers/weaviate/client-libraries/typescript/typescript-v3#design-philosophy) client orientation.
 
 Continue to update the v2 code until all of the old code is replace with the v3 equivalent.
 

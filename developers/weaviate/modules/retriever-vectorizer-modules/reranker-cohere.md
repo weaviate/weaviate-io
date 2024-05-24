@@ -22,9 +22,9 @@ import ModuleDocDeprecation from '/developers/weaviate/modules/_components/modul
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
-This module is enabled by default on the WCS.
+This module is enabled by default in WCD.
 
 ### Weaviate open source
 

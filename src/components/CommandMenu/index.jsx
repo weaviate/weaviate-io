@@ -50,7 +50,7 @@ const defaultMenuPages = {
     },
     {
       id: 1004,
-      children: 'Weaviate Cloud Services - Pricing',
+      children: 'Weaviate Cloud - Pricing',
       icon: 'BookmarkIcon',
       href: '/pricing',
     },

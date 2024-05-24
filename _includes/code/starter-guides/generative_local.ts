@@ -64,7 +64,7 @@ const schemaDefinition = {
     }
   ],
     // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   generative: weaviate.configure.generative.openAI()
     // highlight-end
 }

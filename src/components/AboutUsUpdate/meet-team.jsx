@@ -85,12 +85,6 @@ export default function MeetTheTeam() {
             >
               #Database
             </Link>
-            <Link
-              className={selectedTeam === 'design' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('design')}
-            >
-              #Design
-            </Link>
           </div>
           <div className={styles.teamFilter}>
             <Link

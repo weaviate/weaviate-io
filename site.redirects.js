@@ -498,11 +498,24 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+        {
+            to: "/service/weaviate-general-terms-of-service",
+            from: "/service/weaviate-terms-of-service"
+        },
+        {
+            to: "/weaviate-support-terms",
+            from: "/supportterms"
+        },
             // Case Study Changes
             {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
             },
+  // Services Changes
+  {
+    to: "/services/enterprise-cloud",
+    from: "/services/enterprise-dedicated"
+},
 
 
     ],

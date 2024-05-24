@@ -222,7 +222,6 @@ client.schema.get("JeopardyQuestion")
     "distance": "cosine",
     "pq": {
       "enabled": false,
-      "bitCompression": false,
       "segments": 0,
       "centroids": 256,
       "encoder": {

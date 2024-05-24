@@ -118,7 +118,7 @@ If your use cases don't fall into any of the two scenarios mentioned, you might 
 
 To get some hands-on experience with the new TypeScript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
-### Setting up WCS (Weaviate Cloud Services)
+### Setting up WCD (Weaviate Cloud)
 
 First, we need to set up our own Weaviate database. The easiest way to do this is to use WCS, the cloud-hosting solution from Weaviate. Head over to [the WCS homepage](https://console.weaviate.cloud) and create an account. Then, create a free sandbox.
 
@@ -164,10 +164,10 @@ const quotesCollection = await client.collections.create({
     {
       name: 'author',
       dataType: 'text',
-      skipVectorisation: true,
+      skipVectorization: true,
     },
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
 });
 ```
 
