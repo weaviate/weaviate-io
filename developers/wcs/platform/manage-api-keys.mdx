@@ -7,7 +7,6 @@ image: og/wcs/user_guides.jpg
 import WCSAPIKeys from '/developers/wcs/img/wcs-api-keys.jpg';
 import WCSAddAPIKeys from '/developers/wcs/img/wcs-add-key-details.jpg';
 import WCSDelAPIKeys from '/developers/wcs/img/wcs-delete-api-key.jpg';
-import WCSPanelAPIKeys from '/developers/wcs/img/wcs-api-keys-panel.jpg';
 
 By default, API keys are enabled for all WCD clusters.
 
@@ -16,14 +15,11 @@ There are two types of API key, `ReadOnly` and `Admin`.
 - `Admin` keys are read-write.
 - `ReadOnly` keys do not grant write access to the database.
 
-Serverless clusters have an administrator key and a read-only key.
+Serverless clusters have an administrator key and a read-only key. If you have a Serverless cluster, you can create and delete API keys.
 
-Sandbox clusters have an administrator key.
+Sandbox clusters have an administrator key. You cannot modify the Sandbox key.
 
 <img src={WCSAPIKeys} width="75%" alt="Enable MFA icon"/>
-
-If you have a Serverless cluster, you can create and delete API keys.
-
 
 ## Create an API key
 
@@ -44,7 +40,7 @@ To create a new API key, follow these steps:
 
 ## Delete an API key
 
-If you have a Serverless cluster, you can delete API keys.
+If you have a Serverless cluster, you can delete API keys. You cannot delete the Sandbox API key.
 
 WCD restarts the cluster when you delete an API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
 
@@ -58,15 +54,9 @@ To delete an API key, follow these steps:
 
 ## Retrieve your API keys
 
-To retrieve your API keys, follow these steps:
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
-1. Open the WCD console and find the panel for your cluster.
-1. Click the `Details` button.
-
-<img src={WCSPanelAPIKeys} width="75%" alt="API key button"/>
-
-3. Click the `API keys` button.
-1. Copy the key and store it in a safe location.
+<RetrieveAPIKeys/>
 
 ## Support
 
