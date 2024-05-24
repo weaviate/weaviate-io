@@ -27,7 +27,6 @@ Usage charges reflect the number and size of the objects in your collection. Wea
 
 - If the objects are uncompressed, the billing system multiplies the object count by the number of dimensions to get the `vectorDimensionsSum`.
 - If the objects are compressed, the billing system multiplies the object count by the number of vector segments to get the `vectorSegmentsSum`.
-- Older plans may also calculate a similar value, the `queryDimensionsTotal`.
 
 The values are added together and normalized to get a base price. The base price is multiplied by the pricing rate for the cluster's SLA tier.
 
@@ -37,9 +36,8 @@ There are significant cost savings when compression is enabled.
 
 ## Support levels
 
-Weaviate offers three levels of support, [Standard](/developers/wcs/platform/support-levels#standard-support), [Professional](/developers/wcs/platform/support-levels#professional-support), and [Business Critical](/developers/wcs/platform/support-levels#business-critical-support). Each support level (SLA) has a billing rate.
+Weaviate offers three levels of support, [Standard](/developers/wcs/platform/support-levels#standard-support), [Professional](/developers/wcs/platform/support-levels#professional-support), and [Business Critical](/developers/wcs/platform/support-levels#business-critical-support). Each support level (SLA) has a billing rate for usage and a minimum cost per month.
 
-The billing rate is a minimum charge per month.
 - If the usage cost is less than the monthly minimum charge for the SLA, Weaviate bills the monthly minimum.
 - If the usage cost exceeds the monthly minimum, Weaviate bills the minimum amount plus any additional charges.
 
@@ -50,10 +48,6 @@ If you have a high availability (HA) cluster, WCD multiples the minimum charge a
 ## Billing cycles
 
 Billing runs on 30 day cycles. Charges are calculated for active clusters every 30 days; the billing periods are not aligned with calendar months.
-
-## Exact and Mollie
-
-Older accounts may receive invoices from [Exact](https://www.exact.com/) or [Mollie](https://www.mollie.com/). The Exact and Mollie services are deprecated. Accounts that still use these services are being updated to use Stripe.
 
 ## Support
 
