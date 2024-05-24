@@ -9,7 +9,7 @@ import assert from 'assert';
 // Instantiation
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
  {
    authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
@@ -34,7 +34,7 @@ const dataRetrievalResult = await myCollection.query.nearText(['states in git'],
 console.log(JSON.stringify(dataRetrievalResult, null, 2));
 // END DataRetrieval
 
-assert(dataRetrievalResult.data.Get['GitBookChunk'].length == 2, "Wrong number of objects returned.")
+assert(dataRetrievalResult.objects.length == 2, "Wrong number of objects returned.")
 
 
 // TransformResultSets
@@ -49,7 +49,7 @@ const groupedTaskResponse = await myCollection.generate.nearText("history of git
 console.log(groupedTaskResponse.generated);
 // END TransformResultSets
 
-assert(typeof groupedTaskResponse.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
+assert(typeof groupedTaskResponse.generated === 'string', 'The generated object is not a string')
 
 
 // TransformIndividualObjects
@@ -66,8 +66,8 @@ const singlePromptresult = await myWineCollection.generate.nearText("fruity whit
 console.log(JSON.stringify(singlePromptresult.objects, null, 2));
 // END TransformIndividualObjects
 
-for (const r of singlePromptresult.data.Get['WineReview']) {
-  assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
+for (const r of singlePromptresult.objects) {
+  assert(typeof r.generated === 'string', 'The generated object is not a string')
 }
 
 // ListModules

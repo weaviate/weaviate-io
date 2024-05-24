@@ -20,7 +20,7 @@ const client: WeaviateClient = weaviate.client({
 // EndToEndExample  // InstantiationExample // NearTextWhereExample   // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
@@ -40,7 +40,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 // Add the schema
 const schema = {
   name: 'Question',
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
   generative: weaviate.configure.generative.openAI(),
 }
 

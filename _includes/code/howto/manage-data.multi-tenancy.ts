@@ -3,7 +3,7 @@
 import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
@@ -25,7 +25,13 @@ try {
   // Delete the class if it exists
 }
 
+// START ListTenants
+let tenants
+// END ListTenants
+
+// START AddTenantsToClass // START ListTenants // START CreateMtObject // START AddCrossRef
 const multiCollection =  client.collections.get('MultiTenancyCollection');
+// END AddTenantsToClass // END ListTenants // END CreateMtObject // END AddCrossRef
 
 
 // =====================
@@ -47,7 +53,6 @@ const result = await client.collections.create({
 // ================================
 
 // START AddTenantsToClass
-// const multiCollection =  client.collections.get('MultiTenancyCollection');
 
   // highlight-start
 await multiCollection.tenants.create([
@@ -58,7 +63,7 @@ await multiCollection.tenants.create([
 // END AddTenantsToClass
 
 // Tests
-let tenants = await multiCollection.tenants.get()
+tenants = await multiCollection.tenants.get()
 
 assert.ok(['tenantA', 'tenantB'].includes(tenants[0].name));
 assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
@@ -72,7 +77,6 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // ===================================
 
 // START ListTenants
-// const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 tenants = await multiCollection.tenants.get()
@@ -120,7 +124,7 @@ await multiCollection.tenants.remove([
 // END RemoveTenants
 
 // Test
-tenants = await client.schema.tenantsGetter(className).do();
+tenants = await multiCollection.tenants.get()
 assert.deepEqual(tenants.length, 1);
 
 
@@ -129,7 +133,6 @@ assert.deepEqual(tenants.length, 1);
 // ============================
 
 // START CreateMtObject
-// const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
@@ -178,7 +181,6 @@ const category = await client.data.creator()
 
 // START AddCrossRef
 // Add the cross-reference property to the multi-tenancy class
-// const multiCollection = await client.collections.get('MultiTenancyCollection');
 const categoryId = '...'
 const objectId = '...'
 

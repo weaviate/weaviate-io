@@ -3,7 +3,7 @@
 import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
@@ -13,6 +13,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
    }
  } 
 )
+
 
 // START nearText // START RerankNearText // START bm25Rerank
 let result;
@@ -77,10 +78,10 @@ for (const question of result.objects) {
 result = await myCollection.query.bm25('paper', {
   limit: 10,
   // highlight-start
-  rerank: {
-    property: 'question',
-    query: 'publication',
-  },
+  // rerank: {
+  //   property: 'question',
+  //   query: 'publication',
+  // },
   // highlight-end
   returnMetadata: ['score']
 })

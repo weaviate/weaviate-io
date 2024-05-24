@@ -9,7 +9,7 @@ import assert from 'assert';
 import weaviate from 'weaviate-client';
 
 // ===== Instantiation, not shown in snippet
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),

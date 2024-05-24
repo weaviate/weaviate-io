@@ -22,7 +22,7 @@ import csv from 'csv-parser';
 // END CSV streaming
 
 // ===== Instantiation, not shown in snippet
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWCD(
  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),
@@ -36,20 +36,20 @@ const client = await weaviate.connectToWCS(
 // ===== Define the class =====
 // ============================
 
-const classDefinition = {
-  class: 'JeopardyQuestion',
+const collectionDefinition = {
+  name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizer: 'text2vec-openai',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI()
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
-  await client.schema.classDeleter().withClassName('YourName').do();
+  await client.collections.delete('JeopardyQuestion')
+  await client.collections.delete('YourName')
 } catch {
   // ignore error if class doesn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinition).do();
+  await client.collections.create(collectionDefinition)
 }
 
 

@@ -42,7 +42,7 @@ import weaviate from 'weaviate-client';
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWCD(
   'WCS-URL',
  {
    authCredentials: new weaviate.ApiKey('WEAVIATE-API-KEY'),

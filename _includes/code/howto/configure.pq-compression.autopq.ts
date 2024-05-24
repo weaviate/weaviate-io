@@ -1,5 +1,5 @@
 import assert from 'assert';
-import weaviate from 'weaviate-client';
+import weaviate, { BQConfig, PQConfig, VectorIndexConfigHNSW } from 'weaviate-client';
 // START CollectionWithAutoPQ
 import { configure } from 'weaviate-client';
 
@@ -14,27 +14,20 @@ await client.collections.delete(collectionName);
 // START CollectionWithAutoPQ
 const collection = await client.collections.create({
   name: collectionName,
-  vectorizer: [
-    configure.namedVectorizer(
-      "default",
-      {
-        properties: ["title"],
-        vectorizerConfig: configure.vectorizer.text2VecOpenAI(),
-        vectorIndexConfig: configure.vectorIndex.hnsw({
-          quantizer: configure.vectorIndex.quantizer.pq({
-            trainingLimit: 50000
-          })
-        })
-      }
-    )
-  ]
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default', {
+    vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
+      quantizer: weaviate.configure.vectorIndex.quantizer.pq({
+        trainingLimit: 50000,     
+      }),
+    })
+  })
 })
 // END CollectionWithAutoPQ
 
 let collectionConfig = await collection.config.get();
 
-assert.equal(collectionConfig.vectorizer.default.indexConfig.quantizer.type, "pq")
-assert.equal(collectionConfig.vectorizer.default.indexConfig.quantizer.trainingLimit, 50000)
+assert.equal((collectionConfig.vectorizer.default.indexConfig as VectorIndexConfigHNSW).quantizer.type, "pq")
+assert.equal(((collectionConfig.vectorizer.default.indexConfig as VectorIndexConfigHNSW).quantizer as PQConfig).trainingLimit, 50000)
 
 // Clean-up
 await client.collections.delete(collectionName);

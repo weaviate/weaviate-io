@@ -41,7 +41,7 @@ const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your 
 
 // START-ANY
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),

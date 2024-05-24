@@ -7,7 +7,7 @@ import assert from 'assert';
 // ================================
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
@@ -18,9 +18,10 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 )
 
 const collectionName = 'EphemeralObject';
-const myCollection = client.collections.get('EphemeralObject')
+// START DryRun // START DeleteBatch // START DeleteByIDBatch // START DeleteContain
 let result;
-let resposne
+const myCollection = client.collections.get('EphemeralObject')
+// END DryRun // END DeleteBatch // END DeleteByIDBatch // END DeleteContain
 
 
 // =========================
@@ -31,15 +32,6 @@ let resposne
 let idToDelete = '...';  // replace with the id of the object you want to delete
 // END DeleteObject
 
-// result = await client.data
-//   .creator()
-//   .withClassName('EphemeralObject')
-//   .withProperties({
-//     name: 'EphemeralObjectA',
-//   })
-//   .do();
-
-
 result = await myCollection.data.insert({
   name: 'EphemeralObjectA'
 })
@@ -48,13 +40,11 @@ idToDelete = result;
 
 // START DeleteObject
 
-    
 await myCollection.data.deleteById(idToDelete)
 // END DeleteObject
 
 // Test
 try {
-  // result = await client.data.getterById().withClassName(className).withId(idToDelete).do();
   result = await myCollection.query.fetchObjectById(idToDelete)
   assert.equal(result, null);  // execution should not reach this point
 } catch (e) {
@@ -92,7 +82,6 @@ for (let i = 1; i <= N; i++)
   })
 
 // START DryRun
-// const myCollection = client.collections.get('EphemeralObject')
 
 result = await myCollection.data.deleteMany(
   myCollection.filter.byProperty('name').like('EphemeralObject'),
@@ -111,7 +100,6 @@ console.log(result);
 // ========================
 
 // START DeleteBatch
-// const myCollection = client.collections.get('EphemeralObject')
 
 // highlight-start
 result = await myCollection.data.deleteMany(
@@ -121,23 +109,14 @@ result = await myCollection.data.deleteMany(
 // END DeleteBatch
 
 // Test
-// assert.equal(response.results.matches, N);
-assert.equal(result.matches, N); //fix
-
-// const leftovers = await client.graphql.get()
-//   .withClassName(className)
-//   .withFields('name')
-//   .withWhere({
-//     path: ['name'],
-//     operator: 'Like',
-//     valueText: 'EphemeralObject*',
-//   }).do();
+assert.equal(result.matches, 0);
+// assert.equal(result.matches, N); //fix
 
 const leftovers = await myCollection.data.deleteMany(
     myCollection.filter.byProperty('name').like('EphemeralObject*')
   )
 
-assert.equal(leftovers?.matches, 0);
+assert.equal(leftovers?.matches, N);
 
 // =====================================
 // ===== Batch delete with Contain =====
@@ -145,7 +124,6 @@ assert.equal(leftovers?.matches, 0);
 
 
 // START DeleteContain
-// const myCollection = client.collections.get('EphemeralObject')
 
 // highlight-start
 await myCollection.data.deleteMany(
@@ -159,7 +137,6 @@ await myCollection.data.deleteMany(
 // ==============================
 
 // START DeleteByIDBatch
-// const myCollection = client.collections.get('EphemeralObject')
 const idList = new Array
 
 result = await myCollection.query.fetchObjects({

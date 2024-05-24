@@ -3,7 +3,7 @@ import assert from 'assert';
 // ===== Instantiation, not shown in snippet
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
@@ -235,16 +235,16 @@ assert('creationTimeUnix' in result.objects[0].metadata.creationTime);
 // <!-- NEEDS TESTS -->
 
 // MultiTenancy
-let multiTenantResult;
+// let multiTenantResult;
 const myMTCollection = client.collections.get('WineReviewMT');
 const collectionTenantA = myMTCollection.withTenant('tenantA');
 
-multiTenantResult = await collectionTenantA.query.fetchObjects({
+const multiTenantResult = await collectionTenantA.query.fetchObjects({
   limit: 1,
   returnProperties: ['review_body','title']
 })
 
-console.log(JSON.stringify(result.objects[0].properties, null, 2));
+console.log(JSON.stringify(multiTenantResult.objects[0].properties, null, 2));
 // END MultiTenancy
 
 // Test results

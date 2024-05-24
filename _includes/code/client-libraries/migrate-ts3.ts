@@ -11,7 +11,7 @@ async function main() {
   
 // CompleteScript // CreateClient  
   // connect to your Weaviate instance on WCS
-  const client = await weaviate.connectToWCS(
+  const client = await weaviate.connectToWCD(
     process.env.WEAVIATE_URL || '',
     {
       authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
@@ -26,7 +26,7 @@ async function main() {
   // create a new collection
   await client.collections.create({
     name: collectionName,
-    vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
+    vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
   })
 // END CompleteScript // END CreateCollection
 

@@ -7,7 +7,7 @@ import assert from 'assert';
 // ================================
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),
@@ -17,26 +17,30 @@ const client = await weaviate.connectToWCS(
  } 
 )
 
-const className = 'JeopardyQuestion';
+const collectionName = 'JeopardyQuestion';
+
+// UpdateProps START // Replace START
 let result;
+const myCollection = client.collections.get('JeopardyQuestion') 
+
 
 // ============================
 // ===== Define the class =====
 // ============================
 
-const classDefinition = {
-  class: 'JeopardyQuestion',
+const collectionDefinition = {
+  name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizer: 'text2vec-openai',
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default'),
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(className).do();
+  await client.collections.delete(collectionName)
 } catch {
   // Ignore error if class didn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinition).do();
+  await client.collections.create(collectionDefinition)
 }
 
 
@@ -55,17 +59,16 @@ result = await client.data
   .do();
 
 // UpdateProps START
-const myCollection = client.collections.get('JeopardyQuestion') 
 let id = '...'
 
-const response = await myCollection.data.update({
+result = await myCollection.data.update({
   id: id,
   properties: {
     'points': 100,
   },
 })
 
-console.log(response)
+console.log(result)
 // UpdateProps END
 
 // Test
@@ -87,7 +90,6 @@ assert.equal(result.properties['question'], 'Test question');  // make sure we d
 // ==========================
 
 // Replace START
-const myCollection = client.collections.get('JeopardyQuestion') 
 let id = '...'
 
 const response = await myCollection.data.replace({
@@ -123,7 +125,7 @@ async function deleteProperties(client: WeaviateClient, uuidToUpdate: string, co
         }
     }
   
-    const response = await collection.data.replace({
+    result = await collection.data.replace({
       id: uuidToUpdate,
       properties: propertiesToUpdate
     })

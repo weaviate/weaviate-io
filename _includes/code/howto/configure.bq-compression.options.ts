@@ -14,20 +14,15 @@ await client.collections.delete(collectionName);
 // START BQWithOptions
 const collection = await client.collections.create({
   name: collectionName,
-  vectorizer: [
-    configure.namedVectorizer(
-      "default",
-      {
-        vectorIndexConfig: configure.vectorIndex.hnsw({
-          quantizer: configure.vectorIndex.quantizer.bq({
-            cache: true,  // Enable caching
-            rescoreLimit: 200,  // The minimum number of candidates to fetch before rescoring
-          }),
-          vectorCacheMaxObjects: 100000,  // Cache size (used if `cache` enabled)
-        })
-      }
-    )
-  ]
+  vectorizers: weaviate.configure.vectorizer.none('default', {
+    vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
+      quantizer: weaviate.configure.vectorIndex.quantizer.bq({
+        cache: true,     // Enable caching
+        rescoreLimit: 200, // The minimum number of candidates to fetch before rescoring
+      }),
+      vectorCacheMaxObjects: 10000 // Cache size (used if `cache` enabled)
+    })
+  })
 })
 // END BQWithOptions
 

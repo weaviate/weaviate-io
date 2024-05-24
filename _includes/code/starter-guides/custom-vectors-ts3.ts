@@ -15,7 +15,7 @@ const WCS_URL=process.env["WCS_URL"];
 const WCS_API_KEY=process.env["WCS_API_KEY"];
 const OPENAI_API_KEY=process.env["OPENAI_API_KEY"];
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   WCS_URL,
  {
    authCredentials: new weaviate.ApiKey(WCS_API_KEY),
@@ -25,14 +25,14 @@ const client: WeaviateClient = await weaviate.connectToWCS(
  }
 )
 
-const newCollection = await client.collections.create({
+await client.collections.create({
  name: 'Question',
+ vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
  properties: [
      {
       name: 'question',
       description: 'What to ask',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizer: 'text2vec-openai',
       vectorizePropertyName: true,
       tokenization: 'word',
     },
@@ -40,7 +40,6 @@ const newCollection = await client.collections.create({
      name: 'answer',
      description: 'The clue',
      dataType: weaviate.configure.dataType.TEXT,
-     vectorizer: 'text2vec-openai',
      tokenization: 'word',
      skipVectorization: true
      },
@@ -48,7 +47,6 @@ const newCollection = await client.collections.create({
       name: 'category',
       description: 'The subject',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizer: 'text2vec-openai',
       tokenization: 'word',
       skipVectorization: true
      },
@@ -56,6 +54,6 @@ const newCollection = await client.collections.create({
 })
 
 // Display schema as verification
-const collectionDefinition = await client.collections.get('Question')
+const collectionDefinition = client.collections.get('Question')
 console.log(await collectionDefinition.config.get())
 // END create schema
