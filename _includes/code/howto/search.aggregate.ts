@@ -1,27 +1,32 @@
 import assert from 'assert';
 
 // ===== Instantiation, not shown in snippet
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+const client: WeaviateClient = await weaviate.connectToWCS(
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('api-key'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
  } 
 )
 
+// MetaCount TS // TextProp TS // IntProp TS // groupBy TS // nearTextWithLimit TS // nearTextWithDistance TS // whereFilter TS
 let result;
+const myCollection = client.collections.get('JeopardyQuestion');
+// END MetaCount TS // END TextProp TS // END IntProp TS // END groupBy TS // END nearTextWithLimit TS // END nearTextWithDistance TS // END whereFilter TS
+
+
 
 // ===============================
 // ===== meta count EXAMPLES =====
 // ===============================
 
 // MetaCount TS
-const myCollection = client.collections.get('JeopardyQuestion');
-const result = await myCollection.aggregate.overAll()
+
+result = await myCollection.aggregate.overAll()
 
 console.log(JSON.stringify(result.totalCount, null, 2));
 // END MetaCount TS
@@ -37,9 +42,8 @@ assert.deepEqual(result.data['Aggregate']['JeopardyQuestion'], [{ meta: { count:
 // ==================================
 
 // TextProp TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.overAll({
+result = await myCollection.aggregate.overAll({
  returnMetrics: myCollection.metrics.aggregate('answer').text(['topOccurrencesValue', 'count'])
 })
 
@@ -59,9 +63,8 @@ assert.deepEqual(questionKeys, new Set(['count', 'type', 'topOccurrences']));
 // ====================================
 
 // IntProp TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.overAll({
+result = await myCollection.aggregate.overAll({
  returnMetrics: myCollection.metrics.aggregate('points').integer(['sum','maximum','minimum'])
 })
 
@@ -80,9 +83,8 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { count: 1
 // ============================
 
 // groupBy TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.groupBy.overAll({
+result = await myCollection.aggregate.groupBy.overAll({
  groupBy: {
    property: 'round'
  }
@@ -107,9 +109,8 @@ assert.deepEqual(new Set(result.data.Aggregate.JeopardyQuestion), new Set([
 // =========================================
 
 // nearTextWithLimit TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.nearText(['animals in space'],{
+result = await myCollection.aggregate.nearText(['animals in space'],{
  objectLimit: 10,
  returnMetrics: myCollection.metrics.aggregate('points').number(['sum'])
 })
@@ -129,9 +130,8 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 460
 // ============================
 
 // nearTextWithDistance TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.nearText(['animals in space'],{
+result = await myCollection.aggregate.nearText(['animals in space'],{
  distance: 0.19,
  returnMetrics: myCollection.metrics.aggregate('points').number(['sum'])
 })
@@ -151,9 +151,8 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 300
 // =================================
 
 // whereFilter TS
-const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.overAll({
+result = await myCollection.aggregate.overAll({
  filters: myCollection.filter.byProperty('round').equal('Final Jeopardy!')
 })
 

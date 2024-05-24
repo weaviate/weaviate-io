@@ -9,19 +9,20 @@ import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('xLNI2ItFMTLIcMZBgf60sMhvaIclJ6LtaOSy'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
  } 
 )
 
 // add let result later
-// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // START Autocut  // GetWithGroupBy  // GetWithFilter // NamedVectorNearText
+// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // START Autocut  // GetWithGroupBy  // GetWithFilter 
 let result 
-// END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter // END NamedVectorNearText
+const myCollection = client.collections.get('JeopardyQuestion');
+// END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter 
 
 
 // ===============================================
@@ -29,22 +30,23 @@ let result
 // ===============================================
 
 // NamedVectorNearText
-const myCollection = client.collections.get('WineReviewNV');
+let NVResult;
+const myNVCollection = client.collections.get('WineReviewNV');
 
-result = await myCollection.query.nearText(['a sweet German white wine'],{
+NVResult = await myNVCollection.query.nearText(['a sweet German white wine'],{
   limit: 2,
   targetVector: 'title_country',
   returnMetadata: ['distance']
 })
 
-for (let object of result.objects) {
+for (let object of NVResult.objects) {
   console.log(JSON.stringify(object.properties, null, 2));
   console.log(JSON.stringify(object.metadata?.distance, null, 2));
 }
 // END NamedVectorNearText
 
 // Tests
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+assert.deepEqual(NVResult.objects.length, 2);
 
 
 // =========================
@@ -53,7 +55,6 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 // GetNearText
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'],{
   limit: 2,
@@ -65,9 +66,9 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetNearText
 
 // Tests
-let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+let questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.deepEqual(result.objects.length, 2);
 
 
 // ================================
@@ -76,7 +77,6 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 // GetNearVector
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearVector(
   [-0.0125526935, -0.021168863, -0.01076519, -0.02589537, -0.0070362035, 0.019870078, -0.010001986, -0.019120263, 0.00090044655, -0.017393013, 
@@ -95,9 +95,9 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetNearVector
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.deepEqual(result.objects.length, 2);
 
 
 // ================================
@@ -106,7 +106,6 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 // GetNearObject
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearObject('56b9449e-65db-5df4-887b-0a4773f52aa7', {
   limit: 2,
@@ -118,13 +117,12 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetNearObject
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.deepEqual(result.objects.length, 2);
 
 // Limit - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
 // GetLimitOffset
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'], {
   returnProperties: ['question', 'answer'],
@@ -137,9 +135,9 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetLimitOffset
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.deepEqual(result.objects.length, 2);
 
 
 // =========================
@@ -148,7 +146,6 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // Distance - http://weaviate.io/developers/weaviate/config-refs/distances
 // GetWithDistance
-const myCollection = client.collections.get('JeopardyQuestion');
 // highlight-start
 const maxDistance = 0.18;
 // highlight-end
@@ -165,8 +162,8 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetWithDistance
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 
 
 // ========================
@@ -176,7 +173,6 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 // # http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
 
 // START Autocut
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'],{
   returnProperties: ['question', 'answer'],
@@ -190,8 +186,8 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END Autocut
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 
 
 // ========================
@@ -200,7 +196,6 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 
 // groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
 // GetWithGroupBy
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'],{
   returnProperties: ['question', 'answer'],
@@ -224,10 +219,10 @@ for (let group of result.objects) {
 // END GetWithGroupBy
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]['_additional']));
+questionKeys = new Set(Object.keys(result.objects[0].properties['_additional']));
 assert.deepEqual(questionKeys, new Set(['group']));
-assert.deepEqual(result.data.Get.JeopardyQuestion[0]['_additional']['group']['hits'].length, 2);
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+assert.deepEqual(result.objects[0].properties['_additional']['group']['hits'].length, 2);
+assert.deepEqual(result.objects.length, 2);
 
 
 // =======================
@@ -235,7 +230,6 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 // =======================
 
 // GetWithFilter
-const myCollection = client.collections.get('JeopardyQuestion');
 
 result = await myCollection.query.nearText(['animals in movies'],{
   returnProperties: ['question', 'answer'],
@@ -250,7 +244,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END GetWithFilter
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', '_additional']));
-assert.deepEqual(result.data.Get.JeopardyQuestion[0]['round'], 'Double Jeopardy!');
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+questionKeys = new Set(Object.keys(result.objects[0].properties));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round']));
+assert.deepEqual(result.objects[0].properties['round'], 'Double Jeopardy!');
+assert.deepEqual(result.objects.length, 2);

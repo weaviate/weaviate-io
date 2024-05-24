@@ -1,24 +1,32 @@
 // Howto: Manage data -> Multi-tenancy operations - TypeScript examples
 
 import assert from 'assert';
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
- 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+const client: WeaviateClient = await weaviate.connectToWCS(
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('api-key'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- }
+ } 
 )
 
-const className = 'MultiTenancyCollection';  // aka JeopardyQuestion
+const collectionName = 'MultiTenancyCollection';  // aka JeopardyQuestion
+
 try {
-  await client.schema.classDeleter().withClassName(className).do();
+  // await client.schema.classDeleter().withClassName(className).do();
+  await client.collections.create({
+    name: collectionName
+  })
+
 } catch {
   // Delete the class if it exists
 }
+
+const multiCollection =  client.collections.get('MultiTenancyCollection');
+
 
 // =====================
 // ===== Enable MT =====
@@ -39,7 +47,7 @@ const result = await client.collections.create({
 // ================================
 
 // START AddTenantsToClass
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+// const multiCollection =  client.collections.get('MultiTenancyCollection');
 
   // highlight-start
 await multiCollection.tenants.create([
@@ -50,10 +58,13 @@ await multiCollection.tenants.create([
 // END AddTenantsToClass
 
 // Tests
+let tenants = await multiCollection.tenants.get()
+
 assert.ok(['tenantA', 'tenantB'].includes(tenants[0].name));
 assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
-const theClass = await client.schema.classGetter().withClassName(className).do();
-assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
+// what does this do?
+// const theCollection = await client.schema.classGetter().withClassName(className).do();
+// assert.deepEqual(theCollection['multiTenancyConfig'], { enabled: true });
 
 
 // ===================================
@@ -61,10 +72,10 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 // ===================================
 
 // START ListTenants
-const multiCollection = client.collections.get('MultiTenancyCollection');
+// const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-const tenants = await multiCollection.tenants.get()
+tenants = await multiCollection.tenants.get()
 // highlight-end
 
 console.log(tenants)
@@ -98,7 +109,7 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // =======================================
 
 // START RemoveTenants
-const multiCollection = client.collections.get('MultiTenancyCollection');
+// const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 await multiCollection.tenants.remove([
@@ -118,7 +129,7 @@ assert.deepEqual(tenants.length, 1);
 // ============================
 
 // START CreateMtObject
-const multiCollection = client.collections.get('MultiTenancyCollection');
+// const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
@@ -138,7 +149,7 @@ assert.equal(object['tenant'], 'tenantA');
 // =====================
 
 // START Search
-const multiCollection = await client.collections.get('MultiTenancyCollection');
+// const multiCollection =  client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
@@ -167,7 +178,7 @@ const category = await client.data.creator()
 
 // START AddCrossRef
 // Add the cross-reference property to the multi-tenancy class
-const multiCollection = await client.collections.get('MultiTenancyCollection');
+// const multiCollection = await client.collections.get('MultiTenancyCollection');
 const categoryId = '...'
 const objectId = '...'
 

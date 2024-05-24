@@ -21,11 +21,11 @@ const client: WeaviateClient = weaviate.client({
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'YOUR-WCS-CLUSTER-URL',
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
  } 
 )
@@ -40,7 +40,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 // Add the schema
 const schema = {
   name: 'Question',
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
   generative: weaviate.configure.generative.openAI(),
 }
 
@@ -100,7 +100,7 @@ async function nearTextWhereQuery() {
 
 // GenerativeSearchExample
 async function generativeSearchQuery() {
-  const myCollection = await client.collections.get('Question');
+  const myCollection = client.collections.get('Question');
 
   const result = await myCollection.generate.nearText(['biology'],{
     singlePrompt: `Explain {answer} as you might to a five-year-old.`,
@@ -117,7 +117,7 @@ async function generativeSearchQuery() {
 
 // GenerativeSearchGroupedTaskExample
 async function generativeSearchGroupedQuery() {
-  const myCollection = await client.collections.get('Question');
+  const myCollection = client.collections.get('Question');
 
   const result = await myCollection.generate.nearText(['biology'],{
     groupedTask: `Write a tweet with emojis about these facts.`,
@@ -136,9 +136,10 @@ async function generativeSearchGroupedQuery() {
 
 // Define test functions
 async function getNumObjects() {
-  const myCollection = await client.collections.get('Question');    
+  const myCollection = client.collections.get('Question');    
   const objectCount =  await myCollection.aggregate.overAll()
   console.log(JSON.stringify(objectCount.totalCount));
+  return objectCount.totalCount
 }
 
 async function cleanup() {
@@ -159,7 +160,7 @@ async function run() {
   const res = await nearTextQuery();
 
   // Test
-  assert.deepEqual(res.data.Get.Question.length, 2);
+  assert.deepEqual(res.objects.length, 2);
   // assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');  // Commenting out as it may change according to any model changes
   const count = await getNumObjects();
   assert.deepEqual(count, 10);

@@ -5,16 +5,16 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+const client: WeaviateClient = await weaviate.connectToWCS(
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('api-key'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- }
+ } 
 )
 
 // START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
@@ -247,9 +247,9 @@ await client.schema.classDeleter().withClassName(className).do();
 const newCollection = await client.collections.create({
   name: 'Article',
   // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecCohere({
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default', {
     model: 'embed-multilingual-v2.0',
-    vectorizeClassName: true,
+    vectorizeCollectionName: true,
   }),
   // highlight-end
 })
@@ -287,7 +287,7 @@ const newCollection = await client.collections.create({
       skipVectorisation: true,
       tokenization: 'whitespace'
     },],
-  vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default'),
 })
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
@@ -389,7 +389,7 @@ const newCollection = await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
   // highlight-end
 })
 // The returned value is the full collection definition, showing all defaults

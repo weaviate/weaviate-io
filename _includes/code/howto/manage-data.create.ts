@@ -5,105 +5,97 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient, WeaviateNonGenericObject, WeaviateObject, WeaviateObjectType, WeaviateReturn } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+const client: WeaviateClient = await weaviate.connectToWCS(
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey('api-key'),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
  } 
 )
 
-const className = 'JeopardyQuestion';
-let result;
+const collectionName = 'JeopardyQuestion';
+const collectionNameNV = 'WineReviewNV'
+let result: WeaviateNonGenericObject;
+
+// add thing below to pages
+const myCollection = client.collections.get('JeopardyQuestion')
+const myNVCollection = client.collections.get('WineReviewNV')
+let uuid;
 
 // ============================
 // ===== Define the class =====
 // ============================
 
-const classDefinition = {
-  class: 'JeopardyQuestion',
+const collectionDefinition = {
+  name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizer: 'text2vec-openai',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
   properties: [
     {
       name: 'question',
-      dataType: ['text'],
+      dataType: 'text' as const,
     },
     {
       name: 'answer',
-      dataType: ['text'],
+      dataType: 'text' as const,
     },
   ],
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(classDefinition.class).do();
+  await client.collections.delete(collectionName);
 } catch (e) {
   // ignore error if class doesn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinition).do();
+  await client.collections.create(collectionDefinition);
 }
 
 
-const classDefinitionNV = {
-  class: 'WineReviewNV',
+const collectionDefinitionNV = {
+  name: 'WineReviewNV',
   properties: [
     {
       name: 'title',
-      dataType: ['text'],
+      dataType: 'text' as const,
     },
     {
       name: 'review_body',
-      dataType: ['text'],
+      dataType: 'text' as const,
     },
     {
       name: 'country',
-      dataType: ['text'],
+      dataType: 'text' as const,
+      skipVectorization: true,
     },
   ],
-  vectorConfig: {
-    // Set a named vector
-    title: {
-      vectorIndexType: 'hnsw', // Set the index type
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['title'], // Set the source property(ies)
-        },
-      },
-    },
-    // Set another named vector
-    review_body: {
-      vectorIndexType: 'hnsw', // Set the index type
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['review_body'], // Set the source property(ies)
-        },
-      },
-    },
-    // Set another named vector
-    title_country: {
-      vectorIndexType: 'hnsw', // Set the index type
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['title', 'country'], // Set the source property(ies)
-        },
-      },
-    },
-  },
+  vectorizers: [
+  weaviate.configure.vectorizer.text2VecOpenAI('title',{
+    vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
+    sourceProperties: ['title']
+  }),
+  weaviate.configure.vectorizer.text2VecOpenAI('review_body',{
+    vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
+    sourceProperties: ['review_body'],
+  }),
+  weaviate.configure.vectorizer.text2VecOpenAI('title_country',{
+    vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
+    sourceProperties: ['title','country'],
+  })
+]
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(classDefinitionNV.class).do();
+  await client.collections.delete(collectionNameNV);
 } catch (e) {
   // ignore error if class doesn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinitionNV).do();
+  await client.collections.create(collectionDefinitionNV);
 }
 
 // =========================
@@ -111,9 +103,8 @@ try {
 // =========================
 
 // CreateObject START
-const myCollection = client.collections.get('JeopardyQuestion')
 
-const uuid = await myCollection.data.insert({
+uuid = await myCollection.data.insert({
   'question': 'This vector DB is OSS & supports automatic property type inference on import',
   // 'answer': 'Weaviate',  // properties can be omitted
   'newProperty': 123,  // will be automatically added as a number property
@@ -121,8 +112,11 @@ const uuid = await myCollection.data.insert({
 
 console.log('UUID: ', uuid)
 // CreateObject END
+// myCollection = client.collections.get(collectionName)
 
-result = await client.data.getterById().withClassName(className).withId(result.id).do();
+result = await myCollection.query.fetchObjectById(uuid)
+console.log('1')
+// result = await client.data.getterById().withClassName(className).withId(result.id).do();
 assert.equal(result.properties['newProperty'], 123);
 
 // =======================================
@@ -130,9 +124,9 @@ assert.equal(result.properties['newProperty'], 123);
 // =======================================
 
 // CreateObjectWithVector START
-const myCollection = client.collections.get('JeopardyQuestion')
+// myCollection = client.collections.get('JeopardyQuestion')
 
-const uuid = await myCollection.data.insert({
+uuid = await myCollection.data.insert({
   properties: {
   'question': 'This vector DB is OSS & supports automatic property type inference on import',
   // 'answer': 'Weaviate',  // properties can be omitted
@@ -150,9 +144,8 @@ console.log('UUID: ', uuid)
 // =======================================
 
 // CreateObjectNamedVectors START
-const myCollection = client.collections.get('WineReviewNV')
 
-const uuid = await myCollection.data.insert({
+uuid = await myNVCollection.data.insert({
   properties: {
     "title": "A delicious Riesling",
     "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
@@ -180,14 +173,14 @@ console.log('UUID: ', uuid)
 import { generateUuid5 } from 'weaviate-client';  
 // highlight-end
 
-const myCollection = client.collections.get('WineReviewNV')
+// myCollection = client.collections.get('WineReviewNV')
 const dataObject = {
   "title": "A delicious Riesling",
   "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
   "country": "Germany",
 }
 
-const uuid = await myCollection.data.insert({
+uuid = await myNVCollection.data.insert({
   properties: dataObject,
   // highlight-start
   id: generateUuid5(dataObject.title)
@@ -197,17 +190,19 @@ const uuid = await myCollection.data.insert({
 console.log('UUID: ', uuid)
 // CreateObjectWithDeterministicId END
 
-result = await client.data.getterById().withClassName(className).withId(result.id).do();
-assert.equal(result.id, generateUuid5(JSON.stringify(dataObj)));
+// myCollection = client.collections.get(collectionNameNV)
+
+result = await myNVCollection.query.fetchObjectById(uuid)
+assert.equal(result.uuid, generateUuid5(dataObject.title));
 
 // ============================================
 // ===== Create object with id and vector =====
 // ============================================
 
 // CreateObjectWithId START
-const myCollection = client.collections.get('WineReviewNV')
+// myCollection = client.collections.get('WineReviewNV')
 
-const uuid = await myCollection.data.insert({
+uuid = await myNVCollection.data.insert({
   properties: {
     "title": "A delicious Riesling",
     "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
@@ -220,12 +215,14 @@ const uuid = await myCollection.data.insert({
 
 console.log('UUID: ', uuid)
 // CreateObjectWithId END
+// myCollection = client.collections.get(collectionNameNV)
 
-result = await client.data.getterById().withClassName(className).withId('12345678-e64f-5d94-90db-c8cfa3fc1234').do();
+result = await myNVCollection.query.fetchObjectById('12345678-e64f-5d94-90db-c8cfa3fc1234')
 assert.deepEqual(result.properties, {
-  question: 'This vector DB is OSS and supports automatic property type inference on import',
-  answer: 'Weaviate',
-});
+  "title": "A delicious Riesling",
+  "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+  "country": "Germany",
+  });
 
 
 // ===========================
@@ -236,6 +233,5 @@ assert.deepEqual(result.properties, {
 // Validate is currently not supported with the Weaviate TypeScript client v3
 
   // ValidateObject END
-  assert.ok(e.message.includes('thisPropShouldNotEndUpInTheSchema'));
   // ValidateObject START
 // ValidateObject END
