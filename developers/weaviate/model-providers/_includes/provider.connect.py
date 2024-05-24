@@ -23,7 +23,8 @@ cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
 # START GoogleInstantiation
 # Recommended: save sensitive data as environment variables
-google_key = os.getenv("GOOGLE_APIKEY")
+vertex_key = os.getenv("VERTEX_APIKEY")
+studio_key = os.getenv("STUDIO_APIKEY")
 # END GoogleInstantiation
 # START HuggingFaceInstantiation
 # Recommended: save sensitive data as environment variables
@@ -70,7 +71,8 @@ headers = {
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
 # START GoogleInstantiation
-    "X-Google-Api-Key": google_key,
+    "X-Google-Vertex-Api-Key": vertex_key,
+    "X-Google-Studio-Api-Key": studio_key,
 # END GoogleInstantiation
 # START HuggingFaceInstantiation
     "X-HuggingFace-Api-Key": huggingface_key,

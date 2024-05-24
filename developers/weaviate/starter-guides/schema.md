@@ -187,7 +187,7 @@ This is also where you would specify cross-references, which are a special type 
 
 Cross-references can be very useful for creating relationships between objects. For example, you might have a `Movie` collection with a `withActor` cross-reference property that points to the `Actor` collection. This will allow you to retrieve relevant actors for each movie.
 
-However, please be aware that using cross-references can be costly in terms of performance, so we recommend using them sparingly. Additionally, cross-reference properties do not affect the object's vector. So if you want the related properties to be considered in a vector search, they should be included in the object's vectorized properties.
+However, cross-references can be costly in terms of performance. Use them sparingly. Additionally, cross-reference properties do not affect the object's vector. So if you want the related properties to be considered in a vector search, they should be included in the object's vectorized properties.
 
 You can find examples of how to define and use cross-references [here](../manage-data/cross-references.mdx).
 

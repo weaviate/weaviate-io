@@ -397,7 +397,7 @@ Data imports can be resource intensive. Consider the following when you import l
 ### Asynchronous imports
 
 :::caution Experimental
-Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
 To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing).
@@ -412,6 +412,15 @@ weaviate:
     ASYNC_INDEXING: 'true'
   ...
 ```
+
+### Automatically add new tenants
+
+import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
+
+<AutoTenantBatch/>
+
+For details, see [auto-tenant](/developers/weaviate/manage-data/multi-tenancy#automatically-add-new-tenants).
+
 ### gRPC connection
 
 :::info Added in `v1.23`.

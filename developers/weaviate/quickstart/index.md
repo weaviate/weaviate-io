@@ -357,7 +357,7 @@ Depending on your choice, make sure to pass on the API key(s). You can do so by 
 "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
 "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
 "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
+"X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // For AI Studio
 ```
 
 Additionally, we also provide suggested `vectorizer` module configurations.
@@ -541,11 +541,11 @@ Where you should be able to confirm that you have imported all `10` objects.
 <details>
   <summary>See answer</summary>
 
-To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your class.
+To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
 
-Make sure you configured it as shown in [this section](#define-a-class).
+Make sure the vectorizer is configured [like this](#define-a-class).
 
-If it still doesn't work - please [reach out to us](#more-resources)!
+If the search still doesn't work, [contact us](#questions-and-feedback)!
 
 </details>
 

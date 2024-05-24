@@ -14,6 +14,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
+import GoCodeAuto from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.create_auto-multitenancy.go';
 import CurlCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-curl.sh';
 
 Multi-tenancy provides data isolation. Each tenant is stored on a separate shard. Data stored in one tenant is not visible to another tenant. If your application serves many different users, multi-tenancy keeps their data private and makes database operations more efficient.
@@ -41,7 +42,6 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       language="py"
     />
   </TabItem>
-
   <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -50,7 +50,6 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
@@ -59,7 +58,6 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       language="ts"
     />
   </TabItem>
-
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
@@ -68,7 +66,6 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       language="ts"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -77,7 +74,6 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       language="java"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -90,21 +86,27 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
 
 ## Automatically add new tenants
 
-Weavite can create new tenants automatically. By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To create a new tenant instead, set `autoTenantCreation` to `true` in the collection definition.
+import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
 
-Set `autoTenantCreation` when you create the collection, or update the setting as needed.
-
-Automatic tenant creation is very useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.
+<AutoTenantBatch/>
 
 ### Create a collection
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableAutoMT"
       endMarker="# END EnableAutoMT"
       language="py"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCodeAuto}
+      startMarker="// START enable autoMT"
+      endMarker="// END enable autoMT"
+      language="bash"
     />
   </TabItem>
   <TabItem value="cURL" label="cURL">
@@ -119,15 +121,23 @@ Automatic tenant creation is very useful when you import a large number of objec
 
 ### Update a collection
 
-Use the client to update the auto-tenant creation setting.
+Use the client to update the auto-tenant creation setting. Auto-tenant is only available for batch inserts.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateAutoMT"
       endMarker="# END UpdateAutoMT"
       language="py"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCodeAuto}
+      startMarker="// Start update autoMT"
+      endMarker="// END update autoMT"
+      language="bash"
     />
   </TabItem>
 </Tabs>
@@ -409,7 +419,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 - This feature was added in `v1.21`
 - Other client code examples coming soon
-- For now, please send a [PUT request through the REST API endpoint](/developers/weaviate/api/rest#tag/schema) to update the tenant activity status.
+- To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
 
 </details>
 

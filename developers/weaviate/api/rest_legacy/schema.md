@@ -350,8 +350,14 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 
 :::info Not all settings are mutable
 
-- Please note that not all settings are mutable.
-- To update any other (i.e. immutable) setting, you need to delete the collection, re-create it with the correct setting and then re-import the data.
+Some settings are immutable, they cannot be updated after the collection is created.
+
+Follow these steps to update an immutable setting:
+
+- Export the data
+- Delete the collection
+- Re-create the collection with the correct setting
+- Re-import the data
 
 <details>
   <summary>The list of mutable settings</summary>
@@ -380,7 +386,6 @@ Update settings of an existing collection. Use this endpoint to alter an existin
   - `skip`
   - `vectorCacheMaxObjects`
   - `pq`
-    - `bitCompression`
     - `centroids`
     - `enabled`
     - `segments`
@@ -393,7 +398,7 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 
 :::
 
-This endpoint cannot be used to introduce additional properties. For this, use [`POST /v1/schema/{collection_name}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as `vectorIndexConfig/dynamicEfFactor` or `vectorIndexConfig/pq/bitCompression`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
+This endpoint cannot be used to introduce additional properties. For this, use [`POST /v1/schema/{collection_name}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as `vectorIndexConfig/dynamicEfFactor`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
 You should attach a body to this PUT request with the **entire** new configuration of the collection.
 

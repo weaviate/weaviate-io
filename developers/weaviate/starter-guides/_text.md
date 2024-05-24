@@ -53,7 +53,7 @@ Your desired module must be:
 
 #### Check if a module is enabled
 
-Depending on your [deployment setup](../installation/index.md), you may need to enable the module in your Weaviate configuration file. Please check the documentation for your deployment setup for more information.
+Depending on your [deployment setup](../installation/index.md), you may need to enable the module in your Weaviate configuration file. See the documentation for your deployment setup for more information.
 
 To check what modules are enabled, view the `meta` information for your Weaviate instance, as shown below:
 

@@ -105,6 +105,10 @@
   flex-flow: wrap;
   padding: 50px;
 
+  @media screen and (max-width: 1000px) {
+    gap: 40px;
+  }
+
   @media screen and (max-width: 520px) {
     display: flex;
     width: 100%;

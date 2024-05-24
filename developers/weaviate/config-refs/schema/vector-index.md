@@ -16,7 +16,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 ## Index configuration parameters
 
 :::caution Experimental feature
-Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
 :::
 
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
@@ -59,6 +59,16 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | `skip` | boolean | `false` | No | When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](../../concepts/vector-index.md#when-to-skip-indexing). |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
 | `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
+
+### Database parameters for HNSW
+
+Note that some database-level parameters are available to configure HNSW indexing behavior.
+
+- `PERSISTENCE_HNSW_MAX_LOG_SIZE` is a database-level parameter that sets the maximum size of the HNSW write-ahead-log. The default value is `500MiB`.
+
+Increase this value to improve efficiency of the compaction process, but be aware that this will increase the memory usage of the database. Conversely, decreasing this value will reduce memory usage but may slow down the compaction process.
+
+Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
 
 ### PQ configuration parameters
 
@@ -150,7 +160,7 @@ Configure `bq` with these parameters.
 ## Dynamic indexes
 
 :::caution Experimental feature
-Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
 :::
 
 Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index.
@@ -171,7 +181,7 @@ The goal of `dynamic` indexing is to shorten latencies during query time at the 
 ## Asynchronous indexing
 
 :::caution Experimental
-Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
 Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.

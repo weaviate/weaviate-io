@@ -17,7 +17,7 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - Please check the Voyage AI [pricing page](https://docs.voyageai.com/docs/pricing), especially before vectorizing large amounts of data.
+    - See the Voyage AI [pricing page](https://docs.voyageai.com/docs/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `voyage-large-2`.
@@ -183,7 +183,7 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-code-2`
 - `voyage-2`
 - `voyage-law-2`
-- `voyage-lite-02-instruct`
+- `voyage-large-2-instruct`
 
 ### Truncation
 
