@@ -87,6 +87,28 @@ export const courseData = {
     ],
     note: "Python client (v4); project-based"
   },
+  "vector_indexes": {
+    title: "Vector indexes",
+    courseId: "PY_230",
+    body: "Vectors indexes are essential for fast and accurate vector searches. Learn about different index types, .",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_indexing",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "compression_pq", "compression_bq", "compression_strategy"
+    ],
+    learningGoals: [
+      "What vector compression algorithms are available, how to use them and when to use them."
+    ],
+    learningOutcomes: [
+      "Name available vector compression algorithms in Weaviate.",
+      "Create collections with vector compression enabled.",
+      "Configure vector compression parameters.",
+      "Select a compression algorithm for a given use case.",
+    ],
+    note: "Python client (v4); project-based"
+  },
   "compression": {
     title: "Vector compression for improved efficiency",
     courseId: "PY_250",
