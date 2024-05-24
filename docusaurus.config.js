@@ -89,9 +89,10 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_1_25/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
-                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                hideModels: true,
+                // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
                 // hiddenClients: [...],
               },
             },
