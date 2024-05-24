@@ -4,18 +4,18 @@ sidebar_position: 30
 image: og/wcs/user_guides.jpg
 ---
 
-There are two ways to connect to your [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instance:
+There are two ways to connect to a [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instance:
 
-- [Connect a browser to WCD through the WCD Console.](/developers/wcs/connect#connect-with-a-browser)
+- [Connect through the WCD console.](/developers/wcs/connect#connect-with-a-browser)
 
    - The WCD console is a multi-purpose tool. Login to manage your clusters, users, and billing.
-   - The built-in [Query console](./console.mdx) is useful to connect without a client application.
+   - The built-in [Query app](./console.mdx) is useful to connect without a client application.
 
-- [Connect a client application to WCD through APIs.](/developers/wcs/connect#connect-with-an-api)
+- [Connect with APIs.](/developers/wcs/connect#connect-with-an-api)
 
-   - For applications, use the WCD API and one of the [client libraries](/developers/weaviate/client-libraries) to connect to WCD.
+   - Use one of the [client libraries](/developers/weaviate/client-libraries) to connect to a WCD instance.
 
-Browser authentication uses a username and password for authentication. The Weaviate clients use API keys to authenticate.
+The WCD console uses a username and password for authentication. The Weaviate clients use API keys to authenticate.
 
 ## Connect with a browser
 
@@ -89,46 +89,6 @@ export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
 import WCDAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 
 <WCDAuthenticationApiKey/>
-
-## Manage API keys
-
-If you have a managed cluster, you can create and delete API keys.
-
-There are two types of API key, `ReadOnly` and `Admin`.
-
-- `Admin` keys are read-write.
-- `ReadOnly` keys do not grant write access to the database.
-
-### Create an API key
-
-If you have a managed cluster, you can create new API keys. New API keys are not available in Sandbox clusters.
-
-WCS restarts the cluster when you add a new API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
-
-To create a new API key, follow these steps:
-
-1. Click the `Details` button.
-1. Click the `API keys` button.
-1. Click `Add Key`.
-
-![Add API key UI](./img/wcs-add-key-details.jpg)
-
-4. Choose the key scope, read-only or admin.
-1. Click `Generate` to create the key.
-
-### Delete an API key
-
-If you have a managed cluster, you can delete API keys.
-
-WCD restarts the cluster when you delete an API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
-
-To delete an API key, follow these steps:
-
-1. Click the `Details` button.
-1. Click the `API keys` button.
-1. Click the trash-can icon to delete the API key.
-
-![Add API key UI](./img/wcs-delete-api-key.jpg)
 
 ## Connect via the query app
 

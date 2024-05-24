@@ -1,0 +1,46 @@
+---
+title: Multi-factor authentication
+sidebar_position: 20
+image: og/wcs/user_guides.jpg
+---
+
+import MFAOneTime from '/wcs/img/mfa-one-time-code.jpg';
+import MFAEnableIcon from '/wcs/img/mfa-enable-icon.jpg';
+
+Multi-factor authentication (MFA) increases the security of browser logins. MFA is not enabled by default.
+
+## Enable multi-factor authentication
+
+To enable MFA, follow these steps.
+
+1. Use your browser to connect to the WCD console.
+1. Click the silhouette of a person in the sidebar
+
+<img src={MFAEnableIcon} width="25%" alt="Enable MFA icon"/>
+
+3. Click the 'Manage Two-Factor Authentication' button.
+1. Enter your username and password to authenticate to WCD.
+1. Open your authenticator application and scan the QR code.
+1. Enter the code from your application in WCD to complete the setup.
+
+After you configure MFA, WCD prompts you to supply the one-time authentication code each time you log in.
+
+<img src={MFAOneTime } width="25%" alt="Enter MFA code"/>
+
+## Disable MFA
+
+To disable MFA, [contact support](mailto:support@weaviate.io).
+
+## MFA and applications
+
+If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that client's account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCD. Use API keys to connect client applications to WCD.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>
