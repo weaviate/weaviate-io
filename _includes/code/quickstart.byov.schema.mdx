@@ -3,82 +3,51 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
+import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
-
-import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
-
-<FilteredTextBlock
-  text={ByovAllPyCode}
-  startMarker="# ===== Create schema ====="
-  endMarker="# ===== Import data ====="
-  language="py"
-/>
-
+    <FilteredTextBlock
+      text={ByovAllPyCode}
+      startMarker="# ===== Create schema ====="
+      endMarker="# ===== Import data ====="
+      language="py"
+    />
   </TabItem>
-
   <TabItem value="py3" label="Python Client v3">
-
-import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
-
-<FilteredTextBlock
-  text={ByovAllPy3Code}
-  startMarker="# ===== Create schema ====="
-  endMarker="# ===== Import data ====="
-  language="py"
-/>
-
+    <FilteredTextBlock
+      text={ByovAllPy3Code}
+      startMarker="# ===== Create schema ====="
+      endMarker="# ===== Import data ====="
+      language="py"
+    />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
-
-import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
-
-<FilteredTextBlock
-  text={ByovAllTsCode}
-  startMarker="// Class definition"
-  endMarker="// Import data"
-  language="ts"
-/>
-
+     <FilteredTextBlock
+       text={ByovAllTsCode}
+       startMarker="// Class definition"
+       endMarker="// Import data"
+       language="ts"
+     />
   </TabItem>
-
   <TabItem value="js2" label="JS/TS Client v2">
-
-import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
-
-<FilteredTextBlock
-  text={ByovAllTsCodeLegacy}
-  startMarker="// Class definition"
-  endMarker="// Import data"
-  language="ts"
-/>
-
+    <FilteredTextBlock
+      text={ByovAllTsCodeLegacy}
+      startMarker="// Class definition"
+      endMarker="// Import data"
+      language="ts"
+    />
   </TabItem>
-{/* <TabItem value="go" label="Go">
-
-```go
-
-```
-</TabItem> */}
-{/* <TabItem value="java" label="Java">
-
-```java
-
-```
-
-</TabItem> */}
   <TabItem value="curl" label="Curl">
-
-import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
-
-<FilteredTextBlock
-  text={ByovAllShCode}
-  startMarker="#!/bin/bash"
-  endMarker="# Send to the batch endpoint"
-  language="bash"
-/>
-
+    <FilteredTextBlock
+      text={ByovAllShCode}
+      startMarker="#!/bin/bash"
+      endMarker="# Send to the batch endpoint"
+      language="bash"
+    />
   </TabItem>
 </Tabs>
