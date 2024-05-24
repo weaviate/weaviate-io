@@ -207,8 +207,8 @@ For further details on model parameters, please consult the [Anyscale Endpoints 
 * `meta-llama/Llama-2-13b-chat-hf`
 * `meta-llama/Llama-2-7b-chat-hf`
 * `codellama/CodeLlama-34b-Instruct-hf`
-* `HuggingFaceH4/zephyr-7b-beta`
 * `mistralai/Mistral-7B-Instruct-v0.1`
+* `mistralai/Mixtral-8x7B-Instruct-v0.1`
 
 ## Further resources
 
