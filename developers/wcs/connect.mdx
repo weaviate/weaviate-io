@@ -27,32 +27,6 @@ To connect to WCD with a browser, follow these steps:
 1. Click `Login to Weaviate Cloud`.
 1. Enter your email address and password to authenticate.
 
-### Enable multi-factor authentication
-
-Multi-factor authentication (MFA) increases the security of browser logins. To enable MFA, follow these steps.
-
-1. Use your browser to connect to the WCD console.
-1. Click the silhouette of a person in the sidebar
-
-![Enable MFA icon](./img/mfa-enable-icon.jpg)
-
-3. Click the 'Manage Two-Factor Authentication' button.
-1. Enter your username and password to authenticate to WCD.
-1. Open your authenticator application and scan the QR code.
-1. Enter the code from your application in WCD to complete the setup.
-
-After you configure MFA, WCD prompts you to supply the one-time authentication code each time you log in.
-
-![Enter MFA code](./img/mfa-one-time-code.jpg)
-
-### MFA and applications
-
-If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that client's account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCD. Use API keys to connect client applications to WCD.
-
-### Disable MFA
-
-To disable MFA, [contact support](mailto:support@weaviate.io).
-
 ## Connect with an API
 
 By default, API keys are enabled for all WCD clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
