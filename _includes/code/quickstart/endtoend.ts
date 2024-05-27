@@ -21,9 +21,9 @@ const client: WeaviateClient = weaviate.client({
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCD(
-  process.env.WCS_URL,
+  process.env.WCD_URL,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }

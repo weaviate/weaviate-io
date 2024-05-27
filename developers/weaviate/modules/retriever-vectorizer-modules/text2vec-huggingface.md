@@ -26,7 +26,7 @@ Key notes:
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file

@@ -1,18 +1,18 @@
-# WCSInstantiation
+# WCDInstantiation
 import weaviate
 import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
 )
-# END WCSInstantiation
+# END WCDInstantiation
 
 client.close()
 
-# WCSAPIKeyInstantiation
+# WCDAPIKeyInstantiation
 import weaviate
 import os
 
@@ -21,13 +21,13 @@ headers = {
 }  # Replace with your OpenAI API key
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
     headers=headers,
 )
-# END WCSAPIKeyInstantiation
+# END WCDAPIKeyInstantiation
 
 client.close()
 
@@ -135,10 +135,10 @@ import os
 
 # END TryFinallyCloseDemo
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
 )
 # TryFinallyCloseDemo
 # Instantiate your client (not shown). e.g.:

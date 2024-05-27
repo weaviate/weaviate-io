@@ -3,8 +3,8 @@ import weaviate
 import os
 
 client = weaviate.Client(
-    url=os.getenv("WCS_DEMO_URL"),
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WCS_DEMO_RO_KEY")),
+    url=os.getenv("WCD_DEMO_URL"),
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WCD_DEMO_RO_KEY")),
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # <-- Replace with your API key
     }

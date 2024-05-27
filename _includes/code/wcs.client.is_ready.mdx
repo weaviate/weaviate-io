@@ -7,8 +7,8 @@ import PyClientCode from '!!raw-loader!/_includes/code/wcs.client.is_ready.py';
 <TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyClientCode}
-    startMarker="# WCSQuickStartInstantiation"
-    endMarker="# END WCSQuickStartInstantiation"
+    startMarker="# WCDQuickStartInstantiation"
+    endMarker="# END WCDQuickStartInstantiation"
     language="py"
   />
 </TabItem>
@@ -34,7 +34,7 @@ print(client.is_ready())
 ```js
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWCD(
   'https://WEAVIATE_INSTANCE_URL', {                    // Replace with your Weaviate endpoint
   authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'), // Replace with your Weaviate instance API key
 });

@@ -43,7 +43,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 
 const client = await weaviate.connectToWCD(
-  'WCS-URL',
+  'WCD-URL',
  {
    authCredentials: new weaviate.ApiKey('WEAVIATE-API-KEY'),
    headers: {

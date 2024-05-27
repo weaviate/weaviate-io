@@ -104,7 +104,7 @@
     "title": "Platform Engineer",
     "photo": "cari.jpeg",
     "linkedin": "cari-liebenberg-1b40b0a6",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Charles Harr",
@@ -112,7 +112,7 @@
     "photo": "charles.png",
     "linkedin": "ceharr",
     "github": "harrlight00",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Charles Pierse",
@@ -120,7 +120,7 @@
     "photo": "charles-pierse.png",
     "linkedin": "charles-pierse",
     "twitter": "cdpierse",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Connor Shorten",
@@ -149,7 +149,7 @@
     "title": "Full Stack Engineer",
     "photo": "david.png",
     "linkedin": "david-street-552b7563",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Dirk Kulawiak",
@@ -188,7 +188,7 @@
     "photo": "eric.png",
     "linkedin": "iamcaleberic",
     "twitter": "iamcaleberic",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Erika Cardenas",
@@ -356,7 +356,7 @@
     "photo": "mike.jpg",
     "linkedin": "mikewyer",
     "twitter": "BigBeardyGeek",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Mohamed Badawi",
@@ -401,11 +401,11 @@
   },
   {
     "name": "Paul de Grijp",
-    "title": "Head of WCS",
+    "title": "Head of Weaviate Cloud",
     "photo": "paul-de-grijp.jpg",
     "linkedin": "pauldegrijp",
     "twitter": "pauldegrijp",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Philip Vollet",
@@ -488,7 +488,7 @@
     "photo": "wera.png",
     "linkedin": "wera-kr",
     "github": "Weroiko",
-    "team": "wcs"
+    "team": "wcd"
   },
   {
     "name": "Zain Hasan",

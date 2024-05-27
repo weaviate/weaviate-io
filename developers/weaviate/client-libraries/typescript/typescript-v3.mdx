@@ -86,7 +86,7 @@ The v3 client provides helper functions to connect your application to your Weav
 ### Connect to Weaviate
 
 <Tabs groupId="platforms">
-<TabItem value="wcs" label="WCD">
+<TabItem value="wcd" label="WCD">
 
 ```ts
 import weaviate from 'weaviate-client'
@@ -158,7 +158,7 @@ import weaviate, { WeaviateClient } from 'weaviate-client';
 const client: WeaviateClient = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
   } 
 )
 
@@ -173,7 +173,7 @@ import weaviate, { WeaviateClient } from 'weaviate-client';
 const client: WeaviateClient = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
     headers: {
       someHeaderName: 'header-value', 
     }

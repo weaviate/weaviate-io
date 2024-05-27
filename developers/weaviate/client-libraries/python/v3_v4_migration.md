@@ -52,12 +52,12 @@ The `v4` client is instantiated through the `WeaviateClient` object, which is th
 You can directly instantiate the client, but in most cases you can use helper functions starting with `_connect_to`, such as `connect_to_local`, `connect_to_wcs`.
 
 <Tabs groupId="languages">
-<TabItem value="wcs" label="WCS">
+<TabItem value="wcd" label="WCD">
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# WCSInstantiation"
-  endMarker="# END WCSInstantiation"
+  startMarker="# WCDInstantiation"
+  endMarker="# END WCDInstantiation"
   language="py"
 />
 

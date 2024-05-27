@@ -118,9 +118,9 @@ If your use cases don't fall into any of the two scenarios mentioned, you might 
 
 To get some hands-on experience with the new TypeScript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
-### Setting up WCD (Weaviate Cloud)
+### Setting up Weaviate Cloud (WCD)
 
-First, we need to set up our own Weaviate database. The easiest way to do this is to use WCS, the cloud-hosting solution from Weaviate. Head over to [the WCS homepage](https://console.weaviate.cloud) and create an account. Then, create a free sandbox.
+First, we need to set up our own Weaviate database. The easiest way to do this is with Weaviate Cloud (WCD), the cloud-hosting solution from Weaviate. Head over to [the WCD homepage](https://console.weaviate.cloud) and create an account. Then, create a free sandbox.
 
 ### Importing Data
 
@@ -135,19 +135,19 @@ import weaviate from 'weaviate-client';
 import { parse } from 'csv-parse/sync';
 import fs from 'fs';
 
-const client = await weaviate.connectToWCS(process.env.WCS_URL!!, {
-  authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY!!),
+const client = await weaviate.connectToWCD(process.env.WCD_URL!!, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY!!),
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
   },
 });
 ```
 
-The code above helps us connect to our WCS database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCS. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vectorize our data, you will need to add your Open AI API key as well.
+The code above helps us connect to our WCD database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCD. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vectorize our data, you will need to add your Open AI API key as well.
 
 ```bash
-WCS_URL=<YOUR_WCS_URL>
-WCS_API_KEY=<YOUR_WCS_API_KEY>
+WCD_URL=<YOUR_WCD_URL>
+WCD_API_KEY=<YOUR_WCD_API_KEY>
 OPENAI_APIKEY=<YOUR_OPENAI_APIKEY>
 ```
 
@@ -218,8 +218,8 @@ import weaviate from 'weaviate-client';
 
 import { QuoteType } from './types';
 
-const client = await weaviate.connectToWCS(process.env.WCS_URL!!, {
-  authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY!!),
+const client = await weaviate.connectToWCD(process.env.WCD_URL!!, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY!!),
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
   },
