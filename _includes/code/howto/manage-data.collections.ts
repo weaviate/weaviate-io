@@ -20,9 +20,9 @@ const client: WeaviateClient = await weaviate.connectToWCD(
 const collectionName = 'Article'
 let result
 
-// START BasicCreateCollection   // START UpdateCollection
-let newCollection;
-// END BasicCreateCollection   // END UpdateCollection
+// START UpdateCollection // START ReadOneCollection // START ModifyParam
+let articles = client.collections.get('Article')
+// END UpdateCollection // END ReadOneCollection // END ModifyParam
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -37,9 +37,10 @@ try {
 }
 
 // START BasicCreateCollection
-newCollection = await client.collections.create({
+let newCollection = await client.collections.create({
   name: 'Article'
 })
+
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END BasicCreateCollection
@@ -68,28 +69,25 @@ newCollection = await client.collections.create({
     {
       name: 'title',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizePropertyName: true,
-      tokenization: 'lowercase' ,
     },
     {
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
-      tokenization: 'whitespace',
-      skipVectorization: true
     },
   ],
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(newCollection, null, 2));
 // END CreateCollectionWithProperties
 
 // ================================
 // ===== READ A CLASS =====
 // ================================
 
+articles = client.collections.get('Article')
 // START ReadOneCollection
-const collection = client.collections.get('Article')
-console.log(await collection.config.get())
+// highlight-start
+const collectionConfig = await articles.config.get()
+// highlight-end
+console.log(collectionConfig)
 // END ReadOneCollection
 
 // ==================================================
@@ -99,6 +97,24 @@ console.log(await collection.config.get())
 // START BasicNamedVectors
 newCollection = await client.collections.create({
   name: 'ArticleNV',
+
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecCohere({
+      name: 'title',
+      sourceProperties: ['title']
+    }),
+    weaviate.configure.vectorizer.text2VecOpenAI({
+      name: 'body',
+      sourceProperties: ['body'],
+    }),
+    weaviate.configure.vectorizer.text2VecOpenAI({
+      name: 'title_country',
+      sourceProperties: ['title','country'],
+    })
+  ],
+  // highlight-end
+
   properties: [
     {
       name: 'title',
@@ -108,23 +124,11 @@ newCollection = await client.collections.create({
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
     },
+    {
+      name: 'country',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
   ],
-  // highlight-start
-  vectorizers: [
-    weaviate.configure.vectorizer.text2VecOpenAI('title',{
-      vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
-      sourceProperties: ['title']
-    }),
-    weaviate.configure.vectorizer.text2VecCohere('body',{
-      vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
-      sourceProperties: ['body'],
-    }),
-    weaviate.configure.vectorizer.text2VecOpenAI('title_country',{
-      vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
-      sourceProperties: ['title','country'],
-    })
-  ],
-  // highlight-end
 })
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
@@ -152,32 +156,26 @@ await client.collections.delete('ArticleNV')
 // START Vectorizer
 newCollection = await client.collections.create({
   name: 'Article',
+  // highlight-start
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
+  // highlight-end
   properties: [
     {
       name: 'title',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizePropertyName: true,
-      tokenization: 'lowercase' as const ,
     },
     {
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
-      tokenization: 'whitespace' as const,
-      skipVectorization: true
     },
   ],
-  // highlight-start
-  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default'),
-  // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(newCollection, null, 2));
 // END Vectorizer
 
 // Test
 result = await client.collections.get(collectionName).config.get()
 
-assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-cohere');
+assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-openai');
 assert.equal(result.properties.length, 2); 
 
 // Delete the class to recreate it
@@ -190,6 +188,10 @@ await client.collections.delete('Article')
 // START SetVectorIndexType
 newCollection = await client.collections.create({
   name: 'Article',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
+  // highlight-start
+  vectorIndex: weaviate.configure.vectorIndex.hnsw(),
+  // highlight-end
   properties: [
     {
       name: 'title',
@@ -200,14 +202,7 @@ newCollection = await client.collections.create({
       dataType: weaviate.configure.dataType.TEXT,
     },
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
-  // highlight-start
-  vectorIndex: weaviate.configure.vectorIndex.hnsw()
-  // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END SetVectorIndexType
 
 // Test
@@ -238,9 +233,6 @@ newCollection = await client.collections.create({
   })
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END SetVectorIndexParams
 
 // Test
@@ -262,14 +254,12 @@ await client.collections.delete(collectionName)
 newCollection = await client.collections.create({
   name: 'Article',
   // highlight-start
-  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default', {
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere({
     model: 'embed-multilingual-v2.0',
     vectorizeCollectionName: true,
   }),
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
 // END ModuleSettings
 
 // Test
@@ -293,23 +283,26 @@ await client.collections.delete(collectionName)
 // START PropModuleSettings
 newCollection = await client.collections.create({
   name: 'Article',
+  vectorizers: weaviate.configure.vectorizer.text2VecHuggingFace(),
   properties: [
     {
       name: 'title',
       dataType: weaviate.configure.dataType.TEXT,
+      // highlight-start
       vectorizePropertyName: true,
       tokenization: 'lowercase'
+      // highlight-end
     },
     {
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
+      // highlight-start
       skipVectorization: true,
       tokenization: 'whitespace'
-    },],
-  vectorizers: weaviate.configure.vectorizer.text2VecCohere('default'),
+      // highlight-end
+    }
+  ],
 })
-// The returned value is the full class definition, showing all defaults
-console.log(JSON.stringify(newCollection, null, 2));
 // END PropModuleSettings
 
 // Test vectorizeCollectionName
@@ -337,9 +330,6 @@ newCollection = await client.collections.create({
   })
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END DistanceMetric
 
 // Test
@@ -379,8 +369,6 @@ newCollection = await client.collections.create({
   }
   // highlight-end
 })
-
-console.log(JSON.stringify(newCollection, null, 2));
 // END SetInvertedIndexParams
 
 // Test
@@ -403,19 +391,34 @@ await client.collections.delete(collectionName)
 // START SetGenerative
 newCollection = await client.collections.create({
   name: 'Article',
-  properties: [
-    {
-      name: 'title',
-      dataType: weaviate.configure.dataType.TEXT,
-    },
-  ],
-  // highlight-start
   vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
+  // highlight-start
+  generative: weaviate.configure.generative.openAI(),
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
 // END SetGenerative
+
+// Test
+Object.keys(result['moduleConfig']).includes('generative-openai');
+
+// Delete the class to recreate it
+await client.collections.delete(collectionName)
+
+// =======================================================================
+// ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
+// =======================================================================
+
+// START SetGenModel
+newCollection = await client.collections.create({
+  name: 'Article',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
+  // highlight-start
+  generative: weaviate.configure.generative.openAI({
+    model: "gpt-4"
+  }),
+  // highlight-end
+})
+// END SetGenModel
 
 // Test
 Object.keys(result['moduleConfig']).includes('generative-openai');
@@ -436,9 +439,6 @@ newCollection = await client.collections.create({
   }),
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END ReplicationSettings
 
 // Test
@@ -461,9 +461,6 @@ newCollection = await client.collections.create({
   })
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END ShardingSettings
 
 // Test
@@ -486,40 +483,46 @@ newCollection = await client.collections.create({
   })
   // highlight-end
 })
-// The returned value is the full collection definition, showing all defaults
-console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END Multi-tenancy
 
 // ==========================
 // ===== ADD A PROPERTY =====
 // ==========================
 
-// START AddProp
-const prop = {
-  name: 'body',
-  dataType: ['text'],
-};
+// // START AddProp
+// const prop = {
+//   name: 'body',
+//   dataType: ['text'],
+// };
 
-const resultProp = await client.schema
-  .propertyCreator()
-  .withClassName('Article')
-  .withProperty(prop)
-  .do();
+// const resultProp = await client.schema
+//   .propertyCreator()
+//   .withClassName('Article')
+//   .withProperty(prop)
+//   .do();
 
-// The returned value is full property definition
-console.log(JSON.stringify(resultProp, null, 2));
-// END AddProp
+// // The returned value is full property definition
+// console.log(JSON.stringify(resultProp, null, 2));
+// // END AddProp
 
-// Test
-assert.equal(resultProp.name, 'body');
+// // Test
+// assert.equal(resultProp.name, 'body');
 
 // ==============================
 // ===== MODIFY A PARAMETER =====
 // ==============================
 
+articles = client.collections.get('Article')
+
 // START ModifyParam
-// Not available yet - https://github.com/weaviate/typescript-client/issues/64
+
+// highlight-start
+articles.config.update({
+  invertedIndex: {
+    stopwords: { removals: ['a', 'the'] },
+  }
+})
+// highlight-end
 // END ModifyParam
 
 // ================================
@@ -527,41 +530,21 @@ assert.equal(resultProp.name, 'body');
 // ================================
 
 // START ReadAllCollections
-await client.collections.listAll()
+const allCollections = await client.collections.listAll()
+console.log(JSON.stringify(allCollections, null, 2));
 // END ReadAllCollections
 
 // ================================
-// ===== UPDATE A CLASS =====
+// ===== UPDATE A COLLECTION =====
 // ================================
 
-// Clean slate
-try {
-  await client.collections.delete(collectionName)
-} catch (e) {
-  // ignore error if class doesn't exist
-}
+articles = client.collections.get('Article')
 
 // START UpdateCollection
-// Define and create a class
-const originalClassObj = {
-  class: className,
-  vectorIndexConfig: {
-    distance: 'cosine', // Note the distance metric
-  },
-};
 
-// Add the class to the schema
-let originalClassResponse = await client.schema
-  .classCreator()
-  .withClass(originalClassObj)
-  .do();
-
-const UpdateCollectionObj = {
-  class: className,
-  vectorIndexConfig: {
-    distance: 'dot', // Note the distance metric
-  },
-};
-
-// Update the class definition
-// Not yet available in TS
+// highlight-start
+articles.config.update({
+    invertedIndex: { bm25: { k1: 1.5 } }
+})
+// highlight-end
+// END UpdateCollection

@@ -573,6 +573,48 @@ Specify a `generative` module for a collection (for RAG).
   </TabItem>
 </Tabs>
 
+## Specify a generative model name
+
+Specify a specific generative `model name`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Replication settings
 
 import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
@@ -1040,7 +1082,16 @@ You can update a collection definition to change the [mutable collection setting
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS Client v2">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 // This feature is under development
@@ -1088,7 +1139,16 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS Client v2">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModifyParam"
+      endMarker="// END ModifyParam"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
   ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 

@@ -8,8 +8,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.p
 <TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyCode}
-    startMarker="START InspectCollectionShards"
-    endMarker="END InspectCollectionShards"
+    startMarker="START UpdateCollectionShards"
+    endMarker="END UpdateCollectionShards"
     language="py"
   />
 </TabItem>
@@ -17,30 +17,33 @@ import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.p
 <TabItem value="py3" label="Python Client v3">
 
 ```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
-article_shards = client.schema.get_class_shards("Article")
+# highlight-start
+article_shards = client.schema.update_class_shard(
+  "Article",
+  status="READY",
+  shard_name="shard-1234"
+)
+# highlight-end
 print(article_shards)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+let articles = client.collections.get('Article')
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
+// highlight-start
+const shards = await articles.config.updateShards('READY', 'shard-1234')
+// highlight-end
+console.log(JSON.stringify(shards, null, 2));
+```
 
-const response = await client.schema
-  .shardsGetter()
-  .withClassName('Article')
-  .do();
-console.log(JSON.stringify(response, null, 2));
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+
+```js
+// TODO: add JS Client v2 example
 ```
 
 </TabItem>

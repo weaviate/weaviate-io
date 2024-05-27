@@ -18,12 +18,12 @@ const client: WeaviateClient = await weaviate.connectToWCD(
 )
 
 const collectionName = 'JeopardyQuestion';
-const collectionNameNV = 'WineReviewNV'
+const wineRewiews = 'WineReviewNV'
 let result: WeaviateNonGenericObject;
 
 // add thing below to pages
 const myCollection = client.collections.get('JeopardyQuestion')
-const myNVCollection = client.collections.get('WineReviewNV')
+const reviews = client.collections.get('WineReviewNV')
 let uuid;
 
 // ============================
@@ -91,7 +91,7 @@ const collectionDefinitionNV = {
 
 // Clean slate
 try {
-  await client.collections.delete(collectionNameNV);
+  await client.collections.delete(wineRewiews);
 } catch (e) {
   // ignore error if class doesn't exist
 } finally {
@@ -145,7 +145,7 @@ console.log('UUID: ', uuid)
 
 // CreateObjectNamedVectors START
 
-uuid = await myNVCollection.data.insert({
+uuid = await reviews.data.insert({
   properties: {
     "title": "A delicious Riesling",
     "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
@@ -180,7 +180,7 @@ const dataObject = {
   "country": "Germany",
 }
 
-uuid = await myNVCollection.data.insert({
+uuid = await reviews.data.insert({
   properties: dataObject,
   // highlight-start
   id: generateUuid5(dataObject.title)
@@ -190,9 +190,9 @@ uuid = await myNVCollection.data.insert({
 console.log('UUID: ', uuid)
 // CreateObjectWithDeterministicId END
 
-// myCollection = client.collections.get(collectionNameNV)
+// myCollection = client.collections.get(wineRewiews)
 
-result = await myNVCollection.query.fetchObjectById(uuid)
+result = await reviews.query.fetchObjectById(uuid)
 assert.equal(result.uuid, generateUuid5(dataObject.title));
 
 // ============================================
@@ -202,7 +202,7 @@ assert.equal(result.uuid, generateUuid5(dataObject.title));
 // CreateObjectWithId START
 // myCollection = client.collections.get('WineReviewNV')
 
-uuid = await myNVCollection.data.insert({
+uuid = await reviews.data.insert({
   properties: {
     "title": "A delicious Riesling",
     "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
@@ -215,9 +215,9 @@ uuid = await myNVCollection.data.insert({
 
 console.log('UUID: ', uuid)
 // CreateObjectWithId END
-// myCollection = client.collections.get(collectionNameNV)
+// myCollection = client.collections.get(wineRewiews)
 
-result = await myNVCollection.query.fetchObjectById('12345678-e64f-5d94-90db-c8cfa3fc1234')
+result = await reviews.query.fetchObjectById('12345678-e64f-5d94-90db-c8cfa3fc1234')
 assert.deepEqual(result.properties, {
   "title": "A delicious Riesling",
   "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
