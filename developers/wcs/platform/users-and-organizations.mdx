@@ -1,0 +1,102 @@
+---
+title: Users and organizations
+sidebar_position: 70
+image: og/wcs/user_guides.jpg
+---
+
+import OrgSettings from '/developers/wcs/img/orgs-settings.jpg';
+import OrgPulldown from '/developers/wcs/img/orgs-pulldown.jpg';
+import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
+
+Accounts in Weaviate Cloud Services (WCD) are based on organizations. There is an organization for each user account. Users can belong to more than one organization.
+
+## User accounts
+
+User accounts are identified by email addresses. Each account has it's own [organization](#organizations).
+
+- To create an account, follow [these steps](/developers/wcs/create-account).
+- To delete an account, [contact support](mailto:support@weaviate.io).
+
+## Organizations
+
+Organizations group user accounts. Every user in the organization has the same access to organization assets:
+
+- Cluster management
+- Billing configuration
+- User management
+
+Be cautious when you add users to your organization, especially in production, since each user has full access to the organization.
+
+### Edit organization settings
+
+User editable configuration settings are on the Organization settings tab.
+
+To open the settings tab, click `Organization settings` at the bottom of the organizations pull down menu.
+
+<img src={OrgSettings} width="75%" alt="Organization settings button"/>
+
+### Create an organization
+
+To create a new organization, follow these steps:
+
+1. Click the Organizations pulldown menu in the WCD console.
+
+    <img src={OrgPulldown} width="75%" alt="Organization pulldown menu"/>
+
+2. Click "Add new organization".
+1. Enter the organization name.
+
+WCD automatically switches to the new organization.
+
+### Invite users
+
+A WCD user can be a member of more than one organization. Once a user creates an account, you can add that user to your organization.
+
+<RestartTheCluster/>
+
+To add a user, follow these steps:
+
+1. Ask the user for WCD account details.
+
+   - If the user has an account, note the email address.
+   - If the user does not have an account, [create a new account](/developers/wcs/create-account).
+
+2. Open the [Organization settings](#edit-organization-settings) panel.
+1. Enter the user's email address in the `Users` section. Click `Add user`.
+
+WCD sends an email to the user when the user is added to the organization.
+
+### Remove users
+
+To remove users, follow these steps:
+
+1. Open the [Organization settings](#edit-organization-settings) panel.
+1. Find the user's email address in the `Users` section.
+1. Click the trashcan icon to delete the user.
+1. Click `Confirm`.
+
+<RestartTheCluster/>
+
+If you have clusters created by the deleted user, those clusters are still available after the restart.
+
+### Delete organization
+
+To delete an organization, [contact support](mailto:support@weaviate.io).
+
+## Billing
+
+[Billing](/developers/wcs/platform/billing.mdx) is done on an organization level.
+
+Once a billing account is configured, every user in an organization can create new clusters or modify existing ones.
+
+Each cycle the account gets a bill that includes charges for all of the clusters. The charges are itemized by cluster, not by user.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

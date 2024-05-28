@@ -7,6 +7,7 @@ image: og/wcs/user_guides.jpg
 import WCSAPIKeys from '/developers/wcs/img/wcs-api-keys.jpg';
 import WCSAddAPIKeys from '/developers/wcs/img/wcs-add-key-details.jpg';
 import WCSDelAPIKeys from '/developers/wcs/img/wcs-delete-api-key.jpg';
+import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
 
 By default, API keys are enabled for all WCD clusters.
 
@@ -25,7 +26,7 @@ Sandbox clusters have an administrator key. You cannot modify the Sandbox key.
 
 If you have a Serverless cluster, you can create new API keys.
 
-WCS restarts the cluster when you add a new API key. If you have a stand-alone cluster, you is a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
+<RestartTheCluster/>
 
 To create a new API key, follow these steps:
 
@@ -42,7 +43,7 @@ To create a new API key, follow these steps:
 
 If you have a Serverless cluster, you can delete API keys.
 
-WCD restarts the cluster when you delete an API key. If you have a stand-alone cluster, you is a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
+<RestartTheCluster/>
 
 To delete an API key, follow these steps:
 
