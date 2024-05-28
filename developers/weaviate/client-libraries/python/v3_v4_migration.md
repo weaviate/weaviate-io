@@ -187,8 +187,9 @@ The focus on [collections](/developers/weaviate/config-refs/schema) is related t
 
 There are other changes as well. The new python client is designed to support the changes in Weaviate Core. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
 
-For more details and sample code, see [Manage collections](/developers/weaviate/manage-data/collections#read-all-collection-definitions)
+For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
 
+[Manage collections](/developers/weaviate/manage-data/collections#read-all-collection-definitions) has more details and additional sample code.
 
 ### Collection creation from JSON
 
