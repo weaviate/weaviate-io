@@ -70,6 +70,19 @@ Increase this value to improve efficiency of the compaction process, but be awar
 
 Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
 
+### Tombstone cleanup
+
+Tombstones are records that mark deleted objects. In an HNSW index, tombstones are regularly cleaned up, triggered periodically by the `cleanupIntervalSeconds` parameter.
+
+As the index grows in size, the cleanup process may take longer to complete and require more resources. For very large indexes, this may cause performance issues.
+
+To control the number of tombstones deleted per cleanup cycle and prevent performance issues, set the [`TOMBSTONE_DELETION_MAX_PER_CYCLE` and `TOMBSTONE_DELETION_MIN_PER_CYCLE` environment variables](../env-vars.md#general).
+
+- Set `TOMBSTONE_DELETION_MIN_PER_CYCLE` to prevent occurrences of unnecessary cleanup cycles.
+- Set `TOMBSTONE_DELETION_MAX_PER_CYCLE` to prevent the cleanup process from taking too long and consuming too many resources.
+
+As an example, for a cluster with 300 million objects per shard, a `TOMBSTONE_DELETION_MIN_PER_CYCLE` value of 1000000 (1 million) and a `TOMBSTONE_DELETION_MAX_PER_CYCLE` value of 10000000 (10 million) may be good starting points.
+
 ### PQ configuration parameters
 
 Configure `pq` with these parameters.
