@@ -353,10 +353,7 @@ const config = {
                                 label: 'Community',
                                 to: '/community',
                             },
-                            {
-                                label: 'Knowledge Cards',
-                                to: '/learn/knowledgebase',
-                            },
+                           
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -513,10 +510,7 @@ const config = {
                                 label: 'Workshops',
                                 to: '/community/events',
                             },
-                            {
-                                label: 'Knowledge Cards',
-                                to: '/learn/knowledgebase',
-                            },
+                           
                             {
 
                                 label: 'Academy',
