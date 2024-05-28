@@ -4,7 +4,7 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate, {generateUuid5} from 'weaviate-client';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCD(
   'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
@@ -83,14 +83,13 @@ try {
 }
 
 // ObjectWithCrossRef
-const myCollection = client.collections.get('JeopardyCategory')
-const properties = {"name": "Science"}
-const uuid = generateUuid5(myCollection.name, properties.name)
+const jeopardy = client.collections.get('JeopardyCategory')
+
+const dataObject = {'name': 'Science'}
 const categoryId = '...'
 
-const response = await myCollection.data.insert({
-  properties: properties,
-  id: uuid, // A UUID for the object
+const response = await jeopardy.data.insert({
+  properties: dataObject,
   // highlight-start
   references: {
     'hasCategory': categoryId  // e.g. {'hasCategory': '583876f3-e293-5b5b-9839-03f455f14575'}
@@ -113,11 +112,11 @@ assert((q_obj.properties['hasCategory'] as object[]).find(xref => xref['href'] =
 // =================================
 
 // OneWay TS
-const myCollection = client.collections.get('JeopardyCategory')
+const jeopardy = client.collections.get('JeopardyCategory')
 const categoryObjectId = '...'
 const questionObjectId = '...'
 
-await myCollection.data.referenceAdd({
+await jeopardy.data.referenceAdd({
   fromProperty: 'hasCategory',
   to: categoryObjectId,
   fromUuid: questionObjectId
@@ -169,9 +168,9 @@ const jeopardyQuestionCollection = client.collections.create({
 
 // START Collections TwoWay Category2
 // Add the "hasQuestion" cross-reference property to the JeopardyCategory collection
-const myCollection = client.collections.get('JeopardyCategory')
+const jeopardy = client.collections.get('JeopardyCategory')
 
-await myCollection.config.addReference({
+await jeopardy.config.addReference({
   name: 'hasQuestion',
   targetCollection: 'JeopardyQuestion'
 })

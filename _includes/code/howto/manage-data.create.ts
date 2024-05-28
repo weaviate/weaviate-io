@@ -5,7 +5,7 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate, { WeaviateClient, WeaviateNonGenericObject, WeaviateObject, WeaviateObjectType, WeaviateReturn } from 'weaviate-client';
+import weaviate, { WeaviateClient, WeaviateNonGenericObject, WeaviateObject, WeaviateReturn } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCD(
   process.env.WCD_URL,
@@ -21,19 +21,31 @@ const collectionName = 'JeopardyQuestion';
 const wineRewiews = 'WineReviewNV'
 let result: WeaviateNonGenericObject;
 
+// CreateObjectWithDeterministicId START
+// highlight-start
+import { generateUuid5 } from 'weaviate-client';
+// highlight-end
+// CreateObjectWithDeterministicId END
+
 // add thing below to pages
-const myCollection = client.collections.get('JeopardyQuestion')
+// CreateObject START // CreateObjectWithVector START // CreateObjectWithId START // CreateObjectWithDeterministicId START
+const jeopardy = client.collections.get('JeopardyQuestion')
+
+// CreateObject END // CreateObjectWithVector END // CreateObjectWithId END // CreateObjectWithDeterministicId END
+// CreateObjectNamedVectors START
 const reviews = client.collections.get('WineReviewNV')
+
+// CreateObjectNamedVectors END
 let uuid;
 
 // ============================
-// ===== Define the class =====
+// ===== Define the collection =====
 // ============================
 
 const collectionDefinition = {
   name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default'),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
   properties: [
     {
       name: 'question',
@@ -74,17 +86,20 @@ const collectionDefinitionNV = {
     },
   ],
   vectorizers: [
-  weaviate.configure.vectorizer.text2VecOpenAI('title',{
+  weaviate.configure.vectorizer.text2VecOpenAI({
+    name: 'title',
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
     sourceProperties: ['title']
   }),
-  weaviate.configure.vectorizer.text2VecOpenAI('review_body',{
+  weaviate.configure.vectorizer.text2VecOpenAI({
+    name: 'review_body',
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
     sourceProperties: ['review_body'],
   }),
-  weaviate.configure.vectorizer.text2VecOpenAI('title_country',{
+  weaviate.configure.vectorizer.text2VecOpenAI({
+    name: 'title_country',
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw(),
-    sourceProperties: ['title','country'],
+    sourceProperties: ['title', 'country'],
   })
 ]
 };
@@ -103,8 +118,7 @@ try {
 // =========================
 
 // CreateObject START
-
-uuid = await myCollection.data.insert({
+uuid = await jeopardy.data.insert({
   'question': 'This vector DB is OSS & supports automatic property type inference on import',
   // 'answer': 'Weaviate',  // properties can be omitted
   'newProperty': 123,  // will be automatically added as a number property
@@ -112,9 +126,9 @@ uuid = await myCollection.data.insert({
 
 console.log('UUID: ', uuid)
 // CreateObject END
-// myCollection = client.collections.get(collectionName)
+// jeopardy = client.collections.get(collectionName)
 
-result = await myCollection.query.fetchObjectById(uuid)
+result = await jeopardy.query.fetchObjectById(uuid)
 console.log('1')
 // result = await client.data.getterById().withClassName(className).withId(result.id).do();
 assert.equal(result.properties['newProperty'], 123);
@@ -124,15 +138,15 @@ assert.equal(result.properties['newProperty'], 123);
 // =======================================
 
 // CreateObjectWithVector START
-// myCollection = client.collections.get('JeopardyQuestion')
-
-uuid = await myCollection.data.insert({
+uuid = await jeopardy.data.insert({
   properties: {
   'question': 'This vector DB is OSS & supports automatic property type inference on import',
   // 'answer': 'Weaviate',  // properties can be omitted
   'newProperty': 123,  // will be automatically added as a number property
   },
+  // highlight-start
   vectors: Array(1536).fill(0.12345)
+  // highlight-end
 })
 
 console.log('UUID: ', uuid)
@@ -144,12 +158,11 @@ console.log('UUID: ', uuid)
 // =======================================
 
 // CreateObjectNamedVectors START
-
 uuid = await reviews.data.insert({
   properties: {
-    "title": "A delicious Riesling",
-    "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
-    "country": "Germany",
+    'title': 'A delicious Riesling',
+    'review_body': 'This wine is a delicious Riesling which pairs well with seafood.',
+    'country': 'Germany',
   },
   // highlight-start
   vectors: {
@@ -163,66 +176,54 @@ uuid = await reviews.data.insert({
 console.log('UUID: ', uuid)
 // CreateObjectNamedVectors END
 
+// ============================================
+// ===== Create object with id and vector =====
+// ============================================
+
+// CreateObjectWithId START
+uuid = await jeopardy.data.insert({
+  properties: {
+    'question': 'This vector DB is OSS and supports automatic property type inference on import',
+    'answer': 'Weaviate',
+  },
+  // highlight-start
+  id: '12345678-e64f-5d94-90db-c8cfa3fc1234'
+  // highlight-end
+})
+
+console.log('UUID: ', uuid)
+// CreateObjectWithId END
+// jeopardy = client.collections.get(wineRewiews)
+
+result = await reviews.query.fetchObjectById('12345678-e64f-5d94-90db-c8cfa3fc1234')
+assert.deepEqual(result.properties, {
+  'question': 'This vector DB is OSS and supports automatic property type inference on import',
+  'answer': 'Weaviate',
+});
 
 // ===============================================
 // ===== Create object with deterministic id =====
 // ===============================================
 
 // CreateObjectWithDeterministicId START
-// highlight-start
-import { generateUuid5 } from 'weaviate-client';  
-// highlight-end
-
-// myCollection = client.collections.get('WineReviewNV')
 const dataObject = {
-  "title": "A delicious Riesling",
-  "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
-  "country": "Germany",
+  'question': 'This vector DB is OSS and supports automatic property type inference on import',
+  'answer': 'Weaviate',
 }
 
-uuid = await reviews.data.insert({
+uuid = await jeopardy.data.insert({
   properties: dataObject,
   // highlight-start
-  id: generateUuid5(dataObject.title)
+  id: generateUuid5('Article', JSON.stringify(dataObject)) // use the whole object to generate a uuid
   // highlight-end
+  // id: generateUuid5(dataObject.answer)                  // use a specific property to generate a uuid
 })
 
 console.log('UUID: ', uuid)
 // CreateObjectWithDeterministicId END
 
-// myCollection = client.collections.get(wineRewiews)
-
 result = await reviews.query.fetchObjectById(uuid)
-assert.equal(result.uuid, generateUuid5(dataObject.title));
-
-// ============================================
-// ===== Create object with id and vector =====
-// ============================================
-
-// CreateObjectWithId START
-// myCollection = client.collections.get('WineReviewNV')
-
-uuid = await reviews.data.insert({
-  properties: {
-    "title": "A delicious Riesling",
-    "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
-    "country": "Germany",
-    },
-  // highlight-start
-  id: "12345678-e64f-5d94-90db-c8cfa3fc1234"
-  // highlight-end
-})
-
-console.log('UUID: ', uuid)
-// CreateObjectWithId END
-// myCollection = client.collections.get(wineRewiews)
-
-result = await reviews.query.fetchObjectById('12345678-e64f-5d94-90db-c8cfa3fc1234')
-assert.deepEqual(result.properties, {
-  "title": "A delicious Riesling",
-  "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
-  "country": "Germany",
-  });
+assert.equal(result.uuid, generateUuid5(JSON.stringify(dataObject)));
 
 
 // ===========================

@@ -103,7 +103,6 @@ data_obj["hasCategory"] = [  # Add one or more cross-references through the "has
 data_uuid = client.data_object.create(
     data_obj,
     "JeopardyQuestion",
-    uuid=obj_uuid,  # optional; if not provided, one will be generated
 )
 # END ObjectWithCrossRef
 
