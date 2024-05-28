@@ -354,6 +354,7 @@ const config = {
                                 label: 'Community',
                                 to: '/community',
                             },
+                           
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -441,56 +442,7 @@ const config = {
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
                     },
-                    /*  {
-                        to: '/developers/academy',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fas fa-lg fa-graduation-cap',
-                    },
-                    {
-                        to: 'https://weaviate.io/slack',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-slack',
-                    },
-                    {
-                        to: 'https://forum.weaviate.io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-discourse',
-                    },
-                    {
-                        to: 'https://github.com/weaviate/weaviate',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-github',
-                    },
-                    {
-                        to: 'https://twitter.com/weaviate_io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-twitter',
-                    },
-                    {
-                        to: 'https://newsletter.weaviate.io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fas fa-lg fa-envelope',
-                    },
-                    {
-                        to: '/podcast',
-                        // to: 'https://www.youtube.com/@Weaviate/playlists',
-                        label: ' ',
-                        position: 'right',
-                        // target: '_blank',
-                        className: 'fas fa-lg fa-microphone',
-                    },*/
+                    
                     {
                         type: 'search',
                         position: 'right',
@@ -559,6 +511,7 @@ const config = {
                                 label: 'Workshops',
                                 to: '/community/events',
                             },
+                           
                             {
 
                                 label: 'Academy',
