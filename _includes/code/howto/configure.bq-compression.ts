@@ -7,7 +7,7 @@ import { configure } from 'weaviate-client';
 
 const client = await weaviate.connectToLocal();
 
-const collectionName = 'YourCollection';
+const collectionName = 'MyCollection';
 
 // Prep
 await client.collections.delete(collectionName);

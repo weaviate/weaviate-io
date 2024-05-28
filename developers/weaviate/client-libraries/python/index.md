@@ -950,7 +950,7 @@ Use `ReferenceToMulti` for multi-target references.
 * `vector_index_config` parameter factory functions for `wvc.config.Configure` and `wvc.config.Reconfigure` have changed to, e.g.:
     ```python
     client.collections.create(
-        name="YourCollection",
+        name="MyCollection",
         # highlight-start
         vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
             distance_metric=wvc.config.VectorDistances.COSINE,

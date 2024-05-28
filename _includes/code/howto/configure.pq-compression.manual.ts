@@ -4,7 +4,7 @@ import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToLocal();
 
-const collectionName = 'YourCollection';
+const collectionName = 'MyCollection';
 
 // END-ANY
 
