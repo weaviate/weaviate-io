@@ -117,7 +117,6 @@ You can use any of the following models with `generative-mistral`:
 * `mistral-small-latest` (aka `mistral-small-2402`)
 * `mistral-medium`
 * `mistral-medium-latest` (aka `mistral-medium-2312`)
-* `mistral-large`
 * `mistral-large-latest` (aka `mistral-large-2402`)
 
 #### Example

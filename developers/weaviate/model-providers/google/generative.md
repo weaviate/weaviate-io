@@ -232,17 +232,21 @@ Configure the following generative parameters to customize the model behavior.
 
 Vertex AI:
 - `chat-bison` (default)
-- `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
 - `chat-bison-32k` (from Weaviate `v1.24.9`)
 - `chat-bison@002` (from Weaviate `v1.24.9`)
 - `chat-bison-32k@002` (from Weaviate `v1.24.9`)
 - `chat-bison@001` (from Weaviate `v1.24.9`)
+- `gemini-1.5-pro-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.5-pro-preview-0409` (from Weaviate `v1.25.1`)
+- `gemini-1.5-flash-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-002` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-001` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro` (from Weaviate `v1.25.1`)
 
 AI Studio:
 - `chat-bison-001` (default)
 - `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
+<!-- - `gemini-pro-vision` (from Weaviate `v1.24.2`) -->
 
 ## Further resources
 
