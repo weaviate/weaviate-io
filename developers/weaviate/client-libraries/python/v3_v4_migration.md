@@ -106,7 +106,7 @@ The `v4` client API is very different from the `v3` API. Major user-facing chang
 
 ### Helper classes
 
-The `v4` client introduces helper classes to interact with Weaviate. These classes provide strong typing. This helps with code correctness, it also makes it coding easier if your IDE has auto-completion.
+The `v4` client introduces helper classes to interact with Weaviate. These classes provide strong typing. Strong typing helps with code correctness, it also makes coding easier if your IDE has auto-completion.
 
 When you are coding, check the auto-complete frequently. It provides useful guidance for API changes and client options.
 
