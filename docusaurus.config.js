@@ -228,8 +228,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-online-workshops',
-                content: `<b>Learn from the experts</b> at our weekly <a target="_blank" rel="noopener noreferrer" href="/community/events">Online Workshops</a>.`,
+                id: 'announcement-bar-may2024',
+                content: `We would love your input to help us improve your experience - <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/hrFGMqtVkdSG6ne48">Fill out our Community Experience Survey</a> by June 14th.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
