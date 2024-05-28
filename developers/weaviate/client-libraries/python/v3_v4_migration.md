@@ -181,11 +181,11 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
 
 The focus on [collections](/developers/weaviate/config-refs/schema) is related to some corresponding changes in Weaviate Core:
 
-- Old-style "class" objects are "collections".
-- An old "schema" is a "collection configuration".
+- Old-style "class" objects are "collections" now.
+- An old "schema" is a "collection configuration" now.
 - A "property schema" is a sub-set of the collection configuration.
 
-There are other changes as well. The new python client is designed to support the changes in Weaviate Core. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
+There are other Core changes as well. The new python client is designed to support the changes in Weaviate Core. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
 
 For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
 
