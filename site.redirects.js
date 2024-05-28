@@ -515,6 +515,10 @@ const siteRedirects = {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
             },
+            {
+                to: "/case-studies/instabase",
+                from: "/case-studies"
+            },
   // Services Changes
   {
     to: "/services/enterprise-cloud",
