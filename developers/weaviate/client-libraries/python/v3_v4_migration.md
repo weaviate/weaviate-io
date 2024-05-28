@@ -49,7 +49,7 @@ To go from `v3` to `v4`, you must
 
 The `v4` client is instantiated by the `WeaviateClient` object. The `WeaviateClient` object is the main entry point for all API operations.
 
-You can instantiate the `WeaviateClient` object directly. In most cases it is better to use the connection helper functions, such as `connect_to_local` and `connect_to_wcs`.
+You can instantiate the `WeaviateClient` object directly. However, in most cases it is better to use a connection helper function such as `connect_to_local` or `connect_to_wcs`.
 
 <Tabs groupId="languages">
 <TabItem value="wcs" label="WCS">
