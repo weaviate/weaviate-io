@@ -185,7 +185,7 @@ The focus on [collections](/developers/weaviate/config-refs/schema) in the v4 cl
 - An old "schema" is a "collection configuration" now.
 - A "property schema" is a sub-set of the collection configuration.
 
-There are other Core changes as well. The new python client is designed to support the changes in Weaviate Core. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
+There are other Weaviate Core changes as well. The new python client is designed to support these changes. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
 
 For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
 
