@@ -43,7 +43,13 @@ console.log(JSON.stringify(shards, null, 2));
 <TabItem value="js2" label="JS/TS Client v2">
 
 ```js
-// TODO: add JS Client v2 example
+const shards = await client.schema.shardUpdater()
+  .withClassName('Article')
+  .withShardName('shard-1234')
+  .withStatus('READY')
+  .do()
+
+console.log(JSON.stringify(shards, null, 2));
 ```
 
 </TabItem>
