@@ -209,6 +209,7 @@ To supply parameters at query time, adding them to the HTTP header.
 `text2vec-aws` supports these models:
 
 - `amazon.titan-embed-text-v1`
+- `amazon.titan-embed-text-v2:0`
 - `cohere.embed-english-v3`
 - `cohere.embed-multilingual-v3`
 

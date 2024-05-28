@@ -280,6 +280,7 @@ The AWS region setting is required for all AWS integrations.
 #### Bedrock
 
 - `amazon.titan-embed-text-v1`
+- `amazon.titan-embed-text-v2:0`
 - `cohere.embed-english-v3`
 - `cohere.embed-multilingual-v3`
 

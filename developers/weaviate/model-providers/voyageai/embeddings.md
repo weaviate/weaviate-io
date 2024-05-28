@@ -237,7 +237,7 @@ For further details on model parameters, see the [Voyage AI Embedding API docume
 - `voyage-code-2`
 - `voyage-2`
 - `voyage-law-2`
-- `voyage-lite-02-instruct`
+- `voyage-large-2-instruct`
 
 ## Further resources
 

@@ -210,7 +210,6 @@ For further details on model parameters, see the [Mistral API documentation](htt
 * `mistral-small-latest` (aka `mistral-small-2402`)
 * `mistral-medium`
 * `mistral-medium-latest` (aka `mistral-medium-2312`)
-* `mistral-large`
 * `mistral-large-latest` (aka `mistral-large-2402`)
 
 ## Further resources
