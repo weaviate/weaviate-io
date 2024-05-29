@@ -419,7 +419,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 - This feature was added in `v1.21`
 - Other client code examples coming soon
-- For now, please send a [PUT request through the REST API endpoint](/developers/weaviate/api/rest#tag/schema) to update the tenant activity status.
+- To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
 
 </details>
 

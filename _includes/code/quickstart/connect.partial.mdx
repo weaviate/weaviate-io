@@ -1,0 +1,90 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+```python
+import weaviate, os
+import weaviate.classes as wvc
+
+# Set these environment variables
+URL = os.getenv("WCS_URL")
+APIKEY = os.getenv("WCS_API_KEY")
+
+# Connect to Weaviate Cloud
+client = weaviate.connect_to_wcs(
+    cluster_url=URL,
+    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
+)
+
+# Check connection
+client.is_ready()
+```
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client(
+    url = "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-client'
+
+const client: WeaviateClient = await weaviate.connectToWCS(
+    'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  {
+    authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
+  }
+)
+
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+```ts
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
+import fetch from 'node-fetch';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
+});
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+For `curl`, add the API key to the header as shown below:
+<br/>
+
+```bash
+echo '{
+  "query": "<QUERY>"
+}' | curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
+    -d @- \
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+</Tabs>

@@ -476,6 +476,10 @@ const siteRedirects = {
             to: "/community/events",
             from: "/learn/workshop"
         },
+        {
+            to: "/community/events",
+            from: "/learn/workshops"
+        },
         // Partners Off
         {
             to: "/pricing",
@@ -510,6 +514,10 @@ const siteRedirects = {
             {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
+            },
+            {
+                to: "/case-studies/instabase",
+                from: "/case-studies"
             },
   // Services Changes
   {

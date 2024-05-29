@@ -40,7 +40,7 @@ export default function ServicePlan() {
               <div className={styles.hlPoint}>High-availability optional</div>
               <div className={styles.hlPoint}>GUI for GraphQL queries</div>
               <div className={styles.hlPoint}>
-                Collections definition and management (coming soon)
+                Collections definition and management
               </div>
               <div className={styles.hlPoint}>
                 Access to support from our experts for all clusters

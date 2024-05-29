@@ -13,7 +13,7 @@ This can be done through either explicitly setting it as part of the `values.yam
 :::
 
 :::tip End-to-end guide
-If you are looking for a complete end-to-end tutorial on the topic, please the [Weaviate Academy course on Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The tutorial covers an end-to-end scenario of deploying Weaviate on Kubernetes with Minikube.
+If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
 :::
 
 ## Requirements

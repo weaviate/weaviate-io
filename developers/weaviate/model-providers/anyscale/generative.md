@@ -199,7 +199,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
+For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
 
 ### Available models
 
@@ -207,14 +207,14 @@ For further details on model parameters, please consult the [Anyscale Endpoints 
 * `meta-llama/Llama-2-13b-chat-hf`
 * `meta-llama/Llama-2-7b-chat-hf`
 * `codellama/CodeLlama-34b-Instruct-hf`
-* `HuggingFaceH4/zephyr-7b-beta`
 * `mistralai/Mistral-7B-Instruct-v0.1`
+* `mistralai/Mixtral-8x7B-Instruct-v0.1`
 
 ## Further resources
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

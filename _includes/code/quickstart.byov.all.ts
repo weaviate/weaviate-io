@@ -15,9 +15,6 @@ const client: WeaviateClient = await weaviate.connectToWCD(
 const newCollection = await client.collections.create({
   name: 'Question',
   vectorizers: weaviate.configure.vectorizer.none(),
-  vectorIndex: weaviate.configure.vectorIndex.hnsw({
-    distanceMetric: 'cosine',
-  })
 });
 
 console.log('We have a new collection!', newCollection['name']);

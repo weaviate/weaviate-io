@@ -16,7 +16,7 @@ import ModuleDocDeprecation from '/developers/weaviate/modules/_components/modul
 * The module enables generative search operations on the Weaviate instance.
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
-    * Please check the vendor pricing.
+    * Check the vendor pricing.
 * You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=).
 
 :::info Releases and versions
@@ -343,12 +343,12 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 }
 ```
 
-### Multi-modality
+<!-- ### Multi-modality
 
 :::info Added in `v1.24.2`
 :::
 
-Weaviate can leverage multimodality of the `gemini-pro-vision` model. Thus, the input passed onto `gemini-pro-vision` can be a combination of text and images, where images are represented as base64 encoded strings.
+Weaviate can leverage multimodality of the `gemini-pro-vision` model. Thus, the input passed onto `gemini-pro-vision` can be a combination of text and images, where images are represented as base64 encoded strings. -->
 
 ## Additional information
 
@@ -358,17 +358,21 @@ You can specify the model as a part of the schema as shown earlier. Available mo
 
 Vertex AI:
 - `chat-bison` (default)
-- `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
 - `chat-bison-32k` (from Weaviate `v1.24.9`)
 - `chat-bison@002` (from Weaviate `v1.24.9`)
 - `chat-bison-32k@002` (from Weaviate `v1.24.9`)
 - `chat-bison@001` (from Weaviate `v1.24.9`)
+- `gemini-1.5-pro-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.5-pro-preview-0409` (from Weaviate `v1.25.1`)
+- `gemini-1.5-flash-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-002` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-001` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro` (from Weaviate `v1.25.1`)
 
 AI Studio:
 - `chat-bison-001` (default)
 - `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
+<!-- - `gemini-pro-vision` (from Weaviate `v1.24.2`) -->
 
 ## Questions and feedback
 

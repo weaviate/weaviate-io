@@ -280,6 +280,7 @@ The AWS region setting is required for all AWS integrations.
 #### Bedrock
 
 - `amazon.titan-embed-text-v1`
+- `amazon.titan-embed-text-v2:0`
 - `cohere.embed-english-v3`
 - `cohere.embed-multilingual-v3`
 
@@ -297,7 +298,7 @@ Any custom SageMaker URL can be used as an endpoint.
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

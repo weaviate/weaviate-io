@@ -45,11 +45,11 @@ To go from `v3` to `v4`, you must
 
     </details>
 
-## Instantiation
+## Instantiate a client
 
-The `v4` client is instantiated through the `WeaviateClient` object, which is the main entry point for all API operations.
+The `v4` client is instantiated by the `WeaviateClient` object. The `WeaviateClient` object is the main entry point for all API operations.
 
-You can directly instantiate the client, but in most cases you can use helper functions starting with `_connect_to`, such as `connect_to_local`, `connect_to_wcs`.
+You can instantiate the `WeaviateClient` object directly. However, in most cases it is easier to use a connection helper function such as `connect_to_local` or `connect_to_wcs`.
 
 <Tabs groupId="languages">
 <TabItem value="wcd" label="WCD">
@@ -106,9 +106,11 @@ The `v4` client API is very different from the `v3` API. Major user-facing chang
 
 ### Helper classes
 
-The `v4` client introduces an extensive set of helper classes to interact with Weaviate. These classes are used to provide strong typing, and to make the client more user-friendly such as through IDE autocompletion.
+The `v4` client introduces helper classes to interact with Weaviate. These classes provide strong typing. Strong typing helps with code correctness. It also makes coding easier if your IDE has an auto-completion feature.
 
-Take a look at the examples below.
+When you are coding, check the auto-complete frequently. It provides useful guidance for API changes and client options.
+
+In these examples, the imports expose additional types to the client. After the import, your IDE can use the imported objects for auto-completion.
 
 import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.generic.py';
 
@@ -135,13 +137,22 @@ import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearTex
 </TabItem>
 </Tabs>
 
-In both of these examples, you can see how the helper classes and methods abstract away the need for manual JSONs or strings.
+The `wvc` import exposes basic types that you will need for most applications.
 
-### Interaction with collections
+```python
+import weaviate.classes as wvc
+```
 
-Interacting with the `client` object for CRUD and search operations have been replaced with the use of collection objects.
+The `Move` import exposes configuration elements for `near_text` search. If your application doesn't need `near_text` search. Your can streamline your code namespace by omitting this import.
 
-This conveniently removes the need to specify the collection for each operation, and reduces potential for errors.
+```python
+from weaviate.collections.classes.grpc import Move
+```
+### Interact with collections
+
+When you connect to a Weaviate database, the v4 client and the v3 client return different objects. The v3 client returns a `client` object that you interact with for CRUD and search operations. The v4 client uses a `collection` object instead.
+
+In v4, there is no need to specify a collection each time. This simplifies your code and reduces the potential for errors.
 
 import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
@@ -166,7 +177,19 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
   </TabItem>
 </Tabs>
 
-Note here that the collection object can be re-used throughout the codebase.
+### Collections, classes and schemas
+
+The focus on [collections](/developers/weaviate/config-refs/schema) in the v4 client is related to some corresponding changes in Weaviate Core:
+
+- Old-style "class" objects are "collections" now.
+- An old "schema" is a "collection configuration" now.
+- A "property schema" is a sub-set of the collection configuration.
+
+There are other Weaviate Core changes as well. The new python client is designed to support these changes. Expect to find differences in the way you interact with schemas, collection configurations, and property configurations.
+
+For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
+
+[Manage collections](/developers/weaviate/manage-data/collections#read-all-collection-definitions) has more details and additional sample code.
 
 ### Collection creation from JSON
 

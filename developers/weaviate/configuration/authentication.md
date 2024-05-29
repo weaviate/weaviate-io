@@ -166,7 +166,7 @@ To use OpenID Connect (OIDC), the **respective environment variables** must be c
 As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
 :::
 
-The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
+The OIDC-related Docker Compose environment variables are shown below. For configuration details, see the inline-yaml comments:
 
 ```yaml
 services:
@@ -184,9 +184,8 @@ services:
       #
       # The example URL below uses the path structure commonly found with keycloak
       # where an example realm 'my-weaviate-usecase' was created. The exact
-      # path structure will depend on the token issuer of your choice. Please
-      # see the respective documentation of your issuer about which endpoint
-      # implements OIDC Discovery.
+      # path structure depends on the token issuer. See the token issuer's documentation
+      # about which endpoint implements OIDC Discovery.
       AUTHENTICATION_OIDC_ISSUER: 'http://my-token-issuer/auth/realms/my-weaviate-usecase'
 
       # client_id (required unless skip_client_id_check is set to true) tells
@@ -326,7 +325,7 @@ else:
     parameter_string = "&".join([key + "=" + item for key, item in parameters.items()])
     response_auth = requests.get(authorization_url + "?" + parameter_string)
 
-    print("Please visit the following url with your browser to login:")
+    print("To login, open the following url with your browser:")
     print(authorization_url + "?" + parameter_string)
     print(
         "After the login you will be redirected, the token is the 'id_token' parameter of the redirection url."

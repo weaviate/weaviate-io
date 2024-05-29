@@ -23,10 +23,10 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 ### Community clients
 
-There also exist [community clients](./community.md) that were prepared by our wonderful community members. These clients are not maintained by the core Weaviate team, but by the community members themselves. If you want to contribute to these clients, please contact the maintainers of the client.
+There also exist [community clients](./community.md) that were prepared by our wonderful community members. These clients are not maintained by the core Weaviate team, but by the community members themselves. To contribute to these clients, contact the maintainers directly.
 
 :::note Don't see your preferred language?
-If you want to contribute one or request for us to work on a particular client, please let us know on [the forum](https://forum.weaviate.io/)
+If you want to contribute a client, or to request a particular client, let us know in [the forum](https://forum.weaviate.io/)
 :::
 
 ## Native vs GraphQL queries
