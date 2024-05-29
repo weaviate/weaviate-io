@@ -455,9 +455,7 @@ newCollection = await client.collections.create({
   sharding: weaviate.configure.sharding({
     virtualPerPhysical: 128,
     desiredCount: 1,
-    actualCount: 1,
     desiredVirtualCount: 128,
-    actualVirtualCount: 128
   })
   // highlight-end
 })
