@@ -29,10 +29,12 @@ const ModalComponent = ({
   }
 
   const formattedTitle = formatTitleForUrl(details.title);
-  const shareUrl = `${window.location.origin}${window.location.pathname}#card=${formattedTitle}`;
+  const shareUrl = `${window.location.origin}/learn/cards/${formattedTitle}`;
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
-  const imageFullUrl = `${window.location.origin}/img/cards/${details.cardImage}`;
+  const imageFullUrl = details.cardImage
+    ? `${window.location.origin}/img/cards/${details.cardImage}`
+    : `${window.location.origin}/img/og/content/knowledgecards.jpg`;
 
   const shareToTwitter = () => {
     const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
