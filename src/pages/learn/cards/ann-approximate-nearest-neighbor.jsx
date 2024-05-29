@@ -6,14 +6,16 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import knowledge from '/data/knowledgecards.json';
 
 const CardPage = () => {
-  const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
+  const card = knowledge.all.find(
+    (c) => c.title === 'ANN - Approximate Nearest Neighbor'
+  );
   if (!card) return <p>Card not found</p>;
 
   const imageFullUrl = card.cardImage
     ? `/img/cards/${card.cardImage}`
     : `/img/og/content/knowledgecards.jpg`;
 
-  const pageUrl = `/learn/cards/alpha-parameter`;
+  const pageUrl = `/learn/cards/ann-approximate-nearest-neighbor`;
 
   const structuredData = {
     '@context': 'http://schema.org',
@@ -45,9 +47,12 @@ const CardPage = () => {
         {() => {
           setTimeout(() => {
             window.location.href = `/learn/knowledgebase#card=${encodeURIComponent(
-              card.title.replace(/\s/g, '-').toLowerCase()
+              card.title
+                .replace(/[^\w\s]/gi, '')
+                .replace(/\s+/g, '-')
+                .toLowerCase()
             )}`;
-          }, 2000); // Redirect after 3 seconds for SEO purposes
+          }, 2000);
 
           return (
             <div className="loadingIcon">
