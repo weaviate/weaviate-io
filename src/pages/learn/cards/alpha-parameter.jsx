@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Redirect } from 'react-router-dom';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import knowledge from '/data/knowledgecards.json';
+import { Redirect } from '@docusaurus/router';
 
 const CardPage = () => {
-  const [redirectPath, setRedirectPath] = useState('');
   const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   if (!card) return <p>Card not found</p>;
-
-  useEffect(() => {
-    if (ExecutionEnvironment.canUseDOM) {
-      const formattedTitle = card.title.replace(/\s/g, '-').toLowerCase();
-      setRedirectPath(
-        `/learn/knowledgebase#card=${encodeURIComponent(formattedTitle)}`
-      );
-    }
-  }, [card]);
 
   const imageFullUrl = card.cardImage
     ? `${window.location.origin}/img/cards/${card.cardImage}`
     : `${window.location.origin}/img/og/content/knowledgecards.jpg`;
+
+  const pageUrl = `${window.location.origin}/learn/cards/alpha-parameter`;
+  const redirectUrl = `/learn/knowledgebase#card=${encodeURIComponent(
+    card.title.replace(/\s/g, '-').toLowerCase()
+  )}`;
+
+  const structuredData = {
+    '@context': 'http://schema.org',
+    '@type': 'Article',
+    headline: card.title,
+    description: card.text,
+    image: imageFullUrl,
+    url: pageUrl,
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShouldRedirect(true);
+    }, 1000); // Delay redirect for 5000 milliseconds (5 seconds)
+  }, []);
 
   return (
     <>
@@ -30,19 +40,18 @@ const CardPage = () => {
         <meta property="og:title" content={card.title} />
         <meta property="og:description" content={card.longText} />
         <meta property="og:image" content={imageFullUrl} />
-        <meta
-          property="og:url"
-          content={window.location.origin + redirectPath}
-        />
+        <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={card.title} />
         <meta name="twitter:description" content={card.longText} />
         <meta name="twitter:image" content={imageFullUrl} />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Helmet>
-      <h1>{card.title}</h1>
-      <p>{card.text}</p>
-      {redirectPath && <Redirect to={redirectPath} />}
+
+      {shouldRedirect && <Redirect to={redirectUrl} />}
     </>
   );
 };
