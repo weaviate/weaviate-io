@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Head from '@docusaurus/Head';
 import { Redirect } from '@docusaurus/router';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import knowledge from '/data/knowledgecards.json';
@@ -25,7 +26,7 @@ const CardPage = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>{card.title}</title>
         <meta property="og:title" content={card.title} />
         <meta property="og:description" content={card.longText} />
@@ -39,7 +40,7 @@ const CardPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
-      </Helmet>
+      </Head>
       <BrowserOnly fallback={<p>Loading...</p>}>
         {() => {
           setTimeout(() => {
