@@ -153,6 +153,10 @@ const siteRedirects = {
          to: '/developers/wcs/console',
          from: '/developers/wcs/platform/ssconsole',
         },
+        {
+         to: '/developers/wcs/cluster-status',
+         from: '/developers/wcs/platform/cluster-status',
+        },
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
@@ -514,6 +518,10 @@ const siteRedirects = {
             {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
+            },
+            {
+                to: "/case-studies/instabase",
+                from: "/case-studies"
             },
   // Services Changes
   {

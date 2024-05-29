@@ -26,35 +26,35 @@ Weaviate core uses modules to connect to vectorizers, rankers, generators, and o
 
 ## Suggested uses
 
-Sandbox clusters are intended for learning, experimenting, and exploring. Sandboxes are fully featured, but they have a limited lifetime and they run on scaled down infrastructure compared to managed clusters.
+Sandbox clusters are intended for learning, experimenting, and exploring. Sandboxes are fully featured, but they have a limited lifetime and they run on scaled down infrastructure compared to serverless clusters.
 
 If you are working through a course in [Weaviate Academy](https://weaviate.io/developers/academy), consider using a sandbox to complete the lessons without having to install and configure a local instance.
 
 ## Limitations
 
-Sandboxes are not designed for production use. Compared to managed instances, they are limited in size, duration, and operational resilience. Sandboxes have these limits:
+Sandboxes are not designed for production use. Compared to serverless instances, they are limited in size, duration, and operational resilience. Sandboxes have these limits:
 
 - 14 day lifespan
 - No backup
 - One `admin` API key
 - No `read-only` API key
 - Fixed instance size
-- Less memory capacity than the smallest managed cluster
-- Less processor capacity than the smallest managed cluster
-- Less storage capacity than the smallest managed cluster
+- Less memory capacity than the smallest serverless cluster
+- Less processor capacity than the smallest serverless cluster
+- Less storage capacity than the smallest serverless cluster
 
 ## Export data
 
 <ExportData />
 
-## Switch to a managed cluster
+## Switch to a serverless cluster
 
-There is no direct path to convert a sandbox cluster to a managed cluster. Follow these steps to move to a managed cluster.
+There is no direct path to convert a sandbox cluster to a serverless cluster. Follow these steps to move to a serverless cluster.
 
 1. [Export your data](#export-your-data).
 1. [Export your schema](#export-your-schema).
 1. [Configure billing](#configure-billing) in your WCD account.
-1. [Create a managed cluster](#create-a-managed-cluster).
+1. [Create a serverless cluster](#create-a-serverless-cluster).
 1. [Recreate your schema](#recreate-your-schema).
 1. [Import your data](#import-your-data).
 
@@ -121,21 +121,21 @@ import ConfigureBilling from '/_includes/wcs/configure-billing.mdx';
 
 <ConfigureBilling/>
 
-### Create a managed cluster
+### Create a serverless cluster
 
-Managed clusters require billing details. WCD prompts you to add billing details if you have not already added them.
+Serverless clusters require billing details. WCD prompts you to add billing details if you have not already added them.
 
-To create a managed cluster, follow these steps:
+To create a serverless cluster, follow these steps:
 
-import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
+import CreateServerlessCluster from '/_includes/wcs/create-cluster-managed.mdx'
 
-<CreateManagedCluster />
+<CreateServerlessCluster />
 
-The managed cluster has new API keys. Update the API keys in your client code to use the new keys.
+The serverless cluster has new API keys. Update the API keys in your client code to use the new keys.
 
 ### Recreate your schema
 
-Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster.
+Use the exported (sandbox cluster) schema to recreate the collection schema in the serverless cluster.
 
 For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
 
@@ -174,7 +174,7 @@ Refer to the exported schema to recreate the property definitions.<br/><br/>
 
 ### Import your data
 
-Use the [batch import API](/developers/weaviate/manage-data/import) to import your data into the managed cluster.
+Use the [batch import API](/developers/weaviate/manage-data/import) to import your data into the serverless cluster.
 
 If your data file is very large, consider [streaming](/developers/weaviate/manage-data/import#stream-data-from-large-files) your upload.
 
