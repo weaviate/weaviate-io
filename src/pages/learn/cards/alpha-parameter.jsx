@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
 import knowledge from '/data/knowledgecards.json';
 import { Redirect } from '@docusaurus/router';
 
 const CardPage = () => {
   const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
-  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   if (!card) return <p>Card not found</p>;
 
@@ -27,12 +28,6 @@ const CardPage = () => {
     url: pageUrl,
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShouldRedirect(true);
-    }, 1000); // Delay redirect for 5000 milliseconds (5 seconds)
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -50,8 +45,14 @@ const CardPage = () => {
           {JSON.stringify(structuredData)}
         </script>
       </Helmet>
-
-      {shouldRedirect && <Redirect to={redirectUrl} />}
+      <h1>{card.title}</h1>
+      <p>{card.text}</p>
+      <BrowserOnly>
+        {() => {
+          // This function will only be executed on the client side
+          return <Redirect to={redirectUrl} />;
+        }}
+      </BrowserOnly>
     </>
   );
 };
