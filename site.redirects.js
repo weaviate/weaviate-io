@@ -153,6 +153,10 @@ const siteRedirects = {
          to: '/developers/wcs/console',
          from: '/developers/wcs/platform/ssconsole',
         },
+        {
+         to: '/developers/wcs/cluster-status',
+         from: '/developers/wcs/platform/cluster-status',
+        },
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
