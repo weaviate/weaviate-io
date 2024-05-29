@@ -5,7 +5,7 @@ title: Product quantization
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!./_snippets/100_pq.py';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
 
 [Product quantization](/developers/weaviate/concepts/vector-quantization#product-quantization) (PQ), is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index), which can improve performance and reduce resource requirements as well as costs.
@@ -15,10 +15,6 @@ import PyCode from '!!raw-loader!./_snippets/100_pq.py';
 Product quantization compresses vectors in two ways. One, by dividing them into "segments", and two, quantizing each segment to be represented by one of a "codebook" of centroids.
 
 In the diagram below, we show a vector of L dimensions, where each dimension is a floating point number. The vector is divided into L/x segments, and each segment is quantized to be represented by one of N centroids.
-
-import PQDiagram from './_snippets/pq_diagram.png';
-
-<img src={PQDiagram} width="80%" alt="Abstracted PQ diagram showing reduction of dimensions and quantization of groups of floats"/>
 
 As an example, a 768-dimensional vector can be compressed into a 128-segment quantized vector of 1-byte integers.
 

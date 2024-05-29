@@ -1,0 +1,80 @@
+---
+title: HNSW index in depth
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+
+HNSW, or "Hierarchical Navigable Small World", is a powerful and flexible vector index type that allows for fast and accurate searches of high-dimensional vectors.
+
+It also has the advantage of being very scalable, while being tunable to allow for different trade-offs between search speed, accuracy, and resource requirements.
+
+HNSW is the default index type in Weaviate, and if you are not sure which index type to use, you should start with HNSW.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Principles of HNSW
+
+HNSW is all about creating connections between vectors in a way that allows for both fast global traversal of the graph and accurate search of similar vectors.
+
+It does this by creating multiple layers of vectors, where each layer includes a subset of the vectors in the layer below. This means that as you move up the layers, finding the correct general area of the graph becomes faster.
+
+And once the general area is found, the search then becomes more local, by moving down the layers, where more of the vectors are included.
+
+Ultimately, the search reaches the bottom layer, which includes all the available vectors.
+
+import HNSWDiagram from './_snippets/hnsw_diagram.png';
+
+<div class="academy-img-md">
+  <img src={HNSWDiagram} alt="Outline of HNSW graph, showing nodes connected in multiple layers"/>
+</div>
+
+This method allows a search to quickly find the right general area of the graph before carrying out a comprehensive search of the dense bottom layer.
+
+Intuitively, an HNSW graph can be thought of as a high-dimensional skip list of sorts, where the higher layers are used to global search, and the lower layers are used for local search.
+
+### <i class="fa-solid fa-chalkboard"></i> Trade-offs
+
+HNSW is a very flexible index type that allows for a wide range of trade-offs.
+
+The key trade-offs are between search speed, accuracy, and resource requirements. These trade-offs can be made by tuning the parameters of the HNSW index, as well as by [quantizing the vectors](../compression/index.md).
+
+### <i class="fa-solid fa-chalkboard"></i> Resource requirements
+
+HNSW is an in-memory index, where each node in the graph as well as each edge between nodes are stored in memory.
+
+This means that the size of the index in memory is directly proportional to the number of vectors in the index, as well as the number of connections between vectors.
+
+The size of an HNSW index is dominated by the number of vectors; take a look at the table below for an example:
+
+| Component | Size derivation | Typical size | Size @1M vectors | Size @100M vectors |
+| --- | --- | --- | --- | --- |
+| Node | 4B (float) x N dimensions | 2-12kB | 2-12GB | 200-1200GB |
+| Edge | 10B x 20 connections | 200B | 200MB | 20GB |
+
+As you can see, the memory requirements of an HNSW index can quickly become a bottleneck. This is where [quantization](../compression/index.md) can be used to reduce the size of the index in memory.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tuning HNSW
+
+An HNSW index can be tuned to achieve different trade-offs between search speed, accuracy, and resource requirements.
+
+The key aspects to tune are:
+- The number of connections between nodes,
+- The size of a "dynamic list", and
+- The distance metric used.
+
+### <i class="fa-solid fa-chalkboard"></i> Number of connections
+
+The number of connections between nodes determine how densely the graph is connected. A higher number of connections will allow for more accurate searches, but will also slow down searches, and require more memory.
+
+This is controlled by the `maxConnections` parameter in Weaviate, with a default value of 64. Note that the bottom layer of the graph will have up to (`2 * maxConnections`) connections.
+
+### <i class="fa-solid fa-chalkboard"></i> Quantization
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

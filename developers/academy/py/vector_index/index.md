@@ -13,14 +13,16 @@ import { courseData } from '/src/components/Academy/courseData.js'
 This course is self-contained. However, we recommend that you go through one of the 101-level courses, such as that for working with [text](../starter_text_data/index.md), [your own vectors](../starter_custom_vectors/index.md), or [multimodal data](../starter_multimodal_data/index.md).
 :::
 
-As you work with more and more data, the sheer volume of it begins to impose further and further constraints on your ability to work with it. This is especially true the closer you get to production environments, where the cost of storage and the time it takes to process data can become significant.
+The vector index is a key component of Weaviate's search capabilities. It allows you to search for vectors based on their similarity to a query vector, and to retrieve the objects that are associated with those vectors.
 
-This course will introduce you to data compression in Weaviate, and how it can be used to reduce your resource requirements and in turn improve performance or reduce costs.
+Weaviate offers multiple types of vector indexes, each with its own strengths and weaknesses. Each index is also configurable, allowing you to tune its performance to your specific use case.
+
+This course will introduce you to the different types of vector indexes available in Weaviate, and how to configure them to best suit your use case.
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 
-<LearningGoals courseName="vector_indexing"/>
+<LearningGoals courseName="vector_index"/>
 
 ## <i class="fa-solid fa-book-open-reader"></i> Units
 
-<CourseUnits courseData={courseData} courseName="vector_indexing" />
+<CourseUnits courseData={courseData} courseName="vector_index" />

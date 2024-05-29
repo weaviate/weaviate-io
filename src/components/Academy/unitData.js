@@ -251,6 +251,76 @@ export const unitData = {
       "Make an informed choice on which compression algorithm to use for a given use case.",
     ]
   },
+  "vindex_overview": {
+    title: "Vector index: Overview",
+    body: "What is a vector index, and why is it important?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/overview",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what a vector index is and how it affects your vector searches."
+    ],
+    learningOutcomes: [
+      "Describe what a vector index is and what it does.",
+      "Recite different types of vector indexes in Weaviate.",
+    ]
+  },
+  "vindex_hnsw": {
+    title: "HNSW index in depth",
+    body: "Learn about the HNSW index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/hnsw",
+    badgeType: "practical",
+    learningGoals: [
+      "How the HNSW index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how an HNSW index works and its key attributes.",
+      "Configure Weaviate with an HNSW index, and describe its parameters.",
+    ]
+  },
+  "vindex_flat": {
+    title: "Flat index in depth",
+    body: "Learn about the flat index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/flat",
+    badgeType: "practical",
+    learningGoals: [
+      "How the flat index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a flat index works and its key attributes.",
+      "Configure Weaviate with a flat index, and describe its parameters.",
+    ]
+  },
+  "vindex_dynamic": {
+    title: "Dynamic index in depth",
+    body: "Learn about the dynamic index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/dynamic",
+    badgeType: "practical",
+    learningGoals: [
+      "How the dynamic index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a dynamic index works and its key attributes.",
+      "Configure Weaviate with a dynamic index, and describe its parameters.",
+    ]
+  },
+  "vindex_selection": {
+    title: "Selecting a vector index",
+    body: "Rules of thumb for selecting the right vector index type",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/selection",
+    badgeType: "practical",
+    learningGoals: [
+      "How to select an appropriate vector index type for your use case."
+    ],
+    learningOutcomes: [
+      "Describe pros and cons of each vector index type at a high level.",
+      "Given a use case, select the appropriate vector index type.",
+    ]
+  },
   "tokenization_basics": {
     title: "Overview of tokenization",
     body: "What is tokenization, and why is it important?",

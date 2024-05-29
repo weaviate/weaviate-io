@@ -87,27 +87,28 @@ export const courseData = {
     ],
     note: "Python client (v4); project-based"
   },
-  "vector_indexes": {
+  "vector_index": {
     title: "Vector indexes",
     courseId: "PY_230",
-    body: "Vectors indexes are essential for fast and accurate vector searches. Learn about different index types, .",
+    body: "Vector indexes are the key components for vector search. Learn what they are, and how to use them effectively to suit your needs.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/vector_indexing",
+    buttonURL: "/developers/academy/py/vector_index",
     badgeType: "course",
     isCourse: true,
     units: [
-      "compression_pq", "compression_bq", "compression_strategy"
+      "vindex_overview", "vindex_hnsw", "vindex_flat", "vindex_dynamic", "vindex_selection"
     ],
     learningGoals: [
-      "What vector compression algorithms are available, how to use them and when to use them."
+      "What vector index types are available, when to select each one and how to configure them."
     ],
     learningOutcomes: [
-      "Name available vector compression algorithms in Weaviate.",
-      "Create collections with vector compression enabled.",
-      "Configure vector compression parameters.",
-      "Select a compression algorithm for a given use case.",
+      "Name available vector index types in Weaviate.",
+      "Select an appropriate index type for a given use case.",
+      "Recite relationships between HNSW parameters and search performance.",
+      "Describe how quantization affects each index type.",
+      "Create collections with your chosen vector index type and preferred parameters.",
     ],
-    note: "Python client (v4); project-based"
+    note: "Python client (v4)"
   },
   "compression": {
     title: "Vector compression for improved efficiency",
@@ -129,7 +130,7 @@ export const courseData = {
       "Configure vector compression parameters.",
       "Select a compression algorithm for a given use case.",
     ],
-    note: "Python client (v4); project-based"
+    note: "Python client (v4)"
   },
   "tokenization": {
     title: "Text tokenization",
@@ -151,7 +152,7 @@ export const courseData = {
       "Select an appropriate tokenization option for a given use case.",
       "Name languages for which specific tokenization options are available.",
     ],
-    note: "Python client (v4); project-based"
+    note: "Python client (v4)"
   },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with TypeScript (or JavaScript)",
