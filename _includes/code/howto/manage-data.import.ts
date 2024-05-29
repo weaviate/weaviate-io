@@ -179,6 +179,7 @@ try {
   })
 }
 
+{
 // START BatchImportWithNamedVectors
 const myCollection = client.collections.get("MyCollection")
 let dataObjects = [
@@ -203,7 +204,8 @@ let dataObjects = [
   // ...
 ]
 
-await jeopardy.data.insertMany(dataObjects)
+await myCollection.data.insertMany(dataObjects)
+}
 // END BatchImportWithNamedVectors
 
 // Aggregate not working with named vectors as of 2024-02-28
