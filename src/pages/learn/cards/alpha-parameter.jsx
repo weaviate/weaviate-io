@@ -1,13 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import BrowserOnly from '@docusaurus/BrowserOnly';
-
-import knowledge from '/data/knowledgecards.json';
 import { Redirect } from '@docusaurus/router';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import knowledge from '/data/knowledgecards.json';
 
 const CardPage = () => {
   const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
-
   if (!card) return <p>Card not found</p>;
 
   const imageFullUrl = card.cardImage
@@ -28,6 +26,14 @@ const CardPage = () => {
     url: pageUrl,
   };
 
+  if (ExecutionEnvironment.canUseDOM) {
+    setTimeout(() => {
+      window.location.href = `/learn/knowledgebase#card=${encodeURIComponent(
+        card.title.replace(/\s/g, '-').toLowerCase()
+      )}`;
+    }, 1000); // Redirect after 1 second for SEO purposes
+  }
+
   return (
     <>
       <Helmet>
@@ -45,14 +51,6 @@ const CardPage = () => {
           {JSON.stringify(structuredData)}
         </script>
       </Helmet>
-      <h1>{card.title}</h1>
-      <p>{card.text}</p>
-      <BrowserOnly>
-        {() => {
-          // This function will only be executed on the client side
-          return <Redirect to={redirectUrl} />;
-        }}
-      </BrowserOnly>
     </>
   );
 };
