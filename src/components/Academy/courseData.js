@@ -96,7 +96,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "vindex_overview", "vindex_hnsw", "vindex_flat", "vindex_dynamic", "vindex_selection"
+      "vindex_overview", "vindex_hnsw", "vindex_flat", "vindex_dynamic"
     ],
     learningGoals: [
       "What vector index types are available, when to select each one and how to configure them."

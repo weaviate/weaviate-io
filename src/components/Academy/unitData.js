@@ -307,20 +307,6 @@ export const unitData = {
       "Configure Weaviate with a dynamic index, and describe its parameters.",
     ]
   },
-  "vindex_selection": {
-    title: "Selecting a vector index",
-    body: "Rules of thumb for selecting the right vector index type",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/py/vector_index/selection",
-    badgeType: "practical",
-    learningGoals: [
-      "How to select an appropriate vector index type for your use case."
-    ],
-    learningOutcomes: [
-      "Describe pros and cons of each vector index type at a high level.",
-      "Given a use case, select the appropriate vector index type.",
-    ]
-  },
   "tokenization_basics": {
     title: "Overview of tokenization",
     body: "What is tokenization, and why is it important?",
