@@ -11,7 +11,7 @@ Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://consol
 
 To install and configure Weaviate, see the following:
 
-- **[Weaviate Cloud](../../wcs/quickstart.mdx)**: Managed services development and production environments.
+- **[Weaviate Cloud](../../wcs/quickstart.mdx)**: Managed services for development and production environments.
 - **[Docker Compose](./docker-compose.md#starter-docker-compose-file)**: Docker containers are well suited for development and testing.
 - **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
 - **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
