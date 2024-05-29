@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import knowledge from '/data/knowledgecards.json';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const CardPage = () => {
+  const [redirected, setRedirected] = useState(false);
   const card = knowledge.all.find(
     (c) => c.title === 'Multimodal Contrastive Finetuning'
   );
@@ -20,8 +21,18 @@ const CardPage = () => {
     headline: card.title,
     description: card.text,
     image: imageFullUrl,
-    url: `${window.location.origin}/learn/cards/multimoal-contrastive-finetuning`,
+    url: `${window.location.origin}/learn/cards/multimodal-contrastive-finetuning`,
   };
+
+  useEffect(() => {
+    if (!redirected) {
+      const formattedTitle = encodeURIComponent(
+        card.title.replace(/\s/g, '-').toLowerCase()
+      );
+      window.location.href = `/learn/knowledgebase#card=${formattedTitle}`;
+      setRedirected(true);
+    }
+  }, [redirected, card.title]);
 
   return (
     <>
@@ -32,7 +43,7 @@ const CardPage = () => {
         <meta property="og:image" content={imageFullUrl} />
         <meta
           property="og:url"
-          content={`${window.location.origin}/learn/cards/multimoal-contrastive-finetuning`}
+          content={`${window.location.origin}/learn/cards/multimodal-contrastive-finetuning`}
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -45,12 +56,6 @@ const CardPage = () => {
       </Helmet>
       <h1>{card.title}</h1>
       <p>{card.text}</p>
-      {/* Redirect to the main knowledge base page with the card open */}
-      <Redirect
-        to={`/learn/knowledgebase#card=${encodeURIComponent(
-          card.title.replace(/\s/g, '-').toLowerCase()
-        )}`}
-      />
     </>
   );
 };

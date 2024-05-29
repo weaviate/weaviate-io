@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import knowledge from '/data/knowledgecards.json';
 import { Helmet } from 'react-helmet';
+import BrowserOnly from '@docusaurus/BrowserOnly'; // Import the BrowserOnly component
 
 const CardPage = () => {
-  const history = useHistory();
+  const [redirected, setRedirected] = useState(false);
   const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
 
   if (!card) return <p>Card not found</p>;
@@ -23,11 +23,14 @@ const CardPage = () => {
   };
 
   useEffect(() => {
-    const formattedTitle = encodeURIComponent(
-      card.title.replace(/\s/g, '-').toLowerCase()
-    );
-    history.push(`/learn/knowledgebase#card=${formattedTitle}`);
-  }, [history, card.title]);
+    if (!redirected) {
+      const formattedTitle = encodeURIComponent(
+        card.title.replace(/\s/g, '-').toLowerCase()
+      );
+      window.location.href = `/learn/knowledgebase#card=${formattedTitle}`;
+      setRedirected(true);
+    }
+  }, [redirected, card.title]);
 
   return (
     <>

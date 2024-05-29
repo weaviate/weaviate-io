@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import knowledge from '/data/knowledgecards.json';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const CardPage = () => {
+  const [redirected, setRedirected] = useState(false);
   const card = knowledge.all.find((c) => c.title === 'Vector');
 
   if (!card) return <p>Card not found</p>;
@@ -20,6 +21,16 @@ const CardPage = () => {
     image: imageFullUrl,
     url: `${window.location.origin}/learn/cards/vector`,
   };
+
+  useEffect(() => {
+    if (!redirected) {
+      const formattedTitle = encodeURIComponent(
+        card.title.replace(/\s/g, '-').toLowerCase()
+      );
+      window.location.href = `/learn/knowledgebase#card=${formattedTitle}`;
+      setRedirected(true);
+    }
+  }, [redirected, card.title]);
 
   return (
     <>
@@ -43,12 +54,6 @@ const CardPage = () => {
       </Helmet>
       <h1>{card.title}</h1>
       <p>{card.text}</p>
-      {/* Redirect to the main knowledge base page with the card open */}
-      <Redirect
-        to={`/learn/knowledgebase#card=${encodeURIComponent(
-          card.title.replace(/\s/g, '-').toLowerCase()
-        )}`}
-      />
     </>
   );
 };
