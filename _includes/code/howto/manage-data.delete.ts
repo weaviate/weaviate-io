@@ -17,11 +17,10 @@ const client: WeaviateClient = await weaviate.connectToWCD(
  } 
 )
 
-const collectionName = 'EphemeralObject';
-// START DryRun // START DeleteBatch // START DeleteByIDBatch // START DeleteContain
-let result;
+// START DeleteObject // START DryRun // START DeleteBatch // START DeleteByIDBatch // START DeleteContain
 const myCollection = client.collections.get('EphemeralObject')
-// END DryRun // END DeleteBatch // END DeleteByIDBatch // END DeleteContain
+
+// END DeleteObject // END DryRun // END DeleteBatch // END DeleteByIDBatch // END DeleteContain
 
 
 // =========================
@@ -31,16 +30,14 @@ const myCollection = client.collections.get('EphemeralObject')
 // START DeleteObject
 let idToDelete = '...';  // replace with the id of the object you want to delete
 // END DeleteObject
-
-result = await myCollection.data.insert({
+idToDelete = await myCollection.data.insert({
   name: 'EphemeralObjectA'
 })
 
-idToDelete = result;
-
 // START DeleteObject
-
+// highlight-start
 await myCollection.data.deleteById(idToDelete)
+// highlight-end
 // END DeleteObject
 
 // Test
@@ -81,50 +78,53 @@ for (let i = 1; i <= N; i++)
     name: 'EphemeralObjectA' + i.toString(),
   })
 
+{
 // START DryRun
-
-result = await myCollection.data.deleteMany(
+const response = await myCollection.data.deleteMany(
   myCollection.filter.byProperty('name').like('EphemeralObject'),
+  // highlight-start
   {
     dryRun: true,
     verbose: true
   }
+  // highlight-end
 )
 
-console.log(result);
+console.log(response);
 // END DryRun
+}
 
 
 // ========================
 // ===== Batch delete =====
 // ========================
-
+{
 // START DeleteBatch
-
 // highlight-start
-result = await myCollection.data.deleteMany(
-  myCollection.filter.byProperty('name').like('Movie')
+const response = await myCollection.data.deleteMany(
+  myCollection.filter.byProperty('name').like('EphemeralObject*')
 )
 // highlight-end
+
+console.log(JSON.stringify(response))
 // END DeleteBatch
 
 // Test
-assert.equal(result.matches, 0);
-// assert.equal(result.matches, N); //fix
+assert.equal(response.matches, 0);
+// assert.equal(response.matches, N); //fix
 
 const leftovers = await myCollection.data.deleteMany(
-    myCollection.filter.byProperty('name').like('EphemeralObject*')
-  )
+  myCollection.filter.byProperty('name').like('EphemeralObject*')
+)
 
 assert.equal(leftovers?.matches, N);
-
+}
 // =====================================
 // ===== Batch delete with Contain =====
 // =====================================
 
 
 // START DeleteContain
-
 // highlight-start
 await myCollection.data.deleteMany(
   myCollection.filter.byProperty('name').containsAny(['europe', 'asia'])
@@ -135,19 +135,16 @@ await myCollection.data.deleteMany(
 // ==============================
 // ===== Batch delete by ID =====
 // ==============================
-
+{
 // START DeleteByIDBatch
-const idList = new Array
+const response = await myCollection.query.fetchObjects({limit: 3})
 
-result = await myCollection.query.fetchObjects({
-  limit: 2
-})
+const idList = response.objects.map(o => o.uuid)
 
-for (let objectId of result.objects) {
-  idList.push(objectId.uuid)
-}
-
+// highlight-start
 await myCollection.data.deleteMany(
   myCollection.filter.byId().containsAny(idList)
 )
+// highlight-end
 // END DeleteByIDBatch
+}
