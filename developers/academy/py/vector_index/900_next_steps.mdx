@@ -1,17 +1,28 @@
 ---
-title: Additional resources
+title: Wrap-up / Next steps
 ---
 
-Congratulations! You have completed this course on compression. We hope you found it helpful and informative.
+Congratulations! You have completed this course on vector indexes. We hope you found it helpful and informative.
 
-There are many more resources available to help you continue your learning journey.
+## Index selection
 
-## Documentation
+When choosing an index type, use the following as a guide:
 
-- [How-to: Configure PQ](/developers/weaviate/configuration/pq-compression.md)
-- [How-to: Configure BQ](/developers/weaviate/configuration/bq-compression.md)
-- [Concepts: vector indexes](/developers/weaviate/concepts/vector-index.md): Vector indexes are critical to how Weaviate works, and compression. Read more here.
-- [Configuration references: Vector index](/developers/weaviate/config-refs/schema/vector-index.md): Configuration references for the vector index, including compression settings.
+- **Flat index**: Use for small collections with a known size.
+- **HNSW index**: Use for large collections with a known size.
+- **Dynamic index**: Use for collections with an unknown size or collections that may grow over time.
+
+Also, in a multi-tenant environment, the "dynamic" index may be a good default choice, as it will allow some tenants to remain in the `flat` index while others are automatically converted to `hnsw` when they grow.
+
+## Further resources
+
+These resources will help you continue your learning journey:
+
+- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [References: Vector index parameters](/developers/weaviate/config-refs/schema/vector-index.md)
+- [How-to manage collections](/developers/weaviate/manage-data/collections.mdx)
+- [Weaviate Academy: Compression](../compression/index.md)
+- [Weaviate Academy: Named vectors](../named_vectors/index.md)
 
 import CTASocials from '../_snippets/cta_socials.mdx';
 

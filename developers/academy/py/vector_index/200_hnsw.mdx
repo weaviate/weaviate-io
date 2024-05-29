@@ -58,7 +58,7 @@ As you can see, the memory requirements of an HNSW index can quickly become a bo
 
 ![Vector Distance Calculations](../../../../blog/2024-03-26-intel/img/vector_distance.png)
 
-The distance metric used in HNSW determines how the distance between vectors is calculated. In turn, it impacts where each vector is placed in the graph.
+The distance metric used in the index determines how the distance between vectors is calculated. In an HNSW index, it impacts where each vector is placed in the graph.
 
 You must choose a metric that suits the vectors in your collection. To find this, consult the documentation of the model that generated your vectors.
 
@@ -66,7 +66,7 @@ Weaviate's default metric is cosine, but you can also use any number of [other a
 
 If you are unsure, the cosine distance is a good, robust, default choice that is used by a majority of models.
 
-### <i class="fa-solid fa-code"></i> Specify HNSW in Weaviate
+### <i class="fa-solid fa-code"></i> Specify HNSW as the index type
 
 HNSW is Weaviate's default vector index type. So, if you do not specify a collection to use a specific index type, it will use HNSW.
 

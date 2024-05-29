@@ -44,4 +44,70 @@ client.collections.create(
 )
 # END CustomConfigHNSW
 
+# START ConfigFlat
+client.collections.create(
+    name=collection_name,
+    # ... other parameters
+    # highlight-start
+    vector_index_config=Configure.VectorIndex.flat()
+    # highlight-end
+)
+# END ConfigFlat
+
+client.collections.delete(name=collection_name)
+
+# START CustomConfigFlat
+client.collections.create(
+    name=collection_name,
+    # ... other parameters
+    # highlight-start
+    vector_index_config=Configure.VectorIndex.flat(
+        distance_metric=VectorDistances.COSINE,                     # Distance metric
+        quantizer=Configure.VectorIndex.Quantizer.bq(cache=True),   # Quantizer configuration
+        vector_cache_max_objects=1000000,                           # Maximum number of objects in the cache
+    )
+    # highlight-end
+)
+# END CustomConfigFlat
+
+client.collections.delete(name=collection_name)
+
+# START ConfigDynamic
+client.collections.create(
+    name=collection_name,
+    # ... other parameters
+    # highlight-start
+    multi_tenancy_config=Configure.multi_tenancy(enabled=True), # Dyanmic index works well with multi-tenancy set-ups
+    vector_index_config=Configure.VectorIndex.dynamic()
+    # highlight-end
+)
+# END ConfigDynamic
+
+client.collections.delete(name=collection_name)
+
+# START CustomConfigDynamic
+client.collections.create(
+    name=collection_name,
+    # ... other parameters
+    # highlight-start
+    multi_tenancy_config=Configure.multi_tenancy(   # Dyanmic index works well with multi-tenancy set-ups
+        enabled=True,
+        auto_tenant_creation=True
+    ),
+    vector_index_config=Configure.VectorIndex.dynamic(
+        distance_metric=VectorDistances.COSINE,                     # Distance metric
+        threshold=25000,                                            # Threshold for switching to dynamic index
+        hnsw=Configure.VectorIndex.hnsw(
+            # Your preferred HNSW configuration
+        ),
+        flat=Configure.VectorIndex.flat(
+            # Your preferred flat configuration
+        ),
+    )
+    # highlight-end
+)
+# END CustomConfigDynamic
+
+client.collections.delete(name=collection_name)
+
 client.close()

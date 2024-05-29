@@ -1,5 +1,5 @@
 ---
-title: Product quantization
+title: Dynamic index in depth
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,69 +7,66 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
+The "dyanmic" index is a "best of both worlds" approach that combines the benefits of the `hnsw` and `flat` indexes.
 
-[Product quantization](/developers/weaviate/concepts/vector-quantization#product-quantization) (PQ), is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index), which can improve performance and reduce resource requirements as well as costs.
+## <i class="fa-solid fa-square-chevron-right"></i> Key ideas
 
-## <i class="fa-solid fa-chalkboard"></i> What is product quantization?
+Simply put, the `dynamic` index is a `flat` index that is automatically converted to an `hnsw` index when the number of vectors in the collection exceeds a predetermined threshold (10,000 by default).
 
-Product quantization compresses vectors in two ways. One, by dividing them into "segments", and two, quantizing each segment to be represented by one of a "codebook" of centroids.
+The motivation for this is that the `flat` index is very efficient for small collections, but its search time increases linearly with the number of vectors in the collection. The `hnsw` index, on the other hand, is more efficient for large collections, but includes a memory overhead with little benefit for small collections.
 
-In the diagram below, we show a vector of L dimensions, where each dimension is a floating point number. The vector is divided into L/x segments, and each segment is quantized to be represented by one of N centroids.
+The `dynamic` index is a good choice if you do not know how big the size of each collection will be, or if you expect some tenants to grow much larger than others.
 
-As an example, a 768-dimensional vector can be compressed into a 128-segment quantized vector of 1-byte integers.
+In a multi-tenancy configuration, this will mean that all tenants will start with the `flat` index, but will automatically switch to the `hnsw` index when the number of vectors in the collection exceeds the threshold.
 
-This will reduce the length of the vector by a factor of 6, and also the size of each segment from a floating point number (4 bytes) to a byte, representing one of 256 centroids.
+Currently, this is a one-way conversion, meaning that once the index is converted to `hnsw`, it will not be converted back to `flat` if it subsequently falls below the threshold.
 
-As a result, the size of the vector is reduced by 24 (from 768 lots of 4 byte numbers to 128 lots of 1 byte numbers).
+### <i class="fa-solid fa-chalkboard"></i> Distance metric
 
-The HNSW index can then be built on the PQ-compressed vectors, which will reduce the size of the index in memory.
+![Vector Distance Calculations](../../../../blog/2024-03-26-intel/img/vector_distance.png)
 
-### <i class="fa-solid fa-chalkboard"></i> Lossiness
+The distance metric used in the index determines how the distance between vectors is calculated. In an HNSW index, it impacts where each vector is placed in the graph.
 
-PQ is a lossy compression technique, as the original floating point numbers are quantized to a smaller set of integers. This means that some information is lost in the compression process.
+You must choose a metric that suits the vectors in your collection. To find this, consult the documentation of the model that generated your vectors.
 
-However, Weaviate compensates for this by overfetching vectors from the index, and then rescoring the vectors in the uncompressed space. In practice, we find that this compensates quite well for the lossiness of PQ.
+Weaviate's default metric is cosine, but you can also use any number of [other available metrics](/developers/weaviate/config-refs/distances.md).
 
-## <i class="fa-solid fa-code"></i> Configure PQ
+If you are unsure, the cosine distance is a good, robust, default choice that is used by a majority of models.
 
-This example creates a collection with product quantization (PQ) enabled, using default settings.
+## <i class="fa-solid fa-square-chevron-right"></i> Configure dynamic index in Weaviate
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# PQBasicConfig"
-  endMarker="# END PQBasicConfig"
-  language="py"
-/>
+Each of these parameters can be provided when creating a collection in Weaviate. Note that the `vector_cache_max_objects` is only used if quantization is enabled with vector caching enabled within it.
 
-### <i class="fa-solid fa-chalkboard"></i> Explain the code
+### <i class="fa-solid fa-code"></i> Basic configuration
 
-This will create a collection with PQ enabled, using the default settings.
-
-But it is important to note that the compression does not occur immediately. PQ relies on quantization of the vectors, so it is configured to wait until there are sufficient vectors to reach a "training set", by default 100,000 vectors.
-
-The training set is used to calculate the centroids for the quantization. Once the training set is reached, the PQ compression will occur.
-
-:::note Version and configuration requirements
-This type of PQ configuration is called "AutoPQ", and is available in Weaviate `v1.23` or later, with asynchronous indexing enabled.
-<br/>
-
-If you are using an earlier version of Weaviate, or have asynchronous indexing disabled, you will need to use a different configuration. Please refer to the [PQ configuration documentation](/developers/weaviate/configuration/pq-compression.md#manually-configure-pq) for more information.
-:::
-
-## <i class="fa-solid fa-code"></i> Customize PQ
-
-Many PQ parameters are configurable. While the default settings are suitable for many use cases, you may want to customize the PQ configuration to suit your specific requirements.
-
-The example below shows how to configure PQ with custom settings, such as with a lower training set size, and a different number of centroids.
+Set a collection to use the dynamic index as shown below.
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# PQCustomConfig"
-  endMarker="# END PQCustomConfig"
+  startMarker="# START ConfigDynamic"
+  endMarker="# END ConfigDynamic"
   language="py"
 />
 
-Please refer to the [PQ configuration documentation](/developers/weaviate/configuration/pq-compression.md#pq-parameters) for more information on the available settings.
+### <i class="fa-solid fa-code"></i> Custom configuration
+
+You can set the threshold at which the `flat` index will be converted to `hnsw`.
+
+Additionally, you can specify any of the `flat` and `hnsw` index parameters that will be used depending on the state of the index.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START CustomConfigDynamic"
+  endMarker="# END CustomConfigDynamic"
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Further resources
+
+- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [References: Vector index parameters](/developers/weaviate/config-refs/schema/vector-index.md)
+- [How-to manage collections](/developers/weaviate/manage-data/collections.mdx)
+- [Weaviate Academy: Compression](../compression/index.md)
 
 ## Questions and feedback
 
