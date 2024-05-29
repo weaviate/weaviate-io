@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import knowledge from '/data/knowledgecards.json';
-import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const CardPage = () => {
+  const history = useHistory();
   const card = knowledge.all.find((c) => c.title === 'Alpha Parameter');
 
   if (!card) return <p>Card not found</p>;
@@ -20,6 +21,13 @@ const CardPage = () => {
     image: imageFullUrl,
     url: `${window.location.origin}/learn/cards/alphabet-parameter`,
   };
+
+  useEffect(() => {
+    const formattedTitle = encodeURIComponent(
+      card.title.replace(/\s/g, '-').toLowerCase()
+    );
+    history.push(`/learn/knowledgebase#card=${formattedTitle}`);
+  }, [history, card.title]);
 
   return (
     <>
@@ -43,12 +51,6 @@ const CardPage = () => {
       </Helmet>
       <h1>{card.title}</h1>
       <p>{card.text}</p>
-      {/* Redirect to the main knowledge base page with the card open */}
-      <Redirect
-        to={`/learn/knowledgebase#card=${encodeURIComponent(
-          card.title.replace(/\s/g, '-').toLowerCase()
-        )}`}
-      />
     </>
   );
 };
