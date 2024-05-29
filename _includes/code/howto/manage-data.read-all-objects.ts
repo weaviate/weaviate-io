@@ -36,6 +36,7 @@ for await (let item of myCollection.iterator({
     includeVector: true
   })) {
     console.log(item.uuid, item.properties);
+    console.log(item.vectors);
 }
 // END ReadAllVectors
 
