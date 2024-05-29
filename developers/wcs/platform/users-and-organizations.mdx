@@ -6,7 +6,6 @@ image: og/wcs/user_guides.jpg
 
 import OrgSettings from '/developers/wcs/img/orgs-settings.jpg';
 import OrgPulldown from '/developers/wcs/img/orgs-pulldown.jpg';
-import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
 import OrgUpdateName from '/developers/wcs/img/orgs-update-name-before.jpg';
 import OrgUpdateCheckMark from '/developers/wcs/img/orgs-update-name-confirm.jpg';
 
@@ -81,10 +80,6 @@ Any member of an organization can add or remove a user. A new user has to have a
 
 A WCD user can be a member of more than one organization. Once a user creates an account in WCD, you can add that user to your organization.
 
-:::note Cluster restart
-<RestartTheCluster/>
-:::
-
 To add a user, follow these steps:
 
 1. Ask the user for WCD account details.
@@ -101,10 +96,6 @@ WCD sends an email to the user when the user is added to the organization.
 
 To remove a user, follow these steps:
 
-:::note Cluster restart
-<RestartTheCluster/>
-:::
-
 1. Open the [organization settings](#edit-organization-settings) panel.
 1. Find the user's email address in the `Users` section.
 1. Click the trashcan icon to delete the user.
@@ -118,7 +109,7 @@ If you have clusters that are created by the deleted user, those clusters are st
 
 Once a billing account is configured, every user in an organization can create new clusters or modify existing ones.
 
-Each cycle the account gets a bill that includes charges for all of the clusters. The charges are itemized by cluster, not by user.
+The account gets an invoice for each cluster. Cluster invoices are sent every 30 days, starting from when the cluster is created.
 
 ## Support
 
