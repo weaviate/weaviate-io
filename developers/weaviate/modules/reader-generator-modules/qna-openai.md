@@ -123,7 +123,7 @@ You can also configure additional parameters for the model through the parameter
 
 For example, the following schema configuration will set Weaviate to use the `qna-openai` model with the `Document` class.
 
-The following schema configuration uses the `text-davinci-002` model.
+The following schema configuration uses the `gpt-3.5-turbo-instruct` model.
 
 ```json
 {
@@ -134,7 +134,7 @@ The following schema configuration uses the `text-davinci-002` model.
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "qna-openai": {
-          "model": "text-davinci-002", // For OpenAI
+          "model": "gpt-3.5-turbo-instruct", // For OpenAI
           "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI
           "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI
           "maxTokens": 16, // Applicable to both OpenAI and Azure OpenAI
