@@ -595,7 +595,7 @@
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
   }
 
@@ -647,6 +647,10 @@
     border-radius: 0.4375rem;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+
+    @media screen and (max-width: 550px) {
+      width: 110%;
+    }
 
     @media screen and (max-width: 500px) {
       width: 112%;
@@ -705,6 +709,15 @@
   .relatedBox {
     display: flex;
     gap: 10px;
+    display: flex;
+    gap: 10px;
+    width: 460px;
+    overflow: overlay;
+    scroll-snap-align: center;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
   }
 
   .relatedBottom {

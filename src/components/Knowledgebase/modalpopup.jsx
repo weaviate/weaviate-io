@@ -189,7 +189,11 @@ const ModalComponent = ({
             ))} */}
 
             {/* related content */}
-            {(details.bloglink || details.doclink || details.videolink) && (
+            {(details.bloglink ||
+              details.bloglink2 ||
+              details.doclink ||
+              details.doclink2 ||
+              details.videolink) && (
               <>
                 <p className={styles.relatedText}>Related Content:</p>
                 <div className={styles.relatedBox}>
@@ -206,6 +210,19 @@ const ModalComponent = ({
                       </div>
                     </Link>
                   )}
+                  {details.bloglink2 && (
+                    <Link to={details.bloglink2}>
+                      <div className={styles.relatedBlog}>
+                        <div className={styles.relatedImage}></div>
+                        <div className={styles.relatedBottom}>
+                          <span className={styles.relatedTitle}>Blog:</span>
+                          <span className={styles.relatedSubtitle}>
+                            {details.blogTitle2}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                   {details.doclink && (
                     <Link to={details.doclink}>
                       <div className={styles.relatedBlog}>
@@ -214,6 +231,19 @@ const ModalComponent = ({
                           <span className={styles.relatedTitle}>Doc:</span>
                           <span className={styles.relatedSubtitle}>
                             {details.docTitle}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {details.doclink2 && (
+                    <Link to={details.doclink2}>
+                      <div className={styles.relatedBlog}>
+                        <div className={styles.relatedImage}></div>
+                        <div className={styles.relatedBottom}>
+                          <span className={styles.relatedTitle}>Doc:</span>
+                          <span className={styles.relatedSubtitle}>
+                            {details.docTitle2}
                           </span>
                         </div>
                       </div>
