@@ -44,7 +44,7 @@ const CardPage = () => {
       <BrowserOnly fallback={<p>Loading...</p>}>
         {() => {
           setTimeout(() => {
-            window.location.href = `/learn/knowledgebase#card=${encodeURIComponent(
+            window.location.href = `/learn/knowledgecards#card=${encodeURIComponent(
               card.title
                 .replace(/[^\w\s]/gi, '')
                 .replace(/\s+/g, '-')

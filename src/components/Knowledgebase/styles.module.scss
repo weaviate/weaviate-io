@@ -655,6 +655,10 @@
     @media screen and (max-width: 500px) {
       width: 112%;
     }
+
+    @media screen and (max-width: 400px) {
+      width: 113%;
+    }
   }
   .cardText {
     color: #1b1464;
@@ -711,12 +715,17 @@
     gap: 10px;
     display: flex;
     gap: 10px;
-    width: 460px;
+
+    width: 100%;
     overflow: overlay;
     scroll-snap-align: center;
 
     @media screen and (max-width: 500px) {
       width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 300px;
     }
   }
 
@@ -757,7 +766,7 @@
     box-shadow: rgba(22, 27, 45, 0.08) 0px 18.341px 48.908px 0px;
     flex-direction: column;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 550px) {
       width: 6.8rem;
     }
   }
@@ -772,7 +781,7 @@
     border-top-left-radius: 0.71644rem;
     border-top-right-radius: 0.71644rem;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 550px) {
       width: 6.8rem;
       height: 4.24613rem;
     }
@@ -787,6 +796,10 @@
 
     @media screen and (max-width: 500px) {
       width: 95%;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
     }
   }
 
@@ -808,6 +821,11 @@
 
     @media screen and (max-width: 500px) {
       width: 10.47769rem;
+      height: 2.84969rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 8.47769rem;
       height: 2.84969rem;
     }
   }

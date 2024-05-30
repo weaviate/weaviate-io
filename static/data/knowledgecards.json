@@ -79,7 +79,7 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-index",
       "docTitle": "Vector Index",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "vector-index.jpg"
+      "cardImage": "vector-based-index.jpg"
     },
     {
       "id": "vector-databases-6",
@@ -95,7 +95,7 @@
       "doclink": "https://weaviate.io/blog/vector-library-vs-vector-database#vector-databases",
       "docTitle": "Vector Library vs Vector Database",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": ""
+      "cardImage": "vector-database.jpg"
     },
     {
       "id": "search-1",
@@ -207,7 +207,7 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/indexing#ann-indexing",
       "docTitle": "ANN Indexing",
       "tags": ["HNSW", "Weaviate", "Image"],
-      "cardImage": "approximate-nearest-neighbor.jpg"
+      "cardImage": "ann-approximate-nearest-neighbor.jpg"
     },
     {
       "id": "hnsw-3",
@@ -318,7 +318,8 @@
       "link": "/developers/weaviate/quickstart",
       "doclink": "https://weaviate.io/developers/weaviate/more-resources/performance#cost-of-resolving-referencing",
       "docTitle": "Cost of resolving referencing",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "graph-database.jpg"
     },
     {
       "id": "databases-2",
@@ -333,7 +334,8 @@
       "docTitle": "Inverted index",
       "doclink2": "https://weaviate.io/developers/weaviate/concepts/indexing#inverted-index",
       "docTitle2": "Indexing",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "inverted-indexes.jpg"
     },
     {
       "id": "databases-3",
@@ -348,7 +350,8 @@
       "docTitle": "Sharding",
       "doclink2": "https://weaviate.io/developers/weaviate/concepts/replication-architecture#replication-vs-sharding",
       "docTitle2": "Replication vs Sharding",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "sharding.jpg"
     },
     {
       "id": "databases-4",
@@ -363,7 +366,8 @@
       "blogTitle": "Multi-tenancy and Vector Search",
       "doclink": "https://weaviate.io/developers/weaviate/manage-data/read-all-objects#read-all-objects---multi-tenant-collections",
       "docTitle": "Read All Objects - Multi-tenant collections",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "multi-tenancy.jpg"
     },
     {
       "id": "databases-5",
@@ -374,7 +378,8 @@
       "text": "A relational database organizes data into tables linked by relationships...",
       "longText": "A relational database organizes data into tables linked by relationships, enabling complex queries like finding students with both cats and dogs. It uses SQL for structured, precise data management, optimizing operations like filtering and joining for efficient data retrieval.",
       "link": "/developers/weaviate/quickstart",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "relational-database.jpg"
     },
     {
       "id": "databases-6",
@@ -389,7 +394,8 @@
       "blogTitle": "PQ Rescoring",
       "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-quantization#pq-compression-process",
       "docTitle": "PQ compression process",
-      "tags": ["Databases", "Weaviate", "Image"]
+      "tags": ["Databases", "Weaviate", "Image"],
+      "cardImage": "pq.jpg"
     },
     {
       "id": "llms-1",
@@ -406,7 +412,8 @@
       "blogTitle2": "RAG Evaluation",
       "doclink": "https://weaviate.io/developers/weaviate/starter-guides/generative#why-generative-search",
       "docTitle": "Why generative search?",
-      "tags": ["LLMs", "Weaviate", "Image"]
+      "tags": ["LLMs", "Weaviate", "Image"],
+      "cardImage": "large-language-model.jpg"
     },
     {
       "id": "llms-2",
@@ -419,7 +426,8 @@
       "link": "/developers/weaviate/quickstart",
       "bloglink": "https://weaviate.io/blog/multimodal-models#2-model-architecture",
       "blogTitle": "Multimodal Models",
-      "tags": ["LLMs", "Weaviate", "Image"]
+      "tags": ["LLMs", "Weaviate", "Image"],
+      "cardImage": "finetuning.jpg"
     },
     {
       "id": "llms-3",
@@ -436,7 +444,8 @@
       "blogTitle2": "Multimodal RAG",
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#multimodal-search",
       "docTitle": "Multimodal Search",
-      "tags": ["LLMs", "Weaviate", "Image"]
+      "tags": ["LLMs", "Weaviate", "Image"],
+      "cardImage": "multi-modal.jpg"
     },
     {
       "id": "llms-4",
@@ -453,7 +462,8 @@
       "docTitle": "Retriever Vectorizer Modules",
       "videolink": "https://www.youtube.com/watch?v=lpdN3aw-yTg",
       "videoTitle": "Vector embedding models for AI",
-      "tags": ["LLMs", "Weaviate", "Image"]
+      "tags": ["LLMs", "Weaviate", "Image"],
+      "cardImage": "embedding-model.jpg"
     },
     {
       "id": "llms-5",
@@ -468,7 +478,8 @@
       "blogTitle": "LLMs and Search",
       "bloglink2": "https://weaviate.io/developers/weaviate/starter-guides/generative#chunking",
       "blogTitle2": "Chunking",
-      "tags": ["LLMs", "Weaviate", "Image"]
+      "tags": ["LLMs", "Weaviate", "Image"],
+      "cardImage": "chunking.jpg"
     }
   ],
   "highlights": [

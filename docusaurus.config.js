@@ -348,7 +348,7 @@ const config = {
                             },
                             {
                                 label: 'Knowledge Cards',
-                                to: '/learn/knowledgebase',
+                                to: '/learn/knowledgecards',
                             },
                             {
                                 label: 'Newsletter',
@@ -517,7 +517,7 @@ const config = {
                             },
                             {
                                 label: 'Knowledge Cards',
-                                to: '/learn/knowledgebase',
+                                to: '/learn/knowledgecards',
                             },
                             {
 

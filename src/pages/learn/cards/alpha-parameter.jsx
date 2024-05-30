@@ -44,7 +44,7 @@ const CardPage = () => {
       <BrowserOnly fallback={<p>Loading...</p>}>
         {() => {
           setTimeout(() => {
-            window.location.href = `/learn/knowledgebase#card=${encodeURIComponent(
+            window.location.href = `/learn/knowledgecards#card=${encodeURIComponent(
               card.title.replace(/\s/g, '-').toLowerCase()
             )}`;
           }, 2000); // Redirect after 3 seconds for SEO purposes
