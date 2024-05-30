@@ -25,10 +25,12 @@ Members of the Weaviate community provide client libraries for some additional l
 
 ## Contributing
 
-To contribute to these libraries, please contact the maintainers directly.
+To contribute to these libraries, contact the maintainers directly.
 
-If you have a Weaviate client library you would like to add here, please let us know in the [forum](https://forum.weaviate.io/) or on [Slack](https://weaviate.io/slack).
+If you have a Weaviate client library you would like to add here, let us know in the [forum](https://forum.weaviate.io/) or on [Slack](https://weaviate.io/slack).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

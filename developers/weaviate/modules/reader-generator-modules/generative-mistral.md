@@ -5,6 +5,9 @@ image: og/docs/modules/generative-mistral.jpg
 # tags: ['generative', 'rag', 'mistral']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="mistral" />
 
 ## In short
 
@@ -39,7 +42,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -114,7 +117,6 @@ You can use any of the following models with `generative-mistral`:
 * `mistral-small-latest` (aka `mistral-small-2402`)
 * `mistral-medium`
 * `mistral-medium-latest` (aka `mistral-medium-2312`)
-* `mistral-large`
 * `mistral-large-latest` (aka `mistral-large-2402`)
 
 #### Example
@@ -234,10 +236,12 @@ import MistralGroupedResult from '/_includes/code/generative.mistral.groupedresu
 
 #### Further examples
 
-For further usage examples, please see the [how-to search: generative](../../search/generative.md) page.
+For further usage examples, see the [how-to search: generative](../../search/generative.md) page.
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

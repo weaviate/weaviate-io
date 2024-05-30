@@ -42,7 +42,7 @@ const siteRedirects = {
          from: '/developers/wcs/guides/create-instance',
         },
         {
-         to: '/developers/wcs/authentication',
+         to: '/developers/wcs/connect',
          from: '/developers/wcs/guides/authentication',
         },
         // Client library redirects
@@ -152,6 +152,10 @@ const siteRedirects = {
         {
          to: '/developers/wcs/console',
          from: '/developers/wcs/platform/ssconsole',
+        },
+        {
+         to: '/developers/wcs/cluster-status',
+         from: '/developers/wcs/platform/cluster-status',
         },
         // Tutorial redirects
         {
@@ -476,6 +480,10 @@ const siteRedirects = {
             to: "/community/events",
             from: "/learn/workshop"
         },
+        {
+            to: "/community/events",
+            from: "/learn/workshops"
+        },
         // Partners Off
         {
             to: "/pricing",
@@ -498,11 +506,28 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+        {
+            to: "/service/weaviate-general-terms-of-service",
+            from: "/service/weaviate-terms-of-service"
+        },
+        {
+            to: "/weaviate-support-terms",
+            from: "/supportterms"
+        },
             // Case Study Changes
             {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
             },
+            {
+                to: "/case-studies/instabase",
+                from: "/case-studies"
+            },
+  // Services Changes
+  {
+    to: "/services/enterprise-cloud",
+    from: "/services/enterprise-dedicated"
+},
 
 
     ],

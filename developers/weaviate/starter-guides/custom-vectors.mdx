@@ -5,137 +5,223 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
-## Overview
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
+import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
-As a vector database, Weaviate make use of vector representations, also known as "embeddings", of data objects.
+Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
 
-One way to generate these vectors is to use a ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which will generate a vector at import and query time. This can be a convenient method if you are using a publicly available model and want to simplify your pipeline.
+When you import data, you can pass pre-existing vectors or generate new ones. "Bring your own vectors" means you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
 
-Alternatively, you can supply your own, "custom", vector embeddings at import time as well as for any vector-based queries. This is useful if you have a custom model, or if you want to use a model that is not available through a Weaviate module.
+This guide discusses importing data that has pre-existing vectors.
 
-This tutorial will guide you through the process of using Weaviate with your own vectors. We will:
+## Guide steps
 
-1. Create a Weaviate instance
-2. Connect to the Weaviate instance
-3. Import your data, specifying your own vectors
-4. Perform a vector search with Weaviate
+To use this guide to import data that has pre-existing vectors, follow these steps:
 
+1. [Review the setup steps.](#setup)
+1. [Connect to a Weaviate instance.](#connect-to-weaviate)
+1. [Import data that specifies its own vectors.](#import-data-and-vectors)
+1. [Perform a vector search.](#query)
 
-## Data
+## Setup
 
-We'll use as an example a tiny dataset consisting of 10 questions from the popular quiz show "Jeopardy!". Each object has an associated vector embedding.
+This section introduces setup requirements and the example data that this guide uses.
 
-In this example, these vectors were obtained through an OpenAI API, using the <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>. But your vectors can come from any source, such as another inference service provider (e.g Cohere or Hugging Face) or your own fine-tuned model.
+### Example Data
+
+The example data is based on a set of ten questions from the "Jeopardy!" television program. The [import data file](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json) is a JSON formatted document that contains the vectors and the underlying data.
 
 <details>
-  <summary>Take a look at the dataset</summary>
+  <summary>The sample data</summary>
 
-  |    | Category   | Question                                                                                                          | Answer                  | Vector                                             |
-  |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------| ---------------------------------------------------|
-  |  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   | [ -0.006632288, -0.0042016874, ..., -0.020163147 ] |
-  |  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                | [ -0.0166891, -0.00092290324, ..., -0.032253385 ]  |
-  |  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       | [ -0.015592773, 0.019883318, ..., 0.0033349802 ]   |
-  |  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                | [ 0.014535263, -0.016103541, ..., -0.025882969 ]   |
-  |  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler | [ -0.0030859283, 0.015239313, ..., -0.021798335 ]  |
-  |  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 | [ -0.0090561025, 0.011155112, ..., -0.023036297 ]  |
-  |  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    | [ -0.02735741, 0.01199829, ..., 0.010396339 ]      |
-  |  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     | [ -0.014227471, 0.020493254, ..., -0.0027445166 ]  |
-  |  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          | [ 0.009625228, 0.027518686, ..., -0.0068922946 ]   |
-  |  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
+The JSON file is based on this data. The vector embeddings are generated with the OpenAI API [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
+  <br/>
+  Your vectors can come from any source, including your own vectorizer model or another model provider such as Cohere or Hugging Face.
+  <br/>
+
+  | Category | Question | Answer | Vector |
+  | :- |:- |:- | :- |
+  | SCIENCE | This organ removes excess glucose from the blood & stores it as glycogen | Liver | [ -0.006632288, -0.0042016874, ..., -0.020163147 ] |
+  | ANIMALS | It's the only living mammal in the order Proboseidea | Elephant | [ -0.0166891, -0.00092290324, ..., -0.032253385 ] |
+  | ANIMALS | The gavial looks very much like a crocodile except for this bodily  feature | the nose or snout | [ -0.015592773, 0.019883318, ..., 0.0033349802 ] |
+  | ANIMALS | Weighing around a ton, the eland is the largest species of this animal in Africa | Antelope | [ 0.014535263, -0.016103541, ..., -0.025882969 ] |
+  | ANIMALS | Heaviest of all poisonous snakes is this North American rattlesnake | the diamondback rattler | [ -0.0030859283, 0.015239313, ..., -0.021798335 ] |
+  | SCIENCE | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species | [ -0.0090561025, 0.011155112, ..., -0.023036297 ] |
+  | SCIENCE | A metal that is "ductile" can be pulled into this while cold & under  pressure | wire  | [ -0.02735741, 0.01199829, ..., 0.010396339 ] |
+  | SCIENCE | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance | DNA | [ -0.014227471, 0.020493254, ..., -0.0027445166 ] |
+  | SCIENCE | Changes in the tropospheric layer of this are what gives us weather  | the atmosphere          | [ 0.009625228, 0.027518686, ..., -0.0068922946 ] |
+  | SCIENCE | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it | Sound barrier  | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
 
 </details>
 
+### Weaviate Instance
 
-## Installation
+Weaviate is open source. You can [run Weaviate](/developers/weaviate/installation) locally, in the cloud, or as a service. If you want to follow this guide without setting up an instance of your own, consider using a free, Sandbox instance in [Weaviate Cloud](/developers/wcs/quickstart).
 
-Weaviate is open source and you can easily [run the binary on Linux](../installation/embedded.md) or [run a local instance from a Docker image](../installation/docker-compose.md) on any OS, or even easier - you can create a free sandbox instance with the [Weaviate Cloud Services](../../wcs/quickstart.mdx) (WCS).
+### Client library
 
-For this example, we will assume that you are using a WCS instance with authentication enabled.
+[Client libraries](/developers/weaviate/client-libraries) simplify working with Weaviate. Clients are available for multiple programming languages. This guide provides examples in Python, Typescript, and cURL.
 
+To install a client library, use the installer for the client language:
 
-## Client library
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+The v4 client requires Weaviate 1.23.7 or higher.<br/><br/>
 
-For the best experience with Weaviate, we recommend installing a Weaviate client library for one of these languages:
+```bash
+pip install -U weaviate-client
+```
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
 
-import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
+```bash
+pip install "weaviate-client==3.*"
+```
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
 
-<CodeClientInstall />
+```bash
+npm install weaviate-client --tag next
+```
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
 
-For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
+```bash
+npm install weaviate-ts-client
+```
+</TabItem>
+</Tabs>
 
 ## Connect to Weaviate
 
-To connect to your Weaviate instance, you need the following information:
+This guide uses an Weaviate Cloud instance to host the collection. To connect to a Weaviate Cloud instance, you need the following information:
 
-- The Weaviate **URL** (get it from WCS `Details` tab),
-- The Weaviate **API key** (if enabled - get it from WCS `Details` tab), and
+- The Weaviate URL
+- The Weaviate API key
 
-Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
+If you are using a Sandbox instance, the URL and API keys are listed in the [details panel](/developers/wcs/quickstart#explore-the-details-panel) for your instance.
 
-import ConnectToWeaviate from '/_includes/code/quickstart/connect.noheader.mdx'
+To connect to Weaviate, run the code for your language to create a client object. Re-use the `client` object in the later steps to connect to your instance and run the sample code.
+
+import ConnectToWeaviate from '/_includes/code/quickstart/connect.partial.mdx'
 
 <ConnectToWeaviate />
 
 ## Collection definition
 
-Weaviate [stores data](../concepts/data.md) objects in collections, each of which is called a `class`. Each object has a set of properties, and a vector representation generated automatically by a vectorizer, or specified at import time.
+Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector representation. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the data properties for the collection.
 
-Weaviate lets you define vectorizers at the class level, with further control (e.g. specific model, or vectorization behavior) at the property level. Since you're bringing your own vectors, a vectorizer is not needed, so we will set the vectorizer to `none` here.
+The data property definitions are called a schema. Vectorizers are defined at the collection level. Additional details, such as the specific model or behavior, are sometimes defined at the property level.
 
-:::note Optional: Set a **compatible** vectorizer
-If you're using "custom" vectors that utilize the same model available through a Weaviate module, you have the option to **designate that specific model and module** as the class vectorizer.<p><br/></p>
+This guide assumes you already have vector embeddings for your data. Since the vector embeddings are included with the import file, the sample configuration code sets the vectorizer to `none` on the collection level .
 
-In this tutorial, the vectors were produced using the OpenAI model `ada-002`. As this model is also available through the `text2vec-openai` module, it may be set as the class vectorizer. Doing so will enable Weaviate to generate vectors if any objects are upserted without a vector, and enable the [`nearText` operator](../api/graphql/search-operators.md#neartext).<p><br/></p>
+For more on configurations, see [vectorizer settings](/developers/weaviate/manage-data/collections#specify-vectorizer-settings).
 
-Note that if a class has a specified vectorizer but you provide a vector at the time of import, Weaviate will use your supplied vector.
-:::
+### Define the collection
 
 import CreateSchema from '/_includes/code/quickstart.byov.schema.mdx'
 
 <CreateSchema />
 
+### Optional: Set a compatible vectorizer
+If Weaviate has an [integration](/developers/weaviate/model-providers) for the vectorizer that you use to generate your custom vectors, consider adding your vectorizer to the collection definition. If you specify a vectorizer, Weaviate can generate new vectors when it needs them.
 
-## Import data with vectors
+In this example, the vectors are generated by the OpenAI `ada-002` model. The Weaviate `text2vec-openai` integration can access the `ada-002` model, so you would specify `text2vec-openai` in the collection definition.
 
-Here is the set of [10 pre-vectorized Jeopardy questions](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json) in JSON format.
+At import time, Weaviate uses the vectors you provide even if the collection specifies a vectorizer.
 
-The following will load the question objects with vectors, and import them to Weaviate.
+## Import data and vectors
 
-Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+For large datasets, batch import is more efficient than importing individual objects. This [batch import](/developers/weaviate/tutorials/import#batch-import-process) code imports the question objects and their vectors.
 
-import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions+vectors.mdx'
+import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions-and-vectors.mdx'
 
 <ImportQuestionsWithVectors />
 
-:::tip vector != object property
-Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
+:::tip Vectors are not object properties
+If a vector is listed in the properties section, Weaviate processes it as a regular property rather than as a vector embedding.
+Be careful not to mislabel vectors as properties when you specify the elements of your batch import.
 :::
 
 ## Query
 
-Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
-In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` operator](../api/graphql/search-operators.md#nearvector):
+In order to query your stored vectors, Weaviate needs a vector representation of the query.
 
-import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';
+- If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding.
+- If the collection doesn't specify a vectorizer, provide a query vector when you search.
 
-<NearVector />
+When you create a query vector, use the same vectorizer that you use to create the data embeddings.
 
-You should see something like this:
+This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) query supplies a query vector. The query vector is an embedding of the query string, "biology".
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={ByovAllPyCode}
+  startMarker="# ===== Query ====="
+  endMarker="# ===== Test import ====="
+  language="py"
+/>
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+<FilteredTextBlock
+  text={ByovAllPy3Code}
+  startMarker="# ===== Query ====="
+  endMarker="# ===== Test import ====="
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={ByovAllTsCode}
+  startMarker="// Query using nearVector"
+  endMarker="END-OF-FILE"
+  language="ts"
+/>
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+<FilteredTextBlock
+  text={ByovAllTsCodeLegacy}
+  startMarker="// Query using nearVector"
+  endMarker="END-OF-FILE"
+  language="ts"
+/>
+</TabItem>
+<TabItem value="curl" label="Curl">
+<FilteredTextBlock
+  text={ByovAllShCode}
+  startMarker="# Query"
+  endMarker="END-OF-FILE"
+  language="bash"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Query response</summary>
+
+The response is like this:
 
 import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx';
 
 <BiologyQuestionsJson />
 
-## Recap
+</details>
 
-If you made it here - well done. We have covered a lot, and you've successfully built a fully functioning vector database! 🥳
+## Related pages
 
-You have:
-- Populated your Weaviate instance with your own vectors, and
-- Performed text similarity searches.
+- [Batch import](/developers/weaviate/manage-data/import)
+- [Manage collections](developers/weaviate/manage-data/collections)
+- [Vector similarity search](/developers/weaviate/search/similarity)
 
-Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
+## Questions and feedback
 
-Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-
+<DocsFeedback/>

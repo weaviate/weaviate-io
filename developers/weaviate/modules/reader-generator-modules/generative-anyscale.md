@@ -5,6 +5,10 @@ image: og/docs/modules/generative-anyscale.jpg
 # tags: ['generative', 'rag', 'anyscale']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="anyscale" />
+
 
 ## In short
 
@@ -39,7 +43,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -110,8 +114,8 @@ You can use any of the following models with `generative-anyscale`:
 * `meta-llama/Llama-2-13b-chat-hf`
 * `meta-llama/Llama-2-7b-chat-hf`
 * `codellama/CodeLlama-34b-Instruct-hf`
-* `HuggingFaceH4/zephyr-7b-beta`
 * `mistralai/Mistral-7B-Instruct-v0.1`
+* `mistralai/Mixtral-8x7B-Instruct-v0.1`
 
 #### Example
 
@@ -302,6 +306,8 @@ import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedre
 }
 ```
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -36,7 +36,7 @@ If you're missing your favorite distance type and would like to contribute it to
 
 :::note Additional notes
 
-1. If `cosine` is chosen, all vectors are normalized to length 1 at import/read time and dot product is used to calculate the distance for computational efficiency.
+1. If `cosine` is chosen, all vectors are normalized to length 1 at read time and dot product is used to calculate the distance for computational efficiency.
 2. Dot Product on its own is a similarity metric, not a distance metric. As a result, Weaviate returns the negative dot product to stick with the intuition that a smaller value of a distance indicates a more similar result and a higher distance value indicates a less similar result.
 
 :::
@@ -83,6 +83,8 @@ For backward compatibility, `certainty` can still be used when the distance is
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

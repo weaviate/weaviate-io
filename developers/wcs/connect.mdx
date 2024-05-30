@@ -1,0 +1,160 @@
+---
+title: Connect to Weaviate Cloud
+sidebar_position: 30
+image: og/wcs/user_guides.jpg
+---
+
+import APIKeyInHeader from '/developers/wcs/img/wcs-auth-header.jpg';
+import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
+
+There are multiple ways to connect to [Weaviate Cloud (WCD)](https://console.weaviate.cloud/):
+
+- [Connect through the WCD console.](#connect-to-the-wcd-console)
+
+   - Login to manage your clusters, users, and billing.
+   - The built-in [Query app](./console.mdx) connects to WCD clusters and external instances.
+
+- [Connect with APIs.](#connect-with-an-api)
+
+   - Use [client libraries](/developers/weaviate/client-libraries) to connect to a WCD instance.
+   - Use a tool, such as cURL, to connect to the [REST API](/developers/weaviate/api/rest).
+
+## Connect with an API
+
+The Weaviate clients use API keys to authenticate. By default, API keys are enabled for all WCD clusters. For details see, [Manage authentication](/developers/wcs/platform/manage-api-keys.mdx).
+
+- Serverless clusters have an administrator key and a read-only key.
+- Sandbox clusters only have an administrator key.
+
+The Weaviate server authenticates every request.
+
+- If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make requests.
+- If you use a tool like cURL, add your API key to the request header.
+
+### Retrieve your API keys
+
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+
+<RetrieveAPIKeys/>
+
+### Environment variables
+
+Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique.
+
+```bash
+export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
+```
+
+### Connection example
+
+import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
+
+<WCDAuthenticationApiKey/>
+
+## Connect to the WCD console
+
+The WCD console uses your email address and password for authentication. You create the password when you create your WCD account.
+
+To connect to the console, follow these steps:
+
+1. Open the [WCD login page](https://console.weaviate.cloud/) in a browser.
+1. Enter your email address and password to authenticate.
+1. Click `Login`.
+
+## Connect an instance with the Query app
+
+The built in [Query app](./console.mdx) connects directly to clusters in your WCD organization without any additional authentication.
+
+To connect the Query app to a Weaviate instance that is not part of your WCD organization, provide an API key for the remote instance. Add the API key to the connection `Headers` at the bottom of the Query app tab.
+
+<img src={APIKeyInHeader} width="75%" alt="API key in header"/>
+
+## Troubleshooting
+
+This section has solutions for some common problems. For additional help, [contact support](#support).
+
+### Reset your password
+
+To reset your WCD password, follow these steps:
+
+1. Go to the WCD [login page](https://console.weaviate.cloud).
+1. Click on click the login button.
+1. Click `Forgot Password`.
+1. Check your email account for a password reset email from WCD.
+1. Click the link and follow the instructions to reset your password. The link is only valid for five minutes.
+
+### Connection timeouts
+
+The new Python client uses the gRPC protocol to connect to WCD. The gRPC protocol improves query performance, but the protocol is sensitive to network speeds. If you run into timeout errors, increase the connection timeout value in your connection code.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+
+   <FilteredTextBlock
+     text={PyCodeSupp}
+     startMarker="# START ConnectWithLongTimeOut"
+     endMarker="# END ConnectWithLongTimeOut"
+     language="py"
+   />
+
+</TabItem>
+</Tabs>
+
+Alternatively, leave the default timeout values, but skip the initial connection checks.
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+
+   <FilteredTextBlock
+     text={PyCodeSupp}
+     startMarker="# START ConnectWithSkipChecks"
+     endMarker="# END ConnectWithSkipChecks"
+     language="py"
+   />
+
+</TabItem>
+</Tabs>
+
+### gRPC health check error
+
+**Problem**: gRPC returns a health check error after you update a Serverless cluster.
+
+```
+weaviate.exceptions.WeaviateGRPCUnavailableError: gRPC health check could not be completed.
+```
+
+**Solution**: Verify the cluster URL is correct and update the URL if needed.
+
+When a Serverless cluster is updated, the cluster URL may change slightly. WCD still routes the old URL, so some connections work, however the new gRPC and the old HTTP URLS are different so connections that require gRCP fail.
+
+To check the URLs, open the WCD Console and check the details panel for your cluster. If you prefix Cluster URL with `grpc-`, the Cluster URL and the Cluster gRPC URL should match.
+
+<img src={CompareURLs} width="75%" alt="Compare URLs"/>
+
+Compare the Cluster URL with the connection URL in your application. The old URL and the new URL are similar, but the new one may have an extra subdomain such as `.c0.region`.
+
+If the URLs are different, update your application's connection code to use the new Cluster URL.
+
+## More resources
+
+To authenticate with a Weaviate client library, see the following:
+
+- [Python](/developers/weaviate/client-libraries/python/index.md#authentication)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript#authentication)
+- [Go](/developers/weaviate/client-libraries/go.md#authentication)
+- [Java](/developers/weaviate/client-libraries/java.md#authentication)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

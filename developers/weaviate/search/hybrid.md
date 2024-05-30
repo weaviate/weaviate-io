@@ -13,9 +13,13 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search.
 
-`Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
+Weaviate uses a ranking method to merge the search results. The [ranking method](#change-the-ranking-method) and the [ranking weights](#balance-keyword-and-vector-search) are configurable.
 
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
+
+The [fusion method](#change-the-fusion-method) and the [relative weights](#balance-keyword-and-vector-search) are configurable.
 
 ## Named vectors
 
@@ -23,6 +27,135 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts
 :::
 
 A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridGraphQL"
+      endMarker="# END NamedVectorHybridGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START Expected NamedVectorNearText results"
+  endMarker="# END Expected NamedVectorNearText results"
+  language="json"
+/>
+
+</details>
+
+## Basic hybrid search
+
+Combine the results of a vector search and a keyword search. The search uses a single query string.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridBasicPython"
+  endMarker="# END HybridBasicPython"
+  language="python"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridBasicPython"
+  endMarker="# END HybridBasicPython"
+  language="python"
+/>
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// searchHybridBasic"
+  endMarker="// END searchHybridBasic"
+  language="js"
+/>
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridBasic"
+  endMarker="// END searchHybridBasic"
+  language="js"
+/>
+</TabItem>
+
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridBasicGraphQL"
+  endMarker="# END HybridBasicGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected HybridBasic results"
+  endMarker="# END Expected HybridBasic results"
+  language="json"
+/>
+
+</details>
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+To run a hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -61,8 +194,6 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -87,77 +218,12 @@ The output is like this:
 
 </details>
 
-## Basic hybrid search
-
-Combines results of a vector search and a keyword search based on the query string.
-
-<Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# HybridBasicPython"
-  endMarker="# END HybridBasicPython"
-  language="python"
-/>
-</TabItem>
-
-<TabItem value="py3" label="Python (v3)">
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# HybridBasicPython"
-  endMarker="# END HybridBasicPython"
-  language="python"
-/>
-</TabItem>
-
-<TabItem value="js" label="JS/TS (Beta)">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// searchHybridBasic"
-  endMarker="// END searchHybridBasic"
-  language="js"
-/>
-</TabItem>
-
-<TabItem value="js2" label="JS/TS">
-<FilteredTextBlock
-  text={TSCodeLegacy}
-  startMarker="// searchHybridBasic"
-  endMarker="// END searchHybridBasic"
-  language="js"
-/>
-</TabItem>
-
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# HybridBasicGraphQL"
-  endMarker="# END HybridBasicGraphQL"
-  language="graphql"
-/>
-</TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# Expected HybridBasic results"
-  endMarker="# END Expected HybridBasic results"
-  language="json"
-/>
-
-</details>
-
 ## Explain the search results
 
-Use the metadata properties to understand why an object is selected.
+To see the object rankings, set the `explain score` field in your query. The search rankings are part of the object metadata. Weaviate uses the score to order the search results.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithScorePython"
@@ -166,7 +232,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithScorePython"
@@ -175,7 +241,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithScore"
@@ -184,7 +250,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithScore"
@@ -219,13 +285,13 @@ The output is like this:
 
 ## Balance keyword and vector search
 
-Use the `alpha` argument to change how much each search affects the results.
+Hybrid search results can favor the keyword component or the vector component. To change the relative weights of the keyword and vector components, set the `alpha` value in your query.
 
 - An `alpha` of `1` is a pure vector search.
 - An `alpha` of `0` is a pure keyword search.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithAlphaPython"
@@ -234,7 +300,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithAlphaPython"
@@ -243,7 +309,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithAlpha"
@@ -252,7 +318,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithAlpha"
@@ -285,18 +351,20 @@ The output is like this:
 
 </details>
 
-## Change the ranking method
+## Change the fusion method
 
 :::info Added in `v1.20`
 :::
+:::info Relative Score Fusion is the default in `v1.24` and higher.
+:::
 
-`Ranked Fusion` is the default fusion algorithm.
+`Relative Fusion` is the default fusion algorithm.
 
-- To use objects' keyword and vector search scores instead of ranks, use `Relative Score Fusion`.
+- To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithFusionTypePython"
@@ -305,7 +373,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithFusionTypePython"
@@ -314,7 +382,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFusionType"
@@ -323,7 +391,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFusionType"
@@ -365,7 +433,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 
 </details>
 
-## Specify properties to keyword search
+## Specify keyword search properties
 
 :::info Added in `v1.19.0`
 :::
@@ -373,7 +441,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 The keyword search portion of hybrid search can be directed to only search a subset of object properties. This does not affect the vector search portion.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithPropertiesPython"
@@ -382,7 +450,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithPropertiesPython"
@@ -391,7 +459,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithProperties"
@@ -400,7 +468,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithProperties"
@@ -438,7 +506,7 @@ The output is like this:
 Specify the relative value of an object's `properties` in the keyword search. Higher values increase the property's contribution to the search score.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithPropertyWeightingPython"
@@ -447,7 +515,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingPython"
@@ -456,7 +524,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithPropertyWeighting"
@@ -465,7 +533,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithPropertyWeighting"
@@ -498,12 +566,12 @@ The output is like this:
 
 </details>
 
-## Specify a vector
+## Specify a search vector
 
-To specify a vector instead of using a vector of the query string, pass it in addition to the query string for the keyword search.
+The vector component of hybrid search can use a query string or a query vector. To specify a query vector instead of a query string, provide a query vector (for the vector search) and a query string (for the keyword search) in your query.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithVectorPython"
@@ -512,7 +580,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithVectorPython"
@@ -521,7 +589,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithVector"
@@ -530,7 +598,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithVector"
@@ -563,6 +631,83 @@ The output is like this:
 
 </details>
 
+## Vector search parameters
+
+:::info Added in `v1.25`
+:::
+
+You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START VectorSimilarityPython"
+  endMarker="# END VectorSimilarityPython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="py3" label="GraphQL">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# VectorSimilarityGraphQL"
+  endMarker="# END VectorSimilarityGraphQL"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JS/TS v3">
+
+```js
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected VectorSimilarityGraphQL results"
+  endMarker="# END Expected VectorSimilarityGraphQL results"
+  language="json"
+/>
+
+</details>
+
+## Group results
+
+:::info Added in `v1.25`
+:::
+
+Define criteria to group search results.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridGroupByPy4"
+      endMarker="# END HybridGroupByPy4"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The response is like this:
+
+```
+'Jeopardy!'
+'Double Jeopardy!'
+```
+
+</details>
+
 ## `limit` & `offset`
 
 Use `limit` to set a fixed maximum number of objects to return.
@@ -570,7 +715,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 Optionally, use `offset` to paginate the results.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START limit Python"
@@ -579,7 +724,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START limit Python"
@@ -588,7 +733,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START limit"
@@ -597,7 +742,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START limit"
@@ -621,7 +766,7 @@ Optionally, use `offset` to paginate the results.
 To limit results to groups with similar distances from the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter. Specify the `Relative Score Fusion` ranking method when you use autocut with hybrid search.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START autocut Python"
@@ -630,7 +775,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START autocut Python"
@@ -639,7 +784,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START autocut"
@@ -648,7 +793,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START autocut"
@@ -683,10 +828,10 @@ The output is like this:
 
 ## Filter results
 
-For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
+To narrow your search results, use a [`filter`](../api/graphql/filters.md).
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithFilterPython"
@@ -695,7 +840,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithFilterPython"
@@ -704,7 +849,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFilter"
@@ -713,7 +858,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFilter"
@@ -761,6 +906,8 @@ import TokenizationNote from '/_includes/tokenization.mdx'
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

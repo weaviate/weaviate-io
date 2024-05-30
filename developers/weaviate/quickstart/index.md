@@ -62,7 +62,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 ## Step 1: Create a Weaviate database
 
-You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud Services (WCS).
+You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
 
 Go to the [WCS quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
@@ -357,7 +357,7 @@ Depending on your choice, make sure to pass on the API key(s). You can do so by 
 "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
 "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
 "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
+"X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // For AI Studio
 ```
 
 Additionally, we also provide suggested `vectorizer` module configurations.
@@ -477,7 +477,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 <details>
   <summary>See answer</summary>
 
-If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint. 
+If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint.
 
 Replace WEAVIATE_INSTANCE_URL with your instance URL.:
 
@@ -541,15 +541,17 @@ Where you should be able to confirm that you have imported all `10` objects.
 <details>
   <summary>See answer</summary>
 
-To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your class.
+To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
 
-Make sure you configured it as shown in [this section](#define-a-class).
+Make sure the vectorizer is configured [like this](#define-a-class).
 
-If it still doesn't work - please [reach out to us](#more-resources)!
+If the search still doesn't work, [contact us](#questions-and-feedback)!
 
 </details>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

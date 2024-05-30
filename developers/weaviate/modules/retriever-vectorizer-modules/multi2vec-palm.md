@@ -5,6 +5,10 @@ image: og/docs/modules/multi2vec-palm.jpg
 # tags: ['multi2vec', 'multi2vec-palm']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
+
 :::info Added in `v1.24.3`
 :::
 
@@ -23,7 +27,7 @@ The `multi2vec-palm` module uses a Google multimodal embedding model to create v
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -39,16 +43,15 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 | `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
 | `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`. |
 
-Specify the API key as a request header or an environment variable.
-
-- Request header: `X-Palm-Api-Key`
-- Environment variable: `PALM_APIKEY`
-
 ## Configure `multi2vec-palm` for VertexAI
 
 This module is only supported in [Google Vertex AI](https://cloud.google.com/vertex-ai). It is not supported in Google AI Studio.
 
 To enable the Vertex AI API on your Google Cloud project, follow [Google's instructions](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
+
+import ApiKeyNote from '/developers/weaviate/model-providers/_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 ### Vertex AI API key
 
@@ -90,7 +93,6 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       ENABLE_MODULES: multi2vec-palm
       DEFAULT_VECTORIZER_MODULE: multi2vec-palm
-      PALM_APIKEY: sk-replace-with-your-api-key  # Or provide the key at query time.
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
@@ -224,6 +226,8 @@ import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 <CodeNearImage />
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

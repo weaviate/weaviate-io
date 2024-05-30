@@ -1,0 +1,70 @@
+---
+title: Manage authentication
+sidebar_position: 45
+image: og/wcs/user_guides.jpg
+---
+
+import WCSAPIKeys from '/developers/wcs/img/wcs-api-keys.jpg';
+import WCSAddAPIKeys from '/developers/wcs/img/wcs-add-key-details.jpg';
+import WCSDelAPIKeys from '/developers/wcs/img/wcs-delete-api-key.jpg';
+import RestartTheCluster from '/_includes/wcs/restart-warning.mdx';
+
+By default, API keys are enabled for all WCD clusters.
+
+There are two types of API key, `ReadOnly` and `Admin`.
+
+- `Admin` keys are read-write.
+- `ReadOnly` keys do not grant write access to the database.
+
+Serverless clusters have an administrator key and a read-only key. If you have a Serverless cluster, you can create and delete API keys.
+
+Sandbox clusters have an administrator key. You cannot modify the Sandbox key.
+
+<img src={WCSAPIKeys} width="75%" alt="Enable MFA icon"/>
+
+## Create an API key
+
+If you have a Serverless cluster, you can create new API keys.
+
+<RestartTheCluster/>
+
+To create a new API key, follow these steps:
+
+1. Click the `Details` button.
+1. Click the `API keys` button.
+1. Click `Add Key`.
+
+<img src={WCSAddAPIKeys} width="75%" alt="Add API key UI"/>
+
+4. Choose the key scope, read-only or admin.
+1. Click `Generate` to create the key.
+
+## Delete an API key
+
+If you have a Serverless cluster, you can delete API keys.
+
+<RestartTheCluster/>
+
+To delete an API key, follow these steps:
+
+1. Click the `Details` button.
+1. Click the `API keys` button.
+1. Click the trash-can icon to delete the API key.
+
+<img src={WCSDelAPIKeys} width="75%" alt="Delete API key UI"/>
+
+## Retrieve your API keys
+
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+
+<RetrieveAPIKeys/>
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

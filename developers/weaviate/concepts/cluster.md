@@ -95,13 +95,16 @@ Shards were assigned to 'live' nodes in a round-robin fashion starting with a ra
 
 ## Consistency and current limitations
 
-* Changes to the schema are strongly consistent across nodes, whereas changes to data aim to be eventually consistent.
+* Changes to the schema are strongly consistent across nodes, whereas changes to data has a tunable consistency.
+* Starting with `v1.25.0`, Weaviate adopts the [Raft consensus algorithm](https://raft.github.io/) to ensure strong consistency for schema changes. This brings an additional benefit in that concurrent schema changes are now supported.<br/>If you are a Kubernetes user, see the [`1.25 migration guide`](/developers/weaviate/more-resources/migration/weaviate-1-25.md) before you upgrade. To upgrade, you have to delete your existing StatefulSet.
 * As of `v1.8.0`, the process of broadcasting schema changes across the cluster uses a form of two-phase transaction that as of now cannot tolerate node failures during the lifetime of the transaction.
 * As of `v1.8.0`, replication is currently under development. ([See Roadmap](/developers/weaviate/roadmap/index.md)).
 * As of `v1.8.0`, dynamically scaling a cluster is not fully supported yet. New nodes can be added to an existing cluster, however it does not affect the ownership of shards. Existing nodes can not yet be removed if data is present, as shards are not yet being moved to other nodes prior to a removal of a node. ([See Roadmap](/developers/weaviate/roadmap/index.md)).
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 
 ## Overview
 
@@ -17,7 +18,7 @@ This page broadly covers the Weaviate Python client (`v4` release). For usage in
 ## Installation
 
 :::tip Migrating from `v3` to `v4`
-If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+If you are migrating from the `v3` client to the `v4`, see this [dedicated guide](./v3_v4_migration.md).
 :::
 
 The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
@@ -121,7 +122,7 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 - [Python client v4 helper methods](#python-client-v4-helper-methods)
 - [Python client v4 explicit connection](#python-client-v4-explicit-connection)
-- [Python client v3 style connection](#python-client-v3-style-connection)
+- [Python client v3 style connection](#python-client-v3-api)
 
 ### Python client v4 helper functions
 
@@ -244,7 +245,7 @@ If the helper functions do not provide the customization you need, use the [`Wea
 
 If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
-Please note that when directly instantiating a connection, you must connect to the server manually by calling the `.connect()` method.
+When you instantiate a connection directly, you have to call the `.connect()` method to connect to the server.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -272,11 +273,11 @@ You can set `skip_init_checks` to `True` to skip these checks.
   language="py"
 />
 
-In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.  
+In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.
 
 For additional connection configuration, see [Timeout values](#timeout-values).
 
-## Batching
+## Batch imports
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
 
@@ -331,7 +332,7 @@ These methods return completely localized context managers. Accordingly, attribu
 </TabItem>
 </Tabs>
 
-In the batching process, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread.
+If the background thread that is responsible for sending the batches raises an exception during batch processing, the error is raised to the main thread.
 
 ### Error handling
 
@@ -349,6 +350,45 @@ Note that these lists are reset when a batching process is initialized. So make 
   endMarker="# END BatchErrorHandling"
   language="py"
 />
+
+### Batch vectorization
+
+:::info Added in `v1.25`.
+:::
+
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
+
+<BatchVectorizationOverview />
+
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Create a client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectClient"
+      endMarker="# END BatchVectClient"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+
+- **Cohere**. Set the service API key. Set the request rate.
+- **OpenAI**. Set the service API key. Set the base URL.
+- **VoyageAI**. Set the service API key.
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Modify the client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Working with collections
 
@@ -703,7 +743,7 @@ You can choose to provide a generic type to a query or data operation. This can 
 ## Migration guides
 
 :::tip Migrating from `v3` to `v4`
-If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+If you are migrating from the `v3` client to the `v4`, see this [dedicated guide](./v3_v4_migration.md).
 :::
 
 ### Beta releases
@@ -970,7 +1010,9 @@ While the Python client is fundamentally designed to be thread-safe, it's import
 
 This is an area that we are looking to improve in the future.
 
-Please be particularly aware that the batching algorithm within our client is not thread-safe. Keeping this in mind will help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+:::warning Thread safety
+The batching algorithm in our client is not thread-safe. Keep this in mind to help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+:::
 
 If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
 
@@ -1071,6 +1113,8 @@ are hosted here:
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

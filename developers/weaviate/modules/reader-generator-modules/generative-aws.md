@@ -5,6 +5,10 @@ image: og/docs/modules/generative-aws.jpg
 # tags: ['generative', 'rag', 'aws']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="aws" />
+
 
 ## In short
 
@@ -41,7 +45,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -290,10 +294,30 @@ import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
 
 You can use any of the following models with `generative-aws`:
 
-* cohere.command-text-v14
-* cohere.command-light-text-v14
+- `ai21.j2-ultra-v1`
+- `ai21.j2-mid-v1`
+- `amazon.titan-text-lite-v1`
+- `amazon.titan-text-express-v1`
+- `amazon.titan-text-premier-v1:0`
+- `anthropic.claude-v2`
+- `anthropic.claude-v2:1`
+- `anthropic.claude-instant-v1`
+- `anthropic.claude-3-sonnet-20240229-v1:0`
+- `anthropic.claude-3-haiku-20240307-v1:0`
+- `cohere.command-text-v14`
+- `cohere.command-light-text-v14`
+- `cohere.command-r-v1:0`
+- `cohere.command-r-plus-v1:0`
+- `meta.llama3-8b-instruct-v1:0`
+- `meta.llama3-70b-instruct-v1:0`
+- `meta.llama2-13b-chat-v1`
+- `meta.llama2-70b-chat-v1`
+- `mistral.mistral-7b-instruct-v0:2`
+- `mistral.mixtral-8x7b-instruct-v0:1`
+- `mistral.mistral-large-2402-v1:0`
 
+## Questions and feedback
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

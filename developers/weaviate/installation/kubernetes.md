@@ -13,7 +13,7 @@ This can be done through either explicitly setting it as part of the `values.yam
 :::
 
 :::tip End-to-end guide
-If you are looking for a complete end-to-end tutorial on the topic, please the [Weaviate Academy course on Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The tutorial covers an end-to-end scenario of deploying Weaviate on Kubernetes with Minikube.
+If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
 :::
 
 ## Requirements
@@ -145,8 +145,16 @@ Optionally, you can provide the `--create-namespace` parameter which will create
 
 ### Updating the installation after the initial deployment
 
-The above command (`helm upgrade...`) is idempotent, you can run it again, for
-example after adjusting your desired configuration.
+The above command (`helm upgrade...`) is idempotent. In other words, you can run it multiple times after adjusting your desired configuration without causing any unintended changes or side effects.
+
+### Upgrading to `1.25` or higher from pre-`1.25`
+
+:::caution Important
+:::
+
+To upgrade to `1.25` or higher from a pre-`1.25` version, you must delete the deployed `StatefulSet`, update the helm chart to version `17.0.0` or higher, and re-deploy Weaviate.
+
+See the [1.25 migration guide for Kubernetes](../more-resources/migration/weaviate-1-25.md) for more details.
 
 ## Additional Configuration Help
 
@@ -205,6 +213,8 @@ For more, general information on running EFS with Fargate, we recommend reading 
     ```
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

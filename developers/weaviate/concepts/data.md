@@ -299,6 +299,8 @@ For more information, see the following:
 * Cross-references link objects between schemas.
 * Multi-tenancy isolates data for each tenant.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

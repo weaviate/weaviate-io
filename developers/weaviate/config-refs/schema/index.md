@@ -87,6 +87,12 @@ Some parameters are mutable after creation, other parameters cannot be changed a
 <details>
   <summary>Mutable parameters</summary>
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
+<RaftRFChangeWarning/>
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -98,7 +104,7 @@ Some parameters are mutable after creation, other parameters cannot be changed a
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
@@ -107,7 +113,6 @@ Some parameters are mutable after creation, other parameters cannot be changed a
   - `skip`
   - `vectorCacheMaxObjects`
   - `pq`
-    - `bitCompression`
     - `centroids`
     - `enabled`
     - `segments`
@@ -397,6 +402,8 @@ These parameters are explained below:
 
 ### `replicationConfig`
 
+<RaftRFChangeWarning/>
+
 [Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
 The `factor` parameter sets the number of copies of to be stored for objects in this collection.
@@ -534,7 +541,7 @@ The following table shows an example scenario showing whether a filter or keywor
 | `field`                | ❌          | ❌            | ❌             | ✅                         |
 
 :::caution `string` is deprecated
-The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
+The `string` data type has been deprecated from Weaviate `v1.19` onwards. Use `text` instead.
 
 <details>
   <summary>
@@ -601,7 +608,7 @@ Article = {
 will be vectorized as:
 
 ```md
-article cows lose their jobs as milk prices drop as his diary cows lumbered over for their monday...
+article cows lose their jobs as milk prices drop as his 100 diary cows lumbered over for their monday...
 ```
 
 By default, the calculation includes the  `collection name` and all property `values`, but the property `names` *are not* indexed.
@@ -631,7 +638,8 @@ client.schema.create_class(collection_obj)
 - [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
+<DocsFeedback/>

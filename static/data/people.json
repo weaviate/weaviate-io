@@ -193,7 +193,7 @@
   {
     "name": "Erika Cardenas",
     "title": "Technology Partner Manager",
-    "photo": "erika.png",
+    "photo": "erika.jpg",
     "linkedin": "erikacardenas300",
     "twitter": "ecardenas300",
     "github": "erika-cardenas",
@@ -292,6 +292,13 @@
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpeg",
     "team": "qa-sre"
+  },
+  {
+    "name": "Joseph Green",
+    "title": "Product Support Engineer",
+    "photo": "joseph-green.jpg",
+    "team": "qa-sre",
+    "linkedin": "joe-green-11381620a"
   },
   {
     "name": "Laura Stoye",
@@ -409,6 +416,18 @@
     "team": "developer-growth"
   },
   {
+    "name": "Scott Alexander",
+    "title": "Client-Focused SRE",
+    "photo": "scott-alexander.jpg",
+    "team": "qa-sre"
+  },
+  {
+    "name": "Sebastian Neira Farriol",
+    "title": "Client-Focused SRE",
+    "photo": "Sebastian-Farriol.jpg",
+    "team": "qa-sre"
+  },
+  {
     "name": "Sebastian Witalec",
     "title": "Head of Developer Relations",
     "photo": "sebastian.png",
@@ -422,7 +441,7 @@
     "title": "Web Developer",
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
-    "team": "design"
+    "team": "marketing"
   },
   {
     "name": "Shukri Hasan",
@@ -442,11 +461,11 @@
   },
   {
     "name": "Svitlana Smolianova",
-    "title": "Head of Design",
+    "title": "Creative Director",
     "photo": "svitlana.png",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
-    "team": "design"
+    "team": "marketing"
   },
   {
     "name": "Thomas Smith",

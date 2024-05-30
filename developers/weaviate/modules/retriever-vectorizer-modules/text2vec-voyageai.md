@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-voyageai.jpg
 # tags: ['text2vec', 'text2vec-voyageai', 'voyageai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="voyageai" />
 
 ## Overview
 
@@ -14,8 +17,8 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - Please check the Voyage AI [pricing page](https://docs.voyageai.com/docs/pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+    - See the Voyage AI [pricing page](https://docs.voyageai.com/docs/pricing), especially before vectorizing large amounts of data.
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `voyage-large-2`.
 
@@ -26,7 +29,7 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -180,7 +183,7 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-code-2`
 - `voyage-2`
 - `voyage-law-2`
-- `voyage-lite-02-instruct`
+- `voyage-large-2-instruct`
 
 ### Truncation
 
@@ -216,6 +219,8 @@ import GraphQLFiltersNearNextVoyageAI from '/_includes/code/graphql.filters.near
 <GraphQLFiltersNearNextVoyageAI/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

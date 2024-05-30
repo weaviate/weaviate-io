@@ -35,7 +35,7 @@ Refer to [this section](../config-refs/schema/index.md#property-tokenization) on
 
 Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
 
-Please use `text` instead, which now supports all tokenizations options previously available through `string`.
+Use `text` instead of `string`. `text` supports the tokenization options that are available through `string`.
 :::
 
 ## DataType: `cross-reference`
@@ -113,15 +113,15 @@ Future plans include the ability to index nested properties, for example to allo
 
 ## DataType: `date`
 
-Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.
+A `date` in Weaviate is represented by an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp in the `date-time` format. The timestamp includes the time and an offset.
 
 For example:
 
-- `"1985-04-12T23:20:50.52Z"`.
-- `"1996-12-19T16:39:57-08:00"`.
-- `"1937-01-01T12:00:27.87+00:20"`.
+- `"1985-04-12T23:20:50.52Z"`
+- `"1996-12-19T16:39:57-08:00"`
+- `"1937-01-01T12:00:27.87+00:20"`
 
-In case you want to add a list of dates as one Weaviate data value, you can use above formatting in an array, for example like: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
+To add a list of dates as a single entity, use an array of `date-time` formatted strings. For example: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
 
 ## DataType: `blob`
 
@@ -230,6 +230,8 @@ There are two fields that accept input. `input` must always be set, while `defau
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

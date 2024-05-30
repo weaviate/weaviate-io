@@ -14,7 +14,7 @@ This vector database benchmark is designed to measure and illustrate Weaviate's 
 
 :::note
 This is not a comparative benchmark that runs Weaviate against competing vector database solutions. <br/><br/>
-If you'd like to discuss trade-offs with other solutions, please [contact sales](https://weaviate.io/pricing#contact-sales).
+To discuss trade-offs with other solutions, [contact sales](https://weaviate.io/pricing#contact-sales).
 :::
 
 To make the most of this vector database benchmark, you can look at it from different perspectives:
@@ -89,7 +89,7 @@ This section contains datasets modeled after the [ANN Benchmarks](https://github
 | [Deep Image 96](https://sites.skoltech.ru/compvision/noimi/) | 10 M | 96 | Cosine | This dataset gives a good indication of expected speed and throughput when datasets grow. It is about 10 times larger than SIFT1M, but the throughput is only slightly lower. |
 | [GIST 960](http://corpus-texmex.irisa.fr/) | 1 M | 960 | Euclidean | This dataset highlights the cost of high-dimensional vector comparisons. It has the lowest throughput of the sample datasets. Use this one if you run high-dimensional loads. |
 
-#### Benchmark Datasets 
+#### Benchmark Datasets
 These are the results for each dataset:
 
 <Tabs groupId="datasets">
@@ -113,14 +113,14 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | 128 | 32 | 64 | 98.83% | 8905 | 3.31ms | 4.49ms |
 
 
 </TabItem>
 <TabItem value="10" label="Glove-25">
 
-#### QPS vs Recall for Glove-25 
+#### QPS vs Recall for Glove-25
 
 ![Glove25 Benchmark results](./img/benchmark_glove_25.png)
 
@@ -134,7 +134,7 @@ import AnnGlove25 from '/_includes/ann-glove-25.mdx';
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | 64 | 16 | 64 | 95.56% | 15003 | 1.93ms | 2.94ms |
 
 </TabItem>
@@ -154,13 +154,13 @@ import AnnDeep96 from '/_includes/ann-deep-96.mdx';
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | 128 | 32 | 64 | 96.43% | 6112 | 4.7ms | 15.87ms |
 
 </TabItem>
 <TabItem value="1000" label="GIST 960">
 
-#### QPS vs Recall for GIST 960 
+#### QPS vs Recall for GIST 960
 
 ![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
 
@@ -171,11 +171,11 @@ import AnnGist960 from '/_includes/ann-gist-960.mdx';
 <AnnReadResultsTable/>
 
 
-#### Recommended configuration for GIST 960 
+#### Recommended configuration for GIST 960
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | 512 | 32 | 128 | 94.14% | 1935 | 15.05ms | 19.86ms |
 
 </TabItem>
@@ -217,15 +217,15 @@ setup parameters.
 
 ### Experiment Setup
 
-We modeled our dataset selection after 
+We modeled our dataset selection after
 [ann-benchmarks](https://github.com/erikbern/ann-benchmarks). The same test
 queries are used to test speed, throughput, and recall. The provided ground
 truths are used to calculate the recall.
 
-We use Weaviate's Python client to import data. 
+We use Weaviate's Python client to import data.
 We use Go to measure the concurrent (multi-threaded) queries.
- Each language has its own performance characteristics. 
- You may get different results if you use a different language to send your queries. 
+ Each language has its own performance characteristics.
+ You may get different results if you use a different language to send your queries.
 
 For maximum throughput, we recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 [Java](/developers/weaviate/client-libraries/java.md) client libraries.
@@ -305,7 +305,7 @@ rough estimation of how the throughput would vary on smaller or larger
 machines. If you do not need the stated throughput, you can run with fewer CPU
 cores. If you need more throughput, you can run with more CPU cores.
 
-Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
+Adding more CPUs reaches a point of diminishing returns because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you  should scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
 ### What are `ef`, `efConstruction`, and `maxConnections`?
 
@@ -347,6 +347,8 @@ hints to look at:
 The [repository is located here](https://github.com/weaviate/weaviate-benchmarking).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -9,7 +9,7 @@ export default function CalculatorContainer() {
     <div className={styles.bgColor}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2>Serverless Pricing</h2>
+          <h2>Serverless Cloud Pricing</h2>
           <p className={styles.subHeader}>
             Our pricing is based on dimensions stored and chosen SLA tier. The
             exact calculation can be found in the{' '}
@@ -69,7 +69,7 @@ export default function CalculatorContainer() {
                 <p>5bd</p>
               </div>
               <div className={`${styles.plans} ${styles.enterprise}`}>
-                <h2>Production</h2>
+                <h2>Professional</h2>
                 <p className={styles.pricing}>
                   from <span>$135</span>/mo
                 </p>
@@ -176,7 +176,7 @@ export default function CalculatorContainer() {
             </div>
 
             <div className={`${styles.plans} ${styles.enterprise}`}>
-              <h2>Production</h2>
+              <h2>Professional</h2>
               <p className={styles.pricing}>
                 from <span>$135</span>/mo
               </p>

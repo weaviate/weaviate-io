@@ -5,10 +5,13 @@ image: og/docs/modules/text2vec-palm.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="openai" />
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=).
 
 :::info Releases and versions
 
@@ -22,8 +25,8 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-    - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+    - See the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Model names differ between Vertex AI and AI Studio.
     - The default model for Vertex AI is `textembedding-gecko@001`.
@@ -37,12 +40,15 @@ Prior to Weaviate `v1.22.7`, the `text2vec-google` module was called `text2vec-p
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
-
+ -->
 
 ## Configuring `text2vec-palm` for VertexAI or AI Studio
 
 The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
+
+import ApiKeyNote from '/developers/weaviate/model-providers/_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 ### Google Cloud Vertex AI
 
@@ -66,11 +72,9 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### AI Studio
 
-At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
-
 #### API key for AI Studio users
 
-You can obtain an API key by logging in to your AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiry date.
+You can obtain an API key [from this page](https://aistudio.google.com/app/prompts/new_chat/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=). This is the key to pass on to Weaviate. This key does not have an expiry date.
 
 #### `apiEndpoint` for AI Studio users
 
@@ -79,7 +83,7 @@ In the Weaviate [class configuration](#class-configuration), set the `apiEndpoin
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -90,7 +94,6 @@ To use `text2vec-palm`, you must enable it in your Docker Compose file (`docker-
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-palm` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-palm` to make it the default for all classes.
-- `PALM_APIKEY` (Optional): Your Google API key. You can also provide the key at query time.
 
 ```yaml
 ---
@@ -109,7 +112,6 @@ services:
       # highlight-start
       ENABLE_MODULES: text2vec-palm
       DEFAULT_VECTORIZER_MODULE: text2vec-palm
-      PALM_APIKEY: sk-foobar  # Optional; you can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -211,7 +213,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 ### API key
 
 You can supply the API key at query time by adding it to the HTTP header:
-- `"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"`
+- `"X-Google-Vertex-Api-Key"`: `"YOUR-VERTEX-API-KEY"` (For Vertex AI)
+- `"X-Google-Studio-Api-Key"`: `"YOUR-AI-STUDIO-API-KEY"` (For AI Studio)
 
 ## Additional information
 
@@ -251,7 +254,7 @@ During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type.
 
 #### Note
 
-For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
+For more information, See the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 
 ### API rate limits
 
@@ -281,6 +284,8 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.palm.mdx';
 <CodeNearText />
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -246,7 +246,7 @@ Depending on the vectorizer module, you can use additional modalities such as im
 
 Some modules, such as `multi2vec-clip` and `multi2vec-bind` allow you to search across modalities. For example, you can search for images using a text query, or search for text using an image query.
 
-Please refer to specific module pages such as:
+For more information, see specific module pages such as these:
 
 * [img2vec-neural](../../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage)
 * [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md#additional-search-operators)
@@ -286,7 +286,10 @@ In this algorithm, each object is scored according to its position in the result
 
 #### Relative score fusion
 
-New in Weaviate version 1.20.
+:::info Added in `v1.20`
+:::
+:::info Relative Score Fusion is the default in `v1.24` and higher.
+:::
 
 In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
@@ -564,6 +567,8 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 The `answer` and a `certainty` can be retrieved.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

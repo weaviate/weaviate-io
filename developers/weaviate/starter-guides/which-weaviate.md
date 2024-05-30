@@ -19,7 +19,7 @@ This page helps you to find the right combination for your needs.
 Weaviate can be deployed in the following ways:
 - [Embedded Weaviate](../installation/embedded.md)
 - [Docker-Compose](../installation/docker-compose.md)
-- [Weaviate Cloud Services (WCS)](../installation/weaviate-cloud-services.md)
+- [Weaviate Cloud (WCD)](../installation/weaviate-cloud-services.md)
 - [Self-managed Kubernetes](../installation/kubernetes.md)
 - [Hybrid SaaS](https://weaviate.io/pricing)
 
@@ -33,7 +33,7 @@ If you are using a vectorizer module, your choices will depend on your input med
 
 Generally speaking, an API-based vectorizer will be more convenient to use, but will incur additional costs. On the other hand, a local vectorizer will be lower cost, but may require specialized hardware (such as a GPU) to run at comparable speeds.
 
-For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Please do keep in mind that domain-specific, or real-world performance may vary.
+For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Remember, domain-specific and real-world performance may vary.
 
 ## By use case
 
@@ -44,7 +44,7 @@ As a starting point, we recommend the following setups for different use cases.
 If you are evaluating Weaviate, we recommend the following easy and convenient setup:
 
 - An easy-to-use Weaviate instance, with
-    - A [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) sandbox, or
+    - A [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) sandbox, or
     - Embedded Weaviate
 - An inference-API based text vectorizer
     - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
@@ -55,10 +55,10 @@ This will allow you to quickly get started with Weaviate, and evaluate its capab
 
 For development, we recommend using
 
-- Docker-Compose or [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/), with
+- Docker-Compose or [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), with
 - A vectorization strategy that at least approximates your production needs.
 
-#### Docker-Compose vs. Weaviate Cloud Services (WCS)
+#### Docker-Compose vs. Weaviate Cloud (WCD)
 
 Of the two, Docker-Compose is more flexible as it exposes all configuration options, and can be used in a local development environment. Additionally, it can use local vectorizer modules such as `text2vec-transformers` or `multi2vec-clip` for example.
 
@@ -84,7 +84,7 @@ Keep in mind two other factors, which are cost, and their footprint.
 
 For use in production, generally we recommend
 
-- [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/),
+- [Weaviate Cloud (WCD)](https://console.weaviate.cloud/),
 - Self-managed Kubernetes, or
 - Hybrid SaaS.
 
@@ -100,7 +100,7 @@ Weaviate makes various vectorizer & reranker modules available for different med
 
 We recommend starting from the following table of vectorizers and their availability in different Weaviate setups.
 
-| Module type | Modality | Module | Embedded Weaviate  | Weaviate Cloud Services | Docker-Compose | Kubernetes | Hybrid SaaS |
+| Module type | Modality | Module | Embedded Weaviate  | Weaviate Cloud | Docker-Compose | Kubernetes | Hybrid SaaS |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Vectorizer | **Text** | [`text2vec-cohere`](../modules/retriever-vectorizer-modules/text2vec-cohere.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Vectorizer | **Text** | [`text2vec-huggingface`](../modules/retriever-vectorizer-modules/text2vec-huggingface.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -117,6 +117,8 @@ We recommend starting from the following table of vectorizers and their availabi
 | Reranker | **Text** | [`reranker-transformers`](../modules/retriever-vectorizer-modules/reranker-transformers.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -25,7 +25,7 @@ At the instance (i.e. Weaviate cluster) level, you can:
 This can be done by setting the appropriate [environment variables](../config-refs/env-vars.md) as shown below.
 
 :::tip What about WCS?
-Weaviate Cloud Services (WCS) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
+Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
 :::
 
 ### Enable modules
@@ -120,6 +120,8 @@ See [here](../modules/other-modules/custom-modules.md) how you can create and us
 - [Concepts: Modules](../concepts/modules.md)
 - [References: Modules](../modules/index.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

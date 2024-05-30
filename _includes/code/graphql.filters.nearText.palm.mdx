@@ -4,7 +4,7 @@ import PyCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.py';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextGoogle"
@@ -12,7 +12,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
       language="py"
     />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
@@ -20,7 +20,8 @@ import weaviate
 client = weaviate.Client(
     url="http://localhost:8080",
     additional_headers={
-        "X-PaLM-Api-Key": "YOUR-PALM-API-KEY"
+        "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+        "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
     }
 )
 
@@ -98,7 +99,10 @@ func main() {
   cfg := weaviate.Config{
     Host:    "localhost:8080",
     Scheme:  "http",
-    Headers: map[string]string{"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"},
+    Headers: map[string]string{
+      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+    },
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -166,7 +170,8 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");
+      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -244,7 +249,8 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer learn-weaviate' \
-    -H "X-PaLM-Api-Key: $PALM_API_KEY" \
+    -H "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
+    -H "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
     -d @- \
     https://edu-demo.weaviate.network/v1/graphql
 ```

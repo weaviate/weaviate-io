@@ -5,6 +5,9 @@ image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
 
 ## Overview
 
@@ -13,8 +16,8 @@ image: og/docs/modules/generative-palm.jpg
 * The module enables generative search operations on the Weaviate instance.
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
-    * Please check the vendor pricing.
-* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+    * Check the vendor pricing.
+* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=).
 
 :::info Releases and versions
 
@@ -33,12 +36,16 @@ Prior to Weaviate `v1.22.7`, the `generative-google` module was called `generati
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
+ -->
 
 
 ## Configuring `generative-palm` for VertexAI or AI Studio
 
 The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
+
+import ApiKeyNote from '/developers/weaviate/model-providers/_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 ### Google Cloud Vertex AI
 
@@ -62,11 +69,9 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### AI Studio
 
-AI Studio may not be available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
-
 #### API key for AI Studio users
 
-You can obtain an API key by logging in to your AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiration date.
+You can obtain an API key [from this page](https://aistudio.google.com/app/prompts/new_chat/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=). This is the key to pass on to Weaviate. This key does not have an expiration date.
 
 #### `apiEndpoint` for AI Studio users
 
@@ -99,31 +104,16 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ### Provide the key to Weaviate
 
-To provide your Google API key, use the `"X-PaLM-Api-Key"` request header. If you use a Weaviate client, follow these examples:
+To provide your Google API key, use the `"X-Google-Vertex-Api-Key"` or `"X-Google-Studio-Api-Key"` request header as appropriate. If you use a Weaviate client, follow these examples:
 
 import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
 
 <ClientKey />
 
-Optionally (not recommended), you can provide the Google API key as an environment variable.
-
-<details>
-  <summary>How to provide the Google API key as an environment variable</summary>
-
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
-
-  ```yaml
-  environment:
-    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
-    ...
-  ```
-
-</details>
-
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -164,7 +154,6 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-palm,generative-palm'
-      PALM_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
@@ -354,12 +343,12 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 }
 ```
 
-### Multi-modality
+<!-- ### Multi-modality
 
 :::info Added in `v1.24.2`
 :::
 
-Weaviate can leverage multimodality of the `gemini-pro-vision` model. Thus, the input passed onto `gemini-pro-vision` can be a combination of text and images, where images are represented as base64 encoded strings.
+Weaviate can leverage multimodality of the `gemini-pro-vision` model. Thus, the input passed onto `gemini-pro-vision` can be a combination of text and images, where images are represented as base64 encoded strings. -->
 
 ## Additional information
 
@@ -369,18 +358,24 @@ You can specify the model as a part of the schema as shown earlier. Available mo
 
 Vertex AI:
 - `chat-bison` (default)
-- `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
 - `chat-bison-32k` (from Weaviate `v1.24.9`)
 - `chat-bison@002` (from Weaviate `v1.24.9`)
 - `chat-bison-32k@002` (from Weaviate `v1.24.9`)
 - `chat-bison@001` (from Weaviate `v1.24.9`)
+- `gemini-1.5-pro-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.5-pro-preview-0409` (from Weaviate `v1.25.1`)
+- `gemini-1.5-flash-preview-0514` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-002` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro-001` (from Weaviate `v1.25.1`)
+- `gemini-1.0-pro` (from Weaviate `v1.25.1`)
 
 AI Studio:
 - `chat-bison-001` (default)
 - `gemini-pro`
-- `gemini-pro-vision` (from Weaviate `v1.24.2`)
+<!-- - `gemini-pro-vision` (from Weaviate `v1.24.2`) -->
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
