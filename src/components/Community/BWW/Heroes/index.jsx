@@ -1,7 +1,6 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
-import heroes from '/data/heroes.json'; // Assuming this is the correct path to your JSON data
 
 export default function Heroes() {
   return (
@@ -16,7 +15,16 @@ export default function Heroes() {
           support necessary for success.
         </p>
       </div>
-      <div className={styles.box}></div>
+      <div className={styles.box}>
+        <div className={`${styles.growExample} ${styles.example2}`}></div>
+        <div className={styles.growExample}></div>
+        <div className={`${styles.growExample} ${styles.example3}`}></div>
+      </div>
+      <div className={styles.buttons}>
+        <Link className={styles.buttonOutline} to="/community/bww/heroes">
+          Get in contact
+        </Link>
+      </div>
     </div>
   );
 }

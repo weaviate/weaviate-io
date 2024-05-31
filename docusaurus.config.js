@@ -352,7 +352,11 @@ const config = {
                             },
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
                             },
                            
                             {
@@ -528,7 +532,11 @@ const config = {
                         items: [
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
                             },
                             {
                                 label: 'Events & Webinars',

@@ -63,9 +63,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  width: 13.44863rem;
-  height: 19.875rem;
+  width: 18.5rem;
+  height: 24.9375rem;
+  flex-shrink: 0;
   flex-shrink: 0;
   background-color: #141f39;
   margin: 1rem;
@@ -83,10 +83,13 @@
 .cardHeader {
   display: grid;
   gap: 40px;
-  background-image: url('/img/site/project-placeholder-image.png');
-  width: 13.44863rem;
-  height: 15.97094rem;
-  background-size: cover;
+  background: url('/img/site/ric-icon.svg') #130c49;
+  width: 18.5rem;
+  background-size: 43%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 10.625rem;
+  flex-shrink: 0;
   border-top-left-radius: 0.71281rem;
   border-top-right-radius: 0.71281rem;
 
@@ -100,25 +103,49 @@
   }
 }
 
+.example2 {
+  background: url('/img/site/internship-icon.svg') #130c49;
+  background-size: 43%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.example3 {
+  background: url('/img/site/unbody-icon.svg') #130c49;
+  background-size: 83%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .contentDiv {
   height: 100%;
   margin-top: 0.5rem;
 }
 
 .textCardContent {
-  height: 160px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
+
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 1.4rem */
+    letter-spacing: -0.01rem;
+  }
 
   p {
     color: #30295f;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 0.76038rem;
+    font-family: Inter;
+    font-size: 0.875rem;
     font-style: normal;
-    font-weight: 700;
-    line-height: 157.33%; /* 1.19625rem */
+    font-weight: 400;
+    line-height: 140%; /* 1.225rem */
   }
 
   span {
@@ -131,12 +158,12 @@
   }
 
   a {
-    color: #30295f;
+    color: #52b848;
     font-family: 'Plus Jakarta Sans';
-    font-size: 0.57025rem;
+    font-size: 0.875rem;
     font-style: normal;
-    font-weight: 700;
-    line-height: 157.33%; /* 0.89719rem */
+    font-weight: 500;
+    line-height: 157.33%; /* 1.37663rem */
     text-decoration-line: underline;
   }
 }

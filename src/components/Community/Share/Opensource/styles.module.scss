@@ -8,6 +8,9 @@
 .title {
   text-align: left;
   padding: 1rem 0 2rem 0;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     color: #130c49;
@@ -70,10 +73,8 @@
 }
 
 .buttons {
-  margin-top: 70px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   gap: 30px;
 
   @media screen and (max-width: 860px) {
@@ -81,52 +82,27 @@
   }
 
   a {
-    height: 45px;
-    width: 280px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
     cursor: pointer;
-    text-decoration: none;
   }
 }
 
 .buttonLine {
-  text-decoration: underline;
+  color: #1c1468;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-decoration-line: underline;
 }
 
-.buttonGradient {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: #61bd73;
-  color: #130c49;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-
-.buttonOutline {
-  font-weight: 400;
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  color: #130c49;
-  transition: all 1s ease-out;
-}
-
-.buttonGradient:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
+.buttonLine:hover {
+  text-decoration-line: none;
+  color: #1c1468;
 }
 
 .cardHeader {
@@ -160,76 +136,46 @@
   height: 3rem;
 }
 
-.tableContainer {
-  width: 100%;
-  overflow-x: auto;
-
-  table {
+.parentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  width: 518px;
+  height: 353px;
+  @media screen and (max-width: 640px) {
     width: 100%;
-    border-collapse: collapse;
-
-    thead tr {
-      border: none;
-    }
-
-    th,
-    td {
-      text-align: left;
-      padding: 8px;
-      border: none;
-    }
-
-    th {
-      background-color: #ededed;
-      border: none;
-
-      select {
-        background-color: #ededed;
-      }
-    }
   }
 }
 
-.projectContainer {
-  display: flex;
-  width: 260px;
-  align-items: center;
-  justify-content: space-between;
+.imageGrid1 {
+  grid-area: 1 / 1 / 3 / 2;
+  background-image: url('/img/site/enterprise-grid-01.png');
+  background-size: cover;
+}
+.imageGrid2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-image: url('/img/site/enterprise-grid-02.png');
+  background-size: cover;
+  background-position-y: center;
+}
+.imageGrid3 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-image: url('/img/site/enterprise-grid-03.png');
+  background-size: cover;
+  background-position-x: center;
 }
 
-.projectButton {
-  border-radius: 0.25rem;
-  background: #d9d9d9;
-  width: 12.875rem;
-  height: 2.3125rem;
-  color: #5e5e5e;
-  font-weight: 400;
-  margin: 0px 10px 20px 0px;
-}
-
-.projectTab {
-  width: 6.4375rem;
-  height: 1.33813rem;
-  flex-shrink: 0;
-  border-radius: 0.14469rem;
-  background: #d9d9d9;
-  color: #5e5e5e;
-  font-family: Inter;
-  font-size: 0.57863rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
+.teamContainer {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  gap: 40px;
   justify-content: center;
-}
+  margin: 50px 0px;
 
-.projectLink {
-  color: #130c49;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%; /* 1.57331rem */
-  text-decoration-line: underline;
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
 }

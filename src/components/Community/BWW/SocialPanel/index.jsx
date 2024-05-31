@@ -1,8 +1,60 @@
-import Link from '@docusaurus/Link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import projectsData from '/data/projects.json';
 import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
 
-export default function SocialPanel() {
+const ProjectFilter = () => {
+  const [filteredProjects, setFilteredProjects] = useState(projectsData);
+  const [showAll, setShowAll] = useState(false); // State to toggle visibility
+  const [type, setType] = useState('');
+  const [category, setCategory] = useState('');
+  const [model, setModel] = useState('');
+  const [stack, setStack] = useState('');
+  const [projectType, setProjectType] = useState(''); // New state for project type filter
+
+  const uniqueTypes = Array.from(
+    new Set(projectsData.flatMap((project) => project.types))
+  );
+  const uniqueCategories = Array.from(
+    new Set(projectsData.flatMap((project) => project.category))
+  );
+  const uniqueModels = Array.from(
+    new Set(projectsData.map((project) => project.models))
+  );
+  const uniqueStacks = Array.from(
+    new Set(projectsData.map((project) => project.stack))
+  );
+
+  useEffect(() => {
+    let filtered = projectsData;
+    if (projectType) {
+      filtered = filtered.filter((project) => project.type === projectType);
+    }
+    if (type) {
+      filtered = filtered.filter((project) => project.types.includes(type));
+    }
+    if (category) {
+      filtered = filtered.filter((project) =>
+        project.category.includes(category)
+      );
+    }
+    if (model) {
+      filtered = filtered.filter((project) => project.models === model);
+    }
+    if (stack) {
+      filtered = filtered.filter((project) => project.stack === stack);
+    }
+    setFilteredProjects(filtered);
+  }, [projectType, type, category, model, stack]);
+
+  const handleProjectTypeClick = (value) => {
+    if (projectType === value) {
+      setProjectType(''); // Reset if the same button is clicked again
+    } else {
+      setProjectType(value);
+    }
+  };
+
   return (
     <div className={styles.bg}>
       <div className="container">
@@ -15,8 +67,102 @@ export default function SocialPanel() {
             future landscape of artificial intelligence
           </p>
         </div>
-        <div className={styles.box}></div>
+        <div>
+          <button
+            className={styles.projectButton}
+            onClick={() => handleProjectTypeClick('Community projects')}
+          >
+            Community projects
+          </button>
+          <button
+            className={styles.projectButton}
+            onClick={() => handleProjectTypeClick('Business projects')}
+          >
+            Business projects
+          </button>
+        </div>
+        <div className={styles.tableContainer}>
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>
+                  <select onChange={(e) => setType(e.target.value)}>
+                    <option value="">Type</option>
+                    {uniqueTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th>
+                  <select onChange={(e) => setCategory(e.target.value)}>
+                    <option value="">Category</option>
+                    {uniqueCategories.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th>
+                  <select onChange={(e) => setModel(e.target.value)}>
+                    <option value="">Model(s)</option>
+                    {uniqueModels.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th>
+                  <select onChange={(e) => setStack(e.target.value)}>
+                    <option value="">Stack</option>
+                    {uniqueStacks.map((stack) => (
+                      <option key={stack} value={stack}>
+                        {stack}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProjects
+                .slice(0, showAll ? filteredProjects.length : 3)
+                .map((project) => (
+                  <tr key={project.id}>
+                    <td>
+                      <div className={styles.projectContainer}>
+                        <Link className={styles.projectLink} to={project.link}>
+                          {project.name}
+                        </Link>
+                        <span className={styles.projectTab}>
+                          {project.type}
+                        </span>
+                      </div>
+                    </td>
+                    <td>{project.types.join(', ')}</td>
+                    <td>{project.category.join(', ')}</td>
+                    <td>{project.models}</td>
+                    <td>{project.stack}</td>
+                  </tr>
+                ))}
+            </tbody>
+            <div className={styles.buttons}>
+              <button
+                className={styles.buttonLine}
+                onClick={() => setShowAll(!showAll)}
+              >
+                {showAll ? 'Show Less' : 'See All'}
+              </button>
+            </div>
+          </table>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default ProjectFilter;

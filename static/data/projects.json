@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "StudySensei",
+    "link": "https://google.com",
+    "type": "Community projects",
+    "category": ["Chatbot", "e-commerce", "scheduling"],
+    "models": "text2vec-openai",
+    "stack": "Python",
+    "types": [
+      "Coral Cohere Hackathon",
+      "Enterprise Cohere Hackathon",
+      "SuperAI Hackathon"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "AnotherProject",
+    "link": "https://google.com",
+    "type": "Business projects",
+    "category": ["AI", "Data Analysis"],
+    "models": "davinci",
+    "stack": "JavaScript",
+    "types": ["DataAI Hackathon"]
+  },
+  {
+    "id": 3,
+    "name": "AnotherProject2",
+    "link": "https://google.com",
+    "type": "Business projects",
+    "category": ["AI", "Data Analysis"],
+    "models": "davinci",
+    "stack": "JavaScript",
+    "types": ["DataAI Hackathon"]
+  },
+  {
+    "id": 4,
+    "name": "AnotherProject3",
+    "link": "https://google.com",
+    "type": "Business projects",
+    "category": ["AI", "Data Analysis"],
+    "models": "davinci",
+    "stack": "JavaScript",
+    "types": ["DataAI Hackathon"]
+  },
+  {
+    "id": 5,
+    "name": "AnotherProject4",
+    "link": "https://google.com",
+    "type": "Business projects",
+    "category": ["AI", "Data Analysis"],
+    "models": "davinci",
+    "stack": "Python",
+    "types": ["DataAI Hackathon"]
+  }
+]

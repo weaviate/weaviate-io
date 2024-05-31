@@ -8,24 +8,21 @@ export default function Opensource() {
       <div className="container">
         <div className={styles.teamContainer}>
           <div className={styles.title}>
-            <h2>Spread the open source love 💚</h2>
+            <h2>
+              Spread the<br></br> Weaviate love 💚
+            </h2>
             <p>
-              Have a great project to share? Let us help you to spread the word
-              and the love for open source!{' '}
+              Please leave your information here and submit your project. We’ll
+              take a closer look and reach out to you to collaborate on
+              promoting your project.
             </p>
-            <p>
-              Whether you're a project owner looking to maximize visibility or a
-              showcase client aiming to stand out on social media, our program
-              provides the tools and support you need to succeed.{' '}
-            </p>
-            <p>Let’s make sure people see the amazing work you’re doing!</p>
 
             <div className={styles.buttons}>
               <Link
-                className={styles.buttonGradient}
-                to="/community/share-the-weaviate-love"
+                className={styles.buttonLine}
+                to="/community/bww/opensource"
               >
-                Submit your project
+                Questions?
               </Link>
             </div>
           </div>

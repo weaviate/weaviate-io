@@ -24,9 +24,9 @@
 .box {
   display: flex;
   flex-flow: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 30px 0px;
   gap: 50px;
 }
 
@@ -224,5 +224,34 @@
   outline: 1px solid #130c49;
   background: rgb(15, 0, 50);
   color: #fff;
+  font-weight: 400;
+}
+
+.dataBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  span {
+    color: #130c49;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
+
+.metrics {
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.metricsText {
+  color: #5e5e5e;
+
+  font-size: 1rem;
+
   font-weight: 400;
 }
