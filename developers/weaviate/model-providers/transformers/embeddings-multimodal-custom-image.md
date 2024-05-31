@@ -111,20 +111,20 @@ docker push my-inference-image
 
 Once you have built and configured the custom Transformers model image, continue on to the [CLIP embeddings integrations](./embeddings-multimodal.md) guide to use the model with Weaviate.
 
-Following the above example, set the `image` parameter in the `t2v-clip` service as the name of the custom image, e.g. `my-inference-image`.
+Following the above example, set the `image` parameter in the `multi2vec-clip` service as the name of the custom image, e.g. `my-inference-image`.
 
 ## (Optional) Test the inference container
 
 Once the inference container is configured and running, you can send queries it directly to test its functionality.
 
-First, expose the inference container. If deployed using Docker, forward the port by adding the following to the `t2v-clip` service in your `docker-compose.yml`:
+First, expose the inference container. If deployed using Docker, forward the port by adding the following to the `multi2vec-clip` service in your `docker-compose.yml`:
 
 ```yaml
 version: '3.4'
 services:
   weaviate:
     # Additional settings not shown
-  t2v-clip:
+  multi2vec-clip:
     # Additional settings not shown
     ports:
       - "9090:8080"  # Add this line to expose the container

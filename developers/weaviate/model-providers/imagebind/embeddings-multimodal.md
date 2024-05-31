@@ -1,11 +1,11 @@
 ---
-title: Multimodal (CLIP) Embeddings
+title: ImageBind Multimodal Embeddings
 sidebar_position: 30
-image: og/docs/integrations/provider_integrations_transformers.jpg
-# tags: ['model providers', 'transformers', 'embeddings']
+image: og/docs/integrations/provider_integrations_imagebind.jpg
+# tags: ['model providers', 'imagebind', 'embeddings']
 ---
 
-# Locally Hosted CLIP Embeddings + Weaviate
+# Locally Hosted ImageBind Embeddings + Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -19,24 +19,24 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with the Hugging Face Transformers library allows you to access their CLIP models' capabilities directly from Weaviate.
+Weaviate's integration with the Meta ImageBind library allows you to access its capabilities directly from Weaviate. The ImageBind model supports multiple modalities (text, image, audio, video, thermal, IMU and depth).
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use the CLIP integration, and [configure the Weaviate instance](#weaviate-configuration) with a model image, and Weaviate will generate embeddings for various operations using the specified model in the CLIP inference container. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use the ImageBind integration, and [configure the Weaviate instance](#weaviate-configuration) with a model image, and Weaviate will generate embeddings for various operations using the specified model in the ImageBind inference container. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
 
-![Embedding integration illustration](../_includes/integration_transformers_embedding.png)
+![Embedding integration illustration](../_includes/integration_imagebind_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the CLIP vectorizer integration (`multi2vec-clip`) module.
+Your Weaviate instance must be configured with the ImageBind vectorizer integration (`multi2vec-bind`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires spinning up a container with the Hugging Face model.
+This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires spinning up a container with the ImageBind model.
 
 </details>
 
@@ -47,9 +47,9 @@ This integration is not available for Weaviate Cloud (WCD) serverless instances,
 
 #### Configure the integration
 
-To use this integration, you must configure the container image of the CLIP model, and the inference endpoint of the containerized model.
+To use this integration, you must configure the container image of the ImageBind model, and the inference endpoint of the containerized model.
 
-The following example shows how to configure the CLIP integration in Weaviate:
+The following example shows how to configure the ImageBind integration in Weaviate:
 
 <Tabs groupId="languages">
 <TabItem value="docker" label="Docker">
@@ -69,31 +69,32 @@ services:
   weaviate:
     # Other Weaviate configuration
     environment:
-      CLIP_INFERENCE_API: http://multi2vec-clip:8080  # Set the inference API endpoint
-  multi2vec-clip:  # Set the name of the inference container
-    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+      BIND_INFERENCE_API: http://multi2vec-bind:8080  # Set the inference API endpoint
+  multi2vec-bind:  # Set the name of the inference container
+    mem_limit: 12g
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: 0  # Set to 1 to enable
 ```
 
-- `CLIP_INFERENCE_API` environment variable sets the inference API endpoint
-- `multi2vec-clip` is the name of the inference container
+- `BIND_INFERENCE_API` environment variable sets the inference API endpoint
+- `multi2vec-bind` is the name of the inference container
 - `image` is the container image
 - `ENABLE_CUDA` environment variable enables GPU usage
 
 </TabItem>
 <TabItem value="k8s" label="Kubernetes">
 
-Configure the Hugging Face Transformers integration in Weaviate by adding or updating the `multi2vec-clip` module in the `modules` section of the Weaviate Helm chart values file. For example, modify the `values.yaml` file as follows:
+Configure the ImageBind integration in Weaviate by adding or updating the `multi2vec-bind` module in the `modules` section of the Weaviate Helm chart values file. For example, modify the `values.yaml` file as follows:
 
 ```yaml
 modules:
 
-  multi2vec-clip:
+  multi2vec-bind:
 
     enabled: true
-    tag: sentence-transformers-clip-ViT-B-32-multilingual-v1
-    repo: semitechnologies/multi2vec-clip
+    tag: imagebind
+    repo: semitechnologies/multi2vec-bind
     registry: cr.weaviate.io
     envconfig:
       enable_cuda: true
@@ -106,18 +107,18 @@ See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/mas
 
 ### Credentials
 
-As this integration runs a local container with the CLIP model, no additional credentials (e.g. API key) are required.
+As this integration runs a local container with the ImageBind model, no additional credentials (e.g. API key) are required.
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a CLIP embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an ImageBind embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerCLIP"
-      endMarker="# END BasicMMVectorizerCLIP"
+      startMarker="# START BasicMMVectorizerBind"
+      endMarker="# END BasicMMVectorizerBind"
       language="py"
     />
   </TabItem>
@@ -125,8 +126,8 @@ As this integration runs a local container with the CLIP model, no additional cr
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerCLIP"
-      endMarker="// END BasicMMVectorizerCLIP"
+      startMarker="// START BasicMMVectorizerBind"
+      endMarker="// END BasicMMVectorizerBind"
       language="ts"
     />
   </TabItem>
@@ -165,9 +166,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified CLIP model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified ImageBind model.
 
-![Embedding integration at search illustration](../_includes/integration_transformers_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_imagebind_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -259,24 +260,20 @@ The query below returns the `n` most similar objects to the input image from the
 
 </Tabs>
 
+You can perform similar searches for other media types such as audio, video, thermal, IMU, and depth, by using an equivalent search query for the respective media type.
+
 ## References
 
 ### Vectorizer parameters
 
-#### Inference URL parameters
-
-Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
-
-If no parameters are specified, the default inference URL from the Weaviate configuration is used.
-
-Specify `inferenceUrl` for a single inference container.
+The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullMMVectorizerCLIP"
-      endMarker="# END FullMMVectorizerCLIP"
+      startMarker="# START FullMMVectorizerBind"
+      endMarker="# END FullMMVectorizerBind"
       language="py"
     />
   </TabItem>
@@ -284,8 +281,8 @@ Specify `inferenceUrl` for a single inference container.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullMMVectorizerCLIP"
-      endMarker="// END FullMMVectorizerCLIP"
+      startMarker="// START FullMMVectorizerBind"
+      endMarker="// END FullMMVectorizerBind"
       language="ts"
     />
   </TabItem>
@@ -294,34 +291,7 @@ Specify `inferenceUrl` for a single inference container.
 
 ### Available models
 
-Lists of pre-built Docker images for this integration are below.
-
-| Model Name | Image Name | Notes |
-| --- | --- | --- |
-| sentence-transformers-clip-ViT-B-32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32` | Texts must be in English. (English, 768d) |
-| sentence-transformers-clip-ViT-B-32-multilingual-v1 | `cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1` | Supports a wide variety of languages for text. See sbert.net for details. (Multilingual, 768d) |
-| openai-clip-vit-base-patch16 | `cr.weaviate.io/semitechnologies/multi2vec-clip:openai-clip-vit-base-patch16` | The base model uses a ViT-B/16 Transformer architecture as an image encoder and uses a masked self-attention Transformer as a text encoder. |
-| ViT-B-16-laion2b_s34b_b88k | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-16-laion2b_s34b_b88k` | The base model uses a ViT-B/16 Transformer architecture as an image encoder trained with LAION-2B dataset using OpenCLIP. |
-| ViT-B-32-quickgelu-laion400m_e32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-32-quickgelu-laion400m_e32` | The base model uses a ViT-B/32 Transformer architecture as an image encoder trained with LAION-400M dataset using OpenCLIP. |
-| xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k | `cr.weaviate.io/semitechnologies/multi2vec-clip:xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k` | Uses ViT-B/32 xlm roberta base model trained with the LAION-5B dataset using OpenCLIP. |
-
-## Advanced configuration
-
-### Run a separate inference container
-
-As an alternative, you can run the inference container independently from Weaviate. To do so, follow these steps:
-
-- Enable `multi2vec-clip` and omit `multi2vec-clip` container parameters in your [Weaviate configuration](#weaviate-configuration)
-- Run the inference container separately, e.g. using Docker, and
-- Use `CLIP_INFERENCE_API` or [`inferenceUrl`](#configure-the-vectorizer) to set the URL of the inference container.
-
-For example, run the container with Docker:
-
-```shell
-docker run -itp "8000:8080" semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
-```
-
-Then, set `CLIP_INFERENCE_API="http://localhost:8000"`. If Weaviate is part of the same Docker network, as a part of the same `docker-compose.yml` file, you can use the Docker networking/DNS, such as `CLIP_INFERENCE_API=http://multi2vec-clip:8080`.
+There is only one ImageBind model available.
 
 ## Further resources
 
@@ -334,13 +304,13 @@ Once the integrations are configured at the collection, the data management and 
 
 ### Model licenses
 
-Each of the compatible models has its own license. For detailed information, review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+Review the license for the model on the [ImageBind page](https://github.com/facebookresearch/ImageBind).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ### External resources
 
-- Hugging Face [Model Hub](https://huggingface.co/models)
+- [ImageBind GitHub page](https://github.com/facebookresearch/ImageBind)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
