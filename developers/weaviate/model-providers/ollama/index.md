@@ -50,7 +50,7 @@ A locally hosted Weaviate instance is required for these integrations so that yo
 Go to the relevant integration page to learn how to configure Weaviate with the Ollama models and start using them in your applications.
 
 - [Embeddings](./embeddings.md)
-- [Embeddings](./generative.md)
+- [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

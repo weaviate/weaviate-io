@@ -553,6 +553,52 @@ await client.collections.delete('DemoCollection');
 // Coming soon
 // END FullVectorizerOllama
 
+// START BasicVectorizerGPT4All
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecGPT4All({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    }),
+  ],
+  // highlight-end
+  // END BasicVectorizerGPT4All
+  properties: [
+    {name: 'title', dataType: 'text'}
+  ],
+  // START BasicVectorizerGPT4All
+  // Additional parameters not shown
+});
+// END BasicVectorizerGPT4All
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerGPT4All
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecGPT4All({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    }),
+  ],
+  // highlight-end
+  // END FullVectorizerGPT4All
+  properties: [
+    {name: 'title', dataType: 'text'}
+  ],
+  // START FullVectorizerGPT4All
+  // Additional parameters not shown
+});
+// END FullVectorizerGPT4All
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // Clean up
 await client.collections.delete('DemoCollection');
 

@@ -592,6 +592,43 @@ client.collections.create(
 )
 # END FullVectorizerOllama
 
+# START BasicVectorizerGPT4All
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_gpt4all(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerGPT4All
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerGPT4All
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_gpt4all(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerGPT4All
+
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},
     {"title": "The Godfather", "description": ""},
