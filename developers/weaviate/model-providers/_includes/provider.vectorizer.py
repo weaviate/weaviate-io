@@ -561,6 +561,7 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+            model="snowflake-arctic-embed",  # The model to use, e.g. "nomic-embed-text"
         )
     ],
     # highlight-end
@@ -582,8 +583,8 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             # Further options
-            api_endpoint="http://host.docker.internal:11434",
-            model="snowflake-arctic-embed",
+            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+            model="snowflake-arctic-embed",  # The model to use, e.g. "nomic-embed-text"
         )
     ],
     # highlight-end

@@ -542,6 +542,20 @@ await client.collections.create({
 });
 // END FullVectorizerTransformers
 
+// START BasicVectorizerOllama
+// Coming soon
+// END BasicVectorizerOllama
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerOllama
+// Coming soon
+// END FullVectorizerOllama
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 let srcObjects = [
   {"title": "The Shawshank Redemption", "description": ""},
   {"title": "The Godfather", "description": ""},

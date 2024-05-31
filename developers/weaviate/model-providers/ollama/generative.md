@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Ollama's models allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Ollama generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model.
+[Configure a Weaviate collection](#configure-collection) to use an Ollama generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model via your local Ollama instance.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Ollama generative model to generate outputs.
 

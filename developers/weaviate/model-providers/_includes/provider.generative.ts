@@ -222,8 +222,8 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.ollama({
-    apiEndpoint: 'http://host.docker.internal:11434',
-    model: 'llama3',
+    apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
+    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
   }),
   // highlight-end
   // Additional parameters not shown
@@ -239,7 +239,7 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.ollama({
     apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
-    model: 'llama3', // Or "phi3", or "mistral", "command-r-plus", "gemma", etc.
+    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
   }),
   // highlight-end
   // Additional parameters not shown
