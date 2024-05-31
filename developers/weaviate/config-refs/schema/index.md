@@ -177,9 +177,11 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### `class`
 
-This is the name of the collection. The collection name starts with a **capital letter**. The capital letter distinguishes collections from primitive data types when the name is used as a property value.
+The `class` is the name of the collection.
 
-Consider these examples using the `dataType` property:
+The collection name starts with a **capital letter**. The capital letter distinguishes collections from primitive data types when the name is used as a property value.
+
+Consider these examples that use the `dataType` property:
 
 - `dataType: ["text"]` is a `text` data type.
 - `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
