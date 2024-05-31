@@ -179,7 +179,7 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 The `class` is the name of the collection.
 
-The collection name starts with a **capital letter**. The capital letter distinguishes collections from primitive data types when the name is used as a property value.
+The collection name starts with an upper case letter. The upper case letter distinguishes collection names from primitive data types when the name is used as a property value.
 
 Consider these examples that use the `dataType` property:
 
