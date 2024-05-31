@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
+[Configure a Weaviate collection](#configure-collection) to use a Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google AI generative model to generate outputs.
 
@@ -110,7 +110,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Google AI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a Google AI generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

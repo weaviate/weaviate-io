@@ -550,6 +550,9 @@ client.collections.create(
 )
 # END FullVectorizerTransformers
 
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOllama
 from weaviate.classes.config import Configure
 
@@ -592,6 +595,9 @@ client.collections.create(
 )
 # END FullVectorizerOllama
 
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerGPT4All
 from weaviate.classes.config import Configure
 
@@ -628,6 +634,69 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerGPT4All
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicMMVectorizerCLIP
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_clip(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerCLIP
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerCLIP
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_clip(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # inference_url="<custom_clip_url>"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerCLIP
+
+
 
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},

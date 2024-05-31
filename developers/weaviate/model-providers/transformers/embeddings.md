@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'embeddings', 'transformers']
 ---
 
-# Locally Hosted Transformers Embeddings + Weaviate
+# Locally Hosted Transformers Text Embeddings + Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -417,9 +417,9 @@ Each of the compatible models has its own license. For detailed information, rev
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## Release notes
+### Custom models
 
-For details, see [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
+To run the integration with a custom model, refer to [the custom image guide](./embeddings-custom-image.md).
 
 ### External resources
 
