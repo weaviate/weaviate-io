@@ -72,7 +72,7 @@ Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to t
 
 ### Tombstone cleanup
 
-:::info Added in `v1.24.15`
+:::info Added in `v1.24.15` / `v1.25.2`
 :::
 
 Tombstones are records that mark deleted objects. In an HNSW index, tombstones are regularly cleaned up, triggered periodically by the `cleanupIntervalSeconds` parameter.
