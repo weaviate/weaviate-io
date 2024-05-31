@@ -7,9 +7,11 @@ image: og/docs/configuration.jpg
 
 To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, set these environment variables
 
-Note that with boolean variables, any of the following values, in lowercase or uppercase, will be interpreted as `true`: `"on"`, `"enabled"`, `"1"`, `"true"`.
+:::tip Boolean environment variables
+With Boolean environment variables, any of: `"on"`, `"enabled"`, `"1"` or `"true"`, in any case, will be interpreted as `true`.
 
-Any other value will be interpreted as `false`.
+All other values will be interpreted as `false`.
+:::
 
 ## General
 
