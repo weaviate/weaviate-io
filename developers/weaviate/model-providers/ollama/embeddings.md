@@ -1,11 +1,11 @@
 ---
-title: Text Embeddings
+title: Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_google.jpg
-# tags: ['model providers', 'google', 'embeddings']
+image: og/docs/integrations/provider_integrations_ollama.jpg
+# tags: ['model providers', 'ollama', 'embeddings']
 ---
 
-# Google AI Text Embeddings with Weaviate
+# Ollama Embeddings with Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -14,33 +14,33 @@ import BetaPageNote from '../_includes/beta_pages.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
-import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.local.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.local.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Ollama's models allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Ollama embedding model, and Weaviate will generate embeddings for various operations using the specified model via your local Ollama instance. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_google_embedding.png)
-
-:::info AI Studio availability
-At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/gemini-api/docs/available-regions) for the latest information.
-:::
+![Embedding integration illustration](../_includes/integration_ollama_embedding.png)
 
 ## Requirements
 
+### Ollama
+
+This integration requires a locally running Ollama instance with your selected model available. Refer to the [Ollama documentation](https://ollama.com/) for installation and model download instructions.
+
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
+Your Weaviate instance must be configured with the Ollama vectorizer integration (`text2vec-ollama`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
+This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires a locally running Ollama instance.
 
 </details>
 
@@ -52,47 +52,17 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 </details>
 
-### API credentials
+### Credentials
 
-You must provide valid API credentials to Weaviate for the appropriate integration.
-
-#### AI Studio
-
-Go to [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) to sign up and obtain an API key.
-
-#### Vertex AI
-
-This is called an `access token` in Google Cloud.
-
-If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
-
-```shell
-gcloud auth print-access-token
-```
-
-#### Token expiry for Vertex AI users
-
-import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
-
-<GCPTokenExpiryNotes/>
-
-#### Provide the API key
-
-Provide the API key to Weaviate at runtime, as shown in the examples below.
-
-Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users.
-
-import ApiKeyNote from '../_includes/google-api-key-note.md';
-
-<ApiKeyNote />
+As this integration connects to a local Ollama container, no additional credentials (e.g. API key) are required. Connect to Weaviate as usual, such as in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START GoogleInstantiation"
-      endMarker="# END GoogleInstantiation"
+      startMarker="# START BasicInstantiation"
+      endMarker="# END BasicInstantiation"
       language="py"
     />
   </TabItem>
@@ -100,8 +70,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START GoogleInstantiation"
-      endMarker="// END GoogleInstantiation"
+      startMarker="// START BasicInstantiation"
+      endMarker="// END BasicInstantiation"
       language="ts"
     />
   </TabItem>
@@ -110,14 +80,14 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Google AI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Ollama embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerGoogle"
-      endMarker="# END BasicVectorizerGoogle"
+      startMarker="# START BasicVectorizerOllama"
+      endMarker="# END BasicVectorizerOllama"
       language="py"
     />
   </TabItem>
@@ -125,15 +95,15 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerGoogle"
-      endMarker="// END BasicVectorizerGoogle"
+      startMarker="// START BasicVectorizerOllama"
+      endMarker="// END BasicVectorizerOllama"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
+The default model (`nomic-embed-text`) is used if no model is specified.
 
 ## Data import
 
@@ -167,9 +137,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Ollama model.
 
-![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_ollama_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -233,21 +203,16 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
+<!-- #### Example configuration -->
 
-The following examples show how to configure Google AI-specific options.
+<!-- Hiding "full" examples as no other parameters exist than shown above -->
 
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
-<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
-
-<Tabs groupId="languages">
+<!-- <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerGoogle"
-      endMarker="# END FullVectorizerGoogle"
+      startMarker="# START FullVectorizerOllama"
+      endMarker="# END FullVectorizerOllama"
       language="py"
     />
   </TabItem>
@@ -255,35 +220,25 @@ The following examples show how to configure Google AI-specific options.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerGoogle"
-      endMarker="// END FullVectorizerGoogle"
+      startMarker="// START FullVectorizerOllama"
+      endMarker="// END FullVectorizerOllama"
       language="ts"
     />
   </TabItem>
 
-</Tabs>
+</Tabs> -->
 
 ### Available models
 
-Vertex AI:
-- `textembedding-gecko@001` (default)
-- `textembedding-gecko@002`
-- `textembedding-gecko@003`
-- `textembedding-gecko@latest`
-- `textembedding-gecko-multilingual@001`
-- `textembedding-gecko-multilingual@latest`
-- `text-embedding-preview-0409`
-- `text-multilingual-embedding-preview-0409`
+See the [Ollama documentation](https://ollama.com/library) for a list of available models. This list includes both large language models and embedding models; look for the word `embed` in the name or description to identify embedding models.
 
-AI Studio:
-- `embedding-001` (default)
-- `text-embedding-004`
+Download the desired model with `ollama pull <model-name>`.
 
 ## Further resources
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Ollama generative models + Weaviate](./generative.md).
 
 ### Code examples
 
@@ -294,8 +249,9 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- [Google Vertex AI](https://cloud.google.com/vertex-ai)
-- [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=)
+- [Ollama models](https://ollama.com/library)
+- [Ollama repository](https://github.com/ollama/ollama)
+- [How to change the host and port of the Ollama server](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-can-i-expose-ollama-on-my-network)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

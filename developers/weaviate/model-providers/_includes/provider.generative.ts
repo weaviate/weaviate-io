@@ -217,6 +217,38 @@ await client.collections.create({
 });
 // END FullGenerativeAzureOpenAI
 
+// START BasicGenerativeOllama
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.ollama({
+    apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
+    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeOllama
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeOllama
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.ollama({
+    apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
+    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeOllama
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START SinglePromptExample  // START GroupedTaskExample
 let myCollection = client.collections.get('DemoCollection');
 // START SinglePromptExample  // END GroupedTaskExample

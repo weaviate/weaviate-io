@@ -1,11 +1,11 @@
 ---
-title: Text Embeddings
+title: Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_google.jpg
-# tags: ['model providers', 'google', 'embeddings']
+image: og/docs/integrations/provider_integrations_gpt4all.jpg
+# tags: ['model providers', 'gpt4all', 'embeddings']
 ---
 
-# Google AI Text Embeddings with Weaviate
+# GPT4All Embeddings with Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -14,33 +14,33 @@ import BetaPageNote from '../_includes/beta_pages.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
-import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.local.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.local.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with GPT4All's models allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an GPT4All embedding model, and Weaviate will generate embeddings for various operations using the specified model via the GPT4All inference container. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_google_embedding.png)
+![Embedding integration illustration](../_includes/integration_gpt4all_embedding.png)
 
-:::info AI Studio availability
-At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/gemini-api/docs/available-regions) for the latest information.
-:::
+This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 
 ## Requirements
 
+Currently, the GPT4All integration is only available for `amd64/x86_64` architecture devices, as the `gpt4all` library currently does not support ARM devices, such as Apple M-series.
+
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
+Your Weaviate instance must be configured with the GPT4All vectorizer integration (`text2vec-gpt4all`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
+This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires a locally running GPT4All instance.
 
 </details>
 
@@ -52,47 +52,71 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 </details>
 
-### API credentials
+#### Configure the integration
 
-You must provide valid API credentials to Weaviate for the appropriate integration.
+To use this integration, you must configure the container image of the GPT4All model, and the inference endpoint of the containerized model.
 
-#### AI Studio
+The following example shows how to configure the GPT4All integration in Weaviate:
 
-Go to [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) to sign up and obtain an API key.
+<Tabs groupId="languages">
+<TabItem value="docker" label="Docker">
 
-#### Vertex AI
+#### Docker Option 1: Use a pre-configured `docker-compose.yml` file
 
-This is called an `access token` in Google Cloud.
+Follow the instructions on the [Weaviate Docker installation configurator](../../installation/docker-compose.md#configurator) to download a pre-configured `docker-compose.yml` file with a selected model
+<br/>
 
-If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+#### Docker Option 2: Add the configuration manually
 
-```shell
-gcloud auth print-access-token
+Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
+
+```yaml
+version: '3.4'
+services:
+  weaviate:
+    # Other Weaviate configuration
+    environment:
+      GPT4ALL_INFERENCE_API: http://text2vec-gpt4all:8080  # Set the inference API endpoint
+  t2v-gpt4all:  # Set the name of the inference container
+    image: cr.weaviate.io/semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
 ```
 
-#### Token expiry for Vertex AI users
+- `GPT4ALL_INFERENCE_API` environment variable sets the inference API endpoint
+- `t2v-gpt4all` is the name of the inference container
+- `image` is the container image
 
-import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+</TabItem>
+<TabItem value="k8s" label="Kubernetes">
 
-<GCPTokenExpiryNotes/>
+Configure the GPT4All integration in Weaviate by adding or updating the `text2vec-gpt4all` module in the `modules` section of the Weaviate Helm chart values file. For example, modify the `values.yaml` file as follows:
 
-#### Provide the API key
+```yaml
+modules:
 
-Provide the API key to Weaviate at runtime, as shown in the examples below.
+  text2vec-gpt4all:
 
-Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users.
+    enabled: true
+    tag: all-MiniLM-L6-v2
+    repo: semitechnologies/gpt4all-inference
+    registry: cr.weaviate.io
+```
 
-import ApiKeyNote from '../_includes/google-api-key-note.md';
+See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml) for an example of the `values.yaml` file including more configuration options.
 
-<ApiKeyNote />
+</TabItem>
+</Tabs>
+
+### Credentials
+
+As this integration connects to a local GPT4All container, no additional credentials (e.g. API key) are required. Connect to Weaviate as usual, such as in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START GoogleInstantiation"
-      endMarker="# END GoogleInstantiation"
+      startMarker="# START BasicInstantiation"
+      endMarker="# END BasicInstantiation"
       language="py"
     />
   </TabItem>
@@ -100,8 +124,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START GoogleInstantiation"
-      endMarker="// END GoogleInstantiation"
+      startMarker="// START BasicInstantiation"
+      endMarker="// END BasicInstantiation"
       language="ts"
     />
   </TabItem>
@@ -110,14 +134,14 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Google AI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an GPT4All embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerGoogle"
-      endMarker="# END BasicVectorizerGoogle"
+      startMarker="# START BasicVectorizerGPT4All"
+      endMarker="# END BasicVectorizerGPT4All"
       language="py"
     />
   </TabItem>
@@ -125,15 +149,13 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerGoogle"
-      endMarker="// END BasicVectorizerGoogle"
+      startMarker="// START BasicVectorizerGPT4All"
+      endMarker="// END BasicVectorizerGPT4All"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
-
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
 
 ## Data import
 
@@ -167,9 +189,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified GPT4All model.
 
-![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_gpt4all_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -233,21 +255,16 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
+<!-- #### Example configuration -->
 
-The following examples show how to configure Google AI-specific options.
+<!-- Hiding "full" examples as no other parameters exist than shown above -->
 
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
-<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
-
-<Tabs groupId="languages">
+<!-- <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerGoogle"
-      endMarker="# END FullVectorizerGoogle"
+      startMarker="# START FullVectorizerGPT4All"
+      endMarker="# END FullVectorizerGPT4All"
       language="py"
     />
   </TabItem>
@@ -255,35 +272,19 @@ The following examples show how to configure Google AI-specific options.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerGoogle"
-      endMarker="// END FullVectorizerGoogle"
+      startMarker="// START FullVectorizerGPT4All"
+      endMarker="// END FullVectorizerGPT4All"
       language="ts"
     />
   </TabItem>
 
-</Tabs>
+</Tabs> -->
 
 ### Available models
 
-Vertex AI:
-- `textembedding-gecko@001` (default)
-- `textembedding-gecko@002`
-- `textembedding-gecko@003`
-- `textembedding-gecko@latest`
-- `textembedding-gecko-multilingual@001`
-- `textembedding-gecko-multilingual@latest`
-- `text-embedding-preview-0409`
-- `text-multilingual-embedding-preview-0409`
-
-AI Studio:
-- `embedding-001` (default)
-- `text-embedding-004`
+Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 ## Further resources
-
-### Other integrations
-
-- [Google AI generative models + Weaviate](./generative.md).
 
 ### Code examples
 
@@ -294,8 +295,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- [Google Vertex AI](https://cloud.google.com/vertex-ai)
-- [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=)
+- [GPT4All documentation](https://docs.gpt4all.io/)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
