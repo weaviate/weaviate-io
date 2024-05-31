@@ -1,4 +1,4 @@
-:::info Capitalization
+:::note Capitalization
 Weaviate follows GraphQL naming conventions.
 
 - Start collection names with an upper case letter.
