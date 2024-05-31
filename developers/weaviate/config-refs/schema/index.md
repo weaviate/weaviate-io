@@ -4,8 +4,6 @@ sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
-
 
 ## Introduction
 
@@ -179,16 +177,20 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### `class`
 
-This is the name of the collection. The name is to start with a **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
+This is the name of the collection. The collection name starts with a **capital letter**. The capital letter distinguishes collections from primitive data types when the name is used as a property value.
 
-- `dataType: ["text"]` is `text`
+Consider these examples using the `dataType` property:
+
+- `dataType: ["text"]` is a `text` data type.
 - `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
-After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
+After the first letter, collection names may use any GraphQL-compatible characters.
 
-import initialCaps from '/_includes/schemas/initial-capitalization.md'
+The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
-<initialCaps />
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
 
 ### `description`
 
