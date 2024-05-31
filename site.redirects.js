@@ -199,6 +199,11 @@ const siteRedirects = {
             to: '/developers/weaviate/starter-guides/connect',
             from: '/developers/weaviate/tutorials/connect',
         },
+        {
+         to: '/developers/weaviate/connect/connect',
+         from: '/developers/weaviate/starter-guides/connect',
+        },
+
 
         // Remove BPR page
         {
