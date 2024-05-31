@@ -243,7 +243,7 @@ See the [`similarity search`](./similarity.md) page for more details.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connect/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
 
 ## Questions and feedback
 

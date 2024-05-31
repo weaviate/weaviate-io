@@ -622,7 +622,7 @@ The output is like this:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connect/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
 - For image search, see [Image search](/developers/weaviate/search/image).
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md).
 - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).

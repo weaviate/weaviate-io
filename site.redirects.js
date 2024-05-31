@@ -196,11 +196,11 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/schema',
         },
         {
-            to: '/developers/weaviate/connect/connect',
+            to: '/developers/weaviate/connections/connect',
             from: '/developers/weaviate/tutorials/connect',
         },
         {
-         to: '/developers/weaviate/connect/connect',
+         to: '/developers/weaviate/connections/connect',
          from: '/developers/weaviate/starter-guides/connect',
         },
 
