@@ -1,6 +1,6 @@
 ---
 title: Multimodal (CLIP) Embeddings
-sidebar_position: 25
+sidebar_position: 30
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'transformers', 'embeddings']
 ---
