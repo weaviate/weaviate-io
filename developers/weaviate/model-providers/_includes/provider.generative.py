@@ -314,6 +314,39 @@ client.collections.create(
 )
 # END FullGenerativeAzureOpenAI
 
+# START BasicGenerativeOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.ollama(
+        api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        model="llama3"  # Or "phi3", or "mistral", "command-r-plus", "gemma", etc.
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeOllama
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.ollama(
+        api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        model="llama3"  # Or "phi3", or "mistral", "command-r-plus", "gemma", etc.
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeOllama
+
 source_objects = [
     {"title": "The Shawshank Redemption"},
     {"title": "The Godfather"},

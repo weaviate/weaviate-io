@@ -550,6 +550,47 @@ client.collections.create(
 )
 # END FullVectorizerTransformers
 
+# START BasicVectorizerOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_ollama(
+            name="title_vector",
+            source_properties=["title"],
+            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerOllama
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_ollama(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            api_endpoint="http://host.docker.internal:11434",
+            model="snowflake-arctic-embed",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerOllama
+
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},
     {"title": "The Godfather", "description": ""},

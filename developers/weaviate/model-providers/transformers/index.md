@@ -9,7 +9,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-Hugging Face's Transformers library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates the Transformers library, allowing users to leverage compatible models directly within the Weaviate database.
+Hugging Face's Transformers library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates with the Transformers library, allowing users to leverage compatible models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -25,7 +25,7 @@ Transformers-compatible embedding models transform text data into high-dimension
 
 [Weaviate integrates with Hugging Face Transformers' embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
-[Hugging Face embedding integration page](./embeddings.md)
+[Hugging Face Transformers embedding integration page](./embeddings.md)
 
 ## Summary
 
