@@ -135,7 +135,7 @@ import weaviate from 'weaviate-client';
 import { parse } from 'csv-parse/sync';
 import fs from 'fs';
 
-const client = await weaviate.connectToWCD(process.env.WCD_URL!!, {
+const client = await weaviate.connectToWeaviateCloud(process.env.WCD_URL!!, {
   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY!!),
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
@@ -218,7 +218,7 @@ import weaviate from 'weaviate-client';
 
 import { QuoteType } from './types';
 
-const client = await weaviate.connectToWCD(process.env.WCD_URL!!, {
+const client = await weaviate.connectToWeaviateCloud(process.env.WCD_URL!!, {
   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY!!),
   headers: {
     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,

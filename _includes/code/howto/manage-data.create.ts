@@ -7,7 +7,7 @@ import assert from 'assert';
 // ================================
 import weaviate, { WeaviateClient, WeaviateNonGenericObject, WeaviateObject, WeaviateReturn } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCD(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),

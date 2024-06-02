@@ -22,7 +22,7 @@ import csv from 'csv-parser';
 // END CSV streaming
 
 // ===== Instantiation, not shown in snippet
-const client = await weaviate.connectToWCD(
+const client = await weaviate.connectToWeaviateCloud(
  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),

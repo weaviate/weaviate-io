@@ -15,7 +15,7 @@ const WCD_URL=process.env["WCD_URL"];
 const WCD_API_KEY=process.env["WCD_API_KEY"];
 const OPENAI_API_KEY=process.env["OPENAI_API_KEY"];
 
-const client: WeaviateClient = await weaviate.connectToWCD(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   WCD_URL,
  {
    authCredentials: new weaviate.ApiKey(WCD_API_KEY),

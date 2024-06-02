@@ -5,7 +5,7 @@
 // ConnectCloud
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToWCD(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
     headers: {
@@ -51,9 +51,7 @@ console.log(client)
 // CollectionEx
 const myCollection = client.collections.get('JeopardyQuestion');
 
-const result = await myCollection.query.fetchObjects({
-  returnProperties: ['question'],
-})
+const result = await myCollection.query.fetchObjects()
 
 console.log(JSON.stringify(result.objects, null, 2));
 // END CollectionEx

@@ -91,7 +91,7 @@ The v3 client provides helper functions to connect your application to your Weav
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToWCD(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
     headers: {
@@ -155,7 +155,7 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // Instantiate the client with the auth config
-const client: WeaviateClient = await weaviate.connectToWCD(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
@@ -170,7 +170,7 @@ To include custom headers, such as API keys for third party services, add the cu
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCD(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here

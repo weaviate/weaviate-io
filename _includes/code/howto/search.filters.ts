@@ -11,7 +11,7 @@ import weaviate, { Filters } from 'weaviate-client';
 
 // END searchMultipleFiltersAnd // END searchMultipleFiltersNested
 
-const client = await weaviate.connectToWCD(
+const client = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL,
  {
    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),

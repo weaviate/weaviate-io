@@ -11,7 +11,7 @@ async function main() {
   
 // CompleteScript // CreateClient  
   // connect to your Weaviate instance on WCD
-  const client = await weaviate.connectToWCD(
+  const client = await weaviate.connectToWeaviateCloud(
     process.env.WEAVIATE_URL || '',
     {
       authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
