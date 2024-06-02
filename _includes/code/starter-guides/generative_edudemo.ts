@@ -53,7 +53,7 @@ assert(typeof groupedTaskResponse.generated === 'string', 'The generated object 
 
 
 // TransformIndividualObjects
-const myWineCollection = await client.collections.get('WineReview');
+const myWineCollection = client.collections.get('WineReview');
 
 const singlePromptresult = await myWineCollection.generate.nearText("fruity white wine",{
   singlePrompt: `Translate this review into French, using emojis:

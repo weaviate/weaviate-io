@@ -71,7 +71,7 @@ console.log(response)
 // =========================
 {
 // UpdateVector START
-const jeopardy = await client.collections.get('Jeopardy')
+const jeopardy = client.collections.get('Jeopardy')
 const response = await jeopardy.data.update({
   id: 'ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',
   // highlight-start

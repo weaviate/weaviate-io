@@ -7,12 +7,12 @@
 import weaviate
 import weaviate_datasets
 
-# OneWay Python  # TwoWay Python  # Multiple Python  # Delete Python  # Update Python
+# START OneWay  # TwoWay Python  # Multiple Python  # Delete Python  # Update Python
 sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-# END OneWay Python  # END TwoWay Python # END Multiple Python  # END Delete Python  # END Update Python
-# OneWay Python  # TwoWay Python  # Multiple Python
+# END OneWay  # END TwoWay Python # END Multiple Python  # END Delete Python  # END Update Python
+# START OneWay  # TwoWay Python  # Multiple Python
 us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
-# END OneWay Python  # END TwoWay Python # END Multiple Python  # END Delete Python
+# END OneWay  # END TwoWay Python # END Multiple Python  # END Delete Python
 # Multiple Python  # Delete Python  # Update Python
 museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
 # END Multiple Python  # END Delete Python  # END Update Python
@@ -37,7 +37,7 @@ client = weaviate.Client(
 # ===== Define classes in the schema and upload dataset =====
 # ===========================================================
 
-# CrossRefDefinition START
+# START CrossRefDefinition
 class_definitions = [
     {
         "class": "JeopardyCategory",
@@ -61,13 +61,13 @@ class_definitions = [
         ],
     },
 ]
-# CrossRefDefinition END
+# END CrossRefDefinition
 
 client.schema.delete_all()
 # if not client.schema.contains({"classes": class_definitions}):
-# CrossRefDefinition START
+# START CrossRefDefinition
 client.schema.create({"classes": class_definitions})
-# CrossRefDefinition END
+# END CrossRefDefinition
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(client, 100)  # batch-upload objects
 
@@ -94,7 +94,7 @@ data_obj = {
     "answer": "Sharding, multi-tenancy, and replication"
 }
 
-# ObjectWithCrossRef
+# START ObjectWithCrossRef
 # data_obj is a dictionary with the object's properties
 data_obj["hasCategory"] = [  # Add one or more cross-references through the "hasCategory" property
     {"beacon": f"weaviate://localhost/JeopardyCategory/{category_uuid}"}
@@ -118,7 +118,7 @@ assert f"/v1/objects/JeopardyCategory/{category_uuid}" in xrefs
 # ===== Add one-way cross-ref =====
 # =================================
 
-# OneWay Python
+# START OneWay
 
 client.data_object.reference.add(
     from_class_name="JeopardyQuestion",
@@ -127,7 +127,7 @@ client.data_object.reference.add(
     to_class_name="JeopardyCategory",
     to_uuid=us_cities_id,
 )
-# END OneWay Python
+# END OneWay
 
 # Test results
 sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")

@@ -46,8 +46,8 @@ console.log(JSON.stringify(newCollection, null, 2));
 // END BasicCreateCollection
 
 // Test
-// (await client.collections.get('ArticleNV').config.get()).vectorizer.body.vectorizer
-result = await client.collections.get(collectionName).config.get()
+// (client.collections.get('ArticleNV').config.get()).vectorizer.body.vectorizer
+result = client.collections.get(collectionName).config.get()
 
 console.assert('replication' in result);
 
@@ -135,7 +135,7 @@ console.log(JSON.stringify(newCollection, null, 2));
 // END BasicNamedVectors
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(
   result.vectorizer.title.properties,
@@ -173,7 +173,7 @@ newCollection = await client.collections.create({
 // END Vectorizer
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-openai');
 assert.equal(result.properties.length, 2); 
@@ -206,7 +206,7 @@ newCollection = await client.collections.create({
 // END SetVectorIndexType
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-openai');
 assert.equal(result.vectorIndexType, 'hnsw');
@@ -236,7 +236,7 @@ newCollection = await client.collections.create({
 // END SetVectorIndexParams
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-openai');
 assert.equal(result.vectorIndexType, 'flat');
@@ -263,7 +263,7 @@ newCollection = await client.collections.create({
 // END ModuleSettings
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-cohere');
 assert.equal(
@@ -306,7 +306,7 @@ newCollection = await client.collections.create({
 // END PropModuleSettings
 
 // Test vectorizeCollectionName
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-cohere');
 assert.equal(
@@ -333,7 +333,7 @@ newCollection = await client.collections.create({
 // END DistanceMetric
 
 // Test
-result = await client.collections.get(collectionName).config.get()
+result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.indexConfig.distance, 'cosine');
 

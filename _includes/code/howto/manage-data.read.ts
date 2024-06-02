@@ -97,7 +97,7 @@ const object_uuid = generateUuid5(
 )
 // highlight-end
 
-const authors = await client.collections.get('Author')
+const authors = client.collections.get('Author')
 // highlight-start
 const authorExists = await authors.data.exists(object_uuid)
 // highlight-end

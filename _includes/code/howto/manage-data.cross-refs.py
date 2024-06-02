@@ -61,7 +61,7 @@ client.collections.create(
     ]
 )
 
-# CrossRefDefinition START
+# START CrossRefDefinition
 from weaviate.classes.config import Property, DataType, ReferenceProperty
 
 client.collections.create(
@@ -81,7 +81,7 @@ client.collections.create(
     # highlight-end
 
 )
-# CrossRefDefinition END
+# END CrossRefDefinition
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(client)  # batch-upload objects
@@ -115,7 +115,7 @@ properties = {
 
 obj_uuid = generate_uuid5(properties)
 
-# ObjectWithCrossRef
+# START ObjectWithCrossRef
 questions = client.collections.get("JeopardyQuestion")
 
 questions.data.insert(
@@ -144,7 +144,7 @@ assert category_uuid == str(xref_ids[0])
 # ===== Add one-way cross-ref =====
 # =================================
 
-# OneWay Python
+# START OneWay
 questions = client.collections.get("JeopardyQuestion")
 
 questions.data.reference_add(
@@ -154,7 +154,7 @@ questions.data.reference_add(
     to=category_obj_id
     # highlight-end
 )
-# END OneWay Python
+# END OneWay
 
 # Test results
 result = questions.query.fetch_object_by_id(
