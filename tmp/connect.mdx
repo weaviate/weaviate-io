@@ -1,14 +1,13 @@
 ---
-title: Connect to Weaviate
-sidebar_position: 15
-image: og/docs/tutorial.jpg
+title: Local instances
+sidebar_position: 20
+image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Badges from '/_includes/badges.mdx';
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
@@ -18,26 +17,41 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-Learn how to connect to Weaviate.
+Follow these steps to connect to a locally hosted Weaviate Core instance.
 
-Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data.
+## Connect without authentication
 
-## Prerequisites
+:::warning Use authentication
+Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
+:::
 
-To configure a connection, you need the following information:
+To connect to Weaviate without authentication, follow these examples:
 
-- The location of your Weaviate instance
-- If authentication is enabled, the allowed authentication methods
-- If you are using modules, the API keys and module connection details
+<WCSWithoutAuthentication/>
 
-### Where to find connection details
+## Authentication enabled
 
-**Weaviate Cloud (WCD)** If you are using [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), the dashboard has a "Details" button. Click the button to get the following information:
+If authentication is enabled, use a Weaviate API key or OIDC credentials to connect.
 
- - The cluster URL
- - Authentication type
- - API keys, if enabled
- - Module details
+For details, see [Authentication](../configuration/authentication.md).
+
+#### Weaviate API keys
+
+To authenticate with a Weaviate API key, follow these examples.
+
+Configure your [environment variables](#environment-variables) or edit the example code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
+
+<WCSAuthenticationApiKey/>
+
+#### OpenID Connect (OIDC)
+
+To authenticate with OIDC, follow these examples:
+
+<WCSAuthenticationUserPass/>
+
+OIDC providers use a variety of authentication configurations. The example shows a typical OIDC configuration, but your identity provider may use a different configuration. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
+
+
 
 **Docker and Kubernetes** If you are using Docker or Kubernetes, your URL will depend on how the container is configured to provide access.
 
@@ -46,9 +60,7 @@ To configure a connection, you need the following information:
 
 Docker instances by default use the `http://localhost:8080` address.
 
-**Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication credentials. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
-
-### Environment variables
+## Environment variables
 
 These examples use environment variables to store connection details and sensitive information such as API keys.
 
@@ -91,7 +103,7 @@ This method is more secure than hardcoding sensitive information in your code, w
         language="py"
     />
 </TabItem>
-<TabItem value="js" label="JS/TS Client v2">
+<TabItem value="js" label=”JS/TS Client v2”>
 
 ```js
 const weaviateUrl = process.env.WEAVIATE_URL;
@@ -129,45 +141,7 @@ String weaviateKey = System.getenv("WEAVIATE_API_KEY");
 </TabItem>
 </Tabs>
 
-## Connecting to Weaviate
-
-### Without authentication
-
-:::warning Use authentication
-Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
-:::
-
-To connect to Weaviate without authentication, follow these examples:
-
-<WCSWithoutAuthentication/>
-
-### With authentication
-
-If authentication is enabled, use a Weaviate API key or OIDC credentials to connect. For details, see [Authentication](../configuration/authentication.md).
-
-#### Weaviate API keys
-
-To authenticate with a Weaviate API key, follow these examples. Note they use [environment variables](#environment-variables) to store the API key.
-
-Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
-
-<WCSAuthenticationApiKey/>
-
-#### OIDC
-
-This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
-
-To authenticate with OIDC, follow these examples:
-
-<WCSAuthenticationUserPass/>
-
-### Connect to embedded Weaviate
-
-Embedded instances usually don't need authentication credentials.
-
-<EmbeddedInstantiationSimple/>
-
-### Timeouts
+## Timeouts
 
 For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
 
@@ -190,20 +164,6 @@ Modules that use external APIs often need API keys. The Weaviate clients send th
 To add third party API keys, follow these examples:
 
 <WCSAuthenticationApiKeyWithInferenceKey/>
-
-## Next
-
-For more details, see:
-
-- [Authentication](../configuration/authentication.md)
-- [Configuration](../configuration/index.md)
-- [Modules](../modules/index.md)
-
-For additional tutorials, see:
-
-- [Build schemas](../starter-guides/schema.md)
-- [Import data](../tutorials/import.md)
-- [Query data](../tutorials/query.md)
 
 ## Questions and feedback
 

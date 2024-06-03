@@ -1,14 +1,13 @@
 ---
-title: Connect to Weaviate
-sidebar_position: 15
-image: og/docs/tutorial.jpg
+title: Connect with Query App
+sidebar_position: 20
+image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Badges from '/_includes/badges.mdx';
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
@@ -18,17 +17,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-Learn how to connect to Weaviate.
-
-Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data.
-
-## Prerequisites
-
-To configure a connection, you need the following information:
-
-- The location of your Weaviate instance
-- If authentication is enabled, the allowed authentication methods
-- If you are using modules, the API keys and module connection details
+https://weaviate.io/developers/wcs/console
 
 ### Where to find connection details
 
@@ -91,7 +80,7 @@ This method is more secure than hardcoding sensitive information in your code, w
         language="py"
     />
 </TabItem>
-<TabItem value="js" label="JS/TS Client v2">
+<TabItem value="js" label=”JS/TS Client v2”>
 
 ```js
 const weaviateUrl = process.env.WEAVIATE_URL;
