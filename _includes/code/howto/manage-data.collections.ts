@@ -5,8 +5,8 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate, { WeaviateClient } from 'weaviate-client';
-import { vectorizer, generative, dataType, tokenization, configure, reconfigure } from 'weaviate-client';
+import weaviate, { WeaviateClient, vectorIndex } from 'weaviate-client';
+import { vectorizer, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL,
@@ -36,9 +36,9 @@ try {
 } catch (e) {
   // ignore error if class doesn't exist
 }
-
+{
 // START BasicCreateCollection
-let newCollection = await client.collections.create({
+const newCollection = await client.collections.create({
   name: 'Article'
 })
 
@@ -51,7 +51,7 @@ console.log(JSON.stringify(newCollection, null, 2));
 result = client.collections.get(collectionName).config.get()
 
 console.assert('replication' in result);
-
+}
 // ====================================
 // ===== CREATE A CLASS WITH PROPERTIES
 // ====================================
@@ -200,10 +200,11 @@ import { vectorizer, dataType, configure } from 'weaviate-client';
 // START SetVectorIndexType
 await client.collections.create({
   name: 'Article',
-  vectorizers: vectorizer.text2VecOpenAI(),
-  // highlight-start
-  vectorIndex: configure.vectorIndex.hnsw(),
-  // highlight-end
+  vectorizers: vectorizer.text2VecOpenAI({
+    // highlight-start
+    vectorIndexConfig: configure.vectorIndex.hnsw(),
+    // highlight-end
+  }),
   properties: [
     { name: 'title', dataType: dataType.TEXT },
     { name: 'body', dataType: dataType.TEXT },
@@ -227,7 +228,7 @@ await client.collections.delete(collectionName)
 
 /*
 // START SetVectorIndexParams
-import { configure } from 'weaviate-client';
+import { configure, vectorizer } from 'weaviate-client';
 
 // END SetVectorIndexParams
 */
@@ -236,15 +237,17 @@ import { configure } from 'weaviate-client';
 await client.collections.create({
   name: 'Article',
   // Additional configuration not shown
-  // highlight-start
-  vectorIndex: configure.vectorIndex.flat({
-    quantizer: configure.vectorIndex.quantizer.bq({
-      rescoreLimit: 200,
-      cache: true
-    }),
-    vectorCacheMaxObjects: 100000
+  vectorizers: vectorizer.text2VecCohere({
+    // highlight-start
+    vectorIndexConfig: configure.vectorIndex.flat({
+      quantizer: configure.vectorIndex.quantizer.bq({
+        rescoreLimit: 200,
+        cache: true
+      }),
+      vectorCacheMaxObjects: 100000
+    })
+    // highlight-end
   })
-  // highlight-end
 })
 // END SetVectorIndexParams
 
@@ -271,7 +274,7 @@ import { vectorizer } from 'weaviate-client';
 
 
 // START ModuleSettings
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   // highlight-start
   vectorizers: vectorizer.text2VecCohere({
@@ -300,13 +303,13 @@ await client.collections.delete(collectionName)
 
 /*
 // START PropModuleSettings
-import { vectorizer, dataType, tokenization, configure } from 'weaviate-client';
+import { vectorizer, dataType, tokenization } from 'weaviate-client';
 
 // END PropModuleSettings
 */
-
+{
 // START PropModuleSettings
-newCollection = await client.collections.create({
+const newCollection = await client.collections.create({
   name: 'Article',
   vectorizers: vectorizer.text2VecHuggingFace(),
   properties: [
@@ -341,6 +344,7 @@ assert.equal(
 
 // Delete the class to recreate it
 await client.collections.delete(collectionName)
+}
 
 // ===========================
 // ===== DISTANCE METRIC =====
@@ -348,19 +352,21 @@ await client.collections.delete(collectionName)
 
 /*
 // START DistanceMetric
-import { configure } from 'weaviate-client';
+import { configure, vectorizer, vectorDistances } from 'weaviate-client';
 
 // END DistanceMetric
 */
 
 // START DistanceMetric
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
-  // highlight-start
-  vectorIndex: configure.vectorIndex.hnsw({
-    distanceMetric: 'cosine'
+  vectorizers: vectorizer.text2VecOllama({
+    // highlight-start
+    vectorIndexConfig: configure.vectorIndex.hnsw({
+      distanceMetric: vectorDistances.COSINE // or 'cosine'
+    })
+    // highlight-end
   })
-  // highlight-end
 })
 // END DistanceMetric
 
@@ -384,7 +390,7 @@ import { dataType } from 'weaviate-client';
 */
 
 // START SetInvertedIndexParams
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   properties: [
     {
@@ -435,7 +441,7 @@ import { vectorizer, generative } from 'weaviate-client';
 */
 
 // START SetGenerative
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   vectorizers: vectorizer.text2VecOpenAI(),
   // highlight-start
@@ -462,7 +468,7 @@ import { vectorizer, generative } from 'weaviate-client';
 */
 
 // START SetGenModel
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   vectorizers: vectorizer.text2VecOpenAI(),
   // highlight-start
@@ -491,7 +497,7 @@ import { configure } from 'weaviate-client';
 */
 
 // START ReplicationSettings
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   // highlight-start
   replication: configure.replication({
@@ -516,7 +522,7 @@ import { configure } from 'weaviate-client';
 */
 
 // START ShardingSettings
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   // highlight-start
   sharding: configure.sharding({
@@ -540,7 +546,7 @@ assert.equal(result.shardingConfig.actual_virtual_count, 128);
 // =========================
 
 // START Multi-tenancy
-newCollection = await client.collections.create({
+await client.collections.create({
   name: 'Article',
   // highlight-start
   multiTenancy: { enabled: true }

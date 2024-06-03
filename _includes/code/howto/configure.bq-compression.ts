@@ -15,22 +15,11 @@ await client.collections.delete(collectionName);
 // START EnableBQ
 const collection = await client.collections.create({
   name: collectionName,
-  vectorizers: weaviate.configure.vectorizer.none('default', {
-    name: '',
+  vectorizers: weaviate.configure.vectorizer.none({
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
       quantizer: weaviate.configure.vectorIndex.quantizer.bq(),
     })
   })
-  // vectorizer: [
-  //   configure.namedVectorizer(
-  //     "default",
-  //     {
-  //       vectorIndexConfig: configure.vectorIndex.hnsw({
-  //         quantizer: configure.vectorIndex.quantizer.bq()
-  //       })
-  //     }
-  //   )
-  // ]
 })
 // END EnableBQ
 

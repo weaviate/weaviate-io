@@ -1,6 +1,7 @@
 // Bring your own vectors - TypeScript complete sample
 
 import weaviate, { WeaviateClient } from 'weaviate-client'
+import { vectorizer } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
@@ -8,13 +9,13 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 // Class definition object. Weaviate's autoschema feature will infer properties when importing.
 const newCollection = await client.collections.create({
   name: 'Question',
-  vectorizers: weaviate.configure.vectorizer.none(),
+  vectorizers: vectorizer.none(),
 });
 
 console.log('We have a new collection!', newCollection['name']);

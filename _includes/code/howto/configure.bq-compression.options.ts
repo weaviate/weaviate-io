@@ -14,7 +14,7 @@ await client.collections.delete(collectionName);
 // START BQWithOptions
 const collection = await client.collections.create({
   name: collectionName,
-  vectorizers: weaviate.configure.vectorizer.none('default', {
+  vectorizers: weaviate.configure.vectorizer.none({
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
       quantizer: weaviate.configure.vectorIndex.quantizer.bq({
         cache: true,     // Enable caching

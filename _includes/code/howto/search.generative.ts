@@ -8,10 +8,10 @@ import assert from 'assert';
 
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL,
+const client: WeaviateClient = await weaviate.connectToWCD(
+  process.env.WCS_URL,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
@@ -31,10 +31,9 @@ const myCollection = client.collections.get('JeopardyQuestion');
 // ===============================================
 
 // NamedVectorNearText
-let NVResult;
 const myNVCollection = client.collections.get('WineReviewNV');
 
-NVResult = await myNVCollection.generate.nearText(
+const result = await myNVCollection.generate.nearText(
   ['a sweet German white wine'],
   {
     singlePrompt: 'Translate this into German: {review_body}',
@@ -46,8 +45,8 @@ NVResult = await myNVCollection.generate.nearText(
   }
 );
 
-console.log(NVResult.generated);
-for (let object of NVResult.objects) {
+console.log(result.generated);
+for (let object of result.objects) {
   console.log(JSON.stringify(object.properties, null, 2));
   console.log(object.generated);
 }
