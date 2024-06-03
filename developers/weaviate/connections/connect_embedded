@@ -1,0 +1,9 @@
+---
+title: Connect to Embedded Weaviate
+sidebar_position: 15
+image: og/docs/tutorial.jpg
+# tags: ['getting started', 'connect']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
