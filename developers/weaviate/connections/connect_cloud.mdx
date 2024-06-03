@@ -33,13 +33,26 @@ import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx'
 
 Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique.
 
+To create an environment variable, add a line like this example to your shell configuration file.
+
 ```bash
-export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
+export WEAVIATE_API_KEY="replaceThisPartWithYourWeaviateAPIKey"
 ```
+## Third party API keys
+
+Integrations that use external APIs often need API keys for those services. The Weaviate clients send third party API keys as headers.
+
+To add third party API keys, follow these examples:
+
+<WCSAuthenticationApiKeyWithInferenceKey/>
 
 ## Timeouts
 
-For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
+Timeout values are configurable for [gRPC-enabled](../api/grpc.md) clients. If you run into client timeouts, adjust these values.
+
+- Initialization
+- Queries
+- Insertions
 
 <Tabs groupId="languages">
     <TabItem value="py4" label="Python Client v4">
@@ -52,14 +65,6 @@ For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initi
     </TabItem>
 </Tabs>
 
-
-## Third party API keys
-
-Modules that use external APIs often need API keys. The Weaviate clients send these keys as additional headers.
-
-To add third party API keys, follow these examples:
-
-<WCSAuthenticationApiKeyWithInferenceKey/>
 
 ## Questions and feedback
 
