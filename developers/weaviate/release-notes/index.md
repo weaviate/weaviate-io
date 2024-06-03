@@ -300,12 +300,14 @@ For links to the Python Client releases, expand this section.
 
 ## TypeScript and JavaScript Clients
 
+The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.
+
+### TypeScript Client
+
 For links to the TypeScript Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
-
-  ### TypeScript Client
 
   | Client Version | Release Date |
   | :- | :- |
@@ -327,14 +329,12 @@ For links to the TypeScript Client releases, expand this section.
 
 </details>
 
-The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.
+ ### JavaScript Client
 
 For links to the JavaScript Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
-
-  ### JavaScript Client
 
   | Client Version | Release Date |
   | :- | :- |
