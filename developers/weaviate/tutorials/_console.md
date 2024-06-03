@@ -25,7 +25,7 @@ When opening the [Weaviate Console](https://console.weaviate.cloud), you'll see 
 
 ## Weaviate Cloud
 
-Weaviate Cloud allow you to create Weaviate instances as SaaS instances on our infrastructure. There is no difference between locally run Weaviate instances or Weaviate SaaS instances other than that the latter ones are managed by us.
+Use Weaviate Cloud to create serverless instances on our infrastructure. Self-hosted and serverless instances offer the same features. The main difference is that you don't have to manage the server or infrastructure for a serverless instance.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
@@ -59,7 +59,7 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 ## Recap
 
 * You can use the Weaviate Console to connect to any Weaviate instance.
-* You can use the Weaviate Console to connect to the Weaviate Cloud to create managed Weaviate instances.
+* You can use the Weaviate Console to connect to the Weaviate Cloud to create serverless Weaviate instances.
 * Because Weaviate uses GraphQL, you can easily query it with the console's GraphiQL integration.
 
 ## What next?

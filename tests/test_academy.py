@@ -29,6 +29,7 @@ import utils
         "./developers/academy/py/tokenization/_snippets/315_add_objects.py",
         "./developers/academy/py/tokenization/_snippets/320_filters.py",
         "./developers/academy/py/tokenization/_snippets/400_searches.py",
+        "./developers/academy/py/vector_index/_snippets/100_config.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):

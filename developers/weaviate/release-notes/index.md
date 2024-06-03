@@ -14,7 +14,8 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
-| [1.25.1][c1.25.1] | 2024-05-17 | [4.6.2][p4.6.2] | [2.2.0][ts2.2.0] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
+| [1.25.2][c1.25.2] | 2024-05-31 | [4.6.3][p4.6.3] | [2.2.0][ts2.2.0] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
+| [1.25.1][c1.25.1] | 2024-05-17 | [4.6.2][p4.6.2] | '' | '' | '' |
 | [1.25.0][c1.25.0] | 2024-05-10 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.1] | [4.6.0][j4.6.0] |
 
 ### Major releases
@@ -59,8 +60,10 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.25.2][c1.25.2] | 2024-05-31 |
   | [1.25.1][c1.25.1] | 2024-05-17 |
   | [1.25.0][c1.25.0] | 2024-05-10 |
+  | [1.24.15][c1.24.15] | 2024-05-29 |
   | [1.24.14][c1.24.14] | 2024-05-17 |
   | [1.24.13][c1.24.13] | 2024-05-15 |
   | [1.24.12][c1.24.12] | 2024-05-09 |
@@ -76,6 +79,7 @@ For links to the Weaviate Core releases, expand this section.
   | [1.24.2][c1.24.2] | 2024-03-13 |
   | [1.24.1][c1.24.1] | 2024-03-01 |
   | [1.24.0][c1.24.0] | 2024-02-27 |
+  | [1.23.16][c1.23.16] | 2024-05-29 |
   | [1.23.15][c1.23.15] | 2024-05-17 |
   | [1.23.14][c1.23.14] | 2024-03-26 |
   | [1.23.13][c1.23.13] | 2024-03-14 |
@@ -483,8 +487,10 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.25.2]: https://github.com/weaviate/weaviate/releases/tag/v1.25.2
 [c1.25.1]: https://github.com/weaviate/weaviate/releases/tag/v1.25.1
 [c1.25.0]: https://github.com/weaviate/weaviate/releases/tag/v1.25.0
+[c1.24.15]: https://github.com/weaviate/weaviate/releases/tag/v1.24.15
 [c1.24.14]: https://github.com/weaviate/weaviate/releases/tag/v1.24.14
 [c1.24.13]: https://github.com/weaviate/weaviate/releases/tag/v1.24.13
 [c1.24.12]: https://github.com/weaviate/weaviate/releases/tag/v1.24.12
@@ -500,6 +506,7 @@ For links to the Java Client releases, expand this section.
 [c1.24.2]: https://github.com/weaviate/weaviate/releases/tag/v1.24.2
 [c1.24.1]: https://github.com/weaviate/weaviate/releases/tag/v1.24.1
 [c1.24.0]: https://github.com/weaviate/weaviate/releases/tag/v1.24.0
+[c1.23.16]: https://github.com/weaviate/weaviate/releases/tag/v1.23.16
 [c1.23.15]: https://github.com/weaviate/weaviate/releases/tag/v1.23.15
 [c1.23.14]: https://github.com/weaviate/weaviate/releases/tag/v1.23.14
 [c1.23.13]: https://github.com/weaviate/weaviate/releases/tag/v1.23.13

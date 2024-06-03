@@ -18793,10 +18793,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.0.0-rc.3:
-  version "3.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-rc.3.tgz#3bdb65a644886de91113813707e76776ab52dacb"
-  integrity sha512-iaAKnZD+Of9kmLlV/BVVE8xElZNVS6SlbzSFZDh79iHLVlE4b09uvUHxrfKz+q5ki3RRz9Psi0De2vfIi+g0ow==
+weaviate-client@^3.0.0:
+  version "3.0.0"
+  "resolved": "https://registry.npmjs.org/weaviate-client/-/weaviate-client-3.0.0.tgz",
+  "integrity": "sha512-0StfEk40AM0qrSQtDH6ZhkXSUvGeFS7CNYTDaAoNUECc6bsRjjExkr5fRoyBZ+X2rIRhOZHU1EriSIyXxFz7bw==",
   dependencies:
     graphql "^16.8.1"
     graphql-request "^6.1.0"
@@ -18814,10 +18814,10 @@ weaviate-ts-client@^1.3.3:
     isomorphic-fetch "^3.0.0"
     uuid "^9.0.0"
 
-weaviate-ts-client@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-2.1.0.tgz#5232a95224b6218e912f2dd9199375d82a2f43c2"
-  integrity sha512-9gNcH4Dhdr6vxo7zmINi3fmK1KYHh7RQZk6wO+heT8IISMubiuW1RSM2OtgDT0bkzhEuJXlsONKldFHAfl6TxA==
+weaviate-ts-client@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-2.2.0.tgz#59dc88b6aa33dd1883e1fc23c78da70435678cd5"
+  integrity sha512-sOvX1Gt8+u9wIVmiYii26N4KSpZ8jM5fM4DMmtRL6yPNO9u8elsvg5g7eJOwmrICsn1Zt2efxhxuSChI0M8FzQ==
   dependencies:
     graphql-request "^5.2.0"
     uuid "^9.0.1"

@@ -1,5 +1,5 @@
 ---
-title: Embeddings (Text)
+title: Text Embeddings
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
@@ -40,7 +40,7 @@ Your Weaviate instance must be configured with the Google AI vectorizer integrat
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
