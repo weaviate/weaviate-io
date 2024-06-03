@@ -35,16 +35,18 @@ client = weaviate.connect_to_wcs(
 # START-ANY
 # Define a function to call the endpoint and obtain embeddings
 from typing import List
-import cohere
 import os
+import cohere
+from cohere import Client as CohereClient
 
 co_token = os.getenv("COHERE_APIKEY")
 co = cohere.Client(co_token)
 
 
-def vectorize(texts: List[str]) -> List[List[float]]:
+# Define a function to call the endpoint and obtain embeddings
+def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
 
-    response = co.embed(
+    response = cohere_client.embed(
         texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
     )
 
@@ -55,11 +57,11 @@ def vectorize(texts: List[str]) -> List[List[float]]:
 
 
 query_text = "history"
-query_vector = vectorize([query_text])[0]
+query_vector = vectorize(co, [query_text])[0]
 
 # MetadataBM25Search
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.bm25(
@@ -85,7 +87,7 @@ client.connect()
 
 # MetadataHybridSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.hybrid(
@@ -113,11 +115,11 @@ print("\n\n")
 client.connect()
 
 query_text = "history"
-query_vector = vectorize([query_text])[0]
+query_vector = vectorize(co, [query_text])[0]
 
 # FilteredSemanticSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.near_vector(

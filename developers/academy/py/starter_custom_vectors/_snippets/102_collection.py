@@ -24,11 +24,11 @@ client = weaviate.connect_to_wcs(
 
 # Actual instantiation
 
-client.collections.delete("Movie")
+client.collections.delete("MovieCustomVector")
 
 # CreateMovieCollection
 client.collections.create(
-    name="Movie",
+    name="MovieCustomVector",
     properties=[
         wc.Property(name="title", data_type=wc.DataType.TEXT),
         wc.Property(name="overview", data_type=wc.DataType.TEXT),
@@ -40,7 +40,7 @@ client.collections.create(
     # Define the vectorizer module (none, as we will add our own vectors)
     vectorizer_config=wc.Configure.Vectorizer.none(),
     # Define the generative module
-    generative_config=wc.Configure.Generative.cohere(model="Command-R")
+    generative_config=wc.Configure.Generative.cohere()
     # END generativeDefinition  # CreateMovieCollection
 )
 
@@ -55,15 +55,16 @@ import pandas as pd
 import os
 from typing import List
 import cohere
+from cohere import Client as CohereClient
 
 co_token = os.getenv("COHERE_APIKEY")
 co = cohere.Client(co_token)
 
 
 # Define a function to call the endpoint and obtain embeddings
-def vectorize(texts: List[str]) -> List[List[float]]:
+def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
 
-    response = co.embed(
+    response = cohere_client.embed(
         texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
     )
 
@@ -85,7 +86,7 @@ for i, row in enumerate(df.itertuples(index=False)):
     src_texts.append(src_text)
     if (len(src_texts) == 50) or (i + 1 == len(df)):  # Get embeddings in batches of 50
         # Get a batch of embeddings
-        output = vectorize(src_texts)
+        output = vectorize(co, src_texts)
         index = list(range(i - len(src_texts) + 1, i + 1))
         emb_df = pd.DataFrame(output, index=index)
         # Add the batch of embeddings to a list
@@ -148,7 +149,7 @@ embs_path = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/m
 emb_df = pd.read_csv(embs_path)
 
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Enter context manager
 with movies.batch.dynamic() as batch:
