@@ -6,35 +6,41 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        # "./developers/academy/py/starter_text_data/_snippets/101_connect.py",
-        # "./developers/academy/py/starter_text_data/_snippets/102_collection.py",
-        # "./developers/academy/py/starter_text_data/_snippets/103_searches.py",
-        # "./developers/academy/py/starter_text_data/_snippets/104_rag.py",
+        "./developers/academy/py/starter_text_data/_snippets/101_connect.py",
+        "./developers/academy/py/starter_text_data/_snippets/102_collection.py",
+        "./developers/academy/py/starter_text_data/_snippets/103_searches.py",
+        "./developers/academy/py/starter_text_data/_snippets/104_rag.py",
         "./developers/academy/py/starter_custom_vectors/_snippets/101_connect.py",
         "./developers/academy/py/starter_custom_vectors/_snippets/102_collection.py",
         "./developers/academy/py/starter_custom_vectors/_snippets/103_10_vector.py",
         "./developers/academy/py/starter_custom_vectors/_snippets/103_20_searches.py",
         "./developers/academy/py/starter_custom_vectors/_snippets/104_rag.py",
-        # "./developers/academy/py/starter_multimodal_data/_snippets/101_connect.py",
-        # "./developers/academy/py/starter_multimodal_data/_snippets/102_collection.py",
-        # "./developers/academy/py/starter_multimodal_data/_snippets/103_searches.py",
-        # "./developers/academy/py/starter_multimodal_data/_snippets/104_rag.py",
-        # "./developers/academy/py/named_vectors/_snippets/101_connect.py",
-        # "./developers/academy/py/named_vectors/_snippets/102_collection.py",
-        # "./developers/academy/py/named_vectors/_snippets/103_searches.py",
-        # "./developers/academy/py/named_vectors/_snippets/104_usecase.py",
-        # "./developers/academy/py/compression/_snippets/100_pq.py",
-        # "./developers/academy/py/compression/_snippets/200_bq.py",
-        # "./developers/academy/py/tokenization/_snippets/310_create_collection.py",
-        # "./developers/academy/py/tokenization/_snippets/315_add_objects.py",
-        # "./developers/academy/py/tokenization/_snippets/320_filters.py",
-        # "./developers/academy/py/tokenization/_snippets/400_searches.py",
-        # "./developers/academy/py/vector_index/_snippets/100_config.py",
+        "./developers/academy/py/starter_multimodal_data/_snippets/101_connect.py",
+        "./developers/academy/py/starter_multimodal_data/_snippets/102_collection.py",
+        "./developers/academy/py/starter_multimodal_data/_snippets/103_searches.py",
+        "./developers/academy/py/starter_multimodal_data/_snippets/104_rag.py",
+        "./developers/academy/py/named_vectors/_snippets/101_connect.py",
+        "./developers/academy/py/named_vectors/_snippets/102_collection.py",
+        "./developers/academy/py/named_vectors/_snippets/103_searches.py",
+        "./developers/academy/py/named_vectors/_snippets/104_usecase.py",
+        "./developers/academy/py/compression/_snippets/100_pq.py",
+        "./developers/academy/py/compression/_snippets/200_bq.py",
+        "./developers/academy/py/tokenization/_snippets/310_create_collection.py",
+        "./developers/academy/py/tokenization/_snippets/315_add_objects.py",
+        "./developers/academy/py/tokenization/_snippets/320_filters.py",
+        "./developers/academy/py/tokenization/_snippets/400_searches.py",
+        "./developers/academy/py/vector_index/_snippets/100_config.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
-    proc_script = utils.load_and_prep_script(script_loc)
-    exec(proc_script)
+    # proc_script = utils.load_and_prep_script(script_loc)
+    # exec(proc_script)
+    temp_proc_script_loc = utils.load_and_prep_temp_file(
+        script_loc,
+        lang="py",
+        custom_replace_pairs=utils.edu_readonly_replacements
+    )
+    exec(temp_proc_script_loc.read_text())
 
 
 # Deprecated tests for deprecated modules (pyv3; also directories have moved)
