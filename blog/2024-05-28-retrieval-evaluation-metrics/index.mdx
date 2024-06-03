@@ -20,7 +20,7 @@ To explain how each of the following metrics is calculated, this article uses a 
 
 ![example dataset](./img/example.jpeg)
 
-We will use the [`pytrec_eval` Python package](https://github.com/cvangysel/pytrec_eval) to showcase how you can evaluate your retrieval or recommendation pipelines in your code. Check out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/evaluation/evaluation_metrics_information_retrieval.ipynb).
+We will use the [`pytrec_eval` Python package](https://github.com/cvangysel/pytrec_eval) to showcase how you can evaluate your retrieval or recommendation pipelines in your code. Check out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/evaluation_metrics_information_retrieval.ipynb).
 
 > `pytrec_eval` is a Python interface to TREC's evaluation tool, [trec_eval](https://github.com/usnistgov/trec_eval). It is an attempt to stop the cultivation of custom implementations of Information Retrieval evaluation measures for the Python programming language.
 > 
@@ -239,7 +239,7 @@ results = evaluator.evaluate(run)
 ## Summary
 
 This article gave a brief overview of the most popular evaluation metrics used in search and recommendation systems: Precision@K, recall@K, MRR@K, MAP@K, and NDCG@K. We have also discussed that MAP@K is most popular for evaluating recommendation systems, while NDCG@K is highly popular for evaluating retrieval systems.
-Additionally, you have learned how to calculate each of these metrics and how to implement their calculation in Python with the `pytrec_eval` library. You can review the implementation details by checking out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/evaluation/evaluation_metrics_information_retrieval.ipynb).
+Additionally, you have learned how to calculate each of these metrics and how to implement their calculation in Python with the `pytrec_eval` library. You can review the implementation details by checking out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/evaluation_metrics_information_retrieval.ipynb).
 
 import WhatNext from '/_includes/what-next.mdx';
 
