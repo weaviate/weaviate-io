@@ -22,11 +22,12 @@ services:
       - /var/weaviate:/var/lib/weaviate
     environment:
       CLUSTER_HOSTNAME: 'node1'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
 ```
 
 * About the volumes
   * `/var/weaviate` is the location where you want to store the data on the local machine
-  * `/var/lib/weaviate` (after the colon) is the location inside the container, don't change this
+  * `/var/lib/weaviate` (after the colon) is the location inside the container, don't change this as it needs to match whatever is in `PERSISTENCE_DATA_PATH` variable.
 * About the hostname
   * The `CLUSTER_HOSTNAME` can be any arbitrarily chosen name
 
