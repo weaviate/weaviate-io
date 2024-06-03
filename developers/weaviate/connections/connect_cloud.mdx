@@ -1,14 +1,13 @@
 ---
-title: Connect to Weaviate Cloud
-sidebar_position: 15
-image: og/docs/tutorial.jpg
+title: Weaviate Cloud
+sidebar_position: 10
+image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Badges from '/_includes/badges.mdx';
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
@@ -17,18 +16,6 @@ import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.si
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
-
-Learn how to connect to Weaviate.
-
-Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data.
-
-## Prerequisites
-
-To configure a connection, you need the following information:
-
-- The location of your Weaviate instance
-- If authentication is enabled, the allowed authentication methods
-- If you are using modules, the API keys and module connection details
 
 ### Where to find connection details
 
@@ -129,43 +116,13 @@ String weaviateKey = System.getenv("WEAVIATE_API_KEY");
 </TabItem>
 </Tabs>
 
-## Connecting to Weaviate
-
-### Without authentication
-
-:::warning Use authentication
-Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
-:::
-
-To connect to Weaviate without authentication, follow these examples:
-
-<WCSWithoutAuthentication/>
-
-### With authentication
+## Client connections
 
 If authentication is enabled, use a Weaviate API key or OIDC credentials to connect. For details, see [Authentication](../configuration/authentication.md).
 
-#### Weaviate API keys
+import APICloudConnect from '/_includes/connect/wcs-api-connect.mdx';
 
-To authenticate with a Weaviate API key, follow these examples. Note they use [environment variables](#environment-variables) to store the API key.
-
-Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
-
-<WCSAuthenticationApiKey/>
-
-#### OIDC
-
-This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
-
-To authenticate with OIDC, follow these examples:
-
-<WCSAuthenticationUserPass/>
-
-### Connect to embedded Weaviate
-
-Embedded instances usually don't need authentication credentials.
-
-<EmbeddedInstantiationSimple/>
+<APICloudConnect/>
 
 ### Timeouts
 
@@ -190,20 +147,6 @@ Modules that use external APIs often need API keys. The Weaviate clients send th
 To add third party API keys, follow these examples:
 
 <WCSAuthenticationApiKeyWithInferenceKey/>
-
-## Next
-
-For more details, see:
-
-- [Authentication](../configuration/authentication.md)
-- [Configuration](../configuration/index.md)
-- [Modules](../modules/index.md)
-
-For additional tutorials, see:
-
-- [Build schemas](../starter-guides/schema.md)
-- [Import data](../tutorials/import.md)
-- [Query data](../tutorials/query.md)
 
 ## Questions and feedback
 
