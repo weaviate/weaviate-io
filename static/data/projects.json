@@ -2,55 +2,697 @@
   {
     "id": 1,
     "name": "StudySensei",
-    "link": "https://google.com",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/dynamic-n-caticii/studysensei",
     "type": "Community projects",
-    "category": ["Chatbot", "e-commerce", "scheduling"],
-    "models": "text2vec-openai",
-    "stack": "Python",
-    "types": [
-      "Coral Cohere Hackathon",
-      "Enterprise Cohere Hackathon",
-      "SuperAI Hackathon"
-    ]
+    "category": ["Assistant", "Education"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
   },
   {
     "id": 2,
-    "name": "AnotherProject",
-    "link": "https://google.com",
-    "type": "Business projects",
-    "category": ["AI", "Data Analysis"],
-    "models": "davinci",
-    "stack": "JavaScript",
-    "types": ["DataAI Hackathon"]
+    "name": "RicAI Autonomous Testing Agent",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/ricai/ricai-autonomous-testing-agent",
+    "type": "Community projects",
+    "category": [
+      "Code Generation",
+      "Developer Tools",
+      "Productivity",
+      "Utility & Tools"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
   },
   {
     "id": 3,
-    "name": "AnotherProject2",
-    "link": "https://google.com",
-    "type": "Business projects",
-    "category": ["AI", "Data Analysis"],
-    "models": "davinci",
-    "stack": "JavaScript",
-    "types": ["DataAI Hackathon"]
+    "name": "IGT - Image Generator Tester",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/megazord/igt-image-generator-tester",
+    "type": "Community projects",
+    "category": ["Developer Tools"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
   },
   {
     "id": 4,
-    "name": "AnotherProject3",
-    "link": "https://google.com",
-    "type": "Business projects",
-    "category": ["AI", "Data Analysis"],
-    "models": "davinci",
-    "stack": "JavaScript",
-    "types": ["DataAI Hackathon"]
+    "name": "Remote Patriot",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/langlabs/remote-patriot",
+    "type": "Community projects",
+    "category": [
+      "Career Development",
+      "Job Search",
+      "Recruitment",
+      "Web Scraping & Data Extraction"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
   },
   {
     "id": 5,
-    "name": "AnotherProject4",
-    "link": "https://google.com",
+    "name": "MoodTune MelodyBot",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/gigawattpicturetub/moodtune-melodybot",
+    "type": "Community projects",
+    "category": ["Lifestyle"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 6,
+    "name": "Intention Engine",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/wire-in/intention-engine",
+    "type": "Community projects",
+    "category": ["Advertising", "Chatbot", "Developer Tools", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 7,
+    "name": "PRPioneer Auto Code Reviewer",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/semantic-labs/prpioneer-auto-code-reviewer",
+    "type": "Community projects",
+    "category": [
+      "Assistant",
+      "Chatbot",
+      "Coding",
+      "Developer Tools",
+      "Productivity",
+      "Security",
+      "Summarization"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 8,
+    "name": "Odoo AI Store",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/odoo/odoo-ai-store",
+    "type": "Community projects",
+    "category": ["Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 9,
+    "name": "TAix - Tax Advice Agent",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/shelfagent/taix-tax-advice-agent",
+    "type": "Community projects",
+    "category": ["Assistant", "Business", "Chatbot", "Finance", "Legal"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 10,
+    "name": "EffiQuery Intelligent IT Support Automation",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/the-models/effiquery-intelligent-it-support-automation",
+    "type": "Community projects",
+    "category": [
+      "Assistant",
+      "Chatbot",
+      "Communication",
+      "Customer Support",
+      "Productivity"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 11,
+    "name": "Shop Fusion AI - your new shopping buddy",
+    "link": "https://lablab.ai/event/autonomous-agents-hackathon/devraftel/shop-fusion-ai-your-new-shopping-buddy",
+    "type": "Community projects",
+    "category": ["Assistant", "Business", "Fashion", "Shopping"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Autonomous Agents Hackathon"]
+  },
+  {
+    "id": 12,
+    "name": "Arkimedes",
+    "link": "https://lablab.ai/event/radical-aifmc-and-cohere-generative-ai-hackathon/arkimedes/arkimedes",
+    "type": "Community projects",
+    "category": ["Career Development", "Chatbot", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["AI Tinkerers Hackathon"]
+  },
+  {
+    "id": 13,
+    "name": "InSight",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/insight/insight",
+    "type": "Community projects",
+    "category": ["Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 14,
+    "name": "connectED",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/connected/connected",
+    "type": "Community projects",
+    "category": ["Communication"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 15,
+    "name": "Multi-Lingual Customer Service Chat Assistance",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/coherecode-quest/multi-lingual-customer-service-chat-assistance",
+    "type": "Community projects",
+    "category": ["Customer Support", "Ecommerce"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 16,
+    "name": "BYTE - AI-Based Nutrition App",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/byte/byte-ai-based-nutrition-app",
+    "type": "Community projects",
+    "category": [
+      "Assistant",
+      "Cooking",
+      "Fitness",
+      "Food & Beverages",
+      "Healthcare",
+      "Lifestyle",
+      "Recruitment"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 17,
+    "name": "Nexbot E-Commerce Chatbot",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/team-ado/nexbot-e-commerce-chatbot",
+    "type": "Community projects",
+    "category": [
+      "Business",
+      "Chatbot",
+      "Ecommerce",
+      "Marketplaces",
+      "Shopping"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 18,
+    "name": "QuickScore-an AI Grader",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/schrodingercats/quickscore-an-ai-grader",
+    "type": "Community projects",
+    "category": ["Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 19,
+    "name": "RAG Fusion with Cohere and Weaviate",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/thruthink/rag-fusion-with-cohere-and-weaviate",
+    "type": "Community projects",
+    "category": ["Customer Support", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 20,
+    "name": "Drug Discovery Assistant",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/ragini/drug-discovery-assistant",
+    "type": "Community projects",
+    "category": ["Assistant", "Education", "Healthcare"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 21,
+    "name": "Tadabor",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/data-dreamers/tadabor",
+    "type": "Community projects",
+    "category": ["Education", "Language & Translation"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 22,
+    "name": "Chat with Your Football Scouter",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/juohmaru/chat-with-your-football-scouter",
+    "type": "Community projects",
+    "category": ["Knowledge Base", "Sports", "Web Application"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 23,
+    "name": "Market AI",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/ycm-hackers/market-ai",
+    "type": "Community projects",
+    "category": ["Assistant", "Business", "Finance", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 24,
+    "name": "PyLibrarian",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/new-grads/pylibrarian",
+    "type": "Community projects",
+    "category": ["Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 25,
+    "name": "herechat",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/team-tonic/herechat",
+    "type": "Community projects",
+    "category": ["Entertainment", "Social Media"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 26,
+    "name": "Climate Impact with STS",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/climate-impact-with-sts/climate-impact-with-sts",
+    "type": "Community projects",
+    "category": ["Climate", "Sustainability"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 27,
+    "name": "Propulsion",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/buildsphere/propulsion",
+    "type": "Community projects",
+    "category": [
+      "Assistant",
+      "Environmental",
+      "Knowledge Base",
+      "Productivity",
+      "Real Estate"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 28,
+    "name": "Dionysus",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/dionysus/dionysus",
+    "type": "Community projects",
+    "category": ["Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 29,
+    "name": "Weaviate Blogs QA Chatbot prototype",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/r2-rapid-response/weaviate-blogs-qa-chatbot-prototype",
+    "type": "Community projects",
+    "category": ["Developer Tools", "News & Information", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 30,
+    "name": "OrbChat - Always-On Support for your Website",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/coral-explorers/orbchat-always-on-support-for-your-website",
+    "type": "Community projects",
+    "category": ["Chatbot", "Customer Support", "Documents"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 31,
+    "name": "Pipegen AI",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/task-failed-successfully/pipegen-ai",
+    "type": "Community projects",
+    "category": ["Web Application"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 32,
+    "name": "Phil AI",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/philai/phil-ai",
+    "type": "Community projects",
+    "category": ["News & Information"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 33,
+    "name": "DoctorsMate",
+    "link": "https://lablab.ai/event/cohere-coral-hackathon/teamdoc/doctorsmate",
+    "type": "Community projects",
+    "category": ["Assistant", "Education", "Healthcare"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Coral Hackathon"]
+  },
+  {
+    "id": 34,
+    "name": "MedCoderAI",
+    "link": "https://lablab.ai/event/truera-challenge-build-llm-applications/shaman-technology/medcoderai",
+    "type": "Community projects",
+    "category": ["Business", "Finance", "Healthcare"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["TruEra Challenge: Build LLM Applications Summary"]
+  },
+  {
+    "id": 35,
+    "name": "Nivx Voice Multi Modal Digital Shopping Assistant",
+    "link": "https://lablab.ai/event/gemini-ai-hackathon/nivx/nivx-voice-multi-modal-digital-shopping-assistant",
+    "type": "Community projects",
+    "category": ["Chatbot", "Ecommerce", "Web Application"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Gemini AI Hackathon"]
+  },
+  {
+    "id": 36,
+    "name": "TheAgency",
+    "link": "https://lablab.ai/event/autogpt-arena-hacks/the-agency/theagency",
+    "type": "Community projects",
+    "category": [
+      "Assistant",
+      "Language & Translation",
+      "Productivity",
+      "Scrape and Synthesize",
+      "Web Scraping & Data Extraction"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["AutoGPT Arena Hacks"]
+  },
+  {
+    "id": 37,
+    "name": "WikiSearch",
+    "link": "https://discuss.streamlit.io/t/llm-hackathon-winners/52756",
+    "type": "Community projects",
+    "category": ["Summarization"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Streamlit LLM Hackathon"]
+  },
+  {
+    "id": 38,
+    "name": "YouTube Q and A",
+    "link": "https://discuss.streamlit.io/t/llm-hackathon-winners/52756",
+    "type": "Community projects",
+    "category": ["Social Media"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Streamlit LLM Hackathon"]
+  },
+  {
+    "id": 39,
+    "name": "ClipSift",
+    "link": "https://forum.weaviate.io/t/sharing-clipsift-ai-video-asset-collector-with-weaviate/1843",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 40,
+    "name": "DXC IT Fin Analytica AI",
+    "link": "https://enterprise.lablab.ai/en/user/event/cracking-the-ai-code/submissions/finanalyticaai-financial-report-analyzer",
+    "type": "Community projects",
+    "category": ["Business"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 41,
+    "name": "Astronomer: Zephyr - an AI Agent for Apache Airflow",
+    "link": "https://enterprise.lablab.ai/en/user/event/cracking-the-ai-code/submissions/zephyr-an-ai-agent-for-apache-airflow",
+    "type": "Community projects",
+    "category": ["Assistant", "Business", "Customer Support"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 42,
+    "name": "Teradata TechStorm AI Virtual Assistant",
+    "link": "https://enterprise.lablab.ai/en/user/event/cracking-the-ai-code/submissions/teradata-techstorm-ai-virtual-assistant",
+    "type": "Community projects",
+    "category": ["Business", "Customer Support"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 43,
+    "name": "SECSavvyNow",
+    "link": "",
+    "type": "Community projects",
+    "category": ["Business", "Finance", "Web Scraping & Data Extraction"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 44,
+    "name": "Crest Data Systems: Security AI Assistant",
+    "link": "",
+    "type": "Community projects",
+    "category": ["Assistant", "Security"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["Cohere Enterprise Hackathon"]
+  },
+  {
+    "id": 45,
+    "name": "ConscienceOS Biomimicry-inspired Design Decisions",
+    "link": "https://lablab.ai/event/leap-2024-hackathon/conscienceos/conscienceos-biomimicry-inspired-design-decisions",
+    "type": "Community projects",
+    "category": ["Environmental", "Sustainability"],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["LEAP24"]
+  },
+  {
+    "id": 46,
+    "name": "Makers Tech Tree",
+    "link": "https://lablab.ai/event/leap-2024-hackathon/makers-tech-tree/makers-tech-tree",
+    "type": "Community projects",
+    "category": [
+      "Education",
+      "Environmental",
+      "Productivity",
+      "Project Management",
+      "Sustainability"
+    ],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["LEAP24"]
+  },
+  {
+    "id": 47,
+    "name": "Mueen",
+    "link": "https://lablab.ai/event/leap-2024-hackathon/hams/mueen",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": ["LEAP24"]
+  },
+  {
+    "id": 48,
+    "name": "Internship Finder",
+    "link": "",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 49,
+    "name": "Oraculum",
+    "link": "https://www.linkedin.com/posts/antonio-cisternino_opensource-vectordb-llama2-activity-7170148277986750465-_hch?utm_source=share&utm_medium=member_desktop",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 50,
+    "name": "RecipeMate",
+    "link": "https://www.reddit.com/r/SideProject/comments/1b7tw1j/comment/ktmna4l/",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 51,
+    "name": "Padova Campus App",
+    "link": "",
+    "type": "Community projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 52,
+    "name": "Unbody.io",
+    "link": "https://www.unbody.io/",
     "type": "Business projects",
-    "category": ["AI", "Data Analysis"],
-    "models": "davinci",
-    "stack": "Python",
-    "types": ["DataAI Hackathon"]
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 53,
+    "name": "Findr",
+    "link": "https://www.usefindr.com/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 54,
+    "name": "VoxGig Podcast Chatbot",
+    "link": "https://www.voxgig.com/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 55,
+    "name": "kapa.ai",
+    "link": "https://www.kapa.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 56,
+    "name": "Loyee.io",
+    "link": "https://www.loyee.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 57,
+    "name": "Wisdolia",
+    "link": "https://www.wisdolia.com/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 58,
+    "name": "VNTANA",
+    "link": "https://www.vntana.com/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 59,
+    "name": "Vital.AI",
+    "link": "https://www.vital.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 60,
+    "name": "Duckie.ai",
+    "link": "https://www.duckie.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 61,
+    "name": "Zelta",
+    "link": "https://www.zelta.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 62,
+    "name": "Visual Aid",
+    "link": "https://www.visualaid.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 63,
+    "name": "Caramel Horse",
+    "link": "https://cavalocaramelo.com/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 64,
+    "name": "Lleverage.ai",
+    "link": "https://www.lleverage.ai/",
+    "type": "Business projects",
+    "category": [],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
   }
 ]

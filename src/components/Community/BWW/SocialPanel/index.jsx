@@ -5,12 +5,13 @@ import Link from '@docusaurus/Link';
 
 const ProjectFilter = () => {
   const [filteredProjects, setFilteredProjects] = useState(projectsData);
-  const [showAll, setShowAll] = useState(false); // State to toggle visibility
+  const [showAll, setShowAll] = useState(false);
   const [type, setType] = useState('');
   const [category, setCategory] = useState('');
   const [model, setModel] = useState('');
   const [stack, setStack] = useState('');
-  const [projectType, setProjectType] = useState(''); // New state for project type filter
+  const [projectType, setProjectType] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const uniqueTypes = Array.from(
     new Set(projectsData.flatMap((project) => project.types))
@@ -26,33 +27,30 @@ const ProjectFilter = () => {
   );
 
   useEffect(() => {
-    let filtered = projectsData;
-    if (projectType) {
-      filtered = filtered.filter((project) => project.type === projectType);
-    }
-    if (type) {
-      filtered = filtered.filter((project) => project.types.includes(type));
-    }
-    if (category) {
-      filtered = filtered.filter((project) =>
-        project.category.includes(category)
-      );
-    }
-    if (model) {
-      filtered = filtered.filter((project) => project.models === model);
-    }
-    if (stack) {
-      filtered = filtered.filter((project) => project.stack === stack);
-    }
+    let filtered = projectsData.filter(
+      (project) =>
+        (project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.types
+            .join(', ')
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          project.category
+            .join(', ')
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          project.models.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.stack.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        (projectType ? project.type === projectType : true) &&
+        (type ? project.types.includes(type) : true) &&
+        (category ? project.category.includes(category) : true) &&
+        (model ? project.models === model : true) &&
+        (stack ? project.stack === stack : true)
+    );
     setFilteredProjects(filtered);
-  }, [projectType, type, category, model, stack]);
+  }, [projectType, type, category, model, stack, searchQuery]);
 
   const handleProjectTypeClick = (value) => {
-    if (projectType === value) {
-      setProjectType(''); // Reset if the same button is clicked again
-    } else {
-      setProjectType(value);
-    }
+    setProjectType((prev) => (prev === value ? '' : value));
   };
 
   return (
@@ -66,6 +64,14 @@ const ProjectFilter = () => {
             powered by Weaviate. Explore the forefront projects shaping the
             future landscape of artificial intelligence
           </p>
+        </div>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search Projects"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
         <div>
           <button
@@ -150,15 +156,15 @@ const ProjectFilter = () => {
                   </tr>
                 ))}
             </tbody>
-            <div className={styles.buttons}>
-              <button
-                className={styles.buttonLine}
-                onClick={() => setShowAll(!showAll)}
-              >
-                {showAll ? 'Show Less' : 'See All'}
-              </button>
-            </div>
           </table>
+          <div className={styles.buttons}>
+            <button
+              className={styles.buttonLine}
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? 'Show Less' : 'See All'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

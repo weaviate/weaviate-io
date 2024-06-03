@@ -57,7 +57,9 @@ export default function Steps() {
               stand out on social media, our program provides the tools and
               support you need to succeed.
             </p>
-            <Link to="">Submit your project</Link>
+            <Link to="/community/share-the-weaviate-love/#contact-form">
+              Submit your project
+            </Link>
           </div>
 
           <div className={styles.valuesBox}>

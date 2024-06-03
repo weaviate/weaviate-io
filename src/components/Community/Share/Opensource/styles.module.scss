@@ -145,7 +145,11 @@
   width: 518px;
   height: 353px;
   @media screen and (max-width: 640px) {
-    width: 100%;
+    max-width: 443px;
+  }
+
+  @media screen and (max-width: 450px) {
+    max-width: 300px;
   }
 }
 
