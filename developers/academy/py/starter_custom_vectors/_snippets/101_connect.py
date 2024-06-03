@@ -17,8 +17,8 @@ import weaviate
 import os
 
 headers = {
-    "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
-}  # Replace with your OpenAI API key
+    "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")
+}  # Replace with your Cohere API key
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
@@ -42,8 +42,8 @@ import weaviate
 import os
 
 headers = {
-    "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
-}  # Replace with your OpenAI API key
+    "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")
+}  # Replace with your Cohere API key
 
 client = weaviate.connect_to_local(headers=headers)
 # END DockerAPIKeyInstantiation

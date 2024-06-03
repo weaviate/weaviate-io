@@ -9,46 +9,42 @@ import os
 
 # END MetadataSemanticSearch
 
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
     auth_credentials=weaviate.auth.AuthApiKey(
         os.getenv("WCS_DEMO_ADMIN_KEY")
     ),  # Replace with your WCS key
-    headers=headers,
 )
 
 # MetadataSemanticSearch
 # Instantiate your client (not shown). e.g.:
-# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
-# client = weaviate.connect_to_wcs(..., headers=headers) or
-# client = weaviate.connect_to_local(..., headers=headers)
+# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_local(...)
 
 # END MetadataSemanticSearch
 
 
 # GetQueryVector  # MetadataSemanticSearch
 # Define a function to call the endpoint and obtain embeddings
-def query(texts):
-    import requests
-    import os
+from typing import List
+import cohere
+import os
 
-    model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    hf_token = os.getenv("HUGGINGFACE_APIKEY")
+co_token = os.getenv("COHERE_APIKEY")
+co = cohere.Client(co_token)
 
-    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
 
-    response = requests.post(
-        api_url,
-        headers=headers,
-        json={"inputs": texts, "options": {"wait_for_model": True}},
+def vectorize(texts: List[str]) -> List[List[float]]:
+
+    response = co.embed(
+        texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
     )
-    return response.json()
+
+    return response.embeddings
 
 
 query_text = "dystopian future"
-query_vector = query(query_text)
+query_vector = vectorize([query_text])[0]
 # END GetQueryVector  # END MetadataSemanticSearch
 
 
