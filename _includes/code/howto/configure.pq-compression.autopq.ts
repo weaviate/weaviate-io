@@ -13,8 +13,8 @@ await client.collections.delete(collectionName);
 
 // START CollectionWithAutoPQ
 const collection = await client.collections.create({
-  name: collectionName,
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI('default', {
+  name: 'Question',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI({
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
       quantizer: weaviate.configure.vectorIndex.quantizer.pq({
         trainingLimit: 50000,     

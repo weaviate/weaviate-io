@@ -30,7 +30,9 @@ client = weaviate.connect_to_wcs(
 reviews = client.collections.get("WineReviewNV")
 # highlight-start
 response = reviews.query.hybrid(
-    query="A French Riesling", target_vector="title_country", limit=3
+    query="A French Riesling",
+    target_vector="title_country",
+    limit=3
 )
 # highlight-end
 
@@ -102,7 +104,8 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
-    limit=3
+    limit=3,
+    offset=1
     # highlight-end
 )
 
@@ -127,7 +130,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
-    fusion_type=HybridFusion.RELATIVE_SCORE,
+    fusion_type=HybridFusion.RANKED,
     auto_limit=1
     # highlight-end
 )
@@ -249,10 +252,10 @@ query_vector = [-0.02] * 1536  # Some vector that is compatible with object vect
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
-    query_properties=["question^2", "answer"],
     # highlight-start
     vector=query_vector,
     # highlight-end
+    alpha=0.25,
     limit=3,
 )
 
@@ -302,13 +305,15 @@ from weaviate.classes.query import HybridVector, Move, HybridFusion
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
-    limit=5,
+    query="California",
+    # highlight-start
     vector=HybridVector.near_text(
         query="large animal",
         move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
     ),
+    # highlight-end
     alpha=0.75,
-    query="California",
+    limit=5,
 )
 # END VectorSimilarityPython
 

@@ -83,7 +83,8 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="safety",
     # highlight-start
-    limit=3
+    limit=3,
+    offset=1
     # highlight-end
 )
 

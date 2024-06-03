@@ -247,31 +247,6 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert "sport" in response.objects[0].references["hasCategory"].objects[0].properties["title"].lower()
 # End test
 
-
-# ========================================
-# FilterByID
-# ========================================
-
-# START FilterById
-from weaviate.classes.query import Filter
-
-collection = client.collections.get("Article")
-
-target_id = "00037775-1432-35e5-bc59-443baaef7d80"
-response = collection.query.fetch_objects(
-    filters=Filter.by_id().equal(target_id)
-)
-
-for o in response.objects:
-    print(o.properties)  # Inspect returned objects
-    print(o.uuid)
-# END FilterById
-
-
-# Tests
-assert str(response.objects[0].uuid) == target_id
-# End test
-
 # ========================================
 # FilterByID
 # ========================================
@@ -341,14 +316,10 @@ from weaviate.classes.query import Filter
 
 collection = client.collections.get("JeopardyQuestion")
 
-# highlight-start
-length_threshold = 20
-# highlight-end
-
 response = collection.query.fetch_objects(
     limit=3,
     # highlight-start
-    filters=Filter.by_property("answer", length=True).greater_than(length_threshold),
+    filters=Filter.by_property("answer", length=True).greater_than(20),
     # highlight-end
 )
 

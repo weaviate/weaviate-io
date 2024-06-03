@@ -61,7 +61,7 @@ const result = await jeopardy.query.bm25('food', {
 
 for (let object of result.objects) {
   console.log(JSON.stringify(object.properties, null, 2));
-  console.log(JSON.stringify(object.metadata?.score, null, 2));
+  console.log(object.metadata?.score);
 }
 // END Score
 
@@ -89,7 +89,7 @@ const result = await jeopardy.query.bm25('safety', {
 
 for (let object of result.objects) {
   console.log(JSON.stringify(object.properties, null, 2));
-  console.log(JSON.stringify(object.metadata?.score, null, 2));
+  console.log(object.metadata?.score);
 }
 // END Properties
 
@@ -120,7 +120,7 @@ const result = await jeopardy.query.bm25('food', {
 
 for (let object of result.objects) {
   console.log(JSON.stringify(object.properties, null, 2));
-  console.log(JSON.stringify(object.metadata?.score, null, 2));
+  console.log(object.metadata?.score);
 }
 // END Boost
 
@@ -179,7 +179,9 @@ const result = await jeopardy.query.bm25('food', {
   returnProperties: ['question', 'answer', 'round'],
 })
 
-console.log(JSON.stringify(result.objects, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END Filter
 
 // Tests

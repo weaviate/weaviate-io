@@ -31,12 +31,12 @@ const jeopardy = client.collections.get('JeopardyQuestion');
 // NamedVectorNearText
 const myNVCollection = client.collections.get('WineReviewNV');
 
-const result = await myNVCollection.query.nearText(['a sweet German white wine'],{
-  limit: 2,
+const result = await myNVCollection.query.nearText('a sweet German white wine', {
   // highlight-start
   targetVector: 'title_country',
   // highlight-end
-  returnMetadata: ['distance']
+  returnMetadata: ['distance'],
+  limit: 2,
 })
 
 for (let object of result.objects) {
