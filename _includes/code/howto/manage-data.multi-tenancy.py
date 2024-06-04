@@ -73,9 +73,11 @@ from weaviate.collections.classes.config import Reconfigure
 
 collection = client.collections.get(collection_name)
 
+# highlight-start
 collection.config.update(
     multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True)
 )
+# highlight-end
 # END UpdateAutoMT
 
 assert collection.config.get().multi_tenancy_config.auto_tenant_creation == True

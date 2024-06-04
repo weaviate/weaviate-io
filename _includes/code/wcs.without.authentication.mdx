@@ -23,7 +23,20 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JS/TS Client v2">
+
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+import weaviate from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+    'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+)
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 import weaviate from 'weaviate-ts-client';

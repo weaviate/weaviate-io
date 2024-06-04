@@ -393,14 +393,14 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
-      "How to create your own Weaviate instance on WCS.",
+      "How to create your own Weaviate instance on WCD.",
       "Weaviate clients and how to install them.",
       "Hands-on experience with Weaviate.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
       "Outline what vector search is.",
-      "Create a Weaviate instance on WCS.",
+      "Create a Weaviate instance on WCD.",
       "Install your preferred Weaviate client.",
       "Describe some of Weaviate's capabilities.",
     ],
@@ -884,7 +884,7 @@ export const unitData = {
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."
     ],
     learningOutcomes: [
-      "Create a cloud (WCS) instance fo Weaviate.",
+      "Create a cloud (WCD) instance fo Weaviate.",
       "Gain an understanding of what a vector database is.",
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",

@@ -8,7 +8,6 @@ import ContactUsForm from '../components/ContactUsForm';
 import HybridBusinessCritical from '../components/Pricing/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Soc2 from '../components/Pricing/SOC2/soc2';
-import WCS from '../components/Pricing/WCS';
 import CustomScriptLoader from '../components/scriptSwitch/index.jsx';
 import PricingTable from '../components/Pricing/Table/index.jsx';
 import CalculatorContainer from '../components/Pricing/CalculatorContainer/index.jsx';

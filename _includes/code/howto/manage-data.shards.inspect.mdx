@@ -17,25 +17,28 @@ import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.p
 <TabItem value="py3" label="Python Client v3">
 
 ```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
+# highlight-start
 article_shards = client.schema.get_class_shards("Article")
+# highlight-end
 print(article_shards)
 ```
 
 </TabItem>
-<TabItem value="js" label="JS/TS Client v2">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+let articles = client.collections.get('Article')
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
+// highlight-start
+const shards = await articles.config.getShards()
+// highlight-end
+console.log(JSON.stringify(shards, null, 2));
+```
 
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+
+```js
 const response = await client.schema
   .shardsGetter()
   .withClassName('Article')

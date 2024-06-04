@@ -32,7 +32,7 @@ export default function Integrations() {
               </div>
               <div className={`${styles.iconText} ${styles.console}`}>
                 <Link href="https://console.weaviate.cloud/">
-                  Explore WCS Console
+                  Explore WCD Console
                 </Link>
               </div>
             </div>

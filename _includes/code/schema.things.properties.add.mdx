@@ -17,10 +17,6 @@ import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.p
 <TabItem value="py3" label="Python Client v3">
 
 ```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
 add_prop = {
   "dataType": [
       "boolean"
@@ -32,16 +28,23 @@ client.schema.property.create("Article", add_prop)
 ```
 
 </TabItem>
-<TabItem value="js" label="JS/TS Client v2">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+let articles = client.collections.get('Article')
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
+// highlight-start
+articles.config.addProperty({
+  name: 'onHomepage',
+  dataType: 'boolean'
+})
+// highlight-end
+```
 
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+
+```js
 const className = 'Article';
 const prop = {
   dataType: ['boolean'],

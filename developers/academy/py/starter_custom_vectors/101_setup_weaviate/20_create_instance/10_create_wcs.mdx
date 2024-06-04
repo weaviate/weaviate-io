@@ -1,5 +1,5 @@
 ---
-title: "Option 1: A cloud WCS instance"
+title: "Option 1: A Weaviate Cloud (WCD) instance"
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!../../_snippets/101_connect.py';
 
-Here, you will create a Weaviate Cloud Service (WCS) instance. WCS is a fully managed Weaviate instance that runs in the cloud. It's a great way to get started with Weaviate, as it requires no installation or maintenance.
+Here, you will create a Weaviate Cloud (WCD) instance. WCD is a fully managed Weaviate instance that runs in the cloud. It's a great way to get started with Weaviate, as it requires no installation or maintenance.
 
-### <i class="fa-solid fa-chalkboard"></i> Log in to the WCS Console
+### <i class="fa-solid fa-chalkboard"></i> Log in to the WCD Console
 
-Go to the [WCS Console](https://console.weaviate.cloud/) and log in with your credentials. If you don't have an account yet, you can sign up by clicking on the <kbd>Register here</kbd> link from the login screen.
+Go to the [WCD Console](https://console.weaviate.cloud/) and log in with your credentials. If you don't have an account yet, you can sign up by clicking on the <kbd>Register here</kbd> link from the login screen.
 
 ### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
 
@@ -29,16 +29,16 @@ Once the instance is created, you will be able see its details by clicking on th
 
 You will need these details to connect to your Weaviate instance.
 
-### <i class="fa-solid fa-code"></i> Connect to your WCS instance
+### <i class="fa-solid fa-code"></i> Connect to your WCD instance
 
-To connect to the Weaviate Cloud Service (WCS) instance, you need to use the cluster URL and the API key. You can find these details in the WCS Console.
+To connect to the Weaviate Cloud (WCD) instance, you need to use the cluster URL and the API key. You can find these details in the WCD Console.
 
-Use the `connect_to_wcs` function to connect to your WCS instance.
+Use the `connect_to_wcs` function to connect to your WCD instance.
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# WCSInstantiation"
-  endMarker="# END WCSInstantiation"
+  startMarker="# WCDInstantiation"
+  endMarker="# END WCDInstantiation"
   language="py"
 />
 
@@ -50,8 +50,8 @@ This course uses OpenAI, so you can provide the OpenAI API key to Weaviate throu
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# WCSAPIKeyInstantiation"
-  endMarker="# END WCSAPIKeyInstantiation"
+  startMarker="# WCDAPIKeyInstantiation"
+  endMarker="# END WCDAPIKeyInstantiation"
   language="py"
 />
 
