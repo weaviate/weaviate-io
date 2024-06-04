@@ -39,11 +39,11 @@ Here are a few considerations for choosing the best model for your application:
 
 ## Step 3: Evaluate the model on your use case
 
-While the MTEB Leaderboard is a great place to start, you should take its results cautiously and skeptically. Bear in mind that these results are self-reported. It is also possible that some models produce inflated performance scores, as they may include the MTEB datasets in their training data since they are publicly available. Finally, the datasets the models are benchmarked on might not accurately represent the data you are dealing with. Thus, we recommend that you evaluate the embedding model on your own dataset, as we will show you below. You can find the related code in our [recipes GitHub repository](https://github.com/weaviate/recipes/blob/main/evaluation/how_to_choose_an_embedding_model.ipynb).
+While the MTEB Leaderboard is a great place to start, you should take its results cautiously and skeptically. Bear in mind that these results are self-reported. It is also possible that some models produce inflated performance scores, as they may include the MTEB datasets in their training data since they are publicly available. Finally, the datasets the models are benchmarked on might not accurately represent the data you are dealing with. Thus, we recommend that you evaluate the embedding model on your own dataset, as we will show you below. You can find the related code in our [recipes GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/how_to_choose_an_embedding_model.ipynb).
 
 ### Prepare dataset
 
-For this, you could generate a small, hand-labeled dataset with 50 to 100 data objects and see what performance you can achieve. We will create a minimal dataset with eight different pastries to follow the example used in [Zain and JP’s discussion](https://youtu.be/lpdN3aw-yTg?si=6-gC0ql-m0KMf3Qh) and our [previous blog post on evaluation metrics](/blog/retrieval-evaluation-metrics/). You can find the .csv file in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/evaluation/how_to_choose_an_embedding_model.ipynb).
+For this, you could generate a small, hand-labeled dataset with 50 to 100 data objects and see what performance you can achieve. We will create a minimal dataset with eight different pastries to follow the example used in [Zain and JP’s discussion](https://youtu.be/lpdN3aw-yTg?si=6-gC0ql-m0KMf3Qh) and our [previous blog post on evaluation metrics](/blog/retrieval-evaluation-metrics/). You can find the .csv file in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation).
 
 | pastry_id | pastry_name | pastry_description |
 | --- | --- | --- |
@@ -181,7 +181,7 @@ Fine-tuning an embedding model is only an optional step. Ideally, you can find a
 
 ## Summary
 
-This article is inspired by a recent discussion between [Zain](https://twitter.com/ZainHasan6) and [JP](https://twitter.com/_jphwang). It discussed the steps you can take to select the right embedding model for your search or Generative AI application. You can listen to the full discussion on YouTube and find the related code in our [recipes GitHub repository](https://github.com/weaviate/recipes/blob/main/evaluation/how_to_choose_an_embedding_model.ipynb).
+This article is inspired by a recent discussion between [Zain](https://twitter.com/ZainHasan6) and [JP](https://twitter.com/_jphwang). It discussed the steps you can take to select the right embedding model for your search or Generative AI application. You can listen to the full discussion on YouTube and find the related code in our [recipes GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/how_to_choose_an_embedding_model.ipynb).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lpdN3aw-yTg?si=Wg-bHmgZK6Oa3cxz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
