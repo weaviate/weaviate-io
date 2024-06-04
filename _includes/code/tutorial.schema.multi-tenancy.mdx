@@ -70,15 +70,14 @@ client.schema.create_class(class_obj)
 ```js
 import weaviate from 'weaviate-client';
 
- const client = await weaviate.connectToWCS(
-  '<WCS-URL>',
-  {
-    authCredentials: new weaviate.ApiKey('<API-KEY>'),
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
   } 
 )
 
 // Define the 'Question' class
-const classObj = const schema = {
+const collectionObj = {
   name: 'Question',
   properties: [
     {
@@ -97,13 +96,13 @@ const classObj = const schema = {
       vectorizePropertyName: false,
     }
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
   generative: weaviate.configure.generative.openAI(),
   multiTenancy: weaviate.configure.multiTenancy({enabled: true})
 }
 
 // Add the class to the schema
-const newCollection = await client.collections.create(schema) 
+const newCollection = await client.collections.create(collectionObj) 
 ```
 
 </TabItem>

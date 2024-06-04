@@ -77,7 +77,7 @@ try {
   console.log('Object not found, skipping deletion.');
 }
 
-// ObjectWithCrossRef
+// START ObjectWithCrossRef
 response = await client.data
   .creator()
   .withClassName('JeopardyQuestion')
@@ -104,7 +104,7 @@ assert((q_obj.properties['hasCategory'] as object[]).find(xref => xref['href'] =
 // ===== Add one-way cross-ref =====
 // =================================
 
-// OneWay TS
+// START OneWay
 await client.data
   .referenceCreator()
   .withClassName('JeopardyQuestion').withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
@@ -117,7 +117,7 @@ await client.data
       .payload()
   )
   .do();
-// END OneWay TS
+// END OneWay
 
 // Test
 let sf = await client.data.getterById().withClassName('JeopardyQuestion').withId(sfId).do();

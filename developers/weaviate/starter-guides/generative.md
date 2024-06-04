@@ -318,7 +318,7 @@ Now, let's go through an end-to-end example for using Weaviate for generative se
 
 ### Your own Weaviate instance
 
-For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
+For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCD instance.
 
 ### Configure generative search
 
@@ -335,7 +335,7 @@ To use generative search, the appropriate `generative-xxx` module must be:
 
 Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM and Gemini models.
 
-If you are using WCS, you will not need to do anything to enable modules.
+If you are using WCD, you will not need to do anything to enable modules.
 
 <details>
   <summary>How to list enabled modules</summary>

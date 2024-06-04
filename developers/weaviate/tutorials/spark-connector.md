@@ -204,7 +204,7 @@ client.query.get("Sphere", "title").do()
 
 ## Additional options
 
-If using an authenticated cluster such as on [WCS](../../wcs/quickstart.mdx) you can provide `.option("apiKey", WEAVIATE_API_KEY)` for api key authentication like below:
+If using an authenticated cluster such as on [WCD](../../wcs/quickstart.mdx) you can provide `.option("apiKey", WEAVIATE_API_KEY)` for api key authentication like below:
 
 ```python
 df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.Weaviate") \

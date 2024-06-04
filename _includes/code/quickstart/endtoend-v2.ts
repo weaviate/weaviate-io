@@ -35,7 +35,7 @@ const client: WeaviateClient = weaviate.client({
 // ================================
 
 // EndToEndExample  // CustomVectorExample
-// Add the schema
+// START CreateCollection
 const classObj = {
   'class': 'Question',
   'vectorizer': 'text2vec-openai',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
@@ -50,7 +50,7 @@ async function addSchema() {
   console.log(res);
 }
 
-// END Add the schema
+// END CreateCollection
 
 // Import data function
 async function getJsonData() {
@@ -251,9 +251,9 @@ await generativeSearchGroupedQuery();
 */
 
 /*
-// Add the schema
+// START CreateCollection
 await addSchema();
-// END Add the schema
+// END CreateCollection
 */
 
 

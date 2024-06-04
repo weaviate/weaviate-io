@@ -81,16 +81,16 @@ client.schema.create_class(class_obj)
 
 ```js
 import weaviate from 'weaviate-client';
+import { vectorizer, generative, configure, dataType } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
-    '<WCS-URL>',
-    {
-      authCredentials: new weaviate.ApiKey('<API-KEY>'),
-    } 
-  )
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+  } 
+)
 
 // Define the 'Question' class
-const classObj = const schema = {
+const collectionObj = {
   name: 'Question',
   properties: [
     {
@@ -109,21 +109,22 @@ const classObj = const schema = {
       vectorizePropertyName: false,
     }
   ],
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
-  generative: weaviate.configure.generative.openAI(),
-  invertedIndex: weaviate.configure.invertedIndex({
+  vectorizers: vectorizer.text2VecOpenAI({
+    vectorIndexConfig: configure.vectorIndex.hnsw({
+      distanceMetric: 'cosine',
+      quantizer: configure.vectorIndex.quantizer.pq({ segments:192 }),
+    })
+  }),
+  generative: generative.openAI(),
+  invertedIndex: configure.invertedIndex({
     indexNullState: true,
     indexPropertyLength: true,
     indexTimestamps: true,
   }),
-  vectorIndex: weaviate.configure.vectorIndex.hnsw({
-    distanceMetric: 'cosine',
-    quantizer: weaviate.configure.vectorIndex.quantizer.pq({segments:192}),
-  })
 }
 
 // Add the class to the schema
-const newCollection = await client.collections.create(schema) 
+const newCollection = await client.collections.create(collectionObj) 
 ```
 
 </TabItem>
