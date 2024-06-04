@@ -281,12 +281,12 @@ const ModalComponent = ({
             <Link to={details.link} className={styles.cardLink}>
               Read more on site
             </Link>
-          )}
-           <div className={styles.closeButtonContainer}>
-          <Link onClick={onClose} className={styles.close}>
-            <i className="fa-solid fa-xmark"></i>
-          </Link>
-        </div> */}
+          )} */}
+          <div className={styles.closeButtonContainer}>
+            <Link onClick={onClose} className={styles.close}>
+              <i className="fa-solid fa-xmark"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
