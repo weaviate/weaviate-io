@@ -16,7 +16,7 @@ export default function KnowledgeBasePage() {
     <div className="custom-page noBG">
       <Layout
         title="Weaviate Knowledge Cards"
-        description="Learn core concepts and terminology"
+        description="Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications."
       >
         <MetaSEO img="og/content/knowledgecards.jpg" />
         <KnowledgeHeader
