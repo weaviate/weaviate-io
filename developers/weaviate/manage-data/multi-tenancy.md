@@ -86,9 +86,9 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
 
 ## Automatically add new tenants
 
-import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
+import AutoTenant from '/_includes/auto-tenant.mdx';
 
-<AutoTenantBatch/>
+<AutoTenant/>
 
 ### Create a collection
 

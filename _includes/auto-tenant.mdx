@@ -1,0 +1,7 @@
+By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To change this behavior so Weaviate creates a new tenant, set `autoTenantCreation` to `true` in the collection definition.
+
+The auto-tenant feature is available from `v1.25.0` for batch imports, and from `v1.25.2` for single object insertions as well.
+
+Set `autoTenantCreation` when you create the collection, or reconfigure the collection to update the setting as needed.
+
+Automatic tenant creation is useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.

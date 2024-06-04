@@ -366,33 +366,9 @@ Follow these steps to update an immutable setting:
 
 <!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
 
-- `description`
-- `invertedIndexConfig`
-  - `bm25`
-    - `b`
-    - `k1`
-  - `cleanupIntervalSeconds`
-  - `stopwords`
-    - `additions`
-    - `preset`
-    - `removals`
-- `replicationConfig`
-  - `factor`  (not mutable in `v1.25`)
-- `vectorIndexConfig`
-  - `dynamicEfFactor`
-  - `dynamicEfMin`
-  - `dynamicEfMax`
-  - `flatSearchCutoff`
-  - `skip`
-  - `vectorCacheMaxObjects`
-  - `pq`
-    - `centroids`
-    - `enabled`
-    - `segments`
-    - `trainingLimit`
-    - `encoder`
-      - `type`
-      - `distribution`
+import CollectionMutableParameters from '/_includes/collection-mutable-parameters.mdx';
+
+<CollectionMutableParameters/>
 
 </details>
 
