@@ -423,7 +423,7 @@ The output is like this:
 
 ## `ContainsAny` and `ContainsAll` with batch delete
 
-If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations than they do in queries.
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#use-containsany--containsall).
 
 ## Filter text on partial matches
 
