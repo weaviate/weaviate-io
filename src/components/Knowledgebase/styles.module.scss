@@ -616,6 +616,10 @@
     font-size: 1rem;
     font-weight: 700;
     margin: 20px 0px;
+
+    @media screen and (max-width: 550px) {
+      margin: 0px 0px;
+    }
   }
 
   span {
