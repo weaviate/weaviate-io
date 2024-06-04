@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import { Helmet } from 'react-helmet';
+import Head from '@docusaurus/Head';
 
 const ModalComponent = ({
   details,
@@ -144,7 +144,7 @@ const ModalComponent = ({
 
   return (
     <div className={styles.modals} onClick={onClose}>
-      <Helmet>
+      <Head>
         <title>{details.title}</title>
         <meta property="og:title" content={details.title} />
         <meta property="og:description" content={details.longText} />
@@ -160,7 +160,7 @@ const ModalComponent = ({
         <meta name="twitter:title" content={details.title} />
         <meta name="twitter:description" content={details.longText} />
         <meta name="twitter:image" content={imageFullUrl} />
-      </Helmet>
+      </Head>
       <div
         className={`${styles.modalContents} ${styles[typeClass]} ${
           isFirstOpen ? styles.initialAnimation : ''
