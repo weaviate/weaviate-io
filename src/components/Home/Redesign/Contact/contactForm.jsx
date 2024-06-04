@@ -27,12 +27,7 @@ export default function ContactForm() {
           <div className={styles.contactSection}>
             <form className={styles.formContact}>
               <h2 className={styles.title}>Contact us </h2>
-              <div className={styles.links}>
-                <p>
-                  Do you have any questions? Like to team-up or speak?<br></br>{' '}
-                  Let’s get this conversation started.
-                </p>
-              </div>
+              <div className={styles.links}></div>
               <div id="hubspotForm"></div>
             </form>
           </div>

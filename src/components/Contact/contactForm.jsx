@@ -27,12 +27,7 @@ export default function ContactForm() {
           <div className={styles.contactSection}>
             <form className={styles.formContact}>
               <h2 className={styles.title}>Get Started with Weaviate</h2>
-              <div className={styles.links}>
-                <p>
-                  Please leave your contact details below and one of our sales
-                  representatives will reach out to you within 24 hours.
-                </p>
-              </div>
+              <div className={styles.links}></div>
               <div id="hubspotForm"></div>
             </form>
           </div>
