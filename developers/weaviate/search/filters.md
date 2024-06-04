@@ -147,6 +147,39 @@ The output is like this:
 
 </details>
 
+## Filter by all/any of multiple conditions
+
+The `v4` Python client API supports filtering by `any`, or `all` of a set of provided filters.
+
+<!-- TODO: Could update to this ⬇️ when ready:  -->
+<!-- The `v4` Python client and the `v3` JS client APIs supports filtering by `any`, or `all` of a set of provided filters.  -->
+
+#### Filter with `any of`
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAllOfPython"
+      endMarker="# END MultipleFiltersAllOfPython"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
+
+#### Filter with `all of`
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAllOfPython"
+      endMarker="# END MultipleFiltersAllOfPython"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
+
 ## Nested filters
 
 You can group and nest filters.
