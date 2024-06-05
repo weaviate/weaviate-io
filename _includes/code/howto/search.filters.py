@@ -170,8 +170,10 @@ response = jeopardy.query.fetch_objects(
     # highlight-start
     # Use & as AND
     #     | as OR
-    filters=Filter.by_property("round").equal("Double Jeopardy!") &
-            Filter.by_property("points").less_than(600),
+    filters=(
+        Filter.by_property("round").equal("Double Jeopardy!") &
+        Filter.by_property("points").less_than(600)
+    ),
     # highlight-end
     limit=3
 )
@@ -185,6 +187,76 @@ for o in response.objects:
 assert response.objects[0].collection == "JeopardyQuestion"
 assert response.objects[0].properties["round"] == "Double Jeopardy!"
 assert response.objects[0].properties["points"] < 600
+# End test
+
+
+# ==========================================
+# ===== Multiple Filters with Any of =====
+# ==========================================
+
+# MultipleFiltersAnyOfPython
+from weaviate.classes.query import Filter
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    # highlight-start
+    filters=(
+        Filter.any_of([  # Combines the below with `|`
+            Filter.by_property("points").greater_or_equal(700),
+            Filter.by_property("points").less_than(500),
+            Filter.by_property("round").equal("Double Jeopardy!"),
+        ])
+    ),
+    # highlight-end
+    limit=5
+)
+
+for o in response.objects:
+    print(o.properties)
+# END MultipleFiltersAnyOfPython
+
+
+# Test results
+assert (
+    response.objects[0].properties["points"] <= 700 |
+    response.objects[0].properties["points"] < 500 |
+    response.objects[0].properties["round"] == "Double Jeopardy!"
+)
+# End test
+
+
+# ==========================================
+# ===== Multiple Filters with All of =====
+# ==========================================
+
+# MultipleFiltersAllOfPython
+from weaviate.classes.query import Filter
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    # highlight-start
+    filters=(
+        Filter.all_of([  # Combines the below with `&`
+            Filter.by_property("points").greater_than(300),
+            Filter.by_property("points").less_than(700),
+            Filter.by_property("round").equal("Double Jeopardy!"),
+        ])
+    ),
+    # highlight-end
+    limit=5
+)
+
+for o in response.objects:
+    print(o.properties)
+# END MultipleFiltersAllOfPython
+
+
+# Test results
+assert (
+    response.objects[0].properties["points"] > 300 &
+    response.objects[0].properties["points"] < 700 &
+    response.objects[0].properties["round"] == "Double Jeopardy!"
+)
 # End test
 
 
