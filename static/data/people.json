@@ -4,7 +4,7 @@
     "title": "QA Engineer",
     "photo": "aarthi.jpeg",
     "linkedin": "aarthiiyer",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Abdel Rodriquez",
@@ -27,7 +27,7 @@
     "title": "Technical Success Manager",
     "photo": "albert.jpeg",
     "linkedin": "albertadeseye",
-    "team": "customer-success"
+    "team": "customer-experience"
   },
   {
     "name": "Alea Abed",
@@ -41,7 +41,7 @@
     "title": "Technical Executive",
     "photo": "andre.png",
     "linkedin": "andre-duis",
-    "team": "cto"
+    "team": "delivery"
   },
   {
     "name": "André Mourão",
@@ -97,7 +97,7 @@
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
-    "team": "sales-engineering"
+    "team": "customer-experience"
   },
   {
     "name": "Cari Liebenberg",
@@ -164,14 +164,14 @@
     "title": "Community Technical Support",
     "photo": "duda.jpg",
     "linkedin": "dudanogueira",
-    "team": "developer-relations"
+    "team": "delivery"
   },
   {
     "name": "Emma O'Keefe",
     "title": "Head of Customer Success",
     "photo": "emma.png",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "customer-success"
+    "team": "customer-experience"
   },
   {
     "name": "Edward Schmuhl",
@@ -285,19 +285,19 @@
     "linkedin": "jontuite",
     "twitter": "pendragn00",
     "github": "tuitejc",
-    "team": "sales-engineering"
+    "team": "customer-experience"
   },
   {
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpeg",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Joseph Green",
     "title": "Product Support Engineer",
     "photo": "joseph-green.jpg",
-    "team": "qa-sre",
+    "team": "delivery",
     "linkedin": "joe-green-11381620a"
   },
   {
@@ -319,7 +319,7 @@
     "title": "Software Engineer",
     "photo": "loic.png",
     "linkedin": "loic-reyreaud",
-    "team": "cloud"
+    "team": "database"
   },
   {
     "name": "Marcin Antas",
@@ -342,13 +342,13 @@
     "title": "Finance Operations Specialist",
     "photo": "mariska.jpg",
     "linkedin": "mariska-tunc-538168103",
-    "team": "ceo-team"
+    "team": "finance"
   },
   {
     "name": "Mike Hoppe",
     "title": "Client-Focused SRE",
     "photo": "Mike-Hoppe.jpeg",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Mike Wyer",
@@ -362,7 +362,7 @@
     "name": "Mohamed Badawi",
     "title": "Software Engineer",
     "photo": "Mohamed-Badawi.jpeg",
-    "team": "cloud"
+    "team": "database"
   },
   {
     "name": "Mohamed Shahin",
@@ -370,13 +370,13 @@
     "photo": "mohamed.jpeg",
     "linkedin": "shahinmohamed",
     "twitter": "shah91n",
-    "team": "customer-success"
+    "team": "delivery"
   },
   {
     "name": "Nathan Wilkinson",
     "title": "Distributed Systems Engineer",
     "photo": "nate-wilkinson.jpg",
-    "team": "cloud"
+    "team": "database"
   },
   {
     "name": "Nick Olivetti",
@@ -397,7 +397,7 @@
     "title": "Head of Finance",
     "photo": "patrick.jpg",
     "linkedin": "patrickdas",
-    "team": "ceo-team"
+    "team": "finance"
   },
   {
     "name": "Paul de Grijp",
@@ -419,13 +419,13 @@
     "name": "Scott Alexander",
     "title": "Client-Focused SRE",
     "photo": "scott-alexander.jpg",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Sebastian Neira Farriol",
     "title": "Client-Focused SRE",
     "photo": "Sebastian-Farriol.jpg",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Sebastian Witalec",
@@ -449,7 +449,7 @@
     "photo": "shukri.png",
     "linkedin": "mohdshukrihasan",
     "twitter": "MohdShukriHasa1",
-    "team": "sales-engineering"
+    "team": "partnerships"
   },
   {
     "name": "Stefan Bogdan",
@@ -457,7 +457,7 @@
     "photo": "stefan.png",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",
-    "team": "qa-sre"
+    "team": "delivery"
   },
   {
     "name": "Svitlana Smolianova",
