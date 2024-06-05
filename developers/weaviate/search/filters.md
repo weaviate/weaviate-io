@@ -88,12 +88,44 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAndPython"
-      endMarker="# END MultipleFiltersAndPython"
-      language="python"
-    />
+
+  The `v4` Python client API provides  filtering by `any_of`, or `all_of`, as well as using `&` or `|` operators.
+  <br/>
+
+  <ul>
+    <li>Use <code>any_of</code> or <code>all_of</code> for filtering by any, or all of a list of provided filters.</li>
+    <li>Use <code>&</code> or <code>|</code> for filtering by pairs of provided filters.</li>
+  </ul>
+
+  <br/>
+
+  #### Filter with `&` or `|`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAndPython"
+    endMarker="# END MultipleFiltersAndPython"
+    language="python"
+  />
+
+  #### Filter with `any of`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAllOfPython"
+    endMarker="# END MultipleFiltersAllOfPython"
+    language="python"
+  />
+
+  #### Filter with `all of`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAllOfPython"
+    endMarker="# END MultipleFiltersAllOfPython"
+    language="python"
+  />
+
   </TabItem>
 
   <TabItem value="py3" label="Python Client v3">
@@ -106,12 +138,19 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={JavaScriptCode}
-      startMarker="// searchMultipleFiltersAnd"
-      endMarker="// END searchMultipleFiltersAnd"
-      language="js"
-    />
+
+  Use `Filters.and` and `Filters.or` methods to combine filters in the JS/TS `v3` API.
+  <br/>
+
+  These methods take variadic arguments (e.g. `Filters.and(f1, f2, f3, ...)`). To pass an array (e.g. `fs`) as an argument, provide it like so: `Filters.and(...fs)` which will spread the array into its elements.
+  <br/>
+
+  <FilteredTextBlock
+    text={JavaScriptCode}
+    startMarker="// searchMultipleFiltersAnd"
+    endMarker="// END searchMultipleFiltersAnd"
+    language="js"
+  />
   </TabItem>
 
   <TabItem value="js2" label="JS/TS Client v2">
@@ -146,39 +185,6 @@ The output is like this:
 />
 
 </details>
-
-## Filter by all/any of multiple conditions
-
-The `v4` Python client API supports filtering by `any`, or `all` of a set of provided filters.
-
-<!-- TODO: Could update to this ⬇️ when ready:  -->
-<!-- The `v4` Python client and the `v3` JS client APIs supports filtering by `any`, or `all` of a set of provided filters.  -->
-
-#### Filter with `any of`
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAllOfPython"
-      endMarker="# END MultipleFiltersAllOfPython"
-      language="python"
-    />
-  </TabItem>
-</Tabs>
-
-#### Filter with `all of`
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAllOfPython"
-      endMarker="# END MultipleFiltersAllOfPython"
-      language="python"
-    />
-  </TabItem>
-</Tabs>
 
 ## Nested filters
 
