@@ -45,7 +45,9 @@ phrases = [
 # AddObjects
 
 for phrase in phrases:
-    obj_properties = {name: phrase for name in property_names}
+    obj_properties = {}
+    for property_name in property_names:
+        obj_properties[property_name] = phrase
     print(obj_properties)
     collection.data.insert(properties=obj_properties)
 
