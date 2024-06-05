@@ -70,15 +70,15 @@ To estimate your memory needs, use the following rule of thumb:
 
 For example, consider a model that has one million 384-dimensional vectors of type `float32`.
 
-- The memory requirement for a single vector is: `384 * 4B = 1536B`.
+- The memory requirement for a single vector is: `384 * 4 B = 1536 B`.
 
-- The memory requirement for one million objects is: `1e6 * 1536B = 1.5GB`
+- The memory requirement for one million objects is: `1e6 * 1536 B = 1.5G B`
 
-The rule of thumb says to double the memory requirement. The total memory requirement for one million 384-dimensional vectors of type `float32` is: `2 * 1e6 * 1536B = 3GB`.
+The rule of thumb says to double the memory requirement. The total memory requirement for one million 384-dimensional vectors of type `float32` is: `2 * 1e6 * 1536 B = 3 GB`.
 
 For a more accurate calculation, include a factor for the `maxConnections` setting instead of multiplying the base requirement by two.
 
-For example, if `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + 64*10) = 2.2 GB`.
+For example, if `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + (64 * 10)) = 2.2 GB`.
 
 The estimate that includes `maxConnections` is smaller than the rule of thumb estimate. However, the `maxConnections` estimate doesn't account for garbage collection. Garbage collection adds overhead that is explained in the next section.
 
