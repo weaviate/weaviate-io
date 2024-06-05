@@ -238,7 +238,10 @@ p {
     flex-direction: row;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    width: 100%;
+
+    @media screen and (max-width: 1260px) {
+      width: 100%;
+    }
 
     a {
       color: #130c49;
