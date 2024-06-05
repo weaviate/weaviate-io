@@ -44,6 +44,8 @@ client.collections.create(
 )
 # END CustomConfigHNSW
 
+client.collections.delete(name=collection_name)
+
 # START ConfigFlat
 client.collections.create(
     name=collection_name,

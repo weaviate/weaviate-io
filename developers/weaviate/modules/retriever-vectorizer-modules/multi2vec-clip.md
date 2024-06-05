@@ -268,7 +268,7 @@ Both models were trained to produce embeddings which are compatible with one ano
 Create a new `Dockerfile` (you do not need to clone this repository, any folder on your machine is fine), we will name it `my-models.Dockerfile`. Add the following lines to it:
 
 ```
-FROM semitechnologies/transformers-inference:custom
+FROM semitechnologies/multi2vec-clip:custom
 COPY ./my-text-model /app/models/text
 COPY ./my-clip-model /app/models/clip
 ```
