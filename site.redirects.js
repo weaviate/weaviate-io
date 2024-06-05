@@ -529,6 +529,19 @@ const siteRedirects = {
     from: "/services/enterprise-dedicated"
 },
 
+ // Meetings Updates
+ {
+    to: "https://calendly.com/griffin-pvo8/30min",
+    from: "/griffin"
+},
+{
+    to: "https://calendly.com/bensabrin/30min",
+    from: "/ben"
+},
+{
+    to: "https://calendly.com/weaviate_nick/30min",
+    from: "/nick"
+},
 
     ],
     createRedirects(existingPath) {
