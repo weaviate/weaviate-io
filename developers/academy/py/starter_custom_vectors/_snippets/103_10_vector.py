@@ -10,10 +10,10 @@ import os
 # END MetadataSemanticSearch
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
 )
 
 # MetadataSemanticSearch

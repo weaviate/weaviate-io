@@ -40,8 +40,8 @@ export default function MeetTheTeam() {
               #Applied Research
             </Link>
             <Link
-              className={selectedTeam === 'wcs' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('wcs')}
+              className={selectedTeam === 'wcd' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('wcd')}
             >
               #Cloud Services
             </Link>

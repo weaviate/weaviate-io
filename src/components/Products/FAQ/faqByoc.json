@@ -12,8 +12,8 @@
     "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
   },
   {
-    "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
-    "answer": "No, Weaviate Cloud (WCD) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
+    "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCD?",
+    "answer": "No, Weaviate Cloud (WCD) is a different solution using the same code as Weaviate open-source. The difference is the WCD itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
   },
   {
     "question": "Is there a discount for non-profits, startups, or students?",

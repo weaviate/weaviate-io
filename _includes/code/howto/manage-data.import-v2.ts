@@ -44,7 +44,7 @@ const classDefinition = {
 // Clean slate
 try {
   await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
-  await client.schema.classDeleter().withClassName('YourName').do();
+  await client.schema.classDeleter().withClassName('MyCollection').do();
 } catch {
   // ignore error if class doesn't exist
 } finally {
@@ -56,8 +56,8 @@ try {
 // ===== Basic batch import =====
 // ==============================
 
-// BasicBatchImportExample
-let className = 'YourName';  // Replace with your class name
+// START BasicBatchImportExample
+let className = 'MyCollection';  // Replace with your class name
 let dataObjs = [];
 for (let i = 1; i <= 5; i++)
   dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
@@ -86,11 +86,11 @@ await client.schema.classDeleter().withClassName(className).do();
 // ===== Batch import with custom ID =====
 // =======================================
 
-// BatchImportWithIDExample
+// START BatchImportWithIDExample
 // highlight-start
 import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
 // highlight-end
-className = 'YourName';  // Replace with your class name
+className = 'MyCollection';  // Replace with your class name
 dataObjs = [];
 for (let i = 1; i <= 5; i++)
   dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
@@ -123,8 +123,8 @@ await client.schema.classDeleter().withClassName(className).do();
 // ===== Batch import with custom vector =====
 // ===========================================
 
-// BatchImportWithVectorExample
-className = 'YourName';  // Replace with your class name
+// START BatchImportWithVectorExample
+className = 'MyCollection';  // Replace with your class name
 dataObjs = [];
 const vectors = [];
 for (let i = 1; i <= 5; i++) {
@@ -164,7 +164,7 @@ await client.schema.classDeleter().withClassName(className).do();
 
 
 const classDefinitionNV = {
-  class: 'YourCollection',
+  class: 'MyCollection',
   properties: [
     {
       name: 'title',
@@ -206,8 +206,8 @@ try {
   await client.schema.classCreator().withClass(classDefinitionNV).do();
 }
 
-// BatchImportWithNamedVectors
-className = 'YourCollection';  // Replace with your class name
+// START BatchImportWithNamedVectors
+className = 'MyCollection';  // Replace with your class name
 dataObjs = [];
 const title_vectors = [];
 const body_vectors = [];

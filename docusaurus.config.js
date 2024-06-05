@@ -347,6 +347,10 @@ const config = {
                                 to: '/community/events',
                             },
                             {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
+                            },
+                            {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
                             },
@@ -425,7 +429,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
+                                href: '/#contact-us',
                             },
                         ],
                     },
@@ -511,7 +515,10 @@ const config = {
                                 label: 'Workshops',
                                 to: '/community/events',
                             },
-                           
+                            {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
+                            },
                             {
 
                                 label: 'Academy',

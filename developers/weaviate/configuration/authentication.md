@@ -24,7 +24,7 @@ For most use cases, the API key option offers a balance between security and eas
 See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
 :::
 
-## WCS authentication
+## WCD authentication
 
 [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/connect.mdx).
 
@@ -112,7 +112,7 @@ import ClientLibraryUsage from '/_includes/clients/client-library-usage.mdx';
 OIDC authentication involves three parties.
 
 1. A **user** who wants to access a resource.
-1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
+1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCD) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
 For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud (WCD) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
@@ -144,11 +144,11 @@ This applies to anyone who is running their own Weaviate instance.
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
 - For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
-    - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
+    - Make sure you have a WCD account (you can [sign up here](https://console.weaviate.cloud/)).
     - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
       - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
-      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCS account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
+      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCD account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
       - `email` as the username claim (in `AUTHENTICATION_OIDC_USERNAME_CLAIM`).
 
 - If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).

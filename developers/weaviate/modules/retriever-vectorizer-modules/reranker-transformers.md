@@ -19,7 +19,7 @@ image: og/docs/modules/reranker-transformers.jpg
 
 ### Weaviate Cloud
 
-The `reranker-transformers` module is not available on the WCS.
+The `reranker-transformers` module is not available on the WCD.
 
 ### Weaviate open source
 

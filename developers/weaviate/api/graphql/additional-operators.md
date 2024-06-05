@@ -183,7 +183,7 @@ Sample client code:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={AutocutTSCode}
       startMarker="// START Autocut"
@@ -345,7 +345,7 @@ The sort function takes either an object, or an array of objects, that describe 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Sorting"
@@ -446,7 +446,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START MultiplePropSorting"
@@ -522,7 +522,7 @@ To sort with metadata, add an underscore to the property name.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START AdditionalPropSorting"

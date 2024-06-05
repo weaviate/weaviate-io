@@ -4,7 +4,7 @@ import weaviate from 'weaviate-client'
 
 // START-ANY
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),

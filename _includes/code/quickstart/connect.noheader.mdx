@@ -13,8 +13,8 @@ import weaviate, os
 import weaviate.classes as wvc
 
 # Set these environment variables
-URL = os.getenv("WCS_URL")
-APIKEY = os.getenv("WCS_API_KEY")
+URL = os.getenv("WCD_URL")
+APIKEY = os.getenv("WCD_API_KEY")
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
@@ -45,7 +45,7 @@ client = weaviate.Client(
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
     'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   {
     authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key

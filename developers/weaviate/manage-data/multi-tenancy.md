@@ -101,6 +101,14 @@ import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
       language="py"
     />
   </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableAutoMT"
+      endMarker="// END EnableAutoMT"
+      language="ts"
+    />
+  </TabItem>
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCodeAuto}
@@ -130,6 +138,14 @@ Use the client to update the auto-tenant creation setting. Auto-tenant is only a
       startMarker="# START UpdateAutoMT"
       endMarker="# END UpdateAutoMT"
       language="py"
+    />
+  </TabItem>
+    <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START UpdateAutoMT"
+      endMarker="// END UpdateAutoMT"
+      language="ts"
     />
   </TabItem>
   <TabItem value="go" label="Go">
@@ -299,8 +315,8 @@ This example returns `tenantA` and `tenantB` from the `MultiTenancyCollection` c
   <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START GetOneTenant"
-      endMarker="// END GetOneTenant"
+      startMarker="// START GetTenantsByName"
+      endMarker="// END GetTenantsByName"
       language="ts"
     />
   </TabItem>
@@ -408,6 +424,15 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
       startMarker="# START UpdateTenants"
       endMarker="# END UpdateTenants"
       language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START UpdateTenants"
+      endMarker="// END UpdateTenants"
+      language="ts"
     />
   </TabItem>
 </Tabs>
