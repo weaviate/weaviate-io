@@ -24,6 +24,14 @@ import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
 When you exit the client, the Embedded Weaviate instance also exits.
 
+### Custom connection configuration
+
+To pass additional configuration details to your embedded instance, use a custom connection:
+
+import EMDBCustom from '/_includes/code/embedded.instantiate.custom.mdx';
+
+<EMDBCustom />
+
 ## Configuration options
 
 To configure Embedded Weaviate, set these variables in your instantiation code or pass them as parameters when you invoke your client. You can also pass them as system environment variables. All parameters are optional.
