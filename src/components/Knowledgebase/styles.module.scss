@@ -110,6 +110,12 @@
   text-align: center;
   padding: 0px 20px 0px 0px;
 
+  @media screen and (max-width: 600px) {
+    padding: 0px 0px 0px 0px;
+    border-bottom: 1px solid #bec3c9;
+    margin-bottom: 20px;
+  }
+
   .cardFilter {
     display: flex;
     gap: 18px;
@@ -152,6 +158,7 @@
     width: 0.8125rem;
     height: 0.8125rem;
     appearance: none;
+    margin-right: 6px;
   }
 
   input :active,
@@ -288,6 +295,10 @@
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   margin: 10px 10px;
+
+  @media screen and (max-width: 600px) {
+    margin: 10px 0px;
+  }
 
   h3 {
     color: #1b1464;
@@ -595,7 +606,7 @@
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
   }
 
@@ -605,6 +616,10 @@
     font-size: 1rem;
     font-weight: 700;
     margin: 20px 0px;
+
+    @media screen and (max-width: 550px) {
+      margin: 0px 0px;
+    }
   }
 
   span {
@@ -617,6 +632,10 @@
   .modalText {
     text-align: left;
     width: 90%;
+
+    @media screen and (max-width: 550px) {
+      width: 100%;
+    }
   }
 
   .cardContents {
@@ -648,8 +667,16 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
+    @media screen and (max-width: 550px) {
+      width: 110%;
+    }
+
     @media screen and (max-width: 500px) {
       width: 112%;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 113.6%;
     }
   }
   .cardText {
@@ -705,6 +732,20 @@
   .relatedBox {
     display: flex;
     gap: 10px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    overflow: overlay;
+    scroll-snap-align: center;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 300px;
+      height: 150px;
+    }
   }
 
   .relatedBottom {
@@ -730,6 +771,10 @@
       font-family: 'Plus Jakarta Sans';
       font-size: 0.6rem;
       font-weight: 600;
+
+      @media screen and (max-width: 500px) {
+        font-size: 0.5rem;
+      }
     }
   }
 
@@ -744,7 +789,7 @@
     box-shadow: rgba(22, 27, 45, 0.08) 0px 18.341px 48.908px 0px;
     flex-direction: column;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 550px) {
       width: 6.8rem;
     }
   }
@@ -759,7 +804,7 @@
     border-top-left-radius: 0.71644rem;
     border-top-right-radius: 0.71644rem;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 550px) {
       width: 6.8rem;
       height: 4.24613rem;
     }
@@ -774,6 +819,10 @@
 
     @media screen and (max-width: 500px) {
       width: 95%;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
     }
   }
 
@@ -795,6 +844,11 @@
 
     @media screen and (max-width: 500px) {
       width: 10.47769rem;
+      height: 2.84969rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 8.47769rem;
       height: 2.84969rem;
     }
   }
@@ -845,12 +899,12 @@
 .closeButtonContainer {
   position: absolute;
   top: 0px;
-  right: 20px;
+  left: 5px;
 }
 
 .close {
-  font-size: 2rem;
-  color: #130c49;
+  font-size: 1rem;
+  color: #ffffff;
   cursor: pointer;
   background: none;
   border: none;

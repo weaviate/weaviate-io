@@ -4,8 +4,9 @@ import weaviate from 'weaviate-client';
 const client = await weaviate.connectToLocal();
 
 // START QueryWithReplication
-const collectionName = 'Article';
-const myCollection = client.collections.get(collectionName).withConsistency('QUORUM');
+// highlight-start
+const myCollection = client.collections.get('Article').withConsistency('QUORUM');
+// highlight-end
 
 const result = await myCollection.query.fetchObjectById("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
 

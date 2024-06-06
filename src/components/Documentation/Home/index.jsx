@@ -66,7 +66,7 @@ const DocHomePage = () => {
               </ul>
               <button className={styles.deployButton}>
                 <a href="/developers/wcs/create-instance">
-                  Set up a WCS instance
+                  Set up a WCD instance
                 </a>
               </button>
             </div>

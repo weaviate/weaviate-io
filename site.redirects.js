@@ -535,6 +535,7 @@ const siteRedirects = {
 },
 
 
+
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

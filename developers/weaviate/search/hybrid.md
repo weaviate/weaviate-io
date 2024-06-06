@@ -639,29 +639,30 @@ The output is like this:
 You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START VectorSimilarityPython"
-  endMarker="# END VectorSimilarityPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="py3" label="GraphQL">
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# VectorSimilarityGraphQL"
-  endMarker="# END VectorSimilarityGraphQL"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JS/TS v3">
-
-```js
-// Coming soon
-```
-
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorSimilarityPython"
+      endMarker="# END VectorSimilarityPython"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# VectorSimilarityGraphQL"
+      endMarker="# END VectorSimilarityGraphQL"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// VectorSimilarity"
+      endMarker="// END VectorSimilarity"
+      language="js"
+    />
+  </TabItem>
 </Tabs>
 
 <details>

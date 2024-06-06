@@ -223,7 +223,8 @@ publications.data.delete_by_id(obj_uuid)
 # ========================================
 
 # START CheckForAnObject
-object_uuid = generate_uuid5("SomeUUIDSeed")
+# generate uuid based on the key properties used during data insert
+object_uuid = generate_uuid5({"name": "Author to fetch"})
 
 # END CheckForAnObject
 
@@ -236,19 +237,16 @@ authors.data.insert(
 
 # START CheckForAnObject
 authors = client.collections.get("Author")
-# authors = authors.with_consistency_level(ConsistencyLevel.ALL)  # To set the consistency (use weaviate.classes.ConsistencyLevel)
+# highlight-start
+author_exists = authors.data.exists(object_uuid)
+# highlight-end
 
-fetched_obj = authors.query.fetch_object_by_id(uuid=object_uuid)  # If it does not exist, it will return None
-
-if fetched_obj is None:
-    print("Object does not exist")
-else:
-    print(fetched_obj.properties)
+print("Author exist: ", author_exists)
 # END CheckForAnObject
 
-assert fetched_obj.properties["name"] == "Author to fetch"
+assert author_exists == True
 authors.data.delete_by_id(object_uuid)
-assert authors.query.fetch_object_by_id(object_uuid) is None
+assert authors.data.exists(object_uuid) == False
 
 
 # ===========================

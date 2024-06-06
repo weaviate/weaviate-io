@@ -24,13 +24,13 @@ client.is_ready()
 # =====  EnableBQ =====
 # ==============================
 
-client.collections.delete("YourCollection")
+client.collections.delete("MyCollection")
 
 # START EnableBQ
 import weaviate.classes.config as wc
 
 client.collections.create(
-    name="YourCollection",
+    name="MyCollection",
     vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     vector_index_config=wc.Configure.VectorIndex.flat(
@@ -44,13 +44,13 @@ client.collections.create(
 # =====  EnableBQ with Options =====
 # ==============================
 
-client.collections.delete("YourCollection")
+client.collections.delete("MyCollection")
 
 # START BQWithOptions
 import weaviate.classes.config as wc
 
 client.collections.create(
-    name="YourCollection",
+    name="MyCollection",
     vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
     vector_index_config=wc.Configure.VectorIndex.flat(
         distance_metric=wc.VectorDistances.COSINE,

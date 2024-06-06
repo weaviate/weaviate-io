@@ -23,7 +23,7 @@ This ability to transform data makes generative search a powerful tool that can 
 
 To use generative search, a `generative-xxx` module must be enabled in the Weaviate instance.
 
-If you are using WCS, generative modules are enabled by default ([see docs](/developers/wcs#configuration). Otherwise, you must configure your Weaviate instance to make sure that a generative module is enabled.
+If you are using WCD, generative modules are enabled by default ([see docs](/developers/wcs#configuration). Otherwise, you must configure your Weaviate instance to make sure that a generative module is enabled.
 
 This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
 
@@ -230,7 +230,7 @@ As a starting point, we recommend that you try using the default options, includ
 ### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - Generative search transforms data before delivery, turning a database into a more active participant in data processing.
-- To use generative search, a generative module must be enabled in the Weaviate instance; generative modules are enabled by default in WCS.
+- To use generative search, a generative module must be enabled in the Weaviate instance; generative modules are enabled by default in WCD.
 - A generative search involves performing a search and then calling a generative model using the search results and a user-provided prompt.
 - Single prompt search generates a response for each result, while grouped task search generates one response for the whole result set.
 - Object properties are used in generative searches; they form the model prompt in single prompt examples and can be specified in grouped tasks.

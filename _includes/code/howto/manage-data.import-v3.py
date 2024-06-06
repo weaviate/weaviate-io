@@ -40,8 +40,8 @@ if not client.schema.exists("JeopardyQuestion"):
 # ===== Basic batch import =====
 # ==============================
 
-# BasicBatchImportExample
-class_name = "YourName"  # Replace with your class name
+# START BasicBatchImportExample
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
@@ -66,12 +66,12 @@ client.schema.delete_class(class_name)
 # ===== Batch import with custom ID =====
 # =======================================
 
-# BatchImportWithIDExample
+# START BatchImportWithIDExample
 # highlight-start
 from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
-class_name = "YourName"  # Replace with your class name
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
@@ -101,8 +101,8 @@ client.schema.delete_class(class_name)
 # ===== Batch import with custom vector =====
 # ===========================================
 
-# BatchImportWithVectorExample
-class_name = "YourName"  # Replace with your class name
+# START BatchImportWithVectorExample
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
@@ -135,7 +135,7 @@ client.schema.delete_class(class_name)
 # ===== Batch import with named vectors =====
 # ===========================================
 
-# BatchImportWithNamedVectors
+# START BatchImportWithNamedVectors
 # Unfortunately, named vectors are not suppored in the v3 API / Python client.
 # Please upgrade to the v4 API / Python client to use named vectors.
 # END BatchImportWithNamedVectors
@@ -244,7 +244,7 @@ assert actual_count == MAX_ROWS_TO_IMPORT * 2, f"Expected {MAX_ROWS_TO_IMPORT * 
 # ===== Batch import with parameters explicitly set  =====
 # ============================================================
 
-class_name = "YourName"  # Replace with your class name
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]

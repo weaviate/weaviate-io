@@ -44,7 +44,8 @@ response = dogs.query.near_image(
     near_image=base64_string,
 # highlight-end
     return_properties=["breed"],
-    limit=1
+    limit=1,
+    # targetVector: "vector_name" # required when using multiple named vectors
 )
 
 print(response.objects[0])
@@ -91,7 +92,8 @@ response = dogs.query.near_image(
     near_image=Path("./images/search-image.jpg"),  # Provide a `Path` object
     # highlight-end
     return_properties=["breed"],
-    limit=1
+    limit=1,
+    # targetVector: "vector_name" # required when using multiple named vectors
 )
 
 print(response.objects[0])
