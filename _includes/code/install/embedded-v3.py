@@ -1,3 +1,22 @@
+#NOT TESTED AS A RUNNING END TO END SCRIPT
+
+# START SimpleInstance
+import weaviate
+from weaviate.embedded import EmbeddedOptions
+
+client = weaviate.Client(
+embedded_options=EmbeddedOptions()
+)
+
+data_obj = {
+"name": "Chardonnay",
+"description": "Goes with fish"
+}
+
+client.data_object.create(data_obj, "Wine")
+# END SimpleInstance
+client.close()
+
 # START CustomModules
 import weaviate
 from weaviate.embedded import EmbeddedOptions
@@ -10,3 +29,4 @@ client = weaviate.Client(
   )
 )
 # END CustomModules
+client.close()
