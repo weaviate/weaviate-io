@@ -8,9 +8,9 @@ image: og/docs/configuration.jpg
 To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, set these environment variables
 
 :::tip Boolean environment variables
-With Boolean environment variables, any of: `"on"`, `"enabled"`, `"1"` or `"true"`, in any case, will be interpreted as `true`.
+For Boolean environment variables, `"on"`, `"enabled"`, `"1"`, and `"true"` are interpreted as `true`.
 
-All other values will be interpreted as `false`.
+All other values are interpreted as `false`.
 :::
 
 ## General
@@ -54,28 +54,28 @@ All other values will be interpreted as `false`.
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
-| `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | `CLIP_INFERENCE_API` | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
+| `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | `IMAGE_INFERENCE_API` | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
+| `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | `USE_SENTENCE_TRANSFORMERS_VECTORIZER` | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `boolean` | `true` |
 
 ## Authentication and authorization
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true` <br/> Starting in v1.24, defaults to `true` |
-| `AUTHENTICATION_APIKEY_ENABLED` | Enable API key-based authentication | `boolean` | `false` |
-| `AUTHENTICATION_APIKEY_ALLOWED_KEYS` | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
-| `AUTHENTICATION_APIKEY_USERS` | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |
-| `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC-based authentication | `boolean` | `false` |
-| `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
-| `AUTHENTICATION_OIDC_CLIENT_ID` | OIDC Client ID | `string` | `my-client-id` |
-| `AUTHENTICATION_OIDC_USERNAME_CLAIM` | OIDC Username Claim | `string` | `email` |
-| `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
 | `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList Authorization mode | `boolean` | `true` |
 | `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission| `string - comma-separated list` | `jane@example.com,john@example.com` |
 | `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
+| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true` <br/> Starting in v1.24, defaults to `true` |
+| `AUTHENTICATION_APIKEY_ALLOWED_KEYS` | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
+| `AUTHENTICATION_APIKEY_ENABLED` | Enable API key-based authentication | `boolean` | `false` |
+| `AUTHENTICATION_APIKEY_USERS` | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |
+| `AUTHENTICATION_OIDC_CLIENT_ID` | OIDC Client ID | `string` | `my-client-id` |
+| `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC-based authentication | `boolean` | `false` |
+| `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
+| `AUTHENTICATION_OIDC_USERNAME_CLAIM` | OIDC Username Claim | `string` | `email` |
+| `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
 
 ## Multi-node instances
 
