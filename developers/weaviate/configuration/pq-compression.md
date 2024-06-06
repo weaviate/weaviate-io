@@ -227,7 +227,7 @@ We recommend loading a representative sample such that the trained centroids are
       />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START FetchData"
@@ -282,7 +282,7 @@ We recommend loading a representative sample such that the trained centroids are
      />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START LoadData"
