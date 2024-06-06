@@ -51,9 +51,9 @@ All other values will be interpreted as `false`.
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. (Default: 0) (Available from `v1.24.15` / `v1.25.2`) | `string - int` | `100000` |
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. (Default: none) | `string - int` (Available from `v1.24.15` / `v1.25.2`) | `10000000` |
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
-| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | boolean | False |
-| `QUERY_SLOW_LOG_ENABLED` | Log slow queries for debugging. Requires a restart to update. <br> (New in 1.24.16, 1.25.3) | `string` | `2s` <br/> Values are times: 3h, 2s, 100ms |
-| `QUERY_SLOW_LOG_THRESHOLD` | Set a threshold time for slow query logging. Requires a restart to update. <br> (New in 1.24.16, 1.25.3)  | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
+| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
+| `QUERY_SLOW_LOG_ENABLED` | Log slow queries for debugging. Requires a restart to update. <br> (New in 1.24.16, 1.25.3) | boolean | False |
+| `QUERY_SLOW_LOG_THRESHOLD` | Set a threshold time for slow query logging. Requires a restart to update. <br> (New in 1.24.16, 1.25.3) | `string` | `2s` <br/> Values are times: 3h, 2s, 100ms |
 | `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `boolean` | `false` |
 | `PROMETHEUS_MONITORING_GROUP` | If set, Weaviate will group metrics for the same class across all shards. | `boolean` | `true` |
