@@ -57,7 +57,7 @@ const ProjectFilter = () => {
     <div className={styles.bg}>
       <div className="container">
         <div className={styles.title}>
-          <h2>Weaviate projects</h2>
+          <h2>Weaviate Showcases</h2>
           <p>
             Discover the Latest AI Innovations: Dive into our comprehensive
             database showcasing diverse Community Projects and Show cases
@@ -78,13 +78,13 @@ const ProjectFilter = () => {
             className={styles.projectButton}
             onClick={() => handleProjectTypeClick('Community projects')}
           >
-            Community projects
+            Community Showcases
           </button>
           <button
             className={styles.projectButton}
             onClick={() => handleProjectTypeClick('Business projects')}
           >
-            Business projects
+            Business Showcases
           </button>
         </div>
         <div className={styles.tableContainer}>
@@ -112,26 +112,6 @@ const ProjectFilter = () => {
                     ))}
                   </select>
                 </th>
-                <th>
-                  <select onChange={(e) => setModel(e.target.value)}>
-                    <option value="">Model(s)</option>
-                    {uniqueModels.map((model) => (
-                      <option key={model} value={model}>
-                        {model}
-                      </option>
-                    ))}
-                  </select>
-                </th>
-                <th>
-                  <select onChange={(e) => setStack(e.target.value)}>
-                    <option value="">Stack</option>
-                    {uniqueStacks.map((stack) => (
-                      <option key={stack} value={stack}>
-                        {stack}
-                      </option>
-                    ))}
-                  </select>
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -148,11 +128,12 @@ const ProjectFilter = () => {
                           {project.type}
                         </span>
                       </div>
+                      <span className={styles.projectDescription}>
+                        {project.description}
+                      </span>
                     </td>
                     <td>{project.types.join(', ')}</td>
                     <td>{project.category.join(', ')}</td>
-                    <td>{project.models}</td>
-                    <td>{project.stack}</td>
                   </tr>
                 ))}
             </tbody>

@@ -7,7 +7,7 @@ export default function PlatformHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <span>Projects</span>
+          <span>Showcases</span>
           <br></br>
           <h1>Build with Weaviate</h1>
           <div className={styles.headerBox}>

@@ -195,7 +195,7 @@
 
 .projectContainer {
   display: flex;
-  width: 260px;
+  width: 400px;
   align-items: center;
   justify-content: space-between;
 }
@@ -250,4 +250,9 @@
     max-width: 396px;
     width: 100%;
   }
+}
+
+.projectDescription {
+  color: #000;
+  font-size: 0.7rem;
 }
