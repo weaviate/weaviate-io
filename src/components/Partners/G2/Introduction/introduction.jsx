@@ -32,12 +32,6 @@ export default function introduction() {
           </div>
         </div>
       </div>
-      <div className={styles.alertBox}>
-        <p>
-          You have to submit a review and complete the form below to ensure that
-          you get your limited edition Weaviate shirt!
-        </p>
-      </div>
     </div>
   );
 }
