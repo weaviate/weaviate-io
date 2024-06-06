@@ -9,25 +9,25 @@ import TsCodeV2 from '!!raw-loader!/_includes/code/install/embedded-v2.ts';
     <TabItem value="py" label="Python Client v4">
         <FilteredTextBlock
           text={PyCode}
-          startMarker="# START SimpleInstantiationEmbedded"
-          endMarker="# END SimpleInstantiationEmbedded"
+          startMarker="# START FullInstantiationEmbedded"
+          endMarker="# END FullInstantiationEmbedded"
           language="py"
         />
     </TabItem>
     <TabItem value="py3" label="Python Client v3">
         <FilteredTextBlock
           text={PyCodeV3}
-          startMarker="# START SimpleInstance"
-          endMarker="# END SimpleInstance"
+          startMarker="# START CustomModules"
+          endMarker="# END CustomModules"
           language="py"
-          />
+        />
     </TabItem>
     <TabItem value="js" label="JS/TS Client v2">
         <FilteredTextBlock
-         text={TsCodeV2}
-         startMarker="// START SimpleInstance"
-         endMarker="// END SimpleInstance"
-         language="js"
-         />
-     </TabItem>
+          text={TsCodeV2}
+          startMarker="// START CustomModules"
+          endMarker="// END CustomModules"
+          language="js"
+        />
+    </TabItem>
 </Tabs>
