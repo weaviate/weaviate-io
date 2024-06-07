@@ -5,21 +5,11 @@ image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
-
-import WCDAuthAndInferenceKeys from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
-
-Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD)
-
-import APICloudConnect from '/_includes/connect/wcs-api-connect.mdx';
-
-<APICloudConnect/>
-
-Follow these steps to connect to Weaviate Cloud (WCD).
+Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
 
 ## Retrieve your API keys
+
+The Weaviate client libraries use API keys to authenticate to WCD instances.
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
@@ -35,15 +25,13 @@ import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx'
 
 ## Third party API keys
 
-Integrations that use external APIs often need API keys for those services. The Weaviate clients send third party API keys as headers.
-
-To add third party API keys, follow these examples:
+Integrations that use external APIs often need API keys for those services. To add third party API keys, follow these examples:
 
 <WCDAuthAndInferenceKeys/>
 
 ## Environment variables
 
-Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique.
+Do not hard-code API keys in your client code. Consider using environment variables or a similar secure coding technique instead.
 
 To create an environment variable, add a line like this example to your shell configuration file.
 
