@@ -9,8 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-import WCSAuthenticationApiKeyWithInferenceKey from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
-
+import WCDAuthAndInferenceKeys from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
 
 Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD)
 
@@ -28,9 +27,19 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 ## Connection example
 
+To connect, set the environment variables and edit this code to match your environment.
+
 import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
 
 <WCDAuthenticationApiKey/>
+
+## Third party API keys
+
+Integrations that use external APIs often need API keys for those services. The Weaviate clients send third party API keys as headers.
+
+To add third party API keys, follow these examples:
+
+<WCDAuthAndInferenceKeys/>
 
 ## Environment variables
 
@@ -41,33 +50,6 @@ To create an environment variable, add a line like this example to your shell co
 ```bash
 export WEAVIATE_API_KEY="replaceThisPartWithYourWeaviateAPIKey"
 ```
-## Third party API keys
-
-Integrations that use external APIs often need API keys for those services. The Weaviate clients send third party API keys as headers.
-
-To add third party API keys, follow these examples:
-
-<WCSAuthenticationApiKeyWithInferenceKey/>
-
-## Timeouts
-
-Timeout values are configurable for [gRPC-enabled](../api/grpc.md) clients. If you run into client timeouts, adjust these values.
-
-- Initialization
-- Queries
-- Insertions
-
-<Tabs groupId="languages">
-    <TabItem value="py4" label="Python Client v4">
-        <FilteredTextBlock
-        text={PyClientCode}
-        startMarker="# LocalInstantiationWithTimeout"
-        endMarker="# END LocalInstantiationWithTimeout"
-        language="py"
-        />
-    </TabItem>
-</Tabs>
-
 
 ## Questions and feedback
 

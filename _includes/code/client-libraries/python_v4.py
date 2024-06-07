@@ -162,7 +162,7 @@ try:
 finally:
     client.close()
 
-# LocalInstantiationWithTimeout
+# LocalWithTimeout
 import weaviate
 from weaviate.classes.init import AdditionalConfig, Timeout
 
@@ -173,7 +173,7 @@ client = weaviate.connect_to_local(
         timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
     )
 )
-# END LocalInstantiationWithTimeout
+# END LocalWithTimeout
 
 try:
     assert client.is_ready()

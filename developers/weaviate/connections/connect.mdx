@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
-import WCSAuthenticationApiKeyWithInferenceKey from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
+import WCDAuthAndInferenceKeys from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
 import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
@@ -149,8 +149,8 @@ For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initi
     <TabItem value="py4" label="Python Client v4">
         <FilteredTextBlock
         text={PyClientCode}
-        startMarker="# LocalInstantiationWithTimeout"
-        endMarker="# END LocalInstantiationWithTimeout"
+        startMarker="# LocalWithTimeout"
+        endMarker="# END LocalWithTimeout"
         language="py"
         />
     </TabItem>
@@ -163,7 +163,7 @@ Modules that use external APIs often need API keys. The Weaviate clients send th
 
 To add third party API keys, follow these examples:
 
-<WCSAuthenticationApiKeyWithInferenceKey/>
+<WCDAuthAndInferenceKeys/>
 
 ## Questions and feedback
 

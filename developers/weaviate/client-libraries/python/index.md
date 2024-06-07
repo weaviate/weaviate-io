@@ -197,8 +197,8 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# LocalInstantiationWithTimeout"
-  endMarker="# END LocalInstantiationWithTimeout"
+  startMarker="# LocalWithTimeout"
+  endMarker="# END LocalWithTimeout"
   language="py"
 />
 
