@@ -94,6 +94,12 @@
 
 .buttonLine {
   text-decoration: underline;
+  color: #000;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration-line: underline;
 }
 
 .buttonGradient {
@@ -177,6 +183,11 @@
       text-align: left;
       padding: 8px;
       border: none;
+      color: #000;
+
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
     }
 
     th {
@@ -249,10 +260,27 @@
     border-bottom: 1px solid rgba(19, 12, 73, 0.2);
     max-width: 396px;
     width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  input::placeholder {
+    color: #a8a8a8;
+    font-size: 1rem;
+    font-weight: 700;
   }
 }
 
 .projectDescription {
   color: #000;
   font-size: 0.7rem;
+}
+
+.glassIcon {
+  background-image: url('/img/site/glass-icon.svg');
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
 }

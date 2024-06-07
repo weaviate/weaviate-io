@@ -66,6 +66,7 @@ const ProjectFilter = () => {
           </p>
         </div>
         <div className={styles.searchContainer}>
+          <div className={styles.glassIcon}></div>
           <input
             type="text"
             placeholder="Search Projects"
@@ -139,12 +140,12 @@ const ProjectFilter = () => {
             </tbody>
           </table>
           <div className={styles.buttons}>
-            <button
+            <div
               className={styles.buttonLine}
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? 'Show Less' : 'See All'}
-            </button>
+            </div>
           </div>
         </div>
       </div>
