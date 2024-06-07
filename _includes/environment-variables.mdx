@@ -1,11 +1,12 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 Do not hard-code API keys or other credentials in your client code. Consider using environment variables or a similar secure coding technique instead.
 
-To use environment variables, set the variable on the host system. Then, import the variable into your application code at runtime.
+Environment variables keep sensitive details out of your source code. Your application imports the information to runtime.
 
 <details>
   <summary>Set an environment variable.</summary>
