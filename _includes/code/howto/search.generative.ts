@@ -9,13 +9,13 @@ import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCS_URL,
+  process.env.WCD_URL,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY),
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 let genResults;
@@ -66,7 +66,7 @@ for (let object of result.objects) {
 
 const prompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`
 
-const result = await jeopardy.generate.nearText('World history', 
+const result = await jeopardy.generate.nearText('World history',
   { singlePrompt: prompt },
   { limit: 2 }
 )
