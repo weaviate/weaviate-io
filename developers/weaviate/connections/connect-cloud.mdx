@@ -17,7 +17,7 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 ## Connection example
 
-To connect, set the environment variables and edit this code to match your environment.
+To connect, edit this code to match your environment.
 
 import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
 
@@ -31,13 +31,15 @@ Integrations that use external APIs often need API keys for those services. To a
 
 ## Environment variables
 
-Do not hard-code API keys in your client code. Consider using environment variables or a similar secure coding technique instead.
+import EnvVarsHowto from '/_includes/environment-variables.mdx';
 
-To create an environment variable, add a line like this example to your shell configuration file.
+<EnvVarsHowto/>
 
-```bash
-export WEAVIATE_API_KEY="replaceThisPartWithYourWeaviateAPIKey"
-```
+## Timeouts
+
+import GRPCTimeouts from '/_includes/code/connections/timeouts.mdx';
+
+<GRPCTimeouts/>
 
 ## Questions and feedback
 

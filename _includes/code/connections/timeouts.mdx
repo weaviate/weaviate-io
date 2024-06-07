@@ -1,0 +1,17 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+
+For [gRPC-enabled](/developers/weaviate/api/grpc) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
+
+<Tabs groupId="languages">
+    <TabItem value="py4" label="Python Client v4">
+         <FilteredTextBlock
+         text={PyClientCode}
+         startMarker="# LocalWithTimeout"
+         endMarker="# END LocalWithTimeout"
+         language="py"
+         />
+    </TabItem>
+</Tabs>

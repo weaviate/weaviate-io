@@ -19,10 +19,12 @@ import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v
 
 Follow these steps to connect to a locally hosted Weaviate Core instance.
 
-## Connect without authentication
+## No authentication
 
 :::warning Use authentication
-Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
+By default Weaviate allows unauthenticated connections from `localhost`.
+
+Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your instance.
 :::
 
 To connect to Weaviate without authentication, follow these examples:
@@ -31,15 +33,13 @@ To connect to Weaviate without authentication, follow these examples:
 
 ## Authentication enabled
 
-If authentication is enabled, use a Weaviate API key or OIDC credentials to connect.
-
-For details, see [Authentication](../configuration/authentication.md).
+If [authentication](/developers/weaviate/configuration/authentication.md) is enabled, use a Weaviate API key or OIDC credentials to connect.
 
 #### Weaviate API keys
 
 To authenticate with a Weaviate API key, follow these examples.
 
-Configure your [environment variables](#environment-variables) or edit the example code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
+Be sure to use your Weaviate API key to authenticate and not the API key for a third-party service like OpenAI.
 
 <WCSAuthenticationApiKey/>
 
@@ -51,111 +51,11 @@ To authenticate with OIDC, follow these examples:
 
 OIDC providers use a variety of authentication configurations. The example shows a typical OIDC configuration, but your identity provider may use a different configuration. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
+## Local connection URL
 
+Docker instances default to `http://localhost:8080`.
 
-**Docker and Kubernetes** If you are using Docker or Kubernetes, your URL will depend on how the container is configured to provide access.
-
-- For Docker Compose, see `docker-compose.yml`.
-- For Kubernetes, see `values.yaml` in the Helm chart.
-
-Docker instances by default use the `http://localhost:8080` address.
-
-## Environment variables
-
-These examples use environment variables to store connection details and sensitive information such as API keys.
-
-To set environment variables, use the following syntax, where `WEAVIATE_URL` is the environment variable name and `http://localhost:8080` is the value:
-
-<Tabs groupId="languages">
-<TabItem value="bash" label="Bash/Zsh">
-
-```bash
-export WEAVIATE_URL="http://localhost:8080"
-```
-
-</TabItem>
-<TabItem value="powershell" label="Windows PowerShell">
-
-```shell
-$Env:WEAVIATE_URL="http://localhost:8080"
-```
-
-</TabItem>
-<TabItem value="cmd" label="Windows Command Prompt">
-
-```shell
-set WEAVIATE_URL=http://localhost:8080
-```
-
-</TabItem>
-</Tabs>
-
-Then, they can be accessed as follows.
-
-This method is more secure than hardcoding sensitive information in your code, which is shown the commented-out examples below as what not to do.
-
-<Tabs groupId="languages">
-<TabItem value="py4" label="Python">
-    <FilteredTextBlock
-        text={PyCode}
-        startMarker="# APIKeys"
-        endMarker="# END APIKeys"
-        language="py"
-    />
-</TabItem>
-<TabItem value="js" label="JS/TS Client v2">
-
-```js
-const weaviateUrl = process.env.WEAVIATE_URL;
-const weaviateKey = process.env.WEAVIATE_API_KEY;
-
-// Uncomment and use these lines if you want to hardcode (not recommended for production)
-// const weaviateUrl = "<your-weaviate-url>";
-// const weaviateKey = "<your-weaviate-apikey>";
-```
-
-</TabItem>
-<TabItem value="go" label="Go">
-
-```go
-weaviateUrl := os.Getenv("WEAVIATE_URL")
-weaviateKey := os.Getenv("WEAVIATE_API_KEY")
-
-// Uncomment and use these lines if you want to hardcode (not recommended for production)
-// weaviateUrl = "<your-weaviate-url>"
-// weaviateKey = "<your-weaviate-apikey>"
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-String weaviateUrl = System.getenv("WEAVIATE_URL");
-String weaviateKey = System.getenv("WEAVIATE_API_KEY");
-
-// Uncomment and use these lines if you want to hardcode (not recommended for production)
-// weaviateUrl = "<your-weaviate-url>";
-// weaviateKey = "<your-weaviate-apikey>";
-```
-
-</TabItem>
-</Tabs>
-
-## Timeouts
-
-For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
-
-<Tabs groupId="languages">
-    <TabItem value="py4" label="Python Client v4">
-        <FilteredTextBlock
-        text={PyClientCode}
-        startMarker="# LocalWithTimeout"
-        endMarker="# END LocalWithTimeout"
-        language="py"
-        />
-    </TabItem>
-</Tabs>
-
+If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
 
 ## Third party API keys
 
@@ -164,6 +64,18 @@ Modules that use external APIs often need API keys. The Weaviate clients send th
 To add third party API keys, follow these examples:
 
 <WCDAuthAndInferenceKeys/>
+
+## Environment variables
+
+import EnvVarsHowto from '/_includes/environment-variables.mdx';
+
+<EnvVarsHowto/>
+
+## Timeouts
+
+import GRPCTimeouts from '/_includes/code/connections/timeouts.mdx';
+
+<GRPCTimeouts/>
 
 ## Questions and feedback
 
