@@ -12,7 +12,7 @@ import ValueWorkTogether from '/static/img/company/values/values-work-together.s
 export default function Steps() {
   return (
     <div className={styles.valuesBG}>
-      <div className="container" id="our_company_values">
+      <div className="container" id="steps">
         <div className={styles.title}>
           <h2>Build with Weaviate Framework</h2>
           <p>
@@ -72,7 +72,7 @@ export default function Steps() {
             </div>
 
             <p>
-              Struggling to gain visibility for your AI project?Let us help you
+              Struggling to gain visibility for your AI project? Let us help you
               in boosting your projects and campaigns. Whether you're a project
               owner looking to maximize visibility or a showcase client aiming
               to make an impact on social media, our program equips you with the
@@ -97,7 +97,9 @@ export default function Steps() {
               collaboration, based on your specific project. Weaviate's favorite
               projects are highlighted on our website.
             </p>
-            <Link to="">Contact us</Link>
+            <Link to="/community/share-the-weaviate-love/#contact-form">
+              Contact us
+            </Link>
           </div>
         </div>
       </div>

@@ -18,10 +18,7 @@ export default function Opensource() {
             </p>
 
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonLine}
-                to="/community/bww/opensource"
-              >
+              <Link className={styles.buttonLine} to="#steps">
                 Questions?
               </Link>
             </div>

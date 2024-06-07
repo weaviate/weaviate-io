@@ -28,7 +28,10 @@ export default function Heroes() {
           </Link>
         </div>
         <div className={styles.buttons}>
-          <Link className={styles.buttonOutline} to="/community/bww/heroes">
+          <Link
+            className={styles.buttonOutline}
+            to="/community/share-the-weaviate-love/#contact-form"
+          >
             Get in contact
           </Link>
         </div>
