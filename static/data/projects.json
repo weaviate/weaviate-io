@@ -13,6 +13,7 @@
   {
     "id": 2,
     "name": "RicAI Autonomous Testing Agent",
+    "picks": "⭐",
     "description": "Autonomous AI Agent is developed to streamline software testing by understanding complex requirements, generating test cases, conducting unit, usability, and acceptance tests (using tools like Selenium), and providing detailed feedback and reports.",
     "link": "https://lablab.ai/event/autonomous-agents-hackathon/ricai/ricai-autonomous-testing-agent",
     "type": "Community projects",
@@ -568,6 +569,7 @@
   {
     "id": 48,
     "name": "Internship Finder",
+    "picks": "⭐",
     "description": "Internship Finder is a web app revolutionizing internship searches. Upload your resume for analysis, extracting key details. It then matches you with relevant opportunities, offering an interactive interface to explore and apply seamlessly. Tailored to your resume, it simplifies the hunt for your ideal internship.",
     "link": "",
     "type": "Community projects",
@@ -611,6 +613,7 @@
   {
     "id": 52,
     "name": "Unbody.io",
+    "picks": "⭐",
     "description": "Unbody.io simplifies AI integration into apps and websites. Originally a headless CMS, it migrated its database to Weaviate, becoming the first CMS on a vector database. Unbody automates AI pipelines, integrates data, and offers AI functions via GraphQL or SDKs, democratizing advanced AI for developers without deep expertise.",
     "link": "https://www.unbody.io/",
     "type": "Business projects",
@@ -622,6 +625,7 @@
   {
     "id": 53,
     "name": "Findr",
+    "picks": "⭐",
     "description": "Findr aggregates scattered information from various apps like Slack, Notion, and Gmail into a single search bar. Powered by Weaviate, it enables effortless access to links, documents, and more, saving time wasted on searching across different platforms.",
     "link": "https://www.usefindr.com/",
     "type": "Business projects",

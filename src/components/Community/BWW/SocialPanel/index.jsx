@@ -12,6 +12,7 @@ const ProjectFilter = () => {
   const [stack, setStack] = useState('');
   const [projectType, setProjectType] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [pick, setPick] = useState('');
 
   const uniqueTypes = Array.from(
     new Set(projectsData.flatMap((project) => project.types))
@@ -24,6 +25,9 @@ const ProjectFilter = () => {
   );
   const uniqueStacks = Array.from(
     new Set(projectsData.map((project) => project.stack))
+  );
+  const uniquePicks = Array.from(
+    new Set(projectsData.map((project) => project.picks).filter(Boolean))
   );
 
   useEffect(() => {
@@ -39,20 +43,21 @@ const ProjectFilter = () => {
             .toLowerCase()
             .includes(searchQuery.toLowerCase()) ||
           project.models.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.stack.toLowerCase().includes(searchQuery.toLowerCase())) &&
+          project.stack.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (project.picks && project.picks.includes(pick))) &&
         (projectType ? project.type === projectType : true) &&
         (type ? project.types.includes(type) : true) &&
         (category ? project.category.includes(category) : true) &&
         (model ? project.models === model : true) &&
-        (stack ? project.stack === stack : true)
+        (stack ? project.stack === stack : true) &&
+        (pick ? project.picks === pick : true)
     );
     setFilteredProjects(filtered);
-  }, [projectType, type, category, model, stack, searchQuery]);
+  }, [projectType, type, category, model, stack, pick, searchQuery]);
 
   const handleProjectTypeClick = (value) => {
     setProjectType((prev) => (prev === value ? '' : value));
   };
-
   return (
     <div className={styles.bg}>
       <div className="container">
@@ -94,6 +99,16 @@ const ProjectFilter = () => {
               <tr>
                 <th>Project</th>
                 <th>
+                  <select onChange={(e) => setPick(e.target.value)}>
+                    <option value="">Picks</option>
+                    {uniquePicks.map((pick) => (
+                      <option key={pick} value={pick}>
+                        {pick}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th>
                   <select onChange={(e) => setType(e.target.value)}>
                     <option value="">Type</option>
                     {uniqueTypes.map((type) => (
@@ -103,6 +118,7 @@ const ProjectFilter = () => {
                     ))}
                   </select>
                 </th>
+
                 <th>
                   <select onChange={(e) => setCategory(e.target.value)}>
                     <option value="">Category</option>
@@ -133,6 +149,7 @@ const ProjectFilter = () => {
                         {project.description}
                       </span>
                     </td>
+                    <td>{project.picks || ''}</td>
                     <td>{project.types.join(', ')}</td>
                     <td>{project.category.join(', ')}</td>
                   </tr>
