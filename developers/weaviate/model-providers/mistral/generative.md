@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral', 'generative', 'rag']
 ---
 
+# Mistral Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# Mistral Generative AI with Weaviate
 
 Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the Mistral generative AI integration (`generative-mistral`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -199,7 +199,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Mistral API documentation](https://docs.mistral.ai/api/).
+For further details on model parameters, see the [Mistral API documentation](https://docs.mistral.ai/api/).
 
 ### Available models
 
@@ -210,14 +210,13 @@ For further details on model parameters, please consult the [Mistral API documen
 * `mistral-small-latest` (aka `mistral-small-2402`)
 * `mistral-medium`
 * `mistral-medium-latest` (aka `mistral-medium-2312`)
-* `mistral-large`
 * `mistral-large-latest` (aka `mistral-large-2402`)
 
 ## Further resources
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

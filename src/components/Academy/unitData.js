@@ -251,6 +251,62 @@ export const unitData = {
       "Make an informed choice on which compression algorithm to use for a given use case.",
     ]
   },
+  "vindex_overview": {
+    title: "Vector index: Overview",
+    body: "What is a vector index, and why is it important?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/overview",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what a vector index is and how it affects your vector searches."
+    ],
+    learningOutcomes: [
+      "Describe what a vector index is and what it does.",
+      "Recite different types of vector indexes in Weaviate.",
+    ]
+  },
+  "vindex_hnsw": {
+    title: "HNSW index in depth",
+    body: "Learn about the HNSW index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/hnsw",
+    badgeType: "practical",
+    learningGoals: [
+      "How the HNSW index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how an HNSW index works and its key attributes.",
+      "Configure Weaviate with an HNSW index, and describe its parameters.",
+    ]
+  },
+  "vindex_flat": {
+    title: "Flat index in depth",
+    body: "Learn about the flat index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/flat",
+    badgeType: "practical",
+    learningGoals: [
+      "How the flat index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a flat index works and its key attributes.",
+      "Configure Weaviate with a flat index, and describe its parameters.",
+    ]
+  },
+  "vindex_dynamic": {
+    title: "Dynamic index in depth",
+    body: "Learn about the dynamic index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/dynamic",
+    badgeType: "practical",
+    learningGoals: [
+      "How the dynamic index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a dynamic index works and its key attributes.",
+      "Configure Weaviate with a dynamic index, and describe its parameters.",
+    ]
+  },
   "tokenization_basics": {
     title: "Overview of tokenization",
     body: "What is tokenization, and why is it important?",
@@ -337,14 +393,14 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
-      "How to create your own Weaviate instance on WCS.",
+      "How to create your own Weaviate instance on WCD.",
       "Weaviate clients and how to install them.",
       "Hands-on experience with Weaviate.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
       "Outline what vector search is.",
-      "Create a Weaviate instance on WCS.",
+      "Create a Weaviate instance on WCD.",
       "Install your preferred Weaviate client.",
       "Describe some of Weaviate's capabilities.",
     ],
@@ -828,7 +884,7 @@ export const unitData = {
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."
     ],
     learningOutcomes: [
-      "Create a cloud (WCS) instance fo Weaviate.",
+      "Create a cloud (WCD) instance fo Weaviate.",
       "Gain an understanding of what a vector database is.",
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",

@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'reranking']
 ---
 
+# Cohere Reranker Models with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.reranker.py';
 import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
-
-# Cohere reranker models with Weaviate
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ This two-step process involves Weaviate first performing a search and then reran
 Your Weaviate instance must be configured with the Cohere reranker integration (`reranker-cohere`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -151,9 +151,9 @@ You can also select a fine-tuned reranker model_id, such as:
 
 - `500df123-afr3-...`
 
-Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
+See [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
 
 ## Further resources
 
@@ -164,7 +164,7 @@ For further details on model parameters, please consult the [Cohere API document
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

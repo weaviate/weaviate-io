@@ -6,7 +6,7 @@ export default function OnDemand() {
   return (
     <div className={styles.bgColor}>
       <div className="container">
-        <div className={styles.marketTitle}>
+        <div className={styles.marketTitle} id="on-demand-webinars">
           <h2 className={styles.marketText}>On-demand webinars</h2>
         </div>
         <div className={styles.buttons}>
@@ -16,7 +16,7 @@ export default function OnDemand() {
               search
             </p>
             <Link to="https://events.weaviate.io/hybrid-search-webinar">
-              {'Register now >'}
+              {'Watch now >'}
             </Link>
           </div>
           <div className={styles.marketBox}>
@@ -25,13 +25,13 @@ export default function OnDemand() {
               ecommerce
             </p>
             <Link to="https://events.weaviate.io/ecommerce-webinar">
-              {'Register now >'}
+              {'Watch now >'}
             </Link>
           </div>
           <div className={styles.marketBox}>
-            <p>How to build an ai-native foundation for enterprise apps</p>
-            <Link to="https://webinars.devops.com/how-to-build-an-ai-native-foundation-for-enterprise-apps">
-              {'Register now >'}
+            <p>Building an AI-Native Foundation for Enterprise Applications</p>
+            <Link to="https://events.weaviate.io/enterprise-apps-webinar">
+              {'Watch now >'}
             </Link>
           </div>
         </div>

@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_openai_azure.jpg
 # tags: ['model providers', 'azure', 'openai', 'generative', 'rag']
 ---
 
+# Azure OpenAI Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# Azure OpenAI Generative AI with Weaviate
 
 Weaviate's integration with Azure OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the Azure OpenAI generative AI integration (`generative-openai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -103,8 +103,6 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
-
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`gpt-3.5-turbo`) is used if no model is specified.
 
 ## Retrieval augmented generation
 
@@ -199,11 +197,11 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on these parameters, please consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
+For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ### Available models
 
-Please refer to the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
+See the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for a list of available models and their regional availability.
 
 ## Further resources
 
@@ -213,7 +211,7 @@ Please refer to the [Azure OpenAI documentation](https://learn.microsoft.com/en-
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

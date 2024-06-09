@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws', 'generative', 'rag']
 ---
 
+# AWS Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# AWS Generative AI with Weaviate
 
 Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the AWS generative AI integration (`generative-aws`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -240,14 +240,33 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [relevant AWS documentation](#further-resources).
+For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 
 ### Available models
 
 #### Bedrock
 
+- `ai21.j2-ultra-v1`
+- `ai21.j2-mid-v1`
+- `amazon.titan-text-lite-v1`
+- `amazon.titan-text-express-v1`
+- `amazon.titan-text-premier-v1:0`
+- `anthropic.claude-v2`
+- `anthropic.claude-v2:1`
+- `anthropic.claude-instant-v1`
+- `anthropic.claude-3-sonnet-20240229-v1:0`
+- `anthropic.claude-3-haiku-20240307-v1:0`
 - `cohere.command-text-v14`
 - `cohere.command-light-text-v14`
+- `cohere.command-r-v1:0`
+- `cohere.command-r-plus-v1:0`
+- `meta.llama3-8b-instruct-v1:0`
+- `meta.llama3-70b-instruct-v1:0`
+- `meta.llama2-13b-chat-v1`
+- `meta.llama2-70b-chat-v1`
+- `mistral.mistral-7b-instruct-v0:2`
+- `mistral.mixtral-8x7b-instruct-v0:1`
+- `mistral.mistral-large-2402-v1:0`
 
 Refer to the [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
 
@@ -263,7 +282,7 @@ Any custom SageMaker URL can be used as an endpoint.
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

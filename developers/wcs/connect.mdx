@@ -1,84 +1,43 @@
 ---
-title: Connect to WCS
-sidebar_position: 10
+title: Connect to Weaviate Cloud
+sidebar_position: 30
 image: og/wcs/user_guides.jpg
 ---
 
-There are two ways to connect to your [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instance:
+import APIKeyInHeader from '/developers/wcs/img/wcs-auth-header.jpg';
+import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
 
-- [Connect a browser to WCS through the WCS Console.](/developers/wcs/connect#connect-with-a-browser)
+There are multiple ways to connect to [Weaviate Cloud (WCD)](https://console.weaviate.cloud/):
 
-   - The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing.
-   - The built-in [Query console](./console.mdx) is useful to connect without a client application.
+- [Connect through the WCD console.](#connect-to-the-wcd-console)
 
-- [Connect a client application to WCS through APIs.](/developers/wcs/connect#connect-with-an-api)
+   - Login to manage your clusters, users, and billing.
+   - The built-in [Query app](./console.mdx) connects to WCD clusters and external instances.
 
-   - For applications, use the WCS API and one of the [client libraries](/developers/weaviate/client-libraries) to connect to WCS.
+- [Connect with APIs.](#connect-with-an-api)
 
-Browser authentication uses a username and password for authentication. The Weaviate clients use API keys to authenticate.
-
-## Connect with a browser
-
-The WCS dashboard lets you monitor and control your Weaviate clusters from your browser. It also provides account management tools and a [GraphQL query app](./console.mdx).
-
-To connect to WCS with a browser, follow these steps:
-
-1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
-1. Click `Login to Weaviate Cloud`.
-1. Enter your email address and password to authenticate.
-
-### Enable multi-factor authentication
-
-Multi-factor authentication (MFA) increases the security of browser logins. To enable MFA, follow these steps.
-
-1. Use your browser to connect to the WCS console.
-1. Click the silhouette of a person in the sidebar
-
-![Enable MFA icon](./img/mfa-enable-icon.jpg)
-
-3. Click the 'Manage Two-Factor Authentication' button.
-1. Enter your username and password to authenticate to WCS.
-1. Open your authenticator application and scan the QR code.
-1. Enter the code from your application in WCS to complete the setup.
-
-After you configure MFA, WCS prompts you to supply the one-time authentication code each time you log in.
-
-![Enter MFA code](./img/mfa-one-time-code.jpg)
-
-### MFA and applications
-
-If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that client's account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
-
-### Disable MFA
-
-To disable MFA, [contact support](mailto:support@weaviate.io).
+   - Use [client libraries](/developers/weaviate/client-libraries) to connect to a WCD instance.
+   - Use a tool, such as cURL, to connect to the [REST API](/developers/weaviate/api/rest).
 
 ## Connect with an API
 
-By default, API keys are enabled for all WCS clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
+The Weaviate clients use API keys to authenticate. By default, API keys are enabled for all WCD clusters. For details see, [Manage authentication](/developers/wcs/platform/manage-api-keys.mdx).
 
-![API keys](./img/wcs-api-keys.jpg)
-
-### Retrieve your API keys
-
-To retrieve your API keys, follow these steps:
-
-1. Open the WCS console and find the panel for your cluster.
-1. Click the `Details` button.
-
-![API key button](./img/wcs-api-keys-panel.jpg)
-
-3. Click the `API keys` button.
-1. Copy the key and store it in a safe location.
-
-
-### Authenticate a client application
+- Serverless clusters have an administrator key and a read-only key.
+- Sandbox clusters only have an administrator key.
 
 The Weaviate server authenticates every request.
 
-If you use a tool like cURL, add your API key to the request header.
+- If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make requests.
+- If you use a tool like cURL, add your API key to the request header.
 
-If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make requests.
+### Retrieve your API keys
+
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+
+<RetrieveAPIKeys/>
+
+### Environment variables
 
 Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique.
 
@@ -86,59 +45,29 @@ Do not hard-code your API key in your client code. Consider passing the API key 
 export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
 ```
 
-import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
+### Connection example
 
-<WCSAuthenticationApiKey/>
+import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
 
-## Manage API keys
+<WCDAuthenticationApiKey/>
 
-If you have a managed cluster, you can create and delete API keys.
+## Connect to the WCD console
 
-There are two types of API key, `ReadOnly` and `Admin`.
+The WCD console uses your email address and password for authentication. You create the password when you create your WCD account.
 
-- `Admin` keys are read-write.
-- `ReadOnly` keys do not grant write access to the database.
+To connect to the console, follow these steps:
 
-### Create an API key
+1. Open the [WCD login page](https://console.weaviate.cloud/) in a browser.
+1. Enter your email address and password to authenticate.
+1. Click `Login`.
 
-If you have a managed cluster, you can create new API keys. New API keys are not available in Sandbox clusters.
+## Connect an instance with the Query app
 
-WCS restarts the cluster when you add a new API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
+The built in [Query app](./console.mdx) connects directly to clusters in your WCD organization without any additional authentication.
 
-To create a new API key, follow these steps:
+To connect the Query app to a Weaviate instance that is not part of your WCD organization, provide an API key for the remote instance. Add the API key to the connection `Headers` at the bottom of the Query app tab.
 
-1. Click the `Details` button.
-1. Click the `API keys` button.
-1. Click `Add Key`.
-
-![Add API key UI](./img/wcs-add-key-details.jpg)
-
-4. Choose the key scope, read-only or admin.
-1. Click `Generate` to create the key.
-
-### Delete an API key
-
-If you have a managed cluster, you can delete API keys.
-
-WCS restarts the cluster when you delete an API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
-
-To delete an API key, follow these steps:
-
-1. Click the `Details` button.
-1. Click the `API keys` button.
-1. Click the trash-can icon to delete the API key.
-
-![Add API key UI](./img/wcs-delete-api-key.jpg)
-
-## Connect via the query app
-
-The built in [GraphQL query app](./console.mdx) connects to clusters in your organization without any additional authentication.
-
-If you use the GraphQL query app to connect to a Weaviate instance that is not part of your organization, provide an API key for the remote instance.
-
-To pass the API key, add it to the `Headers` at the bottom of the GraphQL query app.
-
-![API key in header](./img/wcs-auth-header.jpg)
+<img src={APIKeyInHeader} width="75%" alt="API key in header"/>
 
 ## Troubleshooting
 
@@ -146,17 +75,17 @@ This section has solutions for some common problems. For additional help, [conta
 
 ### Reset your password
 
-To reset your WCS password, follow these steps:
+To reset your WCD password, follow these steps:
 
-1. Go to the WCS [login page](https://console.weaviate.cloud).
+1. Go to the WCD [login page](https://console.weaviate.cloud).
 1. Click on click the login button.
 1. Click `Forgot Password`.
-1. Check your email account for a password reset email from WCS.
+1. Check your email account for a password reset email from WCD.
 1. Click the link and follow the instructions to reset your password. The link is only valid for five minutes.
 
 ### Connection timeouts
 
-The new Python client uses the gRPC protocol to connect to WCS. The gRPC protocol improves query performance, but the protocol is sensitive to network speeds. If you run into timeout errors, increase the connection timeout value in your connection code.
+The new Python client uses the gRPC protocol to connect to WCD. The gRPC protocol improves query performance, but the protocol is sensitive to network speeds. If you run into timeout errors, increase the connection timeout value in your connection code.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -193,7 +122,7 @@ Alternatively, leave the default timeout values, but skip the initial connection
 
 ### gRPC health check error
 
-**Problem**: gRPC returns a health check error after you update a managed cluster.
+**Problem**: gRPC returns a health check error after you update a Serverless cluster.
 
 ```
 weaviate.exceptions.WeaviateGRPCUnavailableError: gRPC health check could not be completed.
@@ -201,11 +130,11 @@ weaviate.exceptions.WeaviateGRPCUnavailableError: gRPC health check could not be
 
 **Solution**: Verify the cluster URL is correct and update the URL if needed.
 
-When a managed cluster is updated, the cluster URL may change slightly. WCS still routes the old URL, so some connections work, however the new gRPC and the old HTTP URLS are different so connections that require gRCP fail.
+When a Serverless cluster is updated, the cluster URL may change slightly. WCD still routes the old URL, so some connections work, however the new gRPC and the old HTTP URLS are different so connections that require gRCP fail.
 
-To check the URLs, open the WCS Console and check the details panel for your cluster. If you prefix Cluster URL with `grpc-`, the Cluster URL and the Cluster gRPC URL should match.
+To check the URLs, open the WCD Console and check the details panel for your cluster. If you prefix Cluster URL with `grpc-`, the Cluster URL and the Cluster gRPC URL should match.
 
-![Compare URLs](./img/wcs-console-url-check.jpg)
+<img src={CompareURLs} width="75%" alt="Compare URLs"/>
 
 Compare the Cluster URL with the connection URL in your application. The old URL and the new URL are similar, but the new one may have an extra subdomain such as `.c0.region`.
 

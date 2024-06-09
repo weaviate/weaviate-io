@@ -21,9 +21,6 @@ try:
     questions = client.collections.create(
         "Question",
         vectorizer_config=wvc.config.Configure.Vectorizer.none(),
-        vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-            distance_metric=wvc.config.VectorDistances.COSINE # select prefered distance metric
-        ),
     )
 
     # ===== Import data =====

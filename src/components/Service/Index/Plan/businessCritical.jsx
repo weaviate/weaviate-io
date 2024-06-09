@@ -27,8 +27,7 @@ export default function PricingBusinessCritical() {
           <li>
             <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
             <span>
-              Weaviate agent for monitoring, support,<br></br> and
-              troubleshooting
+              Weaviate agent for monitoring, support and troubleshooting
             </span>
           </li>
         </div>

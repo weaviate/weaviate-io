@@ -11,8 +11,8 @@ import weaviate.classes as wvc
 import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
 )
 
 # START-ANY

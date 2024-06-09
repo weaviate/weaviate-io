@@ -35,12 +35,12 @@ class ManageDataCrossRefsTest {
 
   @Test
   public void shouldManageDataCrossRefs() {
-    // OneWay Java  // TwoWay Java  // Multiple Java  // Delete Java  // Update Java
+    // START OneWay  // TwoWay Java  // Multiple Java  // Delete Java  // Update Java
     String sfId = "00ff6900-e64f-5d94-90db-c8cfa3fc851b";
-    // END OneWay Java  // END TwoWay Java // END Multiple Java  // END Delete Java  // END Update Java
-    // OneWay Java  // TwoWay Java  // Multiple Java
+    // END OneWay  // END TwoWay Java // END Multiple Java  // END Delete Java  // END Update Java
+    // START OneWay  // TwoWay Java  // Multiple Java
     String usCitiesId = "20ffc68d-986b-5e71-a680-228dba18d7ef";
-    // END OneWay Java  // END TwoWay Java // END Multiple Java  // END Delete Java
+    // END OneWay  // END TwoWay Java // END Multiple Java  // END Delete Java
     // Multiple Java  // Delete Java  // Update Java
     String museumsId = "fec50326-dfa1-53c9-90e8-63d0240bd933";
     // END Multiple Java  // END Delete Java  // END Update Java
@@ -52,7 +52,7 @@ class ManageDataCrossRefsTest {
   }
 
   private void oneWay(String sfId, String usCitiesId) {
-    // OneWay Java
+    // START OneWay
 
     client.data().referenceCreator()
       .withClassName("JeopardyQuestion")
@@ -64,7 +64,7 @@ class ManageDataCrossRefsTest {
           .withID(usCitiesId)
           .payload())
       .run();
-    // END OneWay Java
+    // END OneWay
 
     Result<List<WeaviateObject>> result = client.data().objectsGetter().withID(sfId).withClassName("JeopardyQuestion").run();
     AssertHelper.assertCrossRefHref(result, "hasCategory", String.format("http://localhost:8080/v1/objects/JeopardyCategory/%s", usCitiesId));

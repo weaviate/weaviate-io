@@ -1,0 +1,94 @@
+<!-- Delete these imports if already imported in the file -->
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+
+   <FilteredTextBlock
+     text={PyCode}
+     startMarker="# START WeaviateAPIKeyWCD"
+     endMarker="# END WeaviateAPIKeyWCD"
+     language="py"
+   />
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+import os
+
+# Instantiate the client with the auth config
+client = weaviate.Client(
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=weaviate_key),  # Replace with your Weaviate instance API key
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```ts
+import weaviate, { ApiKey } from 'weaviate-ts-client';
+
+// Instantiate the client with the auth config
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  apiKey: new ApiKey(weaviateKey),
+});
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "os"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+// Instantiate the client with the auth config
+cfg := weaviate.Config{
+  Host:"",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  Scheme: "http",
+  AuthConfig: auth.ApiKey{Value: weaviateKey},
+  Headers: nil,
+}
+
+client, err := weaviate.NewClient(cfg)
+if err != nil{
+  fmt.Println(err)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("https", "WEAVIATE_INSTANCE_URL");
+// Replace WEAVIATE_INSTANCE_URL with your instance URL
+WeaviateClient client = WeaviateAuthClient.apiKey(config, weaviateKey);
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+curl https://WEAVIATE_INSTANCE_URL/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
+```
+
+</TabItem>
+</Tabs>

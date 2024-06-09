@@ -200,7 +200,15 @@ try:
     # ========================================
 
     # START UpdateCollectionShards
-    # Coming soon :)
+    articles = client.collections.get("Article")
+
+    # highlight-start
+    article_shards = articles.config.update_shards(
+        status="READONLY",
+        shard_name="shard-1234"
+    )
+    # highlight-start
+    print(article_shards)
     # END UpdateCollectionShards
 
 # START-ANY

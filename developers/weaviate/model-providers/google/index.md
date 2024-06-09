@@ -9,7 +9,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-Google AI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with [Google AI Studio](https://ai.google.dev/) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs, allowing users to leverage Google AI's models directly within the Weaviate database.
+Google AI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs, allowing users to leverage Google AI's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -43,7 +43,7 @@ In turn, they simplify the process of building AI-driven applications to speed u
 
 ## Get started
 
-You must provide a valid Google AI API credentials to Weaviate for these integrations. Weaviate integrates with both [Google AI Studio](https://ai.google.dev/) or [Google Vertex AI](https://cloud.google.com/vertex-ai).
+You must provide a valid Google AI API credentials to Weaviate for these integrations. Weaviate integrates with both [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) or [Google Vertex AI](https://cloud.google.com/vertex-ai).
 
 Go to the relevant integration page to learn how to configure Weaviate with the Google models and start using them in your applications.
 

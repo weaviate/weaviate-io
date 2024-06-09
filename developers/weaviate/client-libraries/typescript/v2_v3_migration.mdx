@@ -32,7 +32,7 @@ To install the TypeScript client v3, follow these steps:
 1. **Install the new client package**
 
   ```bash
-  npm install weaviate-client --tag next
+  npm install weaviate-client
   ```
 
 1. **Upgrade Weaviate**
@@ -61,8 +61,9 @@ The weaviate object is the main entry point for all API operations. The v3 clien
 
 In most cases, you should use one of the connection helper functions to connect to your Weaviate instance:
 
-- `connectToWCS`
+- `connectToWCD`
 - `connectToLocal`
+- `connectToCustom`
 
 You can also use a custom configuration to instantiate the client directly:
 
@@ -75,7 +76,7 @@ You can also use a custom configuration to instantiate the client directly:
   language="js"
 />
 </TabItem>
-<TabItem value="wcs" label="Weaviate Cloud">
+<TabItem value="wcd" label="Weaviate Cloud">
 <FilteredTextBlock
   text={TSv3Additional}
   startMarker="// ConnectCloud"

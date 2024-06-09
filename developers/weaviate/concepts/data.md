@@ -5,14 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-
-<!-- :::caution Migrated From:
-- `Core knowledge/Basics`
-  - Refactored to contain subject matter to data structure in Weaviate
-  - Introductory "What is Weaviate" sections removed as duplicated by `Introduction`
-  - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
-::: -->
-
 ## Data object nomenclature
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
@@ -20,6 +12,10 @@ Each data object in Weaviate belongs to a `collection` and has one or more `prop
 Weaviate stores `data objects` in class-based collections. Data objects are represented as JSON-documents. Objects normally include a `vector` that is derived from a machine learning model. The vector is also called an `embedding` or a `vector embedding`.
 
 Each collection contains objects of the same `class`. The objects are defined by a common `schema`.
+
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
 
 ### JSON documents as objects
 

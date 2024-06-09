@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai', 'generative', 'rag']
 ---
 
+# OctoAI Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -19,8 +21,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# OctoAI Generative AI with Weaviate
 
 Weaviate's integration with OctoAI's APIs allows you to access open source and their models' capabilities directly from Weaviate.
 
@@ -37,9 +37,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the OctoAI generative AI integration (`generative-octoai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -204,7 +204,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
+For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
 
 ### Available models
 
@@ -231,7 +231,7 @@ For further details on model parameters, please consult the [OctoAI API document
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

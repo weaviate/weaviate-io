@@ -7,8 +7,8 @@ export default function RewardProcess() {
     <div id="interview-process" className="container">
       <div className={styles.title}>
         <h2>
-          Here’s how you can help us spread the word<br></br>(and get a FREE
-          Weaviate t-shirt 💚)
+          Here's how you can help us spread the word (and get a FREE gift card
+          💚)
         </h2>
       </div>
       <div className={styles.box}>
@@ -41,20 +41,18 @@ export default function RewardProcess() {
           <div className={styles.cardHeader}>
             <div className={styles.cardHeaderRight}>
               <h3 className={styles.cardTextColor}>
-                Step 2 <h3>Submit your t-shirt size</h3>
+                Step 2 <h3>Verify your review</h3>
               </h3>
             </div>
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              Fill out the form below and upload your review screenshot. You
-              have to submit a review and complete the form below to ensure that
-              you get your limited edition Weaviate shirt!
+              Fill out the form below and upload your review screenshot.
             </p>
           </div>
           <div className={styles.buttons}>
             <Link className={styles.buttonGradient} to="#Form">
-              T-Shirt Form
+              Complete Form
             </Link>
           </div>
         </div>

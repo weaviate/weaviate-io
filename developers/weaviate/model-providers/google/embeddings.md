@@ -1,9 +1,11 @@
 ---
-title: Embeddings (Text)
+title: Text Embeddings
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
+
+# Google AI Text Embeddings with Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -17,11 +19,9 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-# Google AI Text Embeddings with Weaviate
+Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-Weaviate's integration with [Google AI Studio](https://ai.google.dev/) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
-
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -38,9 +38,9 @@ At the time of writing (November 2023), AI Studio is not available in all region
 Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -58,7 +58,7 @@ You must provide valid API credentials to Weaviate for the appropriate integrati
 
 #### AI Studio
 
-Go to [Google AI Studio](https://ai.google.dev/) to sign up and obtain an API key.
+Go to [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) to sign up and obtain an API key.
 
 #### Vertex AI
 
@@ -78,10 +78,13 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 #### Provide the API key
 
-Provide the API key to Weaviate using one of the following methods:
+Provide the API key to Weaviate at runtime, as shown in the examples below.
 
-- Set the `PALM_APIKEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users.
+
+import ApiKeyNote from '../_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 <Tabs groupId="languages">
 
@@ -107,7 +110,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Google AI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Google AI embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -202,7 +205,7 @@ The query below returns the `n` most similar objects from the database, set by `
 A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
 :::
 
-When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model returns the best scoring objects from the database.
+When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
 
 The query below returns the `n` best scoring objects from the database, set by `limit`.
 
@@ -284,7 +287,7 @@ AI Studio:
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
@@ -292,7 +295,7 @@ Once the integrations are configured at the collection, the data management and 
 ### External resources
 
 - [Google Vertex AI](https://cloud.google.com/vertex-ai)
-- [Google AI Studio](https://ai.google.dev/)
+- [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

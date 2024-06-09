@@ -24,12 +24,12 @@ print(client.is_ready())
 # =====  EnableBQ =====
 # ==============================
 
-if client.schema.exists("YourCollection"):
-    client.schema.delete_class("YourCollection")
+if client.schema.exists("MyCollection"):
+    client.schema.delete_class("MyCollection")
 
 # START EnableBQ
 class_definition = {
-    "class": "YourCollection",
+    "class": "MyCollection",
     "vectorizer": "text2vec-openai",  # Can be any vectorizer
     # highlight-start
     "vectorIndexType": "flat",
@@ -49,12 +49,12 @@ client.schema.create_class(class_definition)
 # =====  EnableBQ with Options =====
 # ==============================
 
-if client.schema.exists("YourCollection"):
-    client.schema.delete_class("YourCollection")
+if client.schema.exists("MyCollection"):
+    client.schema.delete_class("MyCollection")
 
 # START BQWithOptions
 class_definition = {
-    "class": "YourCollection",
+    "class": "MyCollection",
     "vectorizer": "text2vec-openai",  # Can be any vectorizer
     "vectorIndexType": "flat",
     "vectorIndexConfig": {

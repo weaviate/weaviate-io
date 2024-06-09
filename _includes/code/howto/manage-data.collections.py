@@ -94,10 +94,6 @@ from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
     "ArticleNV",
-    properties=[  # Define properties
-        Property(name="title", data_type=DataType.TEXT),
-        Property(name="body", data_type=DataType.TEXT),
-    ],
     # highlight-start
     vectorizer_config=[
         # Set a named vector
@@ -107,15 +103,25 @@ client.collections.create(
         # Set another named vector
         Configure.NamedVectors.text2vec_openai(  # Use the "text2vec-openai" vectorizer
             name="body", source_properties=["body"]         # Set the source property(ies)
+        ),
+        # Set another named vector
+        Configure.NamedVectors.text2vec_openai(  # Use the "text2vec-openai" vectorizer
+            name="title_country", source_properties=["title", "country"] # Set the source property(ies)
         )
     ],
     # highlight-end
+    properties=[  # Define properties
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="body", data_type=DataType.TEXT),
+        Property(name="country", data_type=DataType.TEXT),
+    ],
 )
 # END BasicNamedVectors
 
 # Test
 collection = client.collections.get("ArticleNV")
 config = collection.config.get()
+# TODO: change test to also include "title_country" with ["title", "country"] properties
 for k, v in config.vector_config.items():
     assert v.vectorizer.source_properties == [k]  # Test that the source properties are correctly set
 
@@ -240,12 +246,36 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.openai(),
     # highlight-end
-    properties=[ # properties configuration is optional
-        Property(name="title", data_type=DataType.TEXT),
-        Property(name="body", data_type=DataType.TEXT),
-    ]
 )
 # END SetGenerative
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.generative_config.generative == "generative-openai"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+# =======================================================================
+# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
+# =======================================================================
+
+client.collections.delete("Article")
+
+# START SetGenModel
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        model="gpt-4"
+    ),
+    # highlight-end
+)
+# END SetGenModel
 
 # Test
 collection = client.collections.get("Article")
@@ -518,7 +548,7 @@ assert articles_config.name == "Article"
 # ================================
 
 # START ReadAllCollections
-response = client.collections.list_all()
+response = client.collections.list_all(simple=False)
 
 print(response)
 # END ReadAllCollections
@@ -610,7 +640,9 @@ articles.config.add_property(
 # START InspectCollectionShards
 articles = client.collections.get("Article")
 
+# highlight-start
 article_shards = articles.config.get_shards()
+# highlight-end
 print(article_shards)
 # END InspectCollectionShards
 
@@ -620,9 +652,17 @@ print(article_shards)
 # ========================================
 
 # START UpdateCollectionShards
-# Coming soon :)
+articles = client.collections.get("Article")
+
+# highlight-start
+article_shards = articles.config.update_shards(
+    status="READONLY",
+    shard_name="shard-1234"
+)
+# highlight-end
+
+print(article_shards)
 # END UpdateCollectionShards
 
 
 client.close()
-

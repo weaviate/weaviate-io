@@ -34,9 +34,9 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 Your Weaviate instance must be configured with the Voyage AI vectorizer integration (`text2vec-voyageai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -176,7 +176,7 @@ The query below returns the `n` most similar objects from the database, set by `
 A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
 :::
 
-When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model returns the best scoring objects from the database.
+When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
 
 The query below returns the `n` best scoring objects from the database, set by `limit`.
 
@@ -229,7 +229,7 @@ The following examples show how to configure Voyage AI-specific options.
 
 </Tabs>
 
-For further details on model parameters, please consult the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
+For further details on model parameters, see the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
 
 ### Available models
 
@@ -237,7 +237,7 @@ For further details on model parameters, please consult the [Voyage AI Embedding
 - `voyage-code-2`
 - `voyage-2`
 - `voyage-law-2`
-- `voyage-lite-02-instruct`
+- `voyage-large-2-instruct`
 
 ## Further resources
 
@@ -247,7 +247,7 @@ For further details on model parameters, please consult the [Voyage AI Embedding
 
 ### Code examples
 
-Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.

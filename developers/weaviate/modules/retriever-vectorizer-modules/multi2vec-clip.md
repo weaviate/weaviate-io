@@ -222,7 +222,7 @@ import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 
 ## Model selection
 
-To select a model, please point `multi2vec-clip` to the appropriate Docker container.
+To select a model, direct `multi2vec-clip` to the appropriate Docker container.
 
 You can use our pre-built Docker image as shown above, or build your own (with just a few lines of code).
 
@@ -268,7 +268,7 @@ Both models were trained to produce embeddings which are compatible with one ano
 Create a new `Dockerfile` (you do not need to clone this repository, any folder on your machine is fine), we will name it `my-models.Dockerfile`. Add the following lines to it:
 
 ```
-FROM semitechnologies/transformers-inference:custom
+FROM semitechnologies/multi2vec-clip:custom
 COPY ./my-text-model /app/models/text
 COPY ./my-clip-model /app/models/clip
 ```
@@ -304,7 +304,7 @@ and it will print the created vector(s) directly.
 
 ## Model license(s)
 
-The `multi2vec-clip` module uses the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32) from the [Hugging Face model hub](https://huggingface.co/models). Please see the [model page](https://huggingface.co/sentence-transformers/clip-ViT-B-32) for the license information.
+The `multi2vec-clip` module uses the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32) from the [Hugging Face model hub](https://huggingface.co/models). See the [model page](https://huggingface.co/sentence-transformers/clip-ViT-B-32) for the license information.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 

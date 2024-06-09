@@ -13,7 +13,7 @@ This can be done through either explicitly setting it as part of the `values.yam
 :::
 
 :::tip End-to-end guide
-If you are looking for a complete end-to-end tutorial on the topic, please the [Weaviate Academy course on Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The tutorial covers an end-to-end scenario of deploying Weaviate on Kubernetes with Minikube.
+If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
 :::
 
 ## Requirements
@@ -114,7 +114,7 @@ authorization:
 
 In this example, the key `readonly-key` will authenticate a user as the `readonly@example.com` identity, and `secr3tk3y` will authenticate a user as `admin@example.com`.
 
-OIDC authentication is also enabled, with WCS as the token issuer/identity provider. Thus, users with WCS accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
+OIDC authentication is also enabled, with WCD as the token issuer/identity provider. Thus, users with WCD accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
 
 For further, general documentation on authentication and authorization configuration, see:
 - [Authentication](../configuration/authentication.md)

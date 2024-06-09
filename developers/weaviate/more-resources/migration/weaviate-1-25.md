@@ -34,7 +34,7 @@ For more details, refer to the [downgrade instructions](#downgrade-instructions)
 
 :::caution Cluster downtime
 
-Please note that as this upgrade requires the entire schema to be migrated, some downtime is required for the cluster. The length of the downtime will depend on the size of the database.
+This upgrade requires a schema migration. The cluster requires some downtime for the migration. The length of the downtime depends on the size of the database.
 <br/>
 
 We suggest performing this upgrade at a least disruptive time, or even provisioning a secondary cluster while the main cluster is being restarted.

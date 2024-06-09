@@ -318,7 +318,7 @@ Now, let's go through an end-to-end example for using Weaviate for generative se
 
 ### Your own Weaviate instance
 
-For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
+For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCD instance.
 
 ### Configure generative search
 
@@ -326,7 +326,7 @@ For this example, you will need access to a Weaviate instance that you can write
 Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
 <br/>
 
-If you would like for us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
+If you would like us to prioritize this issue, upvote it on [GitHub](https://github.com/weaviate/weaviate/issues/3364).
 :::
 
 To use generative search, the appropriate `generative-xxx` module must be:
@@ -335,7 +335,7 @@ To use generative search, the appropriate `generative-xxx` module must be:
 
 Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM and Gemini models.
 
-If you are using WCS, you will not need to do anything to enable modules.
+If you are using WCD, you will not need to do anything to enable modules.
 
 <details>
   <summary>How to list enabled modules</summary>
@@ -432,7 +432,7 @@ And the `generative-openai` module may be configured as follows:
     }
 ```
 
-Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
+See the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
 
 </details>
 
@@ -863,4 +863,3 @@ To learn more about specific search capabilities, check out the [How-to: search 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

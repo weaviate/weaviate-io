@@ -27,7 +27,7 @@ This section details how install and configure the v3 TypeScript client.
 The v3 client package has a new name, `weaviate-client`. Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
 
 ```bash
-npm install weaviate-client --tag next
+npm install weaviate-client
 ```
 
 ### Import the Client
@@ -86,12 +86,12 @@ The v3 client provides helper functions to connect your application to your Weav
 ### Connect to Weaviate
 
 <Tabs groupId="platforms">
-<TabItem value="wcs" label="WCS">
+<TabItem value="wcd" label="WCD">
 
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
     headers: {
@@ -109,16 +109,7 @@ console.log(client)
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToLocal({
-    httpHost: 'localhost',
-    httpPort: 8080,
-    grpcHost: 'localhost',
-    grpcPort: 50051,
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  }
-)
+const client = await weaviate.connectToLocal()
  
 console.log(client)
 ```
@@ -129,25 +120,18 @@ console.log(client)
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.client({
-    rest: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 8080,
-      secure: true
-    },
-    grpc: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 50051,
-      secure: true
-    },
-    auth: {
-      apiKey: process.env.WEAVIATE_API_KEY || ''
-    },
+const client = await weaviate.connectToCustom({
+    httpHost: 'localhost',
+    httpPort: 8080,
+    grpcHost: 'localhost',
+    grpcPort: 50051,
+    grpcSecure: true,
+    httpSecure: true,
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+      'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '' // Replace with your inference API key
     }
-  }
-)
+  })
  
 console.log(client)
 ```
@@ -171,10 +155,10 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // Instantiate the client with the auth config
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
   } 
 )
 
@@ -186,10 +170,10 @@ To include custom headers, such as API keys for third party services, add the cu
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
     headers: {
       someHeaderName: 'header-value', 
     }

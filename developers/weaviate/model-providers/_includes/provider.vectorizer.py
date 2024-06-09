@@ -505,6 +505,268 @@ client.collections.create(
 )
 # END FullVectorizerVoyageAI
 
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerTransformers
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_transformers(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerTransformers
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerTransformers
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_transformers(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            pooling_strategy="masked_mean",
+            inference_url="<custom_transformers_url>",          # For when using multiple inference containers
+            passage_inference_url="<custom_transformers_url>",  # For when using DPR models
+            query_inference_url="<custom_transformers_url>",    # For when using DPR models
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerTransformers
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_ollama(
+            name="title_vector",
+            source_properties=["title"],
+            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+            model="snowflake-arctic-embed",  # The model to use, e.g. "nomic-embed-text"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerOllama
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_ollama(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+            model="snowflake-arctic-embed",  # The model to use, e.g. "nomic-embed-text"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerOllama
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerGPT4All
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_gpt4all(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerGPT4All
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerGPT4All
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_gpt4all(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerGPT4All
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicMMVectorizerCLIP
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_clip(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerCLIP
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerCLIP
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_clip(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # inference_url="<custom_clip_url>"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerCLIP
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicMMVectorizerBind
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_bind(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerBind
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerBind
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+        Property(name="sound", data_type=DataType.BLOB),
+        Property(name="video", data_type=DataType.BLOB),
+    ],
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_bind(
+            name="title_vector",
+            # Define the fields to be used for the vectorization
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.7)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            audio_fields=[
+                Multi2VecField(name="sound", weight=0.1)
+            ],
+            video_fields=[
+                Multi2VecField(name="video", weight=0.1)
+            ],
+            # depth, IMU and thermal fields are also available
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerBind
+
+# clean up
+client.collections.delete("DemoCollection")
 
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},

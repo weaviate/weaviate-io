@@ -89,9 +89,10 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_1_25/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
-                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                hideModels: true,
+                // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
                 // hiddenClients: [...],
               },
             },
@@ -227,8 +228,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-online-workshops',
-                content: `<b>Learn from the experts</b> at our weekly <a target="_blank" rel="noopener noreferrer" href="/community/events">Online Workshops</a>.`,
+                id: 'announcement-bar-may2024',
+                content: `We would love your input to help us improve your experience - <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/hrFGMqtVkdSG6ne48">Fill out our Community Experience Survey</a> by June 14th.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -268,7 +269,7 @@ const config = {
 
                         },
                         {
-                            label: 'Weaviate Enterprise Cloud',
+                            label: 'Enterprise Cloud',
                             href: '/services/enterprise-cloud',
 
                         },
@@ -346,6 +347,10 @@ const config = {
                                 to: '/community/events',
                             },
                             {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
+                            },
+                            {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
                             },
@@ -353,6 +358,7 @@ const config = {
                                 label: 'Community',
                                 to: '/community',
                             },
+                           
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -423,7 +429,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
+                                href: '/#contact-us',
                             },
                         ],
                     },
@@ -440,56 +446,7 @@ const config = {
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
                     },
-                    /*  {
-                        to: '/developers/academy',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fas fa-lg fa-graduation-cap',
-                    },
-                    {
-                        to: 'https://weaviate.io/slack',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-slack',
-                    },
-                    {
-                        to: 'https://forum.weaviate.io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-discourse',
-                    },
-                    {
-                        to: 'https://github.com/weaviate/weaviate',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-github',
-                    },
-                    {
-                        to: 'https://twitter.com/weaviate_io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fab fa-lg fa-twitter',
-                    },
-                    {
-                        to: 'https://newsletter.weaviate.io',
-                        label: ' ',
-                        position: 'right',
-                        target: '_blank',
-                        className: 'fas fa-lg fa-envelope',
-                    },
-                    {
-                        to: '/podcast',
-                        // to: 'https://www.youtube.com/@Weaviate/playlists',
-                        label: ' ',
-                        position: 'right',
-                        // target: '_blank',
-                        className: 'fas fa-lg fa-microphone',
-                    },*/
+                    
                     {
                         type: 'search',
                         position: 'right',
@@ -502,10 +459,10 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Weaviate Cloud',
+                        title: 'Product',
                         items: [
                             {
-                                label: 'Vector Database',
+                                label: 'Weaviate Database',
                                 to: '/platform',
                             },
                             {
@@ -557,6 +514,10 @@ const config = {
                             {
                                 label: 'Workshops',
                                 to: '/community/events',
+                            },
+                            {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
                             },
                             {
 

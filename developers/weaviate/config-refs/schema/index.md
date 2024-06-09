@@ -4,8 +4,6 @@ sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
-
 
 ## Introduction
 
@@ -179,16 +177,22 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### `class`
 
-This is the name of the collection. The name is to start with a **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
+The `class` is the name of the collection.
 
-- `dataType: ["text"]` is `text`
+The collection name starts with an upper case letter. The upper case letter distinguishes collection names from primitive data types when the name is used as a property value.
+
+Consider these examples that use the `dataType` property:
+
+- `dataType: ["text"]` is a `text` data type.
 - `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
-After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
+After the first letter, collection names may use any GraphQL-compatible characters.
 
-import initialCaps from '/_includes/schemas/initial-capitalization.md'
+The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
-<initialCaps />
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
 
 ### `description`
 
@@ -541,7 +545,7 @@ The following table shows an example scenario showing whether a filter or keywor
 | `field`                | ❌          | ❌            | ❌             | ✅                         |
 
 :::caution `string` is deprecated
-The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
+The `string` data type has been deprecated from Weaviate `v1.19` onwards. Use `text` instead.
 
 <details>
   <summary>
@@ -643,4 +647,3 @@ client.schema.create_class(collection_obj)
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

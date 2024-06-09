@@ -8,7 +8,7 @@ export default function Header() {
     <header>
       <div className="container">
         <div className={styles.box}>
-          <h1>Help us spread the word, get a free t-shirt!</h1>
+          <h1>Help us spread the word, get a gift card!</h1>
           <div className={styles.headerBox}>
             <p className="text-center"></p>
           </div>

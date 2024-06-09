@@ -24,7 +24,7 @@ For most use cases, the API key option offers a balance between security and eas
 See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
 :::
 
-## WCS authentication
+## WCD authentication
 
 [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/connect.mdx).
 
@@ -112,7 +112,7 @@ import ClientLibraryUsage from '/_includes/clients/client-library-usage.mdx';
 OIDC authentication involves three parties.
 
 1. A **user** who wants to access a resource.
-1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
+1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCD) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
 For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud (WCD) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
@@ -144,11 +144,11 @@ This applies to anyone who is running their own Weaviate instance.
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
 - For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
-    - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
+    - Make sure you have a WCD account (you can [sign up here](https://console.weaviate.cloud/)).
     - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
       - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
-      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCS account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
+      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCD account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
       - `email` as the username claim (in `AUTHENTICATION_OIDC_USERNAME_CLAIM`).
 
 - If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
@@ -166,7 +166,7 @@ To use OpenID Connect (OIDC), the **respective environment variables** must be c
 As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
 :::
 
-The OIDC-related Docker Compose environment variables are shown below. Please see the inline-yaml comments for details around the respective fields:
+The OIDC-related Docker Compose environment variables are shown below. For configuration details, see the inline-yaml comments:
 
 ```yaml
 services:
@@ -184,9 +184,8 @@ services:
       #
       # The example URL below uses the path structure commonly found with keycloak
       # where an example realm 'my-weaviate-usecase' was created. The exact
-      # path structure will depend on the token issuer of your choice. Please
-      # see the respective documentation of your issuer about which endpoint
-      # implements OIDC Discovery.
+      # path structure depends on the token issuer. See the token issuer's documentation
+      # about which endpoint implements OIDC Discovery.
       AUTHENTICATION_OIDC_ISSUER: 'http://my-token-issuer/auth/realms/my-weaviate-usecase'
 
       # client_id (required unless skip_client_id_check is set to true) tells
@@ -326,7 +325,7 @@ else:
     parameter_string = "&".join([key + "=" + item for key, item in parameters.items()])
     response_auth = requests.get(authorization_url + "?" + parameter_string)
 
-    print("Please visit the following url with your browser to login:")
+    print("To login, open the following url with your browser:")
     print(authorization_url + "?" + parameter_string)
     print(
         "After the login you will be redirected, the token is the 'id_token' parameter of the redirection url."

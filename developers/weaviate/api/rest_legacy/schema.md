@@ -350,8 +350,14 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 
 :::info Not all settings are mutable
 
-- Please note that not all settings are mutable.
-- To update any other (i.e. immutable) setting, you need to delete the collection, re-create it with the correct setting and then re-import the data.
+Some settings are immutable, they cannot be updated after the collection is created.
+
+Follow these steps to update an immutable setting:
+
+- Export the data
+- Delete the collection
+- Re-create the collection with the correct setting
+- Re-import the data
 
 <details>
   <summary>The list of mutable settings</summary>
@@ -576,7 +582,7 @@ Tenants are used to separate data between different users or groups of users. Th
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START EnableMultiTenancy"
@@ -654,7 +660,7 @@ POST v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START AddTenantsToClass"
@@ -707,7 +713,7 @@ GET v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ListTenants"
@@ -762,7 +768,7 @@ DELETE v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RemoveTenants"

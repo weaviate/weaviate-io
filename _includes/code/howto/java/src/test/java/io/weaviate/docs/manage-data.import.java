@@ -58,8 +58,8 @@ class ManageDataImportTest {
   }
 
   private void basicBatchImport() {
-    // BasicBatchImportExample
-    String className = "YourName";  // Replace with your class name
+    // START BasicBatchImportExample
+    String className = "MyCollection";  // Replace with your class name
     List<Map<String, Object>> dataObjs = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       Map<String, Object> properties = new HashMap<>();
@@ -88,8 +88,8 @@ class ManageDataImportTest {
   }
 
   private void basicBatchImportWithCustomId() {
-    // BatchImportWithIDExample
-    String className = "YourName";  // Replace with your class name
+    // START BatchImportWithIDExample
+    String className = "MyCollection";  // Replace with your class name
     List<Map<String, Object>> dataObjs = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       Map<String, Object> properties = new HashMap<>();
@@ -147,8 +147,8 @@ class ManageDataImportTest {
   }
 
   private void basicBatchImportWithCustomVector() {
-    // BatchImportWithVectorExample
-    String className = "YourName";  // Replace with your class name
+    // START BatchImportWithVectorExample
+    String className = "MyCollection";  // Replace with your class name
     List<Map<String, Object>> dataObjs = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       Map<String, Object> properties = new HashMap<>();

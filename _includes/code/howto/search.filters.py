@@ -9,8 +9,8 @@ from weaviate.auth import AuthApiKey
 import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
@@ -170,8 +170,10 @@ response = jeopardy.query.fetch_objects(
     # highlight-start
     # Use & as AND
     #     | as OR
-    filters=Filter.by_property("round").equal("Double Jeopardy!") &
-            Filter.by_property("points").less_than(600),
+    filters=(
+        Filter.by_property("round").equal("Double Jeopardy!") &
+        Filter.by_property("points").less_than(600)
+    ),
     # highlight-end
     limit=3
 )
@@ -185,6 +187,76 @@ for o in response.objects:
 assert response.objects[0].collection == "JeopardyQuestion"
 assert response.objects[0].properties["round"] == "Double Jeopardy!"
 assert response.objects[0].properties["points"] < 600
+# End test
+
+
+# ==========================================
+# ===== Multiple Filters with Any of =====
+# ==========================================
+
+# MultipleFiltersAnyOfPython
+from weaviate.classes.query import Filter
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    # highlight-start
+    filters=(
+        Filter.any_of([  # Combines the below with `|`
+            Filter.by_property("points").greater_or_equal(700),
+            Filter.by_property("points").less_than(500),
+            Filter.by_property("round").equal("Double Jeopardy!"),
+        ])
+    ),
+    # highlight-end
+    limit=5
+)
+
+for o in response.objects:
+    print(o.properties)
+# END MultipleFiltersAnyOfPython
+
+
+# Test results
+assert (
+    response.objects[0].properties["points"] <= 700 |
+    response.objects[0].properties["points"] < 500 |
+    response.objects[0].properties["round"] == "Double Jeopardy!"
+)
+# End test
+
+
+# ==========================================
+# ===== Multiple Filters with All of =====
+# ==========================================
+
+# MultipleFiltersAllOfPython
+from weaviate.classes.query import Filter
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    # highlight-start
+    filters=(
+        Filter.all_of([  # Combines the below with `&`
+            Filter.by_property("points").greater_than(300),
+            Filter.by_property("points").less_than(700),
+            Filter.by_property("round").equal("Double Jeopardy!"),
+        ])
+    ),
+    # highlight-end
+    limit=5
+)
+
+for o in response.objects:
+    print(o.properties)
+# END MultipleFiltersAllOfPython
+
+
+# Test results
+assert (
+    response.objects[0].properties["points"] > 300 &
+    response.objects[0].properties["points"] < 700 &
+    response.objects[0].properties["round"] == "Double Jeopardy!"
+)
 # End test
 
 
@@ -245,31 +317,6 @@ for o in response.objects:
 # Tests
 assert response.objects[0].collection == "JeopardyQuestion"
 assert "sport" in response.objects[0].references["hasCategory"].objects[0].properties["title"].lower()
-# End test
-
-
-# ========================================
-# FilterByID
-# ========================================
-
-# START FilterById
-from weaviate.classes.query import Filter
-
-collection = client.collections.get("Article")
-
-target_id = "00037775-1432-35e5-bc59-443baaef7d80"
-response = collection.query.fetch_objects(
-    filters=Filter.by_id().equal(target_id)
-)
-
-for o in response.objects:
-    print(o.properties)  # Inspect returned objects
-    print(o.uuid)
-# END FilterById
-
-
-# Tests
-assert str(response.objects[0].uuid) == target_id
 # End test
 
 # ========================================
@@ -341,14 +388,10 @@ from weaviate.classes.query import Filter
 
 collection = client.collections.get("JeopardyQuestion")
 
-# highlight-start
-length_threshold = 20
-# highlight-end
-
 response = collection.query.fetch_objects(
     limit=3,
     # highlight-start
-    filters=Filter.by_property("answer", length=True).greater_than(length_threshold),
+    filters=Filter.by_property("answer", length=True).greater_than(20),
     # highlight-end
 )
 

@@ -246,7 +246,7 @@ Depending on the vectorizer module, you can use additional modalities such as im
 
 Some modules, such as `multi2vec-clip` and `multi2vec-bind` allow you to search across modalities. For example, you can search for images using a text query, or search for text using an image query.
 
-Please refer to specific module pages such as:
+For more information, see specific module pages such as these:
 
 * [img2vec-neural](../../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage)
 * [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md#additional-search-operators)

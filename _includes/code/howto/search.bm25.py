@@ -9,8 +9,8 @@ from weaviate.auth import AuthApiKey
 import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
@@ -83,7 +83,8 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="safety",
     # highlight-start
-    limit=3
+    limit=3,
+    offset=1
     # highlight-end
 )
 

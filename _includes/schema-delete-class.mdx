@@ -43,6 +43,7 @@ client.schema.delete_class("Article")  # Replace with your class name
 <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
+// delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
 await client.collections.delete('Article')
 ```
 
@@ -51,11 +52,10 @@ await client.collections.delete('Article')
 <TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
-const className: string = 'YourClassName';  // Replace with your class name
-
+// delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
 await client.schema
   .classDeleter()
-  .withClassName(className)
+  .withClassName('Article')
   .do();
 ```
 

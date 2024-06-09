@@ -18,9 +18,9 @@ import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
 import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
 
-Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
+Weaviate's Backup feature is designed to work natively with cloud technology. Most notably, it allows:
 
-* Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS or Azure
+* Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS, or Azure
 * Backup and Restore between different storage providers
 * Single-command backup and restore from the REST API
 * Choice of backing up an entire instance, or selected classes only
@@ -28,7 +28,7 @@ Weaviate's Backup feature is designed to feel very easy to use and work natively
 * Easy Migration to new environments
 
 :::note
-_The backup functionality was introduced in Weaviate `v1.15`, but for single-node instances only. Support for multi-node backups was introduced in `v1.16`_.
+_Single node backup is available strating in Weaviate `v1.15`. Multi-node backups is avaiable starting in `v1.16`_.
 :::
 
 
@@ -197,7 +197,7 @@ POST /v1/backups/{backend}
 
 | Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
+| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
 
 ##### Request Body
 

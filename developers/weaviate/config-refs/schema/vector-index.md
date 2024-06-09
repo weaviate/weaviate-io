@@ -16,7 +16,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 ## Index configuration parameters
 
 :::caution Experimental feature
-Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
 :::
 
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
@@ -69,6 +69,22 @@ Note that some database-level parameters are available to configure HNSW indexin
 Increase this value to improve efficiency of the compaction process, but be aware that this will increase the memory usage of the database. Conversely, decreasing this value will reduce memory usage but may slow down the compaction process.
 
 Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
+
+### Tombstone cleanup
+
+:::info Added in `v1.24.15` / `v1.25.2`
+:::
+
+Tombstones are records that mark deleted objects. In an HNSW index, tombstones are regularly cleaned up, triggered periodically by the `cleanupIntervalSeconds` parameter.
+
+As the index grows in size, the cleanup process may take longer to complete and require more resources. For very large indexes, this may cause performance issues.
+
+To control the number of tombstones deleted per cleanup cycle and prevent performance issues, set the [`TOMBSTONE_DELETION_MAX_PER_CYCLE` and `TOMBSTONE_DELETION_MIN_PER_CYCLE` environment variables](../env-vars.md#general).
+
+- Set `TOMBSTONE_DELETION_MIN_PER_CYCLE` to prevent occurrences of unnecessary cleanup cycles.
+- Set `TOMBSTONE_DELETION_MAX_PER_CYCLE` to prevent the cleanup process from taking too long and consuming too many resources.
+
+As an example, for a cluster with 300 million objects per shard, a `TOMBSTONE_DELETION_MIN_PER_CYCLE` value of 1000000 (1 million) and a `TOMBSTONE_DELETION_MAX_PER_CYCLE` value of 10000000 (10 million) may be good starting points.
 
 ### PQ configuration parameters
 
@@ -160,7 +176,7 @@ Configure `bq` with these parameters.
 ## Dynamic indexes
 
 :::caution Experimental feature
-Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
 :::
 
 Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index.
@@ -181,7 +197,7 @@ The goal of `dynamic` indexing is to shorten latencies during query time at the 
 ## Asynchronous indexing
 
 :::caution Experimental
-Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
 Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.

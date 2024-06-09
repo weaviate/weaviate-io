@@ -221,7 +221,7 @@ Accordingly, we recommend you check the response body for errors.
 
 The Weaviate Python client library provides additional functionalities for batch imports. For example, the latest Python client library supports various batching modes, as well as improved error handling.
 
-Please refer to the [client documentation](/developers/weaviate/client-libraries/python) for more detail.
+For details, see the [client documentation](/developers/weaviate/client-libraries/python).
 
 <PythonV4BatchAPI/>
 

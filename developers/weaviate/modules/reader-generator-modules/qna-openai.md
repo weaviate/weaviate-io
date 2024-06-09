@@ -5,6 +5,12 @@ image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
 
+:::caution `generative-openai` recommended for new projects
+For new projects, we recommend using the [generative-openai](./generative-openai.md) module instead of `qna-openai`. This uses older models such as `gpt-3.5-turbo-instruct` which is older than model such as `gpt-4` used in `generative-openai`.
+
+Additionally, the `generative-openai` module is more versatile and can be used for a wider range of use cases, not limited to question answering. Since `gpt-3.5-turbo-instruct` is not necessarily strictly trained for question answering, there are limited use cases where `qna-openai` is the best choice.
+:::
+
 
 ## In short
 
@@ -63,7 +69,7 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -123,7 +129,7 @@ You can also configure additional parameters for the model through the parameter
 
 For example, the following schema configuration will set Weaviate to use the `qna-openai` model with the `Document` class.
 
-The following schema configuration uses the `text-davinci-002` model.
+The following schema configuration uses the `gpt-3.5-turbo-instruct` model.
 
 ```json
 {
@@ -134,7 +140,7 @@ The following schema configuration uses the `text-davinci-002` model.
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "qna-openai": {
-          "model": "text-davinci-002", // For OpenAI
+          "model": "gpt-3.5-turbo-instruct", // For OpenAI
           "resourceName": "<YOUR-RESOURCE-NAME>",  // For Azure OpenAI
           "deploymentId": "<YOUR-MODEL-NAME>",  // For Azure OpenAI
           "maxTokens": 16, // Applicable to both OpenAI and Azure OpenAI
@@ -231,16 +237,17 @@ The module performs a semantic search under the hood, so a `text2vec-...` module
 
 ### Available models
 
-OpenAI has multiple models available for the extraction of answers from a given context.
+We recommend using:
 
-* For document embeddings you can choose one of the following models:
-  * [ada](https://platform.openai.com/docs/models/ada)
-  * [babbage](https://platform.openai.com/docs/models/babbage)
-  * [curie](https://platform.openai.com/docs/models/curie)
-  * [davinci](https://platform.openai.com/docs/models/davinci)
+- `gpt-3.5-turbo-instruct`
 
-These models can be configured
+The following models are now deprecated:
 
+- `text-ada-001`
+- `text-babbage-001`
+- `text-curie-001`
+- `text-davinci-002`
+- `text-davinci-003`
 
 ## Questions and feedback
 
