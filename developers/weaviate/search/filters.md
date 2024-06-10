@@ -657,6 +657,29 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
   </TabItem>
 </Tabs>
 
+## By `DATE` datatype
+
+To filter by a `DATE` datatype property, specify the date/time as an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp, or a client library-compatible type such as a Python `datetime` object.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByDateDatatype"
+      endMarker="# END FilterByDateDatatype"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByDateDatatype"
+      endMarker="// END FilterByDateDatatype"
+      language="js"
+    />
+  </TabItem>
+</Tabs>
+
 ## Filter by metadata
 
 Filters also work with metadata properties such as object id, property length, and timestamp.

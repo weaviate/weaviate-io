@@ -74,7 +74,7 @@ client.collections.create(
 collection = client.collections.get("Question")
 config = collection.config.get()
 
-from weaviate.collections.classes.config import _PQConfig
+from weaviate.classes.config import _PQConfig
 
 assert type(config.vector_index_config.quantizer) == _PQConfig
 # No import test as it would take a long time
