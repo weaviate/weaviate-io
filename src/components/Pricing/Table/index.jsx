@@ -148,7 +148,7 @@ export default function PricingTable() {
                         <div
                           className={`${styles.edImage} ${styles.cellImage} `}
                         ></div>
-                        <h3>Weaviate Enterprise SaaS</h3>
+                        <h3>Weaviate Enterprise Cloud</h3>
                         <span>
                           We manage everything for you in a dedicated instance
                           in Weaviate Cloud

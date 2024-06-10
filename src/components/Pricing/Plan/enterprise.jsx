@@ -6,7 +6,7 @@ export default function PricingEnterprise() {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <h3>Weaviate Enterprise SaaS</h3>
+        <h3>Weaviate Enterprise Cloud</h3>
       </div>
       <div className={styles.price}>
         <p>
