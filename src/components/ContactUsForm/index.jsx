@@ -30,7 +30,7 @@ export default function ContactUsForm({ theme = 'light' }) {
     },
     {
       value: 'EnterpriseDedicated',
-      text: 'Weaviate Enterprise Cloud',
+      text: 'Weaviate Enterprise SaaS',
     },
     {
       value: 'BYOC',

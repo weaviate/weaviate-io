@@ -12,7 +12,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: February, 2024**
 
-Thank you for using the Weaviate Database (as defined below), an open-sourced vector database that permits customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**”) or (“**_Weaviate Enterprise Cloud Offering_**”) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
+Thank you for using the Weaviate Database (as defined below), an open-sourced vector database that permits customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**”) or (“**_Weaviate Enterprise SaaS Offering_**”) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
 
 To be eligible to register for an Weaviate account and use the Weaviate Database, you must review and accept the terms of this Weaviate Terms of Service (this “**_Agreement_**” or these “**_Terms_**”) by clicking the terms of service checkbox or other mechanism provided within the online registration process. PLEASE REVIEW THESE TERMS CAREFULLY. BY ACCEPTING THESE TERMS OR USING THE WEAVIATE DATABASE, YOU AGREE TO THESE TERMS AND CONDITIONS WITH WEAVIATE, LLC IF YOU RESIDE OR ARE ESTABLISHED IN THE UNITED STATES OF AMERICA, OR WITH WEAVIATE B.V. (“**_Weaviate_**”) IF YOU RESIDE OR ARE ESTABLISHED OUTSIDE THE UNITED STATES OF AMERICA. IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, YOU SHOULD NOT USE THE WEAVIATE DATABASE.
 
