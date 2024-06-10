@@ -4,7 +4,7 @@
 
 # START-ANY
 import weaviate
-from weaviate.classes.query import Filter, GeoCoordinate, MetadataQuery, QueryReference
+from weaviate.classes.query import Filter, GeoCoordinate, MetadataQuery, QueryReference  # Import classes as needed
 import os
 # END-ANY
 # START FilterByTimestamps
@@ -52,8 +52,11 @@ for o in response.objects:
 # START MultipleConditionsFilter
 collection = client.collections.get("Article")
 response = collection.query.fetch_objects(
-    filters=(Filter.by_property("wordCount").greater_than(1000) & Filter.by_property("title").like("*economy*")),
-    limit=5
+    filters=(
+        Filter.by_property("wordCount").greater_than(1000)
+        & Filter.by_property("title").like("*economy*")
+    ),
+    limit=5,
 )
 
 for o in response.objects:
