@@ -202,7 +202,7 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
 
 Some of the terms within the Weaviate ecosystem are changing, and the client has changed accordingly:
 
-- A "Class" is now called a "Collection". A collection stores a set of data objects together with their vector embeddings.
+- A Weaviate "Class" is now called a "Collection". A collection stores a set of data objects together with their vector embeddings.
 - A "Schema" is now called a "Collection Configuration", a set of settings that define collection name, vectorizers, index configurations, property definitions, and so on.
 
 Due to the architectural changes as well as changes to the terminology, most of the API has been changed. Expect to find differences in the way you interact with Weaviate.
