@@ -18,9 +18,9 @@ The `v4` Weaviate Python client API is a complete rewrite, aimed at an improved 
 
 While this may introduce some overhead, we believe the `v4` API is a significant improvement to your developer experience. For instance, using the `v4` client will allow you to take full advantage faster speeds through the gRPC API, and additional static analysis for IDE assistance through strong typing.
 
-This guide will help you understand the major changes and how to migrate your code at a high level.
+Due to the extensive API surface changes, this guide does not cover every change. Instead, this guide is designed to help you understand the major changes and how to migrate your code at a high level.
 
-Due to the extensive API surface changes, a comprehensive guide on how each function has changed is not provided here. For guidance on particular functionalities, please refer to the documentation throughout the site, [starting with these suggested sections](#how-to-migrate-your-code).
+For code examples, refer to the documentation throughout the site, [starting with these suggested sections](#how-to-migrate-your-code).
 
 ## Installation
 
@@ -102,7 +102,7 @@ To configure connection timeout values, see [Timeout values](/developers/weaviat
 </TabItem>
 </Tabs>
 
-Note that the `Client` object used in the `v3` API is [still available](./index.md#python-client-v3-api), but may be deprecated in the future.
+The `v3` API style `Client` object is [still available](./index.md#python-client-v3-api), and will be deprecated in the future.
 
 ## Major changes
 
@@ -140,12 +140,10 @@ import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearTex
     language="py"
   />
 
-Note that the `Move` import exposes configuration elements for moving `near_text` search towards, or away from, the main query input.
-
 </TabItem>
 </Tabs>
 
-The `wvc` namespace exposes commonly used classes that you will need for most applications, [divided further into submodules based on their primary purpose](./index.md#helper-classes).
+The `wvc` namespace exposes commonly used classes in the `v4` API. The namespace is divided further into [submodules based on their primary purpose](./index.md#helper-classes).
 
 <FilteredTextBlock
   text={PythonCode}
@@ -156,15 +154,17 @@ The `wvc` namespace exposes commonly used classes that you will need for most ap
 
 ### Interact with collections
 
-When you connect to a Weaviate database, the v4 API returns a `WeaviateClient` object, and the v3 API returns a `Client` object.
+When you connect to a Weaviate database, the v4 API returns a `WeaviateClient` object, while the v3 API returns a `Client` object.
 
-The `v3` API's interactions were built around the `client` object (an instance of `Client`), including server interactions for CRUD and search operations.
+The `v3` API's interactions were built around the `client` object (an instance of `Client`). This includes server interactions for CRUD and search operations.
 
-With the `v4` API, the main starting points for your interaction with Weaviate follow a different paradigm.
+In the `v4` API, the main starting points for your interaction with Weaviate follow a different paradigm.
 
-Server-level interactions such as checking readiness (`client.is_ready()`) or getting node statuses (`client.cluster.nodes()`) still remain with `client` (now an instance of `WeaviateClient`). Interactions with CRUD and search operations, however, are now done with a `Collection` object instead, to reflect that almost all such operations target a particular collection.
+Server-level interactions such as checking readiness (`client.is_ready()`) or getting node statuses (`client.cluster.nodes()`) still remain with `client` (now an instance of `WeaviateClient`).
 
-See a simple example below, defining  (note the `Collection` typing hint).
+CRUD and search operations are now performed against a `Collection` object to reflect that these operations target a particular collection.
+
+This example below shows a function with a `Collection` typing hint).
 
 <FilteredTextBlock
   text={PythonCode}
@@ -173,7 +173,7 @@ See a simple example below, defining  (note the `Collection` typing hint).
   language="py"
 />
 
-By interaction with the collection object, each operation such as a `near_text` query can be performed without specifying its name. It also allows you to work within a condensed namespace in comparison to the breadth of operations available with the client object. This simplifies your code and reduces the potential for errors.
+The collection object includes its name as an attribute. Accordingly, operations such as a `near_text` query can be performed without specifying the collection name. The `v4` collection object has a more focussed namespace in comparison to the breadth of operations available with the `v3` client object. This simplifies your code and reduces the potential for errors.
 
 import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
@@ -198,18 +198,18 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
   </TabItem>
 </Tabs>
 
-### Nomenclature changes
+### Terminology changes (e.g. class -> collection)
 
-Some of the nomenclature within the Weaviate ecosystem is changing, and the client nomenclature has changed accordingly:
+Some of the terms within the Weaviate ecosystem are changing, and the client has changed accordingly:
 
 - A "class", in the sense of a set of objects, is a "collection".
 - The Weaviate "schema" can be accessed through "collection configuration".
 
-Due to the architectural changes as well as evolving nomenclature, expect to find differences in the way you interact with Weaviate.
+Due to the architectural changes as well as changes to the terminology, most of the API has been changed. Expect to find differences in the way you interact with Weaviate.
 
 For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
 
-[Manage collections](/developers/weaviate/manage-data/collections#read-all-collection-definitions) has more details and additional sample code for working with collections.
+[Manage data](../../manage-data/index.md) has more details and additional sample code for working with data, such as [working with collections](../../manage-data/collections.mdx). See [searches](../../search/index.md) for further details on various queries and filters.
 
 ### Collection creation from JSON
 
@@ -224,9 +224,9 @@ You can still create a collection from a JSON definition. This may be a useful w
 
 ### Removal of builder patterns
 
-The builder patterns for constructing queries have been removed, as they could be confusing, and could lead to runtime errors that would not be picked up with static analysis.
+The builder patterns for constructing queries have been removed. Builder patterns could be confusing, and led to runtime errors that could not be picked up with static analysis.
 
-With the `v4` API, queries are constructed using specific methods and its parameters.
+Instead, construct queries in the `v4` API using specific methods and its parameters.
 
 import SearchSimilarityCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
