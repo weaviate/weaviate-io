@@ -1,7 +1,7 @@
 # START-ANY
 import weaviate
 import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Move
+from weaviate.classes.query import Move
 import os
 
 client = weaviate.connect_to_local()
