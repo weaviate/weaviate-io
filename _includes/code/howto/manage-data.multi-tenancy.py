@@ -69,7 +69,7 @@ collection = client.collections.create(
 assert collection.config.get().multi_tenancy_config.auto_tenant_creation == False
 
 # START UpdateAutoMT
-from weaviate.collections.classes.config import Reconfigure
+from weaviate.classes.config import Reconfigure
 
 collection = client.collections.get(collection_name)
 

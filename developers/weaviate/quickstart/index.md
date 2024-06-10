@@ -86,9 +86,14 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 To connect to your Weaviate instance, you need the following information:
 
-- The Weaviate **URL** (get it from WCD `Details` tab),
-- The Weaviate **API key** (if enabled - get it from WCD `Details` tab), and
-- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup)).
+- The Weaviate **URL** (get it from WCD `Details` tab)
+
+import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
+
+<img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
+
+- The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
+- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
 
 Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
 

@@ -15,7 +15,7 @@ image: ./img/hero.png
 
 ![embedding model.png](./img/embedding_model.png)
 
-As a [vector database](/blog/what-is-a-vector-database) that stores vector embeddings and retrieves data objects based on vector search, Weaviate has many [integrations with various model providers and their wide variety of embedding models](/developers/weaviate/model-providers). 
+As a [vector database](/blog/what-is-a-vector-database) that stores vector embeddings and retrieves data objects based on vector search, Weaviate has many [integrations with various model providers and their wide variety of embedding models](/developers/weaviate/model-providers).
 
 But how do you approach selecting the right embedding model for your search or RAG application? As you will learn in this article, it depends on your use case and specific requirements.
 
@@ -58,7 +58,7 @@ For this, you could generate a small, hand-labeled dataset with 50 to 100 data o
 
 ### Create embeddings
 
-Now, let’s generate and store the corresponding vector embeddings in our Weaviate vector database. For this, you will first connect to a Weaviate client in [embedded mode](https://weaviate.io/developers/weaviate/installation/embedded) for simplicity ([but you can instantiate a Weaviate client locally or use our managed cloud service](https://weaviate.io/developers/weaviate/installation)). 
+Now, let’s generate and store the corresponding vector embeddings in our Weaviate vector database. For this, you will first connect to a Weaviate client in [embedded mode](https://weaviate.io/developers/weaviate/installation/embedded) for simplicity ([but you can instantiate a Weaviate client locally or use our managed cloud service](https://weaviate.io/developers/weaviate/installation)).
 
 ```python
 import weaviate
@@ -72,7 +72,7 @@ client = weaviate.connect_to_embedded(
 )
 ```
 
-Then, you will configure a data collection called `"Pastries"` and configure the properties and vectorizer. This example uses OpenAI’s `text-embedding-3-small` embedding model to vectorize the data at import and query time automatically. Note, that we will repeat this step later with `text-embedding-3-large` to compare the two models. For this, you might want to have a look at [how to delete a collection](/developers/weaviate/manage-data/delete.mdx).
+Then, you will configure a data collection called `"Pastries"` and configure the properties and vectorizer. This example uses OpenAI’s `text-embedding-3-small` embedding model to vectorize the data at import and query time automatically. Note, that we will repeat this step later with `text-embedding-3-large` to compare the two models. For this, you might want to have a look at [how to delete a collection](/developers/weaviate/manage-data/delete).
 
 ```python
 import weaviate.classes as wvc
@@ -177,7 +177,7 @@ After you’ve built an initial pipeline for your use case with a small baseline
 
 ## Optional Step: Fine-tuning
 
-Fine-tuning an embedding model is only an optional step. Ideally, you can find a suitable model off the shelf, and fine-tuning might only be necessary for the last bit of performance squeeze. 
+Fine-tuning an embedding model is only an optional step. Ideally, you can find a suitable model off the shelf, and fine-tuning might only be necessary for the last bit of performance squeeze.
 
 ## Summary
 

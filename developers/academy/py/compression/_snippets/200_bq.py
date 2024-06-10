@@ -3,7 +3,7 @@ import weaviate
 from weaviate.classes.config import Configure, DataType, Property
 # END BQBasicConfig  # BQCustomConfig
 
-from weaviate.collections.classes.config import BQConfig
+from weaviate.classes.config import BQConfig
 
 client = weaviate.connect_to_local()
 

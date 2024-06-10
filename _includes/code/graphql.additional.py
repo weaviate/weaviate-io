@@ -6,7 +6,7 @@ import json
 import os
 import weaviate
 import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Sort
+from weaviate.classes.query import Sort
 
 client = weaviate.connect_to_local()
 
