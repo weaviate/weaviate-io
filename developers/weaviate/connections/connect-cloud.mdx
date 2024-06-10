@@ -5,6 +5,13 @@ image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
+import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.py';
+
 Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
 
 ## Retrieve your API keys
@@ -19,9 +26,35 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 To connect, edit this code to match your environment.
 
-import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
+<!-- import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
 
-<WCDAuthenticationApiKey/>
+<WCDAuthenticationApiKey/> -->
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="js"
+   />
+</TabItem>
+</Tabs>
 
 ## Third party API keys
 
@@ -37,7 +70,7 @@ import EnvVarsHowto from '/_includes/environment-variables.mdx';
 
 ## Timeouts
 
-import GRPCTimeoutIntro from '/_includes/code/connections/timeouts-intro.mdx';
+import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
 
 <GRPCTimeoutIntro/>
 

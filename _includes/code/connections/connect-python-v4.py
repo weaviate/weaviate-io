@@ -61,3 +61,19 @@ client = weaviate.connect_to_custom(
 
 # END TimeoutCustom
 client.close()
+
+# START APIKeyWCD
+import weaviate
+from weaviate.auth import AuthApiKey
+
+# Set these environment variables
+URL = os.getenv("WCD_URL")
+APIKEY = os.getenv("WCD_API_KEY")
+
+# Connect to Weaviate Cloud
+client = weaviate.connect_to_wcs(
+    cluster_url=URL,
+    auth_credentials=AuthApiKey(APIKEY),
+)
+# END APIKeyWCD
+client.close()
