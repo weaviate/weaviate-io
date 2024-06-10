@@ -404,7 +404,7 @@ with collection.batch.dynamic() as batch:
                 date = datetime(year, month, day).replace(tzinfo=timezone.utc)
                 batch.add_object(
                     properties={
-                        "title": f"Object with date: yr/month/day:{year}/{month}/{day}",
+                        "title": f"Object: yr/month/day:{year}/{month}/{day}",
                         "some_date": date
                     }
                 )

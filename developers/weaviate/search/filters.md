@@ -670,6 +670,14 @@ To filter by a `DATE` datatype property, specify the date/time as an [RFC 3339](
       language="python"
     />
   </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByDateDatatype"
+      endMarker="// END FilterByDateDatatype"
+      language="js"
+    />
+  </TabItem>
 </Tabs>
 
 ## Filter by metadata
