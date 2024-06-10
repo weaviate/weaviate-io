@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
-import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.py';
+import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
+
 
 Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
 
@@ -44,6 +46,14 @@ To connect, edit this code to match your environment.
      startMarker="# START APIKeyWCD"
      endMarker="# END APIKeyWCD"
      language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="js"
    />
 </TabItem>
 <TabItem value="ts2" label="JS/TS Client v2">
