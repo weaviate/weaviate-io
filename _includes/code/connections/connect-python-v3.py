@@ -5,13 +5,13 @@ import os
 import weaviate
 
 # Set these environment variables
-URL = os.getenv("WCD_URL")
-APIKEY = os.getenv("WCD_API_KEY")
+WEAVIATE_URL = os.getenv("WCD_URL")
+WEAVIATE_APIKEY = os.getenv("WCD_API_KEY")
 
 # Create the client
 client = weaviate.Client(
-    url=URL,
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key=APIKEY),
+    url=WEAVIATE_URL,
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=WEAVIATE_APIKEY),
 )
 # END APIKeyWCD
 client.close()

@@ -12,7 +12,9 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3
 import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
 import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
 import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
-
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.sh';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
 Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
 
@@ -28,9 +30,6 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 To connect, edit this code to match your environment.
 
-<!-- import WCDAuthenticationApiKey from '/_includes/code/wcs/wcs.authentication.mdx';
-
-<WCDAuthenticationApiKey/> -->
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
    <FilteredTextBlock
@@ -62,6 +61,30 @@ To connect, edit this code to match your environment.
      startMarker="// START APIKeyWCD"
      endMarker="// END APIKeyWCD"
      language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="go"
+   />
+</TabItem>
+<TabItem value="java" label="Java">
+   <FilteredTextBlock
+     text={JavaCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="java"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="shell"
    />
 </TabItem>
 </Tabs>

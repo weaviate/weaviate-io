@@ -3,15 +3,15 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// URL     your WCD instance URL
-// APIKEY  your WCD instance API key
+// WEAVIATE_URL     your WCD instance URL
+// WEAVIATE_APIKEY  your WCD instance API key
 
 import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 // Create the client
 const client = weaviate.client({
   scheme: 'https',
-  host: process.env.URL,
-  apiKey: new ApiKey(process.env.APIKEY),
+  host: process.env.WEAVIATE_URL,
+  apiKey: new ApiKey(process.env.WEAVIATE_APIKEY),
 });
 // END APIKeyWCD

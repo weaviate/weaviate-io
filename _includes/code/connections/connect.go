@@ -2,6 +2,14 @@
 
 
 // START APIKeyWCD
+// Set these environment variables
+// WEAVIATE_URL     your WCD instance URL
+// WEAVIATE_APIKEY  your WCD instance API key
+
+weaviateUrl := os.Getenv("WEAVIATE_URL")
+weaviateKey := os.Getenv("WEAVIATE_API_KEY")
+
+
 package main
 
 import (
@@ -13,7 +21,7 @@ import (
 
 // Instantiate the client with the auth config
 cfg := weaviate.Config{
-  Host:"",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  Host: weaviateUrl,
   Scheme: "http",
   AuthConfig: auth.ApiKey{Value: weaviateKey},
   Headers: nil,
