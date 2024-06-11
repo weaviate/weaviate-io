@@ -8,12 +8,13 @@ image: og/docs/connect.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
 import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
 import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
-import GoCode from '!!raw-loader!/_includes/code/connections/connect.java';
-import GoCode from '!!raw-loader!/_includes/code/connections/connect.sh';
+import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
 import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
 Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
@@ -82,8 +83,8 @@ To connect, edit this code to match your environment.
 <TabItem value="shell" label="cURL">
    <FilteredTextBlock
      text={ShellCode}
-     startMarker="// START APIKeyWCD"
-     endMarker="// END APIKeyWCD"
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
      language="shell"
    />
 </TabItem>
