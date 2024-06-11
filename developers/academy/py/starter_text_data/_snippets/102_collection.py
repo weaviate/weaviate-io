@@ -85,7 +85,7 @@ df = pd.DataFrame(resp.json())
 movies = client.collections.get("Movie")
 
 # Enter context manager
-with movies.batch.rate_limit(2400) as batch:
+with movies.batch.dynamic() as batch:
     # Loop through the data
     for i, movie in tqdm(df.iterrows()):
         # Convert data types
