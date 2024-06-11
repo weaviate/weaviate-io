@@ -8,10 +8,6 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
-
-<RCNote />
-
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
@@ -57,7 +53,7 @@ const weaviate = require('weaviate-client').default;
 
 Edit your project's configuration files to make these changes:
 
-- Add `"type": "module"` to `package.json` 
+- Add `"type": "module"` to `package.json`
 - Add the following code to [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 <details>
@@ -67,14 +63,14 @@ Edit your project's configuration files to make these changes:
 {
     "compilerOptions": {
       "target": "esnext",
-      "module": "esnext", 
+      "module": "esnext",
       "moduleResolution": "Node16",
       "esModuleInterop": true,
       "lib": [ "es2018" ],
   }
 }
 ```
-   
+
 </details>
 
 ## Connect a client
@@ -93,11 +89,11 @@ import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 console.log(client)
@@ -110,7 +106,7 @@ console.log(client)
 import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToLocal()
- 
+
 console.log(client)
 ```
 
@@ -132,16 +128,16 @@ const client = await weaviate.connectToCustom({
       'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '' // Replace with your inference API key
     }
   })
- 
+
 console.log(client)
 ```
 
 </TabItem>
 </Tabs>
 
-### Close client method 
+### Close client method
 
-import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 <TSClientClose />
 
@@ -159,7 +155,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
-  } 
+  }
 )
 
 console.log(client)
@@ -175,9 +171,9 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
     headers: {
-      someHeaderName: 'header-value', 
+      someHeaderName: 'header-value',
     }
-  } 
+  }
 )
 ```
 
@@ -203,7 +199,7 @@ const result = await myCollection.query.fetchObjects()
 console.log(JSON.stringify(result, null, 2));
 ```
 
-### Node support only 
+### Node support only
 
 The gRPC protocol is fast and provides other internal benefits. Unfortunately, gRPC does not support browser-based client development.
 
@@ -250,7 +246,7 @@ The cursor API has a new iterator method. To repeat an action over an entire col
 const articles = client.collections.get('Article')
 
 for await (const article of articles.iterator()) {
-  // do something with article. 
+  // do something with article.
   console.log(article) // we print each object in the collection
 }
 ```
@@ -285,11 +281,11 @@ When there is an asynchronous code error, a promise returns the specific error m
 
 The v3 client enables strong typing with custom TypeScript types and user-defined generics.
 
-You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
+You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle.
 
 For example, the `index.d.ts` file stores type definitions for the `cjs` bundle:
 
-```bash 
+```bash
 node/cjs/index.d.ts
 ```
 
