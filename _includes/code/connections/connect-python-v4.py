@@ -77,3 +77,9 @@ client = weaviate.connect_to_wcs(
 )
 # END APIKeyWCD
 client.close()
+
+# START LocalNoAuth
+import weaviate
+
+client = weaviate.connect_to_local()
+# END LocalNoAuth

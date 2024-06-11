@@ -14,3 +14,13 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   }
 )
 // END APIKeyWCD
+
+// START LocalNoAuth
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToWeaviateCloud(
+  'http://localhost:8080'
+)
+
+console.log(client)
+// END LocalNoAuth

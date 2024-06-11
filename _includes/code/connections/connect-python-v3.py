@@ -15,3 +15,12 @@ client = weaviate.Client(
 )
 # END APIKeyWCD
 client.close()
+
+# START LocalNoAuth
+import weaviate
+
+# Create the client
+client = weaviate.Client(
+    url="http:localhost:8080"
+)
+# END LocalNoAuth

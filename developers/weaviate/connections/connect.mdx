@@ -17,19 +17,46 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
+import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
+import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
+
 Follow these steps to connect to a locally hosted Weaviate Core instance.
 
-## No authentication
+## No authentication enabled
+
+To connect to Weaviate without authentication, follow these examples:
+
+<WCSWithoutAuthentication/>
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+</Tabs>
 
 :::warning Use authentication
 By default Weaviate allows unauthenticated connections from `localhost`.
 
 Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your instance.
 :::
-
-To connect to Weaviate without authentication, follow these examples:
-
-<WCSWithoutAuthentication/>
 
 ## Authentication enabled
 
