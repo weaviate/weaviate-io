@@ -845,7 +845,7 @@ For a list of filter operators, see [the reference page](../api/graphql/filters.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [API References: Filters](../api/graphql/filters.md)
 
 ## Questions and feedback

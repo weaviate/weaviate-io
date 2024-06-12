@@ -900,7 +900,7 @@ import TokenizationNote from '/_includes/tokenization.mdx'
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - [Weaviate Academy: Tokenization](../../academy/py/tokenization/index.md)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).

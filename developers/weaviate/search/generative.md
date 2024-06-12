@@ -294,7 +294,7 @@ The output is like this:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)

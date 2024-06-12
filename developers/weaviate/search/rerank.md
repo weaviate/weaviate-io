@@ -222,7 +222,7 @@ The response should look like this:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/connections/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [API References: GraphQL - Sorting](/developers/weaviate/api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
