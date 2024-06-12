@@ -23,7 +23,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>io.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>4.0.0</version>  <!-- Check latest version -->
+  <version>4.7.0</version>  <!-- Check latest version -->
 </dependency>
 ```
 
