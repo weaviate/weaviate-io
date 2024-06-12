@@ -1,0 +1,69 @@
+---
+title: "Multi-tenancy: Overview"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+Multi
+
+## <i class="fa-solid fa-square-chevron-right"></i> Why use a vector index?
+
+Databases can quickly grow very large, to the point where time to search for a specific item can become unacceptably long, or the resources required to search become too high.
+
+A vector index is designed to improve users' experience of searching for items in a large database.
+
+It usually makes a trade-off to balance three key factors: search speed, accuracy, and resource requirements.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Vector index types
+
+Many different types of vector indexes exist. A majority of them are designed to speed up searches by reducing the number of vectors that need to be compared. However, they do this in different ways, and each has its own strengths and weaknesses.
+
+### <i class="fa-solid fa-chalkboard"></i> Graph indexes
+
+Graph indexes form a network of vectors, such that similar vectors are connected to each other. This allows for fast "traversal" of the graph to find similar vectors to a query vector.
+
+HNSW, or "Hierarchical Navigable Small World", is the most common graph index type. It creates a set of "layers" of vectors, to enable fast traversal of the graph.
+
+They are very scalable, allow incremental updates, and efficient for high-dimensional vectors.
+
+This is the default index type in Weaviate.
+
+### <i class="fa-solid fa-chalkboard"></i> Tree-based indexes
+
+Tree-based indexes divide the vectors into a tree structure.
+
+ANNOY, or "Approximate Nearest Neighbors Oh Yeah", is a well-known tree-based index. It divides the vectors into a binary tree structure.
+
+They can be memory-efficient, and are good for low-dimensional vectors.
+
+Given its nature as a tree, it may be costly to update the index over time. This would depend on whether the tree needs to be rebuilt, or if it can be updated incrementally.
+
+ANNOY itself does not support incremental updates.
+
+### <i class="fa-solid fa-chalkboard"></i> Cluster-based indexes
+
+Cluster-based indexes group vectors based on their similarity. As a result, the search space is reduced to only the cluster(s) that is most likely to contain the nearest neighbors.
+
+Their search accuracy (recall and precision) may generally be lower than graph-based indexes, but they can be more memory-efficient.
+
+### <i class="fa-solid fa-chalkboard"></i> Flat index
+
+A flat index is the simplest type of index. It stores all vectors in a single list, and searches through all of them to find the nearest neighbors.
+
+This is extremely memory-efficient, but does not scale well at all, as the search time grows linearly with the number of vectors.
+
+### <i class="fa-solid fa-chalkboard"></i> Available vector indexes in Weaviate
+
+Weaviate supports multiple types of vector indexes - namely, `hnsw`, `flat`, and `dynamic`.
+
+We will discuss these in more detail in the following sections.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

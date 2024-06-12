@@ -364,27 +364,55 @@ export const unitData = {
       "Implement an appropriate tokenization option in Weaviate for a given use case.",
     ]
   },
-  // multi_tenancy_intro: {
-  //   title: "Introduction to multi-tenancy",
-  //   body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
-  //   buttonType: "TBD",
-  //   // buttonURL: "/developers/academy/py/standalone/multi_tenancy",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     "What multi-tenancy is and when to use it",
-  //     "How to enable it and create tenants",
-  //     "Using Weaviate with multi-tenancy",
-  //   ],
-  //   learningOutcomes: [
-  //     "Describe what multi-tenancy is",
-  //     "Appropriately select when to use multi-tenancy",
-  //     "Create tenants and ingest data with multi-tenancy enabled",
-  //     "Perform operations at tenant level",
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
-
+  mt_overview: {
+    title: "An overview of multi-tenancy",
+    body: "Multi-tenancy enables efficient production use with thousands (or more) end users. Learn what it is and how it works.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/multitenancy/overview",
+    badgeType: "theory",
+    learningGoals: [
+      "What multi-tenancy is and when to use it",
+    ],
+    learningOutcomes: [
+      "Describe what multi-tenancy is",
+      "Describe use cases for multi-tenancy.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  mt_manage: {
+    title: "Manage a multi-tenant collection",
+    body: "Learn how to create, configure and manage a multi-tenant collection end-to-end.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/multitenancy/manage",
+    badgeType: "practical",
+    learningGoals: [
+      "How to build and manage a multi-tenant collection.",
+    ],
+    learningOutcomes: [
+      "Create a multi-tenant collection.",
+      "Configure a multi-tenant collection to suit your needs.",
+      "Ingest data into a multi-tenant collection.",
+      "Manage a multi-tenant collection with CRUD operations.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  mt_queries: {
+    title: "Query a multi-tenant collection",
+    body: "Make use of a multi-tenant collections with queries, and consider how to configure it with queries in mind.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/multitenancy/query",
+    badgeType: "practical",
+    learningGoals: [
+      "How to perform queries on a multi-tenant collection, and see how multi-tenancy configuration options affect queries.",
+    ],
+    learningOutcomes: [
+      "Extract information from multi-tenant collections with queries, and learn how multi-tenancy options affect queries.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
