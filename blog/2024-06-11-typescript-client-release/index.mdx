@@ -142,13 +142,10 @@ const { vectorizer, vectorIndex } = weaviate.reconfigure;
 const myCollection = client.collection.get('Article')
 
 const config = await myCollection.config.update({
-  vectorizers: [vectorizer.update({
+  vectorizers: vectorizer.update({
     name: 'body',
-    vectorIndexConfig: vectorIndex.hnsw({
-      quantizer: vectorIndex.quantizer.pq(),
-      ef: 4,
-    }),
-  })],
+    vectorIndexConfig: vectorIndex.hnsw({ ef: 4 }),
+  }),
 })
 
 ```
