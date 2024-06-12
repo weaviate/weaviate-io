@@ -50,15 +50,12 @@ We've updated the client connection methods to make their names more intuitive.
 Connecting to [Weaviate Cloud](https://console.weaviate.cloud/dashboard) looks like this with the new connection method. 
 
 ```ts
-  const client = await weaviate.connectToWeaviateCloud(
-    process.env.WEAVIATE_URL || '',
-    {
-      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
-      headers: {
-        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
-      }
-    }
-  )
+const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_URL || '',{
+  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
+  headers: {
+    'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
+  }
+})
 ```
 
 ### Vectorizer configuration
@@ -74,14 +71,8 @@ const { vectorizer, dataType } = weaviate.configure;
 const newCollection = await client.collections.create({
   name: 'Article',
   properties: [
-    {
-      name: 'title',
-      dataType: dataType.TEXT,
-    },
-    {
-      name: 'body',
-      dataType: dataType.TEXT,
-    },
+    { name: 'title', dataType: dataType.TEXT },
+    { name: 'body', dataType: dataType.TEXT },
   ],
  // highlight-start
   vectorizers: [
@@ -109,34 +100,14 @@ const { vectorizer, dataType } = weaviate.configure;
 const newCollection = await client.collections.create({
   name: 'Article',
   properties: [
-    {
-      name: 'title',
-      dataType: dataType.TEXT,
-    },
-    {
-      name: 'body',
-      dataType: dataType.TEXT,
-    },
+    { name: 'title', dataType: dataType.TEXT },
+    { name: 'body', dataType: dataType.TEXT },
   ],
  // highlight-start
   vectorizers: vectorizer.text2VecCohere()
  // highlight-end
 })
 ```
-
-### v2 backwards compatibility
-To make the transition from v2 to v3 smoother, we've added backwards compatibility to the client. You can use the Weaviate v2 client as follows.
-
-```ts
-import { weaviateV2 } from 'weaviate-client'
-```
-
-This by design means you can have an application running both v3 and v2 code all from a single client; v3. Should you want to avoid any confusion with the default v3 import, we recommend renaming the import. This might be useful as you migrate your code base or test out v3 in a v2 project. 
-
-```ts
-import weaviateNext, { weaviateV2: weaviate } from 'weaviate-client'
-```
-
 
 ### Collection reconfiguration 
 
@@ -154,6 +125,19 @@ const config = await myCollection.config.update({
     vectorIndexConfig: vectorIndex.hnsw({ ef: 4 }),
   }),
 })
+```
+
+### v2 backwards compatibility
+To make the transition from v2 to v3 smoother, we've added backwards compatibility to the client. You can use the Weaviate v2 client as follows.
+
+```ts
+import { weaviateV2 } from 'weaviate-client'
+```
+
+This by design means you can have an application running both v3 and v2 code all from a single client; v3. Should you want to avoid any confusion with the default v3 import, we recommend renaming the import. This might be useful as you migrate your code base or test out v3 in a v2 project. 
+
+```ts
+import weaviateNext, { weaviateV2: weaviate } from 'weaviate-client'
 ```
 
 
