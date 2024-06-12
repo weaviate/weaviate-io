@@ -4,7 +4,7 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import knowledge from '/data/knowledgecards.json';
 import styles from './styles.module.scss';
-import KnowledgeHeader from './KnowledgeHeader';
+import KnowledgeHeader from './Knowledgeheader';
 import ShareOptions from './shareOptions';
 
 const KnowledgeBasePage = () => {
