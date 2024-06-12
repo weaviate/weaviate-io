@@ -68,30 +68,34 @@ We've added the option to have multiple vectorizers to a collection definition. 
 A collection definition with two properties and multiple vectorizers looks like this.
 
 ```ts
+import weaviate from 'weaviate-client';
+const { vectorizer, dataType } = weaviate.configure;
+
 const newCollection = await client.collections.create({
   name: 'Article',
   properties: [
     {
       name: 'title',
-      dataType: weaviate.configure.dataType.TEXT,
+      dataType: dataType.TEXT,
     },
     {
       name: 'body',
-      dataType: weaviate.configure.dataType.TEXT,
+      dataType: dataType.TEXT,
     },
   ],
  // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecOpenAI({
+    vectorizer.text2VecOpenAI({
       name: 'title_body',
       sourceProperties: ['title', 'body'],
- }), 
-    weaviate.configure.vectorizer.text2VecCohere({
+    }), 
+    vectorizer.text2VecCohere({
       name: 'body',
       sourceProperties: ['body']
- })]
+    })
+  ]
  // highlight-end
- })
+})
 ```
 
 Notice `sourceProperties` in each vectorizer. With it, you can define what properties you want your vector to be created from.
@@ -99,22 +103,25 @@ Notice `sourceProperties` in each vectorizer. With it, you can define what prope
 The changes to the vectorizer configuration still let you define a single vectorizer as shown below.
 
 ```ts
+import weaviate from 'weaviate-client';
+const { vectorizer, dataType } = weaviate.configure;
+
 const newCollection = await client.collections.create({
   name: 'Article',
   properties: [
     {
       name: 'title',
-      dataType: weaviate.configure.dataType.TEXT,
+      dataType: dataType.TEXT,
     },
     {
       name: 'body',
-      dataType: weaviate.configure.dataType.TEXT,
+      dataType: dataType.TEXT,
     },
   ],
  // highlight-start
-  vectorizers: weaviate.configure.vectorizer.text2VecCohere()
+  vectorizers: vectorizer.text2VecCohere()
  // highlight-end
- })
+})
 ```
 
 ### v2 backwards compatibility
@@ -147,7 +154,6 @@ const config = await myCollection.config.update({
     vectorIndexConfig: vectorIndex.hnsw({ ef: 4 }),
   }),
 })
-
 ```
 
 
