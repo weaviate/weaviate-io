@@ -6,6 +6,7 @@ import knowledge from '/data/knowledgecards.json';
 import styles from './styles.module.scss';
 import KnowledgeHeader from './Knowledgeheader';
 import ShareOptions from './shareOptions';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const KnowledgeBasePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,9 +28,12 @@ const KnowledgeBasePage = () => {
       .toLowerCase();
   };
 
-  const pageUrl = `${
-    window.location.origin
-  }/learn/knowledgecards/${formatTitleForUrl(card.title)}`;
+  let pageUrl = '';
+  if (ExecutionEnvironment.canUseDOM) {
+    pageUrl = `${
+      window.location.origin
+    }/learn/knowledgecards/${formatTitleForUrl(card.title)}`;
+  }
 
   const typeClass = card.type ? card.type.toLowerCase() : '';
 
