@@ -102,17 +102,9 @@ To authenticate with OIDC, follow these examples:
 
 OIDC providers use a variety of authentication configurations. The example shows a typical OIDC configuration, but your identity provider may use a different configuration. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
-## Local connection URL
-
-Docker instances default to `http://localhost:8080`.
-
-If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
-
 ## Third party API keys
 
-Modules that use external APIs often need API keys. The Weaviate clients send these keys as additional headers.
-
-To add third party API keys, follow these examples:
+Integrations that use external APIs often need API keys. To add third party API keys, follow these examples:
 
 <WCDAuthAndInferenceKeys/>
 
@@ -131,6 +123,12 @@ import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
 import GRPCTimeouts from '/_includes/code/connections/timeouts-local.mdx';
 
 <GRPCTimeouts/>
+
+## Local connection URL
+
+Docker instances default to `http://localhost:8080`.
+
+If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
 
 ## Questions and feedback
 
