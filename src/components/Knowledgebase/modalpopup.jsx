@@ -29,7 +29,7 @@ const ModalComponent = ({
   }
 
   const formattedTitle = formatTitleForUrl(details.title);
-  const shareUrl = `${window.location.origin}/learn/cards/${formattedTitle}`;
+  const shareUrl = `${window.location.origin}/learn/knowledgecards/${formattedTitle}`;
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
   const imageFullUrl = details.cardImage
