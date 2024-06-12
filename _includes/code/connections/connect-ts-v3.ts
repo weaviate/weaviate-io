@@ -18,9 +18,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 // START LocalNoAuth
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToWeaviateCloud(
-  'http://localhost:8080'
-)
+const client = await weaviate.connectToLocal()
 
 console.log(client)
 // END LocalNoAuth

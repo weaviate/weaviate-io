@@ -15,3 +15,15 @@ const client = weaviate.client({
   apiKey: new ApiKey(process.env.WEAVIATE_APIKEY),
 });
 // END APIKeyWCD
+
+
+// START LocalNoAuth
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+console.log(client)
+// END LocalNoAuth
