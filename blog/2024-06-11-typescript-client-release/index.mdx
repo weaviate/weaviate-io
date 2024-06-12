@@ -10,8 +10,9 @@ description: "We're pleased to share that the Weaviate v3 TypeScript client is n
 
 ![The Weaviate TypeScript client stable release](./img/hero.png)
 
+The new TypeScript client is now GA!!! After a successful beta phase, we are ready to share the best Weaviate TypeScript client yet. 
 
-About two months ago we released the [beta version](https://weaviate.io/blog/typescript-client-beta) of the Weaviate v3 Typescript client. After a successful beta, today we’re happy to share that the v3 Weaviate Typescript client is stable. 
+Not too long ago we released the [beta version](https://weaviate.io/blog/typescript-client-beta) of the Weaviate v3 Typescript client, an extremely well received release! After a successful beta, today we’re happy to share that the v3 Weaviate Typescript client is stable. We're even more excited to invest more in enabling the JavaScript ecosystem with this and subsequent releases.
 
 To install the new client, run the following command in your terminal.
 
@@ -46,6 +47,20 @@ We've updated the client connection methods to make their names more intuitive.
 
 `connectToWeaviateCloud()` replaced `connectToWCS()`. We've also added `connectToLocal()` and `connectToCustom()` to make it easier to connect local and custom Weaviate instances.
 
+Connecting to [Weaviate Cloud](https://console.weaviate.cloud/dashboard) looks like this with the new connection method. 
+
+```ts
+  const client = await weaviate.connectToWeaviateCloud(
+    process.env.WEAVIATE_URL || '',
+    {
+      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
+      headers: {
+        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
+      }
+    }
+  )
+```
+
 ### Vectorizer configuration
 
 We've added the option to have multiple vectorizers to a collection definition. This leans on our approach to enable users create multiple vectors 
@@ -53,32 +68,54 @@ We've added the option to have multiple vectorizers to a collection definition. 
 A collection definition with two properties and multiple vectorizers looks like this.
 
 ```ts
- const newCollection = await client.collections.create({
-    name: 'Article',
-    properties: [
- {
-        name: 'title',
-        dataType: weaviate.configure.dataType.TEXT,
- },
- {
-        name: 'body',
-        dataType: weaviate.configure.dataType.TEXT,
- },
- ],
-  vectorizers: [weaviate.configure.vectorizer.text2VecOpenAI({
-    name: 'title_body',
-    sourceProperties: ['title', 'body'],
-    
+const newCollection = await client.collections.create({
+  name: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+    {
+      name: 'body',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+  ],
+ // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOpenAI({
+      name: 'title_body',
+      sourceProperties: ['title', 'body'],
  }), 
-  weaviate.configure.vectorizer.text2VecCohere({
-    name: 'body',
-    sourceProperties: ['body']
- })
- ]
+    weaviate.configure.vectorizer.text2VecCohere({
+      name: 'body',
+      sourceProperties: ['body']
+ })]
+ // highlight-end
  })
 ```
 
-As seen above, `sourceProperties` lets you define what properties you want your vector to be created from.
+Notice `sourceProperties` in each vectorizer. With it, you can define what properties you want your vector to be created from.
+
+The changes to the vectorizer configuration still let you define a single vectorizer as shown below.
+
+```ts
+const newCollection = await client.collections.create({
+  name: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+    {
+      name: 'body',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+  ],
+ // highlight-start
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere()
+ // highlight-end
+ })
+```
 
 ### v2 backwards compatibility
 To make the transition from v2 to v3 smoother, we've added backwards compatibility to the client. You can use the Weaviate v2 client as follows.
@@ -87,7 +124,7 @@ To make the transition from v2 to v3 smoother, we've added backwards compatibili
 import { weaviateV2 } from 'weaviate-client'
 ```
 
-Should you want to avoid any confusion with the default v3 import, we recommend renaming the import. This might be useful as you migrate your code base or test out v3 in a v2 project. 
+This by design means you can have an application running both v3 and v2 code all from a single client; v3. Should you want to avoid any confusion with the default v3 import, we recommend renaming the import. This might be useful as you migrate your code base or test out v3 in a v2 project. 
 
 ```ts
 import weaviateNext, { weaviateV2: weaviate } from 'weaviate-client'
@@ -110,8 +147,8 @@ const config = await myCollection.config.update({
     vectorIndexConfig: vectorIndex.hnsw({
       quantizer: vectorIndex.quantizer.pq(),
       ef: 4,
- }),
- })],
+    }),
+  })],
 })
 
 ```
@@ -121,9 +158,9 @@ const config = await myCollection.config.update({
 
 ![Lets dive in](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2Frcmg4ajBtcm5kZ2E1amlwcHNrZ2tqNWJpZTRkb29qNWtmbGZ0ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U9t2zlFjfH9wA/giphy.webp)
 
-### Migrating your client
+### Updating your client
 
-To migrate your application from a beta or RC version of the client, run the following command.
+To update your application from a beta or RC version of the client, run the following command.
 
 ```bash
 npm install weaviate-client@latest
@@ -156,13 +193,13 @@ With the client released, we are now focused on supporting developers building A
 
 ## Weaviate v2 Support 
 
-The Weaviate v3 client was built for server-side applications. Given the constraints this brings for people wanting a client-side package, we found it fitting to keep supporting the v2 client until we have a web version out.
+To bring performance and speed improvements to client, we opted to use gRPC for CRUD operations. This means the Weaviate v3 client can only be used to build server-side applications. Given the constraints this brings for people wanting a client-side package, we found it fitting to keep supporting the v2 client until we have a web version out.
 
-We will support both the v2 and v3 clients and ship new Weaviate features to both. When this commitment to support both clients changes, we've be sure to communicate it promptly. Our plan is to launch a web version of the client and gracefully sunset the v2 client.
+We will support both the v2 and v3 clients and ship new Weaviate features to both. When this commitment to support both clients changes, we'll be sure to communicate it promptly. Our plan is to launch a web version of the client and gracefully sunset the v2 client.
 
 ## What's next 
 
-As happy as we are about the client release, we won't slow down in our commitment to helping developers build AI Native Applications.
+As happy as we are about the client release, we won't slow down in our commitment to helping developers build AI-Native applications.
 
 We're going to focus our energy on the following in the next few months.
 
