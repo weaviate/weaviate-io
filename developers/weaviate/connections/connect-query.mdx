@@ -5,29 +5,41 @@ image: og/docs/connect.jpg
 # tags: ['getting started', 'connect']
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
 
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+The Weaviate Cloud (WCD) [query application (query app)](/developers/wcs/console) is a browser-based GraphQL IDE. Use the query app to work interactively with your WCD clusters.
 
-https://weaviate.io/developers/wcs/console
+## Open the query app
 
-### gRPC Timeouts
+To use the query app, open your [WCD Dashboard](https://console.weaviate.cloud).
 
-For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
+In the left-hand menu, click the Query app icon.
 
-<Tabs groupId="languages">
-    <TabItem value="py4" label="Python Client v4">
-        <FilteredTextBlock
-        text={PyClientCode}
-        startMarker="# LocalWithTimeout"
-        endMarker="# END LocalWithTimeout"
-        language="py"
-        />
-    </TabItem>
-</Tabs>
+<img src={WCDQueryConsoleLocation} width="25%" alt="WCD query app location"/>
 
+## Select a Weaviate instance
+
+The query app connects directly to your WCD clusters. The query app can also connect to other Weaviate instances if you have anonymous access enabled.
+
+To select a cluster, Click the `Query` button and choose a cluster from the clusters list.
+
+### Authentication
+
+The query app connects to WCD instances without any additional authentication details. It connects to external clusters if anonymous access is enabled.
+
+### Pass inference keys
+
+To pass API keys for inference modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, use request headers.
+
+The header can pass multiple keys.
+
+```shell
+{
+ "X-Cohere-Api-key": "replaceWithYourCohereKey",
+ "X-HuggingFace-Api-key": "replaceWithYourHuggingFaceKey",
+ "X-OpenAI-Api-key": "replaceWithYourOpenAIKey",
+}
+```
 
 ## Questions and feedback
 
