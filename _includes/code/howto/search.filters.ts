@@ -1,6 +1,7 @@
 // Howto: Search -> Filters - TypeScript examples
 
 import assert from 'assert';
+import { vectorizer, dataType } from 'weaviate-client';
 
 // ================================
 // ===== INSTANTIATION-COMMON =====
@@ -18,7 +19,7 @@ const client = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // searchSingleFilter // searchLikeFilter // ContainsAnyFilter // ContainsAllFilter // searchMultipleFiltersNested // searchMultipleFiltersAnd // searchFilterNearText // FilterByPropertyLength // searchCrossReference // filterById // searchCrossReference // searchMultipleFiltersNested
@@ -118,7 +119,7 @@ for (let object of result.objects) {
 // highlight-start
 const tokenList = ['australia', 'india']
 // highlight-end
-  
+
 const result = await jeopardy.query.fetchObjects({
   // Find objects where the `answer` property contains any of the strings in `tokenList`
   // highlight-start
@@ -146,7 +147,7 @@ for (let object of result.objects) {
 // highlight-start
 const tokenList = ['australia', 'india']
 // highlight-end
-  
+
 const result = await jeopardy.query.fetchObjects({
   // Find objects where the `question` property contains all of the strings in `tokenList`
   // highlight-start
@@ -290,7 +291,7 @@ assert.equal(targetId, result.objects[0].uuid);
 
 // FilterByTimestamp
 const creationTime = '2020-01-01T00:00:00+00:00'
-  
+
 result = await myArticleCollection.query.fetchObjects({
   // highlight-start
   filters: jeopardy.filter.byCreationTime().greaterOrEqual(creationTime),
@@ -307,6 +308,69 @@ for (let object of result.objects) {
 for (const article of result.objects) {
   assert.ok(Number(article.metadata.creationTime) > 1577836800);
 }
+
+
+// ===================================================
+// ===== FilterByDateDatatype =====
+// ===================================================
+
+const collectionWithDate = await client.collections.create({
+  name: "CollectionWithDate",
+  properties: [
+    {
+      name: "title",
+      dataType: dataType.TEXT,
+    },
+    {
+      name: "some_date",
+      dataType: dataType.DATE,
+    },
+  ],
+  vectorizers: vectorizer.none()
+})
+
+const insertYears = [2020, 2021, 2022, 2023, 2024]
+const insertMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+const insertDays = [1, 6, 11, 16]
+
+let dataObjects = []
+insertYears.forEach(year => {
+  insertMonths.forEach(month => {
+    insertDays.forEach(day => {
+      dataObjects.push({
+        properties: {
+          title: `Object: ${year}/${month}/${day}`,
+          some_date: new Date(year, month, day)
+        }
+      })
+    })
+  })
+})
+
+const dateObjInsertResponse = await collectionWithDate.data.insertMany(dataObjects);
+// highlight-end
+
+
+// FilterByDateDatatype
+const filterTime = new Date(2020, 5, 10)  // Note that the month is 0-indexed
+// The filter threshold could also be an RFC 3339 timestamp, e.g.:
+// filterTime = '2022-06-10T00:00:00.00Z'
+
+result = await collectionWithDate.query.fetchObjects({
+  limit: 3,
+  // highlight-start
+  filters: jeopardy.filter.byProperty('some_date').greaterThan(filterTime),
+  // highlight-end
+})
+
+result.objects.forEach((object) =>
+  console.log(JSON.stringify(object.properties, null, 2))
+);
+// END FilterByDateDatatype
+
+
+// Tests
+assert.ok(result.objects.length > 0);
 
 
 // ===================================================
@@ -339,7 +403,7 @@ for (let object of result.objects) {
 {
 // FilterbyGeolocation
 const publications = client.collections.get('Publication');
-     
+
 const geoResult = await publications.query.fetchObjects({
   // highlight-start
   filters: publications.filter.byProperty('headquartersGeoLocation').withinGeoRange({

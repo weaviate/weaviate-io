@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import ServiceHeader from '../../components/Service/Serverless/Header';
 import ServicePlan from '../../components/Service/Serverless/Plan';
-import ContactUsForm from '../../components/ContactUsForm';
+import ContactUsForm from '../../components/Contact/contactForm';
 import CalculatorContainer from '../../components/Service/Serverless/CalculatorContainer/index.jsx';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import QuoteBox from '../../components/Service/Serverless/QuoteBox/quoteBox.jsx';

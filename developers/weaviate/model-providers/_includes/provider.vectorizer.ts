@@ -628,6 +628,22 @@ await client.collections.create({
 });
 // END FullVectorizerGPT4All
 
+// START BasicMMVectorizerCLIP
+// Code example coming soon
+// END BasicMMVectorizerCLIP
+
+// START FullMMVectorizerCLIP
+// Code example coming soon
+// END FullMMVectorizerCLIP
+
+// START BasicMMVectorizerBind
+// Code example coming soon
+// END BasicMMVectorizerBind
+
+// START FullMMVectorizerBind
+// Code example coming soon
+// END FullMMVectorizerBind
+
 // Clean up
 await client.collections.delete('DemoCollection');
 

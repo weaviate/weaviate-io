@@ -11,7 +11,8 @@ import HomepageIntegrations from '/src/components/Home/Redesign/IntegrationsUpda
 import HomepageTestimonials from '/src/components/Home/Redesign/Testimonials';
 import Resources from '/src/components/Home/Redesign/Resources';
 import CTA from '/src/components/Home/Redesign/CTA';
-import ContactForm from '/src/components/Home/Redesign/ContactForm/contactForm';
+
+import ContactForm from '/src/components/Home/Redesign/Contact/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {

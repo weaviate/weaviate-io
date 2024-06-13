@@ -10,8 +10,8 @@ import weaviate, os
 import weaviate.classes as wvc
 
 # Set these environment variables
-URL = os.getenv("WCS_URL")
-APIKEY = os.getenv("WCS_API_KEY")
+URL = os.getenv("WCD_URL")
+APIKEY = os.getenv("WCD_API_KEY")
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
