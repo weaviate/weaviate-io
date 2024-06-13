@@ -11,70 +11,77 @@ client = weaviate.connect_to_local(
         timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
     )
 )
+
+print(client.is_ready())
 # END TimeoutLocal
 client.close()
 
 
 # START TimeoutWCD
+# Set these environment variables
+# WEAVIATE_URL       your Weaviate instance URL
+# WEAVIATE_API_KEY   your Weaviate instance API key
+
 import weaviate, os
 import weaviate.classes as wvc
 
-# Set these environment variables
-URL = os.getenv("WCD_URL")
-APIKEY = os.getenv("WCD_API_KEY")
-
 # Connect to a WCD instance
-client = weaviate.connect_to_WCD(
-    cluster_url=URL,
-    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WEAVIATE_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
     # skip_init_checks=True,
     additional_config=wvc.init.AdditionalConfig(
         timeout=wvc.init.Timeout(init=10,insert=20,query=20)
         )
     )
 
+print(client.is_ready())
 # END TimeoutWCD
 client.close()
 
 
 # START TimeoutCustom
+# Set these environment variables
+# WEAVIATE_URL       your Weaviate instance URL
+# WEAVIATE_GPC_URL   your Weaviate GPC connection URL
+# WEAVIATE_API_KEY   your Weaviate instance API key
+
 import weaviate, os
 import weaviate.classes as wvc
 
-# Set these environment variables
-URL = os.getenv("WCD_URL")
-GPC_URL = os.getenv("WCD_GPC_URL")
-APIKEY = os.getenv("WCD_API_KEY")
-
-# Connect to a WCD instance
 client = weaviate.connect_to_custom(
-    http_host=URL,
-    http_port=8080,
-    http_secure=False,
-    grpc_host=GPC_URL,
-    grpc_port=50051,
-    grpc_secure=False,
+    http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
+    http_port=443,
+    http_secure=True,   # Set to True if https
+    grpc_host=os.getenv("WEAVIATE_GPC_URL"),
+    grpc_port=443,      # Default is 50051, WCD uses 443
+    grpc_secure=True,   # Edit as needed
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
     additional_config=wvc.init.AdditionalConfig(
         timeout=wvc.init.Timeout(init=10,insert=20,query=20)
     )
 )
 
+print(client.is_ready())
+
 # END TimeoutCustom
 client.close()
 
 # START APIKeyWCD
+# Set these environment variables
+# WEAVIATE_URL       your Weaviate instance URL
+# WEAVIATE_API_KEY   your Weaviate instance API key
+
 import weaviate
 from weaviate.auth import AuthApiKey
 
-# Set these environment variables
-WEAVIATE_URL = os.getenv("WCD_URL")
-WEAVIATE_APIKEY = os.getenv("WCD_API_KEY")
-
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
-    cluster_url=WEAVIATE_URL,
-    auth_credentials=AuthApiKey(WEAVIATE_APIKEY),
+    cluster_url=os.getenv("WEAVIATE_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
 )
+
+print(client.is_ready())
 # END APIKeyWCD
 client.close()
 
@@ -82,4 +89,28 @@ client.close()
 import weaviate
 
 client = weaviate.connect_to_local()
+
+print(client.is_ready())
 # END LocalNoAuth
+client.close()
+
+# START ThirdPartyAPIKeys
+# Set these environment variables
+# WEAVIATE_URL       your Weaviate instance URL
+# WEAVIATE_API_KEY   your Weaviate instance API key
+# COHERE_API_KEY     your Cohere API key
+
+import os
+import weaviate
+from weaviate.auth import AuthApiKey
+
+# Connect to Weaviate Cloud
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WEAVIATE_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    headers={"X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")}
+)
+
+print(client.is_ready())
+# END ThirdPartyAPIKeys
+client.close()

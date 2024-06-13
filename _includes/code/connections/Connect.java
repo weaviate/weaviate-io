@@ -2,8 +2,8 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL     your WCD instance URL
-// WEAVIATE_APIKEY  your WCD instance API key
+// WEAVIATE_URL      your WCD instance URL
+// WEAVIATE_API_KEY  your WCD instance API key
 
 package your.application;
 

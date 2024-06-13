@@ -3,7 +3,7 @@
 # START APIKeyWCD
 # Set these environment variables
 # WEAVIATE_URL     your WCD instance URL
-# WEAVIATE_APIKEY  your WCD instance API key
+# WEAVIATE_API_KEY  your WCD instance API key
 
-curl https://WEAVIATE_URL/v1/meta -H "Authorization: Bearer ${WEAVIATE_APIKEY}" | jq
+curl https://WEAVIATE_URL/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
 # END APIKeyWCD
