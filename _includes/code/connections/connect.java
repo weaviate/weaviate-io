@@ -11,9 +11,9 @@ import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.WeaviateAuthClient;
 
-public class Cloud
+public class App
 {
-    public static void main( String[] args )  throws Exception
+    public static void main( String[] args ) throws Exception
     {
 
     String scheme = "https";
@@ -40,9 +40,9 @@ import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.WeaviateAuthClient;
 
-public class ThirdParty
+public class App
 {
-    public static void main( String[] args )  throws Exception
+    public static void main( String[] args ) throws Exception
     {
 
     String scheme = "https";
@@ -59,3 +59,53 @@ public class ThirdParty
     }
 }
 // END ThirdPartyAPIKeys
+
+//////////////////
+/// Local auth ///
+//////////////////
+
+// START LocalAuth
+package your.application;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.WeaviateAuthClient;
+
+public class App
+{
+    public static void main( String[] args ) throws Exception
+    {
+
+    String scheme = "http";
+    String host = "localhost:8080";
+    String apiKey = System.getenv("WEAVIATE_API_KEY");
+
+    Config config = new Config(scheme, host);
+    WeaviateClient client = WeaviateAuthClient.apiKey(config, apiKey);
+    }
+}
+// END LocalAuth
+
+/////////////////////
+/// Local no auth ///
+/////////////////////
+
+// START LocalNoAuth
+package your.application;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+
+public class App
+{
+    public static void main( String[] args ) throws Exception
+    {
+
+    String scheme = "http";
+    String host = "localhost:8080";
+
+    Config config = new Config(scheme, host);
+    WeaviateClient client = new WeaviateClient(config);
+    }
+}
+// END LocalNoAuth
