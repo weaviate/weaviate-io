@@ -46,6 +46,27 @@ console.log(client)
 // END LocalAuth
 
 //////////////////////
+/// Local 3d party ///
+//////////////////////
+
+// START LocalThirdPartyAPIKeys
+// Set this environment variable
+// COHERE_API_KEY    your Cohere API key
+
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToLocal(
+  {
+    headers: {
+     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
+    }
+  }
+)
+
+console.log(client)
+// END LocalThirdPartyAPIKeys
+
+//////////////////////
 /// Cloud 3d party ///
 //////////////////////
 

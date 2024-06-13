@@ -78,6 +78,14 @@ Do not expose your Weaviate instance to the public internet if authentication is
      language="java"
    />
 </TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="shell"
+   />
+</TabItem>
 </Tabs>
 
 ## Authentication enabled
@@ -96,8 +104,8 @@ To authenticate with a Weaviate API key, follow these examples.
 <TabItem value="py3" label="Python Client v3">
    <FilteredTextBlock
      text={PyCodeV3}
-     startMarker="# START LocalNoAuth"
-     endMarker="# END LocalNoAuth"
+     startMarker="# START LocalAuth"
+     endMarker="# END LocalAuth"
      language="py"
    />
 </TabItem>
@@ -133,6 +141,14 @@ To authenticate with a Weaviate API key, follow these examples.
      language="java"
    />
 </TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START LocalAuth"
+     endMarker="# END LocalAuth"
+     language="shell"
+   />
+</TabItem>
 </Tabs>
 
 ## Third party API keys
@@ -143,41 +159,49 @@ Integrations that use external APIs often need API keys. To add third party API 
 <TabItem value="py4" label="Python Client v4">
    <FilteredTextBlock
      text={PyCodeV4}
-     startMarker="# START LocalNoAuth"
-     endMarker="# END LocalNoAuth"
+     startMarker="# START LocalThirdPartyAPIKeys"
+     endMarker="# END LocalThirdPartyAPIKeys"
      language="py"
    />
 </TabItem>
 <TabItem value="py3" label="Python Client v3">
    <FilteredTextBlock
      text={PyCodeV3}
-     startMarker="# START LocalNoAuth"
-     endMarker="# END LocalNoAuth"
+     startMarker="# START LocalThirdPartyAPIKeys"
+     endMarker="# END LocalThirdPartyAPIKeys"
      language="py"
    />
 </TabItem>
 <TabItem value="ts3" label="JS/TS Client v3">
    <FilteredTextBlock
      text={TsCodeV3}
-     startMarker="// START LocalNoAuth"
-     endMarker="// END LocalNoAuth"
+     startMarker="// START LocalThirdPartyAPIKeys"
+     endMarker="// END LocalThirdPartyAPIKeys"
      language="js"
    />
 </TabItem>
 <TabItem value="ts2" label="JS/TS Client v2">
    <FilteredTextBlock
      text={TsCodeV2}
-     startMarker="// START LocalNoAuth"
-     endMarker="// END LocalNoAuth"
+     startMarker="// START LocalThirdPartyAPIKeys"
+     endMarker="// END LocalThirdPartyAPIKeys"
      language="js"
    />
 </TabItem>
 <TabItem value="go" label="Go">
    <FilteredTextBlock
      text={GoCode}
-     startMarker="// START LocalNoAuth"
-     endMarker="// END LocalNoAuth"
+     startMarker="// START LocalThirdPartyAPIKeys"
+     endMarker="// END LocalThirdPartyAPIKeys"
      language="js"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START LocalThirdPartyAPIKeys"
+     endMarker="# END LocalThirdPartyAPIKeys"
+     language="shell"
    />
 </TabItem>
 </Tabs>

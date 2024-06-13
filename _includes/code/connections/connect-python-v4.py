@@ -160,6 +160,25 @@ print(client.is_ready())
 # END LocalAuth
 
 ##################################
+### Local third party API keys ###
+##################################
+
+# START LocalThirdPartyAPIKeys
+# Set this environment variable
+# COHERE_API_KEY     your Cohere API key
+
+import os
+import weaviate
+
+client = weaviate.connect_to_local(
+    headers={"X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")}
+)
+
+print(client.is_ready())
+# END LocalThirdPartyAPIKeys
+client.close()
+
+##################################
 ### Cloud third party API keys ###
 ##################################
 
