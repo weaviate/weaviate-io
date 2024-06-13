@@ -94,7 +94,8 @@ client.collections.create(
     # highlight-start
     multi_tenancy_config=Configure.multi_tenancy(   # Dyanmic index works well with multi-tenancy set-ups
         enabled=True,
-        auto_tenant_creation=True
+        auto_tenant_creation=True,
+        auto_tenant_activation=True,
     ),
     vector_index_config=Configure.VectorIndex.dynamic(
         distance_metric=VectorDistances.COSINE,                     # Distance metric
