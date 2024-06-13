@@ -527,7 +527,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi
 
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
-- (Experimental) Tenant activity status setting available from version `v1.21`
+- Tenant activity status setting available from version `v1.21`
 :::
 
 :::info Related pages

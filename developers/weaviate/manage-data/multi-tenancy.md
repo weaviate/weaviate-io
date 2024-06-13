@@ -25,7 +25,7 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
   </summary>
 
 - Multi-tenancy added in `v1.20`
-- (Experimental) Tenant activity status setting added in `v1.21`
+- Tenant activity status setting added in `v1.21`
 
 </details>
 
@@ -443,10 +443,37 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
   </summary>
 
 - This feature was added in `v1.21`
-- Other client code examples coming soon
 - To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
 
 </details>
+
+## Automatically activate tenants
+
+:::info Added in `v1.25.2`
+:::
+
+Enable this to automatically activate `COLD` tenants if a read-or-write request comes. This is disabled by default.
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableAutoActivation"
+      endMarker="# END EnableAutoActivation"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableAutoActivation"
+      endMarker="// END EnableAutoActivation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## CRUD operations
 
