@@ -2,7 +2,7 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL     your WCD instance URL
+// WEAVIATE_URL      your WCD instance URL
 // WEAVIATE_API_KEY  your WCD instance API key
 
 package main
@@ -84,6 +84,11 @@ func main() {
 
 
 // START ThirdPartyAPIKeys
+// Set these environment variables
+// WEAVIATE_URL      your WCD instance URL
+// WEAVIATE_API_KEY  your WCD instance API key
+// COHERE_API_KEY    your Cohere API key
+
 package main
 
 import (
@@ -97,7 +102,7 @@ import (
 // Create the client
 func CreateClient() {
 cfg := weaviate.Config{
-    Host: os.Getenv("WEAVIATE_URL"),
+    Host: os.Getenv("WEAVIATE_URL"),   // URL only, no scheme prefix
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
     Headers: map[string]string{
