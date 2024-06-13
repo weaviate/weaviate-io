@@ -52,7 +52,7 @@ multi_collection = client.collections.create(
 )
 # END EnableAutoMT
 
-assert client.collections.exists("CollectionWithAutoMTEnabled")
+assert multi_collection.config.get().multi_tenancy_config.auto_tenant_creation == True
 
 # ==========================
 # ===== Update Auto MT =====
@@ -82,9 +82,9 @@ collection.config.update(
 
 assert collection.config.get().multi_tenancy_config.auto_tenant_creation == True
 
-# ================================
-# ===== Add tenants to class =====
-# ================================
+# =====================================
+# ===== Add tenants to collection =====
+# =====================================
 
 multi_collection = client.collections.get("MultiTenancyCollection")
 
@@ -217,6 +217,28 @@ multi_collection.tenants.update(tenants=[
 tenants = multi_collection.tenants.get()
 assert tenants["tenantA"].activity_status.name == "HOT"
 
+# ==========================
+# ===== Enable Auto Tenant Activation =====
+# ==========================
+
+client.collections.delete("CollectionWithAutoTenantActivation")
+
+# START EnableAutoActivation
+from weaviate.classes.config import Configure
+
+multi_collection = client.collections.create(
+    name="CollectionWithAutoTenantActivation",
+    # highlight-start
+    multi_tenancy_config=Configure.multi_tenancy(
+        enabled=True,
+        auto_tenant_activation=True  # Enable automatic tenant activation
+    )
+    # highlight-end
+)
+# END EnableAutoActivation
+
+assert multi_collection.config.get().multi_tenancy_config.auto_tenant_creation == None
+assert multi_collection.config.get().multi_tenancy_config.auto_tenant_activation == True
 
 # ============================
 # ===== Create MT object =====

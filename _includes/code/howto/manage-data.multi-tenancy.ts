@@ -10,7 +10,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 const collectionName = 'MultiTenancyCollection';  // aka JeopardyQuestion
@@ -177,6 +177,24 @@ await multiCollection.tenants.update({
 // highlight-end
 // END UpdateTenants
 }
+
+// =====================
+// ===== Enable Auto Tenant Activation =====
+// =====================
+{
+  // START EnableAutoActivation
+  const result = await client.collections.create({
+    name: 'CollectionWithAutoTenantActivation',
+    multiTenancy: weaviate.configure.multiTenancy({
+      enabled: true,
+      // highlight-start
+      autoTenantActivation: true
+      // highlight-end
+    })
+  })
+  // END EnableAutoMT
+  }
+
 // ============================
 // ===== Create MT object =====
 // ============================
@@ -186,7 +204,7 @@ await multiCollection.tenants.update({
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
 // highlight-end
-  
+
 // highlight-start
 await multiTenantA.data.insert({
   question: 'This vector DB is OSS & supports automatic property type inference on import'
