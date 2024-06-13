@@ -39,6 +39,28 @@ print(client.is_ready())
 # END TimeoutWCD
 client.close()
 
+# START CustomConnect
+# Set these environment variables
+# WEAVIATE_URL       your Weaviate instance URL
+# WEAVIATE_GPC_URL   your Weaviate GPC connection URL
+# WEAVIATE_API_KEY   your Weaviate instance API key
+
+import weaviate, os
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_custom(
+    http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
+    http_port=443,
+    http_secure=True,   # Set to True if https
+    grpc_host=os.getenv("WEAVIATE_GPC_URL"),
+    grpc_port=443,      # Default is 50051, WCD uses 443
+    grpc_secure=True,   # Edit as needed
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+)
+
+print(client.is_ready())
+# END CustomConnect
+client.close()
 
 # START TimeoutCustom
 # Set these environment variables
@@ -63,7 +85,6 @@ client = weaviate.connect_to_custom(
 )
 
 print(client.is_ready())
-
 # END TimeoutCustom
 client.close()
 
