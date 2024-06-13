@@ -35,7 +35,7 @@ import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
 When you try upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 
 ## Related pages
-- [Connect to Weaviate](../connections/connect.mdx)
+- [Connect to Weaviate](../connections)
 - [Weaviate Quickstart](../quickstart/index.md)
 - [Weaviate Cloud Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)
