@@ -6,8 +6,8 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL      your WCD instance URL
-// WEAVIATE_API_KEY  your WCD instance API key
+// WEAVIATE_URL      your Weaviate instance URL
+// WEAVIATE_API_KEY  your Weaviate instance API key
 
 package main
 
@@ -95,8 +95,8 @@ func main() {
 //////////////////
 
 // START LocalAuth
-// Set this environment variables
-// WEAVIATE_API_KEY  your WCD instance API key
+// Set this environment variable
+// WEAVIATE_API_KEY  your Weaviate instance API key
 
 package main
 
@@ -143,8 +143,8 @@ func main() {
 
 // START ThirdPartyAPIKeys
 // Set these environment variables
-// WEAVIATE_URL      your WCD instance URL
-// WEAVIATE_API_KEY  your WCD instance API key
+// WEAVIATE_URL      your Weaviate instance URL
+// WEAVIATE_API_KEY  your Weaviate instance API key
 // COHERE_API_KEY    your Cohere API key
 
 package main

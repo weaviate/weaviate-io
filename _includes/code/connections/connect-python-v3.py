@@ -42,7 +42,7 @@ print(client.is_ready())
 ##################
 
 # START LocalAuth
-# Set this environment variables
+# Set this environment variable
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import os
