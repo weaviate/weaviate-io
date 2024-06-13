@@ -97,3 +97,20 @@ const client = weaviate.client({
 
 console.log(client)
 // END ThirdPartyAPIKeys
+
+////////////////
+/// Embedded ///
+////////////////
+
+// START Embedded
+import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
+
+const client = weaviate.client(new EmbeddedOptions());
+
+await client.embedded.start();
+
+// Add your client code here.
+// When the client exits, the embedded instance also exits
+
+client.embedded.stop();
+// END Embedded

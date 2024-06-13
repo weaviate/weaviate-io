@@ -103,3 +103,19 @@ client = weaviate.Client(
 
 print(client.is_ready())
 # END ThirdPartyAPIKeys
+
+#########################
+### Embedded weaviate ###
+#########################
+
+# START Embedded
+import weaviate
+from weaviate.embedded import EmbeddedOptions
+
+client = weaviate.Client(
+  embedded_options=EmbeddedOptions()
+)
+
+# Add your client code here.
+# When the client exits, the embedded instance also exits
+# END Embedded

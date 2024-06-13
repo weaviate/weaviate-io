@@ -202,3 +202,25 @@ client = weaviate.connect_to_wcs(
 print(client.is_ready())
 # END ThirdPartyAPIKeys
 client.close()
+
+#########################
+### Embedded weaviate ###
+#########################
+
+# START Embedded
+# Set this environment variable
+# OPENAI_API_KEY     your OpenAI API key
+
+import weaviate
+import os
+
+client = weaviate.connect_to_embedded(
+    version=weaviate_version,  # Format: version="1.25.4"
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_API_KEY")
+    },
+)
+
+# Add your client code here.
+# When the client exits, the embedded instance also exits
+# END Embedded
