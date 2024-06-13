@@ -116,3 +116,37 @@ public class App
     }
 }
 // END LocalNoAuth
+
+//////////////////////
+/// Local 3d party ///
+//////////////////////
+
+// START LocalThirdPartyAPIKeys
+// Set this environment variable
+// COHERE_API_KEY    your Cohere API key
+
+package your.application;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+
+public class App
+{
+    public static void main( String[] args ) throws Exception
+    {
+
+    String scheme = "http";
+    String host = "localhost:8080";
+    String cohereKey = System.getenv("COHERE_API_KEY");
+
+    Map<String, String> headers = new HashMap<String, String>() { {
+        put("X-Cohere-Api-Key", cohereKey);
+    } };
+
+    Config config = new Config(scheme, host, headers);
+    WeaviateClient client = new WeaviateClient(config);
+    }
+}
+// END LocalThirdPartyAPIKeys

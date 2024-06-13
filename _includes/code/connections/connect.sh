@@ -46,3 +46,16 @@ curl http://localhost:8080/v1/meta | jq
 
 curl http://localhost:8080/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
 # END LocalAuth
+
+######################
+### Local 3d party ###
+######################
+
+# START LocalThirdPartyAPIKeys
+# Set this environment variable
+# COHERE_API_KEY    your Cohere API key
+
+curl http://localhost:8080/v1/meta \
+-H 'Content-Type: application/json' \
+-H "X-Cohere-Api-Key: ${COHERE_API_KEY}" | jq
+# END LocalThirdPartyAPIKeys

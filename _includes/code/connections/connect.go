@@ -138,6 +138,53 @@ func main() {
 // END LocalAuth
 
 //////////////////////
+/// Local 3d party ///
+//////////////////////
+
+// START LocalThirdPartyAPIKeys
+// Set this environment variable
+// COHERE_API_KEY    your Cohere API key
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+// Create the client
+func CreateClient() {
+	cfg := weaviate.Config{
+		Host:       "localhost:8080",
+		Scheme:     "http",
+        Headers:     map[string]string{
+            "X-Cohere-Api-Key": os.Getenv("WEAVIATE_COHERE_KEY"),
+        },
+	}
+
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// Check the connection
+	live, err := client.Misc().LiveChecker().Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", live)
+
+}
+
+func main() {
+	CreateClient()
+}
+// END LocalThirdPartyAPIKeys
+
+//////////////////////
 /// Cloud 3d party ///
 //////////////////////
 

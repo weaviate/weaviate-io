@@ -57,6 +57,9 @@ console.log(client)
 //////////////////////
 
 // START LocalThirdPartyAPIKeys
+// Set this environment variable
+// COHERE_API_KEY    your Cohere API key
+
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
