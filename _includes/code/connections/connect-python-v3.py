@@ -29,6 +29,23 @@ client = weaviate.Client(
 print(client.is_ready())
 # END LocalNoAuth
 
+# START LocalAuth
+# Set this environment variables
+# WEAVIATE_API_KEY   your Weaviate instance API key
+
+import os
+import weaviate
+
+# Create the client
+client = weaviate.Client(
+    url="http://localhost:8080",
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WEAVIATE_API_KEY")),
+)
+
+print(client.is_ready())
+# END LocalAuth
+
+
 # START ThirdPartyAPIKeys
 # Set these environment variables
 # WEAVIATE_URL       your Weaviate instance URL

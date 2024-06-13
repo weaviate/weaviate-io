@@ -7,15 +7,11 @@ image: og/docs/connect.jpg
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
-import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 import WCDAuthAndInferenceKeys from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
-import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
-import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
@@ -25,13 +21,13 @@ import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
 import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
 import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
-Follow these steps to connect to a locally hosted Weaviate Core instance.
+Follow these steps to connect to a locally hosted Weaviate instance.
 
 ## No authentication enabled
 
-To connect to Weaviate without authentication, follow these examples:
+By default Weaviate allows unauthenticated connections from `localhost`. You should always enable authentication for production instances.
 
-<WCSWithoutAuthentication/>
+Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your instance.
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -76,37 +72,99 @@ To connect to Weaviate without authentication, follow these examples:
 </TabItem>
 </Tabs>
 
-:::warning Use authentication
-By default Weaviate allows unauthenticated connections from `localhost`.
-
-Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your instance.
-:::
-
 ## Authentication enabled
-
-If [authentication](/developers/weaviate/configuration/authentication.md) is enabled, use a Weaviate API key or OIDC credentials to connect.
-
-#### Weaviate API keys
 
 To authenticate with a Weaviate API key, follow these examples.
 
-Be sure to use your Weaviate API key to authenticate and not the API key for a third-party service like OpenAI.
-
-<WCSAuthenticationApiKey/>
-
-#### OpenID Connect (OIDC)
-
-To authenticate with OIDC, follow these examples:
-
-<WCSAuthenticationUserPass/>
-
-OIDC providers use a variety of authentication configurations. The example shows a typical OIDC configuration, but your identity provider may use a different configuration. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START LocalAuth"
+     endMarker="# END LocalAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+</Tabs>
 
 ## Third party API keys
 
 Integrations that use external APIs often need API keys. To add third party API keys, follow these examples:
 
-<WCDAuthAndInferenceKeys/>
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START LocalNoAuth"
+     endMarker="# END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+</Tabs>
 
 ## Environment variables
 
@@ -114,7 +172,7 @@ import EnvVarsHowto from '/_includes/environment-variables.mdx';
 
 <EnvVarsHowto/>
 
-## Timeouts
+## gRPC timeouts
 
 import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
 
@@ -126,7 +184,7 @@ import GRPCTimeouts from '/_includes/code/connections/timeouts-local.mdx';
 
 ## Local connection URL
 
-Docker instances default to `http://localhost:8080`.
+Docker instances default to `http://localhost:8080`. The gRPC port, `50051`, is also on `localhost`.
 
 If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
 

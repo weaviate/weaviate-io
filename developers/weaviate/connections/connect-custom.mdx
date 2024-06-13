@@ -9,12 +9,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
+import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
 import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
 The [Python Client v4](/developers/weaviate/client-libraries/python) and the [TypeScript Client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) provide provide custom methods for additional connection configuration.
 
-The other clients use the same methods for custom connections that they use for remote connections.
+The other clients use the same, standard connection methods for all connections.
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -25,12 +30,52 @@ The other clients use the same methods for custom connections that they use for 
      language="py"
    />
 </TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
 <TabItem value="ts3" label="JS/TS Client v3">
    <FilteredTextBlock
      text={TsCodeV3}
      startMarker="// START CustomConnect"
      endMarker="// END CustomConnect"
      language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="java" label="Java">
+   <FilteredTextBlock
+     text={JavaCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="shell"
    />
 </TabItem>
 </Tabs>
