@@ -7,59 +7,59 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Multi
+Multi-tenancy generally refers to a software architecture where a single instance of the software serves multiple "tenants". Each tenant is a group of users who share common access.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Why use a vector index?
+In Weaviate, multi-tenancy is implemented at the collection level. A collection can optionally be configured with multi-tenancy, such that each "tenant" can access only their own data. Each object in a multi-tenant collection will share the same settings such as vectorizer, index settings and properties.
 
-Databases can quickly grow very large, to the point where time to search for a specific item can become unacceptably long, or the resources required to search become too high.
+The main difference is that objects in a multi-tenant collection are further divided into isolated "tenants".
 
-A vector index is designed to improve users' experience of searching for items in a large database.
+![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-dark.png#gh-dark-mode-only)
+![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-light.png#gh-light-mode-only)
 
-It usually makes a trade-off to balance three key factors: search speed, accuracy, and resource requirements.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Vector index types
+## <i class="fa-solid fa-square-chevron-right"></i> Why use multi-tenancy?
 
-Many different types of vector indexes exist. A majority of them are designed to speed up searches by reducing the number of vectors that need to be compared. However, they do this in different ways, and each has its own strengths and weaknesses.
+One use of multi-tenancy is a software-as-a-service (SaaS) type application. In a SaaS application, each end user, or account, may have some data objects associated with it.
 
-### <i class="fa-solid fa-chalkboard"></i> Graph indexes
+Using single-tenant collections, you might use:
 
-Graph indexes form a network of vectors, such that similar vectors are connected to each other. This allows for fast "traversal" of the graph to find similar vectors to a query vector.
+1. **A monolithic collection**: To store the entire dataset, with an end user identifier property
+1. **Per-end-user collection**: Where each end user's data would be in a separate collection
 
-HNSW, or "Hierarchical Navigable Small World", is the most common graph index type. It creates a set of "layers" of vectors, to enable fast traversal of the graph.
+Unfortunately, neither of these are suitable.
 
-They are very scalable, allow incremental updates, and efficient for high-dimensional vectors.
+1. **A monolithic collection** would be:
+    - Inefficient, as each tenant's data would typically be a very small percentage of the collection.
+    - Difficult to manage, as data isolation would be difficult to enforce.
+1. **Per-end-user collection** would be:
+    - Inefficient, as each collection incurs non-trivial overhead.
+    - Difficult to manage, as each collection would need to be managed separately.
 
-This is the default index type in Weaviate.
+Multi-tenancy solves these problems.
 
-### <i class="fa-solid fa-chalkboard"></i> Tree-based indexes
+### <i class="fa-solid fa-chalkboard"></i> Trade-offs
 
-Tree-based indexes divide the vectors into a tree structure.
+It allows you to build one collection with one set of configurations, but with each tenant's data isolated from each other. This is more efficient, and easier to manage.
 
-ANNOY, or "Approximate Nearest Neighbors Oh Yeah", is a well-known tree-based index. It divides the vectors into a binary tree structure.
+Thanks to the low overhead, a Weaviate node can serve thousands of end users in a multi-tenant collection with very little resource overhead. Each tenant's data is isolated from each other, eliminating risks of accidental data leakage, and making it easier to manage.
 
-They can be memory-efficient, and are good for low-dimensional vectors.
+Furthermore, non-active end users' data can be stored as a "cold" tenant. Cold tenants require virtually no overhead, which further frees up resources to serve active end users. These are called "hot" tenants.
 
-Given its nature as a tree, it may be costly to update the index over time. This would depend on whether the tree needs to be rebuilt, or if it can be updated incrementally.
+## <i class="fa-solid fa-square-chevron-right"></i> Multi-tenancy implementation
 
-ANNOY itself does not support incremental updates.
+Multi-tenancy is implemented in Weaviate as follows:
 
-### <i class="fa-solid fa-chalkboard"></i> Cluster-based indexes
+- A collection can be configured as multi-tenant at creation time.
+    - This is immutable, and cannot be changed after creation.
+- Tenants can be created and deleted at any time. Each tenant is isolated from each other.
+- All tenants share the same settings, which are inherited from the collection.
+- Each object in a multi-tenant collection must belong to a tenant.
+- Each tenant has its own, isolated, indexes
+- Deleting a tenant will delete all objects associated with that tenant.
+- A tenant's activity status can be set to "hot" or "cold". This can be changed at any time.
+    - "Cold" tenants are not accessible, and require no resources.
 
-Cluster-based indexes group vectors based on their similarity. As a result, the search space is reduced to only the cluster(s) that is most likely to contain the nearest neighbors.
-
-Their search accuracy (recall and precision) may generally be lower than graph-based indexes, but they can be more memory-efficient.
-
-### <i class="fa-solid fa-chalkboard"></i> Flat index
-
-A flat index is the simplest type of index. It stores all vectors in a single list, and searches through all of them to find the nearest neighbors.
-
-This is extremely memory-efficient, but does not scale well at all, as the search time grows linearly with the number of vectors.
-
-### <i class="fa-solid fa-chalkboard"></i> Available vector indexes in Weaviate
-
-Weaviate supports multiple types of vector indexes - namely, `hnsw`, `flat`, and `dynamic`.
-
-We will discuss these in more detail in the following sections.
+[Next](./200_manage.mdx), we will take a look at how to manage a multi-tenant collection.
 
 ## Questions and feedback
 

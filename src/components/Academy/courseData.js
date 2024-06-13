@@ -163,7 +163,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "mt_overview", "mt_manage", "mt_queries"
+      "mt_overview", "mt_tenants", "mt_usage"
     ],
     learningGoals: [
       "What multi-tenancy is, when to use it and how to effectively use it to scale for many end users."
@@ -171,9 +171,9 @@ export const courseData = {
     learningOutcomes: [
       "Describe use cases for multi-tenancy.",
       "Configure a collection with multi-tenancy.",
+      "Manage tenants and use tenant auto-creation or auto-.",
       "Perform CRUD operations on a multi-tenancy collection.",
       "Perform queries on a multi-tenancy collection.",
-      "Set tenants to hot or cold status, and know when to use each.",
     ],
     note: "Python client (v4)"
   },
