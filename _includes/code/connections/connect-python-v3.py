@@ -1,5 +1,9 @@
 # THIS FILE HASN'T BEEN TESTED TO RUN END-TO-END
 
+#####################
+### Cloud connect ###
+#####################
+
 # START APIKeyWCD
 # Set these environment variables
 # WEAVIATE_URL       your Weaviate instance URL
@@ -18,6 +22,10 @@ print(client.is_ready())
 # END APIKeyWCD
 client.close()
 
+#####################
+### Local no auth ###
+#####################
+
 # START LocalNoAuth
 import weaviate
 
@@ -28,6 +36,10 @@ client = weaviate.Client(
 
 print(client.is_ready())
 # END LocalNoAuth
+
+##################
+### Local auth ###
+##################
 
 # START LocalAuth
 # Set this environment variables
@@ -45,6 +57,9 @@ client = weaviate.Client(
 print(client.is_ready())
 # END LocalAuth
 
+##############################
+### Cloud third party APIs ###
+##############################
 
 # START ThirdPartyAPIKeys
 # Set these environment variables

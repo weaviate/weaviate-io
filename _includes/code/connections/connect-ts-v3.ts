@@ -1,5 +1,9 @@
 // THIS FILE HASN'T BEEN TESTED TO RUN END-TO-END
 
+////////////////////////
+/// Connect to cloud ///
+////////////////////////
+
 // START APIKeyWCD
 // Set these environment variables
 // WEAVIATE_URL      your WCD instance URL
@@ -15,6 +19,10 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 )
 // END APIKeyWCD
 
+/////////////////////
+/// Local no auth ///
+/////////////////////
+
 // START LocalNoAuth
 import weaviate from 'weaviate-client'
 
@@ -22,6 +30,24 @@ const client = await weaviate.connectToLocal()
 
 console.log(client)
 // END LocalNoAuth
+
+//////////////////
+/// Local auth ///
+//////////////////
+
+// START LocalAuth
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToLocal(
+   {  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),}
+)
+
+console.log(client)
+// END LocalAuth
+
+//////////////////////
+/// Cloud 3d party ///
+//////////////////////
 
 // START ThirdPartyAPIKeys
 // Set these environment variables
@@ -41,6 +67,10 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   }
 )
 // END ThirdPartyAPIKeys
+
+//////////////////////
+/// Custom connect ///
+//////////////////////
 
 // START CustomConnect
 // Set these environment variables
