@@ -23,9 +23,9 @@ Weaviate integrates with the ImageBind model by spinning it up in a container. T
 
 The ImageBind embedding model transforms multi-modal data into high-dimensional vector representations, capturing semantic meaning and context.
 
-[Weaviate integrates with ImageBind's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
+[Weaviate integrates with ImageBind's embedding models](./embeddings-multimodal.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
-[ImageBind embedding integration page](./embeddings.md)
+[ImageBind embedding integration page](./embeddings-multimodal.md)
 
 ## Summary
 
@@ -39,7 +39,7 @@ A locally hosted Weaviate instance is required for these integrations so that yo
 
 Go to the relevant integration page to learn how to configure Weaviate with the ImageBind model and start using it in your applications.
 
-- [Text Embeddings](./embeddings.md)
+- [Embeddings](./embeddings-multimodal.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

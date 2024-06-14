@@ -1,0 +1,81 @@
+---
+title: Reflections and insights on my internship at Weaviate
+slug: reflections-and-insights-on-my-internship-at-weaviate
+authors: [ajit]
+date: 2024-05-30
+tags: []
+image: ./img/hero.jpg
+
+---
+![Hey! I am Ajit, and I am currently interning at Weaviate's Developer Growth team...](./img/hero.jpg)
+
+<!-- truncate -->
+import playbookImage from '/img/site/playbook-team-photo.jpg';
+import playbookCode from '/img/site/playbook-code-image.png';
+import ReactPlayer from 'react-player';
+
+
+Hey! I am Ajit, and I am currently interning at Weaviate's Developer Growth team. In this blog post, I reflect on the previous months and weeks to give you a sense of what it’s like to be an intern at such a fast-growing, cutting-edge startup in a highly competitive space.
+
+## The Beginnings 
+
+I heard of Weaviate quite early through a video by the  [Youtuber Fireship](https://www.youtube.com/@Fireship/videos) and have since used it whenever I needed a vector database for one of my side projects. One such occasion was a hackathon hosted by Anthropic last autumn, where I also met Philip, the Head of Developer Growth at Weaviate. We immediately struck up a conversation about Weaviate and the industry at large. Especially after seeing our Hackathon project, Philip invited me to intern in his team.
+
+Philip’s elaborations around Weaviate during the hackathon were highly interesting, and the prospect of working on something I had used myself in the past was exciting - and so I didn’t hesitate long to take one semester off from my computer science bachelor and join Weaviate.
+
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop: '10px', marginBottom: '60px'}}>
+  <img src={playbookImage} width="600" alt="Developer Growth Team" />
+</div>
+
+I view Philip as a manager who often doesn’t decide what the team works on solely by himself but rather seeks to enable and amplify ideas coming from the team itself. The Developer Growth team is responsible for marketing Weaviate to developers, with the goal of making Weaviate top of mind whenever they need a vector database. To achieve this, out-of-the-box ideas for content, collaborations, etc., are key - and these frequently come from the team itself. Even before my internship had officially started, I was challenged to come up with ideas for demo applications to show the capabilities of Weaviate. 
+
+I started working on one of these, [QuoteFinder](https://quotefinder.weaviate.io), as soon as the internship started, and it became my first project. Creating something completely of my own - from idea to execution - was incredibly rewarding and motivating. Generally, there was a high degree of autonomy - as long as you delivered, you could be very flexible in your working style. In addition to creating applications, I also wrote Jupyter notebooks to demonstrate the latest features of Weaviate and how to use it in conjunction with other services. Importantly, I was able to draw from the years of accumulated wisdom of the team on how to create the most interesting and engaging posts about my work on social media and used it to gain followers for Weaviate and my own twitter account.
+
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop: '10px', marginBottom: '60px'}}>
+  <ReactPlayer playing controls url='/img/site/quotefinder.mp4' />
+</div>
+
+
+Of course, the team can effectively contribute with their own ideas only when the overall goals and visions are clear. Philip gave us this high-level overview by always including us in the currently relevant decisions and concerns of management and the current state of collaboration or competition with other companies.
+
+## Branching out: Work in the Applied Research team
+
+
+Developing applications with and creating content around Weaviate sparked my interest in the database’s inner workings and technologies. Since Weaviate is 100% open source, I was able to explore the codebase on my own terms. When creating a notebook showcasing binary quantization, a newly popular technique for reducing memory usage, I noticed that one of the vector distance functions, the hamming distance, was not yet SIMD-accelerated. I implemented this and submitted a PR. The Applied Research Team was happy about my contribution and offered to let me be part of their team. The team members were very welcoming and showed me their current work in detail. We agreed that I would dedicate half of my time at Weaviate to the Developer Growth team and the other half to Applied Research. 
+
+Reflecting on this shift, being able to move not only between roles but also teams so flexibly is one of the unique advantages of Weaviate - while the Developer Growth and Applied Research teams might not even know each other at other companies, here, my shift in responsibilities was encouraged to bring the already collaborative teams even closer together.
+
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop: '10px', marginBottom: '60px'}}>
+  <img src={playbookCode} width="600" alt="Locked In" />
+</div>
+
+
+## Outlook
+
+Overall, my time at Weaviate has been amazing, and I am glad to enjoy it a bit longer since I extended my internship by a month. I have gained knowledge and experience in multiple aspects, a few of which I will address now. 
+
+First of all, my overview of the AI space and its companies greatly improved. While I had been following the scene closely and had been familiar with most relevant companies before, getting the perspective on strategy, differentiation, competition, and cooperation from inside such a company changed my view greatly.
+
+Technologically, my learning progress was equally strong - collaborating on a codebase with such a high number of contributors was an entirely new experience for me, and it was interesting to see the processes put in place to manage the resulting complexity. My perspective on structural decisions, particularly performance optimization, has also changed. For example, Before the internship, I always assumed that using a non-garbage-collected programming language such as Rust would be the best strategy for maximizing performance. In reality, developer time is limited. Using that time to implement optimizations like SIMD can boost performance significantly more than spending it on a language like Rust, which, while a bit faster, has a slower development process.
+
+Most importantly, though, I now also have a much clearer idea of what technological area and corporate environment I might want to work in later. Like many, I was previously captured strongly by the allure of FAANG. Throughout the internship, I realized how crucial and rewarding it is to feel like my work has a significant impact. This sense of contribution is vital for my motivation - and, therefore, productivity. At Weaviate, I always understood my tasks' impact, and making sure I was aware of it was a priority for the people I collaborated with. I can imagine - and have also been told so by many ex-employees - that this is far less of a priority in larger companies. Working at a startup is, therefore, much more of a consideration for me than previously.
+
+## Verdict
+
+If you are a “Builder”, who likes to create things and see them make a tangible impact, then a Weaviate internship is for you. If you are more on the theoretical side, like to read papers and participate in cutting-edge research, then a Weaviate internship is equally for you. This kind of flexibility is one of the big advantages - Weaviate is full of very friendly people who strive to make anything possible for you if you are motivated. So what are you waiting for? Go ahead and apply below.
+
+
+[Join Weaviate as an intern and contribute to our AI-native vector database!](https://careers.weaviate.io/jobs/4569335-internship)
+
+
+
+
+
+
+
+import StayConnected from '/_includes/stay-connected.mdx'
+
+<StayConnected />

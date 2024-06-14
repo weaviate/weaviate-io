@@ -380,8 +380,72 @@ for o in response.objects:
 
 
 # ========================================
+# FilterByDateDatatype
+# ========================================
+
+from weaviate.classes.config import Property, DataType, Configure
+from datetime import datetime, timezone
+
+client.collections.delete("CollectionWithDate")
+
+collection = client.collections.create(
+    "CollectionWithDate",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="some_date", data_type=DataType.DATE),
+    ],
+    vectorizer_config=Configure.Vectorizer.none()
+)
+
+with collection.batch.dynamic() as batch:
+    for year in range(2020, 2025):
+        for month in range(1, 13, 2):
+            for day in range(1, 21, 5):
+                date = datetime(year, month, day).replace(tzinfo=timezone.utc)
+                batch.add_object(
+                    properties={
+                        "title": f"Object: yr/month/day:{year}/{month}/{day}",
+                        "some_date": date
+                    }
+                )
+
+
+# START FilterByDateDatatype
+from datetime import datetime, timezone
+from weaviate.classes.query import Filter, MetadataQuery
+
+# highlight-start
+# Set the timezone for avoidance of doubt
+filter_time = datetime(2022, 6, 10).replace(tzinfo=timezone.utc)
+# The filter threshold could also be an RFC 3339 timestamp, e.g.:
+# filter_time = "2022-06-10T00:00:00.00Z"
+# highlight-end
+
+response = collection.query.fetch_objects(
+    limit=3,
+    # highlight-start
+    # This property (`some_date`) is a `DATE` datatype
+    filters=Filter.by_property("some_date").greater_than(filter_time),
+    # highlight-end
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+# END FilterByDateDatatype
+
+
+# Tests
+assert len(response.objects) > 0
+for o in response.objects:
+    assert o.properties["release_date"] > filter_time
+# End test
+
+
+# ========================================
 # FilterByPropertyLength
 # ========================================
+
+length_threshold = 20
 
 # START FilterByPropertyLength
 from weaviate.classes.query import Filter
@@ -391,7 +455,7 @@ collection = client.collections.get("JeopardyQuestion")
 response = collection.query.fetch_objects(
     limit=3,
     # highlight-start
-    filters=Filter.by_property("answer", length=True).greater_than(20),
+    filters=Filter.by_property("answer", length=True).greater_than(length_threshold),
     # highlight-end
 )
 

@@ -256,7 +256,7 @@ When you instantiate a connection directly, you have to call the `.connect()` me
 
 ### Python client v3 API
 
-To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method available for backwards compatibility. Where possible, use a client v4 connection.
+To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method is available for backwards compatibility. Where possible, use a client v4 connection.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 

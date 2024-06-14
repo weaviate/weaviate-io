@@ -55,7 +55,11 @@ Open the `values.yaml` file in a text editor, and update the following sections:
 
 #### Enable the gRPC service
 
-Set the `enabled` field to `true` and the `type` field to `LoadBalancer`. This will expose the gRPC service as a LoadBalancer service, which will allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/grpc-performance-improvements).
+:::info Default settings
+From helm chart version `17.0.0`, the gRPC service is enabled by default. If using older versions, you must enable it to use gRPC.
+:::
+
+Check that the service's `enabled` field is set to `true` and the `type` field is set to `LoadBalancer`. This will expose the gRPC service, which will allow you to access it from outside the Kubernetes cluster so you can make of the [gRPC API](/blog/grpc-performance-improvements).
 
 ```yaml
 grpcService:
