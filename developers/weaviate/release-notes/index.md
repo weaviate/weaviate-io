@@ -500,6 +500,7 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.25.4]: https://github.com/weaviate/weaviate/releases/tag/v1.25.4
 [c1.25.3]: https://github.com/weaviate/weaviate/releases/tag/v1.25.3
 [c1.25.2]: https://github.com/weaviate/weaviate/releases/tag/v1.25.2
 [c1.25.1]: https://github.com/weaviate/weaviate/releases/tag/v1.25.1
