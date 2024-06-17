@@ -13,9 +13,14 @@ const KnowledgeBasePage = () => {
   const card = knowledge.all.find((c) => c.title === 'Graph-Based Index');
   if (!card) return <p>Card not found</p>;
 
+  let baseUrl = '';
+  if (ExecutionEnvironment.canUseDOM) {
+    baseUrl = window.location.origin;
+  }
+
   const imageFullUrl = card.cardImage
-    ? `/img/cards/${card.cardImage}`
-    : `/img/og/content/knowledgecards.jpg`;
+    ? `${baseUrl}/img/cards/${card.cardImage}`
+    : `${baseUrl}/img/og/content/knowledgecards.jpg`;
 
   const formatTitleForUrl = (title) => {
     return title
