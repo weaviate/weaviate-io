@@ -46,9 +46,9 @@ If you are running Weaviate with Docker, you can map the default port (`50051`) 
 
 </details>
 
-#### WCS compatibility
+#### WCD compatibility
 
-The free (sandbox) tier of WCS is compatible with the `v4` client as of 31 January, 2024. Sandboxes created before this date will not be compatible with the `v4` client.
+The free (sandbox) tier of WCD is compatible with the `v4` client as of 31 January, 2024. Sandboxes created before this date will not be compatible with the `v4` client.
 
 #### Weaviate server version
 
@@ -132,12 +132,12 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 - `weaviate.connect_to_custom()`
 
 <Tabs groupId="languages">
-<TabItem value="wcs" label="WCS">
+<TabItem value="wcd" label="WCD">
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# WCSInstantiation"
-  endMarker="# END WCSInstantiation"
+  startMarker="# WCDInstantiation"
+  endMarker="# END WCDInstantiation"
   language="py"
 />
 
@@ -209,15 +209,15 @@ If you see errors while using the `generate` submodule, try increasing the query
 
 #### Authentication
 
-Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCS API key or OIDC authentication credentials.
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCD API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">
 
   <FilteredTextBlock
     text={PythonCode}
-    startMarker="# WCSInstantiation"
-    endMarker="# END WCSInstantiation"
+    startMarker="# WCDInstantiation"
+    endMarker="# END WCDInstantiation"
     language="py"
   />
 
@@ -226,8 +226,8 @@ Some of the `connect` helper functions take authentication credentials. For exam
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# WCSwOIDCInstantiation"
-  endMarker="# END WCSwOIDCInstantiation"
+  startMarker="# WCDwOIDCInstantiation"
+  endMarker="# END WCDwOIDCInstantiation"
   language="py"
 />
 
@@ -256,7 +256,7 @@ When you instantiate a connection directly, you have to call the `.connect()` me
 
 ### Python client v3 API
 
-To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method available for backwards compatibility. Where possible, use a client v4 connection.
+To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method is available for backwards compatibility. Where possible, use a client v4 connection.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
@@ -950,7 +950,7 @@ Use `ReferenceToMulti` for multi-target references.
 * `vector_index_config` parameter factory functions for `wvc.config.Configure` and `wvc.config.Reconfigure` have changed to, e.g.:
     ```python
     client.collections.create(
-        name="YourCollection",
+        name="MyCollection",
         # highlight-start
         vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
             distance_metric=wvc.config.VectorDistances.COSINE,

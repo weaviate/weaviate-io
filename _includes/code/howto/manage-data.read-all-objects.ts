@@ -3,7 +3,7 @@
 import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),
@@ -36,6 +36,7 @@ for await (let item of myCollection.iterator({
     includeVector: true
   })) {
     console.log(item.uuid, item.properties);
+    console.log(item.vectors);
 }
 // END ReadAllVectors
 

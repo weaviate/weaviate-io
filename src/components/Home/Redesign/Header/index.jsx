@@ -150,7 +150,7 @@ export default function HomepageHeader() {
                   className={`${styles.customerLogo} ${styles.redhatLogo}`}
                 />
                 <div
-                  className={`${styles.customerLogo} ${styles.mulinyLogo}`}
+                  className={`${styles.customerLogo} ${styles.netappLogo}`}
                 />
                 <div
                   className={`${styles.customerLogo} ${styles.shippoLogo}`}

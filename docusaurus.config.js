@@ -429,7 +429,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
+                                href: '/#contact-us',
                             },
                         ],
                     },

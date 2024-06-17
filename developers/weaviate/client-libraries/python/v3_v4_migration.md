@@ -14,7 +14,13 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 The current Python client version is `v||site.python_client_version||`
 :::
 
-The `v4` Weaviate Python client API is very different from the `v3` API. This guide will help you understand the major changes and how to migrate your code at a high level.
+The `v4` Weaviate Python client API is a complete rewrite, aimed at an improved overall user experience. It is therefore also very different to the `v3` API, and will require re-learning of changed patterns in the way you interact with Weaviate.
+
+While this may introduce some overhead, we believe the `v4` API is a significant improvement to your developer experience. For instance, using the `v4` client will allow you to take full advantage faster speeds through the gRPC API, and additional static analysis for IDE assistance through strong typing.
+
+Due to the extensive API surface changes, this guide does not cover every change. Instead, this guide is designed to help you understand the major changes and how to migrate your code at a high level.
+
+For code examples, refer to the documentation throughout the site, [starting with these suggested sections](#how-to-migrate-your-code).
 
 ## Installation
 
@@ -23,7 +29,7 @@ To go from `v3` to `v4`, you must
 1. Upgrade the client library:
 
     ```bash
-    pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+    pip install -U weaviate-client
     ```
 
 2. Upgrade Weaviate to a compatible version
@@ -45,19 +51,19 @@ To go from `v3` to `v4`, you must
 
     </details>
 
-## Instantiation
+## Instantiate a client
 
-The `v4` client is instantiated through the `WeaviateClient` object, which is the main entry point for all API operations.
+The `v4` client is instantiated by the `WeaviateClient` object. The `WeaviateClient` object is the main entry point for all API operations.
 
-You can directly instantiate the client, but in most cases you can use helper functions starting with `_connect_to`, such as `connect_to_local`, `connect_to_wcs`.
+You can instantiate the `WeaviateClient` object directly. However, in most cases it is easier to use a connection helper function such as `connect_to_local` or `connect_to_weaviate_cloud`.
 
 <Tabs groupId="languages">
-<TabItem value="wcs" label="WCS">
+<TabItem value="wcd" label="WCD">
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# WCSInstantiation"
-  endMarker="# END WCSInstantiation"
+  startMarker="# WCDInstantiation"
+  endMarker="# END WCDInstantiation"
   language="py"
 />
 
@@ -96,6 +102,8 @@ To configure connection timeout values, see [Timeout values](/developers/weaviat
 </TabItem>
 </Tabs>
 
+The `v3` API style `Client` object is [still available](./index.md#python-client-v3-api), and will be deprecated in the future.
+
 ## Major changes
 
 The `v4` client API is very different from the `v3` API. Major user-facing changes in the `v4` client include:
@@ -106,9 +114,9 @@ The `v4` client API is very different from the `v3` API. Major user-facing chang
 
 ### Helper classes
 
-The `v4` client introduces an extensive set of helper classes to interact with Weaviate. These classes are used to provide strong typing, and to make the client more user-friendly such as through IDE autocompletion.
+The `v4` client makes extensive use of helper classes. These classes provide strong typing and thus static type checking. It also makes coding easier through your IDE's auto-completion feature.
 
-Take a look at the examples below.
+When you are coding, check the auto-complete frequently. It provides useful guidance for API changes and client options.
 
 import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.generic.py';
 
@@ -135,13 +143,37 @@ import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearTex
 </TabItem>
 </Tabs>
 
-In both of these examples, you can see how the helper classes and methods abstract away the need for manual JSONs or strings.
+The `wvc` namespace exposes commonly used classes in the `v4` API. The namespace is divided further into [submodules based on their primary purpose](./index.md#helper-classes).
 
-### Interaction with collections
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START WVCImportExample"
+  endMarker="# END WVCImportExample"
+  language="py"
+/>
 
-Interacting with the `client` object for CRUD and search operations have been replaced with the use of collection objects.
+### Interact with collections
 
-This conveniently removes the need to specify the collection for each operation, and reduces potential for errors.
+When you connect to a Weaviate database, the v4 API returns a `WeaviateClient` object, while the v3 API returns a `Client` object.
+
+The `v3` API's interactions were built around the `client` object (an instance of `Client`). This includes server interactions for CRUD and search operations.
+
+In the `v4` API, the main starting points for your interaction with Weaviate follow a different paradigm.
+
+Server-level interactions such as checking readiness (`client.is_ready()`) or getting node statuses (`client.cluster.nodes()`) still remain with `client` (now an instance of `WeaviateClient`).
+
+CRUD and search operations are now performed against a `Collection` object to reflect that these operations target a particular collection.
+
+This example below shows a function with a `Collection` typing hint).
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START CollectionInteractionExample"
+  endMarker="# END CollectionInteractionExample"
+  language="py"
+/>
+
+The collection object includes its name as an attribute. Accordingly, operations such as a `near_text` query can be performed without specifying the collection name. The `v4` collection object has a more focussed namespace in comparison to the breadth of operations available with the `v3` client object. This simplifies your code and reduces the potential for errors.
 
 import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
@@ -166,7 +198,18 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
   </TabItem>
 </Tabs>
 
-Note here that the collection object can be re-used throughout the codebase.
+### Terminology changes (e.g. class -> collection)
+
+Some of the terms within the Weaviate ecosystem are changing, and the client has changed accordingly:
+
+- A Weaviate "Class" is now called a "Collection". A collection stores a set of data objects together with their vector embeddings.
+- A "Schema" is now called a "Collection Configuration", a set of settings that define collection name, vectorizers, index configurations, property definitions, and so on.
+
+Due to the architectural changes as well as changes to the terminology, most of the API has been changed. Expect to find differences in the way you interact with Weaviate.
+
+For example, `client.collections.list_all()` is the replacement for `client.schema.get()`.
+
+[Manage data](../../manage-data/index.md) has more details and additional sample code for working with data, such as [working with collections](../../manage-data/collections.mdx). See [searches](../../search/index.md) for further details on various queries and filters.
 
 ### Collection creation from JSON
 
@@ -181,9 +224,9 @@ You can still create a collection from a JSON definition. This may be a useful w
 
 ### Removal of builder patterns
 
-The builder patterns for constructing queries have been removed, as they could be confusing and potentially lead to invalid queries.
+The builder patterns for constructing queries have been removed. Builder patterns could be confusing, and led to runtime errors that could not be picked up with static analysis.
 
-In `v4`, queries are constructed using specific methods and its parameters.
+Instead, construct queries in the `v4` API using specific methods and its parameters.
 
 import SearchSimilarityCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
@@ -208,7 +251,7 @@ import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.si
   </TabItem>
 </Tabs>
 
-This makes it easier to understand and use. Additionally, some parameters typed (e.g. `MetadataQuery`) which makes it easier to use and reduces errors.
+Additionally, many arguments are now constructed using helper classes (e.g. `MetadataQuery` or `Filter`) which makes it easier to use and reduces errors through IDE assistance and static analysis.
 
 ## How to migrate your code
 

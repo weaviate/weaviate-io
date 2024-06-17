@@ -146,11 +146,11 @@ The `v4` client provide a set of helper functions, for connecting to Weaviate th
 Direct instantiation with full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
 
 <Tabs groupId="languages">
-    <TabItem value="wcs" label="WCS">
+    <TabItem value="wcd" label="WCD">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# WCSInstantiation"
-            endMarker="# END WCSInstantiation"
+            startMarker="# WCDInstantiation"
+            endMarker="# END WCDInstantiation"
             language="py"
         />
     </TabItem>
@@ -220,7 +220,7 @@ The new client provides a set of methods to configure batching. These methods he
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
 <Tabs groupId="languages">
-    <TabItem value="wcs" label="Dynamic">
+    <TabItem value="wcd" label="Dynamic">
         <FilteredTextBlock
             text={PythonCode}
             startMarker="# START BatchDynamic"

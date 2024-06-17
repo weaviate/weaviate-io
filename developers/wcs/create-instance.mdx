@@ -17,7 +17,7 @@ To create a cluster, click the 'Create cluster' button on the WCD Dashboard page
 Follow the steps to create a cluster:
 
 - [Sandbox clusters](#sandbox-clusters)
-- [Managed clusters](#managed-clusters).
+- [Serverless clusters](#serverless-clusters).
 
 ### Sandbox clusters
 
@@ -27,19 +27,19 @@ import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
 
 <CreateSandboxCluster />
 
-### Managed clusters
+### Serverless clusters
 
-Managed clusters require billing details. WCD prompts you to add billing details if you have not already added them.
+Serverless clusters require billing details. WCD prompts you to add billing details if you have not already added them.
 
-To create a managed cluster, follow these steps:
+To create a serverless cluster, follow these steps:
 
-import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
+import CreateServerlessCluster from '/_includes/wcs/create-cluster-managed.mdx'
 
-<CreateManagedCluster />
+<CreateServerlessCluster />
 
 ## Authentication
 
-By default, API keys are enabled for all WCD clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
+By default, API keys are enabled for all WCD clusters. Serverless clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
 
 When you develop your client application, use an API key to connect your client to the cluster. For more details, see [authentication](./connect.mdx).
 

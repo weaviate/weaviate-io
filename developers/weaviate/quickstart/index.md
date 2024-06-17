@@ -9,8 +9,6 @@ image: og/docs/quickstart-tutorial.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import WCScreateButton from '../../wcs/img/wcs-create-button.png';
-
 ## Overview
 
 Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
@@ -64,7 +62,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
 
-Go to the [WCS quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
+Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCD.
 
 :::info To use another deployment method (e.g. Docker Compose)
 If you prefer another method, see [this section](#can-i-use-another-deployment-method).
@@ -88,9 +86,14 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 To connect to your Weaviate instance, you need the following information:
 
-- The Weaviate **URL** (get it from WCS `Details` tab),
-- The Weaviate **API key** (if enabled - get it from WCS `Details` tab), and
-- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup)).
+- The Weaviate **URL** (get it from WCD `Details` tab)
+
+import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
+
+<img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
+
+- The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
+- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
 
 Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
 
@@ -100,23 +103,22 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey
 
 ## Step 4: Define a data collection
 
-Next, we define a data collection (a "class" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
+Next, we define a data collection (a "collection" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
 
 The following code:
-- Configures a class object with:
+- Configures a collection object with:
   - Name `Question`
-  - Vectorizer module `text2vec-openai`
-  - Generative module `generative-openai`
-- Then creates the class.
+  - Integrations with OpenAI [embedding](../model-providers/openai/embeddings.md) and [generative AI](../model-providers/openai/generative.md) models
+- Then creates the collection.
 
-Run it to create the class in your Weaviate instance.
+Run it to create the collection in your Weaviate instance.
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
-:::info To use another vectorizer or generative module
-If you prefer another setup, see [this section](#can-i-use-different-modules).
+:::info To use another vectorizer or generative integrations
+If you prefer another setup, see [this section](#can-i-use-different-integrations).
 :::
 
 Now you are ready to add objects to Weaviate.
@@ -125,7 +127,7 @@ Now you are ready to add objects to Weaviate.
 
 You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
 
-The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object. You may have to add the API key for your vectorizer.
+The guide covers using the `vectorizer` defined for the collection to create a vector embedding for each object. You may have to add the API key for your vectorizer.
 
 import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
@@ -133,7 +135,7 @@ import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
 The above code:
 - Loads objects, and
-- Adds objects to the target class (`Question`) one by one.
+- Adds objects to the target collection (`Question`) one by one.
 
 ## Partial recap
 
@@ -327,111 +329,19 @@ If you are using this `Docker Compose` file, Weaviate will not require API-key a
 
 </details>
 
-#### Can I use different modules?
+#### Can I use different integrations?
 
 <details>
   <summary>See answer</summary>
 
 In this example, we use the `OpenAI` inference API. But you can use others.
 
-If you do want to change the vectorizer, or the generative module, you can. You will need to:
-- Ensure that the module is available in the Weaviate instance you are using,
-- Modify your class definition to suit your chosen modules, and
-- Make sure to use the right API key(s) (if necessary) for your modules.
+If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
+- Ensure that the Weaviate module is available in the Weaviate instance you are using,
+- Modify your collection definition to use your preferred integration, and
+- Make sure to use the right API key(s) (if necessary) for your integration.
 
-Each of the following modules is available in the free sandbox.
-
-- Vectorizer modules:
-    - `text2vec-cohere`
-    - `text2vec-huggingface`
-    - `text2vec-openai`
-    - `text2vec-palm`
-- Generative modules:
-    - `generative-cohere`
-    - `generative-openai`
-    - `generative-palm`
-
-Depending on your choice, make sure to pass on the API key(s). You can do so by setting the header with the appropriate line(s) from below, remembering to replace the placeholder with your actual key:
-
-```js
-"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
-"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
-"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // For AI Studio
-```
-
-Additionally, we also provide suggested `vectorizer` module configurations.
-
-<Tabs groupId="inferenceAPIs">
-<TabItem value="cohere" label="Cohere">
-
-```js
-class_obj = {
-  "class": "Question",
-  "vectorizer": "text2vec-cohere",
-  "moduleConfig": {
-    "text2vec-cohere": {
-      "model": "embed-multilingual-v2.0", // Default model. This is the same model as `multilingual-22-12`
-      "truncate": "RIGHT" // Defaults to RIGHT if not set
-    }
-  }
-}
-```
-
-</TabItem>
-<TabItem value="huggingface" label="Hugging Face">
-
-```js
-class_obj = {
-  "class": "Question",
-  "vectorizer": "text2vec-huggingface",
-  "moduleConfig": {
-    "text2vec-huggingface": {
-      "model": "sentence-transformers/all-MiniLM-L6-v2",  // Can be any public or private Hugging Face model.
-      "options": {
-        "waitForModel": true,  // Try this if you get a "model not ready" error
-      }
-    }
-  }
-}
-```
-
-</TabItem>
-<TabItem value="openai" label="OpenAI">
-
-```js
-class_obj = {
-  "class": "Question",
-  "vectorizer": "text2vec-openai",
-  "moduleConfig": {
-    "text2vec-openai": {
-      "model": "ada",
-      "modelVersion": "002",
-      "type": "text"
-    }
-  }
-}
-```
-
-</TabItem>
-<TabItem value="palm" label="PaLM">
-
-```js
-class_obj = {
-  "class": "Question",
-  "vectorizer": "text2vec-palm",
-  "moduleConfig": {
-    "text2vec-palm": {
-      "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
-      "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-      "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
-    },
-  }
-}
-```
-
-</TabItem>
-</Tabs>
+Please see the [model providers integration](../model-providers/index.md) section for more information.
 
 </details>
 
@@ -464,7 +374,7 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 <details>
   <summary>See answer</summary>
 
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can follow these instructions to delete the class.
+You may see this error if you try to create a collection that already exists in your instance of Weaviate. In this case, you can follow these instructions to delete the collection.
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
@@ -472,12 +382,12 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 </details>
 
-#### How to confirm class creation
+#### How to confirm collection creation
 
 <details>
   <summary>See answer</summary>
 
-If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint.
+If you are not sure whether the collection has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint.
 
 Replace WEAVIATE_INSTANCE_URL with your instance URL.:
 
@@ -499,7 +409,7 @@ You should see:
 }
 ```
 
-Where the schema should indicate that the `Question` class has been added.
+Where the schema should indicate that the `Question` collection has been added.
 
 :::note REST & GraphQL in Weaviate
 Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
@@ -543,7 +453,7 @@ Where you should be able to confirm that you have imported all `10` objects.
 
 To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
 
-Make sure the vectorizer is configured [like this](#define-a-class).
+Make sure the vectorizer is configured [like this](#step-4-define-a-data-collection).
 
 If the search still doesn't work, [contact us](#questions-and-feedback)!
 

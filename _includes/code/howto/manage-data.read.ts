@@ -9,7 +9,7 @@ import assert from 'assert';
 import weaviate from 'weaviate-client';
 
 // ===== Instantiation, not shown in snippet
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),
@@ -24,25 +24,27 @@ let result;
 // =======================
 // ===== Read object =====
 // =======================
-
+{
 // ReadObject START
-const myCollection = client.collections.get('JeopardyQuestion')
-const response = await myCollection.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54')
+const jeopardy = client.collections.get('JeopardyQuestion')
+
+const response = await jeopardy.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54')
 
 console.log(response?.properties)
 // ReadObject END
 
 // Test
 assert.equal(result.properties['answer'], 'San Francisco');
-
+}
 
 // ===================================
 // ===== Read object with vector =====
 // ===================================
-
+{
 // ReadObjectWithVector START
-const myCollection = client.collections.get('JeopardyQuestion')
-const response = await myCollection.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',{
+const jeopardy = client.collections.get('JeopardyQuestion')
+
+const response = await jeopardy.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',{
   // highlight-start
   includeVector: true
   // highlight-end
@@ -53,36 +55,32 @@ console.log(response?.properties)
 
 // Test
 assert.equal(result.vector.length, 1536);
-
+}
 
 // ===================================
 // ===== Read object with name vector =====
 // ===================================
 
+// let someObj = await client.data.getter().withLimit(1).do();
+// let objUUID = someObj[0].uuid;
+
 // TODO: Attempt not working; Waiting for response from Weaviate
 // ReadObjectNamedVectors START
-// Example coming soon
-// ReadObjectNamedVectors END
-
-let someObj = await client.data.getter().withLimit(1).do();
-let objUUID = someObj[0].uuid;
-
-// ReadObjectNamedVectors END
-const myCollection = client.collections.get('WineReviewNV') // Collection with named vectors
-const vectorNames = ['title', 'review_body']
+const reviews = client.collections.get('WineReviewNV') // Collection with named vectors
 const objectUuid = '' // Object UUID
 
-const response = await myCollection.query.fetchObjectById(objectUuid,{
+const response = await reviews.query.fetchObjectById(objectUuid,{
   // highlight-start
-  includeVector: vectorNames
+  includeVector: ['title', 'review_body']
   // highlight-end
 })
 
-console.log(response?.properties)
+console.log(response?.vectors.title)       // print the title vector
+console.log(response?.vectors.review_body) // print the review_body vector
 // ReadObjectNamedVectors END
 
 // Test
-assert.equal(result.vector.length, 1536);
+// assert.equal(result.vector.length, 1536);
 
 
 // ==================================
@@ -90,16 +88,21 @@ assert.equal(result.vector.length, 1536);
 // ==================================
 
 // CheckObject START
-// TODO: broken, see https://github.com/weaviate/typescript-client/issues/63
-result = await client.data
-  // highlight-start
-  .checker()
-  // highlight-end
-  .withClassName('JeopardyQuestion')
-  .withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
-  .do();
+import { generateUuid5 } from 'weaviate-client';
 
-console.log(result);
+// generate uuid based on the key properties used during data insert
+// highlight-start
+const object_uuid = generateUuid5(
+  JSON.stringify({ name: 'Author to fetch'})
+)
+// highlight-end
+
+const authors = client.collections.get('Author')
+// highlight-start
+const authorExists = await authors.data.exists(object_uuid)
+// highlight-end
+
+console.log('Author exists: ' + authorExists)
 // CheckObject END
 
-// assert.equal(result, true);  TODO: https://github.com/weaviate/typescript-client/issues/63
+assert.equal(authorExists, true)

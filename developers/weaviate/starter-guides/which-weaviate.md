@@ -49,7 +49,7 @@ If you are evaluating Weaviate, we recommend the following easy and convenient s
 - An inference-API based text vectorizer
     - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
 
-This will allow you to quickly get started with Weaviate, and evaluate its capabilities. Note that the Quickstart guide uses this setup, with a WCS sandbox, and an API vectorizer.
+This will allow you to quickly get started with Weaviate, and evaluate its capabilities. Note that the Quickstart guide uses this setup, with a WCD sandbox, and an API vectorizer.
 
 ### Development
 
@@ -62,7 +62,7 @@ For development, we recommend using
 
 Of the two, Docker-Compose is more flexible as it exposes all configuration options, and can be used in a local development environment. Additionally, it can use local vectorizer modules such as `text2vec-transformers` or `multi2vec-clip` for example.
 
-On the other hand, WCS instances are easier to spin up, and takes away the need to manage the deployment yourself.
+On the other hand, WCD instances are easier to spin up, and takes away the need to manage the deployment yourself.
 
 Note that Embedded Weaviate is currently not recommended for serious development use as it is at an experimental phase.
 
@@ -90,7 +90,7 @@ For use in production, generally we recommend
 
 All of these options are scalable, with Kubernetes and Hybrid SaaS options offering the most flexibility in configuration.
 
-As with the development use case, a WCS-based solution would be the easiest in terms of setup and maintenance, while a self-managed Kubernetes deployment combines the flexibility and scalability.
+As with the development use case, a WCD-based solution would be the easiest in terms of setup and maintenance, while a self-managed Kubernetes deployment combines the flexibility and scalability.
 
 If you wish to fully control your Weaviate deployment without having to manage it yourself, Hybrid SaaS offers the best-of-both-worlds solution.
 

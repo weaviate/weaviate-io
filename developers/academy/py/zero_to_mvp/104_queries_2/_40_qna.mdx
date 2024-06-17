@@ -25,7 +25,7 @@ To this end, a QnA module may not provide an answer at all.
 
 To use QnA functionality, a `qna-xxx` module must be enabled in the Weaviate instance.
 
-If you are using WCS, a `qna` module is enabled by default ([see the documentation](/developers/wcs#configuration)). Otherwise, you must configure your Weaviate instance to make sure that a `qna-xxx` module is enabled.
+If you are using WCD, a `qna` module is enabled by default ([see the documentation](/developers/wcs#configuration)). Otherwise, you must configure your Weaviate instance to make sure that a `qna-xxx` module is enabled.
 
 This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
 
@@ -42,7 +42,7 @@ On the other hand, if multiple qna modules are configured, you must define for e
       "class": "JeopardyQuestion",
       "moduleConfig": {
         "qna-openai": {
-          "model": "text-davinci-002"
+          "model": "gpt-3.5-turbo-instruct"
         }
       }
     }
@@ -141,7 +141,7 @@ By setting the number of objects, you may increase the chance of retrieving the 
 ### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - Question and Answer (QnA) search is another two-step search, which attempts to extract an answer to a specific question from the retrieved data before delivery.
-- To perform a QnA search, a `qna-xxx` module must be enabled in the Weaviate instance. The `qna-openai` module is enabled by default in WCS.
+- To perform a QnA search, a `qna-xxx` module must be enabled in the Weaviate instance. The `qna-openai` module is enabled by default in WCD.
 - The QnA module will look for an answer in each retrieved object, returning the answer as an additional property.
 - If the QnA module does not identify an answer, it will indicate so in the response.
 

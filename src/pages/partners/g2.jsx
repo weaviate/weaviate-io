@@ -16,7 +16,7 @@ export default function g2Page() {
       </Head>
       <Layout
         title="G2 Reviews"
-        description="Help us spread the word, get a free t-shirt!"
+        description="Help us spread the word, get a gift card!"
       >
         <Introduction />
         <RewardProcess />

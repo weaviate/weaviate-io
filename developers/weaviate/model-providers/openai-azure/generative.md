@@ -36,7 +36,7 @@ Your Weaviate instance must be configured with the Azure OpenAI generative AI in
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
@@ -103,8 +103,6 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
-
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`gpt-3.5-turbo`) is used if no model is specified.
 
 ## Retrieval augmented generation
 

@@ -1,6 +1,8 @@
 # FilterExampleBasic
 import weaviate
 from weaviate.classes.query import Filter
+from weaviate.collections import Collection
+from typing import List
 
 # END FilterExampleBasic
 
@@ -21,12 +23,16 @@ collection = client.collections.get("TokenizationDemo")
 
 # FilterExampleBasic
 # Get property names
-property_names = [p.name for p in collection.config.get().properties]
+property_names = list()
+for p in collection.config.get().properties:
+    property_names.append(p.name)
 
 query_strings = ["<YOUR_QUERY_STRING>"]
 
 
-def filter_demo(query_strings: list[str]):
+def filter_demo(collection: Collection, property_names: List[str], query_strings: List[str]):
+    from weaviate.classes.query import Filter
+
     for query_string in query_strings:
         print("\n" + "=" * 40 + f"\nHits for: '{query_string}'" + "\n" + "=" * 40)
         for property_name in property_names:
@@ -41,13 +47,13 @@ def filter_demo(query_strings: list[str]):
                     print(obj.properties[property_name])
 
 
-filter_demo(query_strings)
+filter_demo(collection, property_names, query_strings)
 # END FilterExampleBasic
 
 client.connect()
 
 # ClarkExample
-filter_demo(["clark", "Clark", "clark:", "Clark:", "lois clark", "clark lois"])
+filter_demo(collection, property_names, ["clark", "Clark", "clark:", "Clark:", "lois clark", "clark lois"])
 # END ClarkExample
 
 """
@@ -97,7 +103,7 @@ Lois & Clark: The New Adventures of Superman
 """
 
 # MouseExample
-filter_demo(["computer mouse", "a computer mouse", "the computer mouse", "blue computer mouse"])
+filter_demo(collection, property_names, ["computer mouse", "a computer mouse", "the computer mouse", "blue computer mouse"])
 # END MouseExample
 
 """
@@ -176,7 +182,7 @@ Hits for: 'blue computer mouse'
 """
 
 # UnderscoreExample
-filter_demo(["variable_name"])
+filter_demo(collection, property_names, ["variable_name"])
 # END UnderscoreExample
 
 """

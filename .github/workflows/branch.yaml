@@ -17,8 +17,8 @@ jobs:
       GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
       GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'yarn'

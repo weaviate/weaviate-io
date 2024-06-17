@@ -68,11 +68,11 @@ import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/c
 
 <ClientAuthIntro clientName="Go"/>
 
-### WCS authentication
+### WCD authentication
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+import ClientAuthWCD from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
-<ClientAuthWCS />
+<ClientAuthWCD />
 
 ### API key authentication
 
@@ -116,7 +116,7 @@ cfg := weaviate.Config{
 	AuthConfig: auth.ResourceOwnerPasswordFlow{
 		Username: "Your user",
 		Password: "Your password",
-		Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+		Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCD)
 	},
 	Headers: nil,
 }
@@ -138,7 +138,7 @@ cfg := weaviate.Config{
 	Scheme: "http",
 	AuthConfig: auth.ClientCredentials{
 		ClientSecret: "your_client_secret",
-		Scopes:       []string{"scope1 scope2"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+		Scopes:       []string{"scope1 scope2"}, // optional, depends on the configuration of your identity provider (not required with WCD)
 	},
 	Headers: nil,
 }

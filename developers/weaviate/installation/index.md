@@ -5,13 +5,13 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS.
+Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCD.
 
 ## Installation methods
 
 To install and configure Weaviate, see the following:
 
-- **[Weaviate Cloud](../../wcs/quickstart.mdx)**: This managed service works well for both development and production environments.
+- **[Weaviate Cloud](../../wcs/quickstart.mdx)**: Managed services for development and production environments.
 - **[Docker Compose](./docker-compose.md#starter-docker-compose-file)**: Docker containers are well suited for development and testing.
 - **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
 - **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
