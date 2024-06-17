@@ -10,7 +10,7 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const KnowledgeBasePage = () => {
   const totalCards = knowledge.all.length;
-  const card = knowledge.all.find((c) => c.title === 'Multimodal');
+  const card = knowledge.all.find((c) => c.title === 'Multi-modal');
   if (!card) return <p>Card not found</p>;
 
   const imageFullUrl = card.cardImage
@@ -53,20 +53,6 @@ const KnowledgeBasePage = () => {
   const [currentIndex, setCurrentIndex] = useState(
     filteredCards.findIndex((c) => c.title === card.title)
   );
-
-  const onNext = () => {
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < totalFilterCards) {
-      setCurrentIndex(nextIndex);
-    }
-  };
-
-  const onPrevious = () => {
-    const prevIndex = currentIndex - 1;
-    if (prevIndex >= 0) {
-      setCurrentIndex(prevIndex);
-    }
-  };
 
   return (
     <div className="custom-page noBG">
@@ -220,12 +206,12 @@ const KnowledgeBasePage = () => {
                   currentIndex + 1
                 } of ${totalFilterCards}`}</span>
                 <div className={styles.nextContainer}>
-                  <div className={styles.nextButton} onClick={onPrevious}>
+                  <Link to={card.previous} className={styles.nextButton}>
                     Previous
-                  </div>
-                  <div className={styles.nextButton} onClick={onNext}>
+                  </Link>
+                  <Link to={card.next} className={styles.nextButton}>
                     Next
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

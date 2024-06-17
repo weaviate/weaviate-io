@@ -9,7 +9,6 @@ import ShareOptions from './shareOptions';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const KnowledgeBasePage = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const totalCards = knowledge.all.length;
   const card = knowledge.all.find(
     (c) => c.title === 'ANN - Approximate Nearest Neighbor'
@@ -48,45 +47,51 @@ const KnowledgeBasePage = () => {
 
   const formattedTitle = formatTitleForUrl(card.title);
 
-  useEffect(() => {
-    const currentCardIndex = knowledge.all.findIndex(
-      (c) => c.title === card.title
-    );
-    setCurrentIndex(currentCardIndex);
-  }, [card.title]);
+  const filteredCards = knowledge.all.filter(
+    (c) => c.category === card.category
+  );
+  const totalFilterCards = filteredCards.length;
 
-  const onNext = () => {
-    if (currentIndex < totalCards - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const onPrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
+  const [currentIndex, setCurrentIndex] = useState(
+    filteredCards.findIndex((c) => c.title === card.title)
+  );
 
   return (
     <div className="custom-page noBG">
       <Layout>
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
+          {/* Open Graph */}
           <meta property="og:title" content={card.title} />
-          <meta property="og:description" content={card.longText} />
-          <meta property="og:image" content={imageFullUrl} />
-          <meta property="og:url" content={pageUrl} />
           <meta property="og:type" content="article" />
+          <meta property="og:image" content={imageFullUrl} />
+          <meta property="og:image:alt" content="Knowledge card image" />
+          <meta property="og:url" content={pageUrl} />
+          <meta property="og:description" content={card.longText} />
+          <meta property="og:site_name" content="Weaviate Knowledge Cards" />
+          <meta property="og:locale" content="en_US" />
+          <meta
+            property="og:article:published_time"
+            content="2024-06-04T08:00:00Z"
+          />
+          <meta property="og:article:author" content="weaviate.io" />
+
+          {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@weaviate_io" />
           <meta name="twitter:title" content={card.title} />
           <meta name="twitter:description" content={card.longText} />
           <meta name="twitter:image" content={imageFullUrl} />
+          <meta name="twitter:image:alt" content="Knowledge card image" />
+
+          {/* Structured Data */}
           <script type="application/ld+json">
             {JSON.stringify(structuredData)}
           </script>
         </Head>
+
         <KnowledgeHeader />
-        <div className={styles.cardPage}>
+        <main className={styles.cardPage}>
           <div className={styles.breadCrumbs}>
             <Link to="/learn/knowledgecards">Knowledge Cards</Link>
             <span> / </span>
@@ -112,13 +117,6 @@ const KnowledgeBasePage = () => {
 
                 <ShareOptions url={pageUrl} />
                 <div className={styles.bottomCard}>
-                  {/* {card.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>
-                {tag}
-              </span>
-            ))} */}
-
-                  {/* related content */}
                   {(card.bloglink ||
                     card.bloglink2 ||
                     card.doclink ||
@@ -208,19 +206,19 @@ const KnowledgeBasePage = () => {
                 </div>
                 <span className={styles.nextText}>{`${
                   currentIndex + 1
-                } of ${totalCards}`}</span>
+                } of ${totalFilterCards}`}</span>
                 <div className={styles.nextContainer}>
-                  <div className={styles.nextButton} onClick={onPrevious}>
+                  <Link to={card.previous} className={styles.nextButton}>
                     Previous
-                  </div>
-                  <div className={styles.nextButton} onClick={onNext}>
+                  </Link>
+                  <Link to={card.next} className={styles.nextButton}>
                     Next
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </main>
       </Layout>
     </div>
   );

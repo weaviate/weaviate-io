@@ -54,20 +54,6 @@ const KnowledgeBasePage = () => {
     filteredCards.findIndex((c) => c.title === card.title)
   );
 
-  const onNext = () => {
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < totalFilterCards) {
-      setCurrentIndex(nextIndex);
-    }
-  };
-
-  const onPrevious = () => {
-    const prevIndex = currentIndex - 1;
-    if (prevIndex >= 0) {
-      setCurrentIndex(prevIndex);
-    }
-  };
-
   return (
     <div className="custom-page noBG">
       <Layout>
@@ -227,12 +213,12 @@ const KnowledgeBasePage = () => {
                   currentIndex + 1
                 } of ${totalFilterCards}`}</span>
                 <div className={styles.nextContainer}>
-                  <div className={styles.nextButton} onClick={onPrevious}>
+                  <Link to={card.previous} className={styles.nextButton}>
                     Previous
-                  </div>
-                  <div className={styles.nextButton} onClick={onNext}>
+                  </Link>
+                  <Link to={card.next} className={styles.nextButton}>
                     Next
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
