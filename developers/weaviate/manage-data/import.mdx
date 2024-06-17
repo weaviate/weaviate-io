@@ -88,6 +88,80 @@ The following example adds objects to the `MyCollection` collection.
   </TabItem>
 </Tabs>
 
+## Use the gRPC API
+
+:::info Added in `v1.23`.
+:::
+
+The [gRPC API](../api/grpc.md) is faster than the REST API. Use the gRPC API to improve import speeds.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+The Python client uses gRPC by default. See the client page for additional batch import [configuration options](/developers/weaviate/client-libraries/python#batch-imports).
+
+<br/>The legacy Python client does not support gRPC.
+
+</TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+The [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts) uses gRPC by default.
+
+<br/>The legacy TypeScript client does not support gRPC.
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+To use the gRPC API with the Java client, add the `setGRPCHost` field to your client connection code. Update `setGRPCSecured` if you use an encrypted connection.<br/><br/>
+
+```java
+Config config = new Config("http", "localhost:8080");
+config.setGRPCSecured(false);
+config.setGRPCHost("localhost:50051");
+```
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+To use the gRPC API with the Go client, add the `GrpcConfig` field to your client connection code. Update `Secured` if you use an encrypted connection.<br/><br/>
+
+```go
+cfg := weaviate.Config{
+	Host:   fmt.Sprintf("localhost:%v", "8080"),
+	Scheme: "http",
+ // highlight-start
+	GrpcConfig: &grpc.Config{
+		Host: "localhost:50051",
+  Secured: false,
+	},
+ // highlight-end
+}
+client, err := weaviate.NewClient(cfg)
+if err != nil {
+	require.Nil(t, err)
+	}
+```
+  </TabItem>
+  <TabItem value="spark" label="Spark">
+
+To use the gRPC API with the [Spark connector](https://github.com/weaviate/spark-connector), add the `grpc:host` field to your client connection code. Update `grpc:secured` if you use an encrypted connection.<br/><br/>
+
+```java
+  df.write
+      .format("io.weaviate.spark.Weaviate")
+      .option("scheme", "http")
+      .option("host", "localhost:8080")
+      // highlight-start
+      .option("grpc:host", "localhost:50051")
+      .option("grpc:secured", "false")
+      // highlight-start
+      .option("className", className)
+      .mode("append")
+      .save()
+```
+
+  </TabItem>
+</Tabs>
+
 ## Specify an ID value
 
 Weaviate generates an UUID for each object. Object IDs must be unique. If you set object IDs, use one of these [deterministic UUID](#generate-a-deterministic-id) methods to prevent duplicate IDs:
@@ -422,14 +496,6 @@ import AutoTenant from '/_includes/auto-tenant.mdx';
 
 For details, see [auto-tenant](/developers/weaviate/manage-data/multi-tenancy#automatically-add-new-tenants).
 
-### gRPC connection
-
-:::info Added in `v1.23`.
-:::
-
-The [gRPC API](../api/grpc.md) is faster than the REST API. Use the gRPC API to improve import speeds.
-
-The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC.
 
 ## Related pages
 
