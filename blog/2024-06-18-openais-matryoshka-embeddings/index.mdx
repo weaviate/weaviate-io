@@ -2,13 +2,15 @@
 title: OpenAI's Matryoshka Embeddings in Weaviate
 slug: openais-matryoshka-embeddings-in-weaviate
 description: "How to use OpenAI's embedding models trained with Matryoshka Representation Learning in a vector database like Weaviate"
-authors: [leonie]
+authors: [leonie, zain]
 date: 2024-06-18
 tags: ['how-to', 'concepts', 'integrations']
 image: ./img/hero.png
 ---
 
 ![OpenAI's Matryoshka Embeddings in Weaviate](./img/hero.png)
+
+import MRLvid from './img/MRL_vectors_video.mp4';
 
 In [January, OpenAI released](https://openai.com/index/new-embedding-models-and-api-updates/) two new embedding models: `text-embedding-3-small` and `text-embedding-3-large`. These models are trained with the [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147) technique, which lets developers trade off performance and cost in embeddings.
 
@@ -29,6 +31,48 @@ Thus, the retrieval performance increases with increasing representation size. H
 ![Matryoshka representation learning.png](./img/Matryoshka_representation_learning.png)
 
 Retrieval performance over representation size for Matryoshka embeddings. (This image is based on Figure 7 in the [original Matryoshka Representation Learning paper.](https://arxiv.org/abs/2205.13147))
+
+The magic behind how MRL is carried out is all in the loss function which is optimized when training these models! If previously the loss function was **L**, for MRL we break down the loss function into the sum of the losses on individual vector dimension ranges: `Loss_Total =  L(upto 8d) + L(upto 16d) + L(upto 32d) + ... + L(upto 2048d)`. With this new nested loss function there is an incentive for the model to capture information in each sub-section of the vector.
+
+After modifying the loss you get these truncatable vectors for free wihtout any additional costs - this works on almost all loss functions and pre-existing models can be finetuned to output MRL vectors! This means that MRL is very easy to adopt and apply to pretrained models.
+
+## Detailed Analysis of Matryoshka Embeddings
+
+
+Below we will work with a [dataset](https://huggingface.co/datasets/Qdrant/dbpedia-entities-openai3-text-embedding-3-large-3072-1M) of 1 Million objects from DBpedia that have been embedded using both the new OpenAI matryoshka `text-embedding-3-large` model aswell as the old `ada-002` model. This will give us an understanding of how information is disproportionately stored in the the matryoshka vectors compared to thier non-matryoshka predecessors.
+
+In this analysis below we sampled 10k random vectors from the dataset above and plotted out the standard deviation of values seen for each dimension. The variance or standard deviation seen across a dimension is a good proxy to measure how much information that dimensions carries relative to other dimensions.
+
+|Matryoshka Vectors            |  Non-Matryoshka Vectors |
+|:-------------------------:|:-------------------------: |
+| ![MRL](./img/MRLvar.png)  |  ![OLD](./img/OLDvar.jpeg) |
+
+This graphs shows the smoothed standard deviation per dimension across 10k random samples from DBpedia embedded with the new `text-emb3-large` model and the old `ada-002` model.
+
+
+We can see the standard deviation is a multi-step function of the dimension index - earlier dimensions capture more information and those later on capture less. The graph also tells us that the OpenAI embedding model was trained with 4 aggregated loss functions at dimensions = {512d, 1024d, 1536d, 3072d} in the MRL style detailed above.
+
+What's more interesting is that the information within the steps(512d, 1024d, 1536d, 3072d) diffuses more or less evenly amongst the dimensions. This also explains the magical finding in the MRL paper that shows you can actually take dimensions between these pre-specified chunks (eg. 750d) and still get incremental benefits.
+
+### Visualizing a Matryoshka Vector Space
+
+Another interesting question we can ask is: How does the underlying data representation/vector-space change as you use more and more dimensions of a Matryoshka embedding?
+
+In this video below every frame is a 3D vector space that was generated using principal components analysis(PCA) on upto only a certain number of MRL vector dimensions.
+
+We took 10k random samples, embedded using the OpenAI `text-embed-3-large` model, from the same dataset linked above and then reduced them down to 3D space using PCA; we started off using only 4-dims all the way up to using all 3072-dims. 
+
+<figure>
+  <video width="100%" autoplay loop muted controls>
+    <source src={MRLvid} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Visualizing Matryoshka vectors with increasingly more dimensions.</figcaption>
+</figure>
+
+You can see that by the time we get to using 512 dims, the structure of the vector space is already well defined, after these inital 512 dimensions the others are mainly used to tighten data representation inside the larger structure.
+
+By the time we get to dims 2000+ we only see small jittering of the data points, probably because the contributions of the incremental dimensions are negligible and can't be seen in the first 3 principal components.
 
 ## Getting Familiar with OpenAI’s Matryoshka Embeddings
 
