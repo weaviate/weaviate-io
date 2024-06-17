@@ -13,10 +13,7 @@ const KnowledgeBasePage = () => {
   const card = knowledge.all.find((c) => c.title === 'PQ');
   if (!card) return <p>Card not found</p>;
 
-  let baseUrl = '';
-  if (ExecutionEnvironment.canUseDOM) {
-    baseUrl = window.location.origin;
-  }
+  const baseUrl = 'https://weaviate.io';
 
   const imageFullUrl = card.cardImage
     ? `${baseUrl}/img/cards/${card.cardImage}`
