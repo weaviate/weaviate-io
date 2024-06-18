@@ -1031,21 +1031,21 @@ await client.collections.delete('DemoCollection');
 await client.collections.delete('DemoCollection');
 
 let srcObjects = [
-  {"title": "The Shawshank Redemption", "description": ""},
-  {"title": "The Godfather", "description": ""},
-  {"title": "The Dark Knight", "description": ""},
-  {"title": "Jingle All the Way", "description": ""},
-  {"title": "A Christmas Carol", "description": ""},
+  {title: "The Shawshank Redemption", description: ""},
+  {title: "The Godfather", description: ""},
+  {title: "The Dark Knight", description: ""},
+  {title: "Jingle All the Way", description: ""},
+  {title: "A Christmas Carol", description: ""},
 ];
 
-// START BatchImportExample  // START NearTextExample  // START HybridExample
+// START BatchImportExample  // START NearTextExample  // START HybridExample  // START MMBatchImportExample
 const collectionName = 'DemoCollection'
 const myCollection = client.collections.get(collectionName)
 
-// END BatchImportExample  // END NearTextExample  // END HybridExample
+// END BatchImportExample  // END NearTextExample  // END HybridExample  // END MMBatchImportExample
 
 // START BatchImportExample
-let dataObject = []
+let dataObjects = []
 
 for (let srcObject of srcObjects) {
   dataObject.push({
@@ -1054,13 +1054,33 @@ for (let srcObject of srcObjects) {
   });
 }
 
-const response = await myCollection.data.insertMany(dataObject);
+const response = await myCollection.data.insertMany(dataObjects);
 
 console.log(response);
 // END BatchImportExample
 
+let mmSrcObjects = [
+  {title: "The Shawshank Redemption", description: "", poster: "<base64 encoded image>"},
+  {title: "The Godfather", description: "", poster: "<base64 encoded image>"},
+  {title: "The Dark Knight", description: "", poster: "<base64 encoded image>"},
+  {title: "Jingle All the Way", description: "", poster: "<base64 encoded image>"},
+  {title: "A Christmas Carol", description: "", poster: "<base64 encoded image>"},
+];
+
 // START MMBatchImportExample
-// Code example coming soon
+let multiModalObjects = []
+
+for (let mmSrcObject of mmSrcObjects) {
+  multiModalObjects.push({
+    title: mmSrcObject.title,
+    poster: mmSrcObject.poster,  // Add the image in base64 encoding
+  });
+}
+
+// The model provider integration will automatically vectorize the object
+const mmInsertResponse = await myCollection.data.insertMany(dataObject);
+
+console.log(mmInsertResponse);
 // END MMBatchImportExample
 
 // START NearTextExample
@@ -1089,7 +1109,16 @@ console.log(JSON.stringify(result.objects, null, 2));
 // END HybridExample
 
 // START NearImageExample
-// Code example coming soon
+const base64String = 'SOME_BASE_64_REPRESENTATION';
+
+result = await myCollection.query.nearImage(
+  base64String,  // The model provider integration will automatically vectorize the query
+  {
+    limit: 2,
+  }
+)
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END NearImageExample
 
 client.close();
