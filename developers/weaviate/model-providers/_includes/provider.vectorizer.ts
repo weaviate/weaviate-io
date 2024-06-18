@@ -264,10 +264,10 @@ await client.collections.create({
 //       name: 'title_vector',
 //       projectId: 'project-id',
 //       imageFields: [
-//         weaviate.connectToLocalMulti2VecField({
-//           name: "poster",
-//           weight: 0.9
-//         })
+//         // weaviate.connectToLocalMulti2VecField({
+//         //   name: "poster",
+//         //   weight: 0.9
+//         // })
 //       ]
 //     }),
 //   ],

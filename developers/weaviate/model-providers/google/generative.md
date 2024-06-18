@@ -112,12 +112,20 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 [Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a Google AI generative AI model as follows:
 
+Note that the required parameters differ between Vertex AI and AI Studio.
+
+The [default model](#available-models) is used if no model is specified.
+
+### Vertex AI
+
+Vertex AI users must provide the Google Cloud project ID in the collection configuration.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeGoogle"
-      endMarker="# END BasicGenerativeGoogle"
+      startMarker="# START BasicGenerativeGoogleVertex"
+      endMarker="# END BasicGenerativeGoogleVertex"
       language="py"
     />
   </TabItem>
@@ -125,15 +133,36 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeGoogle"
-      endMarker="// END BasicGenerativeGoogle"
+      startMarker="// START BasicGenerativeGoogleVertex"
+      endMarker="// END BasicGenerativeGoogleVertex"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`gpt-3.5-turbo`) is used if no model is specified.
+### AI Studio
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicGenerativeGoogleStudio"
+      endMarker="# END BasicGenerativeGoogleStudio"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicGenerativeGoogleStudio"
+      endMarker="// END BasicGenerativeGoogleStudio"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Retrieval augmented generation
 

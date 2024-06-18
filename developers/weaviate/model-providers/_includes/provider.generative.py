@@ -159,19 +159,37 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicGenerativeGoogle
+# START BasicGenerativeGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.palm(
-        # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        model_id="gemini-1.0-pro"
     )
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicGenerativeGoogle
+# END BasicGenerativeGoogleVertex
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeGoogleStudio
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.palm(
+        model_id="gemini-pro"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeGoogleStudio
 
 # clean up
 client.collections.delete("DemoCollection")

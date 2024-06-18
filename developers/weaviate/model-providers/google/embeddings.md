@@ -114,11 +114,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 
+The [default model](#available-models) is used if no model is specified.
+
 ### Vertex AI
 
 Vertex AI users must provide the Google Cloud project ID in the vectorizer configuration.
-
-The default model (`textembedding-gecko@001` for Vertex AI) is used if no model is specified.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -142,8 +142,6 @@ The default model (`textembedding-gecko@001` for Vertex AI) is used if no model 
 </Tabs>
 
 ### AI Studio
-
-The default model (`embedding-001` for AI Studio) is used if no model is specified.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

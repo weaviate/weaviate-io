@@ -146,17 +146,25 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicGenerativeGoogle
+// START BasicGenerativeGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.palm({
     projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+    modelId: 'gemini-1.0-pro'
   }),
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicGenerativeGoogle
+// END BasicGenerativeGoogleVertex
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeGoogleStudio
+// Coming soon
+// END BasicGenerativeGoogleStudio
 
 // Clean up
 await client.collections.delete('DemoCollection');
