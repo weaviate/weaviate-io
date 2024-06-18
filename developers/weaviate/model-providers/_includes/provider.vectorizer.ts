@@ -444,6 +444,13 @@ await client.collections.delete('DemoCollection');
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START VectorizerOctoAICustomModel
+// Code example coming soon
+// END VectorizerOctoAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullVectorizerOctoAI
 // Code example coming soon
 // END FullVectorizerOctoAI

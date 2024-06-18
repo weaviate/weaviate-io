@@ -417,6 +417,25 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerOctoAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_octoai(
+            name="title_vector",
+            source_properties=["title"],
+            model="thenlper/gte-large"
+        )
+    ],
+    # Additional parameters not shown
+)
+# END VectorizerOctoAICustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerOctoAI
 from weaviate.classes.config import Configure
 

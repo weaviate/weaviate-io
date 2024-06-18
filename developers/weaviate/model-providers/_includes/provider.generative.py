@@ -281,6 +281,21 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeOctoAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.octoai(
+        model="meta-llama-3-70b-instruct"
+    )
+    # Additional parameters not shown
+)
+# END GenerativeOctoAICustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeOctoAI
 from weaviate.classes.config import Configure
 

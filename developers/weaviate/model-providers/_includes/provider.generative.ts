@@ -236,14 +236,46 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeOctoAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeOctoAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeOctoAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai({
+    model: 'meta-llama-3-70b-instruct'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeOctoAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullGenerativeOctoAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai({
+    model: 'meta-llama-3-70b-instruct',
+    maxTokens: 500,
+    temperature: 0.7,
+    baseURL: 'https://text.octoai.run'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullGenerativeOctoAI
 
 // Clean up
