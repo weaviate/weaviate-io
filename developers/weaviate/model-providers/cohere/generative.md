@@ -129,7 +129,7 @@ You can specify one of the [available models](#available-models) for Weaviate to
 
 </Tabs>
 
-The default model (`command-r`) is used if no model is specified.
+The [default model](#available-models) is used if no model is specified.
 
 ## Retrieval augmented generation
 

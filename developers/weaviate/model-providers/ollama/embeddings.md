@@ -103,7 +103,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The default model (`nomic-embed-text`) is used if no model is specified.
+The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 

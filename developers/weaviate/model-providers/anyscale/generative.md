@@ -104,7 +104,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`meta-llama/Llama-2-70b-chat-hf`) is used if no model is specified.
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Select a model
 

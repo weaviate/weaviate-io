@@ -105,7 +105,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The default model (`llama3`) is used if no model is specified.
+The [default model](#available-models) is used if no model is specified.
 
 ## Retrieval augmented generation
 

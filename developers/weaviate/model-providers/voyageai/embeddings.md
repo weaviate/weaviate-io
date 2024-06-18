@@ -104,7 +104,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`voyage-large-2`) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 
