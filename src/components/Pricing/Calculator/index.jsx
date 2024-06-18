@@ -98,6 +98,10 @@ export default function PricingCalculator({ props }) {
     clearValue = clearValue.replace('.', '').replace(',', '');
     setEmbeddingSize(clearValue);
     setShowTooltipEmbeddingSize(clearValue >= thresholdForEmbeddingSize);
+
+    if (clearValue >= thresholdForEmbeddingSize) {
+      setEmbeddingSize(thresholdForEmbeddingSize);
+    }
   };
 
   const handleChangeAmountOfDataObjs = (e) => {
@@ -105,6 +109,10 @@ export default function PricingCalculator({ props }) {
     clearValue = clearValue.replace('.', '').replace(',', '');
     setAmountOfDataObjs(clearValue);
     setShowTooltipAmountOfDataObjs(clearValue >= thresholdForAmountOfDataObjs);
+
+    if (clearValue >= thresholdForAmountOfDataObjs) {
+      setAmountOfDataObjs(thresholdForAmountOfDataObjs);
+    }
   };
 
   const handleChangeQueriesPerMonth = (e) => {
