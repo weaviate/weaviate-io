@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Jina AI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Jina AI embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -104,7 +104,32 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`jina-embeddings-v2-base-en`) is used if no model is specified.
+### Select a model
+
+You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration example.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerJinaCustomModel"
+      endMarker="# END VectorizerJinaCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorizerJinaCustomModel"
+      endMarker="// END VectorizerJinaCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 

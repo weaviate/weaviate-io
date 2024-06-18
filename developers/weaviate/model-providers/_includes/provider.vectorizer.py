@@ -357,6 +357,26 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerJinaCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            model="jina-embeddings-v2-small-en"
+        )
+    ],
+    # highlight-end
+)
+# END VectorizerJinaCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerJinaAI
 from weaviate.classes.config import Configure
 

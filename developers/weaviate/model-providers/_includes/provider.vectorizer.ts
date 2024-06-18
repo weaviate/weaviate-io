@@ -387,6 +387,30 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START VectorizerJinaCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecJina({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'jina-embeddings-v2-small-en'
+    }),
+  ],
+  // highlight-end
+});
+// END VectorizerJinaCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullVectorizerJinaAI
 await client.collections.create({
   name: 'DemoCollection',
