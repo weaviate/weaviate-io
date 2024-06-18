@@ -16,14 +16,46 @@ const client = await weaviate.connectToLocal({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeAnyscale
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeAnyscale
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeAnyscaleCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale({
+    model: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeAnyscaleCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+
 // START FullGenerativeAnyscale
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale({
+    // // These parameters are optional
+    // model: 'meta-llama/Llama-2-70b-chat-hf',
+    // temperature: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullGenerativeAnyscale
 
 // Clean up
