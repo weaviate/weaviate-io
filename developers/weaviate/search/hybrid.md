@@ -158,7 +158,7 @@ The output is like this:
 To run a hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# NamedVectorHybridPython"
@@ -167,7 +167,7 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# NamedVectorHybridPython"
@@ -176,7 +176,7 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorHybrid"
@@ -639,7 +639,7 @@ The output is like this:
 You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START VectorSimilarityPython"
@@ -687,7 +687,7 @@ The output is like this:
 Define criteria to group search results.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridGroupByPy4"

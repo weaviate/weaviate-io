@@ -59,7 +59,7 @@ Provide the API credentials to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START AWSInstantiation"
@@ -68,7 +68,7 @@ Provide the API credentials to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START AWSInstantiation"
@@ -102,7 +102,7 @@ You must [specify](#generative-parameters) one of the [available models](#availa
 For Bedrock, you must provide the model name in the vectorizer configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerAWSBedrock"
@@ -111,7 +111,7 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerAWSBedrock"
@@ -127,7 +127,7 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
 For SageMaker, you must provide the endpoint address in the vectorizer configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerAWSSagemaker"
@@ -136,7 +136,7 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerAWSSagemaker"
@@ -153,7 +153,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -162,7 +162,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -191,7 +191,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -200,7 +200,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -223,7 +223,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -232,7 +232,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -255,7 +255,7 @@ The AWS region setting is required for all AWS integrations.
 - SageMaker users must set `service` to `sagemaker` and provide the `endpoint` address.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerAWS"
@@ -264,7 +264,7 @@ The AWS region setting is required for all AWS integrations.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerAWS"

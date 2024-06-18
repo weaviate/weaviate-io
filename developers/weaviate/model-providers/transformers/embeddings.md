@@ -115,7 +115,7 @@ As this integration runs a local container with the Transformers model, no addit
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use the Transformer inference container by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerTransformers"
@@ -124,7 +124,7 @@ As this integration runs a local container with the Transformers model, no addit
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerTransformers"
@@ -141,7 +141,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -150,7 +150,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -179,7 +179,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -188,7 +188,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -211,7 +211,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -220,7 +220,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -253,7 +253,7 @@ Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://h
   - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerTransformers"
@@ -262,7 +262,7 @@ Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://h
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (API v3)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerTransformers"
