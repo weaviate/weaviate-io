@@ -191,14 +191,45 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeMistral
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeMistralCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral({
+    model: 'mistral-large-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeMistralCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullGenerativeMistral
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral({
+    // // These parameters are optional
+    // model: 'mistral-large',
+    // temperature: 0.7,
+    // maxTokens: 500
+  }),
+  // highlight-end
+});
 // END FullGenerativeMistral
 
 // Clean up

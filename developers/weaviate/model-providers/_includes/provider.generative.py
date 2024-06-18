@@ -232,6 +232,23 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeMistralCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.mistral(
+        model="mistral-large-latest"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeMistralCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeMistral
 from weaviate.classes.config import Configure
 
@@ -245,7 +262,6 @@ client.collections.create(
         # max_tokens=500,
     )
     # highlight-end
-    # Additional parameters not shown
 )
 # END FullGenerativeMistral
 
