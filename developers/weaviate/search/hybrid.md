@@ -281,7 +281,7 @@ The output is like this:
 
 ## Change the fusion method
 
-`Relative Score Fusion` is the default starting in `v1.24`.
+`Relative Score Fusion` is the default fusion method starting in `v1.24`.
 
 - To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
