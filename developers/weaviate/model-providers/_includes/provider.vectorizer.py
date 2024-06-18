@@ -477,6 +477,53 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerOpenAICustomModelV3
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # If using `text-embedding-3` model family
+            model="text-embedding-3-large",
+            dimensions=1024
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerOpenAICustomModelV3
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerOpenAICustomModelLegacy
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # If using older model family e.g. `ada`
+            model="ada",
+            model_version="002",
+            type="text"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerOpenAICustomModelLegacy
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerOpenAI
 from weaviate.classes.config import Configure
 

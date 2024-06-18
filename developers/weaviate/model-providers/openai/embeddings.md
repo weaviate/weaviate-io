@@ -104,7 +104,61 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The [default model](#available-models) is used if no model is specified.
+### Select a model
+
+You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration examples.
+
+#### For `text-embedding-3` model family
+
+For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerOpenAICustomModelV3"
+      endMarker="# END VectorizerOpenAICustomModelV3"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorizerOpenAICustomModelV3"
+      endMarker="// END VectorizerOpenAICustomModelV3"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+#### For older model families (e.g. `ada`)
+
+For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerOpenAICustomModelLegacy"
+      endMarker="# END VectorizerOpenAICustomModelLegacy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorizerOpenAICustomModelLegacy"
+      endMarker="// END VectorizerOpenAICustomModelLegacy"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 

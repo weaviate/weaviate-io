@@ -483,6 +483,61 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START VectorizerOpenAICustomModelV3
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOpenAI({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'text-embedding-3-large',
+      dimensions: 1024
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END VectorizerOpenAICustomModelV3
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerOpenAICustomModelLegacy
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOpenAI({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'ada',
+      modelVersion: '002',
+      type: 'text'
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END VectorizerOpenAICustomModelLegacy
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullVectorizerOpenAI
 await client.collections.create({
   name: 'DemoCollection',
