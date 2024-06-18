@@ -15,7 +15,9 @@
       "bloglink2": "https://weaviate.io/blog/the-ai-first-database-ecosystem#were-awash-in-unstructured-data",
       "blogTitle2": "The AI-First Database Ecosystem",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "unstructured-data-objects.jpg"
+      "cardImage": "unstructured-data-objects.jpg",
+      "next": "/learn/knowledgecards/vector",
+      "previous": "/learn/knowledgecards/vector-database"
     },
     {
       "id": "vector-databases-2",
@@ -29,7 +31,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/search/similarity#search-with-a-vector",
       "docTitle": "Search with a Vector",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "vector.jpg"
+      "cardImage": "vector.jpg",
+      "next": "/learn/knowledgecards/vector-embedding",
+      "previous": "/learn/knowledgecards/unstructured-data-objects"
     },
     {
       "id": "vector-databases-3",
@@ -45,7 +49,9 @@
       "bloglink2": "https://weaviate.io/blog/distance-metrics-in-vector-search#vectors-in-multidimensional-space",
       "blogTitle2": "Distance Metrics in Vector Search",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "vector-embedding.jpg"
+      "cardImage": "vector-embedding.jpg",
+      "next": "/learn/knowledgecards/embeddings-model",
+      "previous": "/learn/knowledgecards/vector"
     },
     {
       "id": "vector-databases-4",
@@ -63,7 +69,9 @@
       "videolink": "https://www.youtube.com/watch?v=lpdN3aw-yTg",
       "videoTitle": "Vector embedding models for AI",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "embeddings-model.jpg"
+      "cardImage": "embeddings-model.jpg",
+      "next": "/learn/knowledgecards/vectorbased-index",
+      "previous": "/learn/knowledgecards/vector-embedding"
     },
     {
       "id": "vector-databases-5",
@@ -79,7 +87,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-index",
       "docTitle": "Vector Index",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "vector-based-index.jpg"
+      "cardImage": "vector-based-index.jpg",
+      "next": "/learn/knowledgecards/vector-database",
+      "previous": "/learn/knowledgecards/embeddings-model"
     },
     {
       "id": "vector-databases-6",
@@ -95,7 +105,9 @@
       "doclink": "https://weaviate.io/blog/vector-library-vs-vector-database#vector-databases",
       "docTitle": "Vector Library vs Vector Database",
       "tags": ["Vector Databases", "Weaviate", "Image"],
-      "cardImage": "vector-database.jpg"
+      "cardImage": "vector-database.jpg",
+      "next": "/learn/knowledgecards/unstructured-data-objects",
+      "previous": "/learn/knowledgecards/vectorbased-index"
     },
     {
       "id": "search-1",
@@ -109,7 +121,9 @@
       "bloglink": "https://weaviate.io/blog/hybrid-search-explained#sparse-and-dense-vectors",
       "blogTitle": "Hybrid Search Explained",
       "tags": ["Hybrid Search", "Weaviate", "Image"],
-      "cardImage": "sparse-vectors.jpg"
+      "cardImage": "sparse-vectors.jpg",
+      "next": "/learn/knowledgecards/dense-vectors",
+      "previous": "/learn/knowledgecards/fusion-algorithm"
     },
     {
       "id": "search-2",
@@ -123,7 +137,9 @@
       "bloglink": "https://weaviate.io/blog/hybrid-search-explained#sparse-and-dense-vectors",
       "blogTitle": "Hybrid Search Explained",
       "tags": ["Hybrid Search", "Weaviate", "Image"],
-      "cardImage": "dense-vectors.jpg"
+      "cardImage": "dense-vectors.jpg",
+      "next": "/learn/knowledgecards/bm25bm25f",
+      "previous": "/learn/knowledgecards/sparse-vectors"
     },
     {
       "id": "search-3",
@@ -139,7 +155,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#bm25",
       "docTitle": "Search Operators",
       "tags": ["Hybrid Search", "Weaviate", "Image"],
-      "cardImage": "BM25-BM25F.jpg"
+      "cardImage": "BM25-BM25F.jpg",
+      "next": "/learn/knowledgecards/alpha-parameter",
+      "previous": "/learn/knowledgecards/dense-vectors"
     },
     {
       "id": "search-4",
@@ -155,7 +173,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/search/hybrid#balance-keyword-and-vector-search",
       "docTitle": "Balance Keyword and Vector Search",
       "tags": ["Hybrid Search", "Weaviate", "Image"],
-      "cardImage": "alpha-parameter.jpg"
+      "cardImage": "alpha-parameter.jpg",
+      "next": "/learn/knowledgecards/fusion-algorithm",
+      "previous": "/learn/knowledgecards/bm25bm25f"
     },
     {
       "id": "search-5",
@@ -171,7 +191,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/search/hybrid#change-the-fusion-method",
       "docTitle": "Change the Fusion Method",
       "tags": ["Hybrid Search", "Weaviate", "Image"],
-      "cardImage": "fusion-algorithm.jpg"
+      "cardImage": "fusion-algorithm.jpg",
+      "next": "/learn/knowledgecards/sparse-vectors",
+      "previous": "/learn/knowledgecards/alpha-parameter"
     },
     {
       "id": "hnsw-1",
@@ -189,7 +211,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/introduction#how-does-weaviate-work",
       "docTitle": "How Does Weaviate Work?",
       "tags": ["HNSW", "Weaviate", "Image"],
-      "cardImage": "hierarchical-graph-structure.jpg"
+      "cardImage": "hierarchical-graph-structure.jpg",
+      "next": "/learn/knowledgecards/ann-approximate-nearest-neighbor",
+      "previous": "/learn/knowledgecards/graphbased-index"
     },
     {
       "id": "hnsw-2",
@@ -207,7 +231,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/indexing#ann-indexing",
       "docTitle": "ANN Indexing",
       "tags": ["HNSW", "Weaviate", "Image"],
-      "cardImage": "ann-approximate-nearest-neighbor.jpg"
+      "cardImage": "ann-approximate-nearest-neighbor.jpg",
+      "next": "/learn/knowledgecards/layered-navigation",
+      "previous": "/learn/knowledgecards/hierarchical-graph-structure"
     },
     {
       "id": "hnsw-3",
@@ -221,7 +247,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index",
       "docTitle": "HNSW Index",
       "tags": ["HNSW", "Weaviate", "Image"],
-      "cardImage": "layered-navigation.jpg"
+      "cardImage": "layered-navigation.jpg",
+      "next": "/learn/knowledgecards/graphbased-index",
+      "previous": "/learn/knowledgecards/ann-approximate-nearest-neighbor"
     },
     {
       "id": "hnsw-4",
@@ -239,7 +267,9 @@
       "videolink": "",
       "videoTitle": "",
       "tags": ["HNSW", "Weaviate", "Image"],
-      "cardImage": "graph-based-index.jpg"
+      "cardImage": "graph-based-index.jpg",
+      "next": "/learn/knowledgecards/hierarchical-graph-structure",
+      "previous": "/learn/knowledgecards/layered-navigation"
     },
     {
       "id": "rag-1",
@@ -251,7 +281,9 @@
       "longText": "Cross-modal reasoning refers to the ability to make connections by integrating information from different modalities or sources including text, images, audio and video. It involves leveraging knowledge from one modality to understand or reason about data from another modality.",
       "link": "/developers/weaviate/quickstart",
       "tags": ["RAG", "Weaviate", "Image"],
-      "cardImage": "cross-modal-reasoning.jpg"
+      "cardImage": "cross-modal-reasoning.jpg",
+      "next": "/learn/knowledgecards/multimodal-embeddings-models",
+      "previous": "/learn/knowledgecards/multimodal-rag"
     },
     {
       "id": "rag-2",
@@ -265,7 +297,9 @@
       "bloglink": "https://weaviate.io/blog/multimodal-models",
       "blogTitle": "Multimodal Embedding Models",
       "tags": ["RAG", "Weaviate", "Image"],
-      "cardImage": "multimodal-embeddings-models.jpg"
+      "cardImage": "multimodal-embeddings-models.jpg",
+      "next": "/learn/knowledgecards/multimodal-contrastive-finetuning",
+      "previous": "/learn/knowledgecards/cross-modal-reasoning"
     },
     {
       "id": "rag-3",
@@ -277,7 +311,9 @@
       "longText": "Multimodal Embeddings Models produce a joint embedding space for multimodal data that understands text, images, audio and more. Objects that are similar are closer together and dissimilar objects are farther apart, this means that the model preserves semantic similarity within and across modalities.",
       "link": "/developers/weaviate/quickstart",
       "tags": ["RAG", "Weaviate", "Image"],
-      "cardImage": "multimodal-contrastive-finetuning.jpg"
+      "cardImage": "multimodal-contrastive-finetuning.jpg",
+      "next": "/learn/knowledgecards/anytoany-search",
+      "previous": "/learn/knowledgecards/multimodal-embeddings-models"
     },
     {
       "id": "rag-4",
@@ -289,7 +325,9 @@
       "longText": "In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept.",
       "link": "/developers/weaviate/quickstart",
       "tags": ["RAG", "Weaviate", "Image"],
-      "cardImage": "any-to-any-search.jpg"
+      "cardImage": "any-to-any-search.jpg",
+      "next": "/learn/knowledgecards/multimodal-rag",
+      "previous": "/learn/knowledgecards/multimodal-contrastive-finetuning"
     },
     {
       "id": "rag-5",
@@ -305,7 +343,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#multimodal-search",
       "docTitle": "Multimodal Search",
       "tags": ["RAG", "Weaviate", "Image"],
-      "cardImage": "multimodal-rag.jpg"
+      "cardImage": "multimodal-rag.jpg",
+      "next": "/learn/knowledgecards/cross-modal-reasoning",
+      "previous": "/learn/knowledgecards/anytoany-search"
     },
     {
       "id": "databases-1",
@@ -319,7 +359,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/more-resources/performance#cost-of-resolving-referencing",
       "docTitle": "Cost of resolving referencing",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "graph-database.jpg"
+      "cardImage": "graph-database.jpg",
+      "next": "/learn/knowledgecards/inverted-indexes",
+      "previous": "/learn/knowledgecards/pq"
     },
     {
       "id": "databases-2",
@@ -335,7 +377,9 @@
       "doclink2": "https://weaviate.io/developers/weaviate/concepts/indexing#inverted-index",
       "docTitle2": "Indexing",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "inverted-indexes.jpg"
+      "cardImage": "inverted-indexes.jpg",
+      "next": "/learn/knowledgecards/sharding",
+      "previous": "/learn/knowledgecards/graph-database"
     },
     {
       "id": "databases-3",
@@ -351,7 +395,9 @@
       "doclink2": "https://weaviate.io/developers/weaviate/concepts/replication-architecture#replication-vs-sharding",
       "docTitle2": "Replication vs Sharding",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "sharding.jpg"
+      "cardImage": "sharding.jpg",
+      "next": "/learn/knowledgecards/multi-tenancy",
+      "previous": "/learn/knowledgecards/inverted-indexes"
     },
     {
       "id": "databases-4",
@@ -367,7 +413,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/manage-data/read-all-objects#read-all-objects---multi-tenant-collections",
       "docTitle": "Read All Objects - Multi-tenant collections",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "multi-tenancy.jpg"
+      "cardImage": "multi-tenancy.jpg",
+      "next": "/learn/knowledgecards/relational-database",
+      "previous": "/learn/knowledgecards/sharding"
     },
     {
       "id": "databases-5",
@@ -379,7 +427,9 @@
       "longText": "A relational database organizes data into tables linked by relationships, enabling complex queries like finding students with both cats and dogs. It uses SQL for structured, precise data management, optimizing operations like filtering and joining for efficient data retrieval.",
       "link": "/developers/weaviate/quickstart",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "relational-database.jpg"
+      "cardImage": "relational-database.jpg",
+      "next": "/learn/knowledgecards/pq",
+      "previous": "/learn/knowledgecards/multi-tenancy"
     },
     {
       "id": "databases-6",
@@ -395,7 +445,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/concepts/vector-quantization#pq-compression-process",
       "docTitle": "PQ compression process",
       "tags": ["Databases", "Weaviate", "Image"],
-      "cardImage": "pq.jpg"
+      "cardImage": "pq.jpg",
+      "next": "/learn/knowledgecards/graph-database",
+      "previous": "/learn/knowledgecards/relational-database"
     },
     {
       "id": "llms-1",
@@ -413,7 +465,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/starter-guides/generative#why-generative-search",
       "docTitle": "Why generative search?",
       "tags": ["LLMs", "Weaviate", "Image"],
-      "cardImage": "large-language-model.jpg"
+      "cardImage": "large-language-model.jpg",
+      "next": "/learn/knowledgecards/finetuning",
+      "previous": "/learn/knowledgecards/chunking"
     },
     {
       "id": "llms-2",
@@ -427,7 +481,9 @@
       "bloglink": "https://weaviate.io/blog/multimodal-models#2-model-architecture",
       "blogTitle": "Multimodal Models",
       "tags": ["LLMs", "Weaviate", "Image"],
-      "cardImage": "finetuning.jpg"
+      "cardImage": "finetuning.jpg",
+      "next": "/learn/knowledgecards/multimodal",
+      "previous": "/learn/knowledgecards/large-language-model-llm"
     },
     {
       "id": "llms-3",
@@ -445,7 +501,9 @@
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#multimodal-search",
       "docTitle": "Multimodal Search",
       "tags": ["LLMs", "Weaviate", "Image"],
-      "cardImage": "multi-modal.jpg"
+      "cardImage": "multi-modal.jpg",
+      "next": "/learn/knowledgecards/embedding-model",
+      "previous": "/learn/knowledgecards/finetuning"
     },
     {
       "id": "llms-4",
@@ -463,7 +521,9 @@
       "videolink": "https://www.youtube.com/watch?v=lpdN3aw-yTg",
       "videoTitle": "Vector embedding models for AI",
       "tags": ["LLMs", "Weaviate", "Image"],
-      "cardImage": "embedding-model.jpg"
+      "cardImage": "embedding-model.jpg",
+      "next": "/learn/knowledgecards/chunking",
+      "previous": "/learn/knowledgecards/multimodal"
     },
     {
       "id": "llms-5",
@@ -479,7 +539,9 @@
       "bloglink2": "https://weaviate.io/developers/weaviate/starter-guides/generative#chunking",
       "blogTitle2": "Chunking",
       "tags": ["LLMs", "Weaviate", "Image"],
-      "cardImage": "chunking.jpg"
+      "cardImage": "chunking.jpg",
+      "next": "/learn/knowledgecards/large-language-model-llm",
+      "previous": "/learn/knowledgecards/embedding-model"
     }
   ],
   "highlights": [

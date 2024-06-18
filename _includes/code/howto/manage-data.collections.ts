@@ -15,7 +15,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 const collectionName = 'Article'
@@ -181,7 +181,7 @@ await client.collections.create({
 result = client.collections.get(collectionName).config.get()
 
 assert.equal(result.vectorizer.default.vectorizer.name, 'text2vec-openai');
-assert.equal(result.properties.length, 2); 
+assert.equal(result.properties.length, 2);
 
 // Delete the class to recreate it
 await client.collections.delete('Article')
@@ -202,7 +202,9 @@ await client.collections.create({
   name: 'Article',
   vectorizers: vectorizer.text2VecOpenAI({
     // highlight-start
-    vectorIndexConfig: configure.vectorIndex.hnsw(),
+    vectorIndexConfig: configure.vectorIndex.hnsw(),  // Use HNSW
+    // vectorIndexConfig: configure.vectorIndex.flat(),  // Use Flat
+    // vectorIndexConfig: configure.vectorIndex.dynamic(),  // Use Dynamic
     // highlight-end
   }),
   properties: [
@@ -627,7 +629,7 @@ import { reconfigure } from 'weaviate-client';
 // START UpdateCollection
 // highlight-start
 articles.config.update({
-  invertedIndex: reconfigure.invertedIndex({ 
+  invertedIndex: reconfigure.invertedIndex({
     bm25k1: 1.5
   })
 })

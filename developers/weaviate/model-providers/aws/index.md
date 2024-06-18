@@ -53,7 +53,7 @@ You must provide [access key based AWS credentials](https://docs.aws.amazon.com/
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the AWS models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

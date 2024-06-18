@@ -16,36 +16,82 @@ const client = await weaviate.connectToLocal({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeAnyscale
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeAnyscale
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeAnyscaleCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale({
+    model: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeAnyscaleCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+
 // START FullGenerativeAnyscale
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anyscale({
+    // // These parameters are optional
+    // model: 'meta-llama/Llama-2-70b-chat-hf',
+    // temperature: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullGenerativeAnyscale
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeAWSBedrock
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.aws({
+    region: 'us-east-1',
+    service: 'bedrock',
+    model: 'cohere.command-r-plus-v1:0',
+  }),
+  // highlight-end
+})
 // END BasicGenerativeAWSBedrock
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeAWSSagemaker
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.aws({
+    region: 'us-east-1',
+    service: 'sagemaker',
+    endpoint: '<custom_sagemaker_url>'
+  }),
+  // highlight-end
+})
 // END BasicGenerativeAWSSagemaker
 
 // Clean up
 await client.collections.delete('DemoCollection');
-
-// START FullGenerativeAWS
-// Code example coming soon
-// END FullGenerativeAWS
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -62,6 +108,22 @@ await client.collections.create({
 
 // Clean up
 await client.collections.delete('DemoCollection');
+
+// START GenerativeCohereCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.cohere({
+    model: 'command-r-plus'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeCohereCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 
 // START FullGenerativeCohere
 await client.collections.create({
@@ -84,17 +146,25 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicGenerativeGoogle
+// START BasicGenerativeGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.palm({
     projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+    modelId: 'gemini-1.0-pro'
   }),
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicGenerativeGoogle
+// END BasicGenerativeGoogleVertex
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeGoogleStudio
+// Coming soon
+// END BasicGenerativeGoogleStudio
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -105,8 +175,8 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.palm({
     projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-    // model_id="<google-model-id>",
-    // api_endpoint="<google-api-endpoint>",
+    // model_id='<google-model-id>',
+    // api_endpoint='<google-api-endpoint>',
     // temperature=0.7,
     // top_k=5,
     // top_p=0.9,
@@ -121,28 +191,91 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeMistral
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeMistralCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral({
+    model: 'mistral-large-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeMistralCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullGenerativeMistral
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.mistral({
+    // // These parameters are optional
+    // model: 'mistral-large',
+    // temperature: 0.7,
+    // maxTokens: 500
+  }),
+  // highlight-end
+});
 // END FullGenerativeMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeOctoAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai(),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeOctoAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeOctoAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai({
+    model: 'meta-llama-3-70b-instruct'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeOctoAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullGenerativeOctoAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.octoai({
+    model: 'meta-llama-3-70b-instruct',
+    maxTokens: 500,
+    temperature: 0.7,
+    baseURL: 'https://text.octoai.run'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullGenerativeOctoAI
 
 // Clean up
@@ -156,7 +289,22 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicGenerativeOpenAI
+// END GenerativeOpenAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.openAI({
+    model: 'gpt-4-1106-preview',
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeOpenAICustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -223,7 +371,7 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.ollama({
     apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
-    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+    model: 'llama3',  // The model to use, e.g. 'phi3', or 'mistral', 'command-r-plus', 'gemma'
   }),
   // highlight-end
   // Additional parameters not shown
@@ -239,7 +387,7 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.ollama({
     apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
-    model: 'llama3',  // The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+    model: 'llama3',  // The model to use, e.g. 'phi3', or 'mistral', 'command-r-plus', 'gemma'
   }),
   // highlight-end
   // Additional parameters not shown

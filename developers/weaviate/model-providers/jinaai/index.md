@@ -37,7 +37,7 @@ You must provide a valid Jina AI API key to Weaviate for these integrations. Go 
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Jina AI models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

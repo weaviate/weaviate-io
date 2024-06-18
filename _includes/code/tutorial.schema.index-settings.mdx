@@ -56,12 +56,11 @@ class_obj = {
     ],
     # highlight-start
     # Configure the vector index
-    "vectorIndexType": "hnsw",
+    "vectorIndexType": "hnsw",  # Or "flat" or "dynamic"
     "vectorIndexConfig": {
         "distance": "cosine",
-        "pq": {
-            "enabled": True,
-            "segments": 192
+        "bq": {
+          "enabled": True,
         },
     },
     # Configure the inverted index
@@ -85,8 +84,8 @@ import { vectorizer, generative, configure, dataType } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
-  } 
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+  }
 )
 
 // Define the 'Question' class
@@ -96,23 +95,23 @@ const collectionObj = {
     {
       name: 'question',
       dataType: 'text' as const,
-      description: 'Category of the question' as const,
+      description: 'Category of the question',
       tokenization: 'lowercase' as const,
       vectorizePropertyName: true,
-      
+
     },
     {
       name: 'answer',
       dataType: 'text' as const,
-      description: 'The question' as const,
+      description: 'The question',
       tokenization: 'whitespace' as const,
       vectorizePropertyName: false,
     }
   ],
   vectorizers: vectorizer.text2VecOpenAI({
-    vectorIndexConfig: configure.vectorIndex.hnsw({
+    vectorIndexConfig: configure.vectorIndex.hnsw({  // Or `flat` or `dynamic`
       distanceMetric: 'cosine',
-      quantizer: configure.vectorIndex.quantizer.pq({ segments:192 }),
+      quantizer: configure.vectorIndex.quantizer.bq(),
     })
   }),
   generative: generative.openAI(),
@@ -124,7 +123,7 @@ const collectionObj = {
 }
 
 // Add the class to the schema
-const newCollection = await client.collections.create(collectionObj) 
+const newCollection = await client.collections.create(collectionObj)
 ```
 
 </TabItem>
@@ -173,12 +172,11 @@ const classObj = {
   ],
   // highlight-start
   // Configure the vector index
-  vectorIndexType: 'hnsw',
+  vectorIndexType: 'hnsw',  // Or `flat` or `dynamic`
   vectorIndexConfig: {
       distance: 'cosine',
-      pq: {
+      bq: {
           enabled: True,
-          segments: 192
       },
   },
   // Configure the inverted index
@@ -274,7 +272,7 @@ public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
     // Replace with the URL
-    
+
     WeaviateClient client = new WeaviateClient(config);
 
     // we will create the class "Question"

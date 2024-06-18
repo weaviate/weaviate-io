@@ -2533,15 +2533,15 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
-"@grpc/grpc-js@~1.9.14":
-  version "1.9.14"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.9.14.tgz#236378822876cbf7903f9d61a0330410e8dcc5a1"
-  integrity sha512-nOpuzZ2G3IuMFN+UPPpKrC6NsLmWsTqSsm66IRfnBt1D4pwTqE27lmbpcPM+l2Ua4gE7PfjRHI6uedAy7hoXUw==
+"@grpc/grpc-js@^1.10.8":
+  version "1.10.9"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.10.9.tgz#468cc1549a3fe37b760a16745fb7685d91f4f10c"
+  integrity sha512-5tcgUctCG0qoNyfChZifz2tJqbRbXVO9J7X6duFcOjY3HUNCxg5D0ZCK7EP9vIcZ0zRpLU9bWkyCqVCLZ46IbQ==
   dependencies:
-    "@grpc/proto-loader" "^0.7.8"
-    "@types/node" ">=12.12.47"
+    "@grpc/proto-loader" "^0.7.13"
+    "@js-sdsl/ordered-map" "^4.4.2"
 
-"@grpc/proto-loader@^0.7.8":
+"@grpc/proto-loader@^0.7.13":
   version "0.7.13"
   resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.7.13.tgz#f6a44b2b7c9f7b609f5748c6eac2d420e37670cf"
   integrity sha512-AiXO/bfe9bmxBjxxtYxFAXGZvMaN5s8kO+jBHAJCON8rJoB5YS/D6X7ZNc6XQkuHNmyl4CYaMI1fJ/Gn27RGGw==
@@ -2721,6 +2721,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
+
+"@js-sdsl/ordered-map@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz#9299f82874bab9e4c7f9c48d865becbfe8d6907c"
+  integrity sha512-iUKgm52T8HOE/makSxjqoWhe95ZJA1/G1sYsGev2JDKUSS14KAgg1LHb+Ba+IPow0xflbnSkOsZcO08C7w1gYw==
 
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.5"
@@ -4807,10 +4812,17 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^20.11.26":
+"@types/node@*", "@types/node@^20.11.26":
   version "20.14.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.1.tgz#2434dbcb1f039e31f2c0e9969da93f52cf6348f3"
   integrity sha512-T2MzSGEu+ysB/FkWfqmhV3PLyQlowdptmmgD20C6QxsS8Fmv5SjpZ1ayXaEC0S21/h5UJ9iA6W/5vSNU5l00OA==
+  dependencies:
+    undici-types "~5.26.4"
+
+"@types/node@>=13.7.0":
+  version "20.14.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.5.tgz#fe35e3022ebe58b8f201580eb24e1fcfc0f2487d"
+  integrity sha512-aoRR+fJkZT2l0aGOJhuA8frnCSoNX6W7U2mpNq63+BxBIj5BQFt8rHy627kijCmm63ijdSdwvGgpUsU6MBsZZA==
   dependencies:
     undici-types "~5.26.4"
 
@@ -10005,9 +10017,9 @@ graphql@16.5.0:
   integrity sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==
 
 graphql@^16.8.1:
-  version "16.8.1"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.1.tgz#1930a965bef1170603702acdb68aedd3f3cf6f07"
-  integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
+  version "16.8.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.2.tgz#54771c7ff195da913f5e70af8044a026d32eca2a"
+  integrity sha512-cvVIBILwuoSyD54U4cF/UXDh5yAobhNV/tPygI4lZhgOIJQE/WLWC4waBRb4I6bDVYb3OVx3lfHbaQOEoUD5sg==
 
 gray-matter@^4.0.3:
   version "4.0.3"
@@ -13386,9 +13398,9 @@ netlify@^13.1.17, netlify@^13.1.2:
     qs "^6.9.6"
 
 nice-grpc-client-middleware-deadline@^2.0.11:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-deadline/-/nice-grpc-client-middleware-deadline-2.0.11.tgz#b37e4e7c55b6ef18a023ee78c31e180d4d8193b4"
-  integrity sha512-mwO70/ye7EhbW13HXx3Hjq05QBKR52qyxYzOwBVQvZS/THyT0h5fGbtmQBtlHxAA+lyVJdt51PXu6ic5al/eeg==
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-deadline/-/nice-grpc-client-middleware-deadline-2.0.12.tgz#4b2b4589559a5201b7adc6a9ee1673fb0dda21de"
+  integrity sha512-drKxQJzTbh+Qkd6v+BcRhTmY2mw9zR8Qigu/jk0vIkDi90K6NOOJGgvBdbTxKXtv6QY1g07T1LvwaqW3Mlwdvw==
   dependencies:
     nice-grpc-common "^2.0.2"
 
@@ -13400,11 +13412,11 @@ nice-grpc-common@^2.0.2:
     ts-error "^1.0.6"
 
 nice-grpc@^2.1.7:
-  version "2.1.8"
-  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.8.tgz#2d26eae2470573d692c5fdded1b5be7a30d48aac"
-  integrity sha512-pTugD3cZ1Vb0Q2OjZZh80wpLY6L7jSADnzY7Dq6mL9EGUJJF5mfQjcHF4gqpQtyTq2YsZgPIArfNcq0k3ApgQg==
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.9.tgz#5c4b26e7051eebd31b5f54ce1348524ab151ee2d"
+  integrity sha512-shJlg1t4Wn3qTVE31gxofbTrgCX/p4tS1xRnk4bNskCYKvXNEUpJQZpjModsVk1aau69YZDViyC18K9nC7QHYA==
   dependencies:
-    "@grpc/grpc-js" "~1.9.14"
+    "@grpc/grpc-js" "^1.10.8"
     abort-controller-x "^0.4.0"
     nice-grpc-common "^2.0.2"
 
@@ -14950,9 +14962,9 @@ proto-list@~1.2.1:
   integrity sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==
 
 protobufjs@^7.2.5:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-7.3.0.tgz#a32ec0422c039798c41a0700306a6e305b9cb32c"
-  integrity sha512-YWD03n3shzV9ImZRX3ccbjqLxj7NokGN0V/ESiBV5xWqrommYHYiihuIyavq03pWSGqlyvYUFmfoMKd+1rPA/g==
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-7.3.2.tgz#60f3b7624968868f6f739430cfbc8c9370e26df4"
+  integrity sha512-RXyHaACeqXeqAKGLDl68rQKbmObRsTIn4TYVUUug1KfS47YWCo5MacGITEryugIgZqORCvJWEk4l449POg5Txg==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -18411,9 +18423,9 @@ wcwidth@^1.0.1:
     defaults "^1.0.3"
 
 weaviate-client@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.2.tgz#284db7afeb8e1af00d08141ccf36bffbd4c38d3a"
-  integrity sha512-lL2xP2BU/pG2Bws89aRb1N8K5FINzZri0g3ULmflateOIERyPHs3db5SMh5bSRb+0wjTRioci4vQlMzMbfi88Q==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.5.tgz#ae27cd889752f8fa35f955f5fe4b8bcd3c58c6a9"
+  integrity sha512-nl1S9pnAYiYKkt1QwQizGYOCK25KJOw3trBFBTA4zjEIBkX83fj11W/DHjdQUT8v4K7cQbDWHy9QdT6ZL1pdxA==
   dependencies:
     graphql "^16.8.1"
     graphql-request "^6.1.0"

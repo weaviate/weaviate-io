@@ -217,30 +217,15 @@ The `insertMany()` method makes it easier to bulk insert a large number of objec
 
 For inserts of over 5000 objects, use `insertMany()` as part of a batch process:
 
-```js
-const questions = client.collections.get("CollectionName")
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 
-const batchSize = 1000; // define your batch size
-
-async function insertBatch() {
-  try {
-    await questions.data.insertMany(dataBatch);
-    console.log('Batch inserted successfully');
-  } catch (error) {
-    console.error('Error inserting batch:', error);
-  }
-}
-
-async function batchInsert() {
-  for (let i = 0; i < dataArray.length; i += batchSize) {
-    const batch = dataArray.slice(i, i + batchSize);
-    await insertBatch(batch);
-  }
-}
-
-const dataObject = [...]; // your data
-await batchInsert(dataObject);
-```
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// START BatchGRPC"
+  endMarker="// END BatchGRPC"
+  language="ts"
+/>
 
 ### Iterator Method
 
