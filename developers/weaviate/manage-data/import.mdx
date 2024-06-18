@@ -124,21 +124,22 @@ config.setGRPCHost("localhost:50051");
 
 To use the gRPC API with the Go client, add the `GrpcConfig` field to your client connection code. Update `Secured` if you use an encrypted connection.<br/><br/>
 
-```go
+```java
 cfg := weaviate.Config{
-	Host:   fmt.Sprintf("localhost:%v", "8080"),
-	Scheme: "http",
- // highlight-start
-	GrpcConfig: &grpc.Config{
-		Host: "localhost:50051",
-    Secured: false,
-	},
- // highlight-end
+  Host:   fmt.Sprintf("localhost:%v", "8080"),
+  Scheme: "http",
+  // highlight-start
+	 GrpcConfig: &grpc.Config{
+      Host: "localhost:50051",
+      Secured: false,
+	 },
+  // highlight-end
 }
+
 client, err := weaviate.NewClient(cfg)
 if err != nil {
-	require.Nil(t, err)
-	}
+  require.Nil(t, err)
+  }
 ```
   </TabItem>
   <TabItem value="spark" label="Spark">
