@@ -651,6 +651,31 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START VectorizerVoyageAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecVoyageAI({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'voyage-code-2',
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END VectorizerVoyageAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START FullVectorizerVoyageAI
 await client.collections.create({
   name: 'DemoCollection',

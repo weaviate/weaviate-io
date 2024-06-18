@@ -616,6 +616,27 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerVoyageAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_voyageai(
+            name="title_vector",
+            source_properties=["title"],
+            model="voyage-code-2"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerVoyageAICustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerVoyageAI
 from weaviate.classes.config import Configure
 
