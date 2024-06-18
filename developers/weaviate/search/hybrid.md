@@ -87,7 +87,7 @@ The output is like this:
 :::info Added in `v1.24`
 :::
 
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+A hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md) must specify a `target` vector. Weaviate searches the named vector space with the query vector.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -281,10 +281,7 @@ The output is like this:
 
 ## Change the fusion method
 
-:::info Added in `v1.20`
-:::
-:::info `Relative Score Fusion` is the default in `v1.24` and higher.
-:::
+`Relative Score Fusion` is the default starting in `v1.24`.
 
 - To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
