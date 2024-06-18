@@ -256,24 +256,23 @@ await client.collections.create({
 // Code example coming soon
 // END BasicMMVectorizerGoogle
 
-// await client.collections.create({
-//   name: 'DemoCollection',
-//   // highlight-start
-//   vectorizers: [
-//     weaviate.configure.vectorizer.multi2VecPalm({
-//       name: 'title_vector',
-//       projectId: 'project-id',
-//       imageFields: [
-//         // weaviate.connectToLocalMulti2VecField({
-//         //   name: "poster",
-//         //   weight: 0.9
-//         // })
-//       ]
-//     }),
-//   ],
-//   // highlight-end
-//   // Additional parameters not shown
-// });
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecPalm({
+      name: 'title_vector',
+      location: 'location',
+      projectId: 'project-id',
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }]
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 
 // Clean up
 await client.collections.delete('DemoCollection');

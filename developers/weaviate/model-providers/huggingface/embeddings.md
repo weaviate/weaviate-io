@@ -104,7 +104,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You must [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use.
+You must specify one of the [available models](#available-models) for the vectorizer to use.
 
 ## Data import
 
@@ -255,7 +255,7 @@ You can use any Hugging Face embedding model with `text2vec-huggingface`, includ
 
 ## Further resources
 
-<!-- TODO: Add link to locally hosted version -->
+- [Hugging Face integrations (locally hosted)](../transformers/index.md)
 
 ### Code examples
 

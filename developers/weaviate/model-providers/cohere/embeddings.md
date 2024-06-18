@@ -129,7 +129,7 @@ You can specify one of the [available models](#available-models) for the vectori
 
 </Tabs>
 
-The default model (`embed-multilingual-v3.0`) is used if no model is specified.
+The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 
