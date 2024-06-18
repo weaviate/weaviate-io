@@ -31,6 +31,23 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeAnyscaleCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anyscale(
+        model="mistralai/Mixtral-8x7B-Instruct-v0.1"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeAnyscaleCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeAnyscale
 from weaviate.classes.config import Configure
 

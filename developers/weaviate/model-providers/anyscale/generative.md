@@ -106,6 +106,31 @@ Provide the API key to Weaviate using one of the following methods:
 
 You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`meta-llama/Llama-2-70b-chat-hf`) is used if no model is specified.
 
+### Select model
+
+To specify a model, add the `model` parameter to the collection configuration. For example, the following configuration uses the `mistralai/Mixtral-8x7B-Instruct-v0.1` model:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeAnyscaleCustomModel"
+      endMarker="# END GenerativeAnyscaleCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GenerativeAnyscaleCustomModel"
+      endMarker="// END GenerativeAnyscaleCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
