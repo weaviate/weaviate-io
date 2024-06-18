@@ -59,7 +59,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START CohereInstantiation"
@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START CohereInstantiation"
@@ -84,27 +84,52 @@ Provide the API key to Weaviate using one of the following methods:
 Configure a Weaviate collection to use a Cohere reranker model as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START RerankerCohere"
-      endMarker="# END RerankerCohere"
+      startMarker="# START RerankerCohereBasic"
+      endMarker="# END RerankerCohereBasic"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START RerankerCohere"
-      endMarker="// END RerankerCohere"
+      startMarker="// START RerankerCohereBasic"
+      endMarker="// END RerankerCohereBasic"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can specify one of the [available models](#available-models) for the reranker to use. The default model (`rerank-multilingual-v3.0`) is used if no model is specified.
+### Select a model
+
+You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RerankerCohereCustomModel"
+      endMarker="# END RerankerCohereCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RerankerCohereCustomModel"
+      endMarker="// END RerankerCohereCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+The [default model](#available-models) is used if no model is specified.
 
 ## Reranking query
 
@@ -118,7 +143,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RerankerQueryExample"
@@ -127,7 +152,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerQueryExample"
@@ -142,10 +167,10 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
-- rerank-english-v3.0
-- rerank-multilingual-v3.0 (default)
-- rerank-english-v2.0
-- rerank-multilingual-v2.0
+- `rerank-english-v3.0`
+- `rerank-multilingual-v3.0 (default)`
+- `rerank-english-v2.0`
+- `rerank-multilingual-v2.0`
 
 You can also select a fine-tuned reranker model_id, such as:
 

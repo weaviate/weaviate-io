@@ -36,7 +36,7 @@ Tests are marked with `@pytest.mark.<marker>`, for example:
 `java`: Tests Java snippets in scripts.
 `go`: Tests Go snippets in scripts.
 
-You can run tests for a specific marker by running `pytest -m <marker>`, for example `pytest -m pyv4` to run only tests for Python v4 snippets.
+You can run tests for a specific marker by running `pytest -m <marker>`, for example `pytest -m pyv4` to run only tests for Python API v4 snippets.
 
 #### Test configuration
 
