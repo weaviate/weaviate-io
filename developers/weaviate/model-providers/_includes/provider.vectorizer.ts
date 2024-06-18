@@ -793,15 +793,29 @@ await client.collections.create({
 // END FullVectorizerTransformers
 
 // START BasicVectorizerOllama
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOllama({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      apiEndpoint: 'http://host.docker.internal:11434',  // If using Docker, use this to contact your local Ollama instance
+      model: 'snowflake-arctic-embed',  // The model to use, e.g. "nomic-embed-text"
+    }),
+  ],
+  // highlight-end
+  // END BasicVectorizerOllama
+  properties: [
+    {name: 'title', dataType: 'text'}
+  ],
+  // START BasicVectorizerOllama
+  // Additional parameters not shown
+});
 // END BasicVectorizerOllama
 
 // Clean up
 await client.collections.delete('DemoCollection');
-
-// START FullVectorizerOllama
-// Coming soon
-// END FullVectorizerOllama
 
 // START BasicVectorizerGPT4All
 await client.collections.create({
