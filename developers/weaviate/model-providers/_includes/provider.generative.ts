@@ -289,7 +289,22 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicGenerativeOpenAI
+// END GenerativeOpenAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.openAI({
+    model: 'gpt-4-1106-preview',
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeOpenAICustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');

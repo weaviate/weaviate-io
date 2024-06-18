@@ -329,6 +329,23 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeOpenAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        model="gpt-4-1106-preview"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeOpenAICustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeOpenAI
 from weaviate.classes.config import Configure
 
