@@ -104,7 +104,32 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`command-r`) is used if no model is specified.
+### Select a model
+
+You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeCohereCustomModel"
+      endMarker="# END GenerativeCohereCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GenerativeCohereCustomModel"
+      endMarker="// END GenerativeCohereCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+The default model (`command-r`) is used if no model is specified.
 
 ## Retrieval augmented generation
 

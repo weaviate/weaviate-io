@@ -118,6 +118,24 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeCohereCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.cohere(
+        model="command-r-plus"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeCohereCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+
 # START FullGenerativeCohere
 from weaviate.classes.config import Configure
 

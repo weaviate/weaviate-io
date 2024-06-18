@@ -109,6 +109,22 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START GenerativeCohereCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.cohere({
+    model: 'command-r-plus'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeCohereCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+
 // START FullGenerativeCohere
 await client.collections.create({
   name: 'DemoCollection',

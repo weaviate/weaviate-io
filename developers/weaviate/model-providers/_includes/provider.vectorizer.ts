@@ -22,13 +22,15 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecAWS({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    region: 'us-east-1',
-    service: 'bedrock', // default service
-    model: 'amazon.titan-embed-text-v1', 
-  })]
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecAWS({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      region: 'us-east-1',
+      service: 'bedrock', // default service
+      model: 'amazon.titan-embed-text-v1',
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -47,13 +49,15 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecAWS({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    region: 'us-east-1',
-    service: 'sagemaker', 
-    model: '<custom_sagemaker_url>', 
-  })]
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecAWS({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      region: 'us-east-1',
+      service: 'sagemaker',
+      model: '<custom_sagemaker_url>',
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -72,15 +76,17 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecAWS({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    region: 'us-east-1',
-    service: 'bedrock', 
-    model: 'cohere.embed-multilingual-v3', // If using Bedrock
-    // endpoint: '<custom_sagemaker_url>',  // If using SageMaker
-    // vectorizeClassName: true,
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecAWS({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      region: 'us-east-1',
+      service: 'bedrock',
+      model: 'cohere.embed-multilingual-v3', // If using Bedrock
+      // endpoint: '<custom_sagemaker_url>',  // If using SageMaker
+      // vectorizeClassName: true,
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -99,14 +105,41 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecCohere({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecCohere({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
 // END BasicVectorizerCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerCohereCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecCohere({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      // highlight-start
+      model: 'embed-multilingual-light-v3.0'
+      // highlight-end
+    }),
+  ],
+  // Additional parameters not shown
+});
+// END VectorizerCohereCustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -121,15 +154,17 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecCohere({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    // // Further options
-    // model: 'embed-multilingual-v3.0',
-    // truncate: 'END',
-    // baseURL: '<custom_cohere_url>',
-    // vectorizeClassName: true,
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecCohere({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      // // Further options
+      // model: 'embed-multilingual-v3.0',
+      // truncate: 'END',
+      // baseURL: '<custom_cohere_url>',
+      // vectorizeClassName: true,
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -148,11 +183,13 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecPalm({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecPalm({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      projectId: '<google-cloud-project-id>', // Required for Vertex AI
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -171,15 +208,17 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecPalm({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-    modelId: '<google-model-id>',
-    // modelId: '<google-model-id>',
-    // apiEndpoint: '<google-api_endpoint>',
-    // vectorizeClassName: false,
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecPalm({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      projectId: '<google-cloud-project-id>', // Required for Vertex AI
+      modelId: '<google-model-id>',
+      // modelId: '<google-model-id>',
+      // apiEndpoint: '<google-api_endpoint>',
+      // vectorizeClassName: false,
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -250,11 +289,13 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecHuggingFace({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    model: 'sentence-transformers/all-MiniLM-L6-v2',
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecHuggingFace({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'sentence-transformers/all-MiniLM-L6-v2',
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -273,18 +314,20 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecHuggingFace({
-    name: 'title_vector',
-    sourceProperties: ['title'],
-    model: 'sentence-transformers/all-MiniLM-L6-v2',
-    // passage_model: 'sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base',    // Required if using `query_model`
-    // query_model: 'sentence-transformers/facebook-dpr-question_encoder-single-nq-base', // Required if using `passage_model`
-    // endpoint_url: '<custom_huggingface_url>',
-    //
-    // wait_for_model: true,
-    // use_cache: true,
-    // use_gpu: true,
-  })],
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecHuggingFace({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'sentence-transformers/all-MiniLM-L6-v2',
+      // passage_model: 'sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base',    // Required if using `query_model`
+      // query_model: 'sentence-transformers/facebook-dpr-question_encoder-single-nq-base', // Required if using `passage_model`
+      // endpoint_url: '<custom_huggingface_url>',
+      //
+      // wait_for_model: true,
+      // use_cache: true,
+      // use_gpu: true,
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -303,11 +346,12 @@ await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizers: [weaviate.configure.vectorizer.text2VecJina({
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecJina({
       name: 'title_vector',
       sourceProperties: ['title'],
-      },
-    )],
+    }),
+  ],
   // highlight-end
   // Additional parameters not shown
 });
@@ -367,7 +411,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecOpenAI({ 
+    weaviate.configure.vectorizer.text2VecOpenAI({
       name: 'title_vector',
       sourceProperties: ['title'],
       },
@@ -534,7 +578,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecTransformers({ 
+    weaviate.configure.vectorizer.text2VecTransformers({
       name: 'title_vector',
       sourceProperties: ['title'],
       },
@@ -558,7 +602,7 @@ await client.collections.create({
     },
   ],
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecTransformers({ 
+    weaviate.configure.vectorizer.text2VecTransformers({
       name: 'title_vector',
       sourceProperties: ['title'],
        // // Further options

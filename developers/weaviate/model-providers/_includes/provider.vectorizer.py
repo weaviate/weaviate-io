@@ -103,6 +103,27 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerCohereCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="title_vector",
+            source_properties=["title"],
+            model="embed-multilingual-light-v3.0"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerCohereCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerCohere
 from weaviate.classes.config import Configure
 

@@ -106,9 +106,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`meta-llama/Llama-2-70b-chat-hf`) is used if no model is specified.
 
-### Select model
+### Select a model
 
-To specify a model, add the `model` parameter to the collection configuration. For example, the following configuration uses the `mistralai/Mixtral-8x7B-Instruct-v0.1` model:
+You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
