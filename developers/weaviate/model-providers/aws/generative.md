@@ -97,7 +97,7 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ### Bedrock
 
-For Bedrock, you must provide the model name in the vectorizer configuration.
+For Bedrock, you must provide the model name in the generative AI configuration.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -122,7 +122,7 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
 
 ### SageMaker
 
-For SageMaker, you must provide the endpoint address in the vectorizer configuration.
+For SageMaker, you must provide the endpoint address in the generative AI configuration.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -216,29 +216,6 @@ In other words, when you have `n` search results, the generative model generates
 ## References
 
 ### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAWS"
-      endMarker="# END FullGenerativeAWS"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAWS"
-      endMarker="// END FullGenerativeAWS"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 

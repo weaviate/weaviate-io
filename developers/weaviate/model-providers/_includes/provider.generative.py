@@ -75,10 +75,10 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.aws(
         region="us-east-1",
+        service="bedrock",
         model="cohere.command-r-plus-v1:0"
     )
     # highlight-end
-    # Additional parameters not shown
 )
 # END BasicGenerativeAWSBedrock
 
@@ -86,13 +86,6 @@ client.collections.create(
 client.collections.delete("DemoCollection")
 
 # START BasicGenerativeAWSSagemaker
-# Example coming soon
-# END BasicGenerativeAWSSagemaker
-
-# clean up
-client.collections.delete("DemoCollection")
-
-# START FullGenerativeAWS
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -100,13 +93,15 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.aws(
         region="us-east-1",
-        model="cohere.command-r-plus-v1:0"
-        # Sagemaker parameter to be added soon
+        service="sagemaker",
+        endpoint="<custom_sagemaker_url>"
     )
     # highlight-end
-    # Additional parameters not shown
 )
-# END FullGenerativeAWS
+# END BasicGenerativeAWSSagemaker
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeCohere
 from weaviate.classes.config import Configure
