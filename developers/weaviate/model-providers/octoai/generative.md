@@ -71,7 +71,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START OctoAIInstantiation"
@@ -96,7 +96,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicGenerativeOctoAI"
@@ -134,7 +134,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START SinglePromptExample"
@@ -164,7 +164,7 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GroupedTaskExample"
@@ -193,7 +193,7 @@ Configure the following generative parameters to customize the model behavior.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullGenerativeOctoAI"

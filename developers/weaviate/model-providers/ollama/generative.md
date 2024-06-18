@@ -69,7 +69,7 @@ As this integration connects to a local Ollama container, no additional credenti
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START BasicInstantiation"
@@ -94,7 +94,7 @@ As this integration connects to a local Ollama container, no additional credenti
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicGenerativeOllama"
@@ -132,7 +132,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START SinglePromptExample"
@@ -162,7 +162,7 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GroupedTaskExample"
@@ -186,7 +186,7 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullGenerativeOllama"

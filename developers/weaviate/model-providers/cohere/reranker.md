@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START CohereInstantiation"
@@ -93,7 +93,7 @@ Configure a Weaviate collection to use a Cohere reranker model as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerCohere"
@@ -127,7 +127,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerQueryExample"

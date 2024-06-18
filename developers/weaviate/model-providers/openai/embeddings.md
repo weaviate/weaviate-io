@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START OpenAIInstantiation"
@@ -93,7 +93,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerOpenAI"
@@ -121,7 +121,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -159,7 +159,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -191,7 +191,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -232,7 +232,7 @@ The following examples show how to configure OpenAI-specific options.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerOpenAI"

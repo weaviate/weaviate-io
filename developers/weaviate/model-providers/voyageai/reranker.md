@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START VoyageAIInstantiation"
@@ -93,7 +93,7 @@ Configure a Weaviate collection to use a Voyage AI reranker model as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (API v3)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerVoyageAI"
@@ -128,7 +128,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (API v3)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerQueryExample"
