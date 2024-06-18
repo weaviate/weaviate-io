@@ -226,7 +226,7 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START FullVectorizerGoogle
+// START FullVectorizerGoogleStudio
 await client.collections.create({
   name: 'DemoCollection',
   properties: [
@@ -250,58 +250,94 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END FullVectorizerGoogle
+// END FullVectorizerGoogleStudio
 
-// START BasicMMVectorizerGoogle
-// Code example coming soon
-// END BasicMMVectorizerGoogle
-
+// START BasicMMVectorizerGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
   // highlight-start
   vectorizers: [
     weaviate.configure.vectorizer.multi2VecPalm({
       name: 'title_vector',
-      location: 'location',
-      projectId: 'project-id',
-      imageFields: [{
-        name: "poster",
-        weight: 0.9
-      }]
+      location: '<google-cloud-location>',
+      projectId: '<google-cloud-project-id>',
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.9,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
     }),
   ],
   // highlight-end
   // Additional parameters not shown
 });
+// END BasicMMVectorizerGoogleVertex
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START FullMMVectorizerGoogle
-// Code example coming soon
-// END FullMMVectorizerGoogle
-
-// Placeholder code for the FullMMVectorizerGoogle example
-// await client.collections.create({
-//   name: 'DemoCollection',
-//   // highlight-start
-//   vectorizer: [
-//     weaviate.configure.namedVectorizer(
-//       'title_vector',
-//       {
-//         properties: ['title'],
-//         vectorizerConfig: weaviate.configure.vectorizer.multi2VecPalm({
-//           projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-//           // modelId: '<google-model-id>',
-//           // apiEndpoint: '<google-api_endpoint>',
-//           // vectorizeClassName: false,
-//         }),
-//       },
-//     ),
-//   ],
-//   // highlight-end
-//   // Additional parameters not shown
-// });
+// START FullMMVectorizerGoogleVertex
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'description',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecPalm({
+      name: 'title_vector',
+      projectId: '<google-cloud-project-id>',
+      modelId: '<google-model-id>',
+      location: '<google-cloud-location>',
+      dimensions: 512,
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.9,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
+      // videoFields: []
+      // video_interval_seconds: 20
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullMMVectorizerGoogleVertex
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -811,19 +847,167 @@ await client.collections.create({
 // END FullVectorizerGPT4All
 
 // START BasicMMVectorizerCLIP
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecClip({
+      name: 'title_vector',
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.9,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicMMVectorizerCLIP
 
 // START FullMMVectorizerCLIP
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecClip({
+      name: 'title_vector',
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.9,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
+      // inferenceUrl: '<custom_clip_url>'
+    }),
+  ],
+  // highlight-end
+});
 // END FullMMVectorizerCLIP
 
 // START BasicMMVectorizerBind
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecClip({
+      name: 'title_vector',
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.9,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicMMVectorizerBind
 
 // START FullMMVectorizerBind
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+    {
+      name: 'sound',
+      dataType: 'blob' as const,
+    },
+    {
+      name: 'video',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecBind({
+      name: 'title_vector',
+      imageFields: [
+        {
+          name: 'poster',
+          weight: 0.7,
+        },
+      ],
+      textFields: [
+        {
+          name: 'title',
+          weight: 0.1,
+        },
+      ],
+      audioFields: [
+        {
+          name: 'sound',
+          weight: 0.1,
+        },
+      ],
+      videoFields: [
+        {
+          name: 'video',
+          weight: 0.1,
+        },
+      ],
+      // depth, IMU and thermal fields are also available
+    }),
+  ],
+  // highlight-end
+});
 // END FullMMVectorizerBind
 
 // Clean up

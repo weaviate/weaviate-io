@@ -217,7 +217,7 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicMMVectorizerGoogle
+# START BasicMMVectorizerGoogleVertex
 from weaviate.classes.config import Property, DataType, Configure, Multi2VecField
 
 client.collections.create(
@@ -245,12 +245,12 @@ client.collections.create(
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicMMVectorizerGoogle
+# END BasicMMVectorizerGoogleVertex
 
 # clean up
 client.collections.delete("DemoCollection")
 
-# START FullMMVectorizerGoogle
+# START FullMMVectorizerGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -264,7 +264,10 @@ client.collections.create(
     vectorizer_config=[
         Configure.NamedVectors.multi2vec_palm(
             name="title_vector",
-            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            # model_id="<google-model-id>",
+            # location="us-central1",
+            # dimensions=512,
             image_fields=[
                 Multi2VecField(name="poster", weight=0.9)
             ],
@@ -272,17 +275,13 @@ client.collections.create(
                 Multi2VecField(name="title", weight=0.1)
             ],
             # video_fields=[]
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
-            # model_id="<google-model-id>",
-            # location="us-central1",
-            # dimensions=512,
             # video_interval_seconds=20
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
-# END FullMMVectorizerGoogle
+# END FullMMVectorizerGoogleVertex
 
 # clean up
 client.collections.delete("DemoCollection")

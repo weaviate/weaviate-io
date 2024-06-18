@@ -112,8 +112,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerGoogle"
-      endMarker="# END BasicMMVectorizerGoogle"
+      startMarker="# START BasicMMVectorizerGoogleVertex"
+      endMarker="# END BasicMMVectorizerGoogleVertex"
       language="py"
     />
   </TabItem>
@@ -121,10 +121,10 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerGoogle"
-      endMarker="// END BasicMMVectorizerGoogle"
+      startMarker="// START BasicMMVectorizerGoogleVertex"
+      endMarker="// END BasicMMVectorizerGoogleVertex"
       language="ts"
-    />
+    />API v
   </TabItem>
 
 </Tabs>

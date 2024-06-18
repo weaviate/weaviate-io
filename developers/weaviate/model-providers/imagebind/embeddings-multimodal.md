@@ -1,5 +1,5 @@
 ---
-title: ImageBind Multimodal Embeddings
+title: Multimodal Embeddings
 sidebar_position: 30
 image: og/docs/integrations/provider_integrations_imagebind.jpg
 # tags: ['model providers', 'imagebind', 'embeddings']
@@ -133,6 +133,8 @@ As this integration runs a local container with the ImageBind model, no addition
   </TabItem>
 
 </Tabs>
+
+There is only one ImageBind model available.
 
 ## Data import
 
