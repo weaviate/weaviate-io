@@ -148,7 +148,7 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicVectorizerGoogle
+# START BasicVectorizerGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -158,13 +158,37 @@ client.collections.create(
         Configure.NamedVectors.text2vec_palm(
             name="title_vector",
             source_properties=["title"],
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            project_id="<google-cloud-project-id>",
+            # (Optional) To manually set the model ID
+            model_id="textembedding-gecko@latest"
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicVectorizerGoogle
+# END BasicVectorizerGoogleVertex
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerGoogleStudio
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_palm(
+            name="title_vector",
+            source_properties=["title"],
+            # (Optional) To manually set the model ID
+            model_id="text-embedding-004"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerGoogleStudio
 
 # clean up
 client.collections.delete("DemoCollection")

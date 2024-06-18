@@ -112,12 +112,20 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Google AI embedding model by setting the vectorizer as follows:
 
+Note that the required parameters differ between Vertex AI and AI Studio.
+
+### Vertex AI
+
+Vertex AI users must provide the Google Cloud project ID in the vectorizer configuration.
+
+The default model (`textembedding-gecko@001` for Vertex AI) is used if no model is specified.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerGoogle"
-      endMarker="# END BasicVectorizerGoogle"
+      startMarker="# START BasicVectorizerGoogleVertex"
+      endMarker="# END BasicVectorizerGoogleVertex"
       language="py"
     />
   </TabItem>
@@ -125,15 +133,38 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerGoogle"
-      endMarker="// END BasicVectorizerGoogle"
+      startMarker="// START BasicVectorizerGoogleVertex"
+      endMarker="// END BasicVectorizerGoogleVertex"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
+### AI Studio
+
+The default model (`embedding-001` for AI Studio) is used if no model is specified.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicVectorizerGoogleStudio"
+      endMarker="# END BasicVectorizerGoogleStudio"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicVectorizerGoogleStudio"
+      endMarker="// END BasicVectorizerGoogleStudio"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 

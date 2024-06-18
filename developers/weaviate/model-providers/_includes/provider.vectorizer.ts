@@ -173,7 +173,7 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicVectorizerGoogle
+// START BasicVectorizerGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
   properties: [
@@ -187,13 +187,41 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecPalm({
       name: 'title_vector',
       sourceProperties: ['title'],
-      projectId: '<google-cloud-project-id>', // Required for Vertex AI
+      projectId: '<google-cloud-project-id>',
+      // (Optional) To manually set the model ID
+      modelId: 'textembedding-gecko@latest'
     }),
   ],
   // highlight-end
   // Additional parameters not shown
 });
-// END BasicVectorizerGoogle
+// END BasicVectorizerGoogleVertex
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerGoogleStudio
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecPalm({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      // (Optional) To manually set the model ID
+      modelId: 'text-embedding-004'
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerGoogleStudio
 
 // Clean up
 await client.collections.delete('DemoCollection');
