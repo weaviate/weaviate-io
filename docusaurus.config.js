@@ -355,6 +355,10 @@ const config = {
                                 href: '/community',
                             },
                             {
+                                label: 'Demos',
+                                href: '/community/demos',
+                            },
+                            {
                                 label: 'Build With Weaviate',
                                 href: '/community/build-with-weaviate',
                             },
