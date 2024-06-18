@@ -145,8 +145,6 @@ For SageMaker, you must provide the endpoint address in the generative AI config
 
 </Tabs>
 
-You must [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use.
-
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
