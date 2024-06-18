@@ -81,6 +81,8 @@ services:
 - `image` is the container image
 - `ENABLE_CUDA` environment variable enables GPU usage
 
+Set `image` from a [list of available models](#available-models) to specify a particular model to be used.
+
 </TabItem>
 <TabItem value="k8s" label="Kubernetes">
 
@@ -102,6 +104,8 @@ modules:
 If you are using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) model, also configure the parameters listed under `passageQueryServices`.
 
 See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml) for an example of the `values.yaml` file including more configuration options.
+
+Set `tag` from a [list of available models](#available-models) to specify a particular model to be used.
 
 </TabItem>
 </Tabs>
@@ -134,6 +138,10 @@ As this integration runs a local container with the Transformers model, no addit
   </TabItem>
 
 </Tabs>
+
+:::note Model selection via container image used
+Model selection in this integration is done by selecting the appropriate [container image in the integration](#configure-the-integration).
+:::
 
 ## Data import
 
