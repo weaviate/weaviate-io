@@ -57,7 +57,7 @@ You must provide a valid Cohere API key to Weaviate for these integrations. Go t
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Cohere models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 - [Reranker](./reranker.md)
 

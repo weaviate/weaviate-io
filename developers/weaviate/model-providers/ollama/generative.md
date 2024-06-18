@@ -1,5 +1,5 @@
 ---
-title: Generative
+title: Generative AI
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_ollama.jpg
 # tags: ['model providers', 'ollama', 'generative', 'rag']

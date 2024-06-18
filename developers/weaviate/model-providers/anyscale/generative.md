@@ -1,5 +1,5 @@
 ---
-title: Generative
+title: Generative AI
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_anyscale.jpg
 # tags: ['model providers', 'anyscale', 'generative', 'rag']
