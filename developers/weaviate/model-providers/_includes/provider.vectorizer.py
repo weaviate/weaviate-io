@@ -238,7 +238,7 @@ client.collections.create(
                 Multi2VecField(name="title", weight=0.1)
             ],
             # video_fields=[],
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            project_id="<google-cloud-project-id>"  # Required for Vertex AI
         )
     ],
     # highlight-end

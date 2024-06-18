@@ -21,6 +21,10 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 Weaviate's integration with [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
+:::note AI Studio not available
+Multimodal embeddings are currently not available to Google AI Studio users.
+:::
+
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
@@ -72,7 +76,7 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 Provide the API key to Weaviate at runtime, as shown in the examples below.
 
-Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users.
+<!-- Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users. -->
 
 import ApiKeyNote from '../_includes/google-api-key-note.md';
 
@@ -83,8 +87,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START GoogleInstantiation"
-      endMarker="# END GoogleInstantiation"
+      startMarker="# START GoogleVertexInstantiation"
+      endMarker="# END GoogleVertexInstantiation"
       language="py"
     />
   </TabItem>
@@ -92,8 +96,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START GoogleInstantiation"
-      endMarker="// END GoogleInstantiation"
+      startMarker="// START GoogleVertexInstantiation"
+      endMarker="// END GoogleVertexInstantiation"
       language="ts"
     />
   </TabItem>

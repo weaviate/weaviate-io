@@ -256,20 +256,20 @@ await client.collections.create({
 // Code example coming soon
 // END BasicMMVectorizerGoogle
 
-// Placeholder code for the BasicMMVectorizerGoogle example
 // await client.collections.create({
 //   name: 'DemoCollection',
 //   // highlight-start
-//   vectorizer: [
-//     weaviate.configure.namedVectorizer(
-//       'title_vector',
-//       {
-//         properties: ['title'],
-//         vectorizerConfig: weaviate.configure.vectorizer.multi2VecPalm({
-//           projectId: '<google-cloud-project-id>',  // Required for Vertex AI
-//         }),
-//       },
-//     ),
+//   vectorizers: [
+//     weaviate.configure.vectorizer.multi2VecPalm({
+//       name: 'title_vector',
+//       projectId: 'project-id',
+//       imageFields: [
+//         weaviate.connectToLocalMulti2VecField({
+//           name: "poster",
+//           weight: 0.9
+//         })
+//       ]
+//     }),
 //   ],
 //   // highlight-end
 //   // Additional parameters not shown
