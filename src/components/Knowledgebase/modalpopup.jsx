@@ -29,7 +29,7 @@ const ModalComponent = ({
   }
 
   const formattedTitle = formatTitleForUrl(details.title);
-  const shareUrl = `${window.location.origin}/learn/cards/${formattedTitle}`;
+  const shareUrl = `${window.location.origin}/learn/knowledgecards/${formattedTitle}`;
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
   const imageFullUrl = details.cardImage
@@ -144,23 +144,6 @@ const ModalComponent = ({
 
   return (
     <div className={styles.modals} onClick={onClose}>
-      <Head>
-        <title>{details.title}</title>
-        <meta property="og:title" content={details.title} />
-        <meta property="og:description" content={details.longText} />
-        <meta property="og:image" content={imageFullUrl} />
-        <meta
-          property="og:url"
-          content={`${window.location.origin}${
-            window.location.pathname
-          }#card=${details.title.replace(/\s+/g, '-').toLowerCase()}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={details.title} />
-        <meta name="twitter:description" content={details.longText} />
-        <meta name="twitter:image" content={imageFullUrl} />
-      </Head>
       <div
         className={`${styles.modalContents} ${styles[typeClass]} ${
           isFirstOpen ? styles.initialAnimation : ''

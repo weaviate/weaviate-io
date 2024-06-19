@@ -83,11 +83,12 @@ All other values are interpreted as `false`.
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
 | `CLUSTER_HOSTNAME` | Hostname of a node | `string` | `node1` |
 | `CLUSTER_JOIN` | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
+| `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | If `true`, vector cache prefill is synchronous when a node starts. The node reports ready to serve when the cache is hot. Defaults to `false`. Added in 1.24.20 and 1.25.5. | `boolean` | `false` |
 | `RAFT_BOOTSTRAP_EXPECT` | The number of voter notes at bootstrapping time | `string - number` | `1` |
 | `RAFT_BOOTSTRAP_TIMEOUT` | The time in seconds to wait for the cluster to bootstrap | `string - number` | `90` |
-| `RAFT_GRPC_MESSAGE_MAX_SIZE` | The maximum internal raft gRPC message size in bytes, defaults to 1073741824 | `string - number` | `1073741824` |
+| `RAFT_GRPC_MESSAGE_MAX_SIZE` | The maximum internal raft gRPC message size in bytes. Defaults to 1073741824 | `string - number` | `1073741824` |
 | `RAFT_JOIN` | Manually set RAFT voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of RAFT voters. | `string` | `weaviate-0,weaviate-1` |
-| `RAFT_METADATA_ONLY_VOTERS` | If set to `true`, voter nodes will only handle the schema, but not accept any data. | `boolean` | `false` |
+| `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
 
 ## Questions and feedback
 

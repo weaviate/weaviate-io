@@ -59,7 +59,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START VoyageAIInstantiation"
@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START VoyageAIInstantiation"
@@ -84,7 +84,7 @@ Provide the API key to Weaviate using one of the following methods:
 Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RerankerVoyageAI"
@@ -93,7 +93,7 @@ Configure a Weaviate collection to use a Voyage AI reranker model as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerVoyageAI"
@@ -105,7 +105,7 @@ Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 </Tabs>
 
 You can specify one of the [available models](#available-models) for the reranker to use. Currently, `rerank-lite-1` is the only available model.
-<!-- The default model (`rerank-multilingual-v3.0`) is used if no model is specified. -->
+<!-- The [default model](#available-models) is used if no model is specified. -->
 
 ## Reranking query
 
@@ -119,7 +119,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RerankerQueryExample"
@@ -128,7 +128,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankerQueryExample"

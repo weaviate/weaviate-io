@@ -29,7 +29,7 @@ const client = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // ============================
@@ -65,7 +65,7 @@ let dataObjects = [
   { title: 'Object 3' }
 ]
 
-// highlight-start 
+// highlight-start
 const myCollection = client.collections.get('MyCollection')
 const response = await myCollection.data.insertMany(dataObjects);
 // highlight-end
@@ -316,3 +316,30 @@ console.log(`Finished importing ${counter} articles.`);
 // assert.equal(tokyoRose.data.Get['JeopardyQuestion'].length, 2);
 // End test
 
+// ===========================
+// ===== Batch with gRPC =====
+// ===========================
+// START BatchGRPC
+const questions = client.collections.get("CollectionName")
+
+const batchSize = 1000; // define your batch size
+
+async function insertBatch() {
+  try {
+    await questions.data.insertMany(dataBatch);
+    console.log('Batch inserted successfully');
+  } catch (error) {
+    console.error('Error inserting batch:', error);
+  }
+}
+
+async function batchInsert() {
+  for (let i = 0; i < dataArray.length; i += batchSize) {
+    const batch = dataArray.slice(i, i + batchSize);
+    await insertBatch(batch);
+  }
+}
+
+const dataObject = [...]; // your data
+await batchInsert(dataObject);
+// START BatchGRPC
