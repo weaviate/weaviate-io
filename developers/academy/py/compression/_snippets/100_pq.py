@@ -2,10 +2,10 @@ import weaviate
 # PQBasicConfig  # PQCustomConfig
 from weaviate.classes.config import Configure, DataType, Property
 # END PQBasicConfig  # PQCustomConfig
-from weaviate.classes.config import PQEncoderType, PQEncoderDistribution
+from weaviate.collections.classes.config import PQEncoderType, PQEncoderDistribution
 # END PQCustomConfig
 
-from weaviate.classes.config import PQConfig
+from weaviate.collections.classes.config import PQConfig
 
 client = weaviate.connect_to_local()
 
