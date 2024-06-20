@@ -8,7 +8,7 @@ import weaviate
 from weaviate.auth import AuthApiKey
 import os
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
     auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
@@ -218,9 +218,9 @@ for o in response.objects:
 
 # Test results
 assert (
-    response.objects[0].properties["points"] <= 700 |
-    response.objects[0].properties["points"] < 500 |
-    response.objects[0].properties["round"] == "Double Jeopardy!"
+    (response.objects[0].properties["points"] <= 700) |
+    (response.objects[0].properties["points"] < 500) |
+    (response.objects[0].properties["round"] == "Double Jeopardy!")
 )
 # End test
 
@@ -253,9 +253,9 @@ for o in response.objects:
 
 # Test results
 assert (
-    response.objects[0].properties["points"] > 300 &
-    response.objects[0].properties["points"] < 700 &
-    response.objects[0].properties["round"] == "Double Jeopardy!"
+    (response.objects[0].properties["points"] > 300) &
+    (response.objects[0].properties["points"] < 700) &
+    (response.objects[0].properties["round"] == "Double Jeopardy!")
 )
 # End test
 
@@ -378,6 +378,7 @@ for o in response.objects:
     assert o.metadata.creation_time > filter_time
 # End test
 
+client.close()
 
 # ========================================
 # FilterByDateDatatype
@@ -385,6 +386,12 @@ for o in response.objects:
 
 from weaviate.classes.config import Property, DataType, Configure
 from datetime import datetime, timezone
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 client.collections.delete("CollectionWithDate")
 
@@ -437,13 +444,22 @@ for o in response.objects:
 # Tests
 assert len(response.objects) > 0
 for o in response.objects:
-    assert o.properties["release_date"] > filter_time
+    assert o.properties["some_date"] > filter_time
 # End test
 
+client.close()
 
 # ========================================
 # FilterByPropertyLength
 # ========================================
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 length_threshold = 20
 
