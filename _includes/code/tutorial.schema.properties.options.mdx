@@ -69,8 +69,8 @@ import weaviate from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
-  } 
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+  }
 )
 
 // Define the 'Question' collection
@@ -83,12 +83,12 @@ const collectionObj = {
       description: 'Category of the question' as const,
       tokenization: 'lowercase' as const,
       vectorizePropertyName: true,
-      
+
     },
     {
       name: 'answer',
       dataType: 'text' as const,
-      description: 'The question' as const,
+      description: 'The question',
       tokenization: 'whitespace' as const,
       vectorizePropertyName: false,
     }
@@ -98,7 +98,7 @@ const collectionObj = {
 }
 
 // Add the class to the schema
-const newCollection = await client.collections.create(collectionObj) 
+const newCollection = await client.collections.create(collectionObj)
 ```
 
 </TabItem>

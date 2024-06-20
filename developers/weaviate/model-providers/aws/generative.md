@@ -1,5 +1,5 @@
 ---
-title: Generative
+title: Generative AI
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws', 'generative', 'rag']
@@ -59,7 +59,7 @@ Provide the API credentials to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START AWSInstantiation"
@@ -68,7 +68,7 @@ Provide the API credentials to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START AWSInstantiation"
@@ -97,10 +97,10 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ### Bedrock
 
-For Bedrock, you must provide the model name in the vectorizer configuration.
+For Bedrock, you must provide the model name in the generative AI configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicGenerativeAWSBedrock"
@@ -109,7 +109,7 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicGenerativeAWSBedrock"
@@ -122,10 +122,10 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
 
 ### SageMaker
 
-For SageMaker, you must provide the endpoint address in the vectorizer configuration.
+For SageMaker, you must provide the endpoint address in the generative AI configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicGenerativeAWSSagemaker"
@@ -134,7 +134,7 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicGenerativeAWSSagemaker"
@@ -144,8 +144,6 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
   </TabItem>
 
 </Tabs>
-
-You must [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use.
 
 ## Retrieval augmented generation
 
@@ -163,7 +161,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SinglePromptExample"
@@ -172,7 +170,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START SinglePromptExample"
@@ -193,7 +191,7 @@ In other words, when you have `n` search results, the generative model generates
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GroupedTaskExample"
@@ -202,7 +200,7 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GroupedTaskExample"
@@ -216,29 +214,6 @@ In other words, when you have `n` search results, the generative model generates
 ## References
 
 ### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAWS"
-      endMarker="# END FullGenerativeAWS"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS (Beta)">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAWS"
-      endMarker="// END FullGenerativeAWS"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 

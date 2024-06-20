@@ -297,7 +297,7 @@ to your `multi2vec-clip`.
 Then you can send REST requests to it directly, e.g.:
 
 ```shell
-localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'
+curl localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}' --header 'Content-Type: application/json'
 ```
 
 and it will print the created vector(s) directly.

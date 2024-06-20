@@ -103,6 +103,27 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerCohereCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="title_vector",
+            source_properties=["title"],
+            model="embed-multilingual-light-v3.0"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerCohereCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerCohere
 from weaviate.classes.config import Configure
 
@@ -127,7 +148,7 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicVectorizerGoogle
+# START BasicVectorizerGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -137,13 +158,37 @@ client.collections.create(
         Configure.NamedVectors.text2vec_palm(
             name="title_vector",
             source_properties=["title"],
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            project_id="<google-cloud-project-id>",
+            # (Optional) To manually set the model ID
+            model_id="textembedding-gecko@latest"
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicVectorizerGoogle
+# END BasicVectorizerGoogleVertex
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerGoogleStudio
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_palm(
+            name="title_vector",
+            source_properties=["title"],
+            # (Optional) To manually set the model ID
+            model_id="text-embedding-004"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerGoogleStudio
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -172,7 +217,7 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicMMVectorizerGoogle
+# START BasicMMVectorizerGoogleVertex
 from weaviate.classes.config import Property, DataType, Configure, Multi2VecField
 
 client.collections.create(
@@ -193,18 +238,19 @@ client.collections.create(
                 Multi2VecField(name="title", weight=0.1)
             ],
             # video_fields=[],
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            project_id="<google-cloud-project-id>",  # Required for Vertex AI
+            location="<google-cloud-location>",  # Required for Vertex AI
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicMMVectorizerGoogle
+# END BasicMMVectorizerGoogleVertex
 
 # clean up
 client.collections.delete("DemoCollection")
 
-# START FullMMVectorizerGoogle
+# START FullMMVectorizerGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -218,7 +264,10 @@ client.collections.create(
     vectorizer_config=[
         Configure.NamedVectors.multi2vec_palm(
             name="title_vector",
-            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            # model_id="<google-model-id>",
+            # location="us-central1",
+            # dimensions=512,
             image_fields=[
                 Multi2VecField(name="poster", weight=0.9)
             ],
@@ -226,17 +275,13 @@ client.collections.create(
                 Multi2VecField(name="title", weight=0.1)
             ],
             # video_fields=[]
-            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
-            # model_id="<google-model-id>",
-            # location="us-central1",
-            # dimensions=512,
             # video_interval_seconds=20
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
-# END FullMMVectorizerGoogle
+# END FullMMVectorizerGoogleVertex
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -311,6 +356,26 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START VectorizerJinaCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            model="jina-embeddings-v2-small-en"
+        )
+    ],
+    # highlight-end
+)
+# END VectorizerJinaCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerJinaAI
 from weaviate.classes.config import Configure
 
@@ -347,6 +412,25 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicVectorizerOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerOctoAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_octoai(
+            name="title_vector",
+            source_properties=["title"],
+            model="thenlper/gte-large"
+        )
+    ],
+    # Additional parameters not shown
+)
+# END VectorizerOctoAICustomModel
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -388,6 +472,53 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicVectorizerOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerOpenAICustomModelV3
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # If using `text-embedding-3` model family
+            model="text-embedding-3-large",
+            dimensions=1024
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerOpenAICustomModelV3
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerOpenAICustomModelLegacy
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # If using older model family e.g. `ada`
+            model="ada",
+            model_version="002",
+            type="text"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerOpenAICustomModelLegacy
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -480,6 +611,27 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicVectorizerVoyageAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerVoyageAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_voyageai(
+            name="title_vector",
+            source_properties=["title"],
+            model="voyage-code-2"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerVoyageAICustomModel
 
 # clean up
 client.collections.delete("DemoCollection")

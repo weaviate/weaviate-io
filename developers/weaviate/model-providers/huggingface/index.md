@@ -37,7 +37,7 @@ You must provide a valid Hugging Face API key to Weaviate for these integrations
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Hugging Face Hub models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

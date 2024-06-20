@@ -11,12 +11,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: May 2024**
 
-This Data Processing Agreement ("**Agreement**") forms part of the Contract for Services ("**Principal Agreement**") between:
-<br></br>
-
-- **CUSTOMER_NAME** [Street Zipcode City State Country] (the "**Customer**")
-and
-- **Weaviate B.V. / LLC**, Prinsengracht 769A, 1017JZ Amsterdam, The Netherlands (the "**Data Processor**")(together as the "**Parties**").
+This Data Processing Agreement ("**Agreement**") forms part of the Contract for Services ("**Principal Agreement**").
 <br></br>
 
 #### **WHEREAS**
@@ -29,7 +24,7 @@ and
 
 #### **IT IS AGREED AS FOLLOWS:**
 
-<br></br>
+
 
 ### 1. **Definitions**
 
