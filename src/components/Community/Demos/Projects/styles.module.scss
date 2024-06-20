@@ -76,7 +76,7 @@
 }
 
 .bigCard {
-  height: 29.0625rem;
+  height: 29.0625rem !important;
 }
 
 .cardHeader {
@@ -261,21 +261,22 @@
   top: 146px;
   right: 10px;
   border-radius: 1.37rem;
-  background: #fff;
+  background: #fff !important;
   box-shadow: 0px 2.923px 21.92px 0px rgba(0, 0, 0, 0.25);
 }
 
 .videoButton {
   border-radius: 1.37rem;
-  background: #07eba7;
+  background: #07eba7 !important;
   box-shadow: 0px 2.923px 21.92px 0px rgba(0, 0, 0, 0.25);
 }
 
 .gitButton {
   border-radius: 1.37rem;
-  background: #5af181;
+  background: #5af181 !important;
   box-shadow: 0px 2.923px 21.92px 0px rgba(0, 0, 0, 0.25);
 }
+
 .play {
   content: url('/img/site/play-icon.svg');
   padding: 3px;
