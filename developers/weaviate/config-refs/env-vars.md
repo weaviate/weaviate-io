@@ -87,7 +87,7 @@ All other values are interpreted as `false`.
 | `RAFT_BOOTSTRAP_EXPECT` | The number of voter notes at bootstrapping time | `string - number` | `1` |
 | `RAFT_BOOTSTRAP_TIMEOUT` | The time in seconds to wait for the cluster to bootstrap | `string - number` | `90` |
 | `RAFT_GRPC_MESSAGE_MAX_SIZE` | The maximum internal raft gRPC message size in bytes. Defaults to 1073741824 | `string - number` | `1073741824` |
-| `RAFT_JOIN` | Manually set RAFT voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of RAFT voters. | `string` | `weaviate-0,weaviate-1` |
+| `RAFT_JOIN` | Manually set Raft voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of Raft voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
 
 ## Questions and feedback
