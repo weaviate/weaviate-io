@@ -17,11 +17,11 @@ import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
 import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
 import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
-Use [client libraries](/developers/weaviate/client-libraries) or a tool such as cURL to connect to Weaviate Cloud (WCD).
+Follow these steps to connect to a Weaviate Cloud (WCD) instance.
 
 ## Retrieve your API keys
 
-The Weaviate client libraries use API keys to authenticate to WCD instances.
+The WCD instances use API keys to authenticate.
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
@@ -29,7 +29,7 @@ import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
 ## Connection example
 
-To connect, configure the URL and API keys to match your environment.
+To connect, use the Weaviate URL and the Weaviate API key for your WCD instance to set the environment variables. Then, follow the example for your language.
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -92,7 +92,7 @@ To connect, configure the URL and API keys to match your environment.
 
 ## Third party API keys
 
-Integrations that use external APIs often need API keys. To add third party API keys, follow these examples:
+If you use API-based models for vectorization or RAG, you must provide an API key for the service. To add third party API keys, follow these examples:
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">

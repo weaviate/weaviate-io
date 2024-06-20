@@ -123,7 +123,8 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = await weaviate.connectToCustom({
+const client = await weaviate.connectToCustom(
+ {
     httpHost: process.env.WEAVIATE_URL,  // URL only, no http prefix
     httpPort: 443,
     grpcHost: process.env.WEAVIATE_GPC_URL,
@@ -138,3 +139,31 @@ const client = await weaviate.connectToCustom({
 
 console.log(client)
 //END CustomConnect
+
+/////////////////////////////
+/// Custom with a timeout ///
+/////////////////////////////
+
+// START TimeoutCustom
+// Set these environment variables
+// WEAVIATE_URL       your Weaviate instance URL
+// WEAVIATE_API_KEY   your Weaviate instance API key
+
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToCustom(
+  process.env.WEAVIATE_URL,
+  {
+   httpHost: process.env.WEAVIATE_URL,  // URL only, no http prefix
+   httpPort: 443,
+   grpcHost: process.env.WEAVIATE_GPC_URL,
+   grpcPort: 443,        // Default is 50051, WCD uses 443
+   grpcSecure: true,
+   httpSecure: true,
+   authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+   timeout: { init: 30, query: 60, insert: 120 } // Values in seconds
+  }
+)
+
+console.log(client)
+// END TimeoutCustom

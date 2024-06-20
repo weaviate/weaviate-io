@@ -3,6 +3,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import PyV4Code from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import TsV3Code from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
 
 <Tabs groupId="languages">
     <TabItem value="py4" label="Python Client v4">
@@ -11,6 +12,14 @@ import PyV4Code from '!!raw-loader!/_includes/code/connections/connect-python-v4
          startMarker="# START TimeoutCustom"
          endMarker="# END TimeoutCustom"
          language="py"
+         />
+    </TabItem>
+    <TabItem value="ts3" label="JS/TS Client v3">
+         <FilteredTextBlock
+         text={TsV3Code}
+         startMarker="// START TimeoutCustom"
+         endMarker="// END TimeoutCustom"
+         language="js"
          />
     </TabItem>
 </Tabs>
