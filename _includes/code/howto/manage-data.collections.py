@@ -653,13 +653,16 @@ print(article_shards)
 # UpdateCollectionShards
 # ========================================
 
+shards = articles.config.get_shards()
+shard_names = [s.name for s in shards]
+
 # START UpdateCollectionShards
 articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
     status="READONLY",
-    shard_name="shard-1234"
+    shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end
 
