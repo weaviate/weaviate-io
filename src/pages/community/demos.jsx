@@ -20,7 +20,6 @@ export default function DemoPage() {
         <Header />
         <CommunityPanel />
         <Projects />
-        <Analytics />
         <Opensource />
       </Layout>
       <ThemeSwitch />

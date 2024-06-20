@@ -11,7 +11,7 @@ export default function Projects() {
           <p>Find out more</p>
         </div>
         <div className={styles.box}>
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -30,12 +30,12 @@ export default function Projects() {
               </span>
               <h3>BookRecs</h3>
               <span>Book Recommendation System</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   This project is a book recommendation service that suggests
                   books based on a user's inputted genre and book titles. It's
@@ -52,7 +52,7 @@ export default function Projects() {
                     <span className={styles.blog}></span> Vercel
                   </Link>
 
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -60,7 +60,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -79,12 +79,12 @@ export default function Projects() {
               </span>
               <h3>Verba</h3>
               <span>The Golden RAGtriever</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   Meet Verba, your open source RAG assistant for any topic. You
                   can create stuff and make stuff and do more stuff with this
@@ -96,12 +96,12 @@ export default function Projects() {
                     <span className={styles.blog}></span> Blogpost
                   </Link>
                   <Link
-                    className={`${styles.cardButton} ${styles.videoButton}`}
+                    className={`${styles.videoButton} ${styles.cardButton}`}
                   >
                     {' '}
                     <span className={styles.video}></span> Youtube
                   </Link>
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -110,7 +110,7 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -129,12 +129,12 @@ export default function Projects() {
               </span>
               <h3>Awesome-moviate</h3>
               <span>A Movie Search Engine</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   This project allows three types of searches over movies:
                   keyword-based (BM25), semantic, and hybrid searches.
@@ -146,7 +146,7 @@ export default function Projects() {
                     <span className={styles.blog}></span> Vercel
                   </Link>
 
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -157,7 +157,7 @@ export default function Projects() {
         </div>
 
         <div className={styles.box}>
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -176,12 +176,12 @@ export default function Projects() {
               </span>
               <h3>Heathsearch</h3>
               <span>Generative AI in Healthcare</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   Welcome to the Healthsearch Demo, an open-source project aimed
                   at showcasing the potential of leveraging user-written reviews
@@ -194,7 +194,7 @@ export default function Projects() {
                     <span className={styles.blog}></span> Vercel
                   </Link>
 
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -202,7 +202,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -221,12 +221,12 @@ export default function Projects() {
               </span>
               <h3>Generator9000</h3>
               <span>Generate Synthetic Multimodal Data</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   Welcome to Generator9000! It's an open-source web app that's
                   all about creating synthetic data objects tailored to your use
@@ -240,12 +240,12 @@ export default function Projects() {
                     <span className={styles.blog}></span> Blogpost
                   </Link>
                   <Link
-                    className={`${styles.cardButton} ${styles.videoButton}`}
+                    className={`${styles.videoButton} ${styles.cardButton}`}
                   >
                     {' '}
                     <span className={styles.video}></span> Youtube
                   </Link>
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -254,7 +254,7 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className={`${styles.card} ${styles.bigCard}`}>
+          <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -273,12 +273,12 @@ export default function Projects() {
               </span>
               <h3>BookRecs</h3>
               <span>Book Recommendation System</span>
-              <Link className={`${styles.cardButton} ${styles.top}`}>
+              <Link className={`${styles.top} ${styles.cardButton} `}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={`${styles.textCardContent} ${styles.bigText}`}>
+              <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
                   This project is a book recommendation service that suggests
                   books based on a user's inputted genre and book titles. It's
@@ -295,7 +295,7 @@ export default function Projects() {
                     <span className={styles.blog}></span> Vercel
                   </Link>
 
-                  <Link className={`${styles.cardButton} ${styles.gitButton}`}>
+                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
