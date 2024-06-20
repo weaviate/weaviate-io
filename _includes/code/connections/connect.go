@@ -233,3 +233,28 @@ func main() {
 }
 
 // END ThirdPartyAPIKeys
+
+////////////
+/// OIDC ///
+////////////
+
+// START OIDCConnect
+// Set these environment variables
+// WEAVIATE_USER    your Weaviate OIDC username
+// WEAVIATE_PWD     your Weaviate OIDC password
+
+cfg := weaviate.Config{
+    Host:   "weaviate.example.com",
+    Scheme: "http",
+    AuthConfig: auth.ResourceOwnerPasswordFlow{
+        Username: os.Getenv("WEAVIATE_USER"),
+        Password: os.Getenv("WEAVIATE_PWD"),
+        Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCD)
+    },
+    Headers: nil,
+}
+client, err := weaviate.NewClient(cfg)
+if err != nil{
+    fmt.Println(err)
+}
+// END OIDCConnect

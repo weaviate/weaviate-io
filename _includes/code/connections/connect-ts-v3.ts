@@ -187,3 +187,35 @@ const client: WeaviateClient = await weaviate.connectToCustom(
 
 console.log(client)
 // END TimeoutCustom
+
+////////////
+/// OIDC ///
+////////////
+
+// START OIDCConnect
+// Set these environment variables
+// WEAVIATE_USER    your Weaviate OIDC username
+// WEAVIATE_PWD     your Weaviate OIDC password
+// WEAVIATE_URL     your Weaviate instance
+
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client = await weaviate.connectToCustom(
+ {
+    httpHost: process.env.WEAVIATE_URL,  // URL only, no http prefix
+    httpPort: 443,
+    grpcHost: process.env.WEAVIATE_GPC_URL,
+    grpcPort: 443,        // Default is 50051, WCD uses 443
+    grpcSecure: true,
+    httpSecure: true,
+    authCredentials: new weaviate.AuthUserPasswordCredentials({
+     username: process.env.WEAVIATE_USER,
+     password: process.env.WEAVIATE_PWD,
+    }),
+    headers: {
+      'X-Cohere-Api-Key': process.env.COHERE_API_KEY || ''
+    }
+  })
+
+console.log(client)
+// END OIDCConnect

@@ -228,3 +228,25 @@ client = weaviate.connect_to_embedded(
 # Add your client code here.
 # When the client exits, the embedded instance also exits
 # END Embedded
+
+############
+### OIDC ###
+############
+
+# START OIDCConnect
+# Set these environment variables
+# WEAVIATE_USER    your Weaviate OIDC username
+# WEAVIATE_PWD     your Weaviate OIDC password
+# WEAVIATE_URL     your Weaviate instance URL
+
+import os
+import weaviate
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WEAVIATE_URL"),   # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthClientPassword(
+        username=os.getenv("WEAVIATE_USER"),  # Your Weaviate Cloud username
+        password=os.getenv("WEAVIATE_PWD")   # Your Weaviate Cloud password
+    )
+)
+# END OIDCConnect

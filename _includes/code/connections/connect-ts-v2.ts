@@ -114,3 +114,27 @@ await client.embedded.start();
 
 client.embedded.stop();
 // END Embedded
+
+////////////
+/// OIDC ///
+////////////
+
+// START OIDCConnect
+// Set these environment variables
+// WEAVIATE_USER    your Weaviate OIDC username
+// WEAVIATE_PWD     your Weaviate OIDC password
+// WEAVIATE_URL     your Weaviate instance
+
+import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: "https",
+  host: "WEAVIATE_URL",
+  authClientSecret: new AuthUserPasswordCredentials({
+   username: process.env.WEAVIATE_USER,
+   password: process.env.WEAVIATE_PWD,
+})
+});
+
+console.log(client)
+// END OIDCConnect

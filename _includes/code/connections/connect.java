@@ -150,3 +150,25 @@ public class App
     }
 }
 // END LocalThirdPartyAPIKeys
+
+
+////////////
+/// OIDC ///
+////////////
+
+// START OIDCConnect
+// Set these environment variables
+// WEAVIATE_USER    your Weaviate OIDC username
+// WEAVIATE_PWD     your Weaviate OIDC password
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateAuthClient;
+
+Config config = new Config("http", "localhost:8080");
+WeaviateAuthClient.clientPassword(
+    config,
+    System.getenv("WEAVIATE_USER"),
+    System.getenv("WEAVIATE_PWD"),
+    Arrays.asList("scope1", "scope2") // optional, depends on the configuration of your identity provider (not required with WCD)
+);
+// END OIDCConnect

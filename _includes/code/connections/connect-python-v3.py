@@ -119,3 +119,25 @@ client = weaviate.Client(
 # Add your client code here.
 # When the client exits, the embedded instance also exits
 # END Embedded
+
+############
+### OIDC ###
+############
+
+# START OIDCConnect
+# Set these environment variables
+# WEAVIATE_USER    your Weaviate OIDC username
+# WEAVIATE_PWD     your Weaviate OIDC password
+
+import os
+import weaviate
+
+resource_owner_config = weaviate.AuthClientPassword(
+  username = os.getenv("WEAVIATE_USER"),
+  password = os.getenv("WEAVIATE_PWD"),
+  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCD)
+  )
+
+# Initiate the client with the auth config
+client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
+# END OIDCConnect
