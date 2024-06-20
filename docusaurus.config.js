@@ -254,66 +254,66 @@ const config = {
                         position: 'right',
                         to: '/platform',
                     },
-                    {  type: 'dropdown',
-                    label: 'Services',
-                    position: 'right',
-                    items: [
-                        {
-                            label: 'Services Overview',
-                            href: '/services',
+                    {  
+                        type: 'dropdown',
+                        label: 'Services',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'Services Overview',
+                                href: '/services',
 
-                        },
-                        {
-                            label: 'Serverless Cloud',
-                            href: '/services/serverless',
+                            },
+                            {
+                                label: 'Serverless Cloud',
+                                href: '/services/serverless',
 
-                        },
-                        {
-                            label: 'Enterprise Cloud',
-                            href: '/services/enterprise-cloud',
+                            },
+                            {
+                                label: 'Enterprise Cloud',
+                                href: '/services/enterprise-cloud',
 
-                        },
-                        {
-                            label: 'Bring Your Own Cloud',
-                            href: '/services/byoc',
+                            },
+                            {
+                                label: 'Bring Your Own Cloud',
+                                href: '/services/byoc',
 
-                        },
-                        {
-                            label: 'Education & Support',
-                            href: '/services/education-and-support',
+                            },
+                            {
+                                label: 'Education & Support',
+                                href: '/services/education-and-support',
 
-                        },
-                        {
-                            label: 'Pricing',
-                            href: '/pricing',
+                            },
+                            {
+                                label: 'Pricing',
+                                href: '/pricing',
+                            },
+                        ]
+                    },
 
-                        },
-                    ]
-                }
-                    ,
-                    {  type: 'dropdown',
-                    label: 'Solutions',
-                    position: 'right',
-                    items: [
-                        {
-                            label: 'Hybrid Search',
-                            href: '/hybrid-search',
+                    {  
+                        type: 'dropdown',
+                        label: 'Solutions',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'Hybrid Search',
+                                href: '/hybrid-search',
 
-                        },
-                        {
-                            label: 'RAG',
-                            href: '/rag',
+                            },
+                            {
+                                label: 'RAG',
+                                href: '/rag',
 
-                        },
-                        {
-                            label: 'Generative Feedback Loops',
-                            href: '/gen-feedback-loops',
+                            },
+                            {
+                                label: 'Generative Feedback Loops',
+                                href: '/gen-feedback-loops',
 
-                        },
+                            },
+                        ]
+                    },
 
-                    ]
-                }
-                    ,
                     {
                         type: 'dropdown',
                         label: 'Developers',
@@ -332,6 +332,12 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'Integrations',
+                                docId: 'integrations/index',
+                                sidebarid: 'integrationsSidebar',
+                                type: 'doc',
+                            },
+                            {
                                 label: 'Learn with Academy',
                                 docId: 'academy/index',
                                 sidebarid: 'academySidebar',
@@ -340,7 +346,6 @@ const config = {
                             {
                                 label: 'Blog',
                                 to: '/blog',
-
                             },
                             {
                                 label: 'Online Workshops & Events',
@@ -358,7 +363,6 @@ const config = {
                                 label: 'Community',
                                 to: '/community',
                             },
-                           
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -435,18 +439,15 @@ const config = {
                     },
                     {
                         html: `<svg class="githubStars" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
-
                         to: 'https://github.com/weaviate/weaviate',
                         position: 'right',
-                      },
-
+                    },
                     {
                         label: 'Try Now',
                         className: 'tryNow',
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
                     },
-                    
                     {
                         type: 'search',
                         position: 'right',
@@ -520,7 +521,6 @@ const config = {
                                 to: '/learn/knowledgecards',
                             },
                             {
-
                                 label: 'Academy',
                                 to: '/developers/academy',
                             },
@@ -550,7 +550,6 @@ const config = {
                                 to: '/podcast',
                             },
                             {
-
                                 label: 'Meetups',
                                 to: '#',
                                 className: 'footer__title subtitle',
@@ -575,14 +574,11 @@ const config = {
                                 label: 'Toronto',
                                 to: 'https://www.meetup.com/weaviate-toronto',
                             },
-
                         ],
                     },
                     {
                         title: 'Company',
                         items: [
-
-
                             {
                                 label: 'About',
                                 to: '/company/about-us',
@@ -611,7 +607,6 @@ const config = {
                             {
                                 label: 'AWS',
                                 to: '/partners/aws',
-
                             },
                             {
                                 label: 'Google Cloud',
@@ -626,17 +621,13 @@ const config = {
                             {
                                 label: 'Become a Partner',
                                 to: '/partners',
-
                             },
-
-
                         ],
                     },
 
                     {
                         title: 'Follow Us',
                         items: [
-
                             {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
@@ -658,7 +649,6 @@ const config = {
                                 to: 'https://youtube.com/weaviate_io',
                             },
                             {
-
                                 label: 'Linkedin',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },

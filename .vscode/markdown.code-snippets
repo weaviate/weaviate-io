@@ -251,4 +251,33 @@
 		],
 		"description": "For marking features as being added in a certain version"
 	},
+
+	"Integrations Tabs code": {
+		"prefix": "integrations-tabs-code",
+        "scope": "markdown",
+		"body": [
+			"<!-- Delete these imports if already imported in the file -->",
+			"import Tabs from '@theme/Tabs';",
+			"import TabItem from '@theme/TabItem';",
+			"",
+			"<Tabs groupId=\"languages\">",
+			"<TabItem value=\"py\" label=\"Python Client v4\">",
+			"",
+			"```python",
+			"# Python v4 example goes here",
+			"# note there is an empty line before this code snippet,",
+			"# without the empty line the code won't render",
+			"```",
+			"</TabItem>",
+			"<TabItem value=\"py3\" label=\"Python Client v3\">",
+			"",
+			"```python",
+			"# Python v3 example goes here",
+			"```",
+			"",
+			"</TabItem>",
+			"</Tabs>",
+		],
+		"description": "Adds the tabs section for code examples"
+	},
 }
