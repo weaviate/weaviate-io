@@ -11,14 +11,14 @@ export default function PlatformHeader() {
           <br></br>
           <h1>Build with Weaviate</h1>
           <div className={styles.headerBox}>
-            <p className="text-center">
-              Did you built something cool with Weaviate? Share it with us and
-              let your work get noticed!
+            <p>
+              Did you built something cool with Weaviate?<br></br>Share it with
+              us and let your work get noticed!
             </p>
           </div>
           <div className={styles.buttons}>
             <Link
-              className={styles.buttonGradient}
+              className={styles.buttonOutline}
               to="/community/share-the-weaviate-love"
             >
               Submit your project

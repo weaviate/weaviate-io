@@ -60,7 +60,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.bigCard}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -84,7 +84,7 @@ export default function Projects() {
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={styles.textCardContent}>
+              <div className={`${styles.textCardContent} ${styles.bigText}`}>
                 <p>
                   Meet Verba, your open source RAG assistant for any topic. You
                   can create stuff and make stuff and do more stuff with this
@@ -127,8 +127,8 @@ export default function Projects() {
                   />
                 </svg>
               </span>
-              <h3>BookRecs</h3>
-              <span>Book Recommendation System</span>
+              <h3>Awesome-moviate</h3>
+              <span>A Movie Search Engine</span>
               <Link className={`${styles.cardButton} ${styles.top}`}>
                 <span className={styles.play}></span> Start Demo
               </Link>
@@ -136,14 +136,9 @@ export default function Projects() {
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>
                 <p>
-                  This project is a book recommendation service that suggests
-                  books based on a user's inputted genre and book titles. It's
-                  built upon a database of 7000 books retrieved from Kaggle.
-                  Using Ada v2 as the large language model, vector embeddings
-                  were created with the Kaggle dataset to allow for quick vector
-                  search to find semantically similar books through natural
-                  language input. The frontend is built using Next.js and styled
-                  with TailwindCSS.
+                  This project allows three types of searches over movies:
+                  keyword-based (BM25), semantic, and hybrid searches.
+                  Additionally, it retrieves similar movies to a selected one.
                 </p>
                 <div className={styles.bottomContainer}>
                   <Link className={styles.cardButton}>
@@ -179,8 +174,8 @@ export default function Projects() {
                   />
                 </svg>
               </span>
-              <h3>BookRecs</h3>
-              <span>Book Recommendation System</span>
+              <h3>Heathsearch</h3>
+              <span>Generative AI in Healthcare</span>
               <Link className={`${styles.cardButton} ${styles.top}`}>
                 <span className={styles.play}></span> Start Demo
               </Link>
@@ -188,14 +183,10 @@ export default function Projects() {
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>
                 <p>
-                  This project is a book recommendation service that suggests
-                  books based on a user's inputted genre and book titles. It's
-                  built upon a database of 7000 books retrieved from Kaggle.
-                  Using Ada v2 as the large language model, vector embeddings
-                  were created with the Kaggle dataset to allow for quick vector
-                  search to find semantically similar books through natural
-                  language input. The frontend is built using Next.js and styled
-                  with TailwindCSS.
+                  Welcome to the Healthsearch Demo, an open-source project aimed
+                  at showcasing the potential of leveraging user-written reviews
+                  and queries to retrieve supplement products based on specific
+                  health effects.
                 </p>
                 <div className={styles.bottomContainer}>
                   <Link className={styles.cardButton}>
@@ -211,7 +202,7 @@ export default function Projects() {
               </div>
             </div>
           </div>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.bigCard}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
                 1.800
@@ -228,18 +219,20 @@ export default function Projects() {
                   />
                 </svg>
               </span>
-              <h3>Verba</h3>
-              <span>The Golden RAGtriever</span>
+              <h3>Generator9000</h3>
+              <span>Generate Synthetic Multimodal Data</span>
               <Link className={`${styles.cardButton} ${styles.top}`}>
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
-              <div className={styles.textCardContent}>
+              <div className={`${styles.textCardContent} ${styles.bigText}`}>
                 <p>
-                  Meet Verba, your open source RAG assistant for any topic. You
-                  can create stuff and make stuff and do more stuff with this
-                  demo showing you stuff and stuff
+                  Welcome to Generator9000! It's an open-source web app that's
+                  all about creating synthetic data objects tailored to your use
+                  case. We use Generative AI (GPT4 from OpenAI) to not only
+                  generate data objects with specific fields but also to create
+                  images based on these data objects.
                 </p>
                 <div className={styles.bottomContainer}>
                   <Link className={styles.cardButton}>

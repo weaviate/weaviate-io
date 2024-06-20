@@ -11,7 +11,7 @@ export default function PlatformHeader() {
           <br></br>
           <h1>Weaviate Demos</h1>
           <div className={styles.headerBox}>
-            <p className="text-center">
+            <p>
               In-house Weaviate built projects leveraging Weaviate, AI-Native
               vector database.
             </p>

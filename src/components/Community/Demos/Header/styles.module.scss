@@ -59,12 +59,12 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+
   margin: 40px 0px;
 
   span {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.25rem;
@@ -75,7 +75,7 @@ p {
   }
 
   h1 {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
@@ -86,13 +86,8 @@ p {
   }
 
   .headerBox {
-    width: 34%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-
     p {
-      color: #130c49;
+      color: #ffffff;
     }
   }
 
@@ -304,13 +299,12 @@ p {
 }
 
 .headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/home-page-bg-pattern.svg');
+  background: #130c49;
+  background-image: url('/img/site/bg-weaviate-hd-dark3.jpg');
   background-size: cover;
-  background-position-y: -300px;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/bg-light-mobile.svg');
+    background-image: url('/img/site/bg-weaviate-mobile-dark.jpg');
     background-size: cover;
     background-position-y: bottom;
     background-repeat: no-repeat;

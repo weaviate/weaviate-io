@@ -5,11 +5,20 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    justify-content: left;
+  }
 
   a {
-    height: 45px;
-    width: 220px;
+    width: 11.1875rem;
+    height: 3.125rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,35 +28,39 @@
   }
 
   .buttonGradient {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
+    border-radius: 0.375rem;
+    background: #130c49;
+    color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.638rem */
+    width: 13.1875rem;
   }
 
   .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: rgb(15, 0, 50);
+    border-radius: 0.375rem;
+    background: #130c49;
     color: #fff;
   }
 
   .buttonOutline {
-    font-weight: 400;
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
     color: #130c49;
-
-    transition: all 1s ease-out;
+    border-radius: 0.375rem;
+    background: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.638rem */
   }
 
   .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
+    border-radius: 0.375rem;
+    background: #fff;
   }
 }
 
@@ -59,12 +72,12 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+
   margin: 40px 0px;
 
   span {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.25rem;
@@ -75,7 +88,7 @@ p {
   }
 
   h1 {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
@@ -86,13 +99,8 @@ p {
   }
 
   .headerBox {
-    width: 34%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-
     p {
-      color: #130c49;
+      color: #ffffff;
     }
   }
 
@@ -304,13 +312,12 @@ p {
 }
 
 .headerSecurity {
-  background: #f5f5f5;
-  background-image: url('/img/site/home-page-bg-pattern.svg');
+  background: #130c49;
+  background-image: url('/img/site/bg-weaviate-hd-dark3.jpg');
   background-size: cover;
-  background-position-y: -300px;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/bg-light-mobile.svg');
+    background-image: url('/img/site/bg-weaviate-mobile-dark.jpg');
     background-size: cover;
     background-position-y: bottom;
     background-repeat: no-repeat;
