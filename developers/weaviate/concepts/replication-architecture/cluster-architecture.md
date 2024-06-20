@@ -10,7 +10,7 @@ This page describes how the nodes or clusters in Weaviate's replication design b
 
 In Weaviate, schema replication and data replication are separate. For the schema, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
 
-## Schema replication: RAFT
+## Schema replication: Raft
 
 :::info Added in `v1.25`
 :::
