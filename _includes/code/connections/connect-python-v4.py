@@ -12,7 +12,7 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     additional_config=AdditionalConfig(
-        timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
 )
 
@@ -31,17 +31,18 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-import weaviate.classes as wvc
+from weaviate.auth import AuthApiKey
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 # Connect to a WCD instance
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
     # skip_init_checks=True,
-    additional_config=wvc.init.AdditionalConfig(
-        timeout=wvc.init.Timeout(init=10,insert=20,query=20)
-        )
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
+)
 
 print(client.is_ready())
 # END TimeoutWCD
@@ -58,7 +59,7 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-import weaviate.classes as wvc
+from weaviate.auth import AuthApiKey
 
 client = weaviate.connect_to_custom(
     http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
@@ -67,7 +68,7 @@ client = weaviate.connect_to_custom(
     grpc_host=os.getenv("WEAVIATE_GPC_URL"),
     grpc_port=443,      # Default is 50051, WCD uses 443
     grpc_secure=True,   # Edit as needed
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
 )
 
 print(client.is_ready())
@@ -85,7 +86,8 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-import weaviate.classes as wvc
+from weaviate.auth import AuthApiKey
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 client = weaviate.connect_to_custom(
     http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
@@ -94,9 +96,9 @@ client = weaviate.connect_to_custom(
     grpc_host=os.getenv("WEAVIATE_GPC_URL"),
     grpc_port=443,      # Default is 50051, WCD uses 443
     grpc_secure=True,   # Edit as needed
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
-    additional_config=wvc.init.AdditionalConfig(
-        timeout=wvc.init.Timeout(init=10,insert=20,query=20)
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
 )
 
@@ -117,7 +119,7 @@ import weaviate
 from weaviate.auth import AuthApiKey
 
 # Connect to Weaviate Cloud
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
     auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
 )
@@ -148,12 +150,10 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate
-import weaviate.classes as wvc
+from weaviate.auth import AuthApiKey
 
 client = weaviate.connect_to_local(
-    auth_credentials=(
-        wvc.init.Auth.api_key(os.getenv("WEAVIATE_API_KEY"))
-    )
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY"))
 )
 
 print(client.is_ready())
@@ -171,7 +171,9 @@ import os
 import weaviate
 
 client = weaviate.connect_to_local(
-    headers={"X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")}
+    headers={
+        "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
+    }
 )
 
 print(client.is_ready())
@@ -196,7 +198,9 @@ from weaviate.auth import AuthApiKey
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WEAVIATE_URL"),
     auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
-    headers={"X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")}
+    headers={
+        "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
+    }
 )
 
 print(client.is_ready())
