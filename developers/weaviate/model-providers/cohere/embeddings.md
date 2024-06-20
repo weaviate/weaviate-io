@@ -1,5 +1,5 @@
 ---
-title: Embeddings
+title: Text Embeddings
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'embeddings']
@@ -59,7 +59,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START CohereInstantiation"
@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START CohereInstantiation"
@@ -84,7 +84,7 @@ Provide the API key to Weaviate using one of the following methods:
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Cohere embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerCohere"
@@ -93,7 +93,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerCohere"
@@ -104,7 +104,32 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`embed-multilingual-v3.0`) is used if no model is specified.
+### Select a model
+
+You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration example.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerCohereCustomModel"
+      endMarker="# END VectorizerCohereCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorizerCohereCustomModel"
+      endMarker="// END VectorizerCohereCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+The [default model](#available-models) is used if no model is specified.
 
 ## Data import
 
@@ -112,7 +137,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -121,7 +146,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -150,7 +175,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -159,7 +184,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -182,7 +207,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -191,7 +216,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -209,7 +234,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 The following examples show how to configure Cohere-specific options.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerCohere"
@@ -218,7 +243,7 @@ The following examples show how to configure Cohere-specific options.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerCohere"

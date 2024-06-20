@@ -124,7 +124,7 @@ class_obj = {
     ],
     'vectorizer': 'text2vec-openai',  # this could be any vectorizer
     # highlight-start
-    "vectorIndexType": "flat",
+    "vectorIndexType": "hnsw",  # or "flat" or "dynamic"
     # highlight-end
 }
 
@@ -367,7 +367,7 @@ class_obj = {
         # highlight-start
         "generative-openai": {
             "model": "gpt-4" # select generative model name
-        }  
+        }
         # highlight-end
     }
 }

@@ -47,7 +47,8 @@ You must provide a valid Google AI API credentials to Weaviate for these integra
 
 Go to the relevant integration page to learn how to configure Weaviate with the Google models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
+- [Multimodal Embeddings](./embeddings-multimodal.md)
 - [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
