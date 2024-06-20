@@ -23,11 +23,15 @@ import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
 Follow these steps to connect to a locally hosted Weaviate instance.
 
+## Local connection URL
+
+Docker instances default to `http://localhost:8080`. The gRPC port, `50051`, is also on `localhost`.
+
+If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
+
 ## No authentication enabled
 
-By default Weaviate allows unauthenticated connections from `localhost`. You should always enable authentication for production instances.
-
-Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your instance.
+To connect to a local instance without authentication, follow these examples.
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -151,6 +155,14 @@ To authenticate with a Weaviate API key, follow these examples.
 </TabItem>
 </Tabs>
 
+### OIDC authentication
+
+import OIDCConnect from '/_includes/connect/oidc-connect-ref.mdx';
+
+<OIDCConnect/>
+
+For additional client examples, see [OIDC authentication](/developers/weaviate/connections/connect-custom#oidc-authentication).
+
 ## Third party API keys
 
 Integrations that use external APIs often need API keys. To add third party API keys, follow these examples:
@@ -229,18 +241,6 @@ import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
 import GRPCTimeouts from '/_includes/code/connections/timeouts-local.mdx';
 
 <GRPCTimeouts/>
-
-## Local connection URL
-
-Docker instances default to `http://localhost:8080`. The gRPC port, `50051`, is also on `localhost`.
-
-If your instance runs on Kubernetes, see the `host` and `port` values in your Helm chart's `values.yaml` file.
-
-## OIDC authentication
-
-import OIDCConnect from '/_includes/connect/oidc-connect-ref.mdx';
-
-<OIDCConnect/>
 
 ## Questions and feedback
 

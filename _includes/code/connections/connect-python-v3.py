@@ -135,9 +135,8 @@ import weaviate
 resource_owner_config = weaviate.AuthClientPassword(
   username = os.getenv("WEAVIATE_USER"),
   password = os.getenv("WEAVIATE_PWD"),
-  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCD)
   )
 
-# Initiate the client with the auth config
+# Use OIDC credentials to authenticate
 client = weaviate.Client("http://localhost:8080", auth_client_secret=resource_owner_config)
 # END OIDCConnect
