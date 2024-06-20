@@ -122,9 +122,14 @@ client.collections.create(
 collection = client.collections.get("ArticleNV")
 config = collection.config.get()
 # TODO: change test to also include "title_country" with ["title", "country"] properties
-for k, v in config.vector_config.items():
-    assert v.vectorizer.source_properties == [k]  # Test that the source properties are correctly set
 
+assertion_dicts = {
+    "title": ["title"],
+    "body": ["body"],
+    "title_country": ["title", "country"]
+}
+for k, v in config.vector_config.items():
+    assert v.vectorizer.source_properties == assertion_dicts[k]  # Test that the source properties are correctly set
 
 # ===========================
 # ===== SET VECTOR INDEX TYPE =====
