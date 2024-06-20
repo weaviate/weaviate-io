@@ -158,7 +158,7 @@ const client = await weaviate.connectToCustom(
   })
 
 console.log(client)
-//END CustomConnect
+// END CustomConnect
 
 /////////////////////////////
 /// Custom with a timeout ///
