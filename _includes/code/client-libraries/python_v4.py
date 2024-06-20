@@ -1000,10 +1000,12 @@ response = questions.query.fetch_objects(
 )
 # END GenericsExample
 
+collection_name = "JeopardyQuestion"
+
 # START CollectionInteractionExample
 from weaviate.collections import Collection
 
-my_collection = client.collections.get("SomeCollection")
+my_collection = client.collections.get(collection_name)
 
 def work_with_collection(collection: Collection):
     # Do something with the collection, e.g.:
