@@ -4,7 +4,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
-Do not hard-code API keys or other credentials in your client code. Consider using environment variables or a similar secure coding technique instead.
+:::warning
+
+Do not hard-code API keys or other credentials in your client code. Use environment variables or a similar secure coding technique instead.
+
+:::
 
 Environment variables keep sensitive details out of your source code. Your application imports the information to runtime.
 

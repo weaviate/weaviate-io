@@ -19,6 +19,28 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 )
 // END APIKeyWCD
 
+//////////////////////////
+/// WCD with a timeout ///
+//////////////////////////
+
+// START TimeoutWCD
+// Set these environment variables
+// WEAVIATE_URL       your Weaviate instance URL
+// WEAVIATE_API_KEY   your Weaviate instance API key
+
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  process.env.WEAVIATE_URL,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+    timeout: { init: 30, query: 60, insert: 120 } // Values in seconds
+  }
+)
+
+console.log(client)
+// END TimeoutWCD
+
 /////////////////////
 /// Local no auth ///
 /////////////////////

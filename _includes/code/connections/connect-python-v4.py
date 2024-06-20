@@ -219,7 +219,7 @@ import weaviate
 import os
 
 client = weaviate.connect_to_embedded(
-    version=weaviate_version,  # Format: version="1.25.4"
+    version="1.25.4",
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_API_KEY")
     },
