@@ -58,6 +58,9 @@ console.log(client)
 //////////////////
 
 // START LocalAuth
+// Set this environment variable
+// WEAVIATE_API_KEY   your Weaviate instance API key
+
 import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToLocal(
@@ -87,6 +90,23 @@ const client = await weaviate.connectToLocal(
 
 console.log(client)
 // END LocalThirdPartyAPIKeys
+
+
+//////////////////////////
+/// Local with a timeout ///
+//////////////////////////
+
+// START TimeoutLocal
+
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToLocal(
+   {  timeout: { init: 30, query: 60, insert: 120 }, } // Values in seconds
+)
+
+console.log(client)
+// END TimeoutLocal
+
 
 //////////////////////
 /// Cloud 3d party ///
