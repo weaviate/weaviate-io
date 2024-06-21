@@ -13,77 +13,9 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
-`Hybrid` search combines the results of a vector search and a keyword (BM25F) search.
-
-Weaviate uses a ranking method to merge the search results. The [ranking method](#change-the-ranking-method) and the [ranking weights](#balance-keyword-and-vector-search) are configurable.
-
 `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
 The [fusion method](#change-the-fusion-method) and the [relative weights](#balance-keyword-and-vector-search) are configurable.
-
-## Named vectors
-
-:::info Added in `v1.24`
-:::
-
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# NamedVectorHybridPython"
-      endMarker="# END NamedVectorHybridPython"
-      language="python"
-    />
-  </TabItem>
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorHybridPython"
-      endMarker="# END NamedVectorHybridPython"
-      language="python"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// NamedVectorHybrid"
-      endMarker="// END NamedVectorHybrid"
-      language="ts"
-    />
-  </TabItem>
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// NamedVectorHybrid"
-      endMarker="// END NamedVectorHybrid"
-      language="ts"
-    />
-  </TabItem>
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorHybridGraphQL"
-      endMarker="# END NamedVectorHybridGraphQL"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# START Expected NamedVectorNearText results"
-  endMarker="# END Expected NamedVectorNearText results"
-  language="json"
-/>
-
-</details>
 
 ## Basic hybrid search
 
@@ -155,10 +87,10 @@ The output is like this:
 :::info Added in `v1.24`
 :::
 
-To run a hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
+A hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md) must specify a `target` vector. Weaviate uses the query vector to search the target vector space.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# NamedVectorHybridPython"
@@ -166,8 +98,7 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
       language="python"
     />
   </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# NamedVectorHybridPython"
@@ -175,8 +106,7 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
       language="python"
     />
   </TabItem>
-
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorHybrid"
@@ -184,8 +114,7 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
       language="ts"
     />
   </TabItem>
-
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// NamedVectorHybrid"
@@ -193,7 +122,6 @@ To run a hybrid search on a collection that has [named vectors](../config-refs/s
       language="ts"
     />
   </TabItem>
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -353,12 +281,7 @@ The output is like this:
 
 ## Change the fusion method
 
-:::info Added in `v1.20`
-:::
-:::info Relative Score Fusion is the default in `v1.24` and higher.
-:::
-
-`Relative Fusion` is the default fusion algorithm.
+`Relative Score Fusion` is the default fusion method starting in `v1.24`.
 
 - To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
@@ -639,7 +562,7 @@ The output is like this:
 You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START VectorSimilarityPython"
@@ -687,7 +610,7 @@ The output is like this:
 Define criteria to group search results.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridGroupByPy4"

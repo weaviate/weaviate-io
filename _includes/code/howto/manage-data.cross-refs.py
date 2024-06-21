@@ -120,6 +120,7 @@ questions = client.collections.get("JeopardyQuestion")
 
 questions.data.insert(
     properties=properties,  # A dictionary with the properties of the object
+    uuid=obj_uuid,  # The UUID of the object
     # highlight-start
     references={"hasCategory": category_uuid},  # e.g. {"hasCategory": "583876f3-e293-5b5b-9839-03f455f14575"}
     # highlight-end

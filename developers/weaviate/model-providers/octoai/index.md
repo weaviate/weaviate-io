@@ -50,7 +50,7 @@ You must provide a valid OctoAI API key to Weaviate for these integrations. Go t
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the OctoAI models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

@@ -207,7 +207,7 @@ const classWithIndexType = {
   ],
   vectorizer: 'text2vec-openai', // this could be any vectorizer
   // highlight-start
-  vectorIndexType: 'flat', // or `hnsw`
+  vectorIndexType: 'flat', // or 'hnsw', or 'dynamic'
   vectorIndexConfig: {
     bq: {
       enabled: true, // Enable BQ compression. Default: False

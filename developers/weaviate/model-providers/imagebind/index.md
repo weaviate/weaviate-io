@@ -39,7 +39,7 @@ A locally hosted Weaviate instance is required for these integrations so that yo
 
 Go to the relevant integration page to learn how to configure Weaviate with the ImageBind model and start using it in your applications.
 
-- [Embeddings](./embeddings-multimodal.md)
+- [Multimodal Embeddings](./embeddings-multimodal.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

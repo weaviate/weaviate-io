@@ -1,5 +1,5 @@
 ---
-title: Python (Client v3)
+title: Python Client v3
 sidebar_position: 15
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']

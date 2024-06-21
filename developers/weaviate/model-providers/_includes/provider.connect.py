@@ -21,9 +21,10 @@ aws_secret_key = os.getenv("AWS_SECRET_KEY")
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
-# START GoogleInstantiation
+# START GoogleInstantiation  # START GoogleVertexInstantiation
 # Recommended: save sensitive data as environment variables
 vertex_key = os.getenv("VERTEX_APIKEY")
+# START GoogleInstantiation  # END GoogleVertexInstantiation
 studio_key = os.getenv("STUDIO_APIKEY")
 # END GoogleInstantiation
 # START HuggingFaceInstantiation
@@ -70,8 +71,9 @@ headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
-# START GoogleInstantiation
+# START GoogleInstantiation  # START GoogleVertexInstantiation
     "X-Google-Vertex-Api-Key": vertex_key,
+# START GoogleInstantiation  # END GoogleVertexInstantiation
     "X-Google-Studio-Api-Key": studio_key,
 # END GoogleInstantiation
 # START HuggingFaceInstantiation

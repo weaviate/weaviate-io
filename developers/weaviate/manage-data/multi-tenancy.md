@@ -25,7 +25,7 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
   </summary>
 
 - Multi-tenancy added in `v1.20`
-- (Experimental) Tenant activity status setting added in `v1.21`
+- Tenant activity status setting added in `v1.21`
 
 </details>
 
@@ -34,7 +34,7 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
 Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancyConfig`in the collection definition:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableMultiTenancy"
@@ -86,14 +86,14 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
 
 ## Automatically add new tenants
 
-import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
+import AutoTenant from '/_includes/auto-tenant.mdx';
 
-<AutoTenantBatch/>
+<AutoTenant/>
 
 ### Create a collection
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableAutoMT"
@@ -132,7 +132,7 @@ import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
 Use the client to update the auto-tenant creation setting. Auto-tenant is only available for batch inserts.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateAutoMT"
@@ -179,7 +179,7 @@ Tenant status is available from Weaviate `1.21` onwards.
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddTenantsToClass"
@@ -241,7 +241,7 @@ List existing tenants in a collection.
 This example lists the tenants in the `MultiTenancyCollection` collection:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ListTenants"
@@ -303,7 +303,7 @@ Get tenants from a collection by name. Note that non-existent tenant names are i
 This example returns `tenantA` and `tenantB` from the `MultiTenancyCollection` collection:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetTenantsByName"
@@ -312,7 +312,7 @@ This example returns `tenantA` and `tenantB` from the `MultiTenancyCollection` c
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GetTenantsByName"
@@ -330,7 +330,7 @@ Get a particular tenant from a collection.
 This example returns a tenant from the `MultiTenancyCollection` collection:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetOneTenant"
@@ -339,7 +339,7 @@ This example returns a tenant from the `MultiTenancyCollection` collection:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GetOneTenant"
@@ -358,7 +358,7 @@ To delete tenants from a collection, specify the collection and the tenants. The
 In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancyCollection` collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RemoveTenants"
@@ -418,7 +418,7 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
 Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateTenants"
@@ -443,17 +443,44 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
   </summary>
 
 - This feature was added in `v1.21`
-- Other client code examples coming soon
 - To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
 
 </details>
+
+## Automatically activate tenants
+
+:::info Added in `v1.25.2`
+:::
+
+Enable this to automatically activate `COLD` tenants if a read-or-write request comes. This is disabled by default.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableAutoActivation"
+      endMarker="# END EnableAutoActivation"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableAutoActivation"
+      endMarker="// END EnableAutoActivation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## CRUD operations
 
 Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD operation, as shown in the object creation example below.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateMtObject"
@@ -513,7 +540,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
 Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Get` and `Aggregate` query operation.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Search"
@@ -577,7 +604,7 @@ A cross-reference can be added from a multi-tenancy collection object to:
 Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating, updating or deleting cross-references.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddCrossRef"
