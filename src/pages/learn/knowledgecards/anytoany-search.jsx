@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Any-to-any Search - Weaviate Knowledge Cards',
+    description:
+      'In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search...',
+    image: 'https://weaviate.io/img/cards/any-to-any-search.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/anytoany-search',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Any-to-any Search - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/any-to-any-search.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/anytoany-search"
+          />
+          <meta
+            property="og:description"
+            content="In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Any-to-any Search - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="In any-to-any search we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/any-to-any-search.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}

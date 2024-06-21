@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Multimodal RAG - Weaviate Knowledge Cards',
+    description:
+      'Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by...',
+    image: 'https://weaviate.io/img/cards/multimodal-rag.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/multimodal-rag',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Multimodal RAG - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/multimodal-rag.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/multimodal-rag"
+          />
+          <meta
+            property="og:description"
+            content="Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Multimodal RAG - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/multimodal-rag.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}
