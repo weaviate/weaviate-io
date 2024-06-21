@@ -79,29 +79,41 @@ export default function Projects() {
               </span>
               <h3>Verba</h3>
               <span>The Golden RAGtriever</span>
-              <Link className={`${styles.top} ${styles.cardButton} `}>
+              <Link
+                to="https://verba.weaviate.io"
+                className={`${styles.top} ${styles.cardButton} `}
+              >
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
-                  Meet Verba, your open source RAG assistant for any topic. You
-                  can create stuff and make stuff and do more stuff with this
-                  demo showing you stuff and stuff
+                  Verba is our open source Retrieval Augmented Generation (RAG)
+                  application designed for user-friendly, customizable search
+                  experiences. It features autocompletion, source transparency,
+                  easy data ingestion, and management, making it accessible for
+                  both technical and non-technical users.
                 </p>
                 <div className={styles.bottomContainer}>
-                  <Link className={styles.cardButton}>
+                  <Link
+                    to="https://weaviate.io/blog/verba-open-source-rag-app"
+                    className={styles.cardButton}
+                  >
                     {' '}
                     <span className={styles.blog}></span> Blogpost
                   </Link>
                   <Link
+                    to="www.youtube.com/watch?v=swKKRdLBhas"
                     className={`${styles.videoButton} ${styles.cardButton}`}
                   >
                     {' '}
                     <span className={styles.video}></span> Youtube
                   </Link>
-                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
+                  <Link
+                    to="https://github.com/weaviate/Verba"
+                    className={`${styles.gitButton} ${styles.cardButton} `}
+                  >
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -113,7 +125,7 @@ export default function Projects() {
           <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                1.800
+                69
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -129,24 +141,36 @@ export default function Projects() {
               </span>
               <h3>Awesome-moviate</h3>
               <span>A Movie Search Engine</span>
-              <Link className={`${styles.top} ${styles.cardButton} `}>
+              <Link
+                to="https://awesome-moviate.weaviate.io/"
+                className={`${styles.top} ${styles.cardButton} `}
+              >
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
-                  This project allows three types of searches over movies:
-                  keyword-based (BM25), semantic, and hybrid searches.
-                  Additionally, it retrieves similar movies to a selected one.
+                  Awesome-Moviate is a movie recommender system built with
+                  OpenAI embeddings and Weaviate. It uses a simple user
+                  interface to provide movie search and recommendation
+                  functionalities. Users can search for movies by title and
+                  receive a list of similar movies based on plot similarity
+                  using AI-generated embeddings.
                 </p>
                 <div className={styles.bottomContainer}>
-                  <Link className={styles.cardButton}>
+                  <Link
+                    to="https://towardsdatascience.com/recreating-andrej-karpathys-weekend-project-a-movie-search-engine-9b270d7a92e4"
+                    className={styles.cardButton}
+                  >
                     {' '}
-                    <span className={styles.blog}></span> Vercel
+                    <span className={styles.blog}></span> Blogpost
                   </Link>
 
-                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
+                  <Link
+                    to="https://github.com/weaviate-tutorials/awesome-moviate"
+                    className={`${styles.gitButton} ${styles.cardButton} `}
+                  >
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -160,7 +184,7 @@ export default function Projects() {
           <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                1.800
+                153
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -176,25 +200,36 @@ export default function Projects() {
               </span>
               <h3>Heathsearch</h3>
               <span>Generative AI in Healthcare</span>
-              <Link className={`${styles.top} ${styles.cardButton} `}>
+              <Link
+                to="https://healthsearch.weaviate.io/"
+                className={`${styles.top} ${styles.cardButton} `}
+              >
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
-                  Welcome to the Healthsearch Demo, an open-source project aimed
-                  at showcasing the potential of leveraging user-written reviews
-                  and queries to retrieve supplement products based on specific
-                  health effects.
+                  HealthSearch is an open source demo that decodes user-written
+                  reviews of supplements, performing semantic and generative
+                  searches to retrieve related products for specific health
+                  effects. It leverages Large Language Models to understand
+                  natural language queries and generate product and review
+                  summaries.
                 </p>
                 <div className={styles.bottomContainer}>
-                  <Link className={styles.cardButton}>
+                  <Link
+                    to="https://weaviate.io/blog/healthsearch-demo"
+                    className={styles.cardButton}
+                  >
                     {' '}
-                    <span className={styles.blog}></span> Vercel
+                    <span className={styles.blog}></span> Blogpost
                   </Link>
 
-                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
+                  <Link
+                    to="https://github.com/weaviate/healthsearch-demo"
+                    className={`${styles.gitButton} ${styles.cardButton} `}
+                  >
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
@@ -257,7 +292,7 @@ export default function Projects() {
           <div className={`${styles.bigCard} ${styles.card}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                1.800
+                39
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -273,29 +308,35 @@ export default function Projects() {
               </span>
               <h3>BookRecs</h3>
               <span>Book Recommendation System</span>
-              <Link className={`${styles.top} ${styles.cardButton} `}>
+              <Link
+                to="https://bookrecs.weaviate.io/"
+                className={`${styles.top} ${styles.cardButton} `}
+              >
                 <span className={styles.play}></span> Start Demo
               </Link>
             </div>
             <div className={styles.contentDiv}>
               <div className={`${styles.bigText} ${styles.textCardContent}`}>
                 <p>
-                  This project is a book recommendation service that suggests
-                  books based on a user's inputted genre and book titles. It's
-                  built upon a database of 7000 books retrieved from Kaggle.
-                  Using Ada v2 as the large language model, vector embeddings
-                  were created with the Kaggle dataset to allow for quick vector
-                  search to find semantically similar books through natural
-                  language input. The frontend is built using Next.js and styled
-                  with TailwindCSS.
+                  BookRec is a recommendation service suggesting books based on
+                  user-inputted genres and titles. Built on a Kaggle dataset of
+                  7000 books, it uses Ada v2 for vector embeddings and quick
+                  semantic search. The frontend is developed with Next.js and
+                  styled using TailwindCSS.
                 </p>
                 <div className={styles.bottomContainer}>
-                  <Link className={styles.cardButton}>
+                  <Link
+                    to="https://www.youtube.com/watch?v=SF1ZlRjVsxw"
+                    className={`${styles.videoButton} ${styles.cardButton}`}
+                  >
                     {' '}
-                    <span className={styles.blog}></span> Vercel
+                    <span className={styles.blog}></span> Youtube
                   </Link>
 
-                  <Link className={`${styles.gitButton} ${styles.cardButton} `}>
+                  <Link
+                    to="https://github.com/weaviate/BookRecs/"
+                    className={`${styles.gitButton} ${styles.cardButton} `}
+                  >
                     {' '}
                     <span className={styles.git}></span> GitHub
                   </Link>
