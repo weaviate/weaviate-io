@@ -1,12 +1,12 @@
 {
-  "Edu demo WCD connect": {
-    "prefix": "edu-demo-wcd-connect",
+  "Weaviate WCD connect": {
+    "prefix": "Weaviate-wcd-connect",
     "body": [
       "import weaviate",
-      "import weaviate.classes as wvc",
+      "from weaviate.classes.config import Configure, DataType, Property",
       "import os",
       "",
-      "client = weaviate.connect_to_wcs(",
+      "client = weaviate.connect_to_weaviate_cloud(",
       "    cluster_url=os.getenv(\"WCD_DEMO_URL\"),",
       "    auth_credentials=weaviate.auth.AuthApiKey(os.getenv(\"WCD_DEMO_RO_KEY\")),",
 	    "    headers={",
@@ -16,7 +16,25 @@
       ")",
       ""
     ],
-    "description": "Connect to WCD edu demo instance"
+    "description": "Connect to a Weaviate WCD (edu demo) instance"
+  },
+
+  "Weaviate local connect": {
+    "prefix": "Weaviate-local-connect",
+    "body": [
+      "import weaviate",
+      "from weaviate.classes.config import Configure, DataType, Property",
+      "import os",
+      "",
+      "client = weaviate.connect_to_local(",
+	    "    headers={",
+      "        \"X-OpenAI-Api-Key\": os.getenv(\"OPENAI_APIKEY\"),",
+      "        \"X-Cohere-Api-Key\": os.getenv(\"COHERE_APIKEY\"),",
+      "    },",
+      ")",
+      ""
+    ],
+    "description": "Connect to a Weaviate local instance"
   },
   "Code snippet section": {
     "prefix": "code-section",

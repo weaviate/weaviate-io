@@ -22,7 +22,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'multi2vec-clip'
-      ENABLE_MODULES: 'multi2vec-clip,text2vec-openai,generative-openai'
+      ENABLE_MODULES: 'multi2vec-clip,text2vec-openai,generative-openai,text2vec-ollama,generative-ollama'
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-clip:
     image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32

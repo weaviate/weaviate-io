@@ -7,24 +7,23 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Multi-tenancy generally refers to a software architecture where a single instance of the software serves multiple "tenants". Each tenant is a group of users who share common access.
+In general, the term "multi-tenancy" refers to a software architecture where a single instance of the software serves multiple "tenants". Each tenant here is a group of users who share common access.
 
-In Weaviate, multi-tenancy is implemented at the collection level. A collection can optionally be configured with multi-tenancy, such that each "tenant" can access only their own data. Each object in a multi-tenant collection will share the same settings such as vectorizer, index settings and properties.
-
-The main difference is that objects in a multi-tenant collection are further divided into isolated "tenants".
+In Weaviate, multi-tenancy allows each collection to serve multiple, isolated tenants. Each "tenant" in a multi-tenant collection can only access their own data, while sharing the same data structure and settings.
 
 ![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-dark.png#gh-dark-mode-only)
 ![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-light.png#gh-light-mode-only)
 
+This allows Weaviate to efficiently serve a large number of tenants with minimal overhead.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Why use multi-tenancy?
 
-One use of multi-tenancy is a software-as-a-service (SaaS) type application. In a SaaS application, each end user, or account, may have some data objects associated with it.
+A typical multi-tenancy use-case is in a software-as-a-service (SaaS) application. In a SaaS application, each end user or account, may have their own data that should be only accessible to them.
 
-Using single-tenant collections, you might use:
+Using single-tenant collections, you might implement this with:
 
 1. **A monolithic collection**: To store the entire dataset, with an end user identifier property
-1. **Per-end-user collection**: Where each end user's data would be in a separate collection
+1. **Per-end-user collections**: Where each end user's data would be in a separate collection
 
 Unfortunately, neither of these are suitable.
 
@@ -37,13 +36,17 @@ Unfortunately, neither of these are suitable.
 
 Multi-tenancy solves these problems.
 
-### <i class="fa-solid fa-chalkboard"></i> Trade-offs
+### <i class="fa-solid fa-chalkboard"></i> Multi-tenancy benefits
 
-It allows you to build one collection with one set of configurations, but with each tenant's data isolated from each other. This is more efficient, and easier to manage.
+Multi-tenancy allows you to build one collection with one set of configurations, AND it allows each tenant's data to be isolated from each other. This makes multi-tenancy resource-efficient, as well as much easier to manage.
 
-Thanks to the low overhead, a Weaviate node can serve thousands of end users in a multi-tenant collection with very little resource overhead. Each tenant's data is isolated from each other, eliminating risks of accidental data leakage, and making it easier to manage.
+Thanks to multi-tenancy's low overhead, a Weaviate node can serve thousands of active end users in a multi-tenant collection. Furthermore, each tenant's data is isolated from each other, eliminating risks of accidental data leakage and making it easier to manage.
 
-Furthermore, non-active end users' data can be stored as a "cold" tenant. Cold tenants require virtually no overhead, which further frees up resources to serve active end users. These are called "hot" tenants.
+### <i class="fa-solid fa-chalkboard"></i> Tenant activity status
+
+Weaviate's multi-tenancy solution also includes a tenant activity status. This recognizes that some tenants may be more active than others, or may be likely to be active at certain times (e.g. due to time zones).
+
+To reduce resource usage, non-active end users' data can be stored as a "cold" tenant. Cold tenants are offloaded from memory, and require virtually no overhead, which further frees up resources to serve active end users. These are called "hot" tenants.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Multi-tenancy implementation
 

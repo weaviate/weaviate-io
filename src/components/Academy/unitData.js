@@ -380,29 +380,28 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  mt_manage: {
+  mt_config: {
     title: "Manage a multi-tenant collection",
     body: "Learn how to create, configure and manage a multi-tenant collection end-to-end.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/manage",
+    buttonURL: "/developers/academy/py/multitenancy/config",
     badgeType: "practical",
     learningGoals: [
-      "How to build and manage a multi-tenant collection.",
+      "How to create & configure a multi-tenant collection.",
     ],
     learningOutcomes: [
       "Create a multi-tenant collection.",
       "Configure a multi-tenant collection to suit your needs.",
-      "Ingest data into a multi-tenant collection.",
-      "Manage a multi-tenant collection with CRUD operations.",
+      "Create tenants and manage their status."
     ],
     owner: "jp",
     reviewer: "jp"
   },
-  mt_queries: {
+  mt_usage: {
     title: "Query a multi-tenant collection",
     body: "Make use of a multi-tenant collections with queries, and consider how to configure it with queries in mind.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/query",
+    buttonURL: "/developers/academy/py/multitenancy/usage",
     badgeType: "practical",
     learningGoals: [
       "How to perform queries on a multi-tenant collection, and see how multi-tenancy configuration options affect queries.",

@@ -22,7 +22,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'multi2vec-bind'
-      ENABLE_MODULES: 'multi2vec-bind,generative-openai'
+      ENABLE_MODULES: 'multi2vec-bind,generative-openai,text2vec-ollama,generative-ollama'
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-bind:
     mem_limit: 12G
