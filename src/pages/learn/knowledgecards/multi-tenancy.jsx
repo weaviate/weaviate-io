@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Multi Tenancy - Weaviate Knowledge Cards',
+    description:
+      'With multi-tenancy, a single database instance serves multiple clients or tenants...',
+    image: 'https://weaviate.io/img/cards/multi-tenancy.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/multi-tenancy',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Multi Tenancy - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/multi-tenancy.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/multi-tenancy"
+          />
+          <meta
+            property="og:description"
+            content="With multi-tenancy, a single database instance serves multiple clients or 'tenants' simultaneously, while ensuring that each tenant's data remains isolated and secure. It also enables efficient resource use and cost savings over large datasets at scale."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Multi Tenancy - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="With multi-tenancy, a single database instance serves multiple clients or 'tenants' simultaneously, while ensuring that each tenant's data remains isolated and secure. It also enables efficient resource use and cost savings over large datasets at scale."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/multi-tenancy.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}
