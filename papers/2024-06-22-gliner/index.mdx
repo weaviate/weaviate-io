@@ -19,7 +19,7 @@ Filtered search using metadata filtering is a simple technique that can signific
 
 GLiNER is a powerful model that allows you to extract arbitrary entities such as names, times, places, etc. from any text chunk. It outperforms decoder models like ChatGPT and others at zero-shot identification of names entities in text chunks.
 
-##How it Works:
+## How it Works:
 
 GLiNER operates by taking in text chunks and entity labels, that you want to identify in the chunks. Both inputs are concatenated, encoded, and projected into the same latent space and fed into a classifier that predicts the entity labels per word in the text input.
 
@@ -27,7 +27,7 @@ This method allows the model to generalize across different NER tasks and labels
 
 The fact that entity vectors and the text chunk is concatenated allows the entity labels to attend to the text chunks and vice versa in the encoder step which allows GLiNER to work very well OOD.
 
-##Architechture:
+## Architechture:
 
 GLiNER consists of three joined components:
 
@@ -40,11 +40,11 @@ GLiNER consists of three joined components:
 The entity vectors and span vectors are then combined and used to train a classifier that identifies which text spans correctly paired with entity labels.
 
 ## Effectiveness:
-  >> Generalization: The model demonstrates SoTA performance across various NER benchmarks, outperforming traditional task-specific models.
+  - Generalization: The model demonstrates SoTA performance across various NER benchmarks, outperforming traditional task-specific models.
 
-  >>Adaptability: GLiNER is super easy to use, simply pass in any text and any labels you want to extract and it simply works making it a flexible solution to add to your RAG pipeline.
+  - Adaptability: GLiNER is super easy to use, pass in any text and any labels you want to extract and it simply works making it a flexible solution to add to your RAG pipeline.
 
-  >> Scalability: The unified approach simplifies the deployment process, as a single model can handle multiple NER tasks.
+  - Scalability: The unified approach simplifies the deployment process, as a single model can handle multiple NER tasks.
 
 [Demo](https://huggingface.co/spaces/tomaarsen/gliner_medium-v2.1)
 [Code](https://github.com/urchade/GLiNER)
