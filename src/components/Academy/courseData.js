@@ -169,7 +169,7 @@ export const courseData = {
       "The basics of Weaviate, and how to integrate it to a TypeScript app."
     ],
     learningOutcomes: [
-      "Create a cloud (WCS) instance fo Weaviate.",
+      "Create a cloud (WCD) instance fo Weaviate.",
       "Gain an understanding of what a vector database is.",
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",

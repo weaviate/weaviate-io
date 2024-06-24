@@ -1,5 +1,5 @@
 ---
-title: Embeddings
+title: Text Embeddings
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_openai_azure.jpg
 # tags: ['model providers', 'azure', 'openai', 'embeddings']
@@ -59,7 +59,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START AzureOpenAIInstantiation"
@@ -68,7 +68,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START AzureOpenAIInstantiation"
@@ -83,8 +83,10 @@ Provide the API key to Weaviate using one of the following methods:
 
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Azure OpenAI embedding model by setting the vectorizer as follows:
 
+Select the model to be used by specifying the Azure resource name.
+
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerAzureOpenAI"
@@ -93,7 +95,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerAzureOpenAI"
@@ -104,15 +106,13 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`text-embedding-ada-002`) is used if no model is specified.
-
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -121,7 +121,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -150,7 +150,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -159,7 +159,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -182,7 +182,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -191,7 +191,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -213,7 +213,7 @@ The following examples show how to configure Azure OpenAI-specific options.
 - `base_url` (Optional): The base URL of the Azure OpenAI API.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerAzureOpenAI"
@@ -222,7 +222,7 @@ The following examples show how to configure Azure OpenAI-specific options.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerAzureOpenAI"

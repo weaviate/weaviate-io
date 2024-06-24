@@ -9,7 +9,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.25.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.25.4
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -35,7 +35,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.25.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.25.4
     restart: on-failure:0
     ports:
      - "8181:8080"
@@ -61,7 +61,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.25.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.25.4
     restart: on-failure:0
     ports:
      - "8182:8080"

@@ -211,7 +211,9 @@ import SchemaWithMT from '/_includes/code/tutorial.schema.multi-tenancy.mdx';
 
 ### Index settings
 
-Weaviate uses two types of indexes: vector indexes and inverted indexes. Vector indexes are used to store and organize vectors for fast vector similarity-based searches, and inverted indexes are used to store data for fast filtering and keyword searches.
+Weaviate uses two types of indexes: [vector indexes](../concepts/vector-index.md) and [inverted indexes](../concepts/indexing.md#inverted-index). Vector indexes are used to store and organize vectors for fast vector similarity-based searches, and inverted indexes are used to store data for fast filtering and keyword searches.
+
+The default vector index type is [HNSW](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index). The other options are [flat](../concepts/vector-index.md#flat-index), which is suitable for small collections, such as those in a multi-tenancy collection, or [dynamic](../concepts/vector-index.md#dynamic-index), which starts as a flat index before switching to an HNSW index if its size grows beyond a predetermined threshold.
 
 import SchemaWithIndexSettings from '/_includes/code/tutorial.schema.index-settings.mdx';
 

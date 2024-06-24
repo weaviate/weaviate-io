@@ -5,7 +5,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python Client v4">
+<TabItem value="py" label="Python Client v4">
    <FilteredTextBlock
      text={PyCode}
      startMarker="# START ConnectWithOIDC"
@@ -22,14 +22,31 @@ import weaviate
 client = weaviate.Client(
     url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=weaviate.AuthClientPassword(
-        username = wcs_username,  # Replace with your Weaviate Cloud username
-        password = wcs_password,  # Replace with your Weaviate Cloud password
+        username = wcd_username,  # Replace with your Weaviate Cloud username
+        password = wcd_password,  # Replace with your Weaviate Cloud password
     ),
 )
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.AuthUserPasswordCredentials({
+        username: wcdUsername,  // Replace with your Weaviate Cloud username
+        password: wcdPassword,  // Replace with your Weaviate Cloud password
+      }),
+  }
+)
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
@@ -38,8 +55,8 @@ const client = weaviate.client({
   scheme: "https",
   host: "WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   authClientSecret: new AuthUserPasswordCredentials({
-    username: wcsUsername,  // Replace with your Weaviate Cloud username
-    password: wcsPassword,  // Replace with your Weaviate Cloud password
+    username: wcdUsername,  // Replace with your Weaviate Cloud username
+    password: wcdPassword,  // Replace with your Weaviate Cloud password
   })
 });
 ```
@@ -60,8 +77,8 @@ cfg := weaviate.Config{
   Host:"WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   Scheme: "https",
   AuthConfig: auth.ResourceOwnerPasswordFlow{
-    Username: wcsUsername,  // Replace with your Weaviate Cloud username
-    Password: wcsPassword,  // Replace with your Weaviate Cloud password
+    Username: wcdUsername,  // Replace with your Weaviate Cloud username
+    Password: wcdPassword,  // Replace with your Weaviate Cloud password
   }
 }
 
@@ -81,8 +98,8 @@ import io.weaviate.client.WeaviateAuthClient;
 Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate endpoint
 WeaviateAuthClient.clientPassword(
     config,
-    wcsUsername,  // Replace with your Weaviate Cloud username
-    wcsPassword,  // Replace with your Weaviate Cloud password
+    wcdUsername,  // Replace with your Weaviate Cloud username
+    wcdPassword,  // Replace with your Weaviate Cloud password
 );
 ```
 

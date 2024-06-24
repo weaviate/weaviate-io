@@ -54,7 +54,7 @@ func main() {
 	}
 	// highlight-end
 	class := &models.Class{
-			Class:      "YourCollection",
+			Class:      "MyCollection",
 			Vectorizer: "text2vec-openai",
 			// highlight-start
 			VectorIndexConfig: map[string]interface{}{
@@ -81,7 +81,7 @@ func main() {
 	}
 	// highlight-end
 	class := &models.Class{
-			Class:      "YourCollection",
+			Class:      "MyCollection",
 			Vectorizer: "text2vec-openai",
 			VectorIndexConfig: map[string]interface{}{
 				// highlight-start

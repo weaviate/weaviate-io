@@ -366,33 +366,9 @@ Follow these steps to update an immutable setting:
 
 <!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
 
-- `description`
-- `invertedIndexConfig`
-  - `bm25`
-    - `b`
-    - `k1`
-  - `cleanupIntervalSeconds`
-  - `stopwords`
-    - `additions`
-    - `preset`
-    - `removals`
-- `replicationConfig`
-  - `factor`  (not mutable in `v1.25`)
-- `vectorIndexConfig`
-  - `dynamicEfFactor`
-  - `dynamicEfMin`
-  - `dynamicEfMax`
-  - `flatSearchCutoff`
-  - `skip`
-  - `vectorCacheMaxObjects`
-  - `pq`
-    - `centroids`
-    - `enabled`
-    - `segments`
-    - `trainingLimit`
-    - `encoder`
-      - `type`
-      - `distribution`
+import CollectionMutableParameters from '/_includes/collection-mutable-parameters.mdx';
+
+<CollectionMutableParameters/>
 
 </details>
 
@@ -551,7 +527,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi
 
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
-- (Experimental) Tenant activity status setting available from version `v1.21`
+- Tenant activity status setting available from version `v1.21`
 :::
 
 :::info Related pages
@@ -564,7 +540,7 @@ Tenants are used to separate data between different users or groups of users. Th
 ### Enable multi-tenancy
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableMultiTenancy"
@@ -582,7 +558,7 @@ Tenants are used to separate data between different users or groups of users. Th
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START EnableMultiTenancy"
@@ -642,7 +618,7 @@ POST v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddTenantsToClass"
@@ -660,7 +636,7 @@ POST v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START AddTenantsToClass"
@@ -695,7 +671,7 @@ GET v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ListTenants"
@@ -713,7 +689,7 @@ GET v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ListTenants"
@@ -750,7 +726,7 @@ DELETE v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RemoveTenants"
@@ -768,7 +744,7 @@ DELETE v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RemoveTenants"
@@ -821,7 +797,7 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python Client v4">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateTenants"

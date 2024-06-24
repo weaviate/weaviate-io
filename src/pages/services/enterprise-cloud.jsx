@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import ServiceHeader from '../../components/Service/EnterpriseDedicated/Header';
 import ServicePlan from '../../components/Service/EnterpriseDedicated/Plan';
-import ContactUsForm from '../../components/ContactUsForm';
+import ContactUsForm from '../../components/Contact/contactForm';
 import Highlights from '../../components/Service/EnterpriseDedicated/Highlights';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import QuoteBox from '../../components/Service/EnterpriseDedicated/QuoteBox/quoteBox.jsx';

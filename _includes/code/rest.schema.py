@@ -160,7 +160,7 @@ try:
             bm25_k1=1.1,
             bm25_b=0.8
         ),
-        vector_index_config=wvc.config.Reconfigure.VectorIndex.hnsw(
+        vectorizer_config=wvc.config.Reconfigure.VectorIndex.hnsw(
             dynamic_ef_factor=10
         )
     )
@@ -199,8 +199,19 @@ try:
     # UpdateCollectionShards
     # ========================================
 
+    shards = articles.config.get_shards()
+    shard_names = [s.name for s in shards]
+
     # START UpdateCollectionShards
-    # Coming soon :)
+    articles = client.collections.get("Article")
+
+    # highlight-start
+    article_shards = articles.config.update_shards(
+        status="READONLY",
+        shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
+    )
+    # highlight-start
+    print(article_shards)
     # END UpdateCollectionShards
 
 # START-ANY

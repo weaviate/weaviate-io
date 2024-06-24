@@ -6,7 +6,7 @@ import json
 import os
 import weaviate
 import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Sort
+from weaviate.classes.query import Sort
 
 client = weaviate.connect_to_local()
 
@@ -16,8 +16,8 @@ client = weaviate.connect_to_local()
 client.close()
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }

@@ -24,13 +24,14 @@ tkn_options = [
 ]
 
 # Create a property for each tokenization option
-properties = [
-    Property(
+properties = []
+for tokenization in tkn_options:
+    prop = Property(
         name=f"text_{tokenization}",
         data_type=DataType.TEXT,
         tokenization=tokenization
-    ) for tokenization in tkn_options  # Note the list comprehension
-]
+    )
+    properties.append(prop)
 
 
 client.collections.create(

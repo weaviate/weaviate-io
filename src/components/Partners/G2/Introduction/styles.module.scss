@@ -74,7 +74,8 @@ p {
 .g2Diagram {
   background: url('/img/site/weaviate-g2.svg');
 
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   max-width: 418px;
   width: 100%;
   height: auto;
