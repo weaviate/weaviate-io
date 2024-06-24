@@ -18,7 +18,7 @@ export default function Heroes() {
               alt={person.name}
             />
             <span className={styles.heroName}>{person.name}</span>
-            <span>{person.title}</span>
+            <span className={styles.heroTitle}>{person.title}</span>
             <div className={styles.personLinks}>
               {person.socialLinks.linkedin && (
                 <Link to={person.socialLinks.linkedin}>
