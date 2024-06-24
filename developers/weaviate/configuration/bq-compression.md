@@ -1,5 +1,5 @@
 ---
-title: Binary Quantization (compression)
+title: Binary Quantization (BQ compression)
 sidebar_position: 6
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'bq']

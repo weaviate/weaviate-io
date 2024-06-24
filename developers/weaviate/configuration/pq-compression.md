@@ -1,5 +1,5 @@
 ---
-title: Product Quantization (compression)
+title: Product Quantization (PQ compression)
 sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
