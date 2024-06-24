@@ -195,7 +195,7 @@ import weaviate
 from weaviate.auth import AuthApiKey
 
 # Connect to Weaviate Cloud
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
     auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
     headers={
