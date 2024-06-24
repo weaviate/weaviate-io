@@ -55,7 +55,7 @@ print(json.dumps(schema, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';
@@ -173,7 +173,7 @@ public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
     // Replace WEAVIATE_INSTANCE_URL with the URL
-    
+
     WeaviateClient client = new WeaviateClient(config);
 
     // we will create the class "Question"
@@ -241,7 +241,7 @@ curl \
 }' \
 https://${WEAVIATE_INSTANCE_URL}/v1/schema
 
-curl https://${WEAVIATE_INSTANCE_URL}/v1/schema  
+curl https://${WEAVIATE_INSTANCE_URL}/v1/schema
 ```
 
 </TabItem> */}

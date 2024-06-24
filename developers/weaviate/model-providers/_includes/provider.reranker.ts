@@ -12,18 +12,25 @@ const client = await weaviate.connectToLocal({
   },
 });
 
-// START RerankerCohere
+// START RerankerCohereBasic
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.cohere(),
+  // highlight-end
+});
+// END RerankerCohereBasic
+
+// START RerankerCohereCustomModel
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   reranker: weaviate.configure.reranker.cohere({
-    // // This parameter is optional
-    // model: "rerank-multilingual-v3.0",
+    model: 'rerank-english-v3.0',
   }),
   // highlight-end
-  // Additional parameters not shown
 });
-// END RerankerCohere
+// END RerankerCohereCustomModel
 
 // START RerankerVoyageAI
 // Code example coming soon

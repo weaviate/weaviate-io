@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import { Helmet } from 'react-helmet';
+import Head from '@docusaurus/Head';
 
 const ModalComponent = ({
   details,
@@ -29,10 +29,12 @@ const ModalComponent = ({
   }
 
   const formattedTitle = formatTitleForUrl(details.title);
-  const shareUrl = `${window.location.origin}${window.location.pathname}#card=${formattedTitle}`;
+  const shareUrl = `${window.location.origin}/learn/knowledgecards/${formattedTitle}`;
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
-  const imageFullUrl = `${window.location.origin}/img/cards/${details.cardImage}`;
+  const imageFullUrl = details.cardImage
+    ? `${window.location.origin}/img/cards/${details.cardImage}`
+    : `${window.location.origin}/img/og/content/knowledgecards.jpg`;
 
   const shareToTwitter = () => {
     const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
@@ -142,23 +144,6 @@ const ModalComponent = ({
 
   return (
     <div className={styles.modals} onClick={onClose}>
-      <Helmet>
-        <title>{details.title}</title>
-        <meta property="og:title" content={details.title} />
-        <meta property="og:description" content={details.longText} />
-        <meta property="og:image" content={imageFullUrl} />
-        <meta
-          property="og:url"
-          content={`${window.location.origin}${
-            window.location.pathname
-          }#card=${details.title.replace(/\s+/g, '-').toLowerCase()}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={details.title} />
-        <meta name="twitter:description" content={details.longText} />
-        <meta name="twitter:image" content={imageFullUrl} />
-      </Helmet>
       <div
         className={`${styles.modalContents} ${styles[typeClass]} ${
           isFirstOpen ? styles.initialAnimation : ''
@@ -187,7 +172,11 @@ const ModalComponent = ({
             ))} */}
 
             {/* related content */}
-            {(details.bloglink || details.doclink || details.videolink) && (
+            {(details.bloglink ||
+              details.bloglink2 ||
+              details.doclink ||
+              details.doclink2 ||
+              details.videolink) && (
               <>
                 <p className={styles.relatedText}>Related Content:</p>
                 <div className={styles.relatedBox}>
@@ -204,6 +193,19 @@ const ModalComponent = ({
                       </div>
                     </Link>
                   )}
+                  {details.bloglink2 && (
+                    <Link to={details.bloglink2}>
+                      <div className={styles.relatedBlog}>
+                        <div className={styles.relatedImage}></div>
+                        <div className={styles.relatedBottom}>
+                          <span className={styles.relatedTitle}>Blog:</span>
+                          <span className={styles.relatedSubtitle}>
+                            {details.blogTitle2}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                   {details.doclink && (
                     <Link to={details.doclink}>
                       <div className={styles.relatedBlog}>
@@ -212,6 +214,19 @@ const ModalComponent = ({
                           <span className={styles.relatedTitle}>Doc:</span>
                           <span className={styles.relatedSubtitle}>
                             {details.docTitle}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {details.doclink2 && (
+                    <Link to={details.doclink2}>
+                      <div className={styles.relatedBlog}>
+                        <div className={styles.relatedImage}></div>
+                        <div className={styles.relatedBottom}>
+                          <span className={styles.relatedTitle}>Doc:</span>
+                          <span className={styles.relatedSubtitle}>
+                            {details.docTitle2}
                           </span>
                         </div>
                       </div>
@@ -249,12 +264,12 @@ const ModalComponent = ({
             <Link to={details.link} className={styles.cardLink}>
               Read more on site
             </Link>
-          )}
-           <div className={styles.closeButtonContainer}>
-          <Link onClick={onClose} className={styles.close}>
-            <i className="fa-solid fa-xmark"></i>
-          </Link>
-        </div> */}
+          )} */}
+          <div className={styles.closeButtonContainer}>
+            <Link onClick={onClose} className={styles.close}>
+              <i className="fa-solid fa-xmark"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

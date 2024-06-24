@@ -50,7 +50,7 @@ This section uses our standard [Quickstart](https://weaviate.io/developers/weavi
 
 The first couple of steps are exactly the same for any language.
 
-First, you need to create a Weaviate instance to work with. For testing purposes, we recommend creating a free cloud sandbox instance on [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) by following the [WCS quickstart](https://weaviate.io/developers/wcs/quickstart) instructions.
+First, you need to create a Weaviate instance to work with. For testing purposes, we recommend creating a free cloud sandbox instance on [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) by following the [WCD quickstart](https://weaviate.io/developers/wcs/quickstart) instructions.
 
 Next, you need to install your preferred [Weaviate client](https://weaviate.io/developers/weaviate/client-libraries) to work with your preferred programming language.
 
@@ -60,7 +60,7 @@ pip install "weaviate-client==3.*"
 
 ### Step 2: Connect to Weaviate and define a data collection
 
-To connect to your Weaviate instance, you need the URL and API key for your Weaviate instance (get it from WCS `Details` tab). Also, you will need the API key for the inferencing services you are going to use. As discussed in "Language models," make sure your model supports the language you intend to use. In this case, OpenAI’s `text-embedding-ada-002` model supports Japanese.
+To connect to your Weaviate instance, you need the URL and API key for your Weaviate instance (get it from WCD `Details` tab). Also, you will need the API key for the inferencing services you are going to use. As discussed in "Language models," make sure your model supports the language you intend to use. In this case, OpenAI’s `text-embedding-ada-002` model supports Japanese.
 
 Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
 

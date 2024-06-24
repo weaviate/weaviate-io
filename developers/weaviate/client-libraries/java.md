@@ -23,7 +23,7 @@ To get the latest stable version of the Java client library, add this dependency
 <dependency>
   <groupId>io.weaviate</groupId>
   <artifactId>client</artifactId>
-  <version>4.0.0</version>  <!-- Check latest version -->
+  <version>4.7.0</version>  <!-- Check latest version -->
 </dependency>
 ```
 
@@ -61,11 +61,11 @@ import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/c
 
 <ClientAuthIntro clientName="Java"/>
 
-### WCS authentication
+### WCD authentication
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+import ClientAuthWCD from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
-<ClientAuthWCS />
+<ClientAuthWCD />
 
 ### API key authentication
 
@@ -105,7 +105,7 @@ WeaviateAuthClient.clientPassword(
     config,
     "Your user",
     "Your password",
-    Arrays.asList("scope1", "scope2") // optional, depends on the configuration of your identity provider (not required with WCS)
+    Arrays.asList("scope1", "scope2") // optional, depends on the configuration of your identity provider (not required with WCD)
 );
 ```
 

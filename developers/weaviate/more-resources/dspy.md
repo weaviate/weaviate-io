@@ -11,10 +11,11 @@ image: og/docs/more-resources.jpg
 
 ## DSPy and Weaviate
 
-Weaviate is integrated with DSPy through the retriever model! You only need to connect to your Weaviate cluster through [WCS](https://console.weaviate.cloud/) or localhost, and pass in your collection:
+Weaviate is integrated with DSPy through the retriever model! You only need to connect to your Weaviate cluster through [WCD](https://console.weaviate.cloud/) or localhost, and pass in your collection:
+
 
 ```python
-weaviate_client = weaviate.Client("http://localhost:8080") # or pass in your WCS cluster url
+weaviate_client = weaviate.Client("http://localhost:8080") # or pass in your WCD cluster url
 
 retriever_model = WeaviateRM("WeaviateBlogChunk", # collection name
                     weaviate_client=weaviate_client)

@@ -83,9 +83,9 @@ The legacy, single vector syntax is valid for use with collections that don't ha
 ```json
 {
     "class": "Article",
-    "vector": [0.3, -0.012, 0.071, ..., -0.09],
+    "vector": [0.3, -0.012, 0.071, -0.09],
     "properties": {
-        "content": Really cool things",
+        "content": "Really cool things",
     }
 }
 ```
@@ -96,7 +96,7 @@ To specify named vectors in collections with multiple, named vectors use the new
 {
     "class": "ArticleNamedVector",
     "vectors": {
-        "title_vector": [0.3, 0.2, 0.6, ..., 0.1]},
+        "title_vector": [0.3, 0.2, 0.6, 0.1],
         "image_vector": [1,2,3,4]
     },
     "properties": {

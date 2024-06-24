@@ -5,12 +5,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python Client v4">
+<TabItem value="py" label="Python Client v4">
 
    <FilteredTextBlock
      text={PyCode}
-     startMarker="# START WeaviateAPIKeyWCS"
-     endMarker="# END WeaviateAPIKeyWCS"
+     startMarker="# START WeaviateAPIKeyWCD"
+     endMarker="# END WeaviateAPIKeyWCD"
      language="py"
    />
 
@@ -29,7 +29,7 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```ts
 import weaviate, { ApiKey } from 'weaviate-ts-client';

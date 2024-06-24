@@ -35,12 +35,11 @@ client = weaviate.WeaviateClient(
     # Add additional options here. For syntax, see the Python client documentation.
 )
 
-client.connect()  # If instantiating `WeaviateClient` directly, you must call `connect()` to connect to the server.
+# Run your client code in a context manager or call client.close()
+# before exiting the client to avoid connection errors.
+client.connect()  # Call `connect()` to connect to the server when you use `WeaviateClient`
 
 # Add your client code here.
-
-# Remember to run your client code in a context manager or call client.close()
-# before exiting the client to avoid connection errors.
 
 # END ModuleInstantiationEmbedded
 
@@ -64,7 +63,7 @@ client = weaviate.WeaviateClient(
     # Add additional options here (see Python client docs for syntax)
 )
 
-client.connect()  # If instantiating `WeaviateClient` directly, you must call `connect()` to connect to the server.
+client.connect()  # Call `connect()` to connect to the server when you use `WeaviateClient`
 
 # Add your client code here.
 

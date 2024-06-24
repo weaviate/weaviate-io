@@ -73,12 +73,27 @@ Out of the box, the configuration file is setup for:
 - Local models, such as `text2vec-transformers`, `qna-transformers` or
   `img2vec-neural` are disabled by default. They can be enabled by setting the
   respective `enabled` flag to `true`.
-- `grpcService` is disabled by default. If you want to use the gRPC API, set the
-  `enabled` flag to `true` and the `type` to the required type, such as `LoadBalancer`. This decision to disable the gRPC service by default is made for backward compatibility, and as different setups might require different configurations.
 
 See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
+
+#### gRPC service configuration
+
+The `grpcService` must be enabled to use the gRPC API. It is enabled by default from helm chart version `v17.0.0`.
+
+Check that the `enabled` field is set to `true` and the `type` field to `LoadBalancer`. This allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/grpc-performance-improvements).
+
+```yaml
+grpcService:
+  enabled: true  # ⬅️ Make sure this is set to true
+  name: weaviate-grpc
+  ports:
+    - name: grpc
+      protocol: TCP
+      port: 50051
+  type: LoadBalancer  # ⬅️ Set this to LoadBalancer (from NodePort)
+```
 
 #### Authentication and authorization
 
@@ -114,7 +129,7 @@ authorization:
 
 In this example, the key `readonly-key` will authenticate a user as the `readonly@example.com` identity, and `secr3tk3y` will authenticate a user as `admin@example.com`.
 
-OIDC authentication is also enabled, with WCS as the token issuer/identity provider. Thus, users with WCS accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
+OIDC authentication is also enabled, with WCD as the token issuer/identity provider. Thus, users with WCD accounts could be authenticated. This configuration sets `someuser@weaviate.io` as an admin user, so if `someuser@weaviate.io` were to authenticate, they will be given full (read and write) privileges.
 
 For further, general documentation on authentication and authorization configuration, see:
 - [Authentication](../configuration/authentication.md)

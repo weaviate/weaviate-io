@@ -124,7 +124,7 @@ class_obj = {
     ],
     'vectorizer': 'text2vec-openai',  # this could be any vectorizer
     # highlight-start
-    "vectorIndexType": "flat",
+    "vectorIndexType": "hnsw",  # or "flat" or "dynamic"
     # highlight-end
 }
 
@@ -182,12 +182,6 @@ client.schema.delete_class(class_name)
 # START ModuleSettings
 class_obj = {
     "class": "Article",
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"],
-        },
-    ],
     "vectorizer": "text2vec-cohere",  # this could be any vectorizer
     # highlight-start
     "moduleConfig": {
@@ -339,12 +333,6 @@ if client.schema.exists(class_name):
 # START SetGenerative
 class_obj = {
     "class": "Article",
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"],
-        },
-    ],
     "vectorizer": "text2vec-openai",  # set your vectorizer module
     # highlight-start
     "moduleConfig": {
@@ -355,6 +343,37 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 # END SetGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-openai" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+# =======================================================================
+# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
+# =======================================================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START SetGenModel
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    "moduleConfig": {
+        # highlight-start
+        "generative-openai": {
+            "model": "gpt-4" # select generative model name
+        }
+        # highlight-end
+    }
+}
+
+client.schema.create_class(class_obj)
+# END SetGenModel
 
 # Test
 result = client.schema.get(class_name)

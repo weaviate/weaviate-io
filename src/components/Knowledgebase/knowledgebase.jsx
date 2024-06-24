@@ -58,16 +58,14 @@ export default function KnowledgeBase({ searchQuery }) {
   }, [allCards]);
 
   const updateUrlHash = (cardTitle) => {
-    // Replace spaces and forward slashes with hyphens, then lowercase the string
     const formattedTitle = cardTitle.replace(/[\s/]+/g, '-').toLowerCase();
-
     window.location.hash = `card=${encodeURIComponent(formattedTitle)}`;
   };
 
   const handleCardOpen = (card) => {
     setActiveCard(card);
     const cardTitleForUrl = formatTitleForUrl(card.title);
-    window.location.hash = `card=${cardTitleForUrl}`;
+    // window.location.hash = `card=${cardTitleForUrl}`;
     setShowMore((prev) => ({ ...prev, [card.category]: true }));
   };
 
@@ -148,7 +146,7 @@ export default function KnowledgeBase({ searchQuery }) {
               setActiveCard={setActiveCard}
               onOpenModal={() => {
                 setActiveCard({ category: card.category, index });
-                updateUrlHash(card.type, index);
+                //updateUrlHash(card.type, index);
                 handleCardOpen(card);
               }}
               isActive={activeCard && activeCard.id === card.id}
@@ -264,9 +262,9 @@ export default function KnowledgeBase({ searchQuery }) {
               </div>
             </div>
             <div className={styles.filterLine}></div>
-            <div className={styles.noResults}>
+            <main className={styles.noResults}>
               <h3>No results found.</h3>
-            </div>
+            </main>
           </div>
         </div>
       </div>
@@ -362,14 +360,14 @@ export default function KnowledgeBase({ searchQuery }) {
             </div>
           </div>
           <div className={styles.filterLine}></div>
-          <div className={styles.cardResults}>
+          <main className={styles.cardResults}>
             {renderCards('Intro to Vector Databases')}
             {renderCards('Hybrid Search')}
             {renderCards('Hierarchical Navigable Small World')}
             {renderCards('Multimodal RAG')}
             {renderCards('Databases')}
             {renderCards('Large Language Models')}
-          </div>
+          </main>
         </div>
       </div>
     </div>

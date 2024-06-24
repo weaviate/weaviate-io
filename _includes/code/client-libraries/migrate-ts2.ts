@@ -16,7 +16,7 @@ async function main() {
 // END CompleteScript
   
 // CompleteScript // CreateClient  
-  // connect to your Weaviate instance on WCS
+  // connect to your Weaviate instance on WCD
   const client: WeaviateClient = weaviate.client({
     scheme: process.env.WEAVIATE_SCHEME_URL || '', 
     host: process.env.WEAVIATE_URL || '', 

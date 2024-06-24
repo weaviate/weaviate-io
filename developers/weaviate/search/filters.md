@@ -88,12 +88,44 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAndPython"
-      endMarker="# END MultipleFiltersAndPython"
-      language="python"
-    />
+
+  The `v4` Python client API provides  filtering by `any_of`, or `all_of`, as well as using `&` or `|` operators.
+  <br/>
+
+  <ul>
+    <li>Use <code>any_of</code> or <code>all_of</code> for filtering by any, or all of a list of provided filters.</li>
+    <li>Use <code>&</code> or <code>|</code> for filtering by pairs of provided filters.</li>
+  </ul>
+
+  <br/>
+
+  #### Filter with `&` or `|`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAndPython"
+    endMarker="# END MultipleFiltersAndPython"
+    language="python"
+  />
+
+  #### Filter with `any of`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAllOfPython"
+    endMarker="# END MultipleFiltersAllOfPython"
+    language="python"
+  />
+
+  #### Filter with `all of`
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# MultipleFiltersAllOfPython"
+    endMarker="# END MultipleFiltersAllOfPython"
+    language="python"
+  />
+
   </TabItem>
 
   <TabItem value="py3" label="Python Client v3">
@@ -106,12 +138,19 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={JavaScriptCode}
-      startMarker="// searchMultipleFiltersAnd"
-      endMarker="// END searchMultipleFiltersAnd"
-      language="js"
-    />
+
+  Use `Filters.and` and `Filters.or` methods to combine filters in the JS/TS `v3` API.
+  <br/>
+
+  These methods take variadic arguments (e.g. `Filters.and(f1, f2, f3, ...)`). To pass an array (e.g. `fs`) as an argument, provide it like so: `Filters.and(...fs)` which will spread the array into its elements.
+  <br/>
+
+  <FilteredTextBlock
+    text={JavaScriptCode}
+    startMarker="// searchMultipleFiltersAnd"
+    endMarker="// END searchMultipleFiltersAnd"
+    language="js"
+  />
   </TabItem>
 
   <TabItem value="js2" label="JS/TS Client v2">
@@ -423,7 +462,7 @@ The output is like this:
 
 ## `ContainsAny` and `ContainsAll` with batch delete
 
-If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations than they do in queries.
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#use-containsany--containsall).
 
 ## Filter text on partial matches
 
@@ -614,6 +653,29 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       startMarker="# START GQLFilterbyGeolocation"
       endMarker="# END GQLFilterbyGeolocation"
       language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+## By `DATE` datatype
+
+To filter by a `DATE` datatype property, specify the date/time as an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp, or a client library-compatible type such as a Python `datetime` object.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByDateDatatype"
+      endMarker="# END FilterByDateDatatype"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByDateDatatype"
+      endMarker="// END FilterByDateDatatype"
+      language="js"
     />
   </TabItem>
 </Tabs>

@@ -12,8 +12,8 @@ from weaviate.auth import AuthApiKey
 import weaviate
 
 # Set these environment variables
-URL = os.getenv("WCS_URL")
-APIKEY = os.getenv("WCS_API_KEY")
+URL = os.getenv("WCD_URL")
+APIKEY = os.getenv("WCD_API_KEY")
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
@@ -37,8 +37,8 @@ import weaviate
 from weaviate.auth import AuthApiKey
 
 # Set these environment variables
-URL = os.getenv("WCS_URL")
-APIKEY = os.getenv("WCS_API_KEY")
+URL = os.getenv("WCD_URL")
+APIKEY = os.getenv("WCD_API_KEY")
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(

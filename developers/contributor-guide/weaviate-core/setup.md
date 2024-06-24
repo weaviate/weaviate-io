@@ -73,7 +73,7 @@ tools/dev/restart_dev_environment.sh --qna && ./tools/dev/run_dev_server.sh loca
 
 The above commands are subject to change as we add more modules and require specific combinations for local testing. You can always inspect [restart_dev_environment.sh](https://github.com/weaviate/weaviate/blob/master/tools/dev/restart_dev_environment.sh) and [run_dev_server.sh](https://github.com/weaviate/weaviate/blob/master/tools/dev/run_dev_server.sh) to see which options are available. The first option without any arguments is always guaranteed to work.
 
-To make queries from a web interface, use the [WCS console](https://console.weaviate.cloud) to connect to `localhost:8080`.
+To make queries from a web interface, use the [WCD console](https://console.weaviate.cloud) to connect to `localhost:8080`.
 
 ## More Resources
 
