@@ -25,5 +25,23 @@
       "linkedin": "https://www.linkedin.com/in/patrice-bourgougnon-46a2b71b3/",
       "slack": "https://weaviate.slack.com/team/U02CQ2T48BC"
     }
+  },
+  {
+    "name": "Bob Kozdemba",
+    "title": "Principal Specialist Solution Architect",
+    "image": "/img/people/heroes/bob-kozdemba.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/bob-kozdemba-230743/",
+      "slack": "https://weaviate.slack.com/team/U05P0RU1BN2"
+    }
+  },
+  {
+    "name": "Eda Johnson",
+    "title": "Principal Product Architect",
+    "image": "/img/people/heroes/eda-johnson.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/eda-johnson-0a2783/",
+      "slack": "https://weaviate.slack.com/team/U05R1P491L4"
+    }
   }
 ]
