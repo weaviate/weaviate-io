@@ -14,8 +14,8 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
-| [1.25.5][c1.25.5] | 2024-06-20 | [4.6.5][p4.6.5] | [3.0.7][ts3.0.7] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
-| [1.25.4][c1.25.4] | 2024-06-13 | [4.6.3][p4.6.3] | [3.0.3][ts3.0.3] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
+| [1.25.5][c1.25.5] | 2024-06-24 | [4.6.5][p4.6.5] | [3.0.7][ts3.0.8] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
+| [1.25.4][c1.25.4] | 2024-06-13 | [4.6.3][p4.6.3] | [3.0.3][ts3.0.3] | '' | '' |
 | [1.25.3][c1.25.3] | 2024-06-11 | '' | '' | '' | '' |
 | [1.25.2][c1.25.2] | 2024-05-31 | '' | [2.2.0][ts2.2.0] | ''| '' |
 | [1.25.1][c1.25.1] | 2024-05-17 | [4.6.2][p4.6.2] | '' | '' | '' |
@@ -799,6 +799,10 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( javascript typescript client links )
 
+[ts3.0.8]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.8
+[ts3.0.7]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.7
+[ts3.0.6]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.6
+[ts3.0.5]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.5
 [ts3.0.4]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.4
 [ts3.0.3]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.3
 [ts3.0.2]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.2
