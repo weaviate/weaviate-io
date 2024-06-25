@@ -2,9 +2,9 @@
 import fs from 'fs';
 
 // Uncomment these imports to save as csv
-import { mkConfig, generateCsv, asString } from "export-to-csv";
-import { writeFile } from "node:fs";
-import { Buffer } from "node:buffer";
+// import { mkConfig, generateCsv, asString } from "export-to-csv";
+// import { writeFile } from "node:fs";
+// import { Buffer } from "node:buffer";
 
 
 // Get the data file
