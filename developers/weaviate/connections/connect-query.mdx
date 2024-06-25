@@ -1,0 +1,62 @@
+---
+title: Connect with Query App
+sidebar_position: 60
+image: og/docs/connect.jpg
+# tags: ['getting started', 'connect']
+---
+
+import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
+
+The [Query application (query app)](/developers/wcs/console) is a browser-based GraphQL IDE. The Query app is available in the Weaviate Cloud (WCD) console.
+
+Use the query app to work interactively with clusters hosted in Weaviate Cloud and self-hosted instances too.
+
+## Open the query app
+
+To use the query app, open your [WCD Dashboard](https://console.weaviate.cloud).
+
+In the left-hand menu, click the Query app icon.
+
+<img src={WCDQueryConsoleLocation} width="25%" alt="WCD query app location"/>
+
+## Select a Weaviate instance
+
+The query app connects directly to your WCD clusters. The query app can also connect to external Weaviate instances if you have anonymous access enabled or authentication credentials.
+
+To select a cluster, Click the `Query` button and choose a cluster from the clusters list.
+
+### Pass authentication details
+
+import ExternalAuth from '/_includes/wcs/query-auth-details.mdx';
+
+<ExternalAuth/>
+
+### Pass inference keys
+
+To pass API keys for inference modules, use request headers.
+
+The header can pass multiple keys.
+
+```shell
+{
+ "X-Cohere-Api-key": "replaceWithYourCohereKey",
+ "X-HuggingFace-Api-key": "replaceWithYourHuggingFaceKey",
+ "X-OpenAI-Api-key": "replaceWithYourOpenAIKey",
+}
+```
+
+## Example query
+
+This example uses [keyword search](/developers/weaviate/search/bm25) to query a movie database. The [GraphiQL editor](https://graphqleditor.com/docs/) helps you to build the query on the left hand side of the screen. When you run the query, it displays the results on the right hand side.
+
+import QueryAppExample from '/developers/wcs/img/query-app-example.jpg';
+
+<img src={QueryAppExample} width="85%" alt="Query app example"/>
+
+For more information about the GraphQL API, see the [GraphQL API](/developers/weaviate/api/graphql).
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

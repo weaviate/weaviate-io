@@ -12,9 +12,9 @@ Embedded Weaviate is **experimental** software. APIs and parameters may change.
 
 :::
 
-Embedded Weaviate is a new deployment model that runs a Weaviate instance from your application code rather than from a stand-alone Weaviate server installation.
+import EMBDIntro from '/_includes/embedded-intro.mdx';
 
-When Embedded Weaviate starts for the first time, it creates a permanent datastore in the location set in your `persistence_data_path`. When your client exits, the Embedded Weaviate instance also exits, but the data persists . The next time the client runs, it starts a new instance of Embedded Weaviate. New Embedded Weaviate instances use the data that is saved in the datastore.
+<EMBDIntro />
 
 ## Start an Embedded Weaviate instance
 

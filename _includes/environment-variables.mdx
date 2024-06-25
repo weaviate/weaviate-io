@@ -1,0 +1,87 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
+
+:::warning
+
+Do not hard-code API keys or other credentials in your client code. Use environment variables or a similar secure coding technique instead.
+
+:::
+
+Environment variables keep sensitive details out of your source code. Your application imports the information to runtime.
+
+<details>
+  <summary>Set an environment variable.</summary>
+
+In these examples, the environment variable names are in UPPER_CASE.
+
+<Tabs groupId="languages">
+<TabItem value="bash" label="Bash/Zsh">
+
+```bash
+export WEAVIATE_URL="http://localhost:8080"
+export WEAVIATE_API_KEY="sAmPleKEY8FwELJILn0YDRG9gjy4hReqfInz"
+```
+
+</TabItem>
+<TabItem value="powershell" label="Windows PowerShell">
+
+```shell
+$Env:WEAVIATE_URL="http://localhost:8080"
+$Env:WEAVIATE_API_KEY="sAmPleKEY8FwELJILn0YDRG9gjy4hReqfInz"
+```
+
+</TabItem>
+<TabItem value="cmd" label="Windows Command Prompt">
+
+```shell
+set WEAVIATE_URL=http://localhost:8080
+set WEAVIATE_API_KEY=sAmPleKEY8FwELJILn0YDRG9gjy4hReqfInz
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
+<details>
+  <summary>Import an environment variable.</summary>
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python">
+
+```python
+weaviate_url = os.getenv("WEAVIATE_URL")
+weaviate_key = os.getenv("WEAVIATE_API_KEY")
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS">
+
+```js
+const weaviateUrl = process.env.WEAVIATE_URL;
+const weaviateKey = process.env.WEAVIATE_API_KEY;
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+weaviateUrl := os.Getenv("WEAVIATE_URL")
+weaviateKey := os.Getenv("WEAVIATE_API_KEY")
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+String weaviateUrl = System.getenv("WEAVIATE_URL");
+String weaviateKey = System.getenv("WEAVIATE_API_KEY");
+```
+
+</TabItem>
+</Tabs>
+
+</details>

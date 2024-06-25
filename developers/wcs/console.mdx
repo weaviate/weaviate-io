@@ -42,22 +42,23 @@ In this example, the WCD Dashboard is connected to an external instance as well 
 
 <img src={WCDConnectedInstances} width="100%" alt="Connected instances"/>
 
-The GraphQL console can be used to query any of the three instances.
+The GraphQL console can query any of the instances.
 
-Click the `Query` button for a cluster to open a console window connected to that cluster.
-
-Alternatively, the query window includes a drop-down menu at the top of the screen which can be used to choose the desired instance.
-
-<img src={WCDQueryDropdown} width="100%" alt="Instance selection dropdown"/>
-<br/><br/>
+To select a cluster, click the `Query` button and chose a cluster from the list that appears.
 
 ### Authentication
 
-The query app connects to WCD instances, sandboxes and serverless clusters,without any additional authentication details.
+The query app connects to WCD instances, sandboxes and serverless clusters, without any additional authentication details. The query app can also connect to external Weaviate instances if you have anonymous access enabled or authentication credentials.
+
+### Pass authentication details
+
+import ExternalAuth from '/_includes/wcs/query-auth-details.mdx';
+
+<ExternalAuth/>
 
 ### Pass inference keys
 
-To pass API keys for inference modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers.
+To pass API keys for inference modules, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers.
 
 In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
 

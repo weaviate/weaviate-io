@@ -21,15 +21,9 @@ There are multiple ways to connect to [Weaviate Cloud (WCD)](https://console.wea
 
 ## Connect with an API
 
-The Weaviate clients use API keys to authenticate. By default, API keys are enabled for all WCD clusters. For details see, [Manage authentication](/developers/wcs/platform/manage-api-keys.mdx).
+import APICloudConnect from '/_includes/connect/wcs-api-connect.mdx';
 
-- Serverless clusters have an administrator key and a read-only key.
-- Sandbox clusters only have an administrator key.
-
-The Weaviate server authenticates every request.
-
-- If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make requests.
-- If you use a tool like cURL, add your API key to the request header.
+<APICloudConnect/>
 
 ### Retrieve your API keys
 

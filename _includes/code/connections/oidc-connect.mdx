@@ -1,0 +1,61 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyV4Code from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import PyV3Code from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
+import TsV3Code from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+import TsV2Code from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
+
+<Tabs groupId="languages">
+    <TabItem value="py4" label="Python Client v4">
+         <FilteredTextBlock
+         text={PyV4Code}
+         startMarker="# START OIDCConnect"
+         endMarker="# END OIDCConnect"
+         language="py"
+         />
+    </TabItem>
+    <TabItem value="py3" label="Python Client v3">
+         <FilteredTextBlock
+         text={PyV3Code}
+         startMarker="# START OIDCConnect"
+         endMarker="# END OIDCConnect"
+         language="py"
+         />
+    </TabItem>
+    <TabItem value="ts3" label="JS/TS Client v3">
+         <FilteredTextBlock
+         text={TsV3Code}
+         startMarker="// START OIDCConnect"
+         endMarker="// END OIDCConnect"
+         language="js"
+         />
+    </TabItem>
+    <TabItem value="ts2" label="JS/TS Client v2">
+         <FilteredTextBlock
+         text={TsV2Code}
+         startMarker="// START OIDCConnect"
+         endMarker="// END OIDCConnect"
+         language="js"
+         />
+    </TabItem>
+    <TabItem value="go" label="Go">
+         <FilteredTextBlock
+         text={GoCode}
+         startMarker="// START OIDCConnect"
+         endMarker="// END OIDCConnect"
+         language="js"
+         />
+    </TabItem>
+    <TabItem value="java" label="Java">
+         <FilteredTextBlock
+         text={JavaCode}
+         startMarker="// START OIDCConnect"
+         endMarker="// END OIDCConnect"
+         language="java"
+         />
+    </TabItem>
+</Tabs>

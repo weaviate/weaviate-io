@@ -502,7 +502,7 @@ For more specific results, use a `filter` to narrow your search.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
 
 ## Questions and feedback
@@ -510,4 +510,3 @@ For more specific results, use a `filter` to narrow your search.
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

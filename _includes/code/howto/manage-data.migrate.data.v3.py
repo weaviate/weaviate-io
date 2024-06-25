@@ -4,7 +4,9 @@ import os
 
 client_src = weaviate.Client(
     "http://localhost:8080",
-    additional_headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+    additional_headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 for d in ["WineReview", "WineReviewMT"]:

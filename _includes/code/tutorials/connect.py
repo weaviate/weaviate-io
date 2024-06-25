@@ -86,9 +86,11 @@ from weaviate.auth import AuthApiKey
 cohere_key = os.getenv("Cohere_API_KEY")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
-    cluster_url=weaviate_url,                       # `weaviate_url`: your Weaviate URL
-    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key
-    headers={"X-Cohere-Api-Key": cohere_key}        # `cohere_key`: your Cohere key
+    cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
+    auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
+    headers={
+        "X-Cohere-Api-Key": cohere_key           # `cohere_key`: your Cohere key
+    }
 )
 # END AuthThirdPartyAPIKey
 
