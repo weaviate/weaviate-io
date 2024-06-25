@@ -67,7 +67,7 @@ export default function Resources() {
                 className={`${styles.resourceIcon} ${styles.resource5}`}
               ></div>
               <h3>Events & Webinars</h3>
-              <p>Learn from the experts, meet us where you are.</p>
+              <p>Learn from the experts, we'll meet you where you are!</p>
             </div>
           </Link>
           <Link to="/community">
