@@ -8,7 +8,9 @@ import weaviate.classes as wvc
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 # END-ANY
