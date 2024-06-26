@@ -144,6 +144,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 ### Available models
 
 - `rerank-lite-1`
+- `rerank-1` (from `v1.25.3`)
 
 ## Further resources
 

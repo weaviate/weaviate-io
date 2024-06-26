@@ -126,7 +126,7 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
 The `reranker-voyageai` module supports the following models:
 
 - `rerank-lite-1`
-- `rerank-1`
+- `rerank-1` (from `v1.25.3`)
 
 ## Usage
 

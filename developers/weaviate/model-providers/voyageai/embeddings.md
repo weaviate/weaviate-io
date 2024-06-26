@@ -263,6 +263,8 @@ For further details on model parameters, see the [Voyage AI Embedding API docume
 - `voyage-2`
 - `voyage-law-2`
 - `voyage-large-2-instruct`
+- `voyage-finance-2` (from `v1.25.3`)
+- `voyage-multilingual-2` (from `v1.25.3`)
 
 ## Further resources
 
