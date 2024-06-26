@@ -427,8 +427,8 @@ with client.batch.fixed_size(batch_size=200) as batch:
         for chunk in csv_iterator:
             for index, row in chunk.iterrows():
                 properties = {
-                    "question": obj["Question"],
-                    "answer": obj["Answer"],
+                    "question": row["Question"],
+                    "answer": row["Answer"],
                 }
                 batch.add_object(
                     collection="JeopardyQuestion",
