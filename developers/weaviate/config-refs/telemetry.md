@@ -15,7 +15,7 @@ On startup, the Weaviate server generates a unique instance ID. Every 24 ours th
 - Payload type
 - Server version
 - Host operating system
-- Enabled modules
+- Modules used
 - Number of objects in the instance
 
 Weaviate does not collect any other telemetry information.
