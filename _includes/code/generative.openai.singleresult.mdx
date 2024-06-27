@@ -96,6 +96,7 @@ func main() {
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
   }
+
   client, err := weaviate.NewClient(cfg)
   if err != nil {
     panic(err)
@@ -112,14 +113,14 @@ func main() {
     WithConcepts(concepts)
 
   // highlight-next-line
-  gs := graphql.NewGenerativeSearch().SingleResult("\"Describe the following as a Facebook Ad: {summary}\"")
+  gs := graphql.NewGenerativeSearch().SingleResult("Describe the following as a Facebook Ad: {summary}")
 
   result, err := client.GraphQL().Get().
     WithClassName("Article").
     WithFields(fields...).
     WithNearText(nearText).
     // highlight-next-line
-    withGenerativeSearch(generativeSearch).
+    WithGenerativeSearch(generativeSearch).
     WithLimit(5).
     Do(ctx)
 
