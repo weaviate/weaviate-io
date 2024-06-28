@@ -116,14 +116,14 @@ func main() {
     WithConcepts(concepts)
 
   // highlight-next-line
-  generativeSearch := graphql.NewGenerativeSearch().SingleResult("Describe the following as a Facebook Ad: {summary}")
+  generativeSearchPrompt := graphql.NewGenerativeSearch().SingleResult("Describe the following as a Facebook Ad: {summary}")
 
   result, err := client.GraphQL().Get().
     WithClassName("Article").
     WithFields(fields...).
     WithNearText(nearText).
     // highlight-next-line
-    WithGenerativeSearch(generativeSearch).
+    WithGenerativeSearch(generativeSearchPrompt).
     WithLimit(5).
     Do(ctx)
 
