@@ -1,6 +1,6 @@
 ---
-title: DSPy and Weaviate Integration
-sidebar_position: 5
+title: DSPy
+sidebar_position: 1
 image: og/docs/more-resources.jpg
 ---
 [DSPy](https://github.com/stanfordnlp/dspy) is a framework for programming language models created by Stanford NLP. DSPy introduces two key concepts: **programming model** and **optimizers**.
