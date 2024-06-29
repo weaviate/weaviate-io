@@ -13,19 +13,17 @@ description: "Combining small LLMs to outperform larger monolithic LLMs!"
 
 import { DownloadButton } from '/src/theme/Buttons';
 
-## Can we combine multiple smaller open-source LLMs and get them to outperform larger monolithic LLMs?
+## 🤖Can multiple smaller open-source LLMs be combined to outperform larger monolithic LLMs?
 
-## Overview:
+New paper shows that LLMs tend to generate better responses when presented with outputs from other models, even if less capable.
 
-- This paper identifies the concept of **collaborativeness**: LLMs tend to generate better responses when presented with outputs from other even less capable models.
+They use this to build a Mixture of Agents(MoA) architecture where multiple LLMs are used to iteratively enhance the generation quality.
 
-- They use this to build a Mixture of Agents(MoA) architechture where multiple LLMs are used to iteratively enhance the generation quality.
+LLMs in deeper layers are presented responses from LLMs in earlier layers and iteratively improve the response; mitigates individual model deficiencies and enhance overall response.
 
-- LLMs in deeper layers are presented responses from LLMs in earlier layers and iteratively improve the response; mitigates individual model deficiencies and enhance overall response.
+## MoA Architecture
 
-## MoA Architechture
-
-The complete architechture consists of LLM agents playing one of two roles:
+The complete architecture consists of LLM agents playing one of two roles:
 
 1. Proposers: These models generate initial reference responses.
 
@@ -49,7 +47,7 @@ Two metrics are used to assess which models are included in the mixture:
 
 ## Details:
 
-- MoA achieves a new SOTA win rate of 65.8% on AlpacaEval 2.0 compared to the previous best of 57.5% achieved by GPT-4 Omni. 
+- MoA achieves a new SOTA win rate of 65.8% on AlpacaEval 2.0 compared to the previous best of 57.5% achieved by GPT-4 Omni.
 
 - Overall performance comparable to GPT-4 Turbo while being 2× more cost-effective.
 
@@ -57,8 +55,7 @@ Two metrics are used to assess which models are included in the mixture:
 
 - Extends the MoE concept to the model level by operating at the model level rather than at the activation level.
 
-- You can swap the final aggregator to any LLM of your choice (Gemini, GPT-4o, Claude3.5) and this imrpoves performance!
-
+- You can swap the final aggregator to any LLM of your choice (Gemini, GPT-4o, Claude3.5) and this improves performance!
 
 [Demo](https://github.com/togethercomputer/MoA#interactive-cli-demo)
 
