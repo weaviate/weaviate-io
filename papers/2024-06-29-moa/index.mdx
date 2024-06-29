@@ -1,0 +1,80 @@
+---
+title: "Mixture-of-Agents Enhances Large Language Model Capabilities"
+slug: moa
+authors: [zain]
+date: 2024-06-29
+tags: []
+image: ./img/hero.png
+description: "Combining small LLMs to outperform larger monolithic LLMs!"
+---
+![A preview of the paper](./img/hero.png)
+
+<!-- truncate -->
+
+import { DownloadButton } from '/src/theme/Buttons';
+
+## Can we combine multiple smaller open-source LLMs and get them to outperform larger monolithic LLMs?
+
+## Overview:
+
+- This paper identifies the concept of **collaborativeness**: LLMs tend to generate better responses when presented with outputs from other even less capable models.
+
+- They use this to build a Mixture of Agents(MoA) architechture where multiple LLMs are used to iteratively enhance the generation quality.
+
+- LLMs in deeper layers are presented responses from LLMs in earlier layers and iteratively improve the response; mitigates individual model deficiencies and enhance overall response.
+
+## MoA Architechture
+
+The complete architechture consists of LLM agents playing one of two roles:
+
+1. Proposers: These models generate initial reference responses.
+
+2. Aggregators: These models synthesize the different responses from the proposers into one high-quality response.
+
+- Models used: `Qwen1.5-110B-Chat`, `Qwen1.572B-Chat`, `WizardLM-8x22B`, `LLaMA-3-70B-Instruct`, `Mixtral-8x22B-v0.1`, `dbrx-instruct`
+
+- 3 MoA layers and use the same set of models in each MoA layer
+
+- `Qwen1.5-110BChat` as the aggregator in the last layer
+
+- Some models work better as proposers and others as both proposers and aggregators.
+
+## How do you choose which models to include in the MoA??
+
+Two metrics are used to assess which models are included in the mixture:
+
+- Performance: The average win rate of models in layer i decides if they are included in layer i + 1.
+
+- Diversity: The diversity of model outputs is important - using heterogeneous models across layers is better then using the same model
+
+## Details:
+
+- MoA achieves a new SOTA win rate of 65.8% on AlpacaEval 2.0 compared to the previous best of 57.5% achieved by GPT-4 Omni. 
+
+- Overall performance comparable to GPT-4 Turbo while being 2× more cost-effective.
+
+- No finetuning required only utilizes the interface of prompting and generation of LLMs.
+
+- Extends the MoE concept to the model level by operating at the model level rather than at the activation level.
+
+- You can swap the final aggregator to any LLM of your choice (Gemini, GPT-4o, Claude3.5) and this imrpoves performance!
+
+
+[Demo](https://github.com/togethercomputer/MoA#interactive-cli-demo)
+
+[Code](https://github.com/togethercomputer/MoA)
+
+[Blog](https://www.together.ai/blog/together-moa)
+
+
+<p>
+  <DownloadButton link='https://arxiv.org/abs/2406.04692'>🔗 arXiv Link</DownloadButton>
+</p>
+<p>
+  <DownloadButton link='https://arxiv.org/pdf/2406.04692'>📜 Download paper</DownloadButton>
+</p>
+
+<!-- We could create a specific template for Paper Review's -->
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
