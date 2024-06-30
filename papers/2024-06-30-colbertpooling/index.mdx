@@ -13,13 +13,9 @@ description: "Clustering tokens to make ColBERT more efficient and usable with V
 
 import { DownloadButton } from '/src/theme/Buttons';
 
-## Multi-vector retrieval approaches, like ColBERT, have great retrieval quality but vector count can balloon, AnswerAI propose a solution!
+## 🏹Multi-vector retrieval approaches, like ColBERT, have great retrieval quality but vector count can balloon, AnswerAI propose a solution!
 
-Main weakness of multi-vector approaches:
-
-1. Storage and memory usage balloons up, each token in a document requires a vector(as opposed to one document = one vector)
-
-2. Complicated to efficiently search through multiple vectors
+Below is an explanation of how ColBERT works and AnswerAI's proposed modification!
 
 ## Breakdown of different types of encoders:
 
@@ -29,22 +25,28 @@ Main weakness of multi-vector approaches:
 **Bi-encoders:**
 - Document text passed into an encoder and generates a document embedding
 - Query text separately passed into an encoder and generates a query embedding
+- Similarity of query and doc embedding calculated
 - Retrieval performance can suffer especially on Out-Of-Domain data
 
 **Multi-vector bi-encoder - (eg. ColBERT):**
 - Functions as a bi-encoder: all documents representations are pre-computed in isolation
-- Similarity computation occurs between individual query and document tokens, as opposed to the full document.
+- Similarity computation occurs between individual query and document token vectors, as opposed to the full document.
+
+## Main weakness of multi-vector approaches:
+
+1. Storage and memory usage balloons up, each token in a document requires a vector(as opposed to one document = one vector)
+
+2. Complicated to efficiently search through multiple vectors
 
 ## AnswerAI's Proposed Token Pooling Solution:
 
 - Main Idea: a lot of the tokens are likely to carry somewhat redundant semantic information, we can semantically cluster them!
+- Requires no model modification whatsoever, nor any complex processing, while greatly improving the scalability of easily updatable indexing methods - like HNSW, which are typically harder to use with ColBERT.
 
-Approach:
+**Approach:**
   - Token pooling by clustering similar tokens within a given document and averaging (mean pooling) their representation.
   - After being pooled, the vectors are then quantised to 2-bits using the ColBERTv2 quantisation approach
   - Each cluster is represented by a single token by averaging the values of contained tokens
-
-- Requires no model modification whatsoever, nor any complex processing, while greatly improving the scalability of easily updatable indexing methods - like HNSW, which are typically harder to use with ColBERT.
 
 ## Results:
 - All results compared to non-pooled ColBERT vector approach
