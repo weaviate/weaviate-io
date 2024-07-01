@@ -26,7 +26,7 @@ export default function ContactForm() {
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>
             <form className={styles.formContact}>
-              <h2 className={styles.title}>Get Started with Weaviate</h2>
+              <h2 className={styles.title}>Get in touch with us</h2>
               <div className={styles.links}></div>
               <div id="hubspotForm"></div>
             </form>
