@@ -5,13 +5,15 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-Data consistency is a property of a database that refers to whether data in different nodes do or do not match.
+Data consistency is a property of a database that refers to whether or not data that is distributed across multiple nodes is the same on all of the nodes. Data consistency is an important consideration for multi-node clusters.
 
-Schema consistency is extremely important, as the schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and [Raft](https://raft.github.io/) consensus algorithm for schema replication.
+In Weaviate there data consistency has two components, schema consistency and data object consistency.
 
-Data objects, on the other hand, are eventually consistent, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. Weaviate uses a leaderless design with eventual consistency for data replication.
+Schema consistency is extremely important. The schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and the [Raft](https://raft.github.io/) consensus algorithm for schema replication.
 
-This difference reflects the trade-off inherent in consistency and availability, as described in the [CAP Theorem](./index.md#cap-theorem). In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
+Data objects, on the other hand, are eventually consistent. This means all nodes eventually contain the same data. Weaviate uses a leaderless design with eventual consistency for data replication.
+
+The different designs reflect the trade-off between consistency and availability that is described in the [CAP Theorem](./index.md#cap-theorem). In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 The strength of consistency can be determined by applying the following conditions:
 * If r + w > n, then the system is strongly consistent.
