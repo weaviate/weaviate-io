@@ -281,9 +281,7 @@ export default function PricingTable() {
                     </div>
                     <hr></hr>
                     <div className={`${styles.longCell} ${styles.pricing}`}>
-                      <span className={styles.cellSpan}>
-                        Annual contract based upon CPU + RAM utilization
-                      </span>
+                      <span className={styles.cellSpan}></span>
                       <div className={styles.buttons}>
                         <Link
                           to="#contact-sales"
