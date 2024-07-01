@@ -92,10 +92,10 @@ const config = {
                 postsPerPage: 6,
                 blogSidebarTitle: 'iOS Apps and Vector Databases',
 
-                id: 'ios-apps-and-vector-databases',
-                routeBasePath: '/ios-apps-and-vector-databases',
+                id: 'apple-and-weaviate',
+                routeBasePath: '/apple-and-weaviate',
                 // path to data on filesystem relative to site dir.
-                path: 'iosappsandvectordatabases',
+                path: 'apple-and-weaviate',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
             },
