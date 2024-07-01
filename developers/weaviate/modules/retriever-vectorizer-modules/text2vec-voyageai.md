@@ -184,6 +184,8 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-2`
 - `voyage-law-2`
 - `voyage-large-2-instruct`
+- `voyage-finance-2`
+- `voyage-multilingual-2`
 
 ### Truncation
 

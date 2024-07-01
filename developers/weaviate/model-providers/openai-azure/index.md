@@ -47,7 +47,7 @@ You must provide a valid Azure OpenAI API key to Weaviate for these integrations
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Azure OpenAI models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

@@ -47,7 +47,7 @@ You must provide a valid Voyage AI API key to Weaviate for these integrations. G
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Voyage AI models and start using them in your applications.
 
-- [Embeddings](./embeddings.md)
+- [Text Embeddings](./embeddings.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

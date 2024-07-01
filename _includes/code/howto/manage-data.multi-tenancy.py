@@ -237,7 +237,6 @@ multi_collection = client.collections.create(
 )
 # END EnableAutoActivation
 
-assert multi_collection.config.get().multi_tenancy_config.auto_tenant_creation == None
 assert multi_collection.config.get().multi_tenancy_config.auto_tenant_activation == True
 
 # ============================

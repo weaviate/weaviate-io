@@ -17,7 +17,7 @@ This migration guide assumes that you have:
 
 ## Migration overview
 
-Weaviate `1.25` introduces [RAFT](https://raft.github.io/) as the consensus algorithm for its database schema, in order to improve its fault tolerance. This change requires a migration of the entire schema.
+Weaviate `1.25` introduces [Raft](https://raft.github.io/) as the consensus algorithm for its database schema, in order to improve its fault tolerance. This change requires a migration of the entire schema.
 
 As a result, to migrate from a pre-`1.25` version of Weaviate to `1.25` on kubernetes, you must follow these steps:
 
@@ -89,7 +89,7 @@ helm search repo weaviate
 
 ### 3. Deploy Weaviate
 
-Then, re-deploy Weaviate as shown below. This will apply your existing configuration file `values.yaml`, and allow the Weaviate cluster to restart anew under the new consensus algorithm (RAFT).
+Then, re-deploy Weaviate as shown below. This will apply your existing configuration file `values.yaml`, and allow the Weaviate cluster to restart anew under the new consensus algorithm (Raft).
 
 Here, the image tag is overridden to `1.25.0`. You can also modify this value directly in the `values.yaml` file.
 

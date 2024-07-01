@@ -107,7 +107,7 @@ import ClientLibraryUsage from '/_includes/clients/client-library-usage.mdx';
 
 <ClientLibraryUsage />
 
-## OIDC - A systems perspective
+## OIDC
 
 OIDC authentication involves three parties.
 
@@ -133,15 +133,13 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 </details>
 
-## OIDC - Configuring Weaviate as the resource
+## OIDC: Server-side
 
-:::tip
-This applies to anyone who is running their own Weaviate instance.
-:::
+Any "OpenID Connect" compatible token issuer that implements OpenID Connect Discovery is compatible with Weaviate.
 
-### Requirements and defaults
+### Configure Weaviate as the resource
 
-Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
+Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
 - For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
     - Make sure you have a WCD account (you can [sign up here](https://console.weaviate.cloud/)).
@@ -155,10 +153,10 @@ Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discove
 - As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
 
 :::info
-By default, Weaviate will validate that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
+By default, Weaviate validates that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
 :::
 
-### Setting configuration options
+### Set configuration options
 
 To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
 
@@ -211,7 +209,7 @@ services:
       AUTHENTICATION_OIDC_SCOPES: ''
 ```
 
-#### Weaviate OpenID endpoint
+#### Get the Weaviate OpenID endpoint
 
 If you have OIDC authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
 
@@ -221,7 +219,7 @@ curl ${WEAVIATE_INSTANCE_URL}/v1/.well-known/openid-configuration
 
 Edit ${WEAVIATE_INSTANCE_URL} to provide your instance URL.
 
-## OIDC - A client-side perspective
+## OIDC: Client-side
 
 The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
 
@@ -233,13 +231,18 @@ OIDC authentication flows are outside the scope of this documentation, but here 
 1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud](/developers/wcs/connect.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
-### OIDC support for Weaviate clients
+### Support for Weaviate clients
 
 If Weaviate core is configured to use the `client credentials grant` flow or the `resource owner password flow`, a Weaviate client can instantiate a connection to Weaviate core that incorporates the authentication flow.
 
+import OIDCExamples from '/_includes/code/connections/oidc-connect.mdx';
+
+<OIDCExamples/>
+
+
 <ClientLibraryUsage />
 
-### Manually obtaining and passing tokens
+### Get and pass tokens manually
 
 <details>
   <summary>
@@ -273,7 +276,7 @@ For cases or workflows where you may wish to manually obtain a token, we outline
 
 #### Code example
 
-For those who wish to obtain OIDC tokens manually, we include an illustrative code example below in Python for demonstrating how to obtain an OIDC token.
+This example demonstrate how to obtain an OIDC token.
 
 ```python
 import requests

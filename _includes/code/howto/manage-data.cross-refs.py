@@ -13,7 +13,9 @@ import os
 
 # Instantiate the client anonymously
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 # https://stackoverflow.com/questions/76171703/in-weaviate-how-to-remove-a-property-in-existing-class/76177363#76177363
@@ -120,6 +122,7 @@ questions = client.collections.get("JeopardyQuestion")
 
 questions.data.insert(
     properties=properties,  # A dictionary with the properties of the object
+    uuid=obj_uuid,  # The UUID of the object
     # highlight-start
     references={"hasCategory": category_uuid},  # e.g. {"hasCategory": "583876f3-e293-5b5b-9839-03f455f14575"}
     # highlight-end

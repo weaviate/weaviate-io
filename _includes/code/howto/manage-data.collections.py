@@ -122,9 +122,14 @@ client.collections.create(
 collection = client.collections.get("ArticleNV")
 config = collection.config.get()
 # TODO: change test to also include "title_country" with ["title", "country"] properties
-for k, v in config.vector_config.items():
-    assert v.vectorizer.source_properties == [k]  # Test that the source properties are correctly set
 
+assertion_dicts = {
+    "title": ["title"],
+    "body": ["body"],
+    "title_country": ["title", "country"]
+}
+for k, v in config.vector_config.items():
+    assert v.vectorizer.source_properties == assertion_dicts[k]  # Test that the source properties are correctly set
 
 # ===========================
 # ===== SET VECTOR INDEX TYPE =====
@@ -653,13 +658,16 @@ print(article_shards)
 # UpdateCollectionShards
 # ========================================
 
+shards = articles.config.get_shards()
+shard_names = [s.name for s in shards]
+
 # START UpdateCollectionShards
 articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
     status="READONLY",
-    shard_name="shard-1234"
+    shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end
 

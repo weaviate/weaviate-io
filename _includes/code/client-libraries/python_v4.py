@@ -157,7 +157,9 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-key": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 # END LocalInstantiationWithHeaders
 
@@ -166,7 +168,7 @@ try:
 finally:
     client.close()
 
-# LocalInstantiationWithTimeout
+# LocalWithTimeout
 import weaviate
 from weaviate.classes.init import AdditionalConfig, Timeout
 
@@ -174,10 +176,10 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     additional_config=AdditionalConfig(
-        timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
 )
-# END LocalInstantiationWithTimeout
+# END LocalWithTimeout
 
 try:
     assert client.is_ready()
@@ -204,7 +206,7 @@ client = weaviate.WeaviateClient(
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
     additional_config=AdditionalConfig(
-        timeout=Timeout(init=2, query=45, insert=120),  # Values in seconds
+        timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
     ),
 )
 
@@ -235,7 +237,6 @@ with weaviate.connect_to_weaviate_cloud(
 
 import weaviate
 from weaviate.classes.config import Property, DataType, ReferenceProperty
-from weaviate.classes.data import DataReference
 from weaviate.util import generate_uuid5
 
 client = weaviate.connect_to_local()
@@ -307,7 +308,6 @@ finally:
 
 
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -330,7 +330,6 @@ source_iterable = range(100)  # Dummy iterable
 
 # START BatchErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -373,7 +372,6 @@ finally:
 
 # START BatchErrorMonitor
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -396,7 +394,6 @@ finally:
 
 # START BatchSimpleErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -574,7 +571,9 @@ finally:
 # =====================================================================================
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 d = wd.JeopardyQuestions10k()
@@ -1000,10 +999,12 @@ response = questions.query.fetch_objects(
 )
 # END GenericsExample
 
+collection_name = "JeopardyQuestion"
+
 # START CollectionInteractionExample
 from weaviate.collections import Collection
 
-my_collection = client.collections.get("SomeCollection")
+my_collection = client.collections.get(collection_name)
 
 def work_with_collection(collection: Collection):
     # Do something with the collection, e.g.:
