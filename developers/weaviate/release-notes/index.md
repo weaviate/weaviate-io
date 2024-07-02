@@ -246,6 +246,9 @@ For links to the Python Client releases, expand this section.
    | [4.4.2][p4.4.2] | 2024-02-05 |
    | [4.4.1][p4.4.1] | 2024-02-01 |
    | [4.4.0][p4.4.0] | 2024-01-31 |
+   | [3.26.5][p3.26.5] | 2024-07-02 |
+   | [3.26.4][p3.26.4] | 2024-07-02 |
+   | [3.26.3][p3.26.3] | 2024-06-30 |
    | [3.26.2][p3.26.2] | 2024-01-22 |
    | [3.26.1][p3.26.1] | 2024-01-15 |
    | [3.26.0][p3.26.0] | 2023-12-20 |
@@ -689,6 +692,9 @@ For links to the Java Client releases, expand this section.
 [p4.4.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.2
 [p4.4.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.1
 [p4.4.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.0
+[p3.26.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.5
+[p3.26.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.4
+[p3.26.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.3
 [p3.26.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.2
 [p3.26.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.1
 [p3.26.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.0
