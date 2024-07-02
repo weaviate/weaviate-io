@@ -338,6 +338,11 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'Learning Centre',
+                                to: '/learn',
+
+                            },
+                            {
                                 label: 'Blog',
                                 to: '/blog',
 
