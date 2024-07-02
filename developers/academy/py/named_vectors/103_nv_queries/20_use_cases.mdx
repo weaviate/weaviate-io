@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!../_snippets/104_usecase.py';
 
-RAG, or retrieval augmented generation, is a powerful feature that combines the strengths of both vector search and language generation.Named vectors can be used in RAG queries to improve workflow and results.
+RAG, or retrieval augmented generation, is a powerful feature that combines the strengths of both vector search and language generation. Named vectors can be used in RAG queries to improve workflow and results.
 
 In this section, we'll explore a few examples of how named vectors allow different users to search and generate results based on their specific needs, using the same collection.
 
@@ -15,11 +15,11 @@ In this section, we'll explore a few examples of how named vectors allow differe
 
 Imagine a design agency (*Aesthetico*) that is contracted to work on the poster design for a new movie.
 
-Aesthetico's designers have arrived on [this film poster design](https://upload.wikimedia.org/wikipedia/commons/7/78/1927_Boris_Bilinski_%281900-1948%29_Plakat_f%C3%BCr_den_Film_Metropolis%2C_Staatliche_Museen_zu_Berlin.jpg). They would now like to see how their poster compares to other movie posters in existence, and what types of movies these posters are for.
+Aesthetico's designers have arrived at [this film poster design](https://upload.wikimedia.org/wikipedia/commons/7/78/1927_Boris_Bilinski_%281900-1948%29_Plakat_f%C3%BCr_den_Film_Metropolis%2C_Staatliche_Museen_zu_Berlin.jpg). They would now like to see how their poster compares with other movie posters in existence, and what types of movies those posters are for.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/1927_Boris_Bilinski_%281900-1948%29_Plakat_f%C3%BCr_den_Film_Metropolis%2C_Staatliche_Museen_zu_Berlin.jpg" alt="Metropolis poster" width="75%"/>
 
-Luckily for them, the `MovieNVDemo` collection has `poster_title` named vectors which is primarily based on the poster design. So Aesthetico's designers can search `poster_title` named vector and find movies that are similar to their poster design. And, they can then perform RAG to summarize the movies which are found from them.
+Luckily for them, the `MovieNVDemo` collection has `poster_title` named vectors which is primarily based on the poster design. So Aesthetico's designers can search against the `poster_title` named vector and find movies that are similar to their poster design. And, they can then perform RAG to summarize the movies that are found.
 
 ### <i class="fa-solid fa-code"></i> Code
 
@@ -63,16 +63,16 @@ Now, in another project, a set of writers at *ScriptManiacs* are working on a mo
 They could also use the same collection to do what they want to do. In fact, they could run multiple queries against the same collection, each with a different `target_vector` parameter.
 
 The ScriptManiacs writers can:
-- Search `title` named vector to find movies with *similar titles*;
-- Search `overview` named vector to find movies whose *plots are similar* to their title idea; and
+- Search against the `title` named vector to find movies with *similar titles*;
+- Search against the `overview` named vector to find movies whose *plots are similar* to their title idea; and
 
 Let's see how they could do it for a title - "Chrono Tides: The Anomaly Rift".
 
 ### <i class="fa-solid fa-code"></i> Code
 
-This example finds entries in "MovieNVDemo" based on their similarity to "Chrono Tides: The Anomaly Rift", then, instructs the large language model to find commonalities between them.
+This example finds entries in "MovieNVDemo" based on their similarity to "Chrono Tides: The Anomaly Rift", then instructs the large language model to find commonalities between them.
 
-But note the presence of a for-loop, which allows the writers to run the same query against different named vectors.
+Note the `for tgt_vector` loop, which allows the writers to run the same query against different named vectors.
 
 <FilteredTextBlock
   text={PyCode}
