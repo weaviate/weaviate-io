@@ -1,7 +1,7 @@
 For links to the client releases associated with the latest Weaviate core releases, expand this section.
 
 <details>
-  <summary>Current releases</summary>
+  <summary>Current core and client releases</summary>
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
@@ -15,10 +15,10 @@ For links to the client releases associated with the latest Weaviate core releas
 
 </details>
 
-For links to older releases, expand this section.
+For links to previous releases, expand this section.
 
 <details>
-  <summary>Weaviate core and client releases</summary>
+  <summary>Previous core and client releases</summary>
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
@@ -27,7 +27,7 @@ For links to older releases, expand this section.
 | [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | 3.25.0 | '' | 4.10.0 | 4.3.0 |
 | [1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0) | 2023-08-17 | 3.22.1 |1.4.0 | 4.9.0 | 4.2.1 |
 | [1.20.0](https://github.com/weaviate/weaviate/releases/tag/v1.20.0) | 2023-07-06 | 3.22.0 | '' | '' | 4.2.0 |
-| [1.19.0](https://github.com/weaviate/weaviate/releases/tag/v1.19.0) | 2023-05-04 | 3.17.0 | 1.1.0[^1] | 4.7.1 | 4.0.1 |
+| [1.19.0](https://github.com/weaviate/weaviate/releases/tag/v1.19.0) | 2023-05-04 | 3.17.0 | 1.1.0] | 4.7.1 | 4.0.1 |
 | [1.18.0](https://github.com/weaviate/weaviate/releases/tag/v1.18.0) | 2023-03-07 | 3.13.0 | 2.14.5 | 4.6.2 | 3.6.4 |
 | [1.17.0](https://github.com/weaviate/weaviate/releases/tag/v1.17.0) | 2022-12-20 | 3.9.0 | 2.14.0 | 4.5.0 | 3.5.0 |
 | [1.16.0](https://github.com/weaviate/weaviate/releases/tag/v1.16.0) | 2022-10-31 | 3.8.0 | 2.13.0 | 4.4.0 | 3.4.0 |
@@ -48,6 +48,6 @@ For links to older releases, expand this section.
 | [1.1.0](https://github.com/weaviate/weaviate/releases/tag/v1.1.0) | 2021-02-10 | 2.1.0 | '' | '' | - |
 | [1.0.0](https://github.com/weaviate/weaviate/releases/tag/v1.0.0) | 2021-01-14 | 2.0.0 | '' | '' | - |
 
-[^1]: The TypeScript client replaced the JavaScript client on 2023-03-17.
+Note: The TypeScript client replaced the JavaScript client on 2023-03-17.
 
 </details>
