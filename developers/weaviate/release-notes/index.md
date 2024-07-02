@@ -854,8 +854,8 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( java client links )
 
-[j4.7.0]: https://github.com/weaviate/java-client/releases/tag/v4.7.0
-[j4.6.0]: https://github.com/weaviate/java-client/releases/tag/v4.6.0
+[j4.7.0]: https://github.com/weaviate/java-client/releases/tag/4.7.0
+[j4.6.0]: https://github.com/weaviate/java-client/releases/tag/4.6.0
 [j4.5.1]: https://github.com/weaviate/java-client/releases/tag/4.5.1
 [j4.5.0]: https://github.com/weaviate/java-client/releases/tag/4.5.0
 [j4.4.2]: https://github.com/weaviate/java-client/releases/tag/4.4.2
