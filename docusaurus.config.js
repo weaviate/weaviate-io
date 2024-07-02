@@ -86,7 +86,7 @@ const config = {
          [
             '@docusaurus/plugin-content-blog',
             {
-                blogTitle: 'iOS Apps and Vector Databases',
+                blogTitle: 'Apple Ecosystem Apps',
                 blogDescription: 'iOS Apps and Vector Databases',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
