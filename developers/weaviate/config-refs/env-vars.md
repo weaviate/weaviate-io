@@ -39,7 +39,7 @@ All other values are interpreted as `false`.
 | `PERSISTENCE_HNSW_MAX_LOG_SIZE` | Maximum size of the HNSW [write-ahead-log](../concepts/storage.md#hnsw-vector-index-storage). Increase this to improve log compaction efficiency, or decrease to reduce memory requirements. (Default: 500MiB) | `string` | `4GiB` (IEC units), `4GB` (SI units), `4000000000` (bytes) |
 | `PERSISTENCE_LSM_ACCESS_STRATEGY` | Function used to access disk data in virtual memory | `string` | `mmap` (default) or `pread` |
 | `PERSISTENCE_LSM_MAX_SEGMENT_SIZE` | Maximum size of a segment in the [LSM store](../concepts/storage.md#object-and-inverted-index-store). Set this to limit disk usage spikes during compaction to ~2x the segment size. (Default: no limit) | `string` | `4GiB` (IEC units), `4GB` (SI units), `4000000000` (bytes) |
-| `PROFILING_PORT` | Sets the port for the go profiler. Default: `6060` | `integer` | `6060` |
+| `PROFILING_PORT` | Sets the port for the Go profiler. Default: `6060` | `integer` | `6060` |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate collects [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `boolean` | `false` |
 | `PROMETHEUS_MONITORING_GROUP` | If set, Weaviate groups metrics for the same class across all shards. | `boolean` | `true` |
 | `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
