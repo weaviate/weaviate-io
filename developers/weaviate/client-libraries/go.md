@@ -409,7 +409,7 @@ After:
 client.Data().Validator().WithProperties(properties)
 ```
 
-## Client releases
+## Releases
 
 For links to the Go Client releases, expand this section.
 

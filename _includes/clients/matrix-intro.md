@@ -22,7 +22,6 @@ For links to older releases, expand this section.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.25.0](https://github.com/weaviate/weaviate/releases/tag/v1.25.0) | 2024-05-10 |  4.6.0 | 2.1.1 | 4.13.1 | 4.6.0 |
 | [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 |  4.5.0 | 2.1.0 | 4.12.0 | 4.5.1 |
 | [1.23.0](https://github.com/weaviate/weaviate/releases/tag/v1.23.0) | 2023-12-18 | 3.26.0 | 2.0.0 | '' |4.4.2 |
 | [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | 3.25.0 | '' | 4.10.0 | 4.3.0 |
