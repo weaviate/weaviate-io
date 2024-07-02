@@ -5,7 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
 
-This section shows you how to configure Weaviate
+This section shows you how to configure Weaviate.
 
 - Extend Weaviate's functionality by adding vectorizers and other [modules](./modules.md)
 - Configure how Weaviate stores and indexes data
