@@ -82,6 +82,24 @@ const config = {
                 showReadingTime: true,
             },
         ],
+         // iOS Apps and Vector Databases configuration
+         [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Apple Ecosystem Apps',
+                blogDescription: 'iOS Apps and Vector Databases',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'iOS Apps and Vector Databases',
+
+                id: 'apple-and-weaviate',
+                routeBasePath: '/apple-and-weaviate',
+                // path to data on filesystem relative to site dir.
+                path: 'apple-and-weaviate',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
         [
             '@scalar/docusaurus',
             {
