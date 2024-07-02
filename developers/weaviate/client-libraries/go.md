@@ -411,6 +411,56 @@ client.Data().Validator().WithProperties(properties)
 
 ## Client releases
 
+For links to the Go Client releases, expand this section.
+
+<details>
+  <summary>Go Client</summary>
+
+| [4.14.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.0)
+| [4.13.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.1)
+| [4.13.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0)
+| [4.12.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.12.0)
+| [4.11.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0)
+| [4.10.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0)
+| [4.9.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.9.0)
+| [4.8.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.1)
+| [4.8.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.0)
+| [4.7.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.1)
+| [4.7.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.0)
+| [4.6.4](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.4)
+| [4.6.3](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.3)
+| [4.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.2)
+| [4.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.1)
+| [4.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.0)
+| [4.5.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.2)
+| [4.5.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.1)
+| [4.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.0)
+| [4.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.4.0)
+| [4.3.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.1)
+| [4.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.0)
+| [4.2.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.1)
+| [4.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.0)
+| [4.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.1.0)
+| [4.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.0.0)
+| [3.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v3.0.0)
+| [2.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.2)
+| [2.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.1)
+| [2.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.0)
+| [2.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.5.0)
+| [2.4.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.1)
+| [2.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.0)
+| [2.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.3.0)
+| [2.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.2.0)
+| [2.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.1.0)
+| [2.0.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.1)
+| [2.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.0)
+| [1.1.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.2)
+| [1.1.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.1)
+| [1.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.0)
+| [1.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.0.0)
+
+</details>
+
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 <MatrixIntro />
