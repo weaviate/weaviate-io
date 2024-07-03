@@ -6,13 +6,13 @@ import Link from '@docusaurus/Link';
 
 export default function GetStarted() {
   return (
-    <div className={styles.bgCol}>
+    <div className={styles.bgCol} id="get-started">
       <div className="container">
         <div className={styles.header}>
           <h2>Get Started</h2>
           <p>
             Training courses, resources, and support options for builders of all
-            levels. We’re with you on your AI journey.
+            levels.<br></br> We’re with you on your AI journey.
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -42,10 +42,7 @@ export default function GetStarted() {
                   Live, <strong>introductory</strong> workshops for Weaviate
                   with code & key concepts
                 </p>
-                <Link
-                  to="/docs/getting-started/quickstart"
-                  className={styles.button}
-                >
+                <Link to="/community/events" className={styles.button}>
                   Learn More
                 </Link>
               </div>
@@ -66,7 +63,7 @@ export default function GetStarted() {
                 <li>Schema (collection definitions)</li>
               </ul>
               <Link
-                to="/docs/getting-started/quickstart"
+                to="/developers/weaviate/starter-guides"
                 className={styles.button}
               >
                 Learn More

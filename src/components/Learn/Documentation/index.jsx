@@ -6,13 +6,13 @@ import Link from '@docusaurus/Link';
 
 export default function Documentation() {
   return (
-    <div className={styles.bgCol}>
+    <div className={styles.bgCol} id="documentation">
       <div className="container">
         <div className={styles.header}>
           <h2>Documentation</h2>
           <p>
             Training courses, resources, and support options for builders of all
-            levels. We’re with you on your AI journey.
+            levels.<br></br> We’re with you on your AI journey.
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -35,7 +35,7 @@ export default function Documentation() {
                   <p>VoyageAl</p>
                 </div>
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="/developers/weaviate/model-providers"
                   className={styles.button}
                 >
                   Learn More
@@ -63,7 +63,7 @@ export default function Documentation() {
                 </ul>
 
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="/developers/weaviate/starter-guides"
                   className={styles.button}
                 >
                   Learn More
@@ -91,7 +91,7 @@ export default function Documentation() {
                 </ul>
 
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="developers/weaviate/installation"
                   className={styles.button}
                 >
                   Learn More
@@ -119,10 +119,7 @@ export default function Documentation() {
                   </li>
                 </ul>
 
-                <Link
-                  to="/docs/getting-started/quickstart"
-                  className={styles.button}
-                >
+                <Link to="/developers/weaviate/api" className={styles.button}>
                   Learn More
                 </Link>
               </div>

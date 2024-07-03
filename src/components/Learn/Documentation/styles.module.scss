@@ -39,7 +39,7 @@
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -47,6 +47,12 @@
   }
   @media screen and (max-width: 950px) {
     width: 100%;
+  }
+
+  @media screen and (max-width: 750px) {
+    br {
+      display: none;
+    }
   }
 }
 
@@ -243,7 +249,7 @@
     background: #130c49;
     color: #fff;
     text-align: center;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -262,7 +268,7 @@
     border-radius: 0.375rem;
     background: #fff;
     text-align: center;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -295,7 +301,7 @@
 
     span {
       color: #fff;
-      font-family: Inter;
+
       font-size: 1rem;
       font-style: normal;
       font-weight: 400;
@@ -737,7 +743,7 @@
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
@@ -848,8 +854,10 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @media screen and (max-width: 800px) {
-    width: 100%;
+  @media screen and (max-width: 1440px) {
+    max-width: 100%;
+    gap: 10px;
+    justify-content: unset;
   }
 }
 
@@ -908,13 +916,18 @@
   height: 200px;
   gap: 12px;
 
+  @media screen and (max-width: 1440px) {
+    gap: 6px;
+  }
+
   ul {
     line-height: 180%;
+    height: 200px;
   }
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -922,7 +935,7 @@
   }
   a {
     color: #61bd73;
-    font-family: Inter;
+
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -936,6 +949,10 @@
   flex-direction: column;
   height: 120px;
   flex-wrap: wrap;
+
+  p {
+    font-weight: 900;
+  }
 }
 
 .large {
@@ -980,7 +997,7 @@
 
   span {
     color: #61bb73;
-    font-family: Inter;
+
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -990,7 +1007,7 @@
 
   p {
     color: #fff;
-    font-family: Inter;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;

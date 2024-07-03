@@ -6,13 +6,13 @@ import Link from '@docusaurus/Link';
 
 export default function Examples() {
   return (
-    <div className={styles.bgCol}>
+    <div className={styles.bgCol} id="code-examples">
       <div className="container">
         <div className={styles.header}>
           <h2>Code Examples</h2>
           <p>
             Training courses, resources, and support options for builders of all
-            levels. We’re with you on your AI journey.
+            levels.<br></br> We’re with you on your AI journey.
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -48,7 +48,7 @@ export default function Examples() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.workshops}`}></div>
+                <div className={`${styles.homeIcon} ${styles.demos}`}></div>
                 <h2>Demos</h2>
               </div>
               <div className={styles.typeText}>
@@ -70,7 +70,7 @@ export default function Examples() {
 
           <div className={`${styles.typeBox} ${styles.big}`}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.docs}`}></div>
+              <div className={`${styles.homeIcon} ${styles.repos}`}></div>
               <h2>Weaviate repositories</h2>
             </div>
             <div className={`${styles.typeText} ${styles.large}`}>

@@ -13,28 +13,36 @@ export default function Resources() {
         </div>
         <div className={styles.boxContainer}>
           <ul>
-            <Link to="">Get started</Link>
+            <Link to="#get-started">Get started</Link>
             <li>Quickstart</li>
             <li>Starter guides</li>
             <li>Introductory workshop</li>
           </ul>
           <ul>
-            <Link to="">Get started</Link>
-            <li>Quickstart</li>
-            <li>Starter guides</li>
-            <li>Introductory workshop</li>
+            <Link to="#guided-courses">Guided courses</Link>
+            <li>Weaviate Academy</li>
+            <li>Workshops</li>
+            <li>Webinars</li>
+            <li>External courses</li>
           </ul>
           <ul>
-            <Link to="">Get started</Link>
-            <li>Quickstart</li>
-            <li>Starter guides</li>
-            <li>Introductory workshop</li>
+            <Link to="#documentation">Documentation</Link>
+            <li>How-tos</li>
+            <li>References</li>
+            <li>Concepts</li>
           </ul>
           <ul>
-            <Link to="">Get started</Link>
-            <li>Quickstart</li>
-            <li>Starter guides</li>
-            <li>Introductory workshop</li>
+            <Link to="#code-examples">Code examples</Link>
+            <li>Recipes</li>
+            <li>Demos</li>
+            <li>Source code</li>
+          </ul>
+          <ul>
+            <Link to="#go-further">Go further</Link>
+            <li>Forum</li>
+            <li>Paper reviews</li>
+            <li>Blog</li>
+            <li>Podcast</li>
           </ul>
         </div>
       </div>

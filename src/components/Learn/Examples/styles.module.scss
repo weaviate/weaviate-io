@@ -39,7 +39,7 @@
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -47,6 +47,12 @@
   }
   @media screen and (max-width: 950px) {
     width: 100%;
+  }
+
+  @media screen and (max-width: 750px) {
+    br {
+      display: none;
+    }
   }
 }
 
@@ -243,7 +249,7 @@
     background: #130c49;
     color: #fff;
     text-align: center;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -262,7 +268,7 @@
     border-radius: 0.375rem;
     background: #fff;
     text-align: center;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -295,7 +301,7 @@
 
     span {
       color: #fff;
-      font-family: Inter;
+
       font-size: 1rem;
       font-style: normal;
       font-weight: 400;
@@ -737,7 +743,7 @@
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
@@ -846,15 +852,19 @@
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 800px) {
-    width: 100%;
+  @media screen and (max-width: 1440px) {
+    max-width: 100%;
   }
 }
 
 .big {
   max-width: 76.25rem;
   width: 100%;
-  height: 22.9375rem;
+  height: 18.9375rem;
+
+  @media screen and (max-width: 1440px) {
+    height: 22.9375rem;
+  }
 }
 
 .typeIcon {
@@ -864,7 +874,7 @@
   flex-direction: row;
 
   .homeIcon {
-    background-image: url('/img/site/learn-quickstart-icon.svg');
+    background-image: url('/img/site/learn-recipes-icon.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 2.3125rem;
@@ -872,12 +882,12 @@
     flex-shrink: 0;
   }
 
-  .docs {
-    background-image: url('/img/site/learn-docs-icon.svg');
+  .repos {
+    background-image: url('/img/site/learn-logo-icon.svg');
   }
 
-  .workshops {
-    background-image: url('/img/site/learn-workshop-icon.svg');
+  .demos {
+    background-image: url('/img/site/learn-play-icon.svg');
   }
 
   h2 {
@@ -898,16 +908,18 @@
 .typeText {
   display: flex;
   flex-direction: column;
-
-  gap: 12px;
+  justify-content: space-between;
+  height: 230px;
 
   ul {
-    line-height: 240%;
+    line-height: 200%;
+    height: 150px;
+    margin: 0;
   }
 
   p {
     color: #130c49;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -915,7 +927,7 @@
   }
   a {
     color: #61bd73;
-    font-family: Inter;
+
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -929,11 +941,20 @@
   flex-direction: column;
   height: 120px;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 1440px) {
+    flex-wrap: nowrap;
+    height: 200px;
+  }
 }
 
 .large {
-  height: 270px;
+  height: 220px;
   justify-content: space-between;
+
+  @media screen and (max-width: 1440px) {
+    height: 290px;
+  }
 }
 
 .serviceBox {
@@ -973,7 +994,7 @@
 
   span {
     color: #61bb73;
-    font-family: Inter;
+
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -983,7 +1004,7 @@
 
   p {
     color: #fff;
-    font-family: Inter;
+
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
