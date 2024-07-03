@@ -125,11 +125,13 @@ This means that after tokenization, any stop words in the text behave as if they
 
 The above tokenization methods work well for English, or other languages that use spaces to separate words.
 
-However, not all languages rely on spaces to define natural semantic boundaries. For languages like Japanese or Chinese, where words are not separated by spaces, you may need to use a different tokenization method.
+However, not all languages rely on spaces to define natural semantic boundaries. For languages like Japanese, Chinese or Korean, where words are not separated by spaces, you may need to use a different tokenization method.
 
-Starting with `v1.24` Weaviate provides `gse` and `trigram` tokenization methods for this reason.
+Weaviate provides `gse` and `trigram` (from `v1.24`) and `kagome_kr` (from `v1.26`) tokenization methods for this reason.
 
 `gse` implements the "Jieba" algorithm, which is a popular Chinese text segmentation algorithm. `trigram` splits text into all possible trigrams, which can be useful for languages like Japanese.
+
+`kagome_kr` uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text. This is useful for Korean text.
 
 ## Questions and feedback
 
