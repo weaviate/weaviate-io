@@ -1,6 +1,6 @@
 ---
 title: Cloud Platforms
-sidebar_position: 3
+sidebar_position: 2
 image: og/integrations/home.jpg
 ---
 

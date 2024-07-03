@@ -1,6 +1,6 @@
 ---
 title: Observability and Evaluation
-sidebar_position: 7
+sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
