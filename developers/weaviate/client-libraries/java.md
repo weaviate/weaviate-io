@@ -421,7 +421,67 @@ WhereFilter where = WhereFilter.builder()
 client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 ```
 
-## Client releases
+## Releases
+
+For links to the Go Client releases, expand this section.
+
+<details>
+  <summary>Go Client</summary>
+
+| Client Version | Release Date |
+| :- | :- |
+| [4.7.0](https://github.com/weaviate/java-client/releases/tag/4.7.0) | 2024-05-20 |
+| [4.6.0](https://github.com/weaviate/java-client/releases/tag/4.6.0) | 2024-03-05 |
+| [4.5.1](https://github.com/weaviate/java-client/releases/tag/4.5.1) | 2024-01-08 |
+| [4.5.0](https://github.com/weaviate/java-client/releases/tag/4.5.0) | 2023-12-07 |
+| [4.4.2](https://github.com/weaviate/java-client/releases/tag/4.4.2) | 2023-11-20 |
+| [4.4.1](https://github.com/weaviate/java-client/releases/tag/4.4.1) | 2023-11-15 |
+| [4.4.0](https://github.com/weaviate/java-client/releases/tag/4.4.0) | 2023-11-14 |
+| [4.3.0](https://github.com/weaviate/java-client/releases/tag/4.3.0) | 2023-08-22 |
+| [4.2.1](https://github.com/weaviate/java-client/releases/tag/4.2.1) | 2023-07-26 |
+| [4.2.0](https://github.com/weaviate/java-client/releases/tag/4.2.0) | 2023-07-06 |
+| [4.1.2](https://github.com/weaviate/java-client/releases/tag/4.1.2) | 2023-05-26 |
+| [4.1.1](https://github.com/weaviate/java-client/releases/tag/4.1.1) | 2023-05-21 |
+| [4.1.0](https://github.com/weaviate/java-client/releases/tag/4.1.0) | 2023-05-05 |
+| [4.0.2](https://github.com/weaviate/java-client/releases/tag/4.0.2) | 2023-03-28 |
+| [4.0.1](https://github.com/weaviate/java-client/releases/tag/4.0.1) | 2023-03-16 |
+| [4.0.0](https://github.com/weaviate/java-client/releases/tag/4.0.0) | 2023-03-14 |
+| [3.6.5](https://github.com/weaviate/java-client/releases/tag/3.6.5) | 2023-03-13 |
+| [3.6.4](https://github.com/weaviate/java-client/releases/tag/3.6.4) | 2023-03-07 |
+| [3.6.3](https://github.com/weaviate/java-client/releases/tag/3.6.3) | 2023-03-01 |
+| [3.6.2](https://github.com/weaviate/java-client/releases/tag/3.6.2) | 2023-02-23 |
+| [3.6.1](https://github.com/weaviate/java-client/releases/tag/3.6.1) | 2023-02-22 |
+| [3.6.0](https://github.com/weaviate/java-client/releases/tag/3.6.0) | 2023-02-09 |
+| [3.5.0](https://github.com/weaviate/java-client/releases/tag/3.5.0) | 2022-12-20 |
+| [3.4.2](https://github.com/weaviate/java-client/releases/tag/3.4.2) | 2022-11-21 |
+| [3.4.1](https://github.com/weaviate/java-client/releases/tag/3.4.1) | 2022-11-18 |
+| [3.4.0](https://github.com/weaviate/java-client/releases/tag/3.4.0) | 2022-10-31 |
+| [3.3.2](https://github.com/weaviate/java-client/releases/tag/3.3.2) | 2022-10-29 |
+| [3.3.1](https://github.com/weaviate/java-client/releases/tag/3.3.1) | 2022-09-29 |
+| [3.3.0](https://github.com/weaviate/java-client/releases/tag/3.3.0) | 2022-09-07 |
+| [3.2.1](https://github.com/weaviate/java-client/releases/tag/3.2.1) | 2022-07-12 |
+| [3.2.0](https://github.com/weaviate/java-client/releases/tag/3.2.0) | 2022-07-07 |
+| [3.1.1](https://github.com/weaviate/java-client/releases/tag/3.1.1) | 2022-06-02 |
+| [3.1.0](https://github.com/weaviate/java-client/releases/tag/3.1.0) | 2022-05-25 |
+| [3.0.0](https://github.com/weaviate/java-client/releases/tag/3.0.0) | 2022-05-04 |
+| [2.4.0](https://github.com/weaviate/java-client/releases/tag/2.4.0) | 2022-04-05 |
+| [2.3.0](https://github.com/weaviate/java-client/releases/tag/2.3.0) | 2022-03-11 |
+| [2.2.2](https://github.com/weaviate/java-client/releases/tag/2.2.2) | 2022-02-08 |
+| [2.2.1](https://github.com/weaviate/java-client/releases/tag/2.2.1) | 2022-02-07 |
+| [2.2.0](https://github.com/weaviate/java-client/releases/tag/2.2.0) | 2022-02-01 |
+| [2.1.1](https://github.com/weaviate/java-client/releases/tag/2.1.1) | 2021-12-15 |
+| [2.1.0](https://github.com/weaviate/java-client/releases/tag/2.1.0) | 2021-11-30 |
+| [2.0.0](https://github.com/weaviate/java-client/releases/tag/2.0.0) | 2021-11-04 |
+| [1.2.1](https://github.com/weaviate/java-client/releases/tag/1.2.1) | 2021-09-28 |
+| [1.2.0](https://github.com/weaviate/java-client/releases/tag/1.2.0) | 2021-09-10 |
+| [1.1.2](https://github.com/weaviate/java-client/releases/tag/1.1.2) | 2021-08-31 |
+| [1.1.1](https://github.com/weaviate/java-client/releases/tag/1.1.1) | 2021-08-10 |
+| [1.1.0](https://github.com/weaviate/java-client/releases/tag/1.1.0) | 2021-06-07 |
+| [1.0.2](https://github.com/weaviate/java-client/releases/tag/1.0.2) | 2021-04-26 |
+| [1.0.1](https://github.com/weaviate/java-client/releases/tag/1.0.1) | 2021-04-23 |
+| [1.0.0](https://github.com/weaviate/java-client/releases/tag/1.0.0) | 2021-04-22 |
+
+</details>
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
