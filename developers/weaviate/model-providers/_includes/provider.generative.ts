@@ -15,6 +15,55 @@ const client = await weaviate.connectToLocal({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicGenerativeAnthropic
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anthropic(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeAnthropic
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativeAnthropicCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anthropic({
+    model: 'claude-3-opus-20240229'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativeAnthropicCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeAnthropic
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.anthropic({
+    // // These parameters are optional
+    // baseUrlProperty: 'https://api.anthropic.com',
+    // model: 'claude-3-opus-20240229',
+    // temperatureProperty: 0.7,
+    // stopSequencesProperty: ['\n\n'],
+    // topPProperty: 0.9,
+    // topKProperty: 5,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeAnthropic
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeAnyscale
 await client.collections.create({
   name: 'DemoCollection',
@@ -42,7 +91,6 @@ await client.collections.create({
 
 // Clean up
 await client.collections.delete('DemoCollection');
-
 
 // START FullGenerativeAnyscale
 await client.collections.create({

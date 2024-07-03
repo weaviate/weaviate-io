@@ -16,6 +16,61 @@ client = weaviate.connect_to_local(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeAnthropic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anthropic()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeAnthropic
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START GenerativeAnthropicCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anthropic(
+        model="claude-3-opus-20240229"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeAnthropicCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeAnthropic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anthropic(
+        # # These parameters are optional
+        # base_url="https://api.anthropic.com",
+        # model="claude-3-opus-20240229",
+        # temperature=0.7,
+        # stop_sequences=["\n\n"],
+        # top_p=0.9,
+        # top_k=5,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeAnthropic
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeAnyscale
 from weaviate.classes.config import Configure
 
