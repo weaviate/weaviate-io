@@ -534,6 +534,11 @@ const siteRedirects = {
     from: "/services/enterprise-dedicated"
 },
 
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
+},
 
 
     ],
