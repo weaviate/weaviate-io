@@ -19,7 +19,6 @@ These compression algorithms are available:
 - [Product Quantization (PQ)](/developers/weaviate/configuration/pq-compression)
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/bq-compression)
 
-
 ## Compression considerations
 
 Compression works well for most use cases. The trade-offs to consider are [cost, recall, and speed](#cost-recall-and-speed). The [underlying index](#underlying-index) determines which algorithms you can use, some compression methods aren't available with some index types. The [vectorizer](#compression-tuned-models) is also a consideration. Model providers may tune their models specifically for BQ or other compression algorithms.
