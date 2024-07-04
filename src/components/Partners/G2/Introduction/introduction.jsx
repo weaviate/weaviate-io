@@ -9,7 +9,7 @@ export default function introduction() {
         <div className={styles.box}>
           <div className={styles.investorBox}>
             <h1>
-              Help us <span>spread the word</span>,<br></br> get a free t-shirt!
+              Help us <span>spread the word</span>,<br></br> get a gift card!
             </h1>
 
             <p>
@@ -31,12 +31,6 @@ export default function introduction() {
             <div className={styles.g2Diagram}></div>
           </div>
         </div>
-      </div>
-      <div className={styles.alertBox}>
-        <p>
-          You have to submit a review and complete the form below to ensure that
-          you get your limited edition Weaviate shirt!
-        </p>
       </div>
     </div>
   );

@@ -268,7 +268,7 @@ Both models were trained to produce embeddings which are compatible with one ano
 Create a new `Dockerfile` (you do not need to clone this repository, any folder on your machine is fine), we will name it `my-models.Dockerfile`. Add the following lines to it:
 
 ```
-FROM semitechnologies/transformers-inference:custom
+FROM semitechnologies/multi2vec-clip:custom
 COPY ./my-text-model /app/models/text
 COPY ./my-clip-model /app/models/clip
 ```
@@ -297,7 +297,7 @@ to your `multi2vec-clip`.
 Then you can send REST requests to it directly, e.g.:
 
 ```shell
-localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'
+curl localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}' --header 'Content-Type: application/json'
 ```
 
 and it will print the created vector(s) directly.

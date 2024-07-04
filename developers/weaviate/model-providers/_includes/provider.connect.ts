@@ -13,8 +13,9 @@ const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your A
 // START CohereInstantiation
 const cohereApiKey = process.env.COHERE_APIKEY || '';  // Replace with your inference API key
 // END CohereInstantiation
-// START GoogleInstantiation
+// START GoogleInstantiation  // START GoogleVertexInstantiation
 const vertexApiKey = process.env.VERTEX_APIKEY || '';  // Replace with your inference API key
+// START GoogleInstantiation  // END GoogleVertexInstantiation
 const studioApiKey = process.env.STUDIO_APIKEY || '';  // Replace with your inference API key
 // END GoogleInstantiation
 // START HuggingFaceInstantiation
@@ -41,7 +42,7 @@ const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your 
 
 // START-ANY
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),
@@ -58,8 +59,9 @@ const client = await weaviate.connectToWCS(
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
-      // START GoogleInstantiation
+      // START GoogleInstantiation  // START GoogleVertexInstantiation
       'X-Vertex-Api-Key': vertexApiKey,
+      // START GoogleInstantiation  // END GoogleVertexInstantiation
       'X-Studio-Api-Key': studioApiKey,
       // END GoogleInstantiation
       // START JinaAIInstantiation

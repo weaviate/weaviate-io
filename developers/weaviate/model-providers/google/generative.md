@@ -1,5 +1,5 @@
 ---
-title: Generative
+title: Generative AI
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'generative', 'rag']
@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
+[Configure a Weaviate collection](#configure-collection) to use a Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google AI generative model to generate outputs.
 
@@ -88,7 +88,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START GoogleInstantiation"
@@ -97,7 +97,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START GoogleInstantiation"
@@ -110,30 +110,59 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Google AI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a Google AI generative AI model as follows:
+
+Note that the required parameters differ between Vertex AI and AI Studio.
+
+The [default model](#available-models) is used if no model is specified.
+
+### Vertex AI
+
+Vertex AI users must provide the Google Cloud project ID in the collection configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeGoogle"
-      endMarker="# END BasicGenerativeGoogle"
+      startMarker="# START BasicGenerativeGoogleVertex"
+      endMarker="# END BasicGenerativeGoogleVertex"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeGoogle"
-      endMarker="// END BasicGenerativeGoogle"
+      startMarker="// START BasicGenerativeGoogleVertex"
+      endMarker="// END BasicGenerativeGoogleVertex"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`gpt-3.5-turbo`) is used if no model is specified.
+### AI Studio
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicGenerativeGoogleStudio"
+      endMarker="# END BasicGenerativeGoogleStudio"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicGenerativeGoogleStudio"
+      endMarker="// END BasicGenerativeGoogleStudio"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Retrieval augmented generation
 
@@ -151,7 +180,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SinglePromptExample"
@@ -160,7 +189,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START SinglePromptExample"
@@ -181,7 +210,7 @@ In other words, when you have `n` search results, the generative model generates
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GroupedTaskExample"
@@ -190,7 +219,7 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START GroupedTaskExample"
@@ -208,7 +237,7 @@ In other words, when you have `n` search results, the generative model generates
 Configure the following generative parameters to customize the model behavior.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullGenerativeGoogle"
@@ -217,7 +246,7 @@ Configure the following generative parameters to customize the model behavior.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullGenerativeGoogle"

@@ -9,7 +9,7 @@ import assert from 'assert';
 // Instantiation
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
     'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   {
     authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
@@ -64,17 +64,16 @@ const schemaDefinition = {
     }
   ],
     // highlight-start
-  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI(),
   generative: weaviate.configure.generative.openAI()
     // highlight-end
 }
 // END CreateClass
 
-const classExists = await client.collections.exists(`GitBookChunk`);
+const collectionExists = await client.collections.exists(`GitBookChunk`);
 
-if (classExists) {
+if (collectionExists) {
   await client.collections.delete(`GitBookChunk`)
-  .do();
 }
 // CreateClass
 
@@ -95,7 +94,6 @@ async function importData(chunkData: Array<string>) {
 
   for (const [index, chunk] of chunkData.entries()) {
     const obj = {
-      class: 'GitBookChunk',
       properties: {
         chunk: chunk,
         chunk_index: index,
@@ -137,8 +135,8 @@ if (haikuResponse) {
 }
 // END SinglePrompt
 
-for (const r of haikuResponse.data.Get['GitBookChunk']) {
-  assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
+for (const r of haikuResponse.objects) {
+  assert(typeof r.generated === 'string', 'The generated object is not a string')
 }
 
 

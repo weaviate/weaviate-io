@@ -31,12 +31,12 @@ export default function HomepageWhatYouCanDo() {
         <p>まずはじめに、Weaviate データベースを作成します。</p>
         <p>
           本記事ではクラウドマネージド版のWeaviate Cloud
-          Services（WCS）の無料プランを使用します。
+          （WCD）の無料プランを使用します。
         </p>
         <p>
           クラウド環境のセットアップにあたっては、
           <a href="https://weaviate.io/developers/wcs/quickstart">
-            WCS クイックスタート
+            WCD クイックスタート
           </a>{' '}
           も参考にしてください。
         </p>
@@ -77,7 +77,7 @@ export default function HomepageWhatYouCanDo() {
           Clientを初期化します。Weaviateの接続情報をセットアップには以下の情報が必要です。
         </p>
         <ul>
-          <li>接続はWeaviateのURLとAPIキー (WCSの`Details` タブから)</li>
+          <li>接続はWeaviateのURLとAPIキー (WCDの`Details` タブから)</li>
           <li>
             EmbeddingはOpenAIを使用するのでOpenAIのAPIキー (
             <a href="https://platform.openai.com/signup">登録はこちら</a>).

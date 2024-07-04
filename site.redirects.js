@@ -144,7 +144,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/console',
         },
 
-        // WCS redirects
+        // WCD redirects
         {
             to: '/developers/wcs/faq',
             from: '/developers/wcs/troubleshooting',
@@ -196,9 +196,14 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/schema',
         },
         {
-            to: '/developers/weaviate/starter-guides/connect',
+            to: '/developers/weaviate/connections',
             from: '/developers/weaviate/tutorials/connect',
         },
+        {
+         to: '/developers/weaviate/connections',
+         from: '/developers/weaviate/starter-guides/connect',
+        },
+
 
         // Remove BPR page
         {
@@ -527,6 +532,12 @@ const siteRedirects = {
   {
     to: "/services/enterprise-cloud",
     from: "/services/enterprise-dedicated"
+},
+
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
 },
 
 

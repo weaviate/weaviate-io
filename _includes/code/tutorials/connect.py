@@ -40,10 +40,10 @@ client = weaviate.connect_to_custom(
 # END WeaviateAPIKeyCustom
 
 # ==========================================
-# === Connect with Weaviate API key (WCS)===
+# === Connect with Weaviate API key (WCD)===
 # ==========================================
 
-# START WeaviateAPIKeyWCS
+# START WeaviateAPIKeyWCD
 import weaviate
 from weaviate.auth import AuthApiKey
 
@@ -52,7 +52,7 @@ client = weaviate.connect_to_wcs(
     cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
     auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
 )
-# END WeaviateAPIKeyWCS
+# END WeaviateAPIKeyWCD
 
 
 # =========================
@@ -62,14 +62,14 @@ client = weaviate.connect_to_wcs(
 # START ConnectWithOIDC
 import weaviate
 
-wcs_username = os.getenv("WCS_USERNAME")    # Recommended: save to an environment variable
-wcs_password = os.getenv("WCS_PASSWORD")    # Recommended: save to an environment variable
+wcd_username = os.getenv("WCD_USERNAME")    # Recommended: save to an environment variable
+wcd_password = os.getenv("WCD_PASSWORD")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://your-wcs-endpoint.weaviate.network",
     auth_credentials=weaviate.AuthClientPassword(
-        username=wcs_username,  # `wcs_username`: your WCS username
-        password=wcs_password,  # `wcs_password`: your WCS password
+        username=wcd_username,  # `wcd_username`: your WCD username
+        password=wcd_password,  # `wcd_password`: your WCD password
     ),
 )
 # END ConnectWithOIDC
@@ -86,9 +86,11 @@ from weaviate.auth import AuthApiKey
 cohere_key = os.getenv("Cohere_API_KEY")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
-    cluster_url=weaviate_url,                       # `weaviate_url`: your Weaviate URL
-    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key
-    headers={"X-Cohere-Api-Key": cohere_key}        # `cohere_key`: your Cohere key
+    cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
+    auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
+    headers={
+        "X-Cohere-Api-Key": cohere_key           # `cohere_key`: your Cohere key
+    }
 )
 # END AuthThirdPartyAPIKey
 

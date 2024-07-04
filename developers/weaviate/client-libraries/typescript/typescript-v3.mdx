@@ -1,6 +1,6 @@
 ---
 title: JS/TS client v3
-sidebar_position: 20
+sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'javascript', 'client library', 'experimental']
 ---
@@ -8,9 +8,9 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
-
-<RCNote />
+:::note TypeScript client version
+The TypeScript client is version `v||site.typescript_client_version||`. Use the [TypeScript v3 client](/developers/weaviate/client-libraries/typescript/typescript-v3) for new projects.
+:::
 
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
@@ -27,7 +27,7 @@ This section details how install and configure the v3 TypeScript client.
 The v3 client package has a new name, `weaviate-client`. Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
 
 ```bash
-npm install weaviate-client --tag next
+npm install weaviate-client
 ```
 
 ### Import the Client
@@ -57,7 +57,7 @@ const weaviate = require('weaviate-client').default;
 
 Edit your project's configuration files to make these changes:
 
-- Add `"type": "module"` to `package.json` 
+- Add `"type": "module"` to `package.json`
 - Add the following code to [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 <details>
@@ -67,14 +67,14 @@ Edit your project's configuration files to make these changes:
 {
     "compilerOptions": {
       "target": "esnext",
-      "module": "esnext", 
+      "module": "esnext",
       "moduleResolution": "Node16",
       "esModuleInterop": true,
       "lib": [ "es2018" ],
   }
 }
 ```
-   
+
 </details>
 
 ## Connect a client
@@ -86,18 +86,18 @@ The v3 client provides helper functions to connect your application to your Weav
 ### Connect to Weaviate
 
 <Tabs groupId="platforms">
-<TabItem value="wcs" label="WCS">
+<TabItem value="wcd" label="WCD">
 
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToWCS(
+const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 console.log(client)
@@ -109,17 +109,8 @@ console.log(client)
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.connectToLocal({
-    httpHost: 'localhost',
-    httpPort: 8080,
-    grpcHost: 'localhost',
-    grpcPort: 50051,
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  }
-)
- 
+const client = await weaviate.connectToLocal()
+
 console.log(client)
 ```
 
@@ -129,35 +120,28 @@ console.log(client)
 ```ts
 import weaviate from 'weaviate-client'
 
-const client = await weaviate.client({
-    rest: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 8080,
-      secure: true
-    },
-    grpc: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 50051,
-      secure: true
-    },
-    auth: {
-      apiKey: process.env.WEAVIATE_API_KEY || ''
-    },
+const client = await weaviate.connectToCustom({
+    httpHost: 'localhost',
+    httpPort: 8080,
+    grpcHost: 'localhost',
+    grpcPort: 50051,
+    grpcSecure: true,
+    httpSecure: true,
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+      'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '' // Replace with your inference API key
     }
-  }
-)
- 
+  })
+
 console.log(client)
 ```
 
 </TabItem>
 </Tabs>
 
-### Close client method 
+### Close client method
 
-import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 <TSClientClose />
 
@@ -171,11 +155,11 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // Instantiate the client with the auth config
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
-  } 
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
+  }
 )
 
 console.log(client)
@@ -186,14 +170,14 @@ To include custom headers, such as API keys for third party services, add the cu
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
     headers: {
-      someHeaderName: 'header-value', 
+      someHeaderName: 'header-value',
     }
-  } 
+  }
 )
 ```
 
@@ -219,7 +203,7 @@ const result = await myCollection.query.fetchObjects()
 console.log(JSON.stringify(result, null, 2));
 ```
 
-### Node support only 
+### Node support only
 
 The gRPC protocol is fast and provides other internal benefits. Unfortunately, gRPC does not support browser-based client development.
 
@@ -233,30 +217,15 @@ The `insertMany()` method makes it easier to bulk insert a large number of objec
 
 For inserts of over 5000 objects, use `insertMany()` as part of a batch process:
 
-```js
-const questions = client.collections.get("CollectionName")
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 
-const batchSize = 1000; // define your batch size
-
-async function insertBatch() {
-  try {
-    await questions.data.insertMany(dataBatch);
-    console.log('Batch inserted successfully');
-  } catch (error) {
-    console.error('Error inserting batch:', error);
-  }
-}
-
-async function batchInsert() {
-  for (let i = 0; i < dataArray.length; i += batchSize) {
-    const batch = dataArray.slice(i, i + batchSize);
-    await insertBatch(batch);
-  }
-}
-
-const dataObject = [...]; // your data
-await batchInsert(dataObject);
-```
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// START BatchGRPC"
+  endMarker="// END BatchGRPC"
+  language="ts"
+/>
 
 ### Iterator Method
 
@@ -266,7 +235,7 @@ The cursor API has a new iterator method. To repeat an action over an entire col
 const articles = client.collections.get('Article')
 
 for await (const article of articles.iterator()) {
-  // do something with article. 
+  // do something with article.
   console.log(article) // we print each object in the collection
 }
 ```
@@ -285,7 +254,7 @@ type Article = {
 }
 
 const collection = client.collections.get<Article>('Article');
-await collection.insert({ // compiler error since 'body' field is missing in '.insert'
+await collection.data.insert({ // compiler error since 'body' field is missing in '.insert'
   title: 'TS is awesome!',
   wordcount: 9001
 })
@@ -301,11 +270,11 @@ When there is an asynchronous code error, a promise returns the specific error m
 
 The v3 client enables strong typing with custom TypeScript types and user-defined generics.
 
-You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
+You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle.
 
 For example, the `index.d.ts` file stores type definitions for the `cjs` bundle:
 
-```bash 
+```bash
 node/cjs/index.d.ts
 ```
 

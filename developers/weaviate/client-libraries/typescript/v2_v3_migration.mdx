@@ -13,10 +13,6 @@ import TSv3Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts3.
 import TSv3Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts3.ts';
 import TSv2Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts2.ts';
 
-import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
-
-<RCNote />
-
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
@@ -32,7 +28,7 @@ To install the TypeScript client v3, follow these steps:
 1. **Install the new client package**
 
   ```bash
-  npm install weaviate-client --tag next
+  npm install weaviate-client
   ```
 
 1. **Upgrade Weaviate**
@@ -57,12 +53,13 @@ To install the TypeScript client v3, follow these steps:
 
 ## Instantiate a client
 
-The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/starter-guides/connect) to your Weaviate instance.
+The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/connections) to your Weaviate instance.
 
 In most cases, you should use one of the connection helper functions to connect to your Weaviate instance:
 
-- `connectToWCS`
+- `connectToWCD`
 - `connectToLocal`
+- `connectToCustom`
 
 You can also use a custom configuration to instantiate the client directly:
 
@@ -75,7 +72,7 @@ You can also use a custom configuration to instantiate the client directly:
   language="js"
 />
 </TabItem>
-<TabItem value="wcs" label="Weaviate Cloud">
+<TabItem value="wcd" label="Weaviate Cloud">
 <FilteredTextBlock
   text={TSv3Additional}
   startMarker="// ConnectCloud"
@@ -417,7 +414,7 @@ For more code examples, see the following:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect)
+- [Connect to Weaviate](/developers/weaviate/connections)
 
 ## How to migrate your code
 

@@ -294,7 +294,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
 
 ## Set vector index type
 
-The vector index type can be set for each collection between `hnsw` and `flat` index types.
+The vector index type can be set for each collection between `hnsw`, `flat` and `dynamic` index types.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -572,6 +572,48 @@ Specify a `generative` module for a collection (for RAG).
       text={TSCodeLegacy}
       startMarker="// START SetGenerative"
       endMarker="// END SetGenerative"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Specify a generative model name
+
+Specify a specific generative `model name`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
       language="ts"
     />
   </TabItem>
@@ -1044,7 +1086,16 @@ You can update a collection definition to change the [mutable collection setting
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS Client v2">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 // This feature is under development
@@ -1092,7 +1143,16 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS Client v2">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModifyParam"
+      endMarker="// END ModifyParam"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
   ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
@@ -1158,7 +1218,7 @@ import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.upd
 
 ### Background knowledge
 
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [Tutorial: Schema](../starter-guides/schema.md)
 
 ## Questions and feedback

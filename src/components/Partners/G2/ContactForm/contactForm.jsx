@@ -11,7 +11,7 @@ export default function ContactForm() {
             <iframe
               id="JotFormIFrame-233166493842058"
               width="600"
-              height="1738"
+              height="1000"
               title="Step 2: Fill out the form below to get your shirt"
               onload="window.parent.scrollTo(0,0)"
               allowtransparency="true"

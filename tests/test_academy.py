@@ -33,8 +33,14 @@ import utils
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
-    proc_script = utils.load_and_prep_script(script_loc)
-    exec(proc_script)
+    # proc_script = utils.load_and_prep_script(script_loc)
+    # exec(proc_script)
+    temp_proc_script_loc = utils.load_and_prep_temp_file(
+        script_loc,
+        lang="py",
+        custom_replace_pairs=utils.edu_readonly_replacements
+    )
+    exec(temp_proc_script_loc.read_text())
 
 
 # Deprecated tests for deprecated modules (pyv3; also directories have moved)

@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'embeddings', 'transformers']
 ---
 
-# Locally Hosted Transformers Embeddings + Weaviate
+# Locally Hosted Transformers Text Embeddings + Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -81,6 +81,8 @@ services:
 - `image` is the container image
 - `ENABLE_CUDA` environment variable enables GPU usage
 
+Set `image` from a [list of available models](#available-models) to specify a particular model to be used.
+
 </TabItem>
 <TabItem value="k8s" label="Kubernetes">
 
@@ -103,6 +105,8 @@ If you are using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/d
 
 See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml) for an example of the `values.yaml` file including more configuration options.
 
+Set `tag` from a [list of available models](#available-models) to specify a particular model to be used.
+
 </TabItem>
 </Tabs>
 
@@ -115,7 +119,7 @@ As this integration runs a local container with the Transformers model, no addit
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use the Transformer inference container by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicVectorizerTransformers"
@@ -124,7 +128,7 @@ As this integration runs a local container with the Transformers model, no addit
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicVectorizerTransformers"
@@ -135,13 +139,17 @@ As this integration runs a local container with the Transformers model, no addit
 
 </Tabs>
 
+:::note Model selection via container image used
+Model selection in this integration is done by selecting the appropriate [container image in the integration](#configure-the-integration).
+:::
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -150,7 +158,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -179,7 +187,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -188,7 +196,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -211,7 +219,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -220,7 +228,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -253,7 +261,7 @@ Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://h
   - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerTransformers"
@@ -262,7 +270,7 @@ Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://h
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerTransformers"
@@ -417,9 +425,9 @@ Each of the compatible models has its own license. For detailed information, rev
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## Release notes
+### Custom models
 
-For details, see [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
+To run the integration with a custom model, refer to [the custom image guide](./embeddings-custom-image.md).
 
 ### External resources
 

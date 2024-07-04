@@ -41,6 +41,8 @@ Go to the relevant integration page to learn how to configure Weaviate with the 
 
 - [Text Embeddings](./embeddings.md)
 - [Text Embeddings (custom image)](./embeddings-custom-image.md)
+- [Multimodal Embeddings](./embeddings-multimodal.md)
+- [Multimodal Embeddings (custom image)](./embeddings-multimodal-custom-image.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

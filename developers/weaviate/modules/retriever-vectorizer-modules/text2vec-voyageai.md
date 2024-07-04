@@ -29,7 +29,7 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file
@@ -184,6 +184,8 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-2`
 - `voyage-law-2`
 - `voyage-large-2-instruct`
+- `voyage-finance-2`
+- `voyage-multilingual-2`
 
 ### Truncation
 

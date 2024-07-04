@@ -82,6 +82,24 @@ const config = {
                 showReadingTime: true,
             },
         ],
+         // iOS Apps and Vector Databases configuration
+         [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Apple Ecosystem Apps',
+                blogDescription: 'iOS Apps and Vector Databases',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'iOS Apps and Vector Databases',
+
+                id: 'apple-and-weaviate',
+                routeBasePath: '/apple-and-weaviate',
+                // path to data on filesystem relative to site dir.
+                path: 'apple-and-weaviate',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
         [
             '@scalar/docusaurus',
             {
@@ -153,6 +171,12 @@ const config = {
                                 style: 'display:none;',
                             },
                         },
+
+                         // Add CommonRoom
+            {
+                tagName: 'script',
+                innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
+              },
 
                     ],
                 };
@@ -347,6 +371,10 @@ const config = {
                                 to: '/community/events',
                             },
                             {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
+                            },
+                            {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
                             },
@@ -425,7 +453,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
+                                href: '/#contact-us',
                             },
                         ],
                     },
@@ -511,7 +539,10 @@ const config = {
                                 label: 'Workshops',
                                 to: '/community/events',
                             },
-                           
+                            {
+                                label: 'Knowledge Cards',
+                                to: '/learn/knowledgecards',
+                            },
                             {
 
                                 label: 'Academy',
