@@ -1,0 +1,126 @@
+.pricingHeader {
+  color: #130c49;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 3rem */
+  @media screen and (max-width: 680px) {
+    text-align: left;
+  }
+}
+.pricingButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #130e46;
+  background: #61bd73;
+  padding: 9px;
+  color: #130c49;
+  margin-right: 10px;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+.pricingButton:hover {
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+.boardButton {
+  padding: 9px;
+  margin: 10px;
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+.boardButton:hover {
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.test {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.header {
+  color: var(--ifm-link-color);
+}
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin: 0;
+}
+.box {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+
+  h3 {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 680px) {
+    text-align: left;
+    margin: auto;
+    width: auto;
+    color: #130c49;
+  }
+}
+
+.opacity {
+  opacity: 35%;
+}
+
+.mapLogos {
+  flex: 1 15%;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+  }
+}
+
+.mapsContainer {
+  background: #130e46;
+}
+
+.mapBox {
+  flex: 1;
+
+  h2 {
+    color: white;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: white;
+  }
+}
+
+.mapButton {
+  margin-top: 25px;
+}
+
+.mapDiagram {
+  background: url('/img/site/remote-map.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  min-height: 711px;
+}
