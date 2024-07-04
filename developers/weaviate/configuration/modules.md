@@ -113,7 +113,34 @@ services:
 Your choice of the `text2vec` module does not restrict your choice of `generative` module, or vice versa.
 :::
 
+## Tenant offload modules
+
+### `offload-s3` module
+
+The `offload-s3` module enables you to [offload tenants](../concepts/data.md#tenant-activity-status) to an S3 bucket.
+
+To use the `offload-s3` module, enable it by adding it to the `ENABLE_MODULES` environment variable, as shown below.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      # highlight-start
+      ENABLE_MODULES: 'text2vec-cohere,generative-cohere,offload-s3'
+      # highlight-end
+```
+
+The `offload-s3` module reads the following environment variables:
+
+- `OFFLOAD_S3_BUCKET`: The S3 bucket to which the tenants are offloaded.
+    - The default is `weaviate-offload`. If the bucket does not exist, it will be created by Weaviate
+- `OFFLOAD_S3_CONCURRENCY`: The number of concurrent offload operations. The default is `25`.
+- `OFFLOAD_TIMEOUT`: The timeout for offloading operations (create bucket, upload, download). The default is `10` (in seconds)
+    - Offload operations are asynchronous. As a result, the timeout is for the operation to start, not to complete.
+    - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
+
 ## Custom modules
+
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
 ## Related pages

@@ -160,7 +160,7 @@ Use the client to update the auto-tenant creation setting. Auto-tenant is only a
 
 ## Add new tenants manually
 
-To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
+To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default), `COLD` (inactive, on disk), or `FROZEN` (inactive, [offloaded to cloud](../concepts/data.md#tenant-status)).
 
 This example adds `tenantA` to the `MultiTenancyCollection` collection:
 
@@ -415,7 +415,7 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
 
 ## Update tenant activity status
 
-Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
+Update existing tenants' activity status to active (`HOT`), inactive on disk (`COLD`), or offloaded to cloud (`FROZEN`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
