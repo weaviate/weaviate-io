@@ -51,6 +51,7 @@ await client.collections.create({
     // // These parameters are optional
     // baseUrlProperty: 'https://api.anthropic.com',
     // model: 'claude-3-opus-20240229',
+    // maxTokensProperty: 512,
     // temperatureProperty: 0.7,
     // stopSequencesProperty: ['\n\n'],
     // topPProperty: 0.9,

@@ -226,6 +226,12 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Anthropic API documentation](https://www.anthropic.com/docs).
 
+#### Maximum output tokens
+
+Use the `maxTokens` parameter to set the maximum number of output tokens for the Anthropic Generative AI models. This parameter is separate from the maximum allowable input tokens, also called a "context window".
+
+For most models, the default `maxTokens` value is `4096`, which is the maximum, and the input (context window) size is `200,000`. The specific allowable values may vary between models. Refer to the [Anthropic documentation](https://docs.anthropic.com/en/docs/about-claude/models#model-comparison) for the latest information.
+
 #### Base URL
 
 Note that for Anthropic, you can provide a custom base URL for the API endpoint. This is useful for users who have a dedicated API endpoint, or is behind a proxy.

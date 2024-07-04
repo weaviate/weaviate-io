@@ -58,6 +58,7 @@ client.collections.create(
         # # These parameters are optional
         # base_url="https://api.anthropic.com",
         # model="claude-3-opus-20240229",
+        # max_tokens=512,
         # temperature=0.7,
         # stop_sequences=["\n\n"],
         # top_p=0.9,
