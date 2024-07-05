@@ -6,16 +6,10 @@ image: og/docs/installation.jpg
 ---
 
 :::tip End-to-end guide
-If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
+For an in-depth tutorial on Kubernetes and Weaviate, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
 :::
 
 ## Requirements
-
-:::note Important: Set the correct Weaviate version
-A best practice for using Helm charts with Weaviate, is to explicitly set the Weaviate version.
-
-Set the version in your `values.yaml` file or [overwrite the default value](#deploy-install-the-helm-chart) during deployment.
-:::
 
 * A recent Kubernetes Cluster (at least version 1.23).
   * If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
@@ -26,7 +20,13 @@ Set the version in your `values.yaml` file or [overwrite the default value](#dep
 
 ## Weaviate Helm chart
 
-To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
+:::note Important: Set the correct Weaviate version
+A best practice for using Helm charts with Weaviate, is to explicitly set the Weaviate version.<br/><br/>
+
+Set the version in your `values.yaml` file or [overwrite the default value](#deploy-install-the-helm-chart) during deployment.
+:::
+
+To install the Weaviate chart on your Kubernetes cluster, follow these steps:
 
 ### Verify tool setup and cluster access
 
@@ -38,9 +38,9 @@ helm version
 kubectl get pods
 ```
 
-### Obtain the Helm Chart
+### Get the Helm Chart
 
-Add the Weaviate helm repo that contains the Weaviate helm chart
+Add the Weaviate helm repo that contains the Weaviate helm chart.
 
 ```bash
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
@@ -51,28 +51,27 @@ Get the default `values.yaml` configuration file from the Weaviate helm chart:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-### Modify values.yaml (as necessary)
+### Modify values.yaml
 
-:::note May not be needed
-The default values in `values.yaml` may be sufficient. However, we recommend reviewing:
+To customize the Helm chart for your environment, edit the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
+file. The default `yaml` file is extensively documented to help you configure your system.
 
-- The Weaviate version
-- Modules to enable
-- gRPC service configuration
-:::
+#### Replication
 
-In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
-file you can tweak the configuration to align it with your
-setup. The yaml file is extensively documented to help you align the
-configuration with your setup.
+The default configuration defines one Weaviate replica cluster.
 
-Out of the box, the configuration file is setup for:
+#### Local models
 
-- 1 Weaviate replica.
-- Local models, such as `text2vec-transformers`, `qna-transformers` or
-  `img2vec-neural` are disabled by default. They can be enabled by setting the
-  respective `enabled` flag to `true`.
+Local models, such as `text2vec-transformers`, `qna-transformers`, and  `img2vec-neural` are disabled by default. To enable a model, set the model's
+`enabled` flag to `true`.
 
+#### gRPC
+
+Starting in Helm chart version 17.0.0, the gRPC service is enabled by default. If you use an older Helm chart, edit `values.yaml` to enable gRPC.
+
+#### Resource limits
+
+Starting in Helm chart version 17.0.1,
 See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the
 cluster.
