@@ -10,7 +10,7 @@ This page has links to the [developer release notes](https://github.com/weaviate
 
 For descriptive notes on recent major releases, follow the links in the table of contents at the left of this page. For descriptive notes on older releases, see the [blog pages at Weaviate.io](https://weaviate.io/blog/tags/release).
 
-### Current minor releases
+### Current core and client releases
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
@@ -23,11 +23,10 @@ For descriptive notes on recent major releases, follow the links in the table of
 | [1.25.1][c1.25.1] | 2024-05-17 | [4.6.2][p4.6.2] | '' | '' | '' |
 | [1.25.0][c1.25.0] | 2024-05-10 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.1] | [4.6.0][j4.6.0] |
 
-### Major releases
+### Previous core and client releases
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java | Up voted issues |
 | :- | :- | :-: | :-: | :-: | :-: | :-: |
-| [1.25.0][c1.25.0] | 2024-05-10 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] | [Votes 1.25][v1.25] |
 | [1.24.0][c1.24.0] | 2024-02-27 | [4.5.1][p4.5.1] | [2.0.0][ts2.0.0] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] | [Votes 1.24][v1.24] |
 | [1.23.0][c1.23.0] | 2023-12-18 | [3.26.0][p3.26.0] | '' | '' | [4.4.2][j4.4.2] | [Votes 1.23][v1.23] |
 | [1.22.0][c1.22.0] | 2023-10-27 | [3.25.0][p3.25.0] | [1.5.0][ts1.5.0] | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] | [ Votes 1.22][v1.22] |
