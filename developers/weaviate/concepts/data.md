@@ -214,33 +214,37 @@ Multi-tenancy is especially useful when you want to store data for multiple cust
 
 :::info Multi-tenancy availability
 - Tenant activity status setting added in `v1.21`
-- `FROZEN` status added in `v1.26`
+- `OFFLOADED` status added in `v1.26`
 :::
 
-Tenants can be `HOT`, `COLD`, `FROZEN`, `FREEZING`, or `UNFREEZING`.
+Tenants can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
 
-- `HOT` tenants are active and loaded into memory. They are available for read and write operations.
-- All other statuses are inactive. Access attempts return an error message.
-    - `COLD` tenants are stored on local disk storage for quick activation.
-    - `FROZEN` tenants are stored on cloud storage. This status is useful for long-term storage for tenants that are not frequently accessed.
-    - `FREEZING` tenants are being moved to cloud storage. This is a transient status, and therefore not user-specifiable.
-    - `UNFREEZING` tenants are being loaded from cloud storage. This is a transient status, and therefore not user-specifiable. An `UNFREEZING` tenant may be being warmed to a `HOT` status or a `COLD` status.
+- `ACTIVE` tenants are loaded and available for read and write operations.
+- In all other states, the tenant is not available for read or write access. Access attempts return an error message.
+    - `INACTIVE` tenants are stored on local disk storage for quick activation.
+    - `OFFLOADED` tenants are stored on cloud storage. This status is useful for long-term storage for tenants that are not frequently accessed.
+    - `OFFLOADING` tenants are being moved to cloud storage. This is a transient status, and therefore not user-specifiable.
+    - `ONLOADING` tenants are being loaded from cloud storage. This is a transient status, and therefore not user-specifiable. An `ONLOADING` tenant may be being warmed to a `ACTIVE` status or a `INACTIVE` status.
 
 For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
 
-| Status | State | Description | User-specifiable |
+| Status | Available | Description | User-specifiable |
 | :-- | :-- | :-- | :-- |
-| `HOT` | Active | Loaded and available for read/write operations. | Yes |
-| `COLD` | Inactive (Disk) | On local disk storage, no read / write access. Access attempts return an error message. | Yes |
-| `FROZEN` | Inactive (Cloud) | On cloud storage, no read / write access. Access attempts return an error message. | Yes |
-| `FREEZING` | Inactive (Moving to cloud) | Being moved to cloud storage, no read / write access. Access attempts return an error message. | No |
-| `UNFREEZING` | Inactive (Loading from cloud) | Being loaded from cloud storage, no read / write access. Access attempts return an error message. | No |
+| `ACTIVE` | Yes | Loaded and available for read/write operations. | Yes |
+| `INACTIVE` | No | On local disk storage, no read / write access. Access attempts return an error message. | Yes |
+| `OFFLOADED` | No | On cloud storage, no read / write access. Access attempts return an error message. | Yes |
+| `OFFLOADING` | No | Being moved to cloud storage, no read / write access. Access attempts return an error message. | No |
+| `ONLOADING` | No | Being loaded from cloud storage, no read / write access. Access attempts return an error message. | No |
+
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
 
 #### Frozen (offloaded) tenants
 
 Frozen, also called "offloaded" tenants, are introduced in Weaviate `v1.26.0`. This requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
 
-As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `FROZEN` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
+As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `OFFLOADED` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
 
 ### Tenancy and IDs
 
