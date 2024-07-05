@@ -33,6 +33,18 @@ This enables an enhanced developed experience, such as the ability to:
 | [Azure OpenAI](./openai-azure/index.md) | [Text](./openai-azure/embeddings.md) | [Text](./openai-azure/generative.md) | - |
 | [Voyage AI](./voyageai/index.md) | [Text](./voyageai/embeddings.md) | - | [Reranker](./voyageai/reranker.md) |
 
+#### Enable all API-based modules
+
+:::caution Experimental feature
+Available starting in `v1.26.0`. This is an experimental feature. Use with caution.
+:::
+
+You can enable all API-based integrations at once by [by setting the `ENABLE_API_BASED_MODULES` environment variable to `true`](../configuration/modules.md#enable-all-api-based-modules).
+
+This make all API-based model integrations available for use, such as those for Anthropic, Cohere, OpenAI, and so on. These modules are lightweight, so enabling them all will not significantly increase resource usage.
+
+Read more about [enabling all API-based modules](../configuration/modules.md#enable-all-api-based-modules).
+
 ### Locally hosted
 
 | Model provider | Embeddings | Generative AI | Others |
