@@ -79,9 +79,8 @@ p {
 
 .quoteLogos {
   @media screen and (max-width: 780px) {
-    flex-direction: column;
-    gap: 20px;
-    display: none;
+    display: block;
+    margin: 40px 0px;
   }
 }
 

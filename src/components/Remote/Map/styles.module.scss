@@ -73,16 +73,9 @@ p {
     color: #130c49;
   }
 
-  @media screen and (max-width: 680px) {
-    text-align: left;
-    margin: auto;
-    width: auto;
-    color: #130c49;
+  @media screen and (max-width: 780px) {
+    flex-direction: column-reverse;
   }
-}
-
-.opacity {
-  opacity: 35%;
 }
 
 .mapLogos {
@@ -91,7 +84,8 @@ p {
   @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
-    display: none;
+    display: block;
+    width: 100%;
   }
 }
 
@@ -101,7 +95,7 @@ p {
 
 .mapBox {
   flex: 1;
-
+  padding: 50px;
   h2 {
     color: white;
   }
