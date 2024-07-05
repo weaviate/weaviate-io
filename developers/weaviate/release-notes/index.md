@@ -12,6 +12,8 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 ### Current core and client releases
 
+This chart shows the latest client release at the time of the Weaviate core release.
+
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
 | [1.25.7][c1.25.7] | 2024-07-04 | [4.6.6][p4.6.6] | [3.0.8][ts3.0.8] | [4.14.0][g4.14.0] | [4.7.0][j4.7.0] |
