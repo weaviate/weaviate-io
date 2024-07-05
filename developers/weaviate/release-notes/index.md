@@ -25,6 +25,11 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 ### Previous core and client releases
 
+For links to previous releases, expand this section.
+
+<details>
+  <summary>Previous core and client releases</summary>
+
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java | Up voted issues |
 | :- | :- | :-: | :-: | :-: | :-: | :-: |
 | [1.24.0][c1.24.0] | 2024-02-27 | [4.5.1][p4.5.1] | [2.0.0][ts2.0.0] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] | [Votes 1.24][v1.24] |
@@ -53,7 +58,9 @@ For descriptive notes on recent major releases, follow the links in the table of
 | [1.1.0][c1.1.0] | 2021-02-10 | [2.1.0][p2.1.0] | '' | '' | - | - |
 | [1.0.0][c1.0.0] | 2021-01-14 | [2.0.0][p2.0.0] | '' | '' | - | - |
 
-<a name="typescriptChange"><sup>1</sup></a>The TypeScript client replaced the JavaScript client on 2023-03-17.
+Note: The TypeScript client replaced the JavaScript client on 2023-03-17.
+
+</details>
 
 ## Weaviate Core
 
