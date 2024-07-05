@@ -560,6 +560,11 @@ For Japanese and Chinese text, we recommend use of `gse` or `trigram` tokenizati
 
 The `gse` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_GSE` to `true` on the Weaviate instance.
 
+`gse` tokenization examples:
+
+- `"素早い茶色の狐が怠けた犬を飛び越えた"`: `["素早", "素早い", "早い", "茶色", "の", "狐", "が", "怠け", "けた", "犬", "を", "飛び", "飛び越え", "越え", "た", "素早い茶色の狐が怠けた犬を飛び越えた"]`
+- `"すばやいちゃいろのきつねがなまけたいぬをとびこえた"`: `["すばや", "すばやい", "やい", "いち", "ちゃ", "ちゃい", "ちゃいろ", "いろ", "のき", "きつ", "きつね", "つね", "ねが", "がな", "なま", "なまけ", "まけ", "けた", "けたい", "たい", "いぬ", "を", "とび", "とびこえ", "こえ", "た", "すばやいちゃいろのきつねがなまけたいぬをとびこえた"]`
+
 ### `kagome_kr` tokenization method
 
 :::caution Experimental feature
@@ -569,6 +574,12 @@ Available starting in `v1.26`. This is an experimental feature. Use with caution
 For Korean text, we recommend use of the `kagome_kr` tokenization method. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text.
 
 The `kagome_kr` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_KAGOME_KR` to `true` on the Weaviate instance.
+
+`kagome_kr` tokenization examples:
+
+- `"아버지가방에들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"아버지가 방에 들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"결정하겠다"`: `["결정", "하", "겠", "다"]`
 
 ### `indexFilterable` and `indexSearchable`
 
