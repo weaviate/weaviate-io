@@ -253,7 +253,7 @@ const config = {
             image: 'og/default.jpg',
             announcementBar: {
                 id: 'announcement-bar-may2024',
-                content: `We would love your input to help us improve your experience - <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/hrFGMqtVkdSG6ne48">Fill out our Community Experience Survey</a> by June 14th.`,
+                content: `📆 FREE Weaviate Office Hours: Ask Duda anything! Mon, Jul 8 [Time] [TimeZone] ⏰ <a target="_blank" rel="noopener noreferrer" href="https://us02web.zoom.us/meeting/register/tZwof-quqjkrHNIPnbv01ao7F0QjWg77RMqj#/registration">Register here!</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -382,7 +382,7 @@ const config = {
                                 label: 'Community',
                                 to: '/community',
                             },
-                           
+
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -470,7 +470,7 @@ const config = {
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
                     },
-                    
+
                     {
                         type: 'search',
                         position: 'right',
