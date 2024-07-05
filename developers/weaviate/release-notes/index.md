@@ -25,10 +25,10 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 ### Previous core and client releases
 
-For links to previous releases, expand this section.
+For links to the matrix of previous core and client releases, expand this section.
 
 <details>
-  <summary>Previous core and client releases</summary>
+  <summary>Releases</summary>
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java | Up voted issues |
 | :- | :- | :-: | :-: | :-: | :-: | :-: |
