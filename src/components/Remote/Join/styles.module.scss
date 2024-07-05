@@ -59,16 +59,19 @@
   grid-area: 1 / 1 / 3 / 2;
   background-image: url('/img/site/remote-grid-02-01.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid2 {
   grid-area: 1 / 2 / 2 / 3;
   background-image: url('/img/site/remote-grid-02-02.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid3 {
   grid-area: 2 / 2 / 3 / 3;
   background-image: url('/img/site/remote-grid-02-03.png');
   background-size: cover;
+  background-position-x: center;
 }
 
 .right {

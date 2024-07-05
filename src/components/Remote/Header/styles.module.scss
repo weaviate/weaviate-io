@@ -1,14 +1,14 @@
 .headerHome {
-  background: url('/img/site/bg-remote.png') #dce8ee;
+  background: url('/img/site/bg-remote.jpg') #dce8ee;
 
   background-size: cover;
   background-position-x: right;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 600px) {
-    background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
+    background: url('/img/site/bg-remote.jpg') #dce8ee;
     background-size: cover;
-    background-position-x: right;
+    background-position-x: left;
     background-repeat: no-repeat;
   }
 }

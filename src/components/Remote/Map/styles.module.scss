@@ -118,3 +118,9 @@ p {
   height: auto;
   min-height: 711px;
 }
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

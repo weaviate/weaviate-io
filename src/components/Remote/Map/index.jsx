@@ -60,7 +60,7 @@ export default function Map() {
                   position={selected.location}
                   onCloseClick={() => setSelected(null)}
                 >
-                  <div>
+                  <div className={styles.infoCard}>
                     {selected.photo && (
                       <img
                         src={'/img/people/team/' + selected.photo}
@@ -72,7 +72,7 @@ export default function Map() {
                         }}
                       />
                     )}
-                    <h2>{selected.name}</h2>
+                    <h3>{selected.name}</h3>
                   </div>
                 </InfoWindow>
               )}

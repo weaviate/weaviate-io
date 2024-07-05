@@ -23,7 +23,7 @@ export default function Join() {
               people globally. Join us, so we can expand and grow together.
             </p>
             <div className={styles.buttons}>
-              <Link className={styles.buttonOutline} to="/company/about-us">
+              <Link className={styles.buttonOutline} to="/company/careers">
                 See open roles
               </Link>
             </div>

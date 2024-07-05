@@ -109,6 +109,10 @@
 .typeContainer {
   display: flex;
   flex-wrap: wrap;
+
+  @media screen and (min-width: 1060px) and (max-width: 1200px) {
+    flex-wrap: nowrap;
+  }
 }
 
 .typeBox {
@@ -135,7 +139,7 @@
   flex-direction: column;
 
   .homeIcon {
-    background-image: url('/img/site/remote-icon.svg');
+    background-image: url('/img/site/remote-icon-1.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 3.861rem;
@@ -143,6 +147,17 @@
     flex-shrink: 0;
   }
 
+  .travel {
+    background-image: url('/img/site/remote-icon-2.svg');
+  }
+
+  .culture {
+    background-image: url('/img/site/remote-icon-3.svg');
+  }
+
+  .perks {
+    background-image: url('/img/site/remote-icon-4.svg');
+  }
   h2 {
     color: #130c49;
     font-family: 'Plus Jakarta Sans';
@@ -179,8 +194,7 @@
     }
   }
   a {
-    color: #61bd73;
-
+    color: #130c49;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -193,7 +207,7 @@
   display: flex;
   gap: 7rem;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
     flex-direction: column;
     gap: 1rem;
   }
@@ -207,7 +221,11 @@
   grid-row-gap: 10px;
   width: 43rem;
   height: 690px;
-  @media screen and (max-width: 640px) {
+
+  @media screen and (max-width: 1200px) {
+    width: 30rem;
+  }
+  @media screen and (max-width: 540px) {
     width: 100%;
   }
 }
@@ -217,34 +235,108 @@
   grid-area: 1 / 1 / 3 / 2;
   background-image: url('/img/site/remote-grid-01.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid2 {
   border-radius: 0.625rem;
   grid-area: 1 / 2 / 2 / 3;
   background-image: url('/img/site/remote-grid-02.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid3 {
   border-radius: 0.625rem;
   grid-area: 2 / 2 / 3 / 3;
   background-image: url('/img/site/remote-grid-03.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid4 {
   border-radius: 0.625rem;
   grid-area: 3 / 1 / 4 / 2;
   background-image: url('/img/site/remote-grid-04.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid5 {
   border-radius: 0.625rem;
   grid-area: 3 / 2 / 4 / 3;
   background-image: url('/img/site/remote-grid-05.png');
   background-size: cover;
+  background-position-x: center;
 }
 .imageGrid6 {
   border-radius: 0.625rem;
   grid-area: 4 / 1 / 5 / 3;
   background-image: url('/img/site/remote-grid-06.png');
   background-size: cover;
+  background-position-x: center;
+}
+
+.tooltipTrigger {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  top: 3px;
+  left: 0px;
+  width: 18.5rem;
+  height: 12.8125rem;
+  flex-shrink: 0;
+  background-color: white;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  padding: 16px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px;
+  z-index: 1000;
+
+  @media screen and (max-width: 800px) {
+    left: 150px;
+  }
+}
+
+.tooltipContent {
+  font-size: 0.875rem;
+  color: #333;
+}
+
+.tooltipContent p {
+  margin: 0 0 10px;
+  color: #130c49;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 0.9rem */
+}
+.tooltipContent a {
+  font-size: 0.75rem;
+}
+
+.tooltipContent ul {
+  padding: 0;
+}
+
+.tooltipContent strong {
+  color: #130c49;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 1.125rem */
+}
+
+.tooltipContent li {
+  margin: 0 0 5px;
+  color: #130c49;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.toolList {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
 }

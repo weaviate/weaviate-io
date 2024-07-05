@@ -1,12 +1,12 @@
 [
   {
     "name": "Aarthi Iyer",
-    "location": { "lat": 51.2105, "lng": -0.5582 },
+    "location": { "lat": 51.5074, "lng": -0.1278 },
     "photo": "aarthi.jpeg"
   },
   {
     "name": "Abdel Rodriguez",
-    "location": { "lat": 49.4333, "lng": 7.75 },
+    "location": { "lat": 49.4343, "lng": 7.751 },
     "photo": "abdel.jpg"
   },
   {
@@ -16,22 +16,22 @@
   },
   {
     "name": "Alea Abed",
-    "location": { "lat": 37.7749, "lng": -122.4194 },
+    "location": { "lat": 38.7759, "lng": -121.4204 },
     "photo": "alea.png"
   },
   {
     "name": "André Duis",
-    "location": { "lat": 51.1657, "lng": 7.0836 },
+    "location": { "lat": 51.1657, "lng": 7.0846 },
     "photo": "andre.png"
   },
   {
     "name": "André Mourão",
-    "location": { "lat": 38.7167, "lng": -9.139 },
+    "location": { "lat": 38.7177, "lng": -9.14 },
     "photo": "andre-m.jpeg"
   },
   {
     "name": "Andrzej Liszka",
-    "location": { "lat": 51.1079, "lng": 17.0385 },
+    "location": { "lat": 51.1089, "lng": 17.0395 },
     "photo": "andrzej.png"
   },
   {
@@ -41,310 +41,321 @@
   },
   {
     "name": "Asdine El Hrychy",
-    "location": { "lat": 25.276987, "lng": 55.296249 },
+    "location": { "lat": 25.277987, "lng": 55.297249 },
     "photo": "asdine.jpg"
   },
   {
     "name": "Benjamin Paul Sabrin",
-    "location": { "lat": 30.2672, "lng": -97.7431 },
+    "location": { "lat": 30.2682, "lng": -97.7441 },
     "photo": "benjamin.jpg"
   },
   {
     "name": "Bob van Luijt",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "bob.png"
   },
   {
     "name": "Byron Voorbach",
-    "location": { "lat": 51.9939, "lng": 4.6703 },
+    "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "byron.png"
   },
   {
     "name": "Cari Liebenberg",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3696, "lng": 4.9061 },
     "photo": "cari.jpeg"
   },
   {
     "name": "Charles Pierse",
-    "location": { "lat": 53.3498, "lng": -6.2603 },
+    "location": { "lat": 53.3508, "lng": -6.2613 },
     "photo": "charles-pierse.png"
   },
   {
     "name": "Charlie Harr",
-    "location": { "lat": 42.3876, "lng": -71.0995 },
+    "location": { "lat": 42.3611, "lng": -71.0599 },
     "photo": "charles.png"
   },
   {
     "name": "Connor Shorten",
-    "location": { "lat": 42.3601, "lng": -71.0589 },
+    "location": { "lat": 42.3621, "lng": -71.0609 },
     "photo": "connor.png"
   },
   {
     "name": "Daniel Madalitso Phiri",
-    "location": { "lat": 48.8566, "lng": 2.3522 },
+    "location": { "lat": 48.8576, "lng": 2.3532 },
     "photo": "daniel.png"
   },
   {
     "name": "David Cuthbert",
-    "location": { "lat": 30.3322, "lng": -81.6557 },
+    "location": { "lat": 30.3332, "lng": -81.6567 },
     "photo": "dave.jpg"
   },
   {
     "name": "David Earl Street",
-    "location": { "lat": 32.0809, "lng": -81.0912 },
+    "location": { "lat": 32.0819, "lng": -81.0922 },
     "photo": "david.png"
   },
   {
     "name": "Dirk Kulawiak",
-    "location": { "lat": 48.1351, "lng": 11.582 },
+    "location": { "lat": 48.1361, "lng": 11.583 },
     "photo": "dirk.png"
   },
   {
     "name": "Duda Nogueira",
-    "location": { "lat": -17.8575, "lng": -41.5057 },
+    "location": { "lat": -19.916, "lng": -43.916 },
     "photo": "duda.jpg"
   },
   {
     "name": "Edward Schmuhl",
-    "location": { "lat": 52.52, "lng": 13.405 },
+    "location": { "lat": 52.521, "lng": 13.406 },
     "photo": "edward.png"
   },
   {
     "name": "Emma O'Keefe",
-    "location": { "lat": 53.3498, "lng": -6.2603 },
+    "location": { "lat": 53.3518, "lng": -6.2623 },
     "photo": "emma.png"
   },
   {
     "name": "Eric Caleb Macharia",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "eric.png"
   },
   {
     "name": "Erika Cardenas",
-    "location": { "lat": 42.3601, "lng": -71.0589 },
+    "location": { "lat": 42.3631, "lng": -71.0619 },
     "photo": "erika.jpg"
   },
   {
     "name": "Etienne Dilocker",
-    "location": { "lat": 51.1657, "lng": 10.4515 },
+    "location": { "lat": 51.1667, "lng": 10.4525 },
     "photo": "etienne.png"
   },
   {
     "name": "Femke Plantinga",
-    "location": { "lat": 41.3851, "lng": 2.1734 },
+    "location": { "lat": 41.3861, "lng": 2.1744 },
     "photo": "femke.png"
   },
   {
     "name": "Griffin James Foster",
-    "location": { "lat": 33.5301, "lng": -117.6351 },
+    "location": { "lat": 33.5311, "lng": -117.6361 },
     "photo": "griffin.jpg"
   },
   {
     "name": "Ieva Urbaite",
-    "location": { "lat": 40.9312, "lng": -73.8988 },
+    "location": { "lat": 40.7138, "lng": -74.007 },
     "photo": "ieva.png"
   },
   {
     "name": "Jenna Claunch Zarum",
-    "location": { "lat": 51.5074, "lng": -0.1278 },
+    "location": { "lat": 51.5084, "lng": -0.1288 },
     "photo": "jenna.png"
   },
   {
     "name": "Jeremy Price",
-    "location": { "lat": 35.2561, "lng": 139.1594 },
+    "location": { "lat": 35.2571, "lng": 139.1604 },
     "photo": "jeremy.png"
   },
   {
     "name": "Jerónimo Irazábal",
-    "location": { "lat": -35.4087, "lng": -59.4609 },
+    "location": { "lat": -34.6047, "lng": -58.3826 },
     "photo": "Jeronimo.jpeg"
   },
   {
     "name": "Jessie de Groot",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3686, "lng": 4.9051 },
     "photo": "jessie.png"
   },
   {
     "name": "Jobi George",
-    "location": { "lat": 37.3382, "lng": -121.8863 },
+    "location": { "lat": 37.3392, "lng": -121.8873 },
     "photo": "jobi.png"
   },
   {
     "name": "John Trengrove",
-    "location": { "lat": -27.4698, "lng": 153.0251 },
+    "location": { "lat": -27.4708, "lng": 153.0261 },
     "photo": "john.png"
   },
   {
     "name": "Jonathan Tuite",
-    "location": { "lat": 47.3297, "lng": -122.5801 },
+    "location": { "lat": 47.6072, "lng": -122.3331 },
     "photo": "jonathan-tuite.jpeg"
   },
   {
     "name": "José Luis Franco Arza",
-    "location": { "lat": 40.3082, "lng": -3.7346 },
+    "location": { "lat": 40.4178, "lng": -3.7048 },
     "photo": "Jose-Luis-Franco.jpeg"
   },
   {
     "name": "Joseph Stephen Green",
-    "location": { "lat": 33.4152, "lng": -111.8315 },
+    "location": { "lat": 33.4162, "lng": -111.8325 },
     "photo": "joseph-green.jpg"
   },
   {
     "name": "JP Hwang",
-    "location": { "lat": 55.9533, "lng": -3.1883 },
+    "location": { "lat": 55.9543, "lng": -3.1893 },
     "photo": "jp.png"
   },
-  { "name": "Kaviraj Kanagaraj", "location": { "lat": 52.0289, "lng": 5.089 } },
+  {
+    "name": "Kaviraj Kanagaraj",
+    "location": { "lat": 52.0917, "lng": 5.1224 },
+    "photo": "kaviraj.png"
+  },
   {
     "name": "Laura Ann Webster Stoye",
-    "location": { "lat": 39.9526, "lng": -75.1652 },
+    "location": { "lat": 39.9536, "lng": -75.1662 },
     "photo": "laura.jpg"
   },
   {
     "name": "Leonie Monigatti",
-    "location": { "lat": 50.1828, "lng": 8.4504 },
+    "location": { "lat": 50.1119, "lng": 8.6831 },
     "photo": "leonie.jpg"
   },
   {
     "name": "Loic Reyreaud",
-    "location": { "lat": 47.3769, "lng": 8.5417 },
+    "location": { "lat": 47.3779, "lng": 8.5427 },
     "photo": "loic.png"
   },
   {
     "name": "Marcin Antas",
-    "location": { "lat": 51.1079, "lng": 17.0385 },
+    "location": { "lat": 51.1089, "lng": 17.0395 },
     "photo": "marcin.png"
   },
   {
     "name": "Marion Nehring",
-    "location": { "lat": 52.3036, "lng": 13.2678 },
+    "location": { "lat": 52.521, "lng": 13.406 },
     "photo": "marion.jpg"
   },
   {
     "name": "Mariska Tunc",
-    "location": { "lat": 38.4237, "lng": 27.1428 },
+    "location": { "lat": 38.4247, "lng": 27.1438 },
     "photo": "mariska.jpg"
   },
   {
     "name": "Mike Hoppe",
-    "location": { "lat": 41.8781, "lng": -87.6298 },
+    "location": { "lat": 41.8791, "lng": -87.6308 },
     "photo": "Mike-Hoppe.jpeg"
   },
   {
     "name": "Mike Wyer",
-    "location": { "lat": 51.5074, "lng": -0.1278 },
+    "location": { "lat": 51.5094, "lng": -0.1298 },
     "photo": "mike.jpg"
   },
   {
     "name": "Mohamed Badawi",
-    "location": { "lat": 53.5511, "lng": 9.9937 },
+    "location": { "lat": 53.5521, "lng": 9.9947 },
     "photo": "Mohamed-Badawi.jpeg"
   },
   {
     "name": "Mohamed Shahin",
-    "location": { "lat": 53.0345, "lng": -7.2995 },
+    "location": { "lat": 53.0355, "lng": -7.3005 },
     "photo": "mohamed.jpeg"
   },
   {
     "name": "Nathan Wilkinson",
-    "location": { "lat": 40.514, "lng": -111.9702 },
+    "location": { "lat": 40.515, "lng": -111.9712 },
     "photo": "nate-wilkinson.jpg"
   },
   {
     "name": "Nick Olivetti",
-    "location": { "lat": 40.1543, "lng": -75.2218 },
+    "location": { "lat": 40.1553, "lng": -75.2228 },
     "photo": "nick.png"
   },
   {
     "name": "Parker Duckworth",
-    "location": { "lat": 35.4868, "lng": -80.8601 },
+    "location": { "lat": 35.4878, "lng": -80.8611 },
     "photo": "parker.png"
   },
   {
     "name": "Patrick Das",
-    "location": { "lat": 52.0705, "lng": 4.3007 },
+    "location": { "lat": 52.0715, "lng": 4.3017 },
     "photo": "patrick.jpg"
   },
   {
     "name": "Paul de Grijp",
-    "location": { "lat": 52.0705, "lng": 4.3007 },
+    "location": { "lat": 52.0725, "lng": 4.3027 },
     "photo": "paul-de-grijp.jpg"
   },
   {
     "name": "Philip Vollet",
-    "location": { "lat": 52.52, "lng": 13.405 },
+    "location": { "lat": 52.521, "lng": 13.406 },
     "photo": "philip.png"
   },
   {
     "name": "Rich Lapham",
-    "location": { "lat": 42.8619, "lng": -71.5242 },
+    "location": { "lat": 42.8629, "lng": -71.5252 }
+  },
+  {
+    "name": "Roberto Esposito",
+    "location": { "lat": 40.7602, "lng": 14.525 },
     "photo": "roberto-esposito.jpg"
   },
-  { "name": "Roberto Esposito", "location": { "lat": 40.7592, "lng": 14.524 } },
   {
     "name": "Scott Alexander",
-    "location": { "lat": 54.669, "lng": -5.9602 },
+    "location": { "lat": 54.67, "lng": -5.9612 },
     "photo": "scott-alexander.jpg"
   },
   {
     "name": "Sebastian Neira Farriol",
-    "location": { "lat": 39.4699, "lng": -0.3763 },
+    "location": { "lat": 39.4709, "lng": -0.3773 },
     "photo": "Sebastian-Farriol.jpg"
   },
   {
     "name": "Sebastian Stefan Witalec",
-    "location": { "lat": 49.8224, "lng": 19.0469 },
+    "location": { "lat": 50.2659, "lng": 19.0248 },
     "photo": "sebastian.png"
   },
   {
     "name": "Shan Micah Blackwood",
-    "location": { "lat": 51.5074, "lng": -0.3017 },
+    "location": { "lat": 51.5104, "lng": -0.1308 },
     "photo": "shan.jpg"
   },
   {
     "name": "Shukri Hasan",
-    "location": { "lat": 52.52, "lng": 13.405 },
+    "location": { "lat": 52.523, "lng": 13.407 },
     "photo": "shukri.png"
   },
   {
     "name": "Soham Maniar",
-    "location": { "lat": 34.0522, "lng": -118.2437 },
+    "location": { "lat": 34.0532, "lng": -118.2447 },
     "photo": "soham-maniar.jpg"
   },
   {
     "name": "Stefan Bogdan",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3696, "lng": 4.9061 },
     "photo": "stefan.png"
   },
   {
     "name": "Svitlana Smolianova",
-    "location": { "lat": 52.3676, "lng": 4.9041 },
+    "location": { "lat": 52.3706, "lng": 4.9071 },
     "photo": "svitlana.png"
   },
   {
     "name": "Thomas Benjamin Smith",
-    "location": { "lat": 53.4084, "lng": -2.1493 },
+    "location": { "lat": 53.4094, "lng": -2.1503 },
     "photo": "tommy.jpg"
   },
-  { "name": "Thomas Maurice", "location": { "lat": 50.6292, "lng": 3.0573 } },
+  {
+    "name": "Thomas Maurice",
+    "location": { "lat": 50.6302, "lng": 3.0583 },
+    "photo": "thomas.jpg"
+  },
   {
     "name": "Tony Le",
-    "location": { "lat": 47.5349, "lng": -122.0425 },
+    "location": { "lat": 47.6072, "lng": -122.3321 },
     "photo": "tony.jpeg"
   },
   {
     "name": "Victoria Slocum",
-    "location": { "lat": 52.52, "lng": 13.405 },
+    "location": { "lat": 52.523, "lng": 13.407 },
     "photo": "victoria.jpg"
   },
   {
     "name": "Weronika Krajcarz",
-    "location": { "lat": 50.2649, "lng": 19.0238 },
+    "location": { "lat": 50.2659, "lng": 19.0248 },
     "photo": "wera.png"
   },
   {
     "name": "Zain Hasan",
-    "location": { "lat": 43.8783, "lng": -79.1329 },
+    "location": { "lat": 43.8793, "lng": -79.1339 },
     "photo": "zain.png"
   }
 ]
