@@ -28,7 +28,7 @@ This can be done by setting the appropriate [environment variables](../config-re
 Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
 :::
 
-### Enable modules
+### Enable individual modules
 
 You can enable modules by specifying the list of modules in the `ENABLE_MODULES` variable. For example, this code enables the `text2vec-contextionary` module.
 
@@ -49,6 +49,19 @@ services:
     environment:
       ENABLE_MODULES: 'text2vec-huggingface,generative-cohere,qna-openai'
 ```
+
+### Enable all API-based modules
+
+You can enable all API-based modules by setting the `ENABLE_API_BASED_MODULES` variable to `true`. This will enable all API-based [model integrations](../model-providers/index.md), such as those for Anthropic, Cohere, OpenAI and so on by enabling the relevant modules. These modules are lightweight, so enabling them all will not significantly increase resource usage.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_API_BASED_MODULES: 'true'
+```
+
+The list of API-based modules can be found on the [model provider integrations page](../model-providers/index.md#api-based). You can also inspect the [source code](https://github.com/weaviate/weaviate/blob/main/adapters/handlers/rest/configure_api.go) where the list is defined.
 
 ### Module-specific variables
 
