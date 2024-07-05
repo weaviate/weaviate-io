@@ -253,7 +253,7 @@ const config = {
             image: 'og/default.jpg',
             announcementBar: {
                 id: 'announcement-bar-may2024',
-                content: `📆 FREE Weaviate Office Hours: Ask Duda anything! Mon, Jul 8 [Time] [TimeZone] ⏰ <a target="_blank" rel="noopener noreferrer" href="https://us02web.zoom.us/meeting/register/tZwof-quqjkrHNIPnbv01ao7F0QjWg77RMqj#/registration">Register here!</a>`,
+                content: `📆 FREE Weaviate Office Hours: Ask Duda anything! Mon, Jul 8 noon EDT / 9am PDT / 5pm BST ⏰ <a target="_blank" rel="noopener noreferrer" href="https://us02web.zoom.us/meeting/register/tZwof-quqjkrHNIPnbv01ao7F0QjWg77RMqj#/registration">Register here!</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
