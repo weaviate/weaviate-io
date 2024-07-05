@@ -5,18 +5,17 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
 
-
-:::note Important: Set the correct Weaviate version
-Make sure to set your desired Weaviate version.
-
-This can be done through either explicitly setting it as part of the `values.yaml` or through overwriting the default as outlined in the [deployment step](#deploy-install-the-helm-chart) below.
-:::
-
 :::tip End-to-end guide
 If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
 :::
 
 ## Requirements
+
+:::note Important: Set the correct Weaviate version
+A best practice for using Helm charts with Weaviate, is to explicitly set the Weaviate version.
+
+Set the version in your `values.yaml` file or [overwrite the default value](#deploy-install-the-helm-chart) during deployment.
+:::
 
 * A recent Kubernetes Cluster (at least version 1.23).
   * If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
