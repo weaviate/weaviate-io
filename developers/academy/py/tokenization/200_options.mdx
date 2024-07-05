@@ -127,7 +127,7 @@ The above tokenization methods work well for English, or other languages that us
 
 However, not all languages rely on spaces to define natural semantic boundaries. For languages like Japanese, Chinese or Korean, where words are not separated by spaces, you may need to use a different tokenization method.
 
-Weaviate provides `gse` and `trigram` (from `v1.24`) and `kagome_kr` (from `v1.26`) tokenization methods for this reason.
+Weaviate provides `gse` and `trigram` (from `v1.24`) and `kagome_kr` (from `v1.25.7`) tokenization methods for this reason.
 
 `gse` implements the "Jieba" algorithm, which is a popular Chinese text segmentation algorithm. `trigram` splits text into all possible trigrams, which can be useful for languages like Japanese.
 
