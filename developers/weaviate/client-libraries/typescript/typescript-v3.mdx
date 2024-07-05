@@ -254,7 +254,7 @@ type Article = {
 }
 
 const collection = client.collections.get<Article>('Article');
-await collection.insert({ // compiler error since 'body' field is missing in '.insert'
+await collection.data.insert({ // compiler error since 'body' field is missing in '.insert'
   title: 'TS is awesome!',
   wordcount: 9001
 })
