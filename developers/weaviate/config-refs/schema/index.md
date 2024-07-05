@@ -568,7 +568,7 @@ The `gse` tokenizer is not loaded by default to save resources. To use it, set t
 ### `kagome_kr` tokenization method
 
 :::caution Experimental feature
-Available starting in `v1.26`. This is an experimental feature. Use with caution.
+Available starting in `v1.25.7`. This is an experimental feature. Use with caution.
 :::
 
 For Korean text, we recommend use of the `kagome_kr` tokenization method. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text.
