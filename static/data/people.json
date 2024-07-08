@@ -16,18 +16,11 @@
   },
   {
     "name": "Adam Chan",
-    "title": "Developer Advocate",
+    "title": "Developer Growth Engineer",
     "photo": "adam.jpg",
-    "linkedin": "adam-jeremy-chan",
-    "twitter": "aj__chan",
+    "linkedin": "itsajchan",
+    "twitter": "itsajchan",
     "team": "developer-growth"
-  },
-  {
-    "name": "Albert Adeseye",
-    "title": "Technical Success Manager",
-    "photo": "albert.jpeg",
-    "linkedin": "albertadeseye",
-    "team": "customer-experience"
   },
   {
     "name": "Alea Abed",
@@ -153,7 +146,7 @@
   },
   {
     "name": "Dirk Kulawiak",
-    "title": "Core Engineer",
+    "title": "UX Engineering Tech Lead",
     "photo": "dirk.png",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
