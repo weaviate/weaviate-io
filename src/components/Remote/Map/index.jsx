@@ -82,7 +82,7 @@ export default function Map() {
 
   const handleLoad = () => {
     setCustomIcon({
-      url: '/img/site/weaviate-logo-icon.svg',
+      url: '/img/site/weaviate-pin-white-border.svg',
       scaledSize: new window.google.maps.Size(50, 50),
     });
   };
