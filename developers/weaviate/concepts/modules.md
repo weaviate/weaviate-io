@@ -24,7 +24,7 @@ This page explains what modules are, and what purpose they serve in Weaviate.
 
 ## Available module types
 
-This graphic displays the available modules for the latest Weaviate version (v||site.weaviate_version|). Modules are grouped into these categories:
+This graphic displays the available modules for the latest Weaviate version (||site.weaviate_version||) . Modules are grouped into these categories:
 
 - Vectorization modules
 - Vectorization and additional functionality modules
