@@ -1,6 +1,6 @@
 ---
-title: Product Quantization (compression)
-sidebar_position: 5
+title: Product Quantization
+sidebar_position: 15
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
 ---
