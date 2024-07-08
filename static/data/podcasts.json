@@ -1,5 +1,13 @@
 [
   {
+    "title": "Generative UIs with Lucas Negritto and Bob van Luijt - Weaviate Podcast #100!",
+    "description": "What is an AI-native application? This podcast explores this question with Weaviate Co-founder Bob van Luijt and Lucas Negritto. ",
+    "youtube": "x1i9pGWAh7s",
+    "date": "24-07-04",
+    "cover_image": "/img/podcasts/podcast-100.png",
+    "is_use_case": false
+  },
+  {
     "title": "ACORN with Liana Patel and Abdel Rodriguez - Weaviate Podcast #99!",
     "description": "Liana Patel is a Ph.D. student at Stanford University who is the lead author of ACORN, a breakthrough in Approximate Nearest Neighbor Search with Filters!",
     "youtube": "PxJ7FpbopKY",
