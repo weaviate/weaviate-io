@@ -21,7 +21,7 @@ For an in-depth tutorial on Kubernetes and Weaviate, see the Weaviate Academy co
 ## Weaviate Helm chart
 
 :::note Important: Set the correct Weaviate version
-A best practice for using Helm charts with Weaviate, is to explicitly set the Weaviate version.<br/><br/>
+As a best practice, explicitly set the Weaviate version in the Helm chart.<br/><br/>
 
 Set the version in your `values.yaml` file or [overwrite the default value](#deploy-install-the-helm-chart) during deployment.
 :::
@@ -65,22 +65,15 @@ The default configuration defines one Weaviate replica cluster.
 Local models, such as `text2vec-transformers`, `qna-transformers`, and  `img2vec-neural` are disabled by default. To enable a model, set the model's
 `enabled` flag to `true`.
 
-#### gRPC
-
-Starting in Helm chart version 17.0.0, the gRPC service is enabled by default. If you use an older Helm chart, edit `values.yaml` to enable gRPC.
-
 #### Resource limits
 
-Starting in Helm chart version 17.0.1,
-See the resource requests and limits in the example `values.yaml`. You can
-adjust them based on your expected load and the resources available on the
-cluster.
+Starting in Helm chart version 17.0.1, constraints on module resources are commented out to improve performance. To constrain resources for specific modules, add the constraints in your `values.yaml` file.
 
 #### gRPC service configuration
 
-The `grpcService` must be enabled to use the gRPC API. It is enabled by default from helm chart version `v17.0.0`.
+Starting in Helm chart version 17.0.0, the gRPC service is enabled by default. If you use an older Helm chart, edit your `values.yaml` file to enable gRPC.
 
-Check that the `enabled` field is set to `true` and the `type` field to `LoadBalancer`. This allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/grpc-performance-improvements).
+Check that the `enabled` field is set to `true` and the `type` field to `LoadBalancer`. These settings allow you to access the [gRPC API](/blog/grpc-performance-improvements) from outside the Kubernetes cluster.
 
 ```yaml
 grpcService:
@@ -132,6 +125,12 @@ OIDC authentication is also enabled, with WCD as the token issuer/identity provi
 For further, general documentation on authentication and authorization configuration, see:
 - [Authentication](../configuration/authentication.md)
 - [Authorization](../configuration/authorization.md)
+
+#### Run as non-root user
+
+By default, weaviate runs as the root user. To run as a non-privileged user, edit the settings in the `containerSecurityContext` section.
+
+The `init` container always runs as root to configure the node. Once the system is started, it run a non-privileged user if you have one configured.
 
 ### Deploy (install the Helm chart)
 
