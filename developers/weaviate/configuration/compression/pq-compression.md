@@ -28,7 +28,7 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vector-index.md) .
+To configure HNSW, see [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md) .
 
 ## Enable PQ compression
 
@@ -133,7 +133,7 @@ The next few sections work through these steps.
 
 ### 1. Configure an initial schema without PQ
 
-[Create a collection](../manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
+[Create a collection](/developers/weaviate/manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -193,124 +193,9 @@ The next few sections work through these steps.
 
 ### 2. Load training data
 
-[Add objects](../manage-data/import.mdx) that will be used to train PQ. Weaviate will use the greater of the training limit, or the collection size, to train PQ.
+[Add objects](/developers/weaviate/manage-data/import.mdx) that will be used to train PQ. Weaviate will use the greater of the training limit, or the collection size, to train PQ.
 
 We recommend loading a representative sample such that the trained centroids are representative of the entire dataset.
-
-<!-- TODO (Note added Apr 2024) - Remove the commented out code below on/after June 2024 if no complaints -->
-<!-- <details>
-
-  <summary>
-    Download sample data
-  </summary>
-
-  <div>
-    Use these scripts to get the data for these examples. If you are configuring your own system, you do not need to import this sample data.
-  </div>
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-      <FilteredTextBlock
-        text={PyCode}
-        startMarker="# START DownloadData"
-        endMarker="# END DownloadData"
-        language="py"
-      />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-      <FilteredTextBlock
-        text={PyCodeV3}
-        startMarker="# START DownloadData"
-        endMarker="# END DownloadData"
-        language="py"
-      />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v2">
-      <FilteredTextBlock
-        text={TSCodeLegacy}
-        startMarker="// START FetchData"
-        endMarker="// END FetchData"
-        language="ts"
-      />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
-
-</details>
-
-<details>
-
-  <summary>
-    Add data
-  </summary>
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-     <FilteredTextBlock
-       text={PyCode}
-       startMarker="# START LoadData"
-       endMarker="# END LoadData"
-       language="py"
-     />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-     <FilteredTextBlock
-       text={PyCodeV3}
-       startMarker="# START LoadData"
-       endMarker="# END LoadData"
-       language="py"
-     />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v2">
-     <FilteredTextBlock
-       text={TSCodeLegacy}
-       startMarker="// START LoadData"
-       endMarker="// END LoadData"
-       language="ts"
-     />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START LoadData"
-      endMarker="// END LoadData"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START LoadData"
-      endMarker="// END LoadData"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
-
-</details> -->
 
 ### 3. Enable PQ and create the codebook
 
@@ -497,9 +382,9 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
 
 ## Related pages
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
-- [Concepts: Vector index](../concepts/vector-index.md)
-- [Concepts: Vector quantization](../concepts/vector-quantization.md)
+- [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
+- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
 ## Questions and feedback
