@@ -222,7 +222,6 @@ For more, general information on running EFS with Fargate, we recommend reading 
     198.19.0.0/16
     ```
 
-
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
