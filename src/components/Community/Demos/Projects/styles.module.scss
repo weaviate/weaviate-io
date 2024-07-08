@@ -8,7 +8,7 @@
 }
 
 .title {
-  text-align: left;
+  text-align: center;
   padding: 1rem 0 2rem 0;
   margin: auto;
 
@@ -25,7 +25,8 @@
   flex-flow: wrap;
   align-items: flex-start;
   margin-bottom: 50px;
-  justify-content: space-around;
+  justify-content: space-between;
+  row-gap: 30px;
 }
 
 .heroGraphic {
