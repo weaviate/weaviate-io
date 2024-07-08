@@ -15,6 +15,14 @@
     font-style: normal;
     font-weight: 900;
   }
+
+  p {
+    width: 90%;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
 }
 
 .box {

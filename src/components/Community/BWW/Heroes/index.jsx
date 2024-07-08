@@ -9,11 +9,11 @@ export default function Heroes() {
         <div className={styles.title}>
           <h2>Grow with Weaviate</h2>
           <p>
-            Struggling to gain visibility for your AI project? Let us help you
-            in boosting your projects and campaigns. Whether you're a project
-            owner looking to maximize visibility or a showcase client aiming to
-            make an impact on social media, our program equips you with the
-            tools and support necessary for success.
+            Struggling to gain visibility for your AI project?<br></br>Let us
+            help you in boosting your projects and campaigns. Whether you're a
+            project owner looking to maximize visibility or a showcase client
+            aiming to make an impact on social media, our program equips you
+            with the tools and support necessary for success.
           </p>
         </div>
         <div className={styles.box}>

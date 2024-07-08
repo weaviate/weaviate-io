@@ -65,9 +65,9 @@ const ProjectFilter = () => {
           <h2>Weaviate Showcases</h2>
           <p>
             Discover the Latest AI Innovations: Dive into our comprehensive
-            database showcasing diverse Community Projects and Show cases
-            powered by Weaviate. Explore the forefront projects shaping the
-            future landscape of artificial intelligence
+            database showcasing diverse Community Projects and Showcases powered
+            by Weaviate. Explore the forefront projects shaping the future
+            landscape of artificial intelligence
           </p>
         </div>
         <div className={styles.searchContainer}>
