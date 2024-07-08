@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api';
 import styles from './styles.module.scss';
 import peopleData from '/data/map.json';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const containerStyle = {
   width: '100%',
@@ -75,6 +76,8 @@ export default function Map() {
   const [people, setPeople] = useState([]);
   const [selected, setSelected] = useState(null);
   const [customIcon, setCustomIcon] = useState(null);
+  const { siteConfig } = useDocusaurusContext();
+  const googleMapsApiKey = siteConfig.customFields.googleMapsApiKey;
 
   useEffect(() => {
     setPeople(peopleData);
@@ -91,10 +94,7 @@ export default function Map() {
     <div className={styles.mapsContainer}>
       <div className={styles.box}>
         <div className={styles.mapLogos}>
-          <LoadScript
-            googleMapsApiKey="AIzaSyCITMKf5AjdwRBY_U7LXkaljJN0olnbsck"
-            onLoad={handleLoad}
-          >
+          <LoadScript googleMapsApiKey={googleMapsApiKey} onLoad={handleLoad}>
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
