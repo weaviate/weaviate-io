@@ -6,7 +6,7 @@ image: og/docs/installation.jpg
 ---
 
 :::tip End-to-end guide
-For an in-depth tutorial on Kubernetes and Weaviate, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
+For a tutorial on how to use MiniKube to deploy Weaviate on Kubernetes, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md).
 :::
 
 ## Requirements
