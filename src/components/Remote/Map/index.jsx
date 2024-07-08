@@ -6,7 +6,7 @@ import {
   InfoWindow,
 } from '@react-google-maps/api';
 import styles from './styles.module.scss';
-import peopleData from '/data/map.json'; // adjust the path as necessary
+import peopleData from '/data/map.json';
 
 const containerStyle = {
   width: '100%',
@@ -17,6 +17,59 @@ const center = {
   lat: 42.3601,
   lng: -71.0589,
 };
+
+const mapStyles = [
+  {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      { saturation: '32' },
+      { lightness: '-3' },
+      { visibility: 'on' },
+      { weight: '1.18' },
+    ],
+  },
+  {
+    featureType: 'administrative',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'landscape',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'landscape.man_made',
+    elementType: 'all',
+    stylers: [{ saturation: '-70' }, { lightness: '14' }],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'all',
+    stylers: [{ saturation: '100' }, { lightness: '-14' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }, { lightness: '12' }],
+  },
+];
 
 export default function Map() {
   const [people, setPeople] = useState([]);
@@ -29,8 +82,8 @@ export default function Map() {
 
   const handleLoad = () => {
     setCustomIcon({
-      url: '/img/site/weaviate-logo-icon.svg', // Path to your custom icon
-      scaledSize: new window.google.maps.Size(50, 50), // Scale size (width, height)
+      url: '/img/site/weaviate-logo-icon.svg',
+      scaledSize: new window.google.maps.Size(50, 50),
     });
   };
 
@@ -46,6 +99,7 @@ export default function Map() {
               mapContainerStyle={containerStyle}
               center={center}
               zoom={2}
+              options={{ styles: mapStyles }}
             >
               {people.map((person, index) => (
                 <Marker
