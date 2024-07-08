@@ -231,6 +231,11 @@
   display: flex;
   gap: 14px;
   justify-content: flex-end;
+
+  @media screen and (max-width: 500px) {
+    gap: 10px;
+    justify-content: center;
+  }
 }
 
 .cardButton {
@@ -255,6 +260,10 @@
   :hover {
     color: #000;
   }
+
+  @media screen and (max-width: 500px) {
+    width: 5.71756rem;
+  }
 }
 
 .top {
@@ -264,6 +273,7 @@
   border-radius: 1.37rem;
   background: #fff !important;
   box-shadow: 0px 2.923px 21.92px 0px rgba(0, 0, 0, 0.25);
+  width: 6.71756rem;
 }
 
 .videoButton {

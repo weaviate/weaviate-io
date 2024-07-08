@@ -81,7 +81,7 @@
 }
 
 .bigCard {
-  height: 29.0625rem;
+  height: 30.0625rem;
 }
 
 .cardHeader {
@@ -234,6 +234,11 @@
   display: flex;
   gap: 14px;
   justify-content: flex-end;
+
+  @media screen and (max-width: 500px) {
+    gap: 10px;
+    justify-content: center;
+  }
 }
 
 .cardButton {
@@ -258,6 +263,10 @@
   :hover {
     color: #000;
   }
+
+  @media screen and (max-width: 500px) {
+    width: 5.71756rem;
+  }
 }
 
 .top {
@@ -267,6 +276,7 @@
   border-radius: 1.37rem;
   background: #fff;
   box-shadow: 0px 2.923px 21.92px 0px rgba(0, 0, 0, 0.25);
+  width: 6.71756rem;
 }
 
 .videoButton {
@@ -305,8 +315,12 @@
   max-width: 46.375rem;
   width: 100%;
   border-radius: 1.25rem;
-  background: center/ contain no-repeat url('/img/site/screenshot-verba.png')
-    #fef8f7;
+  background: #ececec;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    margin: 20px 0px 0px 0px;
+  }
 }
 
 .verbaVideo {
@@ -314,6 +328,10 @@
   max-width: 46.375rem;
   width: 100%;
   border-radius: 1.25rem;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
 }
 
 .healthVideo {
@@ -321,17 +339,28 @@
   max-width: 46.375rem;
   width: 100%;
   border-radius: 1.25rem;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
 }
 
 .health {
-  height: 29.0625rem;
-  background: center/ contain no-repeat
-    url('/img/site/screenshot-healthsearch.png') #15134b;
+  height: 30.0625rem;
+  background: #15134b;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
 }
 
 .movie {
-  height: 29.0625rem;
+  height: 30.0625rem;
   background: #191465;
+
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
 }
 .buttons {
   margin-top: 70px;
