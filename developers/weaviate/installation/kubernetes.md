@@ -12,7 +12,7 @@ For a tutorial on how to use MiniKube to deploy Weaviate on Kubernetes, see the 
 ## Requirements
 
 * A recent Kubernetes Cluster (at least version 1.23). If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
-* The cluster needs to be able to provision `PersistentVolumes` through `PersistentVolumeClaims`.
+* The cluster needs to be able to provision `PersistentVolumes` using Kubernetes' `PersistentVolumeClaims`.
 * A file system that can be mounted read-write by a single node to allow Kubernetes' `ReadWriteOnce` access mode.
 * Helm version v3 or higher. The current Helm chart is version `||site.helm_version||`.
 
