@@ -32,7 +32,7 @@ After the segments are created, there is a training step to calculate `centroids
 
 Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory consumption significantly. Imagine a collection where each vector embedding has 768 four byte elements. Before PQ compression, each vector embeddingrequires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
 
-To enable PQ compression, see [Enable PQ compression](/developers/weaviate/configuration/pq-compression#enable-pq-compression)
+To enable PQ compression, see [Enable PQ compression](/developers/weaviate/configuration/compression/pq-compression#enable-pq-compression)
 
 ### Segments
 
@@ -48,7 +48,7 @@ Below is a list segment values for common vectorizer modules:
 
 ### PQ compression process
 
-PQ has a training stage where it creates a codebook. We recommend using 10,000 to 100,000 records per shard to create the codebook. The training step can be triggered manually or automatically. See [Configuration: Product quantization](../configuration/pq-compression.md) for more details.
+PQ has a training stage where it creates a codebook. We recommend using 10,000 to 100,000 records per shard to create the codebook. The training step can be triggered manually or automatically. See [Configuration: Product quantization](../configuration/compression/pq-compression.md) for more details.
 
 When the training step is triggered, a background job converts the index to the compressed index. While the conversion is running, the index is read-only. Shard status returns to `READY` when the conversion finishes.
 
@@ -65,7 +65,7 @@ Alternatively, there is also the `tile` encoder. This encoder is currently exper
 With product quantization, distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
 
 :::tip
-Learn more about [how to configure product quantization in Weaviate](../configuration/pq-compression.md).<br/><br/>
+Learn more about [how to configure product quantization in Weaviate](../configuration/compression/pq-compression.md).<br/><br/>
 You might be also interested in our blog post [How to Reduce Memory Requirements by up to 90%+ using Product Quantization](https://weaviate.io/blog/pq-rescoring).
 :::
 
@@ -86,7 +86,7 @@ When using BQ, Weaviate will conditionally over-fetch and then re-score the resu
 This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector embedding. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
 
 :::tip
-Learn more about [how to configure binary quantization in Weaviate](../configuration/bq-compression.md).<br/><br/>
+Learn more about [how to configure binary quantization in Weaviate](../configuration/compression/bq-compression.md).<br/><br/>
 You might be also interested in our blog post [32x Reduced Memory Usage With Binary Quantization](https://weaviate.io/blog/binary-quantization).
 :::
 
@@ -117,8 +117,8 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 - [Concepts: Vector Indexing](./vector-index.md)
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
-- [How to configure: Binary quantization (compression)](../configuration/bq-compression.md)
-- [How to configure: Product quantization (compression)](../configuration/pq-compression.md)
+- [How to configure: Binary quantization (compression)](../configuration/compression/bq-compression.md)
+- [How to configure: Product quantization (compression)](../configuration/compression/pq-compression.md)
 - [Weaviate Academy: 250 Vector Compression](../../academy/py/compression/index.md)
 :::
 
