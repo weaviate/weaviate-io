@@ -18,14 +18,7 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 
 [Scalar quantization (SQ)](/developers/weaviate/concepts/vector-quantization#scalar-quantization) is a vector compression technique that can reduce the size of a vector.
 
-To use SQ, enable it as shown below and add data to the collection.
-
-<details>
-  <summary>Additional information</summary>
-
-- How to [set the index type](/developers/weaviate/manage-data/collections.mdx#ve)
-
-</details>
+To use SQ, enable it in the collection definition, then add data to the collection.
 
 ## Basic configuration
 
