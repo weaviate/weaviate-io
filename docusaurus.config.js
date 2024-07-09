@@ -574,6 +574,10 @@ const config = {
                                 href: '/community/build-with-weaviate',
                             },
                             {
+                                label: 'Demos',
+                                href: '/community/demos',
+                            },
+                            {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },
