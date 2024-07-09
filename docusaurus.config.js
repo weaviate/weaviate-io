@@ -620,6 +620,10 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
+                                label: 'Remote',
+                                to: '/company/remote',
+                            },
+                            {
                                 label: 'Playbook',
                                 to: 'company/playbook',
                             },
