@@ -32,7 +32,7 @@ async function enableSQ() {
     class: 'MyCollection',
     vectorizer: 'text2vec-openai', // Can be any vectorizer
     // highlight-start
-    vectorIndexType: 'flat',
+    vectorIndexType: 'hnsw',
     vectorIndexConfig: {
       SQ: {
         enabled: true,
@@ -62,7 +62,7 @@ async function SQWithOptions() {
   const classObj = {
     class: 'MyCollection',
     vectorizer: 'text2vec-openai', // Can be any vectorizer
-    vectorIndexType: 'flat',
+    vectorIndexType: 'hnsw',
     vectorIndexConfig: {
       // highlight-start
       SQ: {
