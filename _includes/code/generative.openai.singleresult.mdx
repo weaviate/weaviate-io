@@ -45,7 +45,7 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate, { ApiKey } from 'weaviate-ts-client';
@@ -86,16 +86,20 @@ package main
 import (
   "context"
   "fmt"
+  "os"
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
   "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
 )
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
+    Host:  os.Getenv("WEAVIATE_INSTANCE_URL"),
     Scheme:  "https",
-    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
+    AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
+    Headers: map[string]string{"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),},
   }
+
   client, err := weaviate.NewClient(cfg)
   if err != nil {
     panic(err)
@@ -104,7 +108,7 @@ func main() {
 
   fields := []graphql.Field{
     {Name: "title"},
-    {Name: "summary"},
+    {Name: "content"},
   }
 
   concepts := []string{"Italian food"}
@@ -112,14 +116,14 @@ func main() {
     WithConcepts(concepts)
 
   // highlight-next-line
-  gs := graphql.NewGenerativeSearch().SingleResult("\"Describe the following as a Facebook Ad: {summary}\"")
+  generativeSearchPrompt := graphql.NewGenerativeSearch().SingleResult("Describe the following as a Facebook Ad: {summary}")
 
   result, err := client.GraphQL().Get().
     WithClassName("Article").
     WithFields(fields...).
     WithNearText(nearText).
     // highlight-next-line
-    withGenerativeSearch(generativeSearch).
+    WithGenerativeSearch(generativeSearchPrompt).
     WithLimit(5).
     Do(ctx)
 

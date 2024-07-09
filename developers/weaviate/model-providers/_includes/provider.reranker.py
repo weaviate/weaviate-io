@@ -13,20 +13,32 @@ client = weaviate.connect_to_local(
     }
 )
 
-# START RerankerCohere
+# START RerankerCohereBasic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.cohere()
+    # highlight-end
+)
+# END RerankerCohereBasic
+
+# Clean up
+client.collections.delete("DemoCollection")
+
+# START RerankerCohereCustomModel
 from weaviate.classes.config import Configure
 
 client.collections.create(
     "DemoCollection",
     # highlight-start
     reranker_config=Configure.Reranker.cohere(
-        # # This parameter is optional
-        # model="rerank-multilingual-v3.0"
+        model="rerank-english-v3.0"
     )
     # highlight-end
-    # Additional parameters not shown
 )
-# END RerankerCohere
+# END RerankerCohereCustomModel
 
 # Clean up
 client.collections.delete("DemoCollection")

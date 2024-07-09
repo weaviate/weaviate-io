@@ -89,7 +89,7 @@ marion:
   image_url: /img/people/icon/marion.jpg
 pete:
   name: Peter Schramm
-  title: WCS Tech Lead
+  title: WCD Tech Lead
   url: https://github.com/glockenbeat
   image_url: /img/people/icon/pete.jpg
 sebastian:
@@ -157,7 +157,7 @@ victoria:
   image_url: /img/people/icon/victoria.png
 adam:
   name: Adam Chan
-  title: Developer Relations Engineer
+  title: Developer Growth Engineer
   url: https://www.linkedin.com/in/itsajchan/
   image_url: /img/people/icon/adam.png
 asdine:
@@ -180,3 +180,8 @@ charles:
   title: AI Engineer
   url: https://twitter.com/charles_irl
   image_url: /img/people/icon/charles-modal.png
+randy:
+  name: Randy Fong
+  title: Senior iOS Developer
+  url: https://www.linkedin.com/in/randy-fong-1530545/
+  image_url: /img/people/icon/randy.jpeg

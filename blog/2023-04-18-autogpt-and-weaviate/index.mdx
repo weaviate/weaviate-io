@@ -64,7 +64,7 @@ Auto-GPT has both a short-term and long-term memory. By connecting to a vector d
 
 Here is the [codebase](https://github.com/Significant-Gravitas/Auto-GPT/blob/v0.3.1/autogpt/memory/weaviate.py) to see how Weaviate is integrated in Auto-GPT.
 
-The easiest way to use Weaviate with Auto-GPT is with a [WCS](https://console.weaviate.cloud) instance. Create a Sandbox instance by following [these steps](https://weaviate.io/developers/wcs/quickstart#create-a-weaviate-cluster), and install Auto-GPT using the latest instructions from the repo, with the following notes in mind.
+The easiest way to use Weaviate with Auto-GPT is with a [WCD](https://console.weaviate.cloud) instance. Create a Sandbox instance by following [these steps](https://weaviate.io/developers/wcs/quickstart#create-a-weaviate-cluster), and install Auto-GPT using the latest instructions from the repo, with the following notes in mind.
 
 Notes:
 - At the time of writing, it suggested using the [latest stable release](https://github.com/Significant-Gravitas/Auto-GPT/releases/latest) only, rather than the `master` branch.
@@ -92,7 +92,7 @@ docker build -t autogpt .
 docker run -it --env-file=./.env -v $PWD/auto_gpt_workspace:/app/auto_gpt_workspace autogpt
 ```
 
-The above steps will allow Auto-GPT to use the WCS instance as the memory backend, allowing it to store and retrieve information as required.
+The above steps will allow Auto-GPT to use the WCD instance as the memory backend, allowing it to store and retrieve information as required.
 
 We note using a local instance of Weaviate with Docker is a little more complicated. You will need to modify the `Docker Compose` file such that the Weaviate container and the Auto-GPT container are able to communicate with each other.
 

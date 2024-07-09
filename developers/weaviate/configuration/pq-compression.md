@@ -49,7 +49,7 @@ For new collections, use AutoPQ. AutoPQ automates triggering of the PQ training 
 AutoPQ requires asynchronous indexing.
 
 - **Open-source Weaviate users**: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
-- [**Weaviate Cloud (WCD)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
+- [**Weaviate Cloud (WCD)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCD Console and restart your Weaviate instance.
 
 
 ### 2. Configure PQ
@@ -154,7 +154,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS Client v3">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START InitClassDef"
@@ -227,7 +227,7 @@ We recommend loading a representative sample such that the trained centroids are
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START FetchData"
@@ -282,7 +282,7 @@ We recommend loading a representative sample such that the trained centroids are
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START LoadData"

@@ -85,9 +85,11 @@ check_results(result)
 
 # Actual client instantiation
 client = weaviate.Client(
-    url=os.getenv("WCS_EDU_DEMO_URL"),
-    auth_client_secret=weaviate.auth.AuthApiKey(os.getenv("WCS_EDU_DEMO_RO_KEY")),
-    additional_headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+    url=os.getenv("WCD_EDU_DEMO_URL"),
+    auth_client_secret=weaviate.auth.AuthApiKey(os.getenv("WCD_EDU_DEMO_RO_KEY")),
+    additional_headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    },
 )
 
 response = client.query.raw(

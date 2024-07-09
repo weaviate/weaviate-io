@@ -5,7 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS.
+Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCD.
 
 ## Installation methods
 
@@ -35,7 +35,7 @@ import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
 When you try upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 
 ## Related pages
-- [Connect to Weaviate](../starter-guides/connect.mdx)
+- [Connect to Weaviate](../connections)
 - [Weaviate Quickstart](../quickstart/index.md)
 - [Weaviate Cloud Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)

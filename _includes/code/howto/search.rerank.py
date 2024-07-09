@@ -4,9 +4,9 @@ import weaviate
 from weaviate.auth import AuthApiKey
 import os
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
         "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),

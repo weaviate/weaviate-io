@@ -4,8 +4,6 @@ sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
-
 
 ## Introduction
 
@@ -93,33 +91,9 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
-- `description`
-- `invertedIndexConfig`
-  - `bm25`
-    - `b`
-    - `k1`
-  - `cleanupIntervalSeconds`
-  - `stopwords`
-    - `additions`
-    - `preset`
-    - `removals`
-- `replicationConfig`
-  - `factor`  (not mutable in `v1.25`)
-- `vectorIndexConfig`
-  - `dynamicEfFactor`
-  - `dynamicEfMin`
-  - `dynamicEfMax`
-  - `flatSearchCutoff`
-  - `skip`
-  - `vectorCacheMaxObjects`
-  - `pq`
-    - `centroids`
-    - `enabled`
-    - `segments`
-    - `trainingLimit`
-    - `encoder`
-      - `type`
-      - `distribution`
+import CollectionMutableParameters from '/_includes/collection-mutable-parameters.mdx';
+
+<CollectionMutableParameters/>
 
 </details>
 
@@ -179,16 +153,22 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### `class`
 
-This is the name of the collection. The name is to start with a **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
+The `class` is the name of the collection.
 
-- `dataType: ["text"]` is `text`
+The collection name starts with an upper case letter. The upper case letter distinguishes collection names from primitive data types when the name is used as a property value.
+
+Consider these examples that use the `dataType` property:
+
+- `dataType: ["text"]` is a `text` data type.
 - `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
-After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
+After the first letter, collection names may use any GraphQL-compatible characters.
 
-import initialCaps from '/_includes/schemas/initial-capitalization.md'
+The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
-<initialCaps />
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
 
 ### `description`
 
@@ -578,6 +558,28 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 
 For Japanese and Chinese text, we recommend use of `gse` or `trigram` tokenization methods. These methods work better with these languages than the other methods as these languages are not easily able to be tokenized using whitespaces.
 
+The `gse` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_GSE` to `true` on the Weaviate instance.
+
+`gse` tokenization examples:
+
+- `"素早い茶色の狐が怠けた犬を飛び越えた"`: `["素早", "素早い", "早い", "茶色", "の", "狐", "が", "怠け", "けた", "犬", "を", "飛び", "飛び越え", "越え", "た", "素早い茶色の狐が怠けた犬を飛び越えた"]`
+- `"すばやいちゃいろのきつねがなまけたいぬをとびこえた"`: `["すばや", "すばやい", "やい", "いち", "ちゃ", "ちゃい", "ちゃいろ", "いろ", "のき", "きつ", "きつね", "つね", "ねが", "がな", "なま", "なまけ", "まけ", "けた", "けたい", "たい", "いぬ", "を", "とび", "とびこえ", "こえ", "た", "すばやいちゃいろのきつねがなまけたいぬをとびこえた"]`
+
+### `kagome_kr` tokenization method
+
+:::caution Experimental feature
+Available starting in `v1.25.7`. This is an experimental feature. Use with caution.
+:::
+
+For Korean text, we recommend use of the `kagome_kr` tokenization method. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text.
+
+The `kagome_kr` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_KAGOME_KR` to `true` on the Weaviate instance.
+
+`kagome_kr` tokenization examples:
+
+- `"아버지가방에들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"아버지가 방에 들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"결정하겠다"`: `["결정", "하", "겠", "다"]`
 
 ### `indexFilterable` and `indexSearchable`
 

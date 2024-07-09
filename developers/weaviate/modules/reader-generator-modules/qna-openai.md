@@ -5,6 +5,12 @@ image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
 
+:::caution `generative-openai` recommended for new projects
+For new projects, we recommend using the [generative-openai](./generative-openai.md) module instead of `qna-openai`. This uses older models such as `gpt-3.5-turbo-instruct` which is older than model such as `gpt-4` used in `generative-openai`.
+
+Additionally, the `generative-openai` module is more versatile and can be used for a wider range of use cases, not limited to question answering. Since `gpt-3.5-turbo-instruct` is not necessarily strictly trained for question answering, there are limited use cases where `qna-openai` is the best choice.
+:::
+
 
 ## In short
 
@@ -63,7 +69,7 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file (Weaviate open source only)

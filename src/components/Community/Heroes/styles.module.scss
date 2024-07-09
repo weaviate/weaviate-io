@@ -39,6 +39,7 @@
   padding: 30px;
   border-radius: 0.9375rem;
   gap: 8px;
+  margin: 30px 25px;
 
   h2 {
     color: #130c49;
@@ -61,6 +62,7 @@
   @media screen and (max-width: 600px) {
     height: auto;
     width: 100%;
+    margin: 0px;
   }
 }
 
@@ -163,4 +165,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: 157.33%; /* 1.57331rem */
+}
+
+.heroTitle {
+  text-align: center;
 }

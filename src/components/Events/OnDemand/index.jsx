@@ -34,6 +34,12 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>JS June - Build AI Apps with Weaviate!</p>
+            <Link to="https://events.weaviate.io/js-june-24">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

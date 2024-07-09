@@ -1,6 +1,8 @@
 # FilterExampleBasic
 import weaviate
 from weaviate.classes.query import MetadataQuery
+from weaviate.collections import Collection
+from typing import List
 
 # END FilterExampleBasic
 
@@ -21,12 +23,16 @@ collection = client.collections.get("TokenizationDemo")
 
 # FilterExampleBasic
 # Get property names
-property_names = [p.name for p in collection.config.get().properties]
+property_names = list()
+for p in collection.config.get().properties:
+    property_names.append(p.name)
 
 query_strings = ["<YOUR_QUERY_STRING>"]
 
 
-def search_demo(query_strings: list[str]):
+def search_demo(collection: Collection, property_names: List[str], query_strings: List[str]):
+    from weaviate.classes.query import MetadataQuery
+
     for query_string in query_strings:
         print("\n" + "=" * 40 + f"\nBM25 search results for: '{query_string}'" + "\n" + "=" * 40)
         for property_name in property_names:
@@ -43,13 +49,13 @@ def search_demo(query_strings: list[str]):
                     print(obj.properties[property_name], round(obj.metadata.score, 3))
 
 
-search_demo(query_strings)
+search_demo(collection, property_names, query_strings)
 # END FilterExampleBasic
 
 client.connect()
 
 # ClarkExample
-search_demo(["clark", "Clark", "clark:", "Clark:", "lois clark", "clark lois"])
+search_demo(collection, property_names, ["clark", "Clark", "clark:", "Clark:", "lois clark", "clark lois"])
 # END ClarkExample
 
 """
@@ -103,7 +109,7 @@ Lois & Clark: The New Adventures of Superman 0.48
 """
 
 # MouseExample
-search_demo(["computer mouse", "a computer mouse", "the computer mouse", "blue computer mouse"])
+search_demo(collection, property_names, ["computer mouse", "a computer mouse", "the computer mouse", "blue computer mouse"])
 # END MouseExample
 
 """
@@ -200,7 +206,7 @@ computer mouse pad 0.849
 """
 
 # UnderscoreExample
-search_demo(["variable_name"])
+search_demo(collection, property_names, ["variable_name"])
 # END UnderscoreExample
 
 """

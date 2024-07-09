@@ -17,9 +17,9 @@ const client: WeaviateClient = weaviate.client({
 });
 // END DockerInstantiationExample
 
-if (client.schema.exists('YourCollection')) {
+if (client.schema.exists('MyCollection')) {
   console.log('Deleting class');
-  await client.schema.classDeleter().withClassName('YourCollection').do();
+  await client.schema.classDeleter().withClassName('MyCollection').do();
 }
 
 // ==============================
@@ -29,7 +29,7 @@ if (client.schema.exists('YourCollection')) {
 // START EnableBQ
 async function enableBQ() {
   const classObj = {
-    class: 'YourCollection',
+    class: 'MyCollection',
     vectorizer: 'text2vec-openai', // Can be any vectorizer
     // highlight-start
     vectorIndexType: 'flat',
@@ -48,9 +48,9 @@ async function enableBQ() {
 await enableBQ();
 // END EnableBQ
 
-if (client.schema.exists('YourCollection')) {
+if (client.schema.exists('MyCollection')) {
   console.log('Deleting class');
-  await client.schema.classDeleter().withClassName('YourCollection').do();
+  await client.schema.classDeleter().withClassName('MyCollection').do();
 }
 
 // ==============================
@@ -60,7 +60,7 @@ if (client.schema.exists('YourCollection')) {
 // START BQWithOptions
 async function bqWithOptions() {
   const classObj = {
-    class: 'YourCollection',
+    class: 'MyCollection',
     vectorizer: 'text2vec-openai', // Can be any vectorizer
     vectorIndexType: 'flat',
     vectorIndexConfig: {

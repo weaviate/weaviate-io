@@ -1,5 +1,5 @@
 ---
-title: Embeddings (Text)
+title: Text Embeddings
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -88,7 +88,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START GoogleInstantiation"
@@ -97,7 +97,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START GoogleInstantiation"
@@ -110,30 +110,59 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Google AI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Google AI embedding model by setting the vectorizer as follows:
+
+Note that the required parameters differ between Vertex AI and AI Studio.
+
+The [default model](#available-models) is used if no model is specified.
+
+### Vertex AI
+
+Vertex AI users must provide the Google Cloud project ID in the vectorizer configuration.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerGoogle"
-      endMarker="# END BasicVectorizerGoogle"
+      startMarker="# START BasicVectorizerGoogleVertex"
+      endMarker="# END BasicVectorizerGoogleVertex"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerGoogle"
-      endMarker="// END BasicVectorizerGoogle"
+      startMarker="// START BasicVectorizerGoogleVertex"
+      endMarker="// END BasicVectorizerGoogleVertex"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
+### AI Studio
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicVectorizerGoogleStudio"
+      endMarker="# END BasicVectorizerGoogleStudio"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicVectorizerGoogleStudio"
+      endMarker="// END BasicVectorizerGoogleStudio"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -141,7 +170,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -150,7 +179,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
@@ -179,7 +208,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -188,7 +217,7 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
@@ -211,7 +240,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -220,7 +249,7 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -243,7 +272,7 @@ The following examples show how to configure Google AI-specific options.
 <!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FullVectorizerGoogle"
@@ -252,7 +281,7 @@ The following examples show how to configure Google AI-specific options.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START FullVectorizerGoogle"

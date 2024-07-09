@@ -22,12 +22,12 @@ assert client.is_ready()
 # ============================
 
 # Clean slate
-client.collections.delete("YourCollection")
+client.collections.delete("MyCollection")
 
 from weaviate.classes.config import Configure
 
 client.collections.create(
-    "YourCollection",
+    "MyCollection",
     vectorizer_config=Configure.Vectorizer.none()
 )
 
@@ -35,12 +35,12 @@ client.collections.create(
 # ===== Basic batch import =====
 # ==============================
 
-# BasicBatchImportExample
+# START BasicBatchImportExample
 data_rows = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
 
-collection = client.collections.get("YourCollection")
+collection = client.collections.get("MyCollection")
 
 # highlight-start
 with collection.batch.dynamic() as batch:
@@ -85,7 +85,7 @@ data = [
     ),
 ]
 
-collection = client.collections.get("YourCollection")  # Replace with your collection name
+collection = client.collections.get("MyCollection")  # Replace with your collection name
 collection.data.insert_many(data)
 # END InsertManytWithIDExample
 
@@ -125,7 +125,7 @@ data = [
     ),
 ]
 
-collection = client.collections.get("YourCollection")  # Replace with your collection name
+collection = client.collections.get("MyCollection")  # Replace with your collection name
 collection.data.insert_many(data)
 # END InsertManyWithVectorExample
 
@@ -149,15 +149,15 @@ client.collections.delete(collection.name)
 # ===== Insert many with custom ID =====
 # =======================================
 
-# BatchImportWithIDExample
+# START BatchImportWithIDExample
 # highlight-start
 from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
-# BatchImportWithIDExample
+# START BatchImportWithIDExample
 data_rows = [{"title": f"Object {i+1}"} for i in range(5)]
 
-collection = client.collections.get("YourCollection")
+collection = client.collections.get("MyCollection")
 
 # highlight-start
 with collection.batch.dynamic() as batch:
@@ -181,11 +181,11 @@ client.collections.delete(collection.name)
 # ===== Batch import with custom vector =====
 # ===========================================
 
-# BatchImportWithVectorExample
+# START BatchImportWithVectorExample
 data_rows = [{"title": f"Object {i+1}"} for i in range(5)]
 vectors = [[0.1] * 1536 for i in range(5)]
 
-collection = client.collections.get("YourCollection")
+collection = client.collections.get("MyCollection")
 
 # highlight-start
 with collection.batch.dynamic() as batch:
@@ -208,12 +208,12 @@ client.collections.delete(collection.name)
 # ===========================================
 
 # Clean slate
-client.collections.delete("YourCollection")
+client.collections.delete("MyCollection")
 
 from weaviate.classes.config import Configure, Property, DataType
 
 client.collections.create(
-    name="YourCollection",
+    name="MyCollection",
     properties=[
         Property(name="title", data_type=DataType.TEXT),
         Property(name="body", data_type=DataType.TEXT),
@@ -230,7 +230,7 @@ client.collections.create(
     ]
 )
 
-# BatchImportWithNamedVectors
+# START BatchImportWithNamedVectors
 data_rows = [{
     "title": f"Object {i+1}",
     "body": f"Body {i+1}"
@@ -239,7 +239,7 @@ data_rows = [{
 title_vectors = [[0.12] * 1536 for _ in range(5)]
 body_vectors = [[0.34] * 1536 for _ in range(5)]
 
-collection = client.collections.get("YourCollection")
+collection = client.collections.get("MyCollection")
 
 # highlight-start
 with collection.batch.dynamic() as batch:
@@ -427,8 +427,8 @@ with client.batch.fixed_size(batch_size=200) as batch:
         for chunk in csv_iterator:
             for index, row in chunk.iterrows():
                 properties = {
-                    "question": obj["Question"],
-                    "answer": obj["Answer"],
+                    "question": row["Question"],
+                    "answer": row["Answer"],
                 }
                 batch.add_object(
                     collection="JeopardyQuestion",

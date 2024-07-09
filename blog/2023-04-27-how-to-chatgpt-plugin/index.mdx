@@ -418,7 +418,7 @@ Once we have tested the plugin locally to our satisfaction we can deploy remotel
 
 2. Add a [dockerfile](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/Dockerfile). This dockerfile is just a modified version the file [template provided by OpenAI](https://github.com/openai/chatgpt-retrieval-plugin/blob/main/Dockerfile) and will be used to setup your environment remotely and starts up the server.
 
-3. Update the plugin manifest config files `ai-plugin.json` and `openapi.yaml` to now [use authentication](https://platform.openai.com/docs/plugins/getting-started/plugin-manifest) in the form of a bearer token and your newly created WCS instance instead of localhost.
+3. Update the plugin manifest config files `ai-plugin.json` and `openapi.yaml` to now [use authentication](https://platform.openai.com/docs/plugins/getting-started/plugin-manifest) in the form of a bearer token and your newly created WCD instance instead of localhost.
 
 4. Update the app to make sure all communication is authenticated.
 

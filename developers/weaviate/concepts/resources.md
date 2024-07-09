@@ -66,19 +66,28 @@ The following calculation assumes that you want to hold all vectors in memory. F
 
 To estimate your memory needs, use the following rule of thumb:
 
-`Memory usage = 2x the memory footprint of all vectors`
+`Memory usage = 2 * (the memory footprint of all vectors)`
 
-For example, if you have a model that uses 384-dimensional vectors of type `float32`, the size of a single vector is `384 * 4B == 1536 B`. Applying the rule of thumb, the memory requirements for 1M objects would be `2 * 1e6 * 1536 B == 3 GB`
+For example, consider a model that has one million 384-dimensional vectors of type `float32`.
 
-For a more accurate calculation you also need to take the `maxConnections` setting into account.
+- The memory requirement for a single vector is: `384 * 4 B = 1536 B`.
 
-Assuming `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + 64*10) = 2.2 GB`.
+- The memory requirement for one million objects is: `1e6 * 1536 B = 1.5G B`
+
+The rule of thumb says to double the memory requirement. The total memory requirement for one million 384-dimensional vectors of type `float32` is: `2 * 1e6 * 1536 B = 3 GB`.
+
+For a more accurate calculation, include a factor for the `maxConnections` setting instead of multiplying the base requirement by two.
+
+For example, if `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + (64 * 10)) = 2.2 GB`.
 
 The estimate that includes `maxConnections` is smaller than the rule of thumb estimate. However, the `maxConnections` estimate doesn't account for garbage collection. Garbage collection adds overhead that is explained in the next section.
 
 ## Effects of garbage collection
 
-Weaviate is written in Go, which is a garbage-collected language. This means some memory is not immediately available for reuse when it is no longer needed. The application has to wait for an asynchronous process, the garbage collector to free up the memory. This has two distinct effects on memory use:
+Weaviate is written in Go, which is a garbage-collected language. This means some memory is not immediately available for reuse when it is no longer needed. The application has to wait for an asynchronous process, the garbage collector, to free up the memory. This has two distinct effects on memory use:
+
+- [Memory overhead](#memory-overhead-for-the-garbage-collector)
+- [Out-of-memory issues](#out-of-memory-issues-due-to-garbage-collection)
 
 ### Memory overhead for the garbage collector
 The memory calculation that includes `maxConnections` describes the system state at rest. However, while Weaviate imports vectors, additional memory is allocated and eventually freed by the garbage collector. Since garbage collection is an asynchronous process, this additional memory must also be accounted for. The 'rule of thumb' formula accounts for garbage collection.

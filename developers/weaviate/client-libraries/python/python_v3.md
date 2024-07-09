@@ -1,5 +1,5 @@
 ---
-title: Python (Client v3)
+title: Python Client v3
 sidebar_position: 15
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
@@ -66,11 +66,11 @@ import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/c
 
 <ClientAuthIntro clientName="Python"/>
 
-### WCS authentication
+### WCD authentication
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+import ClientAuthWCD from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
-<ClientAuthWCS />
+<ClientAuthWCD />
 
 ### API key authentication
 
@@ -111,7 +111,7 @@ import weaviate
 resource_owner_config = weaviate.AuthClientPassword(
   username = "user",
   password = "pass",
-  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCS)
+  scope = "offline_access" # optional, depends on the configuration of your identity provider (not required with WCD)
   )
 
 # Initiate the client with the auth config
@@ -129,7 +129,7 @@ import weaviate
 
 client_credentials_config = weaviate.AuthClientCredentials(
   client_secret = "client_secret",
-  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCS)
+  scope = "scope1 scope2" # optional, depends on the configuration of your identity provider (not required with WCD)
   )
 
 # Initiate the client with the auth config

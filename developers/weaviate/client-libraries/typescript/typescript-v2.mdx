@@ -9,14 +9,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::note TypeScript client version
-The current [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2) version is `v||site.typescript_client_version||`.
+The TypeScript client is version `v||site.typescript_client_version||`. Use the [TypeScript v3 client](/developers/weaviate/client-libraries/typescript/typescript-v3) for new projects.
 :::
 
 The TypeScript client can be used for both JavaScript and TypeScript scripts.
-
-import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warning.mdx';
-
-<JavaScriptMaintenanceWarning />
 
 ## Installation and setup
 
@@ -159,7 +155,7 @@ const client = weaviate.client({
     username: 'user123',
     password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCD)
   })
 });
 ```
@@ -177,7 +173,7 @@ const client: WeaviateClient = weaviate.client({
     username: 'user123',
     password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCD)
   })
 });
 ```

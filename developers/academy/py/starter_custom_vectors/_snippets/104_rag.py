@@ -1,21 +1,22 @@
 # GetQueryVector
 # Define a function to call the endpoint and obtain embeddings
-def query(texts):
-    import requests
-    import os
+from typing import List
+import os
+import cohere
+from cohere import Client as CohereClient
 
-    model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    hf_token = os.getenv("HUGGINGFACE_APIKEY")
+co_token = os.getenv("COHERE_APIKEY")
+co = cohere.Client(co_token)
 
-    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
 
-    response = requests.post(
-        api_url,
-        headers=headers,
-        json={"inputs": texts, "options": {"wait_for_model": True}},
+# Define a function to call the endpoint and obtain embeddings
+def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
+
+    response = cohere_client.embed(
+        texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
     )
-    return response.json()
+
+    return response.embeddings
 
 
 # END GetQueryVector
@@ -28,29 +29,29 @@ import os
 
 # END-ANY
 
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
     headers=headers,
 )
 
 # START-ANY
 # Instantiate your client (not shown). e.g.:
-# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+# headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}  # Replace with your Cohere API key
 # client = weaviate.connect_to_wcs(..., headers=headers) or
 # client = weaviate.connect_to_local(..., headers=headers)
 
 # END-ANY
 
 query_text = "dystopian future"
-query_vector = query(query_text)
+query_vector = vectorize(co, [query_text])[0]
 
 # SinglePromptGeneration
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.generate.near_vector(
@@ -79,7 +80,7 @@ client.connect()
 
 # GroupedTaskGeneration
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.generate.near_vector(

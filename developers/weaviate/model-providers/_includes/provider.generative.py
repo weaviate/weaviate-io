@@ -31,6 +31,23 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeAnyscaleCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anyscale(
+        model="mistralai/Mixtral-8x7B-Instruct-v0.1"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeAnyscaleCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeAnyscale
 from weaviate.classes.config import Configure
 
@@ -58,10 +75,10 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.aws(
         region="us-east-1",
+        service="bedrock",
         model="cohere.command-r-plus-v1:0"
     )
     # highlight-end
-    # Additional parameters not shown
 )
 # END BasicGenerativeAWSBedrock
 
@@ -69,13 +86,6 @@ client.collections.create(
 client.collections.delete("DemoCollection")
 
 # START BasicGenerativeAWSSagemaker
-# Example coming soon
-# END BasicGenerativeAWSSagemaker
-
-# clean up
-client.collections.delete("DemoCollection")
-
-# START FullGenerativeAWS
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -83,13 +93,15 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.aws(
         region="us-east-1",
-        model="cohere.command-r-plus-v1:0"
-        # Sagemaker parameter to be added soon
+        service="sagemaker",
+        endpoint="<custom_sagemaker_url>"
     )
     # highlight-end
-    # Additional parameters not shown
 )
-# END FullGenerativeAWS
+# END BasicGenerativeAWSSagemaker
+
+# clean up
+client.collections.delete("DemoCollection")
 
 # START BasicGenerativeCohere
 from weaviate.classes.config import Configure
@@ -105,6 +117,24 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+
+# START GenerativeCohereCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.cohere(
+        model="command-r-plus"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeCohereCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 
 # START FullGenerativeCohere
 from weaviate.classes.config import Configure
@@ -129,19 +159,37 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START BasicGenerativeGoogle
+# START BasicGenerativeGoogleVertex
 from weaviate.classes.config import Configure
 
 client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.palm(
-        # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        model_id="gemini-1.0-pro"
     )
     # highlight-end
     # Additional parameters not shown
 )
-# END BasicGenerativeGoogle
+# END BasicGenerativeGoogleVertex
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeGoogleStudio
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.palm(
+        model_id="gemini-pro"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeGoogleStudio
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -184,6 +232,23 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START GenerativeMistralCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.mistral(
+        model="mistral-large-latest"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeMistralCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeMistral
 from weaviate.classes.config import Configure
 
@@ -197,7 +262,6 @@ client.collections.create(
         # max_tokens=500,
     )
     # highlight-end
-    # Additional parameters not shown
 )
 # END FullGenerativeMistral
 
@@ -213,6 +277,21 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicGenerativeOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START GenerativeOctoAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.octoai(
+        model="meta-llama-3-70b-instruct"
+    )
+    # Additional parameters not shown
+)
+# END GenerativeOctoAICustomModel
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -246,6 +325,23 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicGenerativeOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START GenerativeOpenAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        model="gpt-4-1106-preview"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeOpenAICustomModel
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -313,6 +409,39 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeAzureOpenAI
+
+# START BasicGenerativeOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.ollama(
+        api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        model="llama3"  # The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeOllama
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeOllama
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.ollama(
+        api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+        model="llama3"  # The model to use, e.g. "phi3", or "mistral", "command-r-plus", "gemma"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeOllama
 
 source_objects = [
     {"title": "The Shawshank Redemption"},
