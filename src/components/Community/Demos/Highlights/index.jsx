@@ -95,7 +95,7 @@ export default function Highlights() {
           <div className={`${styles.card} ${styles.bigCard}`}>
             <div className={styles.cardHeader}>
               <span className={styles.stars}>
-                41
+                153
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="19"
@@ -109,10 +109,10 @@ export default function Highlights() {
                   />
                 </svg>
               </span>
-              <h3>BookRecs</h3>
-              <span>Book Recommendation System</span>
+              <h3>Heathsearch</h3>
+              <span>Generative AI in Healthcare</span>
               <Link
-                to="https://bookrecs.weaviate.io/"
+                to="https://healthsearch.weaviate.io/"
                 className={`${styles.top} ${styles.cardButton} `}
               >
                 <span className={styles.play}></span> Start Demo
@@ -121,26 +121,24 @@ export default function Highlights() {
             <div className={styles.contentDiv}>
               <div className={`${styles.textCardContent} ${styles.bigText}`}>
                 <p>
-                  This project is a book recommendation service that suggests
-                  books based on a user's inputted genre and book titles. It's
-                  built upon a database of 7000 books retrieved from Kaggle.
-                  Using Ada v2 as the large language model, vector embeddings
-                  were created with the Kaggle dataset to allow for quick vector
-                  search to find semantically similar books through natural
-                  language input. The frontend is built using Next.js and styled
-                  with TailwindCSS.
+                  HealthSearch is an open source demo that decodes user-written
+                  reviews of supplements, performing semantic and generative
+                  searches to retrieve related products for specific health
+                  effects. It leverages Large Language Models to understand
+                  natural language queries and generate product and review
+                  summaries.
                 </p>
                 <div className={styles.bottomContainer}>
                   <Link
-                    to="https://www.youtube.com/watch?v=SF1ZlRjVsxw"
+                    to="https://weaviate.io/blog/healthsearch-demo"
                     className={`${styles.videoButton} ${styles.cardButton}`}
                   >
                     {' '}
-                    <span className={styles.blog}></span> Youtube
+                    <span className={styles.blog}></span> Blogpost
                   </Link>
 
                   <Link
-                    to="https://github.com/weaviate/BookRecs/"
+                    to="https://github.com/weaviate/healthsearch-demo"
                     className={`${styles.gitButton} ${styles.cardButton} `}
                   >
                     {' '}
