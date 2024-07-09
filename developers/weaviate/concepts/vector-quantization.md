@@ -83,7 +83,9 @@ Note that when BQ is enabled, a vector cache can be used to improve query perfor
 
 ## Scalar quantization
 
-**Scalar quantization (SQ)** The dimensions in a vector embedding are usually represented as 32 bit floats. SQ transforms the float representation to an 8 bit integer. This is a 4x reduction in size. SQ compression, like BQ, is a lossy compression technique. However, SQ has a much greater range. The SQ algorithm analyzes your data and distributes the dimension values into 256 buckets (8 bits). BQ only uses two values (1 bit). Consequently, SQ compressed vectors are more accurate than BQ encoded vectors. They are also significantly smaller than uncompressed vectors.
+**Scalar quantization (SQ)** The dimensions in a vector embedding are usually represented as 32 bit floats. SQ transforms the float representation to an 8 bit integer. This is a 4x reduction in size.
+
+SQ compression, like BQ, is a lossy compression technique. However, SQ has a much greater range. The SQ algorithm analyzes your data and distributes the dimension values into 256 buckets (8 bits). BQ only uses two values (1 bit). Consequently, SQ compressed vectors are more accurate than BQ encoded vectors. They are also significantly smaller than uncompressed vectors.
 
 When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. After Weaviate retrieves the compressed results, the database searches the original, uncompressed vectors that correspond to the compressed result. The second search is very fast because it only searches a small number of vectors rather than the whole database.
 
@@ -110,7 +112,7 @@ You might be also interested in our blog post [HNSW+PQ - Exploring ANN algorithm
 
 ### With a flat index
 
-A [flat index](#flat-index) can be configured using [BQ](#binary-quantization). Since a flat index search involves reading from disk, compression can reduce the time it takes to read the data from disk, speeding up the search process.
+[BQ](#binary-quantization) can use a [flat index](#flat-index). A flat index search reads from disk, compression reduces the amount of data Weaviate has to read so searches are faster.
 
 ## Rescoring
 

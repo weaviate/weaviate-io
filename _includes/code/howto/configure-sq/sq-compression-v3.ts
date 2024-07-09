@@ -17,7 +17,7 @@ const collection = await client.collections.create({
   name: 'MyCollection',
   vectorizers: weaviate.configure.vectorizer.none({
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
-      quantizer: weaviate.configure.vectorIndex.quantizer.SQ(),
+      quantizer: weaviate.configure.vectorIndex.quantizer.sq(),
     })
   })
 })
@@ -46,7 +46,7 @@ const collection = await client.collections.create({
   name: 'MyCollection',
   vectorizers: weaviate.configure.vectorizer.none({
     vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
-      quantizer: weaviate.configure.vectorIndex.quantizer.SQ({
+      quantizer: weaviate.configure.vectorIndex.quantizer.sq({
         cache: true,     // Enable caching
         rescoreLimit: 200, // The minimum number of candidates to fetch before rescoring
       }),

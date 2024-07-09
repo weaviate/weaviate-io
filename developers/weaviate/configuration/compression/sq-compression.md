@@ -2,19 +2,23 @@
 title: Scalar Quantization
 sidebar_position: 25
 image: og/docs/configuration.jpg
-# tags: ['configuration', 'compression', 'bq']
+# tags: ['configuration', 'compression', 'sq']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.ts';
-import TSCodeBQOptions from '!!raw-loader!/_includes/code/howto/configure.bq-compression.options.ts';
-import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v2.ts';
-import GoCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.go';
-import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression-v4.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression-v3.ts';
+import TSCodeSQOptions from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression.options-v3.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/configure-sq/sq-compression.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/sq-compression.java';
+
+:::info Added in v1.26.0
+
+:::
 
 [Scalar quantization (SQ)](/developers/weaviate/concepts/vector-quantization#scalar-quantization) is a vector compression technique that can reduce the size of a vector.
 
@@ -30,55 +34,18 @@ To enable SQ, set `vector_index_config`.
   <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
-        startMarker="# START EnableBQ"
-        endMarker="# END EnableBQ"
+        startMarker="# START EnableSQ"
+        endMarker="# END EnableSQ"
         language="py"
       />
   </TabItem>
-
   <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
-        startMarker="# START EnableBQ"
-        endMarker="# END EnableBQ"
+        startMarker="# START EnableSQ"
+        endMarker="# END EnableSQ"
         language="py"
       />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-      <FilteredTextBlock
-        text={TSCode}
-        startMarker="// START EnableBQ"
-        endMarker="// END EnableBQ"
-        language="ts"
-      />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-      <FilteredTextBlock
-        text={TSCodeLegacy}
-        startMarker="// START EnableBQ"
-        endMarker="// END EnableBQ"
-        language="ts"
-      />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START EnableBQ"
-      endMarker="// END EnableBQ"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START EnableBQ"
-      endMarker="// END EnableBQ"
-      language="java"
-    />
   </TabItem>
 </Tabs>
 
@@ -89,20 +56,18 @@ To tune SQ, set these `vectorIndexConfig` parameters.
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `sq` : `enabled` | boolean | `false` | Uses SQ when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable SQ with the v4 client, set a `quantizer` in the collection definition. |
-| `sq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
-| `sq` : `cache` | boolean | `false` | Use the vector cache when true. |
+| `sq`: `enabled` | boolean | `false` | Uses SQ when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable SQ with the v4 client, set a `quantizer` in the collection definition. |
+| `sq`: `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
+| `sq`: `cache` | boolean | `false` | Use the vector cache when true. |
 | `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/vector-index.md#vector-cache-considerations). |
 
-
-For example:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
-        startMarker="# START BQWithOptions"
-        endMarker="# END BQWithOptions"
+        startMarker="# START SQWithOptions"
+        endMarker="# END SQWithOptions"
         language="py"
       />
   </TabItem>
@@ -110,46 +75,10 @@ For example:
   <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
-        startMarker="# START BQWithOptions"
-        endMarker="# END BQWithOptions"
+        startMarker="# START SQWithOptions"
+        endMarker="# END SQWithOptions"
         language="py"
       />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-      <FilteredTextBlock
-        text={TSCodeBQOptions}
-        startMarker="// START BQWithOptions"
-        endMarker="// END BQWithOptions"
-        language="ts"
-      />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-      <FilteredTextBlock
-        text={TSCodeLegacy}
-        startMarker="// START BQWithOptions"
-        endMarker="// END BQWithOptions"
-        language="ts"
-      />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START BQWithOptions"
-      endMarker="// END BQWithOptions"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START BQWithOptions"
-      endMarker="// END BQWithOptions"
-      language="java"
-    />
   </TabItem>
 </Tabs>
 
@@ -159,7 +88,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-Compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
+Compression must be enabled independently for each vector. If the index supports it, any vector can use any of [BQ](/weaviate/configuration/compression/bq-compression.md), [PQ](/weaviate/configuration/compression/pq-compression.md), [SQ](/weaviate/configuration/compression/sq-compression.md), or no compression.
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)

@@ -49,7 +49,7 @@ func main() {
 
 	// START EnableSQ
 	// highlight-start
-	simple_SQ := map[string]interface{}{
+	simple_sq := map[string]interface{}{
 		"enabled": true,
 	}
 	// highlight-end
@@ -58,7 +58,7 @@ func main() {
 		Vectorizer: "text2vec-openai",
 		// highlight-start
 		VectorIndexConfig: map[string]interface{}{
-			"SQ": simple_SQ,
+			"sq": simple_sq,
 		},
 		// highlight-end
 		// Remainder not shown
@@ -74,7 +74,7 @@ func main() {
 
 	// START SQWithOptions
 	// highlight-start
-	custom_SQ := map[string]interface{}{
+	custom_sq := map[string]interface{}{
 		"enabled":      true,
 		"rescoreLimit": 200,
 		"cache":        true,
@@ -85,7 +85,7 @@ func main() {
 		Vectorizer: "text2vec-openai",
 		VectorIndexConfig: map[string]interface{}{
 			// highlight-start
-			"SQ": custom_SQ,
+			"sq": custom_sq,
 			// highlight-end
 			"vectorCacheMaxObjects": 100_000,
 		},
