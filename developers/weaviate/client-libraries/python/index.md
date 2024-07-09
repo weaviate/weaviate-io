@@ -120,11 +120,12 @@ This will close the client connection when you leave the `with` block.
 
 There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
 
-- [Python client v4 helper methods](#python-client-v4-helper-methods)
-- [Python client v4 explicit connection](#python-client-v4-explicit-connection)
-- [Python client v3 style connection](#python-client-v3-api)
+- [Helper functions](#helper-functions)
+- [Explicit instantiation](#explicit-instantiation)
+- [Async client](#async-client)
+- [Legacy (v3) API](#legacy-v3-api)
 
-### Python client v4 helper functions
+### Helper functions
 
 - `weaviate.connect_to_wcs()`
 - `weaviate.connect_to_local()`
@@ -238,10 +239,9 @@ For OIDC authentication with the Client Credentials flow, use the `AuthClientCre
 
 For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class.
 
-If the helper functions do not provide the customization you need, use the [`WeaviateClient`](#python-client-v4-explicit-connection) class to instantiate the client.
+If the helper functions do not provide the customization you need, use the [`WeaviateClient`](#explicit-client-instantiation) class to instantiate the client.
 
-
-### Python client v4 explicit connection
+### Explicit instantiation
 
 If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
@@ -254,13 +254,24 @@ When you instantiate a connection directly, you have to call the `.connect()` me
   language="py"
 />
 
-### Python client v3 API
+### Async client
+
+:::info Added in `weaviate-client` `v4.7.0`
+:::
+
+The `v4` API client supports asynchronous (`asyncio`) operations through the `WeaviateAsyncClient` class.
+
+You can instantiate an `WeaviateAsyncClient` object directly, or use helper functions with a `weaviate.use_async_xxx` prefix such as `weaviate.use_async_with_weaviate_cloud()`.
+
+For more details, see the [async Python client documentation](./python_async.md).
+
+### Legacy (v3) API
 
 To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method is available for backwards compatibility. Where possible, use a client v4 connection.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
-### Initial connection checks
+## Initial connection checks
 
 When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
 
@@ -276,6 +287,7 @@ You can set `skip_init_checks` to `True` to skip these checks.
 In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.
 
 For additional connection configuration, see [Timeout values](#timeout-values).
+
 
 ## Batch imports
 

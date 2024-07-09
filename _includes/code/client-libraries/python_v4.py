@@ -208,6 +208,7 @@ client = weaviate.WeaviateClient(
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
     ),
+    skip_init_checks=False
 )
 
 client.connect()  # When directly instantiating, you need to connect manually
@@ -230,6 +231,91 @@ with weaviate.connect_to_weaviate_cloud(
     client.collections.list_all()
 # END WCDQuickStartInstantiation
 
+# =====================================================================================
+# Async instantiation
+# =====================================================================================
+
+# AsyncWCDInstantiation
+import weaviate
+import os
+
+async_client = weaviate.use_async_with_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
+)
+# END AsyncWCDInstantiation
+
+try:
+    assert async_client.is_ready()
+finally:
+    async_client.close()
+
+# AsyncLocalInstantiationBasic
+import weaviate
+import os
+
+async_client = weaviate.use_async_with_local()
+# END AsyncLocalInstantiationBasic
+
+try:
+    assert async_client.is_ready()
+finally:
+    async_client.close()
+
+# AsyncCustomInstantiationBasic
+import weaviate
+import os
+
+async_client = weaviate.use_async_with_custom(
+    http_host="localhost",
+    http_port="8080",
+    http_secure=False,
+    grpc_host="localhost",
+    grpc_port="50051",
+    grpc_secure=False,
+)
+# END AsyncCustomInstantiationBasic
+
+try:
+    assert async_client.is_ready()
+finally:
+    async_client.close()
+
+# AsyncDirectInstantiationFull
+import weaviate
+from weaviate.connect import ConnectionParams
+from weaviate.classes.init import AdditionalConfig, Timeout
+import asyncio
+import os
+
+client = weaviate.WeaviateAsyncClient(
+    connection_params=ConnectionParams.from_params(
+        http_host="localhost",
+        http_port="8099",
+        http_secure=False,
+        grpc_host="localhost",
+        grpc_port="50052",
+        grpc_secure=False,
+    ),
+    auth_client_secret=weaviate.auth.AuthApiKey("secr3tk3y"),
+    additional_headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    },
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
+    ),
+    skip_init_checks=False
+)
+
+async def usage_example():
+    await client.connect()  # When directly instantiating, you need to connect manually
+    assert client.is_connected()
+    # Do something with Weaviate
+    await client.close()  # Remember to close the connection
+    assert not client.is_connected()
+
+asyncio.run(usage_example())
+# END AsyncDirectInstantiationFull
 
 # =====================================================================================
 # Batch examples
