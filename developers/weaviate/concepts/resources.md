@@ -108,7 +108,7 @@ The following tactics can help to reduce Weaviate's memory usage:
 
 - **Reduce the number of `maxConnections` in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
 
-Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect,increase one or both of the `efConstruction` and `ef` parameters.
+Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect, increase one or both of the `efConstruction` and `ef` parameters.
 
 - Increasing `efConstruction` increases import time without affecting query times.
 - Increasing `ef` increases query times without affecting import times.

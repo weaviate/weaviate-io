@@ -250,7 +250,7 @@ You will see that the class and property names are not indexed, but the article 
             "vectorIndexConfig": {
                 "skip": false,
                 "cleanupIntervalSeconds": 300,
-                "maxConnections": 64,
+                "maxConnections": 32,
                 "efConstruction": 128,
                 "ef": -1,
                 "dynamicEfMin": 100,
