@@ -1,3 +1,5 @@
+// not yet supported in client 3.0.8
+
 import assert from 'assert';
 import weaviate from 'weaviate-client';
 // START-ANY

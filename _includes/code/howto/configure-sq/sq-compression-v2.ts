@@ -1,3 +1,5 @@
+// not yet supported
+
 import assert from 'assert';
 
 // TODO - needs confirmation & test
