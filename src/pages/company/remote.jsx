@@ -17,7 +17,7 @@ export default function AboutUsPage() {
         title="Remote work at Weaviate"
         description="Together, we create a space for flexibility and growth, innovation, making work more fun and fulfilling"
       >
-        <MetaSEO />
+        <MetaSEO img="og/company/remote.jpg" />
         <Header />
         <Details />
         <Map />
