@@ -280,10 +280,6 @@
     "photo": "philip.png"
   },
   {
-    "name": "Rich Lapham",
-    "location": { "lat": 42.8629, "lng": -71.5252 }
-  },
-  {
     "name": "Roberto Esposito",
     "location": { "lat": 40.7602, "lng": 14.525 },
     "photo": "roberto-esposito.jpg"
