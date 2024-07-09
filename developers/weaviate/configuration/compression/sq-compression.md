@@ -16,13 +16,9 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.bq-compre
 import GoCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
 
-:::info Added in `v1.23`
-BQ is available for the [`flat` index](/developers/weaviate/concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](/developers/weaviate/concepts/vector-index.md#hnsw-index)  type from `v1.24`.
-:::
+[Scalar quantization (SQ)](/developers/weaviate/concepts/vector-quantization#scalar-quantization) is a vector compression technique that can reduce the size of a vector.
 
-Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector.
-
-To use BQ, enable it as shown below and add data to the collection.
+To use SQ, enable it as shown below and add data to the collection.
 
 <details>
   <summary>Additional information</summary>
@@ -31,12 +27,11 @@ To use BQ, enable it as shown below and add data to the collection.
 
 </details>
 
+## Basic configuration
 
-## Simple BQ configuration
+SQ must be enabled at collection creation time. You cannot enable SQ after you add data to a collection.
 
-Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
-
-This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
+To enable SQ, set `vector_index_config`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -95,15 +90,15 @@ This can be done by setting the `vector_index_config` of the collection to enabl
 </Tabs>
 
 
-## BQ with custom settings
+## Custom configuration
 
-The following parameters are available for BQ compression, under `vectorIndexConfig`:
+To tune SQ, set these `vectorIndexConfig` parameters.
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `bq` : `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable BQ with the v4 client, set a `quantizer` in the collection definition. |
-| `bq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
-| `bq` : `cache` | boolean | `false` | Whether to use the vector cache. |
+| `sq` : `enabled` | boolean | `false` | Uses SQ when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable SQ with the v4 client, set a `quantizer` in the collection definition. |
+| `sq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
+| `sq` : `cache` | boolean | `false` | Use the vector cache when true. |
 | `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/vector-index.md#vector-cache-considerations). |
 
 
@@ -171,7 +166,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
+Compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)

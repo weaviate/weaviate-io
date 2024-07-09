@@ -1,6 +1,6 @@
 ---
-title: Vector Quantization (compression)
-sidebar_position: 24
+title: Compression (Vector Quantization)
+sidebar_position: 5
 image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
@@ -8,8 +8,10 @@ image: og/docs/concepts.jpg
 **Vector quantization** reduces the memory footprint of the [vector index](./vector-index.md) by compressing the vector embeddings, and thus reduces deployment costs and improves the speed of the vector similarity search process.
 
 Weaviate currently offers two vector quantization techniques:
-- [Product quantization (PQ)](#product-quantization)
+
 - [Binary quantization (BQ)](#binary-quantization)
+- [Product quantization (PQ)](#product-quantization)
+- [Scalar quantization (SQ)](#scalar-quantization)
 
 ## What is quantization?
 In general, quantization techniques reduce the memory footprint by representing numbers with lower precision numbers, like rounding a number to the nearest integer. In neural networks, quantization reduces the values of the weights or activations of the model stored as a 32-bit floating-point number (4 bytes) to a lower precision number, such as an 8-bit integer (1 byte).
@@ -71,7 +73,7 @@ You might be also interested in our blog post [How to Reduce Memory Requirements
 
 ## Binary quantization
 
-**Binary quantization (BQ)** is a quantization technique that converts each vector embedding to a binary representation. The binary representation is much smaller than the original vector embedding. Usually each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
+**Binary quantization (BQ)** is a quantization technique that converts each vector embedding to a binary representation. The binary representation is much smaller than the original vector embedding. Usually each vector dimension requires 32 bits, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
 
 The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector embedding.
 
@@ -79,11 +81,17 @@ Some vectorizers work better with BQ than others. Anecdotally, we have seen enco
 
 Note that when BQ is enabled, a vector cache can be used to improve query performance. The vector cache is used to speed up queries by reducing the number of disk reads for the quantized vector embeddings. Note that it must be balanced with memory usage considerations, with each vector taking up `n_dimensions` bits.
 
-### Over-fetching / re-scoring
+## Scalar quantization
 
-When using BQ, Weaviate will conditionally over-fetch and then re-score the results. This is because the distance calculation is not as accurate as the original vector embedding.
+**Scalar quantization (SQ)** The dimensions in a vector embedding are usually represented as 32 bit floats. SQ transforms the float representation to an 8 bit integer. This is a 4x reduction in size. SQ compression, like BQ, is a lossy compression technique. However, SQ has a much greater range. The SQ algorithm analyzes your data and distributes the dimension values into 256 buckets (8 bits). BQ only uses two values (1 bit). Consequently, SQ compressed vectors are more accurate than BQ encoded vectors. They are also significantly smaller than uncompressed vectors.
 
-This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector embedding. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
+When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. After Weaviate retrieves the compressed results, the database searches the original, uncompressed vectors that correspond to the compressed result. The second search is very fast because it only searches a small number of vectors rather than the whole database.
+
+## Over-fetching / re-scoring
+
+When you use BQ or SQ, Weaviate over-fetches and then re-scores the results. This is because the distance calculation on the compressed vectors is not as accurate as the same calculation on the original vector embedding.
+
+In a query, Weaviate fetches the `rescore limit` of compressed objects or the specified query limit, whichever is greater. Then, Weaviate uses the original, uncompressed vector embedding to recalculate the scores. For example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate fetches `max(10, 500) = 200` objects, and then re-scores the top 10 objects using the full vector. This process offsets some of the loss in search quality (recall)  that is caused by compression.
 
 :::tip
 Learn more about [how to configure binary quantization in Weaviate](../configuration/compression/bq-compression.md).<br/><br/>
