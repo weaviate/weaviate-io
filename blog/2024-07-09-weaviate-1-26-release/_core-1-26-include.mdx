@@ -12,6 +12,7 @@ Here are the release ⭐️*highlights*⭐️!
 - [**Async Python Implementation**](#async-python-implementation)
 - [**Scalar Quantization**](#scalar-quantization)
 - [**Dashboards for async indexes**](#dashboards-for-async-indexes)
+- [**Additional changes**](#additional-changes)
 
 ## Improved Range Queries
 
@@ -45,9 +46,13 @@ Cool stuff goes here
 
 Cool stuff goes here
 
-## Other changes
+## Additional changes
 
-Starting in Helm chart version 17.0.1, constraints on module resources are commented out to improve performance. To constrain resources for specific modules, add the constraints in your `values.yaml` file.
+- Starting in Helm chart version 17.0.1, constraints on module resources are commented out to improve performance. To constrain resources for specific modules, add the constraints in your `values.yaml` file.
+
+- The HNSW `maxConnections` value is updated. Instead of 64 connections, the HNSW graph now defaults to 32 connections.
+
+ The lower value works better with modern ANN datasets that have high dimensionality. Testing shows that the QPS/recall curves improve with lower `maxConnections` values. The best values are in the 16-32 range, depending on dataset size. To improve target recall, `ef` can be increased.
 
 ## Summary
 
