@@ -542,6 +542,10 @@ const siteRedirects = {
 
 // Release notes
 {
+ to: "/developers/weaviate/release-notes/older-releases/release_1_20",
+ from: "/developers/weaviate/release-notes/release_1_20"
+},
+{
  to: "/developers/weaviate/release-notes/older-releases/release_1_19",
  from: "/developers/weaviate/release-notes/release_1_19"
 },
