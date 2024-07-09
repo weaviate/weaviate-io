@@ -87,6 +87,17 @@ export default function Highlights() {
                 poster="img/site/screenshot-verba.png"
                 type="video/mp4"
               />
+              <source
+                src="/img/site/verba-video.mov"
+                poster="img/site/screenshot-verba.png"
+                type="video/mov"
+              />
+
+              <source
+                src="/img/site/verba-video.webm"
+                poster="img/site/screenshot-verba.png"
+                type="video/webm"
+              />
             </video>
           </div>
         </div>
@@ -162,6 +173,17 @@ export default function Highlights() {
                 poster="img/site/screenshot-healthsearch.png"
                 type="video/mp4"
               />
+              <source
+                src="/img/site/healthsearch-video.mov"
+                poster="img/site/screenshot-healthsearch.png"
+                type="video/mov"
+              />
+
+              <source
+                src="/img/site/healthsearch-video.webm"
+                poster="img/site/screenshot-healthsearch.png"
+                type="video/webm"
+              />
             </video>
           </div>
         </div>
@@ -236,6 +258,18 @@ export default function Highlights() {
                 src="/img/site/awesome-moviate-video.mp4"
                 poster="img/site/screenshot-healthsearch.png"
                 type="video/mp4"
+              />
+
+              <source
+                src="/img/site/awesome-moviate-video.mov"
+                poster="img/site/screenshot-healthsearch.png"
+                type="video/mov"
+              />
+
+              <source
+                src="/img/site/awesome-moviate-video.webm"
+                poster="img/site/screenshot-healthsearch.png"
+                type="video/webm"
               />
             </video>
           </div>
