@@ -100,7 +100,7 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 ### Client connection code
 
-The code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
+This sample connection code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
 
 Copy the code to a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
 
