@@ -120,12 +120,12 @@ This will close the client connection when you leave the `with` block.
 
 There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
 
-- [Helper functions](#helper-functions)
+- [Connection helper functions](#connection-helper-functions)
 - [Explicit instantiation](#explicit-instantiation)
 - [Async client](#async-client)
 - [Legacy (v3) API](#legacy-v3-api)
 
-### Helper functions
+### Connection helper functions
 
 - `weaviate.connect_to_wcs()`
 - `weaviate.connect_to_local()`
@@ -263,7 +263,7 @@ The `v4` API client supports asynchronous (`asyncio`) operations through the `We
 
 You can instantiate an `WeaviateAsyncClient` object directly, or use helper functions with a `weaviate.use_async_xxx` prefix such as `weaviate.use_async_with_weaviate_cloud()`.
 
-For more details, see the [async Python client documentation](./python_async.md).
+For more details, see the [async Python client documentation](./async.md).
 
 ### Legacy (v3) API
 
