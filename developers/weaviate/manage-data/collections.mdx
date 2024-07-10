@@ -1185,17 +1185,13 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
     Limitations when you add a property after importing data
   </summary>
 
-Adding a new property after you import data limits searches that use the new property.
+Adding a new property after you import data limits searches that use the new property.<br/><br/>
 
-<br/>
+Property indexes are built at import time. If you add a new property after importing some data, objects in the existing index aren't automatically updated to add the new property. Queries may return unexpected results because only new objects have the new property; the older objects are not re-indexed to add it.<br/><br/>
 
-Property indexes are built at import time. If you add a new property after importing some data, the existing index isn't updated to add the new property. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
-
-<br/>
-
-To avoid this, you can either:
+To index all objects, do one of the following:
 - Add the property before importing objects.
-- Delete the collection, re-create it with the new property and then re-import the data.
+- Delete the collection; re-create it with the new property; and re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
 
