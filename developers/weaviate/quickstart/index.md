@@ -15,7 +15,7 @@ Welcome to the Quickstart guide for Weaviate, an open-source vector database. Th
 
 This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
 - Build a Weaviate vector database.
-- Make *semantic search* query.
+- Make a *semantic search* query.
 - Add a *filter* to your query.
 - Use *generative searches* and a large language model (LLM) to transform your search results.
 
