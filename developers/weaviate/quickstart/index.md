@@ -69,9 +69,9 @@ If you prefer another method, see [this section](#can-i-use-another-deployment-m
 
 ## Step 2: Install a client library
 
-We suggest using a Weaviate client ([read more](../client-libraries/index.md)) to work with your preferred programming language.
+Install the Weaviate [client library](../client-libraries/index.md)) for your preferred programming language.
 
-To install your preferred client, run the installation code for your language:
+To install the library, run the installation code for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
@@ -94,7 +94,9 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 - The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
 - An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
 
-Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
+Use this sample code to create a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
+
+The code creates a `client` object. Latter steps in this tutorial re-use the client object to connect to your Weaviate instance.
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
