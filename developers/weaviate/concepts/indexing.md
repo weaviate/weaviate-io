@@ -41,7 +41,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
                 "skip": false,
                 "cleanupIntervalSeconds": 300,
                 "pq": {"enabled": False,}
-                "maxConnections": 64,
+                "maxConnections": 32,
                 "efConstruction": 128,
                 "ef": -1,
                 "dynamicEfMin": 100,
@@ -62,7 +62,7 @@ As shown above, there are quite a few configurable parameters available for an A
 For more information see:
 - [Configuring the vector index](../config-refs/schema/vector-index.md)
 - [Explanation of vector indexes](../concepts/vector-index.md)
-- [Compressing indexes in memory](/developers/weaviate/configuration/pq-compression.md)
+- [Compressing indexes in memory](/developers/weaviate/configuration/compression/pq-compression.md)
 
 :::note
 The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
