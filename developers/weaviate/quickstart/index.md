@@ -95,7 +95,7 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 <img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
 
-- The Weaviate **API key** (Get it from WCD `Details` tab)
+- The Weaviate **API key** (Get it from the instance `Details`)
 - An OpenAI **inference API key** ([Sign up at OpenAI](https://platform.openai.com/signup))
 
 ### Client connection code
