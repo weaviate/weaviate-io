@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Vector Database - Weaviate Knowledge Cards',
     description:
-      'A vector database indexes, stores, and provides access to structured or unstructured data...',
+      "A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data's numerical representation. It allows users to find and retrieve similar objects quickly at scale in production.",
     image: 'https://weaviate.io/img/cards/vector-database.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/vector-database',
   };
@@ -79,7 +79,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data's numerical representation. It allows users to find and retrieve similar objects quickly at scale in production."
+            content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data\'s numerical representation. It allows users to find and retrieve similar objects quickly at scale in production."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -98,7 +98,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data's numerical representation. It allows users to find and retrieve similar objects quickly at scale in production."
+            content="A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data\'s numerical representation. It allows users to find and retrieve similar objects quickly at scale in production."
           />
           <meta
             name="twitter:image"
