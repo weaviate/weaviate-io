@@ -83,7 +83,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Step 3: Connect to Weaviate
 
-To connect to your Weaviate instance, you need the instance connection details and a client to connect with.
+To connect to your Weaviate instance, you need the instance [connection details](#connection-details) and [a client](#client-connection-code) to connect with.
 
 ### Connection details
 
