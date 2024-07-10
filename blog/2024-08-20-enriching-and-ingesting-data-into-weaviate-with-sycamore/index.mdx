@@ -11,19 +11,19 @@ description: "Demo on how to ingest PDFs into Weaviate using Sycamore."
 
 ![PDFs to Weaviate using Sycamore](img/hero.png)
 
-LLMs and natural-language search tools like Weaviate now make it possible to build powerful search applications over unstructured data, but much of this data is trapped in formats like PDF that are notoriously difficult to process automatically. Real-world use-cases require more than just answering basic questions over text — they often need to answer complex questions over tables and figures, to name just a few examples. As more and more organizations have built and deployed these types of applications, it has become increasingly clear that the quality of data is key to making them successful. Vector embeddings work best when the text to embed is partitioned into semantically meaningful chunks. And, it’s often necessary to augment this data with additional metadata before embedding it to provide useful context for retrieval. 
+LLMs and natural-language search tools like Weaviate now make it possible to build powerful search applications over unstructured data, but much of this data is trapped in formats like PDF that are notoriously difficult to process automatically. Real-world use-cases require more than just answering basic questions over text — they often need to answer complex questions over tables and figures, to name just a few examples. As more and more organizations have built and deployed these types of applications, it has become increasingly clear that the quality of data is key to making them successful. Vector embeddings work best when the text to embed is partitioned into semantically meaningful chunks. And, it’s often necessary to augment this data with additional metadata before embedding it to provide useful context for retrieval.
 
 Enter Sycamore. Sycamore is an open-source data processing system  for complex unstructured documents, like PDFs. The library combines a robust model for parsing and partitioning unstructured documents with a rich set of composable AI-powered transforms for cleaning, filtering, and enriching those documents. Sycamore runs on a reliable dataflow engine that can scale from a laptop to a large cluster and leverage both CPUs and GPUs.
 
-In this post, we will use the same two academic papers that were introduced in [this previous post](https://weaviate.io/blog/ingesting-pdfs-into-weaviate) on loading PDFs into Weaviate. We will walk through how to read and partition these documents, how to use Sycamore to augment each document with additional metadata, and how to load the documents into Weaviate. 
+In this post, we will use the same two academic papers that were introduced in [this previous post](https://weaviate.io/blog/ingesting-pdfs-into-weaviate) on loading PDFs into Weaviate. We will walk through how to read and partition these documents, how to use Sycamore to augment each document with additional metadata, and how to load the documents into Weaviate.
 
 ## Getting Started: Sycamore DocSets
 
-One the of the main design goals of Sycamore is to make it easy for programmers to write complex transformations over large collections of data in a robust and concise way. To accomplish this, Sycamore borrows ideas from dataflow systems like Apache Spark. The core abstraction in Sycamore is a data structure called the *DocSet*. Think of a DocSet like a Spark DataFrame, except purpose-built to represent unstructured documents. 
+One the of the main design goals of Sycamore is to make it easy for programmers to write complex transformations over large collections of data in a robust and concise way. To accomplish this, Sycamore borrows ideas from dataflow systems like Apache Spark. The core abstraction in Sycamore is a data structure called the *DocSet*. Think of a DocSet like a Spark DataFrame, except purpose-built to represent unstructured documents.
 
 Each DocSet represents a collection of unstructured documents. Sycamore automatically parallelizes DocSets, and they can be used to process collections ranging from a single document to many thousands. Each document in Sycamore contains an arbitrary set of key-value properties, as well as an ordered list of *elements.* An element corresponds to a chunk of the document that can be processed or embedded separately. A chunk can represent an image, a table, or a text passage, to give a few examples. Like documents, elements can contain arbitrary key-value properties to encode domain or application specific metadata.
 
-Creating a DocSet is simple. We first initialize the Sycamore context, and use that to read a collection of documents. In this case we are reading from an S3 bucket, but you can also read from a local filesystem or other databases like OpenSearch or Weaviate itself. Throughout this blog post we will use `ds.show()` to display the contents of a DocSet after each transform, though in a real Sycamore job without the `show` calls, operations would be pipelined for better performance. 
+Creating a DocSet is simple. We first initialize the Sycamore context, and use that to read a collection of documents. In this case we are reading from an S3 bucket, but you can also read from a local filesystem or other databases like OpenSearch or Weaviate itself. Throughout this blog post we will use `ds.show()` to display the contents of a DocSet after each transform, though in a real Sycamore job without the `show` calls, operations would be pipelined for better performance.
 
 ```python
 import sycamore
@@ -36,11 +36,12 @@ ds = context.read.binary(paths=paths, binary_format="pdf")
 ds.show()
 ```
 
-### Output
+<details>
+  <summary>Output</summary>
 
 ```python
- {'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper01.pdf',                                                   
-                'filetype': 'application/pdf'},                                                                                     
+ {'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper01.pdf',
+                'filetype': 'application/pdf'},
  'elements': [],
  'lineage_id': 'f83129f1-a262-42b2-83ca-93eab55e681c',
  'doc_id': 'cdac2186-3508-11ef-8457-beb9cd7f789b',
@@ -54,14 +55,15 @@ ds.show()
  'type': 'pdf',
  'binary_representation': b'<99004 bytes>'}
 ```
+</details>
 
-In the output you can find entries for both documents, each of which contains some IDs, a few default metadata fields, and the complete binary content of the PDF. Each document also contains a list of elements corresponding to the constituent components of that document. In this case, the lists are empty because we haven’t yet started processing the PDFs, but by the end of this job they will contain the chunks we embed and load into Weaviate. 
+In the output you can find entries for both documents, each of which contains some IDs, a few default metadata fields, and the complete binary content of the PDF. Each document also contains a list of elements corresponding to the constituent components of that document. In this case, the lists are empty because we haven’t yet started processing the PDFs, but by the end of this job they will contain the chunks we embed and load into Weaviate.
 
 ## Partitioning in Sycamore with Aryn’s Partitioner
 
-The first step in preparing our documents for ingestion into Weaviate is to partition them into elements that we can process separately. This involves identifying entities in a document like images or tables, as well as classifying text in categories like header, caption, and so forth. Once we understand the structure of the document, we can start to perform more specialized transforms on different elements. 
+The first step in preparing our documents for ingestion into Weaviate is to partition them into elements that we can process separately. This involves identifying entities in a document like images or tables, as well as classifying text in categories like header, caption, and so forth. Once we understand the structure of the document, we can start to perform more specialized transforms on different elements.
 
-Since PDF is intended as a display format, it can be difficult to automatically extract this partitioning from the file format itself. An alternative approach is to treat the PDF as an image and use a vision model to identify and label different segments of the document. To support partitioning in Sycamore, Aryn trained a state-of-the-art vision model on more than 80,000 document pages from the [DocLayNet dataset](https://arxiv.org/abs/2206.01062). This model is fully open-source with an Apache 2.0 license and is available for [download on HuggingFace](https://huggingface.co/Aryn/deformable-detr-DocLayNet). 
+Since PDF is intended as a display format, it can be difficult to automatically extract this partitioning from the file format itself. An alternative approach is to treat the PDF as an image and use a vision model to identify and label different segments of the document. To support partitioning in Sycamore, Aryn trained a state-of-the-art vision model on more than 80,000 document pages from the [DocLayNet dataset](https://arxiv.org/abs/2206.01062). This model is fully open-source with an Apache 2.0 license and is available for [download on HuggingFace](https://huggingface.co/Aryn/deformable-detr-DocLayNet).
 
 The easiest way to use the Aryn Partitioner in Sycamore is via the Aryn Partitioning Service, which provides a REST endpoint for partitioning PDFs. You can sign up for this service at [https://www.aryn.ai/sign-up](https://www.aryn.ai/sign-up). You invoke this using the `partition` transform on a DocSet and specify the `ArynPartitioner`. In this case we specify our API token and set two additional flags: `extract_table_structure` and `extract_images`, which identify table cells and images, respectively:
 
@@ -74,15 +76,16 @@ ds.partition(partitioner=ArynPartitioner(
 ds.show()
 ```
 
-If you prefer not to use an external service, you can pass the parameter `local=True`. Note that that the partitioning model can be computationally expensive, and works best with an NVIDIA GPU. 
-
-### Output
+If you prefer not to use an external service, you can pass the parameter `local=True`. Note that that the partitioning model can be computationally expensive, and works best with an NVIDIA GPU.
 
 This output is truncated for brevity
 
+<details>
+  <summary>Output</summary>
+
 ```python
- {'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',                                                   
-                'filetype': 'application/pdf'},                                                                                     
+ {'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',
+                'filetype': 'application/pdf'},
  'elements': [{'type': 'Title',
                'bbox': (0.10576679902918198,
                         0.12537189830433237,
@@ -132,15 +135,17 @@ This output is truncated for brevity
   }
 ```
 
-Each document in the DocSet now contains a list of elements that make up the document, including bounding boxes and text content. The following is a sample of a document after partitioning. Note that the table and figure are correctly identified, as are the individual cells in the table. 
+</details>
+
+Each document in the DocSet now contains a list of elements that make up the document, including bounding boxes and text content. The following is a sample of a document after partitioning. Note that the table and figure are correctly identified, as are the individual cells in the table.
 
 ![Screenshot 2024-06-26 at 7.35.43 PM.png](img//Screenshot_2024-06-26_at_7.35.43_PM.png)
 
 ## Sycamore Transforms: Entity Extraction and Summarization
 
-In addition to partitioning data, using DocSets makes it easy to augment and transform your unstructured datasets. For example, you might want to extract structured pieces of information from documents and include them as properties that you can later query from Weaviate. For example, in our academic papers, we might want to pull out the title, authors, and abstract. There are lots of ways we might try to extract this information, but it can be surprisingly tricky in general. Different publications have different formats, and writing a set of rules to cover all of them is difficult if not impossible. 
+In addition to partitioning data, using DocSets makes it easy to augment and transform your unstructured datasets. For example, you might want to extract structured pieces of information from documents and include them as properties that you can later query from Weaviate. For example, in our academic papers, we might want to pull out the title, authors, and abstract. There are lots of ways we might try to extract this information, but it can be surprisingly tricky in general. Different publications have different formats, and writing a set of rules to cover all of them is difficult if not impossible.
 
-Instead, let’s embrace the new AI-powered world and ask an LLM. With Sycamore, you can use the `extract_properties` transform to pull out fields based on a JSON schema. Sycamore will send a prefix of each document to an LLM, in this case GPT-4o, to extract the specified fields and include them as properties in the document. 
+Instead, let’s embrace the new AI-powered world and ask an LLM. With Sycamore, you can use the `extract_properties` transform to pull out fields based on a JSON schema. Sycamore will send a prefix of each document to an LLM, in this case GPT-4o, to extract the specified fields and include them as properties in the document.
 
 The following shows the sample code:
 
@@ -155,9 +160,9 @@ schema = {
 
 openai = OpenAI(OpenAIModels.GPT_4O) # Reads the OPENAI_API_KEY env var
 
-# Extract the properties and add them under a special key "entity" in the 
-# document properties. By default this sends the first 10 elements of the 
-# of the Document the LLM. 
+# Extract the properties and add them under a special key "entity" in the
+# document properties. By default this sends the first 10 elements of the
+# of the Document the LLM.
 ds = ds.extract_properties(OpenAIPropertyExtractor(
    llm=openai,
    schema_name=schema_name,
@@ -166,13 +171,14 @@ ds = ds.extract_properties(OpenAIPropertyExtractor(
 ds.show(show_elements=False)
 ```
 
-This displays the following dictionary for our two sample documents. The title, authors, and abstract are included as properties: 
+This displays the following dictionary for our two sample documents. The title, authors, and abstract are included as properties:
 
-### Output
+<details>
+  <summary>Output</summary>
 
 ```python
-{'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',                                                   
-                'filetype': 'application/pdf',                                                                                      
+{'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',
+                'filetype': 'application/pdf',
                 'entity': {'title': 'A Comparison of House Price '
                                     'Classification with Structured and '
                                     'Unstructured Text Data',
@@ -277,23 +283,26 @@ This displays the following dictionary for our two sample documents. The title, 
  'binary_representation': b'<1634173 bytes>'}
 ```
 
-PDF documents also frequently contain images. The rise of multi-modal LLMs now make it possible to answer questions over images as well as text. Let’s use Sycamore to summarize the contents of each image in the documents into a form that we can easily embed. This requires only one line of code to invoke the `SummarizeImages` transform. This will send all of the images in both documents to an LLM to compute a text summary and add it to the appropriate element in the DocSet. 
+</details>
+
+PDF documents also frequently contain images. The rise of multi-modal LLMs now make it possible to answer questions over images as well as text. Let’s use Sycamore to summarize the contents of each image in the documents into a form that we can easily embed. This requires only one line of code to invoke the `SummarizeImages` transform. This will send all of the images in both documents to an LLM to compute a text summary and add it to the appropriate element in the DocSet.
 
 ```python
 ds = ds.transform(SummarizeImages)
 
-# Display only the image elements from each document. 
+# Display only the image elements from each document.
 ds.filter_elements(lambda e: e.type == 'Image')\
 	.show()
 ```
 
-The following output is a truncated version of the output containing the summaries for Figures 1 and 2 in the first paper and Figure 1 in the second. 
+The following output is a truncated version of the output containing the summaries for Figures 1 and 2 in the first paper and Figure 1 in the second.
 
-### Output
+<details>
+  <summary>Output</summary>
 
 ```python
-{'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',                                                   
-                'filetype': 'application/pdf'},                                                                                     
+{'properties': {'path': '/Users/bsowell/Downloads/weaviate_blog_data/paper02.pdf',
+                'filetype': 'application/pdf'},
  'elements': [{'type': 'Image',
                'bbox': (0.24269660500919119,
                         0.0672540976784446,
@@ -441,16 +450,18 @@ The following output is a truncated version of the output containing the summari
 
 ```
 
-The summaries contain a text description of the image, as well as metadata about whether or not the images is a graph, and if so, what the axes are. The prompt used to extract this information is customizable to support additional use cases. 
+</details>
 
-Note that Sycamore leverages the structural information from the `partition` transform to improve the quality of the summary. For instance, for the following figure, the image contains only the bar chart, which does not have any axes. Sycamore recognizes that the caption is associated with the image and sends it to the LLM to aid with summarization. Because of this,  the summary accurately indicates that the graphs show a distribution of house prices. 
+The summaries contain a text description of the image, as well as metadata about whether or not the images is a graph, and if so, what the axes are. The prompt used to extract this information is customizable to support additional use cases.
+
+Note that Sycamore leverages the structural information from the `partition` transform to improve the quality of the summary. For instance, for the following figure, the image contains only the bar chart, which does not have any axes. Sycamore recognizes that the caption is associated with the image and sends it to the LLM to aid with summarization. Because of this,  the summary accurately indicates that the graphs show a distribution of house prices.
 
 ![Screenshot 2024-06-26 at 1.58.10 PM.png](img/Screenshot_2024-06-26_at_1.58.10_PM.png)
 
 Summary:
 
 > The left graph (A) shows the distribution of house prices in the dataset, with most prices concentrated below 1e7 units. The frequency of house prices decreases as the price increases. The right graph (B) shows the distribution of house prices divided into binary categories based on a price threshold, with both categories having roughly equal frequencies. This indicates a balanced distribution of house prices when categorized into two groups.
-> 
+>
 
 ## Writing to Weaviate
 
@@ -497,12 +508,12 @@ ds.spread_properties(["path", "entity"])
 
 This does a few things:
 
-1. The `spread_properties` transform adds the specified document-level properties to each element in the document. This makes it easier to filter specific chunks by the properties, like title and author, that we extracted previously. 
-2. The next transform, `explode`, unnests each document by converting each element into a top-level document. This means our DocSet is now a collection of the chunks that we will load into Weaviate. 
-3. The `embed` transform computes the vector embedding for each chunk. By default, Sycamore will embed the `text_represention` field of each chunk in the DocSet using the specified embedder. Here we use the `all-MiniLM-L6-v2` sentence-transformer model, which is a small model that works well for tests and demos. Sycamore supports a range of embedding models, including remote models from OpenAI and others. It is also possible to let Weaviate do the embeddings by omitting this step and adjusting the collection configuration. 
-4. Finally, we perform the `write` to Weaviate. You will notice here that we set the `flatten_properties` attribute to `True` . This addresses the fact that Sycamore properties can be nested, but Weaviate only allows filtering by top-level attributes. Flattened column names are separated by `__` characters. For example, if you have the property `{"properties": {"authors": []}}`, it will be stored with the key `properties__authors` in Weaviate. 
+1. The `spread_properties` transform adds the specified document-level properties to each element in the document. This makes it easier to filter specific chunks by the properties, like title and author, that we extracted previously.
+2. The next transform, `explode`, unnests each document by converting each element into a top-level document. This means our DocSet is now a collection of the chunks that we will load into Weaviate.
+3. The `embed` transform computes the vector embedding for each chunk. By default, Sycamore will embed the `text_represention` field of each chunk in the DocSet using the specified embedder. Here we use the `all-MiniLM-L6-v2` sentence-transformer model, which is a small model that works well for tests and demos. Sycamore supports a range of embedding models, including remote models from OpenAI and others. It is also possible to let Weaviate do the embeddings by omitting this step and adjusting the collection configuration.
+4. Finally, we perform the `write` to Weaviate. You will notice here that we set the `flatten_properties` attribute to `True` . This addresses the fact that Sycamore properties can be nested, but Weaviate only allows filtering by top-level attributes. Flattened column names are separated by `__` characters. For example, if you have the property `{"properties": {"authors": []}}`, it will be stored with the key `properties__authors` in Weaviate.
 
-You can find more information about Sycamore transformations in the [Sycamore documentation](https://sycamore.readthedocs.io/en/stable/data_ingestion_and_preparation/transforms.html). 
+You can find more information about Sycamore transformations in the [Sycamore documentation](https://sycamore.readthedocs.io/en/stable/data_ingestion_and_preparation/transforms.html).
 
 ## Putting it all together
 
@@ -550,7 +561,7 @@ model_name = "sentence-transformers/all-MiniLM-L6-v2"
 
 paths = ["s3://aryn-public/weaviate_blog_data/"]
 
-# Sycamore script to ingest data into Weaviate. 
+# Sycamore script to ingest data into Weaviate.
 context = sycamore.init()
 context.read.binary(paths=paths, binary_format="pdf")\
             .partition(partitioner=SycamorePartitioner(
@@ -571,16 +582,16 @@ context.read.binary(paths=paths, binary_format="pdf")\
                 flatten_properties=True)
 ```
 
-As with any Sycamore script, this script can be run on a few documents on a laptop or scale to a cluster to process a large set of documents without changing the code. 
+As with any Sycamore script, this script can be run on a few documents on a laptop or scale to a cluster to process a large set of documents without changing the code.
 
 ### Reading from Weaviate
 
-Once the data is loaded into Weaviate, you can query it using standard Weaviate search operations, leveraging both the text embeddings and properties. For example, if I’m interested in images about skin cancer classification, then I could do the following query, which combines a hybrid search over the embedded text representation with a filter for only `Image` elements. 
+Once the data is loaded into Weaviate, you can query it using standard Weaviate search operations, leveraging both the text embeddings and properties. For example, if I’m interested in images about skin cancer classification, then I could do the following query, which combines a hybrid search over the embedded text representation with a filter for only `Image` elements.
 
 ```python
 from weaviate.classes.query import Filter
 
-# Utility method for formatting the output in an easily readable way. 
+# Utility method for formatting the output in an easily readable way.
 def print_search_result(sr):
     for obj in sr.objects:
         print("=" * 80)
@@ -589,15 +600,15 @@ def print_search_result(sr):
 
 # Specify the properties to return in the vector search.
 get_props = [
-	"text_representation", 
-	"type", 
-	"properties__path", 
-	"properties__page_number", 
-	"properties__entity__authors", 
+	"text_representation",
+	"type",
+	"properties__path",
+	"properties__page_number",
+	"properties__entity__authors",
 	"properties__entity__title"
 ]
 
-# Do a hybrid search query with a filter for Image elements. 
+# Do a hybrid search query with a filter for Image elements.
 print_search_result(demo.query.hybrid(
     query="Applications of deep learning to skin cancer image classification.",
     query_properties=["text_representation"],
@@ -608,7 +619,7 @@ print_search_result(demo.query.hybrid(
 ))
 ```
 
-Note that the output contains the summary of the image we extracted using the `SummarizeImages` transform. 
+Note that the output contains the summary of the image we extracted using the `SummarizeImages` transform.
 
 ### Output
 
@@ -631,7 +642,7 @@ properties__entity__authors   | ['Connor Shorten', 'Taghi M. Khoshgoftaar']
 
 ## Conclusions
 
-In this post, you saw how to use Sycamore to partition, transform, and load complex PDFs into Weaviate. You saw how the Aryn Partitioner can be used to accurately partition complex PDFs in order to identify components like images and tables. And, you saw that Sycamore DocSets give you a compact and expressive way to augment, transform, and embed these documents and load them into Weaviate. While we used a small example with two documents, Sycamore is designed to be scalable and can utilize multiple cores, GPUs, and machines to run over very large collections of documents. 
+In this post, you saw how to use Sycamore to partition, transform, and load complex PDFs into Weaviate. You saw how the Aryn Partitioner can be used to accurately partition complex PDFs in order to identify components like images and tables. And, you saw that Sycamore DocSets give you a compact and expressive way to augment, transform, and embed these documents and load them into Weaviate. While we used a small example with two documents, Sycamore is designed to be scalable and can utilize multiple cores, GPUs, and machines to run over very large collections of documents.
 
 You can find out more about Sycamore at [https://github.com/aryn-ai/sycamore](https://github.com/aryn-ai/sycamore) and find the code for this blog at XXXX
 
