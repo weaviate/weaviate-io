@@ -340,6 +340,7 @@ For links to the TypeScript Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [3.0.9][ts3.0.9] | 2024-07-10 |
   | [3.0.8][ts3.0.8] | 2024-06-24 |
   | [3.0.7][ts3.0.7] | 2024-06-21 |
   | [3.0.6][ts3.0.6] | 2024-06-19 |
@@ -823,6 +824,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( javascript typescript client links )
 
+[ts3.0.9]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.9
 [ts3.0.8]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.8
 [ts3.0.7]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.7
 [ts3.0.6]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.6
