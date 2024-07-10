@@ -72,6 +72,34 @@ class ManageDataClassesTest {
       .returns(true, Result::getResult);
   }
 
+  private void createCollectionWithProperties(String className){
+    // START CreateCollectionWithProperties"
+    String className = className;
+    
+    Property titleProperty = Property.builder()
+              .name("title")
+              .description("Title Property Description...")
+              .dataType(Arrays.asList(DataType.TEXT))
+              .build();
+    
+    Property bodyProperty = Property.builder()
+              .name("body")
+              .description("Body Property Description...")
+              .dataType(Arrays.asList(DataType.TEXT))
+              .build();
+    
+    WeaviateClass articleClass = WeaviateClass.builder()
+              .className(className)
+              .description("Article Class Description...")
+              .properties(Arrays.asList(titleProperty, bodyProperty))
+              .build();
+  
+    Result<Boolean> classResult = client.schema().classCreator()
+              .withClass(articleClass)
+              .run();
+    // END CreateCollectionWithProperties"
+  }
+
   private void readOneCollection(String className) {
     // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
