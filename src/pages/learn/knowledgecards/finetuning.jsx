@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Finetuning - Weaviate Knowledge Cards',
     description:
-      'Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset...',
+      "Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model's performance on the related task while being more cost-efficient than training it from scratch.",
     image: 'https://weaviate.io/img/cards/finetuning.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/finetuning',
   };
@@ -79,7 +79,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model's performance on the related task while being more cost-efficient than training it from scratch."
+            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -98,7 +98,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model's performance on the related task while being more cost-efficient than training it from scratch."
+            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch."
           />
           <meta
             name="twitter:image"
