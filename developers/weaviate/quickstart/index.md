@@ -83,7 +83,11 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Step 3: Connect to Weaviate
 
-To connect to your Weaviate instance, you need the following information:
+To connect to your Weaviate instance, you need the instance connection details and a client to connect with.
+
+### Connection details
+
+Gather the following information:
 
 - The Weaviate **URL** (get it from WCD `Details` tab)
 
@@ -93,6 +97,8 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 - The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
 - An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
+
+### Client connection code
 
 Use this sample code to create a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
 
