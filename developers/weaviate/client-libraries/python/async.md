@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import FastAPIExample from '!!raw-loader!/_includes/code/client-libraries/minimal_fastapi.py';
 
 :::info Added in `weaviate-client` `v4.7.0`
 The async Python client is available in `weaviate-client` versions `4.7.0` and higher.
@@ -152,7 +153,7 @@ Note the use of a context manager in the async function. The context manager is 
   language="py"
 />
 
-### RAG with `hybrid`
+### Search & RAG
 
 In this example, we perform retrieval augmented generation (RAG) with hybrid search results using the async client.
 
@@ -171,23 +172,25 @@ For server-side batch operations, we recommend using the synchronous client and 
 
 The async client still offers `insert` and `insert_many` methods for data insertion, which can be used in an async context.
 
-### Application-level examples
+### Application-level example
 
 A common use case for the async client is in web applications, where multiple requests are handled concurrently. Here is an indicative, minimal example integrating the async client with [FastAPI](https://fastapi.tiangolo.com/), a popular web framework:
 
-```python
-from fastapi import FastAPI
-from weaviate.client import AsyncClient
+<FilteredTextBlock
+  text={FastAPIExample}
+  startMarker="# START FastAPI Example"
+  endMarker="# END FastAPI Example"
+  language="py"
+/>
 
-app = FastAPI()
+If you run this example, you will see the FastAPI server running on `http://localhost:8000`. You can interact with the server using the `/` and `/search` endpoints.
 
-@app.get("/items/{item_id}")
+:::note Data insertion not shown
+Note that this example is minimal and does not include collection creation or object insertion. It assumes that the collection `Movie` already exists.
+:::
 
-#### Also may lightstar
+## Questions and feedback
 
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-
-
-need to use the returned object in a context manager
-
-use `async with AsyncClient() as client:` type pattern
+<DocsFeedback/>

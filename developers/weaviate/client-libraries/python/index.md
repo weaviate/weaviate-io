@@ -15,6 +15,10 @@ import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.impo
 
 This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
+### Asynchronous usage
+
+The Python client library provides a synchronous API by default through the `WeaviateClient` class, which is covered on this page. An asynchronous API is also available through the `WeaviateAsyncClient` class (from `weaviate-client` `v4.7.0` and up). See the [async client API page](./async.md) for further details.
+
 ## Installation
 
 :::tip Migrating from `v3` to `v4`
