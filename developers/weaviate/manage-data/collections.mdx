@@ -401,7 +401,11 @@ Various vector index parameters are configurable at collection creation time, in
 
 ## Property-level settings
 
-Configure each property to choose whether to vectorize the property and its name, and choose a [tokenization type](../config-refs/schema/index.md#tokenization).
+Configure individual properties in a collection. Each property can have it's own configuration. These are common options:
+
+- Vectorize the property
+- Vectorize the property name
+- Set a [tokenization type](../config-refs/schema/index.md#tokenization)
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -1178,14 +1182,14 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <details>
   <summary>
-    Limitations when adding a property after importing objects
+    Limitations when you add a property after importing data
   </summary>
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+Adding a new property after you import data limitation searches that use the new property.
 
 <br/>
 
-This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+Property indexes are built at import time. If you add a new property after importing some data, the existing index isn't updated to add the new property. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
 
 <br/>
 
