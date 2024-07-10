@@ -72,10 +72,11 @@ class ManageDataClassesTest {
       .returns(true, Result::getResult);
   }
 
+  // START CreateCollectionWithProperties"
   private void createCollectionWithProperties(String className){
-    // START CreateCollectionWithProperties"
     String className = className;
-    
+
+    // Define class properties"
     Property titleProperty = Property.builder()
               .name("title")
               .description("Title Property Description...")
@@ -88,6 +89,7 @@ class ManageDataClassesTest {
               .dataType(Arrays.asList(DataType.TEXT))
               .build();
     
+    //Add the defined properties to the class
     WeaviateClass articleClass = WeaviateClass.builder()
               .className(className)
               .description("Article Class Description...")
@@ -97,8 +99,8 @@ class ManageDataClassesTest {
     Result<Boolean> classResult = client.schema().classCreator()
               .withClass(articleClass)
               .run();
-    // END CreateCollectionWithProperties"
   }
+  // END CreateCollectionWithProperties"
 
   private void readOneCollection(String className) {
     // START ReadOneCollection
