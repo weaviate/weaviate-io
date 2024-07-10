@@ -102,7 +102,7 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 Use this sample code to create a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
 
-The code creates a `client` object. Latter steps in this tutorial re-use the client object to connect to your Weaviate instance.
+The code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
