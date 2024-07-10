@@ -1,5 +1,5 @@
 ---
-title: Async Client API
+title: Async API
 sidebar_position: 40
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
@@ -39,7 +39,7 @@ These instantiation helper functions mirror the [synchronous client helper funct
 
 However, the async helper functions do not connect to the server as their synchronous counterparts do.
 
-When using the async helper functions, uou must call the async `.connect()` method to connect to the server, and call `.close()` before exiting to clean up. (Except when using a [context manager](#context-manager).)
+When using the async helper functions, you must call the async `.connect()` method to connect to the server, and call `.close()` before exiting to clean up. (Except when using a [context manager](#context-manager).)
 
 The async helper functions take the same parameters for [external API keys](./index.md#external-api-keys), [connection timeout values](./index.md#timeout-values) and [authentication details](./index.md#authentication).
 
