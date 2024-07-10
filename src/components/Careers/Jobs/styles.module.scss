@@ -57,7 +57,11 @@
   border-bottom: 1px solid forestgreen;
 
   @media screen and (max-width: 860px) {
-    grid-template-columns: 1fr;
+    // grid-template-columns: 1fr;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -141,4 +145,22 @@ a:hover {
 
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
   }
+}
+
+.pagination {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.paginationButtons {
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+}
+
+.departmentSelect {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-top: 4px;
 }
