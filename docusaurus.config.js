@@ -1,15 +1,18 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+require('dotenv').config(); 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
 const path = require('path');
 
+
 // Math equation plugins
 const math = require('remark-math');
 const katex = require('rehype-katex');
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -27,6 +30,9 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
+    customFields: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
     plugins: [
         [
             '@docusaurus/plugin-google-gtag',
@@ -380,7 +386,15 @@ const config = {
                             },
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
+                            },
+                            {
+                                label: 'Demos',
+                                href: '/community/demos',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
                             },
 
                             {
@@ -446,6 +460,10 @@ const config = {
                             {
                                 label: 'Careers',
                                 to: '/company/careers',
+                            },
+                            {
+                                label: 'Remote',
+                                to: '/company/remote',
                             },
                             {
                                 label: 'Investors',
@@ -559,7 +577,15 @@ const config = {
                         items: [
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
+                            },
+                            {
+                                label: 'Demos',
+                                href: '/community/demos',
                             },
                             {
                                 label: 'Events & Webinars',
@@ -614,6 +640,10 @@ const config = {
                             {
                                 label: 'Careers',
                                 to: '/company/careers',
+                            },
+                            {
+                                label: 'Remote',
+                                to: '/company/remote',
                             },
                             {
                                 label: 'Playbook',

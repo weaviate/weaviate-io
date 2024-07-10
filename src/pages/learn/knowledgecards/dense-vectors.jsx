@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Dense Vectors - Weaviate Knowledge Cards',
     description:
-      'In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers...',
+      'In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers. These vectors capture the semantic meaning of text and are used in vector search techniques.',
     image: 'https://weaviate.io/img/cards/dense-vectors.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/dense-vectors',
   };
