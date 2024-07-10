@@ -13,12 +13,11 @@ import TabItem from '@theme/TabItem';
 
 Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
 
-In the next ~20 minutes, you will:
-- Build a Weaviate vector database, and
-- Query it with:
-    - *semantic search*,
-    - an added *filter* and
-    - *generative searches* to transform your search results with a large language model (LLM).
+This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
+- Build a Weaviate vector database.
+- Make *semantic search* query.
+- Add a *filter* to your query.
+- Use *generative searches* and a large language model (LLM) to transform your search results.
 
 #### Object vectors
 
