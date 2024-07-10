@@ -1,0 +1,144 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+client.data_object.reference.delete(
+  "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+  "wroteArticles",
+  "6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
+  from_class_name="SourceClass",
+  to_class_name="TargetClass",
+  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.data
+  .referenceDeleter()
+  .withClassName('SourceClass')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withReferenceProperty('wroteArticles')
+  .withReference(
+    client.data
+      .referencePayloadBuilder()
+      .withClassName('TargetClass')
+      .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload(),
+  )
+  .withConsistencyLevel('ALL')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+    "context"
+
+    "github.com/weaviate/weaviate-go-client/v4/weaviate"
+    "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
+
+    reference := client.Data().ReferencePayloadBuilder().
+      WithClassName("TargetClass").
+      WithID("6bb06a43-e7f0-393e-9ecf-3c0f4e129064").Payload()
+
+    err := client.Data().ReferenceDeleter().
+      WithClassName("SourceClass").
+      WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+      WithReferenceProperty("wroteArticles").
+      WithReference(reference).
+      WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+      Do(context.Background())
+
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.model.SingleRef;
+import io.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    SingleRef reference = client.data().referencePayloadBuilder()
+      .withClassName("TargetClass")
+      .withID("6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+      .payload();
+
+    Result<Boolean> result = client.data().referenceDeleter()
+      .withClassName("SourceClass")
+      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withReferenceProperty("wroteArticles")
+      .withReference(reference)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X DELETE \
+    -H "Content-Type: application/json" \
+    -d '{
+        "beacon": "weaviate://localhost/TargetClass/6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
+    }' \
+    http://localhost:8080/v1/objects/SourceClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/references/wroteArticles?consistency_level=ALL
+```
+
+</TabItem>
+</Tabs>

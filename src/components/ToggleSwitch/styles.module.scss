@@ -1,0 +1,135 @@
+[data-theme='dark'] {
+  .toggleSwitch {
+    &Inner {
+      &:before {
+        background-color: #00b800;
+      }
+    }
+  }
+}
+
+.toggleSwitch > label {
+  color: black;
+  font-size: 25px;
+  font-weight: 400;
+}
+.toggleSwitch {
+  position: relative;
+  margin-right: 10px;
+  width: 75px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  &Checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  &Label {
+    display: none;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    margin: 0;
+
+    &:focus {
+      outline: none;
+      > span {
+        box-shadow: 0 0 2px 5px #ff0;
+      }
+    }
+    > span:focus {
+      outline: none;
+    }
+  }
+  &Inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &:before,
+    &:after {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 34px;
+      padding: 0;
+      line-height: 34px;
+      font-size: 14px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    &:before {
+      content: attr(data-yes);
+      text-transform: uppercase;
+      background-color: #61bd73;
+      padding-left: 10px;
+      color: #1c1468;
+    }
+  }
+  &Disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    &:before {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+  &Inner:after {
+    content: attr(data-no);
+    text-transform: uppercase;
+    padding-right: 10px;
+    background-color: #bbb;
+    color: #fff;
+    text-align: right;
+  }
+  &Switch {
+    display: block;
+    width: 24px;
+    margin: 5px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &Checkbox:checked + &Label {
+    .toggleSwitchInner {
+      margin-left: 0;
+    }
+    .toggleSwitchSwitch {
+      right: 0px;
+    }
+  }
+  &.smallSwitch {
+    width: 40px;
+    .toggleSwitchInner {
+      &:after,
+      &:before {
+        content: '';
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+    .toggleSwitchSwitch {
+      width: 16px;
+      right: 20px;
+      margin: 2px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    transform: scale(0.9);
+  }
+  @media screen and (max-width: 767px) {
+    transform: scale(0.825);
+  }
+  @media screen and (max-width: 575px) {
+    transform: scale(0.75);
+  }
+}

@@ -1,0 +1,107 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
+some_objects = client.data_object.get()
+print(json.dumps(some_objects))
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+});
+
+const response = await client
+  .data
+  .getter()
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func GetSchema() {
+    cfg := weaviate.Config{
+      Host:   "WEAVIATE_INSTANCE_URL/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+      Scheme: "https",
+    }
+
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
+
+    data, err := client.Data().ObjectsGetter().
+      Do(context.Background())
+
+    if err != nil {
+      panic(err)
+    }
+    fmt.Printf("%v", data)
+
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.List;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.model.WeaviateObject;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<List<WeaviateObject>> result = client.data().objectsGetter()
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+curl https://WEAVIATE_INSTANCE_URL/v1/objects  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem> */}
+</Tabs>

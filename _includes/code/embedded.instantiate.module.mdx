@@ -1,0 +1,33 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/install/embedded-v3.py';
+import TsCodeV2 from '!!raw-loader!/_includes/code/install/embedded-v2.ts';
+
+<Tabs groupId="languages">
+    <TabItem value="py" label="Python Client v4">
+        <FilteredTextBlock
+          text={PyCode}
+          startMarker="# START ModuleInstantiationEmbedded"
+          endMarker="# END ModuleInstantiationEmbedded"
+          language="py"
+        />
+    </TabItem>
+    <TabItem value="py3" label="Python Client v3">
+        <FilteredTextBlock
+          text={PyCodeV3}
+          startMarker="# START CustomModules"
+          endMarker="# END CustomModules"
+          language="py"
+        />
+    </TabItem>
+    <TabItem value="js" label="JS/TS Client v2">
+        <FilteredTextBlock
+          text={TsCodeV2}
+          startMarker="// START CustomModules"
+          endMarker="// END CustomModules"
+          language="js"
+        />
+    </TabItem>
+</Tabs>

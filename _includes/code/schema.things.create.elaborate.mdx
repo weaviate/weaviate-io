@@ -1,0 +1,418 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START CreateCollectionElaborate"
+    endMarker="END CreateCollectionElaborate"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "vectorIndexType": "hnsw",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+        "efConstruction": 128,
+        "maxConnections": 64
+    },
+    "vectorizer": "text2vec-contextionary",
+    "moduleConfig": {
+      "text2vec-contextionary": {
+        "vectorizeClassName": True
+      }
+    },
+    "properties": [
+        {
+            "dataType": [
+                "text"
+            ],
+            "description": "Title of the article",
+            "name": "title",
+            "indexFilterable": True,
+            "indexSearchable": True,
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                  "skip": False,
+                  "vectorizePropertyName": False
+                }
+              }
+        },
+        {
+            "dataType": [
+                "text"
+            ],
+            "description": "The content of the article",
+            "name": "content",
+            "indexFilterable": True,
+            "indexSearchable": True,
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                  "skip": False,
+                  "vectorizePropertyName": False
+                }
+              }
+        }
+    ],
+    "shardingConfig": {
+      "virtualPerPhysical": 128,
+      "desiredCount": 1,
+      "desiredVirtualCount": 128,
+    },
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "additions": ["star", "nebula"],
+        "removals": ["a", "the"]
+      },
+      "indexTimestamps": True
+    },
+    "replicationConfig": {
+      "factor": 3
+    }
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const classObj = {
+  class: 'Article',
+  description: 'A written text, for example a news article or blog post',
+  vectorIndexType: 'hnsw',
+  vectorIndexConfig: {
+    distance: 'cosine',
+    efConstruction: 128,
+    maxConnections: 64,
+  },
+  vectorizer: 'text2vec-contextionary',
+  moduleConfig: {
+    'text2vec-contextionary': {
+      vectorizeClassName: true,
+    },
+  },
+  properties: [
+    {
+      dataType: [
+        'text',
+      ],
+      description: 'Title of the article',
+      name: 'title',
+      indexFilterable: true,
+      indexSearchable: true,
+      moduleConfig: {
+        'text2vec-contextionary': {
+          skip: false,
+          vectorizePropertyName: false,
+        },
+      },
+    },
+    {
+      dataType: [
+        'text',
+      ],
+      description: 'The content of the article',
+      name: 'content',
+      indexFilterable: true,
+      indexSearchable: true,
+      moduleConfig: {
+        'text2vec-contextionary': {
+          skip: false,
+          vectorizePropertyName: false,
+        },
+      },
+    },
+  ],
+  shardingConfig: {
+    virtualPerPhysical: 128,
+    desiredCount: 1,
+    desiredVirtualCount: 128,
+  },
+  invertedIndexConfig: {
+    stopwords: {
+      preset: 'en',
+      additions: ['star', 'nebula'],
+      removals: ['a', 'the'],
+    },
+    indexTimestamps: true,
+  },
+  replicationConfig: {
+    factor: 3,
+  },
+};
+
+const response = await client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  classObj := &models.Class{
+    Class:             "Article",
+    Description:       "A written text, for example a news article or blog post",
+    VectorIndexType:   "hnsw",
+    Vectorizer:        "text2vec-contextionary",
+    VectorIndexConfig: map[string]interface{}{
+      "distance": "cosine",
+      "ef": float64(128),
+      "efConstruction": float64(128),
+      "maxConnections": float64(32),
+    },
+    Properties: []*models.Property{
+      {
+        DataType:    []string{"text"},
+        Description: "Title of the article",
+        Name:        "title",
+        IndexFilterable: true,
+        IndexSearchable: true,
+      },
+      {
+        DataType:    []string{"text"},
+        Description: "The content of the article",
+        Name:        "content",
+        IndexFilterable: true,
+        IndexSearchable: true,
+      },
+    },
+    InvertedIndexConfig: &models.InvertedIndexConfig{
+      Stopwords: &models.StopwordConfig{
+        Preset:    "en",
+        Additions: []string{"star", "nebula"},
+        Removals:  []string{"a", "the"},
+      },
+      IndexTimestamps: true,
+    },
+    ReplicationConfig: &models.ReplicationConfig{
+      Factor: 3,
+    }
+  }
+
+  err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.misc.model.InvertedIndexConfig;
+import io.weaviate.client.v1.misc.model.ShardingConfig;
+import io.weaviate.client.v1.misc.model.StopwordConfig;
+import io.weaviate.client.v1.misc.model.VectorIndexConfig;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.client.v1.misc.model.ReplicationConfig;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    StopwordConfig stopwordConfig = StopwordConfig.builder()
+      .preset("en")
+      .additions(new String[]{ "star", "nebula" })
+      .removals(new String[]{ "a", "the" })
+      .build();
+
+    InvertedIndexConfig invertedIndexConfig = InvertedIndexConfig.builder()
+      .stopwords(stopwordConfig)
+      .indexTimestamps(true)
+      .build();
+
+    VectorIndexConfig vectorIndexConfig = VectorIndexConfig.builder()
+      .distance("cosine")
+      .cleanupIntervalSeconds(300)
+      .efConstruction(128)
+      .maxConnections(64)
+      .vectorCacheMaxObjects(500000)
+      .ef(-1)
+      .skip(false)
+      .dynamicEfFactor(8)
+      .dynamicEfMax(500)
+      .dynamicEfMin(100)
+      .flatSearchCutoff(40000)
+      .build();
+
+    ShardingConfig shardingConfig = ShardingConfig.builder()
+      .desiredCount(1)
+      .desiredVirtualCount(128)
+      .virtualPerPhysical(128)
+      .build();
+
+    ReplicationConfig replicationConfig = ReplicationConfig.builder()
+      .factor(3)
+      .build();
+
+
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Article")
+      .description("A written text, for example a news article or blog post")
+      .vectorIndexType("hnsw")
+      .vectorizer("text2vec-contextionary")
+      .invertedIndexConfig(invertedIndexConfig)
+      .shardingConfig(shardingConfig)
+      .vectorIndexConfig(vectorIndexConfig)
+      .replicationConfig(replicationConfig)
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("Title of the article")
+          .name("title")
+          .indexFilterable(true)
+          .indexSearchable(true)
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("The content of the article")
+          .name("content")
+          .indexFilterable(true)
+          .indexSearchable(true)
+          .build());
+      } })
+      .build();
+
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "vectorIndexType": "hnsw",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+        "efConstruction": 128,
+        "maxConnections": 64
+    },
+    "vectorizer": "text2vec-contextionary",
+    "moduleConfig": {
+      "text2vec-contextionary": {
+        "vectorizeClassName": true
+      }
+    },
+    "properties": [
+        {
+            "dataType": [
+                "text"
+            ],
+            "description": "Title of the article",
+            "name": "title",
+            "indexFilterable": true,
+            "indexSearchable": true,
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                  "skip": false,
+                  "vectorizePropertyName": true
+                }
+              }
+        },
+        {
+            "dataType": [
+                "text"
+            ],
+            "description": "The content of the article",
+            "name": "content",
+            "indexFilterable": true,
+            "indexSearchable": true,
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                  "skip": false,
+                  "vectorizePropertyName": true
+                }
+              }
+        }
+    ],
+    "shardingConfig": {
+      "virtualPerPhysical": 128,
+      "desiredCount": 1,
+      "desiredVirtualCount": 128,
+    },
+    "invertedIndexConfig": {
+      "stopwords": {
+        "preset": "en",
+        "additions": ["star", "nebula"],
+        "removals": ["a", "the"]
+      },
+      "indexTimestamps": true
+    },
+    "replicationConfig": {
+      "factor": 3
+    }
+}' \
+http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>

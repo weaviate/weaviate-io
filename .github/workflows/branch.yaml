@@ -1,0 +1,54 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  Build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    env:
+      GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+      SLACK_BOT: ${{ secrets.SLACK_BOT }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_URL: ${{ secrets.NETLIFY_URL }}
+      GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
+      GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+      - name: Install dependencies
+        run: |
+          rm -vrf node_modules/.cache/webpack
+          yarn install
+      - name: Update versions from GitHub
+        env:
+          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        run: |
+          node _build_scripts/update-config-versions.js
+      - name: Build Docusarus project
+        run: |
+          yarn build
+      - name: Deploy draft to Netlify
+        run: |
+          source _build_scripts/publish-draft-to-netlify.sh
+      - name: Send Slack Message for branch build
+        if: ${{ github.ref_name != 'main' }}
+        run: |
+          source _build_scripts/slack-find-author.sh
+          source _build_scripts/slack-netlify-message.sh
+      - name: Validate links on Netlify
+        run: |
+          source _build_scripts/verify-links.sh
+      - name: Deploy to Production Netlify
+        if: ${{ github.ref_name == 'main' }}
+        run: |
+          source _build_scripts/publish-prod-to-netlify.sh
+          source _build_scripts/slack-find-author.sh
+          source _build_scripts/slack-release-message.sh

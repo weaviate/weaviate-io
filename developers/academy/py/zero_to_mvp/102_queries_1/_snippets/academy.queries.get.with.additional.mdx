@@ -1,0 +1,44 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+    ) {
+      question
+      answer
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

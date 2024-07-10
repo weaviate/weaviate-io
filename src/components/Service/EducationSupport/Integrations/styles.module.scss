@@ -1,0 +1,246 @@
+.integrationsSection {
+  background: #f5f5f5;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 14.3125rem;
+  height: 19.75rem;
+
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+
+  border-radius: 0.4375rem;
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.longCard {
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  gap: 20px;
+  z-index: 1;
+  flex-wrap: nowrap;
+  background: #ffffff !important;
+  justify-content: center;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover !important;
+
+  .cTextColor {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 2.25rem */
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentDiv {
+    height: 100%;
+    width: 50%;
+    margin: 50px;
+    text-align: center;
+
+    br {
+      display: none;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      br {
+        display: inherit;
+      }
+    }
+  }
+}
+
+.safetyTypeBottom {
+  width: 100%;
+  height: 186px;
+  background: #130c49;
+  margin-top: -200px;
+}
+
+.longHead {
+  grid-template-columns: 1fr;
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 278px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}
+
+.learningContainer {
+  margin: 30px 0px;
+}
+
+.learningRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 33px;
+  justify-content: center;
+  padding: 20px 0px;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.parentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  width: 518px;
+  height: 353px;
+}
+
+.imageGrid1 {
+  grid-area: 1 / 1 / 3 / 2;
+  background-image: url('/img/site/enterprise-grid-01.png');
+  background-size: cover;
+}
+.imageGrid2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-image: url('/img/site/enterprise-grid-02.png');
+  background-size: cover;
+}
+.imageGrid3 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-image: url('/img/site/enterprise-grid-03.png');
+  background-size: cover;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  gap: 20px;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.iconText {
+  margin: 10px 0px;
+  display: flex;
+  align-items: flex-start;
+  a {
+    color: #130c49;
+    font-size: 1rem;
+    text-decoration-line: underline;
+  }
+}
+
+.community::before {
+  content: url('/img/site/community-icon.svg');
+  margin-right: 20px;
+}
+.docs::before {
+  content: url('/img/site/vectorizer-icon.svg');
+  margin-right: 20px;
+}
+
+.console::before {
+  content: url('/img/site/index-icon.svg');
+  margin-right: 20px;
+}
+
+.educationImage {
+  background-image: url('/img/site/education-course-zain.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 497px;
+  height: 294px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 245px;
+    background-size: contain;
+  }
+}
+
+.seb {
+  background-image: url('/img/site/education-course-seb.png');
+}

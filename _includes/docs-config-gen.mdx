@@ -1,0 +1,27 @@
+
+import { Component } from "react"
+
+export default class MyComponent extends Component {
+  componentDidMount() {
+    const configDiv = document.getElementById("configuration-generator-root")
+    const script_a = document.createElement("script");
+    script_a.src = "/js/configgen/2.709632dd.chunk.js";
+    script_a.type = "text/javascript"
+    configDiv.appendChild(script_a);
+    const script_b = document.createElement("script");
+    script_b.src = "/js/configgen/main.dde0b96f.chunk.js";
+    script_b.type = "text/javascript"
+    configDiv.appendChild(script_b);
+    const script_c = document.createElement("script");
+    script_c.src = "/js/configgen/runtime-main.a0f4ef68.js";
+    script_c.type = "text/javascript"
+    configDiv.appendChild(script_c);
+  };
+  render() {
+    return (
+        <div>
+        <div id="configuration-generator-root"></div>
+        </div>
+    );
+  }
+}

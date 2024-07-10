@@ -1,0 +1,205 @@
+.form {
+  padding: 2.5rem 10rem;
+  background-color: #f5f5f5;
+  max-width: 75%;
+  margin: auto;
+  border-radius: 0.45em;
+  position: sticky;
+  transform: translateY(-2.5in);
+  fill: #fff;
+  border: 1px solid #130c49;
+  filter: drop-shadow(0px 24px 64px rgba(22, 27, 45, 0.08));
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      text-align: center;
+      color: #1c1468;
+      text-align: center;
+
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; /* 2.25rem */
+    }
+
+    p {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    padding: 2.5rem 1rem;
+  }
+
+  .formWrapper {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .input {
+    appearance: none;
+    display: flex;
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #aeacac;
+    background-color: transparent;
+    border-radius: 0.45em;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .selectWrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .select {
+      appearance: none;
+      margin-top: 1rem;
+      display: flex;
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid #aeacac;
+      background-color: transparent;
+      border-radius: 0.45em;
+      color: unset;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+
+  .actionBtn {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: center;
+
+    .button {
+      cursor: pointer;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      color: #130c49;
+      font-weight: bold;
+      font-size: 16px;
+      background: #61bd73;
+      border: 1px solid #130c49;
+      opacity: 0.9;
+      transition: all 1s ease-out;
+    }
+    button:hover {
+      border-radius: 0.3125rem;
+      outline: 1px solid #130c49;
+      background: rgb(15, 0, 50);
+      color: #fff;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .form {
+    background-color: rgba(46, 49, 143, 0.5);
+    box-shadow: 0px 0px 30px 10px rgb(0, 0, 0);
+
+    .input {
+      border: 1px solid #aeacac;
+    }
+
+    .select {
+      border: 1px solid #aeacac;
+    }
+  }
+
+  .actionBtn {
+    .button {
+      background-color: #00b800;
+      background-image: linear-gradient(45deg, #20e220 60%, #ffff00);
+      color: rgba(46, 49, 143);
+    }
+  }
+
+  .hybridPng {
+    background-image: url('../../../static/img/site/hybrid-saas.png');
+  }
+}
+
+.hybridPng {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../../static/img/site/hybrid-saas-light.png');
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  div {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #20e220;
+    font-weight: bold;
+  }
+}
+
+.bgHead {
+  background: transparent;
+  height: 200px;
+}
+
+.bgHeadDark {
+  background: #ededed;
+  height: 200px;
+}
+
+.contactBg {
+  background: #130c49;
+
+  max-height: 600px;
+
+  @media only screen and (device-width: 768px) {
+    margin-top: 160px;
+    max-height: 809px;
+  }
+
+  @media screen and (max-width: 860px) {
+    margin-top: 160px;
+    max-height: 700px;
+  }
+}

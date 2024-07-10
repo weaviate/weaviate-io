@@ -1,0 +1,101 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+# ===== Import data =====
+# Settings for displaying the import progress
+counter = 0
+interval = 100  # print progress every this many records
+
+# Create a pandas dataframe iterator with lazy-loading,
+# so we don't load all records in RAM at once.
+import pandas as pd
+csv_iterator = pd.read_csv(
+    'vector_database_wikipedia_articles_embedded.csv',
+    usecols=['id', 'url', 'title', 'text', 'content_vector'],
+    chunksize=100,  # number of rows per chunk
+    # nrows=350  # optionally limit the number of rows to import
+)
+
+# Iterate through the dataframe chunks and add each CSV record to the batch
+import ast
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+  for chunk in csv_iterator:
+      for index, row in chunk.iterrows():
+
+          properties = {
+              "title": row.title,
+              "content": row.text,
+              "url": row.url
+          }
+
+          # Convert the vector from CSV string back to array of floats
+          vector = ast.literal_eval(row.content_vector)
+
+          # Add the object to the batch, and set its vector embedding
+          batch.add_data_object(properties, "Article", vector=vector)
+
+          # Calculate and display progress
+          counter += 1
+          if counter % interval == 0:
+              print(f"Imported {counter} articles...")
+print(f"Finished importing {counter} articles.")
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+// ===== Import data =====
+import fs from 'fs';
+import csv from 'csv-parser';
+
+async function importCSV(filePath) {
+  let batcher = client.batch.objectsBatcher();
+  let counter = 0;
+  const batchSize = 100;
+
+  return new Promise((resolve, reject) => {
+    fs.createReadStream(filePath)
+      .pipe(csv())
+      .on('data', async (row) => {
+        // Import each record
+        const obj = {
+          class: 'Article',
+          properties: {
+            title: row.title,
+            content: row.text,
+            url: row.url,
+          },
+          vector: JSON.parse(row['content_vector']),
+        }
+        // Add the object to the batch queue
+        batcher = batcher.withObject(obj);
+        counter++;
+
+        // When the batch counter reaches batchSize, push the objects to Weaviate
+        if (counter % batchSize === 0) {
+          console.log(`Imported ${counter} articles...`);
+          // Flush the batch queue and restart it
+          await batcher.do();
+          batcher = client.batch.objectsBatcher();
+        }
+      })
+      .on('end', async () => {
+        // Flush the remaining objects
+        await batcher.do();
+        console.log(`Finished importing ${counter} articles.`);
+        resolve();
+      });
+  });
+}
+
+await importCSV('vector_database_wikipedia_articles_embedded.csv');
+```
+
+</TabItem>
+</Tabs>

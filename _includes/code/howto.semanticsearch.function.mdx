@@ -1,0 +1,222 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Explore (
+    nearText: {
+      concepts: ["fashion"],
+      certainty: 0.7,
+      moveTo: {
+        concepts: ["haute couture"],
+        force: 0.45
+      },
+      moveAwayFrom: {
+        concepts: ["finance"],
+        force: 0.85
+      }
+    }
+  ) {
+    beacon
+    certainty
+    className
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+get_articles_query = """
+  {
+    Explore (
+      nearText: {
+        concepts: [\"fashion\"],
+        certainty: 0.7,
+        moveTo: {
+          concepts: [\"haute couture\"],
+          force: 0.45
+        },
+        moveAwayFrom: {
+          concepts: [\"finance\"],
+          force: 0.85
+        }
+      }
+    ) {
+      beacon
+      certainty
+      className
+    }
+  }
+"""
+
+query_result = client.query.raw(get_articles_query)
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .explore()
+  .withNearText({
+    concepts: ['fashion'],
+    moveTo: { concepts: ['haute couture'], force: 0.85 },
+    moveAwayFrom: { concepts: ['finance'], force: 0.45 },
+    certainty: 0.7,
+  })
+  .withFields('beacon certainty className')
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  concepts := []string{"fashion"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.5,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.2,
+  }
+
+  withNearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithCertainty(0.7).
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
+  result, err := client.GraphQL().Explore().
+    WithFields(graphql.Certainty, graphql.Beacon, graphql.ClassName).
+    WithNearText(withNearText).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.ExploreFields;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "haute couture" }).force(0.45f).build();
+
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "finance" }).force(0.85f)
+      .build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .certainty(0.7f)
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().explore()
+      .withFields(ExploreFields.CERTAINTY, ExploreFields.BEACON, ExploreFields.CLASS_NAME)
+      .withNearText(nearText)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Explore(
+      nearText: {
+        concepts: [\"fashion\"],
+        certainty: 0.7,
+        moveTo: {
+          concepts: [\"haute couture\"],
+          force: 0.45
+        },
+        moveAwayFrom: {
+          concepts: [\"finance\"],
+          force: 0.85
+        }
+      }
+    ) {
+      beacon
+      certainty
+      className
+    }
+  }"
+}' | curl \
+      -X POST \
+      -H 'Content-Type: application/json' \
+      -d @- \
+      http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

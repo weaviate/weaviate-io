@@ -1,0 +1,207 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START CreateSimpleCollection"
+    endMarker="END CreateSimpleCollection"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",
+    "description": "A written text, for example a news article or blog post",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "description": "Title of the article",
+            "name": "title",
+        },
+        {
+            "dataType": ["text"],
+            "description": "The content of the article",
+            "name": "content"
+        }
+    ]
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const classObj = {
+  'class': 'Article',
+  'description': 'A written text, for example a news article or blog post',
+  'vectorizeClassName': true,
+  'properties': [
+    {
+      'name': 'title',
+      'dataType': ['string'],
+      'description': 'Title of the article',
+      'vectorizePropertyName': true,
+      'index': true,
+    },
+    {
+      'name': 'content',
+      'dataType': ['text'],
+      'description': 'The content of the article',
+    },
+  ],
+};
+
+const response = await client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+    "context"
+
+    "github.com/weaviate/weaviate-go-client/v4/weaviate"
+    "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
+
+    classObj := &models.Class{
+        Class:       "Article",
+        Description: "A written text, for example a news article or blog post",
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "Title of the article",
+                Name:        "title",
+            },
+            {
+                DataType:    []string{"text"},
+                Description: "The content of the article",
+                Name:        "content",
+            },
+        },
+    }
+
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Article")
+      .description("A written text, for example a news article or blog post")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("Title of the article")
+          .name("title")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.TEXT); } })
+          .description("The content of the article")
+          .name("content")
+          .build());
+      } })
+      .build();
+
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "description": "A written text, for example a news article or blog post",
+        "properties": [
+            {
+            "dataType": [
+                "string"
+            ],
+            "description": "Title of the article",
+            "name": "title"
+            },
+            {
+            "dataType": [
+                "text"
+            ],
+            "description": "The content of the article",
+            "name": "content"
+            }
+        ]
+    }' \
+    http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>

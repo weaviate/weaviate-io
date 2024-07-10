@@ -1,0 +1,211 @@
+---
+title: Read objects
+sidebar_position: 20
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'read']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.read-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
+
+
+Instead of querying your database, you can use an ID to retrieve individual objects.
+
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
+
+<details>
+  <summary>Additional information</summary>
+  <RestObjectsCRUDClassnameNote/>
+</details>
+
+## Get an object by id
+
+Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404 error.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ReadObject START"
+      endMarker="# ReadObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ReadObject START"
+      endMarker="# ReadObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Retrieve the object's vector
+
+Object vectors can be retrieved by specifying its return.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ReadObjectWithVector START"
+      endMarker="# ReadObjectWithVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ReadObjectWithVector START"
+      endMarker="# ReadObjectWithVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Retrieve named vectors
+
+Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can retrieve one or more of them by specifying their names.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ReadObjectNamedVectors START"
+      endMarker="# ReadObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ReadObjectNamedVectors START"
+      endMarker="# ReadObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ReadObjectNamedVectors START"
+      endMarker="// ReadObjectNamedVectors END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// ReadObjectNamedVectors START"
+      endMarker="// ReadObjectNamedVectors END"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Check object existence
+
+To efficiently check if an object with a given [id](../api/graphql/additional-properties.md#id) exists without retrieving it, make a `HEAD` request to the [`/v1/objects/` REST endpoint](/developers/weaviate/api/rest#tag/objects/head/objects/{className}/{id}), or use the following client code:
+
+import CheckObjectExistence from '/_includes/code/howto/manage-data.read.check.existence.mdx';
+
+<CheckObjectExistence/>
+
+## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
+- [How-to: Search](../search/index.md)
+- [How-to: Read all objects](./read-all-objects.mdx)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

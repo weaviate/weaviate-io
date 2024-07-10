@@ -1,0 +1,58 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+To run the `nearVector` query, you need to provide the full vector. You can view and copy the full vector below.
+
+```python
+
+# Shortened for clarity
+
+meerkat_vector = [-0.024790961,  -0.01860295, ..., -0.008665809,-0.02698336]
+
+```
+
+This is the query.
+
+```python
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer"]
+).with_limit(2).with_near_vector(
+    {"vector": meerkat_vector}
+).with_additional(
+    ["distance", "id"]
+).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+To run the `nearVector` query, first replace <MEERKAT_VECTOR> with the full vector. You can view and copy the full vector below.
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearVector: {
+        vector: <MEERKAT_VECTOR>
+      }
+    ) {
+      question
+      answer
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

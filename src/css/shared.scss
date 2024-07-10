@@ -1,0 +1,27 @@
+@import 'variables.scss';
+
+:root {
+  .custom-page {
+    --ifm-heading-font-family: var(--site-font-fun-heading-family) !important;
+    --ifm-font-family-base: var(--site-font-fun-base-family) !important;
+  }
+}
+
+.highlight {
+  color: var(--site-font-accent-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+// fonticon links
+a {
+  .fab, .fas, .far {
+    color: var(--site-link-font-color);
+  }
+}
+
+.page-title {
+  font-family: var(--site-font-fun-heading-family) !important;
+}

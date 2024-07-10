@@ -1,0 +1,34 @@
+---
+version: '3.4'
+services:
+  weaviate_apikey:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:1.25.6
+    ports:
+    - 8099:8080
+    - 50052:50051
+    restart: on-failure:0
+    environment:
+      OPENAI_APIKEY: ${OPENAI_APIKEY}
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,generative-openai,generative-cohere,reranker-cohere'
+      CLUSTER_HOSTNAME: 'node1'
+
+      # Enables API key authentication.
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+
+      # List one or more keys, separated by commas. Each key corresponds to a specific user identity below.
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'secr3tk3y'
+
+      # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
+      AUTHENTICATION_APIKEY_USERS: 'testuser@weaviate.io'
+...

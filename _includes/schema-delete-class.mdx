@@ -1,0 +1,116 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+
+You can delete any unwanted collection(s), along with the data that they contain.
+
+:::caution Deleting a collection also deletes its objects
+When you **delete a collection, you delete all associated objects**!
+
+Be very careful with deletes on a production database and anywhere else that you have important data.
+:::
+
+This code deletes a collection and its objects.
+
+<Tabs groupId="languages">
+{/* <TabItem value="graphql" label="GraphQL">
+
+```graphql
+
+```
+
+</TabItem> */}
+<TabItem value="py" label="Python Client v4">
+
+  <FilteredTextBlock
+      text={ManageCollectionsCode}
+      startMarker="# START DeleteCollection"
+      endMarker="# END DeleteCollection"
+      language="py"
+  />
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+# delete class "Article" - THIS WILL DELETE ALL DATA IN THIS CLASS
+client.schema.delete_class("Article")  # Replace with your class name
+```
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
+await client.collections.delete('Article')
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+```ts
+// delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
+await client.schema
+  .classDeleter()
+  .withClassName('Article')
+  .do();
+```
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+
+```go
+className := "YourClassName"
+
+// delete the class
+if err := client.Schema().ClassDeleter().WithClassName(className).Do(context.Background()); err != nil {
+  // Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+  if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<Boolean> result = client.schema().classDeleter()
+      .withClassName("Article")
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+  -X DELETE \
+  https://WEAVIATE_INSTANCE_URL/v1/schema/YourClassName  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+</Tabs>

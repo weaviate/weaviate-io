@@ -1,0 +1,193 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+source_where = {
+  "path": ["wordCount"],
+  "operator": "GreaterThan",
+  "valueInt": 100
+}
+
+target_where = {
+  "path": ["name"],
+  "operator": "NotEqual",
+  "valueText": "Government"
+}
+
+client.classification.schedule()\
+            .with_type("text2vec-contextionary-contextual")\
+            .with_class_name("Article")\
+            .with_based_on_properties(["summary"])\
+            .with_classify_properties(["ofCategory"])\
+            .with_source_where_filter(source_where)\   # optional
+            .with_target_where_filter(target_where)\   # optional
+            .do()
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+// the following trigger a classification without waiting
+let response = await client.classifications
+  .scheduler()
+  .withType('text2vec-contextionary-contextual')
+  .withClassName('Article')
+  .withClassifyProperties(['ofCategory'])
+  .withBasedOnProperties(['summary'])
+  .do();
+console.log(JSON.stringify(response, null, 2));
+
+// the following triggers a classification with waiting for completion
+response = await client.classifications
+  .scheduler()
+  .withType('text2vec-contextionary-contextual')
+  .withClassName('Article')
+  .withClassifyProperties(['ofCategory'])
+  .withBasedOnProperties(['summary'])
+  .withWaitForCompletion()
+  .withWaitTimeout(60 * 1000)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  sourceWhere := filters.Where().
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"wordCount"}).
+    WithValueInt(100)
+
+  targetWhere := filters.Where().
+    WithOperator(filters.NotEqual).
+    WithPath([]string{"name"}).
+    WithValueString("Government")
+
+  classification, err := client.Classifications().Scheduler().
+    WithType(classifications.Contextual).
+    WithClassName("Article").
+    WithClassifyProperties([]string{"ofCategory"}).
+    WithBasedOnProperties([]string{"summary"}).
+    WithSourceWhereFilter(sourceWhere).
+    WithTargetWhereFilter(targetWhere).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.classifications.model.Classification;
+import io.weaviate.client.v1.classifications.model.ClassificationType;
+import io.weaviate.client.v1.filters.Operator;
+import io.weaviate.client.v1.filters.WhereFilter;
+
+public class App {
+    public static void main(String[] args) {
+        Config config = new Config("http", "localhost:8080");
+        WeaviateClient client = new WeaviateClient(config);
+
+        WhereFilter trainingSetWhere = WhereFilter.builder()
+                .valueInt(100)
+                .operator(Operator.GreaterThan)
+                .path(new String[]{ "wordCount" })
+                .build();
+
+        WhereFilter targetSetWhere = WhereFilter.builder()
+                .valueText("Government")
+                .operator("NotEqual")
+                .path(new String[]{ "name" })
+                .build();
+
+        Result<Classification> result = client.classifications().scheduler()
+                .withType(ClassificationType.Contextual)
+                .withClassName("Article")
+                .withClassifyProperties(new String[]{"ofCategory"})
+                .withBasedOnProperties(new String[]{"summary"})
+                .withTrainingSetWhereFilter(trainingSetWhere)
+                .withTargetWhereFilter(targetSetWhere)
+                .run();
+
+        if (result.hasErrors()) {
+            System.out.println(result.getError());
+            return;
+        }
+        System.out.println(result.getResult());
+    }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "type": "text2vec-contextionary-contextual",
+        "classifyProperties": [
+            "ofCategory"
+        ],
+        "basedOnProperties": [
+            "summary"
+        ],
+        "filters": {
+          "sourceWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100},
+          "targetWhere": {"path": ["name"], "operator": "NotEqual", "valueText": "Government"}
+        }
+    }' \
+    http://localhost:8080/v1/classifications
+```
+
+</TabItem>
+</Tabs>

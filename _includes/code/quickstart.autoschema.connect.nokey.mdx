@@ -1,0 +1,103 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client(
+    url = "https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+});
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+cfg := weaviate.Config{
+  Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
+  Scheme: "https",
+}
+
+client, err := weaviate.NewClient(cfg)
+if err != nil {
+    panic(err)
+}
+
+classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",
+}
+
+if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+  panic(err)
+}
+```
+
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Question",
+    "vectorizer": "text2vec-openai",
+}' \
+https://WEAVIATE_INSTANCE_URL/v1/schema  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem> */}
+</Tabs>

@@ -1,0 +1,56 @@
+<!-- Quickstart - Bring Your Own Vectors - Putting it all together - /developers/weaviate/quickstart/custom-vectors#putting-it-together -->
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+
+<FilteredTextBlock
+  text={ByovAllPyCode}
+  startMarker="# Bring your own vectors - Python complete sample"
+  endMarker="# ===== Test import ====="
+  language="py"
+/>
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v2">
+
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+
+<FilteredTextBlock
+  text={ByovAllTsCode}
+  startMarker="// Bring your own vectors - TypeScript complete sample"
+  language="ts"
+/>
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+
+```
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
+
+<FilteredTextBlock
+  text={ByovAllShCode}
+  startMarker="#!/bin/bash" includeStartMarker="true"
+  language="bash"
+/>
+
+</TabItem>
+</Tabs>

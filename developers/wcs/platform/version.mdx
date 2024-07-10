@@ -1,0 +1,46 @@
+---
+title: Server version
+sidebar_position: 10
+# image: og/wcs/user_guides.jpg
+---
+
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) hosts clusters that run the Weaviate core database server. WCD runs the current production version of Weaviate core.
+
+## New clusters
+
+When you provision a new cluster, WCD uses the current version of Weaviate core to set up the new cluster. You can also choose from a limited number of older versions.
+
+## Upgrade
+
+WCD does not automatically update existing clusters when a new version of Weaviate core is released.
+
+The WCD console informs you when a newer version is available. Consider your business needs, and [upgrade your cluster](/developers/wcs/platform/version) when you have a suitable maintenance window.
+
+![WCD Upgrade available indicator](../img/wcs-upgrade-details.jpg)
+
+import Downtime125Note from '/_includes/wcs/wcs.update-to-125-downtime.mdx';
+
+<Downtime125Note/>
+
+## Security upgrades
+
+ WCD does not automatically update clusters, however if an existing cluster has a security vulnerability, WCD upgrades the cluster when a fix is released.
+
+ For security updates, WCD upgrades the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, WCD upgrades the cluster to the most recent compatible version.
+
+## Additional considerations
+
+- **Billing**. If your cluster's Weaviate core version cannot support the billing requirements for your pricing plan, WCD upgrades your cluster to the current production version or the most recent compatible version.
+- **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, WCD upgrades the cluster when a fix is released.
+- **Downgrade**. You cannot downgrade your WCD cluster to an earlier version of Weaviate core.
+- **Enterprise cloud customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, WCD can install a specific Weaviate core version.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
+
+import CustomScriptLoader from '/src/components/scriptSwitch';
+
+<CustomScriptLoader/>

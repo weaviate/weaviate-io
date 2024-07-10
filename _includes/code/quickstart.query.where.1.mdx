@@ -1,0 +1,90 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+{/* <TabItem value="graphql" label="GraphQL">
+
+```graphql
+TBC
+```
+
+</TabItem> */}
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client(
+    url="https://some-endpoint.semi.network",
+    additional_headers={
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"
+    }
+)
+
+where_filter = {
+    "path": ["category"],
+    "operator": "Equal",
+    "valueText": "ANIMALS",
+}
+
+result = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text({"concepts": ["biology"]})
+    .with_where(where_filter)
+    .do()
+)
+
+print(json.dumps(result, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Question')
+  .withFields('question answer category')
+  .withNearText({ concepts: ['biology'] })
+  .withWhere({
+    path: ['category'],
+    operator: 'Equal',
+    valueText: 'ANIMALS',
+  })
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+TBC
+```
+
+</TabItem> */}
+</Tabs>

@@ -1,0 +1,172 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+
+import weaviate
+import json
+
+client = weaviate.Client(
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
+    additional_headers={
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
+    }
+)
+
+# ===== import data =====
+# Load data
+import requests
+url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
+resp = requests.get(url)
+data = json.loads(resp.text)
+
+# Prepare a batch process
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+    # Batch import all Questions
+    for i, d in enumerate(data):
+        # print(f"importing question: {i+1}")  # To see imports
+
+        properties = {
+            "answer": d["Answer"],
+            "question": d["Question"],
+            "category": d["Category"],
+        }
+
+        batch.add_data_object(properties, "Question")
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your API key
+});
+
+async function getJsonData() {
+  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json');
+  return file.json();
+}
+
+async function importQuestions() {
+  // Get the data from the data.json file
+  const data = await getJsonData();
+
+  // Prepare a batcher
+  let batcher = client.batch.objectsBatcher();
+  let counter = 0;
+  const batchSize = 100;
+
+  for (const question of data) {
+    // Construct an object with a class and properties 'answer' and 'question'
+    const obj = {
+      class: 'Question',
+      properties: {
+        answer: question.Answer,
+        question: question.Question,
+        category: question.Category,
+      },
+    };
+
+    // add the object to the batch queue
+    batcher = batcher.withObject(obj);
+
+    // When the batch counter reaches batchSize, push the objects to Weaviate
+    if (counter++ == batchSize) {
+      // flush the batch queue
+      await batcher.do();
+
+      // restart the batch queue
+      counter = 0;
+      batcher = client.batch.objectsBatcher();
+    }
+  }
+
+  // Flush the remaining objects
+  await batcher.do();
+}
+
+await importQuestions();
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "WEAVIATE_INSTANCE_URL/",
+        Scheme: "https",
+    }
+
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
+
+    // add code here
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // add code here
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Question",
+    "vectorizer": "text2vec-openai",
+}' \
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
+```
+
+</TabItem> */}
+</Tabs>

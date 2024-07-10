@@ -1,0 +1,81 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  // TODO: find a better way to manage margins around ButtonContainer
+  padding: 8px 0;
+
+  @media screen and (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+  
+.btn {
+  border-radius: 0.375rem;
+  padding: 8px 12px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  text-align: center;
+}
+
+// TODO: update colours to work from variables
+.btnMain {
+  background-color: var(--site-primary);
+  color: var(--site-light-color);
+
+  &:hover {
+    background-color: var(--site-primary-dark);
+    color: var(--site-light-color);
+  }
+
+  i {
+    color: inherit;
+    background-color: inherit;
+  }
+}
+
+.btnAccent {
+  background-color: var(--site-accent);
+  color: var(--site-light-color);
+
+  &:hover {
+    background-color: var(--site-accent-dark);
+    color: var(--site-light-color);
+  }
+
+  i {
+    color: inherit;
+    background-color: inherit;
+  }
+}
+
+.btnOutlined {
+  background-color: var(--site-background);
+  border: 1px solid var(--site-primary);
+  color: var(--site-font-header-color);
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid var(--site-primary);
+    color: var(--site-primary);
+  }
+
+  i {
+    color: inherit;
+    background-color: inherit;
+  }
+}

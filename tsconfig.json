@@ -1,0 +1,12 @@
+// Enable top-level await in .ts files and importing JSON files directly
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,  // to import JSON data files directly
+    "target": "esnext", // top-level await
+    "module": "esnext", // output `import`/`export` ES modules
+    "allowSyntheticDefaultImports": true,  // allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+    "moduleResolution": "node", // find modules in node_modules - https://github.com/Microsoft/TypeScript/issues/8189#issuecomment-212079251
+    "types": ["node"],
+    "sourceMap": true
+  }
+}

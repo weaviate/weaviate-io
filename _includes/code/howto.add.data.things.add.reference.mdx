@@ -1,0 +1,189 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import time
+
+client = weaviate.Client("http://localhost:8080")
+
+example_data = {
+    "name": "Jodi Kantor"
+}
+
+client.data_object.create(
+  example_data,
+  "Author",
+  uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", # optional, if not provided one is going to be generated
+)
+
+client.data_object.reference.add(
+  from_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+  from_property_name="writesFor",
+  to_uuid="f81bfe5e-16ba-4615-a516-46c2ae2e5a80",
+  from_class_name="Author",
+  to_class_name="Publication",
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+let response = await client.data
+  .creator()
+  .withClassName('Author')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withProperties({
+    name: 'Jodi Kantor',
+  })
+  .do();
+console.log(response);
+
+response = await client.data
+  .referenceCreator()
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withReferenceProperty('writesFor')
+  .withReference(
+    client.data
+      .referencePayloadBuilder()
+      .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
+      .payload(),
+  )
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  dataSchema := map[string]interface{}{
+    "name": "Jodi Kantor",
+  }
+
+  _, err := client.Data().Creator().WithClassName("Author").WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").WithProperties(dataSchema).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+
+  reference := client.Data().ReferencePayloadBuilder().WithID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").Payload()
+
+  err = client.Data().ReferenceCreator().
+    WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+    WithReferenceProperty("writesFor").
+    WithReference(reference).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.model.SingleRef;
+import io.weaviate.client.v1.data.model.WeaviateObject;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Map<String, Object> dataSchema = new HashMap<>();
+    dataSchema.put("name", "Jodi Kantor");
+
+    Result<WeaviateObject> result = client.data().creator()
+      .withClassName("Author")
+      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withProperties(dataSchema)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+
+    SingleRef reference = client.data().referencePayloadBuilder().withID("f81bfe5e-16ba-4615-a516-46c2ae2e5a80").payload();
+
+    Result<Boolean> result_ref = client.data().referenceCreator()
+      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withReferenceProperty("writesFor")
+      .withReference(reference)
+      .run();
+
+    if (result_ref.hasErrors()) {
+      System.out.println(result_ref.getError());
+      return;
+    }
+    System.out.println(result_ref.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "class": "Author",
+      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+      "properties": {
+          "name": "Jodi Kantor"
+      }
+  }' \
+    http://localhost:8080/v1/objects
+
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "beacon": "weaviate://localhost/f81bfe5e-16ba-4615-a516-46c2ae2e5a80"
+  }' \
+    http://localhost:8080/v1/objects/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/references/writesFor
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,112 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonV4Classification from '/_includes/client-python-v4-classification.md';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+<PythonV4Classification/>
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+classification_info = client.classification.get("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+
+print(classification_info)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.classifications
+  .getter()
+  .withId('ee722219-b8ec-4db1-8f8d-5150bb1a9e0c')
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  classification, err := client.Classifications().Getter().
+    WithID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c").
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.classifications.model.Classification;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<Classification> result = client.classifications().getter()
+      .withID("ee722219-b8ec-4db1-8f8d-5150bb1a9e0c")
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl http://localhost:8080/v1/classifications/ee722219-b8ec-4db1-8f8d-5150bb1a9e0c
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,152 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonV4Classification from '/_includes/client-python-v4-classification.md';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+<PythonV4Classification/>
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+query_result = (
+    client.classification.schedule()
+    .with_type("knn")
+    .with_class_name("<className>")
+    .with_based_on_properties(["<property3>"])  # must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+    .with_classify_properties(["<property1>", "<property2>"])  # at least one property must be specified
+    .with_settings({"k": 3})  # additional classification settings, optional for KNN
+    .with_wait_for_completion()
+    .do()
+)
+
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.classifications
+  .scheduler()
+  .withType('<e.g. knn>')
+  .withSettings(<e.g. { 'k': 3 }>)  // additional classification settings, optional for KNN
+  .withClassName('<className>')
+  .withClassifyProperties(['<property1>', '<property2>'])  // at least one property must be specified
+  .withBasedOnProperties(['<property3>'])  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+  .withWaitForCompletion()
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/weaviate/weaviate/usecases/classification"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  classification, err := client.Classifications().
+    Scheduler().
+    WithType(classifications.<e.g. KNN>).
+    WithSettings(<&classification.ParamsKNN{K: 3}>).
+    WithClassName("<ClassName>").
+    WithClassifyProperties([]string{"<property1>", "<property2>"}).  // at least one property must be specified
+    WithBasedOnProperties([]string{"<property3>"}).  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+    WithWaitForCompletion.
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.classifications.model.Classification;
+import io.weaviate.client.v1.classifications.model.ClassificationType;
+import io.weaviate.client.v1.classifications.model.ParamsKNN;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<Classification> result = client.classifications()
+      .scheduler()
+      .withType(classifications.<e.g. ClassificationType.KNN>)
+      .withSettings(ParamsKNN.builder().k(3).build())
+            .withClassName("<ClassName>")
+      .withClassifyProperties(new String[]{"<property1>", "<property2>"})  // at least one property must be specified
+      .withBasedOnProperties(new String[]{"property3"})  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+      .withWaitForCompletion()
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# At least one property needs to be specified for "classifyProperties"
+# "basedOnProperties" must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "className",
+        "classifyProperties": ["<property1>", "<property2>"],
+        "basedOnProperties": ["<property3>"],
+        "type": "<e.g. knn>"
+      }' \
+    http://localhost:8080/v1/classifications
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,261 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.aggregate.simple.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLnearObjectAggregate"
+    endMarker="END GraphQLnearObjectAggregate"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+result = (
+  client.query
+  .aggregate("Article")
+  .with_meta_count()
+  .with_fields("wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }")
+  # prior to v1.14, use certainty instead of distance
+  .with_near_object({"id": "00037775-1432-35e5-bc59-443baaef7d80", "distance": 0.6})
+  .with_object_limit(200)
+  .do()
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .aggregate()
+  .withClassName('Article')
+  .withFields('meta { count } wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }')
+  // prior to v1.14, use certainty instead of distance
+  .withNearObject({ id: '00037775-1432-35e5-bc59-443baaef7d80', distance: 0.6 })
+  .withObjectLimit(100)
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  title := graphql.Field{Name: "title"}
+  url := graphql.Field{Name: "url"}
+  wordCount := graphql.Field{
+    Name: "wordCount", Fields: []graphql.Field{
+      {Name: "mean"},
+      {Name: "maximum"},
+      {Name: "median"},
+      {Name: "minimum"},
+      {Name: "mode"},
+      {Name: "sum"},
+      {Name: "type"},
+    },
+  }
+  inPublication := graphql.Field{
+    Name: "inPublication", Fields: []graphql.Field{
+      {Name: "pointingTo"},
+      {Name: "count"},
+    },
+  }
+
+  // nearObject
+  withNearObject := client.GraphQL().NearObjectArgBuilder().
+    WithDistance(0.85). // At least one of distance or objectLimit need to be set
+    WithID("00037775-1432-35e5-bc59-443baaef7d80")
+
+  result, err := client.GraphQL().
+    Aggregate().
+    WithFields(title, url, wordCount, inPublication).
+    WithNearObject(nearObject).
+    WithClassName("Article").
+    WithObjectLimit(100). // At least one of certainty or objectLimit need to be set
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearObjectArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+    Field meta = Field.builder()
+      .name("meta")
+      .fields(new Field[]{
+        Field.builder().name("count").build()
+      }).build();
+    Field wordCount = Field.builder()
+      .name("wordCount")
+      .fields(new Field[]{
+        Field.builder().name("mean").build(),
+        Field.builder().name("maximum").build(),
+        Field.builder().name("median").build(),
+        Field.builder().name("minimum").build(),
+        Field.builder().name("mode").build(),
+        Field.builder().name("sum").build(),
+        Field.builder().name("type").build()
+      }).build();
+    Field inPublication = Field.builder()
+      .name("inPublication")
+      .fields(new Field[]{
+        Field.builder().name("pointingTo").build(),
+        Field.builder().name("count").build()
+      }).build();
+
+    NearObjectArgument nearObject = NearObjectArgument.builder()
+      // prior to v1.14 use certainty instead of distance
+      .distance(0.6f) // at least one of certainty or objectLimit need to be set
+      .id("00037775-1432-35e5-bc59-443baaef7d80")
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().aggregate()
+      .withClassName("Article")
+      .withFields(meta, wordCount, inPublication)
+      .withNearObject(nearObject)
+      .withObjectLimit(100) // at least one of certainty or objectLimit need to be set
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+    "query": "{
+      Aggregate {
+        Article(nearObject:{
+          id: \"00037775-1432-35e5-bc59-443baaef7d80\"
+          distance: 0.6
+        },
+        objectLimit: 200) {
+          meta {
+            count
+          }
+          inPublication {
+            pointingTo
+            type
+          }
+          wordCount {
+            count
+            maximum
+            mean
+            median
+            minimum
+            mode
+            sum
+            type
+          }
+        }
+      }
+    }"
+  }' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    Article(
+      nearObject: {
+        id: "00037775-1432-35e5-bc59-443baaef7d80"
+        # prior to v1.14, use `certainty` instead of `distance`
+        distance: 0.6
+      },
+      # at least one of "objectLimit" and/or "distance" must be set when using near<Media>
+      objectLimit: 200
+    ) {
+      meta {
+        count
+      }
+      inPublication {
+        pointingTo
+        type
+      }
+      wordCount {
+        count
+        maximum
+        mean
+        median
+        minimum
+        mode
+        sum
+        type
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

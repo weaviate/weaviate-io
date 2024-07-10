@@ -1,0 +1,232 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Explore (
+    nearText: {
+      concepts: ["New Yorker"],
+      distance: 0.1,  # use certainty instead of distance prior to v1.14
+      moveAwayFrom: {
+        concepts: ["fashion", "shop"],
+        force: 0.2
+      }
+      moveTo: {
+        concepts: ["publisher", "articles"],
+        force: 0.5
+      },
+    }
+  ) {
+    beacon
+    certainty # only supported if distance==cosine.
+    distance  # always supported
+    className
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+explore_articles_query = """
+  {
+    Explore (
+      nearText: {
+        concepts: ["New Yorker"],
+        distance: 0.1,  # use certainty instead of distance prior to v1.14
+        moveAwayFrom: {
+          concepts: ["fashion", "shop"],
+          force: 0.2
+        }
+        moveTo: {
+          concepts: ["publisher", "articles"],
+          force: 0.5
+        },
+      }
+    ) {
+      beacon
+      certainty # only supported if distance==cosine.
+      distance  # always supported
+      className
+    }
+  }
+"""
+
+query_result = client.query.raw(explore_articles_query)
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .explore()
+  .withNearText({
+    concepts: ['New Yorkers'],
+    moveTo: { concepts: ['publisher', 'articles'], force: 0.5 },
+    moveAwayFrom: { concepts: ['fashion', 'shop'], force: 0.2 },
+    distance: 0.95,  // prior to v1.14, use certainty
+  })
+  .withFields('beacon certainty distance className')  // certainty is only supported if distance==cosine
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  concepts := []string{"New Yorker"}
+  distance := float32(0.95)
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"publisher", "articles"},
+    Force:    0.5,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"fashion", "shop"},
+    Force:    0.2,
+  }
+  withNearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithDistance(0.6).  // prior to v1.14, use WithCertainty()
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
+  result, err := client.GraphQL().Explore().
+    WithFields(
+      graphql.Beacon,
+      graphql.Certainty,  // only supported if distance==cosine
+      graphql.Distance,   // always supported
+      graphql.ClassName).
+    WithNearText(withNearText).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.ExploreFields;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "publisher", "articles" }).force(0.5f).build();
+
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "fashion", "shop" }).force(0.2f)
+      .build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "New Yorker" })
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .distance(0.95f)  // prior to v1.14 use .certainty()
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().explore()
+      .withFields(ExploreFields.BEACON,
+        ExploreFields.CERTAINTY,  // only supported if distance==cosine
+        ExploreFields.DISTANCE,   // always supported
+        ExploreFields.CLASS_NAME)
+      .withNearText(nearText)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+Note: `certainty` is only supported if distance==cosine. `distance` is always supported.
+echo '{
+  "query": "{
+    Explore (
+      nearText: {
+        concepts: [\"New Yorker\"],
+        distance: 0.95, # prior to v1.14 use "certainty" instead of "distance"
+        moveAwayFrom: {
+          concepts: [\"fashion\", \"shop\"],
+          force: 0.2
+        }
+        moveTo: {
+          concepts: [\"publisher\", \"articles\"],
+          force: 0.5
+        },
+      }
+    ) {
+      beacon
+      certainty
+      distance
+      className
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,103 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START WithoutAuth"
+    endMarker="# END WithoutAuth"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client(
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+)
+```
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v3">
+
+```ts
+import weaviate from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+    'https://WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+)
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+```ts
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+});
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
+        Scheme: "https",
+    }
+
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+      panic(err)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+curl http://WEAVIATE_INSTANCE_URL/v1/meta | jq
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,64 @@
+[data-theme='light'] {
+  .logos {
+    .logoS {
+      background-image: url('/img/site/scribd-logo-light.png');
+    }
+    .logoN {
+      background-image: url('/img/site/nasa-logo-light.png');
+    }
+    .logoY {
+      background-image: url('/img/site/you-com-logo-light.png');
+    }
+    .logoNo {
+      background-image: url('/img/site/notion-logo-light.png');
+    }
+  }
+}
+
+.title {
+  text-align: center;
+}
+.logos {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+  @media screen and (max-width: 500px) {
+    padding-top: 2rem;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .logoS {
+    width: 100%;
+    height: 3rem;
+    background-image: url('/img/site/scribd-logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .logoN {
+    width: 100%;
+    height: 3rem;
+    background-image: url('/img/site/nasa-logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .logoY {
+    width: 100%;
+    height: 3rem;
+    background-image: url('/img/site/you-com-logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .logoNo {
+    width: 100%;
+    height: 3rem;
+    background-image: url('/img/site/notion-logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}

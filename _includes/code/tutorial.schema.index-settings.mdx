@@ -1,0 +1,347 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START SchemaWithIndexSettings"
+  endMarker="# END SchemaWithIndexSettings"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
+
+# we will create the class "Question"
+class_obj = {
+    "class": "Question",
+    "description": "Information from a Jeopardy! question",  # description of the class
+    "vectorizer": "text2vec-openai",
+    "moduleConfig": {
+        "generative-openai": {}  # Set `generative-openai` as the generative module
+    },
+    "properties": [
+        {
+            "name": "question",
+            "dataType": ["text"],
+            "description": "The question",
+            "moduleConfig": {
+                "text2vec-openai": {  # this must match the vectorizer used
+                    "vectorizePropertyName": True,
+                    "tokenization": "lowercase"
+                }
+            }
+        },
+        {
+            "name": "answer",
+            "dataType": ["text"],
+            "description": "The answer",
+            "moduleConfig": {
+                "text2vec-openai": {  # this must match the vectorizer used
+                    "vectorizePropertyName": False,
+                    "tokenization": "whitespace"
+                }
+            }
+        },
+    ],
+    # highlight-start
+    # Configure the vector index
+    "vectorIndexType": "hnsw",  # Or "flat" or "dynamic"
+    "vectorIndexConfig": {
+        "distance": "cosine",
+        "bq": {
+          "enabled": True,
+        },
+    },
+    # Configure the inverted index
+    "indexTimestamps": True,
+    "indexNullState": True,
+    "indexPropertyLength": True,
+    # highlight-end
+}
+
+# add the schema
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v3">
+
+```js
+import weaviate from 'weaviate-client';
+import { vectorizer, generative, configure, dataType } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+  }
+)
+
+// Define the 'Question' class
+const collectionObj = {
+  name: 'Question',
+  properties: [
+    {
+      name: 'question',
+      dataType: 'text' as const,
+      description: 'Category of the question',
+      tokenization: 'lowercase' as const,
+      vectorizePropertyName: true,
+
+    },
+    {
+      name: 'answer',
+      dataType: 'text' as const,
+      description: 'The question',
+      tokenization: 'whitespace' as const,
+      vectorizePropertyName: false,
+    }
+  ],
+  vectorizers: vectorizer.text2VecOpenAI({
+    vectorIndexConfig: configure.vectorIndex.hnsw({  // Or `flat` or `dynamic`
+      distanceMetric: 'cosine',
+      quantizer: configure.vectorIndex.quantizer.bq(),
+    })
+  }),
+  generative: generative.openAI(),
+  invertedIndex: configure.invertedIndex({
+    indexNullState: true,
+    indexPropertyLength: true,
+    indexTimestamps: true,
+  }),
+}
+
+// Add the class to the schema
+const newCollection = await client.collections.create(collectionObj)
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+});
+
+// Define the 'Question' class
+const classObj = {
+  class: 'Question',
+  description: 'Information from a Jeopardy! question',  // description of the class
+  vectorizer: 'text2vec-openai',
+  moduleConfig: {
+      generative-openai: {}  // Set `generative-openai` as the generative module
+  },
+  properties: [
+    {
+      name: 'question',
+      dataType: ['text'],
+      description: 'The question',
+      moduleConfig: {
+        'text2vec-openai': {  // this must match the vectorizer used
+          vectorizePropertyName: true,
+          tokenization: 'lowercase'  // Use "lowercase" tokenization
+        },
+      }
+    },
+    {
+      name: 'answer',
+      dataType: ['text'],
+      description: 'The answer',
+      moduleConfig: {
+        'text2vec-openai': {  // this must match the vectorizer used
+          vectorizePropertyName: false,
+          tokenization: 'whitespace'  // Use "whitespace" tokenization
+        },
+      }
+    },
+  ],
+  // highlight-start
+  // Configure the vector index
+  vectorIndexType: 'hnsw',  // Or `flat` or `dynamic`
+  vectorIndexConfig: {
+      distance: 'cosine',
+      bq: {
+          enabled: True,
+      },
+  },
+  // Configure the inverted index
+  indexTimestamps: true,
+  indexNullState: true,
+  indexPropertyLength: true,
+  // highlight-end
+};
+
+// Add the class to the schema
+await client
+  .schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "WEAVIATE_INSTANCE_URL/", // Replace with the URL
+        Scheme: "https",
+    }
+
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
+
+    // we will create the class "Question"
+    classObj := &models.Class{
+        Class:       "Question",
+        Description: "Information from a Jeopardy! question",  // description of the class
+        Properties: []*models.Property{
+            {
+                DataType:    []string{"string"},
+                Description: "The question",
+                Name:        "question",
+            },
+            {
+                DataType:    []string{"string"},
+                Description: "The answer",
+                Name:        "answer",
+            },
+        },
+    }
+
+    // add the schema
+    err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // get the schema
+    schema, err := client.Schema().Getter().Do(context.Background())
+    if err != nil {
+        panic(err)
+    }
+
+    // print the schema
+    fmt.Printf("%v", schema)
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace with the URL
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question"
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .description("Information from a Jeopardy! question")
+      .properties(new ArrayList() { {
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("The question")
+          .name("question")
+          .build());
+        add(Property.builder()
+          .dataType(new ArrayList(){ { add(DataType.STRING); } })
+          .description("The answer")
+          .name("answer")
+          .build());
+      } })
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    // get the schema
+    Result<Schema> result = client.schema().getter().run();
+    if (result.hasErrors()) {
+        System.out.println(result.getError());
+        return;
+    }
+
+    // print the schema
+    System.out.println(result.getResult());
+
+  }
+}
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Question",
+    "description": "Information from a Jeopardy! question",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "description": "The question",
+            "name": "question"
+        },
+        {
+            "dataType": ["text"],
+            "description": "The answer",
+            "name": "answer"
+        }
+    ]
+}' \
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
+
+curl https://${WEAVIATE_INSTANCE_URL}/v1/schema
+```
+
+</TabItem> */}
+</Tabs>

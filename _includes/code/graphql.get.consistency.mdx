@@ -1,0 +1,100 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/graphql.get.simple.v3.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START ConsistencyExample"
+    endMarker="END ConsistencyExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+from weaviate.data.replication import ConsistencyLevel
+
+client = weaviate.Client("http://localhost:8080")
+
+resp = (
+    client.query.get("Article", ["name"])
+    .with_additional("isConsistent")
+    .with_consistency_level(ConsistencyLevel.QUORUM)
+    .do()
+)
+
+print(f"resp: {resp}")
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```ts
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('_additional { id isConsistent }')
+  .withConsistencyLevel('QUORUM')
+  .do();
+
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+resp, err := client.GraphQL().Get().
+    WithClassName("Article").
+    WithFields(fields...).
+    WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
+    Do(ctx)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+Field name = Field.builder().name("name").build();
+Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{Field.builder().name("isConsistent").build()})
+      .build();
+
+Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article").withConsistencyLevel(ConsistencyLevel.QUORUM)
+      .withFields(name, _additional)
+      .run();
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (consistencyLevel: QUORUM) {
+      name
+      _additional {
+        isConsistent
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

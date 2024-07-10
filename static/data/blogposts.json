@@ -1,0 +1,162 @@
+{
+  "playbook": [
+    {
+      "link": "/company/playbook/weaviate-celebrates-a-fourth-birthday",
+      "type": "Blog",
+      "backgroundImage": "/img/site/about-playbook-01.png",
+      "tagline": "Weaviate celebrates a fourth birthday!",
+      "photo": "bob.jpg",
+      "name": "Bob van Luijt",
+      "title": "CEO",
+      "date": "July 11, 2023"
+    },
+    {
+      "link": "/company/playbook/hiring-at-weaviate-finding-our-perfect-matches",
+      "type": "Blog",
+      "backgroundImage": "/img/site/about-playbook-02.png",
+      "tagline": "Hiring at Weaviate - finding our perfect matches!",
+      "photo": "jessie.png",
+      "name": "Jessie de Groot",
+      "title": "Head of People and Culture",
+      "date": "July 7, 2023"
+    },
+    {
+      "link": "/company/playbook/cell-theory-planning-for-organic-growth",
+      "type": "Blog",
+      "backgroundImage": "/img/site/about-playbook-03.png",
+      "tagline": "Cell Theory - Planning for organic growth",
+      "photo": "bob.jpg",
+      "name": "Bob van Luijt",
+      "title": "CEO",
+      "date": "June 23, 2023"
+    }
+  ],
+  "blog": [
+    {
+      "link": "/blog/forbes-ai-50-2024",
+      "type": "Blog",
+      "backgroundImage": "/img/site/forbes-ai-hero.png",
+      "tagline": "Forbes AI 50 List: The most promising AI startups in 2024",
+      "photo": "bob.jpg",
+      "name": "Bob van Luijt",
+      "title": "CEO",
+      "date": "April 11, 2024"
+    },
+    {
+      "link": "/blog/binary-quantization",
+      "type": "Blog",
+      "backgroundImage": "/img/site/binary-hero.png",
+      "tagline": "32x Reduced Memory Usage With Binary Quantization",
+      "photo": "abdel.jpg",
+      "name": "Abdel Rodriguez",
+      "title": "Vector Index Researcher",
+      "date": "April 2, 2024"
+    },
+    {
+      "link": "/community/events",
+      "type": "Workshop",
+      "backgroundImage": "/img/site/workshops-daniel.png",
+      "tagline": "Getting Started with the New Weaviate TypeScript Client",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "May 2, 2024"
+    }
+  ],
+  "hybrid": [
+    {
+      "link": "/blog/hybrid-search-fusion-algorithms",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-hybrid-search-01.png",
+      "tagline": "Unlocking the Power of Hybrid Search",
+      "photo": "dirk.jpg",
+      "name": "Dirk Kulawiak",
+      "title": "Core Engineer",
+      "date": "August 29, 2023"
+    },
+    {
+      "link": "/blog/hybrid-search-for-web-developers",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-hybrid-search-02.png",
+      "tagline": "A Web Developers Guide to Hybrid Search",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "April 2, 2024"
+    },
+    {
+      "link": "/blog/moonsift-story",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-hybrid-search-03.png",
+      "tagline": "Building an AI-Powered Shopping Copilot with Weaviate",
+      "photo": "alea.jpg",
+      "name": "Alea Abed",
+      "title": "Head of Marketing",
+      "date": "November 15, 2023"
+    }
+  ],
+  "rag": [
+    {
+      "link": "/blog/multimodal-RAG",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-rag-01.png",
+      "tagline": "Multimodal Retrieval Augmented Generation(RAG)",
+      "photo": "zain.jpg",
+      "name": "Zain Hasan",
+      "title": "Developer Advocate",
+      "date": "December 5, 2023"
+    },
+    {
+      "link": "/case-studies/neople",
+      "type": "Case Study",
+      "backgroundImage": "/img/site/hero-rag-02.png",
+      "tagline": "Transforming Customer Service with Generative AI",
+      "photo": "alea.jpg",
+      "name": "Alea Abed",
+      "title": "Head of Marketing",
+      "date": "April 2, 2024"
+    },
+    {
+      "link": "/blog/rag-evaluation",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-rag-03.png",
+      "tagline": "An Overview on RAG Evaluation",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "November 21, 2023"
+    }
+  ],
+  "gen": [
+    {
+      "link": "https://www.youtube.com/watch?v=ickqCzFxWj0",
+      "type": "Video",
+      "backgroundImage": "/img/site/hero-gen-01.png",
+      "tagline": "DSPy + Weaviate for the Next Generation of LLM Apps",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "November 21, 2023"
+    },
+    {
+      "link": "/blog/generative-feedback-loops-with-llms",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-gen-02.png",
+      "tagline": "Generative Feedback Loops with LLMs for Vector Databases",
+      "photo": "connor.jpg",
+      "name": "Connor Shorten",
+      "title": "Product Researcher",
+      "date": "May 5, 2023"
+    },
+    {
+      "link": "https://www.youtube.com/watch?v=I4Jle80AOaU",
+      "type": "Video",
+      "backgroundImage": "/img/site/hero-gen-03.png",
+      "tagline": "Weaviate Podcast Search meets Generative Feedback Loops!",
+      "photo": "byron.png",
+      "name": "Byron Voorbach",
+      "title": "Head of Sales Engineering",
+      "date": "September 21, 2023"
+    }
+  ]
+}

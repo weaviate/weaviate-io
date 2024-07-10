@@ -1,0 +1,36 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.aggregate(
+    "JeopardyQuestion"
+).with_fields("answer {count topOccurrences {value occurs}}").do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    JeopardyQuestion {
+      answer {
+        count
+        topOccurrences
+        {
+          value
+          occurs
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

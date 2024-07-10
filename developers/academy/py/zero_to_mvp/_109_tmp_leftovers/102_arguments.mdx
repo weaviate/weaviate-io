@@ -1,0 +1,144 @@
+---
+title: Search filters
+---
+
+:::tip Nested filters
+You can nest `where` filters as well by nesting each item within `operands`. Try it yourself, or take a look at this example:
+
+<details>
+  <summary>
+    Nested where filter example
+  </summary>
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+response = client.query.get(
+    "JeopardyQuestion",
+    ["question", "answer", "points"]
+).with_limit(2).with_near_text(
+    {"concepts": "Intergalactic travel"}
+).with_additional(
+    ["distance", "id"]
+).with_where({
+    "operator": "And",
+    "operands": [
+        {
+            "path": ["question"],
+            "operator": "Like",
+            "valueText": "*rocket*"
+        },
+        {
+            "operator": "Or",
+            "operands": [
+                {
+                    "path": ["points"],
+                    "operator": "Equal",
+                    "valueInt": 200
+                },
+                {
+                    "path": ["points"],
+                    "operator": "Equal",
+                    "valueInt": 1000
+                }
+            ]
+        }
+    ]
+}).do()
+
+print(json.dumps(response, indent=2))
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      limit: 2
+      nearText: {
+        concepts: ["Intergalactic travel"],
+      }
+      where: {
+        operator: And,
+        operands: [
+        {
+          path: ["question"],
+          operator: Like,
+          valueText: "*rocket*"
+        }
+        {
+          operator: Or,
+          operands: [
+          {
+              path: ["points"],
+              operator: Equal,
+              valueInt: 200
+          },
+          {
+              path: ["points"],
+              operator: Equal,
+              valueInt: 1000
+          }
+          ]
+        },
+        ]
+
+      }
+    ) {
+      question
+      answer
+      points
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
+it should produce a result like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.18400955,
+            "id": "48fe1f8f-8e09-5aee-afe9-1728ab2fe8a0"
+          },
+          "answer": "space shuttles",
+          "points": 200,
+          "question": "These transports, first sent up in 1981, lift off like a rocket & land like a plane"
+        },
+        {
+          "_additional": {
+            "distance": 0.24946856,
+            "id": "c00decd4-4cf1-5b03-a789-a57077e082fb"
+          },
+          "answer": "Huntsville",
+          "points": 1000,
+          "question": "A campus for the University of Alabama is here, nicknamed \"Rocket City, U.S.A.\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+:::

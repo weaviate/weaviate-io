@@ -1,0 +1,50 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL") # Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+query = '''
+{
+  Get {
+    WikiArticle {
+      title
+      wiki_summary
+    }
+  }
+}
+'''
+
+result = client.query.raw(query)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+Coming soon
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+TBC
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+TBC
+```
+
+</TabItem>
+</Tabs>

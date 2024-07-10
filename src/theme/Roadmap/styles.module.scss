@@ -1,0 +1,25 @@
+[data-theme='light'] {
+  .roadmapItem {
+    i, .score {
+      color: #2d3197;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .roadmapItem {
+    i, .score {
+      color: #ddd;
+    }
+  }
+}
+
+li.roadmapItem {
+  list-style: none;
+}
+
+.score {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}

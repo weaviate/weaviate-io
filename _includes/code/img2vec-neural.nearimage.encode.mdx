@@ -1,0 +1,196 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+# GraphQL doesn't support png->base64 encoding, so please use a base64 encoded image in your query
+
+{
+  Get {
+    FashionItem(nearImage: {
+      image: "/9j/4AAQSkZJRgABAgE..."
+    }) {
+      image
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+nearImage = {"image": "my_image_path.png"}
+
+result = (
+  client.query
+  .get("FashionItem", "image")
+  .with_near_image(nearImage, encode=True)
+  .do()
+)
+
+print(result)
+
+## OR use the weaviate.utils function:
+
+client = weaviate.Client("http://localhost:8080")
+
+encoded_image = weaviate.util.image_encoder_b64("my_image_path.png")
+
+nearImage = {'image': 'encoded_image'}
+
+result = (
+  client.query
+  .get('FashionItem', 'image')
+  .with_near_image(nearImage, encode=False)
+  .do()
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+// The TypeScript client doesn't have a helper function for base64 image encoding
+
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('FashionItem')
+  .withFields('image')
+  .withNearImage({ image: '/9j/4AAQSkZJRgABAgE...' })
+  .do();
+
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "os"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "FashionItem"
+  image := graphql.Field{Name: "image"}
+
+  filename := "my_image_path.png"
+  file, err := os.Open(filename)
+  if err != nil {
+    panic(err)
+  }
+
+  nearImage := client.GraphQL().NearImageArgBuilder().WithReader(file)
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(image).
+    WithNearImage(nearImage).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.io.File;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearImageArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    File imageFile = new File("my_image_path.png");
+
+    String className = "FashionItem";
+    Field image = Field.builder().name("image").build();
+
+    NearImageArgument nearImage = client.graphQL().arguments().nearImageArgBuilder()
+      .imageFile(imageFile)
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName(className)
+      .withFields(image)
+      .withNearImage(nearImage)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      FashionItem(nearImage: {
+        image: "/9j/4AAQSkZJRgABAgE..."
+      }) {
+        image
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,305 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.search-operators.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLSemanticPath"
+    endMarker="END GraphQLSemanticPath"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+near_text_operator = {
+  "concepts": ["fashion"],
+  "distance": 0.6, #prior to v1.14 use certainty: 0.7
+  "moveAwayFrom": {
+    "concepts": ["finance"],
+    "force": 0.45
+  },
+  "moveTo": {
+    "concepts": ["haute couture"],
+    "force": 0.85
+  }
+}
+
+additional_props = {
+  "semanticPath": "path {distanceToNext distanceToPrevious distanceToQuery distanceToResult}"
+}
+
+query_result = (
+  client.query
+  .get("Publication", "name")
+  .with_additional(additional_props)
+  .with_near_text(near_text_operator)
+  .do()
+)
+
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name _additional { semanticPath { path { concept distanceToNext distanceToPrevious distanceToQuery distanceToResult } } }')
+  .withNearText({
+    concepts: ['fashion'],
+    distance: 0.6,  // prior to v1.14 use certainty: 0.7
+    moveAwayFrom: {
+      concepts: ['finance'],
+      force: 0.45,
+    },
+    moveTo: {
+      concepts: ['haute couture'],
+      force: 0.85,
+    },
+  })
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "Publication"
+  fields := []graphql.Field{
+    {Name: "name"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "semanticPath", Fields: []graphql.Field{
+        {Name: "path", Fields: []graphql.Field{
+          {Name: "concept"},
+          {Name: "distanceToNext"},
+          {Name: "distanceToPrevious"},
+          {Name: "distanceToQuery"},
+          {Name: "distanceToResult"},
+        }},
+      }},
+    }},
+  }
+
+  concepts := []string{"fashion"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.85,
+  }
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.45,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithDistance(0.6). // prior to v1.14, use WithCertainty(0.7)
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithNearText(nearText).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Field name = Field.builder().name("name").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("semanticPath")
+          .fields(new Field[]{
+            Field.builder()
+              .name("path")
+              .fields(new Field[]{
+                Field.builder().name("concept").build(),
+                Field.builder().name("distanceToNext").build(),
+                Field.builder().name("distanceToPrevious").build(),
+                Field.builder().name("distanceToQuery").build(),
+                Field.builder().name("distanceToResult").build()
+              })
+              .build()
+          }).build()
+      }).build();
+
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "haute couture" }).force(0.85f).build();
+
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "finance" }).force(0.45f)
+      .build();
+
+    NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .distance(0.6f) // prior to v1.14, use .certainty(0.7f)
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Publication")
+      .withFields(name, _additional)
+      .withNearText(explore)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Note: Under nearText, use `certainty` instead of `distance` prior to v1.14
+
+echo '{
+  "query": "{
+    Get {
+      Publication (
+        nearText: {
+          concepts: [\"fashion\"],
+          distance: 0.6,
+          moveAwayFrom: {
+            concepts: [\"finance\"],
+            force: 0.45
+          },
+          moveTo: {
+            concepts: [\"haute couture\"],
+            force: 0.85
+          }
+        }
+      ) {
+        name
+        _additional {
+          semanticPath{
+            path {
+              concept
+              distanceToNext
+              distanceToPrevious
+              distanceToQuery
+              distanceToResult
+            }
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Publication (
+      nearText:{
+        concepts: ["fashion"],
+        distance: 0.6,  # prior to v1.14 use certainty: 0.7
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
+      }
+    ) {
+      name
+      _additional {
+        semanticPath {
+          path {
+            concept
+            distanceToNext
+            distanceToPrevious
+            distanceToQuery
+            distanceToResult
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,240 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+near_text_filter = {
+  "concepts": ["music"],
+  "moveTo": {
+    "concepts": ["beatles"],
+    "force": 0.5
+  }
+}
+additional_clause = {
+  "featureProjection": [
+    "vector"
+  ]
+}
+
+additional_setting = {
+  "dimensions": 2
+}
+
+query_result = (
+  client.query
+  .get("Article", "title")
+  .with_near_text(near_text_filter)
+  .with_additional(
+    (additional_clause, additional_setting)
+  )
+  .do()
+)
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional {featureProjection(dimensions: 2) { vector }}')
+  .withNearText({
+    concepts:['music'],
+    moveTo: {
+      concepts: ['beatles'],
+      force: 0.5,
+    },
+  })
+  .withLimit(12)
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "featureProjection(dimensions: 2)", Fields: []graphql.Field{
+        {Name: "vector"},
+      }},
+    }},
+  }
+  concepts := []string{"music"}
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"beatles"},
+    Force:    0.5,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithMoveTo(moveTo)
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    WithNearText(nearText).
+    WithLimit(12).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+    String className = "Article";
+
+    Field title = Field.builder().name("title").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("featureProjection(dimensions: 2)")
+          .fields(new Field[]{
+            Field.builder().name("vector").build()
+          }).build()
+      }).build();
+
+    String[] concepts = new String[]{ "music" };
+    NearTextMoveParameters moveTo = client.graphQL().arguments().nearTextMoveParameterBuilder()
+      .concepts(new String[]{ "beatles" }).force(0.5f).build();
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(concepts)
+      .moveTo(moveTo)
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName(className)
+      .withFields(title, _additional)
+      .withNearText(nearText)
+      .withLimit(12)
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Article (
+        nearText:{
+          concepts:[\"music\"],
+          moveTo: {
+            concepts: [\"beatles\"],
+            force: 0.5
+          }
+        }
+      ) {
+        title
+        _additional {
+          featureProjection(dimensions: 2) {
+            vector
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (
+      nearText: {
+        concepts:["music"],
+        moveTo: {
+          concepts: ["beatles"],
+          force: 0.5
+        }
+      }
+    ) {
+      title
+      _additional {
+        featureProjection(dimensions: 2) {
+          vector
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

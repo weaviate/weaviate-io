@@ -1,0 +1,104 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      nearText: {concepts: ["modern art in Europe"]},
+      limit: 1
+    ) {
+      title
+      content
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client(
+    url="https://WEAVIATE_INSTANCE_URL/",  # replace with your Weaviate endpoint
+    additional_headers={
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your API key
+    }
+)
+
+nearText = {"concepts": ["modern art in Europe"]}
+
+result = (
+    client.query
+    .get("Article", ["title", "content"])
+    .with_near_text(nearText)
+    .with_limit(1)
+    .do()
+)
+
+print(json.dumps(result, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+const nearTextResult = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title content')
+  .withNearText({ concepts: ['modern art in Europe'] })
+  .withLimit(1)
+  .do();
+
+console.log('nearText: modern art in Europe = ', JSON.stringify(nearTextResult.data['Get']['Article'], null, 2));
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Article(
+        nearText: {
+          concepts: [\"modern art in Europe\"],
+        },
+        limit: 1
+      ) {
+        title
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+</Tabs>

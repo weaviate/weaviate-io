@@ -1,5 +1,9 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Weaviate Community Forum
+    url: https://forum.weaviate.io
+    about: "Community-powered knowledge repository: search, ask questions, give feedback"
+
   - name: Community Slack
-    url: https://weaviate.slack.com
+    url: https://weaviate.io/slack
     about: Chat with the community about any issues, questions, or feedback

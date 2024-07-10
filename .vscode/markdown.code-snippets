@@ -1,0 +1,254 @@
+{
+	"Blog template": {
+		"prefix": "docusaurus-blog-template",
+        "scope": "markdown",
+		"body": [
+			"---",
+			"title: ${title}",
+			// Extract the slug from the parent directory name
+            "slug: ${TM_DIRECTORY/^.+\\/[0-9-]*(.*)$/$1/}",
+			"description: \"${description}\"",
+			"published: true",
+			"authors: [${author}]",
+			// Extract the date from the parent directory name
+			"date: ${TM_DIRECTORY/^.+\\/([0-9-]{10}).*$/$1/}",
+            "tags: []",
+            "image: ./img/hero.png",
+			"---",
+			"",
+            "![${title}](./img/hero.png)",
+			"<!-- Intro text here -->",
+            "<!-- truncate -->",
+			"<!-- The rest of the article here -->",
+            ""
+		],
+		"description": "Adds the template for Weaviate blog"
+	},
+
+    "Image width": {
+		"prefix": "docusaurus-image-width",
+        "scope": "markdown",
+		"body": [
+			"<img",
+			"    src={require('./img/${path}').default}",
+			"    alt=\"${alt}\"",
+			"    style={{ maxWidth: \"50%\" }}",
+			"/>"
+		],
+		"description": "Add image with require"
+	},
+
+	"Admonition": {
+		"prefix": "docusaurus-info-warn-tip-note-caution",
+        "scope": "markdown",
+		"body": [
+			":::${1|note,tip,info,caution,danger|}",
+			"${content}",
+			":::"
+		],
+		"description": "Add admonition section"
+	},
+
+	"Expandable details section": {
+		"prefix": "docusaurus-expandable-details-section",
+        "scope": "markdown",
+		"body": [
+			"<details>",
+			"  <summary>",
+			"    ${title}",
+			"  </summary>",
+			"  <div>",
+			"    ${content}",
+			"  </div>",
+			"</details>"
+		],
+		"description": "Add an expandable section"
+	},
+
+	"Expandable details section with markdown": {
+		"prefix": "docusaurus-expandable-details-section-with-markdown",
+        "scope": "markdown",
+		"body": [
+			"<details>",
+			"  <summary>${title}</summary>",
+			"",
+			"**Notes**: on how to use `details` with Markdown content",
+			"1. No div",
+			"1. Markdown example needs to start at the beginning of the line",
+			"1. Plus we need an empty line, before and after this segment",
+			"",
+			"</details>"
+		],
+		"description": "Add an expandable section with Markdown as main content"
+	},
+
+	"Import code example from includes": {
+		"prefix": "docusaurus-import-code-example",
+        "scope": "markdown",
+		"body": [
+			"import ${ObjectName} from '/_includes/code/${filepath}.mdx';",
+			"",
+			"<${ObjectName}/>",
+			""
+		],
+		"description": "Imports and display a code example from _includes/code/"
+	},
+
+	"Tabs code": {
+		"prefix": "docusaurus-tabs-code",
+        "scope": "markdown",
+		"body": [
+			"<!-- Delete these imports if already imported in the file -->",
+			"import Tabs from '@theme/Tabs';",
+			"import TabItem from '@theme/TabItem';",
+			"",
+			"<Tabs groupId=\"languages\">",
+			"<TabItem value=\"py\" label=\"Python\">",
+			"",
+			"```python",
+			"<!-- Python code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"js\" label=\"JavaScript\">",
+			"",
+			"```js",
+			"<!-- JavaScript code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"go\" label=\"Go\">",
+			"",
+			"```go",
+			"<!-- Go code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"java\" label=\"Java\">",
+			"",
+			"```java",
+			"<!-- Java code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"curl\" label=\"Curl\">",
+			"",
+			"```bash",
+			"<!-- Curl code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"</Tabs>"
+		],
+		"description": "Adds the tabs section for code examples"
+	},
+
+	"Quiz variable": {
+		"prefix": "docusaurus-academy-quiz-def",
+		"scope": "markdown",
+		"body": [
+			"<Quiz questions={varName} />",
+			"",
+			"import Quiz from '/src/components/Academy/quiz.js'",
+			"const ${varName} = [{",
+			"  questionText: '${questionText}',",
+			"  answerOptions: [",
+			"    {",
+			"      answerText: '${answerOne}',",
+			"      isCorrect: false,",
+			"      feedback: '${feedbackOne}',",
+			"    },",
+			"    {",
+			"      answerText: '${answerTwo}',",
+			"      isCorrect: false,",
+			"      feedback: '${feedbackTwo}',",
+			"    },",
+			"    {",
+			"      answerText: '${answerThree}',",
+			"      isCorrect: false,",
+			"      feedback: '${feedbackThree}',",
+			"    },",
+			"  ]",
+			"}];"
+		]
+	},
+	"Academy-Top-lvl-head": {
+		"prefix": "docusaurus-academy-heading",
+		"scope": "markdown",
+		"body": [
+			"## <i class=\"fa-solid fa-square-chevron-right\"></i>&nbsp;&nbsp;Top level head"
+		]
+	},
+	"Academy-Theory-subheading": {
+		"prefix": "docusaurus-academy-theory-subheading",
+		"scope": "markdown",
+		"body": [
+			"### <i class=\"fa-solid fa-chalkboard\"></i>&nbsp;&nbsp;Theory subhead"
+		]
+	},
+	"Academy-Practical-subheading": {
+		"prefix": "docusaurus-academy-practical-subheading",
+		"scope": "markdown",
+		"body": [
+			"### <i class=\"fa-solid fa-code\"></i>&nbsp;&nbsp;Practical subhead"
+		]
+	},
+	"Academy-exercise-admonition": {
+		"prefix": "docusaurus-academy-exercise-admonition",
+		"scope": "markdown",
+		"body": [
+			":::note <i class=\"fa-solid fa-square-terminal\"></i> Exercise",
+			"Try out the above query again, with these changes.",
+			"- xxx",
+			"- xxx",
+			":::"
+		]
+	},
+	"Academy-Python-GQL-code": {
+		"prefix": "docusaurus-academy-python-tabs-code",
+        "scope": "markdown",
+		"body": [
+			"import Tabs from '@theme/Tabs';",
+			"import TabItem from '@theme/TabItem';",
+			"",
+			"<Tabs groupId=\"languages\">",
+			"<TabItem value=\"py\" label=\"Python\">",
+			"",
+			"```python",
+			"<!-- Python code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"<TabItem value=\"graphql\" label=\"GraphQL\">",
+			"",
+			"```graphql",
+			"<!-- GraphQL code goes here -->",
+			"```",
+			"",
+			"</TabItem>",
+			"</Tabs>"
+		],
+		"description": "Adds the tabs section for Academy python/graphql code examples"
+	},
+
+	"Related-Pages": {
+		"prefix": "docusaurus-admonition-related-pages-info",
+        "scope": "markdown",
+		"body": [
+			":::info Related pages",
+			"- [LINK](./link.md)",
+			":::"
+		],
+		"description": "Adds a 'related pages' 'info' admonition"
+	},
+
+	"Added-in": {
+		"prefix": "docusaurus-admonition-available-from",
+        "scope": "markdown",
+		"body": [
+			":::info Added in `v${1.xx}`",
+			":::"
+		],
+		"description": "For marking features as being added in a certain version"
+	},
+}

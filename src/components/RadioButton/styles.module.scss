@@ -1,0 +1,64 @@
+.radio {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+
+  input[type='radio'] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.15em solid #01b0db;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+
+    &::before {
+      content: '';
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em #01b0db;
+    }
+  }
+  input[type='radio']:checked::before {
+    transform: scale(1);
+  }
+}
+[data-theme='dark'] {
+  input[type='radio'] {
+    appearance: none;
+    background-color: #d5d5d5;
+    margin: 0;
+    font: inherit;
+    color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.15em solid #00b800;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+
+    &::before {
+      content: '';
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em #00b800;
+    }
+  }
+}

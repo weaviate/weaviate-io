@@ -1,0 +1,150 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.objects.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START ValidateAnObject"
+    endMarker="END ValidateAnObject"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+schema = {"name": "New York Times"}
+
+valid_thing = client.data_object.validate(
+  schema,
+  "Publication",
+  "12345678-1234-1234-1234-123456789012"
+)
+print(valid_thing)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const schema = {
+  name: 'New York Times',
+};
+
+const response = await client.data
+  .validator()
+  .withId('12345678-1234-1234-1234-123456789012')
+  .withClassName('Publication')
+  .withProperties(schema)
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  dataSchema := map[string]interface{}{
+    "name": "New York Times",
+  }
+
+  err := client.Data().Validator().
+    WithID("12345678-1234-1234-1234-123456789012").
+    WithClassName("Publication").
+    WithProperties(dataSchema).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Map<String, Object> dataSchema = new HashMap<>();
+    dataSchema.put("name", "New York Times");
+
+    Result<Boolean> result = client.data().validator()
+      .withID("12345678-1234-1234-1234-123456789012")
+      .withClassName("Publication")
+      .withProperties(dataSchema)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Publication",
+        "id": "12345678-1234-1234-1234-123456789012",
+        "properties": {
+            "name": "New York Times"
+        }
+    }' \
+    http://localhost:8080/v1/objects/validate
+```
+
+</TabItem>
+</Tabs>

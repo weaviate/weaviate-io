@@ -1,0 +1,175 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.objects.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START UpdateAnObject"
+    endMarker="END UpdateAnObject"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+updated_schema = {
+    "name": "J. Kantor"
+}
+
+# Update only the properties in variable "updated_schema"
+client.data_object.update(
+    updated_schema,
+    class_name="Author",
+    uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+
+# Replaces the whole data object with the "updated_schema"
+client.data_object.replace(
+    updated_schema,
+    "Author",
+    "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const className = 'Author';
+const id = '36ddd591-2dee-4e7e-a3cc-eb86d30a4303';
+
+const response = await client.data
+  .getterById()
+  .withClassName(className)
+  .withId(id)
+  .do()
+  .then(res => {
+    // alter the schema
+    const schema = res.properties;
+    schema.name = 'J. Kantor';
+    return client.data
+      .updater()
+      .withId(id)
+      .withClassName(className)
+      .withProperties(schema)
+      .withConsistencyLevel('ALL')  // default QUORUM
+      .do();
+  });
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+    "context"
+
+    "github.com/weaviate/weaviate-go-client/v4/weaviate"
+    "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
+)
+
+func main() {
+    cfg := weaviate.Config{
+        Host:   "localhost:8080",
+        Scheme: "http",
+    }
+    client, err := weaviate.NewClient(cfg)
+    if err != nil {
+        panic(err)
+    }
+
+    dataSchema := map[string]interface{}{
+        "name": "J. Kantor",
+    }
+
+    err := client.Data().Updater().
+        WithID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303").
+        WithClassName("Author").
+        WithProperties(dataSchema).
+        WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+        Do(context.Background())
+
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("name", "J. Kantor");
+
+    Result<Boolean> result = client.data().updater()
+      .withID("36ddd591-2dee-4e7e-a3cc-eb86d30a4303")
+      .withClassName("Author")
+      .withProperties(properties)
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X PATCH \
+    -H "Content-Type: application/json" \
+    -d '{
+      "class": "Author",
+      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+      "properties": {
+          "name": "J. Kantor"
+      }
+  }' \
+    http://localhost:8080/v1/objects/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=ALL
+```
+
+</TabItem>
+</Tabs>

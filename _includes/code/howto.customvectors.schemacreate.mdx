@@ -1,0 +1,157 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Post",
+    "vectorizer": "none", # explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
+    "properties": [{
+        "name": "content",
+        "dataType": ["text"],
+    }]
+}
+
+client.schema.create_class(class_obj)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const classObj = {
+  class: 'Post',
+  vectorizer: 'none', // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
+  properties: [{
+    name: 'content',
+    dataType: ['text'],
+  }],
+};
+
+const response = await client.schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  classObj := &models.Class{
+    Class: "Post",
+    Properties: []*models.Property{
+      {
+        DataType: []string{"text"},
+        Name:     "content",
+      },
+    },
+    Vectorizer: "none",
+  }
+
+  err := client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Post")
+      .properties(new ArrayList() {
+        {
+          add(Property.builder()
+            .dataType(new ArrayList() {
+              {
+                add(DataType.TEXT);
+              }
+            })
+            .name("content")
+            .build());
+        }
+      })
+      .vectorizer("none")
+      .build();
+
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Post",
+        "vectorizer": "none",
+        "properties": [{
+          "name": "content",
+          "dataType": ["text"]
+        }]
+    }' \
+    http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>

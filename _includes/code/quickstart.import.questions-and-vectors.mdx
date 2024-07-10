@@ -1,0 +1,57 @@
+<!-- Quickstart - Bring Your Own Vectors - Import data with vectors - /developers/weaviate/quickstart/custom-vectors#import-data-with-vectors -->
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
+import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
+import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
+
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ByovAllPyCode}
+      startMarker="# ===== Import data ====="
+      endMarker="# ===== Query ====="
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={ByovAllPy3Code}
+      startMarker="# ===== Import data ====="
+      endMarker="# ===== Query ====="
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+The import uses the `node-fetch` library.<br/><br/>
+
+```bash
+npm install node-fetch
+```
+
+ <FilteredTextBlock
+   text={ByovAllTsCode}
+   startMarker="// Import data"
+   endMarker="// Query using nearVector"
+   language="ts"
+ />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+The import uses the `node-fetch` library.<br/><br/>
+
+```bash
+npm install node-fetch
+```
+
+ <FilteredTextBlock
+   text={ByovAllTsCodeLegacy}
+   startMarker="// Import data"
+   endMarker="// Query using nearVector"
+   language="ts"
+ />
+  </TabItem>
+</Tabs>

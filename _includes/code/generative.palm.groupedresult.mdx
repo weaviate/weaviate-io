@@ -1,0 +1,263 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/generative.groupedtask.examples.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeGoogle"
+      endMarker="# END GenerativeGoogle"
+      language="py"
+    />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client  = weaviate.Client(
+  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+  additional_headers={
+      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+  }
+)
+
+# highlight-start
+# instruction for the generative module
+generateTask = "Explain why these magazines or newspapers are about finance"
+# highlight-end
+
+result = (
+  client.query
+  .get("Publication", ["name"])
+  # highlight-start
+  .with_generate(grouped_task=generateTask)
+  # highlight-end
+  .with_near_text({
+    "concepts": ["magazine or newspaper about finance"]
+  })
+  .with_limit(5)
+).do()
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```ts
+import weaviate, { ApiKey } from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
+  headers: { 'X-PaLM-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your GOOGLE API key
+});
+
+// highlight-start
+// instruction for the generative module
+const generateTask = 'Explain why these magazines or newspapers are about finance';
+// highlight-end
+
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('name')
+  .withNearText({
+    concepts: ['magazine or newspaper about finance'],
+  })
+  .withGenerate({
+    groupedTask: generateTask,
+  })
+  .withLimit(5)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
+    Scheme:  "https",
+    Headers: map[string]string{
+      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+    },
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+  ctx := context.Background()
+
+  name := graphql.Field{Name: "name"}
+
+  concepts := []string{"magazine or newspaper about finance"}
+  nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts)
+
+  // highlight-next-line
+  gs := graphql.NewGenerativeSearch().GroupedResult("Explain why these magazines or newspapers are about finance")
+
+  result, err := client.GraphQL().Get().
+    WithClassName("Publication").
+    WithFields(name).
+    // highlight-next-line
+    WithGenerativeSearch(gs).
+    WithNearText(nearText).
+    WithLimit(5).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
+    } };
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // highlight-start
+    // instruction for the generative module
+    GenerativeSearchBuilder generativeSearch = GenerativeSearchBuilder.builder()
+      .groupedResultTask("Explain why these magazines or newspapers are about finance")
+      .build();
+    // highlight-end
+
+    Field name = Field.builder().name("name").build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "magazine or newspaper about finance" })
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Publication")
+      .withFields(name)
+      // highlight-next-line
+      .withGenerativeSearch(generativeSearch)
+      .withNearText(nearText)
+      .withLimit(5)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Publication(
+      nearText: {
+        concepts: ["magazine or newspaper about finance"]
+        certainty: 0.75
+      }
+    ) {
+      name
+      // highlight-start
+      _additional {
+        generate(
+          groupedResult: {
+            task: "Explain why these magazines or newspapers are about finance"
+          }
+        ) {
+          groupedResult
+          error
+        }
+      }
+      // highlight-end
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Publication(
+        nearText: {
+          concepts: [\"magazine or newspaper about finance\"]
+        }
+        limit: 5
+      ) {
+        name
+        # highlight-start
+        _additional {
+          generate(
+            groupedResult: {
+              task: \"Explain why these magazines or newspapers are about finance\"
+            }
+          ) {
+            groupedResult
+            error
+          }
+        }
+        # highlight-end
+      }
+    }
+  }
+  "
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
+    -H "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
+    -d @- \
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,8 @@
+| Parameter | Type | Default | Details |
+| :-- | :-- | :-- | :-- |
+| `enabled` | boolean | `false` | Enable PQ when `true`. <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable PQ with the v4 client, set a `quantizer` in the collection definition. |
+| `trainingLimit` | integer | 100000 | The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. Larger values also require more memory. |
+| `segments` | integer | -- |The number of segments to use. The number of vector dimensions must be evenly divisible by the number of segments.<br/><br/> Starting in `v1.23`, Weaviate uses the number of dimensions to optimize the number of segments. |
+| `centroids` | integer | 256 | The number of centroids to use (max: 256). <br/><br/> We generally recommend you do not change this value. <br/><br/> Due to the data structure used, smaller centroid value will not result in smaller vectors, but may result in faster compression at cost of recall. |
+| `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans` (default) or `tile`. |
+|`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |

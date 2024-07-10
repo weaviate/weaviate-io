@@ -1,0 +1,173 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START UpdateCollectionShards"
+    endMarker="END UpdateCollectionShards"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+# Update a shard
+client.schema.update_class_shard(
+  class_name="Article",
+  status="READONLY",
+  shard_name="shard-1234",
+)
+
+# Convenience method to update all shards in a class
+client.schema.update_class_shard(
+  class_name="Article",
+  status="READONLY",
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+// Update a shard
+await client.schema
+  .shardUpdater()
+  .withClassName('Article')
+  .withShardName('shard-1234')
+  .withStatus('READONLY')
+  .do();
+
+// Convenience method to update all shards in a class
+await client.schema
+  .shardsUpdater()
+  .withClassName('Article')
+  .withStatus('READONLY')
+  .do();
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  // Update a shard
+  status, err := client.Schema().
+    ShardUpdater().
+    WithClassName("Article").
+    WithShardName("shard-1234").
+    WithStatus("READONLY").
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", status)
+
+  // Convenience method to update all shards in a class
+  shards, err := client.Schema().
+    ShardsUpdater().
+    WithClassName("Article").
+    WithStatus("READY").
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", shards)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.ShardStatus;
+import io.weaviate.client.v1.schema.model.ShardStatuses;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    // Update a shard
+    Result<ShardStatus> updateShard = client.schema()
+      .shardUpdater()
+      .withClassName("Article")
+      .withShardName("shard-1234")
+      .withStatus(ShardStatuses.READONLY)
+      .run();
+    if (updateShard.hasErrors()) {
+      System.out.println(updateShard.getError());
+      return;
+    }
+    System.out.println(updateShard.getResult());
+
+    // Convenience method to update all shards in a class
+    Result<ShardStatus[]> updateShards = client.schema()
+      .shardsUpdater()
+      .withClassName("Article")
+      .withStatus(ShardStatuses.READY)
+      .run();
+    if (updateShards.hasErrors()) {
+      System.out.println(updateShards.getError());
+      return;
+    }
+    System.out.println(updateShards.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X PUT \
+    -H "Content-Type: application/json" \
+    -d '{
+         "status": "READONLY"
+        }' \
+    http://localhost:8080/v1/schema/Article/shards/shard-1234
+```
+
+</TabItem>
+</Tabs>

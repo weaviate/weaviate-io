@@ -1,0 +1,83 @@
+<details>
+  <summary>
+    Example schema
+  </summary>
+  <div>
+
+```json
+{
+  "classes": [
+    {
+      "class": "Category",
+      "description": "A Jeopardy! category",
+      ...
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "The title of the category",
+          "name": "title",
+          "tokenization": "word"
+        }
+      ],
+      ...
+      "vectorizer": "text2vec-openai"
+    },
+    {
+      "class": "Question",
+      ...
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Question asked to the contestant",
+          ...
+          "name": "question",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Answer provided by the contestant",
+          ...
+          "name": "answer",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "description": "Points that the question was worth",
+          ...
+          "name": "points"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "Jeopardy round",
+          ...
+          "name": "round"
+        },
+        {
+          "dataType": [
+            "Category"
+          ],
+          "description": "The category of the question",
+          ...
+          "name": "hasCategory"
+        }
+        ...
+      ],
+      ...
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
+
+  </div>
+</details>

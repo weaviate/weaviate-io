@@ -1,0 +1,86 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+{<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Aggregate {
+    Question {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
+
+</TabItem>}
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+client = weaviate.Client(
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
+    additional_headers={
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
+    }
+)
+
+result = (
+    client.query
+    .aggregate("Question")
+    .with_fields("meta { count }")
+    .do()
+)
+
+print(json.dumps(result, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate, { ApiKey } from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
+});
+
+const response = await client.graphql
+  .aggregate()
+  .withClassName('Question')
+  .withFields('meta { count }')
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+{/* <TabItem value="go" label="Go">
+
+```go
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="java" label="Java">
+
+```java
+TBC
+```
+
+</TabItem> */}
+{/* <TabItem value="curl" label="Curl">
+
+```bash
+TBC
+```
+
+</TabItem> */}
+</Tabs>

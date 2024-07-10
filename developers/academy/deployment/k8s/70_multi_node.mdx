@@ -1,0 +1,173 @@
+---
+title: Multi-node setup
+---
+
+Recall that we have deployed Weaviate on a single node in our Kubernetes cluster with Minikube. Now, let's scale it up to a multi-node setup.
+
+To do this, we will need a Kubernetes cluster with multiple nodes. Then, we can configure Weaviate to make use of these nodes.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Add nodes to your Weaviate cluster
+
+We'll stop the current Weaviate deployment and then deploy a new one with [multiple nodes with Minikube](https://minikube.sigs.k8s.io/docs/tutorials/multi_node/).
+
+:::note Minikube limitations
+Keep in mind that this runs multiple containers on the same host device for learning. In a production environment, you would typically have a managed Kubernetes cluster with multiple, isolated, physical or virtual nodes.
+:::
+
+### <i class="fa-solid fa-code"></i> Stop the current Weaviate deployment
+
+First, stop the tunnel by pressing `Ctrl+C` at the terminal where you ran `minikube tunnel`.
+
+Then, stop Minikube:
+
+```bash
+minikube stop
+```
+
+Since the minikube cluster exists, we will have to delete it before we can start a new one with multiple nodes:
+
+:::note Alternatively...
+You can also add nodes to an existing Minikube cluster. But we'll delete the current one and start a new one for simplicity.
+:::
+
+```bash
+minikube delete
+```
+
+### <i class="fa-solid fa-code"></i> Start a multi-node Kubernetes cluster
+
+To start a multi-node Kubernetes cluster with Minikube, run:
+
+```bash
+minikube start --nodes <n>
+```
+
+Replace `<n>` with the number of nodes you want in your cluster. In our case, let's spin up a 6-node cluster:
+
+```bash
+minikube start --nodes 6
+```
+
+Once that's finished, you can check the status of your nodes by running:
+
+```bash
+kubectl get nodes
+```
+
+And you should see output like:
+
+```bash
+NAME           STATUS   ROLES           AGE   VERSION
+minikube       Ready    control-plane   78s   v1.28.3
+minikube-m02   Ready    <none>          60s   v1.28.3
+minikube-m03   Ready    <none>          50s   v1.28.3
+minikube-m04   Ready    <none>          39s   v1.28.3
+minikube-m05   Ready    <none>          29s   v1.28.3
+minikube-m06   Ready    <none>          18s   v1.28.3
+```
+
+Now let's update the Weaviate deployment to use these nodes. To do this, we'll update the `replicas` field in the `values.yaml` file to match the number of nodes in the cluster. Along with our reduced resource requests and limits, this section should look as follows:
+
+```yaml
+replicas: 6
+updateStrategy:
+  type: RollingUpdate
+resources: {}
+requests:
+  cpu: '300m'
+  memory: '150Mi'
+limits:
+  cpu: '500m'
+  memory: '300Mi'
+```
+
+If we restart weaviate by running:
+
+```bash
+helm upgrade --install \
+  "weaviate" \
+  weaviate/weaviate \
+  --namespace "weaviate" \
+  --values ./values.yaml
+```
+
+Then, you should see Weaviate pods come up on each of the nodes in your cluster. You can check this by running:
+
+```bash
+kubectl get pods -n weaviate
+```
+
+And you should see output like:
+
+```bash
+NAME         READY   STATUS            RESTARTS   AGE
+weaviate-0   1/1     Running           0          31s
+weaviate-1   0/1     PodInitializing   0          9s
+```
+
+As pods are created one by one.
+
+Eventually, you will see something like:
+
+```bash
+NAME         READY   STATUS    RESTARTS   AGE
+weaviate-0   1/1     Running   0          113s
+weaviate-1   1/1     Running   0          91s
+weaviate-2   1/1     Running   0          79s
+weaviate-3   1/1     Running   0          57s
+weaviate-4   1/1     Running   0          35s
+weaviate-5   1/1     Running   0          13s
+```
+
+Open a new terminal and run `minikube tunnel` to expose the Weaviate service to your local machine as before.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Utilizing a multi-node setup
+
+There are two main ways to utilize a multi-node setup, namely **replication** and **horizontal scaling**. Let's take a look at each of these.
+
+### <i class="fa-solid fa-chalkboard"></i> Replication
+
+Replication is the process of creating multiple copies of the same data across multiple nodes.
+
+This is useful for ensuring data availability and fault tolerance. In a multi-node setup, you can replicate your Weaviate data across multiple nodes to ensure that if one node fails, the data is still available on other nodes. A replicated setup can also help distribute the load across multiple nodes to improve performance, and allow zero-downtime upgrades and maintenance.
+
+Weaviate can handle replication by setting a replication factor in the database collection definition. This tells Weaviate how many copies of the data to keep across the nodes in the cluster.
+
+The code examples show how to configure replication. Keep in mind that the specified port may be different for you (e.g. `80`) than what is shown in the code snippet.
+
+import SchemaReplication from '/_includes/code/schema.things.create.replication.mdx';
+
+<SchemaReplication/>
+
+### <i class="fa-solid fa-chalkboard"></i> Database sharding
+
+On the other hand, sharding can be used to horizontally scale Weaviate. Sharding is the process of splitting a database into smaller parts, called shards, and distributing these shards across multiple nodes.
+
+So a database that holds 2 million records do not need to store all 2 million records on a single node. Instead, it can split the records into smaller parts and store them on different nodes. This allows the database to scale horizontally by adding more nodes to the cluster.
+
+### <i class="fa-solid fa-chalkboard"></i> Sharding with replication
+
+You can use both sharding and replication together to horizontally scale and ensure fault tolerance in your Weaviate setup.
+
+In our example with 6 nodes, we could have a replication factor of 3 and shard the data across 2 nodes each. This way, we have 3 copies of the data spread across 6 nodes, ensuring fault tolerance and high availability.
+
+For a production setup, this is a common approach to ensure that your Weaviate setup can handle high loads and remain available even if a node fails. Additionally, you can add more nodes to the cluster as needed to scale your Weaviate setup horizontally, ensuring that it can handle more data and more requests.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Clean-up
+
+That's it for this guide. You've successfully deployed Weaviate on a multi-node Kubernetes cluster and learned about replication and sharding.
+
+If you would like, you can access Weaviate as described before, and work with it. We include [further resources on the next page](./90_next_steps.mdx) for you to explore.
+
+When you are finished, you can stop the tunnel by pressing `Ctrl+C` in the terminal where you ran `minikube tunnel`, Then, stop Minikube and delete the cluster:
+
+```bash
+minikube stop
+minikube delete
+```
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

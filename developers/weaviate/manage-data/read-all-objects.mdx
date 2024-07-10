@@ -1,0 +1,189 @@
+---
+title: Read all objects
+sidebar_position: 25
+image: og/docs/howto.jpg
+# tags: ['how-to', 'cursor']
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
+
+Weaviate provides the necessary APIs to iterate through all your data. This is useful when you want to manually copy/migrate your data (and vector embeddings) from one place to another.
+
+This is done with the help of the `after` operator, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
+
+:::info Iterator
+The new API clients (currently supported by the Python Client v4), encapsulate this functionality as an `Iterator`.
+:::
+
+## Read object properties and ids
+
+The following code iterates through all objects, providing the properties and id for each object.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllProps"
+      endMarker="# END ReadAllProps"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllProps"
+      endMarker="# END ReadAllProps"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllProps"
+      endMarker="// END ReadAllProps"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReadAllProps"
+      endMarker="// END ReadAllProps"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Read all objects including vectors
+
+Read through all data including the vectors. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllVectors"
+      endMarker="# END ReadAllVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllVectors"
+      endMarker="# END ReadAllVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllVectors"
+      endMarker="// END ReadAllVectors"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReadAllVectors"
+      endMarker="// END ReadAllVectors"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Read all objects - Multi-tenant collections
+
+Iterate through all tenants and read data for each.
+
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you need to specify the tenant name when reading or creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details.
+:::
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllTenants"
+      endMarker="# END ReadAllTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllTenants"
+      endMarker="# END ReadAllTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllTenants"
+      endMarker="// END ReadAllTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReadAllTenants"
+      endMarker="// END ReadAllTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
+- [How-to: Read objects](./read.mdx)
+- [References: GraphQL - Additional Operators](../api/graphql/additional-operators.md#cursor-with-after)
+- [Manage data: multi-tenancy operations](./multi-tenancy.md)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

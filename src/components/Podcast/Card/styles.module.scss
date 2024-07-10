@@ -1,0 +1,51 @@
+.boxWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media screen and (max-width: 790px) {
+    flex-direction: column;
+  }
+}
+.box {
+  border-radius: 1rem;
+  display: flex;
+  max-width: 49%;
+  text-decoration: none;
+  color: var(--site-font-main-color);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 1095px) {
+    max-width: 100%;
+  }
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+  }
+}
+
+.left {
+  border-radius: 1rem;
+  display: flex;
+  flex: 1;
+  img {
+    width: 296px;
+    height: 160px;
+    border-radius: 8%;
+    object-fit: contain;
+    @media screen and (max-width: 1095px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+}

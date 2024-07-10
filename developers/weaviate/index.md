@@ -1,6 +1,12 @@
 ---
-redirect_to:
-  - /developers/weaviate/current/
+title: Home
+sidebar_position: 0
+image: og/docs/home.jpg
+hide_table_of_contents: true
+hide_title: true
+# tags: []
 ---
 
-[Redirect to latest Weaviate documentation](/developers/weaviate/current/)
+import DocHomePage from '/src/components/Documentation/Home';
+
+<DocHomePage />

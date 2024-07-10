@@ -1,14 +1,50 @@
-.bundle/
-.jekyll-cache/
-.DS_Store
-vendor/
-_site/
-.jekyll-metadata
-.ruby-version
-img/og/og-documentation
+# For testing
+.venv
+nohup.out
+tests/temp.*
+_includes/code/howto/java/target
+_includes/code/howto/go/vendor
+**/.ipynb
+**/.ipynb_checkpoints/*
+scratch
+jeopardy_1k.json
+jeopardy_1k.csv
 
-# docusaurus-related files left over from another branch
-.docusaurus/
-node_modules/
+# Dependencies
+**/node_modules
+
+# Production
+/build
+
+# Dev
+/build.dev
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Ignore Academy for now
+# /developers/academy
+
+# IDEs
+.idea
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 yarn.lock
-build
+.yarnrc.yml
+.yarn/**
+
+.python-version
+__pycache__

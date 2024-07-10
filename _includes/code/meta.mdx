@@ -1,0 +1,127 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.meta.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GetServerMeta"
+    endMarker="END GetServerMeta"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+meta_info = client.get_meta()
+print(meta_info)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client (v3)">
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal()
+const response = await client.getMeta()
+
+console.log(response)
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client (v2)">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.misc
+  .metaGetter()
+  .do();
+console.log(response);
+```
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  meta, err := client.Misc().MetaGetter().Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", meta)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.misc.model.Meta;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Result<Meta> result = client.misc().metaGetter().run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl http://localhost:8080/v1/meta
+```
+
+</TabItem>
+</Tabs>

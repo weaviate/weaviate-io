@@ -1,0 +1,55 @@
+---
+title: FAQs
+sidebar_position: 500
+image: og/wcs/tips_faqs.jpg
+---
+
+Frequently asked questions (FAQs) for WCD.
+
+## Accounts
+### Can I reset or change my account password?
+
+Yes. Go the [WCD login page](https://console.weaviate.cloud/) and click the "Log in" button. Then, click "Forgot Password". Enter your email address on the next screen. WCD sends a reset email to the address you enter.
+
+### Where is my verification email?
+
+If you do not receive a verification email, check your spam folder. If you still cannot find it, follow the steps to [reset you password](./faq.mdx#can-i-reset-or-change-my-account-password) to get a new letter.
+
+## Instance management
+### Are WCD clusters backed up?
+
+Yes. WCD has automated, daily backups. WCD also backs up your data before updating the version of Weaviate running on your cluster.
+
+### Can WCD clusters be updated to newer versions of Weaviate?
+
+Yes. Click the "Details" button for your cluster. If a new version is available, click the "Update!" button when you have a suitable maintenance window. The button is only visible when there is a newer version available.
+
+### Are cluster resources scaled automatically?
+
+Not currently. Clusters are provisioned for common usage scenarios. WCD monitors each instance to determine when a cluster needs to be resized.
+
+### Can I request more cluster resources?
+
+Possibly. If you want to customize your cluster provisioning, contact our support team at [support@weaviate.io](mailto:support@weaviate.io) to discuss possible solutions.
+
+## Infrastructure
+
+### What infrastructure does WCD run on?
+
+WCD runs on Google Cloud Platform (GCP). Amazon Web services (AWS) and Microsoft Azure are on our roadmap.
+
+## WCD Console
+
+### Does the WCD console collect data from users?
+
+The WCD console doesn't collect any data from your Weaviate instance. However, WCD does monitor your instances and collect operational data in order to manage them.
+
+### Can the WCD console connect to non-Weaviate Cloud instances?
+
+Yes. The Weaviate GraphQL query app can connect to Weaviate instances outside WCD.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

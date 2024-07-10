@@ -1,0 +1,28 @@
+name: PR links validation
+
+on:
+  pull_request:
+
+jobs:
+  Validate-links:
+    name: Validate links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+      - name: Install dependencies
+        run: |
+          rm -vrf node_modules/.cache/webpack
+          yarn install
+      - name: Update versions from GitHub
+        env:
+          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        run: |
+          node _build_scripts/update-config-versions.js
+      - name: Build a dev version
+        run: yarn build-dev
+      - name: Validate links from the build.dev folder
+        run: source _build_scripts/verify-links-build-dev.sh

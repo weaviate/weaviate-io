@@ -1,0 +1,301 @@
+.techBox {
+  width: 15.3125rem;
+  height: 7.5625rem;
+  border-radius: 0.9375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  display: grid;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header {
+  text-align: left;
+  margin: auto;
+}
+
+.techList {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin: 50px 0px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 860px) {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding: 5px 10px 20px;
+    scroll-padding: 20%;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.techContainer {
+  margin: auto;
+}
+
+.bgColor {
+  background: #ededed;
+
+  @media screen and (max-width: 860px) {
+    padding: 0px;
+  }
+}
+
+.openAIPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/openai-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.nvidiaPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/nvidia-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.AI21Partners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/AI21-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.unstructuredPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/unstructured-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.dithubPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/ditHub-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.datadogPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/dataDog-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.haystackPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/haystack-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.intelPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/intel-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.coherePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/cohere-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.langchainPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/langchain-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.databricksPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/databricks-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.jinaPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/jina-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.redhatPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/redhat-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.astronomerPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/astronomer-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.arizePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/arize-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.awsPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/aws-logo-partners.svg');
+  width: 28%;
+  height: 70px;
+  margin: auto;
+}
+
+.gcpPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/gcp-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.azurePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/azure-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.snowflakePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/snowflake-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.confluentPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/confluent-logo-partner.svg');
+  width: 100%;
+  height: 110px;
+  margin: auto;
+}
+
+.anthropicPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.anthropicPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.mistralaiPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/mistral-ai-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}

@@ -1,0 +1,43 @@
+---
+title: Imports - Vector provision options
+sidebar_position: 45
+image: og/docs/tutorials.jpg
+# tags: ['how-to', 'options for vectors']
+---
+
+import ReactPlayer from 'react-player/lazy'
+
+## Overview
+
+:::info This video covers options for adding a vector during import.
+:::
+
+When importing objects into Weaviate, you can choose to:
+- **Provide object vectors** to Weaviate,
+- **Configure a vectorizer** to obtain vectors at import time, or
+- **Combine these options** to configure a vectorizer while explicitly providing vectors.
+
+This **5-minute video** provides an overview of all three workflows, with code examples shown in Python.
+
+### Prerequisites
+
+We recommend that you go through the [Quickstart tutorial](../quickstart/index.md) before watching this video, or to make sure you are familiar with the basic of a schema, import, and query in Weaviate.
+
+### Jupyter notebook & data
+
+You can find the accompanying Jupyter notebook and data at [this repository](https://github.com/weaviate-tutorials/vector-provision-options).
+
+## Video (4mins 46secs)
+
+<ReactPlayer className="react-player" url='https://www.youtube.com/watch?v=x9ztOHUxALg' width="100%" controls="true"/>
+<br/>
+
+### Timestamps
+
+- 0:00: Introduction
+- 0:15: Overview
+- 0:30: Instantiate Weaviate client & load data
+- 1:18: Import data with Weaviate-obtained vectors
+- 2:17: Import data with user-specified vectors
+- 3:14: Combined option - import with user-specified vectors and specify a vectorizer
+- 4:20: Wrap-up

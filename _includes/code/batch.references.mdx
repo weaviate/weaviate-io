@@ -1,0 +1,285 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/rest.batch.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BatchCreateReference"
+      endMarker="# END BatchCreateReference"
+      language="py"
+    />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+# Python client specific configurations can be set with `client.batch.configure`
+# the settings can be applied to both `objects` AND `references`.
+# You have to only set them once.
+client.batch.configure(
+    # `batch_size` takes an `int` value to enable auto-batching
+    # (`None` is used for manual batching)
+    batch_size=100,
+    # dynamically update the `batch_size` based on import speed
+    dynamic=False,
+    # `timeout_retries` takes an `int` value to retry on time outs
+    timeout_retries=3,
+    # checks for batch-item creation errors
+    # this is the default in weaviate-client >= 3.6.0
+    callback=weaviate.util.check_batch_result,
+    consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+
+with client.batch as batch:
+    # Format for batching is as follows:
+    # batch.add_reference(
+    #   from_object_uuid=<from_object_uuid>,
+    #   from_object_class_name=<from_object_class_name>,
+    #   from_property_name=<from_property_name>
+    #   to_object_uuid=<to_object_uuid>,
+    #   to_object_class_name=<to_object_class_name>,
+    #   tenant=<TenantName>  # Only required for multi-tenancy
+    # )
+    batch.add_reference(
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
+    batch.add_reference(
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="b72912b9-e5d7-304e-a654-66dc63c55b32",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.batch
+  .referencesBatcher()
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles',
+    to: 'weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles',
+    to: 'weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles',
+    to: 'weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
+  .do();
+console.log(JSON.stringify(response, null, 2));
+
+/* This is also possible with a builder pattern:
+const response = await client.batch
+  .referencesBatcher()
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload()
+  )
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+      .payload()
+  )
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4304')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+      .payload()
+  )
+  .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
+  .do();
+console.log(JSON.stringify(response, null, 2));
+*/
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate/entities/models"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/data/replication"  // for consistency levels
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  ref := []*models.BatchReference{
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+      To:   "weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+    },
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+      To:   "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+    },
+    {
+      From: "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
+      To:   "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32",
+      // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+    },
+  }
+
+  result, err := client.Batch().ReferencesBatcher().
+    WithReference(ref[0]).
+    WithReference(ref[1]).
+    WithReference(ref[2]).
+    WithConsistencyLevel(replication.ConsistencyLevel.ALL).  // default QUORUM
+    // WithTenant("tenantA").  // Optional; specify the tenant in multi-tenancy collections
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.ArrayList;
+import java.util.List;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.batch.model.BatchReference;
+import io.weaviate.client.v1.batch.model.BatchReferenceResponse;
+import io.weaviate.client.v1.data.replication.model.ConsistencyLevel;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    List<BatchReference> refs = new ArrayList() {
+      {
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+            .to("weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+            .build()
+        );
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles")
+            .to("weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+            .build()
+        );
+        add(
+          BatchReference.builder()
+            .from("weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles")
+            .to("weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32")
+            // prior to v1.14 omit the class name as part of the "to" beacon and specify it as weaviate://localhost/<id>
+            .build()
+        );
+      }
+    };
+
+    Result<BatchReferenceResponse[]> result = client.batch().referencesBatcher()
+      .withReference(refs.get(0))
+      .withReference(refs.get(1))
+      .withReference(refs.get(2))
+      .withConsistencyLevel(ConsistencyLevel.ALL)  // default QUORUM
+      // .withTenant("tenantA")  // Optional; specify the tenant in multi-tenancy collections
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Note that for this query to work with Weaviate versions older than v1.14 you
+# need to omit the class name in the "to" beacon and specify it as
+# weaviate://localhost/<id>. The long-form beacon used in "from" is unchanged.
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '[{
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    "to": "weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064"
+  }, {
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles",
+    "to": "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32"
+  }, {
+    "from": "weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles",
+    "to": "weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32"
+  }]' \
+http://localhost:8080/v1/batch/references?consistency_level=ALL
+```
+
+</TabItem>
+</Tabs>

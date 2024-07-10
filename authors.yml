@@ -1,0 +1,187 @@
+abdel:
+  name: Abdel Rodriguez
+  title: Vector Index Researcher
+  url: https://github.com/abdelr
+  image_url: /img/people/icon/abdel.jpg
+alea:
+  name: Alea Abed
+  title: Head of Marketing
+  image_url: /img/people/icon/alea.jpg
+ara:
+  name: Ara Gonzalez
+  title: People Operations Manager
+  url: https://linkedin.com/in/aranzazugonzalez
+  image_url: /img/people/icon/ara.png
+bob:
+  name: Bob van Luijt
+  title: CEO
+  url: https://github.com/bobvanluijt
+  image_url: /img/people/icon/bob.jpg
+byron:
+  name: Byron Voorbach
+  title: Head of Customer Success
+  url: https://github.com/byronvoorbach
+  image_url: /img/people/icon/byron.png
+connor:
+  name: Connor Shorten
+  title: Product Researcher
+  url: https://github.com/CShorten
+  image_url: /img/people/icon/connor.jpg
+dan:
+  name: Dan Dascalescu
+  title: Developer Advocate
+  url: https://github.com/dandv
+  image_url: /img/people/icon/dan.jpg
+dave:
+  name: Dave Cuthbert
+  title: Technical Writer
+  url: https://github.com/daveatweaviate
+  image_url: /img/people/icon/dave.jpg
+dirk:
+  name: Dirk Kulawiak
+  title: Core Engineer
+  url: https://github.com/dirkkul
+  image_url: /img/people/icon/dirk.jpg
+edward:
+  name: Edward Schmuhl
+  title: Machine Learning Engineer
+  url: https://github.com/thomashacker
+  image_url: /img/people/icon/edward.jpg
+erika:
+  name: Erika Cardenas
+  title: Technology Partner Manager
+  url: https://github.com/erika-cardenas
+  image_url: /img/people/icon/erika.jpg
+etienne:
+  name: Etienne Dilocker
+  title: CTO
+  url: https://github.com/etiennedi
+  image_url: /img/people/icon/etienne.jpg
+ieva:
+  name: Ieva Urbaite
+  title: Marketing
+  url: https://www.linkedin.com/in/ievaurbaite/
+  image_url: /img/people/icon/ieva.png
+jessie:
+  name: Jessie de Groot
+  title: Head of People and Culture
+  url: https://linkedin.com/in/jessiedegroot/
+  image_url: /img/people/icon/jessie.png
+jp:
+  name: Joon-Pil (JP) Hwang
+  title: Educator
+  url: https://github.com/databyjp
+  image_url: /img/people/icon/jp.jpg
+laura:
+  name: Laura Ham
+  title: Developer Advocate
+  url: https://github.com/laura-ham
+  image_url: /img/people/icon/laura.jpg
+leonie:
+  name: Leonie Monigatti
+  title: Developer Advocate
+  url: https://www.linkedin.com/in/804250ab/
+  image_url: /img/people/icon/leonie.jpg
+marion:
+  name: Marion Nehring
+  title: Community Manager
+  url: https://www.linkedin.com/in/marionnehring/
+  image_url: /img/people/icon/marion.jpg
+pete:
+  name: Peter Schramm
+  title: WCD Tech Lead
+  url: https://github.com/glockenbeat
+  image_url: /img/people/icon/pete.jpg
+sebastian:
+  name: Sebastian Witalec
+  title: Head of DevRel
+  url: https://github.com/sebawita
+  image_url: /img/people/icon/sebastian.jpg
+stefan:
+  name: Stefan Bogdan
+  title: Customer Solutions
+  url: https://github.com/StefanBogdan
+  image_url: /img/people/icon/stefan.jpg
+svitlana:
+  name: Svitlana Smolianova
+  title: Head of Design
+  url: https://linkedin.com/in/svitlana-sm
+  image_url: /img/people/icon/svitlana.png
+zain:
+  name: Zain Hasan
+  title: Developer Advocate
+  url: https://github.com/zainhas
+  image_url: /img/people/icon/zain.jpg
+john:
+  name: John Trengrove
+  title: Head of Applied Research
+  url: https://github.com/trengrj
+  image_url: /img/people/icon/john.png
+shukri:
+  name: Mohd Shukri Hasan
+  title: Community Solution Engineer
+  url: https://github.com/hsm207
+  image_url: /img/people/icon/shukri.jpeg
+tommy:
+  name: Tommy Smith
+  title: Polyglot Engineer
+  url: https://github.com/tsmith023
+  image_url: /img/people/icon/tommy.jpg
+jerry:
+  name: Jerry Liu
+  title: Co-Founder/CEO LlamaIndex
+  url: https://github.com/jerryjliu
+  image_url: /img/people/icon/jerry.png
+sam:
+  name: Sam Stoelinga
+  title: Contributor to Substratus.AI
+  url: https://github.com/samos123
+  image_url:  /img/people/icon/sam.png
+femke:
+  name: Femke Plantinga
+  title: Content Manager
+  image_url: /img/people/icon/femke.jpg
+daniel:
+  name: Daniel Phiri
+  title: Developer Advocate
+  url: https://www.linkedin.com/in/malgamves
+  image_url: /img/people/icon/daniel.jpg
+jon:
+  name: Jonathan Tuite
+  title: Solutions Engineer
+  image_url: /img/people/icon/jon.jpg
+victoria:
+  name: Victoria Slocum
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/victorialslocum/
+  image_url: /img/people/icon/victoria.png
+adam:
+  name: Adam Chan
+  title: Developer Growth Engineer
+  url: https://www.linkedin.com/in/itsajchan/
+  image_url: /img/people/icon/adam.png
+asdine:
+  name: Asdine El Hrychy
+  title: Software Engineer
+  url: https://github.com/asdine
+  image_url: /img/people/icon/asdine.jpg
+ajit:
+  name: Ajit Mistry
+  title: Developer Growth Intern
+  url: https://github.com/ajit283
+  image_url: /img/people/icon/ajit.png
+amir:
+  name: Amir Houieh
+  title: Founder & CEO of Unbody
+  url: https://www.unbody.io/
+  image_url: /img/people/icon/amir.jpeg
+charles:
+  name: Charles Frye
+  title: AI Engineer
+  url: https://twitter.com/charles_irl
+  image_url: /img/people/icon/charles-modal.png
+randy:
+  name: Randy Fong
+  title: Senior iOS Developer
+  url: https://www.linkedin.com/in/randy-fong-1530545/
+  image_url: /img/people/icon/randy.jpeg

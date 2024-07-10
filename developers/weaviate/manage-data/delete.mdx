@@ -1,0 +1,471 @@
+---
+title: Delete objects
+sidebar_position: 35
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'delete']
+---
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.delete-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.delete-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
+
+
+Weaviate allows object deletion by id or by a set of criteria.
+
+
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
+
+<details>
+  <summary>Additional information</summary>
+
+  - To delete objects, you must provide the collection name as well as identifying criteria (e.g. object id or filters).
+  - For [multi-tenancy](../concepts/data.md#multi-tenancy) collections, you will also need to specify the tenant name when deleting objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+  <br/>
+
+  <RestObjectsCRUDClassnameNote/>
+
+</details>
+
+
+## Delete object by id
+
+To delete by id, specify the collection name and the object id.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteObject"
+      endMarker="# END DeleteObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteObject"
+      endMarker="# END DeleteObject"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+<!-- ## Error handling
+
+If the id doesn't exist in the specified class, a 404 error will be returned.
+
+You can handle errors as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteError"
+      endMarker="# END DeleteError"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteError"
+      endMarker="// END DeleteError"
+      language="ts"
+    />
+  </TabItem>
+</Tabs> -->
+
+
+## Delete multiple objects
+
+To delete objects that match a set of criteria, specify the collection and a [`where` filter](../search/similarity.md).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteBatch"
+      endMarker="# END DeleteBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteBatch"
+      endMarker="# END DeleteBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>
+    Additional information
+  </summary>
+
+- There is a configurable [maximum limit (QUERY_MAXIMUM_RESULTS)](../config-refs/env-vars.md#general) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+
+</details>
+
+
+## Use ContainsAny / ContainsAll
+
+The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a set of criteria.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteContains"
+      endMarker="# END DeleteContains"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteContains"
+      endMarker="# END DeleteContains"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START DeleteContain"
+        endMarker="// END DeleteContain"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+
+```js
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  .withWhere({
+    path: ['name'],
+    // highlight-start
+    operator: 'ContainsAny',
+    valueTextArray: ['asia', 'europe'],  // Note the array syntax
+    // highlight-end
+  })
+  // highlight-end
+  .do();
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+client.batch().objectsBatchDeleter()
+  .withClassName("EphemeralObject")
+  .withWhere(WhereFilter.builder()
+    .path("name")
+    // highlight-start
+    .operator(Operator.ContainsAny)
+    .valueText("asia", "europe")    // Note the array syntax
+    // highlight-end
+    .build())
+  .run();
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+  response, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("EphemeralObject").
+    WithOutput("minimal").
+    WithWhere(filters.Where().
+      WithPath([]string{"name"}).
+      // highlight-start
+      WithOperator(filters.ContainsAny).
+      WithValueText("asia", "europe")).  // Note the array syntax
+      // highlight-end
+    Do(ctx)
+```
+
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+This feature was added in Weaviate `v1.21`.
+
+</details>
+
+
+## Delete multiple objects by id
+
+To delete multiple objects by their id values, use a filter (e.g. `ContainsAny`) with `id` based criteria.
+
+<details>
+  <summary>Limitations</summary>
+
+There is an upper limit (`QUERY_MAXIMUM_RESULTS`) to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions.
+
+Objects are deleted in the same order that they would be fetched, by order of UUID. To delete more objects than the limit, run the same query multiple times until no objects are matched anymore.
+
+The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e.g. in [the environment variables](../config-refs/env-vars.md).
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteByIDBatch"
+      endMarker="# END DeleteByIDBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteByIDBatch"
+      endMarker="# END DeleteByIDBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+          text={TSCode}
+          startMarker="// START DeleteByIDBatch"
+          endMarker="// END DeleteByIDBatch"
+          language="ts"
+        />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+
+```js
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  .withWhere({
+    path: ['id'],
+    // highlight-start
+    operator: 'ContainsAny',
+    valueTextArray: ['12c88739-7a4e-49fd-bf53-d6a829ba0261', '3022b8be-a6dd-4ef4-b213-821f65cee53b', '30de68c1-dd53-4bed-86ea-915f34faea63'],  // Note the array syntax
+    // highlight-end
+  })
+  // highlight-end
+  .do();
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+client.batch().objectsBatchDeleter()
+  .withClassName("EphemeralObject")
+  .withWhere(WhereFilter.builder()
+    .path("id")
+    // highlight-start
+    .operator(Operator.ContainsAny)
+    .valueText("12c88739-7a4e-49fd-bf53-d6a829ba0261", "3022b8be-a6dd-4ef4-b213-821f65cee53b", "30de68c1-dd53-4bed-86ea-915f34faea63")    // Note the array syntax
+    // highlight-end
+    .build())
+  .run();
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+  response, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("EphemeralObject").
+    WithOutput("minimal").
+    WithWhere(filters.Where().
+      WithPath([]string{"id"}).
+      // highlight-start
+      WithOperator(filters.ContainsAny).
+      WithValueText("12c88739-7a4e-49fd-bf53-d6a829ba0261", "3022b8be-a6dd-4ef4-b213-821f65cee53b", "30de68c1-dd53-4bed-86ea-915f34faea63")).  // Note the array syntax
+      // highlight-end
+    Do(ctx)
+```
+
+  </TabItem>
+</Tabs>
+
+
+## Optional parameters
+
+- You can use `dryRun` to check how many objects would be deleted, without actually performing the deletion.
+- Set `output` to `'verbose'` to see more details (ID and deletion status) for each deletion.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START ResultsDryRun"
+  endMarker="# END ResultsDryRun"
+  language="json"
+/>
+
+</details>
+
+
+## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

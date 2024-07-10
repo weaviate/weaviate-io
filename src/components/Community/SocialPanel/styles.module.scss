@@ -1,0 +1,155 @@
+.container {
+  padding: 3rem;
+  background: #ededed;
+}
+
+.title {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+
+  h2 {
+    color: #130c49;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 900;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  row-gap: 40px;
+}
+
+.twitter-tweet.twitter-tweet-rendered {
+  box-shadow: 0px 1px 64px 0px rgba(22, 27, 45, 0.08);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20.1875rem;
+  height: 19.875rem;
+  flex-shrink: 0;
+  padding: 30px;
+  border-radius: 0.9375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  h2 {
+    color: #130c49;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.0125rem;
+  }
+
+  p {
+    color: #130c49;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 180px;
+  }
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+
+  a {
+    color: #130c49;
+    font-weight: 400;
+    text-decoration-line: underline;
+  }
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  a {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: #61bd73;
+  color: #130c49;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+
+.buttonOutline {
+  font-weight: 400;
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  color: #130c49;
+  transition: all 1s ease-out;
+}
+
+.buttonGradient:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 60px;
+}
+
+.img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.starImg {
+  background-image: url('/img/site/excellence-star.svg');
+  width: 4rem;
+  height: 3rem;
+}
+
+.trustImg {
+  background-image: url('/img/site/trust-star.svg');
+  width: 4rem;
+  height: 4rem;
+}
+
+.friendImg {
+  background-image: url('/img/site/friend-star.svg');
+  width: 4rem;
+  height: 3rem;
+}

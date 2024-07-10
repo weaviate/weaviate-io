@@ -1,0 +1,243 @@
+---
+title: Manage relationships with cross-references
+sidebar_position: 40
+image: og/docs/tutorials.jpg
+# tags: ['tutorial']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import XRefCrudPythonCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
+import XRefCrudTSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
+import XRefCrudJavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
+import XRefCrudGoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
+
+import SearchBasicsPythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import SearchBasicsTSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+
+import FilterPythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
+import FilterJavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
+
+## Overview
+
+In this tutorial, you will learn how to use cross-references to manage relationships between objects, and to use them to enhance your queries.
+
+Many applications require the ability to manage relationships between objects. For example, a blog application might need to store information about the author of each post. Or, a document store may chunk documents into smaller pieces and store them in separate objects, each with a reference to the original document.
+
+In Weaviate, you can use cross-references to manage relationships between objects. In the preceding examples, a blog post class could have a cross-reference property called `hasAuthor` to link each post to its author, or a chunk class could have a cross-reference property called `sourceDocument` to link each chunk to its original document.
+
+We will refer to the originating object as the **source** object, and the object that is being linked to (cross-referenced object) as the **target** object.
+
+### Prerequisites
+
+This tutorial assumes that you have completed the [QuickStart tutorial](../quickstart/index.md) and have access to a Weaviate instance with write access.
+
+## When to use cross-references
+
+Cross-references are useful when you need to establish relationships between objects in Weaviate. For example, you might want to link:
+
+- A blog post (source) to its author (target).
+- A document chunk (source) to its original document (target).
+- A product (source) to its manufacturer (target).
+- A quiz item (source) to its category (target).
+
+In each of these cases, you can use a cross-reference property to link the objects together.
+
+## How cross-references work
+
+In Weaviate, cross-reference relationships are defined at the source class as a property. Each of these properties is characterized by a name and a data type. Each cross-reference property can be directed to one or more target classes. For example, a `hasAuthor` cross-reference property might be directed to the `Author` class, while a `sourceDocument` cross-reference property might be directed to the `Document` class.
+
+### Directionality of cross-references
+
+Cross-references are uni-directional; to establish a bi-directional relationship, two distinct cross-reference properties are required, facilitating linkage in both directions.
+
+### Cross references and vectors
+
+Linking objects with cross-references does not affect the vectorization of the objects.
+
+For example, linking a blog post to its author with a cross-reference will not affect the vector of the author object or the blog object.
+
+## Managing cross-references
+
+Each cross-reference can be created, updated, and deleted independently of the objects that it links. This allows you to manage relationships between objects without having to modify the objects themselves.
+
+To create a cross-reference, you must include the cross-reference property in the source class, and then add the cross-reference to the source object.
+
+### Include a cross-reference property
+
+A cross-reference property must be included in the class definition. For example, to create a `hasAuthor` cross-reference property in the `BlogPost` class, you would include the following in the class definition:
+
+```json
+{
+    "class": "BlogPost",
+    "properties": [
+        ...  // other class properties
+        // highlight-start
+        {
+            "name": "hasAuthor",
+            "dataType": ["Author"],
+        },
+        // highlight-end
+    ],
+    ...  // other class attributes (e.g. vectorizer)
+}
+```
+
+### Create a cross-reference
+
+To create a cross-reference, Weaviate requires the following information:
+
+- The class and UUID of the source (from) object.
+- The class and UUID of the target (to) object.
+- The name of the cross-reference property.
+
+An example syntax is shown below:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={XRefCrudPythonCode}
+    startMarker="# START OneWay"
+    endMarker="# END OneWay"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v2">
+
+  <FilteredTextBlock
+    text={XRefCrudTSCode}
+    startMarker="// START OneWay"
+    endMarker="// END OneWay"
+    language="ts"
+  />
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={XRefCrudJavaCode}
+      startMarker="// START OneWay"
+      endMarker="// END OneWay"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={XRefCrudGoCode}
+      startMarker="// START OneWay"
+      endMarker="// END OneWay"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Queries with cross-references
+
+Once you have established cross-references between objects, you can use them to enhance your search queries. For example, you can use cross-references to:
+
+- Retrieve properties of target objects.
+- Filter objects based on properties of target objects.
+
+### Retrieve properties of a target object
+
+You can retrieve properties of a target object just as you would retrieve properties of the source object.
+
+For example, where a document chunk includes a cross-reference to its original document, you can use the cross-reference to retrieve properties of the original document. Accordingly, you can retrieve the title of the document or the author of the document, just as you would retrieve a property of the chunk itself such as the text of the chunk.
+
+Take a look at the snippet below in which we retrieve objects from the `JeopardyQuestion` class. Here, the `JeopardyQuestion` class contains the `hasCategory` cross-reference property, linking objects to the `JeopardyCategory` class. This query retrieves the `title` property of the target `JeopardyCategory` class, as well as the `question` property of the source `JeopardyQuestion` class.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+<FilteredTextBlock
+  text={SearchBasicsPythonCode}
+  startMarker="# GetWithCrossRefsPython"
+  endMarker="# END GetWithCrossRefsPython"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={SearchBasicsTSCode}
+  startMarker="// GetWithCrossRefs"
+  endMarker="// END GetWithCrossRefs"
+  language="js"
+/>
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+<FilteredTextBlock
+  text={SearchBasicsPythonCode}
+  startMarker="# GetWithCrossRefsGraphQL"
+  endMarker="# END GetWithCrossRefsGraphQL"
+  language="graphql"
+/>
+
+</TabItem>
+</Tabs>
+
+### Filter using cross-references
+
+You can configure a filter to include or exclude objects based on properties of the target object.
+
+For example, you can filter articles based on an attribute of the author, such as the author's name or the author's location.
+
+Take a look at the snippet below, This query looks through the `JeopardyQuestion` class, but the results are filtered using the `title` property of its cross-referenced `JeopardyCategory` class. The `title` property must include the substring `Sport`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={FilterPythonCode}
+  startMarker="# CrossReferencePython"
+  endMarker="# END CrossReferencePython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+<FilteredTextBlock
+  text={FilterJavaScriptCode}
+  startMarker="// searchSingleFilter"
+  endMarker="// END searchSingleFilter"
+  language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={FilterPythonCode}
+  startMarker="# CrossReferenceGraphQL"
+  endMarker="# END CrossReferenceGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+:::tip Two-stage queries
+
+Because cross-references do not affect vectors, you cannot use vector searches to filter objects based on properties of the target object.
+
+However, you could use two separate queries to achieve a similar result. For example, you could perform a vector search to identify `JeopardyCategory` objects that are similar to a given vector, resulting in a list of `JeopardyCategory` objects. You could then use the unique `title` properties of these objects in a second query filter the results as shown above. This will result in `JeopardyQuestion` objects that are cross-referenced to the `JeopardyCategory` objects identified in the first query.
+
+:::
+
+## Further information
+
+### Managing cross-references
+
+For further information on how to manage cross-references, see the [how-to guide on cross-references](../manage-data/cross-references.mdx). It includes information on how to:
+
+- [Create a cross-reference](../manage-data/cross-references.mdx#add-a-one-way-cross-reference-property)
+- [Update a cross-reference](../manage-data/cross-references.mdx#update-a-cross-reference)
+- [Delete a cross-reference](../manage-data/cross-references.mdx#delete-a-cross-reference)
+- [Retrieve a cross-reference](../manage-data/cross-references.mdx#retrieve-cross-references)
+
+:::info Related pages
+- [How-to search: Filters](../search/filters.md)
+- [API References: Objects](/developers/weaviate/api/rest#tag/objects)
+:::

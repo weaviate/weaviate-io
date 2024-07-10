@@ -1,0 +1,195 @@
+---
+title: Tokenization and searches
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PySearches from '!!raw-loader!./_snippets/400_searches.py';
+
+You saw how [tokenization affects filters](./300_filters.mdx). They impact keyword searches in a similar, but not identical, way. In this section, we'll see how different tokenization methods impact search results.
+
+:::info What about hybrid searches?
+A hybrid search combines results from a keyword search and a vector search. Accordingly, tokenization impacts the keyword search part of a hybrid search, while the vector search part is not impacted by tokenization.
+
+We will not separately discuss hybrid searches in this course. However, the impact on keyword searches discussed here will apply to the keyword search part of a hybrid search.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Impact on keyword searches
+
+### <i class="fa-solid fa-chalkboard"></i> How tokenization impacts keyword searches
+
+We will use a similar method as in the previous section, with a difference being that we will now perform a keyword search instead of a filter.
+
+A keyword search ranks results using the [BM25f algorithm](https://en.wikipedia.org/wiki/Okapi_BM25). As a result, the impact of tokenization on keyword searches is twofold.
+
+Firstly, tokenization will determine whether a result is included in the search results at all. If none of the tokens in the search query match any tokens in the object, the object will not be included in the search results.
+
+Secondly, tokenization will impact the ranking of the search results. The BM25f algorithm takes into account the number of matching tokens, and the tokenization method will determine which tokens are considered matching.
+
+### <i class="fa-solid fa-code"></i> Search setup
+
+Each keyword query will look something like this.
+
+We'll set up a reusable function to perform keyword searches, and display the top results along with their scores.
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# FilterExampleBasic"
+  endMarker="# END FilterExampleBasic"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Examples
+
+#### "**Clark:** "vs "**clark**" - messy text
+
+Keyword searches are similarly impacted by tokenization as filters. However, there are subtle differences.
+
+Take a look at this example, where we search for various combinations of substrings from the TV show title `"Lois & Clark: The New Adventures of Superman"`.
+
+The table shows whether the query matched the title, and the score:
+
+|               | `word` | `lowercase` | `whitespace` | `field` |
+|---------------|--------|-------------|--------------|---------|
+| `"clark"`       | 0.613     | ❌           | ❌          | ❌     |
+| `"Clark"`       | 0.613     | ❌           | ❌          | ❌     |
+| `"clark:" `     | 0.613     | 0.48         | ❌          | ❌     |
+| `"Clark:" `     | 0.613     | 0.48         | 0.48        | ❌     |
+| `"lois clark"`  | 1.226     | 0.48         | ❌          | ❌     |
+| `"clark lois"`  | 1.226     | 0.48         | ❌          | ❌     |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# ClarkExample"
+  endMarker="# END ClarkExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# ClarkResults"
+  endMarker="# END ClarkResults"
+  language="text"
+/>
+
+</details>
+
+Here, the same results are returned as in the filter example. However, note differences in the scores.
+
+For example, a search for `"lois clark"` returns a higher score than a search for `"clark"`. This is because the BM25f algorithm considers the number of matching tokens. So, it would be beneficial to include as many matching tokens as possible in the search query.
+
+Another difference is that a keyword search will return objects that match any of the tokens in the query. This is different from a filter, which is sensitive to the filtering operator. Depending on the desired result, you could use an `"Equal"` operator, `"ContainsAny"`, or `"ContainsAll"`, for example.
+
+The next section will demonstrate this, as well as how stop words are treated.
+
+#### "**A mouse**" vs "**mouse**" - stop words
+
+Here, we search for variants of the phrase "computer mouse", where some queries include additional words.
+
+Now, take a look at the results.
+
+**Matches for `"computer mouse"`**
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"computer mouse"`           | 0.889     | 0.819       | 1.01         | 0.982   |
+| `"Computer Mouse"`           | 0.889     | 0.819       | ❌            | ❌      |
+| `"a computer mouse"`         | 0.764     | 0.764       | 0.849        | ❌      |
+| `"computer mouse pad" `      | 0.764     | 0.764       | 0.849        | ❌      |
+
+**Matches for `"a computer mouse"`**
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"computer mouse"`           | 0.889     | 0.819       | 1.01         | ❌      |
+| `"Computer Mouse"`           | 0.889     | 0.819       | ❌           | ❌      |
+| `"a computer mouse"`         | 0.764     | 1.552       | 1.712        | 0.982   |
+| `"computer mouse pad" `      | 0.764     | 0.688       | 0.849        | ❌      |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# MouseExample"
+  endMarker="# END MouseExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# MouseResults"
+  endMarker="# END MouseResults"
+  language="text"
+/>
+
+</details>
+
+The results here are similar to the filter example, but more nuanced and quite interesting!
+
+Under `word` tokenization, the search for `computer mouse` produces identical results to the search for `a computer mouse`. This is because the stop word `a` is not considered in the search.
+
+But note that the scores are different for returned objects where the only differences are stopwords, such as `"computer mouse"` and `"a computer mouse"`. This is because the BM25f algorithm does [index stopwords](../../../weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists), and they do impact the score.
+
+As a user, you should keep this in mind, and you can configure the stop words in the collection definition to suit your desired behavior.
+
+Another interesting note is that the `lowercase` and `whitespace` tokenization methods do not remove stop words in the query.
+
+This behavior allows users who want to include stop words in their search queries to do so.
+
+#### "**variable_name**" vs "**variable name**" - symbols
+
+The table below shows keyword search results using the string `"variable_name"` and the resulting scores.
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"variable_name"`            | 0.716     | 0.97        | 1.27         | 0.982   |
+| `"Variable_Name:" `          | 0.716     | 0.97        | ❌            | ❌      |
+| `"Variable Name:" `          | 0.716     | ❌           | ❌            | ❌      |
+| `"a_variable_name"`          | 0.615     | ❌           | ❌           | ❌      |
+| `"the_variable_name"`        | 0.615     | ❌           | ❌           | ❌      |
+| `"variable_new_name" `       | 0.615     | ❌           | ❌           | ❌      |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# UnderscoreExample"
+  endMarker="# END UnderscoreExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PySearches}
+  startMarker="# UnderscoreResults"
+  endMarker="# END UnderscoreResults"
+  language="text"
+/>
+
+</details>
+
+These results are once again similar to the filter example. If your data contains symbols that are important to your search, you should consider using a tokenization method that preserves symbols, such as `lowercase` or `whitespace`.
+
+### <i class="fa-solid fa-chalkboard"></i> Discussions
+
+That's it for keyword searches and tokenization. Similarly to filters, the choice of tokenization method is a big part of your overall search strategy.
+
+Our generally advice for tokenization in keyword searching is similar to [our advice for filtering](./300_filters.mdx#discussions). Start with `word`, and consider others such as `lowercase` or `whitespace` if symbols, or cases encode important information in your data.
+
+Using `field` tokenization may be too strict for keyword searches, as it will not match any
+objects that do not contain the exact string in the exact order.
+
+Lastly, keep in mind that keyword searches produce ranked results. Therefore, tokenization will not only affect the results set but also their ranking within the set.
+
+With these considerations in mind, you can configure your tokenization strategy to best suit your data and your users' needs.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

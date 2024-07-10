@@ -1,0 +1,312 @@
+---
+title: JS/TS client v3
+sidebar_position: 10
+image: og/docs/client-libraries.jpg
+# tags: ['typescript', 'javascript', 'client library', 'experimental']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::note TypeScript client version
+The TypeScript client is version `v||site.typescript_client_version||`. Use the [TypeScript v3 client](/developers/weaviate/client-libraries/typescript/typescript-v3) for new projects.
+:::
+
+import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
+
+<TSClientIntro />
+
+If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers/weaviate/client-libraries/typescript/v2_v3_migration) for additional details.
+
+## Client configuration
+
+This section details how install and configure the v3 TypeScript client.
+
+### Install the package
+
+The v3 client package has a new name, `weaviate-client`. Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
+
+```bash
+npm install weaviate-client
+```
+
+### Import the Client
+
+The v3 client uses `ES Modules`. Most of the sample code in the documentation also uses the `ES Module` style.
+
+If your code requires `CommonJS` compatibility, use the `CommonJS` import style:
+
+<Tabs groupId="languages">
+<TabItem value="esm" label="ES Modules">
+
+```ts
+import weaviate from 'weaviate-client'
+```
+
+</TabItem>
+<TabItem value="cjs" label="CommonJS">
+
+```ts
+const weaviate = require('weaviate-client').default;
+```
+
+</TabItem>
+</Tabs>
+
+### TypeScript setup
+
+Edit your project's configuration files to make these changes:
+
+- Add `"type": "module"` to `package.json`
+- Add the following code to [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+
+<details>
+    <summary>tsconfig.json file</summary>
+
+```json
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "moduleResolution": "Node16",
+      "esModuleInterop": true,
+      "lib": [ "es2018" ],
+  }
+}
+```
+
+</details>
+
+## Connect a client
+
+The v3 client provides helper functions to connect your application to your Weaviate instance.
+
+[Embedded Weaviate](/developers/weaviate/installation/embedded) is not supported in the v3 client. The v2 client supports embedded Weaviate.
+
+### Connect to Weaviate
+
+<Tabs groupId="platforms">
+<TabItem value="wcd" label="WCD">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
+  }
+)
+
+console.log(client)
+```
+
+</TabItem>
+<TabItem value="local" label="Local">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToLocal()
+
+console.log(client)
+```
+
+</TabItem>
+<TabItem value="custom" label="Custom">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToCustom({
+    httpHost: 'localhost',
+    httpPort: 8080,
+    grpcHost: 'localhost',
+    grpcPort: 50051,
+    grpcSecure: true,
+    httpSecure: true,
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+    headers: {
+      'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '' // Replace with your inference API key
+    }
+  })
+
+console.log(client)
+```
+
+</TabItem>
+</Tabs>
+
+### Close client method
+
+import TSClientClose from '/_includes/clients/ts-client-close.mdx';
+
+<TSClientClose />
+
+### Authentication
+
+import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
+
+<ClientAuthApiKey />
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+// Instantiate the client with the auth config
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  {
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
+  }
+)
+
+console.log(client)
+```
+
+To include custom headers, such as API keys for third party services, add the custom headers to the `headers` section when you initialize the client:
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  {
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCD API KEY here
+    headers: {
+      someHeaderName: 'header-value',
+    }
+  }
+)
+```
+
+The client sends the headers every it makes a request to the Weaviate instance.
+
+## Changes in v3
+
+This section highlights some features of the v3 TypeScript client.
+
+### Design philosophy
+
+The v3 client interacts with collections as the primary way to work with objects in your Weaviate database.
+
+Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it.
+
+This example returns objects from the `JeopardyQuestion` collection.
+
+```js
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.fetchObjects()
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+### Node support only
+
+The gRPC protocol is fast and provides other internal benefits. Unfortunately, gRPC does not support browser-based client development.
+
+The v3 client uses gRPC to connect to your Weaviate instance. The client supports Node.js, server-based development. It does not support browser-based web client development.
+
+To develop a browser-based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
+
+### Batch Inserts
+
+The `insertMany()` method makes it easier to bulk insert a large number of objects.
+
+For inserts of over 5000 objects, use `insertMany()` as part of a batch process:
+
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// START BatchGRPC"
+  endMarker="// END BatchGRPC"
+  language="ts"
+/>
+
+### Iterator Method
+
+The cursor API has a new iterator method. To repeat an action over an entire collection, use `iterator()`.
+
+```js
+const articles = client.collections.get('Article')
+
+for await (const article of articles.iterator()) {
+  // do something with article.
+  console.log(article) // we print each object in the collection
+}
+```
+
+### Generics
+
+TypeScript users can define custom Generics. Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.
+
+```js
+import weaviate from 'weaviate-client';
+
+type Article = {
+  title: string;
+  body: string;
+  wordcount: number;
+}
+
+const collection = client.collections.get<Article>('Article');
+await collection.data.insert({ // compiler error since 'body' field is missing in '.insert'
+  title: 'TS is awesome!',
+  wordcount: 9001
+})
+```
+
+### Async operations
+
+All client v3 methods, with the exception of `collection.use()`, use ES6 Promises with asynchronous code. This means you have to use `.then()` after function calls, or wrap your code `async/await` blocks.
+
+When there is an asynchronous code error, a promise returns the specific error message. If you use `async` and `await`, a rejected promises acts like a thrown exception
+
+### Type Safety
+
+The v3 client enables strong typing with custom TypeScript types and user-defined generics.
+
+You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle.
+
+For example, the `index.d.ts` file stores type definitions for the `cjs` bundle:
+
+```bash
+node/cjs/index.d.ts
+```
+
+The v3 client also adds internal features that make JavaScript development more type-safe.
+
+## Example code
+
+Here are some resources to help you get started using the client.
+
+### Recipes
+
+The [recipes repository](https://github.com/weaviate/recipes-ts) on Github has sample code for common use cases.
+
+### Demo applications
+
+There are demo applications written in TypeScript and JavaScript here:
+
+- [QuoteFinder](https://github.com/weaviate/quote-finder/tree/main)
+- [NuxtVectorSearch](https://github.com/malgamves/nuxt-typescript-vector-search)
+
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
+
+## Client change logs
+
+The client [change logs](https://github.com/weaviate/typescript-client/releases) for each release are available on GitHub.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -1,0 +1,93 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+generatePrompt = """
+Please write an engaging advertisement for the following AirBnb Listing:
+Description: {description}
+"""
+
+
+ads = client.query\
+           .get("Listing", ["description", "room_type", "neighbourhood"])\
+           .with_generate(single_prompt=generatePrompt)\
+           .with_additional(["id"])\
+           .with_limit(5)\
+           .do()["data"]["Get"]["Listing"]
+
+for ad in ads:
+ new_ad_properties = {
+     "content": ad["_additional"]["generate"]["singleResult"]
+ }
+ new_ad_id = get_valid_uuid(uuid4())
+ client.data_object.create(
+     data_object = new_ad_properties,
+     class_name = "Ad",
+     uuid = new_ad_id
+ )
+ client.data_object.reference.add(
+     from_uuid = ad["_additional"]["id"],
+     from_property_name = "hasAd",
+     to_uuid = new_ad_id
+ )
+```
+
+</TabItem>
+
+<TabItem value="js" label="TypeScript">
+
+```ts
+const generate_prompt: string = 'Please write a description for the following AirBnB Listing in English. NAME: {name} HOST_NAME {host_name} NEIGHBOURHOOD {neighbourhood} NEIGHBOURHOOD_GROUP {neighbourhood_group} PRICE {price}. Please do not make up any information about the property in your description.';
+
+const properties_str = 'name host_name neighbourhood neighbourhood_group price _additional{ id }';
+
+client.graphql
+  .get()
+  .withClassName('Listing')
+  .withFields(properties_str)
+  .withGenerate({
+    singlePrompt: generate_prompt,
+  })
+  .withLimit(5)
+  .do()
+  .then(results => {
+    //loop through results to add to `generated_descriptions`
+    let generated_data = results["data"]["Get"]["Listing"];
+    for (let i = 0; i < 5; i++) {
+      let uuid = generated_data[i]["_additional"]["id"];
+      let generated_result = generated_data[i]["_additional"]["generate"]["singleResult"];
+      let new_description_property = {
+        "description": generated_result
+      };
+      console.log(new_description_property);
+      client.data
+        .getterById()
+        .withClassName('Listing')
+        .withId(uuid)
+        .do()
+        .then(res => {
+          client.data
+            .updater()
+            .withId(uuid)
+            .withClassName('Listing')
+            .withProperties(new_description_property)
+            .do();
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.error(err)
+        });
+    }
+  })
+  .catch(err => {
+    console.error(err);
+  });
+```
+
+</TabItem>
+</Tabs>

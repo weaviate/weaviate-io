@@ -1,0 +1,77 @@
+# Leftover information
+
+### `Get` with cross-references
+
+And before we wrap up this section, let's take a look at how to perform a `Get` query with cross-references. While we have not yet covered cross-references in detail in this unit, for now it is sufficient to know that they are a way to connect objects to each other.
+
+In the example below, we will perform a `Get` query on the `Question` class, but this time we will include the `hasCategory` property in the query. This property is a cross-reference to the `Category` class, and will be used to return the category of each question.
+
+```graphql
+{
+  Get {
+    Question (
+      limit: 1
+      nearText: {
+        concepts: ["Seafaring technology from Scandanavia."],
+      }   
+    ) {
+      question 
+      answer 
+      hasCategory {
+        ... on Category {
+          title
+          _additional {
+            id
+          }            
+        }
+      }      
+      _additional {
+        distance
+        id
+      }
+    }
+  }
+}
+```
+
+This produces a result like the following:
+
+<details>
+  <summary>Query results</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Question": [
+        {
+          "_additional": {
+            "distance": 0.14927602,
+            "id": "5d9d5c8d-13e7-5791-b2f9-3724a1a1d301"
+          },
+          "answer": "Oslo",
+          "hasCategory": [
+            {
+              "_additional": {
+                "id": "fec50326-dfa1-53c9-90e8-63d0240bd933"
+              },
+              "title": "MUSEUMS"
+            }
+          ],
+          "question": "1,200-year-old Viking ships are on display at the Vikingskiphuset in this Norwegian capital"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Where the `hasCategory` property is now an array of objects, containing objects of type `Category` that the Question is related to and their requested properties. The `title` property of the `Category` class is returned as well, and the `_additional` field contains the `id` of the category. 
+
+Cross-references provide you with a great deal of flexibility and power in your data model, and are a great way to connect objects to each other. We will cover them in more detail in our unit on schemas.
+
+:::info `...` pattern
+You may have noticed the `... on Category` pattern in the above query. This syntax is called a "fragment" in GraphQL terms. Populated this way, the fragment specifies that the `hasCategory` property is of type `Category`, and that the results should be returned as such.
+:::

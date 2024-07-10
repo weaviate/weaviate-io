@@ -1,0 +1,215 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Publication (
+      nearText: {
+        concepts: ["fashion"],
+      }
+    ) {
+      _additional {
+        interpretation {
+          source {
+            concept
+            occurrence
+            weight
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+near_text_filter = {
+  "concepts": ["fashion"]
+}
+
+additional_props = {
+  "interpretation": "source {concept occurrence weight}"
+}
+
+query_result = (
+  client.query
+  .get("Publication", "name")
+  .with_additional(additional_props)
+  .with_near_text(near_text_filter)
+  .do()
+)
+
+print(query_result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('summary _additional { interpretation {source {concept occurrence weight}}}')
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "Publication"
+  fields := []graphql.Field{
+    {Name: "summary"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "interpretation", Fields: []graphql.Field{
+        {Name: "source", Fields: []graphql.Field{
+          {Name: "concept"},
+          {Name: "occurrence"},
+          {Name: "weight"},
+        }},
+      }},
+    }},
+  }
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Field summary = Field.builder().name("summary").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("interpretation")
+          .fields(new Field[]{
+            Field.builder()
+              .name("source")
+              .fields(new Field[]{
+                Field.builder().name("concept").build(),
+                Field.builder().name("occurrence").build(),
+                Field.builder().name("weight").build()
+              })
+              .build()
+          }).build()
+      }).build();
+
+    NearTextArgument explore = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article")
+      .withFields(summary, _additional)
+      .withNearText(explore)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Publication (
+        nearText: {
+          concepts: [\"fashion\"],
+        }
+      ) {
+        _additional {
+          interpretation {
+            source {
+              concept
+              occurrence
+              weight
+            }
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,148 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.aggregate.simple.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLMetaCount"
+    endMarker="END GraphQLMetaCount"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL")  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+
+client.query.aggregate(<ClassName>).with_meta_count().do()
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
+});
+
+const response = await client.graphql
+  .aggregate()
+  .withClassName(<ClassName>)
+  .withFields('meta { count }')
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "WEAVIATE_INSTANCE_URL",  // Replace with your instance URL
+    Scheme: "https",
+  }
+  client := weaviate.New(cfg)
+
+  meta := graphql.Field{
+    Name: "meta", Fields: []graphql.Field{
+      {Name: "count"},
+    },
+  }
+
+  result, err := client.GraphQL().Aggregate().
+    WithClassName("<ClassName>").
+    WithFields(meta).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");
+    // Replace with your instance URL
+
+    WeaviateClient client = new WeaviateClient(config);
+    Field meta = Field.builder()
+      .name("meta")
+      .fields(new Field[]{
+        Field.builder().name("count").build()
+      }).build();
+    Result<GraphQLResponse> result = client.graphQL().aggregate()
+      .withClassName(<ClassName>)
+      .withFields(meta)
+      .run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Aggregate {
+      <ClassName> {
+        meta {
+          count
+        }
+      }
+    }
+  }"
+}' | curl \
+  -X POST \
+  -H 'Content-Type: application/json' \
+  -d @- \
+  https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{ Aggregate { <ClassName> { meta { count } } } }
+```
+
+</TabItem>
+</Tabs>

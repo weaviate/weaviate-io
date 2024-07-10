@@ -1,0 +1,153 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.search-operators.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLBM25WithFilter"
+    endMarker="END GraphQLBM25WithFilter"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+# highlight-start
+where_filter = {
+  "path": ["wordCount"],
+  "operator": "LessThan",
+  "valueInt": "1000"
+}
+# highlight-end
+
+query_result = (
+  client.query
+  .get("Article", ["title", "summary"])
+  .with_where(where_filter)
+  .with_bm25(query="how to fish")
+  .do()
+)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title summary')
+  .withBm25({
+    query: 'how to fish',
+  })
+  // highlight-start
+  .withWhere({
+    operator: 'LessThan',
+    path: ['wordCount'],
+    valueInt: 1000,
+  })
+  // highlight-end
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+resultSet, gqlErr := client.GraphQL().Get().WithClassName("Article").WithHybrid(hybrid).WithWhere(where).WithFields(name).Do(context.Background())
+
+// highlight-start
+where := filters.Where().
+WithPath([]string{"wordCount"}).
+				WithOperator(filters.LessThan).
+				WithValueInt(1000)
+// highlight-end
+
+name = graphql.Field{Name: "summary"} // the output field
+
+bm25B := &BM25ArgumentBuilder{}
+bm25B = bm25B.WithQuery("How to fish").WithProperties("title", "summary")
+
+resultSet, gqlErr := client.GraphQL().Get().WithClassName("Article").WithBM25(bm25B).WithWhere(where).WithFields(name).Do(context.Background())
+articles := get["Article"].([]interface{})
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+Field title = Field.builder().name("title" "summary").build();
+
+// highlight-start
+WhereFilter where = WhereFilter.builder()
+  .path(new String[]{ "wordCount" })
+  .operator(Operator.LessThan)
+  .valueInt(1000)
+  .build();
+// highlight-end
+
+Bm25Argument bm25 = client.graphQL().arguments().Bm25ArgBuilder()
+  .query("how to fish")
+  .properties(new String[]{"title","summary"})
+  .build();
+
+Result<GraphQLResponse> result = client.graphQL().get()
+  .withClassName("Article")
+  .withFields(title)
+  .withWhere(where)
+  .withBm25(bm25)
+  .run();
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Article(
+        bm25: { query: \"how to fish\", properties: [\"title\"] }
+        # highlight-start
+        where: { path: [\"wordCount\"], operator: LessThan, valueInt: 1000 }
+        # highlight-end
+      ) {
+        summary
+        title
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (
+      bm25: { query: "how to fish", properties: ["title"] }
+    # highlight-start
+      where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
+    # highlight-end
+    ) {
+      summary
+      title
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

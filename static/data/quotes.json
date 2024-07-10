@@ -1,0 +1,286 @@
+[
+  {
+    "statement": "When I found Weaviate, the QuickStart guides actually worked on the first try! I felt right at home and my costs were cut by ~1/4 from closed-source alternative.",
+    "name": "Evan McFarland",
+    "company": "Uncensored Greats",
+    "foo": "ee"
+  },
+  {
+    "statement": "By leveraging Weaviate, I‘ve unlocked new potentials in AI, creating semantic search solutions that are transformative and avant-garde.",
+    "name": "Justin van Grootveld",
+    "company": "iO",
+    "logo": "/img/site/i-o-logo.png"
+  },
+  {
+    "statement": "We picked Weaviate mainly because it's open-source. After using it in multiple AI projects, we are pleased with the developer experience it provides, especially the well-written documentation and the continually evolving feature set. The prototype-friendly trial plan also has been helpful.",
+    "name": "CD Athuraliya",
+    "company": "ConscientAI"
+  },
+
+  {
+    "statement": "The entire [Weaviate] ecosystem is very clearly designed with developers top of mind, and the community is the best I've ever been part of for responsiveness to questions.",
+    "name": "Charles Pierse",
+    "company": "Tactic",
+    "logo": "/img/site/tactic-logo.svg"
+  },
+  {
+    "statement": "Despite being novices in the realm of vector databases, the comprehensive documentation Weaviate provided ensured that we were up and running in no time. It was the perfect solution to our needs.",
+    "name": "Matthew Rappard",
+    "company": "Vaultie",
+    "logo": "/img/site/vaultie-svg.svg"
+  },
+  {
+    "statement": "After trying all the options out there, we decided to power our most sophisticated use cases using Weaviate, handling thousands of queries at a time while ensuring a flawless execution.",
+    "name": "Antoni Rosinol",
+    "company": "Stack-AI",
+    "logo": "/img/site/stack-logo.svg"
+  },
+  {
+    "statement": "Weaviate consistently exceeds our expectations for a vector database with its out of the box accuracy, flexibility, low learning curve, and constant improvements.",
+    "name": "Jonathan Modene",
+    "company": "Stratagem",
+    "logo": "/img/site/stratagem-logo.svg"
+  },
+  {
+    "statement": "Weaviate's developer tools, end-to-end functionality as a vector store, and rock-solid stability and performance are allowing us to enable businesses of all sizes to build AI apps in minutes.",
+    "name": "Robert Ong",
+    "company": "Moonnox",
+    "logo": "/img/site/moonnox-logo.png"
+  },
+  {
+    "statement": "Weaviate offers unparalleled flexibility in schema definition which streamlines the process of storing unstructured data. Their AI native tooling helps our users get up and running with RAG based applications faster than ever before.",
+    "name": "Brian Raymond",
+    "company": "Unstructured.io",
+    "logo": "/img/site/unstructured-logo.svg"
+  },
+  {
+    "statement": "Within a couple of weeks we had a novel, production-ready AI-powered search engine. Easy to set-up, decent documentation, and responsive support. Exactly what we needed.",
+    "name": "David Wood",
+    "company": "Moonsift",
+    "logo": "/img/site/moonsift-logo.svg"
+  },
+  {
+    "statement": "We had started building our own solution and it was super complex, but after we migrated to Weaviate, we were up and running with our customers’ data within a day.",
+    "name": "Victor Skovbæk Skytte",
+    "company": "Applai",
+    "logo": "/img/site/applai-logo.png"
+  },
+  {
+    "statement": "Giving our chatbot long-term memory took not more than just few hours. ",
+    "name": "Abhimanyu Grover",
+    "company": "Zapdroid",
+    "logo": "/img/site/zapdroid-logo.svg"
+  },
+  {
+    "statement": "Installing and configuring Weaviate to run on Openshift was straightforward thanks to the helm chart examples and docs. Once deployed, the Weaviate console made it easy to validate and make queries.",
+    "name": "Bob Kozdemba",
+    "company": "Red Hat",
+    "logo": "/img/site/redhat-logo.svg"
+  },
+  {
+    "statement": "Weaviate's batteries included model serving and multi-tenant implementation which have helped us quickly prototype and build our vector search at Stack.",
+    "name": "Constantine Kokkinos",
+    "company": "Stack Overflow",
+    "logo": "/img/site/stackoverflow-logo.svg"
+  },
+  {
+    "statement": "Weaviate is my go-to vector store for every AI and LLM integration that I build. The design and engineering philosophy of the team behind it makes it one of the most exciting platforms for building AI applications.",
+    "name": "Gregory Lindsey",
+    "company": "AWS Consultant"
+  },
+  {
+    "statement": "We have been using Weaviate since before Generative AI became hot. They have been a great thought partner, and have been ready to help every step of the way. Their technology is great but their support team is even better!",
+    "name": "Vibhanshu Abhishek",
+    "company": "Alltius",
+    "logo": "/img/site/alltius-logo.png"
+  },
+  {
+    "statement": "In my years of teaching at top US business schools, the most empowering moment was showing students how to use Weaviate, LangChain and GPT4 to automate generation of deep economic insights.",
+    "name": "Michael Gofman",
+    "company": " "
+  },
+  {
+    "statement": "Weaviate has been instrumental in allowing our customers to accurately categorize and search customer feedback. We especially appreciate its ability to filter on top of its vector search.",
+    "name": "Patrick Philbin",
+    "company": "Feedback Sync",
+    "logo": "/img/site/feedbacksync-logo.svg"
+  },
+  {
+    "statement": "Weaviate makes it super simple for us to build and launch a ChatGPT service with embeddings. We love that it makes the requests to fetch embeddings on our behalf, as it simplifies our codebase.",
+    "name": "Damien Tanner",
+    "company": "UseChat.ai",
+    "logo": "/img/site/usechat-logo.png"
+  },
+  {
+    "statement": "I appreciate Weaviate not only for its powerful vector-native capabilities, but also for providing an open source solution, ensuring it's accessible and continues to evolve with community contributions.",
+    "name": "Kevin Leffew",
+    "company": "Replit",
+    "logo": "/img/site/replit-logo.png"
+  },
+  {
+    "statement": "Weaviate is awesome because it has the most complete features we needed: Kubernetes-native, GraphQL, plugins, and more.",
+    "name": "Darpan Patel",
+    "company": " "
+  },
+  {
+    "statement": "Weaviate is the most popular vector DB among PromptTools users. They love the level of customization it supports, and the fact that it's open source.",
+    "name": "Kevin Tse",
+    "company": "Hegel AI",
+    "logo": "/img/site/hegel-ai-logo.png"
+  },
+  {
+    "statement": "We owe our efficiency to Weaviate's multi-tenant vector database, which seamlessly processes and searches embeddings, making our services possible.",
+    "name": "Babu MunavarBasha",
+    "company": "Whautomate",
+    "logo": "/img/site/whautomate-logo.png"
+  },
+  {
+    "statement": "Through the Weaviate Cloud Service intuitive API and integrations with Langchain and Llamaindex, we create applications for our customers in days not weeks.",
+    "name": "Jettro Counradie",
+    "company": "Luminis",
+    "logo": "/img/site/luminis-logo.svg"
+  },
+  {
+    "statement": "We switched from a proprietary vendor to Weaviate and immediately noticed improved search accuracy. Plus, the overall developer experience was great.",
+    "name": "Shyjal Raazi",
+    "company": "micro.company"
+  },
+  {
+    "statement": "Weaviate facilitates fast development of generative AI applications by our team, removing the need for creating boilerplate code, setting up databases, and managing infrastructure.",
+    "name": "Ben Selleslagh",
+    "company": "Vectrix"
+  },
+  {
+    "statement": "Weaviate enables Engage AI to act as your long-term memory, storing and retrieving conversational data for future interactions to deepen relationships on LinkedIn.",
+    "name": "Jason Tan",
+    "company": "Engage AI "
+  },
+  {
+    "statement": "Weaviate is easy to use with a nice graphQL query language and very good documentation.",
+    "name": "Manu Ekkati",
+    "company": "Freelance developer"
+  },
+  {
+    "statement": "The integration of Weaviate into our intelligence-based bot was super easy while enhancing it with great vector search and much more!",
+    "name": "Michael Wechner",
+    "company": "Wyona"
+  },
+  {
+    "statement": "Weaviate provides best in class hybrid search. It's incredible, easy to set up and provides integrations with major LLMs like those from OpenAI.",
+    "name": "Ronit Kumar",
+    "company": "Siva.sh"
+  },
+  {
+    "statement": "We're building AI-powered research and intelligence tools for the highly-regulated pharma industry. Weaviate has been integral to ensuring we fetch relevant information.",
+    "name": "Vamsidhar Reddy",
+    "company": " "
+  },
+  {
+    "statement": "With the landscape evolving so rapidly, choosing the right tools can be difficult. I think we made the right decision with Weaviate. It's helped us get to market quickly with lots of flexibility and control.",
+    "name": "Vinit Agrawal",
+    "company": "Tars",
+    "logo": "/img/site/tars-logo.png"
+  },
+  {
+    "statement": "We power our natural language academic expert finder with the help of Weaviate, which has proven to be extremely reliable and easy to set up.",
+    "name": "Kieran Lindsay",
+    "company": "AcademicID",
+    "logo": "/img/site/academic-logo.png"
+  },
+  {
+    "statement": "Weaviate gave us the flexibility to quickly prototype, iterate and release or Cognigy Knowledge AI product. Weaviate is easy to install, simple to operate and so-far scales very well.",
+    "name": "Benjamin Mayr",
+    "company": "Cognigy"
+  },
+  {
+    "statement": "We love Weaviate at BitBuilder - there's no better way for us to take our complex code generation agents from prototype to production.",
+    "name": "Hunter Brooks",
+    "company": "BitBuilder"
+  },
+  {
+    "statement": "With Weaviate's hybrid search, Source can now turbocharge the hunt for tech talent, pinpointing both precise and related skills in a flash.",
+    "name": "Tony Nguyen",
+    "company": "Source"
+  },
+  {
+    "statement": "We use Weaviate for advanced NLP and generative AI tasks across >4M news articles per day in 120 languages. We appreciate Weaviate's versatily and ability to handle large amounts of data.",
+    "name": "Marco D'Ambra",
+    "company": "Volocom",
+    "logo": "/img/site/volocom-logo.png"
+  },
+  {
+    "statement": "Weaviate is essential for us, masterfully striking the balance between stability and the bleeding edge in our quest for pioneering French legal research.",
+    "name": "Baudouin Arbarétier",
+    "company": "Ordalie",
+    "logo": "/img/site/ordalie-logo.png"
+  },
+  {
+    "statement": "We're redefining how people discover and engage with our digitized collections using generative AI. Weaviate has quickly become an foundational component of our infrastructure.",
+    "name": "Brendan Quinn",
+    "company": "Northwestern University Libraries",
+    "logo": "/img/site/northwestern-logo.png"
+  },
+  {
+    "statement": "Our open-source low-code platform for building LLM apps includes Weaviate as the default vector database due to its powerful feature set, ease of deployment, and manageability.",
+    "name": "Ajay Chintala",
+    "company": "Promptly"
+  },
+  {
+    "statement": "Weaviate is a critical component of our success. We're developing a RAG-based shopping assistant with Weaviate as the cornerstone for building context for the generation phase.",
+    "name": "Mohamad Amin Katebsaber",
+    "company": " "
+  },
+  {
+    "statement": "Weaviate offers more than just vectorized data storage. It provides complimentary vectorization and inference via an API. The challenge of model inference in production is now a thing of the past! ",
+    "name": "William Whispell",
+    "company": " "
+  },
+  {
+    "statement": "Weaviate’s functionality around multi-tenancy is a game changer.",
+    "name": "Juraj Bezdek",
+    "company": " "
+  },
+  {
+    "statement": "Using Weaviate, we are paving the way for a future where our AI Platform can effortlessly interact with diverse data sources and provide businesses with unparalleled insights and capabilities.",
+    "name": "Ahmed Joudad",
+    "company": "Beewant",
+    "logo": "/img/site/beewant-logo.png"
+  },
+  {
+    "statement": "Weaviate's cloud and self-hosted services and innovative feature set equip us to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
+    "name": "Fareed Idris",
+    "company": "Kreo",
+    "logo": "/img/site/kreoh-logo.png"
+  },
+  {
+    "statement": "We found in Weaviate the holy grail for semantic search - dependable results, retrieved fast and an intuitive platform, easy to work with. Special mention of the responsive, attentive, and very helpful support team.",
+    "name": "Bhaskar Roy",
+    "company": "Brain For Business",
+    "logo": "/img/site/brains-for-business-logo.png"
+  },
+  {
+    "statement": "Weaviate is a fast, flexible and reliable vector database.",
+    "name": "Kenneth Ng",
+    "company": "Algomo"
+  },
+  {
+    "statement": "I'm a big Weaviate fan.  I came because of the cost, but I stay because of the great results and amazing feature set -- which seems to be expanding every day.",
+    "name": "Ron Parker",
+    "company": "RealEstateBooksAI.com "
+  },
+  {
+    "statement": "Weaviate's documentation and ease of use stood out early, and bugs I reported were quickly fixed. I was also very excited when Weaviate was one of the earliest to offer hybrid search.",
+    "name": "Colin Harman",
+    "company": "Nesh"
+  },
+  {
+    "statement": "Love the flexibility that Weaviate provides in getting started and building GenAI applications. For the same reason, we have used Weaviate for multiple projects we built out.",
+    "name": "Simrat Hanspal",
+    "company": "Hasura"
+  },
+  {
+    "statement": "After evaluating several vector databases, page.support chose Weaviate due to its ease of use, rich feature set, and friendly pricing. Weaviate makes it easy to build AI applications by integrating features like keyword search, vector search, and document storage that we'd otherwise have to integrate several other services for.",
+    "name": "Logan Henriquez",
+    "company": " "
+  }
+]

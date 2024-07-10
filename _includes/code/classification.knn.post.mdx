@@ -1,0 +1,196 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonV4Classification from '/_includes/client-python-v4-classification.md';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+<PythonV4Classification/>
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+trainingSetWhere = {
+  "path": ["wordCount"],
+  "operator": "GreaterThan",
+  "valueInt": 100
+}
+
+client.classification.schedule()\
+            .with_type("knn")\
+            .with_class_name("Article")\
+            .with_based_on_properties(["summary"])\
+            .with_classify_properties(["hasPopularity"])\
+            .with_training_set_where_filter(trainingSetWhere)\
+            .with_settings({"k":3})\
+            .do()
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+// the following trigger a classification without waiting
+let response = await client.classifications
+  .scheduler()
+  .withType('knn')
+  .withSettings({ k: 3 })
+  .withClassName('Article')
+  .withClassifyProperties(['hasPopularity'])
+  .withBasedOnProperties(['summary'])
+  .do();
+console.log(JSON.stringify(response, null, 2));
+
+// the following triggers a classification with waiting for completion
+response = await client.classifications
+  .scheduler()
+  .withType('knn')
+  .withSettings({ k: 3 })
+  .withClassName('Article')
+  .withClassifyProperties(['hasPopularity'])
+  .withBasedOnProperties(['summary'])
+  .withWaitForCompletion()
+  .withWaitTimeout(60 * 1000)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/classifications"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+  "github.com/weaviate/weaviate/usecases/classification"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  valueInt64 := func(in int64) *int64 {
+    return &in
+  }
+
+  valueInt32 := func(in int32) *int32 {
+    return &in
+  }
+
+  trainingSetWhere := (&filters.WhereBuilder{}).
+    WithOperator(filters.GreaterThan).
+    WithPath([]string{"wordCount"}).
+    WithValueInt(100)
+
+  classification, err := client.Classifications().Scheduler().
+    WithType(classifications.KNN).
+    WithSettings(&classification.ParamsKNN{K: valueInt32(3)}).
+    WithClassName("Article").
+    WithClassifyProperties([]string{"hasPopularity"}).
+    WithBasedOnProperties([]string{"summary"}).
+    WithTrainingSetWhereFilter(trainingSetWhere).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", classification)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.classifications.model.Classification;
+import io.weaviate.client.v1.classifications.model.ClassificationType;
+import io.weaviate.client.v1.classifications.model.ParamsKNN;
+import io.weaviate.client.v1.filters.Operator;
+import io.weaviate.client.v1.filters.WhereFilter;
+
+public class App {
+    public static void main(String[] args) {
+        Config config = new Config("http", "localhost:8080");
+        WeaviateClient client = new WeaviateClient(config);
+
+        WhereFilter trainingSetWhere = WhereFilter.builder()
+                .valueInt(100)
+                .operator(Operator.GreaterThan)
+                .path(new String[]{ "wordCount" })
+                .build();
+
+        Result<Classification> result = client.classifications().scheduler()
+                .withType(ClassificationType.KNN)
+                .withSettings(ParamsKNN.builder().k(3).build())
+                .withClassName("Article")
+                .withClassifyProperties(new String[]{ "hasPopularity" })
+                .withBasedOnProperties(new String[]{ "summary" })
+                .withTrainingSetWhereFilter(trainingSetWhere)
+                .run();
+
+        if (result.hasErrors()) {
+            System.out.println(result.getError());
+            return;
+        }
+        System.out.println(result.getResult());
+    }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "type": "knn",
+        "settings": {
+          "k": 3
+        },
+        "basedOnProperties": [
+            "summary"
+        ],
+        "classifyProperties": [
+            "hasPopularity"
+        ],
+        "filters": {
+          "trainingSetWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100}
+        }
+    }' \
+    http://localhost:8080/v1/classifications
+```
+
+</TabItem>
+</Tabs>

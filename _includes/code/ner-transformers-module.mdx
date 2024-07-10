@@ -1,0 +1,203 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      limit: 1
+    ) {
+      title
+      _additional{
+        tokens(
+          properties: ["title"],
+          limit: 10,
+          certainty: 0.7
+        ) {
+          certainty
+          endPosition
+          entity
+          property
+          startPosition
+          word
+        }
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+result = (
+  client.query
+  .get("Article", ["title", "_additional {tokens ( properties: [\"title\"], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition }}"])
+  .do()
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional { tokens (properties: [\'title\'], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition} }')
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "localhost:8080",
+    Scheme: "http",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "Article"
+  fields := []graphql.Field{
+    {Name: "title"},
+    {Name: "_additional", Fields: []graphql.Field{
+      {Name: "tokens(properties: [\"title\"], limit: 1, certainty: 0.7)", Fields: []graphql.Field{
+        {Name: "entity"},
+        {Name: "property"},
+        {Name: "word"},
+        {Name: "certainty"},
+        {Name: "startPosition"},
+        {Name: "endPosition"},
+      }},
+    }},
+  }
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(fields...).
+    Do(context.Background())
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("http", "localhost:8080");
+    WeaviateClient client = new WeaviateClient(config);
+
+    Field title = Field.builder().name("title").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder()
+          .name("tokens (properties: [\"title\"], limit: 1, certainty: 0.7)")
+          .fields(new Field[]{
+            Field.builder().name("entity").build(),
+            Field.builder().name("property").build(),
+            Field.builder().name("word").build(),
+            Field.builder().name("certainty").build(),
+            Field.builder().name("startPosition").build(),
+            Field.builder().name("endPosition").build()
+          }).build()
+      }).build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Article")
+      .withFields(title, _additional)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Article(
+        limit: 1
+      ) {
+        title
+        _additional {
+          tokens(
+            properties: [\"title\"],
+            limit: 10,
+            certainty: 0.7
+          ) {
+            certainty
+            endPosition
+            entity
+            property
+            startPosition
+            word
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

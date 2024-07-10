@@ -1,0 +1,28 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+client.query.get("Listing", "description").with_near_text({
+   "concepts": ["AirBnB near a place to walk my dog"]
+}).do()
+```
+</TabItem>
+
+<TabItem value="js" label="TypeScript">
+
+```ts
+client.graphql
+  .get()
+  .withClassName('Listing')
+  .withFields('description')
+  .withNearText({
+    concepts: ['AirBnB near a place to walk my dog']
+  })
+  .do()
+```
+
+</TabItem>
+</Tabs>

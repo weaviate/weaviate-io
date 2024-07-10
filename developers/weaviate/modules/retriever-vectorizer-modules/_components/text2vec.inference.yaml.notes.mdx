@@ -1,0 +1,14 @@
+import Admonition from '@theme/Admonition';
+
+export default function Text2vecInferenceYamlNotes(props) {
+  return (
+    <div>
+      <Admonition type="note">
+        <ul>
+          <li>You can also use the <a href="/developers/weaviate/installation/docker-compose#configurator">Weaviate configuration tool</a> to create a Weaviate setup with this module.</li>
+          <li>The <code>{props.apiname}</code> environment variable is optional and the client can instead provide the key at insert/query time as an HTTP header (<a href="#usage">see the 'usage' section for instructions</a>)</li>
+        </ul>
+      </Admonition>
+    </div>
+  );
+}

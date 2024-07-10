@@ -1,0 +1,658 @@
+[
+  {
+    "title": "Generative UIs with Lucas Negritto and Bob van Luijt - Weaviate Podcast #100!",
+    "description": "What is an AI-native application? This podcast explores this question with Weaviate Co-founder Bob van Luijt and Lucas Negritto. ",
+    "youtube": "x1i9pGWAh7s",
+    "date": "24-07-04",
+    "cover_image": "/img/podcasts/podcast-100.png",
+    "is_use_case": false
+  },
+  {
+    "title": "ACORN with Liana Patel and Abdel Rodriguez - Weaviate Podcast #99!",
+    "description": "Liana Patel is a Ph.D. student at Stanford University who is the lead author of ACORN, a breakthrough in Approximate Nearest Neighbor Search with Filters!",
+    "youtube": "PxJ7FpbopKY",
+    "date": "24-06-25",
+    "cover_image": "/img/podcasts/podcast-99.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Window Search Tree with Josh Engels - Weaviate Podcast #98!",
+    "description": "Welcome to the the 98th Podcast featuring Josh Engels, a Ph.D. student at MIT who has published several works advancing the state of the art in Vector Search.",
+    "youtube": "yyYcHCiecOw",
+    "date": "24-06-19",
+    "cover_image": "/img/podcasts/podcast-98.png",
+    "is_use_case": false
+  },
+  {
+    "title": "The Future of Search with Nils Reimers and Erika Cardenas - Weaviate Podcast #97!",
+    "description": "Welcome to the the 97th Weaviate Podcast featuring Nils Reimers, Director of Machine Learning at Cohere, and Erika Cardenas, Technology Partner Manager at Weaviate!",
+    "youtube": "DFqd34ikTH0",
+    "date": "24-06-11",
+    "cover_image": "/img/podcasts/podcast-97.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Deep Learning with Letitia Parcalabescu",
+    "description": "Thank you & welcome to the 96th episode of the Weaviate podcast featuring Letitia Parcalabescu!",
+    "youtube": "KeWCJ6NfPds",
+    "date": "24-06-05",
+    "cover_image": "/img/podcasts/podcast-96.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Google Cloud Marketplace with Dai Vu and Bob van Luijt",
+    "description": "Welcome to the 95th Weaviate Podcast! We are beyond honored to feature Dai Vu from Google on this one, alongside Weaviate Co-Founder Bob van Luijt!",
+    "youtube": "UdAtsuoEd38",
+    "date": "24-05-07",
+    "cover_image": "/img/podcasts/podcast-95.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Parlay ANN with Magdalen Dobson Manohar",
+    "description": "We are super excited to share our 94th Weaviate podcast with Magdalen Dobson Manohar!",
+    "youtube": "HTVVMALsrlE",
+    "date": "24-04-24",
+    "cover_image": "/img/podcasts/podcast-94.png",
+    "is_use_case": false
+  },
+  {
+    "title": "RAGKit with Kyle Davis",
+    "description": "So pleased to publish our newest Weaviate podcast with Kyle Davis, the creator of RAGKit!",
+    "youtube": "oEsJqMLYAfc",
+    "date": "24-04-15",
+    "cover_image": "/img/podcasts/podcast-93.png",
+    "is_use_case": false
+  },
+  {
+    "title": "VetRec with David de Matheu",
+    "description": "Our 92nd episode of the Weaviate podcast with David de Matheu!",
+    "youtube": "cWtVAQOyAIg",
+    "date": "24-03-28",
+    "cover_image": "/img/podcasts/podcast-92.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Tengyu Ma on Voyage AI",
+    "description": "We are super excited to publish our latest Weaviate podcast with Tengyu Ma, Co-Founder of Voyage AI and Assistant Professor at Stanford University!",
+    "youtube": "xPdyivfheqI",
+    "date": "24-03-20",
+    "cover_image": "/img/podcasts/podcast-91.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Self-Discover DSPy with Chris Dossman",
+    "description": "Our 90th Weaviate Podcast with Chris Dossman! Self-Discover is a fascinating new algorithm from researchers at Google DeepMind and USC.",
+    "youtube": "iC64q1gFWiY",
+    "date": "24-03-06",
+    "cover_image": "/img/podcasts/podcast-90.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Matryoshka Embeddings with Aditya Kusupati, Zach Nussbaum, and Zain Hasan",
+    "description": "Hey everyone! Our 89th Weaviate Podcast on Matryoshka Representation Learning!",
+    "youtube": "0m2dZJ6zos",
+    "date": "24-02-20",
+    "cover_image": "/img/podcasts/podcast-89.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Instructor with Jason Liu",
+    "description": "Jason Liu is the creator of Instructor, one of the world's leading LLM frameworks, particularly focused on structured output parsing with LLMs.",
+    "youtube": "higlHgYDc5E",
+    "date": "24-02-14",
+    "cover_image": "/img/podcasts/podcast-88.png",
+    "is_use_case": false
+  },
+  {
+    "title": "XMC.dspy with Karel D'Oosterlinck",
+    "description": "Welcome to the 87th episode of the Weaviate Podcast! I am SUPER excited to welcome Karel D'Oosterlinck! Karel is the creator of IReRa (Infer-Retrieve-Rank)!",
+    "youtube": "_ye26_8XPcs",
+    "date": "24-02-06",
+    "cover_image": "/img/podcasts/podcast-87.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Open-Source AI with Vinod Valloppillil and Bob van Luijt",
+    "description": "We are super excited to publish this podcast with Vinod Valloppillil and Bob van Luijt on Open-Source AI and future directions for RAG!",
+    "youtube": "ySNX2cPh5Tk",
+    "date": "24-01-23",
+    "cover_image": "/img/podcasts/podcast-86.png",
+    "is_use_case": false
+  },
+  {
+    "title": "DSPy and ColBERT with Omar Khattab",
+    "description": "Hey everyone! I am beyond excited to present this interview with Omar Khattab from Stanford University!",
+    "youtube": "CDung1LnLbY",
+    "date": "24-01-15",
+    "cover_image": "/img/podcasts/podcast-85.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Subjectivity in AI with Dan Shipper and Bob van Luijt",
+    "description": "The fourth and final episode of the AI-Native Database series with Dan Shipper! This was another epic one! ",
+    "youtube": "prV5R3T6UqM",
+    "date": "23-12-21",
+    "cover_image": "/img/podcasts/podcast-84.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Humans and AI with John Maeda and Bob van Luijt",
+    "description": "The 3rd episode of the AI-Native Database series featuring John Maeda and Bob van Luijt!",
+    "youtube": "c9t0VViIP9c",
+    "date": "23-12-20",
+    "cover_image": "/img/podcasts/podcast-83.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Structure in Data with Paul Groth and Bob van Luijt",
+    "description": "Watch the second episode of AI-Native Databases with Paul Groth! This was another epic one, diving deep into the role of structure in our data! ",
+    "youtube": "3ET69F7smk8",
+    "date": "23-12-19",
+    "cover_image": "/img/podcasts/podcast-82.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Self-Driving Databases with Andy Pavlo and Bob van Luijt",
+    "description": "The first episode of AI-Native Databases with Andy Pavlo!",
+    "youtube": "QBZv5DrCUM",
+    "date": "23-12-18",
+    "cover_image": "/img/podcasts/podcast-81.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate at NeurIPS 2023 (Interview Series)",
+    "description": "Our interview series from the NeurIPS (Neural Information Processing Systems) conference 2023!",
+    "youtube": "xrZxk0H2cmY",
+    "date": "24-01-10",
+    "cover_image": "/img/podcasts/podcast-80.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.23 Release Podcast with Etienne Dilocker",
+    "description": "Weaviate 1.23 Release Podcast with Weaviate Co-Founder and CTO Etienne Dilocker!",
+    "youtube": "e88O18_2wyo",
+    "date": "2023-12-14",
+    "cover_image": "/img/podcasts/podcast-79.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Rudy Lai on Tactic Generate - Weaviate Podcast #78",
+    "description": "The 78th episode of the Weaviate podcast featuring Rudy Lai, the founder and CEO of Tactic Generate!",
+    "youtube": "igK4JN2-1m4",
+    "date": "2023-11-29",
+    "cover_image": "/img/podcasts/podcast-78.png",
+    "is_use_case": false
+  },
+  {
+    "title": "RAGAS with Jithin James, Shahul Es, and Erika Cardenas - Weaviate Podcast #77",
+    "description": "The 77th Weaviate Podcast on RAGAS, featuring Jithin James, Shahul ES, and Erika Cardenas!",
+    "youtube": "C-UQwvO8Koc",
+    "date": "2023-11-20",
+    "cover_image": "/img/podcasts/podcast-77.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Patrick Lewis on Retrieval-Augmented Generation - Weaviate Podcast #76",
+    "description": "Our 76th Weaviate Podcast featuring Patrick Lewis, an NLP Research Scientist at Cohere!",
+    "youtube": "bHrYZQOEV_Q",
+    "date": "2023-11-14",
+    "cover_image": "/img/podcasts/podcast-76.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Tanmay Chopra on Emissary - Weaviate Podcast #75",
+    "description": "The 75th Weaviate Podcast featuring Tanmay Chopra!",
+    "youtube": "iIy2pbXXxX4",
+    "date": "2023-11-08",
+    "cover_image": "/img/podcasts/podcast-75.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Simba Khadder on FeatureForm - Weaviate Podcast #74",
+    "description": "The 74th Weaviate Podcast feature Simba Khadder, the CEO and Co-Founder of FeatureForm!",
+    "youtube": "fNL_fodHMXE",
+    "date": "2023-11-07",
+    "cover_image": "/img/podcasts/podcast-74.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Charles Packer on MemGPT - Weaviate Podcast #73",
+    "description": "Our 73rd Weaviate Podcast with Charles Packer, the lead author of MemGPT at UC Berkeley!",
+    "youtube": "rxjsbUiuOFo",
+    "date": "2023-11-02",
+    "cover_image": "/img/podcasts/podcast-73.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Madelon Hulsebos on Tabular Machine Learning - Weaviate Podcast #72",
+    "description": "The 72nd episode of the Weaviate Podcast with Madelon Hulsebos!",
+    "youtube": "BMqxJpC4-Co",
+    "date": "2023-11-01",
+    "cover_image": "/img/podcasts/podcast-72.png",
+    "is_use_case": false
+  },
+
+  {
+    "title": "LLM Agents",
+    "description": "Greg Kamradt and Colin Harmon explain the latest on LLM Agents!",
+    "youtube": "iB4ki6gdAdc",
+    "date": "2023-06-07",
+    "cover_image": "/img/podcasts/podcast-51.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Kapa AI",
+    "description": "Emil Sorensen and Finn Bauer explain the technology behind Kapa AI!",
+    "youtube": "cjAhve_DopY",
+    "date": "2023-05-31",
+    "cover_image": "/img/podcasts/podcast-50.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Neurosymbolic AI",
+    "description": "Professor Laura Dietz explains the state of Neurosymbolic AI methods in Search!",
+    "youtube": "2s_GGMZ_Zgs",
+    "date": "2023-05-24",
+    "cover_image": "/img/podcasts/podcast-49.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Unstructured",
+    "description": "Brain Raymond explains the vision behind Unstructured!",
+    "youtube": "b84Q2cJ6po8",
+    "date": "2023-05-23",
+    "cover_image": "/img/podcasts/podcast-48.png",
+    "is_use_case": false
+  },
+  {
+    "title": "ChatArena",
+    "description": "Yuxiang Wu explains ChatArena, a software library to enable LLMs to talk with each other",
+    "youtube": "_0ww8Q0Bq2w",
+    "date": "2023-05-17",
+    "cover_image": "/img/podcasts/podcast-47.png",
+    "is_use_case": false
+  },
+  {
+    "title": "HyperDB",
+    "description": "John Dagdelen is interviewed by Bob van Luijt and Etienne Dilocker on HyperDB",
+    "youtube": "85VZFQw_7Oc",
+    "date": "2023-05-10",
+    "cover_image": "/img/podcasts/podcast-46.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Generative Feedback Loops",
+    "description": "Bob van Luijt discusses Generative Feedback Loops and their impact on Vector Databases",
+    "youtube": "1RALju6ZJz0",
+    "date": "2023-05-04",
+    "cover_image": "/img/podcasts/podcast-45.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.19 Release Podcast",
+    "description": "Etienne Dilocker explains the latest changes in Weaviate 1.19!",
+    "youtube": "Du6IphCcCec",
+    "date": "2023-04-24",
+    "cover_image": "/img/podcasts/podcast-44.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Recommendation and Metarank",
+    "description": "Erika Cardenas, Roman Grebennikov, and Vsevolod Goloviznin discuss the latest on Recommendation!",
+    "youtube": "aLY0q6V01G4",
+    "date": "2023-03-22",
+    "cover_image": "/img/podcasts/podcast-43.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Mixpeek and the AI landscape",
+    "description": "Ethan Steininger explains his entrepeneurial journey in the world of AI!",
+    "youtube": "EDPk1umuge0",
+    "date": "2023-03-15",
+    "cover_image": "/img/podcasts/podcast-42.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Mem and LLMs!",
+    "description": "Dennis Xu explains how Mem is using the latest advances in LLMs and AI to revolutionize information management!",
+    "youtube": "RujNYB5ZE2c",
+    "date": "2023-03-09",
+    "cover_image": "/img/podcasts/podcast-41.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.18 Release Podcast",
+    "description": "Etienne Dilocker explains the latest changes in Weaviate 1.18!",
+    "youtube": "Q7f2JeuMN7E",
+    "date": "2023-03-02",
+    "cover_image": "/img/podcasts/podcast-40.png",
+    "is_use_case": false
+  },
+  {
+    "title": "OpenVerkiezingenNL",
+    "description": "Floris Hoogenboom explains how OpenVerkiezingenNL was built with Weaviate!",
+    "youtube": "5kHbCQYq-Z8",
+    "date": "2023-03-01",
+    "cover_image": "/img/podcasts/podcast-39.png",
+    "is_use_case": true
+  },
+  {
+    "title": "Information Retrieval Science",
+    "description": "Leo Boystov explains the science of information retrieval and new ideas!",
+    "youtube": "X-VFkq6fHDY",
+    "date": "2023-02-28",
+    "cover_image": "/img/podcasts/podcast-38.png",
+    "is_use_case": false
+  },
+  {
+    "title": "LlamaIndex and Weaviate",
+    "description": "Jerry Liu and Bob van Luijt discuss the new ideas behind Llama Index!",
+    "youtube": "jbQ2UbnU7vQ",
+    "date": "2023-02-21",
+    "cover_image": "/img/podcasts/podcast-37.png",
+    "is_use_case": false
+  },
+  {
+    "title": "LangChain and Weaviate",
+    "description": "Harrison Chase and Bob van Luijt discuss the new ideas in LangChain and its collaboration with Weaviate!",
+    "youtube": "lhby7Ql7hbk",
+    "date": "2023-02-14",
+    "cover_image": "/img/podcasts/podcast-36.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Generative Search with Weaviate",
+    "description": "Bob van Luijt on Weaviate's new generate module!",
+    "youtube": "ro3ln4A9N8w",
+    "date": "2023-02-07",
+    "cover_image": "/img/podcasts/podcast-35.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Neural Search Frameworks",
+    "description": "Dmitry Kan on the Neural Search Pyramid and the state of Search technology.",
+    "youtube": "1ebCUCUJraE",
+    "date": "2023-01-24",
+    "cover_image": "/img/podcasts/podcast-34.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Cohere Multilingual Embedding Models",
+    "description": "Nils Reimers discusses the details of Cohere's new models and research on Deep Learning for Text Embeddings!",
+    "youtube": "TKJh2H5Prcs",
+    "date": "2023-01-11",
+    "cover_image": "/img/podcasts/podcast-33.png",
+    "is_use_case": false
+  },
+  {
+    "title": "You.com and Spark",
+    "description": "Sam Bean, Zain Hasan, and John Trengrove discuss You.com and the Weaviate Spark Connector for big data imports!",
+    "youtube": "pP8CZbDkUKU",
+    "date": "2023-01-04",
+    "cover_image": "/img/podcasts/podcast-32.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.17",
+    "description": "Etienne Dilocker and Parker Duckworth explain Replication, Hybrid Search, and other fixes in Weaviate 1.17. This podcast also includes a discussion of Ref2Vec!",
+    "youtube": "nSCUk5pHXlo",
+    "date": "2022-12-21",
+    "cover_image": "/img/podcasts/podcast-31.png",
+    "is_use_case": false
+  },
+  {
+    "title": "The Future of Search",
+    "description": "Bob van Luijt, Chris Dossman, and Marco Bianco react to the implications of ChatGPT on the future of search technology!",
+    "youtube": "s9aVAgk-6Ww",
+    "date": "2022-12-14",
+    "cover_image": "/img/podcasts/podcast-30.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Product Quantization and Faiss",
+    "description": "Matthijs Douze tells the story of his research in Product Quantization, also featuring Abdel Rodriguez and Etienne Dilocker!",
+    "youtube": "5o1YTp1IL5o",
+    "date": "2022-12-01",
+    "cover_image": "/img/podcasts/podcast-29.png",
+    "is_use_case": false
+  },
+  {
+    "title": "BERTopic",
+    "description": "Marten Grootendorst explains how BERTopic can create interpretable clusters in vector spaces!",
+    "youtube": "IwXOaHanfUU",
+    "date": "2022-11-23",
+    "cover_image": "/img/podcasts/podcast-28.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Neural Magic in Weaviate",
+    "description": "Michael Goin explains how Neural Magic uses Sparsity to achieve faster and cheaper Deep Learning inference on CPUs!",
+    "youtube": "leGgjIQkVYo",
+    "date": "2022-10-26",
+    "cover_image": "/img/podcasts/podcast-27.png",
+    "is_use_case": false
+  },
+  {
+    "title": "MosaicML Cloud",
+    "description": "Jonathan Frankle explains the new MosaicML Cloud, cost estimates for custom Large Language Models, and more!",
+    "youtube": "oFyYaZbRviY",
+    "date": "2022-10-19",
+    "cover_image": "/img/podcasts/podcast-26.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Vector Search in Production",
+    "description": "Erik Bernhardsson and Etienne Dilocker discuss Erik's work on ANNOY at Spotify and many more topics related to running Vector Search in Production!",
+    "youtube": "gXPuhyM11_k",
+    "date": "2022-10-06",
+    "cover_image": "/img/podcasts/podcast-25.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.15 Release!",
+    "description": "Join Etienne, Dirk and Connor to learn about what is new in the latest Weaviate release.",
+    "youtube": "8lyA3mf7FjY",
+    "date": "2022-09-08",
+    "cover_image": "/img/podcasts/podcast-24.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Ori Ram on Self-Supervised Retrieval",
+    "description": "This episode dives into a new technique for Self-Supervised retrieval in NLP with some incredible results!",
+    "youtube": "IWAxkHspjEM",
+    "date": "2022-08-31",
+    "cover_image": "/img/podcasts/podcast-23.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Yaoshiang Ho of Masterful AI",
+    "description": "Yaoshiang is a Co-Founder of Masterful AI, a company doing incredible work in the Computer Vision model training and deployment space.",
+    "youtube": "dHhQjlrLu9k",
+    "date": "2022-08-10",
+    "cover_image": "/img/podcasts/podcast-22.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Laura Ham on Weaviate User Experience",
+    "description": "Laura Ham has had a heavy influence on all things from the GraphQL User Experience design to the Graph data model, and creation of educational content!",
+    "youtube": "gjJBYcYMB-o",
+    "date": "2022-07-27",
+    "cover_image": "/img/podcasts/podcast-21.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Question Answering with Haystack",
+    "description": "Tuana Celik - a Developer Advocate at Deepset - and Connor to learn about many exciting ideas around Question Answering. ",
+    "youtube": "kJtixgqdlHQ",
+    "date": "2022-07-13",
+    "cover_image": "/img/podcasts/podcast-20.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.14 Release!",
+    "description": "Join Etienne Dilocker and Connor to learn about what is new in the latest Weaviate release.",
+    "youtube": "eiQaZIhUS_o",
+    "date": "2022-07-07",
+    "cover_image": "/img/podcasts/podcast-19.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Vincent D. Warmerdam on Applications of Nearest Neighbor Search",
+    "description": "Join Vincent and Connor, to learn how the nearest neighbor search can aid in tasks such as Data De-Duplication and Data Labeling!",
+    "youtube": "Nwh7L4Do0Fg",
+    "date": "2022-06-28",
+    "cover_image": "/img/podcasts/podcast-18.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Scientific Literature Mining with Kyle Lo",
+    "description": "Join Kyle Lo and Connor, to learn how Vector Search enables us to find semantically similar items in large collections.",
+    "youtube": "kUjhCsawgCo",
+    "date": "2022-05-31",
+    "cover_image": "/img/podcasts/podcast-17.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate's ANN Benchmarks",
+    "description": "Join Etienne Dilocker and Connor Shorten to learn about the latest benchmark report for Weaviate.",
+    "youtube": "kG3ji89AFyQ",
+    "date": "2022-05-23",
+    "cover_image": "/img/podcasts/podcast-16.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Jina AI's Neural Search Framework",
+    "description": "In this podcast Maximilian Werk, Engineering Director at Jina AI, will talk about all things related to this neural search framework together with Connor Shorten.",
+    "youtube": "o6MD0tWl0SM",
+    "date": "2022-05-03",
+    "cover_image": "/img/podcasts/podcast-15.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Yi-Lin Sung & Jaemin Cho & Mohit Bansal • VL Adapter for Efficient CLIP Transfer",
+    "description": "These three interesting guests will explain their paper VL-Adapter: Parameter-Efficient Transfer Learning for Vision-and-Language Tasks.",
+    "youtube": "BNPxg5a3NaI",
+    "date": "2022-04-26",
+    "cover_image": "/img/podcasts/podcast-14b.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Rick Lamers • Orchest + Weaviate + Streamlit",
+    "description": "Search for comments using Weaviate's semantic search features with Orchest, Weaviate, and Streamlit.",
+    "youtube": "ZzojafqsVA0",
+    "date": "2022-04-07",
+    "cover_image": "/img/podcasts/podcast-14.png",
+    "is_use_case": true,
+    "logo": "/img/orchest.svg"
+  },
+  {
+    "title": "Rick Lamers • Data Science with Orchest",
+    "description": "Orchest is a software that simplifies building data pipelines. If you are into data science, get inspired by CEO Rick Lamers.",
+    "youtube": "QlhTJ2n_Kog",
+    "date": "2022-04-05",
+    "cover_image": "/img/podcasts/podcast-13.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Jonathan Frankle • Research Scientist in Deep Learning",
+    "description": "Jonathan Frankle is the Chief Scientist at MosaicML and a PhD student in Machine Learning at MIT. Learn all about Efficient Deep Learning in this inspiring podcast.",
+    "youtube": "ZiBkspwrICA",
+    "date": "2022-03-29",
+    "cover_image": "/img/podcasts/podcast-12.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Han Xiao CEO and Founder of Jina AI  ",
+    "description": "Jina AI is a cloud-native neural search framework and in this podcast, Han Xiao the CEO of Jina AI is telling about all the interesting elements at stake here.",
+    "youtube": "HIGAQAE_xaI",
+    "date": "2022-03-15",
+    "cover_image": "/img/podcasts/podcast-11.jpg",
+    "is_use_case": true,
+    "logo": "/img/jina_ai.jpg"
+  },
+  {
+    "title": "Yury Malkov co-author of HNSW • HNSW in Vector Search and Weaviate",
+    "description": "At the heart of Weaviate sits HNSW, the ANN algorithm that brings the vector database to life! Check out this amazing podcast about the science and engineering behind it.",
+    "youtube": "WijYx9_Bpkw",
+    "date": "2022-03-10",
+    "cover_image": "/img/podcasts/podcast-10.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Karen Beckers of Squadra • vector search in eCommerce",
+    "description": "Karen Beckers, Data Scientist from Squadra Machine Learning Company, gives insightful information about how to use vector search in eCommerce.",
+    "youtube": "brUP1OEtQ5U",
+    "date": "2022-03-03",
+    "cover_image": "/img/podcasts/podcast-9.jpg",
+    "is_use_case": true,
+    "logo": "/img/squadra.png"
+  },
+  {
+    "title": "Brady Neal of Oogway • Causal Inference in Vector Search",
+    "description": "Brady Neal from Oogway talks with Connor Shorten from Henry AI Labs about causal inference and many more. See the timestamps below to check out what this podcast is all about. ",
+    "youtube": "t7g9s1GWcB8",
+    "date": "2022-02-28",
+    "cover_image": "/img/podcasts/podcast-8.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Arvind Neelakantan of OpenAI • Embeddings API in Weaviate",
+    "description": "Arvind Neelakantan, Research Lead at Open AI, talks with Connor Shorten about their newly released embeddings API, his work at Open AI, the integration into Weaviate, and more.",
+    "youtube": "uFxfZ0vLsoU",
+    "date": "2022-02-10",
+    "cover_image": "/img/podcasts/podcast-7.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Alex Cannan of Zencastr • How Zencastr searches through their podcast transcriptions with Weaviate",
+    "description": "Alex Cannan, a Machine Learning engineer at Zencastr, talks with Connor Shorten about a really exciting use case of applying search to look through podcast transcription. Topics discussed are the need for fine-tuning, building your own vector database versus Weaviate, data privacy for Deep Learning applications, and many more!",
+    "youtube": "npdJAxDDtmY",
+    "date": "2022-02-02",
+    "cover_image": "/img/podcasts/podcast-6.jpg",
+    "is_use_case": true,
+    "logo": "/img/zencastr.png"
+  },
+  {
+    "title": "Michael Wechner of Katie • How the knowledge management bot Katie leverages Weaviate",
+    "description": "Katie is a knowledge management bot, continuously improving, self-learning, and trained by humans. Under the hood, Katie is powered by the Weaviate vector database, during this podcast, Katie's Michael Wechner will talk about all things vector search and more!",
+    "youtube": "dcu2xIO_lAE",
+    "date": "2022-01-21",
+    "cover_image": "/img/podcasts/podcast-5.jpg",
+    "is_use_case": true,
+    "logo": "/img/katie.svg"
+  },
+  {
+    "title": "Malte Pietsch of Deepset • On Deepset's Haystack and how they leverage the Weaviate vector database",
+    "description": "NLP frameworks like Deepset's Haystack are powerful tools to help data scientists and software engineers work with the latest and greatest in natural language processing. In this interview, Malte Pietsch will be talking about Haystack and how they leverage the Weaviate vector database as a persistent storage engine for their data and vector representations.",
+    "youtube": "9DTDUHs3aB0",
+    "date": "2022-01-11",
+    "cover_image": "/img/podcasts/podcast-4.jpg",
+    "is_use_case": true,
+    "logo": "/img/deepset.png"
+  },
+  {
+    "title": "Bob van Luijt of Weaviate • Vector search use cases, GraphQL API UX, multimodal models, and more...",
+    "description": "Join Connor Shorten and Bob van Luijt (Weaviate) for the third Weaviate vector database Podcast. During the show, they will be discussing use cases, the GraphQL API, knowledge graphs, Weaviate as a product, vector database use cases, and a vision for the future of vector search.",
+    "youtube": "8wdUREOzi2M",
+    "date": "2021-12-20",
+    "cover_image": "/img/podcasts/podcast-3.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Charles Pierse of Keenious • How Keenious uses Weaviate to enable semantic search through 60M+ academic PUBs",
+    "description": "Join Connor Shorten and Charles Pierse (Keenious) for the second Weaviate vector database Podcast. During the show, they will be discussing how Keenious uses Weaviate and broader, all things NLP! ",
+    "youtube": "hU7GJEidaUE",
+    "date": "2021-12-13",
+    "cover_image": "/img/podcasts/podcast-2.jpg",
+    "is_use_case": true,
+    "logo": "/img/keenious.png"
+  },
+  {
+    "title": "Etienne Dilocker of Weaviate • Community and Weaviate core update",
+    "description": "Join Connor Shorten and Etienne Dilocker (Weaviate) for the first Weaviate Podcast. During the show, they will be discussing Weaviate's horizontal scalability features in the v1.8.0 release and a wide variety of topics surrounding the Weaviate Slack channel.",
+    "youtube": "Gjyxt1MXmm8",
+    "date": "2021-12-05",
+    "cover_image": "/img/podcasts/podcast-1.jpg",
+    "is_use_case": false
+  }
+]

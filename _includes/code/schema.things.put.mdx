@@ -1,0 +1,65 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START UpdateCollection"
+    endMarker="END UpdateCollection"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python Client v3">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+class_obj = {
+    "class": "Article",  # immutable - must be kept the same, or omitted
+    "description": "A written text, for example a news article or blog post",
+    "invertedIndexConfig": {
+        "bm25": {
+            "b": 0.8,
+            "k1": 1.1
+        }
+    },
+    "vectorIndexConfig": {
+        "dynamicEfFactor": 10
+    }
+}
+
+client.schema.update_config("Article", class_obj)
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+curl \
+    -X PUT \
+    -H "Content-Type: application/json" \
+    -d '{
+        "class": "Article",
+        "description": "A written text, for example a news article or blog post",
+        "invertedIndexConfig": {
+            "bm25": {
+                "b": 0.8,
+                "k1": 1.1
+            }
+        },
+        "vectorIndexConfig": {
+            "dynamicEfFactor": 10
+        }
+    }' \
+    http://localhost:8080/v1/schema/Article
+```
+
+</TabItem>
+</Tabs>

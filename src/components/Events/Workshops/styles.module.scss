@@ -1,0 +1,171 @@
+.container {
+  padding: 3rem;
+  background-color: #ededed;
+}
+
+.headerBox {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding: 0rem;
+  }
+}
+.workshopWrapper {
+  padding: 0rem 1rem;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    padding: 0rem;
+  }
+}
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    border: 1px solid #130c49;
+    color: #130c49;
+    transition: all 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h2 {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 3.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 4.05rem */
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.buttonOutline {
+  border-radius: 0.3125rem;
+  border: 1px solid #130c49;
+  background: #f4f4f4;
+  padding: 9px;
+  color: #130c49;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%;
+  transition: all 1s ease-out;
+}
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 0px 10px;
+}
+
+.loader {
+  width: 287px;
+  min-width: 250px;
+  height: 287px;
+  background: linear-gradient(0.25turn, transparent, #fff, transparent),
+    linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+    linear-gradient(#ddd, #ddd);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 215px 197px, 319px 197px, 100px 15px, 150px 15px;
+  background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+  animation: loading 1.5s infinite;
+
+  border-radius: 16px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    background-size: 215px 221px, 368px 219px, 117px 15px, 150px 15px;
+    background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+  }
+}
+
+.loadGrid {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  gap: 50px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 140px 30px;
+}

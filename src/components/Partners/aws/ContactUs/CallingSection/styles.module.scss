@@ -1,0 +1,142 @@
+.container {
+  padding: 0rem 3rem 3rem 3rem;
+}
+
+.header {
+  text-align: center;
+  width: 50%;
+  max-width: 640px;
+  margin: auto;
+
+  @media screen and (max-width: 500px) {
+    margin-bottom: 50px;
+    width: 100%;
+  }
+
+  h2,
+  h3 {
+    color: #1c1468;
+  }
+
+  p {
+    font-size: 1.2rem;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.benefits {
+  background: #ededed;
+}
+
+.features {
+  padding-top: 8rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: space-between;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 500px) {
+    padding-top: 1rem;
+    flex-direction: column;
+    gap: 79px;
+  }
+
+  .box {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    max-width: 370px;
+
+    .icon1 {
+      background-image: url('/img/site/calling-section-image-01.png');
+      width: 100%;
+      height: 12rem;
+      background-size: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+    .icon2 {
+      background-image: url('/img/site/calling-section-image-02.png');
+      width: 100%;
+      height: 12rem;
+      background-size: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+    .title {
+      padding-top: 1rem;
+      text-align: left;
+    }
+    .subTitle {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
+
+.featuresDark {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  border-radius: 1.5625rem;
+  background: #130c49;
+  color: white;
+
+  h4 {
+    color: white;
+  }
+}
+
+.buttons {
+  margin: 4rem 0rem 0rem;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    border: 1px solid #130c49;
+    color: #130c49;
+    transition: all 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+  }
+}

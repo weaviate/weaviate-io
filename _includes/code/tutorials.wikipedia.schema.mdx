@@ -1,0 +1,95 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+# client.schema.delete_all()  # ⚠️ uncomment to start from scratch by deleting ALL data
+
+# ===== Create Article class for the schema =====
+article_class = {
+    "class": "Article",
+    "description": "An article from the Simple English Wikipedia data set",
+    "vectorizer": "text2vec-openai",
+    "moduleConfig": {
+        # Match how OpenAI created the embeddings for the `content` (`text`) field
+        "text2vec-openai": {
+            "model": "ada",
+            "modelVersion": "002",
+            "type": "text",
+            "vectorizeClassName": False
+        }
+    },
+    "properties": [
+        {
+            "name": "title",
+            "description": "The title of the article",
+            "dataType": ["text"],
+            # Don't vectorize the title
+            "moduleConfig": {"text2vec-openai": {"skip": True}}
+        },
+        {
+            "name": "content",
+            "description": "The content of the article",
+            "dataType": ["text"],
+        }
+    ]
+}
+
+# Add the Article class to the schema
+client.schema.create_class(article_class)
+print('Created schema');
+```
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+try {
+  await client.schema.classDeleter().withClassName('Article').do();
+  console.log('Deleted existing Articles');
+} catch (e) {
+  if (!e.match(/could not find class/))
+    throw e;
+}
+
+// ===== Create Article class for the schema =====
+const articleClass = {
+  class: 'Article',
+  description: 'An article from the Simple English Wikipedia data set',
+  vectorizer: 'text2vec-openai',
+  moduleConfig: {
+    // Match how OpenAI created the embeddings for the `content` (`text`) field
+    'text2vec-openai': {
+      model: 'ada',
+      modelVersion: '002',
+      type: 'text',
+      vectorizeClassName: false,
+    },
+  },
+  properties: [
+    {
+      name: 'title',
+      description: 'The title of the article',
+      dataType: ['string'],
+      // Don't vectorize the title
+      moduleConfig: { 'text2vec-openai': { skip: true } },
+    },
+    {
+      name: 'content',
+      description: 'The content of the article',
+      dataType: ['text'],
+    },
+  ],
+};
+
+// Add the Article class to the schema
+await client.schema.classCreator().withClass(articleClass).do();
+console.log('Created schema');
+```
+
+</TabItem>
+
+</Tabs>

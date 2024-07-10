@@ -1,0 +1,17 @@
+{
+  "name": "ts-code-samples",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "description": "This file exists to enable type: module in the code samples directory",
+  "type": "module",
+  "scripts": {
+    "test": "for file in howto/*.ts; do node --loader=ts-node/esm --experimental-specifier-resolution=node $file; done"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "stream-chain": "^2.2.5",
+    "stream-json": "^1.7.5",
+    "ts-node": "^10.9.1",
+    "weaviate-ts-embedded": "^1.1.0"
+  }
+}

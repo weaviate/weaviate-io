@@ -1,0 +1,105 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article (
+      hybrid: {
+        query: "jackfruit"
+        alpha: 0.5  # default 0.75
+      }
+      limit: 3
+    ) {
+      title
+      content
+      _additional {score}
+    }
+  }
+}
+
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+result = (
+    client.query
+    .get("Article", ["title", "content"])
+    .with_hybrid("jackfruit", alpha=0.5)  # default 0.75
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(result, indent=4))
+```
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v2">
+
+```js
+const hybridResult = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title content _additional{score}')
+  .withHybrid({
+    query: 'jackfruit',
+    alpha: 0.5,  // optional, defaults to 0.75
+  })
+  .withLimit(3)
+  .do();
+
+console.log('hybrid: jackfruit = ', JSON.stringify(hybridResult.data['Get']['Article'], null, 2));
+```
+
+</TabItem>
+{/*<TabItem value="go" label="Go">
+
+```go
+hybrid := &HybridArgumentBuilder{}
+  hybrid.WithQuery("jackfruit").WithAlpha(0.5)
+
+  query := builder.WithClassName("Article").WithHybrid(hybrid).build()
+```
+
+</TabItem>*/}
+{/*<TabItem value="java" label="Java">
+
+```java
+
+```
+
+</TabItem>*/}
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+      Get {
+        Article (
+          hybrid: {
+            query: \"jackfruit\"
+            alpha: 0.5
+          }
+          limit: 3
+        ) {
+          title
+          _additional {score}
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,391 @@
+[
+  {
+    "title": "Weaviate + Haystack: Harry Potter Q&A Tutorial",
+    "date": "2022-04-11",
+    "cover_image": "/img/podcasts/laura-haystacktutorial.png",
+    "description": "See how easy it is to use Haystack on top of a Weaviate Document Store for a Q&A task!",
+    "source": "youtube",
+    "link": "https://youtu.be/BkozaOnZpJI",
+    "tags": [
+      "demo",
+      "dataset",
+      "video"
+    ]
+  },
+  {
+    "title": "CIO Insight on Vector Search",
+    "date": "2021-08-11",
+    "cover_image": "https://www.cioinsight.com/wp-content/uploads/2021/08/pexels-tara-winstead-8386440-1536x1024.jpg",
+    "description": "CIO Insight on the Business Application of Vector Search. ",
+    "source": "cioinsight",
+    "link": "https://www.cioinsight.com/news-trends/vector-similarity-search/",
+    "tags": [
+      "blog",
+      "use-case"
+    ]
+  },
+  {
+    "title": "Weaviate + Jina AI for Image Search presented by Laura Ham",
+    "date": "2022-03-14",
+    "cover_image": "/img/podcasts/laura-vectorseach-docarray.jpg",
+    "description": "Use Weaviate with Jina AI's DocArray. Learn to easily set it up yourself and play around with image search!",
+    "source": "youtube",
+    "link": "https://youtu.be/rBKvoIGihnY",
+    "tags": [
+      "demo",
+      "dataset",
+      "video"
+    ]
+  },
+  {
+    "title": "\"Database technology evolves to combine machine learning and data storage\"",
+    "date": "2022-03-07",
+    "cover_image": "https://venturebeat.com/wp-content/uploads/2022/01/GettyImages-1350722251-e1644354952407.jpg?w=1200&amp;strip=all",
+    "description": "Article about vector search and Weaviate in VentureBeat",
+    "source": "venturebeat",
+    "link": "https://venturebeat.com/2022/03/07/database-technology-evolves-to-combine-machine-learning-and-data-storage/",
+    "tags": [
+      "news"
+    ]
+  },
+  {
+    "title": "\"Weaviate vector database opens up new ways to query your data\"",
+    "date": "2022-02-22T00:00:02.000Z",
+    "cover_image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg",
+    "description": "Check out this Techcrunch article that features SeMI's Series-A investment",
+    "source": "techcrunch",
+    "link": "https://techcrunch.com/2022/02/22/semi-technologies-search-engine-data/",
+    "tags": [
+      "news"
+    ]
+  },
+  {
+    "title": "\"SeMI Technologies' $16M Series A Round Highlights a New Wave of AI-first Database Tech\"",
+    "date": "2022-02-22",
+    "cover_image": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Yahoo%21_Finance_logo_2021.png",
+    "description": "Press release of SeMI's Series-A investment",
+    "source": "yahoo-finance",
+    "link": "https://finance.yahoo.com/news/semi-technologies-16m-series-round-141500875.html",
+    "tags": [
+      "press-release"
+    ]
+  },
+  {
+    "title": "Weaviate in Techcrunch",
+    "date": "2021-12-09T00:00:00.000Z",
+    "cover_image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/TechCrunch_logo.svg",
+    "description": "Check out this Techcrunch article that features Weaviate and in the section: How to get coverage for your company. And, vector search.",
+    "source": "techcrunch",
+    "link": "https://techcrunch.com/2021/12/11/2246180/",
+    "tags": [
+      "news"
+    ]
+  },
+  {
+    "title": "Wikidata Tool of the Week",
+    "date": "2021-12-06T00:00:00.000Z",
+    "cover_image": "/img/resources/wikidata_tool_of_the_week.png",
+    "description": "Seem like Wikidata is also a fan of Weaviate since they chose us as the tool of the week in December 2021.",
+    "source": "wikidata",
+    "link": "https://www.wikidata.org/wiki/Wikidata:Status_updates/2021_12_06#Tool_of_the_week",
+    "tags": [
+      "news"
+    ]
+  },
+  {
+    "title": "Wikipedia Vector Search Demo",
+    "date": "2021-11-26T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/IGB8vjCuay0/maxresdefault.jpg",
+    "description": "A great explaining video on Henry AI Labs on how semantic search through Wikipedia, topics discussed: GraphQL, Sentence-BERT, and BERT Q&A.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=IGB8vjCuay0",
+    "tags": [
+      "video",
+      "demo",
+      "community"
+    ]
+  },
+  {
+    "title": "Full Wikipedia dataset",
+    "date": "2021-12-01T00:00:00.000Z",
+    "cover_image": "https://opengraph.githubassets.com/9a0bc3dc8c1a138d42e8a981c7e6e8f85caf8922588a2479d195d66a808fc3cc/semi-technologies/semantic-search-through-wikipedia-with-weaviate",
+    "description": "We imported the complete English language Wikipedia article dataset into a single Weaviate instance. It is all available so go and run the complete setup yourself!",
+    "source": "github",
+    "link": "https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate",
+    "tags": [
+      "dataset"
+    ]
+  },
+  {
+    "title": "BigGraph Wikidata dataset",
+    "date": "2021-12-01T00:00:00.000Z",
+    "cover_image": "https://opengraph.githubassets.com/8a137d82f4edc11c85cacfe69a16fd29936215d59a1d993569af8f89ed15c384/semi-technologies/biggraph-wikidata-search-with-weaviate",
+    "description": "In this repository on Github, you'll find a guide on how you can import the complete Wikidata PBG model into a Weaviate.",
+    "source": "github",
+    "link": "https://github.com/weaviate/biggraph-wikidata-search-with-weaviate",
+    "tags": [
+      "dataset"
+    ]
+  },
+  {
+    "title": "Weaviate @ GraphQL Berlin",
+    "date": "2021-11-30T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/QAIyPkZygzc/maxresdefault.jpg",
+    "description": "In this recorded presentation from Bob van Luijt he will present a case study of the GraphQL interface in the Weaviate vector searching engine.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=QAIyPkZygzc",
+    "tags": [
+      "video",
+      "demo",
+      "graphql"
+    ]
+  },
+  {
+    "title": "Knowledge Graph Search",
+    "date": "2021-10-02T00:00:00.000Z",
+    "cover_image": "https://miro.medium.com/max/1200/0*WPZWr7x_0p0pUX_Z",
+    "description": "This article from Charles Pierse on Medium touches briefly on Knowledge Graphs and how we have leveraged them at Keenious.",
+    "source": "medium",
+    "link": "https://medium.com/keenious/knowledge-graph-search-of-60-million-vectors-with-weaviate-7964657ec911",
+    "tags": [
+      "use-case",
+      "community"
+    ]
+  },
+  {
+    "title": "Weaviate in ZDNet",
+    "date": "2021-04-07T00:00:00.000Z",
+    "cover_image": "/img/resources/ZDnet.png",
+    "description": "Google uses machine learning and graphs to deliver search results. Most search engines do not. Weaviate wants to change that.",
+    "source": "zdnet",
+    "link": "https://www.zdnet.com/article/weaviate-an-open-source-search-engine-powered-by-machine-learning-vectors-graphs-and-graphql/",
+    "tags": [
+      "news"
+    ]
+  },
+  {
+    "title": "Vector databases explained!",
+    "date": "2021-09-05T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/YkK5IKgxp-c/hqdefault.jpg",
+    "description": "AI Coffee Break with Letitia - Modern vector databases explained. A cool explainer video on what you need to know about today's vector databases.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=YkK5IKgxp-c",
+    "tags": [
+      "video",
+      "community"
+    ]
+  },
+  {
+    "title": "Why is Weaviate unique?",
+    "date": "2021-02-02T00:00:00.000Z",
+    "cover_image": "/img/resources/DB_engines.png",
+    "description": "Article on DB engines showing the uniqueness of Weaviate, being Approximate Nearest Neighbor (ANN) database with CRUD support",
+    "source": "db-engines",
+    "link": "https://db-engines.com/en/blog_post/87",
+    "tags": [
+      "blog"
+    ]
+  },
+  {
+    "title": "Vector Search through Wikidata",
+    "date": "2021-12-07T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/T4zlvknSbGc/maxresdefault.jpg",
+    "description": "Cool video from Henry AI Labs on all sorts of topics, (Wikidata, PyTorch-BigGraph, Graph Neural Networks, Knowledge Graphs.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=T4zlvknSbGc",
+    "tags": [
+      "video",
+      "community"
+    ]
+  },
+  {
+    "title": "Presentation by Laura Ham",
+    "date": "2021-11-11T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/KZMl66wYfDI/maxresdefault.jpg",
+    "description": "AI-powered vector database Weaviate by Laura Ham - during a Linux Foundation event.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=KZMl66wYfDI",
+    "tags": [
+      "video",
+      "demo"
+    ]
+  },
+  {
+    "title": "Etienne Dilocker on Weaviate",
+    "date": "2021-10-11T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/6lkanzOqhDs/maxresdefault.jpg",
+    "description": "Vector databases are powering the next generation of search. This podcast explores HNSW, Neurosymbolic search and filtering, and more!",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=6lkanzOqhDs",
+    "tags": [
+      "video",
+      "community"
+    ]
+  },
+  {
+    "title": "Google Cloud's Stack Chat",
+    "date": "2020-01-24T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/SOUtWj2szOM/maxresdefault.jpg",
+    "description": "Mark Mirchandani talks to Bob van Luijt, about what a knowledge graph is and how they've built Weaviate.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=SOUtWj2szOM",
+    "tags": [
+      "video"
+    ]
+  },
+  {
+    "title": "Weaviate for Retail",
+    "date": "2021-03-03T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/dk7_Kzkcflk/maxresdefault.jpg",
+    "description": "Learn how the Weaviate vector database helps customers like Metro AG and explore one of the many use cases Weaviate is helpfull in!",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=dk7_Kzkcflk",
+    "tags": [
+      "use-case",
+      "video"
+    ]
+  },
+  {
+    "title": "Weaviate @ FOSDEM 2020",
+    "date": "2020-02-08T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/3NfcAF4qm2k/maxresdefault.jpg",
+    "description": "Introduction and demo by Bob van Luijt during FOSDEM 2020 about the Weaviate vector database.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=3NfcAF4qm2k",
+    "tags": [
+      "video",
+      "demo"
+    ]
+  },
+  {
+    "title": "Weaviate @ FLOSS Weekly",
+    "date": "2020-02-06T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/y1kgSEulAAQ/maxresdefault.jpg",
+    "description": "Weaviate allows you to find the data that you're looking for fast and reliable, but it also allows you to index the data based on its meaning.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=y1kgSEulAAQ",
+    "tags": [
+      "video"
+    ]
+  },
+  {
+    "title": "Data Science with Weaviate",
+    "date": "2021-12-22T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/9sFBrcpKDGM/maxresdefault.jpg",
+    "description": "Weaviate is using GraphQL to provide user-friendly data interaction. Learn more in this Graph QL Asia 2021 Presentation!",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=9sFBrcpKDGM",
+    "tags": [
+      "demo",
+      "graphql",
+      "video"
+    ]
+  },
+  {
+    "title": "Keras Code Search",
+    "date": "2021-12-22T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/ichptfuCvog/maxresdefault.jpg",
+    "description": "This video illustrates how to upload the Keras Code Examples into the Weaviate vector database!",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=ichptfuCvog",
+    "tags": [
+      "demo",
+      "community",
+      "video"
+    ]
+  },
+  {
+    "title": "Architecture Deep Dive",
+    "date": "2021-06-24T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/6hdEJdHWXRE/maxresdefault.jpg",
+    "description": "Weaviate is a full-fledged vector database with full CRUD support. In this meetup, Etienne Dilocker explains how Weaviate works under the hood.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=6hdEJdHWXRE",
+    "tags": [
+      "architecture",
+      "video"
+    ]
+  },
+  {
+    "title": "Weaviate Python Library",
+    "date": "2021-04-07T00:00:00.000Z",
+    "cover_image": "https://miro.medium.com/max/1200/1*akHYKaEdaOUazZBmdoNlzg.png",
+    "description": "A full tutorial on the Python library of the new Machine Learning based vector database, Weaviate",
+    "source": "tds",
+    "link": "https://towardsdatascience.com/getting-started-with-weaviate-python-client-e85d14f19e4f",
+    "tags": [
+      "blog"
+    ]
+  },
+  {
+    "title": "Sub-50ms neural search",
+    "date": "2021-04-07T00:00:00.000Z",
+    "cover_image": "https://miro.medium.com/max/1200/0*tzMNv6d70bht6iRS",
+    "description": "How to build a fast and production-ready neural search using Transformers, DistilBERT, and the vector database Weaviate",
+    "source": "tds",
+    "link": "https://towardsdatascience.com/a-sub-50ms-neural-search-with-distilbert-and-weaviate-4857ae390154",
+    "tags": [
+      "blog"
+    ]
+  },
+  {
+    "title": "Effects of filtered HNSW",
+    "date": "2021-10-08T00:00:00.000Z",
+    "cover_image": "https://miro.medium.com/max/1200/1*1R-4q9gLkjcTsfKS4DLiRg.jpeg",
+    "description": "An experiment to see how both loose and restrictive filters affect vector search speed and quality.",
+    "source": "tds",
+    "link": "https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c",
+    "tags": [
+      "blog"
+    ]
+  },
+  {
+    "title": "Binary Passage Retrieval",
+    "date": "2021-12-24T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/3suEkk_q47k/maxresdefault.jpg",
+    "description": "Hurrya! Feature Binary Passage Retrievel is out. See this video from Henri AI Labs for a quick overview.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=3suEkk_q47k",
+    "tags": [
+      "demo",
+      "community",
+      "video"
+    ]
+  },
+  {
+    "title": "Weaviate and Haystack",
+    "date": "2022-01-09T00:00:00.000Z",
+    "cover_image": "https://i3.ytimg.com/vi/kVHmtPYmdb4/maxresdefault.jpg",
+    "description": "Weaviate can be used as the DocumentStore, serving as the database for Haystack retrievers.",
+    "source": "youtube",
+    "link": "https://www.youtube.com/watch?v=kVHmtPYmdb4",
+    "tags": [
+      "demo",
+      "community",
+      "video"
+    ]
+  },
+  {
+    "title": "Open Data Science Conference",
+    "date": "2022-01-14T00:00:00.000Z",
+    "cover_image": "https://pbs.twimg.com/media/FIWI_7UXsAIZfXu?format=png&name=medium",
+    "description": "The Rise of the Database, interview by Sheamus McGovern with Bob van Luijt on the Open Data Science Conference.",
+    "source": "linkedin",
+    "link": "https://www.linkedin.com/video/event/urn:li:ugcPost:6886680159299129344/",
+    "tags": [
+      "community"
+    ]
+  },
+  {
+    "title": "The NLP Zone: Episode 6",
+    "date": "2022-01-20T00:00:00.000Z",
+    "cover_image": "/img/resources/theNLPzone_podcast.png",
+    "description": "Interesting talk with Natural Language Processing-Specialist Jordan Luxford and Bob van Luijt.",
+    "source": "linkedin",
+    "link": "https://www.linkedin.com/posts/jordanluxford_nlp-naturallanguageprocessing-artificialintelligence-activity-6889866306439512064-jNpp/",
+    "tags": [
+      "podcast",
+      "community"
+    ]
+  }
+]
