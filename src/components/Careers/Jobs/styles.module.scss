@@ -56,6 +56,10 @@
   padding: 1.5rem;
   border-bottom: 1px solid forestgreen;
 
+  p {
+    font-size: 1.1rem;
+  }
+
   @media screen and (max-width: 860px) {
     // grid-template-columns: 1fr;
 
@@ -164,7 +168,7 @@ a:hover {
 }
 
 .departmentSelect {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 
   margin-top: 4px;
 }
