@@ -128,9 +128,9 @@ Depending on the desired tradeoff between consistency and speed, below are three
 
 ## Repairs
 
-When Weaviate detects inconsistent data across nodes, it attempts to repair the out of sync nodes.
+import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
 
-Starting in v1.26, Weaviate adds [asynchronous repair](#asynchronous-repair) to proactively detect inconsistencies. In earlier versions, Weaviate uses a [repair-on-read](#repair-on-read) strategy to repair inconsistencies at read time.
+<RepairIntro />
 
 ### Repair-on-read
 

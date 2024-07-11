@@ -5,9 +5,9 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
-Weaviate instances can be replicated to increase availability and read throughput, and to enable zero-downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
+Weaviate instances can be replicated. Replication can improve read throughput, improve availability, and enable zero-downtime upgrades.
 
-For more about how replication is designed and built in Weaviate, see the [Replication Architecture](../concepts/replication-architecture/index.md) pages.
+For more details on how replication is designed and built in Weaviate, see [Replication Architecture](../concepts/replication-architecture/index.md).
 
 ## How to configure
 
@@ -15,8 +15,9 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
-Replication is disabled by default and can be enabled per data class in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset. To enable replication on a class, the replication factor has to be set, which looks like the following:
+Replication is disabled by default. It can be enabled per collection in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset.
 
+To enable replication, set the replication factor:
 
 ```yaml
 {
@@ -37,20 +38,29 @@ Replication is disabled by default and can be enabled per data class in the [col
 }
 ```
 
-Here's an example for all clients:
+The client code looks like this:
 
 import SchemaReplication from '/_includes/code/schema.things.create.replication.mdx';
 
 <SchemaReplication/>
 
-When you set this replication factor in the data schema before you add data, you will have 3 replicas of the data stored. Weaviate can also handle changing this setting after you imported the data. Then the data is copied to the new replica nodes (if there are enough nodes), but note that this is experimental and will be more stable in the future.
+In this example, there are three replicas. If you set the replication factor before you import data, all of the data is replicated three times.
 
-:::caution Note:
-Changing the replication factor after adding data is an **experimental feature** as of v1.17 and will become more stable in the future.
-:::
+The replication factor can be modified after you add data to a collection. If you modify the replication factor afterwards, new data is copied across the new and pre-existing replica nodes.
 
-The data schema has a [write consistency level](../concepts/replication-architecture/consistency.md#tunable-write-consistency) of `ALL`, which means when you upload or update a schema, this will be sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
+The example data schema has a [write consistency](../concepts/replication-architecture/consistency.md#tunable-write-consistency) level of `ALL`. When you upload or update a schema, the changes are sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
 
+## Data consistency
+
+import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
+
+<RepairIntro />
+
+Repair-on-read is automatic. To activate asynchronous repair, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
+
+import AsynchRepair from '/_includes/code/configuration/replication-consistency.mdx';
+
+<AsynchRepair />
 
 ## How to use: Queries
 
