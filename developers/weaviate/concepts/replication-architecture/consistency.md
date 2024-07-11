@@ -134,6 +134,10 @@ Starting in v1.26, Weaviate adds [asynchronous repair](#asynchronous-repair) to 
 
 ### Repair-on-read
 
+:::info Added in `v1.18`
+
+:::
+
 If your read consistency is set to `All` or `Quorum`, the read coordinator can detect if the nodes in your cluster return different responses. When the coordinator detects a difference, it can attempt to repair the inconsistency.
 
 | Problem | Action |
@@ -142,7 +146,7 @@ If your read consistency is set to `All` or `Quorum`, the read coordinator can d
 | Object is out of date. | Update the object on stale nodes. |
 | Object was deleted on some replicas. | Returns an error. Deletion may have failed, or the object may have been partially recreated. |
 
-When Weaviate resyncs the data, the repair process depends on the collection's write consistency guarantees.
+When Weaviate resyncs data, the repair process depends on the collection's write consistency guarantees.
 
 | Write consistency level | Read consistency level | Action |
 | :- | :- |
@@ -154,21 +158,17 @@ Repairs only happen on read, so they do not create a lot of background overhead.
 
 ### Asynchronous repair
 
-Asynchronous repair supplements repair-on-read. Weaviate uses a background algorithm to quickly compare the state of nodes within a cluster. If the algorithm identifies and inconsistency, it resyncs the data on the node.
+:::info Added in `v1.26`
 
-A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
+:::
 
-Repairs happen in the background, for example when a read operation is done ("repair-on-read"), using a "last write wins" policy for conflict resolution.
+Asynchronous repair runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-When the replication coordinator node receives different versions of objects for a read request from the nodes in the replica set, that means that at least one node has old (stale) objects. The repair-on-read feature means that the coordinator node will update the affected node(s) with the latest version of the object(s). If a node was lacking an object entirely (e.g. because a create request was only handled by a subset of the nodes due to a network partition), the object will be replicated on that node.
+Repair-on-read works well with one or two isolated repairs. Asynchronous repair is more effective in situations where there are many inconsistencies. If an offline node misses updates, for example, asynchronous repair quickly restores consistency when the node returns to service.
 
-Consider a scenario in which a request to delete objects was only handled by a subset of nodes in the replica set. On the next read that involves such a deleted object, the replication coordinator may determine that some nodes are missing that object - i.e. it doesn’t exist on all replicas. `v1.18` introduces changes that enable the replication coordinator to determine the reason why an object was not found (i.e. it was deleted, or it never existed), along with the object itself. Thus, the coordinator can determine if the object:
-* never existed in the first place (so it should be propagated to the other nodes), or
-* was deleted from some replicas but still exists on others. In this latter case, the coordinator returns an error because it doesn’t know if the object has been created again after it was deleted, which would lead to propagating the deletion to cause data loss.
+Asynchronous repair supplements repair-on-read. If node goes out of sync between asynchronous repair checks, repair-on-read catches the problem when consistency is `QUORUM` or `ALL`.
 
-An object that never existed will be propagated to the other nodes only if the object was queried with a _high enough_ consistency level, vs. the write consistency that was used to write the object:
-* if write was `QUORUM`, the read consistency level can be >= `QUORUM`
-* if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
+To activate asynchronous repair, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
