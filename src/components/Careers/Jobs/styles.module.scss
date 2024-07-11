@@ -74,6 +74,10 @@
   text-decoration: none;
   cursor: pointer;
 
+  p {
+    font-size: 1rem;
+  }
+
   @media screen and (max-width: 860px) {
     grid-template-columns: 1fr;
   }
@@ -161,6 +165,6 @@ a:hover {
 
 .departmentSelect {
   font-size: 1.2rem;
-  text-transform: uppercase;
+
   margin-top: 4px;
 }

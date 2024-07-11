@@ -12,22 +12,48 @@ headers.append('X-Api-Version', '20210218');
 
 export default function Jobs() {
   const [rawJobs, setRawJobs] = useState([]);
-  const [tailorjobs, setTailorjobs] = useState([]);
+  const [tailorJobs, setTailorJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [jobsPerPage] = useState(6); // Updated to 6 jobs per page
-  const [departments, setDepartments] = useState([]);
+  const jobsPerPage = 10;
+  const [departments, setDepartments] = useState({});
   const [selectedDepartment, setSelectedDepartment] = useState('');
 
-  const fetchJobs = () => {
-    const url = 'https://api.teamtailor.com/v1/jobs';
-    fetch(url, {
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setRawJobs(data);
-        getJobs(data.data);
-      });
+  useEffect(() => {
+    fetchDepartments().then(fetchAllJobs);
+  }, []);
+
+  const fetchDepartments = async () => {
+    const url = 'https://api.teamtailor.com/v1/departments';
+    const response = await fetch(url, { headers });
+    const data = await response.json();
+    const departmentMap = {};
+    data.data.forEach((dept) => {
+      departmentMap[dept.id] = dept.attributes.name;
+    });
+    setDepartments(departmentMap);
+  };
+
+  const fetchJobsPage = async (page) => {
+    const url = `https://api.teamtailor.com/v1/jobs?page[number]=${page}&page[size]=${jobsPerPage}`;
+    const response = await fetch(url, { headers });
+    const data = await response.json();
+    return data;
+  };
+
+  const fetchAllJobs = async () => {
+    let allJobs = [];
+    let page = 1;
+    let totalPages = 1;
+
+    do {
+      const data = await fetchJobsPage(page);
+      allJobs = [...allJobs, ...data.data];
+      totalPages = data.meta['page-count'];
+      page += 1;
+    } while (page <= totalPages);
+
+    setRawJobs(allJobs);
+    getJobs(allJobs);
   };
 
   const getJobs = async (jobsData) => {
@@ -43,9 +69,7 @@ export default function Jobs() {
         };
       })
     );
-    setTailorjobs(jobs);
-    const uniqueDepartments = [...new Set(jobs.map((job) => job.department))];
-    setDepartments(uniqueDepartments);
+    setTailorJobs(jobs);
   };
 
   const fetchDepartment = async (item) => {
@@ -56,19 +80,15 @@ export default function Jobs() {
       headers: headers,
     })
       .then((res) => res.json())
-      .then((data) => (data.data ? data.data.attributes.name : '-'));
+      .then((data) => (data.data ? data.data.attributes.name : '--'));
   };
-
-  useEffect(() => {
-    fetchJobs();
-  }, []);
 
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value);
-    setCurrentPage(1); // Reset to first page on department change
+    setCurrentPage(1);
   };
 
-  const filteredJobs = tailorjobs.filter((job) =>
+  const filteredJobs = tailorJobs.filter((job) =>
     selectedDepartment ? job.department === selectedDepartment : true
   );
 
@@ -99,8 +119,8 @@ export default function Jobs() {
                   onChange={handleDepartmentChange}
                   className={styles.departmentSelect}
                 >
-                  <option value="">All departments</option>
-                  {departments.map((dept, index) => (
+                  <option value="">ALL DEPARTMENTS</option>
+                  {Object.values(departments).map((dept, index) => (
                     <option key={index} value={dept}>
                       {dept}
                     </option>
@@ -110,14 +130,14 @@ export default function Jobs() {
               <p className={styles.removeInMobile}>LOCATION</p>
             </div>
 
-            {currentJobs &&
-              currentJobs.length > 0 &&
+            {currentJobs.length > 0 ? (
               currentJobs.map((job) => (
                 <a
                   key={job.id}
                   className={styles.jobContent}
                   href={job.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <p>{job.title}</p>
                   <p>{job.department}</p>
@@ -125,7 +145,10 @@ export default function Jobs() {
                     {job.remote && 'Remote'}
                   </p>
                 </a>
-              ))}
+              ))
+            ) : (
+              <p>No jobs found</p>
+            )}
 
             <div className={styles.pagination}>
               <button
@@ -133,14 +156,14 @@ export default function Jobs() {
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}
               >
-                1
+                Previous
               </button>
               <button
                 className={styles.paginationButtons}
                 onClick={() => paginate(currentPage + 1)}
                 disabled={indexOfLastJob >= filteredJobs.length}
               >
-                2
+                Next
               </button>
             </div>
           </div>
