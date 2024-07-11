@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Layered Navigation - Weaviate Knowledge Cards',
+    description:
+      'During a search, HNSW starts at the topmost layer and makes big jumps across the graph to quickly move closer to the target region...',
+    image: 'https://weaviate.io/img/cards/layered-navigation.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/layered-navigation',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Layered Navigation - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/layered-navigation.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/layered-navigation"
+          />
+          <meta
+            property="og:description"
+            content="During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Layered Navigation - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/layered-navigation.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}

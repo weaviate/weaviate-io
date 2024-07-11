@@ -1,15 +1,18 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+require('dotenv').config(); 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
 const path = require('path');
 
+
 // Math equation plugins
 const math = require('remark-math');
 const katex = require('rehype-katex');
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -27,11 +30,14 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
+    customFields: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
     plugins: [
         [
             '@docusaurus/plugin-google-gtag',
             {
-                trackingID: process.env.GOOGLE_TRACKING_ID || 'None',
+                trackingID:  'None',
                 anonymizeIP: true,
             },
         ],
@@ -78,6 +84,24 @@ const config = {
                 routeBasePath: '/papers',
                 // path to data on filesystem relative to site dir.
                 path: 'papers',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
+         // iOS Apps and Vector Databases configuration
+         [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Apple Ecosystem Apps',
+                blogDescription: 'iOS Apps and Vector Databases',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'iOS Apps and Vector Databases',
+
+                id: 'apple-and-weaviate',
+                routeBasePath: '/apple-and-weaviate',
+                // path to data on filesystem relative to site dir.
+                path: 'apple-and-weaviate',
                 authorsMapPath: '../authors.yml',
                 showReadingTime: true,
             },
@@ -154,6 +178,12 @@ const config = {
                             },
                         },
 
+                         // Add CommonRoom
+            {
+                tagName: 'script',
+                innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
+              },
+
                     ],
                 };
             },
@@ -229,7 +259,7 @@ const config = {
             image: 'og/default.jpg',
             announcementBar: {
                 id: 'announcement-bar-may2024',
-                content: `We would love your input to help us improve your experience - <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/hrFGMqtVkdSG6ne48">Fill out our Community Experience Survey</a> by June 14th.`,
+                content:`📆 AI [in Prod] Chicago: Tuesday, July 16th | Join us for tech talks and hands-on training! <a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-chi">Register here!</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -356,9 +386,17 @@ const config = {
                             },
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
                             },
-                           
+                            {
+                                label: 'Demos',
+                                href: '/community/demos',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
+                            },
+
                             {
                                 label: 'Paper Reviews',
                                 to: '/papers',
@@ -424,6 +462,10 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
+                                label: 'Remote',
+                                to: '/company/remote',
+                            },
+                            {
                                 label: 'Investors',
                                 to: '/company/investors',
                             },
@@ -446,7 +488,7 @@ const config = {
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
                     },
-                    
+
                     {
                         type: 'search',
                         position: 'right',
@@ -535,7 +577,15 @@ const config = {
                         items: [
                             {
                                 label: 'Community',
-                                to: '/community',
+                                href: '/community',
+                            },
+                            {
+                                label: 'Build With Weaviate',
+                                href: '/community/build-with-weaviate',
+                            },
+                            {
+                                label: 'Demos',
+                                href: '/community/demos',
                             },
                             {
                                 label: 'Events & Webinars',
@@ -590,6 +640,10 @@ const config = {
                             {
                                 label: 'Careers',
                                 to: '/company/careers',
+                            },
+                            {
+                                label: 'Remote',
+                                to: '/company/remote',
                             },
                             {
                                 label: 'Playbook',

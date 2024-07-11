@@ -444,9 +444,7 @@ client.collections.create(
     sharding_config=Configure.sharding(
         virtual_per_physical=128,
         desired_count=1,
-        actual_count=1,
         desired_virtual_count=128,
-        actual_virtual_count=128,
     )
     # highlight-end
 )
@@ -457,9 +455,7 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.sharding_config.virtual_per_physical == 128
 assert config.sharding_config.desired_count == 1
-assert config.sharding_config.actual_count == 1
 assert config.sharding_config.desired_virtual_count == 128
-assert config.sharding_config.actual_virtual_count == 128
 
 # =========================
 # ===== MULTI-TENANCY =====

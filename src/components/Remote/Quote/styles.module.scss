@@ -1,0 +1,121 @@
+.pricingHeader {
+  color: #130c49;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 3rem */
+  @media screen and (max-width: 680px) {
+    text-align: left;
+  }
+}
+.pricingButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #130e46;
+  background: #61bd73;
+  padding: 9px;
+  color: #130c49;
+  margin-right: 10px;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+.pricingButton:hover {
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+.boardButton {
+  padding: 9px;
+  margin: 10px;
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+.boardButton:hover {
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.test {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.header {
+  color: var(--ifm-link-color);
+}
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin: 0;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+
+  h3 {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 680px) {
+    text-align: left;
+    margin: auto;
+    width: auto;
+    color: #130c49;
+  }
+}
+
+.quoteLogos {
+  @media screen and (max-width: 780px) {
+    display: block;
+    margin: 40px 0px;
+  }
+}
+
+.quoteContainer {
+  background: #130e46;
+}
+
+.quoteBox {
+  width: 100%;
+  max-width: 650px;
+
+  .signature {
+    font-weight: 700;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+}
+
+.quoteButton {
+  margin-top: 25px;
+}
+
+.quoteDiagram {
+  background: url('/img/site/remote-jessie-circle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 14.4375rem;
+  height: 14.4375rem;
+}

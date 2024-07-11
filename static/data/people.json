@@ -16,18 +16,11 @@
   },
   {
     "name": "Adam Chan",
-    "title": "Developer Advocate",
+    "title": "Developer Growth Engineer",
     "photo": "adam.jpg",
-    "linkedin": "adam-jeremy-chan",
-    "twitter": "aj__chan",
+    "linkedin": "itsajchan",
+    "twitter": "itsajchan",
     "team": "developer-growth"
-  },
-  {
-    "name": "Albert Adeseye",
-    "title": "Technical Success Manager",
-    "photo": "albert.jpeg",
-    "linkedin": "albertadeseye",
-    "team": "customer-experience"
   },
   {
     "name": "Alea Abed",
@@ -116,11 +109,11 @@
   },
   {
     "name": "Charles Pierse",
-    "title": "Machine Learning Engineer",
+    "title": "Head of Weaviate Labs",
     "photo": "charles-pierse.png",
     "linkedin": "charles-pierse",
     "twitter": "cdpierse",
-    "team": "wcd"
+    "team": "weaviate-labs"
   },
   {
     "name": "Connor Shorten",
@@ -129,7 +122,7 @@
     "linkedin": "connor-shorten-34923a178/",
     "twitter": "cshorten30",
     "github": "CShorten",
-    "team": "applied-research"
+    "team": "weaviate-labs"
   },
   {
     "name": "Daniel Phiri",
@@ -153,7 +146,7 @@
   },
   {
     "name": "Dirk Kulawiak",
-    "title": "Core Engineer",
+    "title": "UX Engineering Tech Lead",
     "photo": "dirk.png",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
@@ -416,6 +409,14 @@
     "team": "developer-growth"
   },
   {
+    "name": "Roberto Esposito",
+    "title": "Research Engineer",
+    "photo": "roberto-esposito.jpg",
+    "linkedin": "robbespo00",
+    "twitter": "robbespo00",
+    "team": "applied-research"
+  },
+  {
     "name": "Scott Alexander",
     "title": "Client-Focused SRE",
     "photo": "scott-alexander.jpg",
@@ -450,6 +451,14 @@
     "linkedin": "mohdshukrihasan",
     "twitter": "MohdShukriHasa1",
     "team": "partnerships"
+  },
+  {
+    "name": "Soham Maniar",
+    "title": "Director of RevOps",
+    "photo": "soham-maniar.jpg",
+    "linkedin": "sohammaniar",
+    "twitter": "sohammaniar",
+    "team": "sales"
   },
   {
     "name": "Stefan Bogdan",

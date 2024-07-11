@@ -196,9 +196,14 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/schema',
         },
         {
-            to: '/developers/weaviate/starter-guides/connect',
+            to: '/developers/weaviate/connections',
             from: '/developers/weaviate/tutorials/connect',
         },
+        {
+         to: '/developers/weaviate/connections',
+         from: '/developers/weaviate/starter-guides/connect',
+        },
+
 
         // Remove BPR page
         {
@@ -527,8 +532,35 @@ const siteRedirects = {
   {
     to: "/services/enterprise-cloud",
     from: "/services/enterprise-dedicated"
-},
+  },
 
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
+ },
+
+// Release notes
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_20",
+ from: "/developers/weaviate/release-notes/release_1_20"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_19",
+ from: "/developers/weaviate/release-notes/release_1_19"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_18",
+ from: "/developers/weaviate/release-notes/release_1_18"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_17",
+ from: "/developers/weaviate/release-notes/release_1_17"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_16",
+ from: "/developers/weaviate/release-notes/release_1_16"
+},
 
 
     ],

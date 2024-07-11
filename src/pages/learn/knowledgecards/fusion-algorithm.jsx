@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Fusion Algorithm - Weaviate Knowledge Cards',
+    description:
+      'In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results...',
+    image: 'https://weaviate.io/img/cards/fusion-algorithm.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/fusion-algorithm',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Fusion Algorithm - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/fusion-algorithm.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/fusion-algorithm"
+          />
+          <meta
+            property="og:description"
+            content="In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Fusion Algorithm - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/fusion-algorithm.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}
