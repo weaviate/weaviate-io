@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 Data consistency is a property of a database that refers to whether or not data that is distributed across multiple nodes is the same on all of the nodes. Data consistency is an important consideration for multi-node clusters.
 
-In Weaviate there data consistency has two components, schema consistency and data object consistency.
+In Weaviate data consistency has two components, schema consistency and data object consistency.
 
 Schema consistency is extremely important. The schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and the [Raft](https://raft.github.io/) consensus algorithm for schema replication.
 
