@@ -1189,7 +1189,7 @@ There are no index limitations when you add collection properties before you imp
 
 If you add a new property after you import data, there is an impact on indexing.<br/><br/>
 
-Property indexes are built at import time. If you add a new property after importing some data, objects in the existing index aren't automatically updated to add the new property. Queries may return unexpected results because only new objects have the new property. Older objects in the collection don't have the new property, so they are not included in the property's index.<br/><br/>
+Property indexes are built at import time. If you add a new property after importing some data, pre-existing objects index aren't automatically updated to add the new property. This means pre-existing objects aren't added to the new property index. Queries may return unexpected results because the index only includes new objects.<br/><br/>
 
 To create an index that includes all of the objects in a collection, do one of the following:
 
