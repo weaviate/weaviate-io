@@ -102,6 +102,24 @@ class ManageDataClassesTest {
   }
   // END CreateCollectionWithProperties"
 
+  // START CreateCollectionWithVectorizer"
+  private void createCollectionWithProperties(){
+        // Define the vectorizer in the WeaviateClass Builder
+        WeaviateClass articleClass = WeaviateClass.builder()
+                .className("Article")
+                .description("description of the class")
+                .properties(Arrays.asList(nameProperty, bodyProperty))
+                .replicationConfig(replicationConfig)
+                .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
+                .build();
+
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END CreateCollectionWithVectorizer"
+
   private void readOneCollection(String className) {
     // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
