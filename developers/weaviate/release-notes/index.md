@@ -416,6 +416,7 @@ For links to the Go Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.14.1][g4.14.0] | 2024-07-11 |
   | [4.14.0][g4.14.0] | 2024-05-20 |
   | [4.13.1][g4.13.1] | 2024-03-07 |
   | [4.13.0][g4.13.0] | 2024-03-05 |
@@ -778,6 +779,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( go client links )
 
+[g4.14.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.1
 [g4.14.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.0
 [g4.13.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.1
 [g4.13.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0
