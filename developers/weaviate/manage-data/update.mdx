@@ -20,7 +20,6 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 Weaviate allows partial or complete object updates.
 
-
 <details>
   <summary>Additional information</summary>
 
@@ -35,10 +34,13 @@ Weaviate allows partial or complete object updates.
 
 </details>
 
-
 ## Update object properties
 
-Update one or more properties by providing the collection name, id and properties to update.
+To update a collection property, provide the collection name, the object id, and the properties to update.
+
+If you update a vectorized property, Weaviate re-vectorizes the object automatically. If you change a property for all of the objects in a collection, Weaviate will re-vectorize all of the objects.
+
+If you add a new property, Weaviate only vectorizes the new objects. Weaviate doesn't re-vectorize and re-index existing objects when a new property is added, only when an existing property is updated.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -57,7 +59,6 @@ Update one or more properties by providing the collection name, id and propertie
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
@@ -66,7 +67,6 @@ Update one or more properties by providing the collection name, id and propertie
       language="ts"
     />
   </TabItem>
-
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
@@ -75,7 +75,6 @@ Update one or more properties by providing the collection name, id and propertie
       language="ts"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -84,7 +83,6 @@ Update one or more properties by providing the collection name, id and propertie
       language="java"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -94,7 +92,6 @@ Update one or more properties by providing the collection name, id and propertie
     />
   </TabItem>
 </Tabs>
-
 
 ## Update object vector
 
