@@ -52,7 +52,7 @@ Eventual consistency provides BASE semantics:
 * **Soft-state**: there are no consistency guarantees since updates might not yet have converged
 * **Eventually consistent**: if the system functions long enough, after some writes, all nodes will be consistent.
 
-Eventual consistency makes writes faster, so Weaviate uses it to help ensure high availability. Read and write consistency are tunable, so you can tradeoff between availability and consistency to match your application needs.
+Weaviate uses eventual consistency to help ensure high availability. Read and write consistency are tunable, so you can tradeoff between availability and consistency to match your application needs.
 
 *The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
