@@ -70,9 +70,13 @@ Increase this value to improve efficiency of the compaction process, but be awar
 
 Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
 
-### Tombstone cleanup
+### Tombstone cleanup parameters
 
-:::info Added in `v1.24.15` / `v1.25.2`
+:::info Environment variable availability
+
+- `TOMBSTONE_DELETION_CONCURRENCY` is available in `v1.24.0` and up.
+- `TOMBSTONE_DELETION_MIN_PER_CYCLE` and `TOMBSTONE_DELETION_MAX_PER_CYCLE` are available in `v1.24.15` / `v1.25.2` and up.
+
 :::
 
 Tombstones are records that mark deleted objects. In an HNSW index, tombstones are regularly cleaned up, triggered periodically by the `cleanupIntervalSeconds` parameter.
@@ -85,6 +89,12 @@ To control the number of tombstones deleted per cleanup cycle and prevent perfor
 - Set `TOMBSTONE_DELETION_MAX_PER_CYCLE` to prevent the cleanup process from taking too long and consuming too many resources.
 
 As an example, for a cluster with 300 million objects per shard, a `TOMBSTONE_DELETION_MIN_PER_CYCLE` value of 1000000 (1 million) and a `TOMBSTONE_DELETION_MAX_PER_CYCLE` value of 10000000 (10 million) may be good starting points.
+
+You can also set the `TOMBSTONE_DELETION_CONCURRENCY` environment variable to limit the number of threads used for tombstone cleanup. This can help prevent prevent the cleanup process from unnecessarily consuming too many resources, or the cleanup process from taking too long.
+
+The default value for `TOMBSTONE_DELETION_CONCURRENCY` is set to half the number of CPU cores available to Weaviate.
+
+In a cluster with a large number of cores, you may want to set `TOMBSTONE_DELETION_CONCURRENCY` to a lower value to prevent the cleanup process from consuming too many resources. Conversely, in a cluster with a small number of cores and a large number of deletions, you may want to set `TOMBSTONE_DELETION_CONCURRENCY` to a higher value to speed up the cleanup process.
 
 ### PQ configuration parameters
 
