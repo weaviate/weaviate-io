@@ -28,7 +28,7 @@ Eventual consistency is a trade-off that helps to ensure high availability, but 
 
 Asynch replication address this risk and minimizes it. The aysnch replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-Asynchronous replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, asynchronous replication quickly restores consistency when the node returns to service.
+Async replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
 Read more. TODO-LINK
 
