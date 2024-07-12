@@ -20,13 +20,13 @@ Cool stuff goes here
 
 ## Async Replication
 
-Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. Async replication works in the background, checking and updating your data to keep it consistent.
+Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. [Async replication](/developers/weaviate/concepts/replication-architecture/consistency#async-replication) works in the background, checking and updating your data to keep it consistent.
 
 In Weaviate, consistency has two components - schema consistency and object consistency. The [Raft](https://raft.github.io/) algorithm ensures strongly consistent schema replication. Data objects on the other hand, are eventually consistent. This means all nodes eventually contain the same data, but at a given point in time some nodes may be out of sync.
 
 Eventual consistency is a trade-off that helps to ensure high availability, but at the risk of occasionally serving stale data.
 
-Asynch replication address this risk and minimizes it. The aysnch replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Asynch replication addresses this risk and minimizes it. The aysnch replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
 Async replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
