@@ -146,7 +146,7 @@ If your read consistency is set to `All` or `Quorum`, the read coordinator can d
 | Object is out of date. | Update the object on stale nodes. |
 | Object was deleted on some replicas. | Returns an error. Deletion may have failed, or the object may have been partially recreated. |
 
-When Weaviate resyncs data, the repair process depends on the collection's write consistency guarantees.
+When Weaviate resyncs data, the replication process depends on the collection's write consistency guarantees.
 
 | Write consistency level | Read consistency level | Action |
 | :- | :- |
@@ -156,19 +156,19 @@ When Weaviate resyncs data, the repair process depends on the collection's write
 
 Repairs only happen on read, so they do not create a lot of background overhead. However, an inconsistent state may persist for a long time until the nodes are read. While nodes are in an inconsistent state, searches may be unreliable and consistency `ONE` reads may return stale data.
 
-### Asynchronous repair
+### Asynchronous replication
 
 :::info Added in `v1.26`
 
 :::
 
-Asynchronous repair runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Asynchronous replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-Repair-on-read works well with one or two isolated repairs. Asynchronous repair is more effective in situations where there are many inconsistencies. If an offline node misses updates, for example, asynchronous repair quickly restores consistency when the node returns to service.
+Repair-on-read works well with one or two isolated repairs. Asynchronous replication is more effective in situations where there are many inconsistencies. If an offline node misses updates, for example, asynchronous replication quickly restores consistency when the node returns to service.
 
-Asynchronous repair supplements repair-on-read. If node goes out of sync between asynchronous repair checks, repair-on-read catches the problem when consistency is `QUORUM` or `ALL`.
+Asynchronous replication supplements repair-on-read. If node goes out of sync between checks, the repair-on-read mechanism catches the problem when consistency is `QUORUM` or `ALL`.
 
-To activate asynchronous repair, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
+To activate asynchronous replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
