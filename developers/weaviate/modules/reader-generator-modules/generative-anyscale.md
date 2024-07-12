@@ -5,6 +5,10 @@ image: og/docs/modules/generative-anyscale.jpg
 # tags: ['generative', 'rag', 'anyscale']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="anyscale" />
+
 
 ## In short
 
@@ -26,7 +30,7 @@ The module works in two steps:
 2. (Anyscale Inference API) Use a Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative Anyscale module with any other upstream modules. For example, you could use `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai` to vectorize and query your data, but then rely on the `generative-aws` module to generate a response.
+You can use the Generative Anyscale module with any other upstream modules. For example, you could use `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai` to vectorize and query your data, but then rely on the `generative-anyscale` module to generate a response.
 :::
 
 The generative module can perform RAG for:
@@ -38,8 +42,8 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file
@@ -53,7 +57,7 @@ To use `generative-anyscale`, you must enable it in your Docker Compose file (`d
 
 #### Example
 
-This configuration enables `generative-anyscale` and sets the AWS authentication credentials.
+This configuration enables `generative-anyscale` and sets the Anyscale authentication credentials.
 
 ```yaml
 ---
@@ -110,8 +114,8 @@ You can use any of the following models with `generative-anyscale`:
 * `meta-llama/Llama-2-13b-chat-hf`
 * `meta-llama/Llama-2-7b-chat-hf`
 * `codellama/CodeLlama-34b-Instruct-hf`
-* `HuggingFaceH4/zephyr-7b-beta`
 * `mistralai/Mistral-7B-Instruct-v0.1`
+* `mistralai/Mixtral-8x7B-Instruct-v0.1`
 
 #### Example
 
@@ -302,10 +306,8 @@ import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedre
 }
 ```
 
+## Questions and feedback
 
-<!-- TODO - ADD THE BELOW TO THE RELEASE BLOG -->
-<!-- Weaviate 1.23 introduces the `generative-anyscale` module, bringing open-source LLM heavyweights such as the Llama 70B, 13B, and 7B series, as well as CodeLlama 34B and Mistral 7B. Stay tuned for further integrations with Anyscale's Fine-tuning APIs and adding custom model paths to Weaviate's Generative Search modules. -->
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
-
-<DocsMoreResources />
+<DocsFeedback/>

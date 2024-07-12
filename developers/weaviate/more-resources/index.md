@@ -17,7 +17,7 @@ These pages can help with common questions:
 - [Example datasets](./example-datasets.md)
 - [Example use cases](./example-use-cases.md)
 - [Index types and performance](./performance.md)
-- [Migration Guide](./migration-guide.md)
+- [Migration Guide](./migration/index.md)
 
 ## (Even) more resources
 
@@ -27,6 +27,11 @@ For additional information, try these sources.
 - [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug)
 - [Weaviate slack channel](https://weaviate.io/slack)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Integration Resources
+- [DSPy and Weaviate](./dspy.md)
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

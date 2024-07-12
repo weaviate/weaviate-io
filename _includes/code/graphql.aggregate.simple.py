@@ -6,9 +6,10 @@
 import weaviate
 import weaviate.classes as wvc
 import os
-# START GraphQLSimpleAggregateGroupby
+# END-ANY # START GraphQLSimpleAggregateGroupby
 from weaviate.classes.aggregate import GroupByAggregate
 # END GraphQLSimpleAggregateGroupby
+# START-ANY
 
 client = weaviate.connect_to_local()
 
@@ -18,8 +19,8 @@ client = weaviate.connect_to_local()
 client.close()
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }

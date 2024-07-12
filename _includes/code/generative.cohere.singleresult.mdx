@@ -4,7 +4,7 @@ import PyCode from '!!raw-loader!/_includes/code/generative.singleprompt.example
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GenerativeCohere"
@@ -12,13 +12,13 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
       language="py"
     />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
 
 client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
   additional_headers={
       "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"
   }
@@ -45,7 +45,7 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```ts
 import weaviate, { ApiKey } from 'weaviate-ts-client';
@@ -92,7 +92,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
     Scheme:  "https",
     Headers: map[string]string{"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"},
   }
@@ -150,7 +150,9 @@ public class App {
     Map<String, String> headers = new HashMap<String, String>() {
       {put("X-Cohere-Api-Key", "YOUR-COHERE-API-KEY");}
     };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
@@ -257,7 +259,7 @@ echo '{
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
     -H "X-Cohere-Api-Key: $COHERE_API_KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>

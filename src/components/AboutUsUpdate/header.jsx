@@ -40,7 +40,7 @@ export default function AboutUsHeader() {
             <span>Downloads</span>
           </div>
           <div className={styles.barText}>
-            8,500+<br></br>
+            10,000+<br></br>
             <span>GitHub stars</span>
           </div>
           <div className={styles.barText}>

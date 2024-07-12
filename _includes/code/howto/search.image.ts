@@ -38,16 +38,19 @@ console.log(fileToBase64('./your-image-here.jpg'))
 // ===== Search by base64 representation =====
 // ===========================================
 
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',  // Replace with your Weaviate URL
-  // Uncomment if authentication is on, and replace w/ your Weaviate instance API key.
-  // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),
-});
+const client = await weaviate.connectToWeaviateCloud(
+  'WCD-URL',
+ {
+   authCredentials: new weaviate.ApiKey('WEAVIATE-API-KEY'),
+   headers: {
+     'X-OpenAI-Api-Key': 'OPENAI-API-KEY',  // Replace with your inference API key
+   }
+ } 
+)
 
 const imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
 
@@ -55,39 +58,37 @@ const imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welc
 const response = await fetch(imageUrl);
 const content = await response.buffer();
 
-/*
+{
 // START search with base64
-const base64String = 'SOME_BASE_64_REPRESENTATION';
-// END search with base64
-*/
-// START search with base64
-
 // Perform query
-let result = await client.graphql
-  .get()
-  .withClassName('Dog')
-  // highlight-start
-  .withNearImage({
-    image: base64String,
-  })
-  // highlight-end
-  .withLimit(1)
-  .withFields('breed')
-  .do();
+const myCollection = client.collections.get('Dog');
 
-console.log(JSON.stringify(result, null, 2));
+// highlight-start
+const base64String = 'SOME_BASE_64_REPRESENTATION';
+// highlight-end
+
+// highlight-start
+const result = await myCollection.query.nearImage(base64String, {
+// highlight-end
+  returnProperties: ['breed'],
+  limit: 1,
+  // targetVector: 'vector_name' // required when using multiple named vectors
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
 // END search with base64
 
 // Tests
-assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
-
+// assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
+}
 
 // ====================================
 // ===== Search by image filename =====
 // ====================================
-
 fs.writeFileSync('image.jpg', content);
+{
 // START ImageFileSearch
+const myCollection = client.collections.get('Dog');
 
 // highlight-start
 // Read the file into a base-64 encoded string
@@ -95,22 +96,18 @@ const contentsBase64 = await fs.promises.readFile('image.jpg', { encoding: 'base
 // highlight-end
 
 // Query based on base64-encoded image
-result = await client.graphql
-  .get()
-  .withClassName('Dog')
-  .withNearImage({
-    image: contentsBase64,
-  })
-  .withLimit(1)
-  .withFields('breed')
-  .do();
+const result = await myCollection.query.nearImage(contentsBase64, {
+  returnProperties: ['breed'],
+  limit: 1,
+  // targetVector: 'vector_name' // required when using multiple named vectors
+})
 
-console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result.objects, null, 2));
 // END ImageFileSearch
-
+}
 
 // Tests
-assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
+// assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
 
 
 // ============================

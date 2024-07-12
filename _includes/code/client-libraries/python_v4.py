@@ -1,3 +1,7 @@
+# START WVCImportExample
+import weaviate.classes as wvc
+# END WVCImportExample
+
 import weaviate_datasets as wd
 import os
 
@@ -77,32 +81,33 @@ try:
 finally:
     client.close()
 
-# WCSInstantiation
+# WCDInstantiation
 import weaviate
 import os
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
+    headers={'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 )
-# END WCSInstantiation
+# END WCDInstantiation
 
 try:
     assert client.is_ready()
 finally:
     client.close()
 
-# WCSwOIDCInstantiation
+# WCDwOIDCInstantiation
 import weaviate
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
     auth_credentials=weaviate.auth.AuthClientPassword(
-        username=os.getenv("WCS_USERNAME"),  # Your WCS username
-        password=os.getenv("WCS_PASSWORD")   # Your WCS password
+        username=os.getenv("WCD_USERNAME"),  # Your Weaviate Cloud username
+        password=os.getenv("WCD_PASSWORD")   # Your Weaviate Cloud password
     )
 )
-# END WCSwOIDCInstantiation
+# END WCDwOIDCInstantiation
 
 try:
     assert client.is_ready()
@@ -152,7 +157,9 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 # END LocalInstantiationWithHeaders
 
@@ -161,15 +168,18 @@ try:
 finally:
     client.close()
 
-# LocalInstantiationWithTimeout
+# LocalWithTimeout
 import weaviate
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))  # Values in seconds
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
+    )
 )
-# END LocalInstantiationWithTimeout
+# END LocalWithTimeout
 
 try:
     assert client.is_ready()
@@ -179,6 +189,7 @@ finally:
 # DirectInstantiationFull
 import weaviate
 from weaviate.connect import ConnectionParams
+from weaviate.classes.init import AdditionalConfig, Timeout
 import os
 
 client = weaviate.WeaviateClient(
@@ -194,9 +205,8 @@ client = weaviate.WeaviateClient(
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
-    additional_config=weaviate.config.AdditionalConfig(
-        startup_period=10,
-        timeout=(5, 15)  # Values in seconds
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
     ),
 )
 
@@ -209,16 +219,16 @@ finally:
     client.close()
 
 
-# WCSQuickStartInstantiation
+# WCDQuickStartInstantiation
 import weaviate
 import os
 
-with weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+with weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY"))  # Replace with your Weaviate Cloud key
 ) as client:  # Use this context manager to ensure the connection is closed
     client.collections.list_all()
-# END WCSQuickStartInstantiation
+# END WCDQuickStartInstantiation
 
 
 # =====================================================================================
@@ -227,7 +237,6 @@ with weaviate.connect_to_wcs(
 
 import weaviate
 from weaviate.classes.config import Property, DataType, ReferenceProperty
-from weaviate.classes.data import DataReference
 from weaviate.util import generate_uuid5
 
 client = weaviate.connect_to_local()
@@ -299,7 +308,6 @@ finally:
 
 
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -322,7 +330,6 @@ source_iterable = range(100)  # Dummy iterable
 
 # START BatchErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -337,6 +344,7 @@ try:
                 # highlight-end
                 pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the first batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the first batch import
     # highlight-end
@@ -352,6 +360,7 @@ try:
                 # highlight-end
                 pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_b = client.batch.failed_objects  # Get failed objects from the second batch import
     failed_refs_b = client.batch.failed_references  # Get failed references from the second batch import
     # highlight-end
@@ -363,7 +372,6 @@ finally:
 
 # START BatchErrorMonitor
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -386,7 +394,6 @@ finally:
 
 # START BatchSimpleErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -395,6 +402,7 @@ try:
         pass  # Batch import objects/references
 
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the batch import
     # highlight-end
@@ -563,429 +571,448 @@ finally:
 # =====================================================================================
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
-try:
-    d = wd.JeopardyQuestions10k()
-    d.upload_dataset(client, overwrite=True)
+d = wd.JeopardyQuestions10k()
+d.upload_dataset(client, overwrite=True)
 
-    categories = client.collections.get("JeopardyCategory")
-    response = categories.query.fetch_objects(limit=1)
-    target_uuid = response.objects[0].uuid
+categories = client.collections.get("JeopardyCategory")
+response = categories.query.fetch_objects(limit=1)
+target_uuid = response.objects[0].uuid
 
-    print(response)
+print(response)
 
-    # START CreateObjectExample
-    questions = client.collections.get("JeopardyQuestion")
+# START CreateObjectExample
+questions = client.collections.get("JeopardyQuestion")
 
-    new_uuid = questions.data.insert(
-        properties={
-            "question": "This is the capital of Australia."
-        },
-        references={  # For adding cross-references
+new_uuid = questions.data.insert(
+    properties={
+        "question": "This is the capital of Australia."
+    },
+    references={  # For adding cross-references
+        "hasCategory": target_uuid
+    }
+)
+# END CreateObjectExample
+
+from uuid import UUID
+
+assert type(new_uuid) == UUID
+
+# START InsertManyExample
+questions = client.collections.get("JeopardyQuestion")
+
+properties = [{"question": f"Test Question {i+1}"} for i in range(5)]
+response = questions.data.insert_many(properties)
+# END InsertManyExample
+
+# START InsertManyDataObjectExample
+from weaviate.util import generate_uuid5
+
+questions = client.collections.get("JeopardyQuestion")
+
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.data.DataObject(
+        properties=properties,
+        uuid=generate_uuid5(properties)
+    )
+    data_objects.append(data_object)
+
+response = questions.data.insert_many(data_objects)
+# END InsertManyDataObjectExample
+
+# START InsertManyDataObjectReferenceExample
+from weaviate.util import generate_uuid5
+
+questions = client.collections.get("JeopardyQuestion")
+
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.data.DataObject(
+        properties=properties,
+        # highlight-start
+        references={
             "hasCategory": target_uuid
-        }
+        },
+        # highlight-end
+        uuid=generate_uuid5(properties)
     )
-    # END CreateObjectExample
+    data_objects.append(data_object)
 
-    from uuid import UUID
+response = questions.data.insert_many(data_objects)
+# END InsertManyDataObjectReferenceExample
 
-    assert type(new_uuid) == UUID
+# START InsertManyBasic
+questions = client.collections.get("JeopardyQuestion")
 
-    # START InsertManyExample
-    questions = client.collections.get("JeopardyQuestion")
-
-    properties = [{"question": f"Test Question {i+1}"} for i in range(5)]
-    response = questions.data.insert_many(properties)
-    # END InsertManyExample
-
-    # START InsertManyDataObjectExample
-    from weaviate.util import generate_uuid5
-
-    questions = client.collections.get("JeopardyQuestion")
-
-    data_objects = list()
-    for i in range(5):
-        properties = {"question": f"Test Question {i+1}"}
-        data_object = wvc.data.DataObject(
-            properties=properties,
-            uuid=generate_uuid5(properties)
-        )
-        data_objects.append(data_object)
-
-    response = questions.data.insert_many(data_objects)
-    # END InsertManyDataObjectExample
-
-    # START InsertManyDataObjectReferenceExample
-    from weaviate.util import generate_uuid5
-
-    questions = client.collections.get("JeopardyQuestion")
-
-    data_objects = list()
-    for i in range(5):
-        properties = {"question": f"Test Question {i+1}"}
-        data_object = wvc.data.DataObject(
-            properties=properties,
-            # highlight-start
-            references={
-                "hasCategory": target_uuid
-            },
-            # highlight-end
-            uuid=generate_uuid5(properties)
-        )
-        data_objects.append(data_object)
-
-    response = questions.data.insert_many(data_objects)
-    # END InsertManyDataObjectReferenceExample
-
-    # START InsertManyBasic
-    questions = client.collections.get("JeopardyQuestion")
-
-    # Build data objects - e.g. with properties, references, and UUIDs
-    data_objects = list()
-    for i in range(5):
-        properties = {"question": f"Test Question {i+1}"}
-        data_object = wvc.data.DataObject(
-            properties=properties,
-            # Add `references`, `vector` or `uuid` as needed
-        )
-        data_objects.append(data_object)
-
-    # highlight-start
-    # Actually insert the data objects
-    response = questions.data.insert_many(data_objects)
-    # highlight-end
-    # END InsertManyBasic
-
-    # START DeleteObjectExample
-    questions = client.collections.get("JeopardyQuestion")
-
-    deleted = questions.data.delete_by_id(uuid=new_uuid)
-    # END DeleteObjectExample
-
-    assert deleted == True
-
-
-    # START DeleteManyExample
-    from weaviate.classes.query import Filter
-
-    questions = client.collections.get("JeopardyQuestion")
-
-    response = questions.data.delete_many(
-        where=Filter.by_property(name="question").equal("Test Question")
+# Build data objects - e.g. with properties, references, and UUIDs
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.data.DataObject(
+        properties=properties,
+        # Add `references`, `vector` or `uuid` as needed
     )
-    # END DeleteManyExample
+    data_objects.append(data_object)
 
-finally:
-    client.close()
+# highlight-start
+# Actually insert the data objects
+response = questions.data.insert_many(data_objects)
+# highlight-end
+# END InsertManyBasic
+
+# START DeleteObjectExample
+questions = client.collections.get("JeopardyQuestion")
+
+deleted = questions.data.delete_by_id(uuid=new_uuid)
+# END DeleteObjectExample
+
+assert deleted == True
+
+
+# START DeleteManyExample
+from weaviate.classes.query import Filter
+
+questions = client.collections.get("JeopardyQuestion")
+
+response = questions.data.delete_many(
+    where=Filter.by_property(name="question").equal("Test Question")
+)
+# END DeleteManyExample
+
+
+client.close()
 
 # =====================================================================================
 # Query examples
 # =====================================================================================
 
-# Connect to WCS instance for query examples
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+# Connect to WCD instance for query examples
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
 )
 
-try:
-    # START BM25QueryExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.bm25(
-        query="animal",
-        limit=2
-    )
+# START BM25QueryExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.bm25(
+    query="animal",
+    limit=2
+)
 
-    for o in response.objects:
-        print(o.properties)  # Object properties
-    # END BM25QueryExample
+for o in response.objects:
+    print(o.properties)  # Object properties
+# END BM25QueryExample
 
-    # START HybridQueryExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.hybrid(
-        query="animal",
-        limit=2
-    )
+# START HybridQueryExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.hybrid(
+    query="animal",
+    limit=2
+)
 
-    for o in response.objects:
-        print(o.properties)  # Object properties
-    # END HybridQueryExample
+for o in response.objects:
+    print(o.properties)  # Object properties
+# END HybridQueryExample
 
-    # START NearTextQueryExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.near_text(
-        query="animal",
-        limit=2
-    )
+# START NearTextQueryExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.near_text(
+    query="animal",
+    limit=2
+)
 
-    for o in response.objects:
-        print(o.properties)  # Object properties
-    # END NearTextQueryExample
+for o in response.objects:
+    print(o.properties)  # Object properties
+# END NearTextQueryExample
 
-    # START BM25QueryDefaultReturnsExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.bm25(
-        query="animal",
-        limit=2
-    )
+# START BM25QueryDefaultReturnsExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.bm25(
+    query="animal",
+    limit=2
+)
 
-    for o in response.objects:
-        print(o.properties)  # All properties by default
-        print(o.references)  # References not returned by default
-        print(o.uuid)  # UUID included by default
-        # END BM25QueryDefaultReturnsExample
-        """
-        # Don't actually show vector when script runs
-        # START BM25QueryDefaultReturnsExample
-        print(o.vector)  # No vector
-        # END BM25QueryDefaultReturnsExample
-        """
-        # START BM25QueryDefaultReturnsExample
-        print(o.metadata)  # No metadata
+for o in response.objects:
+    print(o.properties)  # All properties by default
+    print(o.references)  # References not returned by default
+    print(o.uuid)  # UUID included by default
     # END BM25QueryDefaultReturnsExample
+    """
+    # Don't actually show vector when script runs
+    # START BM25QueryDefaultReturnsExample
+    print(o.vector)  # No vector
+    # END BM25QueryDefaultReturnsExample
+    """
+    # START BM25QueryDefaultReturnsExample
+    print(o.metadata)  # No metadata
+# END BM25QueryDefaultReturnsExample
 
-    # START BM25QueryCustomReturnsExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.bm25(
-        query="animal",
-        include_vector=True,
-        return_properties=["question"],
-        return_metadata=wvc.query.MetadataQuery(distance=True),
-        return_references=wvc.query.QueryReference(
-            link_on="hasCategory",
-            return_properties=["title"],
-            return_metadata=wvc.query.MetadataQuery(creation_time=True)
-        ),
-        limit=2
-    )
+# START BM25QueryCustomReturnsExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.bm25(
+    query="animal",
+    include_vector=True,
+    return_properties=["question"],
+    return_metadata=wvc.query.MetadataQuery(distance=True),
+    return_references=wvc.query.QueryReference(
+        link_on="hasCategory",
+        return_properties=["title"],
+        return_metadata=wvc.query.MetadataQuery(creation_time=True)
+    ),
+    limit=2
+)
 
-    for o in response.objects:
-        print(o.properties)  # Selected properties only
-        print(o.references)  # Selected references
-        print(o.uuid)  # UUID included by default
-        # END BM25QueryCustomReturnsExample
-        """
-        # Don't actually show vector when script runs
-        # START BM25QueryCustomReturnsExample
-        print(o.vector)  # With vector
-        # END BM25QueryCustomReturnsExample
-        """
-        # START BM25QueryCustomReturnsExample
-        print(o.metadata)  # With selected metadata
+for o in response.objects:
+    print(o.properties)  # Selected properties only
+    print(o.references)  # Selected references
+    print(o.uuid)  # UUID included by default
     # END BM25QueryCustomReturnsExample
-
-    # =====================================================================================
-    # Generate examples
-    # =====================================================================================
-
-    # START BM25GenerateExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.generate.bm25(
-        query="animal",
-        limit=2,
-        grouped_task="What do these animals have in common?",
-        single_prompt="Translate the following into French: {answer}"
-    )
-
-    print(response.generated)  # Generated text from grouped task
-    for o in response.objects:
-        print(o.generated)  # Generated text from single prompt
-        print(o.properties)  # Object properties
-    # END BM25GenerateExample
-
-    # START NearTextGenerateExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.generate.near_text(
-        query="animal",
-        limit=2,
-        grouped_task="What do these animals have in common?",
-        single_prompt="Translate the following into French: {answer}"
-    )
-
-    print(response.generated)  # Generated text from grouped task
-    for o in response.objects:
-        print(o.generated)  # Generated text from single prompt
-        print(o.properties)  # Object properties
-    # END NearTextGenerateExample
-
-    # =====================================================================================
-    # Aggregate examples
-    # =====================================================================================
-
-    # START AggregateCountExample
-    from weaviate.classes.query import Filter
-
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.aggregate.over_all(
-        filters=Filter.by_property(name="question").like("*animal*"),
-        total_count=True
-    )
-
-    print(response.total_count)
-    # END AggregateCountExample
-
-    # START AggregateMetricExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.aggregate.near_text(
-        query="animal",
-        object_limit=5,
-        return_metrics=wvc.query.Metrics("points").integer(mean=True)
-    )
-
-    print(response.properties)
-    # END AggregateMetricExample
-
-    # =====================================================================================
-    # Query Groupby examples
-    # =====================================================================================
-
-    # START QueryGroupbyExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.query.near_text(
-        query="animal",
-        distance=0.2,
-        group_by=wvc.query.GroupBy(
-            prop="points",
-            number_of_groups=3,
-            objects_per_group=5
-        )
-    )
-
-    for k, v in response.groups.items():  # View by group
-        print(k, v)
-
-    for o in response.objects:  # View by object
-        print(o)
-    # END QueryGroupbyExample
-
-    # =====================================================================================
-    # Aggregate Groupby examples
-    # =====================================================================================
-
-    # START AggregateGroupbyExample
-    from weaviate.classes.aggregate import GroupByAggregate
-
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.aggregate.near_text(
-        query="animal",
-        distance=0.2,
-        group_by=GroupByAggregate(prop="points"),
-        return_metrics=wvc.query.Metrics("points").integer(mean=True)
-    )
-
-    for o in response.groups:
-        print(o)
-    # END AggregateGroupbyExample
-
-    # =====================================================================================
-    # Display Results examples
-    # =====================================================================================
-
-    # START ResultDisplayExample
-    questions = client.collections.get("JeopardyQuestion")
-    response = questions.generate.near_text(
-        query="history",
-        limit=2,
-        single_prompt="Translate this into French {question}",
-        grouped_task="Summarize this into a sentence",
-        return_metadata=wvc.query.MetadataQuery(
-            distance=True,
-            creation_time=True
-        )
-    )
-
-    print("Grouped Task generated outputs:")
-    print(response.generated)
-    for o in response.objects:
-        print(f"Outputs for object {o.uuid}")
-        print(f"Generated text:")
-        print(o.generated)
-        print(f"Properties:")
-        print(o.properties)
-        print(f"Metadata")
-        print(o.metadata)
-    # END ResultDisplayExample
-
-
     """
-    # START ResultDisplayOutput
-    _GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('61e29275-8f53-5e28-a355-347d45a847b3'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 7, 475000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.19253945350646973, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 1000.0, 'answer': 'Daniel Boorstein', 'air_date': datetime.datetime(1990, 3, 26, 0, 0, tzinfo=datetime.timezone.utc), 'round': 'Double Jeopardy!', 'question': 'This historian & former Librarian of Congress was teaching history at Harvard while studying law at Yale'}, references=None, vector=None, generated="Cet historien et ancien bibliothécaire du Congrès enseignait l'histoire à Harvard tout en étudiant le droit à Yale."), _GenerativeObject(uuid=UUID('e987d1a1-2599-5dd8-bd22-4f3b0338539a'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 8, 185000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.193121075630188, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 400.0, 'air_date': datetime.datetime(2007, 5, 11, 0, 0, tzinfo=datetime.timezone.utc), 'answer': 'an opinion', 'round': 'Jeopardy!', 'question': 'This, a personal view or belief, comes from the Old French for "to think"'}, references=None, vector=None, generated='Ceci, une opinion personnelle ou une croyance, provient du vieux français signifiant "penser".')], generated='Daniel Boorstein, a historian and former Librarian of Congress, taught history at Harvard while studying law at Yale, and an opinion is a personal view or belief derived from the Old French word for "to think".')
-    # END ResultDisplayOutput
+    # Don't actually show vector when script runs
+    # START BM25QueryCustomReturnsExample
+    print(o.vector)  # With vector
+    # END BM25QueryCustomReturnsExample
     """
+    # START BM25QueryCustomReturnsExample
+    print(o.metadata)  # With selected metadata
+# END BM25QueryCustomReturnsExample
 
-    # THIS DOES NOT RELIABLY WORK AS THE PROPS CAN CONTAIN DATETIME
-    # # START ResultJSONDisplayExample
-    # import json
+# =====================================================================================
+# Generate examples
+# =====================================================================================
 
-    # questions = client.collections.get("JeopardyQuestion")
-    # response = questions.query.fetch_objects(limit=1)
+# START BM25GenerateExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.generate.bm25(
+    query="animal",
+    limit=2,
+    grouped_task="What do these animals have in common?",
+    single_prompt="Translate the following into French: {answer}"
+)
 
-    # # Print result object properties
-    # for o in response.objects:
-    #     print(o.properties)
-    # # END ResultJSONDisplayExample
+print(response.generated)  # Generated text from grouped task
+for o in response.objects:
+    print(o.generated)  # Generated text from single prompt
+    print(o.properties)  # Object properties
+# END BM25GenerateExample
 
-    # """
-    # # START ResultJSONDisplayResults
-    # {
-    #   "points": 100.0,
-    #   "answer": "Jonah",
-    #   "air_date": "2001-01-10T00:00:00Z",
-    #   "round": "Jeopardy!",
-    #   "question": "This prophet passed the time he spent inside a fish offering up prayers"
-    # }
-    # # END ResultJSONDisplayResults
-    # """
+# START NearTextGenerateExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.generate.near_text(
+    query="animal",
+    limit=2,
+    grouped_task="What do these animals have in common?",
+    single_prompt="Translate the following into French: {answer}"
+)
 
-    # IteratorBasic
-    all_objects = [question for question in questions.iterator()]
-    # END IteratorBasic
+print(response.generated)  # Generated text from grouped task
+for o in response.objects:
+    print(o.generated)  # Generated text from single prompt
+    print(o.properties)  # Object properties
+# END NearTextGenerateExample
 
-    # IteratorAnswerOnly
-    all_object_answers = [question for question in questions.iterator(return_properties=["answer"])]
-    # END IteratorAnswerOnly
+# =====================================================================================
+# Aggregate examples
+# =====================================================================================
 
-    # IteratorWithMetadata
-    all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Get selected metadata
-    # END IteratorWithMetadata
+# START AggregateCountExample
+from weaviate.classes.query import Filter
 
+questions = client.collections.get("JeopardyQuestion")
+response = questions.aggregate.over_all(
+    filters=Filter.by_property(name="question").like("*animal*"),
+    total_count=True
+)
 
-    # START LenCollectionExample
-    articles = client.collections.get("Article")
-    print(len(articles))
-    # END LenCollectionExample
+print(response.total_count)
+# END AggregateCountExample
 
+# START AggregateMetricExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.aggregate.near_text(
+    query="animal",
+    object_limit=5,
+    return_metrics=wvc.query.Metrics("points").integer(mean=True)
+)
 
-    # START BrokenQueryExample
-    try:
-        collection = client.collections.get("NonExistentCollection")
-        collection.query.fetch_objects(limit=2)
-    except weaviate.exceptions.WeaviateBaseError as e:
-        print(f"Caught a Weaviate error: {e.message}")
-    # END BrokenQueryExample
+print(response.properties)
+# END AggregateMetricExample
 
+# =====================================================================================
+# Query Groupby examples
+# =====================================================================================
 
-    # GenericsExample
-    from typing import TypedDict
-
-    questions = client.collections.get("JeopardyQuestion")
-
-    class Question(TypedDict):
-        question: str
-        answer: str
-        points: int
-
-    response = questions.query.fetch_objects(
-        limit=2,
-        return_properties=Question,  # Your generic class is used to extract the return properties and statically type the response
-        return_metadata=wvc.query.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+# START QueryGroupbyExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.near_text(
+    query="animal",
+    distance=0.2,
+    group_by=wvc.query.GroupBy(
+        prop="points",
+        number_of_groups=3,
+        objects_per_group=5
     )
-    # END GenericsExample
+)
 
-finally:
-    client.close()
+for k, v in response.groups.items():  # View by group
+    print(k, v)
+
+for o in response.objects:  # View by object
+    print(o)
+# END QueryGroupbyExample
+
+# =====================================================================================
+# Aggregate Groupby examples
+# =====================================================================================
+
+# START AggregateGroupbyExample
+from weaviate.classes.aggregate import GroupByAggregate
+
+questions = client.collections.get("JeopardyQuestion")
+response = questions.aggregate.near_text(
+    query="animal",
+    distance=0.2,
+    group_by=GroupByAggregate(prop="points"),
+    return_metrics=wvc.query.Metrics("points").integer(mean=True)
+)
+
+for o in response.groups:
+    print(o)
+# END AggregateGroupbyExample
+
+# =====================================================================================
+# Display Results examples
+# =====================================================================================
+
+# START ResultDisplayExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.generate.near_text(
+    query="history",
+    limit=2,
+    single_prompt="Translate this into French {question}",
+    grouped_task="Summarize this into a sentence",
+    return_metadata=wvc.query.MetadataQuery(
+        distance=True,
+        creation_time=True
+    )
+)
+
+print("Grouped Task generated outputs:")
+print(response.generated)
+for o in response.objects:
+    print(f"Outputs for object {o.uuid}")
+    print(f"Generated text:")
+    print(o.generated)
+    print(f"Properties:")
+    print(o.properties)
+    print(f"Metadata")
+    print(o.metadata)
+# END ResultDisplayExample
+
+
+"""
+# START ResultDisplayOutput
+_GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('61e29275-8f53-5e28-a355-347d45a847b3'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 7, 475000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.19253945350646973, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 1000.0, 'answer': 'Daniel Boorstein', 'air_date': datetime.datetime(1990, 3, 26, 0, 0, tzinfo=datetime.timezone.utc), 'round': 'Double Jeopardy!', 'question': 'This historian & former Librarian of Congress was teaching history at Harvard while studying law at Yale'}, references=None, vector=None, generated="Cet historien et ancien bibliothécaire du Congrès enseignait l'histoire à Harvard tout en étudiant le droit à Yale."), _GenerativeObject(uuid=UUID('e987d1a1-2599-5dd8-bd22-4f3b0338539a'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 8, 185000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.193121075630188, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 400.0, 'air_date': datetime.datetime(2007, 5, 11, 0, 0, tzinfo=datetime.timezone.utc), 'answer': 'an opinion', 'round': 'Jeopardy!', 'question': 'This, a personal view or belief, comes from the Old French for "to think"'}, references=None, vector=None, generated='Ceci, une opinion personnelle ou une croyance, provient du vieux français signifiant "penser".')], generated='Daniel Boorstein, a historian and former Librarian of Congress, taught history at Harvard while studying law at Yale, and an opinion is a personal view or belief derived from the Old French word for "to think".')
+# END ResultDisplayOutput
+"""
+
+# THIS DOES NOT RELIABLY WORK AS THE PROPS CAN CONTAIN DATETIME
+# # START ResultJSONDisplayExample
+# import json
+
+# questions = client.collections.get("JeopardyQuestion")
+# response = questions.query.fetch_objects(limit=1)
+
+# # Print result object properties
+# for o in response.objects:
+#     print(o.properties)
+# # END ResultJSONDisplayExample
+
+# """
+# # START ResultJSONDisplayResults
+# {
+#   "points": 100.0,
+#   "answer": "Jonah",
+#   "air_date": "2001-01-10T00:00:00Z",
+#   "round": "Jeopardy!",
+#   "question": "This prophet passed the time he spent inside a fish offering up prayers"
+# }
+# # END ResultJSONDisplayResults
+# """
+
+# IteratorBasic
+all_objects = [question for question in questions.iterator()]
+# END IteratorBasic
+
+# IteratorAnswerOnly
+all_object_answers = [question for question in questions.iterator(return_properties=["answer"])]
+# END IteratorAnswerOnly
+
+# IteratorWithMetadata
+all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Get selected metadata
+# END IteratorWithMetadata
+
+
+# START LenCollectionExample
+articles = client.collections.get("Article")
+print(len(articles))
+# END LenCollectionExample
+
+# START SkipValidationExample
+# Configure the `performant_articles` to skip argument validation on its methods
+performant_articles = client.collections.get("Article", skip_argument_validation=True)
+# END SkipValidationExample
+
+# START BrokenQueryExample
+try:
+    collection = client.collections.get("NonExistentCollection")
+    collection.query.fetch_objects(limit=2)
+except weaviate.exceptions.WeaviateBaseError as e:
+    print(f"Caught a Weaviate error: {e.message}")
+# END BrokenQueryExample
+
+
+# GenericsExample
+from typing import TypedDict
+
+questions = client.collections.get("JeopardyQuestion")
+
+class Question(TypedDict):
+    question: str
+    answer: str
+    points: int
+
+response = questions.query.fetch_objects(
+    limit=2,
+    return_properties=Question,  # Your generic class is used to extract the return properties and statically type the response
+    return_metadata=wvc.query.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+)
+# END GenericsExample
+
+collection_name = "JeopardyQuestion"
+
+# START CollectionInteractionExample
+from weaviate.collections import Collection
+
+my_collection = client.collections.get(collection_name)
+
+def work_with_collection(collection: Collection):
+    # Do something with the collection, e.g.:
+    r = collection.query.near_text(query="financial report summary")
+    return r
+
+response = work_with_collection(my_collection)
+# END CollectionInteractionExample
+
+client.close()
+

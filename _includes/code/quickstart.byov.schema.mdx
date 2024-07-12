@@ -3,69 +3,51 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-
 import ByovAllPyCode from '!!raw-loader!/_includes/code/quickstart.byov.all.py';
-
-<FilteredTextBlock
-  text={ByovAllPyCode}
-  startMarker="# ===== Create schema ====="
-  endMarker="# ===== Import data ====="
-  language="py"
-/>
-
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-
 import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.py';
-
-<FilteredTextBlock
-  text={ByovAllPy3Code}
-  startMarker="# ===== Create schema ====="
-  endMarker="# ===== Import data ====="
-  language="py"
-/>
-
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-
 import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
-
-<FilteredTextBlock
-  text={ByovAllTsCode}
-  startMarker="// Class definition"
-  endMarker="// Import data"
-  language="ts"
-/>
-
-  </TabItem>
-{/* <TabItem value="go" label="Go">
-
-```go
-
-```
-</TabItem> */}
-{/* <TabItem value="java" label="Java">
-
-```java
-
-```
-
-</TabItem> */}
-  <TabItem value="curl" label="Curl">
-
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
 import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
-<FilteredTextBlock
-  text={ByovAllShCode}
-  startMarker="#!/bin/bash"
-  endMarker="# Send to the batch endpoint"
-  language="bash"
-/>
-
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ByovAllPyCode}
+      startMarker="# ===== Create schema ====="
+      endMarker="# ===== Import data ====="
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={ByovAllPy3Code}
+      startMarker="# ===== Create schema ====="
+      endMarker="# ===== Import data ====="
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+     <FilteredTextBlock
+       text={ByovAllTsCode}
+       startMarker="// Class definition"
+       endMarker="// Import data"
+       language="ts"
+     />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={ByovAllTsCodeLegacy}
+      startMarker="// Class definition"
+      endMarker="// Import data"
+      language="ts"
+    />
+  </TabItem>
+  <TabItem value="curl" label="Curl">
+    <FilteredTextBlock
+      text={ByovAllShCode}
+      startMarker="#!/bin/bash"
+      endMarker="# Send to the batch endpoint"
+      language="bash"
+    />
   </TabItem>
 </Tabs>

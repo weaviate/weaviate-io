@@ -1,7 +1,7 @@
 ---
 title: reranker-transformers
 sidebar_position: 55
-image: og/docs/modules/text2vec-transformers.jpg
+image: og/docs/modules/reranker-transformers.jpg
 # tags: ['rerank', 'transformers']
 ---
 
@@ -17,9 +17,9 @@ image: og/docs/modules/text2vec-transformers.jpg
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
-The `reranker-transformers` module is not available on the WCS.
+The `reranker-transformers` module is not available on the WCD.
 
 ### Weaviate open source
 
@@ -64,17 +64,17 @@ services:
 
 ## Configuration
 
-The `reranker-transformers` module can be configured for any class in the schema.
+The `reranker-transformers` module can be configured for any collection in the schema.
 
 
 ### Reranker selection
 
 If there is only one `reranker` module enabled, you don't need to do anything. The `reranker` module will be used by default.
 
-Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each class. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
+Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each collection. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
 
 <details>
-  <summary>Set reranker for a class</summary>
+  <summary>Set reranker for a collection</summary>
 
 ```json
 {
@@ -83,7 +83,7 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
       "class": "Document",
       ...,
       "moduleConfig": {
-        "reranker-transformers": {},  // This will configure the 'Document' class to use the 'reranker-transformers' module
+        "reranker-transformers": {},  // This will configure the 'Document' collection to use the 'reranker-transformers' module
       }
     }
   ]
@@ -115,6 +115,8 @@ These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

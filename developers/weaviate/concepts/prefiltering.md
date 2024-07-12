@@ -5,13 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
 ---
 
-
-:::info Related pages
-- [References: GraphQL API](../api/graphql/index.md)
-:::
-
-## Introduction
-
 Weaviate provides powerful filtered vector search capabilities, meaning that you can eliminate candidates in your "fuzzy" vector search based on individual properties. Thanks to Weaviate's efficient pre-filtering mechanism, you can keep the recall high - even when filters are very restrictive. Additionally, the process is efficient and has minimal overhead compared to an unfiltered vector search.
 
 ## Post-Filtering vs Pre-Filtering
@@ -133,7 +126,7 @@ The two semantic queries have very little relation and most likely there will be
 
 The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache (pre-`Roaring bitmap` implementation).
 
-Please note that each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
+Each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
 
 <!-- TODO - replace table with updated post-roaring bitmaps figures -->
 
@@ -147,7 +140,13 @@ Wildcard filters show considerably worse performance than exact match filters. T
 
 The cache is built in a way that it cannot ever serve a stale entry. Any write to the inverted index updates a hash for the specific row. This hash is used as part of the key in the cache. This means that if the underlying inverted index is changed, the new query would first read the updated hash and then run into a cache miss (as opposed to ever serving a stale entry). The cache has a fixed size and entries for stale hashes - which cannot be accessed anymore - are overwritten when it runs full.
 
+## Further resources
+:::info Related pages
+- [References: GraphQL API](../api/graphql/index.md)
+:::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

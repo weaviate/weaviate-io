@@ -4,37 +4,56 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyClientCode from '!!raw-loader!/_includes/code/wcs.client.is_ready.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyClientCode}
-    startMarker="# WCSQuickStartInstantiation"
-    endMarker="# END WCSQuickStartInstantiation"
+    startMarker="# WCDQuickStartInstantiation"
+    endMarker="# END WCDQuickStartInstantiation"
     language="py"
   />
 </TabItem>
-<TabItem value="pyv3" label="Python (v3)">
+<TabItem value="pyv3" label="Python Client v3">
 
 ```python
 import weaviate
+import os
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    url=os.getenv("WEAVIATE_INSTANCE_URL"),  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("YOUR-WEAVIATE-API-KEY")),  # Replace with your Weaviate instance API key
+    additional_headers={
+        'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")  # Replace with your third party API key and identifying header
+    }
 )
 
 print(client.is_ready())
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
+
+```js
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  'https://WEAVIATE_INSTANCE_URL', {                    // Replace with your Weaviate endpoint
+  authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'), // Replace with your Weaviate instance API key
+});
+
+const response = await client.isReady();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```js
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 
 const response = await client.misc
@@ -57,9 +76,9 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+        Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
         Scheme: "https",
-        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
     }
 
     client, err := weaviate.NewClient(cfg)
@@ -88,8 +107,8 @@ import io.weaviate.client.v1.misc.model.Meta;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");  // Replace with your endpoint
-    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your Weaviate instance API key
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
+    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace with your Weaviate instance API key
 
     Result<Boolean> result = client.misc().readyChecker().run();
 

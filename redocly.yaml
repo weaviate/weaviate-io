@@ -1,0 +1,12 @@
+extends:
+  - recommended
+
+rules:
+  no-unused-components: error
+
+theme:
+  # See https://redocly.com/docs/api-reference-docs/configuration/functionality/
+  openapi:
+    disableSearch: false
+    scrollYOffset: 85
+    # See https://redocly.com/docs/api-reference-docs/configuration/theming/

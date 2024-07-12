@@ -1,5 +1,5 @@
 ---
-title: PQ vector compression
+title: Product Quantization (compression)
 sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
@@ -8,11 +8,13 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.pq-compression.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.pq-compression-v3.py';
+import TSCodeAutoPQ from '!!raw-loader!/_includes/code/howto/configure.pq-compression.autopq.ts';
+import TSCodeManualPQ from '!!raw-loader!/_includes/code/howto/configure.pq-compression.manual.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.pq-compression-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/configure.pq-compression.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/pq-compression.java';
-import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
 
 :::note
 Starting in v1.23, AutoPQ simplifies configuring PQ on new collections.
@@ -30,7 +32,7 @@ To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vecto
 
 ## Enable PQ compression
 
-There are two ways to enable PQ compression:
+PQ is configured at a collection level. There are two ways to enable PQ compression:
 
 - [Use AutoPQ to enable PQ compression](./pq-compression.md#configure-autopq).
 - [Manually enable PQ compression](./pq-compression.md#manually-configure-pq).
@@ -40,24 +42,24 @@ There are two ways to enable PQ compression:
 :::info Added in v1.23.0
 :::
 
-If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training step so you don't have to load your data in two phases.
+For new collections, use AutoPQ. AutoPQ automates triggering of the PQ training step based on the size of the collection.
 
 ### 1. Set the environment variable
 
 AutoPQ requires asynchronous indexing.
 
-Open-source Weaviate users: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
-Weaviate Cloud Services users: Enable async indexing through the WCS console and restart your Weaviate instance.
+- **Open-source Weaviate users**: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
+- [**Weaviate Cloud (WCD)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCD Console and restart your Weaviate instance.
 
 
 ### 2. Configure PQ
 
-To enable PQ for a collection, specify it in your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
+Specify PQ settings for each collection for which it is to be enabled.
 
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START CollectionWithAutoPQ"
@@ -66,7 +68,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START CollectionWithAutoPQ"
@@ -75,9 +77,18 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeAutoPQ}
+       startMarker="// START CollectionWithAutoPQ"
+       endMarker="// END CollectionWithAutoPQ"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
        endMarker="// END CollectionWithAutoPQ"
        language="ts"
@@ -88,36 +99,44 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
 
 ### 3. Load your data
 
-Load your data. You do not have to load an initial set of training data. AutoPQ creates the PQ codebook when the object counts reach the training limit. By default, the training limit is 100,000 objects per shard.
+Load your data. You do not have to load an initial set of training data.
+
+AutoPQ creates the PQ codebook when the object count reaches the training limit. By default, the training limit is 100,000 objects per shard.
 
 ## Manually configure PQ
 
-If you cannot enable AutoPQ, use the manual method to enable PQ. When you manually configure PQ on a new collection, be sure to import a set of 10,000 to 100,000 training objects per shard before you enable PQ.
+As an alternative to AutoPQ, you can also manually enable PQ on an existing collection. Upon enabling PQ, Weaviate will train the PQ codebook, using the pre-loaded set of objects.
 
-Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete.
-
-To manually enable PQ compression, follow these steps:
+To manually enable PQ, follow these steps:
 
 - Phase One: Create a codebook
 
     - [Configure an initial schema without PQ](./pq-compression.md#1-configure-an-initial-schema-without-pq)
-    - [Load some training data](./pq-compression.md#2-load-some-training-data)
+    - [Load some training data](./pq-compression.md#2-load-training-data)
     - [Enable and train PQ](./pq-compression.md#3-enable-pq-and-create-the-codebook)
 
 - Phase Two: Load the rest of your data
 
     - [Load the rest of your data](./pq-compression.md#4-load-the-rest-of-your-data)
 
+:::tip How large should the training set be?
+When PQ is enabled, Weaviate uses the smaller of training limit or the collection object count to train PQ.
+
+We recommend importing a set of 10,000 to 100,000 training objects per shard before you enable PQ.
+:::
+
+:::note
+Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete.
+:::
+
 The next few sections work through these steps.
 
 ### 1. Configure an initial schema without PQ
 
-Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance.
-
-Every collection in your Weaviate instance is defined by a [schema](../starter-guides/schema.md). Weaviate uses the schema during your initial data load.
+[Create a collection](../manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START InitialSchema"
@@ -126,7 +145,7 @@ Every collection in your Weaviate instance is defined by a [schema](../starter-g
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START InitialSchema"
@@ -135,9 +154,18 @@ Every collection in your Weaviate instance is defined by a [schema](../starter-g
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeManualPQ}
+       startMarker="// START InitClassDef"
+       endMarker="// END InitClassDef"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START InitClassDef"
        endMarker="// END InitClassDef"
        language="ts"
@@ -163,15 +191,14 @@ Every collection in your Weaviate instance is defined by a [schema](../starter-g
   </TabItem>
 </Tabs>
 
-### 2. Load some training data
+### 2. Load training data
 
-If you are starting with a new collection, load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard.
+[Add objects](../manage-data/import.mdx) that will be used to train PQ. Weaviate will use the greater of the training limit, or the collection size, to train PQ.
 
-If you already have data in an existing collection, [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
+We recommend loading a representative sample such that the trained centroids are representative of the entire dataset.
 
-When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
-
-<details>
+<!-- TODO (Note added Apr 2024) - Remove the commented out code below on/after June 2024 if no complaints -->
+<!-- <details>
 
   <summary>
     Download sample data
@@ -182,7 +209,7 @@ When you load data for this training phase, you can use any of the objects in yo
   </div>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START DownloadData"
@@ -191,7 +218,7 @@ When you load data for this training phase, you can use any of the objects in yo
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START DownloadData"
@@ -200,9 +227,9 @@ When you load data for this training phase, you can use any of the objects in yo
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
       <FilteredTextBlock
-        text={TSCode}
+        text={TSCodeLegacy}
         startMarker="// START FetchData"
         endMarker="// END FetchData"
         language="ts"
@@ -230,8 +257,14 @@ When you load data for this training phase, you can use any of the objects in yo
 
 </details>
 
+<details>
+
+  <summary>
+    Add data
+  </summary>
+
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START LoadData"
@@ -240,7 +273,7 @@ When you load data for this training phase, you can use any of the objects in yo
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START LoadData"
@@ -249,9 +282,9 @@ When you load data for this training phase, you can use any of the objects in yo
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeLegacy}
        startMarker="// START LoadData"
        endMarker="// END LoadData"
        language="ts"
@@ -277,9 +310,16 @@ When you load data for this training phase, you can use any of the objects in yo
   </TabItem>
 </Tabs>
 
+</details> -->
+
 ### 3. Enable PQ and create the codebook
 
-To enable PQ compression, update your collection (class) schema to set `pq_enabled=True` (or define a `quantizer` if you use the Python Client v4.). After you update the schema, Weaviate uses up to `pq_training_limit` objects to train PQ.
+Update your collection definition to enable PQ. Once PQ is enabled, Weaviate trains the codebook using the training data.
+
+:::info Which objects are used for training?
+- If the collection has more objects than the training limit, Weaviate randomly selects objects from the collection to train the codebook.
+- If the collection has fewer objects than the training limit, Weaviate uses all objects in the collection to train the codebook.
+:::
 
 import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
@@ -288,7 +328,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START UpdateSchema"
@@ -297,7 +337,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START UpdateSchema"
@@ -306,9 +346,18 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeManualPQ}
+       startMarker="// START UpdateSchema"
+       endMarker="// END UpdateSchema"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
        endMarker="// END UpdateSchema"
        language="ts"
@@ -336,7 +385,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
 
 ### 4. Load the rest of your data
 
-If you are starting with a new Weaviate instance, you can load the rest of your data after PQ [creates the codebook](#enable-pq-and-create-the-codebook). Weaviate compresses the new data when it adds it to the database.
+Once the [codebook has been trained](#enable-pq-and-create-the-codebook), you may continue to add data as per normal. Weaviate compresses the new data when it adds it to the database.
 
 If you already have data in your Weaviate instance when you create the codebook, Weaviate automatically compresses the remaining objects (the ones after the initial training set).
 
@@ -355,7 +404,7 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 For most use cases, 100,000 objects is an optimal training size. There is little benefit to increasing `trainingLimit`. If you do increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
 
-If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets.
+If you have a small dataset and wish to enable compression, consider using [binary quantization (BQ)](./bq-compression.md). BQ is a simpler compression method that does not require training.
 
 ### Check the system logs
 
@@ -384,7 +433,7 @@ docker inspect --format='{{.LogPath}}' <your-weaviate-container-id>
 To review the current `pq` configuration, you can retrieve it as shown below.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetSchema"
@@ -393,7 +442,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START GetSchema"
@@ -402,9 +451,18 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeManualPQ}
+      startMarker="// START ViewConfig"
+      endMarker="// END ViewConfig"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START GetSchema"
       endMarker="// END GetSchema"
       language="ts"
@@ -439,10 +497,13 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Concepts: Vector index](../concepts/vector-index.md)
+- [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

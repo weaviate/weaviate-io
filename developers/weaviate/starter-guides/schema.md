@@ -187,7 +187,7 @@ This is also where you would specify cross-references, which are a special type 
 
 Cross-references can be very useful for creating relationships between objects. For example, you might have a `Movie` collection with a `withActor` cross-reference property that points to the `Actor` collection. This will allow you to retrieve relevant actors for each movie.
 
-However, please be aware that using cross-references can be costly in terms of performance, so we recommend using them sparingly. Additionally, cross-reference properties do not affect the object's vector. So if you want the related properties to be considered in a vector search, they should be included in the object's vectorized properties.
+However, cross-references can be costly in terms of performance. Use them sparingly. Additionally, cross-reference properties do not affect the object's vector. So if you want the related properties to be considered in a vector search, they should be included in the object's vectorized properties.
 
 You can find examples of how to define and use cross-references [here](../manage-data/cross-references.mdx).
 
@@ -211,7 +211,9 @@ import SchemaWithMT from '/_includes/code/tutorial.schema.multi-tenancy.mdx';
 
 ### Index settings
 
-Weaviate uses two types of indexes: vector indexes and inverted indexes. Vector indexes are used to store and organize vectors for fast vector similarity-based searches, and inverted indexes are used to store data for fast filtering and keyword searches.
+Weaviate uses two types of indexes: [vector indexes](../concepts/vector-index.md) and [inverted indexes](../concepts/indexing.md#inverted-index). Vector indexes are used to store and organize vectors for fast vector similarity-based searches, and inverted indexes are used to store data for fast filtering and keyword searches.
+
+The default vector index type is [HNSW](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index). The other options are [flat](../concepts/vector-index.md#flat-index), which is suitable for small collections, such as those in a multi-tenancy collection, or [dynamic](../concepts/vector-index.md#dynamic-index), which starts as a flat index before switching to an HNSW index if its size grows beyond a predetermined threshold.
 
 import SchemaWithIndexSettings from '/_includes/code/tutorial.schema.index-settings.mdx';
 
@@ -243,9 +245,11 @@ The following resources include more detailed information on schema settings and
 
 - [Schema - Reference: Configuration](../config-refs/schema/index.md): A reference of all available schema settings.
 - [Collections - How-to: manage data](../manage-data/collections.mdx): Code examples for creating and managing collections, including how to configure various settings using client libraries.
-- [Schema - Reference: REST](../api/rest/schema.md): A reference of all available schema settings for the REST API.
+- [Schema - Reference: REST](/developers/weaviate/api/rest#tag/schema): A reference of all available schema settings for the REST API.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

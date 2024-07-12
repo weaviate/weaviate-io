@@ -12,7 +12,7 @@ export default function quoteBox(props) {
         <div className={`${styles.card} ${styles.longCard}`}>
           <div className={styles.contentDiv}>
             <h3 className={styles.cTextColor}>
-              “Weaviate’s Enterprise Dedicated offering lets our team leverage
+              “Weaviate’s Enterprise Cloud offering lets our team leverage
               innovative and open source technology with less management
               overhead, and in a way that satisfies our business needs.”
             </h3>

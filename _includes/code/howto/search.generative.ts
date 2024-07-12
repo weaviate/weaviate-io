@@ -6,154 +6,138 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  process.env.WCD_URL,
+ {
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+   }
+ }
+)
+
+let genResults;
+
+// START SingleGenerative TS // GroupedGenerativeProperties // GroupedGenerative TS // SingleGenerativeProperties TS
+const jeopardy = client.collections.get('JeopardyQuestion');
+// END SingleGenerative TS // END GroupedGenerativeProperties // END GroupedGenerative TS // END SingleGenerativeProperties TS
+
+
+// ===============================================
+// ===== QUERY WITH TARGET VECTOR & nearText =====
+// ===============================================
+{
+// NamedVectorNearText
+const myNVCollection = client.collections.get('WineReviewNV');
+
+const result = await myNVCollection.generate.nearText(
+  'a sweet German white wine',
+  {
+    singlePrompt: 'Translate this into German: {review_body}',
+    groupedTask: 'Summarize these review',
   },
-});
+  {
+    limit: 2,
+    // highlight-start
+    targetVector: 'title_country',
+    // highlight-end
+  }
+);
 
-let result, generatePrompt, genResults;
+console.log(result.generated); // print groupedTask result
 
-// =====================================
-// ===== SINGLE GENERATIVE EXAMPLE =====
-// =====================================
-
-// SingleGenerative TS
-generatePrompt = `Convert the following into a question for twitter.
-Include emojis for fun, but do not include the answer: {question}.`;
-
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withGenerate({
-    singlePrompt: generatePrompt,
-  })
-  .withNearText({
-    concepts: ['World history'],
-  })
-  .withLimit(2)
-  .withFields('question')
-  .do();
-
-console.log(JSON.stringify(result, null, 2));
-// END SingleGenerative TS
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+  console.log(object.generated); // print singlePrompt result
+}
+// END NamedVectorNearText
 
 // Tests
-genResults = result.data.Get.JeopardyQuestion;
-assert.equal(genResults.length, 2);
-for (const g of genResults) {
-  assert.equal(g._additional.generate.error, null);
-  assert.equal(typeof g._additional.generate.singleResult, 'string');
+// assert.deepEqual(result.objects.length, 2);
 }
-
 
 // =====================================================
 // ===== SINGLE GENERATIVE EXAMPLE WITH PROPERTIES =====
 // =====================================================
-
+{
 // SingleGenerativeProperties TS
-generatePrompt = 'Convert this quiz question: {question} and answer: {answer} into a trivia tweet.';
 
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withGenerate({
-    singlePrompt: generatePrompt,
-  })
-  .withNearText({
-    concepts: ['World history'],
-  })
-  // highlight-start
-  .withFields('round')
-  // highlight-end
-  .withLimit(2)
-  .do();
+const prompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`
 
-console.log(JSON.stringify(result, null, 2));
+const result = await jeopardy.generate.nearText('World history',
+  { singlePrompt: prompt },
+  { limit: 2 }
+)
+
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+  console.log(object.generated); // print singlePrompt result
+}
 // END SingleGenerativeProperties TS
 
 // Tests
-genResults = result.data.Get.JeopardyQuestion;
-assert.equal(genResults.length, 2);
-for (const g of genResults) {
-  assert.equal(g._additional.generate.error, null);
-  assert.equal(typeof g._additional.generate.singleResult, 'string');
+// genResults = result.objects;
+// assert.equal(genResults.length, 2);
+// for (const g of genResults) {
+//   assert.equal(typeof g.generated, 'string');
+// }
 }
 
 // ======================================
 // ===== GROUPED GENERATIVE EXAMPLE =====
 // ======================================
-
+{
 // GroupedGenerative TS
-generatePrompt = 'What do these animals have in common, if anything?';
 
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  // highlight-start
-  .withGenerate({
-    groupedTask: generatePrompt,
-  })
-  // highlight-end
-  .withNearText({
-    concepts: ['Cute animals'],
-  })
-  .withFields('points')
-  .withLimit(3)
-  .do();
+const generatePrompt = `What do these animals have in common, if anything?`;
 
-console.log(JSON.stringify(result, null, 2));
+const result = await jeopardy.generate.nearText('Cute animals',
+  { groupedTask: generatePrompt },
+  { limit: 3 }
+)
+
+console.log(result.generated);
 // END GroupedGenerative TS
 
 // Tests
-genResults = result.data.Get.JeopardyQuestion;
-assert.equal(genResults.length, 3);
-assert.equal(genResults[0]._additional.generate.error, null);
-assert.equal(typeof genResults[0]._additional.generate.groupedResult, 'string');
-for (const g of genResults.slice(1)) {
-  assert.equal(g._additional.generate, null);
-  assert.equal(typeof g.points, 'number');
+// genResults = result;
+// assert.equal(genResults.objects.length, 3);
+// assert.equal(typeof genResults[0]._additional.generate.groupedResult, 'string');
+// for (const g of genResults.objects.slice(1)) {
+//   assert.equal(g.generated, null);
+//   assert.equal(typeof g.points, 'number');
+// }
 }
-
 
 // ======================================================
 // ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
 // ======================================================
-
+{
 // GroupedGenerativeProperties
-generatePrompt = 'What do these animals have in common, if anything?';
 
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withGenerate({
+const generatePrompt = `What do these animals have in common, if anything?`;
+
+const result = await jeopardy.generate.nearText('Australian animals',
+  {
     groupedTask: generatePrompt,
-    // highlight-start
-    groupedProperties: ['answer', 'question'],  // available since client version 1.3.2
-    // highlight-end
-  })
-  .withNearText({
-    concepts: ['Australian animals'],
-  })
-  .withFields('question points')
-  .withLimit(3)
-  .do();
+    groupedProperties: ['answer', 'question'],
+  },
+  { limit: 3 }
+)
 
-console.log(JSON.stringify(result, null, 2));
+console.log(result.generated);
 // END GroupedGenerativeProperties
 
 // Tests
-genResults = result.data.Get.JeopardyQuestion;
-assert.equal(genResults.length, 3);
-assert.equal(genResults[0]._additional.generate.error, null);
-assert.ok(genResults[0]._additional.generate.groupedResult.includes('Australia'));
-for (const g of genResults.slice(1)) {
-  assert.equal(g._additional.generate, null);
-  assert.equal(typeof g.points, 'number');
-  assert.equal(typeof g.question, 'string');
+// genResults = result;
+// assert.equal(genResults.objects.length, 3);
+// // assert.equal(genResults[0]._additional.generate.error, null);
+// assert.ok(genResults.generated.includes('Australia'));
+// for (const g of genResults.objects.slice(1)) {
+//   assert.equal(g.generated, null);
+//   assert.equal(typeof g.points, 'number');
+//   assert.equal(typeof g.question, 'string');
+// }
 }

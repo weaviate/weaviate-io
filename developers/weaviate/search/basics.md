@@ -11,6 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.basics-v2.ts';
+
 
 With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
 
@@ -22,7 +24,7 @@ You can get objects without specifying any parameters. This returns objects orde
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# BasicGetPython"
@@ -31,7 +33,7 @@ You can get objects without specifying any parameters. This returns objects orde
     />
   </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -41,7 +43,7 @@ You can get objects without specifying any parameters. This returns objects orde
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -51,6 +53,18 @@ You can get objects without specifying any parameters. This returns objects orde
 />
 
 </TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// BasicGetJS"
+  endMarker="// END BasicGetJS"
+  language="js"
+/>
+
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -89,7 +103,7 @@ The output is like this:
 Use `limit` to set a fixed maximum number of objects to return.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithLimitPython"
@@ -98,7 +112,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -108,10 +122,21 @@ Use `limit` to set a fixed maximum number of objects to return.
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetWithLimitJS"
+  endMarker="// END GetWithLimitJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
@@ -149,7 +174,7 @@ The output is like this:
 To start in the middle of your result set, define an `offset`. Set a `limit` to return objects starting at the offset.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithLimitOffsetPython"
@@ -158,7 +183,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -168,10 +193,21 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetWithLimitOffsetJS"
+  endMarker="// END GetWithLimitOffsetJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
@@ -212,7 +248,7 @@ To paginate through the entire database, use a [cursor](../manage-data/read-all-
 You can specify which object properties to return.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetPropertiesPython"
@@ -222,7 +258,7 @@ You can specify which object properties to return.
 </TabItem>
 
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -232,10 +268,21 @@ You can specify which object properties to return.
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetPropertiesJS"
+  endMarker="// END GetPropertiesJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
@@ -273,7 +320,7 @@ The output is like this:
 You can retrieve the object vector. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetObjectVectorPython"
@@ -282,7 +329,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
@@ -291,10 +338,21 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetObjectVectorJS"
+  endMarker="// END GetObjectVectorJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
@@ -332,7 +390,7 @@ The output is like this:
 You can retrieve the object `id` (uuid).
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
   text={PyCode}
@@ -342,7 +400,7 @@ You can retrieve the object `id` (uuid).
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -352,10 +410,21 @@ You can retrieve the object `id` (uuid).
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetObjectIdJS"
+  endMarker="// END GetObjectIdJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
@@ -397,7 +466,7 @@ To retrieve properties from cross-referenced objects, specify:
 - The properties to retrieve
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithCrossRefsPython"
@@ -406,7 +475,7 @@ To retrieve properties from cross-referenced objects, specify:
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -416,10 +485,21 @@ To retrieve properties from cross-referenced objects, specify:
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetWithCrossRefs"
+  endMarker="// END GetWithCrossRefs"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"
@@ -457,7 +537,7 @@ The output is like this:
 You can specify metadata fields to be returned.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithMetadataPython"
@@ -466,7 +546,7 @@ You can specify metadata fields to be returned.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -476,10 +556,21 @@ You can specify metadata fields to be returned.
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
   text={TSCode}
+  startMarker="// GetWithMetadataJS"
+  endMarker="// END GetWithMetadataJS"
+  language="js"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={TSCodeLegacy}
   startMarker="// GetWithMetadataJS"
   endMarker="// END GetWithMetadataJS"
   language="js"
@@ -506,7 +597,7 @@ For a comprehensive list of metadata fields, see [GraphQL: Additional properties
 If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the tenant parameter in each query.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# MultiTenancy"
@@ -515,7 +606,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# MultiTenancy"
@@ -524,7 +615,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
  />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// MultiTenancy"
@@ -532,15 +623,34 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// MultiTenancy"
+  endMarker="// END MultiTenancy"
+  language="js"
+/>
+</TabItem>
 </Tabs>
+
+## Replication
+
+For collections with replication enabled, you can specify the consistency level in your queries. This applies to CRUD queries as well as searches.
+
+import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
+
+<QueryReplication/>
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections)
 - [API References: GraphQL: Get](../api/graphql/get.md)
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

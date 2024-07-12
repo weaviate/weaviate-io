@@ -1,0 +1,176 @@
+---
+title: Weaviate Cloud
+sidebar_position: 10
+image: og/docs/connect.jpg
+# tags: ['getting started', 'connect']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCodeV3 from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
+import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+import TsCodeV2 from '!!raw-loader!/_includes/code/connections/connect-ts-v2.ts';
+import JavaCode from '!!raw-loader!/_includes/code/connections/connect.java';
+import ShellCode from '!!raw-loader!/_includes/code/connections/connect.sh';
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
+
+Follow these steps to connect to a Weaviate Cloud (WCD) instance.
+
+## Retrieve your API keys
+
+The WCD instances use API keys to authenticate.
+
+import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
+
+<RetrieveAPIKeys/>
+
+## Connection example
+
+To connect, use the Weaviate URL and the Weaviate API key for your WCD instance to set the environment variables. Then, follow the example for your language.
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="java" label="Java">
+   <FilteredTextBlock
+     text={JavaCode}
+     startMarker="// START APIKeyWCD"
+     endMarker="// END APIKeyWCD"
+     language="py"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START APIKeyWCD"
+     endMarker="# END APIKeyWCD"
+     language="shell"
+   />
+</TabItem>
+</Tabs>
+
+## Third party API keys
+
+If you use API-based models for vectorization or RAG, you must provide an API key for the service. To add third party API keys, follow these examples:
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START ThirdPartyAPIKeys"
+     endMarker="# END ThirdPartyAPIKeys"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START ThirdPartyAPIKeys"
+     endMarker="# END ThirdPartyAPIKeys"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START ThirdPartyAPIKeys"
+     endMarker="// END ThirdPartyAPIKeys"
+     language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START ThirdPartyAPIKeys"
+     endMarker="// END ThirdPartyAPIKeys"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START ThirdPartyAPIKeys"
+     endMarker="// END ThirdPartyAPIKeys"
+     language="py"
+   />
+</TabItem>
+<TabItem value="java" label="Java">
+   <FilteredTextBlock
+     text={JavaCode}
+     startMarker="// START ThirdPartyAPIKeys"
+     endMarker="// END ThirdPartyAPIKeys"
+     language="java"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START ThirdPartyAPIKeys"
+     endMarker="# END ThirdPartyAPIKeys"
+     language="shell"
+   />
+</TabItem>
+</Tabs>
+
+## Environment variables
+
+import EnvVarsHowto from '/_includes/environment-variables.mdx';
+
+<EnvVarsHowto/>
+
+## gRPC timeouts
+
+import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
+
+<GRPCTimeoutIntro/>
+
+import GRPCTimeouts from '/_includes/code/connections/timeouts-cloud.mdx';
+
+<GRPCTimeouts/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

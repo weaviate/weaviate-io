@@ -1,0 +1,48 @@
+---
+title: Next steps
+---
+
+Congratulations. You have successfully deployed Weaviate on your Kubernetes cluster, and scaled it to a multi-node setup. 🎉
+
+You can now explore the following resources to learn more about Weaviate and how to use it:
+
+We have the following beginner courses available for Python:
+- [101T Work with: Text data](../../py/starter_text_data/index.md)
+- [101V Work with: Your own vectors](../../py/starter_custom_vectors/index.md)
+- [101T Work with: Multimodal data](../../py/starter_multimodal_data/index.md)
+
+And for TypeScript/JavaScript:
+- [Introduction to Weaviate with TypeScript](../../js/intro_weaviate_typescript/index.mdx)
+
+What you could explore, then, is how to adapt these examples to a multi-node case with replication and/or sharding.
+
+### Related documentation
+
+If you are interested in the architecture behind replication and sharding, please check out the following resources:
+- [Replication](/developers/weaviate/concepts/replication-architecture/index.md)
+- [Horizontal scaling](/developers/weaviate/concepts/cluster.md)
+
+Then, check out the section on [resource planning](/developers/weaviate/concepts/resources.md) to estimate how much resources each node of a particular size might be able to handle, and how to plan your cluster accordingly.
+
+If you have replication configured, you can apply [tunable consistency](/developers/weaviate/configuration/replication.md) concepts to read/write operations as well as queries.
+
+### Further reading
+
+- How-to guides
+    - [How-to: manage data](/developers/weaviate/manage-data/index.md): Code examples for *create*, *update* and *delete* operations.
+    - [How-to: search](/developers/weaviate/search/index.md): Code examples for all types of search operations.
+    - [How-to: configure Weaviate](/developers/weaviate/configuration/index.md): Guides for configuring Weaviate, such as [PQ](/developers/weaviate/configuration/pq-compression.md) and [BQ](/developers/weaviate/configuration/bq-compression.md) compression, [backups](/developers/weaviate/configuration/backups.md) and [replication](/developers/weaviate/configuration/replication.md).
+- [Concepts guides](/developers/weaviate/concepts/index.md): Guides for understanding Weaviate's architecture and concepts.
+- [API reference](/developers/weaviate/api/index.md): Detailed information about Weaviate's APIs.
+
+import CTASocials from '../../py/_snippets/cta_socials.mdx';
+
+<CTASocials />
+
+See you soon! 👋
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

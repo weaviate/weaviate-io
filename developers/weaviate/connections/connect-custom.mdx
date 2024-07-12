@@ -1,0 +1,68 @@
+---
+title: Custom connections
+sidebar_position: 30
+image: og/docs/connect.jpg
+# tags: ['getting started', 'connect']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCodeV4 from '!!raw-loader!/_includes/code/connections/connect-python-v4.py';
+import TsCodeV3 from '!!raw-loader!/_includes/code/connections/connect-ts-v3.ts';
+
+The [Python Client v4](/developers/weaviate/client-libraries/python) and the [TypeScript Client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) provide helper methods for common connection types. They also provide custom methods for when you need additional connection configuration.
+
+If you are using one of the other clients, the standard connection methods are configurable for all connections.
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START CustomConnect"
+     endMarker="# END CustomConnect"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START CustomConnect"
+     endMarker="// END CustomConnect"
+     language="js"
+   />
+</TabItem>
+</Tabs>
+
+## Environment variables
+
+import EnvVarsHowto from '/_includes/environment-variables.mdx';
+
+<EnvVarsHowto/>
+
+## gRPC Timeouts
+
+import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
+
+<GRPCTimeoutIntro/>
+
+import GRPCTimeouts from '/_includes/code/connections/timeouts-custom.mdx';
+
+<GRPCTimeouts/>
+
+## OIDC authentication
+
+import OIDCConnect from '/_includes/connect/oidc-connect-ref.mdx';
+
+<OIDCConnect/>
+
+import OIDCExamples from '/_includes/code/connections/oidc-connect.mdx';
+
+<OIDCExamples/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

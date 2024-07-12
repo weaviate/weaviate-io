@@ -13,34 +13,37 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.update-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.update-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
+import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 Weaviate allows partial or complete object updates.
-
 
 <details>
   <summary>Additional information</summary>
 
-  - Partial updates use [`PATCH` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
-  - Complete updates use [`PUT` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
+  - Partial updates use [`PATCH` requests to the `/v1/objects` REST API endpoint](/developers/weaviate/api/rest#tag/objects/patch/objects/%7BclassName%7D/%7Bid%7D) under the hood.
+  - Complete updates use [`PUT` requests to the `/v1/objects` REST API endpoint](/developers/weaviate/api/rest#tag/objects/put/objects/%7BclassName%7D/%7Bid%7D) under the hood.
   - Updates that include a `vector` property will recalculate the vector embedding (unless all updated `text` properties are [skipped](../manage-data/collections.mdx#property-level-module-settings)).
   - To update objects, you must provide the collection name, id and properties to update.
   - For [multi-tenancy](../concepts/data.md#multi-tenancy) collections, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
   <br/>
 
-
   <RestObjectsCRUDClassnameNote/>
 
 </details>
 
-
 ## Update object properties
 
-Update one or more properties by providing the collection name, id and properties to update.
+To update a collection property, provide the collection name, the object id, and the properties to update.
+
+If you update a vectorized property, Weaviate re-vectorizes the object automatically. If you change a property for all of the objects in a collection, Weaviate will re-vectorize all of the objects.
+
+If you add a new property, Weaviate only vectorizes the new objects. Weaviate doesn't re-vectorize and re-index existing objects when a new property is added, only when an existing property is updated.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# UpdateProps START"
@@ -48,7 +51,7 @@ Update one or more properties by providing the collection name, id and propertie
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# UpdateProps START"
@@ -56,8 +59,7 @@ Update one or more properties by providing the collection name, id and propertie
       language="py"
     />
   </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// UpdateProps START"
@@ -65,7 +67,14 @@ Update one or more properties by providing the collection name, id and propertie
       language="ts"
     />
   </TabItem>
-
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="ts"
+    />
+  </TabItem>
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -74,7 +83,6 @@ Update one or more properties by providing the collection name, id and propertie
       language="java"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -85,13 +93,12 @@ Update one or more properties by providing the collection name, id and propertie
   </TabItem>
 </Tabs>
 
-
 ## Update object vector
 
 The object vector can also be updated similarly to properties. For [named vectors](../config-refs/schema/multi-vector.md), provide the data as a dictionary/map similarly to the [object creation](./create.mdx#create-an-object-with-named-vectors).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# UpdateVector START"
@@ -99,7 +106,7 @@ The object vector can also be updated similarly to properties. For [named vector
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# UpdateVector START"
@@ -108,7 +115,16 @@ The object vector can also be updated similarly to properties. For [named vector
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// UpdateVector START"
+      endMarker="// UpdateVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
   >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
 
@@ -133,7 +149,7 @@ The object vector can also be updated similarly to properties. For [named vector
 The entire object can be replaced by providing the collection name, id and the new object.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# Replace START"
@@ -141,7 +157,7 @@ The entire object can be replaced by providing the collection name, id and the n
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# Replace START"
@@ -150,9 +166,18 @@ The entire object can be replaced by providing the collection name, id and the n
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// Replace START"
       endMarker="// Replace END"
       language="ts"
@@ -186,7 +211,7 @@ Deleting or updating properties in the collection definition is [not yet support
 At object level, you can replace the object with a copy that has those properties deleted, or set to `""` for text properties.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# DelProps START"
@@ -194,7 +219,7 @@ At object level, you can replace the object with a copy that has those propertie
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# DelProps START"
@@ -203,9 +228,18 @@ At object level, you can replace the object with a copy that has those propertie
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// DelProps START"
       endMarker="// DelProps END"
       language="ts"
@@ -234,10 +268,12 @@ At object level, you can replace the object with a copy that has those propertie
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects/put/objects/%7BclassName%7D/%7Bid%7D)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

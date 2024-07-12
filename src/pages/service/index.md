@@ -10,17 +10,22 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 # Weaviate Service pages
 
 For more information related to one of the documents below, please reach out to [hello@weaviate.io](mailto:hello@weaviate.io).
-
+<br></br><br></br>
 
 - Contributors
   - [Code of Conduct](/service/code-of-conduct)
+  - [Weaviate Hero - Code of ethics and professional conduct](/service/code-of-ethics-and-professional-conduct)
   - [Contributor License Agreement](/service/contributor-license-agreement)
+<br></br><br></br>
 - Customers
 
-  - [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement)
+  - [General Terms of Service](/service/weaviate-general-terms-of-service)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
-  - [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement)
+  - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement-nonus)
+  - [Weaviate Service Level Agreement](/sla)
+  - [Weaviate Data Processing Agreement](/dpa)
+  - [Weaviate Data Subprocessors](/subprocessors)
+  - [Weaviate Support Terms](/weaviate-support-terms)
   - [Weaviate Privacy Policy](/privacy)
-
 
 

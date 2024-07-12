@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
@@ -14,15 +13,22 @@ export default function MeetTheTeam() {
     setSelectedTeam(team);
   };
 
+  const filterPeople = (person) => {
+    if (selectedTeam === 'All') {
+      return true;
+    }
+    return person.team.includes(selectedTeam);
+  };
+
   return (
     <div className={styles.teamBG}>
       <div className="container" id="meet_the_team">
         <div className={styles.box}>
           <h1>Meet the Team</h1>
           <p className="text-center">
-            Weaviate a global remote-first startup, with teams hailing from many
-            different parts of the world, where it is not totally uncommon for
-            someone to work remotely from fun places.
+            Weaviate is a global remote-first startup, with teams hailing from
+            many different parts of the world, where it is not totally uncommon
+            for someone to work remotely from fun places.
           </p>
           <div className={styles.teamFilter}>
             <Link
@@ -40,8 +46,8 @@ export default function MeetTheTeam() {
               #Applied Research
             </Link>
             <Link
-              className={selectedTeam === 'wcs' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('wcs')}
+              className={selectedTeam === 'wcd' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('wcd')}
             >
               #Cloud Services
             </Link>
@@ -65,19 +71,14 @@ export default function MeetTheTeam() {
             >
               #CTO team
             </Link>
-            <Link
-              className={selectedTeam === 'cloud' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('cloud')}
-            >
-              #Cloud
-            </Link>
+
             <Link
               className={
-                selectedTeam === 'customer-success' ? styles.linkActive : ''
+                selectedTeam === 'customer-experience' ? styles.linkActive : ''
               }
-              onClick={() => handleTeamFilter('customer-success')}
+              onClick={() => handleTeamFilter('customer-experience')}
             >
-              #Customer Success
+              #Customer Experience
             </Link>
             <Link
               className={selectedTeam === 'database' ? styles.linkActive : ''}
@@ -87,12 +88,6 @@ export default function MeetTheTeam() {
             </Link>
           </div>
           <div className={styles.teamFilter}>
-            <Link
-              className={selectedTeam === 'design' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('design')}
-            >
-              #Design
-            </Link>
             <Link
               className={
                 selectedTeam === 'developer-growth' ? styles.linkActive : ''
@@ -108,6 +103,18 @@ export default function MeetTheTeam() {
               onClick={() => handleTeamFilter('developer-relations')}
             >
               #Developer Relations
+            </Link>
+            <Link
+              className={selectedTeam === 'delivery' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('delivery')}
+            >
+              #Delivery
+            </Link>
+            <Link
+              className={selectedTeam === 'finance' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('finance')}
+            >
+              #Finance
             </Link>
             <Link
               className={selectedTeam === 'marketing' ? styles.linkActive : ''}
@@ -139,11 +146,11 @@ export default function MeetTheTeam() {
             </Link>
             <Link
               className={
-                selectedTeam === 'sales-engineering' ? styles.linkActive : ''
+                selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
               }
-              onClick={() => handleTeamFilter('sales-engineering')}
+              onClick={() => handleTeamFilter('weaviate-labs')}
             >
-              #Sales Engineering
+              #Weaviate Labs
             </Link>
           </div>
           <hr></hr>
@@ -154,12 +161,9 @@ export default function MeetTheTeam() {
             styles.peopleContainer
           } ${selectedTeam.toLowerCase()}-team`}
         >
-          {people.map((person) => {
-            if (selectedTeam === 'All' || person.team === selectedTeam) {
-              return <Person key={person.name} details={person} />;
-            }
-            return null;
-          })}
+          {people.filter(filterPeople).map((person) => (
+            <Person key={person.name} details={person} />
+          ))}
         </div>
         <div className={styles.buttonsContainer}>
           <Link className={styles.buttonOutline} to="/company/careers">

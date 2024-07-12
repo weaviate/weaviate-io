@@ -1,26 +1,3 @@
-# GetQueryVector
-# Define a function to call the endpoint and obtain embeddings
-def query(texts):
-    import requests
-    import os
-
-    model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    hf_token = os.getenv("HUGGINGFACE_APIKEY")
-
-    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
-
-    response = requests.post(
-        api_url,
-        headers=headers,
-        json={"inputs": texts, "options": {"wait_for_model": True}},
-    )
-    return response.json()
-
-
-# END GetQueryVector
-
-
 # START-ANY
 import weaviate
 import weaviate.classes.query as wq
@@ -37,29 +14,54 @@ from datetime import datetime
 
 # END-ANY
 
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
     headers=headers,
 )
 
 # START-ANY
 # Instantiate your client (not shown). e.g.:
-# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+# headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}  # Replace with your Cohere API key
 # client = weaviate.connect_to_wcs(..., headers=headers) or
 # client = weaviate.connect_to_local(..., headers=headers)
 
 # END-ANY
 
+
+# START-ANY
+# Define a function to call the endpoint and obtain embeddings
+from typing import List
+import os
+import cohere
+from cohere import Client as CohereClient
+
+co_token = os.getenv("COHERE_APIKEY")
+co = cohere.Client(co_token)
+
+
+# Define a function to call the endpoint and obtain embeddings
+def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
+
+    response = cohere_client.embed(
+        texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
+    )
+
+    return response.embeddings
+
+
+# END-ANY
+
+
 query_text = "history"
-query_vector = query(query_text)
+query_vector = vectorize(co, [query_text])[0]
 
 # MetadataBM25Search
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.bm25(
@@ -85,7 +87,7 @@ client.connect()
 
 # MetadataHybridSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.hybrid(
@@ -113,11 +115,11 @@ print("\n\n")
 client.connect()
 
 query_text = "history"
-query_vector = query(query_text)
+query_vector = vectorize(co, [query_text])[0]
 
 # FilteredSemanticSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Perform query
 response = movies.query.near_vector(

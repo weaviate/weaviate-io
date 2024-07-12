@@ -1,0 +1,37 @@
+---
+title: Wrap-up / Next steps
+---
+
+Congratulations! You have completed this course on vector indexes. We hope you found it helpful and informative.
+
+## Index selection
+
+When choosing an index type, use the following as a guide:
+
+- **Flat index**: Use for small collections with a known size.
+- **HNSW index**: Use for large collections with a known size.
+- **Dynamic index**: Use for collections with an unknown size or collections that may grow over time.
+
+Also, in a multi-tenant environment, the "dynamic" index may be a good default choice, as it will allow some tenants to remain in the `flat` index while others are automatically converted to `hnsw` when they grow.
+
+## Further resources
+
+These resources will help you continue your learning journey:
+
+- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [References: Vector index parameters](/developers/weaviate/config-refs/schema/vector-index.md)
+- [How-to manage collections](/developers/weaviate/manage-data/collections.mdx)
+- [Weaviate Academy: Compression](../compression/index.md)
+- [Weaviate Academy: Named vectors](../named_vectors/index.md)
+
+import CTASocials from '../_snippets/cta_socials.mdx';
+
+<CTASocials />
+
+See you soon! 👋
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

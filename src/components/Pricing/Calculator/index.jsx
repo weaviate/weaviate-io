@@ -37,7 +37,7 @@ export default function PricingCalculator({ props }) {
 
   function SelectSwitch({ checked, onChange }) {
     return (
-      <div className="select">
+      <div className="select pricing">
         <select
           value={checked ? 'yes' : 'no'}
           onChange={(e) => onChange(e.target.value === 'yes')}
@@ -98,6 +98,10 @@ export default function PricingCalculator({ props }) {
     clearValue = clearValue.replace('.', '').replace(',', '');
     setEmbeddingSize(clearValue);
     setShowTooltipEmbeddingSize(clearValue >= thresholdForEmbeddingSize);
+
+    if (clearValue >= thresholdForEmbeddingSize) {
+      setEmbeddingSize(thresholdForEmbeddingSize);
+    }
   };
 
   const handleChangeAmountOfDataObjs = (e) => {
@@ -105,6 +109,10 @@ export default function PricingCalculator({ props }) {
     clearValue = clearValue.replace('.', '').replace(',', '');
     setAmountOfDataObjs(clearValue);
     setShowTooltipAmountOfDataObjs(clearValue >= thresholdForAmountOfDataObjs);
+
+    if (clearValue >= thresholdForAmountOfDataObjs) {
+      setAmountOfDataObjs(thresholdForAmountOfDataObjs);
+    }
   };
 
   const handleChangeQueriesPerMonth = (e) => {
@@ -153,94 +161,95 @@ export default function PricingCalculator({ props }) {
   };
 
   return (
-    <div className="slaCalculator">
-      <div className="pricingCalculator">
-        <div className="container">
-          <div className="pricingBox">
-            <h2 id="mainPricingArea">Estimate your cost for Serverless</h2>
-            <p>
-              Our pricing is built around vector dimensions stored and queried,
-              and different SLA-tiers have different prices per dimension. The
-              exact calculation can be found in the FAQ (not inclusive of
-              discounts and taxes).
-            </p>
-          </div>
-        </div>
-        <div className="container">
-          <div className="sliderArea">
-            <div className="slider">
-              <div className="label">
-                <label>Vector Dimensions:</label>
-              </div>
-              <Slider
-                dots={false}
-                step={128}
-                min={128}
-                max={4096}
-                value={embeddingSize}
-                onChange={(embeddingSize) => {
-                  setEmbeddingSize(embeddingSize);
-                  setShowTooltipEmbeddingSize(
-                    embeddingSize >= thresholdForEmbeddingSize
-                  );
-                }}
-              />
-              <div className="value">
-                <input
-                  className="labelResult"
-                  type="text"
-                  maxLength="11"
-                  placeholder={handleLabel(embeddingSize)}
-                  name="embeddingSize"
-                  value={handleLabel(embeddingSize)}
-                  onChange={handleChangeEmbeddingSize}
-                />
-                {showTooltipEmbeddingSize && (
-                  <div className="customTooltip">
-                    You've reached the maximum input limit.{' '}
-                    <a href="#contact-sales">
-                      Please reach out to us for further information.
-                    </a>
-                  </div>
-                )}
-              </div>
+    <div className="newCalculator">
+      <div className="slaCalculator">
+        <div className="pricingCalculator pricing">
+          <div className="pricingCalculatorContainer">
+            <div className="info">
+              <h2>Estimate your cost for Serverless</h2>
+              <ul>
+                <p>All Packages include:</p>
+                <li>∞ lifetime (until terminated)</li>
+                <li>Monitoring</li>
+                <li>Email support during business hours</li>
+                <li>Multiple Availability Zones</li>
+                <li>High availability optional</li>
+              </ul>
             </div>
-            <div className="slider">
-              <div className="label">
-                <label>Data Objects:</label>
-              </div>
-              <Slider
-                min={0}
-                max={50000000}
-                value={amountOfDataObjs}
-                onChange={(amountOfDataObjs) => {
-                  setAmountOfDataObjs(amountOfDataObjs);
-                  setShowTooltipAmountOfDataObjs(
-                    amountOfDataObjs >= thresholdForAmountOfDataObjs
-                  );
-                }}
-              />
-              <div className="value">
-                <input
-                  className="labelResult"
-                  type="text"
-                  maxLength="11"
-                  placeholder={handleLabel(amountOfDataObjs)}
-                  name="amountOfDataObjs"
-                  value={handleLabel(amountOfDataObjs)}
-                  onChange={handleChangeAmountOfDataObjs}
+            <div className="sliderArea pricing">
+              <div className="slider pricing">
+                <div className="label">
+                  <label>Vector Dimensions:</label>
+                </div>
+                <Slider
+                  dots={false}
+                  step={128}
+                  min={128}
+                  max={4096}
+                  value={embeddingSize}
+                  onChange={(embeddingSize) => {
+                    setEmbeddingSize(embeddingSize);
+                    setShowTooltipEmbeddingSize(
+                      embeddingSize >= thresholdForEmbeddingSize
+                    );
+                  }}
                 />
-                {showTooltipAmountOfDataObjs && (
-                  <div className="customTooltip">
-                    You've reached the maximum input limit.{' '}
-                    <a href="#contact-sales">
-                      Please reach out to us for further information.
-                    </a>
-                  </div>
-                )}
+                <div className="value">
+                  <input
+                    className="labelResult"
+                    type="text"
+                    maxLength="11"
+                    placeholder={handleLabel(embeddingSize)}
+                    name="embeddingSize"
+                    value={handleLabel(embeddingSize)}
+                    onChange={handleChangeEmbeddingSize}
+                  />
+                  {showTooltipEmbeddingSize && (
+                    <div className="customTooltip">
+                      You've reached the maximum input limit.{' '}
+                      <a href="#contact-sales">
+                        Please reach out to us for further information.
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            {/*    <div className="slider">
+              <div className="slider pricing">
+                <div className="label">
+                  <label>Data Objects:</label>
+                </div>
+                <Slider
+                  min={0}
+                  max={50000000}
+                  value={amountOfDataObjs}
+                  onChange={(amountOfDataObjs) => {
+                    setAmountOfDataObjs(amountOfDataObjs);
+                    setShowTooltipAmountOfDataObjs(
+                      amountOfDataObjs >= thresholdForAmountOfDataObjs
+                    );
+                  }}
+                />
+                <div className="value">
+                  <input
+                    className="labelResult"
+                    type="text"
+                    maxLength="11"
+                    placeholder={handleLabel(amountOfDataObjs)}
+                    name="amountOfDataObjs"
+                    value={handleLabel(amountOfDataObjs)}
+                    onChange={handleChangeAmountOfDataObjs}
+                  />
+                  {showTooltipAmountOfDataObjs && (
+                    <div className="customTooltip">
+                      You've reached the maximum input limit.{' '}
+                      <a href="#contact-sales">
+                        Please reach out to us for further information.
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+              {/*    <div className="slider">
             <div className="label">
               <label>Monthly Queries:</label>
             </div>
@@ -263,20 +272,20 @@ export default function PricingCalculator({ props }) {
               />
             </div>
           </div> */}
-            <div className="selectContainer">
-              <label>SLA Tier:</label>
-              <div className="select">
-                <select
-                  value={slaTier}
-                  onChange={(event) => setSlaTier(event.target.value)}
-                >
-                  <option value="standard">Standard</option>
-                  <option value="enterprise">Enterprise</option>
-                  <option value="businessCritical">Business Critical</option>
-                </select>
+              <div className="selectContainer">
+                <label>SLA Tier:</label>
+                <div className="select pricing">
+                  <select
+                    value={slaTier}
+                    onChange={(event) => setSlaTier(event.target.value)}
+                  >
+                    <option value="standard">Standard</option>
+                    <option value="enterprise">Professional</option>
+                    <option value="businessCritical">Business Critical</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            {/*  <div className="btn-group">
+              {/*  <div className="btn-group">
             <label htmlFor="storageType">Storage Type:</label>{' '}
             <div className="btn-inner">
               <button
@@ -302,54 +311,55 @@ export default function PricingCalculator({ props }) {
               </button>
             </div>
           </div> */}
-            <div className="selectContainer">
-              <label htmlFor="storageType">Storage Type:</label>
-              <div className="select">
-                <select value={storageType} onChange={handleChange}>
-                  <option value="compression">Compression</option>
-                  <option value="performance">Performance</option>
-                </select>
+              <div className="selectContainer">
+                <label htmlFor="storageType">Storage Type:</label>
+                <div className="select pricing">
+                  <select value={storageType} onChange={handleChange}>
+                    <option value="compression">Compression</option>
+                    <option value="performance">Performance</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="selectContainer">
-              <div className="highAva">
-                <label htmlFor="highAvailability">High Availability:</label>{' '}
-              </div>
-              {/*   <div className="switchContainer">
+              <div className="selectContainer">
+                <div className="highAva">
+                  <label htmlFor="highAvailability">High Availability:</label>{' '}
+                </div>
+                {/*   <div className="switchContainer">
               <ToggleSwitch
                 id="highAvailability"
                 checked={highAvailability}
                 onChange={onHighAvailabilityChange}
               />
             </div> */}
-              <div className="switchContainer">
-                <SelectSwitch
-                  checked={highAvailability}
-                  onChange={setHighAvailability}
-                />
+                <div className="switchContainer">
+                  <SelectSwitch
+                    checked={highAvailability}
+                    onChange={setHighAvailability}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="priceBox">
-              <div className="price">
-                {price.error === false && (
-                  <>
-                    <span>Your estimated price</span>{' '}
-                    <div className="priceFormat">
-                      <p>
-                        ${' '}
-                        <span className="test">
-                          {handleLabel(price.priceStr)}
-                        </span>{' '}
-                        /mo
-                      </p>
-                    </div>
-                  </>
-                )}
-                {price.error === true && (
-                  <Link className={'buttonGradient'} to="#contact-sales">
-                    Contact us for more info
-                  </Link>
-                )}
+              <div className="priceBox pricing">
+                <div className="price">
+                  {price.error === false && (
+                    <>
+                      <span>Your estimated price</span>{' '}
+                      <div className="priceFormat">
+                        <p>
+                          ${' '}
+                          <span className="test">
+                            {handleLabel(price.priceStr)}
+                          </span>{' '}
+                          /mo
+                        </p>
+                      </div>
+                    </>
+                  )}
+                  {price.error === true && (
+                    <Link className={'buttonGradient'} to="#contact-sales">
+                      Contact us for more info
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           </div>

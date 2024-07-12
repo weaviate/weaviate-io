@@ -7,8 +7,6 @@ image: og/docs/configuration.jpg
 
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
-## Introduction
-
 When using Weaviate Enterprise, a proxy service is placed in between the user (or load balancer) and Weaviate. The service measures how Weaviate is used without sending through any sensitive information (e.g., function, durations, payload sizes). Below you can find an outline on how to add the proxy service to your setup.
 
 ## 1. Collect a Weaviate Enterprise Token
@@ -77,6 +75,8 @@ collector_proxy:
 Deploy the helm chart and make sure to use the proxy service for your requests.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

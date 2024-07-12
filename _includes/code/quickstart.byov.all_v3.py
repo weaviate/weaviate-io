@@ -3,8 +3,8 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    url = "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
 )
 
 # ===== Create schema =====
@@ -19,7 +19,9 @@ client.schema.create_class(class_obj)
 
 # ===== Import data =====
 import requests
-url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json'
+
+fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"
+url = f"https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}"
 resp = requests.get(url)
 data = json.loads(resp.text)
 

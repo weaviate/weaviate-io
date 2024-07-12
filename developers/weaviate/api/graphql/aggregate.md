@@ -64,7 +64,7 @@ Each data type has its own set of available aggregated properties. The following
       <propertyOfDatatypeText> {
           count
           type
-          topOccurrences {
+          topOccurrences (limit: <n_minimum_count>) {
               value
               occurs
           }
@@ -233,6 +233,8 @@ import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 Aggregating data makes the `topOccurrences` property available. Note that the counts are not dependent on tokenization. The `topOccurrences` count is based on occurrences of the entire property, or one of the values if the property is an array.
 
+You can optionally specify a `limit` parameter as a minimum count for the top occurrences. For example, `limit: 5` will filter the top occurrences to those with a count of 5 or higher.
+
 ### Consistency levels
 
 :::info Not available with `Aggregate`
@@ -320,6 +322,8 @@ import GraphQLAggNearText from '/_includes/code/graphql.aggregate.nearText.mdx';
 <GraphQLAggNearText/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

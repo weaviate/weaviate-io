@@ -20,14 +20,14 @@ print(client.get_meta())
 ```
 
 </TabItem>
-{/* <TabItem value="js" label="JavaScript/TypeScript">
+{/* <TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
 });
 
 const response = await client.data
@@ -53,7 +53,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network",
+        Host:   "WEAVIATE_INSTANCE_URL",
         Scheme: "https",
     }
     client := weaviate.New(cfg)
@@ -84,7 +84,8 @@ import technology.semi.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
     WeaviateClient client = new WeaviateClient(config);
 
     Result<List<WeaviateObject>> result = client.data().objectsGetter()

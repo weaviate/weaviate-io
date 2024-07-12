@@ -165,7 +165,7 @@ For more `autocut` examples and to learn about the motivation behind this filter
 Sample client code:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={AutocutPyCode}
       startMarker="# START Autocut Python"
@@ -174,7 +174,7 @@ Sample client code:
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={AutocutPyCodeV3}
       startMarker="# START Autocut Python"
@@ -183,7 +183,7 @@ Sample client code:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={AutocutTSCode}
       startMarker="// START Autocut"
@@ -327,7 +327,7 @@ The sort function takes either an object, or an array of objects, that describe 
 
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Sorting Python"
@@ -336,7 +336,7 @@ The sort function takes either an object, or an array of objects, that describe 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Sorting Python"
@@ -345,7 +345,7 @@ The sort function takes either an object, or an array of objects, that describe 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Sorting"
@@ -428,7 +428,7 @@ The sort function takes either an object, or an array of objects, that describe 
 To sort by more than one property, pass an array of { `path`, `order` } objects to the sort function:
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START MultiplePropSorting Python"
@@ -437,7 +437,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START MultiplePropSorting Python"
@@ -446,7 +446,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START MultiplePropSorting"
@@ -504,7 +504,7 @@ To sort with metadata, add an underscore to the property name.
 | `lastUpdateTimeUnix` | `_lastUpdateTimeUnix` |
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AdditionalPropSorting Python"
@@ -513,7 +513,7 @@ To sort with metadata, add an underscore to the property name.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START AdditionalPropSorting Python"
@@ -522,7 +522,7 @@ To sort with metadata, add an underscore to the property name.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START AdditionalPropSorting"
@@ -649,6 +649,8 @@ The central concept in the group, `The New York Times Company`, leads the group.
 
 </details>
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

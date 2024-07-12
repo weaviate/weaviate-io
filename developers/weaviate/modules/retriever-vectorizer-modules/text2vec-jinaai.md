@@ -4,6 +4,9 @@ sidebar_position: 17
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="jinaai" />
 
 ## Overview
 
@@ -13,8 +16,8 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-<!-- - This module is available on Weaviate Cloud Services (WCS). -->
-<!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->
+<!-- - This module is available on Weaviate Cloud (WCD). -->
+<!-- Note: Will be added to WCD soon. Un-comment the above and delete this line when it is enabled. -->
 - JinaAI requires a third-party API key. You can obtain one [here](https://jina.ai/embeddings/).
 - When you enable the text2vec-jinaai model, you can use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `jina-embeddings-v2-base-en`.
@@ -24,11 +27,11 @@ Key notes:
 
 ## Weaviate instance configuration
 
-<!-- :::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+<!-- :::tip
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 ::: -->
 
-<!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->
+<!-- Note: Will be added to WCD soon. Un-comment the above and delete this line when it is enabled. -->
 
 ### Docker Compose file
 
@@ -190,6 +193,8 @@ The following models are available:
 - `jina-embeddings-v2-small-en`
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

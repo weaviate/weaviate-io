@@ -561,17 +561,6 @@
 }
 
 [data-theme='light'] {
-  .docHome,
-  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module
-    .container {
-    background-color: #ededed !important;
-  }
-
-  .docHome,
-  .docMainContainer_gTbr .container {
-    background-color: #ededed !important;
-  }
-
   .docHeader,
   .docHeadText,
   .welcomeHeader,
@@ -599,7 +588,7 @@
   .whatnextBox,
   .small,
   .secondaryTabs {
-    background-color: #f5f5f5 !important;
+    background-color: #eae9e9 !important;
   }
 
   .scenarioBox,
@@ -646,7 +635,7 @@
   }
 
   .semantic {
-    background-image: url('/img/site/search-doc-icon-light.svg');
+    background-image: url('/img/site/search-light-icon.png');
   }
 
   .secondaryContent {

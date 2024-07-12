@@ -17,8 +17,11 @@ export default function ServiceHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#contact-sales">
-              Contact Sales
+            <Link
+              className={styles.buttonGradient}
+              to="https://console.weaviate.cloud/signin?callbackUrl=https%3A%2F%2Fconsole.weaviate.cloud%2F"
+            >
+              Sign Up
             </Link>
           </div>
         </div>

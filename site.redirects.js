@@ -30,10 +30,21 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/current/core-knowledge/console',
         },
-
+        {
+         to: '/developers/wcs/console',
+         from: '/developers/wcs/guides/console',
+        },
+        {
+         to: '/developers/wcs/create-instance',
+         from: '/developers/wcs/guides/create-instance',
+        },
+        {
+         to: '/developers/wcs/connect',
+         from: '/developers/wcs/guides/authentication',
+        },
         // Client library redirects
         {
             to: '/developers/weaviate/client-libraries/typescript',
@@ -107,7 +118,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/quickstart/console',
         },
 
@@ -129,16 +140,23 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/current/quickstart/console',
         },
 
-        // WCS redirects
+        // WCD redirects
         {
             to: '/developers/wcs/faq',
             from: '/developers/wcs/troubleshooting',
         },
-        
+        {
+         to: '/developers/wcs/console',
+         from: '/developers/wcs/platform/ssconsole',
+        },
+        {
+         to: '/developers/wcs/cluster-status',
+         from: '/developers/wcs/platform/cluster-status',
+        },
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
@@ -172,10 +190,25 @@ const siteRedirects = {
             from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
 
-        // Tutorial refresh Jan 2024
+        // Tutorial refresh 2024
         {
             to: '/developers/weaviate/starter-guides/schema',
             from: '/developers/weaviate/tutorials/schema',
+        },
+        {
+            to: '/developers/weaviate/connections',
+            from: '/developers/weaviate/tutorials/connect',
+        },
+        {
+         to: '/developers/weaviate/connections',
+         from: '/developers/weaviate/starter-guides/connect',
+        },
+
+
+        // Remove BPR page
+        {
+            to: '/developers/weaviate/concepts/vector-index',
+            from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
 
         // Blog redirects
@@ -363,7 +396,7 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/tutorials/console',
         },
 
@@ -394,6 +427,44 @@ const siteRedirects = {
             from: '/developers/weaviate/configuration/schema-configuration',
         },
 
+        // Legacy REST API redirects
+        {
+            to:   '/developers/weaviate/api/rest_legacy/schema',
+            from: '/developers/weaviate/api/rest/schema',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/objects',
+            from: '/developers/weaviate/api/rest/objects',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/batch',
+            from: '/developers/weaviate/api/rest/batch',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/backups',
+            from: '/developers/weaviate/api/rest/backups',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/classification',
+            from: '/developers/weaviate/api/rest/classification',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/meta',
+            from: '/developers/weaviate/api/rest/meta',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/nodes',
+            from: '/developers/weaviate/api/rest/nodes',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/well-known',
+            from: '/developers/weaviate/api/rest/well-known',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/modules',
+            from: '/developers/weaviate/api/rest/modules',
+        },
+
      // Products to Pricing redirects
 
         {
@@ -413,6 +484,10 @@ const siteRedirects = {
         {
             to: "/community/events",
             from: "/learn/workshop"
+        },
+        {
+            to: "/community/events",
+            from: "/learn/workshops"
         },
         // Partners Off
         {
@@ -436,6 +511,56 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+        {
+            to: "/service/weaviate-general-terms-of-service",
+            from: "/service/weaviate-terms-of-service"
+        },
+        {
+            to: "/weaviate-support-terms",
+            from: "/supportterms"
+        },
+            // Case Study Changes
+            {
+                to: "/case-studies/neople",
+                from: "/services/case-study-neople"
+            },
+            {
+                to: "/case-studies/instabase",
+                from: "/case-studies"
+            },
+  // Services Changes
+  {
+    to: "/services/enterprise-cloud",
+    from: "/services/enterprise-dedicated"
+  },
+
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
+ },
+
+// Release notes
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_20",
+ from: "/developers/weaviate/release-notes/release_1_20"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_19",
+ from: "/developers/weaviate/release-notes/release_1_19"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_18",
+ from: "/developers/weaviate/release-notes/release_1_18"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_17",
+ from: "/developers/weaviate/release-notes/release_1_17"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_16",
+ from: "/developers/weaviate/release-notes/release_1_16"
+},
 
 
     ],

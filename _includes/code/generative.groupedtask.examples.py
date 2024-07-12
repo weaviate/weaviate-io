@@ -16,7 +16,8 @@ client = weaviate.connect_to_local(
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
         # END GenerativeOpenAI
         # START GenerativeGoogle
-        "X-PaLM-Api-Key": "YOUR_PALM_APIKEY",
+        "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+        "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
         # END GenerativeGoogle
         # START GenerativeHuggingface
         "X-HuggingFace-Api-Key": "YOUR_HUGGINGFACE_APIKEY",
@@ -32,8 +33,8 @@ client = weaviate.connect_to_local(
 client.close()
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCD_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }

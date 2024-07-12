@@ -5,11 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
-:::info Related pages
-- [Configuration: Replication](../../configuration/replication.md)
-:::
-
 :::info Added in `v1.17`
 :::
 
@@ -17,7 +12,12 @@ Weaviate can automatically replicate data across nodes in the background in a cl
 
 The user can control trade-offs between consistency and availability through [tunable consistency](./consistency.md).
 
-Weaviate adopts a leaderless replication design, so there is no distinction between primary and secondary nodes, thereby removing all single points of failures.
+Weaviate adopts two different replication architectures for schema consistency and data consistency.
+
+- **Schema replication** is strongly consistent, meaning that schema changes are guaranteed to be consistent across all nodes. As of Weaviate `v1.25`, schema changes use the [Raft](https://raft.github.io/) consensus algorithm, which is a leader-based consensus algorithm.
+- **Data replication** is tunable, meaning that data changes are not guaranteed to be consistent across all nodes at all times. Data replication uses a leaderless design, where all nodes are equal in status.
+
+Note that regardless of whether data is replicated, the schema is always replicated across all nodes.
 
 In this Replication Architecture section, you will find information about:
 
@@ -107,33 +107,39 @@ Replication and sharding can be combined in a setup, to improve throughput and a
 
 ## How does replication work in Weaviate?
 
-Weaviate’s implementation of replication is inspired by other databases like Cassandra. Availability is favored over Consistency. Weaviate's replication uses a leaderless design, which means there are no primary and secondary nodes. When writing and reading data, the client contacts one or more nodes. A load balancer exists between the user and the nodes, so the user doesn't know which node they are talking to (Weaviate will forward internally if a user is requesting a wrong node).
+### Schema replication
 
-Weaviate’s data schema changes are strongly consistent, since this is rarely changed, but critical. Schema changes will happen with a distributed transaction with a two-phase commit. This is 'slow', but consistent because it disallows conflicting schema changes at the same time.
+Weaviate’s data schema changes are strongly consistent, since this is rarely changed, but critical.
+
+Prior to Weaviate `v1.25`, each schema change was recorded via a distributed transaction with a two-phase commit. This is a synchronous process, which means that the schema change is only committed when all nodes have acknowledged the change.
+
+From Weaviate `v1.25`, schema changes are committed using the Raft consensus algorithm. This is a leader-based consensus algorithm, where an `elected` leader node is responsible for committing and replicating schema changes. This has two key advantages. One is robustness to individual node downtime, as a schema change can still be committed when a minority of nodes are down. The other is that concurrent schema changes can be handled, which was not possible with the two-phase commit architecture.
+
+### Data replication
+
+Weaviate’s implementation of data replication is inspired by other databases like Cassandra. Availability is favored over Consistency. Weaviate's data replication uses a leaderless design, which means there are no primary and secondary nodes. When writing and reading data, the client contacts one or more nodes. A load balancer exists between the user and the nodes, so the user doesn't know which node they are talking to (Weaviate will forward internally if a user is requesting a wrong node).
 
 The number of nodes that need to acknowledge the read or write (from v1.18) operation is tunable, to `ONE`, `QUORUM` (n/2+1) or `ALL`. When write operations are configured to `ALL`, the database works synchronously. If write is not set to `ALL` (possible from v1.18), writing data is asynchronous from the user's perspective.
 
-The number of replicas doesn't have to match the number of nodes (cluster size). It is possible to split data in Weaviate based on Classes. Note that this is [different from Sharding](#replication-vs-sharding).
+The number of replicas doesn't have to match the number of nodes (cluster size). It is possible to split data in Weaviate based on collections. Note that this is [different from Sharding](#replication-vs-sharding).
 
 Read more about how replication works in Weaviate in [Philosophy](./philosophy.md), [Cluster Architecture](./cluster-architecture.md) and [Consistency](./consistency.md).
 
 ## How do I enable replication in Weaviate?
 
-See the [Replication Usage page](/developers/weaviate/configuration/replication.md). You can enable replication at the class level in the data schema of your Weaviate instance. During querying, you can specify the desired consistency level.
+See the [Replication Usage page](/developers/weaviate/configuration/replication.md). You can enable replication at the collection level in the data schema of your Weaviate instance. During querying, you can specify the desired consistency level.
 
 ## Roadmap
 
-* v1.17 (12/2022)
-  * Leaderless Replication
-  * Tunable Read Consistency for Get-by-ID requests
-* v1.18 (02/2023)
-  * Tunable Write Consistency
-  * Tunable Read Consistency for all requests
-  * Repairs (Read-Repairs or Background/Async Repairs)
 * Not scheduled yet
   * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/weaviate/weaviate/issues/2436))
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Related pages
+- [Configuration: Replication](../../configuration/replication.md)
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -19,10 +19,12 @@ image: og/docs/more-resources.jpg
 | **Property** | All classes have properties. E.g., the class Company might have the property _name_. In Weaviate, properties can be recognized because they always have a lowercase first character. |
 | **Schema** | In Weaviate, a schema is used to define the types of data you will be adding and querying. You can learn more about it [here](../starter-guides/schema.md). |
 | **Weaviate Cluster** | A managed Weaviate cluster |
-| **Weaviate Cloud Services (WCS)** | WCS is our SaaS for providing cloud instances of Weaviate |
+| **[Weaviate Cloud (WCD)](https://console.weaviate.cloud/)** | WCD is our SaaS for providing cloud instances of Weaviate |
 | **Vector index** | A data storage mechanism where data is stored as vectors (long arrays of numbers, also seen as coordinates in a high dimensional space), allowing for context-based search |
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

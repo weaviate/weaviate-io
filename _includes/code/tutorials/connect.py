@@ -2,6 +2,17 @@
 # === Connect without authorization ===
 # =====================================
 
+# APIKeys
+import os
+
+weaviate_url = os.getenv("WEAVIATE_URL")        # Recommended: save to an environment variable
+weaviate_key = os.getenv("WEAVIATE_API_KEY")    # Recommended: save to an environment variable
+
+# Uncomment and use these lines if you want to hardcode (not recommended for production)
+# weaviate_url = "<your-weaviate-url>"          # Plaintext url
+# weaviate_key = "<your-weaviate-apikey>"       # Plaintext key - not safe for deployment
+# END APIKeys
+
 # START WithoutAuth
 import weaviate
 
@@ -14,7 +25,7 @@ client = weaviate.connect_to_local()
 
 # START WeaviateAPIKeyCustom
 import weaviate
-import os
+from weaviate.auth import AuthApiKey
 
 # Connect to a local Weaviate instance
 client = weaviate.connect_to_custom(
@@ -24,28 +35,24 @@ client = weaviate.connect_to_custom(
     grpc_host="localhost",
     grpc_port=50051,
     grpc_secure=False,
-    auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("YOUR_API_KEY")
-    ),  # Set this environment variable
+    auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
 )
 # END WeaviateAPIKeyCustom
 
 # ==========================================
-# === Connect with Weaviate API key (WCS)===
+# === Connect with Weaviate API key (WCD)===
 # ==========================================
 
-# START WeaviateAPIKeyWCS
+# START WeaviateAPIKeyWCD
 import weaviate
-import os
+from weaviate.auth import AuthApiKey
 
-# Connect to a WCS instance
+# Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("YOUR_WCS_URL"),  # Set this environment variable
-    auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("YOUR_WCS_AUTH_KEY")
-    ),  # Set this environment variable
+    cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
+    auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
 )
-# END WeaviateAPIKeyWCS
+# END WeaviateAPIKeyWCD
 
 
 # =========================
@@ -54,13 +61,15 @@ client = weaviate.connect_to_wcs(
 
 # START ConnectWithOIDC
 import weaviate
-import os
+
+wcd_username = os.getenv("WCD_USERNAME")    # Recommended: save to an environment variable
+wcd_password = os.getenv("WCD_PASSWORD")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://your-wcs-endpoint.weaviate.network",
     auth_credentials=weaviate.AuthClientPassword(
-        username=os.getenv("YOUR_WCS_USER_NAME"),  # Set this environment variable
-        password=os.getenv("YOUR_WCS_PASSWORD"),  # Set this environment variable
+        username=wcd_username,  # `wcd_username`: your WCD username
+        password=wcd_password,  # `wcd_password`: your WCD password
     ),
 )
 # END ConnectWithOIDC
@@ -70,20 +79,20 @@ client = weaviate.connect_to_wcs(
 # === Connect to third party APIs ===
 # ===================================
 
-# START AuthOpenAIAPIKey
+# START AuthThirdPartyAPIKey
 import weaviate
-import os
+from weaviate.auth import AuthApiKey
+
+cohere_key = os.getenv("Cohere_API_KEY")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("YOUR_WCS_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("YOUR_WCS_KEY")),
+    cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
+    auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
     headers={
-        "X-OpenAI-Api-Key": os.environ[
-            "YOUR_OPENAI_API_KEY"
-        ]  # Replace with your inference API key
-    },
+        "X-Cohere-Api-Key": cohere_key           # `cohere_key`: your Cohere key
+    }
 )
-# END AuthOpenAIAPIKey
+# END AuthThirdPartyAPIKey
 
 # ====================================
 # === Connect to embedded Weaviate ===
@@ -93,5 +102,4 @@ client = weaviate.connect_to_wcs(
 import weaviate
 
 client = weaviate.connect_to_embedded()
-
 # END ConnectEmbedded

@@ -10,7 +10,7 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
@@ -40,14 +40,14 @@ with client.batch as batch:
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your API key
 });
 
@@ -112,7 +112,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
+        Host:   "WEAVIATE_INSTANCE_URL/",
         Scheme: "https",
     }
 
@@ -142,7 +142,8 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -155,6 +156,8 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
 curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -162,7 +165,7 @@ curl \
     "class": "Question",
     "vectorizer": "text2vec-openai",
 }' \
-https://some-endpoint.weaviate.network/v1/schema
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
 ```
 
 </TabItem> */}

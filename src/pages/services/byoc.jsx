@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import ServiceHeader from '../../components/Service/BYOC/Header/index.jsx';
 import ServicePlan from '../../components/Service/BYOC/Plan/index.jsx';
-import ContactUsForm from '../../components/ContactUsForm/index.jsx';
+import ContactUsForm from '../../components/Contact/contactForm';
 import Highlights from '../../components/Service/BYOC/Highlights/index.jsx';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import QuoteBox from '../../components/Service/BYOC/QuoteBox/quoteBox.jsx';
@@ -14,7 +14,7 @@ export default function BYOCPage() {
     <div className="custom-page noBG">
       <Layout
         title="BYOC - Bring Your Own Cloud"
-        description="Bring Your Own Cloud Dedicated Model"
+        description="Bring Your Own Cloud Dedicated Service"
       >
         <ServiceHeader />
         <ServicePlan />

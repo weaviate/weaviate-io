@@ -8,19 +8,19 @@ import TabItem from '@theme/TabItem';
 import weaviate
 
 client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    url = "https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
 )
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 ```
 
@@ -29,7 +29,7 @@ const client = weaviate.client({
 
 ```go
 cfg := weaviate.Config{
-  Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+  Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
   Scheme: "https",
 }
 
@@ -65,7 +65,7 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");  // Replace with your endpoint
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -96,7 +96,7 @@ curl \
     "class": "Question",
     "vectorizer": "text2vec-openai",
 }' \
-https://some-endpoint.weaviate.network/v1/schema
+https://WEAVIATE_INSTANCE_URL/v1/schema  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem> */}

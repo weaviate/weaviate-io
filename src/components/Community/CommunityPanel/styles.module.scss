@@ -1,29 +1,65 @@
 .container {
   padding: 3rem;
-  background: #ededed;
+  background: #f5f5f5;
+
+  @media screen and (max-width: 500px) {
+    padding: 3rem 0rem;
+  }
 }
 
 .title {
-  text-align: left;
+  text-align: center;
   padding: 1rem 0 2rem 0;
   margin: auto;
   width: 83%;
 
   h2 {
-    color: #1c1468;
+    color: #130c49;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 900;
   }
 }
 
 .box {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-flow: wrap;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin-bottom: 20px;
+  gap: 50px;
+}
+
+.heroGraphic {
+  width: 10.44406rem;
+  height: 7.625rem;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../../../static/img/site/hero-graphic.svg');
+  position: absolute;
+  top: -120px;
+  left: 200%;
+  transform: translateX(-50%);
+
+  @media screen and (max-width: 1700px) {
+    left: 150%;
+  }
+  @media screen and (max-width: 1696px) {
+    left: 70%;
+  }
+
+  @media screen and (max-width: 1145px) {
+    width: 6.44406rem;
+    height: 6.625rem;
+    top: -89px;
+    left: 40%;
+  }
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -70,6 +106,16 @@
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 1.62675rem */
+
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 1.162rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.62675rem */
+    margin: 10px 0px;
+  }
 }
 
 .cardFooter {
@@ -99,33 +145,6 @@
     align-items: flex-start;
 
     padding: 1rem 0 0 0;
-  }
-}
-
-.img {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  // background-color: red;
-}
-
-.startImg {
-  background-image: url('../../../../static/img/company/careers/star-dark.png');
-  width: 2rem;
-  height: 2rem;
-
-  margin-right: 0.5rem;
-}
-
-.chatImg {
-  background-image: url('../../../../static/img/company/careers/chat-dark.png');
-  width: 5rem;
-  height: 5rem;
-
-  @media screen and (max-width: 600px) {
-    width: 4rem;
-    height: 4rem;
   }
 }
 

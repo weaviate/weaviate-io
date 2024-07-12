@@ -12,9 +12,9 @@ Embedded Weaviate is **experimental** software. APIs and parameters may change.
 
 :::
 
-Embedded Weaviate is a new deployment model that runs a Weaviate instance from your application code rather than from a stand-alone Weaviate server installation.
+import EMBDIntro from '/_includes/embedded-intro.mdx';
 
-When Embedded Weaviate starts for the first time, it creates a permanent datastore in the location set in your `persistence_data_path`. When your client exits, the Embedded Weaviate instance also exits, but the data persists . The next time the client runs, it starts a new instance of Embedded Weaviate. New Embedded Weaviate instances use the data that is saved in the datastore.
+<EMBDIntro />
 
 ## Start an Embedded Weaviate instance
 
@@ -23,6 +23,14 @@ import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 <EmbeddedInstantiation />
 
 When you exit the client, the Embedded Weaviate instance also exits.
+
+### Custom connection configuration
+
+To pass additional configuration details to your embedded instance, use a custom connection:
+
+import EMDBCustom from '/_includes/code/embedded.instantiate.custom.mdx';
+
+<EMDBCustom />
 
 ## Configuration options
 
@@ -128,6 +136,8 @@ The TypeScript clients are in these GitHub repositories:
 - [Embedded TypeScript client](https://github.com/weaviate/typescript-embedded)
 - [Standard TypeScript client](https://github.com/weaviate/typescript-client)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

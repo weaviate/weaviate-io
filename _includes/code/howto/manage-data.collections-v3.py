@@ -110,10 +110,10 @@ client.schema.delete_class(class_name)
 # END BasicNamedVectors
 
 # ===============================================
-# ===== SetVectorIndex =====
+# ===== SetVectorIndexType =====
 # ===============================================
 
-# START SetVectorIndex
+# START SetVectorIndexType
 class_obj = {
     'class': 'Article',
     'properties': [
@@ -123,6 +123,32 @@ class_obj = {
         },
     ],
     'vectorizer': 'text2vec-openai',  # this could be any vectorizer
+    # highlight-start
+    "vectorIndexType": "hnsw",  # or "flat" or "dynamic"
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetVectorIndexType
+
+# Test
+result = client.schema.get(class_name)
+assert result['vectorizer'] == 'text2vec-openai'
+assert result['vectorIndexType'] == 'flat'
+assert len(result['properties']) == 1  # no 'body' from the previous example
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
+# ===============================================
+# ===== SetVectorIndexParams =====
+# ===============================================
+
+# START SetVectorIndexParams
+class_obj = {
+    'class': 'Article',
+    # Additional configuration not shown
     # highlight-start
     "vectorIndexType": "flat",
     "vectorIndexConfig": {
@@ -137,7 +163,7 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)
-# END SetVectorIndex
+# END SetVectorIndexParams
 
 # Test
 result = client.schema.get(class_name)
@@ -156,12 +182,6 @@ client.schema.delete_class(class_name)
 # START ModuleSettings
 class_obj = {
     "class": "Article",
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"],
-        },
-    ],
     "vectorizer": "text2vec-cohere",  # this could be any vectorizer
     # highlight-start
     "moduleConfig": {
@@ -255,8 +275,55 @@ assert result["vectorIndexConfig"]["distance"] == "cosine"
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+# ===================================================================
+# ===== CREATE A COLLECTION WITH CUSTOM INVERTED INDEX SETTINGS =====
+# ===================================================================
+
+# START SetInvertedIndexParams
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-huggingface",  # this could be any vectorizer
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"],
+            "moduleConfig": {
+                "text2vec-huggingface": {  # this must match the vectorizer used
+                    # highlight-start
+                    "indexFilterable": True,
+                    "indexSearchable": True,
+                    # highlight-end
+                }
+            }
+        },
+    ],
+    # highlight-start
+    "invertedIndexConfig": {
+        "bm25": {
+            "b": 0.7,
+            "k1": 1.25
+        },
+        "indexTimestamps": True,
+        "indexNullState": True,
+        "indexPropertyLength": True
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetInvertedIndexParams
+
+# Test
+result = client.schema.get(class_name)
+assert result["properties"][0]["moduleConfig"]["text2vec-huggingface"]["indexFilterable"] is True
+assert result["invertedIndexConfig"]["bm25"]["b"] == 0.7
+assert result["invertedIndexConfig"]["bm25"]["k1"] == 1.25
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
 # ===============================================
-# ===== CREATE A COLLECTION WITH VECTORIZER =====
+# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
 # Clean slate
@@ -266,12 +333,6 @@ if client.schema.exists(class_name):
 # START SetGenerative
 class_obj = {
     "class": "Article",
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"],
-        },
-    ],
     "vectorizer": "text2vec-openai",  # set your vectorizer module
     # highlight-start
     "moduleConfig": {
@@ -282,6 +343,37 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 # END SetGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-openai" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+# =======================================================================
+# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE AND MODEL NAME =====
+# =======================================================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START SetGenModel
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    "moduleConfig": {
+        # highlight-start
+        "generative-openai": {
+            "model": "gpt-4" # select generative model name
+        }
+        # highlight-end
+    }
+}
+
+client.schema.create_class(class_obj)
+# END SetGenModel
 
 # Test
 result = client.schema.get(class_name)

@@ -177,3 +177,9 @@ By using `require.Nil` we can abort this test early, if an unexpected error was 
 import ContributorGuideMoreResources from '/_includes/more-resources-contributor-guide.md';
 
 <ContributorGuideMoreResources />
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

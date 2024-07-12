@@ -254,8 +254,8 @@ services:
 
 With these variables specified, an instance of Weaviate can be spun up with the summarizer module enabled. Next, it's a matter of making queries:
 
-:::note For WCS - use `generative-openai`
-At the time of writing, Weaviate Cloud Services (WCS) instances do not support the `sum-transformers` module.
+:::note For Weaviate Cloud - use `generative-openai`
+At the time of writing, Weaviate Cloud (WCD) instances do not support the `sum-transformers` module.
 
 However, you can perform summarizations with the `generative-openai` module, by providing a specific prompt. Take a look below 😉.
 :::
@@ -440,6 +440,6 @@ This module can shorten a piece of text into a pithy, to-the-point summary by pa
 
 By using Weaviate to summarize your data, you can reduce the amount of too long; did not read (TL;DR) content in your life and reduce the problem of information overload. The `sum-transformers` module uses the `bart-large-cnn` model by default, with an option for the `pegasus-xsum` model, but any model from Hugging Face Hub can be used.
 
-import StayConnected from '/_includes/stay-connected.mdx'
+import WhatsNext from '/_includes/what-next.mdx';
 
-<StayConnected />
+<WhatsNext />

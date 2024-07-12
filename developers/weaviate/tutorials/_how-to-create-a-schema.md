@@ -16,7 +16,7 @@ By the end of this tutorial, you should have a good idea of how to create a sche
 
 - A schema consists of classes and properties, which define concepts.
 - Words in the schema (names of classes and properties) must be part of the `text2vec-contextionary`.
-- The schema can be modified through the [RESTful API](../api/rest/schema.md). Python, JavaScript and Go clients are available.
+- The schema can be modified through the [RESTful API](/developers/weaviate/api/rest#tag/schema). Python, JavaScript and Go clients are available.
 - A class or property in Weaviate becomes immutable, but can always be extended.
 - Learn about Concepts, Classes, Properties and dataTypes in the [API reference guide](/developers/weaviate/api/index.md).
 
@@ -58,7 +58,7 @@ Let's say there are three classes you want to capture from this dataset in Weavi
 
 Classes always start with a capital letter. Properties always begin with a small letter. When you want to concatenate words into one class name or one property name, you can do that with camelCasing the words. Read more about schema classes, properties and data types [here](/developers/weaviate/config-refs/schema/index.md).
 
-Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Articles` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
+Let's define the class `Publication` with the properties `name`, `hasArticles` and `headquartersGeoLocation` in JSON format. `name` will be the name of the `Publication`, in string format. `hasArticles` will be a reference to Article objects. We need to define the class `Article` in the same schema to make sure the reference is possible. `headquartersGeoLocation` will be of the special dataType `geoCoordinates`.
 
 Note that the property `"title"` of the class `"Article"` has dataType `"string"`, while the property `"content"` is of dataType `"text"`. `string` values and `text` values are tokenized differently to each other.
 
@@ -283,10 +283,12 @@ import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.md
 ## Next steps
 
 <!-- - Go to the [next "How-to" guide]  (./how-to-import-data.md) to learn how to import data. -->
-- Check out the [RESTful API reference](../api/rest/schema.md) for an overview of all schema API operations.
+- Check out the [RESTful API reference](/developers/weaviate/api/rest#tag/schema) for an overview of all schema API operations.
 - Read this article on [Weaviate and schema creation](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

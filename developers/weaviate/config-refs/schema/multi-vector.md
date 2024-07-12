@@ -83,9 +83,9 @@ The legacy, single vector syntax is valid for use with collections that don't ha
 ```json
 {
     "class": "Article",
-    "vector": [0.3, -0.012, 0.071, ..., -0.09],
+    "vector": [0.3, -0.012, 0.071, -0.09],
     "properties": {
-        "content": Really cool things",
+        "content": "Really cool things",
     }
 }
 ```
@@ -96,7 +96,7 @@ To specify named vectors in collections with multiple, named vectors use the new
 {
     "class": "ArticleNamedVector",
     "vectors": {
-        "title_vector": [0.3, 0.2, 0.6, ..., 0.1]},
+        "title_vector": [0.3, 0.2, 0.6, 0.1],
         "image_vector": [1,2,3,4]
     },
     "properties": {
@@ -150,10 +150,12 @@ Named vector collections support [hybrid search](../../search/hybrid.md), but on
 
 import HybridPyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import HybridPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
+import HybridTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
+
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={HybridPyCode}
       startMarker="# NamedVectorHybridPython"
@@ -162,7 +164,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={HybridPyCodeV3}
       startMarker="# NamedVectorHybridPython"
@@ -171,9 +173,18 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client (v2)">
     <FilteredTextBlock
       text={HybridTSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client (v2)">
+    <FilteredTextBlock
+      text={HybridTSCodeLegacy}
       startMarker="// NamedVectorHybrid"
       endMarker="// END NamedVectorHybrid"
       language="ts"
@@ -198,6 +209,8 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 - [BQ Compression](../../configuration/bq-compression.md)
 - [PQ Compression](../../configuration/pq-compression.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

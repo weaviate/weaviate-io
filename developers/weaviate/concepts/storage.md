@@ -5,9 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'storage']
 ---
 
-
-## Introduction
-
 Weaviate is a persistent and fault-tolerant database. This page gives you an overview of how objects and vectors are stored within Weaviate and how an inverted index is created at import time.
 
 The components mentioned on this page aid Weaviate in creating some of its unique features:
@@ -83,6 +80,8 @@ As a result, any change to the HNSW index is immediately persisted and there is 
 
 This page introduced you to the storage mechanisms of Weaviate. It outlined how all writes are persisted immediately and outlined the patterns used within Weaviate to make datasets scale well. For structured data, Weaviate makes use of segmentation to keep the write times constant. For the HNSW vector index, Weaviate avoids segmentation to keep query times efficient.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

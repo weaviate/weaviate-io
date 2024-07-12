@@ -112,7 +112,7 @@ The chart shows that each query takes 40-70% less time to return results when us
 Query throughput is usually measured in queries per second (QPS). The chart shows query throughput values based on averages of 10,000 queries.
 <br/>
 
-The different settings relate to a [vector index (HNSW) parameter](https://weaviate.io/developers/weaviate/concepts/vector-index#what-is-hierarchical-navigable-small-world-hnsw) `ef`.
+The different settings relate to a [vector index (HNSW) parameter](https://weaviate.io/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) `ef`.
 
 This parameter sets the size of the dynamic candidate list used in the HNSW search algorithm, and drives the speed and accuracy trade-off. In this test, it will impact the ANN-search portion of each query. Regardless, you can see that even at high `ef` numbers the gRPC-driven improvements are significant.
 
@@ -126,7 +126,7 @@ From your perspective, taking advantage of the new gRPC API involves making sure
 
 ### Step 1: Open Port for gRPC messages
 
-First of all, the appropriate port must be open to allow gRPC messages through. Weaviate still uses REST endpoints for various functions, and gRPC traffic is sent through a separate socket than its REST traffic. Typically, the server port is 50051, although it can vary. [Weaviate Cloud Services](https://console.weaviate.cloud), for example, uses port 443 with a different URL to provide two distinct sockets for gRPC and REST traffic.
+First of all, the appropriate port must be open to allow gRPC messages through. Weaviate still uses REST endpoints for various functions, and gRPC traffic is sent through a separate socket than its REST traffic. Typically, the server port is 50051, although it can vary. [Weaviate Cloud](https://console.weaviate.cloud), for example, uses port 443 with a different URL to provide two distinct sockets for gRPC and REST traffic.
 
 <details>
   <summary>For Docker users</summary>

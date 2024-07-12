@@ -63,7 +63,7 @@ func Test_ManageDataCrossRefs(t *testing.T) {
 	// museumsID := "fec50326-dfa1-53c9-90e8-63d0240bd933"
 
 	t.Run("Add one-way cross-ref", func(t *testing.T) {
-		// OneWay Go
+		// START OneWay
 		sfID := "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
 		usCitiesID := "20ffc68d-986b-5e71-a680-228dba18d7ef"
 
@@ -76,7 +76,7 @@ func Test_ManageDataCrossRefs(t *testing.T) {
 				WithID(usCitiesID).
 				Payload()).
 			Do(ctx)
-		// END OneWay Go
+		// END OneWay
 
 		objs, err := client.Data().ObjectsGetter().
 			WithClassName("JeopardyQuestion").

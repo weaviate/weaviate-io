@@ -5,6 +5,9 @@ image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'rag', 'openai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="openai" />
 
 ## In short
 
@@ -74,8 +77,8 @@ For requests that require the OpenAI organization name, you can provide it at qu
 
 ## Module configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCD.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -321,6 +324,8 @@ The module also supports these legacy models. However, their use is not recommen
 * [davinci 003](https://platform.openai.com/docs/models/overview)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

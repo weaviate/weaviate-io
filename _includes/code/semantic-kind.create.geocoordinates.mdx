@@ -6,7 +6,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/rest.objects.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyCode}
     startMarker="START WithGeoCoordinates"
@@ -15,13 +15,9 @@ import PyCode from '!!raw-loader!/_includes/code/rest.objects.py';
   />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
-import weaviate
-
-client = weaviate.Client("http://localhost:8080")
-
 data_obj = {
   "name": "Elsevier",
   "headquartersGeoLocation": {
@@ -38,16 +34,29 @@ data_uuid = client.data_object.create(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+const publication = client.collections.get('Publication')
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
+uuid = await publication.data.insert({
+  properties: {
+    name: 'Elsevier',
+    headquartersGeoLocation: {
+      'latitude': 52.3932696,
+      'longitude': 4.8374263,
+    },
+  },
+  id: 'df48b9f6-ba48-470c-bf6a-57657cb07390'
+})
 
+console.log('UUID: ', uuid)
+```
+
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+
+```js
 const response = await client.data
   .creator()
   .withClassName('Publication')

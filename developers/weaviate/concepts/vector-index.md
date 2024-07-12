@@ -5,75 +5,48 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-
-
-<!-- :::caution Migrated From:
-- From `Vector Index (ANN) Plugins:Index` + `HNSW`
-  - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
-::: -->
-
-Vector indexing is a core concept in vector databases because it helps to [significantly increase the speed of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy.
-
-## Overview
-
-This page explains what vector indices are, and what purpose they serve in the Weaviate [vector database](https://weaviate.io/blog/what-is-a-vector-database).
-
-:::info Related pages
-- [Concepts: Indexing](./indexing.md)
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
-- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
-:::
-
-## Introduction
+Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
-## Why index data as vectors?
+Weaviate supports two types of vector indexing:
+* [flat index](#flat-index): a simple, lightweight index that is designed for small datasets.
+* [HNSW index](#hnsw-index): a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
+* [dynamic index](#dynamic-index): allows you to automatically switch from a flat index to an HNSW index as object count scales
 
-Vectors are a great way to represent meaning. Vectors are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
+:::caution Experimental feature
+Available starting in `v1.25`. This is an experimental feature. Use with caution.
+:::
 
-Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects. When you run a similarity search, a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
+This page explains what vector indices are, and what purpose they serve in the Weaviate vector database.
 
-Vectors are like coordinates in a multi-dimensional space. A very simple vector might represent objects, *words* in this case, in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors or [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings)) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. 
+## Why do you need vector indexing?
+
+[Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) are a great way to represent meaning. Vectors embeddings are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The number of elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
+
+Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure semantic similarity between data objects. When you run a [similarity search](https://weaviate.io/developers/weaviate/search/similarity), a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
+
+Vectors are like coordinates in a multi-dimensional space. A very simple vector might represent objects, *words* in this case, in a 2-dimensional space.
 
 In the graph below, the words `Apple` and `Banana` are shown close to each other. `Newspaper` and `Magazine` are also close to each other, but they are far away from `Apple` and `Banana` in the same vector space.
 
 Within each pair, the distance between words is small because the objects have similar vector representations. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
 
-For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings.
+For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings).
 
-![2D Vectors visualization](./img/vectors-2d.png "2D Vectors visualization")
+![2D Vector embedding visualization](./img/vectors-2d.png "2D Vectors visualization")
 
 Another way to think of this is how products are placed in a supermarket. You'd expect to find `Apples` close to `Bananas`, because they are both fruit. But when you are searching for a `Magazine`, you would move away from the `Apples` and `Bananas`, more towards the aisle with, for example, `Newspapers`. This is how the semantics of concepts can be stored in Weaviate as well, depending on the module you're using to calculate the numbers in the vectors. Not only words or text can be indexed as vectors, but also images, video, DNA sequences, etc. Read more about which model to use [here](/developers/weaviate/modules/index.md).
 
-![Supermarket map visualization](./img/supermarket.svg "Supermarket map visualization")
+![Supermarket map visualization as analogy for vector indexing](./img/supermarket.svg "Supermarket map visualization")
 
-## Which vector index is right for me?
+:::tip
+You might be also interested in our blog post [Why is vector search to fast?](https://weaviate.io/blog/why-is-vector-search-so-fast).
+:::
 
-Weaviate supports two index types:
-* The `flat` index is a simple, lightweight index that is designed for small datasets.
-* The `hnsw` index (default) is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
+## Hierarchical Navigable Small World (HNSW) index
 
-A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
-
-Note that the vector index type parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search.
-
-The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
-
-To learn more about configuring the collection, see [this how-to page](../manage-data/collections.mdx).
-
-### Distance metrics
-
-All of [the distance metrics](/developers/weaviate/config-refs/distances.md), such as cosine similiarity, can be used with any vector index type.
-
-## Set vector index type
-
-The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings.
-
-
-## What is Hierarchical Navigable Small World (HNSW)
-
-Hierarchical Navigable Small World (HNSW) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
+**Hierarchical Navigable Small World (HNSW)** is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
 Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
@@ -95,7 +68,7 @@ Have another look at the diagram; it demonstrates how the HNSW algorithm searche
 
 If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)).
 
-## Managing search quality vs speed tradeoffs
+### Managing search quality vs speed tradeoffs
 
 HNSW parameters can be adjusted to adjust search quality against speed.
 
@@ -156,149 +129,18 @@ The resulting search list has these characteristics.
 - A maximum length of 25 objects ("dynamicEfMax": 25).
 - An actual size of 5 to 25 objects.
 
-If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/installation/docker-compose) to run your local instance, the `QUERY_DEFAULTS_LIMIT` environment variable sets a reasonable default query limit. To prevent out of memory errors,`QUERY_DEFAULTS_LIMIT` is significantly lower than `QUERY_MAXIMUM_RESULTS`.
+If you use the [`docker-compose.yml` file from Weaviate](/developers/weaviate/installation/docker-compose) to run your local instance, the `QUERY_DEFAULTS_LIMIT` environment variable sets a reasonable default query limit. To prevent out of memory errors,`QUERY_DEFAULTS_LIMIT` is significantly lower than `QUERY_MAXIMUM_RESULTS`.
 
 To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
 
+### Deletions
 
-## HNSW Index with Compression
+Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
 
-HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
-
-import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
-
-<PQTradeoffs />
-
-To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vector-index.md).
-
-To configure PQ, see [Compression](/developers/weaviate/configuration/pq-compression.md).
-
-### What is Product Quantization?
-
-[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique that is available for use with `hnsw` indexes. Quantization techniques represent numbers with lower precision numbers. A familiar example is rounding a number to the nearest integer.
-
-In PQ, the original vector is represented as a product of smaller vectors that are called 'segments' or 'subspaces.' Then, each segment is quantized independently to create a compressed vector representation.
-
-![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
-
-After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors.
-
-Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory consumption significantly. Imagine a collection where each vector has 768 four byte elements. Before PQ compression, each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
-
-To enable PQ compression, see [Enable PQ compression](/developers/weaviate/configuration/pq-compression#enable-pq-compression)
-
-### Distance calculation and rescoring
-
-With product quantization distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
-
-Additionally as Weaviate has the original vectors stored on disk, rescoring will occur when using product quantization. After HNSW PQ has produced the candidate vectors from a search the original vectors will be fetched from disk improving recall. Rescoring occurs by default.
-
-### Segments
-
-The PQ `segments` controls the tradeoff between memory and recall. A larger `segments` parameter means higher memory usage and recall. An important thing to note is that the segments must divide evenly the original vector dimension.
-
-Below is a list segment values for common vectorizer modules:
-
-| Module      | Model                                   | Dimensions | Segments               |
-|-------------|-----------------------------------------|------------|------------------------|
-| openai      | text-embedding-ada-002                  | 1536       | 512, 384, 256, 192, 96 |
-| cohere      | multilingual-22-12                      | 768        | 384, 256, 192, 96      |
-| huggingface | sentence-transformers/all-MiniLM-L12-v2 | 384        | 192, 128, 96           |
-
-### Configure an existing collection to use PQ
-
-:::caution Important
-PQ is available starting in v1.18, however we recommend using Weaviate 1.23.0 or later.
-:::
-
-To configure an existing collection (class) to use PQ, update the vector index configuration. If your collection is used in production, [backup](../configuration/backups.md) your configuration before making changes.
-
-PQ has a training stage where it creates a codebook. When you convert an existing collection, there is some data already present. PQ needs 10,000 to 100,100,000 records per shard to create the codebook. If you have a smaller collection, consider using binary quantization (BQ) instead. If your collection is very large, PQ will reduce the memory requirements to store the collection but there is some additional overhead while PQ processes the uncompressed vectors.
-
-To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Vector index](../config-refs/schema/vector-index.md).
-
-```python
-client.schema.update_config("DeepImage", {
-  "vectorIndexConfig": {
-    "pq": {
-      "enabled": True,
-      "trainingLimit": 100000,
-      "segments": 0 # see above section for recommended values
-    }
-  }
-})
-```
-
-The command returns immediately. A background job converts the index. While the conversion is running, the index is read-only. Shard status returns to `READY` when the conversion finishes.
-
-```python
-client.schema.get_class_shards("DeepImage")
-
-[{'name': '1Gho094Wev7i', 'status': 'READONLY'}]
-```
-
-After the PQ conversion completes, query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
-
-```python
-client.query.get("DeepImage", ["i"]) \
-	.with_near_vector({"vector": vector}) \
-	.with_additional(["distance"]) \
-	.with_limit(10).do()
-
-{'data': {'Get': {'DeepImage': [{'_additional': {'distance': 0.18367815},
-     'i': 64437},
-    {'_additional': {'distance': 0.18895388}, 'i': 97342},
-    {'_additional': {'distance': 0.19454134}, 'i': 14852},
-    {'_additional': {'distance': 0.20019263}, 'i': 84393},
-    {'_additional': {'distance': 0.20580399}, 'i': 71091},
-    {'_additional': {'distance': 0.2110992}, 'i': 15182},
-    {'_additional': {'distance': 0.2117207}, 'i': 92370},
-    {'_additional': {'distance': 0.21241724}, 'i': 98583},
-    {'_additional': {'distance': 0.21241736}, 'i': 8064},
-    {'_additional': {'distance': 0.21257097}, 'i': 537}]}}}
-```
-
-### Encoders
-
-In the configuration above you can see that you can set the `encoder` object to specify how the codebook centroids are generated. Weaviate’s PQ supports using two different encoders. The default is `kmeans` which maps to the traditional approach used for creating centroid.
-
-Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Vector index](../config-refs/schema/vector-index.md).
-
-
-## Flat index
-
-:::info Added in `v1.23`
-:::
-
-The `flat` index is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
-
-As the name suggests, the flat index is a single layer of data objects. This provides an additional benefit of a small size. It is disk-backed, thus minimizing memory usage.
-
-A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
-
-### Binary quantization
-
-Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.
-
-BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
-
-The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector.
-
-Some vectorizers work better with BQ than others. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
-
-Note that when BQ is enabled, a vector cache can be used to improve query performance. The vector cache is used to speed up queries by reducing the number of disk reads for the quantized vectors. Note that it must be balanced with memory usage considerations, with each vector taking up `n_dimensions` bits.
-
-#### Over-fetching / re-scoring
-
-When using BQ, Weaviate will conditionally over-fetch and then re-score the results. This is because the distance calculation is not as accurate as the original vector.
-
-This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
-
-
-## Asynchronous indexing
+### Asynchronous indexing
 
 :::caution Experimental
-Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
 Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
@@ -307,6 +149,34 @@ Asynchronous indexing decouples object creation from vector index updates. Objec
 
 While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
 
+:::tip
+You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw).
+:::
+
+## Flat index
+
+:::info Added in `v1.23`
+:::
+
+The **flat index** is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
+
+As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
+
+A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
+
+## Dynamic index
+
+:::caution Experimental feature
+Available starting in `v1.25`. This is an experimental feature. Use with caution.
+:::
+
+The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution as HNSW speeds up search. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
+
+By configuring a dynamic index, you can automatically switch from flat to HNSW indexes. This switch occurs when the object count exceeds a prespecified threshold (by default 10,000). This functionality only works with async indexing enabled. When the threshold is hit while importing, all the data piles up in the async queue, the HNSW index is constructed in the background and when ready the swap from flat to HNSW is completed.
+
+Currently, this is only a one-way upgrade from a flat to an HNSW index, it does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
+
+This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce extra overhead. With a dynamic index, as individual tenants grow their index will switch from flat to HNSW, while smaller tenants' indexes remain flat.
 
 ## Vector cache considerations
 
@@ -318,11 +188,31 @@ After import, when your workload is mostly querying, experiment with vector cach
 
 Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries run against the cache until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
 
-## Deletions
+## Vector indexing FAQ
 
-Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+### Can I use vector indexing with vector quantization?
 
-## When to skip indexing
+Yes, you can read more about it in [vector quantization (compression)](./vector-quantization.md).
+
+### Which vector index is right for me?
+
+A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
+
+Note that the vector index type parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search.
+
+The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
+
+To learn more about configuring the collection, see [this how-to page](../manage-data/collections.mdx).
+
+### Which distance metrics can I use with vector indexing?
+
+All of [the distance metrics](/developers/weaviate/config-refs/distances.md), such as cosine similarity, can be used with any vector index type.
+
+### How to configure the vector index type in Weaviate?
+
+The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings, according to available [vector index settings](../config-refs/schema/vector-index.md).
+
+### When to skip indexing
 
 There are situations where it doesn't make sense to vectorize a collection. For example, if the collection consists solely of references between two other collections, or if the collection contains mostly duplicate elements.
 
@@ -330,7 +220,17 @@ Importing duplicate vectors into HNSW is very expensive. The import algorithm ch
 
 To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
 
+## Further resources
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+:::info Related pages
+- [Concepts: Indexing](./indexing.md)
+- [Concepts: Vector quantization (compression)](./vector-quantization.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
+:::
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

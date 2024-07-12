@@ -5,21 +5,31 @@ image: og/docs/client-libraries.jpg
 # tags: ['go', 'client library']
 ---
 
-
 :::note Go client version
 The current Go client version is `v||site.go_client_version||`.
 :::
 
-## Installation and setup
+The Weaviate Go client is compatible with Go 1.16+.
+
+## Installation
+The client doesn't support the old Go modules system. Create a repository for your code before you import the Weaviate client.
+
+Create a repository:
+
+```bash
+go mod init github.com/weaviate-go-client
+go mod tidy
+```
+
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
 go get github.com/weaviate/weaviate-go-client/v4
 ```
 
-This API client is compatible with Go 1.16+.
+## Example
 
-You can use the client in your Go scripts as follows:
+This example establishes a connection to your Weaviate instance and retrieves the schema.:
 
 ``` go
 package main
@@ -33,7 +43,7 @@ import (
 func GetSchema() {
     cfg := weaviate.Config{
         Host:   "localhost:8080",
-		Scheme: "http",
+		  Scheme: "http",
     }
     client, err := weaviate.NewClient(cfg)
     if err != nil {
@@ -46,6 +56,10 @@ func GetSchema() {
     }
     fmt.Printf("%v", schema)
 }
+
+func main() {
+   GetSchema()
+}
 ```
 
 ## Authentication
@@ -54,11 +68,11 @@ import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/c
 
 <ClientAuthIntro clientName="Go"/>
 
-### WCS authentication
+### WCD authentication
 
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
+import ClientAuthWCD from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
 
-<ClientAuthWCS />
+<ClientAuthWCD />
 
 ### API key authentication
 
@@ -102,7 +116,7 @@ cfg := weaviate.Config{
 	AuthConfig: auth.ResourceOwnerPasswordFlow{
 		Username: "Your user",
 		Password: "Your password",
-		Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+		Scopes:   []string{"offline_access"}, // optional, depends on the configuration of your identity provider (not required with WCD)
 	},
 	Headers: nil,
 }
@@ -124,7 +138,7 @@ cfg := weaviate.Config{
 	Scheme: "http",
 	AuthConfig: auth.ClientCredentials{
 		ClientSecret: "your_client_secret",
-		Scopes:       []string{"scope1 scope2"}, // optional, depends on the configuration of your identity provider (not required with WCS)
+		Scopes:       []string{"scope1 scope2"}, // optional, depends on the configuration of your identity provider (not required with WCD)
 	},
 	Headers: nil,
 }
@@ -179,13 +193,13 @@ if err != nil{
 
 ## References
 
-All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) references covered by the Go client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../api/graphql/index.md) references covered by the Go client, and explained on those reference pages in the code blocks.
 
 ## Design
 
 ### Builder pattern
 
-The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
+The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](/developers/weaviate/api/rest) and the [GraphQL reference pages](../api/graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute.
 
@@ -395,7 +409,59 @@ After:
 client.Data().Validator().WithProperties(properties)
 ```
 
-## Client releases
+## Releases
+
+For links to the Go Client releases, expand this section.
+
+<details>
+  <summary>Go Client</summary>
+
+| Client Version | Release Date |
+| :- | :- |
+| [4.14.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.0) | 2024-05-20 |
+| [4.13.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.1) | 2024-03-07 |
+| [4.13.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0) | 2024-03-05 |
+| [4.12.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.12.0) | 2023-12-08 |
+| [4.11.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0) | 2023-11-13 |
+| [4.10.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0) | 2023-08-22 |
+| [4.9.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.9.0) | 2023-07-06 |
+| [4.8.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.1) | 2023-05-26 |
+| [4.8.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.0) | 2023-05-05 |
+| [4.7.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.1) | 2023-04-14 |
+| [4.7.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.0) | 2023-04-03 |
+| [4.6.4](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.4) | 2023-03-25 |
+| [4.6.3](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.3) | 2023-03-14 |
+| [4.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.2) | 2023-03-07 |
+| [4.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.1) | 2023-02-01 |
+| [4.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.0) | 2023-02-01 |
+| [4.5.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.2) | 2023-01-19 |
+| [4.5.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.1) | 2023-01-17 |
+| [4.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.0) | 2022-12-20 |
+| [4.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.4.0) | 2022-10-31 |
+| [4.3.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.1) | 2022-09-27 |
+| [4.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.0) | 2022-09-07 |
+| [4.2.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.1) | 2022-07-12 |
+| [4.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.0) | 2022-07-07 |
+| [4.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.1.0) | 2022-05-25 |
+| [4.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.0.0) | 2022-05-03 |
+| [3.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v3.0.0) | 2022-04-05 |
+| [2.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.2) | 2022-10-31 |
+| [2.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.1) | 2022-05-04 |
+| [2.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.0) | 2022-03-11 |
+| [2.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.5.0) | 2022-02-01 |
+| [2.4.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.1) | 2021-12-15 |
+| [2.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.0) | 2021-11-30 |
+| [2.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.3.0) | 2021-08-31 |
+| [2.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.2.0) | 2021-06-07 |
+| [2.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.1.0) | 2021-04-23 |
+| [2.0.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.1) | 2021-03-25 |
+| [2.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.0) | 2021-03-23 |
+| [1.1.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.2) | 2021-10-31 |
+| [1.1.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.1) | 2021-05-04 |
+| [1.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.0) | 2020-11-09 |
+| [1.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.0.0) | 2020-11-06 |
+
+</details>
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
@@ -408,6 +474,8 @@ Check the
 for updates on the latest `Go client` changes.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

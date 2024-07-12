@@ -1,18 +1,18 @@
 # CreateMovieCollection
 import weaviate
+import os
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
-import os
 
 # CreateMovieCollection  # END SubmoduleImport
 
 # END CreateMovieCollection
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
 )
 
 # CreateMovieCollection
@@ -24,11 +24,11 @@ client = weaviate.connect_to_wcs(
 
 # Actual instantiation
 
-client.collections.delete("Movie")
+client.collections.delete("MovieCustomVector")
 
 # CreateMovieCollection
 client.collections.create(
-    name="Movie",
+    name="MovieCustomVector",
     properties=[
         wc.Property(name="title", data_type=wc.DataType.TEXT),
         wc.Property(name="overview", data_type=wc.DataType.TEXT),
@@ -40,7 +40,7 @@ client.collections.create(
     # Define the vectorizer module (none, as we will add our own vectors)
     vectorizer_config=wc.Configure.Vectorizer.none(),
     # Define the generative module
-    generative_config=wc.Configure.Generative.openai()
+    generative_config=wc.Configure.Generative.cohere()
     # END generativeDefinition  # CreateMovieCollection
 )
 
@@ -48,29 +48,27 @@ client.close()
 # END CreateMovieCollection
 
 
-# See https://huggingface.co/blog/getting-started-with-embeddings for further explanations
+# See https://docs.cohere.com/reference/embed for further explanations
 # ManuallyGenerateEmbeddings
 import requests
 import pandas as pd
+import os
+from typing import List
+import cohere
+from cohere import Client as CohereClient
+
+co_token = os.getenv("COHERE_APIKEY")
+co = cohere.Client(co_token)
 
 
 # Define a function to call the endpoint and obtain embeddings
-def query(texts):
-    import requests
-    import os
+def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
 
-    model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    hf_token = os.getenv("HUGGINGFACE_APIKEY")
-
-    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
-
-    response = requests.post(
-        api_url,
-        headers=headers,
-        json={"inputs": texts, "options": {"wait_for_model": True}},
+    response = cohere_client.embed(
+        texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
     )
-    return response.json()
+
+    return response.embeddings
 
 
 # Get the source data
@@ -88,8 +86,9 @@ for i, row in enumerate(df.itertuples(index=False)):
     src_texts.append(src_text)
     if (len(src_texts) == 50) or (i + 1 == len(df)):  # Get embeddings in batches of 50
         # Get a batch of embeddings
-        output = query(src_texts)
-        emb_df = pd.DataFrame(output)
+        output = vectorize(co, src_texts)
+        index = list(range(i - len(src_texts) + 1, i + 1))
+        emb_df = pd.DataFrame(output, index=index)
         # Add the batch of embeddings to a list
         emb_dfs.append(emb_df)
         # Reset the buffer
@@ -99,11 +98,15 @@ for i, row in enumerate(df.itertuples(index=False)):
 emb_df = pd.concat(emb_dfs)  # Create a combined dataset
 
 # Save the data as a CSV
+os.makedirs("scratch", exist_ok=True)  # Create a folder if it doesn't exist
 emb_df.to_csv(
     f"scratch/movies_data_1990_2024_embeddings.csv",
     index=False,
 )
 # END ManuallyGenerateEmbeddings
+
+assert len(emb_df) == len(df)
+assert type(output[0]) == list
 
 
 # BatchImportData
@@ -117,12 +120,12 @@ from tqdm import tqdm
 import os
 
 # END BatchImportData
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
+        os.getenv("WCD_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCD key
     headers=headers,
 )
 
@@ -138,11 +141,15 @@ data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/ma
 data_resp = requests.get(data_url)
 df = pd.DataFrame(data_resp.json())
 
-embs_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
-emb_df = pd.read_csv(embs_url)
+# Load the embeddings (embeddings from the previous step)
+embs_path = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
+# Or load embeddings from a local file (if you generated them earlier)
+# embs_path = "scratch/movies_data_1990_2024_embeddings.csv"
+
+emb_df = pd.read_csv(embs_path)
 
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieCustomVector")
 
 # Enter context manager
 with movies.batch.dynamic() as batch:

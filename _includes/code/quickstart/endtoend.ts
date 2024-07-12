@@ -17,40 +17,38 @@ const client: WeaviateClient = weaviate.client({
 // END DockerInstantiationExample
 */
 
-// EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
-import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
-import fetch from 'node-fetch';
+// EndToEndExample  // InstantiationExample  // NearTextExample
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your inference API key
-});
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
+  process.env.WCD_URL,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+    }
+  } 
+)
 
-// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
+// END EndToEndExample  // END InstantiationExample  // END NearTextExample
 
 // ================================
 // ===== END-TO-END EXAMPLE =====
 // ================================
 
 // EndToEndExample  // CustomVectorExample
-// Add the schema
-const classObj = {
-  'class': 'Question',
-  'vectorizer': 'text2vec-openai',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
-  'moduleConfig': {
-    'text2vec-openai': {},
-    'generative-openai': {}  // Ensure the `generative-openai` module is used for generative queries
-  },
-};
+// START CreateCollection
+import { vectorizer, generative } from 'weaviate-client' 
 
-async function addSchema() {
-  const res = await client.schema.classCreator().withClass(classObj).do();
-  console.log(res);
+async function createCollection() {
+  const questions = await client.collections.create({
+    name: 'Question',
+    vectorizers: vectorizer.text2VecOpenAI(),
+    generative: generative.openAI(),
+  })
+  console.log(`Collection ${questions.name} created!`);
 }
-
-// END Add the schema
+// END CreateCollection
 
 // Import data function
 async function getJsonData() {
@@ -60,130 +58,91 @@ async function getJsonData() {
 
 async function importQuestions() {
   // Get the questions directly from the URL
+  const questions = client.collections.get('Question');
   const data = await getJsonData();
-
-  // Prepare a batcher
-  let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-  let counter = 0;
-  const batchSize = 100;
-
-  for (const question of data) {
-    // Construct an object with a class and properties 'answer' and 'question'
-    const obj = {
-      class: 'Question',
-      properties: {
-        answer: question.Answer,
-        question: question.Question,
-        category: question.Category,
-      },
-    };
-
-    // add the object to the batch queue
-    batcher = batcher.withObject(obj);
-
-    // When the batch counter reaches batchSize, push the objects to Weaviate
-    if (counter++ == batchSize) {
-      // flush the batch queue
-      const res = await batcher.do();
-      console.log(res);
-
-      // restart the batch queue
-      counter = 0;
-      batcher = client.batch.objectsBatcher();
-    }
-  }
-
-  // Flush the remaining objects
-  const res = await batcher.do();
-  console.log(res);
+  const result = await questions.data.insertMany(data)
+  console.log('We just bulk inserted',result);
 }
+// END Import data function
 
-// END EndToEndExample  // END Import data function
+// END EndToEndExample
 
 // NearTextExample
-async function nearTextQuery() {
-  const res = await client.graphql
-    .get()
-    .withClassName('Question')
-    .withFields('question answer category')
-    .withNearText({concepts: ['biology']})
-    .withLimit(2)
-    .do();
+async function nearTextQuery() {  
+  const questions = client.collections.get('Question');
 
-  console.log(JSON.stringify(res, null, 2));
-  return res;
+  const result = await questions.query.nearText('biology', {
+    limit:2
+  });
+
+  for (let object of result.objects) {
+    console.log(JSON.stringify(object.properties, null, 2));
+  }
+
+  return result;
 }
-
 // END NearTextExample
 
 // NearTextWhereExample
-async function nearTextWhereQuery() {
-  const res = await client.graphql
-    .get()
-    .withClassName('Question')
-    .withFields('question answer category')
-    .withNearText({concepts: ['biology']})
-    .withWhere({
-      'path': ['category'],
-      'operator': 'Equal',
-      'valueText': 'ANIMALS',
-    })
-    .withLimit(2)
-    .do();
+async function nearTextWhereQuery() {  
+  const questions = client.collections.get('Question');
 
-  console.log(JSON.stringify(res, null, 2));
-  return res;
+  const result = await questions.query.nearText('biology', {
+    filters: client.collections.get('Question').filter.byProperty('category').equal('ANIMALS'),
+    limit:2
+  });
+
+  for (let object of result.objects) {
+    console.log(JSON.stringify(object.properties, null, 2));
+  }
+  return result;
 }
 
 // END NearTextWhereExample
 
 // GenerativeSearchExample
 async function generativeSearchQuery() {
-  const res = await client.graphql
-    .get()
-    .withClassName('Question')
-    .withFields('question answer category')
-    .withNearText({concepts: ['biology']})
-    .withGenerate({singlePrompt: 'Explain {answer} as you might to a five-year-old.'})
-    .withLimit(2)
-    .do();
+  const questions = client.collections.get('Question');
 
-  console.log(JSON.stringify(res, null, 2));
-  return res;
+  const result = await questions.generate.nearText('biology',
+    { singlePrompt: `Explain {answer} as you might to a five-year-old.` },
+    { limit: 2 }
+  );
+
+  for (let object of result.objects) {
+    console.log(JSON.stringify(object.properties, null, 2));
+    console.log(object.generated);
+  }
+  return result;
 }
 
 // END GenerativeSearchExample
 
 // GenerativeSearchGroupedTaskExample
 async function generativeSearchGroupedQuery() {
-  const res = await client.graphql
-    .get()
-    .withClassName('Question')
-    .withFields('question answer category')
-    .withNearText({concepts: ['biology']})
-    .withGenerate({groupedTask: 'Write a tweet with emojis about these facts.'})
-    .withLimit(2)
-    .do();
+  const questions = client.collections.get('Question');
 
-  console.log(res.data.Get.Question[0]._additional.generate.groupedResult);
-  return res;
+  const result = await questions.generate.nearText('biology',
+    { groupedTask: `Write a tweet with emojis about these facts.` },
+    { limit: 2 }
+  );
+
+  console.log(result.generated);
+  return result;
 }
 
 // END GenerativeSearchGroupedTaskExample
 
-
-
 // Define test functions
 async function getNumObjects() {
-  const res = await client.graphql
-    .aggregate()
-    .withClassName('Question')
-    .withFields('meta { count }').do();
-  return res.data.Aggregate.Question[0].meta.count;
+  const questions = client.collections.get('Question');    
+  const objectCount =  await questions.aggregate.overAll()
+  console.log(JSON.stringify(objectCount.totalCount));
+  return objectCount.totalCount
 }
 
 async function cleanup() {
-  await client.schema.classDeleter().withClassName('Question').do();
+  await client.collections.delete('Question');
 }
 // END Define test functions
 
@@ -194,13 +153,13 @@ Actually populate the instance and run the query
 
 // EndToEndExample
 async function run() {
-  await addSchema();
+  await createCollection();
   await importQuestions();
   // END EndToEndExample
   const res = await nearTextQuery();
 
   // Test
-  assert.deepEqual(res.data.Get.Question.length, 2);
+  assert.deepEqual(res.objects.length, 2);
   // assert.deepEqual(res.data.Get.Question[0].answer, 'DNA');  // Commenting out as it may change according to any model changes
   const count = await getNumObjects();
   assert.deepEqual(count, 10);
@@ -233,9 +192,9 @@ await nearTextQuery();
 */
 
 /*
-// NearTextExample
+// NearTextWhereExample
 await nearTextWhereQuery();
-// END NearTextExample
+// END NearTextWhereExample
 */
 
 /*
@@ -251,9 +210,9 @@ await generativeSearchGroupedQuery();
 */
 
 /*
-// Add the schema
-await addSchema();
-// END Add the schema
+// START CreateCollection
+await createCollection();
+// END CreateCollection
 */
 
 

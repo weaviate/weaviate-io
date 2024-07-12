@@ -1,77 +1,106 @@
 import React, { useEffect } from 'react';
-import CommandPalette, { getItemIndex, useHandleOpenCommandPalette } from 'react-cmdk';
+import CommandPalette, {
+  getItemIndex,
+  useHandleOpenCommandPalette,
+} from 'react-cmdk';
 import './cmdk.css';
 import { useState } from 'react';
 import { runQuery } from './query';
-import { analyticsSiteSearched, analyticsSiteSearchResultsRejected, analyticsSiteSearchSelected } from '../../analytics';
-import { debounceTime, tap, distinctUntilChanged, filter } from 'rxjs/operators';
+import {
+  analyticsSiteSearched,
+  analyticsSiteSearchResultsRejected,
+  analyticsSiteSearchSelected,
+} from '../../analytics';
+import {
+  debounceTime,
+  tap,
+  distinctUntilChanged,
+  filter,
+} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 const defaultMenuPages = {
   heading: 'Pages',
   id: 'pages',
-  items: [{
+  items: [
+    {
       id: 1001,
-      children: 'Weaviate Cloud console',
+      children: 'Documentation',
       icon: 'BookmarkIcon',
-      href: 'https://console.weaviate.cloud/'
-    },{
+      href:
+        typeof window !== 'undefined' &&
+        window.location.pathname.startsWith('/developers/weaviate')
+          ? null
+          : '/developers/weaviate',
+    },
+    {
       id: 1002,
-      children: 'Weaviate Cloud Services - Pricing',
+      children: 'Blog',
       icon: 'BookmarkIcon',
-      href: '/pricing'
+      href:
+        typeof window !== 'undefined' && window.location.pathname === '/blog'
+          ? null
+          : '/blog',
     },
     {
       id: 1003,
-      children: 'Blog',
+      children: 'Weaviate Cloud console',
       icon: 'BookmarkIcon',
-      href: '/blog'
-    },{
-      id: 1004,
-      children: 'Documentation',
-      icon: 'BookmarkIcon',
-      href: '/developers/weaviate'
+      href: 'https://console.weaviate.cloud/',
     },
-  ]
-}
+    {
+      id: 1004,
+      children: 'Weaviate Cloud - Pricing',
+      icon: 'BookmarkIcon',
+      href: '/pricing',
+    },
+  ],
+};
 
 const defaultSocialMediaLinks = {
   heading: 'SocialMedia',
   id: 'socialMedia',
-  items: [{
+  items: [
+    {
       id: 2001,
       children: 'Slack',
       icon: 'ChatBubbleLeftRightIcon',
-      href: 'https://weaviate.io/slack/'
-    },{
+      href: 'https://weaviate.io/slack/',
+    },
+    {
       id: 2002,
       children: 'Twitter',
       icon: 'ChatBubbleLeftRightIcon',
-      href: 'https://twitter.com/weaviate_io'
+      href: 'https://twitter.com/weaviate_io',
     },
-  ]
-}
+  ],
+};
 
-export default function CommandMenu({open, setOpen}) {
+export default function CommandMenu({ open, setOpen }) {
   const [page, setPage] = useState('root');
   const [search, setSearch] = useState('');
-  const [filteredItems, setFilteredItems] = useState([defaultMenuPages, defaultSocialMediaLinks]);
-  const [onSearch$] = useState(()=>new Subject());
+  const [filteredItems, setFilteredItems] = useState([
+    defaultMenuPages,
+    defaultSocialMediaLinks,
+  ]);
+  const [onSearch$] = useState(() => new Subject());
 
   useEffect(() => {
-    const sub = onSearch$.pipe(
-      debounceTime(270),
-      filter(searchTerm => searchTerm.length > 2),
-      distinctUntilChanged(),
-      tap(handleQuery),
-      tap(analyticsSiteSearched),
-    ).subscribe();
+    const sub = onSearch$
+      .pipe(
+        debounceTime(270),
+        filter((searchTerm) => searchTerm.length > 2),
+        distinctUntilChanged(),
+        tap(handleQuery),
+        tap(analyticsSiteSearched)
+      )
+      .subscribe();
 
     // clean up subscriptions on leave
     return () => {
       sub.unsubscribe();
-    }
-  }, [])
+    };
+  }, []);
 
   const getIcon = (type) => {
     switch (type) {
@@ -84,48 +113,52 @@ export default function CommandMenu({open, setOpen}) {
       default:
         return 'CodeIcon';
     }
-  }
+  };
 
   const addPage = (pageTitle, title) => {
-    if(pageTitle != title){
+    if (pageTitle != title) {
       return pageTitle + ' • ' + title;
     }
     return title;
-  }
+  };
 
   const onSearchResultsClicked = (event) => {
     // get the search term from the search box
-    const searchTerm = document.getElementById('command-palette-search-input').value;
+    const searchTerm = document.getElementById(
+      'command-palette-search-input'
+    ).value;
 
     // get the result url from the even
     const selectedResultURI = event.target.baseURI;
 
     const selectedTitle = event.target.innerText;
     // capture analytics for the selected search result
-    analyticsSiteSearchSelected(searchTerm, selectedResultURI, selectedTitle)
-  }
+    analyticsSiteSearchSelected(searchTerm, selectedResultURI, selectedTitle);
+  };
 
   const onSearchResultsRejected = (event) => {
     // get the search term from the search box
-    const searchTerm = document.getElementById('command-palette-search-input').value;
+    const searchTerm = document.getElementById(
+      'command-palette-search-input'
+    ).value;
 
     // capture analytics for the rejected search results
     analyticsSiteSearchResultsRejected(searchTerm);
 
     clearSearch();
-  }
+  };
 
   const clearSearch = () => {
     setSearch('');
     setFilteredItems([defaultMenuPages, defaultSocialMediaLinks]);
-  }
+  };
 
   const handleQuery = async (searchTerm) => {
     const limit = 8;
 
     try {
       const queryResult = await runQuery(searchTerm, limit);
-      console.log(queryResult)
+      console.log(queryResult);
 
       const data = queryResult.data.Get.PageChunk;
 
@@ -137,22 +170,22 @@ export default function CommandMenu({open, setOpen}) {
           href: item.url + '#' + item.anchor,
           type: item.typeOfItem,
 
-          onClick: onSearchResultsClicked
-        }
+          onClick: onSearchResultsClicked,
+        };
       });
 
-      const sliceArray = resultFormated.slice(0,limit);
+      const sliceArray = resultFormated.slice(0, limit);
       let documentationSection = [];
       let blogSection = [];
       let miscSection = [];
 
-      sliceArray.map(item => {
-        if(item.type === 'docs'){
-          documentationSection.push(item)
-        }else if(item.type === 'blog'){
+      sliceArray.map((item) => {
+        if (item.type === 'docs') {
+          documentationSection.push(item);
+        } else if (item.type === 'blog') {
           blogSection.push(item);
-        }else{
-          miscSection.push(item)
+        } else {
+          miscSection.push(item);
         }
       });
 
@@ -160,54 +193,71 @@ export default function CommandMenu({open, setOpen}) {
         {
           heading: 'Documentation',
           id: 'documentation',
-          items: documentationSection
+          items: documentationSection,
         },
         {
           heading: 'Blog',
           id: 'blog',
-          items: blogSection
+          items: blogSection,
         },
         {
           heading: 'Miscellaneous',
           id: 'miscellaneous',
-          items: miscSection
+          items: miscSection,
         },
         // hardcoded no results feedback item
         {
           heading: 'Give Feedback',
           id: 'feedback',
-          items: [{
-            id: 100,
-            children: 'No Good Results',
-            icon: getIcon('rejected'),
-            onClick: onSearchResultsRejected
-          }]
-        }
+          items: [
+            {
+              id: 100,
+              children: 'No Good Results',
+              icon: getIcon('rejected'),
+              onClick: onSearchResultsRejected,
+            },
+          ],
+        },
       ];
 
-      formated = formated.filter(item => item.items.length > 0);
+      formated = formated.filter((item) => item.items.length > 0);
       setFilteredItems(formated);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    if(search){
+    if (search) {
       onSearch$.next(search);
     }
-  },[search])
+  }, [search]);
 
   useHandleOpenCommandPalette(setOpen);
 
   const renderFooter = () => {
     return (
-      <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
-      <p style={{fontSize: 15}}>Powered by </p> <p className="logo" style={{height: 35, marginLeft: -10, marginTop: 10, marginBottom: 10}}  />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <p style={{ fontSize: 15 }}>Powered by </p>{' '}
+        <p
+          className="logo"
+          style={{
+            height: 35,
+            marginLeft: -10,
+            marginTop: 10,
+            marginBottom: 10,
+          }}
+        />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <CommandPalette
@@ -218,7 +268,7 @@ export default function CommandMenu({open, setOpen}) {
       page={page}
       footer={renderFooter()}
     >
-      <CommandPalette.Page id='root'>
+      <CommandPalette.Page id="root">
         {filteredItems.length ? (
           filteredItems.map((list) => (
             <CommandPalette.List key={list.id} heading={list.heading}>
@@ -233,7 +283,7 @@ export default function CommandMenu({open, setOpen}) {
             </CommandPalette.List>
           ))
         ) : (
-          <CommandPalette.FreeSearchAction  />
+          <CommandPalette.FreeSearchAction />
         )}
       </CommandPalette.Page>
     </CommandPalette>

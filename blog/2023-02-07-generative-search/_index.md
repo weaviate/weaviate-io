@@ -40,11 +40,11 @@ We’ll provide a guide on how you can set up the module, examples of how you ca
 ## How to use it
 The [Generative OpenAI](/developers/weaviate/modules/reader-generator-modules/generative-openai) module is a new feature that can generate responses based on your data. To access this module, you will need to use Weaviate `1.17.3` or a newer version.
 
-### Weaviate Cloud Services
-The `Generative OpenAI` module is enabled by default in the Weaviate Cloud Services (WCS). If your instance version is on `1.17.3` or newer, then you are good to go.
+### Weaviate Cloud
+The `Generative OpenAI` module is enabled by default in the Weaviate Cloud (WCD). If your instance version is on `1.17.3` or newer, then you are good to go.
 
 :::tip Free 14-day sandbox
-You can create a free 14-day sandbox on [WCS](https://console.weaviate.cloud) and create a Weaviate instance.
+You can create a free 14-day sandbox on [WCD](https://console.weaviate.cloud) and create a Weaviate instance.
 :::
 
 :::note Available modules out of the box

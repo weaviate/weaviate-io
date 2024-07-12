@@ -5,14 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-
-<!-- :::caution Migrated From:
-- `Core knowledge/Basics`
-  - Refactored to contain subject matter to data structure in Weaviate
-  - Introductory "What is Weaviate" sections removed as duplicated by `Introduction`
-  - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
-::: -->
-
 ## Data object nomenclature
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
@@ -20,6 +12,10 @@ Each data object in Weaviate belongs to a `collection` and has one or more `prop
 Weaviate stores `data objects` in class-based collections. Data objects are represented as JSON-documents. Objects normally include a `vector` that is derived from a machine learning model. The vector is also called an `embedding` or a `vector embedding`.
 
 Each collection contains objects of the same `class`. The objects are defined by a common `schema`.
+
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
 
 ### JSON documents as objects
 
@@ -256,7 +252,7 @@ The number of tenants per node is limited by operating system constraints. The n
 
 For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../api/rest/schema.md#update-tenants), the open file per process limit does not apply.
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#update-tenant-activity-status), the open file per process limit does not apply.
 
 ### Lazy shard loading
 
@@ -286,7 +282,7 @@ Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the
 For more information, see the following:
 
 - [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Configuration: Schema](../manage-data/collections.mdx)
 
 ## Summary
@@ -299,6 +295,8 @@ For more information, see the following:
 * Cross-references link objects between schemas.
 * Multi-tenancy isolates data for each tenant.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -5,6 +5,10 @@ image: og/docs/modules/text2vec-aws.jpg
 # tags: ['text2vec', 'text2vec-aws', 'aws']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="aws" />
+
 :::info Added in `v1.22.5`
 Starting in v1.22.5, [AWS Bedrock](https://aws.amazon.com/bedrock/) is supported.
 :::
@@ -19,7 +23,7 @@ If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses A
 
 ## Considerations
 
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - `Bedrock` and `Sagemaker` are third party APIs. You must provide AWS API credentials.
 - `Bedrock` requires a model.
     - There is no default `Bedrock` model set for this module.
@@ -205,6 +209,7 @@ To supply parameters at query time, adding them to the HTTP header.
 `text2vec-aws` supports these models:
 
 - `amazon.titan-embed-text-v1`
+- `amazon.titan-embed-text-v2:0`
 - `cohere.embed-english-v3`
 - `cohere.embed-multilingual-v3`
 
@@ -240,6 +245,8 @@ import GraphQLFiltersNearNextAWS from '/_includes/code/graphql.filters.nearText.
 <GraphQLFiltersNearNextAWS/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

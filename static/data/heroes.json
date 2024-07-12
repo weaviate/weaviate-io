@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Ron Parker",
+    "title": "Senior Engineer",
+    "image": "/img/people/heroes/ron-parker.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/ron-parker-scbbs/",
+      "slack": "https://weaviate.slack.com/team/U04TUKD2RK7"
+    }
+  },
+  {
+    "name": "Travis Rehl",
+    "title": "Technologist & Product Leader",
+    "image": "/img/people/heroes/travis-rehl.png",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/travis-rehl-tech",
+      "slack": "https://weaviate.slack.com/team/U059QN8UMJR"
+    }
+  },
+  {
+    "name": "Patrice Bourgougnon",
+    "title": "Lead Developer",
+    "image": "/img/people/heroes/patrice-bourgougnon.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/patrice-bourgougnon-46a2b71b3/",
+      "slack": "https://weaviate.slack.com/team/U02CQ2T48BC"
+    }
+  },
+  {
+    "name": "Bob Kozdemba",
+    "title": "Principal Specialist Solution Architect",
+    "image": "/img/people/heroes/bob-kozdemba.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/bob-kozdemba-230743/",
+      "slack": "https://weaviate.slack.com/team/U05P0RU1BN2"
+    }
+  },
+  {
+    "name": "Eda Johnson",
+    "title": "Principal Product Architect",
+    "image": "/img/people/heroes/eda-johnson.png",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/eda-johnson-0a2783/",
+      "slack": "https://weaviate.slack.com/team/U05R1P491L4"
+    }
+  }
+]

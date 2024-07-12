@@ -28,7 +28,7 @@ This will generate a vector for each movie in the dataset, which we can use when
 
 ### <i class="fa-solid fa-chalkboard"></i> Model
 
-We use the `sentence-transformers/all-MiniLM-L6-v2` model to generate the vectors. We access it here through the Hugging Face API for convenience. You could also use the `transformers` library, if you would like to perform the generation locally.
+We use the `embed-multilingual-v3.0` Cohere model to generate the vector embeddings. You could also use the `transformers` library, if you would like to perform the generation locally.
 
 ### <i class="fa-solid fa-code"></i> Source text
 
@@ -63,6 +63,8 @@ The embeddings are then saved to a file so that we can use when adding the movie
   language="py"
 />
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+## Questions and feedback
 
-<GiscusDocComment />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

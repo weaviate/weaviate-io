@@ -4,7 +4,7 @@ import PyCode from '!!raw-loader!/_includes/code/generative.groupedtask.examples
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GenerativeGoogle"
@@ -12,15 +12,16 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
       language="py"
     />
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
 
 client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
   additional_headers={
-      "X-PaLM-Api-Key": "YOUR-PALM-API-KEY"
+      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
   }
 )
 
@@ -45,14 +46,14 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```ts
 import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
   headers: { 'X-PaLM-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your GOOGLE API key
 });
@@ -93,9 +94,12 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
     Scheme:  "https",
-    Headers: map[string]string{"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"},
+    Headers: map[string]string{
+      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+    },
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -146,9 +150,12 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");
+      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
@@ -246,9 +253,10 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-    -H "X-PaLM-Api-Key: $PALM_API_KEY" \
+    -H "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
+    -H "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>

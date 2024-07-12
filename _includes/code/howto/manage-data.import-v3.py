@@ -15,7 +15,7 @@ client = weaviate.Client(
     "http://localhost:8080",  # Replace with your Weaviate URL
     # auth_client_secret=weaviate.auth.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
     additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your OPENAI API key
     }
 )
 
@@ -40,8 +40,8 @@ if not client.schema.exists("JeopardyQuestion"):
 # ===== Basic batch import =====
 # ==============================
 
-# BasicBatchImportExample
-class_name = "YourName"  # Replace with your class name
+# START BasicBatchImportExample
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
@@ -66,12 +66,12 @@ client.schema.delete_class(class_name)
 # ===== Batch import with custom ID =====
 # =======================================
 
-# BatchImportWithIDExample
+# START BatchImportWithIDExample
 # highlight-start
 from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
-class_name = "YourName"  # Replace with your class name
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
@@ -101,8 +101,8 @@ client.schema.delete_class(class_name)
 # ===== Batch import with custom vector =====
 # ===========================================
 
-# BatchImportWithVectorExample
-class_name = "YourName"  # Replace with your class name
+# START BatchImportWithVectorExample
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
@@ -135,10 +135,26 @@ client.schema.delete_class(class_name)
 # ===== Batch import with named vectors =====
 # ===========================================
 
-# BatchImportWithNamedVectors
+# START BatchImportWithNamedVectors
 # Unfortunately, named vectors are not suppored in the v3 API / Python client.
 # Please upgrade to the v4 API / Python client to use named vectors.
 # END BatchImportWithNamedVectors
+
+# ===========================================
+# ===== Batch import with references =====
+# ===========================================
+
+# BatchImportWithRefExample
+with client.batch as batch:
+    batch.add_reference(
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
+# END BatchImportWithRefExample
 
 # ============================
 # ===== Streaming import =====
@@ -228,7 +244,7 @@ assert actual_count == MAX_ROWS_TO_IMPORT * 2, f"Expected {MAX_ROWS_TO_IMPORT * 
 # ===== Batch import with parameters explicitly set  =====
 # ============================================================
 
-class_name = "YourName"  # Replace with your class name
+class_name = "MyCollection"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]

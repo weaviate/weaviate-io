@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
 
-
-:::info Related pages
-- [Configuration: Backups](./backups.md)
-:::
-
-## Overview
-
 When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.
 
 Note that Weaviate now offers native backup modules starting with `v1.15` for single-node instances, and `v1.16` for multi-node instances. For older versions of Weaviate, persisting data as described here will allow you to back up Weaviate.
@@ -29,13 +22,14 @@ services:
       - /var/weaviate:/var/lib/weaviate
     environment:
       CLUSTER_HOSTNAME: 'node1'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
 ```
 
 * About the volumes
   * `/var/weaviate` is the location where you want to store the data on the local machine
-  * `/var/lib/weaviate` (after the colon) is the location inside the container, don't change this
+  * `/var/lib/weaviate` The value after the colon (:) is the storage location inside the container. This value must match the PERSISTENCE_DATA_PATH variable.
 * About the hostname
-  * The `CLUSTER_HOSTNAME` can be any arbitrarily chosen name
+  * `CLUSTER_HOSTNAME` can be any name
 
 In the case you want a more verbose output, you can change the environment variable for the `LOG_LEVEL`
 
@@ -96,20 +90,25 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
-changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
+changed the thresholds) you can use the [Shards API](/developers/weaviate/api/rest#tag/schema/get/schema/%7BclassName%7D/shards) to do so.
 
-## Virtual memory access method
+## Disk access method
 
 :::info Added in `v1.21`
 :::
 
-You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable.
+Weaviate maps data on disk to memory. To configure how Weaviate uses virtual memory, set the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable. The default value is `mmap`. Use `pread` to as an alternative. 
 
 The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
 
 In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Related pages
+- [Configuration: Backups](./backups.md)
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -57,7 +57,7 @@ const DocHomePage = () => {
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
-              <div className={styles.deployHeader}>Weaviate Cloud Services</div>
+              <div className={styles.deployHeader}>Weaviate Cloud</div>
               <ul className={styles.deployList}>
                 <li>From evaluation (sandbox) to production</li>
                 <li>Serverless (infrastructure managed by Weaviate)</li>
@@ -65,8 +65,8 @@ const DocHomePage = () => {
                 <li>(Optional) Zero-downtime updates</li>
               </ul>
               <button className={styles.deployButton}>
-                <a href="/developers/wcs/guides/create-instance">
-                  Set up a WCS instance
+                <a href="/developers/wcs/create-instance">
+                  Set up a WCD instance
                 </a>
               </button>
             </div>
@@ -144,7 +144,7 @@ const DocHomePage = () => {
               <ul className={styles.deployList}>
                 <li>For basic, quick evaluation</li>
                 <li>
-                  Conveniently launch Weaviate directly from Python or TS/JS
+                  Conveniently launch Weaviate directly from Python or JS/TS
                 </li>
               </ul>
               <button className={styles.deployButton}>
@@ -335,7 +335,7 @@ const DocHomePage = () => {
             </div>
             <div className={`${styles.secondaryTabs} ${styles.ts}`}>
               <a href="/developers/weaviate/client-libraries/typescript">
-                TS/JS
+                JS/TS
               </a>
             </div>
           </div>

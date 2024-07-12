@@ -121,7 +121,7 @@ The load balancer URL (e.g. `34.38.6.240`) will be the Weaviate URL (e.g. `http:
 ## Removing Weaviate and the cluster
 
 :::caution
-Please make sure that all unused resources are deleted. You will continue to incur costs for any remaining resources.
+Verify that all unused resources are deleted. You continue to incur costs for any remaining resources.
 :::
 
 ### Removing Weaviate
@@ -141,7 +141,8 @@ You will be charged for Weaviate and associated resources directly by Google Clo
 This will, for example, include the compute instances, volumes, and any other resources used by the cluster.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
+<DocsFeedback/>

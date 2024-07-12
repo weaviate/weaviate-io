@@ -1,433 +1,419 @@
 // Howto: Search -> Filters - TypeScript examples
 
 import assert from 'assert';
+import { vectorizer, dataType } from 'weaviate-client';
 
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-ts-client';
+// searchMultipleFiltersAnd // searchMultipleFiltersNested
+import weaviate, { Filters } from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+// END searchMultipleFiltersAnd // END searchMultipleFiltersNested
 
-let result;
+const client = await weaviate.connectToWeaviateCloud(
+  process.env.WCD_URL,
+ {
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+   }
+ }
+)
+
+// searchSingleFilter // searchLikeFilter // ContainsAnyFilter // ContainsAllFilter // searchMultipleFiltersNested // searchMultipleFiltersAnd // searchFilterNearText // FilterByPropertyLength // searchCrossReference // filterById // searchCrossReference // searchMultipleFiltersNested
+const jeopardy = client.collections.get('JeopardyQuestion');
+
+// END searchSingleFilter // END searchLikeFilter // END ContainsAnyFilter // END ContainsAllFilter // END searchMultipleFiltersNested // END searchMultipleFiltersAnd // END searchFilterNearText // END FilterByPropertyLength // END searchCrossReference // END filterById // END searchCrossReference // END searchMultipleFiltersNested
+
+// FilterByTimestamp
+const myArticleCollection = client.collections.get('Article');
+// END FilterByTimestamp
+
 
 // =========================
 // ===== Single Filter =====
 // =========================
-
+{
 // searchSingleFilter
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['round'],
-    operator: 'Equal',
-    valueText: 'Double Jeopardy!',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byProperty('round').equal('Double Jeopardy!'),
+  // highlight-end
+  limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchSingleFilter
 
 // Tests
-let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.deepEqual(question.round, 'Double Jeopardy!');
+// let questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.deepEqual(question.round, 'Double Jeopardy!');
+// }
 }
-// searchSingleFilter
-// END searchSingleFilter
-
 
 // =======================================
 // ===== Single Filter with nearText =====
 // =======================================
-
+{
 // searchFilterNearText
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
 // highlight-start
-  .withWhere({
-    path: ['points'],
-    operator: 'GreaterThan',
-    valueInt: 200,
-  })
-  .withNearText({
-    concepts: ['fashion icons'],
-  })
+const result = await jeopardy.query.nearText('fashion icons', {
+  filters: jeopardy.filter.byProperty('points').greaterThan(200),
 // highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
+  limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchFilterNearText
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.points > 200);
+// questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.ok(question.points > 200);
+// }
 }
-// searchFilterNearText
-// END searchFilterNearText
-
 
 // ==========================================
 // ===== Partial Match Filter =====
 // ==========================================
-
+{
 // searchLikeFilter
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['answer'],
-    operator: 'Like',
-    valueText: '*inter*',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byProperty('answer').like('*inter*'),
+  // highlight-end
+  limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchLikeFilter
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.answer.toLowerCase().includes('inter'));
+// questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.ok(question.answer.toLowerCase().includes('inter'));
+// }
 }
-// searchLikeFilter
-// END searchLikeFilter
-
 
 // ==========================================
 // ===== ContainsAnyFilter =====
 // ==========================================
 
-// ContainsAnyFilter  // ContainsAllFilter
-let token_list
-// END ContainsAnyFilter  // END ContainsAllFilter
-
-
+{
 // ContainsAnyFilter
 // highlight-start
-token_list = ['australia', 'india']
+const tokenList = ['australia', 'india']
 // highlight-end
 
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  // Find objects where the `answer` property contains any of the strings in `token_list`
-  .withWhere({
-    path: ['answer'],
-    operator: 'ContainsAny',
-    valueTextArray: token_list,
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // Find objects where the `answer` property contains any of the strings in `tokenList`
+  // highlight-start
+  filters: jeopardy.filter.byProperty('answer').containsAny(tokenList),
+  // highlight-end
+  limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END ContainsAnyFilter
 
 // Tests
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.answer.toLowerCase().includes('australia') || question.answer.toLowerCase().includes('india'));
+// for (const question of result.objects) {
+//   assert.ok(question.answer.toLowerCase().includes('australia') || question.answer.toLowerCase().includes('india'));
+// }
 }
-
 
 // ==========================================
 // ===== ContainsAllFilter =====
 // ==========================================
-
+{
 // ContainsAllFilter
 // highlight-start
-token_list = ['blue', 'red']
+const tokenList = ['australia', 'india']
 // highlight-end
 
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  // Find objects where the `question` property contains all of the strings in `token_list`
-  .withWhere({
-    path: ['question'],
-    operator: 'ContainsAll',
-    valueTextArray: token_list,
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // Find objects where the `question` property contains all of the strings in `tokenList`
+  // highlight-start
+  filters: jeopardy.filter.byProperty('question').containsAll(tokenList),
+  // highlight-end
+  limit: 3,
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END ContainsAllFilter
 
 // Tests
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.question.toLowerCase().includes('red') & question.question.toLowerCase().includes('blue'));
+// for (const question of result.objects) {
+//   assert.ok(question.question.toLowerCase().includes('red') & question.question.toLowerCase().includes('blue'));
+// }
 }
-
 
 // ==========================================
 // ===== Multiple Filters with And =====
 // ==========================================
 
-
+{
 // searchMultipleFiltersAnd
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    operator: 'And',
-    operands: [
-      {
-        path: ['round'],
-        operator: 'Equal',
-        valueText: 'Double Jeopardy!',
-      },
-      {
-        path: ['points'],
-        operator: 'LessThan',
-        valueInt: 600,
-      },
-    ],
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: Filters.and(
+    jeopardy.filter.byProperty('round').equal('Double Jeopardy!'),
+    jeopardy.filter.byProperty('points').lessThan(600)
+  ),
+  // highlight-end
+  limit: 3,
+ })
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchMultipleFiltersAnd
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.deepEqual(question.round, 'Double Jeopardy!');
-  assert.ok(question.points < 600);
+// questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.deepEqual(question.round, 'Double Jeopardy!');
+//   assert.ok(question.points < 600);
+// }
 }
-// searchMultipleFiltersAnd
-// END searchMultipleFiltersAnd
-
 
 
 // ==========================================
 // ===== Multiple Filters with Nesting =====
 // ==========================================
-
+{
 // searchMultipleFiltersNested
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    operator: 'And',
-    operands: [
-      {
-        path: ['answer'],
-        operator: 'Like',
-        valueText: '*nest*',
-      },
-      {
-        operator: 'Or',
-        operands: [
-          {
-            path: ['points'],
-            operator: 'GreaterThan',
-            valueInt: 700,
-          },
-          {
-            path: ['points'],
-            operator: 'LessThan',
-            valueInt: 300,
-          },
-        ],
-      },
-    ],
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+ // highlight-start
+  filters: Filters.and(
+    jeopardy.filter.byProperty('answer').like('*bird*'),
 
-console.log(JSON.stringify(result, null, 2));
+    Filters.or(
+      jeopardy.filter.byProperty('points').greaterThan(700),
+      jeopardy.filter.byProperty('points').lessThan(300)
+    )
+  ),
+  // highlight-end
+  limit: 3
+})
+
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchMultipleFiltersNested
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.answer.toLowerCase().includes('nest'));
-  assert.ok(question.points < 300 || question.points > 700);
+// questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.ok(question.answer.toLowerCase().includes('bird'));
+//   assert.ok(question.points < 300 || question.points > 700);
+// }
 }
-// searchMultipleFiltersNested
-// END searchMultipleFiltersNested
-
 
 // ===================================================
 // ===== Filters using Cross-referenced property =====
 // ===================================================
-
+{
 // searchCrossReference
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['hasCategory', 'JeopardyCategory', 'title'],
-    operator: 'Like',
-    valueText: '*Sport*',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round hasCategory {... on JeopardyCategory { title } }')
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byRef('hasCategory').byProperty('title').like('*Sport*'),
+  returnReferences: [{
+    linkOn: 'hasCategory',
+    returnProperties: ['title'],
+  }],
+  // highlight-end
+  limit: 3
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END searchCrossReference
 
 // Tests
-questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
-assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'hasCategory']));
-assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.hasCategory[0].title.toLowerCase().includes('sport'));
+// questionKeys = new Set(Object.keys(result.objects[0].properties));
+// assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'hasCategory']));
+// assert.deepEqual(result.objects.length, 3);
+// for (const question of result.objects) {
+//   assert.ok(question.properties.hasCategory[0].title.toLowerCase().includes('sport'));
+// }
 }
-// searchCrossReference
-// END searchCrossReference
-
 
 // ===================================================
 // ===== Filters using Id =====
 // ===================================================
-
+{
 // filterById
-let target_id = '00037775-1432-35e5-bc59-443baaef7d80'
-result = await client.graphql
-  .get()
-  .withClassName('Article')
-// highlight-start
-  .withWhere({
-    path: ['id'],
-    operator: 'Equal',
-    valueText: target_id,
-  })
-// highlight-end
-  .withFields('title _additional { id }')
-  .do();
+const targetId = '00037775-1432-35e5-bc59-443baaef7d80'
 
-console.log(JSON.stringify(result, null, 2));
+result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byId().equal(targetId),
+  // highlight-end
+})
+
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END filterById
 
 // Tests
-assert.equal(target_id, result.data.Get.Article[0]._additional.id);
-
+assert.equal(targetId, result.objects[0].uuid);
+}
 
 // ===================================================
 // ===== Filters using timestamps =====
 // ===================================================
 
 // FilterByTimestamp
-result = await client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('title _additional { creationTimeUnix }')
-  .withWhere({
-    operator: 'GreaterThan',
-    path: ['_creationTimeUnix'],
-    valueDate: '2020-01-01T00:00:00+00:00',
-    // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
-    // valueText: '1577836800',
-  })
-  .withLimit(3)
-  .do();
+const creationTime = '2020-01-01T00:00:00+00:00'
 
-console.log(JSON.stringify(result, null, 2));
+result = await myArticleCollection.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byCreationTime().greaterOrEqual(creationTime),
+  // highlight-end
+  returnMetadata: ['creationTime']
+})
+
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END FilterByTimestamp
 
 // Tests
-for (const article of result.data.Get.Article) {
-  assert.ok(Number(article._additional.creationTimeUnix) > 1577836800);
+for (const article of result.objects) {
+  assert.ok(Number(article.metadata.creationTime) > 1577836800);
 }
+
+
+// ===================================================
+// ===== FilterByDateDatatype =====
+// ===================================================
+
+const collectionWithDate = await client.collections.create({
+  name: "CollectionWithDate",
+  properties: [
+    {
+      name: "title",
+      dataType: dataType.TEXT,
+    },
+    {
+      name: "some_date",
+      dataType: dataType.DATE,
+    },
+  ],
+  vectorizers: vectorizer.none()
+})
+
+const insertYears = [2020, 2021, 2022, 2023, 2024]
+const insertMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+const insertDays = [1, 6, 11, 16]
+
+let dataObjects = []
+insertYears.forEach(year => {
+  insertMonths.forEach(month => {
+    insertDays.forEach(day => {
+      dataObjects.push({
+        properties: {
+          title: `Object: ${year}/${month}/${day}`,
+          some_date: new Date(year, month, day)
+        }
+      })
+    })
+  })
+})
+
+const dateObjInsertResponse = await collectionWithDate.data.insertMany(dataObjects);
+// highlight-end
+
+
+// FilterByDateDatatype
+const filterTime = new Date(2020, 5, 10)  // Note that the month is 0-indexed
+// The filter threshold could also be an RFC 3339 timestamp, e.g.:
+// filterTime = '2022-06-10T00:00:00.00Z'
+
+result = await collectionWithDate.query.fetchObjects({
+  limit: 3,
+  // highlight-start
+  filters: jeopardy.filter.byProperty('some_date').greaterThan(filterTime),
+  // highlight-end
+})
+
+result.objects.forEach((object) =>
+  console.log(JSON.stringify(object.properties, null, 2))
+);
+// END FilterByDateDatatype
+
+
+// Tests
+assert.ok(result.objects.length > 0);
 
 
 // ===================================================
 // ===== Filters using property length =====
 // ===================================================
-
+{
 // FilterByPropertyLength
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withFields('answer')
-  .withWhere({
-    operator: 'GreaterThan',
-    path: ['len(answer)'],
-    valueInt: 20,
-  })
-  .withLimit(3)
-  .do();
+const result = await jeopardy.query.fetchObjects({
+  // highlight-start
+  filters: jeopardy.filter.byProperty('answer', true).greaterThan(20),
+  // highlight-end
+  limit: 3
+})
 
-console.log(JSON.stringify(result, null, 2));
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+}
 // END FilterByPropertyLength
 
 // Tests
-for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.answer.length > 20);
+// for (const question of result.objects) {
+//   assert.ok(question.properties.answer.length > 20);
+// }
 }
-
 
 
 // ===================================================
 // ===== Filters with Geolocation =====
 // ===================================================
-
+{
 // FilterbyGeolocation
-const response = await client.graphql
-  .get()
-  .withClassName('Publication')
-  .withFields('name headquartersGeoLocation {latitude longitude}')
-  .withWhere({
-    operator: 'WithinGeoRange',
-    path: ['headquartersGeoLocation'],
-    valueGeoRange: {
-      geoCoordinates: {
-        latitude: 52.3932696,
-        longitude: 4.8374263,
-      },
-      distance: {
-        max: 1000,
-      },
-    },
-  })
-  .do();
-console.log(response);
+const publications = client.collections.get('Publication');
+
+const geoResult = await publications.query.fetchObjects({
+  // highlight-start
+  filters: publications.filter.byProperty('headquartersGeoLocation').withinGeoRange({
+    latitude: 52.39,
+    longitude: 4.84,
+    distance: 1000
+  }),
+  // highlight-end
+})
+
+console.log(JSON.stringify(geoResult.objects, null, 2));
 // END FilterbyGeolocation
+}

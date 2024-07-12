@@ -5,16 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-
-## Overview
-
-:::info Related pages
-- [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
-- [How-to search: Rerank](../search/rerank.md)
-- [Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
-:::
-
 Reranking seeks to improve search relevance by reordering the result set returned by a [retriever](../modules/retriever-vectorizer-modules/index.md) with a different model.
 
 Reranking computes a relevance score between the query and each data object, and returns the list of objects sorted from the most to the least relevant. Computing this score for all `(query, data_object)` pairs would typically be prohibitively slow, which is why reranking is used as a second stage after retrieving the relevant objects first.
@@ -60,8 +50,18 @@ This query retrieves 10 results from the `JeopardyQuestion` class, using a hybri
 
 You can specify which `property` of the `JeopardyQuestion` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
 
+## Further resources
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+:::info Related pages
+- [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
+- [How-to search: Rerank](../search/rerank.md)
+- [Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
+- [Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+:::
 
-<DocsMoreResources />
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

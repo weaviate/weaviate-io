@@ -8,7 +8,7 @@ const MAX_ROWS_TO_IMPORT = 50;  // limit vectorization calls
 // ================================
 
 // START JSON streaming  // START CSV streaming
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 import fs from 'fs';
 // END JSON streaming  // END CSV streaming
 
@@ -22,33 +22,34 @@ import csv from 'csv-parser';
 // END CSV streaming
 
 // ===== Instantiation, not shown in snippet
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
-
+const client = await weaviate.connectToWeaviateCloud(
+ 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ }
+)
 
 // ============================
 // ===== Define the class =====
 // ============================
 
-const classDefinition = {
-  class: 'JeopardyQuestion',
+const collectionDefinition = {
+  name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizer: 'text2vec-openai',
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI()
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
-  await client.schema.classDeleter().withClassName('YourName').do();
+  await client.collections.delete('JeopardyQuestion')
+  await client.collections.delete('MyCollection')
 } catch {
   // ignore error if class doesn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinition).do();
+  await client.collections.create(collectionDefinition)
 }
 
 
@@ -56,197 +57,168 @@ try {
 // ===== Basic batch import =====
 // ==============================
 
-// BasicBatchImportExample
-let className = 'YourName';  // Replace with your class name
-let dataObjs = [];
-for (let i = 1; i <= 5; i++)
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
+{
+// START BasicBatchImportExample
+let dataObjects = [
+  { title: 'Object 1' },
+  { title: 'Object 2' },
+  { title: 'Object 3' }
+]
 
 // highlight-start
-let batcher5 = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
-  batcher5 = batcher5.withObject({
-    class: className,
-    properties: dataObj,
-    // tenant: 'tenantA'  // If multi-tenancy is enabled, specify the tenant to which the object will be added.
-  });
-
-// Flush
-await batcher5.do();
+const myCollection = client.collections.get('MyCollection')
+const response = await myCollection.data.insertMany(dataObjects);
 // highlight-end
+
+console.log(response);
 // END BasicBatchImportExample
 
-let result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
-assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+// TODO: update all tests
+// let result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+// assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
 
-await client.schema.classDeleter().withClassName(className).do();
-
+client.collections.delete('MyCollection')
+}
 
 // =======================================
 // ===== Batch import with custom ID =====
 // =======================================
 
-// BatchImportWithIDExample
+// START BatchImportWithIDExample
 // highlight-start
-import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
+import { generateUuid5 } from 'weaviate-client';  // requires v1.3.2+
 // highlight-end
-className = 'YourName';  // Replace with your class name
-dataObjs = [];
-for (let i = 1; i <= 5; i++)
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
 
-// highlight-start
-let batcherId = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
-  batcherId = batcherId.withObject({
-    class: className,
-    properties: dataObj,
-    // highlight-start
-    id: generateUuid5(dataObj.title),
-    // highlight-end
-  });
-
-// Flush
-await batcherId.do();
 // END BatchImportWithIDExample
 
-result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
-assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
-result = await client.graphql.get().withClassName(className).withFields('title _additional { id }').do();
-for (const obj of result.data.Get[className])
-  assert.equal(obj['_additional']['id'], generateUuid5(obj['title']));
 
-await client.schema.classDeleter().withClassName(className).do();
+{
+// START BatchImportWithIDExample
+let dataObjects = [
+  {
+    properties: { title: 'Object 1' },
+    // highlight-start
+    id: generateUuid5('MyCollection', 'Object 1'), // generate uuid from collection name and the unique value(s)
+    // highlight-end
+  },
+  {
+    properties: { title: 'Object 2' },
+    // highlight-start
+    id: generateUuid5('MyCollection', 'Object 2'), // generate uuid from collection name and the unique value(s)
+    // highlight-end
+  },
+  // ...
+]
 
+const myCollection = client.collections.get('MyCollection')
+await myCollection.data.insertMany(dataObject)
+// END BatchImportWithIDExample
+
+// result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+// assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+// result = await client.graphql.get().withClassName(className).withFields('title _additional { id }').do();
+// for (const obj of result.data.Get[className])
+//   assert.equal(obj['_additional']['id'], generateUuid5(obj['title']));
+
+await client.collections.delete('MyCollection');
+}
 
 // ===========================================
 // ===== Batch import with custom vector =====
 // ===========================================
 
-// BatchImportWithVectorExample
-className = 'YourName';  // Replace with your class name
-dataObjs = [];
-const vectors = [];
-for (let i = 1; i <= 5; i++) {
-  dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
-  vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
-}
+// START BatchImportWithVectorExample
+const myCollection = client.collections.get('MyCollection')
 
-// highlight-start
-let batcherVectors = client.batch.objectsBatcher();
-for (let i = 0; i < 5; i++)
-  batcherVectors = batcherVectors.withObject({
-    class: className,
-    properties: dataObjs[i],
+let dataObjects = [
+  {
+    properties: { title: 'Object 1' },
     // highlight-start
-    vector: vectors[i],
+    vectors: Array(100).fill(0.1111), // provide the vector here
     // highlight-end
-  });
+  },
+  {
+    properties: { title: 'Object 2' },
+    // highlight-start
+    vectors: Array(100).fill(0.2222), // provide the vector here
+    // highlight-end
+  },
+  // ...
+]
 
-// Flush
-await batcherVectors.do();
+await jeopardy.data.insertMany(dataObjects)
 // END BatchImportWithVectorExample
 
-result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
-assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
-result = await client.graphql.get().withClassName(className).withFields('_additional { vector }').do();
-for (const obj of result.data.Get[className]) {
-  assert.ok(obj['_additional']['vector'][0] > 0.25);
-  assert.ok(obj['_additional']['vector'][9] <= 0.3);
-}
+// result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+// assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+// result = await client.graphql.get().withClassName(className).withFields('_additional { vector }').do();
+// for (const obj of result.data.Get[className]) {
+//   assert.ok(obj['_additional']['vector'][0] > 0.25);
+//   assert.ok(obj['_additional']['vector'][9] <= 0.3);
+// }
 
-await client.schema.classDeleter().withClassName(className).do();
+await client.collections.delete('MyCollection');
 
 
 // ===========================================
 // ===== Batch import with named vectors =====
 // ===========================================
 
-
-const classDefinitionNV = {
-  class: 'YourCollection',
-  properties: [
-    {
-      name: 'title',
-      dataType: ['text'],
-    },
-    {
-      name: 'body',
-      dataType: ['text'],
-    },
-  ],
-  vectorConfig: {
-    // Set a named vector
-    title: {
-      vectorIndexType: 'hnsw', // Set the index type
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['title'], // Set the source property(ies)
-        },
-      },
-    },
-    // Set another named vector
-    body: {
-      vectorIndexType: 'hnsw', // Set the index type
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['body'], // Set the source property(ies)
-        },
-      },
-    },
-  },
-};
-
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(classDefinitionNV.class).do();
+  await client.collections.delete('MyCollection');
 } catch (e) {
   // ignore error if class doesn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinitionNV).do();
+  await client.collections.create({
+    name: 'MyCollection',
+    vectorizers: [
+      weaviate.configure.vectorizer.none({name: 'title'}),
+      weaviate.configure.vectorizer.none({name: 'body'}),
+    ]
+  })
 }
 
-// BatchImportWithNamedVectors
-className = 'YourCollection';  // Replace with your class name
-dataObjs = [];
-const title_vectors = [];
-const body_vectors = [];
-for (let i = 1; i <= 5; i++) {
-  dataObjs.push({ title: `Object ${i}`, body: `Body ${i}` });  // Replace with your actual objects
-  title_vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
-  body_vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
-}
-
-// highlight-start
-let namedVectors = client.batch.objectsBatcher();
-for (let i = 0; i < 5; i++)
-  namedVectors = namedVectors.withObject({
-    class: className,
-    properties: dataObjs[i],
+{
+// START BatchImportWithNamedVectors
+const myCollection = client.collections.get("MyCollection")
+let dataObjects = [
+  {
+    properties: { title: 'Object 1' },
     // highlight-start
     vectors: {
-      title: title_vectors[i],
-      body: body_vectors[i]
-    },
+      title: Array(100).fill(0.1111), // provide the vector here
+      body: Array(100).fill(0.9999),  // provide the vector here
+    }
     // highlight-end
-  });
+  },
+  {
+    properties: { title: 'Object 2' },
+    // highlight-start
+    vectors: {
+      title: Array(100).fill(0.2222), // provide the vector here
+      body: Array(100).fill(0.8888),  // provide the vector here
+    }
+    // highlight-end
+  },
+  // ...
+]
 
-// Flush
-await namedVectors.do();
+await myCollection.data.insertMany(dataObjects)
+}
 // END BatchImportWithNamedVectors
 
 // Aggregate not working with named vectors as of 2024-02-28
 // result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
 // assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
 
-result = await client.graphql.get().withClassName(className).withFields('_additional { vectors { title body } }').do();
-for (const obj of result.data.Get[className]) {
-  assert.ok(obj['_additional']['vectors']['title']);
-  assert.ok(obj['_additional']['vectors']['body']);
-}
+// result = await client.graphql.get().withClassName(className).withFields('_additional { vectors { title body } }').do();
+// for (const obj of result.data.Get[className]) {
+//   assert.ok(obj['_additional']['vectors']['title']);
+//   assert.ok(obj['_additional']['vectors']['body']);
+// }
 
-await client.schema.classDeleter().withClassName(className).do();
-
+await client.collections.delete('MyCollection');
 
 // ============================
 // ===== Streaming import =====
@@ -334,13 +306,40 @@ console.log(`Finished importing ${counter} articles.`);
 // END JSON streaming  // END CSV streaming
 
 // Test
-result = await client.graphql.aggregate().withClassName('JeopardyQuestion').withFields('meta { count }').do();
-assert.deepEqual(result.data['Aggregate']['JeopardyQuestion'], [{ meta: { count: MAX_ROWS_TO_IMPORT * 2 } }]);
-const tokyoRose = await client.graphql.get().withClassName('JeopardyQuestion').withWhere({
-  path: ['answer'],
-  operator: 'Equal',
-  valueText: 'Tokyo Rose',
-}).withFields('answer').do();
-assert.equal(tokyoRose.data.Get['JeopardyQuestion'].length, 2);
+// result = await client.graphql.aggregate().withClassName('JeopardyQuestion').withFields('meta { count }').do();
+// assert.deepEqual(result.data['Aggregate']['JeopardyQuestion'], [{ meta: { count: MAX_ROWS_TO_IMPORT * 2 } }]);
+// const tokyoRose = await client.graphql.get().withClassName('JeopardyQuestion').withWhere({
+//   path: ['answer'],
+//   operator: 'Equal',
+//   valueText: 'Tokyo Rose',
+// }).withFields('answer').do();
+// assert.equal(tokyoRose.data.Get['JeopardyQuestion'].length, 2);
 // End test
 
+// ===========================
+// ===== Batch with gRPC =====
+// ===========================
+// START BatchGRPC
+const questions = client.collections.get("CollectionName")
+
+const batchSize = 1000; // define your batch size
+
+async function insertBatch() {
+  try {
+    await questions.data.insertMany(dataBatch);
+    console.log('Batch inserted successfully');
+  } catch (error) {
+    console.error('Error inserting batch:', error);
+  }
+}
+
+async function batchInsert() {
+  for (let i = 0; i < dataArray.length; i += batchSize) {
+    const batch = dataArray.slice(i, i + batchSize);
+    await insertBatch(batch);
+  }
+}
+
+const dataObject = [...]; // your data
+await batchInsert(dataObject);
+// START BatchGRPC

@@ -121,10 +121,10 @@ Modules are enabled at the instance level through its configuration. You can see
 :::info What is a `module`, exactly?
 By now, you've probably seen mentions of Weaviate `modules` here and there. Modules are optional Weaviate components used to enhance and customize its capabilities.<p><br/></p>
 
-Weaviate Academy units will generally assume WCS usage, which is pre-configured with a set of modules. We will cover how to enable modules for local instances in another unit, or you can see our [Docker installation page](/developers/weaviate/installation/docker-compose.md).
+Weaviate Academy units will generally assume WCD usage, which is pre-configured with a set of modules. We will cover how to enable modules for local instances in another unit, or you can see our [Docker installation page](/developers/weaviate/installation/docker-compose.md).
 :::
 
-WCS instances come pre-configured with a number of modules. For example, the response below shows that the `text2vec-openai` module is available, so we can use it in our schema.
+WCD instances come pre-configured with a number of modules. For example, the response below shows that the `text2vec-openai` module is available, so we can use it in our schema.
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -241,6 +241,8 @@ Try to construct a schema for that dataset based on what you've learned here.
 - The vectorizer parameter determines which Weaviate module will be used to generate vector embeddings for a class.
 - Module configurations at the class and property levels allow customization of module behavior across the entire class or per property, respectively.
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+## Questions and feedback
 
-<GiscusDocComment />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

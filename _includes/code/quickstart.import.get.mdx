@@ -8,20 +8,20 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
 some_objects = client.data_object.get()
 print(json.dumps(some_objects))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 const response = await client
@@ -45,7 +45,7 @@ import (
 
 func GetSchema() {
     cfg := weaviate.Config{
-      Host:   "some-endpoint.weaviate.network/",
+      Host:   "WEAVIATE_INSTANCE_URL/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
       Scheme: "https",
     }
 
@@ -79,7 +79,8 @@ import io.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -99,7 +100,7 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/objects
+curl https://WEAVIATE_INSTANCE_URL/v1/objects  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem> */}

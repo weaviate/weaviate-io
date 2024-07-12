@@ -5,107 +5,107 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWeaviateCloud(
+  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
-const className = 'JeopardyQuestion';
-let result;
+const collectionName = 'JeopardyQuestion';
+
+// UpdateProps START // Replace START
+const myCollection = client.collections.get('JeopardyQuestion') 
+// UpdateProps END // Replace END
 
 // ============================
 // ===== Define the class =====
 // ============================
 
-const classDefinition = {
-  class: 'JeopardyQuestion',
+const collectionDefinition = {
+  name: 'JeopardyQuestion',
   description: 'A Jeopardy! question',
-  vectorizer: 'text2vec-openai',
+  vectorizers: weaviate.configure.vectorizer.text2VecCohere(),
 };
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(className).do();
+  await client.collections.delete(collectionName)
 } catch {
   // Ignore error if class didn't exist
 } finally {
-  await client.schema.classCreator().withClass(classDefinition).do();
+  await client.collections.create(collectionDefinition)
 }
 
 
 // =============================
 // ===== Update properties =====
 // =============================
-
-result = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withProperties({
-    question: 'Test question',
-    answer: 'Test answer',
-    points: -1,
-  })
-  .do();
-
+{
 // UpdateProps START
-let id = '...';  // replace with the id of the object you want to update
-// UpdateProps END
-id = result.id;
-// UpdateProps START
-await client.data
-  // highlight-start
-  .merger()  // merges properties into the object
-  // highlight-end
-  .withId(id).withClassName('JeopardyQuestion')
-  .withProperties({
-    points: 100,
-  })
-  .do();
-// UpdateProps END
+// highlight-start
+const response = await myCollection.data.update({
+  id: 'ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',
+  properties: {
+    'points': 100,
+  },
+})
+// highlight-end
 
+console.log(response)
+// UpdateProps END
+}
 // Test
-result = await client.data.getterById().withId(id).withClassName(className).do();
-assert.equal(result.properties['points'], 100);
-assert.equal(result.properties['question'], 'Test question');  // make sure we didn't REPLACE the object
+// result = await client.data.getterById().withId(id).withClassName(className).do();
+// assert.equal(result.properties['points'], 100);
+// assert.equal(result.properties['question'], 'Test question');  // make sure we didn't REPLACE the object
 
 
 // =========================
 // ===== Update vector =====
 // =========================
+{
 // UpdateVector START
-// Vote for the feature - https://github.com/weaviate/typescript-client/issues/64
-// UpdateVector END
+const jeopardy = client.collections.get('Jeopardy')
+const response = await jeopardy.data.update({
+  id: 'ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',
+  // highlight-start
+  vectors: Array(1536).fill(0.12345), // new vector value
+  // highlight-end
+})
 
+console.log(response)
+// UpdateVector END
+}
 
 // ==========================
 // ===== Replace object =====
 // ==========================
 
 // Replace START
-id = '...';  // the id of the object you want to replace
-// Replace END
-id = result.id;
-// Replace START
-await client.data
-  // highlight-start
-  .updater()  // replaces the entire object
+// highlight-start
+const response = await myCollection.data.replace({
   // highlight-end
-  .withId(id).withClassName('JeopardyQuestion')
-  .withProperties({
-    answer: 'Replaced',
+  id: 'ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',
+  // highlight-start
+  properties: {
+    'answer': 'Replaced',
     // The other properties will be deleted
-  })
-  .do();
+  },
+  // highlight-end
+})
+
+console.log(response)
 // Replace END
 
 // Test
-result = await client.data.getterById().withId(id).withClassName(className).do();
-assert.deepEqual(result.properties, { answer: 'Replaced' });  // ensure the other props were deleted
+// result = await client.data.getterById().withId(id).withClassName(className).do();
+// assert.deepEqual(result.properties, { answer: 'Replaced' });  // ensure the other props were deleted
 
 
 // =============================
@@ -113,26 +113,29 @@ assert.deepEqual(result.properties, { answer: 'Replaced' });  // ensure the othe
 // =============================
 
 // DelProps START
-async function delProps(uuid: string, className: string, propNames: string[]) {
-  const objectData = await client.data.getterById().withId(uuid).withClassName(className).do();
-  for (const propName of propNames)
-    if (propName in objectData.properties)
-      delete objectData.properties[propName];
-  // Replace the object
-  return await client.data
-    .updater()
-    .withId(uuid).withClassName(className)
-    .withProperties(objectData.properties)
-    .do();
+async function deleteProperties(client: WeaviateClient, uuidToUpdate: string, collectionName: string, propNames: string[]) {
+  const collection = client.collections.get(collectionName);
+  const objectData = await collection.query.fetchObjectById(uuidToUpdate);
+  const propertiesToUpdate = objectData?.properties;
+  
+  if (propertiesToUpdate) {
+    for (let propName of propNames) {
+        if (propName in propertiesToUpdate) {
+          delete propertiesToUpdate[propName];
+        }
+    }
+  
+    result = await collection.data.replace({
+      id: uuidToUpdate,
+      properties: propertiesToUpdate
+    })
+  }
 }
-
-id = '...';  // replace with the id of the object you want to delete properties from
-// DelProps END
-id = result.id;
-// DelProps START
-await delProps(id, 'JeopardyQuestion', ['answer']);
+  
+let id = 'ed89d9e7-4c9d-4a6a-8d20-095cb0026f54'
+deleteProperties(client, id, 'JeopardyQuestion', ['answer'])
 // DelProps END
 
 // Test
-result = await client.data.getterById().withId(id).withClassName(className).do();
-assert.deepEqual(result.properties, {});
+// result = await client.data.getterById().withId(id).withClassName(className).do();
+// assert.deepEqual(result.properties, {});

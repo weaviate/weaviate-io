@@ -36,7 +36,7 @@ export default function PricingStandard() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Multiple availability zone</span>
+          <span>Multiple availability zones</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>

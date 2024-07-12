@@ -31,7 +31,7 @@ image: og/docs/more-resources.jpg
 <details>
   <summary>Answer</summary>
 
-> Yes, we do - check out [Weaviate Cloud Services](/pricing).
+> Yes, we do - check out [Weaviate Cloud](/pricing).
 
 </details>
 
@@ -281,7 +281,7 @@ If you need a higher search quality for a given limit you can consider the follo
 
 > Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
 >
-> To iterate through all objects, you can use the `after` operator with both [REST](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after) and [GraphQL](../api/graphql/additional-operators.md#cursor-with-after).
+> To iterate through all objects, you can use the [`after` operator](../manage-data/read-all-objects.mdx).
 >
 > For pagination through a result set, you can use the `offset` and `limit` operators for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these operators, including tips on performance and limitations.
 
@@ -293,9 +293,9 @@ If you need a higher search quality for a given limit you can consider the follo
   <summary>Answer</summary>
 
 > Here are top 3 best practices for updating data:
-> 1. Use the [batch API](../api/rest/batch.md)
+> 1. Use the [batch API](../manage-data/import.mdx)
 > 2. Start with a small-ish batch size e.g. 100 per batch. Adjust up if it is very fast, adjust down if you run into timeouts
-> 3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../api/rest/batch.md) to set links between classes in arbitrary directions.
+> 3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then [add references](../manage-data/import.mdx#import-with-references) to set links between classes in arbitrary directions.
 
 </details>
 
@@ -453,12 +453,12 @@ More concretely: If you had to pick between a machine that has 16 GB of RAM and 
 
 </details>
 
-#### Q: My Weaviate setup is using more memory than what I think is reasonable. How can I debug this?
+#### Q: My Weaviate instance uses more memory than I think is reasonable. How can I debug this?
 
 <details>
   <summary>Answer</summary>
 
-> First of all, make sure your import runs with the latest version of Weaviate, since `v1.12.0`/`v1.12.1` fixed an issue where [too much data was written to disk](https://github.com/weaviate/weaviate/issues/1868) which then lead to unreasonable memory consumption after restarts. If this did not fix the issue yet, please see this post on [how to profile the memory usage of a Weaviate setup](https://stackoverflow.com/a/71793178/5322199).
+> Check that your import uses the latest version of Weaviate. `v1.12.0` and `v1.12.1` fix an [issue](https://github.com/weaviate/weaviate/issues/1868) where excessive amounts of data are written to disk, resulting in unreasonable memory consumption after restarts. If upgrading does not fix the issue, see this post on [how to profile memory use](https://stackoverflow.com/a/71793178/5322199).
 
 </details>
 
@@ -556,6 +556,8 @@ docker compose up
 
 ## More questions?
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

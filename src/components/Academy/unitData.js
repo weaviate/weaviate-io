@@ -180,7 +180,6 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
-
   "nv_collections": {
     title: "Populate the database",
     body: "Create a collection with multiple named vectors and import data objects.",
@@ -208,6 +207,161 @@ export const unitData = {
       "Describe what query types are affected by named vectors.",
       "Perform vector/similarity and hybrid searches in collections with named vectors.",
       "Perform RAG on collections with named vectors.",
+    ]
+  },
+  "compression_pq": {
+    title: "Product quantization",
+    body: "What is product quantization (PQ), and how do you use it?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/pq",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what PQ is and how to use it."
+    ],
+    learningOutcomes: [
+      "Describe how PQ works and its key parameters.",
+      "Configure a collection with PQ.",
+    ]
+  },
+  "compression_bq": {
+    title: "Binary quantization",
+    body: "What is binary quantization (BQ), and how do you use it?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/bq",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what BQ is and how to use it."
+    ],
+    learningOutcomes: [
+      "Describe how BQ works and its key parameters.",
+      "Configure a collection with BQ.",
+    ]
+  },
+  "compression_strategy": {
+    title: "Compression strategy",
+    body: "What compression algorithm and settings are right for me?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/strategy",
+    badgeType: "theory",
+    learningGoals: [
+      "Learn what compression algorithm might work best for your use case."
+    ],
+    learningOutcomes: [
+      "Describe the pros and cons of using PQ, BQ, or uncompressed vectors?",
+      "Make an informed choice on which compression algorithm to use for a given use case.",
+    ]
+  },
+  "vindex_overview": {
+    title: "Vector index: Overview",
+    body: "What is a vector index, and why is it important?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/overview",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what a vector index is and how it affects your vector searches."
+    ],
+    learningOutcomes: [
+      "Describe what a vector index is and what it does.",
+      "Recite different types of vector indexes in Weaviate.",
+    ]
+  },
+  "vindex_hnsw": {
+    title: "HNSW index in depth",
+    body: "Learn about the HNSW index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/hnsw",
+    badgeType: "practical",
+    learningGoals: [
+      "How the HNSW index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how an HNSW index works and its key attributes.",
+      "Configure Weaviate with an HNSW index, and describe its parameters.",
+    ]
+  },
+  "vindex_flat": {
+    title: "Flat index in depth",
+    body: "Learn about the flat index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/flat",
+    badgeType: "practical",
+    learningGoals: [
+      "How the flat index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a flat index works and its key attributes.",
+      "Configure Weaviate with a flat index, and describe its parameters.",
+    ]
+  },
+  "vindex_dynamic": {
+    title: "Dynamic index in depth",
+    body: "Learn about the dynamic index type, and how to tune it for your use case.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/vector_index/dynamic",
+    badgeType: "practical",
+    learningGoals: [
+      "How the dynamic index works and how to tune it for your use case."
+    ],
+    learningOutcomes: [
+      "Describe how a dynamic index works and its key attributes.",
+      "Configure Weaviate with a dynamic index, and describe its parameters.",
+    ]
+  },
+  "tokenization_basics": {
+    title: "Overview of tokenization",
+    body: "What is tokenization, and why is it important?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/basics",
+    badgeType: "theory",
+    learningGoals: [
+      "What tokenization is and its impact."
+    ],
+    learningOutcomes: [
+      "Describe what tokenization is.",
+      "Differentiate the tokenizer's role in vectorization and keyword-based operations.",
+    ]
+  },
+  "tokenization_options": {
+    title: "Available tokenization options",
+    body: "What tokenization options are available in Weaviate?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/options",
+    badgeType: "theory",
+    learningGoals: [
+      "Review the available tokenization options in Weaviate."
+    ],
+    learningOutcomes: [
+      "Describe different tokenization options available in Weaviate.",
+      "Identify the best tokenization option for a given use case.",
+      "Identify languages for which specific tokenization options are available.",
+    ]
+  },
+  "tokenization_filters": {
+    title: "Tokenization and filters",
+    body: "See how tokenization impacts filters.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/filters",
+    badgeType: "practical",
+    learningGoals: [
+      "The impact of tokenization on filters."
+    ],
+    learningOutcomes: [
+      "Describe the ways in which tokenization can affect filters.",
+      "Implement an appropriate tokenization option in Weaviate for a given use case.",
+    ]
+  },
+  "tokenization_searches": {
+    title: "Tokenization and searches",
+    body: "See how tokenization impacts searches.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/searches",
+    badgeType: "practical",
+    learningGoals: [
+      "The impact of tokenization on query results."
+    ],
+    learningOutcomes: [
+      "Describe the ways in which tokenization can affect keyword search results.",
+      "Implement an appropriate tokenization option in Weaviate for a given use case.",
     ]
   },
   // multi_tenancy_intro: {
@@ -239,14 +393,14 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
-      "How to create your own Weaviate instance on WCS.",
+      "How to create your own Weaviate instance on WCD.",
       "Weaviate clients and how to install them.",
       "Hands-on experience with Weaviate.",
     ],
     learningOutcomes: [
       "Broadly describe what Weaviate is.",
       "Outline what vector search is.",
-      "Create a Weaviate instance on WCS.",
+      "Create a Weaviate instance on WCD.",
       "Install your preferred Weaviate client.",
       "Describe some of Weaviate's capabilities.",
     ],
@@ -571,7 +725,7 @@ export const unitData = {
   //   learningOutcomes: [
   //     "Describe the principles behind token-based security such as OIDC / OAuth.",
   //     "Differentiate between an ID token and access token",
-  //     "Implement OIDC-based authentication with Weaviate using Weaviate Cloud Services as the identity provider.",
+  //     "Implement OIDC-based authentication with Weaviate using Weaviate Cloud as the identity provider.",
   //     "Implement authorization with Weaviate based on OIDC authentication."
   //   ],
   //   owner: "jp",
@@ -676,12 +830,12 @@ export const unitData = {
   kubernetes_intro: {
     title: "Weaviate with Kubernetes - An introduction",
     body: "What is Kubernetes, and how do you configure and run Weaviate on it?.",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "practical",
     learningGoals: [
       "What Kubernetes is, and why it is used.",
       "How to set up a local Kubernetes cluster.",
-      "Run a multi-node Weaviate instance on the local Kubernetes cluster.",
+      "Run a Weaviate instance on the local Kubernetes cluster.",
       "How to configure Weaviate running on Kubernetes."
     ],
     learningOutcomes: [
@@ -730,7 +884,7 @@ export const unitData = {
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."
     ],
     learningOutcomes: [
-      "Create a cloud (WCS) instance fo Weaviate.",
+      "Create a cloud (WCD) instance fo Weaviate.",
       "Gain an understanding of what a vector database is.",
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",

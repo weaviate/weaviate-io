@@ -12,7 +12,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Overview
 
-Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../rest/batch.md#batch-delete). The operator used for filtering is also called a `where` filter.
+Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../../manage-data/delete.mdx#delete-multiple-objects). The operator used for filtering is also called a `where` filter.
 
 A filter may consist of one or more conditions, which are combined using the `And` or `Or` operators. Each condition consists of a property path, an operator, and a value.
 
@@ -135,7 +135,7 @@ If the operator is `And` or `Or`, the operands are a list of `where` filters.
 </details>
 
 :::note `Not` operator
-An operator to invert a filter (e.g. `Not Like ...` ) is not supported in Weaviate. If you would to see such an operator to be implemented, please let us know by [upvoting the issue here](https://github.com/weaviate/weaviate/issues/3683).
+Weaviate doesn't have an operator to invert a filter (e.g. `Not Like ...` ). If you would like us to add one, please [upvote the issue](https://github.com/weaviate/weaviate/issues/3683).
 :::
 
 ### Filter behaviors
@@ -248,7 +248,7 @@ Both operators expect an array of values and return objects that match based on 
 
 :::note `ContainsAny` and `ContainsAll` notes:
 - The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
-- When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the usage in search, where the `valueText` argument that can be used.
+- When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../../manage-data/delete.mdx#delete-multiple-objects), the text array must be specified with the `valueTextArray` argument. This is different from the usage in search, where the `valueText` argument that can be used.
 :::
 
 
@@ -511,6 +511,10 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
 
 Note that `geoCoordinates` uses a vector index under the hood.
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 ### By null state
 
 Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`. Note that zero-length arrays and empty strings are equivalent to a null value.
@@ -537,6 +541,8 @@ Filtering by null-state requires the target class to be configured to index this
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

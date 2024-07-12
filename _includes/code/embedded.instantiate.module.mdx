@@ -2,46 +2,32 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/install/embedded-v3.py';
+import TsCodeV2 from '!!raw-loader!/_includes/code/install/embedded-v2.ts';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START ModuleInstantiationEmbedded"
-  endMarker="# END ModuleInstantiationEmbedded"
-  language="py"
-/>
-</TabItem>
-<TabItem value="py3" label="Python (V3)">
-
-  ```python
-  import weaviate
-  from weaviate.embedded import EmbeddedOptions
-
-  client = weaviate.Client(
-      embedded_options=EmbeddedOptions(
-          additional_env_vars={
-          "ENABLE_MODULES":
-          "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
-      )
-  )
-  ```
-
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-
-  ```js
-  import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
-
-  const client = weaviate.client(
-    new EmbeddedOptions({
-      env: {
-        ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
-      },
-    })
-  );
-  ```
-
-  </TabItem>
+    <TabItem value="py" label="Python Client v4">
+        <FilteredTextBlock
+          text={PyCode}
+          startMarker="# START ModuleInstantiationEmbedded"
+          endMarker="# END ModuleInstantiationEmbedded"
+          language="py"
+        />
+    </TabItem>
+    <TabItem value="py3" label="Python Client v3">
+        <FilteredTextBlock
+          text={PyCodeV3}
+          startMarker="# START CustomModules"
+          endMarker="# END CustomModules"
+          language="py"
+        />
+    </TabItem>
+    <TabItem value="js" label="JS/TS Client v2">
+        <FilteredTextBlock
+          text={TsCodeV2}
+          startMarker="// START CustomModules"
+          endMarker="// END CustomModules"
+          language="js"
+        />
+    </TabItem>
 </Tabs>

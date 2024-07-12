@@ -1,77 +1,49 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import PyCode from '!!raw-loader!/_includes/code/howto/configure.replication.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
+
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START ConfigureReplication"
-      endMarker="# END ConfigureReplication"
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
       language="py"
     />
   </TabItem>
 
-<TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
+      language="py"
+    />
+  </TabItem>
 
-```python
-import weaviate
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
 
-client = weaviate.Client("http://localhost:8080")
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
 
-class_obj = {
-    "class": "Article",
-    "properties": [
-        {
-            "dataType": [
-                "string"
-            ],
-            "name": "title",
-        },
-    ],
-    "replicationConfig": {
-      "factor": 3
-    }
-}
-
-client.schema.create_class(class_obj)
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-
-```js
-import weaviate from 'weaviate-ts-client';
-
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
-
-const classObj = {
-  class: 'Article',
-  properties: [
-    {
-      dataType: ['string'],
-      description: 'Title of the article',
-      name: 'title',
-    },
-  ],
-  replicationConfig: {
-    factor: 3,
-  },
-};
-
-const response = await client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do();
-console.log(JSON.stringify(response, null, 2));
-```
-
-</TabItem>
 <TabItem value="go" label="Go">
 
 ```go

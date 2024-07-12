@@ -22,9 +22,9 @@ When we created a collection, we specified the `generative_module` parameter as 
   language="py"
 />
 
-This selects a generative module that will be used to generate outputs based on the retrieved objects. In this case, we're using the `openai` module, and the `GPT` family of large language models.
+This selects a generative module that will be used to generate outputs based on the retrieved objects. In this case, we're using the `cohere` module, and the `Command-R` family of large language models.
 
-As we did before with the vectorizer module, you will require an API key from the provider of the generative module. In this case, you will need an API key from OpenAI.
+As we did before with the vectorizer module, you will require an API key from the provider of the generative module. In this case, you will need an API key from Cohere.
 
 ### <i class="fa-solid fa-code"></i> RAG queries
 
@@ -32,6 +32,8 @@ RAG queries are also called 'generative' queries in Weaviate. You can access the
 
 Each generative query works in addition to the regular search query, and will perform a RAG query on each retrieved object.
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+## Questions and feedback
 
-<GiscusDocComment />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

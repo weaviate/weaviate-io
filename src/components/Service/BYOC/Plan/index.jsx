@@ -9,9 +9,7 @@ export default function ServicePlan() {
       <div className="container">
         <div className={styles.diagramBox}>
           <div className={styles.header}>
-            <h2>
-              Run Weaviate securely within your<br></br> own cloud environment.
-            </h2>
+            <h2>Run Weaviate securely within your VPC.</h2>
           </div>
           <div className={styles.content}>
             <div className={styles.leftContent}>
@@ -20,7 +18,7 @@ export default function ServicePlan() {
                 Our BYOC architecture capitalizes on managed Kubernetes,
                 ensuring scalability and resilience.
               </p>
-              <span>Shared reponsibility</span>
+              <span>Shared responsibility</span>
               <p>
                 Weaviate manages application-level security, provisioning,
                 configuration, upgrades and patches with 24/7 monitoring and

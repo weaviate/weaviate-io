@@ -25,13 +25,8 @@ export default function WorkshopSection() {
   return (
     <div className={styles.container}>
       <div className={styles.headerBox}>
-        <h2>All our upcoming events around the world</h2>
-        <p>
-          We believe that the next wave of software infrastructure is AI-first
-          and that a strong open-source community is a basis for creating
-          high-quality software. Our workshops deliver new information and
-          details on our service.
-        </p>
+        <h2>Learn from the experts, we'll meet you where you are!</h2>
+        <p>Join an online workshop or meet us in person at an event.</p>
       </div>
       <div className={styles.workshopWrapper}>
         <div className="workshopContainer">

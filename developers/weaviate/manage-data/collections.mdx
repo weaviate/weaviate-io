@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
@@ -24,8 +25,12 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 
 To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema/index.md#auto-schema) creates them.
 
+import InitialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<InitialCaps />
+
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicCreateCollection"
@@ -34,7 +39,7 @@ To create a collection, specify at least the collection name. If you don't speci
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START BasicCreateCollection"
@@ -43,9 +48,18 @@ To create a collection, specify at least the collection name. If you don't speci
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START BasicCreateCollection"
+      endMarker="// END BasicCreateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START BasicCreateCollection"
       endMarker="// END BasicCreateCollection"
       language="ts"
@@ -85,13 +99,13 @@ Use properties to configure additional parameters such as data type, index chara
 For details, see:
 
 - [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
-- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+- [API References: REST: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Available data types](../config-refs/datatypes.md)
 
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionWithProperties"
@@ -100,7 +114,7 @@ For details, see:
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionWithProperties"
@@ -109,12 +123,30 @@ For details, see:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START CreateCollectionWithProperties"
       endMarker="// END CreateCollectionWithProperties"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="java"
     />
   </TabItem>
 
@@ -141,7 +173,7 @@ Collection level settings override default values and general configuration para
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Vectorizer"
@@ -150,7 +182,7 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Vectorizer"
@@ -159,7 +191,7 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Vectorizer"
@@ -167,6 +199,16 @@ Collection level settings override default values and general configuration para
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 
@@ -178,7 +220,7 @@ Collection level settings override default values and general configuration para
 You can define multiple named vectors per collection. This allows each object to be represented by multiple vectors, such as a `text` vector and an `image` vector, or a `title` vector and a `body` vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicNamedVectors"
@@ -187,7 +229,7 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START BasicNamedVectors"
@@ -196,7 +238,7 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicNamedVectors"
@@ -204,6 +246,16 @@ You can define multiple named vectors per collection. This allows each object to
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START BasicNamedVectors"
+      endMarker="// END BasicNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Specify vectorizer settings
@@ -211,7 +263,7 @@ You can define multiple named vectors per collection. This allows each object to
 To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ModuleSettings"
@@ -220,7 +272,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ModuleSettings"
@@ -229,7 +281,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ModuleSettings"
@@ -237,36 +289,104 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Set vector index type
 
-The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+The vector index type can be set for each collection between `hnsw`, `flat` and `dynamic` index types.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START SetVectorIndex"
-      endMarker="# END SetVectorIndex"
+      startMarker="# START SetVectorIndexType"
+      endMarker="# END SetVectorIndexType"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START SetVectorIndex"
-      endMarker="# END SetVectorIndex"
+      startMarker="# START SetVectorIndexType"
+      endMarker="# END SetVectorIndexType"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START SetVectorIndex"
-      endMarker="// END SetVectorIndex"
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
+## Set vector index parameters
+
+Various vector index parameters are configurable at collection creation time, including compression.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
       language="ts"
     />
   </TabItem>
@@ -281,10 +401,14 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
 
 ## Property-level settings
 
-Configure each property to choose whether to vectorize property name, include property in vectorization, and choose tokenization type.
+Configure individual properties in a collection. Each property can have it's own configuration. Here are some common settings:
+
+- Vectorize the property
+- Vectorize the property name
+- Set a [tokenization type](../config-refs/schema/index.md#tokenization)
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START PropModuleSettings"
@@ -293,7 +417,7 @@ Configure each property to choose whether to vectorize property name, include pr
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START PropModuleSettings"
@@ -302,9 +426,18 @@ Configure each property to choose whether to vectorize property name, include pr
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START PropModuleSettings"
       endMarker="// END PropModuleSettings"
       language="ts"
@@ -317,7 +450,7 @@ Configure each property to choose whether to vectorize property name, include pr
 If you choose to bring your own vectors, you should specify the `distance metric`.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DistanceMetric"
@@ -326,7 +459,7 @@ If you choose to bring your own vectors, you should specify the `distance metric
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DistanceMetric"
@@ -335,9 +468,18 @@ If you choose to bring your own vectors, you should specify the `distance metric
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START DistanceMetric"
       endMarker="// END DistanceMetric"
       language="ts"
@@ -357,6 +499,48 @@ For details on the configuration parameters, see the following:
 
 </details>
 
+## Set inverted index parameters
+
+Various [inverted index parameters](../config-refs/schema/index.md#invertedindexconfig) are configurable for each collection. Some parameters are set at the collection level, while others are set at the property level.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetInvertedIndexParams"
+      endMarker="# END SetInvertedIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetInvertedIndexParams"
+      endMarker="# END SetInvertedIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Specify a generative module
 
 Specify a `generative` module for a collection (for RAG).
@@ -369,7 +553,7 @@ Specify a `generative` module for a collection (for RAG).
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SetGenerative"
@@ -378,7 +562,7 @@ Specify a `generative` module for a collection (for RAG).
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START SetGenerative"
@@ -387,7 +571,7 @@ Specify a `generative` module for a collection (for RAG).
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START SetGenerative"
@@ -395,14 +579,69 @@ Specify a `generative` module for a collection (for RAG).
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Specify a generative model name
+
+Specify a specific generative `model name`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetGenModel"
+      endMarker="# END SetGenModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetGenModel"
+      endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## Replication settings
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 Configure replication per collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReplicationSettings"
@@ -411,7 +650,7 @@ Configure replication per collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReplicationSettings"
@@ -420,7 +659,7 @@ Configure replication per collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ReplicationSettings"
@@ -428,6 +667,16 @@ Configure replication per collection.
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 <details>
@@ -435,8 +684,7 @@ Configure replication per collection.
      Additional information
   </summary>
 
-To test replication factors great then one, use a [multi-node deployment](../installation/docker-compose.md#multi-node-setup).
-
+To use replication factors greater than one, use a [multi-node deployment](../installation/docker-compose.md#multi-node-setup).
 
 For details on the configuration parameters, see the following:
 
@@ -449,7 +697,7 @@ For details on the configuration parameters, see the following:
 Configure sharding per collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ShardingSettings"
@@ -458,7 +706,7 @@ Configure sharding per collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ShardingSettings"
@@ -467,9 +715,18 @@ Configure sharding per collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ShardingSettings"
       endMarker="// END ShardingSettings"
       language="ts"
@@ -496,7 +753,7 @@ For details on the configuration parameters, see the following:
 Create a collection with multi-tenancy enabled.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Multi-tenancy"
@@ -505,7 +762,7 @@ Create a collection with multi-tenancy enabled.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Multi-tenancy"
@@ -514,9 +771,18 @@ Create a collection with multi-tenancy enabled.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Multi-tenancy"
       endMarker="// END Multi-tenancy"
       language="ts"
@@ -529,7 +795,7 @@ Create a collection with multi-tenancy enabled.
 Retrieve a collection definition from the schema.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadOneCollection"
@@ -537,7 +803,7 @@ Retrieve a collection definition from the schema.
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReadOneCollection"
@@ -546,9 +812,18 @@ Retrieve a collection definition from the schema.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadOneCollection"
       endMarker="// END ReadOneCollection"
       language="ts"
@@ -744,7 +1019,7 @@ For image searches, see [Image search](../search/image.md).
 Fetch the database schema to retrieve all of the collection definitions.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadAllCollections"
@@ -753,7 +1028,7 @@ Fetch the database schema to retrieve all of the collection definitions.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReadAllCollections"
@@ -762,9 +1037,18 @@ Fetch the database schema to retrieve all of the collection definitions.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadAllCollections"
       endMarker="// END ReadAllCollections"
       language="ts"
@@ -792,10 +1076,12 @@ Fetch the database schema to retrieve all of the collection definitions.
 
 ## Update a collection definition
 
-Some definitions cannot be modified after you create your collection.
+<RaftRFChangeWarning/>
+
+You can update a collection definition to change the [mutable collection settings](../config-refs/schema/index.md#mutability).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateCollection"
@@ -804,7 +1090,7 @@ Some definitions cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START UpdateCollection"
@@ -813,7 +1099,16 @@ Some definitions cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
 ```ts
 // This feature is under development
@@ -843,7 +1138,7 @@ Some definitions cannot be modified after you create your collection.
 Some parameters cannot be modified after you create your collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ModifyParam"
@@ -852,7 +1147,7 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ModifyParam"
@@ -861,7 +1156,16 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModifyParam"
+      endMarker="// END ModifyParam"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
 
   ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
@@ -874,14 +1178,60 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
-## Related pages
+## Add a property
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
-- [API References: REST: Schema](../api/rest/schema.md)
-- [References: Schema](/developers/weaviate/config-refs/schema)
-- [Tutorial: Schema](../starter-guides/schema.md)
+<details>
+  <summary>
+    Limitations when you add a property after importing data
+  </summary>
+
+Adding a new property after you import data limits searches that use the new property.<br/><br/>
+
+Property indexes are built at import time. If you add a new property after importing some data, objects in the existing index aren't automatically updated to add the new property. Queries may return unexpected results because only new objects have the new property; the older objects are not re-indexed to add it.<br/><br/>
+
+To index all objects, do one of the following:
+- Add the property before importing objects.
+- Delete the collection; re-create it with the new property; and re-import the data.
+
+We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
+
+</details>
+
+import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.add.mdx';
+
+<CodeSchemaAddProperties />
+
+## Inspect shards (for a collection)
+
+An index itself can be comprised of multiple shards.
+
+import CodeSchemaShardsGet from '/_includes/code/howto/manage-data.shards.inspect.mdx';
+
+<CodeSchemaShardsGet />
+
+## Update shard status
+
+You can manually a shard to `READY` from `READONLY`, for example after disk pressure has been lowered.
+
+import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.update.mdx';
+
+<CodeSchemaShardsUpdate />
+
+## Further resources
+
+### References
+
+- [API References: REST: Schema](/developers/weaviate/api/rest#tag/schema/post/schema)
+- [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
 - [Concepts: Data structure](../concepts/data.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+### Background knowledge
 
-<DocsMoreResources />
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
+- [Tutorial: Schema](../starter-guides/schema.md)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
