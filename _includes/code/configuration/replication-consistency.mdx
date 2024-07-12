@@ -1,0 +1,72 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AsyncRepair"
+      endMarker="# END AsyncRepair"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START AsyncRepair"
+      endMarker="# END AsyncRepair"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AsyncRepair"
+      endMarker="// END AsyncRepair"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START AsyncRepair"
+      endMarker="// END AsyncRepair"
+      language="ts"
+    />
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+
+```bash
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Article",
+    "properties": [
+        {
+            "dataType": [
+                "string"
+            ],
+            "description": "Title of the article",
+            "name": "title"
+        }
+    ],
+    "replicationConfig": {
+      "factor": 3,
+      "asyncEnabled": true
+    }
+}' \
+http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>
