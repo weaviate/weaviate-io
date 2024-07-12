@@ -362,7 +362,7 @@ const config = {
                                 value : '<div class="holder"><div class="holdRight"><li><span class="headerText">Learn</span></li><li><a class="dropdown__link" href="/developers/weaviate">Weaviate Docs</a></li><li><a class="dropdown__link" href="/developers/weaviate/quickstart">Quickstart</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdRight"><li><span class="headerText">Connect</span></li><li><a class="dropdown__link" href="/services/serverless">Serverless</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Dedicated</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Whats New</span><div class="dropDownPromo"></div><span class="dropDownText">Weaviate 1.24 - New Release Highlights</span></div></a></div></div></div>',
                                 className: 'dropDownContainer2',
                             },
-                           /*  {
+                         /*    {
                                 label: 'Weaviate Docs',
                                 docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
@@ -431,7 +431,7 @@ const config = {
                             {
                                 label: 'Slack',
                                 href: 'https://weaviate.io/slack',
-                            },
+                            }, */
                         ],
                     },
                     {
