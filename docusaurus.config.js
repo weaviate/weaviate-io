@@ -285,19 +285,19 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value: '<a href = "/platform"><div class="dropDown"><span class="dropDownLabel">The AI-Native Vector Database</span><div class="dropDownThumbnail"></div><span class="dropDownText">Build powerful, production-ready AI applications that scale.</span></div></a>',
-                               className: 'dropDownContainer',
+                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel" >Product</li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/platform">Integrations</a></li><li><a class="dropdown__link" href="/platform">Apps</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Services</li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support &amp; Education</a></li></div></div>',
+                               className: 'dropDownContainer2',
                             },
                         ]
                         
                     },
                     {  type: 'dropdown',
-                    label: 'Services',
+                    label: 'What\'s Possible',
                     position: 'right',
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Weaviate Services</span><div class="dropDownThumbnail"></div><span class="dropDownText">Packages to help you be successful with Generative AI.</span></div></a></div><div class="holdRightnoBorder"><li><a class="dropdown__link" href="/services/serverless">Serverless</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Dedicated</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div></div>',
+                            value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel" >Solutions</li><a class="dropdown__link" href="/platform">RAG</a></li><li><a class="dropdown__link" href="/platform">Hybrid Search</a></li><li><a class="dropdown__link" href="/platform">Generative Feedback Loops</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Use Cases</li><li><a class="dropdown__link" href="/services/serverless">Chatbot</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Document Search</a></li><li><a class="dropdown__link" href="/services/byoc">Multimodal Search</a></li><li><a class="dropdown__link" href="/services/education-and-support">Recommendation Engine</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies/instabase">Case Studies</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Build With Weaviate</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support &amp; Education</a></li></div></div>',
                             className: 'dropDownContainer2',
                         },
                         
@@ -327,39 +327,16 @@ const config = {
 
                         }, */
                     ]
-                }
-                    ,
-                    {  type: 'dropdown',
-                    label: 'Solutions',
-                    position: 'right',
-                    items: [
-                        {
-                            label: 'Hybrid Search',
-                            href: '/hybrid-search',
-
-                        },
-                        {
-                            label: 'RAG',
-                            href: '/rag',
-
-                        },
-                        {
-                            label: 'Generative Feedback Loops',
-                            href: '/gen-feedback-loops',
-
-                        },
-
-                    ]
-                }
-                    ,
-                    {
+                },
+                
+                {
                         type: 'dropdown',
                         label: 'Resources',
                         position: 'right',
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><div class="holdRight"><li><span class="headerText">Learn</span></li><li><a class="dropdown__link" href="/developers/weaviate">Weaviate Docs</a></li><li><a class="dropdown__link" href="/developers/weaviate/quickstart">Quickstart</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdRight"><li><span class="headerText">Connect</span></li><li><a class="dropdown__link" href="/services/serverless">Serverless</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Dedicated</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Whats New</span><div class="dropDownPromo"></div><span class="dropDownText">Weaviate 1.24 - New Release Highlights</span></div></a></div></div></div>',
+                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel" >Build</li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/contributor-guide">Contributor Guide</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">Github</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Community</li><li><a class="dropdown__link" href="/community/events">Events</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li><li><a class="dropdown__link" href="/community">Weaviate Heroes</a></li></div></div>',
                                 className: 'dropDownContainer2',
                             },
                          /*    {
@@ -435,27 +412,11 @@ const config = {
                         ],
                     },
                     {
-                        type: 'dropdown',
-                        label: 'Partners',
+                       
+                        label: 'Pricing',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'AWS',
-                                href: '/partners/aws',
-                            },
-                            {
-                                label: 'Google Cloud',
-                                href: '/partners/gcp',
-                            },
-                            {
-                                label: 'Snowflake',
-                                href: '/partners/snowflake',
-                            },
-                            {
-                                label: 'Become a Partner',
-                                href: '/partners',
-                            },
-                        ],
+                        href: '/pricing',
+                        
                     },
                     {
                         type: 'dropdown',
@@ -481,6 +442,10 @@ const config = {
                             {
                                 label: 'Investors',
                                 to: '/company/investors',
+                            },
+                            {
+                                label: 'Partners',
+                                href: '/partners',
                             },
                             {
                                 label: 'Contact us',
