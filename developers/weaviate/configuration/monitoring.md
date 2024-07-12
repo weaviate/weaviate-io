@@ -60,8 +60,9 @@ When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [
 ## Obtainable Metrics
 
 The list of metrics that are obtainable through Weaviate's metric system is
-constantly being expanded. Here are some noteworthy metrics and what they can
-be used for.
+constantly being expanded. The complete list is in the [`prometheus.go`](https://github.com/weaviate/weaviate/blob/main/usecases/monitoring/prometheus.go) source code file.
+
+This page describes some noteworthy metrics and their uses.
 
 Typically metrics are quite granular, as they can always be aggregated later
 on. For example if the granularity is "shard", you could aggregate all "shard"
@@ -90,9 +91,18 @@ to obtain the metric for the entire Weaviate instance.
 | `startup_durations_ms` | Duration of individual startup operations in ms. The operation itself is defined through the `operation` label. | `operation`, `class_name`, `shard_name` | Histogram |
 | `startup_diskio_throughput` | Disk I/O throughput in bytes/s at startup operations, such as reading back the HNSW index or recovering LSM segments. The operation itself is defined by the `operation` label. | `operation`, `step`, `class_name`, `shard_name` | Histogram |
 | `requests_total` | Metric that tracks all user requests to determine if it was successful or failed. | `api`, `query_type`, `class_name` | `GaugeVec` |
+| `index_queue_push_duration_ms` | Duration of pushing one or more vectors to the index queue. | `class_name`, `shard_name`, `target_vector` | `Summary` |
+| `index_queue_delete_duration_ms` | Duration of deleting one or more vectors from the index queue and the underlying index. | `class_name`, `shard_name`, `target_vector` | `Summary` |
+| `index_queue_preload_duration_ms` | Duration of preloading un-indexed vectors to the index queue. | `class_name`, `shard_name`, `target_vector` | `Summary` |
+| `index_queue_preload_count` | Number of vectors preloaded to the index queue. | `class_name`, `shard_name`, `target_vector` | `Gauge` |
+| `index_queue_search_duration_ms` | Duration of searching for vectors in the index queue and the underlying index. | `class_name`, `shard_name`, `target_vector` | `Summary` |
+| `index_queue_paused` | Whether the index queue is paused. | `class_name`, `shard_name`, `target_vector` | `Gauge` |
+| `index_queue_size` | Number of vectors in the index queue. | `class_name`, `shard_name`, `target_vector` | `Gauge` |
+| `index_queue_stale_count` | Number of times the index queue has been marked as stale. | `class_name`, `shard_name`, `target_vector` | `Counter` |
+| `index_queue_vectors_dequeued` | Number of vectors sent to the workers per tick. | `class_name`, `shard_name`, `target_vector` | `Gauge` |
+| `index_queue_wait_duration_ms` | Duration of waiting for the workers to finish. | `class_name`, `shard_name`, `target_vector` | `Summary` |
 
-Extending Weaviate with new metrics is very easy and we'd be happy to receive
-your contribution.
+Extending Weaviate with new metrics is very easy. To suggest a new metric, see the [contributor guide](/developers/contributor-guide).
 
 ### Versioning
 
@@ -114,6 +124,7 @@ your uses perfectly:
 | [LSM Stores](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/lsm.json) | Get insights into the internals (including segments) of the various LSM stores within Weaviate. | ![LSM Store](./img/weaviate-sample-dashboard-lsm.png "LSM Store") |
 | [Startup](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/startup.json) | Visualize the startup process, including recovery operations | ![Startup](./img/weaviate-sample-dashboard-startup.png "Vector Index") |
 | [Usage](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/usage.json) | Obtain usage metrics, such as number of objects imported, etc.| ![Usage](./img/weaviate-sample-dashboard-usage.png "Usage") |
+| [Aysnc index queue](https://github.com/weaviate/weaviate/blob/main/tools/dev/grafana/dashboards/index_queue.json) | Observe index queue activity | ![Async index queue](./img/weaviate-sample-dashboard-async-queue.png "Async index queue") |
 
 ## `nodes` API Endpoint
 
