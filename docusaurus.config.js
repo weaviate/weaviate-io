@@ -279,13 +279,13 @@ const config = {
                 },
                 items: [
                     {
-                        // type: 'dropdown',
+                        type: 'dropdown',
                         label: 'Product',
                         position: 'right',
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel" >Product</li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/platform">Integrations</a></li><li><a class="dropdown__link" href="/platform">Apps</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Services</li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support &amp; Education</a></li></div></div>',
+                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel">Product</li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/platform">Integrations</a></li><li><a class="dropdown__link" href="/platform">Apps</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Services</li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support &amp; Education</a></li></div></div>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -297,7 +297,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel" >Solutions</li><a class="dropdown__link" href="/platform">RAG</a></li><li><a class="dropdown__link" href="/platform">Hybrid Search</a></li><li><a class="dropdown__link" href="/platform">Generative Feedback Loops</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Use Cases</li><li><a class="dropdown__link" href="/services/serverless">Chatbot</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Document Search</a></li><li><a class="dropdown__link" href="/services/byoc">Multimodal Search</a></li><li><a class="dropdown__link" href="/services/education-and-support">Recommendation Engine</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies/instabase">Case Studies</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Build With Weaviate</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support &amp; Education</a></li></div></div>',
+                            value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel">Solutions</li><a class="dropdown__link" href="/platform">RAG</a></li><li><a class="dropdown__link" href="/platform">Hybrid Search</a></li><li><a class="dropdown__link" href="/platform">Generative Feedback Loops</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Use Cases</li><li><a class="dropdown__link" href="/services/serverless">Chatbot</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Document Search</a></li><li><a class="dropdown__link" href="/services/byoc">Multimodal Search</a></li><li><a class="dropdown__link" href="/services/education-and-support">Recommendation Engine</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies/instabase">Case Studies</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Build With Weaviate</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></div></div>',
                             className: 'dropDownContainer2',
                         },
                         
