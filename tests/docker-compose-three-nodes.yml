@@ -9,7 +9,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.25.6
+    image: cr.weaviate.io/semitechnologies/weaviate:1.26.0-rc.0
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -23,7 +23,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface,text2vec-ollama,generative-ollama,generative-openai,reranker-cohere'
+      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface,text2vec-ollama,generative-ollama,generative-openai,generative-cohere,reranker-cohere'
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
       CLUSTER_DATA_BIND_PORT: '7101'

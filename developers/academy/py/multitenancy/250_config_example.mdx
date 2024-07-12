@@ -1,0 +1,77 @@
+---
+title: Example MT configuration
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+To make this more concrete, let's relate the above against a hypothetical application. Imagine you are building a note-writing SaaS application ("WeaviNotes").
+
+Each "WeaviNotes" end user will have their own, private notes, where all notes will have the same data structure. Weaviate's multi-tenancy collection is perfect for this, as all tenants will have the same configuration, while each tenant's data is isolated from each other.
+
+Based on the above, let's imagine how the "WeaviNotes" team might configure multi-tenancy.
+
+## <i class="fa-solid fa-chevron"></i> Collection configuration for WeaviNotes
+
+Their configuration might look as follows:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WeaviNotesMTConfig"
+  endMarker="# END WeaviNotesMTConfig"
+  language="py"
+/>
+
+This configuration will create a multi-tenant collection with auto-tenant creation and activation enabled.
+
+The "WeaviNote" collection also includes multiple [named vectors](../named_vectors/index.md) per object, which will allow users to search for notes based on the note, tags, or both.
+
+## <i class="fa-solid fa-chevron"></i> Tenant creation & management
+
+The "WeaviNotes" team can then create, or otherwise manage tenants to suit their end user events.
+
+### <i class="fa-solid fa-code"></i> Onboarding
+
+The "WeaviNotes" team may then create tenants as they onboard new users. For example, they might use logic such as this on a FastAPI back end:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WeaviNotesNewUser"
+  endMarker="# END WeaviNotesNewUser"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Offboarding
+
+If a user requests that their data be deleted, they can similarly be off-boarded.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WeaviNotesOffboardUser"
+  endMarker="# END WeaviNotesOffboardUser"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Set users as inactive
+
+And if a user is inactive for a certain period, the "WeaviNotes" team can set them as inactive.
+
+For example, a daily scheduled job may identify users who have not accessed their notes in the last 30 days and set them as inactive:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WeaviNotesSetUsersInactive"
+  endMarker="# END WeaviNotesSetUsersInactive"
+  language="py"
+/>
+
+[Next up](./300_usage.mdx), we'll explore how to use a multi-tenant collection, including data ingestion and query performance.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

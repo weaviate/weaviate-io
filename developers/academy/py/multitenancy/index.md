@@ -1,5 +1,5 @@
 ---
-title: "280 Multi-tenancy"
+title: "280 Multi-tenancy (MT)"
 sidebar_position: 280
 ---
 

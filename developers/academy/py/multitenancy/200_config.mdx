@@ -1,5 +1,5 @@
 ---
-title: Configure a multi-tenant collection
+title: How to configure MT
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,9 +7,13 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Now, let's discuss how to configure Weaviate to get the most out of multi-tenancy features. To use multi-tenancy, you must enable it at collection creation time. Once the collection is created and configured, you can create and manage tenants.
+Now, let's discuss how to configure Weaviate to get the most out of multi-tenancy features. First, let's discuss the usage patterns.
+
+A collection's multi-tenancy status can only be set at creation time. Once the collection is created and configured, you can create and manage tenants.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Basic usage
+
+### <i class="fa-solid fa-code"></i> Enabling multi-tenancy
 
 To use multi-tenancy, enable it at collection creation time as shown below:
 
@@ -22,7 +26,9 @@ To use multi-tenancy, enable it at collection creation time as shown below:
 
 This will create a multi-tenant collection.
 
-Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace. You can `create`, `remove`, or `update` tenants, check that a tenant `exists`, or `get/get_by_name/get_by_names` one or more tenants for further operations.
+### <i class="fa-solid fa-code"></i> Manage tenants
+
+Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace. You can `create`, `remove`, or `update` tenants, check that a tenant `exists`, or get one or more tenants (`get`, `get_by_name`, `get_by_names`) for further operations.
 
 For example, `create` tenants by providing a list of tenant names:
 
@@ -57,7 +63,8 @@ You've seen that a multi-tenant collection must be specified as such at creation
   language="py"
 />
 
-#### `auto_tenant_creation`
+<details>
+  <summary>What is <code>auto_tenant_creation</code>?</summary>
 
 :::info Added in `v1.25`
 The auto tenant creation feature is available from `v1.25.0` for batch imports, and from `v1.25.2` for single object insertions.
@@ -70,14 +77,16 @@ This option is particularly useful for bulk data ingestion, as it removes the ne
 A risk of using `auto_tenant_creation` is that an error in the source data will not be caught during import. For example, a source object with erroneously spelt `"TenntOn"` instead of `"TenantOne"` will create a new tenant for `"TenntOne"` instead of raising an error.
 
 The server-side default for `auto_tenant_creation` is `false`.
+</details>
 
-#### `auto_tenant_activation`
+<details>
+  <summary>What is <code>auto_tenant_activation</code>?</summary>
 
 :::info Added in `v1.25.2`
 The auto tenant activation feature is available from `v1.25.2`.
 :::
 
-If `auto_tenant_activation` is enabled, Weaviate will automatically activate any deactivated (`COLD`) tenants when they are accessed.
+If `auto_tenant_activation` is enabled, Weaviate will automatically activate any deactivated (`INACTIVE` or `OFFLOADED`) tenants when they are accessed.
 
 This option is particularly useful for scenarios where you have a large number of tenants, but only a subset of them are active at any given time. An example is a SaaS app where some tenants may be unlikely due to their local time zone, or their recent activity level.
 
@@ -87,6 +96,8 @@ This can help to reduce the memory footprint of your Weaviate instance, as only 
 
 The server-side default for `auto_tenant_activation` is `false`.
 
+</details>
+
 #### Replication
 
 Weaviate offers [data replication](../../../weaviate/concepts/replication-architecture/index.md#data-replication) options for fault tolerance.
@@ -95,13 +106,13 @@ This applies to tenants as well. Set the replication factor to your desired numb
 
 #### Sharding
 
-Each tenant in Weaviate is a lightweight shard that will contain all of each tenant's objects. Accordingly, Weaviate's sharding settings such as the number of desired physical or virtual shards do not apply to multi-tenant collections.
+Each tenant in Weaviate is a lightweight shard that will contain all of each tenant's objects. Accordingly, Weaviate's [sharding settings](/developers/weaviate/config-refs/schema/index.md#shardingconfig) such as the number of desired physical or virtual shards do not apply to multi-tenant collections.
 
 ### <i class="fa-solid fa-chalkboard"></i> Tenant creation
 
 As discussed earlier, each tenant in a multi-tenant collection is isolated from each other. Each tenant in a multi-tenant collection acts as a separate collection, with its own data and indexes.
 
-The only tenant-specific configuration is the tenant's activity status. The default tenant status is "HOT".
+The only tenant-specific configuration is the tenant's activity status. The default tenant status is "ACTIVE".
 
 #### Using tenant names
 
@@ -131,6 +142,8 @@ Tenants can also be created by using the `Tenant` helper class.
 />
 
 Note that a mix of strings and `Tenant` objects can be used to create tenants.
+
+[Next up](./250_config_example.mdx), let's take a look at a concrete example.
 
 ## Questions and feedback
 

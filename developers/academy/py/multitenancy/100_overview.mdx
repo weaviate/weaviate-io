@@ -1,5 +1,5 @@
 ---
-title: "Multi-tenancy: Overview"
+title: "Overview"
 ---
 
 import Tabs from '@theme/Tabs';
@@ -18,19 +18,19 @@ This allows Weaviate to efficiently serve a large number of tenants with minimal
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Why use multi-tenancy?
 
-A typical multi-tenancy use-case is in a software-as-a-service (SaaS) application. In a SaaS application, each end user or account, may have their own data that should be only accessible to them.
+A typical multi-tenancy use-case is in a software-as-a-service (SaaS) application. In a SaaS application, each end user or account may have their own data that should be only accessible to them.
 
 Using single-tenant collections, you might implement this with:
 
 1. **A monolithic collection**: To store the entire dataset, with an end user identifier property
-1. **Per-end-user collections**: Where each end user's data would be in a separate collection
+1. **Per end-user collections**: Where each end user's data would be in a separate collection
 
 Unfortunately, neither of these are suitable.
 
 1. **A monolithic collection** would be:
     - Inefficient, as each tenant's data would typically be a very small percentage of the collection.
     - Difficult to manage, as data isolation would be difficult to enforce.
-1. **Per-end-user collection** would be:
+1. **Per end-user collection** would be:
     - Inefficient, as each collection incurs non-trivial overhead.
     - Difficult to manage, as each collection would need to be managed separately.
 
@@ -38,15 +38,19 @@ Multi-tenancy solves these problems.
 
 ### <i class="fa-solid fa-chalkboard"></i> Multi-tenancy benefits
 
-Multi-tenancy allows you to build one collection with one set of configurations, AND it allows each tenant's data to be isolated from each other. This makes multi-tenancy resource-efficient, as well as much easier to manage.
+Weaviate's multi-tenancy implementation allows you to build one collection for multiple tenants with one shared set of configurations. A multi-tenancy collection therefore stores data for multiple tenants, where each tenant's data shares the same structure, but is isolated from each other. This makes multi-tenancy resource-efficient, and easier to manage.
 
 Thanks to multi-tenancy's low overhead, a Weaviate node can serve thousands of active end users in a multi-tenant collection. Furthermore, each tenant's data is isolated from each other, eliminating risks of accidental data leakage and making it easier to manage.
 
 ### <i class="fa-solid fa-chalkboard"></i> Tenant activity status
 
-Weaviate's multi-tenancy solution also includes a tenant activity status. This recognizes that some tenants may be more active than others, or may be likely to be active at certain times (e.g. due to time zones).
+Weaviate's multi-tenancy solution also includes a tenant activity status. This recognizes that although many users may be frequently active, not all users will share this pattern. As a result, tenant data for these infrequent users may not need to be as readily accessible.
 
-To reduce resource usage, non-active end users' data can be stored as a "cold" tenant. Cold tenants are offloaded from memory, and require virtually no overhead, which further frees up resources to serve active end users. These are called "hot" tenants.
+For example, some tenants may be only accessed infrequently, some may be only active at certain times (e.g. due to time zones), and others may be dormant for long periods of time. This is where the tenant activity status comes in; the status can be set to "active", "inactive", or "offloaded":
+
+- `Active` (default) tenants are loaded in memory and its data is available for read/write operations.
+- `Inactive` tenants are available on local disk, but not available for any read/write operations. This lowers Weaviate's memory footprint, while still allowing for quick access.
+- `Offloaded` tenants are stored in a remote storage (e.g. AWS S3) and are not available for read/write operations. This is the most resource-efficient option, as it requires virtually no overhead.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Multi-tenancy implementation
 
@@ -54,15 +58,14 @@ Multi-tenancy is implemented in Weaviate as follows:
 
 - A collection can be configured as multi-tenant at creation time.
     - This is immutable, and cannot be changed after creation.
-- Tenants can be created and deleted at any time. Each tenant is isolated from each other.
+- Tenants can be created and deleted at any time. Each tenant is isolated from the others.
 - All tenants share the same settings, which are inherited from the collection.
 - Each object in a multi-tenant collection must belong to a tenant.
-- Each tenant has its own, isolated, indexes
+- Each tenant has its own, isolated, indexes.
 - Deleting a tenant will delete all objects associated with that tenant.
-- A tenant's activity status can be set to "hot" or "cold". This can be changed at any time.
-    - "Cold" tenants are not accessible, and require no resources.
+- A tenant's activity status can be set to "active", "inactive" or "offloaded". This can be changed at any time.
 
-[Next](./200_manage.mdx), we will take a look at how to manage a multi-tenant collection.
+[Next](./200_config.mdx), we will take a look at how to configure a multi-tenant collection.
 
 ## Questions and feedback
 

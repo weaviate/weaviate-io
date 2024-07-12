@@ -1,5 +1,5 @@
 ---
-title: Queries on a multi-tenant collection
+title: Using a multi-tenant collection
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,146 +7,17 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-HNSW, or "Hierarchical Navigable Small World", is a powerful and flexible vector index type that allows for fast and accurate searches of high-dimensional vectors.
+Once a multi-tenant collection has been created, you can interact with it in various way. This includes creating, reading, updating and deleting tenants, as well as adding and querying data.
 
-It also has the advantage of being very scalable, while being tunable to allow for different trade-offs between search speed, accuracy, and resource requirements.
+## <i class="fa-solid fa-square-chevron-right"></i> Working with tenants
 
-HNSW is the default index type in Weaviate, and if you are not sure which index type to use, you should start with HNSW.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Key ideas
 
-HNSW is all about creating connections between vectors in a way that allows for both fast global traversal of the graph and accurate search of similar vectors.
-
-It does this by creating multiple layers of vectors, where each layer includes a subset of the vectors in the layer below. This means that as you move up the layers, finding the correct general area of the graph becomes faster.
-
-And once the general area is found, the search then becomes more local, by moving down the layers, where more of the vectors are included.
-
-Ultimately, the search reaches the bottom layer, which includes all the available vectors.
-
-This method allows a search to quickly find the right general area of the graph before carrying out a comprehensive search of the dense bottom layer.
-
-Intuitively, an HNSW graph can be thought of as a high-dimensional skip list of sorts, where the higher layers are used to global search, and the lower layers are used for local search.
-
-### <i class="fa-solid fa-chalkboard"></i> Trade-offs
-
-HNSW is a very flexible index type that allows for a wide range of trade-offs.
-
-The key trade-offs are between search speed, accuracy, and resource requirements. These trade-offs can be made by tuning the parameters of the HNSW index, as well as by [quantizing the vectors](../compression/index.md).
-
-### <i class="fa-solid fa-chalkboard"></i> Resource requirements
-
-HNSW is an in-memory index, where each node in the graph as well as each edge between nodes are stored in memory.
-
-This means that the size of the index in memory is directly proportional to the number of vectors in the index, as well as the number of connections between vectors.
-
-The size of an HNSW index is dominated by the number of vectors; take a look at the table below for an example:
-
-| Component | Size derivation | Typical size | Size @1M vectors | Size @100M vectors |
-| --- | --- | --- | --- | --- |
-| Node | 4B (float) x N dimensions | 2-12kB | 2-12GB | 200-1200GB |
-| Edge | 10B x 20 connections | 200B | 200MB | 20GB |
-
-As you can see, the memory requirements of an HNSW index can quickly become a bottleneck. This is where [quantization](../compression/index.md) can be used to reduce the size of the index in memory.
-
-### <i class="fa-solid fa-chalkboard"></i> Distance metric
-
-The distance metric used in the index determines how the distance between vectors is calculated. In an HNSW index, it impacts where each vector is placed in the graph.
-
-You must choose a metric that suits the vectors in your collection. To find this, consult the documentation of the model that generated your vectors.
-
-Weaviate's default metric is cosine, but you can also use any number of [other available metrics](/developers/weaviate/config-refs/distances.md).
-
-If you are unsure, the cosine distance is a good, robust, default choice that is used by a majority of models.
-
-### <i class="fa-solid fa-code"></i> Specify HNSW as the index type
-
-HNSW is Weaviate's default vector index type. So, if you do not specify a collection to use a specific index type, it will use HNSW.
-
-But you can explicitly specify it as follows:
-
-## <i class="fa-solid fa-square-chevron-right"></i> Tuning HNSW
-
-An HNSW index can be tuned to achieve different trade-offs between search speed, accuracy, and resource requirements.
-
-The key aspects to tune are:
-- The number of connections between nodes,
-- The size of a "dynamic list", and
-- Quantization
-
-### <i class="fa-solid fa-chalkboard"></i> Number of connections
-
-The maximum number of connections between nodes (`maxConnections`) determine how densely the graph is connected.
-
-A higher number of connections will allow for more accurate searches, but will also slow down searches, and require more memory.
-
-The default value is `64`. Note that on the bottom layer of the graph each node can have up to (`2 * maxConnections`) connections.
-
-### <i class="fa-solid fa-chalkboard"></i> Dynamic list size
-
-The "dynamic list" in HNSW refers to the list of nodes that are considered by the algorithm. Note that dynamic lists are used in two different contexts:
-
-During search, the dynamic list is used to keep track of the nodes that are being considered, and to ensure that the search is comprehensive.
-
-During index construction, the dynamic list is used to keep track of candidate nodes that are being considered for connection. The HNSW algorithm will then choose the best `maxConnections` connections from the dynamic list, taking into account not only proximity but also aspects such as overall connectivity of the graph.
-
-#### Search dynamic list size
-
-You can set the dynamic list size for search statically or dynamically.
-
-To set it statically, provide the `ef` parameter when creating the collection. The default value is `-1`, which defers this to a dynamic setting.
-
-To set it dynamically, provide a combination of `dynamicEfMin`, `dynamicEfMax` and `dynamicEfFactor`.
-
-The dynamic list size will be set as the query limit multiplied by `dynamicEfFactor`, modified by a minimum of `dynamicEfMin` and a maximum of `dynamicEfMax`.
-
-In code, this can be expressed as:
-
-```python
-ef = min(max(dynamicEfMin, queryLimit * dynamicEfFactor), dynamicEfMax)
-```
-
-The default values are `dynamicEfMin=100`, `dynamicEfMax=500`, and `dynamicEfFactor=8`.
-
-#### Index construction dynamic list size
-
-To set the dynamic list size for index construction, provide the `efConstruction` parameter when creating the collection.
-
-This will improve your search performance, at a cost of the index construction process. The default value is `128`.
-
-### <i class="fa-solid fa-chalkboard"></i> Quantization
-
-Enabling quantization with HNSW reduces the size of the index in memory by using compressed vectors. Note that the full vector is still stored on disk, which is used to rescore the vectors after they are fetched from the index.
-
-This can be a powerful way to reduce the memory requirements of your Weaviate instance, especially if you have a large number of vectors.
-
-Learn more about quantization [with this Weaviate Academy course](../compression/index.md).
-
-## <i class="fa-solid fa-square-chevron-right"></i> Configure HNSW in Weaviate
-
-Each of these parameters can be provided when creating a collection in Weaviate. Note that out of the discussed parameters, only the `dynamicEf` related parameters are mutable.
-
-### <i class="fa-solid fa-code"></i> Code example
-
-### <i class="fa-solid fa-chalkboard"></i> Further options
-
-There are more, advanced HNSW parameters that can be set in Weaviate. These are not typically needed for most use cases, but can be useful in specific situations.
-
-#### Collection-level parameters
-
-- `cleanup_interval_seconds`: Sets the interval at which a cleanup process is triggered for deleted nodes.
-- `flat_search_cutoff`: Sets the number below which a brute-force search is used instead of the HNSW index.
-- `vector_cache_max_objects` : Sets the maximum number of vectors that can be cached in memory.
-
-#### Environment variables
-
-- `PERSISTENCE_HNSW_MAX_LOG_SIZE`: Maximum size of the HNSW [write-ahead-log](/developers/weaviate/concepts/storage.md#hnsw-vector-index-storage). Increase this to improve log compaction efficiency, or decrease to reduce memory requirements.
+## <i class="fa-solid fa-square-chevron-right"></i> Working with data
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Further resources
 
-- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
-- [References: Vector index parameters](/developers/weaviate/config-refs/schema/vector-index.md)
-- [How-to manage collections](/developers/weaviate/manage-data/collections.mdx)
-- [Weaviate Academy: Compression](../compression/index.md)
+
 
 ## Questions and feedback
 
