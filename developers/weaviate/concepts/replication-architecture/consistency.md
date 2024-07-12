@@ -156,19 +156,19 @@ When Weaviate resyncs data, the replication process depends on the collection's 
 
 Repairs only happen on read, so they do not create a lot of background overhead. However, an inconsistent state may persist for a long time until the nodes are read. While nodes are in an inconsistent state, searches may be unreliable and consistency `ONE` reads may return stale data.
 
-### Asynchronous replication
+### Async replication
 
 :::info Added in `v1.26`
 
 :::
 
-Asynchronous replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-Repair-on-read works well with one or two isolated repairs. Asynchronous replication is more effective in situations where there are many inconsistencies. If an offline node misses updates, for example, asynchronous replication quickly restores consistency when the node returns to service.
+Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
-Asynchronous replication supplements repair-on-read. If node goes out of sync between checks, the repair-on-read mechanism catches the problem when consistency is `QUORUM` or `ALL`.
+Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate asynchronous replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
+To activate async replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
