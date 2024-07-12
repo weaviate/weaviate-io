@@ -13,12 +13,11 @@ import TabItem from '@theme/TabItem';
 
 Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
 
-In the next ~20 minutes, you will:
-- Build a Weaviate vector database, and
-- Query it with:
-    - *semantic search*,
-    - an added *filter* and
-    - *generative searches* to transform your search results with a large language model (LLM).
+This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
+- Build a Weaviate vector database.
+- Make a *semantic search* query.
+- Add a *filter* to your query.
+- Use *generative searches* and a large language model (LLM) to transform your search results.
 
 #### Object vectors
 
@@ -70,9 +69,9 @@ If you prefer another method, see [this section](#can-i-use-another-deployment-m
 
 ## Step 2: Install a client library
 
-We suggest using a Weaviate client ([read more](../client-libraries/index.md)) to work with your preferred programming language.
+Install the Weaviate [client library](../client-libraries/index.md)) for your preferred programming language.
 
-To install your preferred client, run the installation code for your language:
+To install the library, run the installation code for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
@@ -84,7 +83,11 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Step 3: Connect to Weaviate
 
-To connect to your Weaviate instance, you need the following information:
+To connect to your Weaviate instance, you need the instance [connection details](#connection-details) and [a client](#client-connection-code) to connect with.
+
+### Connection details
+
+Gather the following information:
 
 - The Weaviate **URL** (get it from WCD `Details` tab)
 
@@ -92,10 +95,14 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 <img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
 
-- The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
-- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
+- The Weaviate **API key** (Get it from the instance `Details`)
+- An OpenAI **inference API key** ([Sign up at OpenAI](https://platform.openai.com/signup))
 
-Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
+### Client connection code
+
+This sample connection code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
+
+Copy the code to a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
