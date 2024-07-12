@@ -15,9 +15,13 @@ import PyCode from '!!raw-loader!/_includes/code/config/multi-vector-examples.py
 
 :::
 
-Object properties in Weaviate are indexed and searchable. The rangeable index is a efficient way to search ranges of data that are stored as 64 bit numbers. This includes the `int`, `number` and `date` types. It does not include arrays of these data types, only the basic data types.
+Object properties in Weaviate are indexed and searchable. The rangeable index is a efficient way to search ranges of data.
 
-The [inverted-index](/developers/weaviate/more-resources/performance#inverted-index) is well suited for key-word search, use the rangeable index instead when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`.
+The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. It is not available for arrays of these data types or for `floats`.
+
+Internally, rangeable is implemented as a [roaring bitmap slice](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+
+Use the rangeable index instead when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`. For keyword-search, the [inverted-index](/developers/weaviate/more-resources/performance#inverted-index) is a better choice.
 
 ## Define a rangeable index
 
