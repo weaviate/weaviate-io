@@ -124,6 +124,7 @@ your uses perfectly:
 | [LSM Stores](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/lsm.json) | Get insights into the internals (including segments) of the various LSM stores within Weaviate. | ![LSM Store](./img/weaviate-sample-dashboard-lsm.png "LSM Store") |
 | [Startup](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/startup.json) | Visualize the startup process, including recovery operations | ![Startup](./img/weaviate-sample-dashboard-startup.png "Vector Index") |
 | [Usage](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/usage.json) | Obtain usage metrics, such as number of objects imported, etc.| ![Usage](./img/weaviate-sample-dashboard-usage.png "Usage") |
+| [Aysnc index queue](https://github.com/weaviate/weaviate/blob/main/tools/dev/grafana/dashboards/index_queue.json) | Observe index queue activity | ![Async index queue](./img/weaviate-sample-dashboard-async-queue.png) "Async index queue" |
 
 ## `nodes` API Endpoint
 
