@@ -39,28 +39,9 @@ Configure the index when you define your [collection properties](/developers/wea
       language="py"
     />
   </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START RangeIndex"
-      endMarker="# END RangeIndex"
-      language="py"
-    />
-  </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeV3}
-      startMarker="// START RangeIndex"
-      endMarker="// END RangeIndex"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeV2}
       startMarker="// START RangeIndex"
       endMarker="// END RangeIndex"
       language="ts"
