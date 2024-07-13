@@ -18,7 +18,7 @@ import TSCodeV2 from '!!raw-loader!/_includes/code/indexes/indexes-v2.ts';
 
 :::
 
-Object properties in Weaviate are indexed and searchable. The rangeable index is a efficient way to search ranges of data.
+Object properties in Weaviate are indexed and searchable. The [rangeable index](/developers/weaviate/config-refs/schema/range-index) is an efficient way to search ranges of data.
 
 The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. The index is not available for arrays of these data types or for `floats`.
 
