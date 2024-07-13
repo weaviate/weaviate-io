@@ -19,7 +19,7 @@ client = weaviate.connect_to_local(
 # Refresh
 client.collections.delete("Inventory")
 
-# START CreateCollectionWithProperties
+# START RangeIndex
 from weaviate.classes.config import Property, DataType
 
 client.collections.create(
@@ -33,9 +33,7 @@ client.collections.create(
                  index_range_filters=True)
     ]
 )
-# END CreateCollectionWithProperties
-
-
+# END RangeIndex
 
 # Test
 inventory = client.collections.get("Inventory")

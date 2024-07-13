@@ -20,9 +20,7 @@ import TSCodeV2 from '!!raw-loader!/_includes/code/indexes/indexes-v2.ts';
 
 Object properties in Weaviate are indexed and searchable. The rangeable index is a efficient way to search ranges of data.
 
-The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. It is not available for arrays of these data types or for `floats`.
-
-Internally, rangeable is implemented as a [roaring bitmap slice](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. The index is not available for arrays of these data types or for `floats`.
 
 Use the rangeable index instead when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`. For keyword-search, the [inverted-index](/developers/weaviate/more-resources/performance#inverted-index) is a better choice.
 
@@ -39,15 +37,28 @@ Configure the index when you define your [collection properties](/developers/wea
       language="py"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCodeV3}
-      startMarker="// START RangeIndex"
-      endMarker="// END RangeIndex"
-      language="ts"
-    />
-  </TabItem>
 </Tabs>
+
+## Considerations
+
+- **Default value** The default value of `indexRangeable` is `false`. In contrast, `indexSearchable` and `indexFilterable` both default to `true`.
+
+- **Filter compatibility** `indexRangeable` and `indexFilterable` can be used together or independently.
+
+  This chart shows which filter makes the comparison when one or both index type is `true` for a property.
+
+  | Operator | Range only | Filter only | Range and  Filter |
+  | :- | :- | :- | :- |
+  | Equal | Range | Filter | Filter |
+  | Not equal | Range | Filter | Filter |
+  | Greater than | Range | Filter | Range |
+  | Greater than equal | Range | Filter | Range |
+  | Less than | Range | Filter | Range |
+  | Less than equal | Range | Filter | Range |
+
+
+- **Implementation** Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
