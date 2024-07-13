@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-Weaviate supports two types of indices.
+Weaviate supports several types of indices. This page focuses on two of the most prominent:
 
 1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
 1. An **inverted index** - the inverted index allows for filtering by properties, as well as serve BM25 queries.
@@ -18,7 +18,9 @@ Some things to bear in mind:
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
 * One of Weaviate's unique features is how the indices are configured (learn more about this [here](../concepts/prefiltering.md)).
 
-### ANN indexing
+For details on other types of indexes, see [flat indexes](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) and [rangeable indexes](/developers/weaviate/config-refs/schema/range-index)
+
+## ANN indexing
 
 What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
@@ -69,7 +71,6 @@ The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide
 :::
 
 ## Module configuration
-<!-- TODO: Check whether this can be removed. Feels duplicated. -->
 
 You can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
 
