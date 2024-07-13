@@ -9,7 +9,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-import PyCode from '!!raw-loader!/_includes/code/config/multi-vector-examples.py';
+import PyCodeV4 from '!!raw-loader!/_includes/code/indexes/indexes-v4.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/indexes/indexes-v3.py';
+import TSCodeV3 from '!!raw-loader!/_includes/code/indexes/indexes-v3.ts';
+import TSCodeV2 from '!!raw-loader!/_includes/code/indexes/indexes-v2.ts';
 
 :::info Added in 1.26
 
@@ -27,13 +30,43 @@ Use the rangeable index instead when you want to filter properties using compari
 
 Configure the index when you define your [collection properties](/developers/weaviate/manage-data/collections#property-level-settings).
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START LoadDataNamedVectors"
-  endMarker="# END LoadDataNamedVectors"
-  language="py"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START RangeIndex"
+      endMarker="# END RangeIndex"
+      language="py"
+    />
+  </TabItem>
 
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START RangeIndex"
+      endMarker="# END RangeIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+      startMarker="// START RangeIndex"
+      endMarker="// END RangeIndex"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+      startMarker="// START RangeIndex"
+      endMarker="// END RangeIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
