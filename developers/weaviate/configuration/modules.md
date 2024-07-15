@@ -135,7 +135,7 @@ The `offload-s3` module reads the following environment variables:
 - `OFFLOAD_S3_BUCKET`: The S3 bucket to which the tenants are offloaded.
     - The default is `weaviate-offload`. If the bucket does not exist, it will be created by Weaviate
 - `OFFLOAD_S3_CONCURRENCY`: The number of concurrent offload operations. The default is `25`.
-- `OFFLOAD_TIMEOUT`: The timeout for offloading operations (create bucket, upload, download). The default is `10` (in seconds)
+- `OFFLOAD_TIMEOUT`: The timeout for offloading operations (create bucket, upload, download). The default is `120` (in seconds)
     - Offload operations are asynchronous. As a result, the timeout is for the operation to start, not to complete.
     - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
 
