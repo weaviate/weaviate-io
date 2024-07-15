@@ -144,6 +144,14 @@ for t in ["ActiveBob", "AlsoActiveBob", "AnotherActiveBob"]:
     assert mt_collection.tenants.get_by_name(t).activity_status == TenantActivityStatus.ACTIVE
 assert mt_collection.tenants.get_by_name("InactiveBob").activity_status == TenantActivityStatus.INACTIVE
 
+
+# GetTenantCollection
+mt_collection = client.collections.get(mt_collection_name)
+
+tenant_collection = mt_collection.with_tenant("bob")
+# END GetTenantCollection
+
+
 # ================================================================================
 # "WeaviNotes" multi-tenancy configuration
 # ================================================================================

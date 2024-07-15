@@ -7,13 +7,24 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Once a multi-tenant collection has been created, you can interact with it in various way. This includes creating, reading, updating and deleting tenants, as well as adding and querying data.
+Once a multi-tenant collection has been configured and tenants created, you can interact with each tenant's data very similarly to how you would with a single-tenant collection. This section will show you how to work with data in a multi-tenant collection.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Working with tenants
+## <i class="fa-solid fa-square-chevron-right"></i> Tenant-level data
+
+In a single-tenant collection, you would interact with the collection directly. In a multi-tenant collection, you interact with a tenant-level subset of the collection, as shown below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetTenantCollection"
+  endMarker="# END GetTenantCollection"
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> CRUD operations
+
+## <i class="fa-solid fa-square-chevron-right"></i> Searches
 
 
-
-## <i class="fa-solid fa-square-chevron-right"></i> Working with data
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Further resources
 
