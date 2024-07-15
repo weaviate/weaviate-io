@@ -139,7 +139,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ### Adding a property after collection creation
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length of null status.
+Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length or null status.
 
 This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index for metadata such as the length or the null status will not be updated to include the new properties. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
 
