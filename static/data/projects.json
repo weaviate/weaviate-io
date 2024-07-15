@@ -117,22 +117,7 @@
     "stack": "Default",
     "types": ["Autonomous Agents Hackathon"]
   },
-  {
-    "id": 10,
-    "name": "EffiQuery Intelligent IT Support Automation",
-    "link": "https://lablab.ai/event/autonomous-agents-hackathon/the-models/effiquery-intelligent-it-support-automation",
-    "type": "Community projects",
-    "category": [
-      "Assistant",
-      "Chatbot",
-      "Communication",
-      "Customer Support",
-      "Productivity"
-    ],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Autonomous Agents Hackathon"]
-  },
+
   {
     "id": 11,
     "name": "Shop Fusion AI - your new shopping buddy",
@@ -207,22 +192,7 @@
     "stack": "Default",
     "types": ["Cohere Coral Hackathon"]
   },
-  {
-    "id": 17,
-    "name": "Nexbot E-Commerce Chatbot",
-    "link": "https://lablab.ai/event/cohere-coral-hackathon/team-ado/nexbot-e-commerce-chatbot",
-    "type": "Community projects",
-    "category": [
-      "Business",
-      "Chatbot",
-      "Ecommerce",
-      "Marketplaces",
-      "Shopping"
-    ],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Cohere Coral Hackathon"]
-  },
+
   {
     "id": 18,
     "name": "QuickScore-an AI Grader",
@@ -361,16 +331,7 @@
     "stack": "Default",
     "types": ["Cohere Coral Hackathon"]
   },
-  {
-    "id": 30,
-    "name": "OrbChat - Always-On Support for your Website",
-    "link": "https://lablab.ai/event/cohere-coral-hackathon/coral-explorers/orbchat-always-on-support-for-your-website",
-    "type": "Community projects",
-    "category": ["Chatbot", "Customer Support", "Documents"],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Cohere Coral Hackathon"]
-  },
+
   {
     "id": 31,
     "name": "Pipegen AI",
@@ -393,16 +354,7 @@
     "stack": "Default",
     "types": ["Cohere Coral Hackathon"]
   },
-  {
-    "id": 33,
-    "name": "DoctorsMate",
-    "link": "https://lablab.ai/event/cohere-coral-hackathon/teamdoc/doctorsmate",
-    "type": "Community projects",
-    "category": ["Assistant", "Education", "Healthcare"],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Cohere Coral Hackathon"]
-  },
+
   {
     "id": 34,
     "name": "MedCoderAI",
@@ -452,17 +404,7 @@
     "stack": "Default",
     "types": ["Streamlit LLM Hackathon"]
   },
-  {
-    "id": 38,
-    "name": "YouTube Q and A",
-    "description": "Get summaries of any YouTube video, ask questions about the topics in the video, and see the source of the response",
-    "link": "https://discuss.streamlit.io/t/llm-hackathon-winners/52756",
-    "type": "Community projects",
-    "category": ["Social Media"],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Streamlit LLM Hackathon"]
-  },
+
   {
     "id": 39,
     "name": "ClipSift",
@@ -479,23 +421,13 @@
     "name": "DXC IT Fin Analytica AI",
     "description": "Fin-Analytica transforms financial analysis. Harnessing AI, it scrutinizes company finances, providing actionable insights via an integrated chatbot. Investors find opportunities, businesses enhance profitability, and students deepen financial knowledge with context-driven analysis and recommendations. Your ultimate financial companion.",
     "link": "https://enterprise.lablab.ai/en/user/event/cracking-the-ai-code/submissions/finanalyticaai-financial-report-analyzer",
-    "type": "Community projects",
+    "type": "Business projects",
     "category": ["Business"],
     "models": "Default",
     "stack": "Default",
     "types": ["Cohere Enterprise Hackathon"]
   },
-  {
-    "id": 41,
-    "name": "Astronomer: Zephyr - an AI Agent for Apache Airflow",
-    "description": "Zephyr is a hypervisor-like agent for Apache Airflow instances built by Astronomer. It consists of an API, an AI agent, and a UI. We store previous errors, along with their successful resolutions, in Weaviate. Zephyr will automatically detect your pipeline and task failures, and when it does so, the AI agent attempts to fix it.",
-    "link": "https://enterprise.lablab.ai/en/user/event/cracking-the-ai-code/submissions/zephyr-an-ai-agent-for-apache-airflow",
-    "type": "Community projects",
-    "category": ["Assistant", "Business", "Customer Support"],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Cohere Enterprise Hackathon"]
-  },
+
   {
     "id": 42,
     "name": "Teradata TechStorm AI Virtual Assistant",
@@ -518,16 +450,7 @@
     "stack": "Default",
     "types": ["Cohere Enterprise Hackathon"]
   },
-  {
-    "id": 44,
-    "name": "Crest Data Systems: Security AI Assistant",
-    "link": "",
-    "type": "Community projects",
-    "category": ["Assistant", "Security"],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["Cohere Enterprise Hackathon"]
-  },
+
   {
     "id": 45,
     "name": "ConscienceOS Biomimicry-inspired Design Decisions",
@@ -556,16 +479,7 @@
     "stack": "Default",
     "types": ["LEAP24"]
   },
-  {
-    "id": 47,
-    "name": "Mueen",
-    "link": "https://lablab.ai/event/leap-2024-hackathon/hams/mueen",
-    "type": "Community projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": ["LEAP24"]
-  },
+
   {
     "id": 48,
     "name": "Internship Finder",
@@ -600,16 +514,7 @@
     "stack": "Default",
     "types": []
   },
-  {
-    "id": 51,
-    "name": "Padova Campus App",
-    "link": "",
-    "type": "Community projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
+
   {
     "id": 52,
     "name": "Unbody.io",
@@ -645,56 +550,7 @@
     "stack": "Default",
     "types": []
   },
-  {
-    "id": 55,
-    "name": "kapa.ai",
-    "link": "https://www.kapa.ai/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
-  {
-    "id": 56,
-    "name": "Loyee.io",
-    "link": "https://www.loyee.ai/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
-  {
-    "id": 57,
-    "name": "Wisdolia",
-    "link": "https://www.wisdolia.com/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
-  {
-    "id": 58,
-    "name": "VNTANA",
-    "link": "https://www.vntana.com/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
-  {
-    "id": 59,
-    "name": "Vital.AI",
-    "link": "https://www.vital.ai/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
+
   {
     "id": 60,
     "name": "Duckie.ai",
@@ -706,16 +562,7 @@
     "stack": "Default",
     "types": []
   },
-  {
-    "id": 61,
-    "name": "Zelta",
-    "link": "https://www.zelta.ai/",
-    "type": "Business projects",
-    "category": [],
-    "models": "Default",
-    "stack": "Default",
-    "types": []
-  },
+
   {
     "id": 62,
     "name": "Visual Aid",
@@ -740,8 +587,8 @@
   },
   {
     "id": 64,
-    "name": "Lleverage.ai",
-    "link": "https://www.lleverage.ai/",
+    "name": "Roseon",
+    "link": "https://roseon.world/",
     "type": "Business projects",
     "category": [],
     "models": "Default",
