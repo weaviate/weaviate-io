@@ -107,25 +107,19 @@ class ManageDataClassesTest {
         // Define class properties"
         Property titleProperty = Property.builder()
                 .name("title")
-                .description("Title Property Description...")
                 .dataType(Arrays.asList(DataType.TEXT))
                 .build();
-    
         Property bodyProperty = Property.builder()
                 .name("body")
-                .description("Body Property Description...")
                 .dataType(Arrays.asList(DataType.TEXT))
                 .build();
-    
         // Define the vectorizer in the WeaviateClass Builder
         WeaviateClass articleClass = WeaviateClass.builder()
                 .className("Article")
-                .description("description of the class")
                 .properties(Arrays.asList(titleProperty, bodyProperty))
                 .replicationConfig(replicationConfig)
                 .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
                 .build();
-
         // Add the class to the schema
         Result<Boolean> classResult = client.schema().classCreator()
                 .withClass(countryClass)
@@ -138,31 +132,22 @@ class ManageDataClassesTest {
         // Define class properties"
         Property titleProperty = Property.builder()
                   .name("title")
-                  .description("Title Property Description...")
                   .dataType(Arrays.asList(DataType.TEXT))
                   .build();
-        
         Property bodyProperty = Property.builder()
                   .name("body")
-                  .description("Body Property Description...")
                   .dataType(Arrays.asList(DataType.TEXT))
                   .build();
-    
         //Define the vectorizers configurations
         Map<String, Object> text2vecOpenAI = new HashMap<>();
         Map<String, Object> text2vecOpenAISettings = new HashMap<>();
-        text2vecOpenAISettings.put("vectorizePropertyName", false);
-        text2vecOpenAISettings.put("model", "text-embedding-3-small");
         text2vecOpenAISettings.put("properties", new String[]{"name"});
         text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
-
         Map<String, Object> text2vecCohere = new HashMap<>();
         Map<String, Object> text2vecCohereSettings = new HashMap<>();
-        text2vecCohereSettings.put("vectorizePropertyName", false);
-        text2vecCohereSettings.put("model", "embed-multilingual-light-v3.0");
         text2vecCohereSettings.put("properties", new String[]{"body"});
         text2vecCohere.put("text2vec_cohere", text2vecCohereSettings);
-
+        //Define the vector configurations
         Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();
         vectorConfig.put("name_vector", WeaviateClass.VectorConfig.builder()
                 .vectorIndexType("hnsw")
@@ -172,14 +157,12 @@ class ManageDataClassesTest {
                 .vectorIndexType("hnsw")
                 .vectorizer(text2vecCohere)
                 .build());
-
+        // Define the vectorizers in the WeaviateClass Builder
         WeaviateClass countryClass = WeaviateClass.builder()
                 .className(className)
-                .description("Country Class Des")
                 .properties(Arrays.asList(titleProperty, bodyProperty))
                 .vectorConfig(vectorConfig)
                 .build();
-
         // Add the class to the schema
         Result<Boolean> classResult = client.schema().classCreator()
                 .withClass(countryClass)
