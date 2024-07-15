@@ -1,6 +1,6 @@
 ---
 title: Migrate from v3 to v4
-sidebar_position: 12
+sidebar_position: 50
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
@@ -102,7 +102,7 @@ To configure connection timeout values, see [Timeout values](/developers/weaviat
 </TabItem>
 </Tabs>
 
-The `v3` API style `Client` object is [still available](./index.md#python-client-v3-api), and will be deprecated in the future.
+The `v3` API style `Client` object is [still available](./index.md#legacy-v3-api), and will be deprecated in the future.
 
 ## Major changes
 
