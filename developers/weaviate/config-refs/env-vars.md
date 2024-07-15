@@ -25,6 +25,7 @@ All other values are interpreted as `false`.
 | `DISK_USE_READONLY_PERCENTAGE` | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | `DISK_USE_WARNING_PERCENTAGE` | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | `DISABLE_GO_PROFILING` | If `true`, disables Go profiling. Default: `false`. | `boolean` | `false` |
+| `ENABLE_API_BASED_MODULES` | Enable all API-based modules. (Experimental as of `v1.26.0`) | `boolean` | `true` |
 | `ENABLE_MODULES` | Specify Weaviate modules to enable | `string - comma separated names` | `text2vec-openai,generative-openai` |
 | `ENABLE_TOKENIZER_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use | `boolean` | `true` |
 | `ENABLE_TOKENIZER_KAGOME_KR` | Enable the [`Kagome` tokenizer for Korean](../config-refs/schema/index.md#kagome_kr-tokenization-method) for use (Experimental as of `v1.25.7`) | `boolean` | `true` |
