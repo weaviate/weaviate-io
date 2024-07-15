@@ -588,12 +588,16 @@ Tenants are used to separate data between different users or groups of users. Th
 
 ### Add tenant(s)
 
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
 Pass a payload with an array of tenant objects. The available fields are:
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `name` | string | (Required) The name of the tenant. |
-| `activityStatus` | string | (Optional, experimental) The activity status of the tenant. Can be `HOT` (default) or `COLD`. |
+| `activityStatus` | string | The activity status of the tenant. Can be `ACTIVE` (default), `INACTIVE`, or `OFFLOADED`. |
 
 #### Example payload
 
@@ -604,7 +608,7 @@ Pass a payload with an array of tenant objects. The available fields are:
   },
   {
     "name": "TENANT_B",
-    "activityStatus": "COLD"
+    "activityStatus": "INACTIVE"
   }
 ]
 ```
@@ -787,11 +791,11 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
 [
   {
     "name": "TENANT_A",
-    "activityStatus": "COLD"
+    "activityStatus": "INACTIVE"
   },
   {
     "name": "TENANT_B",
-    "activityStatus": "HOT"
+    "activityStatus": "ACTIVE"
   }
 ]
 ```

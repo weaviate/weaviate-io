@@ -195,7 +195,7 @@ multi_collection = client.collections.get("MultiTenancyCollection")
 multi_collection.tenants.update(tenants=[
     Tenant(
         name="tenantA",
-        activity_status=weaviate.schema.TenantActivityStatus.COLD
+        activity_status=weaviate.schema.TenantActivityStatus.INACTIVE
     )
 ])
 # highlight-end
@@ -205,17 +205,17 @@ tenants = multi_collection.tenants.get()
 
 # Test
 tenants = multi_collection.tenants.get()
-assert tenants["tenantA"].activity_status.name == "COLD"
+assert tenants["tenantA"].activity_status.name == "INACTIVE"
 
 # Change the status back
 multi_collection.tenants.update(tenants=[
     Tenant(
         name="tenantA",
-        activity_status=weaviate.schema.TenantActivityStatus.HOT
+        activity_status=weaviate.schema.TenantActivityStatus.ACTIVE
     )
 ])
 tenants = multi_collection.tenants.get()
-assert tenants["tenantA"].activity_status.name == "HOT"
+assert tenants["tenantA"].activity_status.name == "ACTIVE"
 
 # ==========================
 # ===== Enable Auto Tenant Activation =====
