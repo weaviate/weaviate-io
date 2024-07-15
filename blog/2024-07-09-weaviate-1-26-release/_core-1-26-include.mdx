@@ -16,6 +16,10 @@ Here are the release ⭐️*highlights*⭐️!
 
 ## Improved Range Queries
 
+import RangeGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/Range.jpg';
+
+<p align="center"><img src={RangeGraphic} width="75%" alt="Range query section graphic"/></p>
+
 The new rangeable index is a powerful new tool for quantitative comparisons.
 
 Object properties in Weaviate are indexed and searchable. In earlier releases, range queries were computationally expensive. The new rangeable index is an efficient way to quickly search ranges of data. Use the new index type when you anticipate using numerical comparisons over ranges of values. When you define a property type as `int`, `number`, or `date`, consider defining a rangeable index too.
@@ -56,6 +60,10 @@ Cool stuff goes here
 
 ## Scalar Quantization
 
+import SQGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/SQ.jpg';
+
+<p align="center"><img src={SQGraphic} width="75%" alt="SQ section graphic"/></p>
+
 This release introduces a new vector compression technique called scalar quantization (SQ). SQ is a powerful technique that reduces the storage space required for each dimension of a vector. In Weaviate, vector dimensions are typically stored using 32 bit floating point numbers. With scalar quantization, each dimension is converted into an 8 bit integer. This transformation effectively cuts the size of vectors by 75% since 8 bit representations only need a quarter of the original 32 bits.
 
 Image color depth is a helpful analogy. An image that has a deep pallet uses many bits of information to capture shades of a color. An image with low bit-depth has a more limited number of colors (256 values for 8 bits). The scene is still clearly visible. Even though there may be visual artifacts, the lower bit-depth significantly reduces the storage space required.
@@ -65,6 +73,10 @@ Practically speaking, scalar quantization provides a fourfold reduction in vecto
 Scalar quantization offers a compelling trade-off between storage efficiency and retrieval accuracy. This makes SQ an essential tool for optimizing vector storage in Weaviate. Look for more details on SQ and SQ related experiments in a deep dive blog post that's coming soon!
 
 ## Dashboards for async indexes
+
+import ChartsGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/Charts.jpg';
+
+<p align="center"><img src={ChartsGraphic} width="75%" alt="Charts section graphic"/></p>
 
 Weaviate gathers metrics that are compatible with the open-source [Prometheus](https://prometheus.io/docs/introduction/overview/) monitoring and alerting system. The v1.26 Weaviate release adds [new metrics](/developers/weaviate/configuration/monitoring) that monitor aysnc indexing queues.
 
