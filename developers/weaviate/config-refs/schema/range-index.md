@@ -20,7 +20,7 @@ import TSCodeV2 from '!!raw-loader!/_includes/code/indexes/indexes-v2.ts';
 
 Object properties in Weaviate are indexed and searchable. The [rangeable index](/developers/weaviate/config-refs/schema/range-index) is an efficient way to search ranges of data.
 
-The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. The index is not available for arrays of these data types or for `floats`.
+The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. The index is not available for arrays of these data types.
 
 Use the rangeable index instead when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`. For keyword-search, the [inverted-index](/developers/weaviate/more-resources/performance#inverted-index) is a better choice.
 
@@ -41,9 +41,9 @@ Configure the index when you define your [collection properties](/developers/wea
 
 ## Considerations
 
-- **Default value** The default value of `indexRangeable` is `false`. In contrast, `indexSearchable` and `indexFilterable` both default to `true`.
+- **Default value** The default value of `indexRangeFilters` is `false`. In contrast, `indexSearchable` and `indexFilterable` both default to `true`.
 
-- **Filter compatibility** `indexRangeable` and `indexFilterable` can be used together or independently.
+- **Filter compatibility** `indexRangeFilters` and `indexFilterable` can be used together or independently.
 
   This chart shows which filter makes the comparison when one or both index type is `true` for a property.
 
