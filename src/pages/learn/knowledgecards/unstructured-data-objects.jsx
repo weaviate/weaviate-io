@@ -43,7 +43,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Unstructured Data Objects - Weaviate Knowledge Cards',
     description:
-      'Data without a predefined structure, making them difficult to manage conventionally...',
+      'Unstructured data objects are data objects without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails.',
     image: 'https://weaviate.io/img/cards/unstructured-data-objects.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/unstructured-data-objects',
   };
@@ -81,7 +81,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="Data without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails."
+            content="Unstructured data objects are data objects without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -100,7 +100,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="Data without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails."
+            content="Unstructured data objects are data objects without a predefined structure, making them difficult to manage conventionally. Examples include text documents, images, audio, video, social media posts, and emails."
           />
           <meta
             name="twitter:image"
