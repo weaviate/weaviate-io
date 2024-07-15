@@ -416,7 +416,7 @@ import CodeSchemaUpdate from '/_includes/code/schema.things.put.mdx';
 
 :::caution Limitations
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length of null status.
 
 <br/>
 
