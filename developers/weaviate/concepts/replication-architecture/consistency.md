@@ -5,13 +5,15 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-Data consistency is a property of a database that refers to whether data in different nodes do or do not match.
+Data consistency is a property of distributed databases. Data is consistent when the data that is distributed across multiple nodes is the same on all of the nodes. Data consistency is an important consideration for multi-node clusters.
 
-Schema consistency is extremely important, as the schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and [Raft](https://raft.github.io/) consensus algorithm for schema replication.
+In Weaviate data consistency has two components, schema consistency and data object consistency.
 
-Data objects, on the other hand, are eventually consistent, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. Weaviate uses a leaderless design with eventual consistency for data replication.
+The schema defines the structure, or the blueprint, of the data. Weaviate uses a strong consistency protocol and the [Raft](https://raft.github.io/) consensus algorithm for schema replication.
 
-This difference reflects the trade-off inherent in consistency and availability, as described in the [CAP Theorem](./index.md#cap-theorem). In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
+Data objects, on the other hand, are eventually consistent. This means all nodes eventually contain the same data, but at a given point in time some nodes may be out of sync. Unlike Raft, Weaviate uses a leaderless design with eventual consistency guarantees for data replication.
+
+The different designs reflect the trade-off between consistency and availability that is described in the [CAP Theorem](./index.md#cap-theorem). In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 The strength of consistency can be determined by applying the following conditions:
 * If r + w > n, then the system is strongly consistent.
@@ -19,7 +21,6 @@ The strength of consistency can be determined by applying the following conditio
     * w is the consistency level of write operations
     * n is the replication factor (number of replicas)
 * If r + w <= n, then eventual consistency is the best that can be reached in this scenario.
-
 
 ## Schema
 
@@ -41,7 +42,6 @@ A clean (without fails) execution has two phases:
 1. The commit-request phase (or voting phase), in which a coordinator node asks each node whether they are able to receive and process the update.
 2. The commit phase, in which the coordinator commits the changes to the nodes.
 
-
 ## Data objects
 
 Data objects in Weaviate have **eventual consistency**, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. It might happen that after a data update, not all nodes are updated yet, but there is a guarantee that all nodes will be up-to-date after some time. Weaviate uses two-phase commits for objects as well, adjusted for the consistency level. For example for a `QUORUM` write (see below), if there are 5 nodes, 3 requests will be sent out, each of them using a 2-phase commit under the hood.
@@ -52,7 +52,7 @@ Eventual consistency provides BASE semantics:
 * **Soft-state**: there are no consistency guarantees since updates might not yet have converged
 * **Eventually consistent**: if the system functions long enough, after some writes, all nodes will be consistent.
 
-Eventual consistency is chosen over strong consistency, to ensure high availability. Nevertheless, write and read consistency are tunable, so you have some influence on the tradeoff between availability and consistency.
+Weaviate uses eventual consistency to help ensure high availability. Read and write consistency are tunable, so you can tradeoff between availability and consistency to match your application needs.
 
 *The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
@@ -114,12 +114,10 @@ Examples:
 
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Write consistency QUORUM" width="60%"/></p>
 
-
 * **ALL**<br/>
   In a single datacenter with a replication factor of 3 and a read consistency level of `ALL`, the coordinator node will wait for all 3 replicas nodes to return a response.
 
   <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-ALL.png" alt="Write consistency ALL" width="60%"/></p>
-
 
 ### Tunable consistency strategies
 
@@ -130,25 +128,51 @@ Depending on the desired tradeoff between consistency and speed, below are three
 
 ## Repairs
 
-Repairs can be executed by Weaviate in case of a discovered inconsistency. A scenario where a repair could be necessary is the following: The user writes with a consistency level of `ONE`. The node dies before it can contact some of the other nodes. The node comes back up with the latest data. Some other nodes may now be out of sync and need to be repaired.
+import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
 
-Repairs happen in the background, for example when a read operation is done ("repair-on-read"), using a "last write wins" policy for conflict resolution.
+<RepairIntro />
 
-When the replication coordinator node receives different versions of objects for a read request from the nodes in the replica set, that means that at least one node has old (stale) objects. The repair-on-read feature means that the coordinator node will update the affected node(s) with the latest version of the object(s). If a node was lacking an object entirely (e.g. because a create request was only handled by a subset of the nodes due to a network partition), the object will be replicated on that node.
+### Repair-on-read
 
-Consider a scenario in which a request to delete objects was only handled by a subset of nodes in the replica set. On the next read that involves such a deleted object, the replication coordinator may determine that some nodes are missing that object - i.e. it doesn’t exist on all replicas. `v1.18` introduces changes that enable the replication coordinator to determine the reason why an object was not found (i.e. it was deleted, or it never existed), along with the object itself. Thus, the coordinator can determine if the object:
-* never existed in the first place (so it should be propagated to the other nodes), or
-* was deleted from some replicas but still exists on others. In this latter case, the coordinator returns an error because it doesn’t know if the object has been created again after it was deleted, which would lead to propagating the deletion to cause data loss.
+:::info Added in `v1.18`
 
-An object that never existed will be propagated to the other nodes only if the object was queried with a _high enough_ consistency level, vs. the write consistency that was used to write the object:
-* if write was `QUORUM`, the read consistency level can be >= `QUORUM`
-* if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
+:::
 
+If your read consistency is set to `All` or `Quorum`, the read coordinator can detect if the nodes in your cluster return different responses. When the coordinator detects a difference, it can attempt to repair the inconsistency.
+
+| Problem | Action |
+| :- | :- |
+| Object never existed on some node. | Propagate the object to the noes where it is missing. |
+| Object is out of date. | Update the object on stale nodes. |
+| Object was deleted on some replicas. | Returns an error. Deletion may have failed, or the object may have been partially recreated. |
+
+When Weaviate resyncs data, the replication process depends on the collection's write consistency guarantees.
+
+| Write consistency level | Read consistency level | Action |
+| :- | :- |
+| `ONE` | `ALL` | Weaviate has to verify all nodes to guarantee repair. |
+| `QUORUM` | `QUORUM` or ALL` | Weaviate attempts to fix the sync issues. |
+| `ALL` | - | This situation should not occur. The write should have failed. |
+
+Repairs only happen on read, so they do not create a lot of background overhead. However, an inconsistent state may persist for a long time until the nodes are read. While nodes are in an inconsistent state, searches may be unreliable and consistency `ONE` reads may return stale data.
+
+### Async replication
+
+:::info Added in `v1.26`
+
+:::
+
+Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+
+Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
+
+Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
+
+To activate async replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
 - [API References | REST | Objects](/developers/weaviate/api/rest#tag/objects)
-
 
 ## Questions and feedback
 

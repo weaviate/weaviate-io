@@ -28,7 +28,7 @@ For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/mult
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
+Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
 
 BQ compresses vector representations while preserving essential information. Uncompressed, Weaviate uses a `float32` to store each dimension. BQ uses one bit per dimension to encode Vector directionality. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings of 32 times the space. This compression significantly reduces storage requirements.
 
