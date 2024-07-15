@@ -19,7 +19,7 @@ The Python client library provides a [synchronous API](./index.md) by default, b
 
 For asynchronous operations, use the `WeaviateAsyncClient` async client, available in `weaviate-client` `v4.7.0` and up.
 
-The `WeaviateAsyncClient` async client largely supports the same functions and methods as the `WeaviateClient` [synchronous client](./index.md), with the key difference that the async client is designed to be used in an `async` function or in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop).
+The `WeaviateAsyncClient` async client largely supports the same functions and methods as the `WeaviateClient` [synchronous client](./index.md), with the key difference that the async client is designed to be used in an `async` function running in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop).
 
 ## Installation
 
@@ -31,7 +31,7 @@ An async client `WeaviateAsyncClient` object can be instantiated [using a helper
 
 ### Instantiation helper functions
 
-These instantiation helper functions mirror the [synchronous client helper functions](./index.md#connection-helper-functions), and return an equivalent async client object.
+These instantiation helper functions are similar to the [synchronous client helper functions](./index.md#connection-helper-functions), and return an equivalent async client object.
 
 - `use_async_with_local`
 - `use_async_with_weaviate_cloud`
@@ -83,8 +83,6 @@ The async helper functions take the same parameters for [external API keys](./in
 
 If you need to pass custom parameters, use the `weaviate.WeaviateAsyncClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
-When you instantiate a connection directly, you have to call the (now async) `.connect()` method to connect to the server.
-
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# AsyncDirectInstantiationFull"
@@ -92,13 +90,22 @@ When you instantiate a connection directly, you have to call the (now async) `.c
   language="py"
 />
 
+When you instantiate a connection directly, you have to call the (now async) `.connect()` method to connect to the server.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# AsyncDirectInstantiationAndConnect"
+  endMarker="# END AsyncDirectInstantiationAndConnect"
+  language="py"
+/>
+
 ## Sync and async methods
 
-The async client object is designed to be used in an `async` function or in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop).
+The async client object is designed to be used in an `async` function running in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop).
 
 Accordingly, a majority of the client methods are `async` functions that return [`Coroutines` objects](https://docs.python.org/3/library/asyncio-task.html#coroutine). However, some methods are synchronous and can be used in a synchronous context.
 
-As a rule of thumb, a method that involves a request to Weaviate is likely to be an async function, while a method that executes in a local context is likely to be synchronous.
+As a rule of thumb, a method that involves a request to Weaviate will be an async function, while a method that executes in a local context will be synchronous.
 
 ### How to identify async methods
 
@@ -108,7 +115,7 @@ To see a method signature, you can use the `help()` function in Python, or use a
 
 ### Example async methods
 
-Methods that involve a request to Weaviate is likely to be an async function. For example, each of the following operations is an async function:
+Methods that involve sending requests to Weaviate will be async functions. For example, each of the following operations is an async function:
 
 - `async_client.connect()`: Connect to a Weaviate server
 - `async_client.collections.create()`: Create a new collection
@@ -136,9 +143,14 @@ When using the async client in a context manager, you do not need to call `.conn
 
 ## Async usage examples
 
-The async client object largely provides the same functionality as the [synchronous Python client](./index.md), with some key differences. First, the async client is designed to be used in an `async` function or in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop). Accordingly, many of the client methods are `async` functions that return [`Coroutines` objects](https://docs.python.org/3/library/asyncio-task.html#coroutine).
+The async client object largely provides the same functionality as the [synchronous Python client](./index.md), with some key differences. First, the async client is designed to be used in an `async` function running in an [`asyncio` event loop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio-event-loop). Accordingly, many of the client methods are `async` functions that return [`Coroutine` objects](https://docs.python.org/3/library/asyncio-task.html#coroutine).
 
-To execute an async client method, you must `await` the method call or use `asyncio.run()` to run the method in an event loop.
+To execute an async client method, you must `await` it in another `async` function. To execute an `async` function in a Python script, you can use `asyncio.run(my_async_function)` or the event loop directly:
+
+```python
+loop = asyncio.new_event_loop()
+loop.run_until_complete(my_async_function())
+```
 
 ### Data insertion
 
@@ -174,7 +186,7 @@ The async client still offers `insert` and `insert_many` methods for data insert
 
 ### Application-level example
 
-A common use case for the async client is in web applications, where multiple requests are handled concurrently. Here is an indicative, minimal example integrating the async client with [FastAPI](https://fastapi.tiangolo.com/), a popular web framework:
+A common use case for the async client is in web applications, where multiple requests are handled concurrently. Here is an indicative, minimal example integrating the async client with [FastAPI](https://fastapi.tiangolo.com/), a popular web framework for creating modular web API microservices:
 
 <FilteredTextBlock
   text={FastAPIExample}

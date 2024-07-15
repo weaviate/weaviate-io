@@ -1119,6 +1119,29 @@ client = weaviate.WeaviateAsyncClient(
 )
 # END AsyncDirectInstantiationFull
 
+# AsyncDirectInstantiationAndConnect
+import weaviate
+from weaviate.connect import ConnectionParams
+from weaviate import WeaviateAsyncClient
+import os
+
+
+async def instantiate_and_connect() -> WeaviateAsyncClient:
+    client = weaviate.WeaviateAsyncClient(
+        connection_params=ConnectionParams.from_params(
+            http_host="localhost",
+            http_port="8099",
+            http_secure=False,
+            grpc_host="localhost",
+            grpc_port="50052",
+            grpc_secure=False,
+        ),
+        # Additional settings not shown
+    )
+    await client.connect()
+    return client
+
+# END AsyncDirectInstantiationAndConnect
 
 # # =====================================================================================
 # # Async CRUD
