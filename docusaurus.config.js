@@ -285,7 +285,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel">Product</li><li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/platform">Integrations</a></li><li><a class="dropdown__link" href="/platform">Apps</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Services</li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Support & Education</a></li></div></div>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li></ul></div>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -297,7 +297,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel">Solutions</li><li><a class="dropdown__link" href="/platform">RAG</a></li><li><a class="dropdown__link" href="/platform">Hybrid Search</a></li><li><a class="dropdown__link" href="/platform">Generative Feedback Loops</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Use Cases</li><li><a class="dropdown__link" href="/services/serverless">Chatbot</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Document Search</a></li><li><a class="dropdown__link" href="/services/byoc">Multimodal Search</a></li><li><a class="dropdown__link" href="/services/education-and-support">Recommendation Engine</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies/instabase">Case Studies</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Build With Weaviate</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></div></div>',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li></ul></div>',
                             className: 'dropDownContainer2',
                         },
                         
@@ -336,7 +336,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><div class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/contributor-guide">Contributor Guide</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">Github</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></div><div class="divider"></div><div class="holdRightnoBorder"><li class="dropDownLabel" >Community</li><li><a class="dropdown__link" href="/community/events">Events</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li><li><a class="dropdown__link" href="/community">Weaviate Heroes</a></li></div></div>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li><a class="dropdown__link" href="/platform">Platform</a></li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li></ul></div>',
                                 className: 'dropDownContainer2',
                             },
                          /*    {
