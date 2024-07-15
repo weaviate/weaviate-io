@@ -240,7 +240,7 @@ For more details on managing tenants, see [Multi-tenancy operations](../manage-d
 In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
 :::
 
-#### Frozen (offloaded) tenants
+#### Offloaded tenants
 
 Frozen, also called "offloaded" tenants, are introduced in Weaviate `v1.26.0`. This requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
 
