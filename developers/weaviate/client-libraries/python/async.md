@@ -109,7 +109,7 @@ As a rule of thumb, a method that involves a request to Weaviate will be an asyn
 
 ### How to identify async methods
 
-Async methods are identified by its method signature. Async methods are defined with the `async` keyword, and they return a `Coroutines` object.
+Async methods are identified by their method signatures. Async methods are defined with the `async` keyword, and they return `Coroutine` objects.
 
 To see a method signature, you can use the `help()` function in Python, or use an IDE that supports code completion such as [Visual Studio Code](https://code.visualstudio.com/docs) or [PyCharm](https://www.jetbrains.com/help/pycharm/viewing-reference-information.html).
 
