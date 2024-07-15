@@ -56,7 +56,13 @@ Cool stuff goes here
 
 ## Scalar Quantization
 
-Cool stuff goes here
+This release introduces a new vector compression technique called scalar quantization (SQ). SQ is a powerful technique that reduces the storage space required for each dimension of a vector. In Weaviate, vector dimensions are typically stored using 32 bit floating point numbers. With scalar quantization, each dimension is converted into an 8 bit integer. This transformation effectively cuts the size of vectors by 75% since 8 bit representations only need a quarter of the original 32 bits.
+
+Image color depth is a helpful analogy. An image that has a deep pallet uses many bits of information to capture shades of a color. An image with low bit-depth has a more limited number of colors (256 values for 8 bits). The scene is still clearly visible. Even though there may be visual artifacts, the lower bit-depth significantly reduces the storage space required.
+
+Practically speaking, scalar quantization provides a fourfold reduction in vector size with about a 5% loss in retrieval recall. Techniques such as over-fetching and rescoring mitigate the reduction and improve recall.
+
+Scalar quantization offers a compelling trade-off between storage efficiency and retrieval accuracy. This makes SQ an essential tool for optimizing vector storage in Weaviate. Look for more details on SQ and SQ related experiments in a deep dive blog post that's coming soon!
 
 ## Dashboards for async indexes
 
