@@ -188,14 +188,14 @@ assert ("tenantB" in tenants) == False
 # =======================================
 
 # START UpdateTenants
-from weaviate.classes.tenants import Tenant
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
 
 multi_collection = client.collections.get("MultiTenancyCollection")
 # highlight-start
 multi_collection.tenants.update(tenants=[
     Tenant(
         name="tenantA",
-        activity_status=weaviate.schema.TenantActivityStatus.COLD
+        activity_status=TenantActivityStatus.INACTIVE
     )
 ])
 # highlight-end
