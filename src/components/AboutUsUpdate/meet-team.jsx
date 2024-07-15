@@ -144,6 +144,14 @@ export default function MeetTheTeam() {
             >
               #Sales
             </Link>
+            <Link
+              className={
+                selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('weaviate-labs')}
+            >
+              #Weaviate Labs
+            </Link>
           </div>
           <hr></hr>
         </div>

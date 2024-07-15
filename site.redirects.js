@@ -413,8 +413,17 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/compression/pq-compression',
             from: '/developers/weaviate/configuration/compression',
+        },
+        {
+            to: '/developers/weaviate/configuration/compression/pq-compression',
+            from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+        {
+            to: '/developers/weaviate/configuration/compression/bq-compression',
+            from: '/developers/weaviate/configuration/bq-compression',
         },
 
         {
@@ -532,8 +541,35 @@ const siteRedirects = {
   {
     to: "/services/enterprise-cloud",
     from: "/services/enterprise-dedicated"
-},
+  },
 
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
+ },
+
+// Release notes
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_20",
+ from: "/developers/weaviate/release-notes/release_1_20"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_19",
+ from: "/developers/weaviate/release-notes/release_1_19"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_18",
+ from: "/developers/weaviate/release-notes/release_1_18"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_17",
+ from: "/developers/weaviate/release-notes/release_1_17"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_16",
+ from: "/developers/weaviate/release-notes/release_1_16"
+},
 
 
     ],

@@ -1,0 +1,65 @@
+[
+  {
+    "stars": 41,
+    "title": "BookRecs",
+    "description": "Book Recommendation System",
+    "demoLink": "https://bookrecs.weaviate.io/",
+    "details": "BookRec is a recommendation service suggesting books based on user-inputted genres and titles. Built on a Kaggle dataset of 7000 books, it uses Ada v2 for vector embeddings and quick semantic search. The frontend is developed with Next.js and styled using TailwindCSS.",
+    "videoLink": "https://www.youtube.com/watch?v=SF1ZlRjVsxw",
+    "githubLink": "https://github.com/weaviate/BookRecs/"
+  },
+  {
+    "stars": 4900,
+    "title": "Verba",
+    "description": "The Golden RAGtriever",
+    "demoLink": "https://verba.weaviate.io",
+    "details": "Verba is our open source Retrieval Augmented Generation (RAG) application designed for user-friendly, customizable search experiences. It features autocompletion, source transparency, easy data ingestion, and management, making it accessible for both technical and non-technical users.",
+    "blogLink": "https://weaviate.io/blog/verba-open-source-rag-app",
+    "videoLink": "https://www.youtube.com/watch?v=swKKRdLBhas",
+    "githubLink": "https://github.com/weaviate/Verba"
+  },
+  {
+    "stars": 69,
+    "title": "Awesome-moviate",
+    "description": "A Movie Search Engine",
+    "demoLink": "https://awesome-moviate.weaviate.io/",
+    "details": "Awesome-Moviate is a movie recommender system built with OpenAI embeddings and Weaviate. It uses a simple user interface to provide movie search and recommendation functionalities. Users can search for movies by title and receive a list of similar movies based on plot similarity using AI-generated embeddings.",
+    "blogLink": "https://towardsdatascience.com/recreating-andrej-karpathys-weekend-project-a-movie-search-engine-9b270d7a92e4",
+    "githubLink": "https://github.com/weaviate-tutorials/awesome-moviate"
+  },
+  {
+    "stars": 153,
+    "title": "Heathsearch",
+    "description": "Generative AI in Healthcare",
+    "demoLink": "https://healthsearch.weaviate.io/",
+    "details": "HealthSearch is an open source demo that decodes user-written reviews of supplements, performing semantic and generative searches to retrieve related products for specific health effects. It leverages Large Language Models to understand natural language queries and generate product and review summaries.",
+    "blogLink": "https://weaviate.io/blog/healthsearch-demo",
+    "githubLink": "https://github.com/weaviate/healthsearch-demo"
+  },
+  {
+    "stars": 44,
+    "title": "Generator9000",
+    "description": "Generate Synthetic Multimodal Data",
+    "demoLink": "https://gen9000.co",
+    "details": "Welcome to Generator9000! It's an open-source web app that's all about creating synthetic data objects tailored to your use case. We use Generative AI (GPT4 from OpenAI) to not only generate data objects with specific fields but also to create images based on these data objects.",
+    "videoLink": "https://www.youtube.com/watch?v=YjUe-v8EEV4",
+    "githubLink": "https://github.com/weaviate/generator9000"
+  },
+  {
+    "stars": 45,
+    "title": "Magic Chat",
+    "description": "The Generative Gathering",
+    "demoLink": "https://weaviate-magic-chat.streamlit.app/",
+    "details": "Magic Chat uses the Weaviate connector to search through Magic The Gathering cards with various search options, such as BM25, Semantic Search, Hybrid Search and Generative Search. This project is a submission for the Streamlit Connections Hackathon 2023. It delivers a Streamlit connector for Weaviate.",
+    "githubLink": "https://github.com/weaviate/st-weaviate-connection/tree/main"
+  },
+  {
+    "stars": 8,
+    "title": "QuoteFinder",
+    "description": "Find a Quote to Support Any Argument",
+    "demoLink": "https://quotefinder.weaviate.io/",
+    "details": "HealthSearch is an open source demo that decodes user-written reviews of supplements, performing semantic and generative searches to retrieve related products for specific health effects. It leverages Large Language Models to understand natural language queries and generate product and review summaries.",
+    "blogLink": "https://weaviate.io/blog/hybrid-search-for-web-developers",
+    "githubLink": "https://github.com/weaviate/quote-finder"
+  }
+]

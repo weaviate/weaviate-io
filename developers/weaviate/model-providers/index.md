@@ -21,6 +21,7 @@ This enables an enhanced developed experience, such as the ability to:
 
 | Model provider | Embeddings | Generative AI | Others |
 | --- | --- | --- | --- |
+| [Anthropic](./anthropic/index.md) | - | [Text](./anthropic/generative.md) | - |
 | [Anyscale](./anyscale/index.md) | - | [Text](./anyscale/generative.md) | - |
 | [AWS](./aws/index.md) | [Text](./aws/embeddings.md) | [Text](./aws/generative.md) |
 | [Cohere](./cohere/index.md) | [Text](./cohere/embeddings.md) | [Text](./cohere/generative.md) | [Reranker](./cohere/reranker.md) |
