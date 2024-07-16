@@ -170,6 +170,38 @@ class ManageDataClassesTest {
   }
   // END CreateCollectionWithNamedVectors"
 
+  // START ModuleSettings"
+  private void createCollectionWithModuleSettings(){
+        // Define class properties"
+        Property titleProperty = Property.builder()
+                  .name("title")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        Property bodyProperty = Property.builder()
+                  .name("body")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        //Define the module settings
+        Map<String, Object> text2vecOpenAI = new HashMap<>();
+        Map<String, Object> text2vecOpenAISettings = new HashMap<>();
+        text2vecOpenAISettings.put("vectorizePropertyName", false);
+        text2vecOpenAISettings.put("model", "text-embedding-3-small"); //set the model of your choice e.g. text-embedding-3-large or text-embedding-3-small
+        text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
+        Map<Object, Object> moduleConfig = new HashMap<>();
+        moduleConfig.put("text2vec-openai", text2vecOpenAI);
+        // Define the vectorizers in the WeaviateClass Builder
+        WeaviateClass countryClass = WeaviateClass.builder()
+                .className(className)
+                .properties(Arrays.asList(titleProperty, bodyProperty))
+                .moduleConfig(moduleConfig) // Set the config in the class builder
+                .build();
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END ModuleSettings"
+
   private void readOneCollection(String className) {
     // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
