@@ -6,12 +6,15 @@ Here are the release ⭐️*highlights*⭐️!
 
 - [**Improved Range Queries**](#improved-range-queries)
 - [**Async Replication**](#async-replication)
-- [**Module improvements**](#module-improvements)
+- [**Anthropic integration**](#anthropic-integration)
+- [**Bulk enable API-based modules**](#bulk-enable-modules)
 - [**Multi target vector**](#multi-target-vector)
+- [**Tenant statuses changed**](#tenant-statuses-changed)
 - [**Tenant offload to cloud storage**](#tenant-offload-to-cloud-storage)
-- [**Async Python Implementation**](#async-python-implementation)
+- [**Async Python client**](#async-python-client)
 - [**Scalar Quantization**](#scalar-quantization)
 - [**Dashboards for async indexes**](#dashboards-for-async-indexes)
+- [**Korean tokenizer**](#korean-tokenizer)
 - [**Additional changes**](#additional-changes)
 
 ## Improved Range Queries
@@ -42,21 +45,55 @@ Async replication is much more effective than repair-on-read when there are many
 
 Read more. TODO-LINK
 
-## Module improvements
+## Anthropic integration
 
-Cool stuff goes here
+Anthropic generative AI integration is now available in Weaviate. This integration allows you to use the `Claude` family of models from Anthropic to perform generative search on your data. The integration includes support for the latest models, such as `Claude 3.5 Sonnet`.
+
+This integration will be enabled by default on Weaviate Cloud [WCD](https://console.weaviate.cloud/) instances.
+
+To enable the Anthropic integration on a local deployment, add `generative-anthropic` to the `ENABLE_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md), or use the `ENABLE_API_BASED_MODULES` environment variable as described below.
+
+## Bulk enable modules
+
+The `ENABLE_API_BASED_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md) adds the ability to enable all relevant modules for API-based [model provider integrations](/developers/weaviate/model-providers/index.md) with one setting.
+
+This you no longer have to enable each module individually in the `ENABLE_MODULES` environment variable.
+
+`ENABLE_API_BASED_MODULES` works additively with the `ENABLE_MODULES` environment variable. If you set `ENABLE_API_BASED_MODULES` to `true`, and `ENABLE_MODULES` to `text2vec-ollama,generative-ollama,backup-s3` for example, `text2vec-ollama`, `generative-ollama`, and `backup-s3` are enabled as well as all API-based modules are enabled.
+
+Note this feature is experimental and may change in future releases. Also keep in mind that enabling multiple modules will disable the [`Explore`](/developers/weaviate/api/graphql/explore.md) feature.
 
 ## Multi target vector
 
 Cool stuff goes here
 
+## Tenant statuses changed
+
+Tenant [activity statuses](/developers/weaviate/concepts/data.md#tenant-status) were added in Weaviate `1.21` to allow unused tenants to not occupy valuable memory. These tenants were marked as `COLD` tenants, in contrast to `HOT` tenants that are actively used.
+
+These statues have been changed in Weaviate `1.26` to `ACTIVE` and `INACTIVE` to better reflect the tenant status. Their functionalities remain the same; `ACTIVE` tenants are active and loaded in memory with read/write operations available to them, while `INACTIVE` tenants are stored on disk and not available for read nor write.
+
+This is in addition to the new, `OFFLOADED` status.
+
 ## Tenant offload to cloud storage
 
-Cool stuff goes here
+In addition to the option of putting tenants in `INACTIVE` status, Weaviate `1.26` introduces the ability to "offload" tenants to cloud storage. This allows you to store tenants on lower-cost cloud storage and load them back into memory when needed.
 
-## Async Python Implementation
+Such a tenant is marked as `OFFLOADED` and is not available for read nor write operations. This adds a new level of flexibility to Weaviate, allowing you to store tenants on disk or in cloud storage, depending on your needs. While the tenant is being offloaded or being loaded back into memory, it will have the status of `OFFLOADING` or `ONLOADING` respectively.
 
-Cool stuff goes here
+Currently this is supported for AWS S3, with more cloud storage providers to be added in future releases.
+
+:::warning
+TODO - add links to docs
+:::
+
+## Async Python client
+
+The Weaviate Python client library adds a `WeaviateAsyncClient` object that supports asynchronous operations. This allows you to use the client in an asynchronous manner, which can be useful for highly concurrent applications such as web servers.
+
+:::warning
+TODO - add links to docs
+:::
 
 ## Scalar Quantization
 
@@ -83,6 +120,12 @@ Weaviate gathers metrics that are compatible with the open-source [Prometheus](h
 Use these metrics with Prometheus and [Grafana](https://grafana.com/docs/) to monitor your Weaviate instance.
 
 If you don't see a metric that you need, you can extend Weaviate to add new metrics. To suggest a new metric, or to get started writing your own, see the [contributor guide](/developers/contributor-guide).
+
+## Korean tokenizer
+
+A new Korean tokenizer is available in Weaviate `1.26` (and `1.25.7`). This tokenizer is based on the `kagome` library and a `MeCab` dictionary. To enable the Korean tokenizer, set the `ENABLE_TOKENIZER_KAGOME_KR` [environment variable](/developers/weaviate/config-refs/env-vars.md) to `true`, and set `kagome_kr` as the [tokenization method](/developers/weaviate/config-refs/schema/index.md#kagome_kr-tokenization-method) for the relevant properties.
+
+Note this feature is experimental and may change in future releases.
 
 ## Additional changes
 
