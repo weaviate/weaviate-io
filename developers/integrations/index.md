@@ -11,18 +11,18 @@ All the notebooks and code examples are on [Weaviate Recipes](https://github.com
 <img
     src={require('./ecosystem.png').default}
     alt="alt"
-    style={{ maxWidth: "60%", display: "block", marginLeft: "auto", marginRight: "auto"}}
+    style={{ maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto"}}
 />
 
 
 ## About the Categories
-The ecosystem is broken into five categories:
+The ecosystem is divided into these categories:
 
-* **Cloud Hyperscalers** - Cloud service providers offering large-scale computing and storage
-* **Container Infrastructure** - Platforms and tools for running and scaling containerized applications
-* **Data Pipeline** - Companies offering services and tools for data ingestion and scraping 
-* **LLM Frameworks** - Frameworks used for building generative AI applications
-* **Observability and Evaluation** - Tools to monitor and analyze generative AI workflows
+* **Cloud Hyperscalers** - Large-scale computing and storage
+* **Container Infrastructure** - Run and scale containerized applications
+* **Data Pipeline** - Data ingestion and web scraping 
+* **LLM Frameworks** - Build generative AI applications
+* **Observability and Evaluation** - Monitor and analyze generative AI workflows
 
 
 
@@ -30,7 +30,7 @@ The ecosystem is broken into five categories:
 
 | Company Category | Companies |
 |------------------|-----------|
-| Cloud Hyperscalers | Google, AWS, Azure |
+| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
 | Container Infrastructure | Modal, Replicate |
 | Data Pipeline | Spark, Unstructured, Firecrawl |
 | LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |

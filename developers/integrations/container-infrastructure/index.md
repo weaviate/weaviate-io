@@ -1,7 +1,7 @@
 ---
-title: Cloud Platforms
+title: Container Infrastructure
 sidebar_position: 2
 image: og/integrations/home.jpg
 ---
 
-Home page for cloud platforms
+Add content here
