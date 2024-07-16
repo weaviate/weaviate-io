@@ -17,7 +17,7 @@ client = weaviate.Client(
 if client.schema.exists("Inventory"):
     client.schema.delete_class("Inventory")
 
-# START CreateCollectionWithProperties
+# START RangeIndex
 class_obj = {
     "class": "Inventory",
     "properties": [
@@ -47,7 +47,7 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)  # returns null on success
-# END CreateCollectionWithProperties
+# END RangeIndex
 
 # Test
 schema = client.schema.get("Inventory")
