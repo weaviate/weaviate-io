@@ -1,8 +1,3 @@
-#### DOESN'T WORK YET
-
-# ================================
-# ===== INSTANTIATION-COMMON =====
-# ================================
 import os
 import weaviate
 
@@ -18,24 +13,42 @@ client = weaviate.Client(
 # ===== CREATE A COLLECTION WITH PROPERTIES =====
 # ===============================================
 
-# Clean slate
-if client.schema.exists(class_name):
-    client.schema.delete_class(class_name)
+# Clean start
+if client.schema.exists("Inventory"):
+    client.schema.delete_class("Inventory")
 
 # START CreateCollectionWithProperties
 class_obj = {
-    "class": "Article",
+    "class": "Inventory",
     "properties": [
         {
-            "name": "title",
+            "name": "itemName",
             "dataType": ["text"],
         },
         {
-            "name": "body",
+            "name": "itemDescription",
             "dataType": ["text"],
         },
+        {
+            "name": "itemCount",
+            "dataType": ["int"],
+            "indexRangeFilters": True,
+        },
     ],
+        "invertedIndexConfig": {
+        "bm25": {
+            "b": 0.7,
+            "k1": 1.25
+        },
+        "indexTimestamps": True,
+        "indexNullState": True,
+        "indexPropertyLength": True
+    }
 }
 
 client.schema.create_class(class_obj)  # returns null on success
 # END CreateCollectionWithProperties
+
+# Test
+schema = client.schema.get("Inventory")
+assert schema["properties"][2]['indexRangeFilters'] == True
