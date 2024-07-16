@@ -340,6 +340,11 @@ const config = {
                             href: '/gen-feedback-loops',
 
                         },
+                        {
+                            label: 'Infrastructure optimization',
+                            href: '/infrastructure-optimization',
+
+                        },
 
                     ]
                 }

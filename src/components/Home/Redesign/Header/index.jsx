@@ -76,7 +76,7 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={` ${styles.homeIcon} ${styles.ragIcon}`}></div>
                 <h2>RAG</h2>
               </div>
               <div className={styles.typeText}>
@@ -90,7 +90,7 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={` ${styles.homeIcon} ${styles.genIcon}`}></div>
                 <h2>
                   Generative<br></br>Feedback Loops
                 </h2>
@@ -102,6 +102,25 @@ export default function HomepageHeader() {
                   data cleaning.
                 </p>
                 <Link to="/gen-feedback-loops">Learn more</Link>
+              </div>
+            </div>
+            <div className={styles.typeBox}>
+              <div className={styles.typeIcon}>
+                <div
+                  className={` ${styles.homeIcon} ${styles.infraIcon}`}
+                ></div>
+                <h2>
+                  Infrastructure<br></br>
+                  optimization
+                </h2>
+              </div>
+              <div className={styles.typeText}>
+                <p>
+                  Optimize the cost of running AI-native workloads at scale.
+                  Build and operate more efficiently with a single vector
+                  database for all of your AI use cases.
+                </p>
+                <Link to="/infrastructure-optimization">Learn more</Link>
               </div>
             </div>
           </div>

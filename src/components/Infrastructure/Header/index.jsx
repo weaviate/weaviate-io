@@ -10,18 +10,20 @@ export default function Header() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <span>Retrieval Augmented Generation</span>
-            <h1>Build secure, explainable generative AI applications</h1>
+            <span>Infrastructure optimization</span>
+            <h1>
+              Scale to millions of tenants without losing control of costs
+            </h1>
             <p>
-              Reduce hallucination and make conversational apps more reliable,
-              without compromising data privacy.
+              Build and operate more efficiently with a single vector database
+              for all of your AI use cases. 
             </p>
             <div className={styles.buttons}>
               <Link
                 className={styles.buttonGradient}
                 to="https://console.weaviate.cloud"
               >
-                Start Free
+                Start for Free
               </Link>
               <Link className={styles.buttonOutline} to="/platform">
                 Learn More
