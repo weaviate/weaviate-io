@@ -185,11 +185,11 @@ class ManageDataClassesTest {
         Map<String, Object> text2vecOpenAI = new HashMap<>();
         Map<String, Object> text2vecOpenAISettings = new HashMap<>();
         text2vecOpenAISettings.put("vectorizePropertyName", false);
-        text2vecOpenAISettings.put("model", "text-embedding-3-small"); //set the model of your choice e.g. text-embedding-3-large or text-embedding-3-small
+        text2vecOpenAISettings.put("model", "text-embedding-3-small"); //set the model of your choice e.g. text-embedding-3-small
         text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
         Map<Object, Object> moduleConfig = new HashMap<>();
         moduleConfig.put("text2vec-openai", text2vecOpenAI);
-        // Define the vectorizers in the WeaviateClass Builder
+        // Define the vectorizer in the WeaviateClass Builder
         WeaviateClass countryClass = WeaviateClass.builder()
                 .className(className)
                 .properties(Arrays.asList(titleProperty, bodyProperty))
