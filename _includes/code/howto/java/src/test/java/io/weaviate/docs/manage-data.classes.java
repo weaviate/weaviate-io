@@ -103,7 +103,7 @@ class ManageDataClassesTest {
   // END CreateCollectionWithProperties"
 
   // START CreateCollectionWithVectorizer"
-  private void createCollectionWithProperties(){
+  private void createCollectionWithVectorizer(){
         // Define class properties"
         Property titleProperty = Property.builder()
                 .name("title")
@@ -128,7 +128,7 @@ class ManageDataClassesTest {
   // END CreateCollectionWithVectorizer"
 
   // START CreateCollectionWithNamedVectors"
-  private void createCollectionWithProperties(){
+  private void createCollectionWithNamedVectors(){
         // Define class properties"
         Property titleProperty = Property.builder()
                   .name("title")
