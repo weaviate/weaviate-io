@@ -1,5 +1,13 @@
 [
   {
+    "title": "Scaling Pandas with Devin Petersohn - Weaviate Podcast #101!",
+    "description": "Welcome to the 101st episode of the Weaviate Podcast with Devin Petersohn! Devin is the creator of Modin, one of the world's most advanced systems for scaling Pandas!",
+    "youtube": "r4XSsgyYR9c",
+    "date": "24-07-17",
+    "cover_image": "/img/podcasts/podcast-101.png",
+    "is_use_case": false
+  },
+  {
     "title": "Generative UIs with Lucas Negritto and Bob van Luijt - Weaviate Podcast #100!",
     "description": "What is an AI-native application? This podcast explores this question with Weaviate Co-founder Bob van Luijt and Lucas Negritto. ",
     "youtube": "x1i9pGWAh7s",
