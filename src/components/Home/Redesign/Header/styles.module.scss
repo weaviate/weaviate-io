@@ -904,7 +904,7 @@
   flex-wrap: wrap;
 
   @media screen and (max-width: 1200px) {
-    gap: 15px;
+    gap: 40px;
   }
 }
 
@@ -919,11 +919,19 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 500px) {
+    width: 94%;
+  }
 }
 
 .typeBox:hover {
   background: #ffffff;
   transform: translateY(-30px);
+
+  @media screen and (max-width: 500px) {
+    transform: translateY(-15px);
+  }
 }
 
 .typeIcon {
