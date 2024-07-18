@@ -157,7 +157,7 @@ export const courseData = {
   "multi-tenancy": {
     title: "Multi-tenancy",
     courseId: "PY_280",
-    body: "Multi-tenancy can support thousands of end users with just a Weaviate instance. Learn how to set up multi-tenancy, then run CRUD operations and execute queries on multi-tenant collections.",
+    body: "Multi-tenancy enables lightweight isolation of end user data. Learn how to set up multi-tenancy, work with tenants and tenant data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/multitenancy",
     badgeType: "course",
@@ -171,9 +171,8 @@ export const courseData = {
     learningOutcomes: [
       "Describe use cases for multi-tenancy.",
       "Configure a collection with multi-tenancy.",
-      "Manage tenants and use tenant auto-creation or auto-.",
-      "Perform CRUD operations on a multi-tenancy collection.",
-      "Perform queries on a multi-tenancy collection.",
+      "Create tenants, delete tenants and update tenant activity statuses.",
+      "Perform CRUD operations and queries on a multi-tenancy collection.",
     ],
     note: "Python client (v4)"
   },

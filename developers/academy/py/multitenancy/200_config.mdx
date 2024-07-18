@@ -1,5 +1,5 @@
 ---
-title: How to configure MT
+title: Configuration options
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,15 +7,13 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Now, let's discuss how to configure Weaviate to get the most out of multi-tenancy features. First, let's discuss the usage patterns.
-
-A collection's multi-tenancy status can only be set at creation time. Once the collection is created and configured, you can create and manage tenants.
+Let's discuss the key configuration options available in multi-tenancy collections.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Basic usage
 
 ### <i class="fa-solid fa-code"></i> Enabling multi-tenancy
 
-To use multi-tenancy, enable it at collection creation time as shown below:
+A collection's multi-tenancy status can only be set at creation time. This is immutable, and can be done as shown below:
 
 <FilteredTextBlock
   text={PyCode}
@@ -28,9 +26,13 @@ This will create a multi-tenant collection.
 
 ### <i class="fa-solid fa-code"></i> Manage tenants
 
-Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace. You can `create`, `remove`, or `update` tenants, check that a tenant `exists`, or get one or more tenants (`get`, `get_by_name`, `get_by_names`) for further operations.
+Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace.
 
-For example, `create` tenants by providing a list of tenant names:
+You can `create`, `remove`, or `update` tenants at any point throughout a lifecycle of a collection. You can also check that a tenant `exists`, or get one or more tenants (`get`, `get_by_name`, `get_by_names`) for further operations.
+
+#### Create tenants
+
+You can `create` tenants by providing a list of tenant names:
 
 <FilteredTextBlock
   text={PyCode}
@@ -39,7 +41,13 @@ For example, `create` tenants by providing a list of tenant names:
   language="py"
 />
 
-You can think of a multi-tenant collection as a set of identically configured collections, where each tenant has its own collection. Accordingly, you can work with a multi-tenant collection with a specified tenant as though you were working with a single-tenant collection object.
+#### `Tenant` class
+
+Helper class stuff
+
+## <i class="fa-solid fa-chalkboard"></i> Interacting with tenant data
+
+Interacting with each tenant's data in a multi-tenant collection is similar to interacting with a single-tenant collection.
 
 <FilteredTextBlock
   text={PyCode}
