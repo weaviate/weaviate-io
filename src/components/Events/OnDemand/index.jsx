@@ -40,6 +40,14 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>
+              Improving Customer Support With Generative AI-Powered Assistants
+            </p>
+            <Link to="https://events.weaviate.io/customer-support-webinar">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
