@@ -170,7 +170,7 @@ The `offload-s3` module reads the following environment variables:
     - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
 
 :::tip AWS permissions
-The Weaviate instance must have the necessary permissions to access the S3 bucket. For example, the provided credentials must be able to write to the bucket; and if `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the user must have permission to create the bucket.
+The Weaviate instance must have the necessary permissions to access the S3 bucket. For example, the provided AWS identity must be able to write to the bucket; and if `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the identity must have permission to create the bucket.
 :::
 
 ## Custom modules
