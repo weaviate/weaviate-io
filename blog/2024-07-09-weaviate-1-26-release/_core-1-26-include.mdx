@@ -83,17 +83,13 @@ Such a tenant is marked as `OFFLOADED` and is not available for read nor write o
 
 Currently this is supported for AWS S3, with more cloud storage providers to be added in future releases.
 
-:::warning
-TODO - add links to docs
-:::
+Read more about how to [set tenant activity statuses](/developers/weaviate/manage-data/multi-tenancy.md#update-tenant-activity-status), or about the [`s3-offload` module](/developers/weaviate/configuration/modules.md#offload-s3-module).
 
 ## Async Python client
 
-The Weaviate Python client library adds a `WeaviateAsyncClient` object that supports asynchronous operations. This allows you to use the client in an asynchronous manner, which can be useful for highly concurrent applications such as web servers.
+The Weaviate Python client library adds a `WeaviateAsyncClient` object and API that supports asynchronous operations. This allows you to use the client in an asynchronous manner, which can be useful for highly concurrent applications such as web servers.
 
-:::warning
-TODO - add links to docs
-:::
+The new async client API is described [on a dedicated page](/developers/weaviate/client-libraries/python/async.md). It includes [practical examples](/developers/weaviate/client-libraries/python/async.md#application-level-example) of using the async client in your Python code with [FastAPI](https://fastapi.tiangolo.com/), a popular asynchronous web framework for creating modular web API microservices.
 
 ## Scalar Quantization
 
