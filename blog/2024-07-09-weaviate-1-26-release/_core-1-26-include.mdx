@@ -53,6 +53,8 @@ This integration will be enabled by default on Weaviate Cloud [WCD](https://cons
 
 To enable the Anthropic integration on a local deployment, add `generative-anthropic` to the `ENABLE_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md), or use the `ENABLE_API_BASED_MODULES` environment variable as described below.
 
+See the [Anthropic integration page](/developers/weaviate/model-providers/anthropic/index.md) for more information.
+
 ## Bulk enable modules
 
 The `ENABLE_API_BASED_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md) adds the ability to enable all relevant modules for API-based [model provider integrations](/developers/weaviate/model-providers/index.md) with one setting.
@@ -73,7 +75,7 @@ Tenant [activity statuses](/developers/weaviate/concepts/data.md#tenant-status) 
 
 These statues have been changed in Weaviate `1.26` to `ACTIVE` and `INACTIVE` to better reflect the tenant status. Their functionalities remain the same; `ACTIVE` tenants are active and loaded in memory with read/write operations available to them, while `INACTIVE` tenants are stored on disk and not available for read nor write.
 
-This is in addition to the new, `OFFLOADED` status.
+This is in addition to the new, `OFFLOADED` status, which is described below.
 
 ## Tenant offload to cloud storage
 
