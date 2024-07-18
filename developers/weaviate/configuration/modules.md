@@ -169,6 +169,10 @@ The `offload-s3` module reads the following environment variables:
     - Offload operations are asynchronous. As a result, the timeout is for the operation to start, not to complete.
     - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
 
+:::tip AWS permissions
+The Weaviate instance must have the necessary permissions to access the S3 bucket. For example, the provided credentials must be able to write to the bucket; and if `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the user must have permission to create the bucket.
+:::
+
 ## Custom modules
 
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
