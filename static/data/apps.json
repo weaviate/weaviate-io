@@ -1,0 +1,30 @@
+[
+  {
+    "id": "query",
+    "name": "Query",
+    "category": "Weaviate Cloud Apps",
+    "description": "A browser-based GraphQL IDE that lets users work interactively with their clusters.",
+    "image": "query-image.png",
+    "overviewImage": "query-overview.png",
+    "price": "Free",
+    "version": "7.3.0",
+    "updated": "January 28, 2023",
+    "size": "2.09MB",
+    "languages": ["English", "Spanish", "French", "German"],
+    "url": "/marketplace/query"
+  },
+  {
+    "id": "collections",
+    "name": "Collections",
+    "category": "Weaviate Cloud Apps",
+    "description": "Make it easier for developers—and enable non-technical users—to manage collections.",
+    "image": "collections.png",
+    "overviewImage": "collections-overview.png",
+    "price": "Free",
+    "version": "7.3.0",
+    "updated": "June 28, 2023",
+    "size": "11.09MB",
+    "languages": ["English", "Spanish", "French", "German"],
+    "url": "/marketplace/collections"
+  }
+]
