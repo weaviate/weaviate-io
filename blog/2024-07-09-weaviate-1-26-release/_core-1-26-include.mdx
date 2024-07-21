@@ -43,7 +43,7 @@ Asynch replication addresses this risk and minimizes it. The aysnch replication 
 
 Async replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
-Read more. TODO-LINK
+[Read more](/developers/weaviate/concepts/replication-architecture/consistency#async-replication)
 
 ## Anthropic integration
 
@@ -57,25 +57,38 @@ See the [Anthropic integration page](/developers/weaviate/model-providers/anthro
 
 ## Bulk enable modules
 
+**Experimental** This feature is experimental and may change in future releases.
+
 The `ENABLE_API_BASED_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md) adds the ability to enable all relevant modules for API-based [model provider integrations](/developers/weaviate/model-providers/index.md) with one setting.
 
-This you no longer have to enable each module individually in the `ENABLE_MODULES` environment variable.
+You do no have to enable individual modules in the `ENABLE_MODULES` environment variable.
 
 `ENABLE_API_BASED_MODULES` works additively with the `ENABLE_MODULES` environment variable. If you set `ENABLE_API_BASED_MODULES` to `true`, and `ENABLE_MODULES` to `text2vec-ollama,generative-ollama,backup-s3` for example, `text2vec-ollama`, `generative-ollama`, and `backup-s3` are enabled as well as all API-based modules are enabled.
 
-Note this feature is experimental and may change in future releases. Also keep in mind that enabling multiple modules will disable the [`Explore`](/developers/weaviate/api/graphql/explore.md) feature.
+Also keep in mind that enabling multiple modules will disable the [`Explore`](/developers/weaviate/api/graphql/explore.md) feature.
 
 ## Multi target vector
 
-Cool stuff goes here
+Weaviate 1.24 introduces objects with multiple vectors. This release introduces multi vector search. Starting in 1.26, you can make a single query that combines results from across multiple vectors.
+
+When you search, add a list of target vectors to the query. Weaviate automatically combines the results. The mechanism is similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
+
+Each vectorizer creates vectors with their own characteristics. Weaviate allows you to tune your multi vector search to ballance the target vectors in a way that reflects your application needs.
+
+For details, see [multi target vector search](/developers/weaviate/search/multi-vector).
 
 ## Tenant statuses changed
 
-Tenant [activity statuses](/developers/weaviate/concepts/data.md#tenant-status) were added in Weaviate `1.21` to allow unused tenants to not occupy valuable memory. These tenants were marked as `COLD` tenants, in contrast to `HOT` tenants that are actively used.
+Tenant [activity status](/developers/weaviate/concepts/data.md#tenant-status) is used to manage memory usage.
 
-These statues have been changed in Weaviate `1.26` to `ACTIVE` and `INACTIVE` to better reflect the tenant status. Their functionalities remain the same; `ACTIVE` tenants are active and loaded in memory with read/write operations available to them, while `INACTIVE` tenants are stored on disk and not available for read nor write.
+The status names are changed to `ACTIVE` and `INACTIVE` in Weaviate `1.26` to better reflect the tenant status. The status definitions are the same as before.
 
-This is in addition to the new, `OFFLOADED` status, which is described below.
+- `ACTIVE` tenants are available for read and write operations.
+- `INACTIVE` tenants are not available for read or write operations.
+
+In earlier versions, `INACTIVE` tenants are marked as `COLD` and `ACTIVE` tenants are marked as `HOT`.
+
+This release also adds a new status, `OFFLOADED`. (See [below](#tenant-offload-to-cloud-storage).)
 
 ## Tenant offload to cloud storage
 
