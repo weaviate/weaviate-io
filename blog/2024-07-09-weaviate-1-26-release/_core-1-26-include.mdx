@@ -71,7 +71,7 @@ Also keep in mind that enabling multiple modules will disable the [`Explore`](/d
 
 Weaviate 1.24 introduces objects with multiple vectors. This release introduces multi vector search. Starting in 1.26, you can make a single query that combines results from across multiple vectors.
 
-When you search, add a list of target vectors to the query. Weaviate automatically combines the results. The mechanism is similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
+When you search multiple vectors, just add a list of target vectors to the query. Weaviate automatically combines the results. The mechanism is similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
 
 Each vectorizer creates vectors with their own characteristics. Weaviate allows you to tune your multi vector search to ballance the target vectors in a way that reflects your application needs.
 
