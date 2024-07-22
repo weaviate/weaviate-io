@@ -38,8 +38,23 @@ Search multiple target vectors at the same time.
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCodeV4}
-  startMarker="# START MultiBasicPython"
-  endMarker="# END MultiBasicPython"
+  startMarker="# START MultiBasic"
+  endMarker="# END MultiBasic"
+  language="python"
+/>
+</TabItem>
+</Tabs>
+
+## Adjust target vector weight
+
+Set the weight of each target vector to modify their [relative influence](#compare-different-vectorizers) on the result set.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiWeights"
+  endMarker="# END MultiWeights"
   language="python"
 />
 </TabItem>
@@ -63,11 +78,18 @@ If an object doesn't have all of the target vectors, Weaviate ignores that objec
 
 Each vectorizer creates it's own object representation. These differences make it difficult to calculate vector distances between representations.
 
-Set weights to adjust the relative value of each target vector in the overall result.
+Set weights to adjust the relative value of each target vector in the overall result. These are the available fusion methods:
+
+- **sum** Use the sum of the vector distances.
+- **average** Use the average of the vector distances.
+- **manual weights** Adjust the weight of each distance by a set value.
+- **relative score** Adjust the relative contribution of each target vector to the distance score.
 
 ```python
-collection.query.near_text("a_query_string",
-  target_vector=wvc.query.TargetVectors.manual_weights{"vector_one":0.1, "vector_two": 0.5})).
+collection.query.near_text(
+  "a_query_string",
+  target_vector=wvc.query.TargetVectors.manual_weights{"vector_one": 0.1, "vector_two": 0.5}
+  )
 ```
 
 ## Related pages

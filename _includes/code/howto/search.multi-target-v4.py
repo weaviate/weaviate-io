@@ -28,7 +28,7 @@ import os
 # ===== Basic search =====
 # ========================
 
-# START MultiBasicPython
+# START MultiBasic
 collection = client.collections.get("Jeopardy_Tiny_Dataset")
 response = collection.query.near_text(
     query="a wild animal",
@@ -38,7 +38,24 @@ response = collection.query.near_text(
 
 for o in response.objects:
     print(o.properties)
-# END MultiBasicPython
+# END MultiBasic
+
+
+# ========================
+# ===== Set Weights =====
+# ========================
+
+# START MultiWeights
+collection = client.collections.get("Jeopardy_Tiny_Dataset")
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    target_vector=wvc.query.TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
+)
+
+for o in response.objects:
+    print(o.properties)
+# END MultiWeights
 
 
 # =============================
