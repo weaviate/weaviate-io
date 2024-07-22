@@ -10,9 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
 
-`Multi target vector search` uses a single query to search multiple target vectors. The results are combined automatically.
-
-Weaviate searches the target vectors concurrently for fast response times.
+`Multi target vector search` uses a single query to search multiple target vectors. The results are combined automatically. Weaviate searches the target vectors concurrently.
 
 ## Create the example collection
 
@@ -32,15 +30,15 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
 
 </details>
 
-## Different objects in results for different targetvectors
+## Combine results
 
-Let's say we have 1000 objects with 2 target vectors. A user does a search with a limit of 20.
+Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
 
-Both target vectors will have different objects in their results. If we combine distances from different searches, objects that are only present in one of the result list, will have a lower overall distance.
+It is more complicated to determine the set of result vectors with the least difference when you search multiple target vectors.
 
-As a solution, the vector distances for objects that are not in the result list for a given target vector a fetched after the vector search, which ensures that all objects and their distances are present.
+Each target vector returns a set of limited number of potential results. The sets that are returned might not overlap completely. A "missing" vector has a smaller distance and can skew the search results. To prevent misleading results, Weaviate fetches any missing vectors to align the lists of result vectors.
 
-If an object has no vector for a given targetvector it will be ignored for the search. We might want to make this configurable in the future.
+If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
 
 ## How to handle different vectorizers
 
