@@ -30,24 +30,6 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
 
 </details>
 
-## Combine result sets
-
-Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
-
-It is more complicated to determine the set of result vectors with the least difference when you search multiple target vectors.
-
-Each target vector returns a set of limited number of potential results. The sets that are returned might not overlap completely. A "missing" vector has a smaller distance and can skew the search results. To prevent misleading results, Weaviate fetches any missing vectors to align the lists of result vectors.
-
-If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
-
-## Compare different vectorizers
-
-Different vectorizers do not necessarily have distances that are compatible with each other, which makes combining them difficult.
-
-There is no way to automatically handle this so it is left to the user to make a decision about how to combine them. There are two sensible ways to handle this situation:
-
-- manual weights for each target vector to adjust how much each target vector affects the final score
-
 ## Multi target vector search
 
 Search multiple target vectors at the same time.
@@ -62,6 +44,31 @@ Search multiple target vectors at the same time.
 />
 </TabItem>
 </Tabs>
+
+## Considerations
+
+This section discusses considerations that distinguish multiple target vector searches from single target vector searches.
+
+### Combine result sets
+
+Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
+
+It is more complicated to determine the set of result vectors with the least difference when you search multiple target vectors.
+
+Each target vector returns a set of limited number of potential results. The sets that are returned might not overlap completely. A "missing" vector has a smaller distance and can skew the search results. To prevent misleading results, Weaviate fetches any missing vectors to align the lists of result vectors.
+
+If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
+
+### Compare different vectorizers
+
+Each vectorizer creates it's own object representation. These differences make it difficult to calculate vector distances between representations.
+
+Set weights to adjust the relative value of each target vector in the overall result.
+
+```python
+collection.query.near_text("a_query_string",
+  target_vector=wvc.query.TargetVectors.manual_weights{"vector_one":0.1, "vector_two": 0.5})).
+```
 
 ## Related pages
 
