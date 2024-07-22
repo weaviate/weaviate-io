@@ -19,7 +19,8 @@ For more information related to one of the documents below, please reach out to 
 <br></br><br></br>
 - Customers
 
-  - [General Terms of Service](/service/weaviate-general-terms-of-service)
+
+  - [Serverless Cloud Terms](/service/weaviate-cloud-agreement)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement-nonus)
   - [Weaviate Service Level Agreement](/sla)
