@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
+import TSCodeV3 from '!!raw-loader!/_includes/code/howto/search.multi-target-v3.ts';
 
 Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
@@ -27,7 +28,12 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
   endMarker="# END LoadDataNamedVectors"
   language="py"
 />
-
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START LoadDataNamedVectors"
+  endMarker="// END LoadDataNamedVectors"
+  language="ts"
+/>
 </details>
 
 ## Multiple-target vector search
