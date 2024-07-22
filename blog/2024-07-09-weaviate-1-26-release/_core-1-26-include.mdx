@@ -31,6 +31,8 @@ The rangeable index also works with [filterable indexes](/developers/weaviate/co
 
 Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
+This feature is only available for new properties and new collections.
+
 ## Async Replication
 
 Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. [Async replication](/developers/weaviate/concepts/replication-architecture/consistency#async-replication) works in the background, checking and updating your data to keep it consistent.
@@ -92,11 +94,13 @@ This release also adds a new status, `OFFLOADED`. (See [below](#tenant-offload-t
 
 ## Tenant offload to cloud storage
 
-In addition to the option of putting tenants in `INACTIVE` status, Weaviate `1.26` introduces the ability to "offload" tenants to cloud storage. This allows you to store tenants on lower-cost cloud storage and load them back into memory when needed.
+Weaviate `1.26` introduces the ability to offload `INACTIVE` tenants to cloud storage. This helps to manage costs. Move `INACTIVE` tenants to lower-cost cloud storage when they aren't in use, and load them back into memory when needed.
 
 Such a tenant is marked as `OFFLOADED` and is not available for read nor write operations. This adds a new level of flexibility to Weaviate, allowing you to store tenants on disk or in cloud storage, depending on your needs. While the tenant is being offloaded or being loaded back into memory, it will have the status of `OFFLOADING` or `ONLOADING` respectively.
 
 Currently this is supported for AWS S3, with more cloud storage providers to be added in future releases.
+
+This feature is available for self-hosted instances. It is not available in [Weaviate Cloud](/developers/wcs).
 
 Read more about how to [set tenant activity statuses](/developers/weaviate/manage-data/multi-tenancy.md#update-tenant-activity-status), or about the [`s3-offload` module](/developers/weaviate/configuration/modules.md#offload-s3-module).
 
@@ -144,7 +148,7 @@ Note this feature is experimental and may change in future releases.
 
 - The HNSW `maxConnections` value is updated. Instead of 64 connections, the HNSW graph now defaults to 32 connections.
 
- The lower value works better with modern ANN datasets that have high dimensionality. Testing shows that the QPS/recall curves improve with lower `maxConnections` values. The best values are in the 16-32 range, depending on dataset size. To improve target recall, `ef` can be increased.
+  The lower value works better with modern ANN datasets that have high dimensionality. Testing shows that the QPS/recall curves improve with lower `maxConnections` values. The best values are in the 16-32 range, depending on dataset size. To improve target recall, `ef` can be increased.
 
 ## Summary
 
