@@ -23,11 +23,13 @@ import RangeGraphic from '/blog/2024-07-31-weaviate-1-26-release/img/Range.jpg';
 
 <p align="center"><img src={RangeGraphic} width="75%" alt="Range query section graphic"/></p>
 
-The new rangeable index is a powerful new tool for quantitative comparisons.
+The rangeable index is a powerful new tool for quantitative comparisons.
 
-Object properties in Weaviate are indexed and searchable. In earlier releases, range queries were computationally expensive. The new rangeable index is an efficient way to quickly search ranges of data. Use the new index type when you anticipate using numerical comparisons over ranges of values. When you define a property type as `int`, `number`, or `date`, consider defining a rangeable index too.
+Object properties in Weaviate are indexed and searchable. In earlier releases, range queries are computationally expensive. The new rangeable index provides a more efficient way to quickly search ranges of data.
 
-The rangeable index also works with [filterable indexes](/developers/weaviate/config-refs/schema/range-index#considerations). You can combine filters and range queries to quickly narrow your searches to the most relevant information.
+Use the new index type when you anticipate using numerical comparisons over ranges of values. Consider defining a rangeable index in your [collection schema](/developers/weaviate/config-refs/schema) when you define a property type as `int`, `number`, or `date`.
+
+The rangeable index works alone and with [filterable indexes](/developers/weaviate/config-refs/schema/range-index#considerations). Combine filters and range queries to quickly narrow your searches to the most relevant information.
 
 Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
