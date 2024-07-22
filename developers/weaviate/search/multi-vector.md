@@ -8,7 +8,7 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
+import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
 
 `Multi target vector search` uses a single query to search multiple target vectors. The results are combined automatically.
 
@@ -21,7 +21,7 @@ Search multiple target vectors at the same time.
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV4}
   startMarker="# START MultiBasicPython"
   endMarker="# END MultiBasicPython"
   language="python"
@@ -35,10 +35,28 @@ Search multiple target vectors at the same time.
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV4}
   startMarker="# Expected HybridBasic results"
   endMarker="# END Expected HybridBasic results"
   language="json"
+/>
+
+</details>
+
+## Create the example collection
+
+The examples on this page use the `Named_Vector_Jeopardy_Collection`. To create a local copy of the example collection, run this code.
+
+The example code uses OpenAI to vectorize the sample data. To use a different vectorizer, or to use multiple vectorizers, edit the `wvc.config.Configure.NamedVectors` configuration.
+
+<details>
+  <summary>Create sample collection.</summary>
+
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START LoadDataNamedVectors"
+  endMarker="# END LoadDataNamedVectors"
+  language="py"
 />
 
 </details>

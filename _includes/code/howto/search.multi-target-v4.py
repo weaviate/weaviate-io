@@ -47,14 +47,19 @@ for o in response.objects:
 # ===== LOAD EXAMPLE DATA =====
 # =============================
 
-# Start with a new collection
-# CAUTION: The next two lines delete a collection if it exists
-if client.collections.exists("Named_Vector_Jeopardy_Collection"):
-    client.collections.delete("Named_Vector_Jeopardy_Collection")
-
-
 # START LoadDataNamedVectors
 import requests
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
+
+# Start with a new collection
+# CAUTION: The next two lines delete the collection if it exists
+if client.collections.exists("Named_Vector_Jeopardy_Collection"):
+    client.collections.delete("Named_Vector_Jeopardy_Collection")
 
 # Define a new schema
 collection = client.collections.create(
@@ -63,16 +68,12 @@ collection = client.collections.create(
     vectorizer_config=[
         wvc.config.Configure.NamedVectors.text2vec_openai(
             name="jeopardy_questions_vector",
-            # highlight-start
             source_properties=["question"],
-            # highlight-end
             vectorize_collection_name=False,
         ),
         wvc.config.Configure.NamedVectors.text2vec_openai(
             name="jeopardy_answers_vector",
-            # highlight-start
             source_properties=["answer"],
-            # highlight-end
             vectorize_collection_name=False,
         ),
     ],
@@ -82,9 +83,6 @@ collection = client.collections.create(
         wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
     ],
 )
-
-## CHECK VALUES - uncomment the next line to see the collection definition
-# print(collection)
 
 # Get the sample data set
 resp = requests.get(
