@@ -21,14 +21,14 @@ export default function QueryPage() {
         <MetaSEO img="og/content/knowledgecards.jpg" />
 
         <div className={styles.appContainer}>
-          <div className={styles.sidebar}>
+          <div className={`${styles.sidebar} ${styles.mini}`}>
             <Link to="/marketplace" className={styles.backButton}>
               Back to Marketplace
             </Link>
           </div>
           <div className={styles.mainContent}>
             <div className={styles.appDetailHeader}>
-              <img src={`/img/apps/${app.image}`} alt={app.name} />
+              <img src={'/img/site/' + app.image} alt={app.name} />
               <div>
                 <h1>{app.name}</h1>
                 <p>{app.description}</p>
@@ -38,7 +38,7 @@ export default function QueryPage() {
             <div className={styles.appDetailContent}>
               <div className={styles.tabContent}>
                 <h2>Overview</h2>
-                <img src={`/img/apps/${app.image}`} alt={app.name} />
+                <img src={'/img/site/' + app.image} alt={app.name} />
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit...
                 </p>

@@ -5,12 +5,25 @@ import styles from './styles.module.scss';
 export default function AppCard({ app }) {
   return (
     <div className={styles.appCard}>
-      {/* <img src={`/img/apps/${app.image}`} alt={app.name} /> */}
-      <h3>{app.name}</h3>
+      <div className={styles.topCard}>
+        <img src={'/img/site/' + app.image} alt={app.name} />
+        <div className={styles.innerTop}>
+          <h3>{app.name}</h3>
+          <h4>By Weaviate</h4>
+        </div>
+      </div>
       <p>{app.description}</p>
-      <span>{app.price}</span>
-      <span>{app.rating} ★</span>
-      <Link to={app.url}>Learn More</Link>
+
+      <div className={styles.bottomCard}>
+        <div className={styles.comingSoon}>Coming Soon</div>
+        <span>{app.price}</span>
+        <div className={styles.heart}>
+          {' '}
+          <span>{app.rating}</span>
+        </div>
+
+        <Link to={app.url}>Learn More</Link>
+      </div>
     </div>
   );
 }

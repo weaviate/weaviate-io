@@ -262,7 +262,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 110%;
 
   @media screen and (max-width: 900px) {
     justify-content: center;
@@ -933,10 +932,14 @@
 }
 
 .sidebar {
-  width: 250px;
+  width: 380px;
   padding: 20px;
   background-color: #f4f4f9;
   border-right: 1px solid #ddd;
+}
+
+.mini {
+  width: 200px;
 }
 
 .searchInput {
@@ -1040,6 +1043,7 @@
   padding: 20px;
   width: calc(33.333% - 20px);
   box-sizing: border-box;
+  height: 18rem;
 }
 
 .appCard img {
@@ -1049,10 +1053,23 @@
 
 .appCard h3 {
   margin: 15px 0;
+  color: #130c49;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140.5%; /* 1.405rem */
+  margin: 0;
 }
 
 .appCard p {
-  color: #666;
+  color: #6b7c93;
+
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.5%; /* 1.05375rem */
+  margin: 50px 0px;
 }
 
 .appCard span {
@@ -1080,4 +1097,88 @@
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+}
+
+.bottomCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+
+  span {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140.5%; /* 1.05375rem */
+  }
+
+  a {
+    color: #61bd73;
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.37663rem */
+    text-decoration-line: underline;
+  }
+}
+
+.appRatings {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heart {
+  background-image: url('/img/site/apps-heart-icon.svg');
+  background-size: contain;
+  width: 0.625rem;
+  height: 0.5625rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 15px;
+  }
+}
+
+.topCard {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.innerTop {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    color: #6b7c93;
+    font-family: Inter;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140.5%; /* 1.05375rem */
+  }
+}
+
+.comingSoon {
+  background: #130c49;
+  color: #ffffff;
+  width: 130px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.325rem;
+  color: #fff;
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.5%;
 }

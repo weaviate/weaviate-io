@@ -13,7 +13,7 @@ export default function AppPage() {
   return (
     <div className={styles.appDetailContainer}>
       <div className={styles.appDetailHeader}>
-        <img src={`/img/apps/${app.image}`} alt={app.name} />
+        <img src={'img/site/' + app.image} alt={app.name} />
         <div>
           <h1>{app.name}</h1>
           <p>{app.description}</p>
@@ -23,7 +23,7 @@ export default function AppPage() {
       <div className={styles.appDetailContent}>
         <div className={styles.tabContent}>
           <h2>Overview</h2>
-          <img src={`/img/apps/${app.image}`} alt={app.name} />
+          <img src={'img/site/' + app.image} alt={app.name} />
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
           <p>
             Duis aute irure dolor in reprehenderit in voluptate velit esse...
