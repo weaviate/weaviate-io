@@ -8,62 +8,23 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
-import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
 
-`Multi target vector` uses a single query to search multiple target vectors. The results are combined automatically.
+`Multi target vector search` uses a single query to search multiple target vectors. The results are combined automatically.
 
-The [fusion method](#change-the-fusion-method) and the [relative weights](#balance-keyword-and-vector-search) are configurable.
+Weaviate searches the target vectors concurrently for fast response times.
 
 ## Multi target vector search
 
-Combine the results of a vector search and a keyword search. The search uses a single query string.
+Search multiple target vectors at the same time.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# HybridBasicPython"
-  endMarker="# END HybridBasicPython"
+  startMarker="# START MultiBasicPython"
+  endMarker="# END MultiBasicPython"
   language="python"
-/>
-</TabItem>
-
-<TabItem value="py3" label="Python Client v3">
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# HybridBasicPython"
-  endMarker="# END HybridBasicPython"
-  language="python"
-/>
-</TabItem>
-
-<TabItem value="js" label="JS/TS Client v3">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// searchHybridBasic"
-  endMarker="// END searchHybridBasic"
-  language="js"
-/>
-</TabItem>
-
-<TabItem value="js2" label="JS/TS Client v2">
-<FilteredTextBlock
-  text={TSCodeLegacy}
-  startMarker="// searchHybridBasic"
-  endMarker="// END searchHybridBasic"
-  language="js"
-/>
-</TabItem>
-
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# HybridBasicGraphQL"
-  endMarker="# END HybridBasicGraphQL"
-  language="graphql"
 />
 </TabItem>
 </Tabs>
