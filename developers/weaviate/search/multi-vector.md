@@ -30,7 +30,7 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
 
 </details>
 
-## Combine results
+## Combine result sets
 
 Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
 
@@ -40,7 +40,7 @@ Each target vector returns a set of limited number of potential results. The set
 
 If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
 
-## How to handle different vectorizers
+## Compare different vectorizers
 
 Different vectorizers do not necessarily have distances that are compatible with each other, which makes combining them difficult.
 
