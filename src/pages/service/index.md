@@ -20,7 +20,7 @@ For more information related to one of the documents below, please reach out to 
 - Customers
 
 
-  - [Serverless Cloud Terms](/service/weaviate-cloud-agreement)
+  - [Weaviate Cloud Agreement](/service/weaviate-cloud-agreement)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement-nonus)
   - [Weaviate Service Level Agreement](/sla)
