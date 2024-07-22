@@ -10,13 +10,13 @@ import weaviate
 from weaviate.auth import AuthApiKey
 import os
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
-    headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-    },
-)
+# client = weaviate.connect_to_wcs(
+#     cluster_url=os.getenv("WCD_DEMO_URL"),
+#     auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+#     headers={
+#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+#     },
+# )
 
 # client = weaviate.connect_to_local(
 #     headers={
@@ -29,14 +29,12 @@ client = weaviate.connect_to_wcs(
 # ========================
 
 # START MultiBasicPython
-reviews = client.collections.get("WineReviewNV")
-# highlight-start
-response = reviews.query.hybrid(
-    query="A French Riesling",
-    target_vector="title_country",
-    limit=3
+collection = client.collections.get("Jeopardy_Tiny_Dataset")
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    target_vector=["jeopardy_questions_vector", "jeopardy_answers_vector"],  # Specify the target vectors
 )
-# highlight-end
 
 for o in response.objects:
     print(o.properties)
@@ -58,12 +56,12 @@ client = weaviate.connect_to_local(
 
 # Start with a new collection
 # CAUTION: The next two lines delete the collection if it exists
-if client.collections.exists("Named_Vector_Jeopardy_Collection"):
-    client.collections.delete("Named_Vector_Jeopardy_Collection")
+if client.collections.exists("Jeopardy_Tiny_Dataset"):
+    client.collections.delete("Jeopardy_Tiny_Dataset")
 
 # Define a new schema
 collection = client.collections.create(
-    name="Named_Vector_Jeopardy_Collection",
+    name="Jeopardy_Tiny_Dataset",
     description="Jeopardy game show questions",
     vectorizer_config=[
         wvc.config.Configure.NamedVectors.text2vec_openai(
@@ -102,7 +100,7 @@ for row in data:
     )
 
 # Upload the sample data
-nvjc_collection = client.collections.get("Named_Vector_Jeopardy_Collection")
+nvjc_collection = client.collections.get("Jeopardy_Tiny_Dataset")
 with nvjc_collection.batch.dynamic() as batch:
     for q in question_objects:
         batch.add_object(properties=q)
