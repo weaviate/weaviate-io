@@ -935,7 +935,7 @@
   width: 380px;
   padding: 20px;
   background-color: #f4f4f9;
-  border-right: 1px solid #ddd;
+  border-right: 0.5px solid #8f99b1;
 }
 
 .mini {
@@ -981,29 +981,80 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-bottom: 90px;
 }
 
 .appDetailHeader img {
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
+  width: 6.125rem;
+  height: 6.125rem;
+  flex-shrink: 0;
 }
 
 .appDetailHeader h1 {
   margin: 0;
+  color: #0c1428;
+
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 157.33%; /* 2.94994rem */
 }
 
 .appDetailHeader p {
   margin: 5px 0;
+  color: #130c49;
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%; /* 1.57331rem */
+}
+
+.appDivider {
+  position: relative;
+  display: block;
+  background: #8f99b1;
+  width: 63.5625rem;
+  height: 0.01rem;
+  left: -20px;
+  margin: 20px 0px;
+}
+
+.imageContainer {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.overviewImage {
+  width: 24.94063rem;
+  height: 19.5625rem;
+  background: linear-gradient(
+    216deg,
+    #00b7e2 0.75%,
+    #01b9d7 4.69%,
+    #0cc796 29.31%,
+    #14d363 51.97%,
+    #1adb3e 71.67%,
+    #1ee028 88.42%,
+    #20e220 98.27%
+  );
+  opacity: 0.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.325rem;
 }
 
 .installButton {
-  padding: 10px 20px;
-  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  border-radius: 0.3125rem;
+  background: #130c49;
+  width: 6.6875rem;
+  height: 2.1875rem;
 }
 
 .appDetailContent {
@@ -1015,12 +1066,31 @@
   flex-grow: 1;
 }
 
+.tabBottomContent {
+  display: flex;
+  gap: 100px;
+
+  p {
+    width: 600px;
+  }
+}
+
 .additionalInfo {
-  width: 250px;
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  width: 20.75rem;
+
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.1);
+
+  p {
+    color: #130c49;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 200%;
+  }
 }
 
 .relatedApps {
@@ -1043,7 +1113,7 @@
   padding: 20px;
   width: calc(33.333% - 20px);
   box-sizing: border-box;
-  height: 18rem;
+  height: 17rem;
 }
 
 .appCard img {
@@ -1070,6 +1140,7 @@
   font-weight: 400;
   line-height: 140.5%; /* 1.05375rem */
   margin: 50px 0px;
+  height: 30px;
 }
 
 .appCard span {
@@ -1087,16 +1158,16 @@
 }
 
 .backButton {
-  display: block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
   text-decoration: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  background: #130c49;
+  width: 9.6875rem;
+  height: 2.1875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bottomCard {
@@ -1181,4 +1252,17 @@
   font-style: normal;
   font-weight: 400;
   line-height: 140.5%;
+}
+
+.categorySection {
+  margin: 30px 0px;
+}
+
+.categoryDescriptions {
+  color: rgba(12, 20, 40, 0.7);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%; /* 1.57331rem */
+  margin-bottom: 10px;
 }

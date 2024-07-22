@@ -13,16 +13,23 @@ export default function AppCard({ app }) {
         </div>
       </div>
       <p>{app.description}</p>
-
       <div className={styles.bottomCard}>
-        <div className={styles.comingSoon}>Coming Soon</div>
-        <span>{app.price}</span>
-        <div className={styles.heart}>
-          {' '}
-          <span>{app.rating}</span>
-        </div>
+        {app.released === 'no' ? (
+          <>
+            <div className={styles.comingSoon}>Coming Soon</div>
+            <Link to={app.url}>Learn More</Link>
+          </>
+        ) : (
+          <>
+            <span>{app.price}</span>
+            <div className={styles.heart}>
+              {' '}
+              <span>{app.rating}</span>
+            </div>
 
-        <Link to={app.url}>Learn More</Link>
+            <Link to={app.url}>Learn More</Link>
+          </>
+        )}
       </div>
     </div>
   );

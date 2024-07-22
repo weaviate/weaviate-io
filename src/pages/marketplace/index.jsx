@@ -15,8 +15,8 @@ export default function MarketplacePage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Weaviate Knowledge Cards"
-        description="Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications."
+        title="Weaviate Marketplace"
+        description="Unlock more with addons and tools. Find the right Weaviate extension for your project."
       >
         <MetaSEO img="og/content/knowledgecards.jpg" />
 

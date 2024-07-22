@@ -8,14 +8,14 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.id === 'query');
+  const app = appData.find((app) => app.id === 'collections');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query | Weaviate Marketplace"
+        title="Collections | Weaviate Marketplace"
         description="A browser-based GraphQL IDE that lets users work interactively with their clusters."
       >
         <MetaSEO />

@@ -17,7 +17,7 @@ export default function AppFilter() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(appData); // Log the data to check if it's being imported correctly
+    console.log(appData);
   }, []);
 
   const handleSearchChange = (e) => {
@@ -35,6 +35,27 @@ export default function AppFilter() {
         app.description.toLowerCase().includes(searchQuery.toLowerCase()))
     );
   });
+
+  const renderCardsByCategory = (category) => {
+    const appsInCategory = filteredApps.filter(
+      (app) => app.category === category
+    );
+    if (appsInCategory.length === 0) return null;
+
+    return (
+      <div key={category} className={styles.categorySection}>
+        <h2>{category}</h2>
+        <p className={styles.categoryDescriptions}>
+          {categoryDescriptions[category]}
+        </p>
+        <div className={styles.cardContainer}>
+          {appsInCategory.map((app) => (
+            <AppCard key={app.id} app={app} />
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className={styles.appContainer}>
@@ -82,13 +103,26 @@ export default function AppFilter() {
         )}
       </div>
       <div className={styles.mainContent}>
-        <h2>{selectedCategory}</h2>
-        <p>{categoryDescriptions[selectedCategory]}</p>
-        <div className={styles.cardContainer}>
-          {filteredApps.map((app) => (
-            <AppCard key={app.id} app={app} />
-          ))}
-        </div>
+        {selectedCategory === 'All' ? (
+          <>
+            {Object.keys(categoryDescriptions).map(
+              (category) =>
+                category !== 'All' && renderCardsByCategory(category)
+            )}
+          </>
+        ) : (
+          <>
+            <h2>{selectedCategory}</h2>
+            <p className={styles.categoryDescriptions}>
+              {categoryDescriptions[selectedCategory]}
+            </p>
+            <div className={styles.cardContainer}>
+              {filteredApps.map((app) => (
+                <AppCard key={app.id} app={app} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
