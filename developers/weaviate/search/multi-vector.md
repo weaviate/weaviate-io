@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
 
-`Multi target vector search` uses a single query to search multiple target vectors. The results are combined automatically. Weaviate searches the target vectors concurrently.
+Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
 ## Create the example collection
 
@@ -30,9 +30,9 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
 
 </details>
 
-## Multi target vector search
+## Multiple-target vector search
 
-Search multiple target vectors at the same time.
+Search multiple-target vectors at the same time.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -47,7 +47,7 @@ Search multiple target vectors at the same time.
 
 ## Adjust target vector weight
 
-Set the weight of each target vector to modify their [relative influence](#compare-different-vectorizers) on the result set.
+Set the weight of each target vector. The weights modify the calculation that [merges the results.](#compare-different-vectorizers).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -62,13 +62,13 @@ Set the weight of each target vector to modify their [relative influence](#compa
 
 ## Considerations
 
-This section discusses considerations that distinguish multiple target vector searches from single target vector searches.
+This section discusses considerations that distinguish multiple-target vector searches from single-target vector searches.
 
 ### Combine result sets
 
 Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
 
-It is more complicated to determine the set of result vectors with the least difference when you search multiple target vectors.
+It is more complicated to determine the set of result vectors with the least difference when you search multiple-target vectors.
 
 Each target vector returns a set of limited number of potential results. The sets that are returned might not overlap completely. A "missing" vector has a smaller distance and can skew the search results. To prevent misleading results, Weaviate fetches any missing vectors to align the lists of result vectors.
 
