@@ -6,45 +6,137 @@ Here are the release ⭐️*highlights*⭐️!
 
 - [**Improved Range Queries**](#improved-range-queries)
 - [**Async Replication**](#async-replication)
-- [**Module improvements**](#module-improvements)
-- [**Multi target vector**](#multi-target-vector)
+- [**Anthropic integration**](#anthropic-integration)
+- [**Bulk enable API-based modules**](#bulk-enable-modules)
+- [**Multi target vector search**](#multi-target-vector-search)
+- [**Tenant statuses changed**](#tenant-statuses-changed)
 - [**Tenant offload to cloud storage**](#tenant-offload-to-cloud-storage)
-- [**Async Python Implementation**](#async-python-implementation)
+- [**Async Python client**](#async-python-client)
 - [**Scalar Quantization**](#scalar-quantization)
 - [**Dashboards for async indexes**](#dashboards-for-async-indexes)
+- [**Korean tokenizer**](#korean-tokenizer)
 - [**Additional changes**](#additional-changes)
 
 ## Improved Range Queries
 
-Cool stuff goes here
+import RangeGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/Range.jpg';
+
+<p align="center"><img src={RangeGraphic} width="75%" alt="Range query section graphic"/></p>
+
+The new rangeable index is a powerful new tool for quantitative comparisons.
+
+Object properties in Weaviate are indexed and searchable. In earlier releases, range queries were computationally expensive. The new rangeable index is an efficient way to quickly search ranges of data. Use the new index type when you anticipate using numerical comparisons over ranges of values. When you define a property type as `int`, `number`, or `date`, consider defining a rangeable index too.
+
+The rangeable index also works with [filterable indexes](/developers/weaviate/config-refs/schema/range-index#considerations). You can combine filters and range queries to quickly narrow your searches to the most relevant information.
+
+Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
 ## Async Replication
 
-Cool stuff goes here
+Data consistency is an important consideration for multi-node clusters. Weaviate v1.18 introduces a [repair-on-read](https://weaviate.io/blog/weaviate-1-18-release#repair-on-read) feature that finds and fixes problems at read time. The current release adds another powerful tool, async replication. [Async replication](/developers/weaviate/concepts/replication-architecture/consistency#async-replication) works in the background, checking and updating your data to keep it consistent.
 
-## Module improvements
+In Weaviate, consistency has two components - schema consistency and object consistency. The [Raft](https://raft.github.io/) algorithm ensures strongly consistent schema replication. Data objects on the other hand, are eventually consistent. This means all nodes eventually contain the same data, but at a given point in time some nodes may be out of sync.
 
-Cool stuff goes here
+Eventual consistency is a trade-off that helps to ensure high availability, but at the risk of occasionally serving stale data.
 
-## Multi target vector
+Asynch replication addresses this risk and minimizes it. The aysnch replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-Cool stuff goes here
+Async replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
+
+[Read more](/developers/weaviate/concepts/replication-architecture/consistency#async-replication)
+
+## Anthropic integration
+
+Anthropic generative AI integration is now available in Weaviate. This integration allows you to use the `Claude` family of models from Anthropic to perform generative search on your data. The integration includes support for the latest models, such as `Claude 3.5 Sonnet`.
+
+This integration will be enabled by default on Weaviate Cloud [WCD](https://console.weaviate.cloud/) instances.
+
+To enable the Anthropic integration on a local deployment, add `generative-anthropic` to the `ENABLE_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md), or use the `ENABLE_API_BASED_MODULES` environment variable as described below.
+
+See the [Anthropic integration page](/developers/weaviate/model-providers/anthropic/index.md) for more information.
+
+## Bulk enable modules
+
+**Experimental** This feature is experimental and may change in future releases.
+
+The `ENABLE_API_BASED_MODULES` [environment variable](/developers/weaviate/config-refs/env-vars.md) adds the ability to enable all relevant modules for API-based [model provider integrations](/developers/weaviate/model-providers/index.md) with one setting.
+
+You do no have to enable individual modules in the `ENABLE_MODULES` environment variable.
+
+`ENABLE_API_BASED_MODULES` works additively with the `ENABLE_MODULES` environment variable. If you set `ENABLE_API_BASED_MODULES` to `true`, and `ENABLE_MODULES` to `text2vec-ollama,generative-ollama,backup-s3` for example, `text2vec-ollama`, `generative-ollama`, and `backup-s3` are enabled as well as all API-based modules are enabled.
+
+Also keep in mind that enabling multiple modules will disable the [`Explore`](/developers/weaviate/api/graphql/explore.md) feature.
+
+## Multi target vector search
+
+Weaviate 1.24 introduces objects with multiple vectors. This release introduces multi vector search. Starting in 1.26, you can make a single query that combines results from across multiple vectors.
+
+When you search multiple vectors, just add a list of target vectors to the query. Weaviate automatically combines the results. The mechanism is similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
+
+Each vectorizer creates vectors with their own characteristics. Weaviate allows you to tune your multi vector search to ballance the target vectors in a way that reflects your application needs.
+
+For details, see [multi target vector search](/developers/weaviate/search/multi-vector).
+
+## Tenant statuses changed
+
+Tenant [activity status](/developers/weaviate/concepts/data.md#tenant-status) is used to manage memory usage.
+
+The status names are changed to `ACTIVE` and `INACTIVE` in Weaviate `1.26` to better reflect the tenant status. The status definitions are the same as before.
+
+- `ACTIVE` tenants are available for read and write operations.
+- `INACTIVE` tenants are not available for read or write operations.
+
+In earlier versions, `INACTIVE` tenants are marked as `COLD` and `ACTIVE` tenants are marked as `HOT`.
+
+This release also adds a new status, `OFFLOADED`. (See [below](#tenant-offload-to-cloud-storage).)
 
 ## Tenant offload to cloud storage
 
-Cool stuff goes here
+In addition to the option of putting tenants in `INACTIVE` status, Weaviate `1.26` introduces the ability to "offload" tenants to cloud storage. This allows you to store tenants on lower-cost cloud storage and load them back into memory when needed.
 
-## Async Python Implementation
+Such a tenant is marked as `OFFLOADED` and is not available for read nor write operations. This adds a new level of flexibility to Weaviate, allowing you to store tenants on disk or in cloud storage, depending on your needs. While the tenant is being offloaded or being loaded back into memory, it will have the status of `OFFLOADING` or `ONLOADING` respectively.
 
-Cool stuff goes here
+Currently this is supported for AWS S3, with more cloud storage providers to be added in future releases.
+
+Read more about how to [set tenant activity statuses](/developers/weaviate/manage-data/multi-tenancy.md#update-tenant-activity-status), or about the [`s3-offload` module](/developers/weaviate/configuration/modules.md#offload-s3-module).
+
+## Async Python client
+
+The Weaviate Python client library adds a `WeaviateAsyncClient` object and API that supports asynchronous operations. This allows you to use the client in an asynchronous manner, which can be useful for highly concurrent applications such as web servers.
+
+The new async client API is described [on a dedicated page](/developers/weaviate/client-libraries/python/async.md). It includes [practical examples](/developers/weaviate/client-libraries/python/async.md#application-level-example) of using the async client in your Python code with [FastAPI](https://fastapi.tiangolo.com/), a popular asynchronous web framework for creating modular web API microservices.
 
 ## Scalar Quantization
 
-Cool stuff goes here
+import SQGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/SQ.jpg';
+
+<p align="center"><img src={SQGraphic} width="75%" alt="SQ section graphic"/></p>
+
+This release introduces a new vector compression technique called scalar quantization (SQ). SQ is a powerful technique that reduces the storage space required for each dimension of a vector. In Weaviate, vector dimensions are typically stored using 32 bit floating point numbers. With scalar quantization, each dimension is converted into an 8 bit integer. This transformation effectively cuts the size of vectors by 75% since 8 bit representations only need a quarter of the original 32 bits.
+
+Image color depth is a helpful analogy. An image that has a deep pallet uses many bits of information to capture shades of a color. An image with low bit-depth has a more limited number of colors (256 values for 8 bits). The scene is still clearly visible. Even though there may be visual artifacts, the lower bit-depth significantly reduces the storage space required.
+
+Practically speaking, scalar quantization provides a fourfold reduction in vector size with about a 5% loss in retrieval recall. Techniques such as over-fetching and rescoring mitigate the reduction and improve recall.
+
+Scalar quantization offers a compelling trade-off between storage efficiency and retrieval accuracy. This makes SQ an essential tool for optimizing vector storage in Weaviate. Look for more details on SQ and SQ related experiments in a deep dive blog post that's coming soon!
 
 ## Dashboards for async indexes
 
-Cool stuff goes here
+import ChartsGraphic from '/blog/2024-07-09-weaviate-1-26-release/img/Charts.jpg';
+
+<p align="center"><img src={ChartsGraphic} width="75%" alt="Charts section graphic"/></p>
+
+Weaviate gathers metrics that are compatible with the open-source [Prometheus](https://prometheus.io/docs/introduction/overview/) monitoring and alerting system. The v1.26 Weaviate release adds [new metrics](/developers/weaviate/configuration/monitoring) that monitor aysnc indexing queues.
+
+Use these metrics with Prometheus and [Grafana](https://grafana.com/docs/) to monitor your Weaviate instance.
+
+If you don't see a metric that you need, you can extend Weaviate to add new metrics. To suggest a new metric, or to get started writing your own, see the [contributor guide](/developers/contributor-guide).
+
+## Korean tokenizer
+
+A new Korean tokenizer is available in Weaviate `1.26` (and `1.25.7`). This tokenizer is based on the `kagome` library and a `MeCab` dictionary. To enable the Korean tokenizer, set the `ENABLE_TOKENIZER_KAGOME_KR` [environment variable](/developers/weaviate/config-refs/env-vars.md) to `true`, and set `kagome_kr` as the [tokenization method](/developers/weaviate/config-refs/schema/index.md#kagome_kr-tokenization-method) for the relevant properties.
+
+Note this feature is experimental and may change in future releases.
 
 ## Additional changes
 

@@ -74,8 +74,6 @@ This code creates a sample collection and imports a small amount of data.<br/><b
   language="py"
 />
 
-
-
 ### REST API
 
 The legacy, single vector syntax is valid for use with collections that don't have named vectors:

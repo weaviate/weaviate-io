@@ -407,6 +407,33 @@ assert result["replicationConfig"]["factor"] == 3
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+
+# =======================
+# ===== ASYNC REPAIR ====
+# =======================
+
+# START AsyncRepair
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "replicationConfig": {
+        "factor": 3,
+        "aysnc_enabled": True
+    },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END AsyncRepair
+
+# Test
+result = client.schema.get(class_name)
+assert result["replicationConfig"]["factor"] == 3
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
 # ====================
 # ===== SHARDING =====
 # ====================

@@ -28,15 +28,15 @@ This can be done by setting the appropriate [environment variables](../config-re
 Weaviate Cloud (WCD) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
 :::
 
-### Enable modules
+### Enable individual modules
 
-You can enable modules by specifying the list of modules in the `ENABLE_MODULES` variable. For example, this code enables the `text2vec-contextionary` module.
+You can enable modules by specifying the list of modules in the `ENABLE_MODULES` variable. For example, this code enables the `text2vec-transformers` module.
 
 ```yaml
 services:
   weaviate:
     environment:
-      ENABLE_MODULES: 'text2vec-contextionary'
+      ENABLE_MODULES: 'text2vec-transformers'
 ```
 
 To enable multiple modules, add them in a comma-separated list.
@@ -49,6 +49,35 @@ services:
     environment:
       ENABLE_MODULES: 'text2vec-huggingface,generative-cohere,qna-openai'
 ```
+
+### Enable all API-based modules
+
+:::caution Experimental feature
+Available starting in `v1.26.0`. This is an experimental feature. Use with caution.
+:::
+
+You can enable all API-based modules by setting the `ENABLE_API_BASED_MODULES` variable to `true`. This will enable all API-based [model integrations](../model-providers/index.md), such as those for Anthropic, Cohere, OpenAI and so on by enabling the relevant modules. These modules are lightweight, so enabling them all will not significantly increase resource usage.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_API_BASED_MODULES: 'true'
+```
+
+The list of API-based modules can be found on the [model provider integrations page](../model-providers/index.md#api-based). You can also inspect the [source code](https://github.com/weaviate/weaviate/blob/main/adapters/handlers/rest/configure_api.go) where the list is defined.
+
+This can be combined with enabling individual modules. For example, the example below enables all API-based modules, Ollama modules and the `backup-s3` module.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      ENABLE_API_BASED_MODULES: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-s3'
+```
+
+Note that enabling multiple vectorizer (e.g. `text2vec`, `multi2vec`) modules will disable the [`Explore` functionality](../api/graphql/explore.md). If you need to use `Explore`, you should only enable one vectorizer module.
 
 ### Module-specific variables
 
@@ -113,7 +142,39 @@ services:
 Your choice of the `text2vec` module does not restrict your choice of `generative` module, or vice versa.
 :::
 
+## Tenant offload modules
+
+### `offload-s3` module
+
+The `offload-s3` module enables you to [offload tenants](../concepts/data.md#tenant-activity-status) to an S3 bucket.
+
+To use the `offload-s3` module, enable it by adding it to the `ENABLE_MODULES` environment variable, as shown below.
+
+```yaml
+services:
+  weaviate:
+    environment:
+      # highlight-start
+      ENABLE_MODULES: 'text2vec-cohere,generative-cohere,offload-s3'
+      # highlight-end
+```
+
+The `offload-s3` module reads the following environment variables:
+
+- `OFFLOAD_S3_BUCKET`: The S3 bucket to which the tenants are offloaded.
+    - The default is `weaviate-offload`. If the bucket does not exist, and `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the bucket will be created.
+- `OFFLOAD_S3_BUCKET_AUTO_CREATE`: Whether to automatically create the S3 bucket if it does not exist. The default is `false`.
+- `OFFLOAD_S3_CONCURRENCY`: The number of concurrent offload operations. The default is `25`.
+- `OFFLOAD_TIMEOUT`: The timeout for offloading operations (create bucket, upload, download). The default is `120` (in seconds)
+    - Offload operations are asynchronous. As a result, the timeout is for the operation to start, not to complete.
+    - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
+
+:::tip AWS permissions
+The Weaviate instance must have the necessary permissions to access the S3 bucket. For example, the provided AWS identity must be able to write to the bucket; and if `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the identity must have permission to create the bucket.
+:::
+
 ## Custom modules
+
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
 ## Related pages
