@@ -43,11 +43,11 @@ In Weaviate, consistency has two components - schema consistency and object cons
 
 Eventual consistency is a trade-off that helps to ensure high availability, but at the risk of occasionally serving stale data.
 
-Asynch replication addresses this risk and minimizes it. The aysnch replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Async replication addresses this risk and minimizes it. The aysnc replication mechanism uses an efficient algorithm to monitor and compare nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
-Async replication is much more effective than repair-on-read when there are many inconsistencies. If, for example, an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
+Async replication is more effective than repair-on-read when there are many inconsistencies between nodes. If, for example, an offline node misses a series of updates, async replication quickly restores consistency for all of the objects when the node returns to service. Under a repair-on-read approach, the missing updates might not be noticed for a long time.
 
-[Read more](/developers/weaviate/concepts/replication-architecture/consistency#async-replication)
+[Read more](/developers/weaviate/concepts/replication-architecture/consistency#async-replication).
 
 ## Anthropic integration
 
