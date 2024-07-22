@@ -209,6 +209,15 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithVectorizer"
+      endMarker="// END CreateCollectionWithVectorizer"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 
@@ -256,6 +265,15 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithNamedVectors"
+      endMarker="// END CreateCollectionWithNamedVectors"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Specify vectorizer settings
@@ -299,6 +317,15 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Set vector index type
@@ -339,6 +366,15 @@ The vector index type can be set for each collection between `hnsw`, `flat` and 
       startMarker="// START SetVectorIndexType"
       endMarker="// END SetVectorIndexType"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="java"
     />
   </TabItem>
 </Tabs>
@@ -1182,16 +1218,19 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <details>
   <summary>
-    Limitations when you add a property after importing data
+    Indexing limitations after data import
   </summary>
 
-Adding a new property after you import data limits searches that use the new property.<br/><br/>
+There are no index limitations when you add collection properties before you import data.
 
-Property indexes are built at import time. If you add a new property after importing some data, objects in the existing index aren't automatically updated to add the new property. Queries may return unexpected results because only new objects have the new property; the older objects are not re-indexed to add it.<br/><br/>
+If you add a new property after you import data, there is an impact on indexing.<br/><br/>
 
-To index all objects, do one of the following:
-- Add the property before importing objects.
-- Delete the collection; re-create it with the new property; and re-import the data.
+Property indexes are built at import time. If you add a new property after importing some data, pre-existing objects index aren't automatically updated to add the new property. This means pre-existing objects aren't added to the new property index. Queries may return unexpected results because the index only includes new objects.<br/><br/>
+
+To create an index that includes all of the objects in a collection, do one of the following:
+
+- New collections: Add all of the collection's properties before importing objects.
+- Existing collections: Export the existing data from the collection. Re-create it with the new property. Import the data into the updated collection.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
 

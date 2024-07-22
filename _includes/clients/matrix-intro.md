@@ -5,7 +5,8 @@ For links to the client releases associated with the latest Weaviate core releas
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.25.7](https://github.com/weaviate/weaviate/releases/tag/v1.25.7) | 2024-07-04 | 4.6.6 | 3.0.8 | 4.14.0 | 4.7.0 |
+| [1.25.8](https://github.com/weaviate/weaviate/releases/tag/v1.25.8) | 2024-07-18 | 4.6.6 | 3.0.8 | 4.14.2 | 4.7.0 |
+| [1.25.7](https://github.com/weaviate/weaviate/releases/tag/v1.25.7) | 2024-07-04 | '' | ''  | 4.14.0 | '' |
 | [1.25.6](https://github.com/weaviate/weaviate/releases/tag/v1.25.6) | 2024-06-28 | 4.6.5 |'' | '' | '' |
 | [1.25.5](https://github.com/weaviate/weaviate/releases/tag/v1.25.5) | 2024-06-24 | '' | '' | '' | '' |
 | [1.25.4](https://github.com/weaviate/weaviate/releases/tag/v1.25.4) | 2024-06-13 | 4.6.3 | 3.0.3 | '' | '' |

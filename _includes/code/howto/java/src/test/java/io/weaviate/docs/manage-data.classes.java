@@ -72,10 +72,9 @@ class ManageDataClassesTest {
       .returns(true, Result::getResult);
   }
 
-  // START CreateCollectionWithProperties"
+  // START CreateCollectionWithProperties
   private void createCollectionWithProperties(String className){
     String className = className;
-
     // Define class properties"
     Property titleProperty = Property.builder()
               .name("title")
@@ -100,7 +99,132 @@ class ManageDataClassesTest {
               .withClass(articleClass)
               .run();
   }
-  // END CreateCollectionWithProperties"
+  // END CreateCollectionWithProperties
+
+  // START CreateCollectionWithVectorizer
+  private void createCollectionWithVectorizer(){
+        // Define class properties"
+        Property titleProperty = Property.builder()
+                .name("title")
+                .dataType(Arrays.asList(DataType.TEXT))
+                .build();
+        Property bodyProperty = Property.builder()
+                .name("body")
+                .dataType(Arrays.asList(DataType.TEXT))
+                .build();
+        // Define the vectorizer in the WeaviateClass Builder
+        WeaviateClass articleClass = WeaviateClass.builder()
+                .className("Article")
+                .properties(Arrays.asList(titleProperty, bodyProperty))
+                .replicationConfig(replicationConfig)
+                .vectorizer("text2vec-openai") // Vectorize of your choic e.g. text2vec-openai or text2vec-cohere
+                .build();
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END CreateCollectionWithVectorizer
+
+  // START CreateCollectionWithNamedVectors
+  private void createCollectionWithNamedVectors(){
+        // Define class properties"
+        Property titleProperty = Property.builder()
+                  .name("title")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        Property bodyProperty = Property.builder()
+                  .name("body")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        //Define the vectorizers configurations
+        Map<String, Object> text2vecOpenAI = new HashMap<>();
+        Map<String, Object> text2vecOpenAISettings = new HashMap<>();
+        text2vecOpenAISettings.put("properties", new String[]{"name"});
+        text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
+        Map<String, Object> text2vecCohere = new HashMap<>();
+        Map<String, Object> text2vecCohereSettings = new HashMap<>();
+        text2vecCohereSettings.put("properties", new String[]{"body"});
+        text2vecCohere.put("text2vec_cohere", text2vecCohereSettings);
+        //Define the vector configurations
+        Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();
+        vectorConfig.put("name_vector", WeaviateClass.VectorConfig.builder()
+                .vectorIndexType("hnsw")
+                .vectorizer(text2vecOpenAI)
+                .build());
+        vectorConfig.put("body_vector", WeaviateClass.VectorConfig.builder()
+                .vectorIndexType("hnsw")
+                .vectorizer(text2vecCohere)
+                .build());
+        // Define the vectorizers in the WeaviateClass Builder
+        WeaviateClass countryClass = WeaviateClass.builder()
+                .className(className)
+                .properties(Arrays.asList(titleProperty, bodyProperty))
+                .vectorConfig(vectorConfig)
+                .build();
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END CreateCollectionWithNamedVectors
+
+  // START ModuleSettings
+  private void createCollectionWithModuleSettings(){
+        // Define class properties"
+        Property titleProperty = Property.builder()
+                  .name("title")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        Property bodyProperty = Property.builder()
+                  .name("body")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        //Define the module settings
+        Map<String, Object> text2vecOpenAI = new HashMap<>();
+        Map<String, Object> text2vecOpenAISettings = new HashMap<>();
+        text2vecOpenAISettings.put("vectorizePropertyName", false);
+        text2vecOpenAISettings.put("model", "text-embedding-3-small"); //set the model of your choice e.g. text-embedding-3-small
+        text2vecOpenAI.put("text2vec-openai", text2vecOpenAISettings);
+        Map<Object, Object> moduleConfig = new HashMap<>();
+        moduleConfig.put("text2vec-openai", text2vecOpenAI);
+        // Set the module configu in the WeaviateClass Builder
+        WeaviateClass countryClass = WeaviateClass.builder()
+                .className(className)
+                .properties(Arrays.asList(titleProperty, bodyProperty))
+                .moduleConfig(moduleConfig) // Set the module config
+                .build();
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END ModuleSettings
+
+  // START SetVectorIndexType
+  private void createCollectionWithVectorIndexType(){
+        // Define class properties"
+        Property titleProperty = Property.builder()
+                  .name("title")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        Property bodyProperty = Property.builder()
+                  .name("body")
+                  .dataType(Arrays.asList(DataType.TEXT))
+                  .build();
+        // Define the index type in the WeaviateClass Builder
+        WeaviateClass countryClass = WeaviateClass.builder()
+                .className(className)
+                .properties(Arrays.asList(titleProperty, bodyProperty))
+                .vectorizer("text2vec-openai")
+                .vectorIndexType("hnsw") //set the vector index of your choice e.g. hnsw, flat...
+                .build();
+        // Add the class to the schema
+        Result<Boolean> classResult = client.schema().classCreator()
+                .withClass(countryClass)
+                .run();
+  }
+  // END SetVectorIndexType
 
   private void readOneCollection(String className) {
     // START ReadOneCollection

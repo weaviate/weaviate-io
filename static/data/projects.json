@@ -594,5 +594,71 @@
     "models": "Default",
     "stack": "Default",
     "types": []
+  },
+  {
+    "id": 65,
+    "name": "Docs QA Bot",
+    "description": "Docs QA Bot is a Streamlit app that enables users to interact with the uploaded PDF. You can ask questions or doubts regarding the PDF and our Chatbot would answer them with a friendly response.",
+    "link": "https://github.com/srini047/docs-qa-bot",
+    "type": "Community projects",
+    "category": ["Chatbot", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 66,
+    "name": "LLMStack",
+    "description": "LLMStack is a no-code multi-agent framework to build LLM Agents, workflows and applications with your data.",
+    "link": "https://github.com/trypromptly/LLMStack",
+    "type": "Community projects",
+    "category": ["Framework", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 67,
+    "name": "assistants-api",
+    "description": "Assistants-api is a faithful recreation of the \"GPTs Store\" designed to be customizable and to be used in a fully siloed environment all the while supporting the official OpenAI client.",
+    "link": "https://github.com/OpenGPTs-platform/assistants-api",
+    "type": "Community projects",
+    "category": ["Store", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 68,
+    "name": "Weaviate Lexplorer",
+    "description": "Weaviate Lexplorer is an open-source app for discovering Lex Fridman's podcast insights using Next.js as a GUI, Ollama for running LLMs locally and the Weaviate vector database local instance via Docker for storing transcription chunks.",
+    "link": "https://github.com/rokbenko/weaviate-lexplorer",
+    "type": "Community projects",
+    "category": ["App", "Entertainment"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 69,
+    "name": "Verbis",
+    "description": "Verbis is an open-source MacOS app that empowers you with fully-local GenAI over your sensitive data. Securely connect to your SaaS apps, index data locally, and boost productivity without compromising privacy",
+    "link": "https://github.com/verbis-ai/verbis",
+    "type": "Community projects",
+    "category": ["App", "Security", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
+  },
+  {
+    "id": 70,
+    "name": "Recipe Search",
+    "description": "Recipe Search is a website for discovering recipes. Simply enter specific ingredients or abstract terms, and we'll provide the top three most relevant recipes with direct links. Simplify your cooking and make the most of your ingredients with Recipe Search.",
+    "link": "https://github.com/ioannagkika",
+    "type": "Community projects",
+    "category": ["App", "Search", "Productivity"],
+    "models": "Default",
+    "stack": "Default",
+    "types": []
   }
 ]
