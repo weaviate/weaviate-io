@@ -7,7 +7,7 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.id === 'explorer');
+  const app = appData.find((app) => app.id === 'recommender');
   const [activeTab, setActiveTab] = useState('Overview');
 
   if (!app) return <div>App not found</div>;
@@ -82,8 +82,8 @@ export default function QueryPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Explorer | Weaviate Marketplace"
-        description="Give non-technical users visibility into objects that are part of a collection."
+        title="Recommender | Weaviate Marketplace"
+        description="Enable personalized, multimodal product recommendations—without writing any code."
       >
         <MetaSEO />
 
