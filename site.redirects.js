@@ -521,12 +521,12 @@ const siteRedirects = {
             from: "/service/service-schedule"
         },
         {
-            to: "/service/weaviate-general-terms-of-service",
-            from: "/service/weaviate-terms-of-service"
-        },
-        {
             to: "/weaviate-support-terms",
             from: "/supportterms"
+        },
+        {
+            to: "/service",
+            from: "/service/weaviate-general-terms-of-service"
         },
             // Case Study Changes
             {
