@@ -26,7 +26,7 @@ For links to the matrix of previous core and client releases, expand this sectio
   <summary>Releases</summary>
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
-| :- | :- | :-: | :-: | :-: | :-: | :-: |
+| :- | :- | :-: | :-: | :-: | :-: |
 | [1.25.0][c1.25.0] | 2024-05-10 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.1] | [4.6.0][j4.6.0] |
 | [1.24.0][c1.24.0] | 2024-02-27 | [4.5.1][p4.5.1] | [2.0.0][ts2.0.0] | '' | '' |
 | [1.23.0][c1.23.0] | 2023-12-18 | [3.26.0][p3.26.0] | '' | '' | [4.4.2][j4.4.2] |
