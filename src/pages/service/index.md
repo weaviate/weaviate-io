@@ -18,8 +18,7 @@ For more information related to one of the documents below, please reach out to 
   - [Contributor License Agreement](/service/contributor-license-agreement)
 <br></br><br></br>
 - Customers
-
-
+  
   - [Weaviate Cloud Agreement](/service/weaviate-cloud-agreement)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement-nonus)

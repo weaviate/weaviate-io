@@ -1,5 +1,5 @@
 ---
-title: Weaviate Serverless Cloud Agreement
+title: Weaviate Cloud Agreement
 # image: og/service/_title.jpg
 ---
 
@@ -7,7 +7,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
-### **SERVERLESS CLOUD AGREEMENT**
+### **WEAVIATE CLOUD AGREEMENT**
 
 **Last Updated: July 2024**
 
