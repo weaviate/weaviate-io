@@ -477,6 +477,7 @@ For links to the Java Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.8.0][j4.8.0] | 2024-07-23 |
   | [4.7.0][j4.7.0] | 2024-05-20 |
   | [4.6.0][j4.6.0] | 2024-03-05 |
   | [4.5.1][j4.5.1] | 2024-01-08 |
@@ -889,6 +890,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( java client links )
 
+[j4.8.0]: https://github.com/weaviate/java-client/releases/tag/4.8.0
 [j4.7.0]: https://github.com/weaviate/java-client/releases/tag/4.7.0
 [j4.6.0]: https://github.com/weaviate/java-client/releases/tag/4.6.0
 [j4.5.1]: https://github.com/weaviate/java-client/releases/tag/4.5.1
