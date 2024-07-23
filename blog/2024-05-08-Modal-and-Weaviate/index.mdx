@@ -112,7 +112,7 @@ with client.batch.rate_limit(requests_per_minute=600) as batch:
 For our application, we used the fixed size batch import set to 1,024 objects.
 
 ## Take-Aways
-We built an end-to-end application that searches Wikipedia for an article that completes an analogy, like “the peso is to Mexico as the dollar is to the United States”. You can try it [here](https://vector-analogies-wikipedia.vercel.app).
+We built an end-to-end application that searches Wikipedia for an article that completes an analogy, like “the peso is to Mexico as the dollar is to the United States”.
 
 We powered our text and vector search with Weaviate and our embeddings, ingestion, and database queries with [Modal](https://modal.com).
 
