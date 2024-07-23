@@ -700,8 +700,8 @@ const config = {
                                 to: 'https://weaviate.io/slack',
                             },
                             {
-                                label: 'Twitter',
-                                to: 'https://twiiter.com/weaviate_io',
+                                label: 'Twitter / X',
+                                to: 'https://x.com/weaviate_io',
                             },
                             {
                                 label: 'Instagram',
@@ -709,7 +709,7 @@ const config = {
                             },
                             {
                                 label: 'Youtube',
-                                to: 'https://youtube.com/weaviate_io',
+                                to: 'https://www.youtube.com/@Weaviate',
                             },
                             {
 
