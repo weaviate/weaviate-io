@@ -89,9 +89,9 @@ export default function Integrations() {
           <div className={`${styles.card} ${styles.longCard}`}>
             <div className={styles.contentDiv}>
               <h3 className={styles.cTextColor}>
-                “Weaviate's batteries include model serving and multi-tenant
-                implementation which have helped us quickly prototype and build
-                our vector search at Stack.”
+                “Weaviate's batteries-included approach, incorporating both
+                model serving and multi-tenancy, has helped us quickly prototype
+                and build our vector search at Stack.”
               </h3>
               <p>
                 Constantine Kokkinos,<br></br> Stack Overflow
