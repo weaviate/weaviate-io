@@ -26,7 +26,27 @@
 // ===== Basic search =====
 // ========================
 
+
 // START MultiBasic
+it('Perform a near_text query with multiple target vectors', () => {
+ return client.graphql
+   .get()
+   .withClassName("Jeopardy_Tiny_Dataset")
+   .withHybrid({
+     query: 'Best',
+     targetVectors: MultiVectorTargets.sum(['title', 'rating']),
+   })
+   .withFields('rating')
+   .do()
+   .then((res) => {
+     expect(res.data.Get.NamedVectorTest).toHaveLength(3);
+     expect(res.data.Get.NamedVectorTest[0].rating).toBe('Best');
+   });
+});
+
+
+
+
 collection = client.collections.get("Jeopardy_Tiny_Dataset")
 response = collection.query.near_text(
     query="a wild animal",
