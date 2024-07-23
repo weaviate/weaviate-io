@@ -1,0 +1,3 @@
+When Weaviate detects inconsistent data across nodes, it attempts to repair the out of sync nodes.
+
+Starting in v1.26, Weaviate adds [async replication](/developers/weaviate/concepts/replication-architecture/consistency#asynchronous-repair) to proactively detect inconsistencies. In earlier versions, Weaviate uses a [repair-on-read](/developers/weaviate/concepts/replication-architecture/consistency#repair-on-read) strategy to repair inconsistencies at read time.

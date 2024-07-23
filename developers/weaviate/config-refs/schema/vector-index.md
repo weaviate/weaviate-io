@@ -51,7 +51,7 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | `distance` | string | `cosine` | No | Distance metric. The metric that measures the distance between two arbitrary vectors. For available distance metrics, see [supported distance metrics](/developers/weaviate/config-refs/distances.md). |
 | `ef` | integer | -1 | Yes |  Balance search speed and recall. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is also slower. `ef` values greater than 512 show diminishing improvements in recall.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value and creates a dynamic `ef` list when `ef` is set to -1. For more details, see [dynamic ef](../../concepts/vector-index.md#dynamic-ef). |
 | `efConstruction` | integer | 128 | No | Balance index search speed and build speed. A high `efConstruction` value means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` must be greater than 0. |
-| `maxConnections` | integer | 64 | No | Maximum number of connections per element. `maxConnections` is the connection limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections) connections. <br/><br/> `maxConnections` must be greater than 0. |
+| `maxConnections` | integer | 32 | No | Maximum number of connections per element. `maxConnections` is the connection limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections) connections. <br/><br/> `maxConnections` must be greater than 0. |
 | `dynamicEfMin` | integer | 100 | Yes | *New in `v1.10.0`.* <br/><br/> Lower bound for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Protects against a creating search list that is too short.<br/><br/>This setting is only used when `ef` is -1. |
 | `dynamicEfMax` | integer | 500 | Yes | *New in `v1.10.0`.* <br/><br/> Upper bound for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Protects against creating a search list that is too long. <br/><br/>If `dynamicEfMax` is higher than the limit, `dynamicEfMax` does not have any effect. In this case, `ef` is the limit.<br/><br/>This setting is only used when `ef` is -1. |
 | `dynamicEfFactor` | integer | 8 | Yes | *New in `v1.10.0`.* <br/><br/> Multiplier for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Sets the potential length of the search list. <br/><br/>This setting is only used when `ef` is -1. |
@@ -125,7 +125,7 @@ This is a sample of collection that shows the [data schema](/developers/weaviate
     "skip": false,
     "ef": 100,
     "efConstruction": 128,
-    "maxConnections": 64,
+    "maxConnections": 32,
   }
 }
 ``` -->

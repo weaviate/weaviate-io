@@ -17,15 +17,15 @@ All other values are interpreted as `false`.
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `ASYNC_INDEXING` | Experimental in `v1.22`. <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. Default: `false` | `boolean` | `false` |
-| `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema. Default: `true` | `boolean` | `true` |
-| `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
+| `ASYNC_INDEXING` | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
+| `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
 | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | `DISABLE_LAZY_LOAD_SHARDS` | New in v1.23. When `false`, enable lazy shard loading to improve mean time to recovery in multi-tenant deployments. | `string` | `false` |
 | `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
 | `DISK_USE_READONLY_PERCENTAGE` | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | `DISK_USE_WARNING_PERCENTAGE` | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | `DISABLE_GO_PROFILING` | If `true`, disables Go profiling. Default: `false`. | `boolean` | `false` |
+| `ENABLE_API_BASED_MODULES` | Enable all API-based modules. (Experimental as of `v1.26.0`) | `boolean` | `true` |
 | `ENABLE_MODULES` | Specify Weaviate modules to enable | `string - comma separated names` | `text2vec-openai,generative-openai` |
 | `ENABLE_TOKENIZER_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use | `boolean` | `true` |
 | `ENABLE_TOKENIZER_KAGOME_KR` | Enable the [`Kagome` tokenizer for Korean](../config-refs/schema/index.md#kagome_kr-tokenization-method) for use (Experimental as of `v1.25.7`) | `boolean` | `true` |
@@ -58,9 +58,14 @@ All other values are interpreted as `false`.
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
+| `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
 | `CLIP_INFERENCE_API` | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | `IMAGE_INFERENCE_API` | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
+| `OFFLOAD_S3_BUCKET` | The S3 bucket to use for offloading (default: `weaviate-offload`) | `string` | `my-custom-offload-bucket` |
+| `OFFLOAD_S3_BUCKET_AUTO_CREATE` | Whether to automatically create the S3 bucket for offloading if it does not exist (default: `false`) | `boolean` | `true` |
+| `OFFLOAD_S3_CONCURRENCY` | The maximum number of parts that will be uploaded/downloaded in parallel during offloading operations (default: `25`) | `string - number` | `10` |
+| `OFFLOAD_TIMEOUT` | The request timeout value, in seconds (default: `120`) | `string - number` | `60` |
 | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | `USE_SENTENCE_TRANSFORMERS_VECTORIZER` | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `boolean` | `true` |
 

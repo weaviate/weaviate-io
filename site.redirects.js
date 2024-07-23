@@ -413,8 +413,17 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/compression/pq-compression',
             from: '/developers/weaviate/configuration/compression',
+        },
+        {
+            to: '/developers/weaviate/configuration/compression/pq-compression',
+            from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+        {
+            to: '/developers/weaviate/configuration/compression/bq-compression',
+            from: '/developers/weaviate/configuration/bq-compression',
         },
 
         {
