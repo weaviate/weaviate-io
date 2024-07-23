@@ -64,8 +64,9 @@ Configure the index when you define your [collection properties](/developers/wea
   | Less than | Range | Filter | Range |
   | Less than equal | Range | Filter | Range |
 
-
 - **Implementation** Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+
+- **Availability** This feature is only available for new properties and new collections. Existing properties cannot be converted to use the rangeable index.
 
 ## Questions and feedback
 
