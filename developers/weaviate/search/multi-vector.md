@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.py';
 import TSCodeV3 from '!!raw-loader!/_includes/code/howto/search.multi-target-v3.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/search.multi-target.go';
 
 Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
@@ -28,12 +29,6 @@ The example code uses OpenAI to vectorize the sample data. To use a different ve
   endMarker="# END LoadDataNamedVectors"
   language="py"
 />
-<FilteredTextBlock
-  text={TSCodeV3}
-  startMarker="// START LoadDataNamedVectors"
-  endMarker="// END LoadDataNamedVectors"
-  language="ts"
-/>
 </details>
 
 ## Multiple-target vector search
@@ -49,6 +44,31 @@ Search multiple-target vectors at the same time.
   language="python"
 />
 </TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiBasic"
+  endMarker="// END MultiBasic"
+  language="js"
+/>
+</TabItem>
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoCode}
+  startMarker="// START MultiBasic"
+  endMarker="// END MultiBasic"
+  language="python"
+/>
+<details>
+  <summary>Complete code</summary>
+<FilteredTextBlock
+  text={GoCode}
+  startMarker="// START BasicFull"
+  endMarker="// END BasicFull"
+  language="python"
+/>
+</details>
+</TabItem>
 </Tabs>
 
 ## Adjust target vector weight
@@ -61,6 +81,14 @@ Set the weight of each target vector. The weights modify the calculation that [m
   text={PyCodeV4}
   startMarker="# START MultiWeights"
   endMarker="# END MultiWeights"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiWeights"
+  endMarker="// END MultiWeights"
   language="python"
 />
 </TabItem>

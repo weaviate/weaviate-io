@@ -37,7 +37,12 @@ collection = client.collections.get("Jeopardy_Tiny_Dataset")
 response = collection.query.near_text(
     query="a wild animal",
     limit=2,
-    target_vector=wvc.query.TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
+    target_vector=wvc.query.TargetVectors.manual_weights(
+        {
+            "jeopardy_questions_vector": 0.5,
+            "jeopardy_answers_vector": 10
+        }
+    )
 )
 
 for o in response.objects:
