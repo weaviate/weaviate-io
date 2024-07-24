@@ -340,6 +340,7 @@ For links to the TypeScript Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [3.1.0][ts3.1.0] | 2024-07-24 |
   | [3.0.9][ts3.0.9] | 2024-07-10 |
   | [3.0.8][ts3.0.8] | 2024-06-24 |
   | [3.0.7][ts3.0.7] | 2024-06-21 |
@@ -473,6 +474,7 @@ For links to the Java Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.8.1][j4.8.1] | 2024-07-24 |
   | [4.8.0][j4.8.0] | 2024-07-23 |
   | [4.7.0][j4.7.0] | 2024-05-20 |
   | [4.6.0][j4.6.0] | 2024-03-05 |
@@ -823,6 +825,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( javascript typescript client links )
 
+[ts3.1.0]: https://github.com/weaviate/typescript-client/releases/tag/v3.1.0
 [ts3.0.9]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.9
 [ts3.0.8]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.8
 [ts3.0.7]: https://github.com/weaviate/typescript-client/releases/tag/v3.0.7
@@ -877,6 +880,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( java client links )
 
+[j4.8.1]: https://github.com/weaviate/java-client/releases/tag/4.8.1
 [j4.8.0]: https://github.com/weaviate/java-client/releases/tag/4.8.0
 [j4.7.0]: https://github.com/weaviate/java-client/releases/tag/4.7.0
 [j4.6.0]: https://github.com/weaviate/java-client/releases/tag/4.6.0
