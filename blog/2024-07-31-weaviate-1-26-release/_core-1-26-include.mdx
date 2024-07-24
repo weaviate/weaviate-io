@@ -69,7 +69,7 @@ You do no have to enable individual modules in the `ENABLE_MODULES` environment 
 
 `ENABLE_API_BASED_MODULES` and `ENABLE_MODULES` are additive. Set `ENABLE_API_BASED_MODULES` to `true` to enable API based modules. Use `ENABLE_MODULES` to configure additional modules such as `text2vec-ollama`, `generative-ollama`, and `backup-s3`.
 
-The `ENABLE_API_BASED_MODULES` variable disables the [`Explore`](/developers/weaviate/api/graphql/explore) feature when `ENABLE_API_BASED_MODULES` is `true`.
+When `ENABLE_API_BASED_MODULES` is `true`, the GraphQL [`Explore`](/developers/weaviate/api/graphql/explore) feature is unavailable.
 
 ## Multi target vector search
 
