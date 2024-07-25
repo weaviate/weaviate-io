@@ -2,66 +2,6 @@
 
 # TODO: Needs tests
 
-# ================================
-# ===== INSTANTIATION-COMMON =====
-# ================================
-
-import weaviate
-from weaviate.auth import AuthApiKey
-import os
-
-# client = weaviate.connect_to_wcs(
-#     cluster_url=os.getenv("WCD_DEMO_URL"),
-#     auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
-#     headers={
-#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-#     },
-# )
-
-client = weaviate.connect_to_local(
-    headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-    }
-)
-
-# ========================
-# ===== Basic search =====
-# ========================
-
-# START MultiBasic
-collection = client.collections.get("Jeopardy_Tiny_Dataset")
-response = collection.query.near_text(
-    query="a wild animal",
-    limit=2,
-    target_vector=["jeopardy_questions_vector", "jeopardy_answers_vector"],  # Specify the target vectors
-)
-
-for o in response.objects:
-    print(o.properties)
-# END MultiBasic
-
-
-# ========================
-# ===== Set Weights =====
-# ========================
-
-# START MultiWeightsFull
-from weaviate.classes.query import TargetVectors
-
-collection = client.collections.get("Jeopardy_Tiny_Dataset")
-# START MultiWeightsFull  # START MultiWeightsQueryOnly
-response = collection.query.near_text(
-    query="a wild animal",
-    limit=2,
-    target_vector=TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
-)
-# START MultiWeightsFull  # END MultiWeightsQueryOnly
-
-for o in response.objects:
-    print(o.properties)
-# END MultiWeightsFull
-
-
 # =============================
 # ===== LOAD EXAMPLE DATA =====
 # =============================
@@ -69,7 +9,9 @@ for o in response.objects:
 # START LoadDataNamedVectors
 import requests
 import json
-from weaviate.classes.query import Configure, Property, DataType
+import os
+import weaviate
+from weaviate.classes.config import Configure, Property, DataType
 
 client = weaviate.connect_to_local(
     headers={
@@ -79,12 +21,12 @@ client = weaviate.connect_to_local(
 
 # Start with a new collection
 # CAUTION: The next two lines delete the collection if it exists
-if client.collections.exists("Jeopardy_Tiny_Dataset"):
-    client.collections.delete("Jeopardy_Tiny_Dataset")
+if client.collections.exists("JeopardyTiny"):
+    client.collections.delete("JeopardyTiny")
 
 # Define a new schema
 collection = client.collections.create(
-    name="Jeopardy_Tiny_Dataset",
+    name="JeopardyTiny",
     description="Jeopardy game show questions",
     vectorizer_config=[
         Configure.NamedVectors.text2vec_openai(
@@ -123,9 +65,147 @@ for row in data:
     )
 
 # Upload the sample data
-nvjc_collection = client.collections.get("Jeopardy_Tiny_Dataset")
+nvjc_collection = client.collections.get("JeopardyTiny")
 with nvjc_collection.batch.dynamic() as batch:
     for q in question_objects:
         batch.add_object(properties=q)
 
 # END LoadDataNamedVectors
+
+# ========================
+# ===== Basic search =====
+# ========================
+
+# START MultiBasic
+from weaviate.classes.query import MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    # highlight-start
+    target_vector=["jeopardy_questions_vector", "jeopardy_answers_vector"],  # Specify the target vectors
+    # highlight-end
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    return_metadata=MetadataQuery(distance=True)
+# END MultiBasic
+
+
+# ========================
+# ===== NearVectorWithMultiVector =====
+# ========================
+
+some_result = collection.query.fetch_objects(limit=2, include_vector=True)
+
+v1 = some_result.objects[0].vector["jeopardy_questions_vector"]
+v2 = some_result.objects[1].vector["jeopardy_answers_vector"]
+
+# START MultiTargetNearVector
+from weaviate.classes.query import MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_vector(
+    # highlight-start
+    # Specify the query vectors for each target vector
+    near_vector={
+        "jeopardy_questions_vector": v1,
+        "jeopardy_answers_vector": v2,
+    },
+    # highlight-end
+    limit=2,
+    target_vector=["jeopardy_questions_vector", "jeopardy_answers_vector"],  # Specify the target vectors
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    return_metadata=MetadataQuery(distance=True)
+# END MultiTargetNearVector
+
+
+# ========================
+# ===== Simple join strategy =====
+# ========================
+
+# START MultiTargetWithSimpleJoin
+from weaviate.classes.query import TargetVectors, MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    # highlight-start
+    target_vector=TargetVectors.average(["jeopardy_questions_vector", "jeopardy_answers_vector"]),  # Specify the target vectors and the join strategy
+    # .maximim(), .sum(), .minimum(), .manual_weights(), .relative_score() also available
+    # highlight-end
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.distance)
+# END MultiTargetWithSimpleJoin
+
+
+# ========================
+# ===== Set Manual Weights =====
+# ========================
+
+# START MultiTargetManualWeights
+from weaviate.classes.query import TargetVectors, MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    # highlight-start
+    target_vector=TargetVectors.manual_weights({
+        "jeopardy_questions_vector": 10,
+        "jeopardy_answers_vector": 50
+    }),
+    # highlight-end
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.distance)
+# END MultiTargetManualWeights
+
+
+# ========================
+# ===== Relative Score =====
+# ========================
+
+# START MultiTargetRelativeScore
+from weaviate.classes.query import TargetVectors, MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_text(
+    query="a wild animal",
+    limit=2,
+    # highlight-start
+    target_vector=TargetVectors.relative_score({
+        "jeopardy_questions_vector": 10,
+        "jeopardy_answers_vector": 10
+    }),
+    # highlight-end
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.distance)
+# END MultiTargetRelativeScore
+
+
+client.close()

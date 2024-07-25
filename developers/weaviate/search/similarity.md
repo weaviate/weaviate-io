@@ -15,74 +15,6 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v
 
 Vector search returns the objects with most similar vectors to that of the query.
 
-## Named vectors
-
-:::info Added in `v1.24`
-:::
-
-To search a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# NamedVectorNearTextPython"
-      endMarker="# END NamedVectorNearTextPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorNearTextPython"
-      endMarker="# END NamedVectorNearTextPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// NamedVectorNearText"
-      endMarker="// END NamedVectorNearText"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// NamedVectorNearText"
-      endMarker="// END NamedVectorNearText"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorNearTextGraphql"
-      endMarker="# END NamedVectorNearTextGraphql"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# START Expected NamedVectorNearText results"
-  endMarker="# END Expected NamedVectorNearText results"
-  language="json"
-/>
-
-</details>
-
 ## Search with text
 
 Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to find objects with the nearest vector to an input text.
@@ -311,6 +243,74 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
     />
   </TabItem>
 </Tabs>
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+To search a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorNearTextGraphql"
+      endMarker="# END NamedVectorNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START Expected NamedVectorNearText results"
+  endMarker="# END Expected NamedVectorNearText results"
+  language="json"
+/>
+
+</details>
 
 ## Set a similarity threshold
 

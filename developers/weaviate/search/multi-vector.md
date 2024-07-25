@@ -12,27 +12,9 @@ import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.
 
 Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
-## Create the example collection
+## Specify target vector names only
 
-The examples on this page use the `Jeopardy_Tiny_Dataset` collection. To create a local copy of the example collection, run this code.
-
-The example code uses OpenAI to vectorize the sample data. To use a different vectorizer, or to use multiple vectorizers, edit the `wvc.config.Configure.NamedVectors` configuration.
-
-<details>
-  <summary>Create sample collection.</summary>
-
-<FilteredTextBlock
-  text={PyCodeV4}
-  startMarker="# START LoadDataNamedVectors"
-  endMarker="# END LoadDataNamedVectors"
-  language="py"
-/>
-
-</details>
-
-## Multiple-target vector search
-
-Search multiple-target vectors at the same time.
+Specify target vectors as a list/array of named vectors.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -45,52 +27,103 @@ Search multiple-target vectors at the same time.
 </TabItem>
 </Tabs>
 
-## Adjust target vector weight
+## Specify query vectors
 
-Set the weight of each target vector. The weights modify the calculation that [merges the results.](#compare-different-vectorizers).
+Specify query vectors as a dictionary/map of names and vectors.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCodeV4}
-  startMarker="# START MultiWeightsFull"
-  endMarker="# END MultiWeightsFull"
+  startMarker="# START MultiTargetNearVector"
+  endMarker="# END MultiTargetNearVector"
   language="python"
 />
 </TabItem>
 </Tabs>
 
-## Considerations
+You can also specify the query vectors as a list/array of vectors. In this case, they will be parsed according to the order of the specified target vectors.
 
-This section discusses considerations that distinguish multiple-target vector searches from single-target vector searches.
+## Specify target vector names & join strategy
 
-### Combine result sets
+Specify target vectors as a list/array of named vectors and how to join the distances.
 
-Vector similarity is a measure of the distance between two vectors. Single vector searches return the vectors with the least distance between the query vector and the target vector.
+The `sum`, `average`, `maximum`, `minimum` join strategies simply require the name of the strategy and the target vectors.
 
-It is more complicated to determine the set of result vectors with the least difference when you search multiple-target vectors.
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiTargetWithSimpleJoin"
+  endMarker="# END MultiTargetWithSimpleJoin"
+  language="python"
+/>
+</TabItem>
+</Tabs>
 
-Each target vector returns a set of limited number of potential results. The sets that are returned might not overlap completely. A "missing" vector has a smaller distance and can skew the search results. To prevent misleading results, Weaviate fetches any missing vectors to align the lists of result vectors.
+## Weight raw vector distances
+
+Search by sums of weighted, **raw** distances to each target vector.
+
+<details>
+  <summary>The weighting in detail</summary>
+
+Each distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
+
+</details>
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiTargetManualWeights"
+  endMarker="# END MultiTargetManualWeights"
+  language="python"
+/>
+</TabItem>
+</Tabs>
+
+## Weight normalized vector distances
+
+Search by sums of weighted, **normalized** distances to each target vector.
+
+<details>
+  <summary>The weighting in detail</summary>
+
+Each distance is normalized against other results for that target vector. Each normalized distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
+
+</details>
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiTargetRelativeScore"
+  endMarker="# END MultiTargetRelativeScore"
+  language="python"
+/>
+</TabItem>
+</Tabs>
+
+## Combining search results
+
+Each multi-target vector search is composed of multiple single-target vector searches. The search results are combined based on the join strategy. The join strategy determines how the distances between the query vector and the target vectors are combined to produce a single distance score.
+
+- If an object is missing any of the target vectors, it will not be included in the search results.
+- If an object is within search limit or distance threshold of any of the target vectors, it will be included in the search results.
 
 If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
 
-### Compare different vectorizers
+### Available join strategies.
 
-Each vectorizer creates it's own object representation. These differences make it difficult to calculate vector distances between representations.
+These are the available join strategies:
 
-Set weights to adjust the relative value of each target vector in the overall result. These are the available fusion methods:
-
+- **minimum** Use the minimum of the vector distances.
+- **maximum** Use the maximum of the vector distances.
 - **sum** Use the sum of the vector distances.
 - **average** Use the average of the vector distances.
 - **manual weights** Adjust the weight of each distance by a set value.
 - **relative score** Adjust the relative contribution of each target vector to the distance score.
-
-<FilteredTextBlock
-  text={PyCodeV4}
-  startMarker="# START MultiWeightsQueryOnly"
-  endMarker="# END MultiWeightsQueryOnly"
-  language="py"
-/>
 
 ## Related pages
 
