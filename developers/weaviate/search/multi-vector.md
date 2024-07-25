@@ -16,11 +16,7 @@ Multiple target vector search uses a single query to search multiple-target vect
 
 ## Specify target vector names only
 
-Specify target vectors as a list/array of named vectors.
-
-## Multiple-target vector search
-
-Search multiple-target vectors at the same time.
+Specify target vectors as a list/array of named vectors. The default join strategy is `minimum`, which means that the search results are sorted by the minimum distance in each query/target vector pair.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -85,7 +81,7 @@ You can also specify the query vectors as a list/array of vectors. In this case,
 
 ## Specify target vector names & join strategy
 
-Specify target vectors as a list/array of named vectors and how to join the distances.
+Specify target vectors as a list/array of named vectors and how to join the result sets.
 
 The `sum`, `average`, `maximum`, `minimum` join strategies simply require the name of the strategy and the target vectors.
 
