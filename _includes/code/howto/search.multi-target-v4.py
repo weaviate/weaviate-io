@@ -10,19 +10,6 @@ import weaviate
 from weaviate.auth import AuthApiKey
 import os
 
-# client = weaviate.connect_to_wcs(
-#     cluster_url=os.getenv("WCD_DEMO_URL"),
-#     auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
-#     headers={
-#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-#     },
-# )
-
-# client = weaviate.connect_to_local(
-#     headers={
-#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-#     }
-# )
 
 # ========================
 # ===== Basic search =====
@@ -50,7 +37,12 @@ collection = client.collections.get("Jeopardy_Tiny_Dataset")
 response = collection.query.near_text(
     query="a wild animal",
     limit=2,
-    target_vector=wvc.query.TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
+    target_vector=wvc.query.TargetVectors.manual_weights(
+        {
+            "jeopardy_questions_vector": 0.5,
+            "jeopardy_answers_vector": 10
+        }
+    )
 )
 
 for o in response.objects:
