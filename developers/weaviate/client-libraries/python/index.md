@@ -1123,6 +1123,7 @@ For links to the Python Client releases, expand this section.
 
 | Client Version | Release Date |
 | :- | :- |
+| [4.7.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-25 |
 | [4.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-24 |
 | [4.6.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.7) | 2024-07-19 |
 | [4.6.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.6) | 2024-07-02 |
