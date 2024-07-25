@@ -287,14 +287,18 @@ class_obj = {
         {
             "name": "title",
             "dataType": ["text"],
+            "indexFilterable": True,
+            "indexSearchable": True,
             "moduleConfig": {
-                "text2vec-huggingface": {  # this must match the vectorizer used
-                    # highlight-start
-                    "indexFilterable": True,
-                    "indexSearchable": True,
-                    # highlight-end
-                }
+                "text2vec-huggingface": {}
             }
+        },
+        {
+            "name": "chunk",
+            "dataType": ["int"],
+            # highlight-start
+            "indexRangeFilters": True,
+            # highlight-end
         },
     ],
     # highlight-start

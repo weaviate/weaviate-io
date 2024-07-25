@@ -215,6 +215,13 @@ client.collections.create(
             index_searchable=True,
             # highlight-end
         ),
+        Property(
+            name="Chunk",
+            data_type=DataType.INT,
+            # highlight-start
+            index_range_filters=True,
+            # highlight-end
+        ),
     ],
     # highlight-start
     inverted_index_config=Configure.inverted_index(  # Optional

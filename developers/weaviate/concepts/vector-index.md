@@ -220,6 +220,14 @@ Importing duplicate vectors into HNSW is very expensive. The import algorithm ch
 
 To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
 
+### What ANN algorithms exist?
+
+There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>.
+
+### Are there indicative benchmarks for Weaviate's ANN performance?
+
+The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
+
 ## Further resources
 
 :::info Related pages
