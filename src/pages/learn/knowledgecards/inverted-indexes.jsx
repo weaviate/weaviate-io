@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Inverted Indexes - Weaviate Knowledge Cards',
     description:
-      'An inverted index is a database indexing structure that maps keywords to their locations in documents...',
+      "An inverted index is a database indexing structure that maps keywords to their locations in documents, enabling fast full-text searches by listing all documents containing a given word, optimizing retrieval times. In Weaviate, it's used for keyword searches and fast filtering.",
     image: 'https://weaviate.io/img/cards/inverted-indexes.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/inverted-indexes',
   };

@@ -211,7 +211,7 @@ client.schema.get("JeopardyQuestion")
   "vectorIndexConfig": {
     "skip": false,
     "cleanupIntervalSeconds": 300,
-    "maxConnections": 64,
+    "maxConnections": 32,
     "efConstruction": 128,
     "ef": -1,
     "dynamicEfMin": 100,

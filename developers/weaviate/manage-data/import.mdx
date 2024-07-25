@@ -10,8 +10,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.import-v3.py';
+import PySuppCode from '!!raw-loader!/_includes/code/howto/sample-data.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.import-v2.ts';
+import TsSuppCode from '!!raw-loader!/_includes/code/howto/sample-data.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
@@ -374,71 +376,96 @@ The Python clients have built-in batching methods to help you optimize import sp
 
 If your dataset is large, consider streaming the import to avoid out-of-memory issues.
 
-<!-- TODO: split into separate sections, one for JSON and one for CSV
- This way we will have fewer tabs to switch between  -->
+To try the example code, download the sample data and create the sample input files.
+
+<details>
+  <summary>Get the sample data</summary>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4 - JSON">
+  <TabItem value="pycsv" label="Python">
+  <FilteredTextBlock
+    text={PySuppCode}
+    startMarker="# START GetData"
+    endMarker="# END GetData"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="tscsv" label="TypeScript">
+  <FilteredTextBlock
+    text={TsSuppCode}
+    startMarker="// START GetData"
+    endMarker="// END GetData"
+    language="py"
+  />
+  </TabItem>
+</Tabs>
 
+</details>
+
+<details>
+  <summary>Stream JSON files example code</summary>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyCode}
     startMarker="# START JSON streaming"
     endMarker="# END JSON streaming"
     language="py"
   />
-
   </TabItem>
-  <TabItem value="pycsv" label="Python Client v4 - CSV">
-
-  <FilteredTextBlock
-    text={PyCode}
-    startMarker="# START CSV streaming"
-    endMarker="# END CSV streaming"
-    language="py"
-  />
-
-  </TabItem>
-  <TabItem value="py3" label="Python Client v3 - JSON">
-
+  <TabItem value="py3" label="Python Client v3">
   <FilteredTextBlock
     text={PyCodeV3}
     startMarker="# START JSON streaming"
     endMarker="# END JSON streaming"
     language="py"
   />
-
   </TabItem>
-  <TabItem value="py3csv" label="Python Client v3 - CSV">
-
-  <FilteredTextBlock
-    text={PyCodeV3}
-    startMarker="# START CSV streaming"
-    endMarker="# END CSV streaming"
-    language="py"
-  />
-
-  </TabItem>
-  <TabItem value="js" label="TypeScript - JSON">
-
+  <TabItem value="ts" label="TypeScript">
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START JSON streaming"
     endMarker="// END JSON streaming"
     language="ts"
   />
-
   </TabItem>
-  <TabItem value="jscsv" label="TypeScript - CSV">
+</Tabs>
 
+</details>
+
+
+<details>
+  <summary>Stream CSV files example code</summary>
+
+<Tabs groupId="languages">
+  <TabItem value="pycsv" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START CSV streaming"
+    endMarker="# END CSV streaming"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="py3csv" label="Python Client v3">
+  <FilteredTextBlock
+    text={PyCodeV3}
+    startMarker="# START CSV streaming"
+    endMarker="# END CSV streaming"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START CSV streaming"
     endMarker="// END CSV streaming"
     language="ts"
   />
-
   </TabItem>
 </Tabs>
+
+</details>
 
 ## Batch vectorization
 
@@ -500,7 +527,7 @@ For details, see [auto-tenant](/developers/weaviate/manage-data/multi-tenancy#au
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [How-to: Create objects](./create.mdx)
 - [References: REST - /v1/batch](/developers/weaviate/api/rest#tag/batch)
 - [Configuration: Indexes](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing)

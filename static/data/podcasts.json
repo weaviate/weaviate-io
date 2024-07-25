@@ -1,5 +1,53 @@
 [
   {
+    "title": "Scaling Pandas with Devin Petersohn - Weaviate Podcast #101!",
+    "description": "Welcome to the 101st episode of the Weaviate Podcast with Devin Petersohn! Devin is the creator of Modin, one of the world's most advanced systems for scaling Pandas!",
+    "youtube": "r4XSsgyYR9c",
+    "date": "24-07-17",
+    "cover_image": "/img/podcasts/podcast-101.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Generative UIs with Lucas Negritto and Bob van Luijt - Weaviate Podcast #100!",
+    "description": "What is an AI-native application? This podcast explores this question with Weaviate Co-founder Bob van Luijt and Lucas Negritto. ",
+    "youtube": "x1i9pGWAh7s",
+    "date": "24-07-04",
+    "cover_image": "/img/podcasts/podcast-100.png",
+    "is_use_case": false
+  },
+  {
+    "title": "ACORN with Liana Patel and Abdel Rodriguez - Weaviate Podcast #99!",
+    "description": "Liana Patel is a Ph.D. student at Stanford University who is the lead author of ACORN, a breakthrough in Approximate Nearest Neighbor Search with Filters!",
+    "youtube": "PxJ7FpbopKY",
+    "date": "24-06-25",
+    "cover_image": "/img/podcasts/podcast-99.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Window Search Tree with Josh Engels - Weaviate Podcast #98!",
+    "description": "Welcome to the the 98th Podcast featuring Josh Engels, a Ph.D. student at MIT who has published several works advancing the state of the art in Vector Search.",
+    "youtube": "yyYcHCiecOw",
+    "date": "24-06-19",
+    "cover_image": "/img/podcasts/podcast-98.png",
+    "is_use_case": false
+  },
+  {
+    "title": "The Future of Search with Nils Reimers and Erika Cardenas - Weaviate Podcast #97!",
+    "description": "Welcome to the the 97th Weaviate Podcast featuring Nils Reimers, Director of Machine Learning at Cohere, and Erika Cardenas, Technology Partner Manager at Weaviate!",
+    "youtube": "DFqd34ikTH0",
+    "date": "24-06-11",
+    "cover_image": "/img/podcasts/podcast-97.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Deep Learning with Letitia Parcalabescu",
+    "description": "Thank you & welcome to the 96th episode of the Weaviate podcast featuring Letitia Parcalabescu!",
+    "youtube": "KeWCJ6NfPds",
+    "date": "24-06-05",
+    "cover_image": "/img/podcasts/podcast-96.png",
+    "is_use_case": false
+  },
+  {
     "title": "Google Cloud Marketplace with Dai Vu and Bob van Luijt",
     "description": "Welcome to the 95th Weaviate Podcast! We are beyond honored to feature Dai Vu from Google on this one, alongside Weaviate Co-Founder Bob van Luijt!",
     "youtube": "UdAtsuoEd38",

@@ -8,6 +8,10 @@ import os
 weaviate_url = os.getenv("WEAVIATE_URL")
 weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
+# START AnthropicInstantiation
+# Recommended: save sensitive data as environment variables
+anthropic_key = os.getenv("ANTHROPIC_APIKEY")
+# END AnthropicInstantiation
 # START AnyscaleInstantiation
 # Recommended: save sensitive data as environment variables
 anyscale_key = os.getenv("ANYSCALE_APIKEY")
@@ -61,6 +65,10 @@ voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # highlight-start
 headers = {
 # END-ANY
+# START AnthropicInstantiation
+    "X-Anthropic-Api-Key": anthropic_key,
+    "X-Anthropic-Baseurl": "https://api.anthropic.com",  # Optional; for providing a custom base URL
+# END AnthropicInstantiation
 # START AnyscaleInstantiation
     "X-Anyscale-Api-Key": anyscale_key,
 # END AnyscaleInstantiation

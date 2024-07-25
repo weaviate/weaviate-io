@@ -74,8 +74,6 @@ This code creates a sample collection and imports a small amount of data.<br/><b
   language="py"
 />
 
-
-
 ### REST API
 
 The legacy, single vector syntax is valid for use with collections that don't have named vectors:
@@ -206,8 +204,8 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 - [Weaviate academy: Named vectors](../../../academy/py/named_vectors/index.md)
 - [How-to: manage data](/developers/weaviate/manage-data/index.md): Code examples for *create*, *update* and *delete* operations, including those with named vectors.
 - [How-to: search](/developers/weaviate/search/index.md): Code examples for all types of search operations, including those with named vectors.
-- [BQ Compression](../../configuration/bq-compression.md)
-- [PQ Compression](../../configuration/pq-compression.md)
+- [BQ Compression](../../configuration/compression/bq-compression.md)
+- [PQ Compression](../../configuration/compression/pq-compression.md)
 
 ## Questions and feedback
 

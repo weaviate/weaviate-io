@@ -70,7 +70,7 @@ For open-source users, you can enable it by adding `ASYNC_INDEXING=true` in your
 ### Product Quantization
 While async indexing helped with importing, [product quantization](/developers/weaviate/concepts/vector-quantization#product-quantization) (PQ) was important for alleviating the memory footprint. PQ is a technique used to compress the size of vector embeddings by representing the vectors as centroid ids. The centroid ids are calculated by clustering each segment. We enabled PQ to reduce the memory requirements without slowing down the ingestion.
 
-You can either [manually](/developers/weaviate/configuration/pq-compression#manually-configure-pq) enable PQ or have it [automatically triggered](/developers/weaviate/configuration/pq-compression#configure-autopq) based on the number of vectors. You can manually enable PQ by setting it at the collection level. You’ll first need to import at least 10,000 to 100,000 vectors in order to form the centroids. AutoPQ can be used for new collections and the training step to form the centroids is set at 100,000 vectors by default.
+You can either [manually](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq) enable PQ or have it [automatically triggered](/developers/weaviate/configuration/compression/pq-compression#configure-autopq) based on the number of vectors. You can manually enable PQ by setting it at the collection level. You’ll first need to import at least 10,000 to 100,000 vectors in order to form the centroids. AutoPQ can be used for new collections and the training step to form the centroids is set at 100,000 vectors by default.
 
 It is important to keep in mind that PQ will have a tradeoff between recall, performance, and memory usage. You can tune HNSW parameters to complement the PQ configuration you selected.
 
@@ -112,7 +112,7 @@ with client.batch.rate_limit(requests_per_minute=600) as batch:
 For our application, we used the fixed size batch import set to 1,024 objects.
 
 ## Take-Aways
-We built an end-to-end application that searches Wikipedia for an article that completes an analogy, like “the peso is to Mexico as the dollar is to the United States”. You can try it [here](https://vector-analogies-wikipedia.vercel.app).
+We built an end-to-end application that searches Wikipedia for an article that completes an analogy, like “the peso is to Mexico as the dollar is to the United States”.
 
 We powered our text and vector search with Weaviate and our embeddings, ingestion, and database queries with [Modal](https://modal.com).
 

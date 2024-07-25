@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'BM25/BM25F - Weaviate Knowledge Cards',
     description:
-      'BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models...',
+      'BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models. BM25F is a variant of BM25 that can handle fields with different weights, such as title and body in documents.',
     image: 'https://weaviate.io/img/cards/BM25-BM25F.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/bm25bm25f',
   };

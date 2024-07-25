@@ -102,13 +102,13 @@ To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or
 
 The following tactics can help to reduce Weaviate's memory usage:
 
-- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq). <br/> To configure PQ, see [Compression](../configuration/pq-compression.md).
+- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq). <br/> To configure PQ, see [Compression](../configuration/compression/pq-compression.md).
 
 - **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
 - **Reduce the number of `maxConnections` in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
 
-Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect,increase one or both of the `efConstruction` and `ef` parameters.
+Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect, increase one or both of the `efConstruction` and `ef` parameters.
 
 - Increasing `efConstruction` increases import time without affecting query times.
 - Increasing `ef` increases query times without affecting import times.

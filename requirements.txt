@@ -64,8 +64,8 @@ traitlets==5.14.1
 typing_extensions==4.9.0
 tzdata==2023.4
 urllib3==2.1.0
-validators==0.22.0
+validators==0.28.3
 wcwidth==0.2.13
-weaviate-client==4.5.0
-weaviate-demo-datasets==0.4.8
+weaviate-client==4.6.5
+weaviate-demo-datasets==0.4.12
 wrapt==1.16.0

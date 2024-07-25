@@ -196,7 +196,6 @@ For details on configuring your schema, see the [schema tutorial](../starter-gui
 
 :::info Multi-tenancy availability
 - Multi-tenancy added in `v1.20`
-- The tenant activity status setting added in `v1.21`
 :::
 
 To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant.
@@ -207,11 +206,45 @@ Sharding has several benefits:
 - Fast, efficient querying
 - Easy and robust setup and clean up
 
-Starting in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
-
-Starting in `v1.20.1`, you can specify tenants as active (`HOT`) or inactive (`COLD`). For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
+Tenant shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
 
 Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
+
+### Tenant status
+
+:::info Multi-tenancy availability
+- Tenant activity status setting added in `v1.21`
+- `OFFLOADED` status added in `v1.26`
+:::
+
+Tenants can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
+
+- `ACTIVE` tenants are loaded and available for read and write operations.
+- In all other states, the tenant is not available for read or write access. Access attempts return an error message.
+    - `INACTIVE` tenants are stored on local disk storage for quick activation.
+    - `OFFLOADED` tenants are stored on cloud storage. This status is useful for long-term storage for tenants that are not frequently accessed.
+    - `OFFLOADING` tenants are being moved to cloud storage. This is a transient status, and therefore not user-specifiable.
+    - `ONLOADING` tenants are being loaded from cloud storage. This is a transient status, and therefore not user-specifiable. An `ONLOADING` tenant may be being warmed to a `ACTIVE` status or a `INACTIVE` status.
+
+For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
+
+| Status | Available | Description | User-specifiable |
+| :-- | :-- | :-- | :-- |
+| `ACTIVE` | Yes | Loaded and available for read/write operations. | Yes |
+| `INACTIVE` | No | On local disk storage, no read / write access. Access attempts return an error message. | Yes |
+| `OFFLOADED` | No | On cloud storage, no read / write access. Access attempts return an error message. | Yes |
+| `OFFLOADING` | No | Being moved to cloud storage, no read / write access. Access attempts return an error message. | No |
+| `ONLOADING` | No | Being loaded from cloud storage, no read / write access. Access attempts return an error message. | No |
+
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
+#### Offloaded tenants
+
+Frozen, also called "offloaded" tenants, are introduced in Weaviate `v1.26.0`. This requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
+
+As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `OFFLOADED` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
 
 ### Tenancy and IDs
 
@@ -253,29 +286,6 @@ The number of tenants per node is limited by operating system constraints. The n
 For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
 Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#update-tenant-activity-status), the open file per process limit does not apply.
-
-### Lazy shard loading
-
-:::info Added in `v1.23`
-:::
-
-When Weaviate starts, it loads data from all of the shards in your deployment. This process can take a long time. Prior to v1.23, you have to wait until all of the shards are loaded before you can query your data. Since every tenant is a shard, multi-tenant deployments can have reduced availability after a restart.
-
-Lazy shard loading allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results sooner. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
-
-To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your system configuration file.
-
-### Tenant status
-
-:::info Added in `v1.21`
-:::
-
-Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the shard.
-
-| Status | State | Description |
-| :-- | :-- | :-- |
-|`HOT`| Active | Weaviate can read and write. |
-|`COLD`| Inactive | Weaviate cannot read or write. Access attempts return an error message. |
 
 ## Related pages
 

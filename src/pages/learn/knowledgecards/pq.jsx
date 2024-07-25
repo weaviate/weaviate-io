@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'PQ - Weaviate Knowledge Cards',
     description:
-      'Product quantization (PQ) is a compression technique for vectors, reducing memory usage by...',
+      "Product quantization (PQ) is a compression technique for vectors, reducing memory usage by up to 90%. It's a lossy algorithm, meaning it trades some accuracy for significant memory savings. However, Weaviate employs a rescoring technique to reduce the loss of recall.",
     image: 'https://weaviate.io/img/cards/pq.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/pq',
   };

@@ -172,7 +172,7 @@ const multiCollection = client.collections.get('MultiTenancyCollection')
 // highlight-start
 await multiCollection.tenants.update({
   name: 'tenantA',
-  activityStatus: 'COLD' // or 'HOT'
+  activityStatus: 'INACTIVE' // or 'ACTIVE'
 })
 // highlight-end
 // END UpdateTenants

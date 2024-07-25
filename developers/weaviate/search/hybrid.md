@@ -284,7 +284,7 @@ The output is like this:
 `Relative Score Fusion` is the default fusion method starting in `v1.24`.
 
 - To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
-- To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
+- To use [`autocut`](../api/graphql/additional-operators.md#autocut) with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -823,7 +823,7 @@ import TokenizationNote from '/_includes/tokenization.mdx'
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - [Weaviate Academy: Tokenization](../../academy/py/tokenization/index.md)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).

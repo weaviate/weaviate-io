@@ -41,7 +41,7 @@ import CreateServerlessCluster from '/_includes/wcs/create-cluster-managed.mdx'
 
 By default, API keys are enabled for all WCD clusters. Serverless clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
 
-When you develop your client application, use an API key to connect your client to the cluster. For more details, see [authentication](./connect.mdx).
+When you develop your client application, use an API key to connect your client to the cluster. For more details, see [authentication](/developers/weaviate/configuration/authentication).
 
 To get API keys, click the `API keys` button.
 
@@ -49,11 +49,15 @@ To get API keys, click the `API keys` button.
 
 ## Weaviate core version
 
-When you provision a new cluster, WCD uses the current version of Weaviate core to set up the new cluster. There may be a short delay between the release of a new Weaviate core version and its availability in WCD.
+When you provision a new cluster, WCD uses the current version of Weaviate core to set up the new cluster. You can also choose from a limited number of older versions. There may be a short delay between the release of a new Weaviate core version and its availability in WCD.
 
 WCD does not automatically update existing clusters when a new version of Weaviate core is released.
 
 For more details on WCD versioning, see [Cluster server version](/developers/wcs/platform/version).
+
+## Number of clusters
+
+By default, an organization can have up to six serverless clusters and two sandbox clusters at the same time. To change these limits, [contact support](mailto:support@weaviate.io).
 
 ## Support
 
