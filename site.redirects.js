@@ -571,27 +571,6 @@ const siteRedirects = {
  from: "/developers/weaviate/release-notes/release_1_16"
 },
 
-// Services Changes
-{
-    to: "/platform",
-    from: "/services"
- },
- {
-    to: "/deployment/serverless",
-    from: "/services/serverless"
- },
- {
-    to: "/deployment/enterprise-cloud",
-    from: "/services/enterprise-cloud"
- },
- {
-    to: "/deployment/byoc",
-    from: "/services/byoc"
- },
- {
-    to: "/deployment/education-and-support",
-    from: "/services/education-and-support"
- },
 
     ],
     createRedirects(existingPath) {
