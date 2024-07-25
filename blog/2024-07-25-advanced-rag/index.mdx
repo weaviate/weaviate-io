@@ -93,11 +93,13 @@ For example, if a query relates to pediatric patients, filter out records of pat
 You might not always have extensive metadata to augment your chunks with but using the GLiNER (Generalized Linear Named Entity Recognizer) model you can generate metadata from chunks on the go! GLiNER is a robust BERT based model that can be used to tag and label chunks during the ingestion phase to create metadata on the go. This can significantly improving the retrieval process.
 
 - **Autolabeling with GLiNER**:
+
     **Implementation**: You can simply provide each chunk into GLiNER along with the tags you want to identify in the chunk. If the tags are found in the chunk text it will identify them if nothing matches with high confidence then tags wont be produced, reducing false positives! 
     
     **Pros and Cons**: Works quite well for general use but might require finetuning for niche and domain specific datasets and applications.
 
 - **Query Parsing and Filtering**:
+
     **Implementation**: Another use for GLiNER is to parse incoming queries and match them against labeled metadata to filter results.
     
     **Pros and Cons**: Enhances retrieval accuracy by ensuring contextual relevance but adds an extra processing step.
