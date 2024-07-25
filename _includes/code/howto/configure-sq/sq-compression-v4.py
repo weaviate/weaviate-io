@@ -5,7 +5,7 @@
 # ==============================
 
 # START ConnectCode
-import weaviate, os, json
+import weaviate, os
 import weaviate.classes.config as wc
 
 client = weaviate.connect_to_local(
@@ -65,7 +65,4 @@ client.collections.create(
 )
 # END SQWithOptions
 
-# START-ANY
-
 client.close()
-# END-ANY

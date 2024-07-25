@@ -85,9 +85,15 @@ Note that when BQ is enabled, a vector cache can be used to improve query perfor
 
 **Scalar quantization (SQ)** The dimensions in a vector embedding are usually represented as 32 bit floats. SQ transforms the float representation to an 8 bit integer. This is a 4x reduction in size.
 
-SQ compression, like BQ, is a lossy compression technique. However, SQ has a much greater range. The SQ algorithm analyzes your data and distributes the dimension values into 256 buckets (8 bits). BQ only uses two values (1 bit). Consequently, SQ compressed vectors are more accurate than BQ encoded vectors. They are also significantly smaller than uncompressed vectors.
+SQ compression, like BQ, is a lossy compression technique. However, SQ has a much greater range. The SQ algorithm analyzes your data and distributes the dimension values into 256 buckets (8 bits).
 
-When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. After Weaviate retrieves the compressed results, the database searches the original, uncompressed vectors that correspond to the compressed result. The second search is very fast because it only searches a small number of vectors rather than the whole database.
+SQ compressed vectors are more accurate than BQ compressed vectors. They are also significantly smaller than uncompressed vectors.
+
+A training set is used to determine the SQ bucket boundaries. The bucket boundaries are then used to compress the vectors. The distance calculation is done on the original, uncompressed vectors.
+
+The size of the training set is configurable, and the default is 100,000 objects per shard.
+
+When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. After Weaviate retrieves the compressed results, it compares the original, uncompressed vectors that correspond to the compressed result against the query. The second search is very fast because it only searches a small number of vectors rather than the whole database.
 
 ## Over-fetching / re-scoring
 
