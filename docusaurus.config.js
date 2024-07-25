@@ -285,39 +285,31 @@ const config = {
                         to: '/platform',
                     },
                     {  type: 'dropdown',
-                    label: 'Services',
+                    label: 'Deployment',
                     position: 'right',
                     items: [
-                        {
-                            label: 'Services Overview',
-                            href: '/services',
-
-                        },
+                        
                         {
                             label: 'Serverless Cloud',
-                            href: '/services/serverless',
+                            href: '/deployment/serverless',
 
                         },
                         {
                             label: 'Enterprise Cloud',
-                            href: '/services/enterprise-cloud',
+                            href: '/deployment/enterprise-cloud',
 
                         },
                         {
                             label: 'Bring Your Own Cloud',
-                            href: '/services/byoc',
+                            href: '/deployment/byoc',
 
                         },
                         {
                             label: 'Education & Support',
-                            href: '/services/education-and-support',
+                            href: '/deployment/education-and-support',
 
                         },
-                        {
-                            label: 'Pricing',
-                            href: '/pricing',
-
-                        },
+                        
                     ]
                 }
                     ,
@@ -422,6 +414,12 @@ const config = {
                         ],
                     },
                     {
+                        // type: 'dropdown',
+                        label: 'Pricing',
+                        position: 'right',
+                        to: '/pricing',
+                    },
+                    {
                         type: 'dropdown',
                         label: 'Partners',
                         position: 'right',
@@ -508,29 +506,30 @@ const config = {
                                 to: '/platform',
                             },
                             {
-                                label: 'Services',
+                                label: 'Deployment',
                                 to: '#',
                                 className: 'footer__title subtitle',
                             },
                             {
-                                label: 'Services Overview',
-                                to: '/services',
-                            },
-                            {
                                 label: 'Serverless Cloud',
-                                to: '/services/serverless',
+                                to: '/deployment/serverless',
                             },
                             {
                                 label: 'Enterprise Cloud',
-                                to: '/services/enterprise-cloud',
+                                to: '/deployment/enterprise-cloud',
                             },
                             {
                                 label: 'Bring Your Own Cloud',
-                                to: '/services/byoc',
+                                to: '/deployment/byoc',
                             },
                             {
                                 label: 'Education & Support',
-                                to: '/services/education-and-support',
+                                to: '/deployment/education-and-support',
+                            },
+                            {
+                                label: 'Pricing',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
                                 label: 'Pricing',

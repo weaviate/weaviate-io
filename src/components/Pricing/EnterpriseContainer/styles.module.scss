@@ -503,7 +503,6 @@
 }
 
 .lines {
-  display: none;
   margin: 38px 0px;
   width: 80%;
   height: 2.25rem;
@@ -739,4 +738,162 @@
     background-repeat: no-repeat;
     background-position-y: center;
   }
+}
+
+.tabs {
+  border-radius: 0.625rem 0.625rem 0rem 0rem;
+  background: #130c49;
+  width: 65.1875rem;
+  height: 6.25rem;
+  flex-shrink: 0;
+  display: flex;
+
+  .tab {
+    border-radius: 0.625rem 0.625rem 0rem 0rem;
+    background: #262262;
+    width: 21.6875rem;
+    height: 6.25rem;
+    flex-shrink: 0;
+    color: #ffffff36;
+    background: #130c49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tab:hover,
+  .tab:active,
+  .activeTab {
+    background: #262262;
+    color: #ffffff;
+  }
+}
+
+.tabContainer {
+  padding: 10px 60px;
+}
+
+.tabHeader {
+  h3 {
+    color: #fff;
+
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 144.9%; /* 2.1735rem */
+    letter-spacing: -0.015rem;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 144.9%; /* 1.449rem */
+    letter-spacing: -0.01rem;
+    width: 60%;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 668px) {
+      width: 100%;
+    }
+  }
+}
+.tabContent {
+  width: 65.1875rem;
+  height: 55.875rem;
+  flex-shrink: 0;
+  border-radius: 0rem 0rem 0.625rem 0.625rem;
+  background: #262262;
+  padding: 3rem;
+}
+
+.tabBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  span {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 144.9%; /* 1.63013rem */
+    letter-spacing: -0.01125rem;
+  }
+}
+
+.tabRight {
+  transform: translateX(-38px);
+  display: flex;
+  justify-content: flex-end;
+  gap: 60px;
+}
+.tabBar {
+  width: 56.875rem;
+  height: 6.4375rem;
+  flex-shrink: 0;
+  background: #130c49;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tabText {
+  width: 260px;
+  span {
+    color: #b9c8de;
+
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+  }
+}
+
+.marginRight {
+  margin-right: 50px;
+}
+
+.cellIcon {
+  background-size: cover;
+  width: 3.00038rem;
+  height: 3rem;
+  flex-shrink: 0;
+}
+
+.azureIcon {
+  background-image: url('/img/site/azure-pricing-icon.png');
+}
+.awsIcon {
+  background-image: url('/img/site/aws-pricing-icon.svg');
+}
+.googleIcon {
+  background-image: url('/img/site/google-pricing-icon.svg');
+}
+
+.vpcIcon {
+  background-size: contain;
+  width: 5.35163rem;
+  height: 4.625rem;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.vpcs {
+  background-image: url('/img/site/enterprise-vcpu-icon.svg');
+}
+.hot {
+  background-image: url('/img/site/enterprise-hot-icon.svg');
+}
+.warm {
+  background-image: url('/img/site/enterprise-warm-icon.svg');
+}
+
+.cold {
+  background-image: url('/img/site/enterprise-cold-icon.svg');
 }

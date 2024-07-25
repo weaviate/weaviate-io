@@ -26,7 +26,7 @@ export default function Soc2(props) {
             <div className={styles.soc2Logo}></div>
           </div>
         </div>
-        <div className={`${styles.card} ${styles.longCard}`}>
+        {/*  <div className={`${styles.card} ${styles.longCard}`}>
           <div className={styles.contentDiv}>
             <h3 className={styles.cTextColor}>
               “Weaviate facilitates fast development of generative AI
@@ -44,7 +44,7 @@ export default function Soc2(props) {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

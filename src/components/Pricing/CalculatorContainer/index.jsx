@@ -9,10 +9,18 @@ export default function CalculatorContainer() {
     <div className={styles.bgColor}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2>Serverless Cloud Pricing</h2>
+          <div className={styles.title}>
+            <div className={styles.pricingIcon}></div>
+            <h3>Serverless Cloud Pricing</h3>
+          </div>
           <p className={styles.subHeader}>
-            Our pricing is based on dimensions stored and chosen SLA tier. The
-            exact calculation can be found in the{' '}
+            The easiest way to get started with Weaviate. All the power of our
+            AI-native vector database, as a fully-managed SaaS offering. Best
+            for nimble teams at all stages of building.
+          </p>
+          <p className={styles.subHeader}>
+            Our Serverless Cloud pricing is based on dimensions stored and
+            chosen SLA tier. The exact calculation can be found in the{' '}
             <Link className={styles.faqLink} to="#faq">
               FAQ
             </Link>{' '}
@@ -236,6 +244,12 @@ export default function CalculatorContainer() {
         </div>
 
         <div className={styles.buttons}>
+          <Link
+            className={styles.buttonGradient}
+            to="https://console.weaviate.cloud/"
+          >
+            Get started with Serverless
+          </Link>
           <Link
             className={styles.buttonOutline}
             to="https://console.weaviate.cloud/"

@@ -1,0 +1,528 @@
+.bgContainer {
+  .box {
+    text-align: left;
+    color: #130c49;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+    gap: 50px;
+    margin: 25px 0px;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #ededed;
+  }
+
+  .soc2Box {
+    flex: 1;
+    h2 {
+      color: #130c49;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #130c49;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-dark-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.tableBackground {
+  border-radius: 0.3125rem;
+  background: #fff;
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+  }
+}
+
+.tableContainer {
+  display: flex;
+}
+
+.tablePoints {
+  @media screen and (max-width: 1300px) {
+    box-shadow: inset -7px 0px 0px 0px #0000002e;
+    display: none;
+  }
+}
+
+.mobilePoints {
+  display: none;
+  @media screen and (max-width: 1300px) {
+    box-shadow: inset -7px 0px 0px 0px #0000002e;
+    display: block;
+  }
+}
+
+.tableContent {
+  display: inline-flex;
+
+  @media screen and (max-width: 1300px) {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+}
+
+.longCell {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  justify-content: space-evenly;
+
+  hr {
+    margin-top: auto;
+  }
+}
+
+.smallCell {
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  justify-content: space-evenly;
+}
+
+.cellSpan {
+  padding: 20px;
+  height: 100px;
+}
+
+.cellNotice {
+  color: #8b8ea3;
+
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.serverlessTable {
+  background: #f5f5f5;
+  width: 300px;
+  flex: 0 0 auto;
+
+  .longCell {
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+    justify-content: space-evenly;
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  .pricing {
+    height: 250px;
+  }
+
+  .cellContent {
+    padding: 20px;
+  }
+
+  .cellLogo {
+    display: flex;
+    align-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cellLogo::before {
+    content: '';
+    background-image: url('/img/site/weaviate-logo-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 4.49994rem;
+    height: 2.52913rem;
+    flex-shrink: 0;
+  }
+
+  .iconSection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .cellIcon {
+    background-size: cover;
+    width: 3.00038rem;
+    height: 3rem;
+    flex-shrink: 0;
+  }
+
+  .azureIcon {
+    background-image: url('/img/site/azure-pricing-icon.png');
+  }
+  .awsIcon {
+    background-image: url('/img/site/aws-pricing-icon.svg');
+  }
+  .googleIcon {
+    background-image: url('/img/site/google-pricing-icon.svg');
+  }
+
+  .logoText {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cellImage {
+    background-image: url('/img/site/serverless-pricing-icon.svg');
+    background-size: cover;
+    width: 2.49994rem;
+    height: 2.52913rem;
+    flex-shrink: 0;
+    margin: 15px 0px;
+  }
+
+  .edImage {
+    background-image: url('/img/site/ed-pricing-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+  }
+
+  .byocImage {
+    background-image: url('/img/site/byoc-pricing-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+  }
+}
+
+.enterprise {
+  background-color: #ffffff !important;
+}
+
+.support {
+  background-color: #ffffff !important;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 14.3125rem;
+  height: 13.4375rem;
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 1.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.tableFooter {
+  width: 100%;
+  height: 6.875rem;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  background: #fff;
+  display: flex;
+  padding: 30px;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (max-width: 645px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .iconSection {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+
+    @media screen and (max-width: 1300px) {
+      gap: 40px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      align-items: flex-start;
+      margin: 30px 0px;
+    }
+
+    @media screen and (max-width: 645px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    a {
+      color: #130c49;
+      font-family: Inter;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.3125rem */
+      text-decoration-line: underline;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .cellIcon {
+    background-size: cover;
+    width: 3.00038rem;
+    height: 3rem;
+    flex-shrink: 0;
+  }
+
+  .azureIcon {
+    background-image: url('/img/site/azure-pricing-icon.png');
+  }
+  .awsIcon {
+    background-image: url('/img/site/aws-pricing-icon.svg');
+  }
+  .googleIcon {
+    background-image: url('/img/site/google-pricing-icon.svg');
+  }
+}
+
+.tableFooterText {
+  @media screen and (max-width: 1200px) {
+    font-size: 22px;
+  }
+}
+.longCard {
+  width: 82%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  gap: 20px;
+  color: #ffffff;
+  z-index: 1;
+  flex-wrap: nowrap;
+  background: #130c49 !important;
+  justify-content: center;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover !important;
+
+  .cTextColor {
+    color: #fff;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 2.25rem */
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 92%;
+  }
+
+  .contentDiv {
+    height: 100%;
+    width: 50%;
+    margin: 50px;
+    text-align: center;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
+
+.buttons {
+  margin: 40px 0px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    width: 11.375rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modals {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modals.open {
+  display: flex;
+  opacity: 1;
+}
+
+.modalContents {
+  margin: 7% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 75.9375rem;
+  height: 40.5rem;
+  max-width: 75.9375rem;
+  border-radius: 1.5rem;
+  background: #ededed;
+  overflow-y: scroll;
+
+  @media screen and (max-width: 1060px) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 102px;
+  right: 172px;
+  font-size: 3rem;
+  color: #130c49;
+  cursor: pointer;
+
+  @media screen and (max-width: 860px) {
+    top: 55px;
+    right: 11px;
+  }
+}

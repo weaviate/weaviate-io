@@ -4,27 +4,51 @@ import Link from '@docusaurus/Link';
 
 export default function PricingSandBox() {
   return (
-    <div className={styles.sandbox}>
-      <div className={`${styles.title} ${styles.sandboxTitle}`}>
-        <h3 className={styles.color}>Free Sandbox</h3>
-      </div>
-      <div className={styles.featuresLong}>
-        <li>14 days lifetime</li>
-        <li>Monitoring</li>
-      </div>
-      <div className={styles.features}>
-        <li>Community support</li>
-        <li>Single AZ</li>
-      </div>
-      <div className={styles.features}>
-        <div className={styles.buttonsSales}>
-          <Link
-            className={styles.buttonOutlineSales}
-            to="https://console.weaviate.cloud/"
-          >
-            Start Now
-          </Link>
+    <div className={styles.supportbox}>
+      <div className={`${styles.title} ${styles.supportTitle}`}>
+        <div className={styles.titleBox}>
+          <div className={`${styles.pricingIcon} ${styles.education}`}></div>
+          <h3 className={styles.color}>Education & Support</h3>
         </div>
+        <p>
+          With an enterprise subscription, customers have access to a variety of
+          support and training options to accelerate adoption and success.
+        </p>
+        <Link className={styles.supportURL} to="services/education-and-support">
+          Learn More
+        </Link>
+      </div>
+
+      <div className={styles.features}>
+        <li>
+          <span>Dedicated Technical Success Manager</span>
+        </li>
+        <li>
+          <span>Architecture design workshop</span>
+        </li>
+        <li>
+          <span>Production readiness assessment</span>
+        </li>
+        <li>
+          <span>24/7 support via email and phone escalation hotline</span>
+        </li>
+        <li>
+          <span>Professional or Business Critical SLAs</span>
+        </li>
+      </div>
+      <div className={styles.features}>
+        <li>
+          <span>Curated onboarding program to kickstart development</span>
+        </li>
+        <li>
+          <span>
+            Access to Weaviate community, knowledge hub and extensive training
+            material, workshops and documentation
+          </span>
+        </li>
+        <li>
+          <span>Weekly office hours</span>
+        </li>
       </div>
     </div>
   );
