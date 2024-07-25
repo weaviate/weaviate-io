@@ -71,7 +71,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/config-refs/schema#inverted-index-types',
+            to: '/developers/weaviate/concepts/prefiltering',
             from: '/developers/weaviate/config-refs/schema/range-index',
         },
         {
