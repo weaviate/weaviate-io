@@ -18,11 +18,11 @@ import os
 #     },
 # )
 
-# client = weaviate.connect_to_local(
-#     headers={
-#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-#     }
-# )
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 # ========================
 # ===== Basic search =====
@@ -45,17 +45,21 @@ for o in response.objects:
 # ===== Set Weights =====
 # ========================
 
-# START MultiWeights
+# START MultiWeightsFull
+from weaviate.classes.query import TargetVectors
+
 collection = client.collections.get("Jeopardy_Tiny_Dataset")
+# START MultiWeightsFull  # START MultiWeightsQueryOnly
 response = collection.query.near_text(
     query="a wild animal",
     limit=2,
-    target_vector=wvc.query.TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
+    target_vector=TargetVectors.manual_weights({"jeopardy_questions_vector": 0.1, "jeopardy_answers_vector": 0.5})
 )
+# START MultiWeightsFull  # END MultiWeightsQueryOnly
 
 for o in response.objects:
     print(o.properties)
-# END MultiWeights
+# END MultiWeightsFull
 
 
 # =============================
@@ -64,6 +68,8 @@ for o in response.objects:
 
 # START LoadDataNamedVectors
 import requests
+import json
+from weaviate.classes.query import Configure, Property, DataType
 
 client = weaviate.connect_to_local(
     headers={
@@ -81,21 +87,21 @@ collection = client.collections.create(
     name="Jeopardy_Tiny_Dataset",
     description="Jeopardy game show questions",
     vectorizer_config=[
-        wvc.config.Configure.NamedVectors.text2vec_openai(
+        Configure.NamedVectors.text2vec_openai(
             name="jeopardy_questions_vector",
             source_properties=["question"],
             vectorize_collection_name=False,
         ),
-        wvc.config.Configure.NamedVectors.text2vec_openai(
+        Configure.NamedVectors.text2vec_openai(
             name="jeopardy_answers_vector",
             source_properties=["answer"],
             vectorize_collection_name=False,
         ),
     ],
     properties=[
-        wvc.config.Property(name="category", data_type=wvc.config.DataType.TEXT),
-        wvc.config.Property(name="question", data_type=wvc.config.DataType.TEXT),
-        wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
+        Property(name="category", data_type=DataType.TEXT),
+        Property(name="question", data_type=DataType.TEXT),
+        Property(name="answer", data_type=DataType.TEXT),
     ],
 )
 

@@ -53,8 +53,8 @@ Set the weight of each target vector. The weights modify the calculation that [m
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCodeV4}
-  startMarker="# START MultiWeights"
-  endMarker="# END MultiWeights"
+  startMarker="# START MultiWeightsFull"
+  endMarker="# END MultiWeightsFull"
   language="python"
 />
 </TabItem>
@@ -85,12 +85,12 @@ Set weights to adjust the relative value of each target vector in the overall re
 - **manual weights** Adjust the weight of each distance by a set value.
 - **relative score** Adjust the relative contribution of each target vector to the distance score.
 
-```python
-collection.query.near_text(
-  "a_query_string",
-  target_vector=wvc.query.TargetVectors.manual_weights{"vector_one": 0.1, "vector_two": 0.5}
-  )
-```
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiWeightsQueryOnly"
+  endMarker="# END MultiWeightsQueryOnly"
+  language="py"
+/>
 
 ## Related pages
 
