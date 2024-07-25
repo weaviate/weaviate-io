@@ -1,0 +1,5 @@
+| Inverted index type | Description | Applicable data types | Default | Availability |
+| --- | --- | --- | --- | --- |
+| `indexSearchable` | A searchable index for BM25-suitable Map index for BM25 or hybrid searching. | `text`, `text[]`,  | `true` | `v1.19` |
+| `indexFilterable` | A Roaring Bitmap index for match-based filtering. | Everything except `blob`, `geoCoordinates` and `object` data types including arrays thereof | `true` | `v1.19` |
+| `indexRangeFilters` | A Roaring Bitmap index for numerical range-based filtering. | `int`, `int[]`, `number`, `number[]`, `date`, `date[]` | `false` | `v1.26` |

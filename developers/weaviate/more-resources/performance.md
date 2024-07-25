@@ -16,8 +16,7 @@ Vector Indexes:
 
 Traditional Indexes:
 
-- [Inverted index](#inverted-index)
-- [Range index](/developers/weaviate/config-refs/schema/range-index)
+- [Inverted index](#inverted-indexes)
 
 ## Inverted index
 The inverted index is essentially what powers all the [GraphQL `where` filters](../api/graphql/filters.md#where-filter), where vectors or semantics are needed to find results. With inverted indexes, contents or data object properties such as words and numbers are mapped to its location in the database. This is the opposite of the more traditional forward index, which maps from documents to its content.
@@ -39,7 +38,7 @@ This section discusses the cost of some common operations.
 At the moment, data import is relatively slow compared to the query times, because of the HNSW indexing. The cheapest data import operation is a simple 'write' operation of a data object that was not seen before. It will get a completely new index. If you update a data object, the update itself is also really cheap, because in the backend an entirely new object will be created and indexed as if it was new. The 'old' object will be cleaned up, which happens asynchronous and will thus add up to the operation time.
 
 ### Cost of queries
-Simple `Get` queries that only have a `where` filter are very cheap, because the [inverted index](#inverted-index) is used. A simple `Get` query that uses only the `explore` filter (vector search) is also very cheap, since the very efficient vector index HNSW is used. Sub-50ms 20NN-vector queries on datasets of over 1-100M objects are possible. Weaviate relies on a number of caches, but does not require keeping all vectors in memory. Thus it is also possible to run Weaviate on machines where the available memory is smaller than the size of all vectors.
+Simple `Get` queries that only have a `where` filter are very cheap, because the [inverted index](#inverted-indexes) is used. A simple `Get` query that uses only the `explore` filter (vector search) is also very cheap, since the very efficient vector index HNSW is used. Sub-50ms 20NN-vector queries on datasets of over 1-100M objects are possible. Weaviate relies on a number of caches, but does not require keeping all vectors in memory. Thus it is also possible to run Weaviate on machines where the available memory is smaller than the size of all vectors.
 
 Combining the `explore` (vector) and `where` filters in one search query (which is what makes Weaviate unique), is slightly more expensive. The inverted index is called first which returns all data items that match the `where` filter. This list is then passed on to the vector index search with HNSW. The cost of this combined operation depends on the dataset size and the amount of data returned by the inverted index search. The less items that are returned from the `where` filter search, the more items the vector search needs to skip, thus the longer it will take. These differences are however very small, perhaps not even noticeable.
 

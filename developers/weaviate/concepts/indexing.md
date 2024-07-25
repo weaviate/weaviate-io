@@ -5,12 +5,12 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-Weaviate supports several types of indices. This page focuses on two of the most prominent:
+Weaviate supports several types of indices.
 
-1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
-1. An **inverted index** - the inverted index allows for filtering by properties, as well as serve BM25 queries.
+1. **Vector indexes** - a vector index (e.g. ANN or flat) is used to serve all vector-search queries.
+1. **Inverted indexes** - inverted indexes allow for filtering by properties, as well as serve BM25 queries.
 
-You can configure indices in Weaviate per class. One of Weaviate's core strengths is combining the ANN index with an inverted index.
+You can configure indices in Weaviate per collection.
 
 Some things to bear in mind:
 
@@ -18,9 +18,14 @@ Some things to bear in mind:
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
 * One of Weaviate's unique features is how the indices are configured (learn more about this [here](../concepts/prefiltering.md)).
 
-For details on other types of indexes, see [flat indexes](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) and [rangeable indexes](/developers/weaviate/config-refs/schema/range-index)
+## Vector indexes
 
-## ANN indexing
+A vector index is used to serve all vector-search queries. Weaviate supports two types of vector indexes:
+
+1. **Approximate Nearest Neighbors (ANN)** - a vector index that is used to find the nearest neighbors of a given vector. This is useful for similarity searches.
+2. **Flat** - a vector index that is used for brute-force searches. This is useful for small datasets.
+
+### ANN index
 
 What's important to know, is that the "A" in ANN (i.e., the "approximate") comes with a trade-off. That is, the index is _approximate_ and, therefore _not_ always 100% accurate. This is what the experts mean when they talk about the "recall of the algorithm."
 
@@ -70,62 +75,25 @@ For more information see:
 The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
 :::
 
-## Module configuration
+### Flat index
 
-You can use Weaviate with or without modules. To use Weaviate _with_ modules, you must configure them in the schema.
+The flat index is used for small datasets. It is a brute-force search that is not approximate. The flat index is not suitable for large datasets, as the search time increases linearly with the number of vectors.
 
-An example configuration:
+A typical use case for a flat index is in [multi-tenancy](./data.md#multi-tenancy), where each tenant houses a small set of objects.
 
-```js
-{
-    "class": "Author",
-    "moduleConfig": { // <== module config on class level
-        "text2vec-transformers": { // <== the name of the module (in this case `text2vec-transformers`)
-            // the settings based on the chosen modules
-        }
-    },
-    "properties": [ ]
-}
-```
-
-When using vectorizers, you need to set vectorization at the class and property level. If you use text vectorizers, the way the vectorizers work is explained [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#configure-semantic-indexing).
-
-```js
-{
-    "class": "Author",
-    "moduleConfig": { // <== class level configuration
-        "text2vec-transformers": { // <== name of the module
-            "vectorizeClassName": false // <== vectorize the class name?
-        }
-    },
-    "properties": [{
-        "moduleConfig": { // <== property level configuration
-            "text2vec-transformers": { // <== name of the module
-                "skip": false, // <== skip this `string` for vectorization?
-                "vectorizePropertyName": false // <== vectorize the property name?
-            }
-        },
-        "dataType": [
-            "text"
-        ],
-        "name": "name"
-    }]
-}
-```
-
-:::note
-Because Weaviate's vectorizer module configuration is set on class and property level, you can have multiple vectorizers for different classes. You can even mix multimodal, NLP, and image modules.
-:::
-
-## Inverted index
+## Inverted indexes
 
 ### Configure the inverted index
 
-There are two inverted indexes for filtering or searching the data. The first (filterable) index is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
+There are three inverted index types in Weaviate:
 
-The `indexFilterable` and `indexSearchable` keys can be set to `true` (on) or `false` (off) on a property level. Both are _on_ by default.
+- `indexSearchable` - a searchable index for BM25 or hybrid search
+- `indexFilterable` - a match-based index for fast [filtering](./prefiltering.md) by matching criteria
+- `indexRangeFilters` - a range-based index for [filtering](./prefiltering.md) by numerical ranges
 
-The filterable index is only capable of filtering, while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
+Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indices are on by default, while the `indexRangeFilters` index is off by default.
+
+The filterable indexes are only capable of [filtering](./prefiltering.md), while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
 
 So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
 
@@ -149,11 +117,13 @@ You can set these keys in the schema like shown below, at a property level:
 
 A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
 
-:::tip Data types and indexes
+#### Inverted index types
 
-Both `indexFilterable` and `indexSearchable` are available for all types of data. However, `indexSearchable` is only relevant for `text`/`text[]`, and in other cases it will be ignored.
+import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.mdx';
 
-:::
+<InvertedIndexTypesSummary/>
+
+#### Inverted index for timestamps
 
 You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
 

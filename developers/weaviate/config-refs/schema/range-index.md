@@ -18,11 +18,11 @@ import TSCodeV2 from '!!raw-loader!/_includes/code/indexes/indexes-v2.ts';
 
 :::
 
-Object properties in Weaviate are indexed and searchable. The [rangeable index](/developers/weaviate/config-refs/schema/range-index) is an efficient way to search ranges of data.
+Object properties in Weaviate can be indexed for faster filtering. The rangeable index is an efficient way to filter by numerical ranges of data. This is particularly advantageous for properties housing high-cardinality numerical data.
 
-The rangeable index is available for data that is stored as an `int`, `number`, or `date` type. The index is not available for arrays of these data types.
+The rangeable index is available `int`, `number`, or `date` properties. The index is not available for arrays of these data types.
 
-Use the rangeable index instead when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`. For keyword-search, the [inverted-index](/developers/weaviate/more-resources/performance#inverted-index) is a better choice.
+Enable the rangeable index when you want to filter properties using comparison operators like  `GreaterThan`, `GreaterThanEqual`, `LessThan`, and `LessThanEqual`.
 
 ## Define a rangeable index
 
@@ -51,11 +51,14 @@ Configure the index when you define your [collection properties](/developers/wea
 
 - **Default value** The default value of `indexRangeFilters` is `false`. In contrast, `indexSearchable` and `indexFilterable` both default to `true`.
 
-- **Filter compatibility** `indexRangeFilters` and `indexFilterable` can be used together or independently.
+- **Filterable index compatibility** `indexRangeFilters` and `indexFilterable` can be used together or independently.
+
+    - If only one of `indexRangeFilters` or `indexFilterable` is set to `true`, the respective index is used for filtering.
+    - If both are set to `true`, the `indexRangeFilters` is used for operations involving comparison operators, and `indexFilterable` is used for equality and inequality operations.
 
   This chart shows which filter makes the comparison when one or both index type is `true` for a property.
 
-  | Operator | Range only | Filter only | Range and  Filter |
+  | Operator | `indexRangeFilters` only | `indexFilterable` only | Range and  `indexFilterable` |
   | :- | :- | :- | :- |
   | Equal | Range | Filter | Filter |
   | Not equal | Range | Filter | Filter |
@@ -66,7 +69,7 @@ Configure the index when you define your [collection properties](/developers/wea
 
 - **Implementation** Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
 
-- **Availability** This feature is only available for new properties and new collections. Existing properties cannot be converted to use the rangeable index.
+- **Availability** This feature is only available for new properties. Existing properties cannot be converted to use the rangeable index.
 
 ## Questions and feedback
 
