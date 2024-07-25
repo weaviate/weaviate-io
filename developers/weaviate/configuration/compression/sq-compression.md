@@ -58,6 +58,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
 | :-- | :-- | :-- | :-- |
 | `sq`: `enabled` | boolean | `false` | Uses SQ when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable SQ with the v4 client, set a `quantizer` in the collection definition. |
 | `sq`: `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
+| `sq`: `trainingLimit` | integer | 100000 | The size of the training set to determine scalar bucket boundaries. |
 | `sq`: `cache` | boolean | `false` | Use the vector cache when true. |
 | `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/vector-index.md#vector-cache-considerations). |
 

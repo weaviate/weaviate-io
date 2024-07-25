@@ -58,7 +58,8 @@ client.collections.create(
         # highlight-start
         quantizer=wc.Configure.VectorIndex.Quantizer.sq(
             rescore_limit=200,
-            cache=True
+            training_limit=50000,
+            cache=True,
         )
         # highlight-end
     ),

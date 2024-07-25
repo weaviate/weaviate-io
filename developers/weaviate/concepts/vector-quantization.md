@@ -89,7 +89,7 @@ SQ compression, like BQ, is a lossy compression technique. However, SQ has a muc
 
 SQ compressed vectors are more accurate than BQ compressed vectors. They are also significantly smaller than uncompressed vectors.
 
-A training set is used to determine the SQ bucket boundaries. The bucket boundaries are then used to compress the vectors. The distance calculation is done on the original, uncompressed vectors.
+The buckets boundaries are derived by determining the minimum and maximum values in a training set, and uniformly distributing the values between the minimum and maximum into 256 buckets. The 8 bit integer is then used to represent the bucket number.
 
 The size of the training set is configurable, and the default is 100,000 objects per shard.
 
