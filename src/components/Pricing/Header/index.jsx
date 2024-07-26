@@ -26,9 +26,6 @@ export default function PricingHeader() {
             >
               Try Free
             </Link>
-            <Link className={styles.buttonOutline} to="/platform">
-              Learn More
-            </Link>
           </div>
         </div>
       </div>

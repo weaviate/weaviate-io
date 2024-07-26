@@ -13,14 +13,27 @@
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   transition: all 0.3s ease-in-out;
 
+  @media screen and (min-width: 860px) and (max-width: 1200px) {
+    width: 100%;
+    height: 55rem;
+  }
+
   .price {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     justify-content: left;
     gap: 40px;
     flex-wrap: wrap;
     align-items: baseline;
+
+    @media screen and (max-width: 960px) {
+      height: 300px;
+    }
+
+    @media screen and (max-width: 860px) {
+      height: auto;
+    }
 
     p {
       color: #130c49;
@@ -51,6 +64,14 @@
 
   .bottomPrice {
     height: 49px;
+
+    @media screen and (max-width: 960px) {
+      height: 80px;
+    }
+
+    @media screen and (max-width: 560px) {
+      height: 49px;
+    }
   }
   .features {
     height: 266px;
@@ -58,8 +79,31 @@
     flex-direction: column;
     justify-content: space-between;
 
+    @media screen and (max-width: 960px) {
+      height: 206px;
+    }
+
     ul {
+      list-style-type: none;
+      padding-left: 1.5rem; /* adjust this value if needed */
       margin: 10px 0px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 1rem; /* adjust this value if needed */
+    }
+
+    li::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 0.5rem; /* adjust this value to center the bullet vertically */
+      left: 0;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: #00a88b;
     }
 
     p {
@@ -68,19 +112,6 @@
       font-style: normal;
       font-weight: 400;
       line-height: 140%; /* 1.3125rem */
-    }
-
-    li::before {
-      content: ' ';
-      display: flex;
-      margin-top: 9px;
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      color: #00a88b;
-      background: #00a88b;
-      background-size: contain;
-      background-repeat: no-repeat;
     }
   }
   .title {
@@ -198,7 +229,7 @@
   flex-wrap: wrap;
   gap: 30px;
 
-  @media screen and (max-width: 860px) {
+  @media screen and (max-width: 960px) {
     flex-direction: column;
   }
 }
@@ -839,17 +870,17 @@
   }
 
   @media screen and (max-width: 800px) {
-    /* Intermediate step for better resizing */
     .supportbox,
     .title,
     .features li {
-      font-size: smaller; /* Adjust font size */
-      padding: smaller; /* Adjust padding */
+      font-size: smaller;
+      padding: smaller;
     }
     .features li {
-      flex-basis: auto; /* Allow items to grow or shrink */
+      flex-basis: auto;
     }
   }
+
   @media screen and (max-width: 640px) {
     justify-content: flex-start;
     align-items: flex-start;
@@ -857,6 +888,7 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
+    margin: 40px 0px;
   }
 
   .features {
