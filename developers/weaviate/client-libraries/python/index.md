@@ -326,7 +326,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="fizedsize" label="Fixed Size">
+<TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
     text={PythonCode}
@@ -336,7 +336,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limited">
+<TabItem value="rateLimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
