@@ -162,13 +162,13 @@ Repairs only happen on read, so they do not create a lot of background overhead.
 
 :::
 
-Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it re-syncs the data on the inconsistent node.
+Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
 Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set the `asyncEnabled` value to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)

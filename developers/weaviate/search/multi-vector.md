@@ -77,13 +77,13 @@ Specify query vectors as a dictionary/map of names and vectors.
 </TabItem>
 </Tabs>
 
-You can also specify the query vectors as a list/array of vectors. In this case, they will be parsed according to the order of the specified target vectors.
+You can also specify the query vectors as an array of vectors. The array will be parsed according to the order of the specified target vectors.
 
-## Specify target vector names & join strategy
+## Specify target vector names and join strategy
 
-Specify target vectors as a list/array of named vectors and how to join the result sets.
+Specify target vectors as an array of named vectors and how to join the result sets.
 
-The `sum`, `average`, `minimum` join strategies simply require the name of the strategy and the target vectors.
+The `sum`, `average`, `minimum` join strategies only require the name of the strategy and the target vectors.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -125,7 +125,7 @@ Search by sums of weighted, **normalized** distances to each target vector.
 <details>
   <summary>The weighting in detail</summary>
 
-Each distance is normalized against other results for that target vector. Each normalized distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
+Each distance is normalized against other results for that target vector. Each normalized distance between the query vector and the target vector is multiplied by the specified weight. The resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
 
 </details>
 
@@ -145,7 +145,7 @@ Each distance is normalized against other results for that target vector. Each n
 Each multi-target vector search is composed of multiple single-target vector searches. The search results are combined based on the join strategy. The join strategy determines how the distances between the query vector and the target vectors are combined to produce a single distance score.
 
 - If an object is missing any of the target vectors, it will not be included in the search results.
-- If an object is within search limit or distance threshold of any of the target vectors, it will be included in the search results.
+- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
 
 If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
 

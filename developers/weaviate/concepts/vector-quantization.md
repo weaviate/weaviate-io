@@ -89,9 +89,9 @@ SQ compression, like BQ, is a lossy compression technique. However, SQ has a muc
 
 SQ compressed vectors are more accurate than BQ compressed vectors. They are also significantly smaller than uncompressed vectors.
 
-The buckets boundaries are derived by determining the minimum and maximum values in a training set, and uniformly distributing the values between the minimum and maximum into 256 buckets. The 8 bit integer is then used to represent the bucket number.
+The bucket boundaries are derived by determining the minimum and maximum values in a training set, and uniformly distributing the values between the minimum and maximum into 256 buckets. The 8 bit integer is then used to represent the bucket number.
 
-The size of the training set is configurable, and the default is 100,000 objects per shard.
+The size of the training set is configurable. The default is 100,000 objects per shard.
 
 When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. After Weaviate retrieves the compressed results, it compares the original, uncompressed vectors that correspond to the compressed result against the query. The second search is very fast because it only searches a small number of vectors rather than the whole database.
 
