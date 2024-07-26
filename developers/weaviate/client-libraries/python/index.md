@@ -382,8 +382,8 @@ The client automatically handles vectorization if you set the vectorizer when yo
   <TabItem value="py" label="Create a client">
     <FilteredTextBlock
       text={BatchVectorCode}
-      startMarker="# START BatchVectClient"
-      endMarker="# END BatchVectClient"
+      startMarker="# START BatchVectorClient"
+      endMarker="# END BatchVectorClient"
       language="py"
     />
   </TabItem>
