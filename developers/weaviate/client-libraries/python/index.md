@@ -313,7 +313,7 @@ There are three methods to configure the batching behavior. They are `dynamic`, 
 
 We recommend using a context manager as shown below.
 
-These methods return completely localized context managers. Accordingly, attributes of one batch such as `failed_objects` and `failed_references` will not be included in any subsequent calls.
+These methods return a new context manager for each batch. Attributes that are returned from one batch, such as `failed_objects` or `failed_references`, are not included in any subsequent calls.
 
 <Tabs groupId="languages">
 <TabItem value="dynamic" label="Dynamic">
@@ -326,7 +326,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="fizedsize" label="Fixed Size">
+<TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
     text={PythonCode}
@@ -336,7 +336,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limited">
+<TabItem value="rateLimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -376,7 +376,7 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 <BatchVectorizationOverview />
 
-The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import.
+The client automatically handles vectorization if you set the vectorizer when you create the collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Create a client">
@@ -389,7 +389,7 @@ The client automatically handles vectorization if you set the vectorizer when yo
   </TabItem>
 </Tabs>
 
-To modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+To modify the vectorization settings, update the client object. This example adds multiple vectorizers:
 
 - **Cohere**. Set the service API key. Set the request rate.
 - **OpenAI**. Set the service API key. Set the base URL.
