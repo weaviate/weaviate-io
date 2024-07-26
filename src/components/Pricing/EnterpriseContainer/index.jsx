@@ -1,8 +1,173 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
 export default function EnterpriseContainer() {
+  const [activeTab, setActiveTab] = useState('aws');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'aws':
+        return (
+          <>
+            <span>Starting from $2.64 per AI Unit (AIU)</span>
+            <div className={styles.tabRight}>
+              <span>AIU per hour / GB</span>
+              <span>AIU per month / GB</span>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.vpcs}`} />
+              <div className={styles.tabText}>
+                <p>vCPU</p>
+              </div>
+              <p className={styles.marginRight}>0.0294658</p>
+              <p>21.51</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.hot}`} />
+              <div className={styles.tabText}>
+                <p>HOT</p>
+                <span>Used for data accessed frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0017534</p>
+              <p>1.28</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.warm}`} />
+              <div className={styles.tabText}>
+                <p>WARM</p>
+                <span>Used for data accessed less-frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0000959</p>
+              <p>0.07</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.cold}`} />
+              <div className={styles.tabText}>
+                <p>COLD</p>
+                <span>
+                  Used for data not needed at the time,<br></br> but fast to
+                  activate.
+                </span>
+              </div>
+              <p className={styles.marginRight}>0.0000137</p>
+              <p>0.01</p>
+            </div>
+            <div className={styles.tabBottom}>
+              <em>*Standard SLA tier</em>
+              <em> **Based on us-east-1</em>
+            </div>
+          </>
+        );
+      case 'google':
+        return (
+          <>
+            <span>Starting from $2.64 per AI Unit (AIU)</span>
+            <div className={styles.tabRight}>
+              <span>AIU per hour / GB</span>
+              <span>AIU per month / GB</span>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.vpcs}`} />
+              <div className={styles.tabText}>
+                <p>vCPU</p>
+              </div>
+              <p className={styles.marginRight}>0.0294658</p>
+              <p>21.51</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.hot}`} />
+              <div className={styles.tabText}>
+                <p>HOT</p>
+                <span>Used for data accessed frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0017534</p>
+              <p>1.28</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.warm}`} />
+              <div className={styles.tabText}>
+                <p>WARM</p>
+                <span>Used for data accessed less-frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0000959</p>
+              <p>0.07</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.cold}`} />
+              <div className={styles.tabText}>
+                <p>COLD</p>
+                <span>
+                  Used for data not needed at the time,<br></br> but fast to
+                  activate.
+                </span>
+              </div>
+              <p className={styles.marginRight}>0.0000137</p>
+              <p>0.01</p>
+            </div>
+            <div className={styles.tabBottom}>
+              <em>*Standard SLA tier</em>
+              <em> **Based on us-east-1</em>
+            </div>
+          </>
+        );
+      case 'azure':
+        return (
+          <>
+            <span>Starting from $2.64 per AI Unit (AIU)</span>
+            <div className={styles.tabRight}>
+              <span>AIU per hour / GB</span>
+              <span>AIU per month / GB</span>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.vpcs}`} />
+              <div className={styles.tabText}>
+                <p>vCPU</p>
+              </div>
+              <p className={styles.marginRight}>0.0294658</p>
+              <p>21.51</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.hot}`} />
+              <div className={styles.tabText}>
+                <p>HOT</p>
+                <span>Used for data accessed frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0017534</p>
+              <p>1.28</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.warm}`} />
+              <div className={styles.tabText}>
+                <p>WARM</p>
+                <span>Used for data accessed less-frequently.</span>
+              </div>
+              <p className={styles.marginRight}>0.0000959</p>
+              <p>0.07</p>
+            </div>
+            <div className={styles.tabBar}>
+              <div className={`${styles.vpcIcon} ${styles.cold}`} />
+              <div className={styles.tabText}>
+                <p>COLD</p>
+                <span>
+                  Used for data not needed at the time,<br></br> but fast to
+                  activate.
+                </span>
+              </div>
+              <p className={styles.marginRight}>0.0000137</p>
+              <p>0.01</p>
+            </div>
+            <div className={styles.tabBottom}>
+              <em>*Standard SLA tier</em>
+              <em> **Based on us-east-1</em>
+            </div>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={styles.bgColor}>
       <div className={styles.container}>
@@ -28,15 +193,30 @@ export default function EnterpriseContainer() {
 
         <div className={styles.tabContainer}>
           <div className={styles.tabs}>
-            <div className={`${styles.tab} ${styles.activeTab}`}>
+            <div
+              className={`${styles.tab} ${
+                activeTab === 'aws' ? styles.activeTab : ''
+              }`}
+              onClick={() => setActiveTab('aws')}
+            >
               <div className={`${styles.cellIcon} ${styles.awsIcon}`} /> Amazon
               Web Services
             </div>
-            <div className={styles.tab}>
+            <div
+              className={`${styles.tab} ${
+                activeTab === 'google' ? styles.activeTab : ''
+              }`}
+              onClick={() => setActiveTab('google')}
+            >
               <div className={`${styles.cellIcon} ${styles.googleIcon}`} />{' '}
               Google
             </div>
-            <div className={styles.tab}>
+            <div
+              className={`${styles.tab} ${
+                activeTab === 'azure' ? styles.activeTab : ''
+              }`}
+              onClick={() => setActiveTab('azure')}
+            >
               <div className={`${styles.cellIcon} ${styles.azureIcon}`} /> Azure
             </div>
           </div>
@@ -54,52 +234,7 @@ export default function EnterpriseContainer() {
                 labore et dolore magna aliqua.
               </p>
             </div>
-            <div className={styles.tabBody}>
-              <span>Starting from $2.64 per AI Unit (AIU)</span>
-              <div className={styles.tabRight}>
-                <span>AIU per hour / GB</span>
-                <span>AIU per month / GB</span>
-              </div>
-              <div className={styles.tabBar}>
-                <div className={`${styles.vpcIcon} ${styles.vpcs}`} />
-                <div className={styles.tabText}>
-                  <p>vCPU</p>
-                  <span>Used for data accessed frequently.</span>
-                </div>
-                <p className={styles.marginRight}>0.0294658</p>
-                <p>21.51</p>
-              </div>
-              <div className={styles.tabBar}>
-                <div className={`${styles.vpcIcon} ${styles.hot}`} />
-                <div className={styles.tabText}>
-                  <p>HOT</p>
-                  <span>Used for data accessed frequently.</span>
-                </div>
-                <p className={styles.marginRight}>0.0017534</p>
-                <p>1.28</p>
-              </div>
-              <div className={styles.tabBar}>
-                <div className={`${styles.vpcIcon} ${styles.warm}`} />
-                <div className={styles.tabText}>
-                  <p>WARM</p>
-                  <span>Used for data accessed less-frequently.</span>
-                </div>
-                <p className={styles.marginRight}>0.0000959</p>
-                <p>0.07</p>
-              </div>
-              <div className={styles.tabBar}>
-                <div className={`${styles.vpcIcon} ${styles.cold}`} />
-                <div className={styles.tabText}>
-                  <p>COLD</p>
-                  <span>
-                    Used for data not needed at the time,<br></br> but fast to
-                    activate.
-                  </span>
-                </div>
-                <p className={styles.marginRight}>0.0000137</p>
-                <p>0.01</p>
-              </div>
-            </div>
+            <div className={styles.tabBody}>{renderContent()}</div>
           </div>
         </div>
         <div className={styles.buttons}>
@@ -107,7 +242,7 @@ export default function EnterpriseContainer() {
             className={styles.buttonGradient}
             to="https://console.weaviate.cloud/"
           >
-            Download the full Weaviate Pricing list
+            Get the pricing guide
           </Link>
           <Link
             className={styles.buttonOutline}
