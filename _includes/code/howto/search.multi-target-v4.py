@@ -143,7 +143,7 @@ response = collection.query.near_text(
     limit=2,
     # highlight-start
     target_vector=TargetVectors.average(["jeopardy_questions_vector", "jeopardy_answers_vector"]),  # Specify the target vectors and the join strategy
-    # .maximim(), .sum(), .minimum(), .manual_weights(), .relative_score() also available
+    # .sum(), .minimum(), .manual_weights(), .relative_score() also available
     # highlight-end
     return_metadata=MetadataQuery(distance=True)
 )

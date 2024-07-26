@@ -83,7 +83,7 @@ You can also specify the query vectors as a list/array of vectors. In this case,
 
 Specify target vectors as a list/array of named vectors and how to join the result sets.
 
-The `sum`, `average`, `maximum`, `minimum` join strategies simply require the name of the strategy and the target vectors.
+The `sum`, `average`, `minimum` join strategies simply require the name of the strategy and the target vectors.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -154,7 +154,6 @@ If an object doesn't have all of the target vectors, Weaviate ignores that objec
 These are the available join strategies:
 
 - **minimum** Use the minimum of the vector distances.
-- **maximum** Use the maximum of the vector distances.
 - **sum** Use the sum of the vector distances.
 - **average** Use the average of the vector distances.
 - **manual weights** Adjust the weight of each distance by a set value.
