@@ -703,6 +703,91 @@ The results are organized the group, returning a list of groups.
   language="py"
 />
 
+### Model Provider Integrations
+
+[Model provider integrations](../../model-providers/index.md) are configured using the `weaviate.classes.config.Configure` class. More specifically, they are configured through the `Generate`, `Reranker`, `Vectorizer` or `NamedVector` namespaces as shown in the examples below:
+
+import GenerativeExamples from '!!raw-loader!../../model-providers/_includes/provider.generative.py';
+import RerankerExamples from '!!raw-loader!../../model-providers/_includes/provider.reranker.py';
+import NamedVectorizerExamples from '!!raw-loader!../../model-providers/_includes/provider.vectorizer.py';
+import VectorizerExamples from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={GenerativeExamples}
+    startMarker="# START BasicGenerativeAnthropic"
+    endMarker="# END BasicGenerativeAnthropic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={RerankerExamples}
+    startMarker="# START RerankerCohereBasic"
+    endMarker="# END RerankerCohereBasic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizer">
+  <FilteredTextBlock
+    text={NamedVectorizerExamples}
+    startMarker="# START BasicVectorizerOllama"
+    endMarker="# END BasicVectorizerOllama"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={VectorizerExamples}
+    startMarker="# START Vectorizer"
+    endMarker="# END Vectorizer"
+    language="py"
+  />
+</TabItem>
+</Tabs>
+
+### Manually specify provider integrations
+
+In the rare cases where Weaviate supports a model provider that is not yet integrated into the client library, you can manually specify the model provider configuration through the `.custom()` methods in each namespace.
+
+Note that the module_config keys should follow the naming convention of Weaviate database, which uses camelCase for keys. For example, `api_endpoint` in `.anthropic()` becomes `apiEndpoint` in `.custom()`.
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomGenerativeModuleExample"
+    endMarker="# END CustomGenerativeModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomRerankModuleExample"
+    endMarker="# END CustomRerankModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizers">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomNamedVectorModuleExample"
+    endMarker="# END CustomNamedVectorModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomVectorizerModuleExample"
+    endMarker="# END CustomVectorizerModuleExample"
+    language="py"
+  />
+</TabItem>
+</Tabs>
+
 ### Collection iterator (`cursor` API)
 
 The `v4` client adds a Pythonic iterator method for each collection. This wraps the `cursor` API and allows you to iterate over all objects in a collection.
