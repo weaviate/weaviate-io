@@ -460,7 +460,7 @@ import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.ad
 
 ## Inspect the shards of a collection
 
-As described in [Architecture > Storage](../../concepts/storage.md#logical-storage-units-indices-shards-stores), creation of a collection leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a collection index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
+As described in [Architecture > Storage](../../concepts/storage.md#logical-storage-units-indexes-shards-stores), creation of a collection leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a collection index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
 
 You can view a list of all shards for a particular collection:
 

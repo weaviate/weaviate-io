@@ -106,7 +106,7 @@ some of the individual areas and see *how* we can write better reports.
 - If you see a stack trace from your language-client you can make an educated
   guess about where the error occurred. If the stack trace contains a network
   request, a non-2xx HTTP status code or an error message containing
-  information about shards and indices, there is a good chance the bug occurred
+  information about shards and indexes, there is a good chance the bug occurred
   inside the Weaviate server. If you see something that is very specific to the
   client's language however, it may be an indication that the error occurred in
   the client.

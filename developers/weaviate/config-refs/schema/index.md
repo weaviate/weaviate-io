@@ -63,9 +63,9 @@ An example of a complete collection object including properties:
     "stopwords": {
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
-    "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
+    "indexTimestamps": false,               // Optional, maintains inverted indexes for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indexes for each property regarding its null state
+    "indexPropertyLength": false            // Optional, maintains inverted indexes for each property by its length
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of the collection in a
@@ -322,7 +322,7 @@ To configure indexing based on property length, set `indexPropertyLength` to `tr
 ```
 
 :::note
-Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
+Using these features requires more resources. The additional inverted indexes must be created and maintained for the lifetime of the collection.
 :::
 
 ### `vectorizer`

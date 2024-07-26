@@ -5,18 +5,18 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-Weaviate supports several types of indices.
+Weaviate supports several types of indexes.
 
 1. **Vector indexes** - a vector index (e.g. HNSW or flat) is used to serve all vector-search queries.
 1. **Inverted indexes** - inverted indexes enable BM25 queries, or speed up filtering.
 
-You can configure indices in Weaviate per collection.
+You can configure indexes in Weaviate per collection.
 
 Some things to bear in mind:
 
-* Especially for large datasets, configuring the indices is important because the more you index, the more storage is needed.
+* Especially for large datasets, configuring the indexes is important because the more you index, the more storage is needed.
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
-* One of Weaviate's unique features is how the indices are configured (learn more about this [here](../concepts/prefiltering.md)).
+* One of Weaviate's unique features is how the indexes are configured (learn more about this [here](../concepts/prefiltering.md)).
 
 ## Vector indexes
 
@@ -38,7 +38,7 @@ There are three inverted index types in Weaviate:
 - `indexFilterable` - a match-based index for fast [filtering](./prefiltering.md) by matching criteria
 - `indexRangeFilters` - a range-based index for [filtering](./prefiltering.md) by numerical ranges
 
-Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indices are on by default, while the `indexRangeFilters` index is off by default.
+Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indexes are on by default, while the `indexRangeFilters` index is off by default.
 
 The filterable indexes are only capable of [filtering](./prefiltering.md), while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
 
@@ -75,7 +75,7 @@ You can also enable an inverted index to search [based on timestamps](/developer
 
 Timestamps are currently indexed using the `indexFilterable` index.
 
-## Collections without indices
+## Collections without indexes
 
 If you don't want to set an index at all, this is possible too.
 

@@ -14,7 +14,7 @@ The components mentioned on this page aid Weaviate in creating some of its uniqu
 * When combining structured search with vector search, filters are applied prior to performing the vector search. This means that you will always receive the specified number of elements as opposed to post-filtering when the final result count is unpredictable.
 * Objects and their vectors can be updated or deleted at will; even while reading from the database.
 
-## Logical Storage Units: Indices, Shards, Stores
+## Logical Storage Units: Indexes, Shards, Stores
 
 Each class in Weaviate's user-defined schema leads to the creation of an index internally. An index is a wrapper type that is comprised of one or many shards. Shards within an index are self-contained storage units. Multiple shards can be used to distribute the load among multiple server nodes automatically.
 
@@ -58,7 +58,7 @@ By grouping a vector index with the object storage within a shard, Weaviate can 
 
 Weaviate's storage mechanisms use segmentation for structured/object data. Segments are cheap to merge and even unmerged segments can be navigated efficiently thanks to Bloom filters. In turn, ingestion speed is high and does not degrade over time.
 
-Weaviate keeps the vector index as large as possible within a shard. HNSW indices cannot be merged efficiently. Querying a single large index is more efficient than sequentially querying many small indexes.
+Weaviate keeps the vector index as large as possible within a shard. HNSW indexes cannot be merged efficiently. Querying a single large index is more efficient than sequentially querying many small indexes.
 
 To use multiple CPUs efficiently, create multiple shards for your collection. For the fastest imports, create multiple shards even on a single node.
 

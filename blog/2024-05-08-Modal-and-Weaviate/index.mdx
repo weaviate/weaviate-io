@@ -43,7 +43,7 @@ In designing a complex pipeline, like data ingestion for a search engine, it’s
 
 Because embedding vectors are so hot and cutting edge these days, you might expect that creating the embeddings is the bottleneck. But it’s not: we can easily scale up to the point where [all of English Wikipedia is converted into vectors in under fifteen minutes](https://modal.com/blog/embedding-wikipedia).
 
-In fact, creating the text and vector search indices is the bottleneck. This shouldn’t be too surprising: databases are frequently the bottleneck. They have a treacherously difficult job to do, providing a storage abstraction that has the durability of disk but the flexibility and speed of memory.
+In fact, creating the text and vector search indexes is the bottleneck. This shouldn’t be too surprising: databases are frequently the bottleneck. They have a treacherously difficult job to do, providing a storage abstraction that has the durability of disk but the flexibility and speed of memory.
 
 Once you’ve identified the bottleneck, the [first step in managing it](https://www.leanproduction.com/theory-of-constraints/) is to maximize the speed of the bottleneck. In addition to having the combination text and vector search capabilities our application required, Weaviate provided both a scalable, managed deployment with [Weaviate Cloud](https://weaviate.io/developers/wcs) and all the knobs we needed to configure our indexing to maximize speed while providing the needed features.
 

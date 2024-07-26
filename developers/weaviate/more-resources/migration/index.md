@@ -78,7 +78,7 @@ Since filterable & searchable are separate indexes, filterable does not exist in
 
 ### Migration Notice
 
-Version `v1.8.0` introduces multi-shard indices and horizontal scaling. As a
+Version `v1.8.0` introduces multi-shard indexes and horizontal scaling. As a
 result the dataset needs to be migrated. This migration is performed automatically -
 without user interaction - when first starting up with Weaviate version
 `v1.8.0`. However, it cannot be reversed. We, therefore, recommend carefully
@@ -87,7 +87,7 @@ best upgrade path for your needs.
 
 #### Why is a data migration necessary?
 
-Prior to `v1.8.0` Weaviate did not support multi-shard indices. The feature was
+Prior to `v1.8.0` Weaviate did not support multi-shard indexes. The feature was
 already planned, therefore data was already contained in a single shard with a
 fixed name. A migration is necessary to move the data from a single fixed shard
 into a multi-shard setup. The amount of shards is not changed. When you run
