@@ -403,6 +403,13 @@ await client.collections.create({
       indexSearchable: true,
       // highlight-end
     },
+    {
+      name: 'chunk',
+      dataType: dataType.INT,
+      // highlight-start
+      indexRangeFilters: true,
+      // highlight-end
+    },
   ],
   // highlight-start
   invertedIndex: {

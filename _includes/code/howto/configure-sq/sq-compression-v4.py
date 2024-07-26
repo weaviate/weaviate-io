@@ -5,7 +5,7 @@
 # ==============================
 
 # START ConnectCode
-import weaviate, os, json
+import weaviate, os
 import weaviate.classes.config as wc
 
 client = weaviate.connect_to_local(
@@ -58,14 +58,12 @@ client.collections.create(
         # highlight-start
         quantizer=wc.Configure.VectorIndex.Quantizer.sq(
             rescore_limit=200,
-            cache=True
+            training_limit=50000,
+            cache=True,
         )
         # highlight-end
     ),
 )
 # END SQWithOptions
 
-# START-ANY
-
 client.close()
-# END-ANY

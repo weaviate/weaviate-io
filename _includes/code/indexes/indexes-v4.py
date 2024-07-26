@@ -8,7 +8,9 @@ import weaviate
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+        "X-OpenAI-Api-Key": os.environ[
+            "OPENAI_API_KEY"
+        ]  # Replace with your inference API key
     }
 )
 
@@ -27,14 +29,18 @@ client.collections.create(
     properties=[
         Property(name="itemName", data_type=DataType.TEXT),
         Property(name="itemDescription", data_type=DataType.TEXT),
-        Property(name="itemCount",
-                 data_type=DataType.INT,
-                 skip_vectorization=True,
-                 index_range_filters=True)
-    ]
+        Property(
+            name="itemCount",
+            data_type=DataType.INT,
+            skip_vectorization=True,
+            index_range_filters=True,
+        ),
+    ],
 )
 # END RangeIndex
 
 # Test
 inventory = client.collections.get("Inventory")
 # assert inventory.config.get().properties[2].index_range_filters == True
+
+client.close()

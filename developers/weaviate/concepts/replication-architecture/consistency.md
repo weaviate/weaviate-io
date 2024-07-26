@@ -168,7 +168,7 @@ Repair-on-read works well with one or two isolated repairs. Async replication is
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
