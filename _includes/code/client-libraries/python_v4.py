@@ -565,6 +565,98 @@ finally:
     client.close()
 # END GetCollectionExample
 
+
+# ===== CUSTOM MODULE EXAMPLES =====
+
+client.collections.delete("DemoCollection")
+
+# START CustomGenerativeModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.custom(
+        module_name="generative-anthropic",
+        module_config={"model": "claude-3-5-sonnet-20240620"}
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomGenerativeModuleExample
+
+# START CustomRerankModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.custom(
+        module_name="reranker-cohere",
+        module_config={"model": "rerank-english-v3.0"}
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomRerankModuleExample
+
+# START CustomNamedVectorModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.custom(
+            name="title",
+            source_properties=["title"],
+            module_name="text2vec-ollama",
+            module_config={
+                "model": "snowflake-arctic-embed",
+                "apiEndpoint": "http://host.docker.internal:11434"
+            }
+        )
+    ]
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomNamedVectorModuleExample
+
+# START CustomVectorizerModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=Configure.Vectorizer.custom(
+        module_name="text2vec-ollama",
+        module_config={
+            "model": "snowflake-arctic-embed",
+            "apiEndpoint": "http://host.docker.internal:11434"
+        }
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomVectorizerModuleExample
+
+# ===== CUSTOM MODULE EXAMPLES =====
+
+Configure.Generative.custom(
+            "generative-whatever", module_config={"temperature": 0.5}
+        )
+Configure.Reranker.custom(
+            "reranker-whatever", module_config={"model": "whatever"}
+        )
+Configure.Vectorizer.custom(
+            "text2vec-whatever", module_config={"vectorizeClassName": False}
+        )
+Configure.NamedVectors.custom(
+                "name", module_name="text2vec-contextionary", module_config={"vectorizeClassName": False}
+            )
+
+
+
 # =====================================================================================
 # Data examples
 # =====================================================================================
