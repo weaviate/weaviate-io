@@ -10,9 +10,9 @@ weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
 # START-ANY
 
-client = weaviate.connect_to_weaviate_cloud(
+client = weaviate.connect_to_local(
     cluster_url=weaviate_url,                       # `weaviate_url`: your Weaviate URL
-    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key
+    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key - if authentication is enabled
 )
 # END-ANY
 
