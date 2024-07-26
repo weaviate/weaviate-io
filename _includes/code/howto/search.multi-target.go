@@ -24,7 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	className := "Jeopardy_Tiny_Dataset"
+	className := "JeopardyTiny"
 	// END BasicFull
 
 	// START MultiBasic // START BasicFull
@@ -34,14 +34,13 @@ func main() {
 		WithTargetVectors("jeopardy_questions_vector", "jeopardy_answers_vector")
 
 	ctx := context.Background()
-	// END MultiBasic // END BasicFull
 
-	// START BasicFull
 	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-		WithNearText(nearText).
-		Do(ctx)
+	WithClassName(className).
+	WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
+	WithNearText(nearText).
+	Do(ctx)
+	// END MultiBasic // START BasicFull
 
 	if err != nil {
 		panic(err)
