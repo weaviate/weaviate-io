@@ -14,6 +14,25 @@ import GoCode from '!!raw-loader!/_includes/code/howto/search.multi-target.go';
 
 Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
+## Combining search results
+
+Each multi-target vector search is composed of multiple single-target vector searches. The search results are combined based on the join strategy. The join strategy determines how the distances between the query vector and the target vectors are combined to produce a single distance score.
+
+- If an object is missing any of the target vectors, it will not be included in the search results.
+- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
+
+If an object doesn't have all of the selected target vectors, Weaviate ignores that object and does not include it in the search results.
+
+### Available join strategies.
+
+These are the available join strategies:
+
+- **minimum** (*default*) Use the minimum of the vector distances.
+- **sum** Use the sum of the vector distances.
+- **average** Use the average of the vector distances.
+- **manual weights** Use the sum of weighted distances, where the weight is provided for each target vector.
+- **relative score** Use the sum of weighted normalized distances, where the weight is provided for each target vector.
+
 ## Specify target vector names only
 
 Specify target vectors as a list/array of named vectors. The default join strategy is `minimum`, which means that the search results are sorted by the minimum distance in each query/target vector pair.
@@ -105,6 +124,8 @@ Search by sums of weighted, **raw** distances to each target vector.
 
 Each distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
 
+For a more detailed explanation of how scores are normalized, see the blog post on [hybrid relative score fusion](/blog/2023-08-29-hybrid-search-fusion/index.mdx#relative-score-fusion)
+
 </details>
 
 <Tabs groupId="languages">
@@ -139,25 +160,6 @@ Each distance is normalized against other results for that target vector. Each n
 />
 </TabItem>
 </Tabs>
-
-## Combining search results
-
-Each multi-target vector search is composed of multiple single-target vector searches. The search results are combined based on the join strategy. The join strategy determines how the distances between the query vector and the target vectors are combined to produce a single distance score.
-
-- If an object is missing any of the target vectors, it will not be included in the search results.
-- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
-
-If an object doesn't have all of the target vectors, Weaviate ignores that object and does not include it in the search results.
-
-### Available join strategies.
-
-These are the available join strategies:
-
-- **minimum** Use the minimum of the vector distances.
-- **sum** Use the sum of the vector distances.
-- **average** Use the average of the vector distances.
-- **manual weights** Adjust the weight of each distance by a set value.
-- **relative score** Adjust the relative contribution of each target vector to the distance score.
 
 ## Related pages
 
