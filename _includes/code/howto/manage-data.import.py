@@ -499,3 +499,26 @@ assert response.total_count == 5
 client.collections.delete("NewCollection")
 
 client.close()
+
+# ===========================================
+# =====    Batch vectorization client =====
+# ===========================================
+
+# TODO NEEDS TEST
+# Creates a new client so can't piggyback on the prior client tests
+
+# START BatchVectorClient
+collection = client.collections.create(
+        name="NewCollection",
+        properties=[
+            wvc.config.Property(name="url", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="raw", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="sha", data_type=wvc.config.DataType.TEXT),
+        ],
+        vectorizer_config=[
+            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereFirst"),
+            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereSecond"),
+        ]
+    )
+# END BatchVectorClient
