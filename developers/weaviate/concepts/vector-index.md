@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
-Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
+Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
 
 Weaviate supports two types of vector indexing:
 * [flat index](#flat-index): a simple, lightweight index that is designed for small datasets.
@@ -18,7 +18,7 @@ Weaviate supports two types of vector indexing:
 Available starting in `v1.25`. This is an experimental feature. Use with caution.
 :::
 
-This page explains what vector indices are, and what purpose they serve in the Weaviate vector database.
+This page explains what vector indexes are, and what purpose they serve in the Weaviate vector database.
 
 ## Why do you need vector indexing?
 

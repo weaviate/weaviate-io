@@ -72,7 +72,7 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   <tr>
     <td rowspan="3" class="roadmap-table-img" style="background-image: url('/img/roadmap-3.svg');"></td>
     <td>
-      <b>Multi-shard indices</b>
+      <b>Multi-shard indexes</b>
     </td>
   </tr>
   <tr>
@@ -157,8 +157,3 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-
-
-
-
-

@@ -58,7 +58,7 @@ By grouping a vector index with the object storage within a shard, Weaviate can 
 
 Weaviate's storage mechanisms use segmentation for structured/object data. Segments are cheap to merge and even unmerged segments can be navigated efficiently thanks to Bloom filters. In turn, ingestion speed is high and does not degrade over time.
 
-Weaviate keeps the vector index as large as possible within a shard. HNSW indices cannot be merged efficiently. Querying a single large index is more efficient than sequentially querying many small indexes.
+Weaviate keeps the vector index as large as possible within a shard. HNSW indexes cannot be merged efficiently. Querying a single large index is more efficient than sequentially querying many small indexes.
 
 To use multiple CPUs efficiently, create multiple shards for your collection. For the fastest imports, create multiple shards even on a single node.
 
