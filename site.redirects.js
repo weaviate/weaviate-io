@@ -30,11 +30,11 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/current/core-knowledge/console',
         },
         {
-         to: '/developers/wcs/console',
+         to: '/developers/wcs/tools/query-tool',
          from: '/developers/wcs/guides/console',
         },
         {
@@ -122,7 +122,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/quickstart/console',
         },
 
@@ -144,7 +144,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/current/quickstart/console',
         },
 
@@ -154,7 +154,7 @@ const siteRedirects = {
             from: '/developers/wcs/troubleshooting',
         },
         {
-         to: '/developers/wcs/console',
+         to: '/developers/wcs/tools/query-tool',
          from: '/developers/wcs/platform/ssconsole',
         },
         {
@@ -400,7 +400,7 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/tutorials/console',
         },
 
