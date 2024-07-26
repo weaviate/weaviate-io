@@ -389,7 +389,7 @@ The client automatically handles vectorization if you set the vectorizer when yo
   </TabItem>
 </Tabs>
 
-To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+To modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
 
 - **Cohere**. Set the service API key. Set the request rate.
 - **OpenAI**. Set the service API key. Set the base URL.
