@@ -4,7 +4,7 @@
 
 # ===== Instantiation
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 # START QueryWithReplication
 from weaviate.classes.config import ConsistencyLevel
@@ -13,7 +13,7 @@ from weaviate.classes.config import ConsistencyLevel
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
