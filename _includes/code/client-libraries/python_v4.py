@@ -90,8 +90,8 @@ import os
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
-openai_apikey = os.environ["OPENAI_APIKEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
@@ -235,7 +235,7 @@ import os
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
 
 with weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
@@ -799,14 +799,14 @@ from weaviate.classes.init import Auth
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
-openai_apikey = os.environ["OPENAI_APIKEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,
-    auth_credentials=wcd_apikey,
+    auth_credentials=wcd_api_key,
     headers={
-        "X-OpenAI-Api-Key": openai_apikey,
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 
@@ -1137,7 +1137,7 @@ import os
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
 
 async_client = weaviate.use_async_with_weaviate_cloud(
     cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL

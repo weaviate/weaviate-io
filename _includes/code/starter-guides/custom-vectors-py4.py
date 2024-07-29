@@ -16,12 +16,12 @@ import weaviate.classes as wvc
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_DEMO_URL"]
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
 
 # The with-as context manager closes the connect when your code exits
 with weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,
-    auth_credentials=wvc.init.Auth.api_key(wcd_apikey),
+    auth_credentials=wvc.init.Auth.api_key(wcd_api_key),
 ) as client:
     questions = client.collections.create(
         name="Question",

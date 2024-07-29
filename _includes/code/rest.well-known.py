@@ -13,7 +13,7 @@ client.close()
 from weaviate.classes.init import Auth
 
 # Best practice: store your credentials in environment variables
-wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
