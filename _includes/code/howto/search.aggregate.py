@@ -13,7 +13,7 @@ openai_api_key = os.environ["OPENAI_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,
-    auth_credentials=wcd_api_key,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
         "X-OpenAI-Api-Key": openai_api_key,
     }
