@@ -1,6 +1,6 @@
 # START-ANY
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 
 # END-ANY
@@ -114,7 +114,7 @@ headers = {
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                       # `weaviate_url`: your Weaviate URL
-    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key
+    auth_credentials=Auth.api_key(weaviate_key),      # `weaviate_key`: your Weaviate API key
     # highlight-start
     headers=headers
     # highlight-end
