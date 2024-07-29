@@ -192,12 +192,12 @@ client.close()
 
 import os
 import weaviate
-from weaviate.classes.init import Auth
+from weaviate.auth import AuthApiKey
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
     headers={
         "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
     }

@@ -23,11 +23,16 @@ client.close()
 
 from weaviate.classes.init import Auth
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_apikey = os.environ["WCD_DEMO_RO_KEY"]
+openai_apikey = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WCD_DEMO_RO_KEY")),
+    cluster_url=wcd_url,
+    auth_credentials=wcd_apikey,
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_apikey,
     }
 )
 
