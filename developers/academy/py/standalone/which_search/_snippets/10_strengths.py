@@ -4,7 +4,7 @@ import weaviate
 import weaviate.classes as wvc
 import json
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
     auth_credentials=weaviate.classes.init.Auth.api_key("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
     headers={

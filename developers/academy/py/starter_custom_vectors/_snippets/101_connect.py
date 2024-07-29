@@ -2,7 +2,7 @@
 import weaviate
 import os
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.classes.init.Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
@@ -20,7 +20,7 @@ headers = {
     "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")
 }  # Replace with your Cohere API key
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.classes.init.Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
@@ -135,7 +135,7 @@ import weaviate
 import os
 
 # END TryFinallyCloseDemo
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
     auth_credentials=weaviate.classes.init.Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
@@ -143,7 +143,7 @@ client = weaviate.connect_to_wcs(
 )
 # TryFinallyCloseDemo
 # Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_weaviate_cloud(...) or
 # client = weaviate.connect_to_local(...)
 
 try:
