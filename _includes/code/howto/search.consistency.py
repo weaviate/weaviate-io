@@ -11,11 +11,16 @@ from weaviate.classes.config import ConsistencyLevel
 
 # END QueryWithReplication
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WCD_DEMO_RO_KEY")),
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 

@@ -10,9 +10,11 @@ client.close()
 import weaviate.classes as wvc
 import os
 
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=wvc.init.Auth.api_key(os.getenv("WCD_DEMO_RO_KEY")),
+    auth_credentials=wvc.init.Auth.api_key(wcd_api_key),
 )
 
 # START-ANY

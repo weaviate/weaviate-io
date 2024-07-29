@@ -26,12 +26,15 @@ import json
 
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_URL"),
-    auth_credentials=wvc.init.Auth.api_key(os.getenv("WCD_API_KEY")),
-    headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
-    }
+    cluster_url=wcd_url,                                    # Replace with your Weaviate Cloud URL
+    auth_credentials=wvc.init.Auth.api_key(wcd_api_key),    # Replace with your Weaviate Cloud key
+    headers={"X-OpenAI-Api-Key": openai_api_key}            # Replace with appropriate header key/value pair for the required API
 )
 
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
