@@ -663,6 +663,12 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
   </TabItem>
 </Tabs>
 
+## Backups
+
+:::caution Backups do not include inactive or offloaded tenants
+Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Update tenants' statuses](#update-tenant-activity-status) to active before creating a backup to ensure all data is included.
+:::
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)

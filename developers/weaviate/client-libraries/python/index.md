@@ -131,7 +131,8 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 ### Connection helper functions
 
-- `weaviate.connect_to_wcs()`
+- `weaviate.connect_to_weaviate_cloud()`
+    - Previously `connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
@@ -214,7 +215,7 @@ If you see errors while using the `generate` submodule, try increasing the query
 
 #### Authentication
 
-Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCD API key or OIDC authentication credentials.
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_weaviate_cloud` accepts a WCD API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">

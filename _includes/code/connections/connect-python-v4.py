@@ -31,13 +31,13 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 from weaviate.classes.init import AdditionalConfig, Timeout
 
 # Connect to a WCD instance
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
     # skip_init_checks=True,
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
@@ -59,7 +59,7 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 
 client = weaviate.connect_to_custom(
     http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
@@ -68,7 +68,7 @@ client = weaviate.connect_to_custom(
     grpc_host=os.getenv("WEAVIATE_GPC_URL"),
     grpc_port=443,      # Default is 50051, WCD uses 443
     grpc_secure=True,   # Edit as needed
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
 )
 
 print(client.is_ready())
@@ -86,7 +86,7 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, os
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 from weaviate.classes.init import AdditionalConfig, Timeout
 
 client = weaviate.connect_to_custom(
@@ -96,7 +96,7 @@ client = weaviate.connect_to_custom(
     grpc_host=os.getenv("WEAVIATE_GPC_URL"),
     grpc_port=443,      # Default is 50051, WCD uses 443
     grpc_secure=True,   # Edit as needed
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
@@ -116,12 +116,12 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
 )
 
 print(client.is_ready())
@@ -150,10 +150,10 @@ client.close()
 # WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 
 client = weaviate.connect_to_local(
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY"))
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY"))
 )
 
 print(client.is_ready())
@@ -192,12 +192,12 @@ client.close()
 
 import os
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WEAVIATE_API_KEY")),
+    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
     headers={
         "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
     }
@@ -219,7 +219,7 @@ import weaviate
 import os
 
 client = weaviate.connect_to_embedded(
-    version="1.25.4",
+    version="1.26.1",
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_API_KEY")
     },
