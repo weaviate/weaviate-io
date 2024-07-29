@@ -21,7 +21,7 @@ Objects are parsed twice:
 
 ## Motivation behind split-parsing
 
-Generally, shards (and also indices) are self-contained units. It is thus
+Generally, shards (and also indexes) are self-contained units. It is thus
 natural that they return objects which work in isolation and can be interpreted
 by the rest of the application (usually in the form of a `search.Result` or
 `search.Results`, both defined as `entities`)
@@ -34,7 +34,7 @@ the shards could be distributed on any node in the cluster.
 Furthermore it is more efficient (see cached resolver) to resolve references
 for a list of objects as opposed to a single object. At shard-level we do not
 know if a specific object is part of a list and if this list spans across
-shards or indices.
+shards or indexes.
 
 Thus the second parsing - to enrich the desired cross-references - happens at
 the outermost layer of the persistence package in the `db.DB` **after**

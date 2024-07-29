@@ -5,15 +5,21 @@
 # ================================
 
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+cohere_apikey = os.environ["COHERE_APIKEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-        "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
+        "X-Cohere-Api-Key": cohere_apikey,
     },
 )
 
@@ -85,13 +91,16 @@ assert response.objects[0].metadata.distance is not None
 
 # https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 
+jeopardy = client.collections.get("JeopardyQuestion")
+uuid = jeopardy.query.fetch_objects(limit=1).objects[0].uuid
+
 # GetNearObjectPython
 from weaviate.classes.query import MetadataQuery
 
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
 response = jeopardy.query.near_object(
-    near_object="56b9449e-65db-5df4-887b-0a4773f52aa7",
+    near_object=uuid,  # A UUID of an object (e.g. "56b9449e-65db-5df4-887b-0a4773f52aa7")
 # highlight-end
     limit=2,
     return_metadata=MetadataQuery(distance=True)
@@ -198,7 +207,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
-    distance=0.18, # max accepted distance
+    distance=0.25, # max accepted distance
     # highlight-end
     return_metadata=MetadataQuery(distance=True)
 )
@@ -213,7 +222,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert "question" in response.objects[0].properties.keys()
 assert response.objects[0].metadata.distance is not None
 for o in response.objects:
-    assert o.metadata.distance < 0.18
+    assert o.metadata.distance < 0.25
 # End test
 
 

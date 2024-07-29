@@ -131,7 +131,8 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 ### Connection helper functions
 
-- `weaviate.connect_to_wcs()`
+- `weaviate.connect_to_weaviate_cloud()`
+    - Previously `connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
@@ -214,7 +215,7 @@ If you see errors while using the `generate` submodule, try increasing the query
 
 #### Authentication
 
-Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCD API key or OIDC authentication credentials.
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_weaviate_cloud` accepts a WCD API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">
@@ -313,7 +314,7 @@ There are three methods to configure the batching behavior. They are `dynamic`, 
 
 We recommend using a context manager as shown below.
 
-These methods return completely localized context managers. Accordingly, attributes of one batch such as `failed_objects` and `failed_references` will not be included in any subsequent calls.
+These methods return a new context manager for each batch. Attributes that are returned from one batch, such as `failed_objects` or `failed_references`, are not included in any subsequent calls.
 
 <Tabs groupId="languages">
 <TabItem value="dynamic" label="Dynamic">
@@ -326,7 +327,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="fizedsize" label="Fixed Size">
+<TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
     text={PythonCode}
@@ -336,7 +337,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limited">
+<TabItem value="rateLimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -376,20 +377,20 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 <BatchVectorizationOverview />
 
-The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import.
+The client automatically handles vectorization if you set the vectorizer when you create the collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Create a client">
     <FilteredTextBlock
       text={BatchVectorCode}
-      startMarker="# START BatchVectClient"
-      endMarker="# END BatchVectClient"
+      startMarker="# START BatchVectorClient"
+      endMarker="# END BatchVectorClient"
       language="py"
     />
   </TabItem>
 </Tabs>
 
-To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+To modify the vectorization settings, update the client object. This example adds multiple vectorizers:
 
 - **Cohere**. Set the service API key. Set the request rate.
 - **OpenAI**. Set the service API key. Set the base URL.
@@ -702,6 +703,91 @@ The results are organized the group, returning a list of groups.
   endMarker="# END AggregateGroupbyExample"
   language="py"
 />
+
+### Model Provider Integrations
+
+[Model provider integrations](../../model-providers/index.md) are configured using the `weaviate.classes.config.Configure` class. More specifically, they are configured through the `Generate`, `Reranker`, `Vectorizer` or `NamedVector` namespaces as shown in the examples below:
+
+import GenerativeExamples from '!!raw-loader!../../model-providers/_includes/provider.generative.py';
+import RerankerExamples from '!!raw-loader!../../model-providers/_includes/provider.reranker.py';
+import NamedVectorizerExamples from '!!raw-loader!../../model-providers/_includes/provider.vectorizer.py';
+import VectorizerExamples from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={GenerativeExamples}
+    startMarker="# START BasicGenerativeAnthropic"
+    endMarker="# END BasicGenerativeAnthropic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={RerankerExamples}
+    startMarker="# START RerankerCohereBasic"
+    endMarker="# END RerankerCohereBasic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizer">
+  <FilteredTextBlock
+    text={NamedVectorizerExamples}
+    startMarker="# START BasicVectorizerOllama"
+    endMarker="# END BasicVectorizerOllama"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={VectorizerExamples}
+    startMarker="# START Vectorizer"
+    endMarker="# END Vectorizer"
+    language="py"
+  />
+</TabItem>
+</Tabs>
+
+### Manually specify provider integrations
+
+In the rare cases where Weaviate supports a model provider that is not yet integrated into the client library, you can manually specify the model provider configuration through the `.custom()` methods in each namespace.
+
+Note that the module_config keys should follow the naming convention of Weaviate database, which uses camelCase for keys. For example, `api_endpoint` in `.anthropic()` becomes `apiEndpoint` in `.custom()`.
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomGenerativeModuleExample"
+    endMarker="# END CustomGenerativeModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomRerankModuleExample"
+    endMarker="# END CustomRerankModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizers">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomNamedVectorModuleExample"
+    endMarker="# END CustomNamedVectorModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomVectorizerModuleExample"
+    endMarker="# END CustomVectorizerModuleExample"
+    language="py"
+  />
+</TabItem>
+</Tabs>
 
 ### Collection iterator (`cursor` API)
 
@@ -1123,6 +1209,7 @@ For links to the Python Client releases, expand this section.
 
 | Client Version | Release Date |
 | :- | :- |
+| [4.7.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.1) | 2024-07-25 |
 | [4.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-24 |
 | [4.6.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.7) | 2024-07-19 |
 | [4.6.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.6) | 2024-07-02 |

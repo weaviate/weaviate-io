@@ -388,7 +388,7 @@ The vector index type can be set for each collection between `hnsw`, `flat` and 
 
 ## Set vector index parameters
 
-Various vector index parameters are configurable at collection creation time, including compression.
+Various vector index parameters are configurable at collection creation time, including [compression](../configuration/compression/index.md).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -676,44 +676,9 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 Configure replication per collection.
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ReplicationSettings"
-      endMarker="# END ReplicationSettings"
-      language="py"
-    />
-  </TabItem>
+import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/replication-consistency.mdx';
 
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ReplicationSettings"
-      endMarker="# END ReplicationSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ReplicationSettings"
-      endMarker="// END ReplicationSettings"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START ReplicationSettings"
-      endMarker="// END ReplicationSettings"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
+<ReplicationConfigWithAsyncRepair />
 
 <details>
   <summary>

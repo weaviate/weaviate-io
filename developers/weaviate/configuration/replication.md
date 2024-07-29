@@ -56,11 +56,11 @@ import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
 
 <RepairIntro />
 
-Repair-on-read is automatic. To activate asynch replication, set the `asyncEnabled` value to true in the `replicationConfig` section of your collection definition.
+Repair-on-read is automatic. To activate async replication, set `asyncEnabled` to true in the `replicationConfig` section of your collection definition.
 
-import AsynchRepair from '/_includes/code/configuration/replication-consistency.mdx';
+import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/replication-consistency.mdx';
 
-<AsynchRepair />
+<ReplicationConfigWithAsyncRepair />
 
 ## How to use: Queries
 

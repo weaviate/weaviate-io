@@ -63,9 +63,9 @@ An example of a complete collection object including properties:
     "stopwords": {
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
-    "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
+    "indexTimestamps": false,               // Optional, maintains inverted indexes for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indexes for each property regarding its null state
+    "indexPropertyLength": false            // Optional, maintains inverted indexes for each property by its length
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of the collection in a
@@ -322,7 +322,7 @@ To configure indexing based on property length, set `indexPropertyLength` to `tr
 ```
 
 :::note
-Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
+Using these features requires more resources. The additional inverted indexes must be created and maintained for the lifetime of the collection.
 :::
 
 ### `vectorizer`
@@ -581,16 +581,21 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
 - `"아버지가 방에 들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
 - `"결정하겠다"`: `["결정", "하", "겠", "다"]`
 
-### `indexFilterable` and `indexSearchable`
+### Inverted index types
 
 :::info `indexInverted` is deprecated
-The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
+The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards.
 :::
 
-The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
+Multiple [inverted index types](../../concepts/indexing.md#inverted-indexes) are available in Weaviate. Not all inverted index types are available for all data types. The available inverted index types are:
 
-- `indexFilterable` enables/disables a Roaring Bitmap index for fast filtering (default: `true`).
-- `indexSearchable` enables/disables a searchable index for BM25-suitable Map index for BM25 or hybrid searching (default: `true`).
+import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.mdx';
+
+<InvertedIndexTypesSummary/>
+
+- Enable one or both of `indexFilterable` and `indexRangeFilters` to index a property for faster filtering.
+    - If only one is enabled, the respective index is used for filtering.
+    - If both are enabled, `indexRangeFilters` is used for operations involving comparison operators, and `indexFilterable` is used for equality and inequality operations.
 
 ## Configure semantic indexing
 

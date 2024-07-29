@@ -401,14 +401,20 @@ const classWithInvIndexSettings = {
     {
       name: 'title',
       dataType: ['text'],
+      // highlight-start
+      indexFilterable: true,
+      indexSearchable: true,
+      // highlight-end
       moduleConfig: {
-        'text2vec-huggingface': {
-          // highlight-start
-          indexFilterable: true,
-          indexSearchable: true,
-          // highlight-end
-        },
+        'text2vec-huggingface': {},
       },
+    },
+    {
+      name: 'chunk',
+      dataType: ['int'],
+      // highlight-start
+      indexRangeFilters: true,
+      // highlight-end
     },
   ],
   // highlight-start

@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
-Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
+Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
 
 Weaviate supports two types of vector indexing:
 * [flat index](#flat-index): a simple, lightweight index that is designed for small datasets.
@@ -18,7 +18,7 @@ Weaviate supports two types of vector indexing:
 Available starting in `v1.25`. This is an experimental feature. Use with caution.
 :::
 
-This page explains what vector indices are, and what purpose they serve in the Weaviate vector database.
+This page explains what vector indexes are, and what purpose they serve in the Weaviate vector database.
 
 ## Why do you need vector indexing?
 
@@ -219,6 +219,14 @@ There are situations where it doesn't make sense to vectorize a collection. For 
 Importing duplicate vectors into HNSW is very expensive. The import algorithm checks early on if a candidate vector's distance is greater than the worst candidate's distance. When there are lots of duplicate vectors, this early exit condition is never met so each import or query results in an exhaustive search.
 
 To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
+
+### What ANN algorithms exist?
+
+There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>.
+
+### Are there indicative benchmarks for Weaviate's ANN performance?
+
+The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
 
 ## Further resources
 

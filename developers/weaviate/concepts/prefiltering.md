@@ -27,25 +27,25 @@ In the section about Storage, [we have described in detail which parts make up a
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
 
-### Pre-filtering with Roaring Bitmaps
+## `indexFilterable`
 
 :::info Added in `1.18`
 :::
 
-Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
+Weaviate `v1.18.0` adds the `indexFilterable` index that speeds up match-based filtering through use of Roaring Bitmaps. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
 
 If you are dealing with a large dataset, this will likely improve your filtering performance significantly and we therefore encourage you to migrate and re-index.
 
 In addition, our team maintains our underlying Roaring Bitmap library to address any issues and make improvements as needed.
 
-#### Roaring Bitmaps for `text` properties
+#### `indexFilterable` for `text` properties
 
 :::info Added in `1.19`
 :::
 
 A roaring bitmap index for `text` properties is available from `1.19` and up, and it is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing single index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
 
-#### Migration to Roaring Bitmaps
+#### Migration to `indexFilterable`
 
 If you are using Weaviate version `< 1.18.0`, you can take advantage of roaring bitmaps by migrating to `1.18.0` or higher, and going through a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.
 
@@ -54,6 +54,17 @@ This behavior is set through the <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<w
 :::info Read more
 To learn more about Weaviate's roaring bitmaps implementation, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv/roaringset).
 :::
+
+### `indexRangeFilters`
+
+:::info Added in `1.26`
+:::
+
+Weaviate `1.26` introduces the `indexRangeFilters` index, which is a range-based index for filtering by numerical ranges. This index is available for `int`, `number`, or `date` properties. The index is not available for arrays of these data types.
+
+Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+
+`indexRangeFilters` is only available for new properties. Existing properties cannot be converted to use the rangeable index.
 
 ## Recall on Pre-Filtered Searches
 
