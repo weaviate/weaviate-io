@@ -27,7 +27,7 @@ tkn_options = [
 properties = []
 for tokenization in tkn_options:
     prop = Property(
-        name=f"text_{tokenization}",
+        name=f"text_{tokenization.replace('.', '_')}",
         data_type=DataType.TEXT,
         tokenization=tokenization
     )

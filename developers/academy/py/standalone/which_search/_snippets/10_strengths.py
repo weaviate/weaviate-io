@@ -6,7 +6,7 @@ import json
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
-    auth_credentials=weaviate.classes.init.Auth.api_key("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
+    auth_credentials=wvc.init.Auth.api_key("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     }

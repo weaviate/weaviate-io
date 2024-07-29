@@ -8,9 +8,11 @@ import weaviate.classes.config as wc
 # CreateMovieCollection  # END SubmoduleImport
 
 # END CreateMovieCollection
+from weaviate.classes.init import Auth
+
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.classes.init.Auth.api_key(
+    auth_credentials=Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
 )
@@ -121,9 +123,12 @@ import os
 
 # END BatchImportData
 headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}
+
+from weaviate.classes.init import Auth
+
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.classes.init.Auth.api_key(
+    auth_credentials=Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
     headers=headers,

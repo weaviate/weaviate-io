@@ -1,10 +1,11 @@
 # WCDInstantiation
 import weaviate
+from weaviate.classes.init import Auth
 import os
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.classes.init.Auth.api_key(
+    auth_credentials=Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
 )
@@ -14,6 +15,7 @@ client.close()
 
 # WCDAPIKeyInstantiation
 import weaviate
+from weaviate.classes.init import Auth
 import os
 
 headers = {
@@ -22,7 +24,7 @@ headers = {
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.classes.init.Auth.api_key(
+    auth_credentials=Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
     headers=headers,
@@ -134,12 +136,16 @@ import weaviate
 import os
 
 # END TryFinallyCloseDemo
+
+from weaviate.classes.init import Auth
+
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.classes.init.Auth.api_key(
+    auth_credentials=Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
 )
+
 # TryFinallyCloseDemo
 # Instantiate your client (not shown). e.g.:
 # client = weaviate.connect_to_weaviate_cloud(...) or
