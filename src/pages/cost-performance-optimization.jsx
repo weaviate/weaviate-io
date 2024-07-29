@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Infrastructure optimization"
+        title="Cost-Performance Optimization"
         description="Scale to millions of tenants without losing control of costs"
       >
         <MetaSEO img="og/website/home.jpg" />

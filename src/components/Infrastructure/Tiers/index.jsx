@@ -36,7 +36,7 @@ export default function Details() {
                 <h2>Warm</h2>
                 <p>Used for data accessed less-frequently.</p>
                 <span className={`${styles.warmTier} ${styles.tierIcon}`}>
-                  SSD
+                  SSD Drives
                 </span>
                 <hr></hr>
                 <ul>
