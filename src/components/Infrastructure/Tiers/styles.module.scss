@@ -30,12 +30,16 @@
 }
 
 .bgCol {
-  background: #ecf4f8;
+  background: #130c49;
 }
 
 .header {
   width: 70%;
   margin: 30px 0px;
+
+  h2 {
+    color: #ffffff;
+  }
 
   p {
     color: #130c49;
@@ -220,15 +224,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   @media screen and (max-width: 800px) {
     justify-content: center;
   }
 
   a {
-    width: 11.1875rem;
+    width: 17.8125rem;
     height: 3.125rem;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
@@ -240,10 +245,11 @@
 
   .buttonGradient {
     border-radius: 0.375rem;
+    border: 1px solid #61bd73;
     background: #130c49;
     color: #fff;
     text-align: center;
-    font-family: Inter;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -893,12 +899,11 @@
 }
 
 .serviceBox {
-  max-width: 32.30325rem;
-  height: 17.8125rem;
-  flex-shrink: 0;
+  max-width: 21.5625rem;
+  height: 24.9375rem;
   flex-shrink: 0;
   border-radius: 0.3125rem;
-  background: #130c49;
+  background: #262262;
   display: flex;
 
   @media screen and (max-width: 800px) {
@@ -931,8 +936,8 @@
   }
 
   ul {
-    padding: 0;
-    margin: 0;
+    margin: 0px -110px;
+    width: 310px;
   }
   li {
     color: #fff;
@@ -950,6 +955,32 @@
     background: #61bd73;
     color: #130c49;
   }
+
+  .tierIcon {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+  }
+  .tierIcon:before {
+    content: url('/img/site/CPO-memory-icon.png');
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 2.9375rem;
+    height: 1.875rem;
+    flex-shrink: 0;
+  }
+
+  .warmTier:before {
+    content: url('/img/site/CPO-ssd-icon.png');
+    width: 2.9375rem;
+  }
+  .cloudTier:before {
+    content: url('/img/site/CPO-cloud-icon.png');
+    width: 2.9375rem;
+  }
 }
 
 .serviceIcon {
@@ -964,10 +995,10 @@
   background-image: url('/img/site/infrastructure-temp-01.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 12.4375rem;
-  height: 14.59813rem;
-  flex-shrink: 0;
   margin: auto;
+  width: 8.125rem;
+  height: 10.625rem;
+  flex-shrink: 0;
 }
 
 .quoteBox {

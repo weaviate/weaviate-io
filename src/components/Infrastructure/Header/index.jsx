@@ -10,23 +10,15 @@ export default function Header() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <span>Infrastructure optimization</span>
-            <h1>
-              Scale to millions of tenants without losing control of costs
-            </h1>
+            <span>COST-PERFORMANCE optimization</span>
+            <h1>AI infrastructure tailored to your use case</h1>
             <p>
-              Build and operate more efficiently with a single vector database
-              for all of your AI use cases. 
+              From real-time results to data isolation and cost management,
+              optimize for what you need.
             </p>
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud"
-              >
-                Start for Free
-              </Link>
-              <Link className={styles.buttonOutline} to="/platform">
-                Learn More
+              <Link className={styles.buttonGradient} to="/pricing">
+                View Pricing
               </Link>
             </div>
           </div>

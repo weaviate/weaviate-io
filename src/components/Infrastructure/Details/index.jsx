@@ -9,119 +9,113 @@ export default function Details() {
     <div className={styles.bgCol}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Infrastructure optimization with Weaviate</h2>
+          <h2>A database to support all of your AI initiatives</h2>
           <p>
-            The ability to efficiently process and store large volumes of data
-            is crucial for developing and deploying AI applications. But the
-            compute resources required can get expensive fast. Optimize the cost
-            of running AI-native workloads at scale. Build and operate more
-            efficiently with a single vector database for all of your AI use
-            cases.
+            AI use cases have diverse needs for usage patterns, data privacy,
+            and performance. Weaviate’s flexible architecture adapts to various
+            use cases, supporting more development teams across the AI journey.
           </p>
+        </div>
+        <div className={styles.topBoxContainer}>
+          <div className={styles.topBoxes}>
+            <h3>Real-time data access</h3>
+            <p>
+              Serve the fastest results for low-latency applications. Store and
+              retrieve billions of objects with millisecond response times.{' '}
+            </p>
+          </div>
+          <div className={styles.topBoxes}>
+            <h3>Efficient resource consumption</h3>
+            <p>
+              Scale vertically and horizontally while managing costs. Reduce
+              memory footprint and adapt resource consumption to the needs of
+              your application.
+            </p>
+          </div>
         </div>
         <div className={styles.typeContainer}>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={styles.homeIcon}></div>
-              <h2>Manage customer data securely</h2>
+              <h2>Dynamic indexing</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Keep customer data private and improve operations. Isolate
-                account or user-specific data to its own tenant.
+                Leverage HNSW or flat indexing techniques based on speed and
+                scale needs.
               </p>
             </div>
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>Control infrastructure costs</h2>
+              <h2>Advanced filtering</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Allocate the right type of storage for the right data. Offload
-                tenants to warm or cold storage and quickly access them as
-                they’re needed. 
+                Apply complex filters for precise results without comprising
+                speed.
               </p>
             </div>
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>Speed up data access</h2>
+              <h2>Vector compression</h2>
             </div>
             <div className={styles.typeText}>
-              <p>Improve performance at any scale…. </p>
+              <p>
+                Leverage Product, Binary, and Scalar Quantization to improve
+                memory footprint and performance.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.typeBox}>
+            <div className={styles.typeIcon}>
+              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <h2>Native multi-tenancy</h2>
+            </div>
+            <div className={styles.typeText}>
+              <p>
+                Isolate and secure customer data and make database operations
+                more efficient.
+              </p>
+            </div>
+          </div>
+          <div className={styles.typeBox}>
+            <div className={styles.typeIcon}>
+              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <h2>Flexible storage tiers </h2>
+            </div>
+            <div className={styles.typeText}>
+              <p>
+                Choose between hot, warm, and cold storage to align consumption
+                with the needs of your use case.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.typeBox}>
+            <div className={styles.typeIcon}>
+              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <h2>Tenant management</h2>
+            </div>
+            <div className={styles.typeText}>
+              <p>
+                Offload tenants to cold storage to reduce costs. Warm them up
+                quickly when they become active.
+              </p>
             </div>
           </div>
         </div>
-        <div className={styles.boxesContainer}>
-          <Link to="https://events.weaviate.io/hybrid-search-webinar">
-            <div className={styles.serviceBox}>
-              <div className={styles.serviceImage}></div>
-              <div className={styles.serviceText}>
-                <h2>Hot</h2>
-                <p>Used for data accessed frequently.</p>
-                <ul>
-                  <li>High QPS (query per second)</li>
-                  <li>Fast queries</li>
-                  <li>Capable of many updates – without affecting QPS</li>
-                </ul>
-              </div>
-            </div>
-          </Link>
-          <Link to="https://events.weaviate.io/hybrid-search-webinar">
-            <div className={styles.serviceBox}>
-              <div className={styles.serviceImage}></div>
-              <div className={styles.serviceText}>
-                <h2>Warm</h2>
-                <p>Used for data accessed less-frequently.</p>
-                <ul>
-                  <li>Moderate QPS</li>
-                  <li>Moderate query speed</li>
-                  <li>
-                    Moderate no of updates – too many updates might affect QPS
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Link>
-          <Link to="https://events.weaviate.io/hybrid-search-webinar">
-            <div className={styles.serviceBox}>
-              <div className={styles.serviceImage}></div>
-              <div className={styles.serviceText}>
-                <h2>Cold</h2>
-                <p>
-                  Used for data not needed at the time, but fast to activate.
-                </p>
-                <ul>
-                  <li> Not actively queryable or editable</li>
-                  <li>
-                    Ready to warm up / heat up – relatively fast/moderate
-                    (depending on the size)
-                  </li>
-                  <li>Stored locally</li>
-                </ul>
-              </div>
-            </div>
-          </Link>
-          <Link to="https://events.weaviate.io/hybrid-search-webinar">
-            <div className={styles.serviceBox}>
-              <div className={styles.serviceImage}></div>
-              <div className={styles.serviceText}>
-                <h2>Frozen</h2>
-                <p>Used for data not needed at the time, slower to activate.</p>
-                <ul>
-                  <li> Not actively queryable or editable </li>
-                  <li>Stored externally </li>
-                  <li>
-                    Ready to warm up / heat up – slower to restore (depending on
-                    the external storage and data size){' '}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Link>
+        <div className={styles.quoteBox}>
+          <em>
+            "Weaviate’s scalable multi-tenant architecture has been crucial in
+            maintaining fast and reliable AI-driven customer service and
+            engagement experiences for our thousands of users on Botsonic,"
+          </em>
+          <p> -- Samanyou Garg, CEO of Writesonic.</p>
         </div>
       </div>
     </div>

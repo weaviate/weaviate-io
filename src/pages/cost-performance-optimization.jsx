@@ -5,6 +5,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 import Header from '/src/components/Infrastructure/Header';
 import Details from '/src/components/Infrastructure/Details';
+import Tiers from '/src/components/Infrastructure/Tiers';
 import Blogs from '/src/components/Infrastructure/Blogs';
 import CTA from '/src/components/Infrastructure/CTA';
 import ThemeSwitch from '/src/components/ThemeSwitch';
@@ -22,7 +23,7 @@ export default function Home() {
         <Header />
         <main>
           <Details />
-          <Blogs />
+          <Tiers />
           <CTA />
         </main>
       </Layout>

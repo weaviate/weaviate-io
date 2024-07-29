@@ -20,16 +20,14 @@
 
   p {
     color: #fff;
-    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.57331rem */
+    width: 50%;
 
     @media screen and (max-width: 768px) {
-      br {
-        display: none;
-      }
+      width: 100%;
     }
   }
 }
@@ -266,6 +264,14 @@
   @media screen and (max-width: 485px) {
     margin-bottom: 48px;
     margin-right: 10px;
+  }
+}
+
+.tabHeader04 {
+  span {
+    width: 360px;
+    display: inline-table;
+    text-align: left;
   }
 }
 

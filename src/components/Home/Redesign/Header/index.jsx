@@ -109,16 +109,13 @@ export default function HomepageHeader() {
                 <div
                   className={` ${styles.homeIcon} ${styles.infraIcon}`}
                 ></div>
-                <h2>
-                  Infrastructure<br></br>
-                  optimization
-                </h2>
+                <h2>Cost-performance optimization</h2>
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Optimize the cost of running AI-native workloads at scale.
-                  Build and operate more efficiently with a single vector
-                  database for all of your AI use cases.
+                  Tailor AI infrastructure patterns to your use case. Improve
+                  memory footprint and resource efficiency without compromising
+                  performance.
                 </p>
                 <Link to="/infrastructure-optimization">Learn more</Link>
               </div>
@@ -129,9 +126,10 @@ export default function HomepageHeader() {
               <h2>Empower every developer to build AI-native applications</h2>
               <span>With flexible, reliable, open source foundations.</span>
               <p>
-                Software development is changing. Our open source vector
-                database and surrounding offerings are designed to support
-                developers and teams of all sizes on their AI journey.
+                At the core of the Weaviate ecosystem is our open source
+                AI-native database. Our surrounding services, tools, and
+                offerings are meant to further enable teams of all sizes on
+                their AI journey.
               </p>
               <div className={styles.buttons}>
                 <Link
