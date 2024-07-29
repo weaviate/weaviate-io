@@ -30,32 +30,19 @@
 }
 
 .headerHome {
-  background: #f6f6f6;
-  /*  background-image: url('/img/site/3d-weaviate-bubble-white-light.jpg'); */
+  background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
+
   background-size: contain;
+  background-position-x: right;
   background-repeat: no-repeat;
 
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/3d-weaviate-bubble-white-light-mobile.jpg');
+  @media screen and (max-width: 600px) {
+    background: url('/img/site/3d-weaviate-bubble-blur-bg.jpg') #dce8ee;
+    background-size: cover;
+    background-position-x: right;
+    background-repeat: no-repeat;
   }
 }
-
-.headerVideo {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  position: absolute;
-}
-
-.headerContent {
-  position: relative;
-  z-index: 2;
-  /* Add other styles for your content */
-}
-
 .logoSection {
   display: contents;
 
@@ -116,16 +103,21 @@
 
 .grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  gap: 110px;
 
   @media screen and (max-width: 950px) {
     margin: none;
+    gap: 0px;
   }
 
   @media screen and (max-width: 1050px) {
     grid-template-columns: 1fr;
     margin: 0px 10px;
+  }
+  @media screen and (max-width: 850px) {
+    flex-direction: column;
   }
 }
 
@@ -140,13 +132,6 @@
 
   h2 {
     color: #130c49;
-
-    @media screen and (max-width: 950px) {
-      text-align: center;
-      br {
-        display: none;
-      }
-    }
   }
 
   @media screen and (max-width: 950px) {
@@ -167,7 +152,7 @@
   max-width: var(--ifm-container-width-xl);
 
   @media screen and (max-width: 950px) {
-    height: auto;
+    height: 180px;
     display: flex;
     margin: 0 auto;
     padding: 0 var(--ifm-spacing-horizontal);
@@ -236,11 +221,6 @@
   background-image: url('/img/site/muliny-logo.svg');
   background-position: center;
 }
-
-.netappLogo {
-  background-image: url('/img/site/netapp.svg');
-  background-position: center;
-}
 .title {
   font-size: 50px;
   font-weight: bold;
@@ -268,7 +248,7 @@
 .text {
   @media screen and (max-width: 800px) {
     text-align: left;
-
+    width: 347px;
     padding: 20px 0;
   }
 }
@@ -288,7 +268,7 @@
 }
 
 .buttons {
-  margin-top: 12px;
+  margin-top: 30px;
   gap: 20px;
   display: flex;
   flex-direction: row;
@@ -301,7 +281,7 @@
   }
 
   @media screen and (max-width: 500px) {
-    justify-content: flex-start;
+    justify-content: left;
   }
 
   a {
@@ -788,25 +768,21 @@
 .box {
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
   text-align: left;
   margin-bottom: 40px;
-
-  @media screen and (max-width: 500px) {
-    margin-bottom: 0;
-  }
+  flex: 1;
+  gap: 20px;
 
   h1 {
     color: #130c49;
-    font-size: 3rem;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
 
     @media screen and (max-width: 500px) {
-      font-size: 2.5rem;
-      width: 300px;
       br {
         display: none;
       }
@@ -817,20 +793,51 @@
     }
   }
 
+  span {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
   p {
     color: #130c49;
     font-family: Inter;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 2.1rem */
+  }
+}
 
-    @media screen and (max-width: 500px) {
-      font-size: 1rem;
-      br {
-        display: none;
-      }
-    }
+.exampleBox {
+  border-radius: 0.93325rem;
+
+  background-image: url('/img/site/hybrid-search-code-block.svg');
+  background-repeat: no-repeat;
+  width: 26.50388rem;
+  max-width: 31.50388rem;
+  height: 23.9375rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @media screen and (max-width: 850px) {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    max-width: 31.50388rem;
+    height: 23.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex: unset;
   }
 }
 
@@ -899,46 +906,28 @@
 
 .typeContainer {
   display: flex;
-  gap: 59px;
+  gap: 95px;
   justify-content: center;
-  flex-wrap: wrap;
-
-  @media screen and (max-width: 1200px) {
-    gap: 40px;
-  }
 }
 
 .typeBox {
-  width: 16.375rem;
-  height: 17.75rem;
+  width: 21.5625rem;
+  height: 16.625rem;
   padding: 22px;
   flex-shrink: 0;
   border-radius: 0.3125rem;
-  background: rgb(255 255 255 / 60%);
+  background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.05);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease-in-out;
-
-  @media screen and (max-width: 500px) {
-    width: 94%;
-  }
-}
-
-.typeBox:hover {
-  background: #ffffff;
-  transform: translateY(-30px);
-
-  @media screen and (max-width: 500px) {
-    transform: translateY(-15px);
-  }
 }
 
 .typeIcon {
   display: flex;
+  align-content: flex-end;
   align-items: center;
   gap: 10px;
-  height: 70px;
+  height: 100px;
 
   .homeIcon {
     background-image: url('/img/site/homepage-hybrid-icon.svg');
@@ -946,17 +935,6 @@
     background-repeat: no-repeat;
     width: 2.125rem;
     height: 3.125rem;
-  }
-
-  .ragIcon {
-    background-image: url('/img/site/homepage-rag-icon.svg');
-  }
-  .genIcon {
-    background-image: url('/img/site/homepage-gen-icon.svg');
-  }
-
-  .infraIcon {
-    background-image: url('/img/site/hp-infrastructure-icon.svg');
   }
 
   h2 {
@@ -970,11 +948,18 @@
   }
 }
 
+.ragIcon {
+  background-image: url('/img/site/homepage-rag-icon.svg');
+}
+.genIcon {
+  background-image: url('/img/site/homepage-gen-icon.svg');
+}
+
 .typeText {
   display: flex;
   flex-direction: column;
-  height: 163px;
-  justify-content: space-between;
+  height: 152px;
+  gap: 32px;
 
   p {
     color: #6b7c93;
@@ -997,7 +982,6 @@
 
 .serviceBox {
   width: 76.6875rem;
-  max-width: 100%;
   height: 39.75rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
@@ -1005,57 +989,39 @@
   margin: 36px auto;
   display: flex;
   padding: 74px;
-  justify-content: space-between;
-  align-items: center;
-
-  @media screen and (max-width: 1200px) {
-    width: 90%;
-    height: auto;
-    padding: 50px;
-    flex-direction: row;
-  }
-
-  @media screen and (max-width: 868px) {
-    flex-direction: column;
-    padding: 40px;
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 500px) {
-    width: 95%;
-    padding: 20px;
-  }
+  gap: 32px;
 }
 
 .serviceText {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  max-width: 420px;
-  gap: 25px;
 
   h2 {
     color: #fff;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.75rem;
+    font-style: normal;
     font-weight: 600;
-    line-height: 2.45rem;
+    line-height: 140%; /* 2.45rem */
   }
 
   span {
     color: #fff;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.25rem;
+    font-style: normal;
     font-weight: 400;
-    line-height: 1.75rem;
+    line-height: 140%; /* 1.75rem */
   }
 
   p {
     color: #fff;
     font-family: Inter;
     font-size: 1rem;
+    font-style: normal;
     font-weight: 400;
-    line-height: 1.57331rem;
+    line-height: 157.33%; /* 1.57331rem */
   }
 
   .buttonGradient,
@@ -1068,40 +1034,8 @@
 
 .serviceImage {
   background-image: url('/img/site/vision-circle.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
+  background-size: cover;
   width: 35.125rem;
-  height: 31rem;
+  height: 30.8125rem;
   flex-shrink: 0;
-
-  @media screen and (max-width: 1200px) {
-    width: 48%;
-    height: 420px;
-  }
-
-  @media screen and (max-width: 1180px) {
-    width: 51%;
-
-    height: 443px;
-    margin: 40px 0px;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    height: 527px;
-    margin-top: 55px;
-  }
-
-  @media screen and (max-width: 500px) {
-    width: 100%;
-    height: 328px;
-    margin: 40px 0px;
-  }
-
-  @media screen and (max-width: 400px) {
-    width: 100%;
-    height: 292px;
-    margin: 40px 0px;
-  }
 }

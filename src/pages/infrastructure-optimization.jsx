@@ -3,10 +3,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-import HomepageHeader from '/src/components/HybridSearch/Header';
-import Details from '/src/components/HybridSearch/Details';
-import Blogs from '/src/components/HybridSearch/Blogs';
-import CTA from '/src/components/HybridSearch/CTA';
+import Header from '/src/components/Infrastructure/Header';
+import Details from '/src/components/Infrastructure/Details';
+import Blogs from '/src/components/Infrastructure/Blogs';
+import CTA from '/src/components/Infrastructure/CTA';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -15,12 +15,11 @@ export default function Home() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Hybrid Search"
-        description="Take search to new
-AI-powered heights"
+        title="Infrastructure optimization"
+        description="Scale to millions of tenants without losing control of costs"
       >
         <MetaSEO img="og/website/home.jpg" />
-        <HomepageHeader />
+        <Header />
         <main>
           <Details />
           <Blogs />

@@ -416,11 +416,11 @@ import CodeSchemaUpdate from '/_includes/code/schema.things.put.mdx';
 
 :::caution Limitations
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length or null status.
 
 <br/>
 
-This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index for metadata such as the length or the null status will not be updated to include the new properties. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
 
 <br/>
 
