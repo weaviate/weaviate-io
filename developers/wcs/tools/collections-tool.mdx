@@ -4,8 +4,9 @@ sidebar_position: 15
 image: og/wcs/user_guides.jpg
 ---
 
-import WCDColl from 'developers/wcs/img/wcd-create-collection-button.jpg';
+import WCDColl from '/developers/wcs/img/wcd-create-collection-button.jpg';
 import WCDPick from '/developers/wcs/img/wcd-pick-cluster.jpg';
+import WCDEdGen from '/developers/wcs/img/wcd-coll-ed-general.jpg';
 
 The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-technical users to create, manage, and delete collections.
 
@@ -19,11 +20,42 @@ To begin, select the `Collections` tool from the left hand menu. After you selec
 
 If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow steps to [create a new cluster](/developers/wcs/create-instance).
 
-<center><img src={WCDPick} width="75%" alt="WCD select cluster"/></center>
+<center><img src={WCDPick} width="75%" alt="Select cluster"/></center>
 
 ## Create a collection
 
-Create
+The `Create collection` button opens the collection editor. Click the button to create a new collection.
+
+<center><img src={WCDColl} width="50%" alt="Create collection"/></center>
+
+### Edit the General section
+
+Use the `General` section for collection wide settings.
+
+<center><img src={WCDEdGen} width="50%" alt="General edit section"/></center>
+
+#### Name the collection.
+
+The collection name must begin with a capital letter.
+
+The name can only contain letters, numbers, and the under-score (_) character. Spaces are not allowed.
+
+#### Select multi-tenancy
+
+[Multi-tenant collections](/developers/weaviate/manage-data/multi-tenancy) are useful if you have multiple users or need data isolation. By default, collections are single tenant. Set the `Multi-tenancy` toggle to enable multi-tenancy.
+
+#### Set a default vectorizer
+
+Set a [vectorizer](/developers/weaviate/config-refs/schema#vectorizer) for the collection. Weaviate uses the default vectorizer when you import unvectorized data and when Weaviate queries external APIs that require vectorized inputs.
+
+In addition to the collection level vectorizer, you can also set alternate vectorizers for individual properties and vectors within the collection.
+
+The `Vectorizer` setting is a drop-down list. After you select a vectorizer, the editor expands to let you configure the model.
+
+Deselect the `Vectorize class name` toggle if you don't want to create a vector for the class name.
+
+### Edit the Properties section
+
 
 ## Modify a collection
 
