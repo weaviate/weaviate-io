@@ -73,6 +73,9 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 
 client = weaviate.connect_to_embedded(
     version="1.26.1"
+    # Bug in the embedded client - cannot connect with custom ports (https://github.com/weaviate/weaviate-python-client/issues/1225)
+    # port=8089,
+    # grpc_port=50059,
 )
 
 try:
