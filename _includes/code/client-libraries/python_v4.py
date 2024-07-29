@@ -71,17 +71,17 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 # END EmbeddedInstantiationBasic
 """
 
-client = weaviate.connect_to_embedded(
-    version="1.26.1"
-    # Bug in the embedded client - cannot connect with custom ports (https://github.com/weaviate/weaviate-python-client/issues/1225)
-    # port=8089,
-    # grpc_port=50059,
-)
+# client = weaviate.connect_to_embedded(
+#     version="1.26.1"
+#     # Bug in the embedded client - cannot connect with custom ports (https://github.com/weaviate/weaviate-python-client/issues/1225)
+#     # port=8089,
+#     # grpc_port=50059,
+# )
 
-try:
-    assert client.is_ready()
-finally:
-    client.close()
+# try:
+#     assert client.is_ready()
+# finally:
+#     client.close()
 
 # WCDInstantiation
 import weaviate
@@ -572,6 +572,12 @@ finally:
 
 # ===== CUSTOM MODULE EXAMPLES =====
 
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
+)
+
 client.collections.delete("DemoCollection")
 
 # START CustomGenerativeModuleExample
@@ -644,22 +650,7 @@ client.collections.create(
 )
 # END CustomVectorizerModuleExample
 
-# ===== CUSTOM MODULE EXAMPLES =====
-
-Configure.Generative.custom(
-            "generative-whatever", module_config={"temperature": 0.5}
-        )
-Configure.Reranker.custom(
-            "reranker-whatever", module_config={"model": "whatever"}
-        )
-Configure.Vectorizer.custom(
-            "text2vec-whatever", module_config={"vectorizeClassName": False}
-        )
-Configure.NamedVectors.custom(
-                "name", module_name="text2vec-contextionary", module_config={"vectorizeClassName": False}
-            )
-
-
+client.close()
 
 # =====================================================================================
 # Data examples
