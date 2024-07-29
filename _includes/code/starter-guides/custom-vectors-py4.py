@@ -17,7 +17,7 @@ import weaviate.classes as wvc
 # The with-as context manager closes the connect when your code exits
 with weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCD_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_API_KEY")),
+    auth_credentials=weaviate.classes.init.Auth.api_key(os.getenv("WCD_API_KEY")),
 ) as client:
     questions = client.collections.create(
         name="Question",

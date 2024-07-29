@@ -17,7 +17,7 @@ from datetime import datetime
 headers = {"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")}
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your WCD URL
-    auth_credentials=weaviate.auth.AuthApiKey(
+    auth_credentials=weaviate.classes.init.Auth.api_key(
         os.getenv("WCD_DEMO_ADMIN_KEY")
     ),  # Replace with your WCD key
     headers=headers,
