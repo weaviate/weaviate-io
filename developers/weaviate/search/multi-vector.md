@@ -124,7 +124,7 @@ Search by sums of weighted, **raw** distances to each target vector.
 
 Each distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
 
-For a more detailed explanation of how scores are normalized, see the blog post on [hybrid relative score fusion](/blog/2023-08-29-hybrid-search-fusion/index.mdx#relative-score-fusion)
+For a more detailed explanation of how scores are normalized, see the blog post on [hybrid relative score fusion](/blog/2023-08-29-hybrid-search-fusion/index#relative-score-fusion)
 
 </details>
 
