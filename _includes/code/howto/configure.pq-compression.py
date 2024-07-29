@@ -108,7 +108,7 @@ assert config.vector_index_config.quantizer is None
 
 
 # START LoadData
-def parse_data():
+def parse_data(data):
     object_list = []
     for obj in data:
         object_list.append(
@@ -122,7 +122,7 @@ def parse_data():
 
 
 jeopardy = client.collections.get("Question")
-jeopardy.data.insert_many(parse_data())
+jeopardy.data.insert_many(parse_data(data))
 # END LoadData
 
 

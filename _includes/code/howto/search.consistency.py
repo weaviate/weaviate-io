@@ -11,7 +11,7 @@ from weaviate.classes.config import ConsistencyLevel
 
 # END QueryWithReplication
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
     auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
     headers={
