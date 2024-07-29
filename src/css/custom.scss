@@ -940,9 +940,17 @@ ul.dropdown__menu {
   }
 }
 
-@media screen and (max-width: 1068px) {
-  .dropDownContainer2 {
+.mobileNav {
+  display: none !important;
+}
+
+@media screen and (max-width: 996px) {
+  .dropDownContainer2 .holder {
     display: none;
+  }
+
+  .mobileNav {
+    display: block !important;
   }
 }
 
