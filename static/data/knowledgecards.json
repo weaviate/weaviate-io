@@ -112,7 +112,7 @@
     {
       "id": "search-1",
       "type": "Search",
-      "category": "Hybrid Search",
+      "category": "Search",
       "title": "Sparse Vectors",
       "photo": "hybrid-search-icon.svg",
       "text": "Sparse embeddings are generated from algorithms like BM25 and SPLADE...",
@@ -128,7 +128,7 @@
     {
       "id": "search-2",
       "type": "Search",
-      "category": "Hybrid Search",
+      "category": "Search",
       "title": "Dense Vectors",
       "photo": "dense-vectors-card-icon.svg",
       "text": "In contrast to sparse vectors, dense vectors contain mostly non-zero values and are generated from machine learning models like GloVe and Transformers...",
@@ -144,7 +144,7 @@
     {
       "id": "search-3",
       "type": "Search",
-      "category": "Hybrid Search",
+      "category": "Search",
       "title": "BM25/BM25F",
       "photo": "bm25-card-icon.svg",
       "text": "BM25 is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is part of the family of probabilistic information retrieval models...",
@@ -162,7 +162,7 @@
     {
       "id": "search-4",
       "type": "Search",
-      "category": "Hybrid Search",
+      "category": "Search",
       "title": "Alpha Parameter",
       "photo": "alpha-parameter-card-icon.svg",
       "text": "This is an optional parameter in hybrid search queries that determines the weighting of each search algorithm during the re-ranking process...",
@@ -180,7 +180,7 @@
     {
       "id": "search-5",
       "type": "Search",
-      "category": "Hybrid Search",
+      "category": "Search",
       "title": "Fusion Algorithm",
       "photo": "fusion-algorithm-card-icon.svg",
       "text": "In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results...",
