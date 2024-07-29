@@ -72,9 +72,7 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 """
 
 client = weaviate.connect_to_embedded(
-    version="1.26.1",
-    port=8085,
-    grpc_port=50055,
+    version="1.26.1"
 )
 
 try:
