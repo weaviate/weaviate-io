@@ -209,6 +209,15 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithVectorizer"
+      endMarker="// END CreateCollectionWithVectorizer"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 
@@ -256,6 +265,15 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollectionWithNamedVectors"
+      endMarker="// END CreateCollectionWithNamedVectors"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Specify vectorizer settings
@@ -299,6 +317,15 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Set vector index type
@@ -339,6 +366,15 @@ The vector index type can be set for each collection between `hnsw`, `flat` and 
       startMarker="// START SetVectorIndexType"
       endMarker="// END SetVectorIndexType"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="java"
     />
   </TabItem>
 </Tabs>
