@@ -146,6 +146,30 @@ export default function HomepageHeader() {
 
             <div className={styles.serviceImage}></div>
           </div>
+
+          <div className={styles.tempBox}>
+            <div className={styles.tempText}>
+              <h2>AI infrastructure tailored to your use case </h2>
+
+              <p>
+                From real-time results to data isolation and cost management,
+                optimize for what you need.
+              </p>
+              <div className={styles.tempContainer}>
+                <div className={styles.hotImage}></div>
+                <div className={styles.warmImage}></div>
+                <div className={styles.coldImage}></div>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  className={styles.buttonGradient}
+                  to="/cost-performance-optimization"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
       <div className={styles.bottomBg}>
