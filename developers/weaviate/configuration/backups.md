@@ -32,7 +32,7 @@ _Single node backup is available starting in Weaviate `v1.15`. Multi-node backup
 :::
 
 :::caution Backups do not include inactive or offloaded tenants
-Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Update tenants' statuses](../manage-data/multi-tenancy.md#update-tenant-activity-status) to active before creating a backup to ensure all data is included.
+Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](../manage-data/multi-tenancy.md#activate-tenant) before creating a backup to ensure all data is included.
 :::
 
 ## Configuration

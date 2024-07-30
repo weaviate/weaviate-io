@@ -805,8 +805,8 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START UpdateTenants"
-      endMarker="# END UpdateTenants"
+      startMarker="# START DeactivateTenants"
+      endMarker="# END DeactivateTenants"
       language="py"
     />
   </TabItem>
