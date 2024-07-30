@@ -11,8 +11,9 @@ export default function HomepageWhatYouCanDo() {
         <div className={styles.header}>
           <h2 className={styles.title}>Why build with Weaviate</h2>
           <p className={styles.subtitle}>
-            Weaviate is more than just a database. It’s a flexible platform
-            <br></br> for building powerful, production-ready AI applications.
+            We’re with you at every stage of your AI journey. Our open source
+            AI-native database empowers more developers to build and scale AI
+            applications in production.
           </p>
         </div>
 
@@ -61,7 +62,7 @@ export default function HomepageWhatYouCanDo() {
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab4">
                   <h3 className={styles.tabHeader04}>
-                    Cost-efficient at scale
+                    <span>Cost-efficient at scale</span>
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg4}`} />
                   <p>

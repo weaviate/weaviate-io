@@ -14,8 +14,9 @@ export default function PricingHeader() {
             overhead
           </h1>
           <div className={styles.headerBox}>
-            <p className="text-center">
-              Sign up now and start building with your 14-day free trial.
+            <p>
+              Flexible deployment options and pricing to meet the needs of every
+              use case.
             </p>
           </div>
           <div className={styles.buttons}>
@@ -23,10 +24,7 @@ export default function PricingHeader() {
               className={styles.buttonGradient}
               to="https://console.weaviate.cloud/"
             >
-              Start Free
-            </Link>
-            <Link className={styles.buttonOutline} to="#contact-sales">
-              Contact Sales
+              Try Free
             </Link>
           </div>
         </div>

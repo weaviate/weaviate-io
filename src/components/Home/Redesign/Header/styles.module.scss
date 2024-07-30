@@ -899,33 +899,46 @@
 
 .typeContainer {
   display: flex;
-  gap: 95px;
+  gap: 59px;
   justify-content: center;
   flex-wrap: wrap;
 
   @media screen and (max-width: 1200px) {
-    gap: 15px;
+    gap: 40px;
   }
 }
 
 .typeBox {
-  width: 21.5625rem;
-  height: 16.625rem;
+  width: 16.375rem;
+  height: 17.75rem;
   padding: 22px;
   flex-shrink: 0;
   border-radius: 0.3125rem;
-  background: #fff;
+  background: rgb(255 255 255 / 60%);
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.05);
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 500px) {
+    width: 94%;
+  }
+}
+
+.typeBox:hover {
+  background: #ffffff;
+  transform: translateY(-30px);
+
+  @media screen and (max-width: 500px) {
+    transform: translateY(-15px);
+  }
 }
 
 .typeIcon {
   display: flex;
-  align-content: flex-end;
   align-items: center;
   gap: 10px;
-  height: 100px;
+  height: 70px;
 
   .homeIcon {
     background-image: url('/img/site/homepage-hybrid-icon.svg');
@@ -933,6 +946,17 @@
     background-repeat: no-repeat;
     width: 2.125rem;
     height: 3.125rem;
+  }
+
+  .ragIcon {
+    background-image: url('/img/site/homepage-rag-icon.svg');
+  }
+  .genIcon {
+    background-image: url('/img/site/homepage-gen-icon.svg');
+  }
+
+  .infraIcon {
+    background-image: url('/img/site/hp-infrastructure-icon.svg');
   }
 
   h2 {
@@ -946,18 +970,11 @@
   }
 }
 
-.ragIcon {
-  background-image: url('/img/site/homepage-rag-icon.svg');
-}
-.genIcon {
-  background-image: url('/img/site/homepage-gen-icon.svg');
-}
-
 .typeText {
   display: flex;
   flex-direction: column;
-  height: 152px;
-  gap: 32px;
+  height: 163px;
+  justify-content: space-between;
 
   p {
     color: #6b7c93;

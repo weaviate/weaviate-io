@@ -1,0 +1,38 @@
+.dropDown {
+  width: 13.75rem;
+  height: auto;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.dropDownLabel {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.dropDownThumbnail {
+  width: 12.375rem;
+  background-size: contain;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-image: url('img/site/press-background-3.png');
+  height: 11.8125rem;
+  flex-shrink: 0;
+}
+
+.dropDownText {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
