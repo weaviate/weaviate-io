@@ -1,5 +1,21 @@
 [
   {
+    "question": "What's an AIU?",
+    "answer": "An AI Unit (AIU) is a Weaviate-specific unit that can be applied to hot, warm, and cold storage tiers and compute costs. AIUs enable customers to better monitor usage and improve budgeting. For more information on AIUs and Enterprise Cloud pricing, <a href=\"http://events.weaviate.io/pricing-download\" target=\"_blank\">read more here</a>."
+  },
+  {
+    "question": "What can I use AIUs for?",
+    "answer": "AIUs are currently only applicable to Weaviate Enterprise Cloud. In the future, we will introduce AIU pricing to Weaviate Serverless Cloud."
+  },
+  {
+    "question": "Will Weaviate Serverless Support AIUs?",
+    "answer": "AIUs are currently only applicable to Weaviate Enterprise Cloud. In the future, we will introduce AIU pricing to Weaviate Serverless Cloud."
+  },
+  {
+    "question": "Can I move tenants to different storage tiers?",
+    "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Enterprise Cloud or self-hosting Weaviate. In the near future, we will make this functionality available in Weaviate Serverless Cloud."
+  },
+  {
     "question": "What is a 'dimension' in this context?",
     "answer": "A vector 'dimension' refers to one element in a vector representing an object in a vector database. The total number of these elements is the vector's dimensionality."
   },
@@ -42,17 +58,5 @@
   {
     "question": "Is Weaviate Cloud compatible with models of various embedding sizes?",
     "answer": "Yes."
-  },
-  {
-    "question": "What's an AIU?",
-    "answer": "An AI Unit (AIU) is a Weaviate-specific unit that can be applied to hot, warm, and cold storage tiers and compute costs. AIUs enable customers to better monitor usage and improve budgeting. For more information on AIUs and Enterprise Cloud pricing, <a href=\"http://events.weaviate.io/pricing-download\" target=\"_blank\">read more here</a>."
-  },
-  {
-    "question": "What can I use AIUs for?",
-    "answer": "AIUs are currently only applicable to Weaviate Enterprise Cloud. In the future, we will introduce AIU pricing to Weaviate Serverless Cloud."
-  },
-  {
-    "question": "Can I move tenants to different storage tiers?",
-    "answer": "Currently, the ability to move tenants between hot, warm, and cold storage is only available if you are using Weaviate Enterprise Cloud or self-hosting Weaviate. In the near future, we will make this functionality available in Weaviate Serverless Cloud."
   }
 ]

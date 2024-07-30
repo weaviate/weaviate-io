@@ -589,7 +589,7 @@ const siteRedirects = {
     from: "/services/byoc"
  },
  {
-    to: "/deployment/education-and-support",
+    to: "/deployment/enablement",
     from: "/services/education-and-support"
  },
 

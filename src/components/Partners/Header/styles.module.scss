@@ -1,10 +1,10 @@
 .partnersHead {
   background: #130c49;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-image: url('/img/site/bg-weaviate-hd-dark.jpg') !important;
   background-size: cover;
 
   p {
-    color: white;
+    color: #ffffff;
   }
 }
 .grid {
@@ -15,6 +15,10 @@
   justify-content: space-between;
   text-align: center;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    align-items: flex-start;
+  }
 }
 
 .leftGrid {
@@ -112,10 +116,6 @@
   align-items: center;
   justify-content: flex-start;
 
-  @media screen and (max-width: 800px) {
-    justify-content: left;
-  }
-
   a {
     height: 45px;
     width: 220px;
@@ -128,55 +128,26 @@
   }
 
   .buttonGradient {
-    background-image: linear-gradient(45deg, #20e220 60%, #ffff00);
-    color: rgba(46, 49, 143);
-    font-weight: bold;
-    transition: all 1s ease-out;
-  }
-
-  .buttonGradient:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #2fc513;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
+    color: #ffffff;
+    background: #130c49;
+
+    flex-shrink: 0;
+    font-weight: 600;
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
-    font-weight: bold;
-    color: #fff;
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
     color: #130c49;
-    font-weight: 400;
+    background: #fff;
+
+    flex-shrink: 0;
+    font-weight: 600;
   }
 }
 
 [data-theme='light'] {
   .img {
     background-image: url('/img/site/partners_header.svg');
-  }
-
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    color: #130c49;
-    font-weight: 400;
-  }
-
-  .buttonOutline {
-    font-weight: 400;
-    border-radius: 0.3125rem;
-    outline: rgb(19, 12, 73) solid 1px;
-    color: white;
-    border-radius: 0.3125rem;
-    border: 1px solid #2fc514;
   }
 }
