@@ -757,7 +757,7 @@
 .topBoxContainer {
   display: flex;
   margin: 40px 0px;
-  justify-content: space-between;
+  justify-content: space-around;
 
   @media screen and (max-width: 1200px) {
     flex-direction: column;

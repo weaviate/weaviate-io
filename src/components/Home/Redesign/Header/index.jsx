@@ -117,7 +117,7 @@ export default function HomepageHeader() {
                   memory footprint and resource efficiency without compromising
                   performance.
                 </p>
-                <Link to="/infrastructure-optimization">Learn more</Link>
+                <Link to="/cost-performance-optimization">Learn more</Link>
               </div>
             </div>
           </div>
