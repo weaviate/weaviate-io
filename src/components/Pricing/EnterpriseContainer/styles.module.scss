@@ -772,9 +772,9 @@
     gap: 10px;
     cursor: pointer;
 
-    @media screen and (max-width: 668px) {
+    @media screen and (max-width: 1215px) {
+      max-width: 65rem;
       width: 100%;
-      max-width: 27rem;
     }
   }
 
