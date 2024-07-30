@@ -65,12 +65,14 @@ Edit your project's configuration files to make these changes:
 
 ```json
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "moduleResolution": "Node16",
-      "esModuleInterop": true,
-      "lib": [ "es2018" ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
   }
 }
 ```
