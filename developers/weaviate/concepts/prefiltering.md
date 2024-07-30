@@ -55,7 +55,7 @@ This behavior is set through the <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<w
 To learn more about Weaviate's roaring bitmaps implementation, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv/roaringset).
 :::
 
-### `indexRangeFilters`
+## `indexRangeFilters`
 
 :::info Added in `1.26`
 :::

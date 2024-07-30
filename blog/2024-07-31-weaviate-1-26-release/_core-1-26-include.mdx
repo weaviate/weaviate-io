@@ -29,7 +29,7 @@ Object properties in Weaviate can be indexed for faster filtering. In earlier re
 
 When you anticipate using numerical comparisons over ranges of values, enable the new rangeable index in your [collection schema](/developers/weaviate/config-refs/schema). The rangeable index is available for `int`, `number`, and `date` data types.
 
-The rangeable index can be enabled alone or with the [filterable index](/developers/weaviate/config-refs/schema/range-index#considerations). Efficient range filters can thus be combined with other filters (e.g. `Equal`) to quickly narrow your searches to the most relevant information.
+The rangeable index can be enabled alone or with the [filterable index](/developers/weaviate/concepts/prefiltering#indexrangefilters). Efficient range filters can be combined with other filters, such as the `Equal` filter, to quickly narrow your searches to the most relevant information.
 
 Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
@@ -69,7 +69,7 @@ This means you do not have to enable individual API-based modules in the `ENABLE
 
 `ENABLE_API_BASED_MODULES` and `ENABLE_MODULES` are additive. Set `ENABLE_API_BASED_MODULES` to `true` to enable API based modules. Use `ENABLE_MODULES` to configure additional modules such as `text2vec-ollama`, `generative-ollama`, and `backup-s3`.
 
-The `ENABLE_API_BASED_MODULES` variable disables the [`Explore`](/developers/weaviate/api/graphql/explore) feature when `ENABLE_API_BASED_MODULES` is `true`.
+When `ENABLE_API_BASED_MODULES` is `true`, the GraphQL [`Explore`](/developers/weaviate/api/graphql/explore) feature is unavailable.
 
 ## Multi target vector search
 
@@ -116,7 +116,9 @@ For detailed information on the new async client API, see [Async API](/developer
 - `use_async_with_weaviate_cloud`
 - `use_async_with_custom`
 
-For code examples, see [async usage examples](/developers/weaviate/client-libraries/python/async#async-usage-examples). See the [application example](/developers/weaviate/client-libraries/python/async#application-level-example) for sample code that uses the async client with [FastAPI](https://fastapi.tiangolo.com/), a popular asynchronous web framework for creating modular web API microservices.
+For code examples, see [async usage examples](/developers/weaviate/client-libraries/python/async#async-usage-examples).
+
+[FastAPI](https://fastapi.tiangolo.com/) is a popular asynchronous web framework for creating modular, web API microservices. For sample application code that uses the async client with FastAPI, see the [application example](/developers/weaviate/client-libraries/python/async#application-level-example).
 
 ## Scalar Quantization
 
