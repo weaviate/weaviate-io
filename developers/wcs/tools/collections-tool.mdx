@@ -1,0 +1,138 @@
+---
+title: Collections tool
+sidebar_position: 15
+image: og/wcs/user_guides.jpg
+---
+
+import WCDEdColl from '/developers/wcs/img/wcd-create-collection-button.jpg';
+import WCDEdPick from '/developers/wcs/img/wcd-pick-cluster.jpg';
+import WCDEdGen from '/developers/wcs/img/wcd-coll-ed-general.jpg';
+import WCDEdProp from '/developers/wcs/img/wcd-coll-ed-props.jpg';
+import WCDEdExProp from '/developers/wcs/img/wcd-coll-ed-extra-props.jpg';
+import WCDEdSelect from '/developers/wcs/img/wcd-coll-select-mod.jpg';
+import WCDEdDelConf from '/developers/wcs/img/wcd-coll-conf-delete.jpg';
+import WCDEdDelColl from '/developers/wcs/img/wcd-coll-delete.jpg';
+import WCDEdObj from '/developers/wcs/img/wcd-coll-ed-objs.jpg';
+
+The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-technical users to create, manage, and delete collections.
+
+Use the tool to precisely tune a new collection. Specify a vectorizer and an embedding model. Configure collection properties for faster searches and more accurate results.
+
+## Select a cluster
+
+The collections tool is available for collections that are hosted in Weaviate Cloud.
+
+To begin, select the `Collections` tool from the left hand menu.
+
+After you select the collection tool, the `Clusters` panel lists the clusters that are available. Select a cluster from the list to create a new collection or to see the collections that are already in the cluster.
+
+If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow the steps to [create a new cluster](/developers/wcs/create-instance).
+
+<center><img src={WCDEdPick} width="75%" alt="Select cluster"/></center>
+
+## Create a collection
+
+The `Create collection` button opens the collection editor. Click the button to create a new collection.
+
+<center><img src={WCDEdColl} width="35%" alt="Create collection"/></center>
+
+### Edit the General section
+
+Use the `General` section for collection wide settings.
+
+<center><img src={WCDEdGen} width="75%" alt="General edit section"/></center>
+
+#### Name the collection.
+
+The collection name must begin with a capital letter.
+
+The name can only contain letters, numbers, and the under-score (_) character. Spaces are not allowed.
+
+#### Select multi-tenancy
+
+[Multi-tenant collections](/developers/weaviate/manage-data/multi-tenancy) are useful if you have multiple users or need data isolation. By default, collections are single tenant. Set the `Multi-tenancy` toggle to enable multi-tenancy.
+
+#### Set a default vectorizer
+
+Set a [vectorizer](/developers/weaviate/config-refs/schema#vectorizer) for the collection. Weaviate uses the default vectorizer when you import unvectorized data and when Weaviate queries external APIs that require vectorized inputs.
+
+The `Vectorizer` setting is a drop-down list. After you select a vectorizer, the editor expands to let you configure the model. The tool only shows the configuration options that are relevant for the vectorizer that you select.
+
+Switch the `Vectorize class name` toggle if you don't want to create a vector for the class name.
+
+### Edit the Properties section
+
+Use the `Properties` section to fine-tune individual properties in your collection.
+
+#### Add properties to the collection
+
+Enter property names into the properties editor.
+
+The property names must begin with a lowercase letter.
+
+The names can only contain letters, numbers, and the under-score (_) character. Spaces are not allowed.
+
+<center><img src={WCDEdProp} width="75%" alt="Properties edit section"/></center>
+
+#### Configure additional details
+
+Some property types can be fine tuned. When additional configuration is possible, the editor shows a gear wheel next to the `Filterable` toggle.
+
+To update these additional settings, click on the gear wheel then select the configuration options in the pop-up window.
+
+<center><img src={WCDEdExProp} width="50%" alt="Properties additional details edit section"/></center>
+
+#### Configure nested properties
+
+The `Object` property type can have nested sub-properties. To add nested properties, follow these steps:
+
+- Name the property.
+- Set the type to `Object`. The editor displays an `Edit` button.
+- Click the `Edit`button.
+
+<center><img src={WCDEdObj} width="75%" alt="Nested object properties edit section"/></center>
+
+When you finish adding nested properties, click the collection name to return to the collection editor.
+
+#### Delete a property
+
+To delete a property, click the trashcan icon.
+
+## Modify a collection
+
+To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon that is located near the collection name to open the collection for editing.
+
+<center><img src={WCDEdDelColl} width="100%" alt="Select to edit or delete"/></center>
+
+To add a new top-level property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
+
+<center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
+
+Fields that cannot be updated are shown in gray.
+
+## Delete a collection
+
+Once a collection is deleted it cannot be restored. The collection schema and all of the collection objects are deleted from the cluster. This operation cannot be undone.
+
+To delete a collection, click the `Collection` option in the left-hand menu, then select the cluster that hosts the collection that you want to delete. Click the trash can icon that is located near the collection name to delete the collection.
+
+<center><img src={WCDEdDelColl} width="100%" alt="Select to edit or delete"/></center>
+
+Enter the collection name in the text box to confirm, then press `Delete` to remove the collection.
+
+<center><img src={WCDEdDelConf} width="75%" alt="Confirm delete"/></center>
+
+## Additional considerations
+
+Weaviate collection schemas are highly configurable and can be tuned in many ways. Some schema elements are modifiable after you create the collection, but many properties cannot be modified. For additional details, see [Collection schema](/developers/weaviate/config-refs/schema).
+
+## More resources
+
+- [Collection schema](/developers/weaviate/config-refs/schema)
+- [Starter guide: collection schemas](/developers/weaviate/starter-guides/schema)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
