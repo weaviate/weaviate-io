@@ -34,8 +34,8 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg1}`} />
                   <p>
-                    Open source with a strong community. Resources to help
-                    developers of all levels build production-ready AI apps.
+                    Empower developers to build and scale modern AI applications
+                    more easily.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
@@ -46,8 +46,8 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg2}`} />
                   <p>
-                    Get the best of vector and keyword search. Deliver better
-                    results with less effort.
+                    Run anywhere and integrate with your existing and future
+                    tech stack.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
@@ -57,8 +57,8 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg3}`} />
                   <p>
-                    Built-in modules for popular machine learning models and
-                    frameworks. Just load your data and go.
+                    Drive efficienct resource management, tailored to the needs
+                    of your use case.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
@@ -70,8 +70,8 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg4}`} />
                   <p>
-                    Advanced multi-tenancy, data compression, and filtering.
-                    Scale confidently and efficiently.
+                    Stay ahead of the curve with learning resources for
+                    developers of all levels.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
