@@ -21,9 +21,11 @@ Use the tool to precisely tune a new collection. Specify a vectorizer and an emb
 
 The collections tool is available for collections that are hosted in Weaviate Cloud.
 
-To begin, select the `Collections` tool from the left hand menu. After you select the collection tool, the `Clusters` panel lists the clusters that are available. Select a cluster from the list to create a new collection or to see the collections that are already in the cluster.
+To begin, select the `Collections` tool from the left hand menu.
 
-If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow steps to [create a new cluster](/developers/wcs/create-instance).
+After you select the collection tool, the `Clusters` panel lists the clusters that are available. Select a cluster from the list to create a new collection or to see the collections that are already in the cluster.
+
+If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow the steps to [create a new cluster](/developers/wcs/create-instance).
 
 <center><img src={WCDEdPick} width="75%" alt="Select cluster"/></center>
 
@@ -55,7 +57,7 @@ Set a [vectorizer](/developers/weaviate/config-refs/schema#vectorizer) for the c
 
 The `Vectorizer` setting is a drop-down list. After you select a vectorizer, the editor expands to let you configure the model.
 
-Deselect the `Vectorize class name` toggle if you don't want to create a vector for the class name.
+Switch the `Vectorize class name` toggle if you don't want to create a vector for the class name.
 
 ### Edit the Properties section
 
@@ -73,15 +75,15 @@ The names can only contain letters, numbers, and the under-score (_) character. 
 
 #### Configure additional details
 
-Some the property types can be fine tuned. When additional configuration is possible, editor shows a gear wheel next to the `Filterable` toggle.
+Some property types can be fine tuned. When additional configuration is possible, the editor shows a gear wheel next to the `Filterable` toggle.
 
-To update these settings, click on the gear wheel then select the configuration options in the pop-up window.
+To update these additional settings, click on the gear wheel then select the configuration options in the pop-up window.
 
 <center><img src={WCDEdExProp} width="50%" alt="Properties additional details edit section"/></center>
 
 ## Modify a collection
 
-To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon near the collection name to open the collection for editing.
+To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon that is located near the collection name to open the collection for editing.
 
 <center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
 
@@ -93,7 +95,7 @@ Fields that cannot be updated are shown in gray.
 
 ## Delete a collection
 
-To delete a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to delete. Click the trash can icon near the collection name to delete the collection.
+To delete a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to delete. Click the trash can icon that is located near the collection name to delete the collection.
 
 <center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
 
@@ -103,7 +105,7 @@ Enter the collection name in the text box to confirm, then press `Delete` to rem
 
 ## Additional considerations
 
-Weaviate collection schemas are highly configurable and can be tuned in many ways. Some schema elements are modifiable, but many of them cannot be modified after you create the collection. For additional details, see [Collection schema](/developers/weaviate/config-refs/schema).
+Weaviate collection schemas are highly configurable and can be tuned in many ways. Some schema elements are modifiable after you create the collection, but many properties cannot be modified. For additional details, see [Collection schema](/developers/weaviate/config-refs/schema).
 
 ## More resources
 
