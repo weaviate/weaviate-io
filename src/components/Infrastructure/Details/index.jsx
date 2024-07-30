@@ -25,7 +25,7 @@ export default function Details() {
             </p>
           </div>
           <div className={styles.topBoxes}>
-            <h3>Efficient resource consumption</h3>
+            <h3 className={styles.resource}>Efficient resource consumption</h3>
             <p>
               Scale vertically and horizontally while managing costs. Reduce
               memory footprint and adapt resource consumption to the needs of
@@ -36,7 +36,7 @@ export default function Details() {
         <div className={styles.typeContainer}>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={styles.homeIcon}></div>
+              <div className={`${styles.homeIcon} ${styles.dynamic}`}></div>
               <h2>Dynamic indexing</h2>
             </div>
             <div className={styles.typeText}>
@@ -48,7 +48,7 @@ export default function Details() {
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.search}`}></div>
+              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
               <h2>Advanced filtering</h2>
             </div>
             <div className={styles.typeText}>
@@ -60,7 +60,7 @@ export default function Details() {
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <div className={`${styles.homeIcon} ${styles.vector}`}></div>
               <h2>Vector compression</h2>
             </div>
             <div className={styles.typeText}>
@@ -73,7 +73,7 @@ export default function Details() {
 
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <div className={`${styles.homeIcon} ${styles.native}`}></div>
               <h2>Native multi-tenancy</h2>
             </div>
             <div className={styles.typeText}>
@@ -85,7 +85,7 @@ export default function Details() {
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <div className={styles.homeIcon}></div>
               <h2>Flexible storage tiers </h2>
             </div>
             <div className={styles.typeText}>
@@ -98,7 +98,7 @@ export default function Details() {
 
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
+              <div className={`${styles.homeIcon} ${styles.tenant}`}></div>
               <h2>Tenant management</h2>
             </div>
             <div className={styles.typeText}>
@@ -109,13 +109,27 @@ export default function Details() {
             </div>
           </div>
         </div>
-        <div className={styles.quoteBox}>
-          <em>
-            "Weaviate’s scalable multi-tenant architecture has been crucial in
-            maintaining fast and reliable AI-driven customer service and
-            engagement experiences for our thousands of users on Botsonic,"
-          </em>
-          <p> -- Samanyou Garg, CEO of Writesonic.</p>
+        <div className={styles.quoteContainer}>
+          <div className={styles.quoteBox}>
+            <em>
+              "Weaviate’s scalable multi-tenant architecture has been crucial in
+              maintaining fast and reliable AI-driven customer service and
+              engagement experiences for our thousands of users on Botsonic,"
+            </em>
+            <p> -- Samanyou Garg, CEO of Writesonic.</p>
+          </div>
+          <div className={styles.quoteBox}>
+            <em>
+              “If the results aren’t accurate or take too long to surface, a
+              human needs to get involved, and the cost savings are greatly
+              reduced. So accuracy and speed are critical for us.”
+            </em>
+            <p>
+              {' '}
+              -- Shaunak Godbole, Head of Infrastructure Engineering at
+              Instabase
+            </p>
+          </div>
         </div>
       </div>
     </div>

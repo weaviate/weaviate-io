@@ -758,6 +758,12 @@
   display: flex;
   margin: 40px 0px;
   justify-content: space-between;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 }
 .topBoxes {
   width: 32rem;
@@ -770,6 +776,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 
   p {
     color: #130c49;
@@ -788,6 +798,12 @@
   }
   h3:before {
     content: url('/img/site/CPO-top-icon.svg');
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .resource:before {
+    content: url('/img/site/CPO-resource-icon.svg');
     margin-right: 10px;
     vertical-align: middle;
   }
@@ -813,6 +829,7 @@
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    padding: 0px;
   }
 }
 
@@ -839,6 +856,22 @@
 
   .scale {
     background-image: url('/img/site/hybrid-page-icon-03.svg');
+  }
+
+  .dynamic {
+    background-image: url('/img/site/CPO-dynamic-icon.svg');
+  }
+
+  .vector {
+    background-image: url('/img/site/CPO-vector-icon.svg');
+  }
+
+  .tenant {
+    background-image: url('/img/site/CPO-tenant-icon.svg');
+  }
+
+  .native {
+    background-image: url('/img/site/CPO-native-icon.svg');
   }
 
   h2 {
@@ -970,23 +1003,46 @@
   margin: auto;
 }
 
+.quoteContainer {
+  display: flex;
+  justify-content: space-around;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
 .quoteBox {
-  width: 60%;
-  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 32rem;
+  height: 15.5625rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #130c49;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  padding: 30px;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 
   em {
     margin: 10px 0px;
-    color: #130c49;
+    color: #fff;
 
     font-size: 1rem;
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     line-height: 157.33%; /* 1.57331rem */
   }
   p {
     margin: 10px 0px;
-    color: #130c49;
-    font-family: Inter;
+    color: #61bd73;
+
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;

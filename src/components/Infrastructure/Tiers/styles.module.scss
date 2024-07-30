@@ -900,7 +900,7 @@
 
 .serviceBox {
   max-width: 21.5625rem;
-  height: 24.9375rem;
+  height: 20.9375rem;
   flex-shrink: 0;
   border-radius: 0.3125rem;
   background: #262262;
@@ -992,13 +992,21 @@
 }
 
 .serviceImage {
-  background-image: url('/img/site/infrastructure-temp-01.svg');
+  background-image: url('/img/site/CPO-hot.png');
   background-size: contain;
   background-repeat: no-repeat;
   margin: auto;
-  width: 8.125rem;
-  height: 10.625rem;
+  width: 21.5625rem;
+  height: 19.5rem;
   flex-shrink: 0;
+}
+
+.warm {
+  background-image: url('/img/site/CPO-warm.png');
+}
+
+.cold {
+  background-image: url('/img/site/CPO-cold.png');
 }
 
 .quoteBox {
