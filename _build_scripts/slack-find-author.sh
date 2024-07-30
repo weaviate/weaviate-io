@@ -22,6 +22,7 @@ git_slack_map=(
     ["Leonie"]="<@U05EG4DEJMC>"
     ["iamleonie"]="<@U05EG4DEJMC>"
     ["Marcin Antas"]="<@U01E5BJ3UV7>"
+    ["Mohamed Shahin"]="<@U05V4HPJ3M0>"
     ["Parker Duckworth"]="<@U034QPLGSCU>"
     ["Peter Schramm"]="<@U03MWHJQ7PX>"
     ["Philip Vollet"]="<@U0573N5V97A>"
