@@ -29,7 +29,7 @@ Object properties in Weaviate can be indexed for faster filtering. In earlier re
 
 When you anticipate using numerical comparisons over ranges of values, enable the new rangeable index in your [collection schema](/developers/weaviate/config-refs/schema). The rangeable index is available for `int`, `number`, and `date` data types.
 
-The rangeable index can be enabled alone or with the [filterable index](/developers/weaviate/config-refs/schema/range-index#considerations). Efficient range filters can thus be combined with other filters (e.g. `Equal`) to quickly narrow your searches to the most relevant information.
+The rangeable index can be enabled alone or with the [filterable index](/developers/weaviate/concepts/prefiltering#indexrangefilters). Efficient range filters can thus be combined with other filters (e.g. `Equal`) to quickly narrow your searches to the most relevant information.
 
 Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This is an exciting data structure that combines several clever ideas to reduce memory requirements while improving processing speeds.
 
