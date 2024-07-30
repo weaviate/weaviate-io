@@ -16,10 +16,10 @@ export default function MarketplacePage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Weaviate Marketplace"
-        description="Unlock more with addons and tools. Find the right Weaviate extension for your project."
+        title="Weaviate Workbench"
+        description="Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier."
       >
-        <MetaSEO img="og/content/knowledgecards.jpg" />
+        <MetaSEO />
         <Header />
         <AppFilter searchQuery={searchQuery} />
         <CTA />

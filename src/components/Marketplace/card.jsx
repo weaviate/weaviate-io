@@ -12,22 +12,16 @@ export default function AppCard({ app }) {
         </div>
       </div>
       <p>{app.description}</p>
+
       <div className={styles.bottomCard}>
-        {app.released === 'no' ? (
+        {app.released === 'no' && (
           <>
             <div className={styles.comingSoon}>Coming Soon</div>
-            <Link to={app.url}>Learn More</Link>
+            {app.url && <Link to={app.url}>Learn More</Link>}
           </>
-        ) : (
-          <>
-            {/*   <span>{app.price}</span>
-            <div className={styles.heart}>
-              {' '}
-              <span>{app.rating}</span>
-            </div> */}
-
-            <Link to={app.url}>Learn More</Link>
-          </>
+        )}
+        {app.released === 'yes' && app.url && (
+          <Link to={app.url}>Learn More</Link>
         )}
       </div>
     </div>
