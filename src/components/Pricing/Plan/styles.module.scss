@@ -654,6 +654,20 @@
   }
 }
 
+.closeEnterprise {
+  position: absolute;
+  top: 102px;
+  right: 20px;
+  font-size: 3rem;
+  color: #130c49;
+  cursor: pointer;
+
+  @media screen and (max-width: 860px) {
+    top: 55px;
+    right: 11px;
+  }
+}
+
 .supportbox {
   display: flex;
   flex-direction: row;

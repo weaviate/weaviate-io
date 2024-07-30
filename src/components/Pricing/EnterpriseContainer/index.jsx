@@ -118,55 +118,18 @@ export default function EnterpriseContainer({ closeModal }) {
         );
       case 'azure':
         return (
-          <>
-            <span>Starting from $2.64 per AI Unit (AIU)</span>
-            <div className={styles.tabRight}>
-              <span>AIU per hour / GB</span>
-              <span>AIU per month / GB</span>
-            </div>
-            <div className={styles.tabBar}>
-              <div className={`${styles.vpcIcon} ${styles.vpcs}`} />
-              <div className={styles.tabText}>
-                <p>vCPU</p>
-              </div>
-              <p className={styles.marginRight}>0.0294658</p>
-              <p>On demand</p>
-            </div>
-            <div className={styles.tabBar}>
-              <div className={`${styles.vpcIcon} ${styles.hot}`} />
-              <div className={styles.tabText}>
-                <p>HOT</p>
-                <span>Used for data accessed frequently.</span>
-              </div>
-              <p className={styles.marginRight}>0.0017534</p>
-              <p>On demand</p>
-            </div>
-            <div className={styles.tabBar}>
-              <div className={`${styles.vpcIcon} ${styles.warm}`} />
-              <div className={styles.tabText}>
-                <p>WARM</p>
-                <span>Used for data accessed less-frequently.</span>
-              </div>
-              <p className={styles.marginRight}>0.0000959</p>
-              <p>On demand</p>
-            </div>
-            <div className={styles.tabBar}>
-              <div className={`${styles.vpcIcon} ${styles.cold}`} />
-              <div className={styles.tabText}>
-                <p>COLD</p>
-                <span>
-                  Used for data not needed at the time,<br></br> but fast to
-                  activate.
-                </span>
-              </div>
-              <p className={styles.marginRight}>0.0000137</p>
-              <p>On demand</p>
-            </div>
-            <div className={styles.tabBottom}>
-              <em>*Standard SLA tier</em>
-              <em> **Based on us-east-1</em>
-            </div>
-          </>
+          <div className={styles.azureContainer}>
+            <p>
+              Contact our Sales team for more information about Azure pricing.
+            </p>
+            <Link
+              className={styles.contactUsButton}
+              to="#contact-sales"
+              onClick={closeModal}
+            >
+              Contact us
+            </Link>
+          </div>
         );
       default:
         return null;
@@ -220,12 +183,18 @@ export default function EnterpriseContainer({ closeModal }) {
           </div>
           <div className={styles.tabContent}>
             <div className={styles.tabHeader}>
-              <h3>Configure consumption for your use case </h3>
-              <p>
-                Optimize the cost of running multi-tenant AI workloads at scale.
-                Move between hot, warm, and cold storage tiers based on usage
-                patterns.
-              </p>
+              <h3>
+                {activeTab === 'azure'
+                  ? 'Questions about pricing?'
+                  : 'Configure consumption for your use case'}
+              </h3>
+              {activeTab !== 'azure' && (
+                <p>
+                  Optimize the cost of running multi-tenant AI workloads at
+                  scale. Move between hot, warm, and cold storage tiers based on
+                  usage patterns.
+                </p>
+              )}
             </div>
             <div className={styles.tabBody}>{renderContent()}</div>
           </div>

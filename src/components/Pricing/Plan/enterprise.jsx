@@ -78,7 +78,7 @@ export default function PricingEnterprise() {
         style={{ display: isModalOpen ? 'flex' : 'none' }}
       >
         <div className={styles.modalContents}>
-          <span className={styles.close} onClick={closeModal}>
+          <span className={styles.closeEnterprise} onClick={closeModal}>
             &times;
           </span>
 
