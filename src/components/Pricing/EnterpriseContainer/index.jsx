@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
-export default function EnterpriseContainer() {
+export default function EnterpriseContainer({ closeModal }) {
   const [activeTab, setActiveTab] = useState('aws');
 
   const renderContent = () => {
@@ -10,7 +10,10 @@ export default function EnterpriseContainer() {
       case 'aws':
         return (
           <>
-            <span>Starting from $2.64 per AI Unit (AIU)</span>
+            <Link className={styles.faqLink} to="#faq" onClick={closeModal}>
+              <span>Starting from $2.64 per AI Unit (AIU)</span>
+            </Link>
+
             <div className={styles.tabRight}>
               <span>AIU per hour / GB</span>
               <span>AIU per month / GB</span>
@@ -21,7 +24,7 @@ export default function EnterpriseContainer() {
                 <p>vCPU</p>
               </div>
               <p className={styles.marginRight}>0.0294658</p>
-              <p>21.51</p>
+              <p>21.544</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.hot}`} />
@@ -30,7 +33,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0017534</p>
-              <p>1.28</p>
+              <p>1.280</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.warm}`} />
@@ -39,7 +42,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed less-frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0000959</p>
-              <p>0.07</p>
+              <p>0.071</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.cold}`} />
@@ -51,7 +54,7 @@ export default function EnterpriseContainer() {
                 </span>
               </div>
               <p className={styles.marginRight}>0.0000137</p>
-              <p>0.01</p>
+              <p>0.010</p>
             </div>
             <div className={styles.tabBottom}>
               <em>*Standard SLA tier</em>
@@ -62,7 +65,9 @@ export default function EnterpriseContainer() {
       case 'google':
         return (
           <>
-            <span>Starting from $2.64 per AI Unit (AIU)</span>
+            <Link className={styles.faqLink} to="#faq" onClick={closeModal}>
+              <span>Starting from $2.64 per AI Unit (AIU)</span>
+            </Link>
             <div className={styles.tabRight}>
               <span>AIU per hour / GB</span>
               <span>AIU per month / GB</span>
@@ -73,7 +78,7 @@ export default function EnterpriseContainer() {
                 <p>vCPU</p>
               </div>
               <p className={styles.marginRight}>0.0294658</p>
-              <p>21.51</p>
+              <p>22.254</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.hot}`} />
@@ -82,7 +87,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0017534</p>
-              <p>1.28</p>
+              <p>1.280</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.warm}`} />
@@ -91,7 +96,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed less-frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0000959</p>
-              <p>0.07</p>
+              <p>0.076</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.cold}`} />
@@ -103,7 +108,7 @@ export default function EnterpriseContainer() {
                 </span>
               </div>
               <p className={styles.marginRight}>0.0000137</p>
-              <p>0.01</p>
+              <p>0.08</p>
             </div>
             <div className={styles.tabBottom}>
               <em>*Standard SLA tier</em>
@@ -125,7 +130,7 @@ export default function EnterpriseContainer() {
                 <p>vCPU</p>
               </div>
               <p className={styles.marginRight}>0.0294658</p>
-              <p>21.51</p>
+              <p>On demand</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.hot}`} />
@@ -134,7 +139,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0017534</p>
-              <p>1.28</p>
+              <p>On demand</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.warm}`} />
@@ -143,7 +148,7 @@ export default function EnterpriseContainer() {
                 <span>Used for data accessed less-frequently.</span>
               </div>
               <p className={styles.marginRight}>0.0000959</p>
-              <p>0.07</p>
+              <p>On demand</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.cold}`} />
@@ -155,7 +160,7 @@ export default function EnterpriseContainer() {
                 </span>
               </div>
               <p className={styles.marginRight}>0.0000137</p>
-              <p>0.01</p>
+              <p>On demand</p>
             </div>
             <div className={styles.tabBottom}>
               <em>*Standard SLA tier</em>
@@ -177,17 +182,8 @@ export default function EnterpriseContainer() {
             <h3>Enterprise Cloud Pricing</h3>
           </div>
           <p className={styles.subHeader}>
-            The easiest way to get started with Weaviate. All the power of our
-            AI-native vector database, as a fully-managed SaaS offering. Best
-            for nimble teams at all stages of building.
-          </p>
-          <p className={styles.subHeader}>
-            Our Serverless Cloud pricing is based on dimensions stored and
-            chosen SLA tier. The exact calculation can be found in the{' '}
-            <Link className={styles.faqLink} to="#faq">
-              FAQ
-            </Link>{' '}
-            (not inclusive of discounts and taxes).
+            We manage everything for you in a dedicated instance in Weaviate
+            Cloud.
           </p>
         </div>
 
@@ -228,11 +224,6 @@ export default function EnterpriseContainer() {
                 Move between hot, warm, and cold storage tiers based on usage
                 patterns.
               </p>
-              <p>
-                Pay only for what you need. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
-              </p>
             </div>
             <div className={styles.tabBody}>{renderContent()}</div>
           </div>
@@ -240,7 +231,7 @@ export default function EnterpriseContainer() {
         <div className={styles.buttons}>
           <Link
             className={styles.buttonGradient}
-            to="https://console.weaviate.cloud/"
+            to="https://events.weaviate.io/pricing-download"
           >
             Get the pricing guide
           </Link>

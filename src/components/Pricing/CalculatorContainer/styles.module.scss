@@ -125,6 +125,7 @@
 
   @media screen and (max-width: 860px) {
     flex-direction: column;
+    gap: 20px;
   }
 
   a {
@@ -475,9 +476,13 @@
 
     span {
       color: #130c49;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-style: normal;
       font-weight: 700;
+
+      @media screen and (max-width: 668px) {
+        font-size: 2.1rem;
+      }
     }
 
     @media screen and (max-width: 668px) {

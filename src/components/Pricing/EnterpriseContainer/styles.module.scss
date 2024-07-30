@@ -27,7 +27,7 @@
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 157.33%; /* 1.57331rem */
+    line-height: 1.57331;
 
     @media screen and (max-width: 688px) {
       width: 100%;
@@ -66,6 +66,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+
     .big {
       font-weight: 800;
       font-size: 2rem;
@@ -75,6 +76,7 @@
   .priceCost {
     text-align: right;
   }
+
   .title {
     width: 100%;
     padding: 1.5rem;
@@ -88,14 +90,17 @@
       font-weight: 300;
     }
   }
+
   li {
     list-style: none;
     display: flex;
     gap: 10px;
     height: 3rem;
     align-items: baseline;
+
     svg {
       margin-top: 2px;
+
       path {
         fill: #00b800;
       }
@@ -117,6 +122,7 @@
   border-radius: 0.625rem;
   border: 3px solid #262262;
 }
+
 .buttons {
   margin: 70px;
   display: flex;
@@ -125,6 +131,7 @@
 
   @media screen and (max-width: 860px) {
     flex-direction: column;
+    gap: 20px;
   }
 
   a {
@@ -205,10 +212,12 @@
   border-radius: 0.9375rem;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
   &:hover {
     background: #130c49;
     color: #fff;
     font-weight: 400;
+
     p,
     a {
       color: #fff;
@@ -224,7 +233,6 @@
     text-align: center;
     font-family: Inter;
     font-size: 1rem;
-
     font-weight: 700;
   }
 
@@ -266,7 +274,6 @@
     text-align: center;
     font-family: Inter;
     font-size: 1rem;
-
     font-weight: 700;
   }
 
@@ -293,6 +300,7 @@
     background-repeat: no-repeat;
     background-image: url('/img/site/googleCloud.svg');
   }
+
   .aws {
     display: flex;
     width: 50px;
@@ -303,6 +311,7 @@
     background-image: url('/img/site/awsLogo.svg');
     transition: all 1s ease-out;
   }
+
   .awsLight {
     display: flex;
     width: 50px;
@@ -312,6 +321,7 @@
     background-repeat: no-repeat;
     background-image: url('/img/site/awsLogoLight.svg');
   }
+
   .azure {
     display: flex;
     width: 50px;
@@ -346,7 +356,6 @@
   width: 90%;
   margin: 20px auto;
   height: 25.4rem;
-  border-radius: 0.625rem;
   border-radius: 0.84894rem;
   background: #fff;
   box-shadow: 0px 21.733px 57.954px 0px rgba(22, 27, 45, 0.08);
@@ -358,12 +367,9 @@
   @media screen and (max-width: 668px) {
     width: 95%;
     margin: 20px auto;
-    height: 25.4rem;
-
-    display: flex;
-    padding: 2rem;
-    flex-direction: row;
-    gap: 30px;
+    height: auto;
+    padding: 1.5rem;
+    flex-direction: column;
   }
 }
 
@@ -401,7 +407,7 @@
   z-index: 1;
 
   @media screen and (max-width: 668px) {
-    width: 810px;
+    width: 100%;
   }
 
   h2 {
@@ -428,7 +434,7 @@
     @media screen and (max-width: 668px) {
       text-align: left;
       font-size: 0.9rem;
-      width: 196px;
+      width: 100%;
       margin: 13px 0px;
     }
 
@@ -446,6 +452,7 @@
   @media screen and (max-width: 668px) {
     width: 140px;
   }
+
   h2 {
     color: #130c49;
     font-size: 1rem;
@@ -454,6 +461,7 @@
     text-align: center;
     margin: 10px 0px;
   }
+
   p {
     text-align: center;
     color: #130c49;
@@ -562,7 +570,6 @@
   margin: 50px auto;
   border-radius: 12px;
   overflow: hidden;
-
   color: #130c49;
   align-items: flex-start;
   background-color: #fff;
@@ -584,21 +591,23 @@
     padding: 1rem;
     flex: 2 100px;
     flex-direction: column;
+
     @media screen and (max-width: 640px) {
       flex: 1;
       padding: 0rem 1rem;
     }
+
     li {
       list-style: none;
       display: flex;
       gap: 10px;
 
       svg {
-        // opacity: 0.5;
         path {
           fill: #00b800;
         }
       }
+
       a {
         text-decoration: none;
         color: var(--ifm-heading-color);
@@ -614,28 +623,31 @@
       margin: 0px 0px 22px;
     }
   }
+
   .featuresLong {
     font-size: 15px;
     padding: 1rem;
     flex: 3;
     flex-direction: column;
+
     @media screen and (max-width: 640px) {
       flex: 1;
       padding: 0rem 1rem;
     }
+
     li {
       list-style: none;
       display: flex;
       gap: 10px;
 
       svg {
-        // opacity: 0.5;
         path {
           fill: #00b800;
         }
       }
     }
   }
+
   .title {
     display: flex;
     padding: 1rem 2rem;
@@ -643,7 +655,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-
     font-family: Inter;
     font-size: 1.5625rem;
 
@@ -704,7 +715,6 @@
 
 .title {
   width: 100%;
-
   display: flex;
   gap: 15px;
   justify-content: left;
@@ -743,16 +753,16 @@
 .tabs {
   border-radius: 0.625rem 0.625rem 0rem 0rem;
   background: #130c49;
-  width: 65.1875rem;
-  height: 6.25rem;
-  flex-shrink: 0;
+  width: 100%;
+  height: auto;
   display: flex;
+  flex-wrap: wrap;
 
   .tab {
     border-radius: 0.625rem 0.625rem 0rem 0rem;
-    background: #262262;
-    width: 21.6875rem;
-    height: 6.25rem;
+    width: 100%;
+    max-width: 21.91rem;
+    padding: 1rem;
     flex-shrink: 0;
     color: #ffffff36;
     background: #130c49;
@@ -761,6 +771,11 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+
+    @media screen and (max-width: 668px) {
+      width: 100%;
+      max-width: 27rem;
+    }
   }
 
   .tab:hover,
@@ -773,16 +788,19 @@
 
 .tabContainer {
   padding: 10px 60px;
+
+  @media screen and (max-width: 668px) {
+    padding: 10px 20px;
+  }
 }
 
 .tabHeader {
   h3 {
     color: #fff;
-
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 144.9%; /* 2.1735rem */
+    line-height: 2.1735;
     letter-spacing: -0.015rem;
   }
 
@@ -791,7 +809,7 @@
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 144.9%; /* 1.449rem */
+    line-height: 1.449;
     letter-spacing: -0.01rem;
     width: 60%;
     margin-bottom: 20px;
@@ -801,13 +819,18 @@
     }
   }
 }
+
 .tabContent {
-  width: 65.1875rem;
-  height: 55.875rem;
+  width: 100%;
+  height: auto;
   flex-shrink: 0;
   border-radius: 0rem 0rem 0.625rem 0.625rem;
   background: #262262;
   padding: 3rem;
+
+  @media screen and (max-width: 668px) {
+    padding: 2rem 1rem;
+  }
 }
 
 .tabBody {
@@ -821,7 +844,7 @@
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 144.9%; /* 1.63013rem */
+    line-height: 1.63013;
     letter-spacing: -0.01125rem;
   }
 }
@@ -831,6 +854,13 @@
   display: flex;
   justify-content: flex-end;
   gap: 60px;
+
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateX(0);
+    gap: 0px;
+  }
 }
 
 .tabBottom {
@@ -839,10 +869,16 @@
   color: #61bd73;
   flex-direction: column;
   align-items: flex-end;
+
+  @media screen and (max-width: 668px) {
+    align-items: flex-start;
+    transform: translateX(0);
+  }
 }
+
 .tabBar {
-  width: 56.875rem;
-  height: 6.4375rem;
+  width: 100%;
+  height: auto;
   flex-shrink: 0;
   background: #130c49;
   color: white;
@@ -850,22 +886,33 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  padding: 1rem;
+
+  @media screen and (max-width: 668px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }
 
 .tabText {
   width: 260px;
+
   span {
     color: #b9c8de;
-
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 157.33%; /* 1.37663rem */
+    line-height: 1.37663;
   }
 }
 
 .marginRight {
   margin-right: 50px;
+
+  @media screen and (max-width: 668px) {
+    margin-right: 0;
+  }
 }
 
 .cellIcon {
@@ -880,9 +927,11 @@
 .azureIcon {
   background-image: url('/img/site/pricing-azure-icon.png');
 }
+
 .awsIcon {
   background-image: url('/img/site/pricing-aws-icon.svg');
 }
+
 .googleIcon {
   background-image: url('/img/site/pricing-gcp-icon.svg');
 }
@@ -898,9 +947,11 @@
 .vpcs {
   background-image: url('/img/site/enterprise-vcpu-icon.svg');
 }
+
 .hot {
   background-image: url('/img/site/enterprise-hot-icon.svg');
 }
+
 .warm {
   background-image: url('/img/site/enterprise-warm-icon.svg');
 }

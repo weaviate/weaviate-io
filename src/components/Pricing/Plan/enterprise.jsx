@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import Calculator from '../Calculator';
-import SlaPlan from '../SLAS';
-import { keysIn } from 'lodash';
-import CalculatorContainer from '../CalculatorContainer';
 import EnterpriseContainer from '../EnterpriseContainer';
+
 export default function PricingEnterprise() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (e) => {
+  const openModal = () => {
     setIsModalOpen(true);
   };
 
@@ -82,7 +79,7 @@ export default function PricingEnterprise() {
             &times;
           </span>
 
-          <EnterpriseContainer />
+          <EnterpriseContainer closeModal={closeModal} />
         </div>
       </div>
     </>

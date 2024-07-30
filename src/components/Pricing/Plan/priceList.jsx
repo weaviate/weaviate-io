@@ -21,9 +21,9 @@ export default function PriceList() {
       <div className={styles.features}>
         <Link
           className={styles.supportLink}
-          to="services/education-and-support"
+          to="http://events.weaviate.io/pricing-download"
         >
-          Learn More
+          Request the Pricing List
         </Link>
       </div>
     </div>

@@ -33,10 +33,13 @@ export default function PricingSandBox() {
           <span>24/7 support via email and phone escalation hotline</span>
         </li>
         <li>
-          <span>Professional or Business Critical SLAs</span>
+          <span>Enterprise or Business Critical SLAs</span>
         </li>
       </div>
       <div className={styles.features}>
+        <li>
+          <span>24/7 monitoring and support</span>
+        </li>
         <li>
           <span>Curated onboarding program to kickstart development</span>
         </li>
@@ -47,7 +50,7 @@ export default function PricingSandBox() {
           </span>
         </li>
         <li>
-          <span>Weekly office hours</span>
+          <span>Monthly office hours</span>
         </li>
       </div>
     </div>

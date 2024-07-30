@@ -285,7 +285,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/services/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/services/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/services/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/services/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/services/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/services/education-and-support">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/education-and-support">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/education-and-support">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -297,7 +297,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/services/enterprise-cloud">Infrastructure Optimization</a></li><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
                             className: 'dropDownContainer2',
                         },
                         
@@ -503,19 +503,19 @@ const config = {
                             },
                             {
                                 label: 'Serverless Cloud',
-                                to: '/services/serverless',
+                                to: '/deployment/serverless',
                             },
                             {
                                 label: 'Enterprise Cloud',
-                                to: '/services/enterprise-cloud',
+                                to: '/deployment/enterprise-cloud',
                             },
                             {
                                 label: 'Bring Your Own Cloud',
-                                to: '/services/byoc',
+                                to: '/deployment/byoc',
                             },
                             {
                                 label: 'Education & Support',
-                                to: '/services/education-and-support',
+                                to: '/deployment/education-and-support',
                             },
                             {
                                 label: 'Pricing',

@@ -252,9 +252,9 @@ export default function CalculatorContainer() {
           </Link>
           <Link
             className={styles.buttonOutline}
-            to="https://console.weaviate.cloud/"
+            to="/services/enterprise-cloud"
           >
-            Get started with Serverless
+            Explore all benefits and features
           </Link>
         </div>
       </div>
