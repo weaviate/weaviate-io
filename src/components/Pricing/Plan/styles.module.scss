@@ -917,6 +917,11 @@
       color: #130c49;
       align-items: center;
       justify-content: center;
+
+      @media screen and (max-width: 640px) {
+        padding: 0.5rem 2rem;
+        width: 100%;
+      }
     }
 
     li {

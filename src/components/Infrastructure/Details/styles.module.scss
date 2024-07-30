@@ -779,6 +779,7 @@
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    height: auto;
   }
 
   p {
@@ -795,17 +796,18 @@
     font-style: normal;
     font-weight: 700;
     line-height: 140%; /* 2.1rem */
+    display: flex;
+    align-items: center; /* Aligns the icon and text vertically */
   }
+
   h3:before {
     content: url('/img/site/CPO-top-icon.svg');
     margin-right: 10px;
-    vertical-align: middle;
   }
 
-  .resource:before {
+  .resource h3:before {
     content: url('/img/site/CPO-resource-icon.svg');
     margin-right: 10px;
-    vertical-align: middle;
   }
 }
 
@@ -1028,6 +1030,7 @@
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    height: auto;
   }
 
   em {

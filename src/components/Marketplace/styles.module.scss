@@ -988,7 +988,7 @@
   margin-bottom: 30px;
 
   @media screen and (max-width: 1100px) {
-    width: 60%;
+    width: 100%;
     flex-direction: column;
   }
 }
@@ -1046,6 +1046,7 @@
 
   @media screen and (max-width: 1100px) {
     flex-direction: column;
+    margin-bottom: 0px;
   }
 }
 .overviewImage {
@@ -1101,8 +1102,9 @@
 
 @media (max-width: 480px) {
   .overviewImage {
-    width: 18rem;
-    height: 12rem;
+    width: 20rem;
+    height: 14rem;
+    margin: 0;
   }
 
   .overviewImage img {
@@ -1121,6 +1123,11 @@
     width: 10rem;
     height: 10rem;
     margin-right: 1px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 8rem;
+    height: 8rem;
   }
 }
 
@@ -1440,6 +1447,10 @@
   a {
     color: #130c49;
     font-weight: 700;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: small;
   }
 }
 
