@@ -88,23 +88,5 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "",
     "released": "no"
-  },
-  {
-    "id": "rag-builder",
-    "name": "RAG Builder",
-    "category": "AI-Native Apps",
-    "description": "Build and prototype RAG applications more quickly.",
-    "image": "apps-gfl-icon.svg",
-    "overviewImage1": "app-screenshot-01.png",
-    "overviewImage2": "app-screenshot-02.png",
-    "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "price": "Free",
-    "rating": 4.5,
-    "version": "7.3.0",
-    "updated": "June 28, 2023",
-    "size": "11.09MB",
-    "languages": ["English", "Spanish", "French", "German"],
-    "url": "",
-    "released": "no"
   }
 ]
