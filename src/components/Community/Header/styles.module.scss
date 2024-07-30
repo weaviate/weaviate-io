@@ -20,34 +20,22 @@
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
-
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
+    color: #ffffff;
+    background: #130c49;
+    width: 10.0625rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    font-weight: 600;
   }
 
   .buttonOutline {
-    font-weight: 400;
     border-radius: 0.3125rem;
-    border: 1px solid #130c49;
     color: #130c49;
-
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    border: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
-    font-weight: 400;
+    background: #fff;
+    width: 10.0625rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    font-weight: 600;
   }
 }
 
@@ -232,26 +220,6 @@ p {
   background-color: #ededed;
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: none;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-}
-
 .buttonsContainer {
   display: flex;
   flex-direction: row;
@@ -294,15 +262,12 @@ p {
 
 .headerSecurity {
   background: #f5f5f5;
-  background-image: url('/img/site/home-page-bg-pattern.svg');
+  background-image: url('/img/site/3d-pricing-banner.png');
   background-size: cover;
-  background-position-y: -300px;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/bg-light-mobile.svg');
+    background-image: url('/img/site/3d-pricing-banner.png');
     background-size: cover;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
   }
 }
 
