@@ -895,7 +895,10 @@
   justify-content: center;
   gap: 30px;
   margin: 70px 0px;
-  flex-wrap: wrap;
+
+  @media screen and (max-width: 1100px) {
+    flex-wrap: wrap;
+  }
 }
 
 .serviceBox {

@@ -21,7 +21,7 @@
     "id": "collections",
     "name": "Collections",
     "category": "Cloud Tools",
-    "description": "Create an manage collections through a graphical user interface (GUI).",
+    "description": "Create and manage collections through a graphical user interface (GUI).",
     "image": "apps-collections-icon.svg",
     "overviewImage1": "collections-screenshot-01.png",
     "overviewImage2": "collections-screenshot-01.png",
@@ -57,7 +57,7 @@
     "id": "recommender",
     "name": "Recommender Service",
     "category": "AI-Native Apps",
-    "description": "Build personalized, multi-modal recommendations with simple interface.",
+    "description": "Build personalized, multi-modal recommendations with a simple interface.",
     "image": "apps-recommender-icon.svg",
     "overviewImage1": "recommender-screenshot-01.png",
     "overviewImage2": "recommender-screenshot-02.png",
@@ -69,7 +69,7 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/recommender",
-    "released": "yes"
+    "released": "no"
   },
   {
     "id": "gfl",
@@ -87,6 +87,6 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/gfl",
-    "released": "yes"
+    "released": "no"
   }
 ]

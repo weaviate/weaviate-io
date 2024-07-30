@@ -41,7 +41,7 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   {app.released === 'no' ? (
-                    <Link to="https://console.weaviate.cloud/">
+                    <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
                         Request early access
                       </button>
@@ -83,7 +83,7 @@ export default function QueryPage() {
                       Availabilty: <strong>Coming Soon</strong>
                     </p>
                     <p>
-                      <Link to="/developers/wcs/console">
+                      <Link to="https://events.weaviate.io/early-access">
                         Request early access
                       </Link>
                     </p>

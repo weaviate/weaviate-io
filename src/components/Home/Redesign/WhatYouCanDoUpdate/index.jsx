@@ -75,17 +75,6 @@ export default function HomepageWhatYouCanDo() {
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
-                <Tabs.Trigger className={styles.tabsTrigger} value="tab5">
-                  <h3 className={styles.tabHeader05}>
-                    Secure, flexible deployment
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg5}`} />
-                  <p>
-                    Adapts to the needs of your business. Run as an open source
-                    platform, a managed service, or within your VPC.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
               </Tabs.List>
             </div>
             <div className={styles.right}>
