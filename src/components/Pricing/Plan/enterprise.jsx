@@ -36,7 +36,10 @@ export default function PricingEnterprise() {
           <h3>Enterprise Cloud</h3>
         </div>
         <div className={styles.price}>
-          <p>We manage everything for you in the Weaviate Cloud.</p>
+          <p>
+            We manage everything for you in a dedicated instance in Weaviate
+            Cloud.
+          </p>
           <div className={styles.bottomPrice}>
             <span>from $2.64 / AIU</span>
             <p>AIU = AI Unit</p>

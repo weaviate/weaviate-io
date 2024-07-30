@@ -182,8 +182,10 @@ export default function EnterpriseContainer({ closeModal }) {
             <h3>Enterprise Cloud Pricing</h3>
           </div>
           <p className={styles.subHeader}>
-            We manage everything for you in a dedicated instance in Weaviate
-            Cloud.
+            Tailored for businesses seeking high performance, Weaviate’s
+            Enterprise Cloud solution provides the power of Weaviate on
+            dedicated resources, ensuring consistent, high-speed results without
+            the complexities of self-management.
           </p>
         </div>
 
