@@ -413,8 +413,17 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/compression/pq-compression',
             from: '/developers/weaviate/configuration/compression',
+        },
+        {
+            to: '/developers/weaviate/configuration/compression/pq-compression',
+            from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+        {
+            to: '/developers/weaviate/configuration/compression/bq-compression',
+            from: '/developers/weaviate/configuration/bq-compression',
         },
 
         {
@@ -512,12 +521,12 @@ const siteRedirects = {
             from: "/service/service-schedule"
         },
         {
-            to: "/service/weaviate-general-terms-of-service",
-            from: "/service/weaviate-terms-of-service"
-        },
-        {
             to: "/weaviate-support-terms",
             from: "/supportterms"
+        },
+        {
+            to: "/service",
+            from: "/service/weaviate-general-terms-of-service"
         },
             // Case Study Changes
             {
@@ -562,6 +571,27 @@ const siteRedirects = {
  from: "/developers/weaviate/release-notes/release_1_16"
 },
 
+// Services Changes
+{
+    to: "/platform",
+    from: "/services"
+ },
+ {
+    to: "/deployment/serverless",
+    from: "/services/serverless"
+ },
+ {
+    to: "/deployment/enterprise-cloud",
+    from: "/services/enterprise-cloud"
+ },
+ {
+    to: "/deployment/byoc",
+    from: "/services/byoc"
+ },
+ {
+    to: "/deployment/education-and-support",
+    from: "/services/education-and-support"
+ },
 
     ],
     createRedirects(existingPath) {

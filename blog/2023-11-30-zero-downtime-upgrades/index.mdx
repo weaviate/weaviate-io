@@ -251,7 +251,7 @@ This means that a replication factor of 3 leads to the cluster essentially handl
 Another challenge is that any write request that comes in while any nodes are down will be temporarily missing on that node for a while. This will be repaired in time through a read-repair that [happens automatically in the background](/developers/weaviate/concepts/replication-architecture/consistency#repairs).
 
 :::note Proposed feature
-To reduce the length of this time, there is a proposed feature to proactively start repairing those inconsistencies (i.e. perform asynchronous replication). If this is important, please [upvote the feature here](https://github.com/weaviate/weaviate/issues/2405).
+To reduce the length of this time, there is a proposed feature to proactively start repairing those inconsistencies (i.e. perform async replication). If this is important, please [upvote the feature here](https://github.com/weaviate/weaviate/issues/2405).
 :::
 
 But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](/developers/weaviate/concepts/replication-architecture/cluster-architecture#data-replication-leaderless), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.

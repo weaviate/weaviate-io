@@ -29,6 +29,10 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
 
 </details>
 
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
 ## Enable multi-tenancy
 
 Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancyConfig`in the collection definition:
@@ -160,7 +164,7 @@ Use the client to update the auto-tenant creation setting. Auto-tenant is only a
 
 ## Add new tenants manually
 
-To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
+To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `ACTIVE`(available, default), `INACTIVE` (not available, on disk), or `OFFLOADED` (not available, [offloaded to cloud](../concepts/data.md#tenant-status)).
 
 This example adds `tenantA` to the `MultiTenancyCollection` collection:
 
@@ -415,7 +419,7 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
 
 ## Update tenant activity status
 
-Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
+Update existing tenants' activity status to active (`ACTIVE`), inactive on disk (`INACTIVE`), or offloaded to cloud (`OFFLOADED`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -452,7 +456,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 :::info Added in `v1.25.2`
 :::
 
-Enable this to automatically activate `COLD` tenants if a read-or-write request comes. This is disabled by default.
+Enable this to automatically activate `INACTIVE` tenants if a read-or-write request comes. This is disabled by default.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

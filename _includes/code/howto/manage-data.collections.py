@@ -426,6 +426,39 @@ assert config.replication_config.factor == 3
 
 client.close()
 
+# =======================
+# ===== ASYNC REPAIR ====
+# =======================
+
+# Connect to a setting with 3 replicas
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# Clean slate
+client.collections.delete("Article")
+
+# START AsyncRepair
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+        async_enabled=True,
+    )
+    # highlight-end
+)
+# END AsyncRepair
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+# assert config.replication_config.factor == 3   #ASYNC NEEDS TEST
+
+client.close()
+
 # ====================
 # ===== SHARDING =====
 # ====================
