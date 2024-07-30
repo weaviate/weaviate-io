@@ -90,12 +90,13 @@ def get_credentials() -> Credentials:
 def re_instantiate_weaviate() -> weaviate.Client:
     from weaviate.classes.init import Auth
 
+    weaviate_api_key = os.environ["WCD_DEMO_RO_KEY"]
     credentials = get_credentials()
     token = credentials.token
 
     client = weaviate.connect_to_weaviate_cloud(  # e.g. if you use the Weaviate Cloud Service
         cluster_url="https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
-        auth_credentials=Auth.api_key(os.environ["WCD_DEMO_RO_KEY"]),  # Replace with your Weaviate Cloud key
+        auth_credentials=Auth.api_key(weaviate_api_key),  # Replace with your Weaviate Cloud key
         headers={
             "X-Google-Vertex-Api-Key": token,
         },
