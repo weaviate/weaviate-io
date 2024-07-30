@@ -11,7 +11,9 @@ import WCDEdProp from '/developers/wcs/img/wcd-coll-ed-props.jpg';
 import WCDEdExProp from '/developers/wcs/img/wcd-coll-ed-extra-props.jpg';
 import WCDEdSelect from '/developers/wcs/img/wcd-coll-select-mod.jpg';
 import WCDEdDelConf from '/developers/wcs/img/wcd-coll-conf-delete.jpg';
+import WCDEdDelColl from '/developers/wcs/img/wcd-coll-delete.jpg';
 import WCDEdMod from '/developers/wcs/img/wcd-coll-modify.jpg';
+import WCDEdObj from '/developers/wcs/img/wcd-coll-ed-objs.jpg';
 
 The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-technical users to create, manage, and delete collections.
 
@@ -55,7 +57,7 @@ The name can only contain letters, numbers, and the under-score (_) character. S
 
 Set a [vectorizer](/developers/weaviate/config-refs/schema#vectorizer) for the collection. Weaviate uses the default vectorizer when you import unvectorized data and when Weaviate queries external APIs that require vectorized inputs.
 
-The `Vectorizer` setting is a drop-down list. After you select a vectorizer, the editor expands to let you configure the model.
+The `Vectorizer` setting is a drop-down list. After you select a vectorizer, the editor expands to let you configure the model. The tool only shows the configuration options that are relevant for the vectorizer that you select.
 
 Switch the `Vectorize class name` toggle if you don't want to create a vector for the class name.
 
@@ -81,25 +83,41 @@ To update these additional settings, click on the gear wheel then select the con
 
 <center><img src={WCDEdExProp} width="50%" alt="Properties additional details edit section"/></center>
 
+#### Configure nested properties
+
+The `Object` property type can have nested sub-properties. To add nested properties, follow these steps:
+
+- Name the property.
+- Set the type to `Object`. The editor displays an `Edit` button.
+- Click the `Edit`button.
+
+<center><img src={WCDEdObj} width="75%" alt="Nested object properties edit section"/></center>
+
+When you finish adding nested properties, click the collection name to return to the collection editor.
+
+#### Delete a property
+
+To delete a property, click the trashcan icon.
+
 ## Modify a collection
 
 To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon that is located near the collection name to open the collection for editing.
 
 <center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
 
-To add a new property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
-
-<center><img src={WCDEdMod} width="100%" alt="Modify a collection definition"/></center>
+To add a new top-level property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
 
 Fields that cannot be updated are shown in gray.
 
 ## Delete a collection
 
+Once a collection is deleted it cannot be restored. The collection schema and all of the collection objects are deleted from the cluster. This operation cannot be undone.
+
 To delete a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to delete. Click the trash can icon that is located near the collection name to delete the collection.
 
-<center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
+<center><img src={WCDEdDelColl} width="100%" alt="Select to edit or delete"/></center>
 
-Enter the collection name in the text box to confirm, then press `Delete` to remove the collection. Once a collection is deleted it cannot be restored.
+Enter the collection name in the text box to confirm, then press `Delete` to remove the collection.
 
 <center><img src={WCDEdDelConf} width="75%" alt="Confirm delete"/></center>
 
