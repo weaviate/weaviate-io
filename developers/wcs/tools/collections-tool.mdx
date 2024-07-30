@@ -9,9 +9,9 @@ import WCDEdPick from '/developers/wcs/img/wcd-pick-cluster.jpg';
 import WCDEdGen from '/developers/wcs/img/wcd-coll-ed-general.jpg';
 import WCDEdProp from '/developers/wcs/img/wcd-coll-ed-props.jpg';
 import WCDEdExProp from '/developers/wcs/img/wcd-coll-ed-extra-props.jpg';
-import WCDEdSelect from '/developers/wcs/img/wcd-select-mod.jpg';
+import WCDEdSelect from '/developers/wcs/img/wcd-coll-select-mod.jpg';
 import WCDEdDelConf from '/developers/wcs/img/wcd-coll-conf-delete.jpg';
-
+import WCDEdMod from '/developers/wcs/img/wcd-coll-modify.jpg';
 
 The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-technical users to create, manage, and delete collections.
 
@@ -77,13 +77,19 @@ Some the property types can be fine tuned. When additional configuration is poss
 
 To update these settings, click on the gear wheel then select the configuration options in the pop-up window.
 
-<center><img src={WCDEdExProp} width="75%" alt="Properties additional details edit section"/></center>
+<center><img src={WCDEdExProp} width="50%" alt="Properties additional details edit section"/></center>
 
 ## Modify a collection
 
 To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon near the collection name to open the collection for editing.
 
 <center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
+
+To add a new property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
+
+<center><img src={WCDEdMod} width="100%" alt="Modify a collection definition"/></center>
+
+Fields that cannot be updated are shown in gray.
 
 ## Delete a collection
 
