@@ -30,48 +30,55 @@ export default function HomepageWhatYouCanDo() {
                   disabled={false}
                 >
                   <h3 className={styles.tabHeader01}>
-                    AI-native, developer-friendly
+                    A partner on your AI journey
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg1}`} />
                   <p>
-                    Empower developers to build and scale modern AI applications
-                    more easily.
+                    Open source with a strong community. Resources to help
+                    developers of all levels build production-ready AI apps.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
 
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                   <h3 className={styles.tabHeader02}>
-                    Cloud, model, and deployment agnostic
+                    Hybrid search made easy
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg2}`} />
                   <p>
-                    Run anywhere and integrate with your existing and future
-                    tech stack.
+                    Get the best of vector and keyword search. Deliver better
+                    results with less effort.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                  <h3 className={styles.tabHeader03}>
-                    Flexible cost-performance optimization
-                  </h3>
+                  <h3 className={styles.tabHeader03}>Pluggable ML models</h3>
                   <div className={`${styles.cImage} ${styles.codeImg3}`} />
                   <p>
-                    Drive efficienct resource management, tailored to the needs
-                    of your use case.
+                    Built-in modules for popular machine learning models and
+                    frameworks. Just load your data and go.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab4">
                   <h3 className={styles.tabHeader04}>
-                    <span>
-                      Robust developer community and enablement resources
-                    </span>
+                    <span>Cost-efficient at scale</span>
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg4}`} />
                   <p>
-                    Stay ahead of the curve with learning resources for
-                    developers of all levels.
+                    Advanced multi-tenancy, data compression, and filtering.
+                    Scale confidently and efficiently.
+                  </p>
+                  <div className={styles.accordianBar}></div>
+                </Tabs.Trigger>
+                <Tabs.Trigger className={styles.tabsTrigger} value="tab5">
+                  <h3 className={styles.tabHeader05}>
+                    Secure, flexible deployment
+                  </h3>
+                  <div className={`${styles.cImage} ${styles.codeImg5}`} />
+                  <p>
+                    Adapts to the needs of your business. Run as an open source
+                    platform, a managed service, or within your VPC.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
