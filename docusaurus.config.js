@@ -257,13 +257,13 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-            announcementBar: {
+           /*  announcementBar: {
                 id: 'announcement-bar-may2024',
                 content:`📆 AI [in Prod] Chicago: Tuesday, July 16th | Join us for tech talks and hands-on training! <a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-chi">Register here!</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            },
+            }, */
             docs: {
                 sidebar: {
                     hideable: true,
