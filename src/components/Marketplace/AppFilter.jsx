@@ -6,9 +6,9 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
-  'Weaviate Cloud Apps':
-    'Code-free interfaces for managing data within Weaviate.',
-  'Weaviate Labs': 'Pre-built services to accelerate AI-native use cases.',
+  'Cloud Tools':
+    'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
+  'AI-Native Apps': 'Simplify the development of end-to-end AI solutions.',
 };
 
 export default function AppFilter() {
@@ -58,71 +58,71 @@ export default function AppFilter() {
   };
 
   return (
-    <div className={styles.appContainer}>
-      <div className={styles.sidebar}>
-        {location.pathname === '/marketplace' ? (
-          <>
-            <input
-              type="text"
-              placeholder="Search apps..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              className={styles.searchInput}
-            />
-            <ul className={styles.categoryList}>
-              <li
-                onClick={() => handleCategoryChange('All')}
-                className={selectedCategory === 'All' ? styles.active : ''}
-              >
-                All Categories
-              </li>
-              <li
-                onClick={() => handleCategoryChange('Weaviate Cloud Apps')}
-                className={
-                  selectedCategory === 'Weaviate Cloud Apps'
-                    ? styles.active
-                    : ''
-                }
-              >
-                Weaviate Cloud Apps
-              </li>
-              <li
-                onClick={() => handleCategoryChange('Weaviate Labs')}
-                className={
-                  selectedCategory === 'Weaviate Labs' ? styles.active : ''
-                }
-              >
-                Weaviate Labs
-              </li>
-            </ul>
-          </>
-        ) : (
-          <Link to="/marketplace" className={styles.backButton}>
-            Back to Marketplace
-          </Link>
-        )}
-      </div>
-      <div className={styles.mainContent}>
-        {selectedCategory === 'All' ? (
-          <>
-            {Object.keys(categoryDescriptions).map(
-              (category) =>
-                category !== 'All' && renderCardsByCategory(category)
-            )}
-          </>
-        ) : (
-          <>
-            <h2>{selectedCategory}</h2>
-            <p className={styles.categoryDescriptions}>
-              {categoryDescriptions[selectedCategory]}
-            </p>
-            <div className={styles.cardContainer}>
-              {filteredApps.map((app) => (
-                <AppCard key={app.id} app={app} />
-              ))}
-            </div>
-          </>
-        )}
+    <div className="container">
+      <div className={styles.appContainer}>
+        <div className={styles.sidebar}>
+          {location.pathname === '/workbench' ? (
+            <>
+              <input
+                type="text"
+                placeholder="Search apps..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className={styles.searchInput}
+              />
+              <ul className={styles.categoryList}>
+                <li
+                  onClick={() => handleCategoryChange('All')}
+                  className={selectedCategory === 'All' ? styles.active : ''}
+                >
+                  All Categories
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('Cloud Tools')}
+                  className={
+                    selectedCategory === 'Cloud Tools' ? styles.active : ''
+                  }
+                >
+                  Cloud Tools
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('AI-Native Apps')}
+                  className={
+                    selectedCategory === 'AI-Native Apps' ? styles.active : ''
+                  }
+                >
+                  AI-Native Apps
+                </li>
+              </ul>
+            </>
+          ) : (
+            <Link to="/marketplace" className={styles.backButton}>
+              Back to Marketplace
+            </Link>
+          )}
+        </div>
+        <div className={styles.mainContent}>
+          {selectedCategory === 'All' ? (
+            <>
+              {Object.keys(categoryDescriptions).map(
+                (category) =>
+                  category !== 'All' && renderCardsByCategory(category)
+              )}
+            </>
+          ) : (
+            <>
+              <h2>{selectedCategory}</h2>
+              <p className={styles.categoryDescriptions}>
+                {categoryDescriptions[selectedCategory]}
+              </p>
+              <div className={styles.cardContainer}>
+                {filteredApps.map((app) => (
+                  <AppCard key={app.id} app={app} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

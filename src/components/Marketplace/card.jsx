@@ -9,7 +9,6 @@ export default function AppCard({ app }) {
         <img src={'/img/site/' + app.image} alt={app.name} />
         <div className={styles.innerTop}>
           <h3>{app.name}</h3>
-          <h4>By Weaviate</h4>
         </div>
       </div>
       <p>{app.description}</p>
@@ -21,11 +20,11 @@ export default function AppCard({ app }) {
           </>
         ) : (
           <>
-            <span>{app.price}</span>
+            {/*   <span>{app.price}</span>
             <div className={styles.heart}>
               {' '}
               <span>{app.rating}</span>
-            </div>
+            </div> */}
 
             <Link to={app.url}>Learn More</Link>
           </>
