@@ -43,13 +43,13 @@ export default function QueryPage() {
                   {app.released === 'no' ? (
                     <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
-                        Request early access
+                        Request Early Access
                       </button>
                     </Link>
                   ) : (
                     <Link to="https://console.weaviate.cloud/">
                       <button className={styles.installButton}>
-                        Request early access
+                        Request Early Access
                       </button>
                     </Link>
                   )}

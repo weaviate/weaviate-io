@@ -51,7 +51,8 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/explorer",
-    "released": "no"
+    "released": "no",
+    "earlyAccess": "yes"
   },
   {
     "id": "recommender",
@@ -69,7 +70,8 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/recommender",
-    "released": "no"
+    "released": "no",
+    "privateBeta": "yes"
   },
   {
     "id": "gfl",

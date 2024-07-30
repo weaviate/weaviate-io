@@ -41,11 +41,15 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   {app.released === 'no' ? (
-                    <div className={styles.comingSoon}>Coming Soon</div>
-                  ) : (
-                    <Link to="https://console.weaviate.cloud/">
+                    <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
-                        Request beta access
+                        Request Beta Access
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Beta Access
                       </button>
                     </Link>
                   )}
@@ -112,7 +116,9 @@ export default function QueryPage() {
                       Availabilty: <strong>Private beta</strong>
                     </p>
                     <p>
-                      <Link to="/developers/wcs/console">Read Docs</Link>
+                      <Link to="https://events.weaviate.io/early-access">
+                        Request beta access
+                      </Link>
                     </p>
                   </div>
                 </div>
