@@ -112,14 +112,6 @@ export default function Details() {
         <div className={styles.quoteContainer}>
           <div className={styles.quoteBox}>
             <em>
-              "Weaviate’s scalable multi-tenant architecture has been crucial in
-              maintaining fast and reliable AI-driven customer service and
-              engagement experiences for our thousands of users on Botsonic,"
-            </em>
-            <p> -- Samanyou Garg, CEO of Writesonic.</p>
-          </div>
-          <div className={styles.quoteBox}>
-            <em>
               “If the results aren’t accurate or take too long to surface, a
               human needs to get involved, and the cost savings are greatly
               reduced. So accuracy and speed are critical for us.”
@@ -129,6 +121,14 @@ export default function Details() {
               -- Shaunak Godbole, Head of Infrastructure Engineering at
               Instabase
             </p>
+          </div>
+          <div className={styles.quoteBox}>
+            <em>
+              "Weaviate’s scalable multi-tenant architecture has been crucial in
+              maintaining fast and reliable AI-driven customer service and
+              engagement experiences for our thousands of users on Botsonic,"
+            </em>
+            <p> -- Samanyou Garg, CEO of Writesonic.</p>
           </div>
         </div>
       </div>
