@@ -23,8 +23,8 @@ export default function EnterpriseContainer({ closeModal }) {
               <div className={styles.tabText}>
                 <p>vCPU</p>
               </div>
-              <p className={styles.marginRight}>0.0294658</p>
-              <p>21.544</p>
+              <p className={styles.marginRight}>0.029512</p>
+              <p>21.543561</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.hot}`} />
@@ -32,8 +32,8 @@ export default function EnterpriseContainer({ closeModal }) {
                 <p>HOT</p>
                 <span>Used for data accessed frequently.</span>
               </div>
-              <p className={styles.marginRight}>0.0017534</p>
-              <p>1.280</p>
+              <p className={styles.marginRight}>0.001753</p>
+              <p>1.279583</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.warm}`} />
@@ -41,8 +41,8 @@ export default function EnterpriseContainer({ closeModal }) {
                 <p>WARM</p>
                 <span>Used for data accessed less-frequently.</span>
               </div>
-              <p className={styles.marginRight}>0.0000959</p>
-              <p>0.071</p>
+              <p className={styles.marginRight}>0.000097</p>
+              <p>0.071023</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.cold}`} />
@@ -53,12 +53,12 @@ export default function EnterpriseContainer({ closeModal }) {
                   activate.
                 </span>
               </div>
-              <p className={styles.marginRight}>0.0000137</p>
-              <p>0.010</p>
+              <p className={styles.marginRight}>0.000014</p>
+              <p>0.010019</p>
             </div>
             <div className={styles.tabBottom}>
               <em>*Standard SLA tier</em>
-              <em> **Based on us-east-1</em>
+              <em>**Based on us-east-1</em>
             </div>
           </>
         );
@@ -77,8 +77,8 @@ export default function EnterpriseContainer({ closeModal }) {
               <div className={styles.tabText}>
                 <p>vCPU</p>
               </div>
-              <p className={styles.marginRight}>0.0294658</p>
-              <p>22.254</p>
+              <p className={styles.marginRight}>0.030485</p>
+              <p>22.253788</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.hot}`} />
@@ -86,8 +86,8 @@ export default function EnterpriseContainer({ closeModal }) {
                 <p>HOT</p>
                 <span>Used for data accessed frequently.</span>
               </div>
-              <p className={styles.marginRight}>0.0017534</p>
-              <p>1.280</p>
+              <p className={styles.marginRight}>0.001753</p>
+              <p>1.279583</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.warm}`} />
@@ -95,8 +95,8 @@ export default function EnterpriseContainer({ closeModal }) {
                 <p>WARM</p>
                 <span>Used for data accessed less-frequently.</span>
               </div>
-              <p className={styles.marginRight}>0.0000959</p>
-              <p>0.076</p>
+              <p className={styles.marginRight}>0.000104</p>
+              <p>0.075758</p>
             </div>
             <div className={styles.tabBar}>
               <div className={`${styles.vpcIcon} ${styles.cold}`} />
@@ -107,8 +107,8 @@ export default function EnterpriseContainer({ closeModal }) {
                   activate.
                 </span>
               </div>
-              <p className={styles.marginRight}>0.0000137</p>
-              <p>0.08</p>
+              <p className={styles.marginRight}>0.000011</p>
+              <p>0.008277</p>
             </div>
             <div className={styles.tabBottom}>
               <em>*Standard SLA tier</em>
