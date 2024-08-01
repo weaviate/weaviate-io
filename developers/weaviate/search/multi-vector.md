@@ -59,7 +59,7 @@ Specify target vectors as a list/array of named vectors. The default join strate
   text={GoCode}
   startMarker="// START MultiBasic"
   endMarker="// END MultiBasic"
-  language="python"
+  language="go"
 />
 <details>
   <summary>Complete code</summary>
@@ -67,7 +67,7 @@ Specify target vectors as a list/array of named vectors. The default join strate
   text={GoCode}
   startMarker="// START BasicFull"
   endMarker="// END BasicFull"
-  language="python"
+  language="go"
 />
 </details>
 </TabItem>
@@ -89,9 +89,9 @@ Specify query vectors as a dictionary/map of names and vectors.
 <TabItem value="ts" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCodeV3}
-  startMarker="// START MultiWeights"
-  endMarker="// END MultiWeights"
-  language="python"
+  startMarker="// START MultiTargetNearVector"
+  endMarker="// END MultiTargetNearVector"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -111,6 +111,14 @@ The `sum`, `average`, `minimum` join strategies only require the name of the str
   startMarker="# START MultiTargetWithSimpleJoin"
   endMarker="# END MultiTargetWithSimpleJoin"
   language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiTargetWithSimpleJoin"
+  endMarker="// END MultiTargetWithSimpleJoin"
+  language="ts"
 />
 </TabItem>
 </Tabs>
@@ -137,6 +145,14 @@ For a more detailed explanation of how scores are normalized, see the blog post 
   language="python"
 />
 </TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiTargetManualWeights"
+  endMarker="// END MultiTargetManualWeights"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 ## Weight normalized vector distances
@@ -157,6 +173,14 @@ Each distance is normalized against other results for that target vector. Each n
   startMarker="# START MultiTargetRelativeScore"
   endMarker="# END MultiTargetRelativeScore"
   language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiTargetRelativeScore"
+  endMarker="// END MultiTargetRelativeScore"
+  language="ts"
 />
 </TabItem>
 </Tabs>
