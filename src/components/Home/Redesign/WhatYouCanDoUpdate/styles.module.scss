@@ -171,6 +171,10 @@
         width: 100%;
         transition: all 1s ease-out;
 
+        @media screen and (max-width: 600px) {
+          height: 484px;
+        }
+
         @media screen and (max-width: 485px) {
           height: auto;
           display: none;
@@ -305,9 +309,7 @@
 .tabsList {
   h3 {
     color: #ffffff;
-    font-family: Plus Jakarta Sans;
     font-size: 1.3rem;
-
     line-height: 144.9%; /* 2.1735rem */
     letter-spacing: -0.015rem;
 
@@ -315,6 +317,7 @@
       font-size: 1.1rem;
       text-align: left;
       display: flex;
+      width: 100%;
     }
   }
 }
@@ -413,17 +416,18 @@
     opacity: 1;
   }
 }
+
 .codeImg1 {
   background-image: url('/img/site/secure-slide-01.png');
 }
 .codeImg2 {
-  background-image: url('/img/site/secure-slide-02.png');
+  background-image: url('/img/site/secure-slide-cloud.png');
 }
 .codeImg3 {
-  background-image: url('/img/site/secure-slide-03.png');
+  background-image: url('/img/site/secure-slide-tiers.png');
 }
 .codeImg4 {
-  background-image: url('/img/site/secure-slide-04.png');
+  background-image: url('/img/site/secure-slide-community.png');
 }
 .codeImg5 {
   background-image: url('/img/site/secure-slide-05.png');

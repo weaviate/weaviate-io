@@ -83,7 +83,9 @@ export default function QueryPage() {
                       Availabilty: <strong>Available Now</strong>
                     </p>
                     <p>
-                      <Link to="/developers/wcs/console">Read Docs</Link>
+                      <Link to="/developers/wcs/tools/collections-tool">
+                        Read Docs
+                      </Link>
                     </p>
                   </div>
                 </div>
