@@ -159,7 +159,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   /* gap: 10px; */
-  margin: 0 auto;
+  margin: 10px auto;
   align-items: center;
   justify-content: space-evenly;
   padding: 0 var(--ifm-spacing-horizontal);
@@ -179,6 +179,13 @@
     align-items: center;
     white-space: nowrap;
   }
+}
+
+.secondLine {
+  height: 6em;
+  gap: 40px;
+  margin: 30px auto;
+  justify-content: center;
 }
 
 .innerBar > p {

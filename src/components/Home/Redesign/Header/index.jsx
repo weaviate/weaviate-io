@@ -198,6 +198,23 @@ export default function HomepageHeader() {
                 />
               </div>
             </div>
+
+            <div className={`${styles.innerBar} ${styles.secondLine}`}>
+              <div className={styles.logoSection}>
+                <div
+                  className={`${styles.customerLogo} ${styles.stackoverflowLogo}`}
+                />
+                <div
+                  className={`${styles.customerLogo} ${styles.instabaseLogo}`}
+                />
+                <div
+                  className={`${styles.customerLogo} ${styles.redhatLogo}`}
+                />
+                <div
+                  className={`${styles.customerLogo} ${styles.netappLogo}`}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
