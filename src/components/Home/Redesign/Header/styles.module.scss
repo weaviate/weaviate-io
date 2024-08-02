@@ -159,7 +159,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   /* gap: 10px; */
-  margin: 0 auto;
+  margin: 10px auto;
   align-items: center;
   justify-content: space-evenly;
   padding: 0 var(--ifm-spacing-horizontal);
@@ -178,6 +178,17 @@
     justify-content: space-evenly;
     align-items: center;
     white-space: nowrap;
+  }
+}
+
+.secondLine {
+  height: 6em;
+  gap: 40px;
+
+  justify-content: center;
+
+  @media screen and (max-width: 950px) {
+    margin-bottom: 33px;
   }
 }
 
@@ -233,12 +244,24 @@
 }
 
 .mulinyLogo {
-  background-image: url('/img/site/muliny-logo.svg');
+  background-image: url('/img/site/mutiny-hp-logo.svg');
   background-position: center;
+  width: 7rem;
+  height: 2.5rem;
 }
 
 .netappLogo {
   background-image: url('/img/site/netapp.svg');
+  background-position: center;
+}
+
+.redbull {
+  background-image: url('/img/site/redbull-hp-logo.svg');
+  background-position: center;
+}
+
+.writesonic {
+  background-image: url('/img/site/writesonic-hp-logo.svg');
   background-position: center;
 }
 .title {
