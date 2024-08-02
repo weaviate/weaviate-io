@@ -191,7 +191,7 @@ export default function HomepageHeader() {
                   className={`${styles.customerLogo} ${styles.redhatLogo}`}
                 />
                 <div
-                  className={`${styles.customerLogo} ${styles.netappLogo}`}
+                  className={`${styles.customerLogo} ${styles.mulinyLogo}`}
                 />
                 <div
                   className={`${styles.customerLogo} ${styles.shippoLogo}`}
@@ -201,14 +201,9 @@ export default function HomepageHeader() {
 
             <div className={`${styles.innerBar} ${styles.secondLine}`}>
               <div className={styles.logoSection}>
+                <div className={`${styles.customerLogo} ${styles.redbull}`} />
                 <div
-                  className={`${styles.customerLogo} ${styles.stackoverflowLogo}`}
-                />
-                <div
-                  className={`${styles.customerLogo} ${styles.instabaseLogo}`}
-                />
-                <div
-                  className={`${styles.customerLogo} ${styles.redhatLogo}`}
+                  className={`${styles.customerLogo} ${styles.writesonic}`}
                 />
                 <div
                   className={`${styles.customerLogo} ${styles.netappLogo}`}
