@@ -184,7 +184,7 @@
 .secondLine {
   height: 6em;
   gap: 40px;
-
+  grid-template-columns: auto auto auto;
   justify-content: center;
 
   @media screen and (max-width: 950px) {
