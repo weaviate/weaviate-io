@@ -14,6 +14,6 @@ Weaviate integrates with [AWS](https://aws.amazon.com/) infrastructure and servi
 ## Our Resources 
 **Hands on Learning**: Content framed to build your technical understanding with end-to-end tutorials.
 
-| Topic | Details |
-| --- | --- |
-| **RAG with Cohere models on Amazon Bedrock and Weaviate** | The example use case generates targeted advertisements for vacation stay listings based on a target audience. [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/RAG_Cohere_Weaviate_v4_client.ipynb).
+| Topic | Description | Resource | 
+| --- | --- | --- |
+| RAG with Cohere models on Amazon Bedrock and Weaviate | The example use case generates targeted advertisements for vacation stay listings based on a target audience. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/aws/RAG_Cohere_Weaviate_v4_client.ipynb)
