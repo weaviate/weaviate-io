@@ -85,12 +85,12 @@
   },
   {
     "name": "Byron Voorbach",
-    "title": "Head of Sales Engineering",
+    "title": "Field-CTO",
     "photo": "byron.png",
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Cari Liebenberg",
@@ -175,10 +175,10 @@
   },
   {
     "name": "Emma O'Keefe",
-    "title": "Head of Customer Success",
+    "title": "Director of Customer Operations",
     "photo": "emma.png",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Edward Schmuhl",
@@ -292,7 +292,7 @@
     "linkedin": "jontuite",
     "twitter": "pendragn00",
     "github": "tuitejc",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Jose Luis Franco",
