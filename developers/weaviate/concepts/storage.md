@@ -42,7 +42,7 @@ To learn more about Weaviate's LSM store, see the LSM library documentation in t
 
 #### HNSW Vector Index Storage
 
-Each shard contains its own vector index next to the structured stores mentioned above. The vector store, however, is agnostic of the internals of the object storage. As a result it does not suffer from segmentation problems.
+Each shard contains a vector index that corresponds to the object and inverted index stores. The vector store and the other stores are independent. The vector store does not have to manage segmentation.
 
 By grouping a vector index with the object storage within a shard, Weaviate can make sure that each shard is a fully self-contained unit which can independently serve requests for the data it owns. By placing the vector index next to the object store (instead of within), Weaviate can avoid the downsides of a segmented vector index.
 
