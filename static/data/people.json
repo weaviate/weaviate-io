@@ -131,6 +131,13 @@
     "team": "developer-relations"
   },
   {
+    "name": "Daniel Williams",
+    "title": "Machine Learning Engineer",
+    "photo": "daniel-williams.jpg",
+    "linkedin": "dannyjameswilliams",
+    "team": "developer-growth"
+  },
+  {
     "name": "David Cuthbert",
     "title": "Technical Documentation Writer",
     "photo": "dave.jpg",
@@ -482,6 +489,13 @@
     "linkedin": "sohammaniar",
     "twitter": "sohammaniar",
     "team": "sales"
+  },
+  {
+    "name": "Staci Blue",
+    "title": "Event Marketing Manager",
+    "photo": "staci.jpg",
+    "linkedin": "staci-blue",
+    "team": "marketing"
   },
   {
     "name": "Stefan Bogdan",
