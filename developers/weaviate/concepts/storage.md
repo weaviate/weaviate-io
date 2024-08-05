@@ -67,7 +67,7 @@ To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your sys
 
 ## Persistence and Crash Recovery
 
-Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files, which are very efficient to write and rarely the bottleneck in ingestion.
+Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
 
 By the time Weaviate has responded with a successful status to your ingestion request, a WAL entry will have been created. If a WAL entry could not be created - for example because the disks are full - Weaviate will respond with an error to the insert or update request.
 
