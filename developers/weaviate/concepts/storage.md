@@ -26,31 +26,23 @@ Each shard houses three main components:
 * An [inverted index](https://en.wikipedia.org/wiki/Inverted_index)
 * A vector index store (plugable, currently a [custom implementation of HNSW](/developers/weaviate/concepts/vector-index.md#hnsw))
 
-:::caution Important
-Weaviate doesn't rely on any third-party databases. The three components of a shard are all housed within Weaviate. This means that there are no runtime dependencies to other services and all components will scale equally with Weaviate.
-:::
-
 #### Object and Inverted Index Store
 
 Since version `v1.5.0`, the object and inverted store are implemented using an [LSM-Tree approach](https://en.wikipedia.org/wiki/Log-structured_merge-tree). This means that data can be ingested at the speed of memory and after meeting a configured threshold, Weaviate will write the entire (sorted) memtable into a disk segment. When a read request comes in, Weaviate will first check the Memtable for the latest update for a specific object. If it is not present in the memtable, Weaviate will then check all previously written segments starting with the newest. To avoid checking segments which don't contain the desired objects, [Bloom filters](https://en.wikipedia.org/wiki/Bloom_filter) are used.
 
-Weaviate periodically merges older smaller segments into fewer larger segments. Since segments are already sorted, this is a relatively cheap operation - happening constantly in the background. Fewer, larger segments will make lookups more efficient. Especially on the inverted index where data is rarely replaced and often appended, instead of checking all past segments and aggregating potential results, Weaviate can check a single segment (or few large segments) and immediately find all required object pointers. In addition, segments are used to remove past versions of an object that are no longer required, e.g. after a delete or multiple updates.
+Weaviate periodically merges smaller, older segments to make larger segments. Since the segments are already sorted, this is a relatively cheap operation. It happens constantly in the background. Fewer, larger segments make lookups more efficient. In the inverted index data is rarely replaced, but it is often appended. Merging means that, instead of checking all past segments and aggregating potential results, Weaviate can check a single segment (or a few large segments) and immediately find all the relevant object pointers. In addition, segments are used to remove earlier versions of an object that are out-dated because of a delete or a more recent update.
 
-:::info Read more
-To learn more about Weaviate's LSM store, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv).
-:::
+Considerations
 
-:::note
+Object storage and inverted index storage implement the LSM algorithm; they use segmentation. The vector index uses a different storage algorithm. The vector index does not use segmentation.
 
-- Object/Inverted Storage use an LSM approach which makes use of segmentation. However, the Vector Index is independent from those object stores and is not affected by segmentation.
+Weaviate versions before `v1.5.0` use a B+Tree storage mechanism. The LSM method is faster, it works in constant time, and it improves write performance.
 
-- Prior to version `v1.5.0`, Weaviate used a B+Tree storage mechanism, which could not keep up with the write requirements of an inverted index and started becoming congested over time. With the LSM index, the pure write speed (ignoring vector index building costs) is constant. There is no congestion over time.
-
-:::
+To learn more about Weaviate's LSM store, see the LSM library documentation in the [Go package repository](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv)
 
 #### HNSW Vector Index Storage
 
-Each shard contains its own vector index next to the structured stores mentioned above. The vector store, however, is agnostic of the internals of the object storage. As a result it does not suffer from segmentation problems.
+Each shard contains a vector index that corresponds to the object and inverted index stores. The vector store and the other stores are independent. The vector store does not have to manage segmentation.
 
 By grouping a vector index with the object storage within a shard, Weaviate can make sure that each shard is a fully self-contained unit which can independently serve requests for the data it owns. By placing the vector index next to the object store (instead of within), Weaviate can avoid the downsides of a segmented vector index.
 
@@ -75,7 +67,7 @@ To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your sys
 
 ## Persistence and Crash Recovery
 
-Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files, which are very efficient to write and rarely the bottleneck in ingestion.
+Both the LSM stores used for object and inverted storage, as well as the HNSW vector index store make use of memory at some point of the ingestion journey. To prevent data loss on a crash, each operation is additionally written into a [Write-Ahead-Log (WAL)](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.html). WALs are append-only files that are very efficient to write to and that are rarely a bottleneck for ingestion.
 
 By the time Weaviate has responded with a successful status to your ingestion request, a WAL entry will have been created. If a WAL entry could not be created - for example because the disks are full - Weaviate will respond with an error to the insert or update request.
 
