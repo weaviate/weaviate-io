@@ -3,12 +3,9 @@ title: Cloud Hyperscalers
 sidebar_position: 1
 image: og/integrations/home.jpg
 ---
-Add content here 
 
-<img
-    src={require('./cloud-hyperscalers.png').default}
-    alt="alt"
-    style={{ maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto"}}
-/>
+Cloud hyperscalers offer a variety of services and infrastructure for large-scale computing resources, storage, and more. 
 
-Add content here
+Learn about how Weaviate integrates with: 
+* [Amazon Web Services](/developers/integrations/cloud-hyperscalers/aws)
+* [Google Cloud Platform](/developers/integrations/cloud-hyperscalers/google)
