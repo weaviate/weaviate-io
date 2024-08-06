@@ -6,16 +6,23 @@ image: og/integrations/home.jpg
 
 Weaviate's integration ecosystem enables developers to build various applications leveraging Weaviate and another technology.
 
-You can find all notebooks and examples on [Weaviate Recipes](https://github.com/weaviate/recipes)!
+All the notebooks and code examples are on [Weaviate Recipes](https://github.com/weaviate/recipes)!
+
+<img
+    src={require('./ecosystem.png').default}
+    alt="alt"
+    style={{ maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto"}}
+/>
+
 
 ## About the Categories
-The ecosystem is broken out by 5 categories:
+The ecosystem is divided into these categories:
 
-* **Cloud Hyperscalers** - 
-* **Cloud Platforms** - 
-* **Data Pipeline** - 
-* **LLM Frameworks** - 
-* **Observability and Evaluation** - 
+* **Cloud Hyperscalers** - Large-scale computing and storage
+* **Container Infrastructure** - Run and scale containerized applications
+* **Data Pipeline** - Data ingestion and web scraping 
+* **LLM Frameworks** - Build generative AI applications
+* **Observability and Evaluation** - Monitor and analyze generative AI workflows
 
 
 
@@ -23,8 +30,8 @@ The ecosystem is broken out by 5 categories:
 
 | Company Category | Companies |
 |------------------|-----------|
-| Cloud Hyperscalers | Google, AWS |
-| Cloud Platforms | Replicate |
+| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
+| Container Infrastructure | Modal, Replicate |
 | Data Pipeline | Spark, Unstructured, Firecrawl |
 | LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |
 | Observability and Evaluation | Arize, Langtrace, Nomic, Ragas, Weights & Biases |
