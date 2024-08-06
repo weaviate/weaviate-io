@@ -71,13 +71,15 @@ For additional details, refer to the [blog posts](#blog-posts).
 
 Recall measures how well an algorithm finds the true positive matches in a data set. A compressed vector has less information than the full, uncompressed vector. A vector that would match a search might be missed if key information is missing from the compressed vector. That lowers recall.
 
-To improve recall, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is very fast and it greatly improves recall.
+To improve recall in BQ and SQ, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is very fast and it greatly improves recall.
 
-The over-fetching technique means you get the benefits of compression without losing the precision of an uncompressed vector search.
+PQ has tunable search parameters that can increase the size of the candidate pool. The mechanism is different, but the effect is the same. With proper tuning you can configure your searches to return a vector candidate pool that boosts recall.
+
+The over-fetching technique, also call rescoring, means you get the benefits of compression without losing the precision of an uncompressed vector search.
 
 #### Speed
 
-Since compressed vectors are significantly smaller than uncompressed vectors, it is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors, but this is small compared to the cost of searching a large uncompressed data set.
+Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors, but this is small compared to the cost of searching a large uncompressed data set.
 
 Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index is faster since there is less data to load.
 
@@ -108,6 +110,7 @@ BQ is not tunable. The BQ algorithm reduces the value of each vector dimension t
 ### Blog posts
 [PQ and memory reduction](/blog/pq-rescoring)
 [BQ and memory reduction](/blog/binary-quantization)
+[PQ and HNSW explained](/blog/ann-algorithms-hnsw-pq)
 
 ## Questions and feedback
 
