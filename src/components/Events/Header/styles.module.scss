@@ -127,14 +127,12 @@ p {
 
 .headerSecurity {
   background: #f5f5f5;
-  background-image: url('/img/site/header-bg.svg');
+  background-image: url('/img/site/3d-pricing-banner.png');
   background-size: cover;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/header-bg.svg');
-    background-size: 100%;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
+    background-image: url('/img/site/3d-pricing-banner.png');
+    background-size: cover;
   }
 }
 

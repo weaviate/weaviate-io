@@ -1,15 +1,7 @@
 // START-ANY
 import weaviate from 'weaviate-client'
-// END-ANY
 
-// START-ANY
-
-const client = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
-  {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),
-  }
-)
+const client = await weaviate.connectToLocal()
 
 // Work with Weaviate
 

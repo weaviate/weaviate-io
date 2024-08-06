@@ -38,7 +38,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   compared to every other vector in the index with O(n) time complexity
 
 ### Structured Search
-* A structured search uses the default ES/Lucene inverted indices
+* A structured search uses the default ES/Lucene inverted indexes
 
 ### Other
 * One Weaviate schema class maps to one Elasticsearch index
@@ -72,7 +72,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   for vector search.
 * The key-value store and inverted index use `boltdb` for its disk-interaction
 * The vector-index is a custom `hnsw` implementation, optimized for
-  persistence. In the future, other vector indices can be used, however HNSW
+  persistence. In the future, other vector indexes can be used, however HNSW
   should be a good fit for most cases.
 
 ### Vector-Search
@@ -82,11 +82,11 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 * HNSW returns document ids, they are "resolved" to their full data objects
   using the inverted index and object data key-value store
 * This process roughly has O(log n) time complexity and is therefore orders of
-  magnitude faster on large indices
+  magnitude faster on large indexes
 
 ### Structured search
 * If the search is a pure structured search (without combining it with a vector
-  search), the inverted indices are used to retrieve the document ids. The
+  search), the inverted indexes are used to retrieve the document ids. The
   document ids are resolved to data objects, which are then served to the user.
 * If the search is a combined vector and structured search, the inverted index
   is used to build an allow list of matching document ids. This allow list is
@@ -154,7 +154,7 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
   search queries are evenly distributed over the entire index. So, most real
   life cases can use a vector cache that is smaller than all vectors and still
   achieve great performance.
-* The key-value stores for the inverted indices and object storage are
+* The key-value stores for the inverted indexes and object storage are
   memory-mapped. So roughly 50% of the available memory (YMMV, depends on the
   data set and query profile) should be left as linux page cache.
 

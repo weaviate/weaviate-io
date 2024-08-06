@@ -65,12 +65,14 @@ Edit your project's configuration files to make these changes:
 
 ```json
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "moduleResolution": "Node16",
-      "esModuleInterop": true,
-      "lib": [ "es2018" ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
   }
 }
 ```
@@ -286,7 +288,7 @@ Here are some resources to help you get started using the client.
 
 ### Recipes
 
-The [recipes repository](https://github.com/weaviate/recipes-ts) on Github has sample code for common use cases.
+The [recipes repository](https://github.com/weaviate/recipes-ts) on GitHub has sample code for common use cases.
 
 ### Demo applications
 
@@ -297,13 +299,55 @@ There are demo applications written in TypeScript and JavaScript here:
 
 ## Client releases
 
+For links to the TypeScript Client releases, expand this section.
+
+<details>
+  <summary>TypeScript Client</summary>
+
+| Client Version | Release Date |
+| :- | :- |
+  | [3.1.4](https://github.com/weaviate/typescript-client/releases/tag/v3.1.4) | 2024-08-06 |
+  | [3.1.3](https://github.com/weaviate/typescript-client/releases/tag/v3.1.3) | 2024-07-26 |
+  | [3.1.2](https://github.com/weaviate/typescript-client/releases/tag/v3.1.2) | 2024-07-26 |
+  | [3.1.1](https://github.com/weaviate/typescript-client/releases/tag/v3.1.1) | 2024-07-26 |
+  | [3.1.0](https://github.com/weaviate/typescript-client/releases/tag/v3.1.0) | 2024-07-24 |
+  | [3.0.9](https://github.com/weaviate/typescript-client/releases/tag/v3.0.9) | 2024-07-10 |
+  | [3.0.8](https://github.com/weaviate/typescript-client/releases/tag/v3.0.8) | 2024-06-24 |
+  | [3.0.7](https://github.com/weaviate/typescript-client/releases/tag/v3.0.7) | 2024-06-21 |
+  | [3.0.6](https://github.com/weaviate/typescript-client/releases/tag/v3.0.6) | 2024-06-19 |
+  | [3.0.5](https://github.com/weaviate/typescript-client/releases/tag/v3.0.5) | 2024-06-13 |
+  | [3.0.4](https://github.com/weaviate/typescript-client/releases/tag/v3.0.4) | 2024-06-13 |
+  | [3.0.3](https://github.com/weaviate/typescript-client/releases/tag/v3.0.3) | 2024-06-04 |
+  | [3.0.2](https://github.com/weaviate/typescript-client/releases/tag/v3.0.2) | 2024-06-03 |
+  | [3.0.1](https://github.com/weaviate/typescript-client/releases/tag/v3.0.1) | 2024-06-03 |
+  | [3.0.0](https://github.com/weaviate/typescript-client/releases/tag/v3.0.0) | 2024-06-03 |
+  | [2.2.0](https://github.com/weaviate/typescript-client/releases/tag/v2.2.0) | 2024-05-20 |
+  | [2.1.1](https://github.com/weaviate/typescript-client/releases/tag/v2.1.1) | 2024-03-26 |
+  | [2.1.0](https://github.com/weaviate/typescript-client/releases/tag/v2.1.0) | 2024-02-28 |
+  | [2.0.0](https://github.com/weaviate/typescript-client/releases/tag/v2.0.0) | 2023-11-22 |
+  | [1.6.0](https://github.com/weaviate/typescript-client/releases/tag/v1.6.0) | 2023-10-31 |
+  | [1.5.0](https://github.com/weaviate/typescript-client/releases/tag/v1.5.0) | 2023-08-22 |
+  | [1.4.0](https://github.com/weaviate/typescript-client/releases/tag/v1.4.0) | 2023-07-06 |
+  | [1.3.3](https://github.com/weaviate/typescript-client/releases/tag/v1.3.3) | 2023-06-14 |
+  | [1.3.2](https://github.com/weaviate/typescript-client/releases/tag/v1.3.2) | 2023-05-26 |
+  | [1.3.1](https://github.com/weaviate/typescript-client/releases/tag/v1.3.1) | 2023-05-16 |
+  | [1.3.0](https://github.com/weaviate/typescript-client/releases/tag/v1.3.0) | 2023-05-08 |
+  | [1.2.0](https://github.com/weaviate/typescript-client/releases/tag/v1.2.0) | 2023-05-05 |
+  | [1.1.0](https://github.com/weaviate/typescript-client/releases/tag/v1.1.0) | 2023-04-21 |
+  | [1.0.0](https://github.com/weaviate/typescript-client/releases/tag/v1.0.0) | 2023-05-04 |
+</details>
+
+
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 <MatrixIntro />
 
-## Client change logs
+## Change logs
 
-The client [change logs](https://github.com/weaviate/typescript-client/releases) for each release are available on GitHub.
+For more detailed information on client updates, check the change logs. The logs
+are hosted here:
+
+- [Change logs](https://github.com/weaviate/typescript-client/releases)
 
 ## Questions and feedback
 

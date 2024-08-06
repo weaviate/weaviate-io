@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-require('dotenv').config(); 
+require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
@@ -253,17 +253,19 @@ const config = {
         ],
     ],
 
+
+
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-           /*  announcementBar: {
+            announcementBar: {
                 id: 'announcement-bar-may2024',
-                content:`📆 AI [in Prod] Chicago: Tuesday, July 16th | Join us for tech talks and hands-on training! <a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-chi">Register here!</a>`,
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/update-126">Product Update Webinar: Thurs, Aug 22</a> | Learn about new capabilities for cost optimization, performance, and developer efficiency`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            }, */
+            },
             docs: {
                 sidebar: {
                     hideable: true,
@@ -279,22 +281,30 @@ const config = {
                 },
                 items: [
                     {
-                        // type: 'dropdown',
+                        type: 'dropdown',
                         label: 'Product',
                         position: 'right',
-                        to: '/platform',
+                        items: [
+                            {
+                                type: 'html',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/education-and-support">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/education-and-support">Enablement</a></li></ul>',
+                               className: 'dropDownContainer2',
+                            },
+                        ]
+
                     },
                     {  type: 'dropdown',
-                    label: 'Services',
+                    label: 'Solutions',
                     position: 'right',
                     items: [
                         {
-                            label: 'Services Overview',
-                            href: '/services',
-
+                            type: 'html',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
+                            className: 'dropDownContainer2',
                         },
-                        {
-                            label: 'Serverless Cloud',
+
+                       /*  {
+                            label: 'Serverless',
                             href: '/services/serverless',
 
                         },
@@ -317,39 +327,21 @@ const config = {
                             label: 'Pricing',
                             href: '/pricing',
 
-                        },
+                        }, */
                     ]
-                }
-                    ,
-                    {  type: 'dropdown',
-                    label: 'Solutions',
-                    position: 'right',
-                    items: [
-                        {
-                            label: 'Hybrid Search',
-                            href: '/hybrid-search',
+                },
 
-                        },
-                        {
-                            label: 'RAG',
-                            href: '/rag',
-
-                        },
-                        {
-                            label: 'Generative Feedback Loops',
-                            href: '/gen-feedback-loops',
-
-                        },
-
-                    ]
-                }
-                    ,
-                    {
+                {
                         type: 'dropdown',
                         label: 'Developers',
                         position: 'right',
                         items: [
                             {
+                                type: 'html',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/developers/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
+                                className: 'dropDownContainer2',
+                            },
+                         /*    {
                                 label: 'Weaviate Docs',
                                 docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
@@ -418,30 +410,7 @@ const config = {
                             {
                                 label: 'Slack',
                                 href: 'https://weaviate.io/slack',
-                            },
-                        ],
-                    },
-                    {
-                        type: 'dropdown',
-                        label: 'Partners',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'AWS',
-                                href: '/partners/aws',
-                            },
-                            {
-                                label: 'Google Cloud',
-                                href: '/partners/gcp',
-                            },
-                            {
-                                label: 'Snowflake',
-                                href: '/partners/snowflake',
-                            },
-                            {
-                                label: 'Become a Partner',
-                                href: '/partners',
-                            },
+                            }, */
                         ],
                     },
                     {
@@ -449,6 +418,13 @@ const config = {
                         label: 'Company',
                         position: 'right',
                         items: [
+                            {
+                                type: 'html',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/#contact-us">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/#contact-us">Contact Us</a></li></ul>',
+                               className: 'dropDownContainer2',
+                            },
+                        ],
+                        /* items: [
                             {
                                 label: 'About us',
                                 to: '/company/about-us',
@@ -470,10 +446,21 @@ const config = {
                                 to: '/company/investors',
                             },
                             {
+                                label: 'Partners',
+                                href: '/partners',
+                            },
+                            {
                                 label: 'Contact us',
                                 href: '/#contact-us',
                             },
-                        ],
+                        ], */
+                    },
+                    {
+
+                        label: 'Pricing',
+                        position: 'right',
+                        href: '/pricing',
+
                     },
                     {
                         html: `<svg class="githubStars" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
@@ -518,19 +505,19 @@ const config = {
                             },
                             {
                                 label: 'Serverless Cloud',
-                                to: '/services/serverless',
+                                to: '/deployment/serverless',
                             },
                             {
                                 label: 'Enterprise Cloud',
-                                to: '/services/enterprise-cloud',
+                                to: '/deployment/enterprise-cloud',
                             },
                             {
                                 label: 'Bring Your Own Cloud',
-                                to: '/services/byoc',
+                                to: '/deployment/byoc',
                             },
                             {
                                 label: 'Education & Support',
-                                to: '/services/education-and-support',
+                                to: '/deployment/education-and-support',
                             },
                             {
                                 label: 'Pricing',
@@ -700,8 +687,8 @@ const config = {
                                 to: 'https://weaviate.io/slack',
                             },
                             {
-                                label: 'Twitter / X',
-                                to: 'https://x.com/weaviate_io',
+                                label: 'Twitter',
+                                to: 'https://twiiter.com/weaviate_io',
                             },
                             {
                                 label: 'Instagram',
@@ -709,7 +696,7 @@ const config = {
                             },
                             {
                                 label: 'Youtube',
-                                to: 'https://www.youtube.com/@Weaviate',
+                                to: 'https://youtube.com/weaviate_io',
                             },
                             {
 

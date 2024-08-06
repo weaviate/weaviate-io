@@ -8,7 +8,7 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Education & Support</h1>
+          <h1>Enablement</h1>
           <div className={styles.headerBox}>
             <p>
               Training courses, resources, and support options for builders of

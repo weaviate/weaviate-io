@@ -253,35 +253,26 @@
     cursor: pointer;
     text-decoration: none;
   }
-
   .buttonGradient {
-    background-image: linear-gradient(45deg, #20e220 60%, #ffff00);
-    color: rgba(46, 49, 143);
-    font-weight: bold;
-    transition: all 1s ease-out;
-  }
-
-  .buttonGradient:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid rgb(15, 0, 50);
-    background: rgb(15, 0, 50);
+    background: #130c49;
     color: #fff;
-    font-weight: 400;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%;
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
-    font-weight: bold;
-    color: #fff;
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
+    background: #fff;
     color: #130c49;
-    font-weight: 400;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%;
   }
 }
 
@@ -290,22 +281,5 @@
     height: 140%;
 
     margin-top: -100px;
-  }
-
-  .buttonGradient {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    color: #130c49;
-    font-weight: 400;
-  }
-
-  .buttonOutline {
-    font-weight: 400;
-    border-radius: 0.3125rem;
-    outline: rgb(19, 12, 73) solid 1px;
-    color: white;
-    border-radius: 0.3125rem;
-    border: 1px solid #2fc514;
   }
 }

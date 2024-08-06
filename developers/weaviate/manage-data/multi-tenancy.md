@@ -417,16 +417,19 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
   </TabItem>
 </Tabs>
 
-## Update tenant activity status
+## Activate tenant
 
-Update existing tenants' activity status to active (`ACTIVE`), inactive on disk (`INACTIVE`), or offloaded to cloud (`OFFLOADED`).
+:::info Added in v1.21.0
+:::
+
+To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOADED` tenant from cloud, call:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START UpdateTenants"
-      endMarker="# END UpdateTenants"
+      startMarker="# START ActivateTenants"
+      endMarker="# END ActivateTenants"
       language="py"
     />
   </TabItem>
@@ -434,22 +437,72 @@ Update existing tenants' activity status to active (`ACTIVE`), inactive on disk 
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START UpdateTenants"
-      endMarker="// END UpdateTenants"
+      startMarker="// START ActivateTenants"
+      endMarker="// END ActivateTenants"
       language="ts"
     />
   </TabItem>
 </Tabs>
 
-<details>
-  <summary>
-    Additional information
-  </summary>
+## Deactivate tenant
 
-- This feature was added in `v1.21`
-- To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
+:::info Added in v1.21.0
+:::
 
-</details>
+To deactivate an `ACTIVE`, or to onload an `OFFLOADED` tenant from cloud (without activating it), call:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeactivateTenants"
+      endMarker="# END DeactivateTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeactivateTenants"
+      endMarker="// END DeactivateTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Offload tenant
+
+:::info Added in v1.26.0
+:::
+
+To offload an `ACTIVE` or `INACTIVE` tenant to cloud, call:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START OffloadTenants"
+      endMarker="# END OffloadTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START OffloadTenants"
+      endMarker="// END OffloadTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+:::warning Requires Offload Module 
+Tenant offloading requires and Offload module.
+
+To configure tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
+:::
 
 ## Automatically activate tenants
 
@@ -662,6 +715,12 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
     />
   </TabItem>
 </Tabs>
+
+## Backups
+
+:::caution Backups do not include inactive or offloaded tenants
+Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](#activate-tenant) before creating a backup to ensure all data is included.
+:::
 
 ## Related pages
 

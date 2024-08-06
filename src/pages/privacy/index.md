@@ -219,7 +219,7 @@ Kindly note that our websites may contain links to websites of third parties. Th
 <br></br>
 
 - [YouTube](https://www.youtube.com/t/terms);
-- [Github](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement);
+- [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement);
 - [Slack](https://slack.com/trust/privacy/privacy-policy);
 - [Discourse](https://www.discourse.org/privacy);
 - [AWS](https://aws.amazon.com/privacy/);

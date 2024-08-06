@@ -85,12 +85,12 @@
   },
   {
     "name": "Byron Voorbach",
-    "title": "Head of Sales Engineering",
+    "title": "Field-CTO",
     "photo": "byron.png",
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Cari Liebenberg",
@@ -131,6 +131,13 @@
     "team": "developer-relations"
   },
   {
+    "name": "Daniel Williams",
+    "title": "Machine Learning Engineer",
+    "photo": "daniel-williams.jpg",
+    "linkedin": "dannyjameswilliams",
+    "team": "developer-growth"
+  },
+  {
     "name": "David Cuthbert",
     "title": "Technical Documentation Writer",
     "photo": "dave.jpg",
@@ -143,6 +150,13 @@
     "photo": "david.png",
     "linkedin": "david-street-552b7563",
     "team": "wcd"
+  },
+  {
+    "name": "Deepti Naidu",
+    "title": "Partner Solution Engineer",
+    "photo": "deepti.jpg",
+    "linkedin": "deeptinaidu",
+    "team": "partnerships"
   },
   {
     "name": "Dirk Kulawiak",
@@ -161,10 +175,10 @@
   },
   {
     "name": "Emma O'Keefe",
-    "title": "Head of Customer Success",
+    "title": "Director of Customer Operations",
     "photo": "emma.png",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Edward Schmuhl",
@@ -278,7 +292,7 @@
     "linkedin": "jontuite",
     "twitter": "pendragn00",
     "github": "tuitejc",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Jose Luis Franco",
@@ -292,6 +306,14 @@
     "photo": "joseph-green.jpg",
     "team": "delivery",
     "linkedin": "joe-green-11381620a"
+  },
+  {
+    "name": "Kaviraj Kanagaraj",
+    "title": "Senior Software Engineer",
+    "photo": "Kaviraj.jpg",
+    "team": "database",
+    "linkedin": "kavirajkanagaraj",
+    "twitter": "kvrajk"
   },
   {
     "name": "Laura Stoye",
@@ -469,6 +491,13 @@
     "team": "sales"
   },
   {
+    "name": "Staci Blue",
+    "title": "Event Marketing Manager",
+    "photo": "staci.jpg",
+    "linkedin": "staci-blue",
+    "team": "marketing"
+  },
+  {
     "name": "Stefan Bogdan",
     "title": "Solution Engineer",
     "photo": "stefan.png",
@@ -555,6 +584,13 @@
     "photo": "marcus.jpeg",
     "linkedin": "marcuseagan",
     "team": "board-advisors"
+  },
+  {
+    "name": "Rohan Thomas",
+    "title": "Commercial Account Executive",
+    "photo": "rohan.jpg",
+    "linkedin": "rohan-mathews-thomas",
+    "team": "sales"
   },
   {
     "name": "Sam Ramji",

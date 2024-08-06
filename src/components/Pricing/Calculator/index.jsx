@@ -164,7 +164,7 @@ export default function PricingCalculator({ props }) {
     <div className="newCalculator">
       <div className="slaCalculator">
         <div className="pricingCalculator pricing">
-          <div className="pricingCalculatorContainer">
+          <div className="pricingCalculatorContainer2">
             <div className="info">
               <h2>Estimate your cost for Serverless</h2>
               <ul>

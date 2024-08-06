@@ -246,6 +246,12 @@ Frozen, also called "offloaded" tenants, are introduced in Weaviate `v1.26.0`. T
 
 As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `OFFLOADED` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
 
+### Backups
+
+:::caution Backups do not include inactive or offloaded tenants
+Backups of multi-tenant collections will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](../manage-data/multi-tenancy.md#activate-tenant) before creating a backup to ensure all data is included.
+:::
+
 ### Tenancy and IDs
 
 Each tenancy is like a namespace, so different tenants could, in theory, have objects with the same IDs. To avoid naming problems, object IDs in multi-tenant clusters combine the tenant ID and the object ID to create an ID that is unique across tenants.
@@ -285,7 +291,7 @@ The number of tenants per node is limited by operating system constraints. The n
 
 For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#update-tenant-activity-status), the open file per process limit does not apply.
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#deactivate-tenant), the open file per process limit does not apply.
 
 ## Related pages
 

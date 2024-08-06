@@ -16,7 +16,7 @@ export default function ContactUsForm({ theme = 'light' }) {
       value: 'searchEngine',
       text: 'Search engine (e.g., Google or DuckDuckGo)',
     },
-    { value: 'githubList', text: 'Github List' },
+    { value: 'githubList', text: 'GitHub List' },
     { value: 'reddit', text: 'Reddit' },
     { value: 'twitter', text: 'Twitter' },
     { value: 'friend', text: 'A friend' },
