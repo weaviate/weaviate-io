@@ -1,11 +1,10 @@
 ---
 title: Cloud Hyperscalers
 sidebar_position: 1
-image: og/integrations/home.jpg
 ---
 
-Cloud hyperscalers offer a variety of services and infrastructure for large-scale computing resources, storage, and more. 
+Cloud hyperscalers offer a variety of services and infrastructure for large-scale computing and storage.
 
-Learn about how Weaviate integrates with: 
+Learn about how Weaviate integrates with these hyperscalers: 
 * [Amazon Web Services](/developers/integrations/cloud-hyperscalers/aws)
 * [Google Cloud Platform](/developers/integrations/cloud-hyperscalers/google)
