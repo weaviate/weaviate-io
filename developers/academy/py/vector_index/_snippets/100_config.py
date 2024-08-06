@@ -11,6 +11,8 @@ collection_name = "CollectionWithHNSW"
 client.collections.delete(name=collection_name)
 
 # START ConfigHNSW
+from weaviate.classes.config import Configure
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
@@ -23,6 +25,8 @@ client.collections.create(
 client.collections.delete(name=collection_name)
 
 # START CustomConfigHNSW
+from weaviate.classes.config import Configure, VectorDistances
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
@@ -47,6 +51,8 @@ client.collections.create(
 client.collections.delete(name=collection_name)
 
 # START ConfigFlat
+from weaviate.classes.config import Configure
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
@@ -59,6 +65,8 @@ client.collections.create(
 client.collections.delete(name=collection_name)
 
 # START CustomConfigFlat
+from weaviate.classes.config import Configure, VectorDistances
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
@@ -75,6 +83,8 @@ client.collections.create(
 client.collections.delete(name=collection_name)
 
 # START ConfigDynamic
+from weaviate.classes.config import Configure
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
@@ -88,6 +98,8 @@ client.collections.create(
 client.collections.delete(name=collection_name)
 
 # START CustomConfigDynamic
+from weaviate.classes.config import Configure, VectorDistances
+
 client.collections.create(
     name=collection_name,
     # ... other parameters
