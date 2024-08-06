@@ -8,16 +8,19 @@ image: og/docs/compression.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page discusses compression methods that you can use to lower RAM requirements and save on infrastructure costs.
+This page discusses compression methods that you can use to lower system requirements and save on infrastructure costs.
 
-Weaviate stores objects and vector representations of those objects (vectors). Vectors are indexed and the index is loaded in RAM memory so you can search your data quickly. Unfortunately, RAM is expensive and RAM requirements increase quickly for high-dimension vectors. Weaviate provides compression methods that you can tune to balance cost and performance.
+Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate creates uncompressed [HNSW](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) vector indexes. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory. RAM is expensive, so the cost of providing more RAM can limit the size of the collection.
+
+Instead of the default configuration, you can use compression or a different index type to change the way Weaviate stores and searches your data.
 
 ## Compression methods
 
 These compression algorithms are available:
 
-- [Product Quantization (PQ)](/developers/weaviate/configuration/pq-compression)
-- [Binary Quantization (BQ)](/developers/weaviate/configuration/bq-compression)
+- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
+- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression)
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
 
 ## Compression considerations
 
@@ -69,3 +72,7 @@ For more information on compression, see these pages.
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
+
+
+## CUT AND PASTE
+Raw vectors can be very large. Vector dimensions are typically stored as arrays of 32 bit numbers. Vectors are indexed and the index is loaded in RAM memory so you can search your data quickly. Unfortunately, RAM is expensive and RAM requirements increase quickly for high-dimension vectors. Weaviate provides compression methods that you can tune to balance cost and performance.
