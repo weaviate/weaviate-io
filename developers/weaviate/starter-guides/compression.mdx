@@ -10,25 +10,64 @@ import TabItem from '@theme/TabItem';
 
 This page discusses compression methods that you can use to lower system requirements and save on infrastructure costs.
 
-Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate creates uncompressed [HNSW](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) vector indexes. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory. RAM is expensive, so the cost of providing more RAM can limit the size of the collection.
+Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate creates uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) vector indexes. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
 
-Instead of the default configuration, you can use compression or a different index type to change the way Weaviate stores and searches your data.
+In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data.
+
+For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
 ## Compression methods
 
 These compression algorithms are available:
 
-- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
-- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression)
-- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
+- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ uses segments to reduce the size of the vector embedding. Each segment represents a section of the original embedding. PQ uses training data to determine the segment characteristics.
+- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. It works best for vectors with high dimensionality.
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ uses buckets to reduce the size of the vector representation. SQ uses training data to set the bucket size, then SQ maps each 32 bit dimension into an 8 bit bucket.
 
 ## Compression considerations
 
-Compression works well for most use cases. The trade-offs to consider are [cost, recall, and speed](#cost-recall-and-speed). The [underlying index](#underlying-index) determines which algorithms you can use, some compression methods aren't available with some index types. The [vectorizer](#compression-tuned-models) is also a consideration. Model providers may tune their models specifically for BQ or other compression algorithms.
+Before choosing a compression method, consider the [underlying index](#underlying-index). The index type determines which algorithms you can use. Some compression methods aren't available with some index types.
+
+The [vectorizer](#compression-tuned-models) that you use to create your object vectors may limit your compression choices. For example, some embedding models are tuned specifically for BQ compression.
+
+[Performance and cost](#cost-recall-and-speed) are also important considerations.
+
+### Underlying index
+
+This table shows which compression algorithm is available for each index type.
+
+| Compression type | HNSW index | Flat index | Dynamic index |
+| :- | :- | :- | :- |
+| PQ | Yes | No | Yes |
+| SQ | Yes | No | Yes |
+| BQ | Yes | Yes | Yes |
+
+- PQ is only available with HNSW indexes.
+- SQ is only available with HNSW indexes
+- BQ is available with [Flat indexes](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) and HNSW indexes.
+
+The [dynamic index](/developers/weaviate/config-refs/schema/vector-index#dynamic-indexes) is new in v1.25. This type of index is a flat index
+until a collection reaches a threshold size. When the collection grows larger than the threshold size, the default is 10,000 objects, the collection is automatically reindexed and converted to an HNSW index.
 
 ### Cost, recall and speed
 
-All compression algorithms save money the same way. The algorithms modify the way the vector dimensions are to stored to reduce vector size. Reduced storage size means you need less RAM to hold the index. all compression models also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to host a compressed index is much lower than the cost to host an uncompressed index.
+Performance includes speed and recall. In real world systems, these factors have to be balanced against cost. As you develop familiarity with your application, you can tune Weaviate to match your project and budget requirements.
+
+#### Cost
+
+All compression algorithms control costs the same way. They reduce the size of the vector indexes. Smaller indexes that run in RAM need fewer resources so you spend less money.
+
+Compressed indexes use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
+
+The cost savings are obvious with in memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
+
+- Uncompressed data is roughly 7x greater than PQ compressed data.
+- Uncompressed data is roughly 4x greater than SQ compressed data.
+- Uncompressed data is roughly 32x greater than BQ compressed data.
+
+For additional details, refer to the [blog posts](#blog-posts).
+
+#### Recall
 
 Recall measures how well an algorithm finds the true positive matches in a data set. To improve recall, Weaviate over-fetches a list of candidate, compressed vectors. Then, for each item on the candidate list, Weaviate searches the item's uncompressed vector for a match. This technique means you get the benefits of compression without losing the precision of an uncompressed vector search.
 
@@ -36,10 +75,6 @@ Since compressed vectors are significantly smaller than uncompressed vectors, it
 
 Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index is faster since there is less data to load.
 
-### Underlying index
-
-- PQ is only available with [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) indexes.
-- BQ is available with [Flat indexes](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) and HNSW indexes.
 
 
 
