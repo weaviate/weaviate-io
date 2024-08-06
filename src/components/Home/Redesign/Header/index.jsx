@@ -76,7 +76,7 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={` ${styles.homeIcon} ${styles.ragIcon}`}></div>
                 <h2>RAG</h2>
               </div>
               <div className={styles.typeText}>
@@ -90,7 +90,7 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={` ${styles.homeIcon} ${styles.genIcon}`}></div>
                 <h2>
                   Generative<br></br>Feedback Loops
                 </h2>
@@ -104,15 +104,32 @@ export default function HomepageHeader() {
                 <Link to="/gen-feedback-loops">Learn more</Link>
               </div>
             </div>
+            <div className={styles.typeBox}>
+              <div className={styles.typeIcon}>
+                <div
+                  className={` ${styles.homeIcon} ${styles.infraIcon}`}
+                ></div>
+                <h2>Cost-performance optimization</h2>
+              </div>
+              <div className={styles.typeText}>
+                <p>
+                  Tailor AI infrastructure patterns to your use case. Improve
+                  memory footprint and resource efficiency without compromising
+                  performance.
+                </p>
+                <Link to="/cost-performance-optimization">Learn more</Link>
+              </div>
+            </div>
           </div>
           <div className={styles.serviceBox}>
             <div className={styles.serviceText}>
               <h2>Empower every developer to build AI-native applications</h2>
               <span>With flexible, reliable, open source foundations.</span>
               <p>
-                Software development is changing. Our open source vector
-                database and surrounding offerings are designed to support
-                developers and teams of all sizes on their AI journey.
+                At the core of the Weaviate ecosystem is our open source
+                AI-native database. Our surrounding services, tools, and
+                offerings are meant to further enable teams of all sizes on
+                their AI journey.
               </p>
               <div className={styles.buttons}>
                 <Link
@@ -128,6 +145,30 @@ export default function HomepageHeader() {
             </div>
 
             <div className={styles.serviceImage}></div>
+          </div>
+
+          <div className={styles.tempBox}>
+            <div className={styles.tempText}>
+              <h2>AI infrastructure tailored to your use case </h2>
+
+              <p>
+                From real-time results to data isolation and cost management,
+                optimize for what you need.
+              </p>
+              <div className={styles.tempContainer}>
+                <div className={styles.hotImage}></div>
+                <div className={styles.warmImage}></div>
+                <div className={styles.coldImage}></div>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  className={styles.buttonGradient}
+                  to="/cost-performance-optimization"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -150,10 +191,22 @@ export default function HomepageHeader() {
                   className={`${styles.customerLogo} ${styles.redhatLogo}`}
                 />
                 <div
-                  className={`${styles.customerLogo} ${styles.netappLogo}`}
+                  className={`${styles.customerLogo} ${styles.mulinyLogo}`}
                 />
                 <div
                   className={`${styles.customerLogo} ${styles.shippoLogo}`}
+                />
+              </div>
+            </div>
+
+            <div className={`${styles.innerBar} ${styles.secondLine}`}>
+              <div className={styles.logoSection}>
+                <div className={`${styles.customerLogo} ${styles.redbull}`} />
+                <div
+                  className={`${styles.customerLogo} ${styles.writesonic}`}
+                />
+                <div
+                  className={`${styles.customerLogo} ${styles.netappLogo}`}
                 />
               </div>
             </div>

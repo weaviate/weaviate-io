@@ -427,8 +427,8 @@ with client.batch.fixed_size(batch_size=200) as batch:
         for chunk in csv_iterator:
             for index, row in chunk.iterrows():
                 properties = {
-                    "question": obj["Question"],
-                    "answer": obj["Answer"],
+                    "question": row["Question"],
+                    "answer": row["Answer"],
                 }
                 batch.add_object(
                     collection="JeopardyQuestion",
@@ -456,6 +456,29 @@ client.collections.delete("JeopardyQuestion")
 # Delete the downloaded files
 os.remove("jeopardy_1k.json")
 os.remove("jeopardy_1k.csv")
+
+# ===========================================
+# =====    Batch vectorization client =====
+# ===========================================
+
+# TODO NEEDS TEST
+# Creates a new client so can't piggyback on the prior client tests
+
+# START BatchVectorClient
+collection = client.collections.create(
+        name="NewCollection",
+        properties=[
+            Property(name="url", data_type=DataType.TEXT),
+            Property(name="title", data_type=DataType.TEXT),
+            Property(name="raw", data_type=DataType.TEXT),
+            Property(name="sha", data_type=DataType.TEXT),
+        ],
+        vectorizer_config=[
+            Configure.NamedVectors.text2vec_cohere(name="cohereFirst"),
+            Configure.NamedVectors.text2vec_cohere(name="cohereSecond"),
+        ]
+    )
+# END BatchVectorClient
 
 # ================================================
 # =====   Batch vectorization set parameters =====

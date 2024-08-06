@@ -169,30 +169,20 @@
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: #61bd73;
-    transition: all 1s ease-out;
-    color: #130c49;
-  }
+    color: #ffffff;
+    background: #130c49;
 
-  .buttonGradient:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(15, 0, 50);
-    color: #fff;
+    flex-shrink: 0;
+    font-weight: 600;
   }
 
   .buttonOutline {
-    border: 1px solid #130c49;
-    color: #130c49;
-    transition: all 1s ease-out;
-  }
-
-  .buttonOutline:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
     color: #130c49;
+    background: #fff;
+
+    flex-shrink: 0;
+    font-weight: 600;
   }
 }
 
@@ -297,7 +287,7 @@ p {
   span {
     color: #130c49;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 400;
   }
   img {
@@ -342,28 +332,6 @@ p {
   background-color: #ededed;
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
 .buttonsContainer {
   display: flex;
   flex-direction: row;
@@ -372,6 +340,19 @@ p {
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
+
+  .buttonOutline {
+    border-radius: 0.3125rem;
+    color: #130c49;
+    background: #fff;
+    width: 13.0625rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .applied-research {

@@ -40,10 +40,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Large Language Model (LLM) - Weaviate Knowledge Cards',
+    description:
+      'A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context.',
+    image: 'https://weaviate.io/img/cards/large-language-model.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/large-language-model-llm',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -63,26 +64,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Large Language Model (LLM) - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/large-language-model.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/large-language-model-llm"
+          />
+          <meta
+            property="og:description"
+            content="A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Large Language Model (LLM) - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/large-language-model.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}

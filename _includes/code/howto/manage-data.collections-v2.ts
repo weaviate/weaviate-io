@@ -401,14 +401,20 @@ const classWithInvIndexSettings = {
     {
       name: 'title',
       dataType: ['text'],
+      // highlight-start
+      indexFilterable: true,
+      indexSearchable: true,
+      // highlight-end
       moduleConfig: {
-        'text2vec-huggingface': {
-          // highlight-start
-          indexFilterable: true,
-          indexSearchable: true,
-          // highlight-end
-        },
+        'text2vec-huggingface': {},
       },
+    },
+    {
+      name: 'chunk',
+      dataType: ['int'],
+      // highlight-start
+      indexRangeFilters: true,
+      // highlight-end
     },
   ],
   // highlight-start
@@ -531,6 +537,32 @@ result = await client.schema
 
 // Test
 assert.equal(result.replicationConfig.factor, 3);
+
+
+// =======================
+// ===== AsyncRepair =====
+// =======================
+
+// START AsyncRepair
+const classWithReplication = {
+ class: 'Article',
+ // highlight-start
+ replicationConfig: {
+   factor: 3,
+   asyncEnabled: true,
+ },
+ // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema
+ .classCreator()
+ .withClass(classWithReplication)
+ .do();
+// END AsyncRepair
+
+// TODO NEEDS TEST
+
 
 // ====================
 // ===== SHARDING =====

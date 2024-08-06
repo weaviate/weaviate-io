@@ -9,8 +9,8 @@ Weaviate supports client libraries for these languages:
 
 - [Python](/developers/weaviate/client-libraries/python)
 - [TypeScript](/developers/weaviate/client-libraries/typescript)
-- [Go](/developers/weaviate/client-libraries/java)
-- [Java](/developers/weaviate/client-libraries/go)
+- [Go](/developers/weaviate/client-libraries/go)
+- [Java](/developers/weaviate/client-libraries/java)
 
 Members of the Weaviate community provide client libraries for some additional languages. These community contributed libraries are not officially maintained by Weaviate. However, we are very grateful for the work these developers do, and we want to share it with you.
 

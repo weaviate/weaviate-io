@@ -120,7 +120,7 @@
     "title": "BigGraph Wikidata dataset",
     "date": "2021-12-01T00:00:00.000Z",
     "cover_image": "https://opengraph.githubassets.com/8a137d82f4edc11c85cacfe69a16fd29936215d59a1d993569af8f89ed15c384/semi-technologies/biggraph-wikidata-search-with-weaviate",
-    "description": "In this repository on Github, you'll find a guide on how you can import the complete Wikidata PBG model into a Weaviate.",
+    "description": "In this repository on GitHub, you'll find a guide on how you can import the complete Wikidata PBG model into a Weaviate.",
     "source": "github",
     "link": "https://github.com/weaviate/biggraph-wikidata-search-with-weaviate",
     "tags": [

@@ -409,7 +409,63 @@ After:
 client.Data().Validator().WithProperties(properties)
 ```
 
-## Client releases
+## Releases
+
+For links to the Go Client releases, expand this section.
+
+<details>
+  <summary>Go Client</summary>
+
+| Client Version | Release Date |
+| :- | :- |
+| [4.15.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.15.0) | 2024-07-25 |
+| [4.14.3](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.3) | 2024-07-25 |
+| [4.14.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.2) | 2024-07-17 |
+| [4.14.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.1) | 2024-07-11 |
+| [4.14.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.0) | 2024-05-20 |
+| [4.13.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.1) | 2024-03-07 |
+| [4.13.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0) | 2024-03-05 |
+| [4.12.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.12.0) | 2023-12-08 |
+| [4.11.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0) | 2023-11-13 |
+| [4.10.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0) | 2023-08-22 |
+| [4.9.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.9.0) | 2023-07-06 |
+| [4.8.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.1) | 2023-05-26 |
+| [4.8.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.0) | 2023-05-05 |
+| [4.7.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.1) | 2023-04-14 |
+| [4.7.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.0) | 2023-04-03 |
+| [4.6.4](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.4) | 2023-03-25 |
+| [4.6.3](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.3) | 2023-03-14 |
+| [4.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.2) | 2023-03-07 |
+| [4.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.1) | 2023-02-01 |
+| [4.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.0) | 2023-02-01 |
+| [4.5.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.2) | 2023-01-19 |
+| [4.5.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.1) | 2023-01-17 |
+| [4.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.0) | 2022-12-20 |
+| [4.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.4.0) | 2022-10-31 |
+| [4.3.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.1) | 2022-09-27 |
+| [4.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.0) | 2022-09-07 |
+| [4.2.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.1) | 2022-07-12 |
+| [4.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.0) | 2022-07-07 |
+| [4.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.1.0) | 2022-05-25 |
+| [4.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v4.0.0) | 2022-05-03 |
+| [3.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v3.0.0) | 2022-04-05 |
+| [2.6.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.2) | 2022-10-31 |
+| [2.6.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.1) | 2022-05-04 |
+| [2.6.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.0) | 2022-03-11 |
+| [2.5.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.5.0) | 2022-02-01 |
+| [2.4.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.1) | 2021-12-15 |
+| [2.4.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.0) | 2021-11-30 |
+| [2.3.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.3.0) | 2021-08-31 |
+| [2.2.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.2.0) | 2021-06-07 |
+| [2.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.1.0) | 2021-04-23 |
+| [2.0.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.1) | 2021-03-25 |
+| [2.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.0) | 2021-03-23 |
+| [1.1.2](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.2) | 2021-10-31 |
+| [1.1.1](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.1) | 2021-05-04 |
+| [1.1.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.0) | 2020-11-09 |
+| [1.0.0](https://github.com/weaviate/weaviate-go-client/releases/tag/v1.0.0) | 2020-11-06 |
+
+</details>
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 

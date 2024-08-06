@@ -287,14 +287,18 @@ class_obj = {
         {
             "name": "title",
             "dataType": ["text"],
+            "indexFilterable": True,
+            "indexSearchable": True,
             "moduleConfig": {
-                "text2vec-huggingface": {  # this must match the vectorizer used
-                    # highlight-start
-                    "indexFilterable": True,
-                    "indexSearchable": True,
-                    # highlight-end
-                }
+                "text2vec-huggingface": {}
             }
+        },
+        {
+            "name": "chunk",
+            "dataType": ["int"],
+            # highlight-start
+            "indexRangeFilters": True,
+            # highlight-end
         },
     ],
     # highlight-start
@@ -406,6 +410,33 @@ assert result["replicationConfig"]["factor"] == 3
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
+
+
+# =======================
+# ===== ASYNC REPAIR ====
+# =======================
+
+# START AsyncRepair
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "replicationConfig": {
+        "factor": 3,
+        "aysnc_enabled": True
+    },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END AsyncRepair
+
+# Test
+result = client.schema.get(class_name)
+assert result["replicationConfig"]["factor"] == 3
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
 
 # ====================
 # ===== SHARDING =====

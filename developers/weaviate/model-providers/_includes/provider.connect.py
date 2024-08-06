@@ -1,6 +1,6 @@
 # START-ANY
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 
 # END-ANY
@@ -8,6 +8,10 @@ import os
 weaviate_url = os.getenv("WEAVIATE_URL")
 weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
+# START AnthropicInstantiation
+# Recommended: save sensitive data as environment variables
+anthropic_key = os.getenv("ANTHROPIC_APIKEY")
+# END AnthropicInstantiation
 # START AnyscaleInstantiation
 # Recommended: save sensitive data as environment variables
 anyscale_key = os.getenv("ANYSCALE_APIKEY")
@@ -61,6 +65,10 @@ voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # highlight-start
 headers = {
 # END-ANY
+# START AnthropicInstantiation
+    "X-Anthropic-Api-Key": anthropic_key,
+    "X-Anthropic-Baseurl": "https://api.anthropic.com",  # Optional; for providing a custom base URL
+# END AnthropicInstantiation
 # START AnyscaleInstantiation
     "X-Anyscale-Api-Key": anyscale_key,
 # END AnyscaleInstantiation
@@ -104,9 +112,9 @@ headers = {
 
 # START-ANY
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,                       # `weaviate_url`: your Weaviate URL
-    auth_credentials=AuthApiKey(weaviate_key),      # `weaviate_key`: your Weaviate API key
+    auth_credentials=Auth.api_key(weaviate_key),      # `weaviate_key`: your Weaviate API key
     # highlight-start
     headers=headers
     # highlight-end

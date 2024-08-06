@@ -15,6 +15,10 @@ import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.impo
 
 This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
+### Asynchronous usage
+
+The Python client library provides a synchronous API by default through the `WeaviateClient` class, which is covered on this page. An asynchronous API is also available through the `WeaviateAsyncClient` class (from `weaviate-client` `v4.7.0` and up). See the [async client API page](./async.md) for further details.
+
 ## Installation
 
 :::tip Migrating from `v3` to `v4`
@@ -120,13 +124,15 @@ This will close the client connection when you leave the `with` block.
 
 There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
 
-- [Python client v4 helper methods](#python-client-v4-helper-methods)
-- [Python client v4 explicit connection](#python-client-v4-explicit-connection)
-- [Python client v3 style connection](#python-client-v3-api)
+- [Connection helper functions](#connection-helper-functions)
+- [Explicit instantiation](#explicit-instantiation)
+- [Async client](#async-client)
+- [Legacy (v3) API](#legacy-v3-api)
 
-### Python client v4 helper functions
+### Connection helper functions
 
-- `weaviate.connect_to_wcs()`
+- `weaviate.connect_to_weaviate_cloud()`
+    - Previously `connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
@@ -197,8 +203,8 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# LocalInstantiationWithTimeout"
-  endMarker="# END LocalInstantiationWithTimeout"
+  startMarker="# LocalWithTimeout"
+  endMarker="# END LocalWithTimeout"
   language="py"
 />
 
@@ -209,7 +215,7 @@ If you see errors while using the `generate` submodule, try increasing the query
 
 #### Authentication
 
-Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCD API key or OIDC authentication credentials.
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_weaviate_cloud` accepts a WCD API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">
@@ -238,10 +244,9 @@ For OIDC authentication with the Client Credentials flow, use the `AuthClientCre
 
 For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class.
 
-If the helper functions do not provide the customization you need, use the [`WeaviateClient`](#python-client-v4-explicit-connection) class to instantiate the client.
+If the helper functions do not provide the customization you need, use the [`WeaviateClient`](#explicit-client-instantiation) class to instantiate the client.
 
-
-### Python client v4 explicit connection
+### Explicit instantiation
 
 If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
@@ -254,13 +259,24 @@ When you instantiate a connection directly, you have to call the `.connect()` me
   language="py"
 />
 
-### Python client v3 API
+### Async client
+
+:::info Added in `weaviate-client` `v4.7.0`
+:::
+
+The `v4` API client supports asynchronous (`asyncio`) operations through the `WeaviateAsyncClient` class.
+
+You can instantiate an `WeaviateAsyncClient` object directly, or use helper functions with a `weaviate.use_async_xxx` prefix such as `weaviate.use_async_with_weaviate_cloud()`.
+
+For more details, see the [async Python client documentation](./async.md).
+
+### Legacy (v3) API
 
 To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method is available for backwards compatibility. Where possible, use a client v4 connection.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
-### Initial connection checks
+## Initial connection checks
 
 When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
 
@@ -276,6 +292,7 @@ You can set `skip_init_checks` to `True` to skip these checks.
 In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.
 
 For additional connection configuration, see [Timeout values](#timeout-values).
+
 
 ## Batch imports
 
@@ -297,7 +314,7 @@ There are three methods to configure the batching behavior. They are `dynamic`, 
 
 We recommend using a context manager as shown below.
 
-These methods return completely localized context managers. Accordingly, attributes of one batch such as `failed_objects` and `failed_references` will not be included in any subsequent calls.
+These methods return a new context manager for each batch. Attributes that are returned from one batch, such as `failed_objects` or `failed_references`, are not included in any subsequent calls.
 
 <Tabs groupId="languages">
 <TabItem value="dynamic" label="Dynamic">
@@ -310,7 +327,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="fizedsize" label="Fixed Size">
+<TabItem value="fixedSize" label="Fixed Size">
 
   <FilteredTextBlock
     text={PythonCode}
@@ -320,7 +337,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limited">
+<TabItem value="rateLimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -360,20 +377,20 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 <BatchVectorizationOverview />
 
-The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import.
+The client automatically handles vectorization if you set the vectorizer when you create the collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Create a client">
     <FilteredTextBlock
       text={BatchVectorCode}
-      startMarker="# START BatchVectClient"
-      endMarker="# END BatchVectClient"
+      startMarker="# START BatchVectorClient"
+      endMarker="# END BatchVectorClient"
       language="py"
     />
   </TabItem>
 </Tabs>
 
-To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+To modify the vectorization settings, update the client object. This example adds multiple vectorizers:
 
 - **Cohere**. Set the service API key. Set the request rate.
 - **OpenAI**. Set the service API key. Set the base URL.
@@ -686,6 +703,91 @@ The results are organized the group, returning a list of groups.
   endMarker="# END AggregateGroupbyExample"
   language="py"
 />
+
+### Model Provider Integrations
+
+[Model provider integrations](../../model-providers/index.md) are configured using the `weaviate.classes.config.Configure` class. More specifically, they are configured through the `Generate`, `Reranker`, `Vectorizer` or `NamedVector` namespaces as shown in the examples below:
+
+import GenerativeExamples from '!!raw-loader!../../model-providers/_includes/provider.generative.py';
+import RerankerExamples from '!!raw-loader!../../model-providers/_includes/provider.reranker.py';
+import NamedVectorizerExamples from '!!raw-loader!../../model-providers/_includes/provider.vectorizer.py';
+import VectorizerExamples from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={GenerativeExamples}
+    startMarker="# START BasicGenerativeAnthropic"
+    endMarker="# END BasicGenerativeAnthropic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={RerankerExamples}
+    startMarker="# START RerankerCohereBasic"
+    endMarker="# END RerankerCohereBasic"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizer">
+  <FilteredTextBlock
+    text={NamedVectorizerExamples}
+    startMarker="# START BasicVectorizerOllama"
+    endMarker="# END BasicVectorizerOllama"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={VectorizerExamples}
+    startMarker="# START Vectorizer"
+    endMarker="# END Vectorizer"
+    language="py"
+  />
+</TabItem>
+</Tabs>
+
+### Manually specify provider integrations
+
+In the rare cases where Weaviate supports a model provider that is not yet integrated into the client library, you can manually specify the model provider configuration through the `.custom()` methods in each namespace.
+
+Note that the module_config keys should follow the naming convention of Weaviate database, which uses camelCase for keys. For example, `api_endpoint` in `.anthropic()` becomes `apiEndpoint` in `.custom()`.
+
+<Tabs groupId="languages">
+<TabItem value="generative" label="Generative">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomGenerativeModuleExample"
+    endMarker="# END CustomGenerativeModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="reranker" label="Reranker">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomRerankModuleExample"
+    endMarker="# END CustomRerankModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="namedvectorizer" label="Named Vectorizers">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomNamedVectorModuleExample"
+    endMarker="# END CustomNamedVectorModuleExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="vectorizer" label="Vectorizer">
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CustomVectorizerModuleExample"
+    endMarker="# END CustomVectorizerModuleExample"
+    language="py"
+  />
+</TabItem>
+</Tabs>
 
 ### Collection iterator (`cursor` API)
 
@@ -1098,7 +1200,109 @@ In particular, check out the pages for:
 
 The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](/developers/weaviate/api/rest) may also be useful starting points.
 
-## Client releases
+## Releases
+
+For links to the Python Client releases, expand this section.
+
+<details>
+  <summary>Python Client</summary>
+
+| Client Version | Release Date |
+| :- | :- |
+| [4.7.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.1) | 2024-07-25 |
+| [4.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-24 |
+| [4.6.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.7) | 2024-07-19 |
+| [4.6.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.6) | 2024-07-02 |
+| [4.6.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.5) | 2024-06-19 |
+| [4.6.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.4) | 2024-06-19 |
+| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
+| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
+| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
+| [4.6.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.2) | 2024-05-21 |
+| [4.6.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.1) | 2024-05-17 |
+| [4.6.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.0) | 2024-05-10 |
+| [4.5.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.7) | 2024-05-03 |
+| [4.5.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.6) | 2024-04-23 |
+| [4.5.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5) | 2024-04-03 |
+| [4.5.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.4) | 2024-03-15 |
+| [4.5.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.3) | 2024-03-14 |
+| [4.5.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.2) | 2024-03-11 |
+| [4.5.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.1) | 2024-03-04 |
+| [4.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.0) | 2024-02-27 |
+| [4.4.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.4) | 2024-02-09 |
+| [4.4.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.3) | 2024-02-09 |
+| [4.4.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.2) | 2024-02-09 |
+| [4.4.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.1) | 2024-02-05 |
+| [4.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.0) | 2024-01-31 |
+| [3.26.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.6) | 2024-07-24 |
+| [3.26.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.5) | 2024-07-02 |
+| [3.26.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.4) | 2024-07-02 |
+| [3.26.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.3) | 2024-06-30 |
+| [3.26.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.2) | 2024-01-22 |
+| [3.26.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.1) | 2024-01-15 |
+| [3.26.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.0) | 2023-12-20 |
+| [3.25.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.3) | 2023-11-07 |
+| [3.25.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.2) | 2023-10-31 |
+| [3.25.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.1) | 2023-10-27 |
+| [3.25.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.0) | 2023-10-27 |
+| [3.24.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.2) | 2023-10-04 |
+| [3.24.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.1) | 2023-09-11 |
+| [3.24.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.0) | 2023-09-11 |
+| [3.23.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.2) | 2023-08-29 |
+| [3.23.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.1) | 2023-08-25 |
+| [3.23.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.0) | 2023-08-22 |
+| [3.22.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.1) | 2023-07-10 |
+| [3.22.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.0) | 2023-07-06 |
+| [3.21.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.21.0) | 2023-06-18 |
+| [3.20.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.1) | 2023-06-14 |
+| [3.20.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.0) | 2023-06-12 |
+| [3.19.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.2) | 2023-05-25 |
+| [3.19.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.1) | 2023-05-18 |
+| [3.19.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0) | 2023-05-18 |
+| [3.18.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0) | 2023-05-09 |
+| [3.17.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.1) | 2023-05-08 |
+| [3.17.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.0) | 2023-05-04 |
+| [3.16.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.2) | 2023-04-26 |
+| [3.16.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.1) | 2023-04-24 |
+| [3.16.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.0) | 2023-04-24 |
+| [3.15.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.6) | 2023-04-15 |
+| [3.15.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.5) | 2023-04-09 |
+| [3.15.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.4) | 2023-04-08 |
+| [3.15.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.3) | 2023-03-23 |
+| [3.15.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.2) | 2023-03-15 |
+| [3.15.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.1) | 2023-03-13 |
+| [3.15.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.0) | 2023-03-12 |
+| [3.14.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.14.0) | 2023-03-07 |
+| [3.13.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.13.0) | 2023-03-02 |
+| [3.12.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.12.0) | 2023-02-24 |
+| [3.11.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.11.0) | 2023-01-20 |
+| [3.10.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.10.0) | 2022-12-21 |
+| [3.9.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.9.0) | 2022-11-09 |
+| [3.8.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.8.0) | 2022-09-07 |
+| [3.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.7.0) | 2022-07-29 |
+| [3.6.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.6.0) | 2022-07-06 |
+| [3.5.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.1) | 2022-05-18 |
+| [3.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.0) | 2022-05-08 |
+| [3.4.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.2) | 2022-04-12 |
+| [3.4.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.1) | 2022-04-06 |
+| [3.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.0) | 2022-04-04 |
+| [3.2.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.5) | 2021-10-26 |
+| [3.2.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.4) | 2021-10-26 |
+| [3.2.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.3) | 2021-10-13 |
+| [3.2.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.2) | 2021-09-27 |
+| [3.2.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.1) | 2021-09-02 |
+| [3.2.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.0) | 2021-09-02 |
+| [3.1.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.1) | 2021-08-24 |
+| [3.1.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.0) | 2021-08-17 |
+| [3.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.0.0) | 2021-08-17 |
+| [2.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.5.0) | 2021-06-03 |
+| [2.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.4.0) | 2021-04-23 |
+| [2.3.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.3.0) | 2021-03-26 |
+| [2.2.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.2.0) | 2021-02-17 |
+| [2.1.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.1.0) | 2021-02-08 |
+| [2.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.0.0) | 2021-01-11 |
+
+</details>
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 

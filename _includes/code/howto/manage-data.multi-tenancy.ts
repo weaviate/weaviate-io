@@ -166,16 +166,48 @@ assert.deepEqual(tenants.length, 1);
 // ===== Update tenant status =====
 // =======================================
 {
-// START UpdateTenants
+// START DeactivateTenants
 const multiCollection = client.collections.get('MultiTenancyCollection')
 
 // highlight-start
 await multiCollection.tenants.update({
   name: 'tenantA',
-  activityStatus: 'COLD' // or 'HOT'
+  activityStatus: 'INACTIVE'
 })
 // highlight-end
-// END UpdateTenants
+// END DeactivateTenants
+}
+
+// ===========================
+// ===== Activate tenant =====
+// ===========================
+{
+// START ActivateTenants
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'ACTIVE'
+})
+// highlight-end
+// END ActivateTenants
+}
+
+// ==========================
+// ===== Offload tenant =====
+// ==========================
+{
+// START OffloadTenants
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'OFFLOADED'
+})
+// highlight-end
+// END OffloadTenants
 }
 
 // =====================

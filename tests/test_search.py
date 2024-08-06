@@ -16,6 +16,7 @@ import subprocess
         "./_includes/code/howto/search.aggregate.py",
         "./_includes/code/howto/search.generative.py",
         "./_includes/code/howto/search.rerank.py",
+        "./_includes/code/howto/search.multi-target-v4.py"
     ],
 )
 def test_pyv4(empty_weaviates, script_loc):
@@ -33,11 +34,11 @@ def test_pyv4(empty_weaviates, script_loc):
     [
         "./_includes/code/howto/search.basics.ts",
         "./_includes/code/howto/search.similarity.ts",
-        "./_includes/code/howto/search.bm25.ts", 
-        "./_includes/code/howto/search.hybrid.ts", 
-        "./_includes/code/howto/search.filters.ts", 
-        "./_includes/code/howto/search.aggregate.ts", 
-        "./_includes/code/howto/search.generative.ts", 
+        "./_includes/code/howto/search.bm25.ts",
+        "./_includes/code/howto/search.hybrid.ts",
+        "./_includes/code/howto/search.filters.ts",
+        "./_includes/code/howto/search.aggregate.ts",
+        "./_includes/code/howto/search.generative.ts",
         "./_includes/code/howto/search.rerank.ts",
     ],
 )

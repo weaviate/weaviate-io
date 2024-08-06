@@ -30,11 +30,11 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/current/core-knowledge/console',
         },
         {
-         to: '/developers/wcs/console',
+         to: '/developers/wcs/tools/query-tool',
          from: '/developers/wcs/guides/console',
         },
         {
@@ -69,6 +69,10 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/config-refs/distances',
             from: '/developers/weaviate/current/vector-index-plugins/distances',
+        },
+        {
+            to: '/developers/weaviate/concepts/prefiltering',
+            from: '/developers/weaviate/config-refs/schema/range-index',
         },
         {
             to: '/developers/weaviate/config-refs/schema/vector-index',
@@ -118,7 +122,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/quickstart/console',
         },
 
@@ -140,7 +144,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules',
         },
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/current/quickstart/console',
         },
 
@@ -150,12 +154,16 @@ const siteRedirects = {
             from: '/developers/wcs/troubleshooting',
         },
         {
-         to: '/developers/wcs/console',
+         to: '/developers/wcs/tools/query-tool',
          from: '/developers/wcs/platform/ssconsole',
         },
         {
          to: '/developers/wcs/cluster-status',
          from: '/developers/wcs/platform/cluster-status',
+        },
+        {
+         to: '/developers/wcs/tools/query-tool',
+         from: '/developers/wcs/console',
         },
         // Tutorial redirects
         {
@@ -196,9 +204,14 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/schema',
         },
         {
-            to: '/developers/weaviate/starter-guides/connect',
+            to: '/developers/weaviate/connections',
             from: '/developers/weaviate/tutorials/connect',
         },
+        {
+         to: '/developers/weaviate/connections',
+         from: '/developers/weaviate/starter-guides/connect',
+        },
+
 
         // Remove BPR page
         {
@@ -391,7 +404,7 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/wcs/console',
+            to: '/developers/wcs/tools/query-tool',
             from: '/developers/weaviate/tutorials/console',
         },
 
@@ -408,8 +421,17 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/compression/pq-compression',
             from: '/developers/weaviate/configuration/compression',
+        },
+        {
+            to: '/developers/weaviate/configuration/compression/pq-compression',
+            from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+        {
+            to: '/developers/weaviate/configuration/compression/bq-compression',
+            from: '/developers/weaviate/configuration/bq-compression',
         },
 
         {
@@ -507,12 +529,12 @@ const siteRedirects = {
             from: "/service/service-schedule"
         },
         {
-            to: "/service/weaviate-general-terms-of-service",
-            from: "/service/weaviate-terms-of-service"
-        },
-        {
             to: "/weaviate-support-terms",
             from: "/supportterms"
+        },
+        {
+            to: "/service",
+            from: "/service/weaviate-general-terms-of-service"
         },
             // Case Study Changes
             {
@@ -527,9 +549,57 @@ const siteRedirects = {
   {
     to: "/services/enterprise-cloud",
     from: "/services/enterprise-dedicated"
+  },
+
+ // Blog Article Changes
+ {
+    to: "/blog",
+    from: "/blog/tips-for-scaling-and-shipping-ai-products"
+ },
+
+// Release notes
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_20",
+ from: "/developers/weaviate/release-notes/release_1_20"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_19",
+ from: "/developers/weaviate/release-notes/release_1_19"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_18",
+ from: "/developers/weaviate/release-notes/release_1_18"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_17",
+ from: "/developers/weaviate/release-notes/release_1_17"
+},
+{
+ to: "/developers/weaviate/release-notes/older-releases/release_1_16",
+ from: "/developers/weaviate/release-notes/release_1_16"
 },
 
-
+// Services Changes
+{
+    to: "/platform",
+    from: "/services"
+ },
+ {
+    to: "/deployment/serverless",
+    from: "/services/serverless"
+ },
+ {
+    to: "/deployment/enterprise-cloud",
+    from: "/services/enterprise-cloud"
+ },
+ {
+    to: "/deployment/byoc",
+    from: "/services/byoc"
+ },
+ {
+    to: "/deployment/enablement",
+    from: "/services/education-and-support"
+ },
 
     ],
     createRedirects(existingPath) {

@@ -39,10 +39,11 @@ const KnowledgeBasePage = () => {
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
-    headline: card.title,
-    description: card.text,
-    image: imageFullUrl,
-    url: pageUrl,
+    headline: 'Finetuning - Weaviate Knowledge Cards',
+    description:
+      "Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model's performance on the related task while being more cost-efficient than training it from scratch.",
+    image: 'https://weaviate.io/img/cards/finetuning.jpg',
+    url: 'https://weaviate.io/learn/knowledgecards/finetuning',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -62,26 +63,47 @@ const KnowledgeBasePage = () => {
         <Head>
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
-          <meta property="og:title" content={card.title} />
+          <meta
+            property="og:title"
+            content="Finetuning - Weaviate Knowledge Cards"
+          />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={imageFullUrl} />
+          <meta
+            property="og:image"
+            content="https://weaviate.io/img/cards/finetuning.jpg"
+          />
           <meta property="og:image:alt" content="Knowledge card image" />
-          <meta property="og:url" content={pageUrl} />
-          <meta property="og:description" content={card.longText} />
+          <meta
+            property="og:url"
+            content="https://weaviate.io/learn/knowledgecards/finetuning"
+          />
+          <meta
+            property="og:description"
+            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch."
+          />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
           <meta
-            property="og:article:published_time"
-            content="2024-06-04T08:00:00Z"
+            property="article:published_time"
+            content="2024-06-07T12:35+00:00"
           />
-          <meta property="og:article:author" content="weaviate.io" />
+          <meta property="article:author" content="weaviate.io" />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@weaviate_io" />
-          <meta name="twitter:title" content={card.title} />
-          <meta name="twitter:description" content={card.longText} />
-          <meta name="twitter:image" content={imageFullUrl} />
+          <meta
+            name="twitter:title"
+            content="Finetuning - Weaviate Knowledge Cards"
+          />
+          <meta
+            name="twitter:description"
+            content="Fine-tuning is a process where a pre-trained machine learning model is further trained on a specific dataset to specialize its knowledge or skills for a particular task or domain. This improves the model\'s performance on the related task while being more cost-efficient than training it from scratch."
+          />
+          <meta
+            name="twitter:image"
+            content="https://weaviate.io/img/cards/finetuning.jpg"
+          />
           <meta name="twitter:image:alt" content="Knowledge card image" />
 
           {/* Structured Data */}

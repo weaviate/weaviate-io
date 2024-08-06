@@ -5,14 +5,19 @@
 # ================================
 
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 
@@ -218,9 +223,9 @@ for o in response.objects:
 
 # Test results
 assert (
-    response.objects[0].properties["points"] <= 700 |
-    response.objects[0].properties["points"] < 500 |
-    response.objects[0].properties["round"] == "Double Jeopardy!"
+    (response.objects[0].properties["points"] <= 700) |
+    (response.objects[0].properties["points"] < 500) |
+    (response.objects[0].properties["round"] == "Double Jeopardy!")
 )
 # End test
 
@@ -253,9 +258,9 @@ for o in response.objects:
 
 # Test results
 assert (
-    response.objects[0].properties["points"] > 300 &
-    response.objects[0].properties["points"] < 700 &
-    response.objects[0].properties["round"] == "Double Jeopardy!"
+    (response.objects[0].properties["points"] > 300) &
+    (response.objects[0].properties["points"] < 700) &
+    (response.objects[0].properties["round"] == "Double Jeopardy!")
 )
 # End test
 
@@ -378,6 +383,7 @@ for o in response.objects:
     assert o.metadata.creation_time > filter_time
 # End test
 
+client.close()
 
 # ========================================
 # FilterByDateDatatype
@@ -385,6 +391,12 @@ for o in response.objects:
 
 from weaviate.classes.config import Property, DataType, Configure
 from datetime import datetime, timezone
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 client.collections.delete("CollectionWithDate")
 
@@ -437,13 +449,27 @@ for o in response.objects:
 # Tests
 assert len(response.objects) > 0
 for o in response.objects:
-    assert o.properties["release_date"] > filter_time
+    assert o.properties["some_date"] > filter_time
 # End test
 
+client.close()
 
 # ========================================
 # FilterByPropertyLength
 # ========================================
+
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
+    headers={
+        "X-OpenAI-Api-Key": openai_api_key,
+    }
+)
 
 length_threshold = 20
 

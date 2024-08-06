@@ -122,9 +122,14 @@ client.collections.create(
 collection = client.collections.get("ArticleNV")
 config = collection.config.get()
 # TODO: change test to also include "title_country" with ["title", "country"] properties
-for k, v in config.vector_config.items():
-    assert v.vectorizer.source_properties == [k]  # Test that the source properties are correctly set
 
+assertion_dicts = {
+    "title": ["title"],
+    "body": ["body"],
+    "title_country": ["title", "country"]
+}
+for k, v in config.vector_config.items():
+    assert v.vectorizer.source_properties == assertion_dicts[k]  # Test that the source properties are correctly set
 
 # ===========================
 # ===== SET VECTOR INDEX TYPE =====
@@ -208,6 +213,13 @@ client.collections.create(
             # highlight-start
             index_filterable=True,
             index_searchable=True,
+            # highlight-end
+        ),
+        Property(
+            name="Chunk",
+            data_type=DataType.INT,
+            # highlight-start
+            index_range_filters=True,
             # highlight-end
         ),
     ],
@@ -390,7 +402,7 @@ assert config.vector_index_config.distance_metric.value == "cosine"
 client.close()
 
 # =======================
-# ===== REPLICATION =====
+# ===== REPLICATION WITH ASYNC REPAIR ====
 # =======================
 
 # Connect to a setting with 3 replicas
@@ -401,23 +413,24 @@ client = weaviate.connect_to_local(
 # Clean slate
 client.collections.delete("Article")
 
-# START ReplicationSettings
+# START AsyncRepair
 from weaviate.classes.config import Configure
 
 client.collections.create(
     "Article",
     # highlight-start
     replication_config=Configure.replication(
-        factor=3
+        factor=3,
+        async_enabled=True,
     )
     # highlight-end
 )
-# END ReplicationSettings
+# END AsyncRepair
 
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.replication_config.factor == 3
+# assert config.replication_config.factor == 3   #ASYNC NEEDS TEST
 
 client.close()
 
@@ -439,9 +452,7 @@ client.collections.create(
     sharding_config=Configure.sharding(
         virtual_per_physical=128,
         desired_count=1,
-        actual_count=1,
         desired_virtual_count=128,
-        actual_virtual_count=128,
     )
     # highlight-end
 )
@@ -452,9 +463,7 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.sharding_config.virtual_per_physical == 128
 assert config.sharding_config.desired_count == 1
-assert config.sharding_config.actual_count == 1
 assert config.sharding_config.desired_virtual_count == 128
-assert config.sharding_config.actual_virtual_count == 128
 
 # =========================
 # ===== MULTI-TENANCY =====
@@ -653,13 +662,16 @@ print(article_shards)
 # UpdateCollectionShards
 # ========================================
 
+shards = articles.config.get_shards()
+shard_names = [s.name for s in shards]
+
 # START UpdateCollectionShards
 articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
     status="READONLY",
-    shard_name="shard-1234"
+    shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end
 

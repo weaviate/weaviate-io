@@ -6,7 +6,9 @@ import json
 
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 
@@ -78,11 +80,14 @@ things = client.collections.create(
 
 client.collections.delete("SomeCollection")
 
+from weaviate.classes.init import Auth
 
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
-    auth_credentials=weaviate.auth.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+    auth_credentials=Auth.api_key("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 # START selectAndBoostExample

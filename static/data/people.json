@@ -16,18 +16,11 @@
   },
   {
     "name": "Adam Chan",
-    "title": "Developer Advocate",
+    "title": "Developer Growth Engineer",
     "photo": "adam.jpg",
-    "linkedin": "adam-jeremy-chan",
-    "twitter": "aj__chan",
+    "linkedin": "itsajchan",
+    "twitter": "itsajchan",
     "team": "developer-growth"
-  },
-  {
-    "name": "Albert Adeseye",
-    "title": "Technical Success Manager",
-    "photo": "albert.jpeg",
-    "linkedin": "albertadeseye",
-    "team": "customer-experience"
   },
   {
     "name": "Alea Abed",
@@ -92,12 +85,12 @@
   },
   {
     "name": "Byron Voorbach",
-    "title": "Head of Sales Engineering",
+    "title": "Field-CTO",
     "photo": "byron.png",
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Cari Liebenberg",
@@ -116,11 +109,11 @@
   },
   {
     "name": "Charles Pierse",
-    "title": "Machine Learning Engineer",
+    "title": "Head of Weaviate Labs",
     "photo": "charles-pierse.png",
     "linkedin": "charles-pierse",
     "twitter": "cdpierse",
-    "team": "wcd"
+    "team": "weaviate-labs"
   },
   {
     "name": "Connor Shorten",
@@ -129,13 +122,20 @@
     "linkedin": "connor-shorten-34923a178/",
     "twitter": "cshorten30",
     "github": "CShorten",
-    "team": "applied-research"
+    "team": "weaviate-labs"
   },
   {
     "name": "Daniel Phiri",
     "title": "Developer Advocate",
     "photo": "daniel.png",
     "team": "developer-relations"
+  },
+  {
+    "name": "Daniel Williams",
+    "title": "Machine Learning Engineer",
+    "photo": "daniel-williams.jpg",
+    "linkedin": "dannyjameswilliams",
+    "team": "developer-growth"
   },
   {
     "name": "David Cuthbert",
@@ -152,8 +152,15 @@
     "team": "wcd"
   },
   {
+    "name": "Deepti Naidu",
+    "title": "Partner Solution Engineer",
+    "photo": "deepti.jpg",
+    "linkedin": "deeptinaidu",
+    "team": "partnerships"
+  },
+  {
     "name": "Dirk Kulawiak",
-    "title": "Core Engineer",
+    "title": "UX Engineering Tech Lead",
     "photo": "dirk.png",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
@@ -168,10 +175,10 @@
   },
   {
     "name": "Emma O'Keefe",
-    "title": "Head of Customer Success",
+    "title": "Director of Customer Operations",
     "photo": "emma.png",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Edward Schmuhl",
@@ -285,7 +292,7 @@
     "linkedin": "jontuite",
     "twitter": "pendragn00",
     "github": "tuitejc",
-    "team": "customer-experience"
+    "team": "sales"
   },
   {
     "name": "Jose Luis Franco",
@@ -299,6 +306,14 @@
     "photo": "joseph-green.jpg",
     "team": "delivery",
     "linkedin": "joe-green-11381620a"
+  },
+  {
+    "name": "Kaviraj Kanagaraj",
+    "title": "Senior Software Engineer",
+    "photo": "Kaviraj.jpg",
+    "team": "database",
+    "linkedin": "kavirajkanagaraj",
+    "twitter": "kvrajk"
   },
   {
     "name": "Laura Stoye",
@@ -416,6 +431,22 @@
     "team": "developer-growth"
   },
   {
+    "name": "Rich Lapham",
+    "title": "Recruiter",
+    "photo": "rich-lapham.jpg",
+    "linkedin": "richlapham",
+    "twitter": "laphamr66",
+    "team": "people-and-culture"
+  },
+  {
+    "name": "Roberto Esposito",
+    "title": "Research Engineer",
+    "photo": "roberto-esposito.jpg",
+    "linkedin": "robbespo00",
+    "twitter": "robbespo00",
+    "team": "applied-research"
+  },
+  {
     "name": "Scott Alexander",
     "title": "Client-Focused SRE",
     "photo": "scott-alexander.jpg",
@@ -450,6 +481,21 @@
     "linkedin": "mohdshukrihasan",
     "twitter": "MohdShukriHasa1",
     "team": "partnerships"
+  },
+  {
+    "name": "Soham Maniar",
+    "title": "Director of RevOps",
+    "photo": "soham-maniar.jpg",
+    "linkedin": "sohammaniar",
+    "twitter": "sohammaniar",
+    "team": "sales"
+  },
+  {
+    "name": "Staci Blue",
+    "title": "Event Marketing Manager",
+    "photo": "staci.jpg",
+    "linkedin": "staci-blue",
+    "team": "marketing"
   },
   {
     "name": "Stefan Bogdan",
@@ -538,6 +584,13 @@
     "photo": "marcus.jpeg",
     "linkedin": "marcuseagan",
     "team": "board-advisors"
+  },
+  {
+    "name": "Rohan Thomas",
+    "title": "Commercial Account Executive",
+    "photo": "rohan.jpg",
+    "linkedin": "rohan-mathews-thomas",
+    "team": "sales"
   },
   {
     "name": "Sam Ramji",

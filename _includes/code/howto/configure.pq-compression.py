@@ -74,7 +74,7 @@ client.collections.create(
 collection = client.collections.get("Question")
 config = collection.config.get()
 
-from weaviate.classes.config import _PQConfig
+from weaviate.collections.classes.config import _PQConfig
 
 assert type(config.vector_index_config.quantizer) == _PQConfig
 # No import test as it would take a long time
@@ -99,7 +99,8 @@ client.collections.create(
 )
 
 # END InitialSchema
-assert type(config.vector_index_config.quantizer) is None
+config = client.collections.get("Question").config.get()
+assert config.vector_index_config.quantizer is None
 
 # ==============================
 # =====  LOAD DATA =====
@@ -107,7 +108,7 @@ assert type(config.vector_index_config.quantizer) is None
 
 
 # START LoadData
-def parse_data():
+def parse_data(data):
     object_list = []
     for obj in data:
         object_list.append(
@@ -121,7 +122,7 @@ def parse_data():
 
 
 jeopardy = client.collections.get("Question")
-jeopardy.data.insert_many(parse_data())
+jeopardy.data.insert_many(parse_data(data))
 # END LoadData
 
 
@@ -143,6 +144,7 @@ jeopardy.config.update(
 )
 # END UpdateSchema
 
+config = client.collections.get("Question").config.get()
 assert type(config.vector_index_config.quantizer) == _PQConfig
 
 # ==============================
@@ -152,16 +154,13 @@ assert type(config.vector_index_config.quantizer) == _PQConfig
 # START GetSchema
 jeopardy = client.collections.get("Question")
 config = jeopardy.config.get()
-pq_config = config.vector_index_config.pq
+pq_config = config.vector_index_config.quantizer
 
 # print some of the config properties
-print(f"Enabled: { pq_config.enabled }")
+print(f"Encoder: { pq_config.encoder }")
 print(f"Training: { pq_config.training_limit }")
 print(f"Segments: { pq_config.segments }")
 print(f"Centroids: { pq_config.centroids }")
 # END GetSchema
 
-# START-ANY
-
 client.close()
-# END-ANY

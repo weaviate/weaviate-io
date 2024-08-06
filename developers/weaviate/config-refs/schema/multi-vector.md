@@ -74,8 +74,6 @@ This code creates a sample collection and imports a small amount of data.<br/><b
   language="py"
 />
 
-
-
 ### REST API
 
 The legacy, single vector syntax is valid for use with collections that don't have named vectors:
@@ -83,9 +81,9 @@ The legacy, single vector syntax is valid for use with collections that don't ha
 ```json
 {
     "class": "Article",
-    "vector": [0.3, -0.012, 0.071, ..., -0.09],
+    "vector": [0.3, -0.012, 0.071, -0.09],
     "properties": {
-        "content": Really cool things",
+        "content": "Really cool things",
     }
 }
 ```
@@ -96,7 +94,7 @@ To specify named vectors in collections with multiple, named vectors use the new
 {
     "class": "ArticleNamedVector",
     "vectors": {
-        "title_vector": [0.3, 0.2, 0.6, ..., 0.1]},
+        "title_vector": [0.3, 0.2, 0.6, 0.1],
         "image_vector": [1,2,3,4]
     },
     "properties": {
@@ -206,8 +204,8 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 - [Weaviate academy: Named vectors](../../../academy/py/named_vectors/index.md)
 - [How-to: manage data](/developers/weaviate/manage-data/index.md): Code examples for *create*, *update* and *delete* operations, including those with named vectors.
 - [How-to: search](/developers/weaviate/search/index.md): Code examples for all types of search operations, including those with named vectors.
-- [BQ Compression](../../configuration/bq-compression.md)
-- [PQ Compression](../../configuration/pq-compression.md)
+- [BQ Compression](../../configuration/compression/bq-compression.md)
+- [PQ Compression](../../configuration/compression/pq-compression.md)
 
 ## Questions and feedback
 

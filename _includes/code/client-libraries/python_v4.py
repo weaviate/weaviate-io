@@ -71,24 +71,32 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 # END EmbeddedInstantiationBasic
 """
 
-client = weaviate.connect_to_embedded(
-    port=8085,
-    grpc_port=50055,
-)
+# client = weaviate.connect_to_embedded(
+#     version="1.26.1"
+#     # Bug in the embedded client - cannot connect with custom ports (https://github.com/weaviate/weaviate-python-client/issues/1225)
+#     # port=8089,
+#     # grpc_port=50059,
+# )
 
-try:
-    assert client.is_ready()
-finally:
-    client.close()
+# try:
+#     assert client.is_ready()
+# finally:
+#     client.close()
 
 # WCDInstantiation
 import weaviate
+from weaviate.classes.init import Auth
 import os
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
-    headers={'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(wcd_api_key),  # Replace with your Weaviate Cloud key
+    headers={'X-OpenAI-Api-key': openai_api_key}  # Replace with your OpenAI API key
 )
 # END WCDInstantiation
 
@@ -157,7 +165,9 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-key": os.getenv("OPENAI_APIKEY")}
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 # END LocalInstantiationWithHeaders
 
@@ -166,7 +176,7 @@ try:
 finally:
     client.close()
 
-# LocalInstantiationWithTimeout
+# LocalWithTimeout
 import weaviate
 from weaviate.classes.init import AdditionalConfig, Timeout
 
@@ -174,10 +184,10 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     additional_config=AdditionalConfig(
-        timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
+        timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
 )
-# END LocalInstantiationWithTimeout
+# END LocalWithTimeout
 
 try:
     assert client.is_ready()
@@ -187,7 +197,7 @@ finally:
 # DirectInstantiationFull
 import weaviate
 from weaviate.connect import ConnectionParams
-from weaviate.classes.init import AdditionalConfig, Timeout
+from weaviate.classes.init import AdditionalConfig, Timeout, Auth
 import os
 
 client = weaviate.WeaviateClient(
@@ -199,13 +209,14 @@ client = weaviate.WeaviateClient(
         grpc_port="50052",
         grpc_secure=False,
     ),
-    auth_client_secret=weaviate.auth.AuthApiKey("secr3tk3y"),
+    auth_client_secret=Auth.api_key("secr3tk3y"),
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
     additional_config=AdditionalConfig(
-        timeout=Timeout(init=2, query=45, insert=120),  # Values in seconds
+        timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
     ),
+    skip_init_checks=False
 )
 
 client.connect()  # When directly instantiating, you need to connect manually
@@ -219,15 +230,19 @@ finally:
 
 # WCDQuickStartInstantiation
 import weaviate
+from weaviate.classes.init import Auth
 import os
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+
 with weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate Cloud URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY"))  # Replace with your Weaviate Cloud key
+    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(wcd_api_key)  # Replace with your Weaviate Cloud key
 ) as client:  # Use this context manager to ensure the connection is closed
     client.collections.list_all()
 # END WCDQuickStartInstantiation
-
 
 # =====================================================================================
 # Batch examples
@@ -235,7 +250,6 @@ with weaviate.connect_to_weaviate_cloud(
 
 import weaviate
 from weaviate.classes.config import Property, DataType, ReferenceProperty
-from weaviate.classes.data import DataReference
 from weaviate.util import generate_uuid5
 
 client = weaviate.connect_to_local()
@@ -307,7 +321,6 @@ finally:
 
 
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -330,7 +343,6 @@ source_iterable = range(100)  # Dummy iterable
 
 # START BatchErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -373,7 +385,6 @@ finally:
 
 # START BatchErrorMonitor
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -396,7 +407,6 @@ finally:
 
 # START BatchSimpleErrorHandling
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
@@ -418,7 +428,6 @@ finally:
 # =====================================================================================
 # Collection instantiation
 # =====================================================================================
-
 
 
 # START CreateCollectionFromJSON
@@ -569,12 +578,103 @@ finally:
     client.close()
 # END GetCollectionExample
 
+
+# ===== CUSTOM MODULE EXAMPLES =====
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
+)
+
+client.collections.delete("DemoCollection")
+
+# START CustomGenerativeModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.custom(
+        module_name="generative-anthropic",
+        module_config={"model": "claude-3-5-sonnet-20240620"}
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomGenerativeModuleExample
+
+client.collections.delete("DemoCollection")
+
+# START CustomRerankModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.custom(
+        module_name="reranker-cohere",
+        module_config={"model": "rerank-english-v3.0"}
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomRerankModuleExample
+
+client.collections.delete("DemoCollection")
+
+# START CustomNamedVectorModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.custom(
+            name="title",
+            source_properties=["title"],
+            module_name="text2vec-ollama",
+            module_config={
+                "model": "snowflake-arctic-embed",
+                "apiEndpoint": "http://host.docker.internal:11434"
+            }
+        )
+    ]
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomNamedVectorModuleExample
+
+client.collections.delete("DemoCollection")
+
+# START CustomVectorizerModuleExample
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=Configure.Vectorizer.custom(
+        module_name="text2vec-ollama",
+        module_config={
+            "model": "snowflake-arctic-embed",
+            "apiEndpoint": "http://host.docker.internal:11434"
+        }
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END CustomVectorizerModuleExample
+
+client.close()
+
 # =====================================================================================
 # Data examples
 # =====================================================================================
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
 d = wd.JeopardyQuestions10k()
@@ -695,11 +795,18 @@ client.close()
 # =====================================================================================
 
 # Connect to WCD instance for query examples
+from weaviate.classes.init import Auth
+
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 
@@ -1000,10 +1107,12 @@ response = questions.query.fetch_objects(
 )
 # END GenericsExample
 
+collection_name = "JeopardyQuestion"
+
 # START CollectionInteractionExample
 from weaviate.collections import Collection
 
-my_collection = client.collections.get("SomeCollection")
+my_collection = client.collections.get(collection_name)
 
 def work_with_collection(collection: Collection):
     # Do something with the collection, e.g.:
@@ -1015,3 +1124,275 @@ response = work_with_collection(my_collection)
 
 client.close()
 
+# =====================================================================================
+# Async instantiation
+# =====================================================================================
+
+import asyncio
+
+# AsyncWCDInstantiation
+import weaviate
+from weaviate.classes.init import Auth
+import os
+
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+
+async_client = weaviate.use_async_with_weaviate_cloud(
+    cluster_url=wcd_url,  # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.api_key(wcd_api_key),  # Replace with your Weaviate Cloud key
+)
+# END AsyncWCDInstantiation
+
+async def check_connection(async_client):
+    try:
+        await async_client.connect()
+        assert await async_client.is_ready()
+    finally:
+        await async_client.close()
+
+loop = asyncio.new_event_loop()
+try:
+    loop.run_until_complete(check_connection(async_client))
+finally:
+    loop.close()
+
+
+# AsyncLocalInstantiationBasic
+import weaviate
+
+async_client = weaviate.use_async_with_local()
+# END AsyncLocalInstantiationBasic
+
+async def check_connection(async_client):
+    try:
+        await async_client.connect()
+        assert await async_client.is_ready()
+    finally:
+        await async_client.close()
+
+# asyncio.run(check_connection())
+loop = asyncio.new_event_loop()
+try:
+    loop.run_until_complete(check_connection(async_client))
+finally:
+    loop.close()
+
+
+# AsyncCustomInstantiationBasic
+import weaviate
+import os
+
+async_client = weaviate.use_async_with_custom(
+    http_host="localhost",
+    http_port="8080",
+    http_secure=False,
+    grpc_host="localhost",
+    grpc_port="50051",
+    grpc_secure=False,
+)
+# END AsyncCustomInstantiationBasic
+
+async def check_connection(async_client):
+    try:
+        await async_client.connect()
+        assert await async_client.is_ready()
+    finally:
+        await async_client.close()
+# asyncio.run(check_connection())
+loop = asyncio.new_event_loop()
+
+try:
+    loop.run_until_complete(check_connection(async_client))
+finally:
+    loop.close()
+
+# AsyncDirectInstantiationFull
+import weaviate
+from weaviate.connect import ConnectionParams
+from weaviate.classes.init import AdditionalConfig, Timeout, Auth
+import os
+
+async_client = weaviate.WeaviateAsyncClient(
+    connection_params=ConnectionParams.from_params(
+        http_host="localhost",
+        http_port="8099",
+        http_secure=False,
+        grpc_host="localhost",
+        grpc_port="50052",
+        grpc_secure=False,
+    ),
+    auth_client_secret=Auth.api_key("secr3tk3y"),
+    additional_headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    },
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=30, query=60, insert=120),  # Values in seconds
+    ),
+    skip_init_checks=False
+)
+# END AsyncDirectInstantiationFull
+
+# AsyncDirectInstantiationAndConnect
+import weaviate
+from weaviate.connect import ConnectionParams
+from weaviate import WeaviateAsyncClient
+import os
+
+
+async def instantiate_and_connect() -> WeaviateAsyncClient:
+    client = weaviate.WeaviateAsyncClient(
+        connection_params=ConnectionParams.from_params(
+            http_host="localhost",
+            http_port="8099",
+            http_secure=False,
+            grpc_host="localhost",
+            grpc_port="50052",
+            grpc_secure=False,
+        ),
+        # Additional settings not shown
+    )
+    await client.connect()
+    return client
+
+# END AsyncDirectInstantiationAndConnect
+
+# # =====================================================================================
+# # Async CRUD
+# # =====================================================================================
+
+import weaviate
+
+client = weaviate.connect_to_local()
+client.collections.delete("Movie")
+
+client.close()
+
+# START AsyncInsertionExample
+import weaviate
+from weaviate.collections.classes.batch import BatchObjectReturn
+import asyncio
+import os
+
+
+cohere_api_key = os.getenv("COHERE_API_KEY")  # Best practice: store your API keys in environment variables
+
+async_client = weaviate.use_async_with_local(
+    headers={
+        "X-Cohere-Api-Key": cohere_api_key  # Replace with your Cohere API key
+    }
+)
+
+
+async def async_insert(async_client) -> BatchObjectReturn:
+    from weaviate.classes.config import Configure, Property, DataType
+
+    # This example uses an async context manager
+    # The client will automatically connect and disconnect as it enters and exits the context manager
+    async with async_client:
+        collection = await async_client.collections.create(
+            name="Movie",
+            vectorizer_config=[
+                Configure.NamedVectors.text2vec_cohere(
+                    "overview_vector",
+                    source_properties=["overview"]
+                )
+            ],
+            generative_config=Configure.Generative.cohere(),
+            properties=[
+                Property(name="title", data_type=DataType.TEXT),
+                Property(name="overview", data_type=DataType.TEXT),
+            ],
+        )
+
+        # Build objects to insert
+        # END AsyncInsertionExample
+        objects = [
+            {
+                "title": f"Test Movie {i+1}",
+                "overview": f"Overview of Test Movie {i+1}"
+            }
+            for i in range(5)
+        ]
+        # START AsyncInsertionExample
+
+        response = await collection.data.insert_many(objects)
+    return response
+
+
+loop = asyncio.new_event_loop()
+try:
+    response = loop.run_until_complete(async_insert(async_client))
+finally:
+    loop.close()
+
+# END AsyncInsertionExample
+
+# START AsyncSearchExample
+import weaviate
+from weaviate.collections.classes.internal import GenerativeSearchReturnType
+import asyncio
+import os
+
+
+cohere_api_key = os.getenv("COHERE_API_KEY")  # Best practice: store your API keys in environment variables
+
+async_client = weaviate.use_async_with_local(
+    headers={
+        "X-Cohere-Api-Key": cohere_api_key  # Replace with your Cohere API key
+    }
+)
+
+
+async def async_query(async_client) -> GenerativeSearchReturnType:
+    async with async_client:
+        # Note `collections.get()` is not an async method
+        collection = async_client.collections.get(name="Movie")
+
+        response = await collection.generate.hybrid(
+            "romantic comedy set in Europe",
+            target_vector="overview_vector",
+            grouped_task="Write an ad, selling a bundle of these movies together",
+            limit=3,
+        )
+    return response
+
+
+loop = asyncio.new_event_loop()
+try:
+    response = loop.run_until_complete(async_query(async_client))
+finally:
+    loop.close()
+
+
+print(response.generated)
+for o in response.objects:
+    print(o.properties["title"])
+# END AsyncSearchExample
+
+
+# =====================================================================================
+# Async Context Manager
+# =====================================================================================
+
+# START AsyncContextManager
+async def context_manager_example() -> bool:
+    import weaviate
+
+    async with weaviate.use_async_with_local() as async_client:
+        # The async context manager automatically connects and disconnects
+        # Use the async client - for example, check if it's ready
+        readiness = await async_client.is_ready()
+    return readiness
+
+
+loop = asyncio.new_event_loop()
+try:
+    readiness = loop.run_until_complete(context_manager_example())
+finally:
+    loop.close()
+# END AsyncContextManager
+
+
+assert readiness == True

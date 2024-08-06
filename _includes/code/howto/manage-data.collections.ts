@@ -403,6 +403,13 @@ await client.collections.create({
       indexSearchable: true,
       // highlight-end
     },
+    {
+      name: 'chunk',
+      dataType: dataType.INT,
+      // highlight-start
+      indexRangeFilters: true,
+      // highlight-end
+    },
   ],
   // highlight-start
   invertedIndex: {
@@ -511,6 +518,33 @@ await client.collections.create({
 
 // Test
 assert.equal(result.replicationConfig.factor, 3);
+
+
+// =======================
+// ===== Async Repair ====
+// =======================
+
+/*
+// START AsyncRepair
+import { configure } from 'weaviate-client';
+
+// END AsyncRepair
+*/
+
+// START AsyncRepair
+await client.collections.create({
+ name: 'Article',
+ // highlight-start
+ replication: configure.replication({
+   factor: 3,
+   asyncEnabled: true,
+ }),
+ // highlight-end
+})
+// END AsyncRepair
+
+// Test
+// TODO NEEDS TEST assert.equal(result.replicationConfig.factor, 3);
 
 // ====================
 // ===== SHARDING =====

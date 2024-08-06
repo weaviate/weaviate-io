@@ -28,7 +28,7 @@ export default function Integrations() {
                 <Link href="#contact-sales">Get in touch</Link>
               </div>
               <div className={`${styles.iconText} ${styles.services}`}>
-                <Link href="/services">Check our Services</Link>
+                <Link href="/pricing">Check our Pricing</Link>
               </div>
             </div>
           </div>

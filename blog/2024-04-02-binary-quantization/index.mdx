@@ -22,7 +22,7 @@ description: "In-depth technical breakdown of how binary quantization works and 
 
 ## 🧮What is Binary Quantization?
 
-To perform search current vector databases build massive vector indices and search over them in memory. This allows for real-time responses to queries however, compute costs can add up. Binary quantization(BQ) is a vector compression algorithm that allows you to trade-off between retrieval accuracy and memory requirements.
+To perform search current vector databases build massive vector indexes and search over them in memory. This allows for real-time responses to queries however, compute costs can add up. Binary quantization(BQ) is a vector compression algorithm that allows you to trade-off between retrieval accuracy and memory requirements.
 
 Lets understand how this technique works by way of an analogy. Imagine every vector you want to store is a home address. The details of this home address allow you to precisely locate where someone lives including the country, state, city, street number, and even down to the house number. The price you pay for this pin-point accuracy is that each address takes up more memory to store, search and read. Similarly, to locate a vector in space you can think of each dimension as instructions on exactly how far to move along an axis. The sign of the number at that dimension tells you which direction to move and the magnitude of the number tells you how much to move in that direction.
 
@@ -38,7 +38,7 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
 
 
 :::info Enabling Binary Quantization in Weaviate
-To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-quantization#binary-quantization).
+To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/compression/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-quantization#binary-quantization).
 :::
 
 Binarizing is not exclusive to embedding vectors, we can also understand it from the other domains in which it is used - for example in computer vision. Imagine you have an image. The process of binarizing that image entails looking at every pixel. If that pixel is larger than a certain threshold value, we will replace it with 1; otherwise, we will replace it with 0. The resulting image is a black-and-white binary image. This process loses image details but significantly compresses the image size.
@@ -52,7 +52,7 @@ Now, let's consider what the process of binarizing a vector embedding for a sent
 
 |Sentence: *"All your vector embeddings belong to you!"*  |
 |:-------------------------:|
-| ![OriginalVec](./img/image14.jpg)  | 
+| ![OriginalVec](./img/image14.jpg)  |
 |  ![BinaryVec](./img/image7.png)    |
 **Fig**: *Visualization of a sentence vector embedding when binary quantized*
 
@@ -156,7 +156,7 @@ While the recall isn't exceptionally high, we tackle this concern later through 
 
 Traditionally, we rely on building a graph to facilitate approximate search, as manually searching through millions of vectors is impractical. However, with such significant time reductions, brute forcing your data becomes a viable option. For instance, in the case of 768 dimensions, brute forcing 1 million vectors should only take 23 milliseconds. Even in the worst-case scenario (4608 dimensions), it's now feasible, requiring approximately 90 milliseconds.
 
-So, what's the bottom line? Can Weaviate deliver lightning-fast brute-force searches for your data? The answer depends on the size of your data and your search speed expectations. 
+So, what's the bottom line? Can Weaviate deliver lightning-fast brute-force searches for your data? The answer depends on the size of your data and your search speed expectations.
 
 There are several advantages to brute force searching your data. Firstly, you can bypass the need for data indexing, saving the time required to build the index. While indexing in Weaviate isn't overly sluggish, brute forcing allows you to skip this step entirely. Secondly, you no longer need to store a proximity graph, resulting in further memory savings. In fact, if you opt to brute force search your data directly from disk, memory usage becomes negligible – a mere 100MB is sufficient to host your application.
 
@@ -171,7 +171,7 @@ Now, let's discuss the performance metrics. All experiments were conducted using
 | Flat index        | 5s     | 7s     |
 | Hnsw index        | 47s    | 1m36s  |
 | Hnsw index+BQ     | 21s    | 25s    |
-**Table 2**: *Indexing time improvements between flat, HNSW uncompressed and BQ indices.*
+**Table 2**: *Indexing time improvements between flat, HNSW uncompressed and BQ indexes.*
 
 As mentioned previously, the flat index eliminates the need for data indexing. Instead, we simply send the data to the server and store it in the stores. Conversely, the HSNW index necessitates data indexing. It's worth noting that the HNSW index can also benefit significantly from this compression in terms of indexing time.
 
@@ -185,7 +185,7 @@ Now, let's discuss the memory footprint. We'll differentiate between the availab
 | Flat index + BQ + Cache     | 141MB  | 183MB  |
 | Hnsw index                  | 1.02GB | 1.79GB |
 | Hnsw index+BQ               | 214MB  | 297MB  |
-**Table 3**: *Memory footprint improvements for the various indices.*
+**Table 3**: *Memory footprint improvements for the various indexes.*
 
 ### Latency Analysis
 
@@ -221,7 +221,7 @@ Next, we'll present the corresponding results for cases involving larger dimensi
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-**Fig**: *QPS vs Recall for 100k DBPedia vectors comparing various indices.*
+**Fig**: *QPS vs Recall for 100k DBPedia vectors comparing various indexes.*
 
 
 
@@ -242,7 +242,7 @@ Now, let's scale the numbers up further. What should we anticipate with a larger
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-**Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing various indices.*
+**Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing various indexes.*
 
 ## ⚖️Comparing Product and Binary Quantization
 
@@ -265,7 +265,7 @@ Notice that the main contribution of BQ is not just that it compresses the vecto
 | HNSW+BQ          | 3m43s         | 711.38MB     |
 | FLAT+BQ          | 54s           | 260.16MB     |
 | FLAT+BQ+CACHE    | 53s           | 352.99MB     |
-**Table 4**: *Comparing the various indices and compression techniques.*
+**Table 4**: *Comparing the various indexes and compression techniques.*
 
 Notice how BQ shortens the indexing time with HNSW enormously.
 

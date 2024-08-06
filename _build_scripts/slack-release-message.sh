@@ -11,7 +11,7 @@ commit_message=${commit_message//</&lt;}
 commit_message=${commit_message//>/&gt;}
 
 # Prepare the message and send it to Slack
-MESSAGE="{ \"text\": \"Hey $AUTHOR_NAME - your :docusaurus: *weaviate website* update is live at: 🔥 https://weaviate.io 🔥 \n> $commit_message\" }"
+MESSAGE="{ 'text': 'Hey $AUTHOR_NAME - your :docusaurus: :weaviate-logo: website update is live at: 🔥 https://weaviate.io 🔥 \n> $commit_message' }"
 
 echo $MESSAGE > payload_release.json
 

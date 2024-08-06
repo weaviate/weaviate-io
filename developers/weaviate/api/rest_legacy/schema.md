@@ -278,8 +278,9 @@ For more details on these parameters, see the [schema configuration reference pa
 | `properties` > `description` | body | string | Description of the property. |
 | `properties` > `moduleConfig`  > `<module_name>` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
 | `properties` > `moduleConfig`  > `<module_name>` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about [semantic indexing in Weaviate](../../config-refs/schema/index.md#configure-semantic-indexing). |
-| `properties` > `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](../../config-refs/schema/index.md#indexfilterable-and-indexsearchable). |
-| `properties` > `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more on how to [configure indexing in Weaviate](../../config-refs/schema/index.md#indexfilterable-and-indexsearchable). |
+| `properties` > `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [inverted indexes in Weaviate](../../config-refs/schema/index.md#inverted-index-types). |
+| `properties` > `indexRangeFilters` (available from `v1.26`) | body | boolean | Should the data stored in this property be indexed to allow faster range-based numerical filtering? Read more on [inverted indexes in Weaviate](../../config-refs/schema/index.md#inverted-index-types). |
+| `properties` > `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more on [inverted indexes in Weaviate](../../config-refs/schema/index.md#inverted-index-types). |
 | `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. Learn more about [property tokenization](../../config-refs/schema/index.md#tokenization).|
 | `invertedIndexConfig` > `bm25` > `b` | body | float | `b` parameter for `BM25` searches. Default: 0.75 |
 | `invertedIndexConfig` > `bm25` > `k1` | body | float | `k1` parameter for `BM25` searches. Default: 1.2 |
@@ -416,11 +417,11 @@ import CodeSchemaUpdate from '/_includes/code/schema.things.put.mdx';
 
 :::caution Limitations
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length or null status.
 
 <br/>
 
-This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index for metadata such as the length or the null status will not be updated to include the new properties. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
 
 <br/>
 
@@ -459,7 +460,7 @@ import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.ad
 
 ## Inspect the shards of a collection
 
-As described in [Architecture > Storage](../../concepts/storage.md#logical-storage-units-indices-shards-stores), creation of a collection leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a collection index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
+As described in [Architecture > Storage](../../concepts/storage.md#logical-storage-units-indexes-shards-stores), creation of a collection leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a collection index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
 
 You can view a list of all shards for a particular collection:
 
@@ -588,12 +589,16 @@ Tenants are used to separate data between different users or groups of users. Th
 
 ### Add tenant(s)
 
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
 Pass a payload with an array of tenant objects. The available fields are:
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `name` | string | (Required) The name of the tenant. |
-| `activityStatus` | string | (Optional, experimental) The activity status of the tenant. Can be `HOT` (default) or `COLD`. |
+| `activityStatus` | string | The activity status of the tenant. Can be `ACTIVE` (default), `INACTIVE`, or `OFFLOADED`. |
 
 #### Example payload
 
@@ -604,7 +609,7 @@ Pass a payload with an array of tenant objects. The available fields are:
   },
   {
     "name": "TENANT_B",
-    "activityStatus": "COLD"
+    "activityStatus": "INACTIVE"
   }
 ]
 ```
@@ -787,11 +792,11 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
 [
   {
     "name": "TENANT_A",
-    "activityStatus": "COLD"
+    "activityStatus": "INACTIVE"
   },
   {
     "name": "TENANT_B",
-    "activityStatus": "HOT"
+    "activityStatus": "ACTIVE"
   }
 ]
 ```
@@ -800,8 +805,8 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START UpdateTenants"
-      endMarker="# END UpdateTenants"
+      startMarker="# START DeactivateTenants"
+      endMarker="# END DeactivateTenants"
       language="py"
     />
   </TabItem>
