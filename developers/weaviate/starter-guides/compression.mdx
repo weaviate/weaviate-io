@@ -69,7 +69,13 @@ For additional details, refer to the [blog posts](#blog-posts).
 
 #### Recall
 
-Recall measures how well an algorithm finds the true positive matches in a data set. To improve recall, Weaviate over-fetches a list of candidate, compressed vectors. Then, for each item on the candidate list, Weaviate searches the item's uncompressed vector for a match. This technique means you get the benefits of compression without losing the precision of an uncompressed vector search.
+Recall measures how well an algorithm finds the true positive matches in a data set. A compressed vector has less information than the full, uncompressed vector. A vector that would match a search might be missed if key information is missing from the compressed vector. That lowers recall.
+
+To improve recall, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is very fast and it greatly improves recall.
+
+The over-fetching technique means you get the benefits of compression without losing the precision of an uncompressed vector search.
+
+#### Speed
 
 Since compressed vectors are significantly smaller than uncompressed vectors, it is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors, but this is small compared to the cost of searching a large uncompressed data set.
 
@@ -81,16 +87,17 @@ Importing and compressing vectors takes slightly longer than just importing them
 ### Compression tuned models
 
 
-### PQ and BQ compared
-
-PQ analyzes your data to create centroids that are used to define segments. After compression, each segment represents a section of the original vector. PQ offers several advantages. The segment size, the number of centroids, and the encoder are all configurable. If you use PQ, you can experiment with these settings to find the best balance for your data set.
-
-BQ is not tunable. The BQ algorithm reduces the value of each vector dimension to a single bit. Most uncompressed vectors store individual dimension values as 32 bit floats. An vector with 1536 dimensions requires 1536 * 32 bits of storage. After applying BQ, the same vector requires 1536 bits of storage. When the vectors have high dimensionality, BQ vectors are unique enough to preserve nuances even after such high compression.
-
+### Implementation
 
 ## Related pages
 
 For more information on compression, see these pages.
+
+## PQ, SQ, and BQ compared
+
+PQ analyzes your data to create centroids that are used to define segments. After compression, each segment represents a section of the original vector. PQ offers several advantages. The segment size, the number of centroids, and the encoder are all configurable. If you use PQ, you can experiment with these settings to find the best balance for your data set.
+
+BQ is not tunable. The BQ algorithm reduces the value of each vector dimension to a single bit. Most uncompressed vectors store individual dimension values as 32 bit floats. An vector with 1536 dimensions requires 1536 * 32 bits of storage. After applying BQ, the same vector requires 1536 bits of storage. When the vectors have high dimensionality, BQ vectors are unique enough to preserve nuances even after such high compression.
 
 ### Documentation pages
 
