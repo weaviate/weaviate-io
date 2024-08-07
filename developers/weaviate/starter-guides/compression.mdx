@@ -12,9 +12,11 @@ Use compression to lower system requirements and save on infrastructure costs.
 
 ## Overview
 
-Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate creates uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) vector indexes. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
+Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large, a single vector with 1000 dimensions uses about 4K of storage.
 
-In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data.
+Weaviate creates indexes to search the vector space for your collection. By default, the index is an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
+
+In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data. Updating the defaults can result in significant cost savings and performance improvements.
 
 This page discusses compression methods. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
@@ -23,16 +25,16 @@ This page discusses compression methods. For more on indexes, see [Vector indexi
 These compression algorithms are available:
 
 - [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ uses segments to reduce the size of the vector embedding. Each segment represents a section of the original embedding. PQ uses training data to determine the segment characteristics.
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ uses buckets to reduce the size of the vector representation. SQ uses training data to set the bucket size, then, SQ maps each 32 bit dimension into an 8 bit bucket.
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. It works best for vectors with high dimensionality.
-- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ uses buckets to reduce the size of the vector representation. SQ uses training data to set the bucket size, then SQ maps each 32 bit dimension into an 8 bit bucket.
 
 ## Compression considerations
 
 Before choosing a compression method, consider the [underlying index](#underlying-index). The index type determines which algorithms you can use. Some compression methods aren't available with some index types.
 
-The [vectorizer](#compression-tuned-models) that you use to create your object vectors may limit your compression choices. For example, some embedding models are tuned specifically for BQ compression.
+The vectorizer that you use to create your object vectors may also limit your compression choices. For example, some embedding models are tuned specifically for BQ compression.
 
-[Performance and cost](#cost-recall-and-speed) are also important considerations.
+Performance and cost are also important considerations. See [Cost, recall, and speed](#cost-recall-and-speed) for details.
 
 ### Underlying index
 
