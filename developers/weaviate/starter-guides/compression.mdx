@@ -95,23 +95,19 @@ SQ and BQ both have optional vector caches. Use these configurable caches to loa
 
 Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index is faster since there is less data to load.
 
+Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) feature. When the async index is enabled, indexing takes place as a background process. You can begin other tasks while indexing continues in the background. This means you are able to begin other tasks sooner.
 
+### Activate compression
 
+PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. You can enable PQ or SQ when you define your collection. When you have imported a large enough training set, the algorithm will compress your data.
 
-### Compression tuned models
+SQ has to be enabled when you create the collection. If you have async indexing and [AutoPQ enabled](/developers/weaviate/configuration/compression/pq-compression#configure-autopq), PQ compression can be started anytime. If not, you should only enable PQ after you have imported enough objects to [train the algorithm](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq).
 
-
-### Implementation
+BQ doesn't require a training step, however it can only be enabled when you create your collection. BQ cannot be enabled after you start to add data to the collection.
 
 ## Related pages
 
 For more information on compression, see these pages.
-
-## PQ, SQ, and BQ compared
-
-PQ analyzes your data to create centroids that are used to define segments. After compression, each segment represents a section of the original vector. PQ offers several advantages. The segment size, the number of centroids, and the encoder are all configurable. If you use PQ, you can experiment with these settings to find the best balance for your data set.
-
-BQ is not tunable. The BQ algorithm reduces the value of each vector dimension to a single bit. Most uncompressed vectors store individual dimension values as 32 bit floats. An vector with 1536 dimensions requires 1536 * 32 bits of storage. After applying BQ, the same vector requires 1536 bits of storage. When the vectors have high dimensionality, BQ vectors are unique enough to preserve nuances even after such high compression.
 
 ### Documentation pages
 
