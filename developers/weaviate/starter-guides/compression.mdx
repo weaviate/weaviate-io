@@ -8,13 +8,15 @@ image: og/docs/compression.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page discusses compression methods that you can use to lower system requirements and save on infrastructure costs.
+Use compression to lower system requirements and save on infrastructure costs.
+
+## Overview
 
 Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate creates uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) vector indexes. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
 
 In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data.
 
-For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
+This page discusses compression methods. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
 ## Compression methods
 
