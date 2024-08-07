@@ -59,15 +59,15 @@ Performance includes speed and recall. In real world systems, these factors have
 
 #### Cost
 
-All compression algorithms control costs the same way. They reduce the size of the vector indexes. Smaller indexes that run in RAM need fewer resources so you spend less money.
+These compression algorithms all help to control costs the same way. They reduce the size of the vector indexes. Smaller indexes need fewer resources so you spend less money.
 
-Compressed indexes use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
+Compressed indexes use less RAM when they are loaded in memory, however they also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. This means increased disk storage. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
 
 The cost savings are obvious with in memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
 
-- Uncompressed data is roughly 7x greater than PQ compressed data.
-- Uncompressed data is roughly 4x greater than SQ compressed data.
-- Uncompressed data is roughly 32x greater than BQ compressed data.
+- Uncompressed data size is roughly 7x greater than PQ compressed data.
+- Uncompressed data size is roughly 4x greater than SQ compressed data.
+- Uncompressed data size is roughly 32x greater than BQ compressed data.
 
 For additional details, refer to the [blog posts](#blog-posts).
 
