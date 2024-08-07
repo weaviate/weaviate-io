@@ -118,11 +118,11 @@ BQ doesn't require a training step, however it can only be enabled when you crea
 Most applications benefit from compression.
 
 - The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, uncompressed collections can be 5 to 8 times as expensive as compressed collections.
-- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster then the uncompressed data.
-- If you have specialized needs and a very large data set, consider PQ compression. PQ compression is configurable, but it requires more expertise to tune well than SQ or BQ.
-- Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are several times faster than searches with uncompressed vectors.
+- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster then the uncompressed equivalent.
+- If you have specialized needs and a very large data set, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
+- Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are several times faster than searches with uncompressed vectors. Recall is similar to uncompressed data.
 
-Finally, for collections that are small, but that are expected to grow, consider a dynamic index. Configure the collection to use BQ compression while the index is flat and SQ compression when the collection evolves from a flat index to an HNSW index.
+Finally, for collections that are small, but that are expected to grow, consider a dynamic index. Configure the collection to use BQ compression while the index is flat and SQ compression when the collection grow large enough to move from a flat index to an HNSW index.
 
 ## Related pages
 
