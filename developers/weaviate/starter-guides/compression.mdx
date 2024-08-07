@@ -46,12 +46,7 @@ This table shows which compression algorithm is available for each index type.
 | SQ | Yes | No | Yes |
 | BQ | Yes | Yes | Yes |
 
-- PQ is only available with HNSW indexes.
-- SQ is only available with HNSW indexes
-- BQ is available with [Flat indexes](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) and HNSW indexes.
-
-The [dynamic index](/developers/weaviate/config-refs/schema/vector-index#dynamic-indexes) is new in v1.25. This type of index is a flat index
-until a collection reaches a threshold size. When the collection grows larger than the threshold size, the default is 10,000 objects, the collection is automatically reindexed and converted to an HNSW index.
+The [dynamic index](/developers/weaviate/config-refs/schema/vector-index#dynamic-indexes) is new in v1.25. This type of index is a [flat index](/developers/weaviate/config-refs/schema/vector-index#flat-indexes) until a collection reaches a threshold size. When the collection grows larger than the threshold size, the default is 10,000 objects, the collection is automatically reindexed and converted to an HNSW index.
 
 ### Cost, recall and speed
 
