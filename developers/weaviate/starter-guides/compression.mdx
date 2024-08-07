@@ -79,15 +79,15 @@ A compressed vector has less information than the full, uncompressed vector. A v
 
 To improve recall in BQ and SQ, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This followup search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is still very fast. Most importantly, searching the uncompressed vectors greatly improves recall.
 
-PQ has tunable search parameters that can increase the size of the candidate pool. The mechanism is different, but the effect is the same. With proper tuning you can configure your searches to return a vector candidate pool that boosts recall.
+PQ has tunable search parameters that can increase the size of the candidate pool. The mechanism is different, but the effect is the same as over-fetching in SQ and BQ. You can configure your PQ searches to return a vector candidate pool that boosts recall to meet your application requirements.
 
 The over-fetching technique, also call rescoring, means you get the benefits of compression without losing the precision of an uncompressed vector search.
 
 #### Query speed
 
-Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors to boost recall, but this cost is small compared to the cost of searching a large, uncompressed data set.
+Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. After Weaviate creates a candidate list, there is a small time cost to search the uncompressed candidate vectors. This cost is small compared to the cost of searching a large, uncompressed data set, and the improved recall justifies the time spent.
 
-Each compression method has it's own characteristics with regard to speed.
+Each compression method has its own characteristics with regard to speed.
 
 - PQ indexes have response rates that are similar to uncompressed indexes as recall approaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes. Both indexes handle about 200 queries per second (QPS).
 
