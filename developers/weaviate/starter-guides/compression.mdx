@@ -73,9 +73,11 @@ For additional details, refer to the [blog posts](#blog-posts).
 
 #### Recall
 
-Recall measures how well an algorithm finds the true positive matches in a data set. A compressed vector has less information than the full, uncompressed vector. A vector that would match a search might be missed if key information is missing from the compressed vector. That lowers recall.
+Recall measures how well an algorithm finds true positive matches in a data set.
 
-To improve recall in BQ and SQ, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is very fast and it greatly improves recall.
+A compressed vector has less information than the full, uncompressed vector. A vector that would match a search might be missed if key information is missing from the compressed vector. That lowers recall.
+
+To improve recall in BQ and SQ, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate searches the corresponding uncompressed vector for a match. This followup search is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is still very fast. Most importantly, searching the uncompressed vectors greatly improves recall.
 
 PQ has tunable search parameters that can increase the size of the candidate pool. The mechanism is different, but the effect is the same. With proper tuning you can configure your searches to return a vector candidate pool that boosts recall.
 
