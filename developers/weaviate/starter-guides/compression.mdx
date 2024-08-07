@@ -77,9 +77,21 @@ PQ has tunable search parameters that can increase the size of the candidate poo
 
 The over-fetching technique, also call rescoring, means you get the benefits of compression without losing the precision of an uncompressed vector search.
 
-#### Speed
+#### Query speed
 
-Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors, but this is small compared to the cost of searching a large uncompressed data set.
+Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. There is a small time cost when Weaviate searches the uncompressed candidate vectors to boost recall, but this cost is small compared to the cost of searching a large, uncompressed data set.
+
+Each compression method has it's own characteristics with regard to speed.
+
+- PQ indexes have response rates that are similar to uncompressed indexes as recall approaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes. Both indexes handle about 200 queries per second (QPS).
+
+- BQ makes use of fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. Searches of BQ compressed data can be as much as [10 to 20 times as fast](/binary-quantization#-performance-improvements-with-bq) as similar searches of uncompressed data and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
+
+- SQ is new in v1.26. SQ significantly improves search speeds. It is faster than PQ, perhaps 3 to 4 times as fast as searching uncompressed data. SQ a higher resolution than BQ which helps recall. Look for an upcoming blog post that discusses the tradeoffs with SQ compression.
+
+SQ and BQ both have optional vector caches. Use these configurable caches to load frequently used, uncompressed vectors into memory to improve overall search times.
+
+#### Import speed
 
 Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index is faster since there is less data to load.
 
