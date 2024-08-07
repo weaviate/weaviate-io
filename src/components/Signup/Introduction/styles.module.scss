@@ -1,0 +1,437 @@
+.container {
+  padding: 0rem 0rem 0rem 2rem;
+
+  @media screen and (max-width: 780px) {
+    padding: 0rem;
+  }
+}
+
+.test {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.header {
+  color: var(--ifm-link-color);
+}
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin: 0;
+}
+.box {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: row;
+
+  h3 {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 680px) {
+    text-align: left;
+    margin: auto;
+    width: auto;
+    color: #130c49;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.opacity {
+  opacity: 35%;
+}
+
+.investorLogos {
+  flex: 1 10%;
+
+  justify-content: center;
+  background: #130c49;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.975rem */
+  }
+
+  p {
+    color: #c1cbda;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    width: 26.25rem;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
+
+.signUp {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.investorsContainer {
+  background: #131144;
+
+  background-image: url('/img/site/signup-background.png');
+  background-size: cover;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 780px) {
+    background-size: contain;
+    background-position-y: 40%;
+    background-repeat: no-repeat;
+  }
+}
+
+.investorBox {
+  flex: 1;
+  padding: 3rem;
+
+  background-image: url('/img/site/signup-background.png');
+  background-size: cover;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+
+  img {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.975rem */
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: #130c49;
+    width: 90%;
+  }
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  ul {
+    color: #130c49;
+  }
+}
+
+.logoBox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 30px 0px;
+
+  .logo {
+    background-image: url('/img/site/weaviate-logo-flat.svg');
+    width: 3.25069rem;
+    height: 1.96206rem;
+    flex-shrink: 0;
+  }
+
+  span {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.16694rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+.investorButton {
+  margin-top: 25px;
+}
+
+.g2Diagram {
+  background: url('/img/site/weaviate-g2.svg');
+
+  background-size: cover;
+  max-width: 418px;
+  width: 100%;
+  height: auto;
+  min-height: 343px;
+}
+
+.alertBox {
+  background: #61bd73;
+  text-align: center;
+  height: 4.6875rem;
+  width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    height: 7rem;
+  }
+
+  p {
+    margin: auto;
+  }
+}
+
+.typeContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.typeBox {
+  width: calc(100% - 53px);
+  height: auto;
+
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 1200px) {
+    width: calc(33.3333% - 40px);
+  }
+
+  @media screen and (max-width: 900px) {
+    width: calc(50% - 40px);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
+}
+
+.typeIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .homeIcon {
+    background-image: url('/img/site/cloud-hybrid-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .ragIcon {
+    background-image: url('/img/site/homepage-rag-icon.svg');
+  }
+  .genIcon {
+    background-image: url('/img/site/homepage-gen-icon.svg');
+  }
+
+  .infraIcon {
+    background-image: url('/img/site/hp-infrastructure-icon.svg');
+  }
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    margin: 0;
+  }
+}
+
+.typeText {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-between;
+  margin-left: 43px;
+
+  p {
+    color: #130c49;
+
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  a {
+    color: #61bd73;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+    text-decoration-line: underline;
+    margin: 15px 0px;
+  }
+}
+
+.bottomBar {
+  height: 12rem;
+
+  display: flex;
+  place-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    color: #130c49;
+
+    @media screen and (max-width: 950px) {
+      text-align: center;
+      br {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 950px) {
+    height: 20rem;
+  }
+}
+
+.innerBar {
+  height: 6em;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  /* gap: 10px; */
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 var(--ifm-spacing-horizontal);
+  width: 100%;
+  max-width: var(--ifm-container-width-xl);
+
+  @media screen and (max-width: 950px) {
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    padding: 0 var(--ifm-spacing-horizontal);
+    width: 100%;
+    max-width: var(--ifm-container-width-xl);
+    justify-items: left;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+
+.innerBar > p {
+  text-align: left;
+  padding: 20px 0;
+
+  width: 200px;
+
+  @media screen and (max-width: 950px) {
+    text-align: left;
+    padding: 20px 0;
+    color: #ffffff;
+    grid-column: 1 / span 2;
+    width: auto;
+  }
+}
+
+.customerLogo {
+  background-image: url('/img/site/redhat-logo.svg');
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 8rem;
+  height: 3rem;
+  margin: 0px 10px;
+
+  @media screen and (max-width: 950px) {
+    grid-row: 1;
+    grid-column: auto;
+  }
+}
+
+.redhatLogo {
+  background-image: url('/img/site/red-hat-logo.svg');
+  background-position: center;
+}
+
+.stackoverflowLogo {
+  background-image: url('/img/site/stack-overflow-logo.svg');
+  background-position: center;
+}
+
+.instabaseLogo {
+  background-image: url('/img/site/instabase-logo.svg');
+  background-position: center;
+}
+
+.shippoLogo {
+  background-image: url('/img/site/shippo-logo.svg');
+  background-position: center;
+}
+
+.mulinyLogo {
+  background-image: url('/img/site/muliny-logo.svg');
+  background-position: center;
+}
+
+.netappLogo {
+  background-image: url('/img/site/netapp.svg');
+  background-position: center;
+}
+
+.logoSection {
+  display: contents;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: hidden;
+    column-gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-width: 330px;
+  }
+
+  @keyframes scrollSideCustomers {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
