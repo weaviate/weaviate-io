@@ -89,25 +89,27 @@ Compressed vectors are significantly smaller than uncompressed vectors. It is mu
 
 Each compression method has its own characteristics with regard to speed.
 
-- PQ indexes have response rates that are similar to uncompressed indexes as recall approaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes. Both indexes handle about 200 queries per second (QPS).
+- PQ indexes have response rates approach the response rates of uncompressed indexes when recall reaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes. Both indexes handle about 200 queries per second (QPS).
 
-- BQ makes use of fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. Searches of BQ compressed data can be as much as [10 to 20 times as fast](/binary-quantization#-performance-improvements-with-bq) as similar searches of uncompressed data and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
+- BQ uses fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. BQ's bitwise calculations are extremely efficient. Searches of BQ compressed data can be as much as [10 to 20 times as fast](/binary-quantization#-performance-improvements-with-bq) as similar searches of uncompressed data and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
 
-- SQ is new in v1.26. SQ significantly improves search speeds. It is faster than PQ, perhaps 3 to 4 times as fast as searching uncompressed data. SQ a higher resolution than BQ which helps recall. Look for an upcoming blog post that discusses the tradeoffs with SQ compression.
+- SQ significantly improves search speeds. SQ is new in v1.26. It is faster than PQ, perhaps 3 to 4 times as fast as searching uncompressed data. SQ has a higher dimensional resolution than BQ that helps recall. Look for an upcoming blog post that discusses the tradeoffs with SQ compression.
 
 SQ and BQ both have optional vector caches. Use these configurable caches to load frequently used, uncompressed vectors into memory to improve overall search times.
 
 #### Import speed
 
-Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index is faster since there is less data to load.
+Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index into memory is faster since there is less data to load.
 
-Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) feature. When the async index is enabled, indexing takes place as a background process. You can begin other tasks while indexing continues in the background. This means you are able to begin other tasks sooner.
+Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) feature which improves the import process. When asynchronous indexing is enabled, indexing takes place as a background process. You can begin other tasks without having to wait for the entire import to be indexed. This means you are able to begin other tasks sooner.
 
 ### Activate compression
 
-PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. You can enable PQ or SQ when you define your collection. When you have imported a large enough training set, the algorithm will compress your data.
+PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. When you have imported a large enough training set, the algorithm will compress your data.
 
-SQ has to be enabled when you create the collection. If you have async indexing and [AutoPQ enabled](/developers/weaviate/configuration/compression/pq-compression#configure-autopq), PQ compression can be started anytime. If not, you should only enable PQ after you have imported enough objects to [train the algorithm](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq).
+SQ has to be enabled when you create the collection.
+
+If you have async indexing and [AutoPQ enabled](/developers/weaviate/configuration/compression/pq-compression#configure-autopq), PQ compression can be started anytime. If not, you should only enable PQ after you have imported enough objects to [train the algorithm](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq).
 
 BQ doesn't require a training step, however it can only be enabled when you create your collection. BQ cannot be enabled after you start to add data to the collection.
 
