@@ -12,11 +12,11 @@ Use compression to lower system requirements and save on infrastructure costs.
 
 ## Overview
 
-Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats, a single vector with 1536 dimensions uses about 6 KB of storage.
+Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the storage costs can be significant.
 
 Weaviate creates indexes to search the vector space for your collection. By default, the index is an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
 
-In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data. Updating the defaults can result in significant cost savings and performance improvements.
+In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data, and still maintain high levels of recall. Updating the default settings can result in significant cost savings and performance improvements.
 
 This page discusses compression methods. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
