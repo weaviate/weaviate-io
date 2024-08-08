@@ -3,7 +3,7 @@ title: Modal
 sidebar_position: 1
 ---
 
-Modal provides a serverless platform that enables developers to easily deploy and automatically scale applications with on-demand access to GPUs and a custom high-performance container runtime.
+[Modal](https://modal.com/) provides a serverless platform that enables developers to easily deploy and automatically scale applications with on-demand access to GPUs and a custom high-performance container runtime.
 
 ## Modal and Weaviate
 Weaviate integrates with Modal by leveraging its serverless infrastructure for the fast generation of embeddings and generative model calls. The [Weaviate client can be hosted](https://modal.com/docs/examples/vector-analogies-wikipedia#deploy-a-serverless-read-only-weaviate-client-with-modal) on Modal to dynamically scale based on workload demands. 
