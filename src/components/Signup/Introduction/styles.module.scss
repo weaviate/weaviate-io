@@ -38,6 +38,10 @@ p {
     flex-direction: column;
     height: auto;
   }
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column-reverse;
+  }
 }
 
 .opacity {
@@ -68,7 +72,7 @@ p {
 
   p {
     color: #c1cbda;
-    font-family: Inter;
+
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -81,7 +85,7 @@ p {
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
       0px 0px 1px 0px rgba(0, 0, 0, 0.25);
     display: flex;
-    width: 26.25rem;
+    width: 100%;
     padding: 0.75rem;
     justify-content: center;
     align-items: center;
@@ -94,13 +98,29 @@ p {
     font-weight: 600;
     line-height: normal;
   }
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.3125rem */
+  }
 }
 
 .signUp {
-  width: 500px;
+  width: 66%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+    padding: 20px;
+    margin: 30px 0px;
+  }
 }
 
 .investorsContainer {
@@ -138,6 +158,11 @@ p {
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 2.975rem */
+    width: 60%;
+
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
   }
 
   p {
@@ -159,7 +184,7 @@ p {
   display: flex;
   gap: 10px;
   align-items: center;
-  margin: 30px 0px;
+  margin: 0px 0px 30px 0px;
 
   .logo {
     background-image: url('/img/site/weaviate-logo-flat.svg');
@@ -216,23 +241,13 @@ p {
 .typeBox {
   width: calc(100% - 53px);
   height: auto;
-
   flex-shrink: 0;
   border-radius: 0.3125rem;
-
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1200px) {
-    width: calc(33.3333% - 40px);
-  }
-
-  @media screen and (max-width: 900px) {
-    width: calc(50% - 40px);
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 90%;
+  @media screen and (max-width: 950px) {
+    width: 100%;
   }
 }
 
@@ -250,10 +265,10 @@ p {
   }
 
   .ragIcon {
-    background-image: url('/img/site/homepage-rag-icon.svg');
+    background-image: url('/img/site/cloud-pricing-icon-02.svg');
   }
   .genIcon {
-    background-image: url('/img/site/homepage-gen-icon.svg');
+    background-image: url('/img/site/cloud-pricing-icon-03.svg');
   }
 
   .infraIcon {
@@ -299,7 +314,7 @@ p {
 }
 
 .bottomBar {
-  height: 12rem;
+  height: 9rem;
 
   display: flex;
   place-content: center;
@@ -335,7 +350,7 @@ p {
   width: 100%;
   max-width: var(--ifm-container-width-xl);
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1150px) {
     height: auto;
     display: flex;
     margin: 0 auto;
@@ -343,7 +358,7 @@ p {
     width: 100%;
     max-width: var(--ifm-container-width-xl);
     justify-items: left;
-    flex-direction: column;
+
     justify-content: space-evenly;
     align-items: center;
     white-space: nowrap;
@@ -365,6 +380,17 @@ p {
   }
 }
 
+.secondLine {
+  height: 2em;
+  gap: 40px;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+
+  @media screen and (max-width: 950px) {
+    margin-bottom: 33px;
+  }
+}
+
 .customerLogo {
   background-image: url('/img/site/redhat-logo.svg');
 
@@ -375,9 +401,12 @@ p {
   height: 3rem;
   margin: 0px 10px;
 
-  @media screen and (max-width: 950px) {
-    grid-row: 1;
-    grid-column: auto;
+  @media screen and (max-width: 1300px) {
+    width: 4rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 5rem;
   }
 }
 
@@ -401,9 +430,25 @@ p {
   background-position: center;
 }
 
-.mulinyLogo {
-  background-image: url('/img/site/muliny-logo.svg');
+.netappLogo {
+  background-image: url('/img/site/netapp.svg');
   background-position: center;
+}
+
+.mulinyLogo {
+  background-image: url('/img/site/mutiny-hp-logo.svg');
+  background-position: center;
+  width: 7rem;
+  height: 2.5rem;
+  @media screen and (max-width: 1300px) {
+    width: 4rem;
+    height: 2rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 5rem;
+    height: 2rem;
+  }
 }
 
 .netappLogo {
@@ -411,6 +456,15 @@ p {
   background-position: center;
 }
 
+.redbull {
+  background-image: url('/img/site/redbull-hp-logo.svg');
+  background-position: center;
+}
+
+.writesonic {
+  background-image: url('/img/site/writesonic-hp-logo.svg');
+  background-position: center;
+}
 .logoSection {
   display: contents;
 

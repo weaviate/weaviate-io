@@ -48,7 +48,7 @@ export default function introduction() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={`${styles.homeIcon} ${styles.ragIcon}`}></div>
                 <h2>Build AI applications with less hassle</h2>
               </div>
               <div className={styles.typeText}>
@@ -61,7 +61,7 @@ export default function introduction() {
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
+                <div className={`${styles.homeIcon} ${styles.genIcon}`}></div>
                 <h2>Focus on innovating, not managing</h2>
               </div>
               <div className={styles.typeText}>
@@ -85,10 +85,22 @@ export default function introduction() {
                     className={`${styles.customerLogo} ${styles.redhatLogo}`}
                   />
                   <div
-                    className={`${styles.customerLogo} ${styles.netappLogo}`}
+                    className={`${styles.customerLogo} ${styles.mulinyLogo}`}
                   />
                   <div
                     className={`${styles.customerLogo} ${styles.shippoLogo}`}
+                  />
+                </div>
+              </div>
+
+              <div className={`${styles.innerBar} ${styles.secondLine}`}>
+                <div className={styles.logoSection}>
+                  <div className={`${styles.customerLogo} ${styles.redbull}`} />
+                  <div
+                    className={`${styles.customerLogo} ${styles.writesonic}`}
+                  />
+                  <div
+                    className={`${styles.customerLogo} ${styles.netappLogo}`}
                   />
                 </div>
               </div>
@@ -97,11 +109,8 @@ export default function introduction() {
         </div>
         <div className={styles.investorLogos}>
           <div className={styles.signUp}>
-            <h2>Sign up to Weaviate Cloud</h2>
-            <p>
-              Create an account and get access to Weaviate Cloud console, apps,
-              tools and more.
-            </p>
+            <h2>Accelerate your AI projects</h2>
+            <p>Sign up for a free 2-week trial of Weaviate Serverless Cloud.</p>
             <Link to="/signup" className={styles.button}>
               Create Account
             </Link>
