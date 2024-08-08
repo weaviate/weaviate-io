@@ -65,9 +65,9 @@ Compressed indexes use less RAM when they are loaded into memory, however they a
 
 The cost savings are obvious with in-memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
 
-- Uncompressed data size is roughly 7x greater than PQ compressed data.
-- Uncompressed data size is roughly 4x greater than SQ compressed data.
-- Uncompressed data size is roughly 32x greater than BQ compressed data.
+- PQ compressed data uses 85% less memory than uncompressed data.
+- SQ compressed data uses 75% less memory than uncompressed data.
+- BQ compressed data uses 97% less memory than uncompressed data.
 
 #### Recall
 
@@ -124,16 +124,23 @@ Finally, for collections that are small, but that are expected to grow, consider
 
 ## Related pages
 
-For more information on compression, see these documentation pages and blog posts.
+For more information, see these documentation pages and blog posts.
 
 ### Documentation pages
 
-To
-[Product Quantization (PQ)](/developers/weaviate/configuration/bq-compression)
-[Binary Quantization (BQ)](/developers/weaviate/configuration/pq-compression)
+To enable compression, follow the steps on these pages:
+
+[Product quantization (PQ)](/developers/weaviate/configuration/bq-compression)
+[Scalar quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
+[Binary quantization (BQ)](/developers/weaviate/configuration/pq-compression)
+
+For more documentation details, see:
+
 [Compression discussion](/developers/weaviate/concepts/vector-quantization)
 
 ### Blog posts
+
+For in-depth discussions, see:
 
 [PQ and memory reduction](/blog/pq-rescoring)
 [BQ and memory reduction](/blog/binary-quantization)
