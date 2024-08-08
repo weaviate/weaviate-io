@@ -191,10 +191,22 @@ export default function HomepageHeader() {
                   className={`${styles.customerLogo} ${styles.redhatLogo}`}
                 />
                 <div
-                  className={`${styles.customerLogo} ${styles.netappLogo}`}
+                  className={`${styles.customerLogo} ${styles.mulinyLogo}`}
                 />
                 <div
                   className={`${styles.customerLogo} ${styles.shippoLogo}`}
+                />
+              </div>
+            </div>
+
+            <div className={`${styles.innerBar} ${styles.secondLine}`}>
+              <div className={styles.logoSection}>
+                <div className={`${styles.customerLogo} ${styles.redbull}`} />
+                <div
+                  className={`${styles.customerLogo} ${styles.writesonic}`}
+                />
+                <div
+                  className={`${styles.customerLogo} ${styles.netappLogo}`}
                 />
               </div>
             </div>
