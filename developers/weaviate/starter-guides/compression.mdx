@@ -24,9 +24,14 @@ This page discusses compression methods. For more on indexes, see [Vector indexi
 
 These compression algorithms are available:
 
-- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ uses segments to reduce the size of the vector embedding. Each segment represents a section of the original embedding. PQ uses training data to determine the segment characteristics.
-- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ uses buckets to reduce the size of the vector representation. SQ uses training data to set the bucket size, then, SQ maps each 32 bit dimension into an 8 bit bucket.
+- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ reduces the size of the vector embedding in two ways. PQ creates segments to reduce the number of dimensions, and segments are stored as 8 bit integers instead of 32 bit floats. Compared to dimensions, there are fewer segments and each segment is much smaller than a single dimension.
+
+  The PQ compression algorithm is [configurable](/developers/weaviate/config-refs/schema/vector-index#pq-configuration-parameters).
+You control the number of segments, segment granularity, and the size of the training set.
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ reduces the size of each vector dimension from 32 bits to 8 bits. SQ trains on your data to create custom buckets for each dimension. This training helps SQ to preserve data characteristics when it maps 32 bit dimensions into 8 bit buckets.
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. It works best for vectors with high dimensionality.
+
+When you compress data, the quality of your results depends heavily on the characteristics of the uncompressed data. The embedding model also plays a role in result quality. Before moving to production, experiment with different compression settings and models to find the combination that works best with your data set.
 
 ## Compression considerations
 
@@ -56,15 +61,13 @@ Performance includes speed and recall. In real world systems, these factors have
 
 These compression algorithms all help to control costs the same way. They reduce the size of the vector indexes. Smaller indexes need fewer resources so you spend less money.
 
-Compressed indexes use less RAM when they are loaded in memory, however they also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. This means increased disk storage. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
+Compressed indexes use less RAM when they are loaded into memory, however they also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. This means increased disk storage. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
 
-The cost savings are obvious with in memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
+The cost savings are obvious with in-memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
 
 - Uncompressed data size is roughly 7x greater than PQ compressed data.
 - Uncompressed data size is roughly 4x greater than SQ compressed data.
 - Uncompressed data size is roughly 32x greater than BQ compressed data.
-
-For additional details, refer to the [blog posts](#blog-posts).
 
 #### Recall
 
@@ -84,7 +87,7 @@ Compressed vectors are significantly smaller than uncompressed vectors. It is mu
 
 Each compression method has its own characteristics with regard to speed.
 
-- PQ indexes have response rates approach the response rates of uncompressed indexes when recall reaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes. Both indexes handle about 200 queries per second (QPS).
+- PQ indexes have response rates approach the response rates of uncompressed indexes when recall reaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes.
 
 - BQ uses fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. BQ's bitwise calculations are extremely efficient. Searches of BQ compressed data can be as much as [10 to 20 times as fast](/binary-quantization#-performance-improvements-with-bq) as similar searches of uncompressed data and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
 
@@ -94,9 +97,9 @@ SQ and BQ both have optional vector caches. Use these configurable caches to loa
 
 #### Import speed
 
-Importing and compressing vectors takes slightly longer than just importing them, but this is a one time cost. In contrast, loading a compressed index into memory is faster since there is less data to load.
+Importing and compressing vectors takes slightly longer than importing uncompressed vectors, but this is a one time cost. In contrast, loading a compressed index into memory is faster since there is less data to load.
 
-Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) feature which improves the import process. When asynchronous indexing is enabled, indexing takes place as a background process. You can begin other tasks without having to wait for the entire import to be indexed. This means you are able to begin other tasks sooner.
+Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) feature which effectively speeds up the import process. Consider enabling asynchronous indexing to improve imports.
 
 ### Activate compression
 
@@ -121,15 +124,17 @@ Finally, for collections that are small, but that are expected to grow, consider
 
 ## Related pages
 
-For more information on compression, see these pages.
+For more information on compression, see these documentation pages and blog posts.
 
 ### Documentation pages
 
+To
 [Product Quantization (PQ)](/developers/weaviate/configuration/bq-compression)
 [Binary Quantization (BQ)](/developers/weaviate/configuration/pq-compression)
 [Compression discussion](/developers/weaviate/concepts/vector-quantization)
 
 ### Blog posts
+
 [PQ and memory reduction](/blog/pq-rescoring)
 [BQ and memory reduction](/blog/binary-quantization)
 [PQ and HNSW explained](/blog/ann-algorithms-hnsw-pq)
