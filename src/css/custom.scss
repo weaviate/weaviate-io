@@ -728,12 +728,12 @@ button.close {
   margin-bottom: 1rem;
   margin-left: 10px;
 }
-
+/* 
 .custom-page .footer__col {
   white-space: nowrap;
 }
 
-/* .custom-page *:not(input):focus {
+.custom-page *:not(input):focus {
   border-radius: 0.3125rem;
   outline: 1px solid #130c49;
   background: rgb(15, 0, 50);
@@ -749,9 +749,11 @@ Dropdown style removed.
 .custom-page .footer__links:before {
   content: '';
   background-image: url('/img/site/weaviate-nav-logo-dark.svg');
-  background-size: cover;
-  width: 139px;
-  height: 45px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 11rem;
+  height: 11rem;
   top: -11px;
   margin: -3px 69px 0px 0px;
   position: relative;
