@@ -28,10 +28,10 @@ These compression algorithms are available:
 
   The PQ compression algorithm is [configurable](/developers/weaviate/config-refs/schema/vector-index#pq-configuration-parameters).
 You control the number of segments, segment granularity, and the size of the training set.
-- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ reduces the size of each vector dimension from 32 bits to 8 bits. SQ trains on your data to create custom buckets for each dimension. This training helps SQ to preserve data characteristics when it maps 32 bit dimensions into 8 bit buckets.
-- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. It works best for vectors with high dimensionality.
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ reduces the size of each vector dimension from 32 bits to 8 bits. SQ trains on your data to create custom buckets for each dimension. This training helps SQ to preserve data characteristics when it maps information from the 32 bit dimensions into 8 bit buckets.
+- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. This compression algorithm works best for vectors with high dimensionality.
 
-When you compress data, the quality of your results depends heavily on the characteristics of the uncompressed data. The embedding model also plays a role in result quality. Before moving to production, experiment with different compression settings and models to find the combination that works best with your data set.
+When you compress data, the quality of your results depends heavily on the characteristics of the uncompressed data. The embedding model also plays a role in result quality. Before moving to production, experiment with different compression settings and embedding models to find the combination that works best with your data set.
 
 ## Compression considerations
 
@@ -61,7 +61,7 @@ Performance includes speed and recall. In real world systems, these factors have
 
 These compression algorithms all help to control costs the same way. They reduce the size of the vector indexes. Smaller indexes need fewer resources so you spend less money.
 
-Compressed indexes use less RAM when they are loaded into memory, however they also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. This means increased disk storage. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
+Compressed indexes use less RAM when they are loaded into memory, however they also use more disk space than uncompressed vectors. Weaviate stores the uncompressed vector and the compressed vector index. This means increased disk storage costs. However, since the cost of RAM is orders of magnitude higher than the cost of disk, the overall cost to use a compressed index is much lower than the cost of using an uncompressed index.
 
 The cost savings are obvious with in-memory indexes such as HNSW. The greater the RAM reduction, the smaller the costs.
 
@@ -103,7 +103,7 @@ Starting in v1.22, Weaviate has an optional, [asynchronous indexing](/developers
 
 ### Activate compression
 
-PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. When you have imported a large enough training set, the algorithm will compress your data.
+PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. When you have imported a large enough training set, the algorithm compresses your data.
 
 SQ has to be enabled when you create the collection.
 
@@ -120,7 +120,7 @@ Most applications benefit from compression.
 - If you have specialized needs and a very large data set, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
 - Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are several times faster than searches with uncompressed vectors. Recall is similar to uncompressed data.
 
-Finally, for collections that are small, but that are expected to grow, consider a dynamic index. Configure the collection to use BQ compression while the index is flat and SQ compression when the collection grow large enough to move from a flat index to an HNSW index.
+For collections that are small, but that are expected to grow, consider a dynamic index. In addition to setting the dynamic index type, configure the collection to use BQ compression while the index is flat and SQ compression when the collection grows large enough to move from a flat index to an HNSW index.
 
 ## Related pages
 
@@ -148,7 +148,9 @@ For in-depth discussions, see:
 
 ### Pricing calculator
 
-[Weaviate cloud pricing](https://weaviate.io/pricing)
+To review Weaviate Cloud pricing for compressed and uncompressed data, see:
+
+[Weaviate cloud pricing calculator](https://weaviate.io/pricing)
 
 ## Questions and feedback
 
