@@ -115,8 +115,8 @@ BQ doesn't require a training step, however it can only be enabled when you crea
 
 Most applications benefit from compression.
 
-- The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, uncompressed collections can be 5 to 8 times as expensive as compressed collections.
-- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster then the uncompressed equivalent.
+- The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, compressed collections can be more than 80% cheaper than uncompressed collections.
+- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster than the uncompressed equivalent.
 - If you have specialized needs and a very large data set, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
 - Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are several times faster than searches with uncompressed vectors. Recall is similar to uncompressed data.
 
@@ -148,7 +148,3 @@ To
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-
-
-## CUT AND PASTE
-Raw vectors can be very large. Vector dimensions are typically stored as arrays of 32 bit numbers. Vectors are indexed and the index is loaded in RAM memory so you can search your data quickly. Unfortunately, RAM is expensive and RAM requirements increase quickly for high-dimension vectors. Weaviate provides compression methods that you can tune to balance cost and performance.
