@@ -19,8 +19,8 @@ All the notebooks and code examples are on [Weaviate Recipes](https://github.com
 The ecosystem is divided into these categories:
 
 * **Cloud Hyperscalers** - Large-scale computing and storage
-* **Container Infrastructure** - Run and scale containerized applications
-* **Data Pipeline** - Data ingestion and web scraping 
+* **Compute Infrastructure** - Run and scale containerized applications
+* **Data Platforms** - Data ingestion and web scraping 
 * **LLM Frameworks** - Build generative AI applications
 * **Observability and Evaluation** - Monitor and analyze generative AI workflows
 
@@ -31,7 +31,7 @@ The ecosystem is divided into these categories:
 | Company Category | Companies |
 |------------------|-----------|
 | Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
-| Container Infrastructure | Modal, Replicate |
-| Data Pipeline | Spark, Unstructured, Firecrawl |
+| Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
+| Data Platforms | Confluent, Spark, Unstructured, Firecrawl |
 | LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |
-| Observability and Evaluation | Arize, Langtrace, Nomic, Ragas, Weights & Biases |
+| Observability and Evaluation | Arize, Langtrace, LangWatch, Nomic, Ragas, Weights & Biases |
