@@ -13,7 +13,7 @@ Weaviate integrates with GCP infrastructure and services like Google [AI Studio]
 
 
 ## Our Resources 
-**Hands on Learning**: Content framed to build your technical understanding with end-to-end tutorials.
+**Hands on Learning**: Build your technical understanding with end-to-end tutorials.
 
 | Topic | Description | Resource | 
 | --- | --- | --- |

@@ -24,9 +24,9 @@ retriever_module = WeaviateRM("WeaviateBlogChunk", # collection name
 Here are a few resources on using DSPy from the Weaviate team!
 
 The resources are broken into two categories: 
-1. [**Hands on Learning**](#hands-on-learning): Content framed to build your technical understanding with end-to-end tutorials. 
+1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
 
-2. [**Read and Listen**](#read-and-listen): Content designed to help develop your conceptual understanding of these technologies.
+2. [**Read and Listen**](#read-and-listen): Develop your conceptual understanding of these technologies.
 
 
 ### Hands on Learning 
