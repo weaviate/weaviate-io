@@ -5,6 +5,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py'
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
+import GoConnectCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go';
 
 
 <Tabs groupId="languages">
@@ -51,35 +52,12 @@ import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoe
 </TabItem>
 
 <TabItem value="go" label="Go">
-
-```go
-package main
-
-import (
-  "context"
-
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-  "github.com/weaviate/weaviate/entities/models"
-)
-
-func main() {
-  cfg := weaviate.Config{
-    Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
-    Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
-    Headers: map[string]string{
-      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
-    },
-  }
-
-  client, err := weaviate.NewClient(cfg)
-  if err != nil {
-      panic(err)
-  }
-}
-```
-
+<FilteredTextBlock
+  text={GoConnectCode}
+  startMarker="// START InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="go"
+/>
 </TabItem>
 {/* <TabItem value="java" label="Java">
 
