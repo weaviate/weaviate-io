@@ -392,7 +392,6 @@
 }
 
 .plans {
-  width: 270px;
   color: #ffffff;
   z-index: 1;
 
@@ -407,10 +406,12 @@
     font-size: 1.625rem;
     font-style: normal;
     font-weight: 700;
-    margin: 0px 0px 55px;
+    margin: 0px 0px 50px;
 
     @media screen and (max-width: 668px) {
       text-align: left;
+
+      margin: 0px 0px 28px;
     }
   }
 
@@ -431,6 +432,20 @@
     span {
       color: #ffffff;
     }
+  }
+}
+
+.priceText {
+  @media screen and (max-width: 1230px) {
+    margin-bottom: 33px !important;
+  }
+
+  @media screen and (max-width: 890px) {
+    margin-bottom: 0px !important;
+  }
+  @media screen and (max-width: 668px) {
+    margin-bottom: 13px !important;
+    width: 151px !important;
   }
 }
 
@@ -499,6 +514,14 @@
   margin-left: -35px;
   transform: translateY(73px);
   max-width: 1056px;
+
+  @media screen and (max-width: 1440px) {
+    max-width: 1144px;
+  }
+
+  @media screen and (max-width: 1308px) {
+    max-width: 1132px;
+  }
 
   @media screen and (max-width: 668px) {
     width: 95%;
