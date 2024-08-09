@@ -1,4 +1,4 @@
-// START GenerativeGroupExample
+// START GenerativeSearchGroupedTaskExample
 // Set these environment variables
 // WEAVIATE_URL      your Weaviate instance URL, without https prefix
 // WEAVIATE_API_KEY  your Weaviate instance API key
@@ -63,4 +63,4 @@ func main() {
 	fmt.Println(string(jsonOutput))
 }
 
-// END GenerativeGroupExample
+// END GenerativeSearchGroupedTaskExample
