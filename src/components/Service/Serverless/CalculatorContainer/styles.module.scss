@@ -445,7 +445,8 @@
   }
   @media screen and (max-width: 668px) {
     margin-bottom: 13px !important;
-    width: 151px !important;
+    width: 157px !important;
+    height: 64px !important;
   }
 }
 
@@ -530,12 +531,22 @@
 
 .line1 {
   transform: translateY(105px);
+
+  @media screen and (max-width: 668px) {
+    transform: translateY(97px);
+  }
 }
 .line2 {
   transform: translateY(180px);
+  @media screen and (max-width: 668px) {
+    transform: translateY(170px);
+  }
 }
 .line3 {
   transform: translateY(253px);
+  @media screen and (max-width: 668px) {
+    transform: translateY(240px);
+  }
 }
 
 .explanation {
