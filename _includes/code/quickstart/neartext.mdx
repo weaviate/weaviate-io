@@ -5,7 +5,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py'
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
-
+import GoNearText from '!!raw-loader!/_includes/code/quickstart/go-query-neartext.go';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -59,66 +59,22 @@ import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoe
 </TabItem>
 
 <TabItem value="js2" label="JS/TS Client v2">
-
 <FilteredTextBlock
   text={EndToEndTSCodeLegacy}
   startMarker="// NearTextExample"
   endMarker="// END NearTextExample"
   language="ts"
 />
-
 </TabItem>
 
 <TabItem value="go" label="Go">
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
-)
-
-func main() {
-  cfg := weaviate.Config{
-    Host:    "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
-    Scheme:  "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
-    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
-  }
-  client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
-
-  fields := []graphql.Field{
-    {Name: "question"},
-    {Name: "answer"},
-    {Name: "category"},
-  }
-
-  nearText := client.GraphQL().
-    NearTextArgBuilder().
-    WithConcepts([]string{"biology"})
-
-  result, err := client.GraphQL().Get().
-    WithClassName("Question").
-    WithFields(fields...).
-    WithNearText(nearText).
-    WithLimit(2).
-    Do(context.Background())
-  if err != nil {
-    panic(err)
-  }
-
-  fmt.Printf("%v", result)
-}
-```
-
+GoNearText
+<FilteredTextBlock
+  text={GoNearText}
+  startMarker="// START NearTextExample"
+  endMarker="// END NearTextExample"
+  language="java"
+/>
 </TabItem>
 {/* <TabItem value="java" label="Java">
 
