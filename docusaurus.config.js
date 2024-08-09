@@ -689,6 +689,11 @@ const config = {
                                 className: 'footer__title subtitle',
                             },
                             {
+                                label: 'Overview',
+                                to: '/partners',
+
+                            },
+                            {
                                 label: 'AWS',
                                 to: '/partners/aws',
 
@@ -703,15 +708,6 @@ const config = {
                                 to: '/partners/snowflake',
 
                             },
-                            {
-                                label: 'Become a Partner',
-                                to: '/partners',
-
-                            },
-                           
-                            
-
-
                         ],
                     },
 
