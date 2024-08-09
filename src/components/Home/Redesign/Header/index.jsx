@@ -208,6 +208,7 @@ export default function HomepageHeader() {
                 <div
                   className={`${styles.customerLogo} ${styles.netappLogo}`}
                 />
+                <div className={`${styles.customerLogo} ${styles.bunqLogo}`} />
               </div>
             </div>
           </div>
