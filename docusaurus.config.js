@@ -573,7 +573,7 @@ const config = {
                             },
                             {
                                 label: 'Demos',
-                                to: '/demos',
+                                to: 'community/demos',
                             },
                         ],
                     },
@@ -604,7 +604,7 @@ const config = {
                             },
                             {
                                 label: 'Podcasts',
-                                to: '/podcasts',
+                                to: '/podcast',
                             },
                             
                             {
@@ -638,10 +638,7 @@ const config = {
                                 label: 'Weaviate Hero Program',
                                 href: '/community',
                             },
-                            {
-                                label: 'Build With Weaviate',
-                                href: '/community/build-with-weaviate',
-                            },
+                           
                             {
                                 label: 'Forum',
                                 to: 'https://forum.weaviate.io/',
