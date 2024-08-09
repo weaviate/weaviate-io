@@ -501,6 +501,10 @@ const config = {
                                 to: '/workbench',
                             },
                             {
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
                                 label: 'Deployment',
                                 to: '#',
                                 className: 'footer__title subtitle',
@@ -521,12 +525,26 @@ const config = {
                                 label: 'Enablement',
                                 to: '/deployment/education-and-support',
                             },
+                            {
+                                label: 'Trust',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Security',
+                                to: '/security',
+                            },
+                            {
+                                label: 'Terms & Policies',
+                                to: '/service',
+                            },
                             
                         ],
                     },
                     {
                         title: 'Use Cases',
                         items: [
+                          
                             {
                                 label: 'RAG',
                                 to: '/RAG',
@@ -560,25 +578,8 @@ const config = {
                         ],
                     },
                     {
-                        title: 'Developers',
+                        title: 'Learn',
                         items: [
-                            {
-                                label: 'Documentation',
-                                to: '/developers/weaviate',
-                            },
-                            {
-                                label: 'Weaviate Cloud Docs',
-                                to: '/developers/wcs',
-                            },
-                            {
-                                label: 'GitHub',
-                                to: 'https://github.com/weaviate/weaviate',
-                            },
-                            {
-                                label: 'Learn',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
                             {
                                 label: 'Blog',
                                 to: '/blog',
@@ -605,11 +606,30 @@ const config = {
                                 label: 'Podcasts',
                                 to: '/podcasts',
                             },
-                        ],
-                    },
-                    {
-                        title: 'Engage',
-                        items: [
+                            
+                            {
+                                label: 'Build',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Documentation',
+                                to: '/developers/weaviate',
+                            },
+                            {
+                                label: 'Weaviate Cloud Docs',
+                                to: '/developers/wcs',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://github.com/weaviate/weaviate',
+                            },
+                        
+                            {
+                                label: 'Engage',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
                             {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
@@ -632,37 +652,13 @@ const config = {
                             },
                         ],
                     },
+                   
                     {
-                        title: 'Partners',
+                        title: 'About',
                         items: [
                            
                             {
-                                label: 'AWS',
-                                to: '/partners/aws',
-
-                            },
-                            {
-                                label: 'Google Cloud',
-                                to: '/partners/gcp',
-
-                            },
-                            {
-                                label: 'Snowflake',
-                                to: '/partners/snowflake',
-
-                            },
-                            {
-                                label: 'Become a Partner',
-                                to: '/partners',
-
-                            },
-                            {
                                 label: 'Company',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
-                            {
-                                label: 'About',
                                 to: '/company/about-us',
                             },
                             {
@@ -686,13 +682,31 @@ const config = {
                                 to: '/#contact-us',
                             },
                             {
-                                label: 'Security',
-                                to: '/security',
+                                label: 'Partners',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
-                                label: 'Terms & Policies',
-                                to: '/service',
+                                label: 'AWS',
+                                to: '/partners/aws',
+
                             },
+                            {
+                                label: 'Google Cloud',
+                                to: '/partners/gcp',
+
+                            },
+                            {
+                                label: 'Snowflake',
+                                to: '/partners/snowflake',
+
+                            },
+                            {
+                                label: 'Become a Partner',
+                                to: '/partners',
+
+                            },
+                           
                             
 
 
@@ -721,6 +735,37 @@ const config = {
                                 label: 'Linkedin',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
+                            {
+                                label: 'Meetups',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
+
+                            },
+                            {
+                                label: 'Boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
+
+                            },
+                            {
+                                label: 'New York',
+                                to: 'https://www.meetup.com/weaviate-NYC',
+
+                            },
+                            {
+                                label: 'San Francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
+
+                            },
+                            {
+                                label: 'Toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
+
+                            },
+
 
                         ],
                     },
