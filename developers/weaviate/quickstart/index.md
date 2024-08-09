@@ -126,8 +126,8 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.d
 
 <CodeAutoschemaMinimumSchema />
 
-:::info To use another vectorizer or generative integrations
-If you prefer another setup, see [this section](#can-i-use-different-integrations).
+:::info Change the vectorizer or generator integrations
+If you prefer to use a different setup, see [this section](#can-i-use-different-integrations).
 :::
 
 Now you are ready to add objects to Weaviate.
