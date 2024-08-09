@@ -77,6 +77,10 @@ Use the `id` field to fetch the object [UUID](https://en.wikipedia.org/wiki/Univ
 
 Use the `vector` field to fetch the vector representation of the data object
 
+### query_vector
+
+Use the `query_vector` field to fetch the vector representation of the query.
+
 ### generate
 
 :::info Requires a [`generative-xxx` module](../../modules/reader-generator-modules/index.md)
