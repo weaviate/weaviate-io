@@ -505,6 +505,11 @@ const config = {
                                 to: '/pricing',
                             },
                             {
+
+                                label: 'Weaviate Cloud',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                            {
                                 label: 'Deployment',
                                 to: '#',
                                 className: 'footer__title subtitle',
