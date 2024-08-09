@@ -490,18 +490,29 @@ const config = {
                     {
                         title: 'Product',
                         items: [
+                           
                             {
-                                label: 'Weaviate Database',
+                                label: 'Vector Database',
                                 to: '/platform',
                             },
+                            
                             {
-                                label: 'Services',
-                                to: '#',
-                                className: 'footer__title subtitle',
+                                label: 'Workbench',
+                                to: '/workbench',
                             },
                             {
-                                label: 'Services Overview',
-                                to: '/services',
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+
+                                label: 'Weaviate Cloud',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                            {
+                                label: 'Deployment',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
                                 label: 'Serverless Cloud',
@@ -516,12 +527,58 @@ const config = {
                                 to: '/deployment/byoc',
                             },
                             {
-                                label: 'Education & Support',
+                                label: 'Enablement',
                                 to: '/deployment/education-and-support',
                             },
                             {
-                                label: 'Pricing',
-                                to: '/pricing',
+                                label: 'Trust',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Security',
+                                to: '/security',
+                            },
+                            {
+                                label: 'Terms & Policies',
+                                to: '/service',
+                            },
+                            
+                        ],
+                    },
+                    {
+                        title: 'Use Cases',
+                        items: [
+                          
+                            {
+                                label: 'RAG',
+                                to: '/RAG',
+                            },
+                            {
+                                label: 'Hybrid Search',
+                                to: '/hybrid-search',
+                            },
+                            {
+                                label: 'Generative Feedback Loops',
+                                to: '/gen-feedback-loops',
+                            },
+                            {
+                                label: 'Cost Performance Optimization',
+                                to: '/cost-performance-optimization',
+                            },
+                            {
+                                label: 'Examples',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+
+                                label: 'Showcases',
+                                to: '/community/build-with-weaviate',
+                            },
+                            {
+                                label: 'Demos',
+                                to: 'community/demos',
                             },
                         ],
                     },
@@ -529,16 +586,13 @@ const config = {
                         title: 'Learn',
                         items: [
                             {
-                                label: 'Docs',
-                                to: '/developers/weaviate',
-                            },
-                            {
-                                label: 'Quickstart',
-                                to: '/developers/weaviate/quickstart',
-                            },
-                            {
                                 label: 'Blog',
                                 to: '/blog',
+                            },
+                            {
+
+                                label: 'Academy',
+                                to: '/developers/academy',
                             },
                             {
                                 label: 'Workshops',
@@ -550,78 +604,63 @@ const config = {
                             },
                             {
 
-                                label: 'Academy',
-                                to: '/developers/academy',
+                                label: 'Paper Reviews', 
+                                to: '/papers',
                             },
                             {
-                                label: 'Contributor Guide',
-                                to: '/developers/contributor-guide',
+                                label: 'Podcasts',
+                                to: '/podcast',
                             },
-                        ],
-                    },
-                    {
-                        title: 'Connect',
-                        items: [
+                            
                             {
-                                label: 'Community',
-                                href: '/community',
+                                label: 'Build',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
-                                label: 'Build With Weaviate',
-                                href: '/community/build-with-weaviate',
+                                label: 'Documentation',
+                                to: '/developers/weaviate',
                             },
                             {
-                                label: 'Demos',
-                                href: '/community/demos',
+                                label: 'Weaviate Cloud Docs',
+                                to: '/developers/wcs',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://github.com/weaviate/weaviate',
+                            },
+                        
+                            {
+                                label: 'Engage',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },
                             {
+                                label: 'Weaviate Hero Program',
+                                href: '/community',
+                            },
+                           
+                            {
                                 label: 'Forum',
                                 to: 'https://forum.weaviate.io/',
                             },
                             {
-                                label: 'Podcast',
-                                to: '/podcast',
+                                label: 'Slack',
+                                to: 'https://weaviate.io/slack',
                             },
-                            {
-
-                                label: 'Meetups',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
-                            {
-                                label: 'Amsterdam',
-                                to: 'https://www.meetup.com/weaviate-amsterdam',
-                            },
-                            {
-                                label: 'Boston',
-                                to: 'https://www.meetup.com/weaviate-boston',
-                            },
-                            {
-                                label: 'New York',
-                                to: 'https://www.meetup.com/weaviate-NYC',
-                            },
-                            {
-                                label: 'San Francisco',
-                                to: 'https://www.meetup.com/weaviate-san-francisco',
-                            },
-                            {
-                                label: 'Toronto',
-                                to: 'https://www.meetup.com/weaviate-toronto',
-                            },
-
                         ],
                     },
+                   
                     {
-                        title: 'Company',
+                        title: 'About',
                         items: [
-
-
+                           
                             {
-                                label: 'About',
+                                label: 'Company',
                                 to: '/company/about-us',
                             },
                             {
@@ -637,17 +676,22 @@ const config = {
                                 to: 'company/playbook',
                             },
                             {
-                                label: 'Security',
-                                to: '/security',
+                                label: 'Investors',
+                                to: 'company/investors',
                             },
                             {
-                                label: 'Terms & Policies',
-                                to: '/service',
+                                label: 'Contact Us',
+                                to: '/#contact-us',
                             },
                             {
                                 label: 'Partners',
                                 to: '#',
                                 className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Overview',
+                                to: '/partners',
+
                             },
                             {
                                 label: 'AWS',
@@ -664,13 +708,6 @@ const config = {
                                 to: '/partners/snowflake',
 
                             },
-                            {
-                                label: 'Become a Partner',
-                                to: '/partners',
-
-                            },
-
-
                         ],
                     },
 
@@ -678,14 +715,7 @@ const config = {
                         title: 'Follow Us',
                         items: [
 
-                            {
-                                label: 'GitHub',
-                                to: 'https://github.com/weaviate/weaviate',
-                            },
-                            {
-                                label: 'Slack',
-                                to: 'https://weaviate.io/slack',
-                            },
+                            
                             {
                                 label: 'Twitter',
                                 to: 'https://twiiter.com/weaviate_io',
@@ -703,6 +733,37 @@ const config = {
                                 label: 'Linkedin',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
+                            {
+                                label: 'Meetups',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
+
+                            },
+                            {
+                                label: 'Boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
+
+                            },
+                            {
+                                label: 'New York',
+                                to: 'https://www.meetup.com/weaviate-NYC',
+
+                            },
+                            {
+                                label: 'San Francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
+
+                            },
+                            {
+                                label: 'Toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
+
+                            },
+
 
                         ],
                     },
