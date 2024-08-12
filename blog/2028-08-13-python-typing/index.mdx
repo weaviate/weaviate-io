@@ -14,9 +14,9 @@ image: ./img/hero.png
 
 Both *generics* and *typing systems* are powerful tools that often spark heated debates in the software development world.
 
-To some, they add little value while creating noise in a codebase, leading to bloat and an additional maintenance burden for developers. To others, they're powerful tools that empower cleaner, safer code with fewer bugs. We see both perspectives, but tend to agree with the latter camp.
+The use of generics aim for flexible, reusable code that works with different data types, while typing systems help catch errors before a program runs. But these concepts also often evoke strong reactions among developers.
 
-Generics allow for flexible, reusable code that works with different data types, while typing systems help catch errors before a program runs. But these concepts also often evoke strong reactions among developers. We see both perspectives, but tend to agree with the latter camp.
+To some, they add little value while creating noise in a codebase, leading to bloat and an additional maintenance burden for developers. To others, they're powerful tools that empower cleaner, safer code with fewer bugs. We see both perspectives, but tend to agree with the latter camp.
 
 In fact, generics and typing systems have helped us make important developer experience improvements in our [v4 Python client](/developers/weaviate/client-libraries/python). In this article, we’ll present the story of Python’s typing system since its inception in `v3.5`, which is now 9 years ago 👴 to the current landscape of `v3.12` wherein the typing system has undergone a significant improvement in usability and readability.
 
@@ -26,7 +26,7 @@ Hopefully, we can convince any naysayers of their benefit and, for those already
 
 ## Python’s Typing System
 
-Typing system (and generics) address a significant gap that is inherent to Python.
+Typing systems (and generics) address a significant gap that is inherent to Python.
 
 At its core, Python is a weakly duck-typed programming language. A duck-typed language does not require the developer to specify how the computer should interpret their code outside of the basic syntax and semantics.
 
@@ -54,13 +54,13 @@ print(square(2))
 print(square("circle"))
 ```
 
-hints to developers that the argument supplied to the `square` function should be of integer type and therefore help to avoid such errors as `square("circle")`. In addition, the return type is hinted using `-> int` signifying that any variable assigned to the return of the function will have an `int` type.
+hinting to developers that the argument supplied to the `square` function should be of integer type and therefore helping to avoid such errors as `square("circle")`. In addition, the return type is hinted using `-> int` signifying that any variable assigned to the return of the function will have an `int` type.
 
 As such, the type of `x` here `x = square(2)` will be `int`. Importantly, however, the type of `x` in  `x = square("circle")` will be `Any`, as the function has been used inappropriately with arguments not hinted at! This inconsistency would alert the user that they may not be using `square` appropriately.
 
-We say "would", because doing so would require that the developer review the function signature, or the inferred type through their IDE. After all, these are type *hints*, not assigned types. However, as many readers are keenly aware, not all developers read the documentation of the tools that they use (although both you and we do, of course 😉). As such, automated static type checkers have emerged, like `mypy` and `pyright`, that perform the checks for youand provide any pre-runtime indication that your code may contain a bug. Using `pyright` as an example, the above code will produce: `error: Argument of type "Literal['circle']" cannot be assigned to parameter "x" of type "int" in function "square"`.
+We say "would", because doing so would require that the developer review the function signature, or the inferred type through their IDE. After all, these are type *hints*, not assigned types. However, as many readers are keenly aware, not all developers read the documentation of the tools that they use (although both you and we do, of course 😉). As such, automated static type checkers have emerged, like `mypy` and `pyright`, that perform the checks for you and provide any pre-runtime indication that your code may contain a bug. Using `pyright` as an example, the above code will produce: `error: Argument of type "Literal['circle']" cannot be assigned to parameter "x" of type "int" in function "square"`.
 
-In other words, type hinting with type checkers bring order and robustness of statically typed languages to the flexible, sometimes chaotic duck-typed world of Python. That's why we leveraged the typing system extensively when re-writing the Weaviate Python client for the `v4` release.
+In other words, type hinting with type checkers brings order and robustness of statically typed languages to the flexible, sometimes chaotic duck-typed world of Python. That's why we leveraged the typing system extensively when re-writing the Weaviate Python client for the `v4` release.
 
 ## Type Hinting in Weaviate’s `v4` Python Client
 
@@ -105,7 +105,7 @@ def search(collection: Collection, vector: list[float]) -> list[Object]:
     return collection.query.near_vector(vector).objects
 ```
 
-but there are two parts to refactoring: the function, which is usually the easy bit, and *everywhere else* where the function is called. This is where the static type checkers come in clutch as a sweep of your codebase will call out every single location where `search` is being called with `str` as the second argument instead of the new `list[float]` implementation. Without it, you would have to search the codebase manually for each function call, making sure to change the type appropriately. If you miss even one and that isn’t covered by a unit/integration test, then you’ve introduced a refactoring bug. With a type checker, the bug gets found instantly with a single sweep of the codebase!
+but there are two parts to refactoring: the function, which is usually the easy bit, and *everywhere else* where the function is called. This is where the static type checkers come in clutch as a sweep of your codebase will call out every single location where `search` is being called with `str` as the second argument instead of the new `list[float]` implementation. Without it, you would have to search the codebase manually for each function call, making sure to change the type appropriately. If you miss even one that isn’t covered by a unit/integration test, then you’ve introduced a refactoring bug. With a type checker, the bug gets found instantly with a single sweep of the codebase!
 
 Perhaps we have another function that calls `search` with some additional context, like handling the client lifecycle:
 
@@ -146,11 +146,11 @@ When working with a database like Weaviate, this is what we end up doing most of
 
 ## Generics in Python
 
-In short, *generic types* or just *generics* (which is just a bit of jargon describing placeholder values like symbols in algebra: `F=ma` or `E=mc^2`) are types that are not known by client when we package it together and release to you but can be specified dynamically by you when writing your applications. They provide a way for the you, the user, to annotate your client with the data types that you expect to load into and query from Weaviate. So, if you have a collection that has a property like `Property(name="title", data_type=DataType.TEXT)` then you can annotate your collection so that accessing the `title` property of an object from that collection will be fully typed as so: `x: str = obj.properties["title"]`.
+In short, *generic types* or just *generics* (which is just a bit of jargon describing placeholder values like symbols in algebra: `F=ma` or `E=mc^2`) are types that are not known by the client when we package it together and release it to you but can be specified dynamically by you when writing your applications. They provide a way for you, the user, to annotate your client with the data types that you expect to load into and query from Weaviate. So, if you have a collection that has a property like `Property(name="title", data_type=DataType.TEXT)` then you can annotate your collection so that accessing the `title` property of an object from that collection will be fully typed as so: `x: str = obj.properties["title"]`.
 
-The v4 Weaviate client API comes with full support for generics when defining collections and the types of the objects within the collections. But details on how we implemented it and some nifty tricks on getting the best out of it will come in a later post.
+The v4 Weaviate client API comes with full support for generics when defining collections and the types of the objects within the collections. We'd love to tell you more about how we implemented it and some nifty tricks on getting the best out of it. So please stay tuned for those details in a later post 😉.
 
-> Generics provide a way for the you, the user, to annotate your client with the data types that you expect to load into and query from Weaviate. The v4 Weaviate client API comes with full support for generics.
+> Generics provide a way for you, the user, to annotate your client with the data types that you expect to load into and query from Weaviate. The v4 Weaviate client API comes with full support for generics.
 
 ## Conclusions
 
