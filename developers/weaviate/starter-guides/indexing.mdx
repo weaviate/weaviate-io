@@ -13,6 +13,32 @@ Weaviate stores objects and vector representations of those objects (vectors).
 ## Indexing methods
 
 ### Vector indexes
+
+#### HNSW indexes
+
+[Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
+
+#### Flat indexes
+
+[Flat indexes](https://weaviate.io/developers/weaviate/concepts/vector-index#flat-index)
+
+#### Dynamic indexes
+
+[Dynamic indexes](/developers/weaviate/concepts/vector-index#dynamic-index) are new in v1.25. This type of index is a flat index until a collection reaches a threshold size. When the collection grows larger than the threshold size, the collection is automatically reindexed and converted to an HNSW index.
+
+The dynamic index only changes once. If the collection ever shrinks below the threshold size, it does not change back to a flat index.
+
+The default threshold value to change from a flat index to an HNSW index is 10,000 objects.
+
+This chart shows how a dynamic index changes as the number of objects in a collection grows. The chart assumes [compression](/developers/weaviate/starter-guides/compression) is enabled on the flat index and on the HNSW index.
+
+| Number of objects | Index type | Compression | Notes |
+| :- | :- | :- |
+| 0 - 9,999 | Flat index | BQ | The index is on disk, BQ compression is active. |
+| 10,000 | Conversion | None | The flat index converts to HNSW. The index is stored in RAM. |
+| 100,000 | HNSW | Training | The collection has enough training data for PQ or SQ compression to start. |
+| 100,001 | HNSW | SQ or PQ | Compression is active. |
+
 ### Keyword indexes
 
 ## Indexing considerations
@@ -38,6 +64,14 @@ For more information, see these documentation pages and blog posts.
 To enable indexing, follow the steps on these pages:
 
 For more documentation details, see:
+
+[Vector indexing](/developers/weaviate/concepts/vector-index)
+
+### Weaviate academy
+
+For a short course on vector indexes, see:
+
+[Vector indexing](/developers/academy/py/vector_index)
 
 ### Blog posts
 
