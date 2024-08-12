@@ -99,7 +99,9 @@ When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. 
 
 When you use BQ or SQ, Weaviate over-fetches and then re-scores the results. This is because the distance calculation on the compressed vectors is not as accurate as the same calculation on the original vector embedding.
 
-In a query, Weaviate fetches the `rescore limit` of compressed objects or the specified query limit, whichever is greater. Then, Weaviate uses the original, uncompressed vector embedding to recalculate the scores. For example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate fetches `max(10, 500) = 200` objects, and then re-scores the top 10 objects using the full vector. This process offsets some of the loss in search quality (recall)  that is caused by compression.
+In a query, Weaviate compares the `rescore limit` and the query limit. The query retieves compressed objects until the object count reaches whichever limit is greater. Then, Weaviate fetches the original, uncompressed vector embeddings that correspond to the compressed vectors. The uncompressed vectors are used to recalculate the query distance scores.
+
+For example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate fetches 200 objects. After rescoring, the query returns top 10 objects. This process offsets the loss in search quality (recall) that is caused by compression.
 
 :::tip
 Learn more about how to [configure binary quantization](../configuration/compression/bq-compression.md) in Weaviate.<br/><br/>
