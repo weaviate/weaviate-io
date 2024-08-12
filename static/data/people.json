@@ -217,7 +217,7 @@
   },
   {
     "name": "Femke Plantinga",
-    "title": "Developer Marketing Manager",
+    "title": "Developer Growth Manager",
     "photo": "femke.png",
     "linkedin": "femke-plantinga-a60b9a172",
     "twitter": "femke_plantinga",
@@ -512,6 +512,13 @@
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
     "team": "marketing"
+  },
+  {
+    "name": "Thomas Maurice",
+    "title": "Platform Engineer",
+    "photo": "thomas.jpg",
+    "linkedin": "thomas-maurice-80846b61",
+    "team": "wcd"
   },
   {
     "name": "Thomas Smith",

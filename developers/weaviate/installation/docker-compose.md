@@ -200,6 +200,8 @@ To configure Weaviate to use multiple host nodes, follow these steps:
 - Set the `CLUSTER_JOIN` variable for the other nodes in the cluster.
 - Set the `CLUSTER_GOSSIP_BIND_PORT` for each node.
 - Set the `CLUSTER_DATA_BIND_PORT` for each node.
+- Set the `RAFT_JOIN` each node.
+- Set the `RAFT_BOOTSTRAP_EXPECT` for each node with the number of voters.
 - Optionally, set the hostname for each node using `CLUSTER_HOSTNAME`.
 
 (Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
@@ -213,6 +215,8 @@ So, the Docker Compose file includes environment variables for the "founding" me
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
       CLUSTER_DATA_BIND_PORT: '7101'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3      
 ```
 
 And the other members' configurations may look like this:
@@ -225,6 +229,8 @@ And the other members' configurations may look like this:
       CLUSTER_GOSSIP_BIND_PORT: '7102'
       CLUSTER_DATA_BIND_PORT: '7103'
       CLUSTER_JOIN: 'weaviate-node-1:7100'  # This must be the service name of the "founding" member node.
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3      
 ```
 
 Below is an example configuration for a 3-node setup. You may be able to test [replication](../configuration/replication.md) examples locally using this configuration.
@@ -262,6 +268,8 @@ services:
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
       CLUSTER_DATA_BIND_PORT: '7101'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3
 
   weaviate-node-2:
     init: true
@@ -291,6 +299,8 @@ services:
       CLUSTER_GOSSIP_BIND_PORT: '7102'
       CLUSTER_DATA_BIND_PORT: '7103'
       CLUSTER_JOIN: 'weaviate-node-1:7100'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3
 
   weaviate-node-3:
     init: true
@@ -320,6 +330,8 @@ services:
       CLUSTER_GOSSIP_BIND_PORT: '7104'
       CLUSTER_DATA_BIND_PORT: '7105'
       CLUSTER_JOIN: 'weaviate-node-1:7100'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3      
 ```
 
 </details>
