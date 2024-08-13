@@ -10058,10 +10058,10 @@ graphql@16.5.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
   integrity sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==
 
-graphql@^16.8.1:
-  version "16.8.2"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.2.tgz#54771c7ff195da913f5e70af8044a026d32eca2a"
-  integrity sha512-cvVIBILwuoSyD54U4cF/UXDh5yAobhNV/tPygI4lZhgOIJQE/WLWC4waBRb4I6bDVYb3OVx3lfHbaQOEoUD5sg==
+graphql@^16.9.0:
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.9.0.tgz#1c310e63f16a49ce1fbb230bd0a000e99f6f115f"
+  integrity sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==
 
 gray-matter@^4.0.3:
   version "4.0.3"
@@ -13444,7 +13444,7 @@ netlify@^13.1.17, netlify@^13.1.2:
     p-wait-for "^4.0.0"
     qs "^6.9.6"
 
-nice-grpc-client-middleware-deadline@^2.0.11:
+nice-grpc-client-middleware-deadline@^2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-deadline/-/nice-grpc-client-middleware-deadline-2.0.12.tgz#4b2b4589559a5201b7adc6a9ee1673fb0dda21de"
   integrity sha512-drKxQJzTbh+Qkd6v+BcRhTmY2mw9zR8Qigu/jk0vIkDi90K6NOOJGgvBdbTxKXtv6QY1g07T1LvwaqW3Mlwdvw==
@@ -13458,7 +13458,7 @@ nice-grpc-common@^2.0.2:
   dependencies:
     ts-error "^1.0.6"
 
-nice-grpc@^2.1.7:
+nice-grpc@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.9.tgz#5c4b26e7051eebd31b5f54ce1348524ab151ee2d"
   integrity sha512-shJlg1t4Wn3qTVE31gxofbTrgCX/p4tS1xRnk4bNskCYKvXNEUpJQZpjModsVk1aau69YZDViyC18K9nC7QHYA==
@@ -18476,16 +18476,16 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.0.0:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.5.tgz#ae27cd889752f8fa35f955f5fe4b8bcd3c58c6a9"
-  integrity sha512-nl1S9pnAYiYKkt1QwQizGYOCK25KJOw3trBFBTA4zjEIBkX83fj11W/DHjdQUT8v4K7cQbDWHy9QdT6ZL1pdxA==
+weaviate-client@^3.1.0:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.1.4.tgz#40211a87802c577f8cfacf16a7ca61d668b1cd90"
+  integrity sha512-Bw9KV0wtFd4TdifhPAkmc2Lv7bKIX0L2oqObUNG8K8Mv0zoVixGcqlAS3xJdfQ2jSqz0vH3mfetsOBdlvogxfg==
   dependencies:
-    graphql "^16.8.1"
+    graphql "^16.9.0"
     graphql-request "^6.1.0"
     long "^5.2.3"
-    nice-grpc "^2.1.7"
-    nice-grpc-client-middleware-deadline "^2.0.11"
+    nice-grpc "^2.1.9"
+    nice-grpc-client-middleware-deadline "^2.0.12"
     uuid "^9.0.1"
 
 weaviate-ts-client@^1.3.3:
