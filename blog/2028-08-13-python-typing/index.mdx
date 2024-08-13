@@ -42,7 +42,13 @@ print(square(2))
 print(square("circle"))
 ```
 
-When run, this  will happily print out `4` before throwing a runtime error: `TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'int'`. A statically typed language like Go, TypeScript, or Rust would catch this with the compiler before the code was ever executed, enhancing the security of our runtime by avoiding unexpected exceptions.
+When run, this  will happily print out `4` before throwing a runtime error:
+
+```python
+TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'int'
+```
+
+A statically typed language like Go, TypeScript, or Rust would catch this with the compiler before the code was ever executed, enhancing the security of our runtime by avoiding unexpected exceptions.
 
 In recent years, Python has begun to address this gap to static languages by introducing typing and thus robustness of static compile-time checking. In modern (>3.5) Python, the above example can be rewritten as:
 
@@ -58,7 +64,11 @@ hinting to developers that the argument supplied to the `square` function should
 
 As such, the type of `x` here `x = square(2)` will be `int`. Importantly, however, the type of `x` in  `x = square("circle")` will be `Any`, as the function has been used inappropriately with arguments not hinted at! This inconsistency would alert the user that they may not be using `square` appropriately.
 
-We say "would", because doing so would require that the developer review the function signature, or the inferred type through their IDE. After all, these are type *hints*, not assigned types. However, as many readers are keenly aware, not all developers read the documentation of the tools that they use (although both you and we do, of course 😉). As such, automated static type checkers have emerged, like `mypy` and `pyright`, that perform the checks for you and provide any pre-runtime indication that your code may contain a bug. Using `pyright` as an example, the above code will produce: `error: Argument of type "Literal['circle']" cannot be assigned to parameter "x" of type "int" in function "square"`.
+We say "would", because doing so would require that the developer review the function signature, or the inferred type through their IDE. After all, these are type *hints*, not assigned types. However, as many readers are keenly aware, not all developers read the documentation of the tools that they use (although both you and we do, of course 😉). As such, automated static type checkers have emerged, like `mypy` and `pyright`, that perform the checks for you and provide any pre-runtime indication that your code may contain a bug. Using `pyright` as an example, the above code will produce: 
+
+```python
+error: Argument of type "Literal['circle']" cannot be assigned to parameter "x" of type "int" in function "square"`
+```
 
 In other words, type hinting with type checkers brings order and robustness of statically typed languages to the flexible, sometimes chaotic duck-typed world of Python. That's why we leveraged the typing system extensively when re-writing the Weaviate Python client for the `v4` release.
 
@@ -121,7 +131,13 @@ def search_records(text: str) -> list[Object]:
 
 > With a type checker, the bug gets found instantly with a single sweep of the codebase!
 
-Calling `mypy` on `search_records` given the refactor to `search` would yield the following error **`error:** Argument 2 to **"search"** has incompatible type **"str"**; expected **"list[float]"**  [arg-type]` in the CLI, catching the bug without any other tests. In addition, if you accidentally mislabel your type hints (which is a common occurrence even for us!) like so (note the `vector` parameter type is incorrect):
+Calling `mypy` on `search_records` given the refactor to `search` would yield the following error in the CLI, catching the bug without any other tests.
+
+```python
+**`error:** Argument 2 to **"search"** has incompatible type **"str"**; expected **"list[float]"**  [arg-type]
+```
+
+In addition, if you accidentally mislabel your type hints (which is a common occurrence even for us!) like so (note the `vector` parameter type is incorrect):
 
 ```python
 from weaviate.collections import Collection
@@ -131,7 +147,14 @@ def search(collection: Collection, vector: str) -> list[Object]:
     return collection.query.near_vector(vector).objects
 ```
 
-Here, `mypy` will flag the error at the typing of the `.near_vector` method with the following errors: **`error:** Returning Any from function declared to return **"list[Object[Any, Any]]"**  [no-any-return]` and **`error:** No overload variant of **"near_vector"** of **"_NearVectorQuery"** matches argument type **"str"**  [call-overload]`. Signifying first that the type inference cannot detect the type of `collection.query.near_vector(vector).objects` due to the misconfiguration that `vector: str` here and second that the actual type of `vector: str` is not expected by the v4 client.
+Here, `mypy` will flag the error at the typing of the `.near_vector` method with the following errors:
+
+```python
+**`error:** Returning Any from function declared to return **"list[Object[Any, Any]]"**  [no-any-return]`
+**`error:** No overload variant of **"near_vector"** of **"_NearVectorQuery"** matches argument type **"str"**  [call-overload]`
+```
+
+Signifying first that the type inference cannot detect the type of `collection.query.near_vector(vector).objects` due to the misconfiguration that `vector: str` here and second that the actual type of `vector: str` is not expected by the v4 client.
 
 Improvements like these have been made throughout the v4 Client codebase. As a result, we think you will benefit from fewer bugs, and write fewer bugs yourself.
 
