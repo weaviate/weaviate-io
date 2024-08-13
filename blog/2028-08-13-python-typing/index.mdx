@@ -111,6 +111,7 @@ Perhaps we have another function that calls `search` with some additional contex
 
 ```python
 import weaviate
+from weaviate.outputs.query import Object
 
 def search_records(text: str) -> list[Object]:
     with weaviate.connect_to_local() as client:
