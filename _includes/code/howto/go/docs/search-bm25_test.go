@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"strings"
 	"testing"
@@ -26,7 +27,6 @@ func setupClient() *weaviate.Client {
 
 	config := weaviate.Config{Scheme: scheme, Host: host, AuthConfig: auth.ApiKey{Value: apiKey}}
 	client, err := weaviate.NewClient(config)
-
 
 	if err != nil {
 		panic(fmt.Sprintf("Failed to create Weaviate client: %v", err))
@@ -279,7 +279,7 @@ func TestBM25MultipleKeywords(t *testing.T) {
 	// START MultipleKeywords Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food wine").WithProperties("question")// search for food or wine
+	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food wine").WithProperties("question") // search for food or wine
 	limit := int(5)
 
 	result, err := client.GraphQL().Get().
@@ -300,9 +300,9 @@ func TestBM25MultipleKeywords(t *testing.T) {
 	for _, obj := range objects {
 		properties := obj.(map[string]interface{})
 		fmt.Printf("%v\n", properties["question"])
-		assert.True(t, strings.Contains(strings.ToLower(properties["question"].(string)), "food") || 
-						strings.Contains(strings.ToLower(properties["question"].(string)), "wine"),
-					"Expected either 'food' or 'wine' in the question")
+		assert.True(t, strings.Contains(strings.ToLower(properties["question"].(string)), "food") ||
+			strings.Contains(strings.ToLower(properties["question"].(string)), "wine"),
+			"Expected either 'food' or 'wine' in the question")
 	}
 }
 
@@ -362,61 +362,84 @@ func TestBM25GroupBy(t *testing.T) {
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("California")
-	group := (&graphql.GroupByArgumentBuilder{}).WithPath([]string{"round"}).WithGroups(2).WithObjectsPerGroup(3)
+	group := client.GraphQL().GroupByArgBuilder().WithPath([]string{"round"}).WithGroups(2).WithObjectsPerGroup(3)
+	additional := graphql.Field{
+		Name: "_additional", Fields: []graphql.Field{
+			{Name: "group", Fields: []graphql.Field{
+				{Name: "id"},
+				{Name: "groupedBy", Fields: []graphql.Field{
+					{Name: "value"},
+					{Name: "path"},
+				}},
+				{Name: "count"},
+				{Name: "hits", Fields: []graphql.Field{
+					{Name: "round"},
+					{Name: "question"},
+					{Name: "answer"},
+					{Name: "_additional", Fields: []graphql.Field{
+						{Name: "id"},
+						{Name: "distance"},
+					}},
+				}},
+
+			}},
+		},
+	}
 
 	result, err := client.GraphQL().Get().
 		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-			graphql.Field{Name: "round"},
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{
-						Name: "groupedBy",
-						Fields: []graphql.Field{
-							{Name: "value"},
-						},
-					},
-					{Name: "id"},
-				},
-			},
-			graphql.Field{
-				Name: "_group",
-				Fields: []graphql.Field{
-					{Name: "count"},
-					{
-						Name: "groupedBy",
-						Fields: []graphql.Field{
-							{Name: "path"},
-							{Name: "value"},
-						},
-					},
-					{Name: "maxScore"},
-					{Name: "minScore"},
-				},
-			},
-		).
+
 		WithBM25(query).
 		WithGroupBy(group).
+		WithFields(additional).
 		Do(ctx)
 	// END BM25GroupByGo
 
 	require.NoError(t, err, "Failed to execute BM25 query with groupBy")
 
-	groups := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.LessOrEqual(t, len(groups), 2, "Expected 2 or fewer groups")
+	if len(result.Errors) > 0 {
+		fmt.Printf("Result: %+v\n", result.Errors[0])
+	}
 
+	js, _ := json.MarshalIndent(result.Data["Get"], "", "  ")
+	fmt.Printf("Result: %v\n", string(js))
+
+	getGroup := func(value interface{}) map[string]interface{} {
+		group := value.(map[string]interface{})["_additional"].(map[string]interface{})["group"].(map[string]interface{})
+		return group
+	}
+	groups := []map[string]interface{}{}
+	passages := result.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})
+	for _, passage := range passages {
+		groups = append(groups, getGroup(passage))
+	}
+	getGroupHits := func(group map[string]interface{}) (string, []string) {
+		result := []string{}
+		hits := group["hits"].([]interface{})
+		for _, hit := range hits {
+			additional := hit.(map[string]interface{})["_additional"].(map[string]interface{})
+			result = append(result, additional["id"].(string))
+		}
+		groupedBy := group["groupedBy"].(map[string]interface{})
+		groupedByValue := groupedBy["value"].(string)
+		return groupedByValue, result
+	}
+
+	hit, hits := getGroupHits(groups[0])
+	js, _ = json.MarshalIndent(fmt.Sprintf("%v%v",hit,hits), "", "  ")
+	fmt.Printf("Grouphits: %v\n", string(js))
+
+	fmt.Println("Groups:")
 	for _, group := range groups {
-		groupData := group.(map[string]interface{})
+		groupData := group
+		fmt.Printf("GroutData: %v\n", groupData)
 		groupInfo := groupData["_group"].(map[string]interface{})
 		groupedBy := groupInfo["groupedBy"].(map[string]interface{})
 		fmt.Printf("Group: %v\n", groupedBy["value"])
 		fmt.Printf("Count: %v\n", groupInfo["count"])
 		fmt.Printf("Max Score: %v\n", groupInfo["maxScore"])
 		fmt.Printf("Min Score: %v\n", groupInfo["minScore"])
-		
+
 		objects := groupData["_additional"].([]interface{})
 		assert.LessOrEqual(t, len(objects), 3, "Expected 3 or fewer objects in each group")
 		for _, obj := range objects {
@@ -429,4 +452,7 @@ func TestBM25GroupBy(t *testing.T) {
 		assert.NotNil(t, groupInfo["maxScore"], "Expected a non-nil maxScore")
 		assert.NotNil(t, groupInfo["minScore"], "Expected a non-nil minScore")
 	}
+
+	assert.LessOrEqual(t, len(groups), 2, "Expected 2 or fewer groups")
+	assert.Greater(t, len(groups), 0, "Expected at least 1 group")
 }
