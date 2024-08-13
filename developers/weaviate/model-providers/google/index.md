@@ -41,9 +41,19 @@ These integrations enable developers to leverage Google AI's powerful models dir
 
 In turn, they simplify the process of building AI-driven applications to speed up your development process, so that you can focus on creating innovative solutions.
 
+## Credentials
+
+You must provide a valid Google AI API credentials to Weaviate for these integrations.
+
+### Vertex AI
+
+import UseGoogleAuthInstructions from './_includes/use_google_auth_instructions.mdx';
+
+<UseGoogleAuthInstructions/>
+
 ## Get started
 
-You must provide a valid Google AI API credentials to Weaviate for these integrations. Weaviate integrates with both [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) or [Google Vertex AI](https://cloud.google.com/vertex-ai).
+Weaviate integrates with both [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) or [Google Vertex AI](https://cloud.google.com/vertex-ai).
 
 Go to the relevant integration page to learn how to configure Weaviate with the Google models and start using them in your applications.
 

@@ -60,6 +60,14 @@ You must provide valid API credentials to Weaviate for the appropriate integrati
 
 This is called an `access token` in Google Cloud.
 
+##### Automatic token generation
+
+import UseGoogleAuthInstructions from './_includes/use_google_auth_instructions.mdx';
+
+<UseGoogleAuthInstructions/>
+
+##### Manual token retrieval
+
 If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
 
 ```shell

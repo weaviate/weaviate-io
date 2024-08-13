@@ -64,13 +64,21 @@ Go to [Google AI Studio](https://aistudio.google.com/app/apikey/?utm_source=weav
 
 This is called an `access token` in Google Cloud.
 
+##### Automatic token generation
+
+import UseGoogleAuthInstructions from './_includes/use_google_auth_instructions.mdx';
+
+<UseGoogleAuthInstructions/>
+
+##### Manual token retrieval
+
+This is called an `access token` in Google Cloud.
+
 If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
 
 ```shell
 gcloud auth print-access-token
 ```
-
-#### Token expiry for Vertex AI users
 
 import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 

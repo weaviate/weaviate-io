@@ -67,6 +67,7 @@ All other values are interpreted as `false`.
 | `OFFLOAD_S3_CONCURRENCY` | The maximum number of parts that will be uploaded/downloaded in parallel during offloading operations (default: `25`) | `string - number` | `10` |
 | `OFFLOAD_TIMEOUT` | The request timeout value, in seconds (default: `120`) | `string - number` | `60` |
 | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
+| `USE_GOOGLE_AUTH` | Automatically look for Google Cloud credentials, and generate Vertex AI access tokens for Weaviate to use as needed ([read more](../model-providers/google/index.md)). (default: `false`) | `boolean` | `true` |
 | `USE_SENTENCE_TRANSFORMERS_VECTORIZER` | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `boolean` | `true` |
 
 ## Authentication and authorization
