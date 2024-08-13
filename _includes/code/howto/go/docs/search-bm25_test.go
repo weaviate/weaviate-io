@@ -1,4 +1,4 @@
-package main
+package docs
 
 import (
 	"context"
@@ -362,18 +362,17 @@ func TestBM25GroupBy(t *testing.T) {
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("California")
-	group := client.GraphQL().GroupByArgBuilder().WithPath([]string{"round"}).WithGroups(2).WithObjectsPerGroup(3)
+	group := client.GraphQL().GroupByArgBuilder().WithPath([]string{"points"}).WithGroups(2).WithObjectsPerGroup(3)
 	additional := graphql.Field{
 		Name: "_additional", Fields: []graphql.Field{
+			{Name: "id"},
 			{Name: "group", Fields: []graphql.Field{
-				{Name: "id"},
+
 				{Name: "groupedBy", Fields: []graphql.Field{
 					{Name: "value"},
-					{Name: "path"},
 				}},
 				{Name: "count"},
 				{Name: "hits", Fields: []graphql.Field{
-					{Name: "round"},
 					{Name: "question"},
 					{Name: "answer"},
 					{Name: "_additional", Fields: []graphql.Field{
@@ -386,12 +385,13 @@ func TestBM25GroupBy(t *testing.T) {
 		},
 	}
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
 
-		WithBM25(query).
-		WithGroupBy(group).
-		WithFields(additional).
+	q:=client.GraphQL().Get().
+	WithClassName(className).
+	WithBM25(query).
+	WithGroupBy(group).
+	WithFields(additional)
+	result, err := q.
 		Do(ctx)
 	// END BM25GroupByGo
 
