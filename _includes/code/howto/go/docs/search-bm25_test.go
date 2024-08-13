@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 	"strings"
 	"testing"
 
@@ -20,23 +19,15 @@ import (
 // ================================
 
 func setupClient() *weaviate.Client {
-	// Best practice: store your credentials in environment variables
-	wcdURL := os.Getenv("WCD_DEMO_URL")
-	wcdAPIKey := os.Getenv("WCD_DEMO_RO_KEY")
-	openaiAPIKey := os.Getenv("OPENAI_APIKEY")
 
-	cfg := weaviate.Config{
-		Host:   wcdURL,
-		Scheme: "https",
-		AuthConfig: auth.ApiKey{
-			Value: wcdAPIKey,
-		},
-		Headers: map[string]string{
-			"X-OpenAI-Api-Key": openaiAPIKey,
-		},
-	}
+	scheme := "https"
+	host := "edu-demo.weaviate.network"
+	apiKey := "learn-weaviate"
 
-	client, err := weaviate.NewClient(cfg)
+	config := weaviate.Config{Scheme: scheme, Host: host, AuthConfig: auth.ApiKey{Value: apiKey}}
+	client, err := weaviate.NewClient(config)
+
+
 	if err != nil {
 		panic(fmt.Sprintf("Failed to create Weaviate client: %v", err))
 	}
