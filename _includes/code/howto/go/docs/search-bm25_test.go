@@ -78,7 +78,7 @@ func TestBasicBM25Query(t *testing.T) {
 func TestBM25QueryWithScore(t *testing.T) {
 	client := setupClient()
 
-	// START BM25WithScoreGo
+	// START Score Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
@@ -99,7 +99,7 @@ func TestBM25QueryWithScore(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithScoreGo
+	// END Score Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with score")
 
