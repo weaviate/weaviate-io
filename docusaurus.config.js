@@ -183,6 +183,11 @@ const config = {
                 tagName: 'script',
                 innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
               },
+                 // Add Koala
+                 {
+                    tagName: 'script',
+                    innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
+                },
 
                     ],
                 };
