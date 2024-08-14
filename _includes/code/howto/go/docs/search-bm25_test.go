@@ -42,7 +42,7 @@ func setupClient() *weaviate.Client {
 func TestBasicBM25Query(t *testing.T) {
 	client := setupClient()
 
-	// Basic Go
+	// START Basic Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
@@ -112,6 +112,88 @@ func TestBM25QueryWithScore(t *testing.T) {
 		fmt.Printf("%v\n", properties)
 		fmt.Printf("Score: %v\n", additional["score"])
 		assert.NotNil(t, additional["score"], "Expected a non-nil score")
+	}
+}
+
+
+// ===============================================
+// ===== BM25 Query with Selected Properties =====
+// ===============================================
+
+func TestBM25QueryWithProperties(t *testing.T) {
+	client := setupClient()
+
+	// START Properties Go
+	ctx := context.Background()
+	className := "JeopardyQuestion"
+	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
+	limit := int(3)
+
+	result, err := client.GraphQL().Get().
+		WithClassName(className).
+		WithFields(
+			graphql.Field{Name: "question"},
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "score"},
+				},
+			},
+		).
+		WithBM25(query).
+		WithLimit(limit).
+		Do(ctx)
+	// END Properties Go
+
+	require.NoError(t, err, "Failed to execute BM25 query with properties")
+
+	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+
+	for _, obj := range objects {
+		properties := obj.(map[string]interface{})
+		additional := properties["_additional"].(map[string]interface{})
+		fmt.Printf("%v\n", properties)
+		fmt.Printf("Score: %v\n", additional["score"])
+		assert.Contains(t, strings.ToLower(properties["question"].(string)), "safety", "Expected 'safety' in the question")
+		assert.NotNil(t, additional["score"], "Expected a non-nil score")
+	}
+}
+
+
+// ==============================================
+// ===== BM25 Query with Boosted Properties =====
+// ==============================================
+
+func TestBM25QueryWithBoostedProperties(t *testing.T) {
+	client := setupClient()
+
+	// START Boost Go
+	ctx := context.Background()
+	className := "JeopardyQuestion"
+	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food").WithProperties("question^2", "answer")
+	limit := int(3)
+
+	result, err := client.GraphQL().Get().
+		WithClassName(className).
+		WithFields(
+			graphql.Field{Name: "question"},
+			graphql.Field{Name: "answer"},
+		).
+		WithBM25(query).
+		WithLimit(limit).
+		Do(ctx)
+	// END Boost Go
+
+	require.NoError(t, err, "Failed to execute BM25 query with boosted properties")
+
+	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+
+	for _, obj := range objects {
+		properties := obj.(map[string]interface{})
+		fmt.Printf("%v\n", properties)
+		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
 	}
 }
 
@@ -189,85 +271,6 @@ func TestBM25QueryWithAutocut(t *testing.T) {
 	}
 }
 
-// ===============================================
-// ===== BM25 Query with Selected Properties =====
-// ===============================================
-
-func TestBM25QueryWithProperties(t *testing.T) {
-	client := setupClient()
-
-	// START Properties Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
-	limit := int(3)
-
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "score"},
-				},
-			},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END Properties Go
-
-	require.NoError(t, err, "Failed to execute BM25 query with properties")
-
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
-
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		additional := properties["_additional"].(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		fmt.Printf("Score: %v\n", additional["score"])
-		assert.Contains(t, strings.ToLower(properties["question"].(string)), "safety", "Expected 'safety' in the question")
-		assert.NotNil(t, additional["score"], "Expected a non-nil score")
-	}
-}
-
-// ==============================================
-// ===== BM25 Query with Boosted Properties =====
-// ==============================================
-
-func TestBM25QueryWithBoostedProperties(t *testing.T) {
-	client := setupClient()
-
-	// START Boost Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food").WithProperties("question^2", "answer")
-	limit := int(3)
-
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END Boost Go
-
-	require.NoError(t, err, "Failed to execute BM25 query with boosted properties")
-
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
-
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
-	}
-}
 
 // ==================================
 // ===== BM25 multiple keywords =====
@@ -313,7 +316,7 @@ func TestBM25MultipleKeywords(t *testing.T) {
 func TestBM25WithFilter(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithFilterGo
+	// START Filter Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 
@@ -336,7 +339,7 @@ func TestBM25WithFilter(t *testing.T) {
 		WithWhere(filter).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithFilterGo
+	// END Filter Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with filter")
 
