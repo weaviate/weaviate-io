@@ -7,13 +7,17 @@ image: og/docs/tutorials.jpg
 
 ## Overview
 
-Weaviate provides flexible resource management options to help build cost-effective and high-performing AI-native applications. This guide covers:
+Effective resource management is crucial for building scalable, cost-efficient, and high-performing AI applications. As your data grows and query demands increase, understanding how to balance storage tiers, optimize vector indexing, and manage tenants becomes essential.
+
+Weaviate provides flexible resource management options to help build cost-effective and high-performing AI-native applications. This guide will help you make informed decisions about resource allocation, enabling you to minimize costs while maintaining optimal performance for your specific use case.
+
+This guide covers:
 
 - **[Storage tiers (*hot, warm, cold*)](#temperatures)**
 - **[Vector index types](#vector-index-types)**
 - **[Vector compression](#vector-compression)**
 - **[Tenant states](#tenant-states)**
-- **[Optimization strategies](#optimization-strategies)**
+- **[Tips](#tips)**
 
 ## Temperatures
 
@@ -142,6 +146,21 @@ As a starting point, use the following guidelines for selecting a tenant state:
 ![Tenant state selection rule of thumb flowchart](./img/tenant_state_selection.png)
 
 If you are unsure which tenants can be made inactive or offloaded, consider a strategy of deactivating tenants that have not been accessed for a certain period of time. And offloading tenants that have not been accessed for a longer period of time.
+
+## Tips
+
+### Best Practices:
+
+- Start with a dynamic index type for new collections. This is especially important for multi-tenancy collections, as it allows each tenant to use the most appropriate index type.
+- Use vector compression techniques to optimize storage and query performance, especially for large datasets.
+- Conduct thorough testing when changing index types or compression methods to ensure performance meets your requirements.
+
+### Common Pitfalls:
+
+- Overprovisioning hot storage: Keeping all data in hot storage can lead to unnecessary costs. Regularly assess what data truly needs the fastest access.
+- Neglecting to plan for growth: Not anticipating data growth can lead to performance issues. Always design your resource management strategy with scalability in mind.
+- Improper tenant management: In multi-tenant scenarios, forgetting to offload inactive tenants can lead to resource waste. Implement automated processes to manage tenant states based on usage patterns.
+- Mismatch between quantization techniques, model and data: When using compression technique, ensure that the quantization technique is compatible with the model (e.g. BQ) and that the data is sufficient and representative for training (e.g. PQ, SQ).
 
 ## Related pages
 
