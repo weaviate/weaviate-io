@@ -196,7 +196,7 @@ func TestBM25QueryWithAutocut(t *testing.T) {
 func TestBM25QueryWithProperties(t *testing.T) {
 	client := setupClient()
 
-	// Start Boost Go
+	// START Boost Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
@@ -216,7 +216,7 @@ func TestBM25QueryWithProperties(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END Boost Go
+	// END Boost
 
 	require.NoError(t, err, "Failed to execute BM25 query with properties")
 
