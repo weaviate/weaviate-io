@@ -78,7 +78,7 @@ func TestBasicBM25Query(t *testing.T) {
 func TestBM25QueryWithScore(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithScoreGo
+	// START BM25WithScoreGo
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
