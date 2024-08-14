@@ -145,7 +145,12 @@ If you are unsure which tenants can be made inactive or offloaded, consider a st
 
 ## Related pages
 
-
+- [Concepts: Vector Index](../concepts/vector-index.md)
+- [Concepts: Vector Quantization](../concepts/vector-quantization.md)
+- [Concepts: Multi-Tenancy](../concepts/data.md#multi-tenancy)
+- [How-to: Set the vector index type](../manage-data/collections.mdx#set-vector-index-type)
+- [How-to: Configure vector compression](../configuration/compression/index.md)
+- [How-to: Perform multi-tenancy operations](../manage-data/multi-tenancy.md)
 
 ## Questions and feedback
 
