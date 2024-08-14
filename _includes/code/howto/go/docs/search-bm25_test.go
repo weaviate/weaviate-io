@@ -42,7 +42,7 @@ func setupClient() *weaviate.Client {
 func TestBasicBM25Query(t *testing.T) {
 	client := setupClient()
 
-	// BM25BasicGo
+	// Basic Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
@@ -57,7 +57,7 @@ func TestBasicBM25Query(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25BasicGo
+	// END Basic Go
 
 	require.NoError(t, err, "Failed to execute basic BM25 query")
 
@@ -196,7 +196,7 @@ func TestBM25QueryWithAutocut(t *testing.T) {
 func TestBM25QueryWithProperties(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithPropertiesGo
+	// Start Boost Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
@@ -216,7 +216,7 @@ func TestBM25QueryWithProperties(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithPropertiesGo
+	// END Boost Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with properties")
 
