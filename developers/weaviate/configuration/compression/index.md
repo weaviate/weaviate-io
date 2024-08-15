@@ -5,7 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
 ---
 
-Uncompressed vectors can be very large. Compressed vectors lose some information, but they use fewer resources and can be ver cost effecive. 
+Uncompressed vectors can be large. Compressed vectors lose some information, but they use fewer resources and can be very cost effecive. 
 
 To balance resource costs and system performance, consider one of these options:
 
