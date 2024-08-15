@@ -7,7 +7,7 @@ image: og/docs/configuration.jpg
 
 Uncompressed vectors can be very large. Compressed vectors lose some information, but they use fewer resources and can be ver cost effecive. 
 
-To balance resource costs and performance, consider one of these options:
+To balance resource costs and system performance, consider one of these options:
 
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression)
 - [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
