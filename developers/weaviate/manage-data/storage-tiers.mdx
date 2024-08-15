@@ -107,6 +107,10 @@ There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 
 ### Active
 
+An `Active` tenant is available for queries and CRUD operations. Depending on the [vector index type](#vector-index-temperature) it uses either **hot** or **warm** resources.
+
+The tenant's object data and inverted index are stored on disk, using `warm` resources.
+
 <img
     src={require('./img/active-tenants.jpg').default}
     alt="Active Tenant resources"
@@ -115,6 +119,10 @@ There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 
 ### Inactive
 
+An `Inactive` tenant is not available for queries nor CRUD operations.
+
+The tenant's object data, vector index and inverted index are stored on disk, using `warm` resources. Since the tenant is stored locally, inactive tenants can be activated quickly.
+
 <img
     src={require('./img/inactive-tenants.jpg').default}
     alt="Inactive Tenant resources"
@@ -122,6 +130,10 @@ There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 />
 
 ### Offloaded
+
+An `Offloaded` tenant is not available for queries nor CRUD operations.
+
+The tenant's object data, vector index and inverted index are stored on the cloud, using `cold` resources. Since the tenant is stored remotely, there is a delay when activating an offloaded tenant.
 
 <img
     src={require('./img/offloaded-tenants.jpg').default}
@@ -164,22 +176,7 @@ There are three tenant states:
 By default, all tenenats start as active.
 ::: -->
 
-
-
 ## Activate tenant
-
-:::info Activating Inactive tenant
-Activating an inactive tenant with HNSW index will move the vector index back to **Hot** storage.
-
-Needs Hot (vector index) resorces
-:::
-
-:::info Activating Offloaded tenant
-Activating an offloaded tenant - will load all the resources back from the cloud.
-
-Needs Hot (HNSW) and Warm (object data) resources.
-:::
-<!-- > Move vector index to Hot resources -->
 
 To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOADED` tenant from cloud, call:
 
@@ -208,7 +205,7 @@ To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOA
 :::info Added in v1.21.0
 :::
 
-To deactivate an `ACTIVE`, or to onload an `OFFLOADED` tenant from cloud (without activating it), call:
+To deactivate an `ACTIVE` tenant, or to onload an `OFFLOADED` tenant from cloud (without activating it), call:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -260,7 +257,7 @@ To offload an `ACTIVE` or `INACTIVE` tenant to cloud, call:
 :::warning Requires Offload Module
 Tenant offloading requires and Offload module.
 
-To configure tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
+To enable tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
 :::
 
 ## Automatically activate tenants
@@ -268,7 +265,7 @@ To configure tenant offloading, see the [modules page](../configuration/modules.
 :::info Added in `v1.25.2`
 :::
 
-Enable this to automatically activate `INACTIVE` tenants if a read-or-write request comes. This is disabled by default.
+Enable this to automatically activate `INACTIVE` tenants if a search, read, update, or delete operation is performed on them.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
