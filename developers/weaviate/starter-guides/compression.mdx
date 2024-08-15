@@ -8,36 +8,36 @@ Use compression to lower system requirements and save on infrastructure costs.
 
 ## Overview
 
-Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the storage costs can be significant.
+Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the required storage volume can be significant.
 
-Weaviate creates indexes to search the vector space for your collection. By default, the index is an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index. HNSW indexes are fast and have excellent recall, but they also use a lot of RAM memory.
+Weaviate creates indexes to search the vector space for your collection. By default, the index is an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index which includes the vector as well as a graph structure. HNSW indexes are fast and have excellent recall, but they can be expensive to use as they are stored in memory.
 
 In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data, and still maintain high levels of recall. Updating the default settings can result in significant cost savings and performance improvements.
 
-This page discusses compression methods. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
+This page discusses compression algorithms. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
-## Compression methods
+## Compression algorithms
 
 These compression algorithms are available:
 
-- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ reduces the size of the vector embedding in two ways. PQ creates segments to reduce the number of dimensions, and segments are stored as 8 bit integers instead of 32 bit floats. Compared to dimensions, there are fewer segments and each segment is much smaller than a single dimension.
+- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ reduces the size of the vector embedding in two ways. PQ trains on your data to create custom segments. PQ creates segments to reduce the number of dimensions, and segments are stored as 8 bit integers instead of 32 bit floats. Compared to dimensions, there are fewer segments and each segment is much smaller than a single dimension.
 
   The PQ compression algorithm is [configurable](/developers/weaviate/config-refs/schema/vector-index#pq-configuration-parameters).
 You control the number of segments, segment granularity, and the size of the training set.
 - [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ reduces the size of each vector dimension from 32 bits to 8 bits. SQ trains on your data to create custom buckets for each dimension. This training helps SQ to preserve data characteristics when it maps information from the 32 bit dimensions into 8 bit buckets.
 - [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. This compression algorithm works best for vectors with high dimensionality.
 
-When you compress data, the quality of your results depends heavily on the characteristics of the uncompressed data. The embedding model also plays a role in result quality. Before moving to production, experiment with different compression settings and embedding models to find the combination that works best with your data set.
+When you compress vectors, the quality of your search results depends heavily on the characteristics of the uncompressed vectors. The embedding model produces these vectors. Therefore the embedding model is key to retrieval performance of the compressed vectors. Before moving to production, experiment with different compression settings and embedding models and review the model documentation to find the combination that works best with your data set.
 
 ## Compression considerations
 
-Before choosing a compression method, consider the [underlying index](#underlying-index). The index type determines which algorithms you can use. Some compression methods aren't available with some index types.
+Before choosing a compression algorithms, consider the [underlying vector index type](#underlying-vector-index). The index type determines which compression algorithms you can use. Some compression algorithms aren't available with some index types.
 
 The vectorizer that you use to create your object vectors may also limit your compression choices. For example, some embedding models are tuned specifically for BQ compression.
 
 Performance and cost are also important considerations. See [Cost, recall, and speed](#cost-recall-and-speed) for details.
 
-### Underlying index
+### Underlying vector index
 
 This table shows which compression algorithm is available for each index type.
 
@@ -81,7 +81,7 @@ The over-fetching technique, also call rescoring, means you get the benefits of 
 
 Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to search a compressed data set than an uncompressed one. After Weaviate creates a candidate list, there is a small time cost to search the uncompressed candidate vectors. This cost is small compared to the cost of searching a large, uncompressed data set, and the improved recall justifies the time spent.
 
-Each compression method has its own characteristics with regard to speed.
+Each compression algorithm has its own characteristics with regard to speed.
 
 - PQ indexes have response rates approach the response rates of uncompressed indexes when recall reaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes.
 
