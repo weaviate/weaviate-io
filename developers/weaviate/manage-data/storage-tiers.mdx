@@ -105,6 +105,39 @@ import CollectionsGoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage
 
 There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 
+### Active
+
+<img
+    src={require('./img/active-tenants.jpg').default}
+    alt="Active Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+### Inactive
+
+<img
+    src={require('./img/inactive-tenants.jpg').default}
+    alt="Inactive Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+### Offloaded
+
+<img
+    src={require('./img/offloaded-tenants.jpg').default}
+    alt="Offloaded Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+### Summary
+
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |
+|------------------|----------------|--------------|----------------|-------------|------------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |
+
+
 <!--
 There are three tenant states:
 * `Active` (default) - you can query and modify tenant data (CRUD).
@@ -130,12 +163,6 @@ There are three tenant states:
 <!-- :::info Every tenants starts Active
 By default, all tenenats start as active.
 ::: -->
-
-| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |
-|------------------|----------------|--------------|----------------|-------------|------------------|
-| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |
-| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |
-| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |
 
 
 
