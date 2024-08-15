@@ -12,6 +12,7 @@ Weaviate stores objects and vector representations of those objects (vectors). O
 
 ## Indexing methods
 
+By default, Weaviate uses an uncompressed HNSW index for vectors. Properties use an inverted keyword index. Two configurations are enabled by default, `indexSearchable` and `indexFilterable`.
 
 ### Vector indexes
 
@@ -42,19 +43,23 @@ This chart shows how a dynamic index changes as the number of objects in a colle
 
 ### Property indexes
 
+Keyword search, also known as BM25 search, uses an inverted index. Weaviate uses inverted indexes to search properties.
+
 ## Indexing considerations
 
+- Indexing adds computational overhead when you import data. Starting in v1.2
 
-### Activate indexing
-
-adf
+- If you don't need to search on a property, consider turning indexing off to save space.
 
 ## Recommendations
 
-Most applications benefit from indexing.
+- If your object count is low, consider a flat index. For larger data sets, use an HNSW index. Configure a dynamic index if you object count is low now but will grow.
 
-- The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, compressed collections can be more than 80% cheaper than uncompressed collections.
-- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster
+- Uncompressed vector indexes can use significant resources. Consider using [compression](/developers/weaviate/starter-guides/compression) to minimize resource requirements. Compression helps to control costs and give you room to load more objects in memory.
+
+- If you anticipate making range queries on numerical properties, enable the range filter index.
+
+- If you don't anticipate querying a property, turn off indexing to conserve space.
 
 ## Related pages
 
@@ -62,11 +67,15 @@ For more information, see these documentation pages and blog posts.
 
 ### Documentation pages
 
-To enable indexing, follow the steps on these pages:
+To configure indexing, follow the steps on these pages:
+
+[Configure vector indexes](/developers/weaviate/config-refs/schema/vector-index)
+[Configure inverted indexes](/developers/weaviate/manage-data/collections#set-inverted-index-parameters)
 
 For more documentation details, see:
 
 [Vector indexing](/developers/weaviate/concepts/vector-index)
+[Inverted indexes](/developers/weaviate/concepts/indexing)
 
 ### Weaviate academy
 
