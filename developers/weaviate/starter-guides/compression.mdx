@@ -8,9 +8,9 @@ Use compression to lower system requirements and save on infrastructure costs.
 
 ## Overview
 
-Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the required storage volume can be significant.
+Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the resulting size can lead to significant costs, especially where an in-memory vector index is used.
 
-Weaviate creates indexes to search the vector space for your collection. By default, the index is an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index which includes the vector as well as a graph structure. HNSW indexes are fast and have excellent recall, but they can be expensive to use as they are stored in memory.
+Weaviate creates indexes to search the vector space for your collection. By default, the vector index is an [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index which includes the vector as well as a graph structure. HNSW indexes allow fast vector searches while maintaining excellent recall, but they can be expensive to use as they are stored in memory.
 
 In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data, and still maintain high levels of recall. Updating the default settings can result in significant cost savings and performance improvements.
 
@@ -65,7 +65,7 @@ The cost savings are obvious with in-memory indexes such as HNSW. The greater th
 - SQ compressed vectors use 75% less memory than uncompressed vectors.
 - BQ compressed vectors use 97% less memory than uncompressed vectors.
 
-Note that the HNSW graph structure is not compressed. Accordingly, the reduction in the overall memory footprint of an HNSW index is less than the reduction in the memory footprint of the vectors themselves.
+An HNSW index comprises a connection graph as well as the vectors. Quantization methods reduce the size of the vectors, but does not affect the size of the graph. As a result the overall reduction in memory usage is less than the reduction in vector size, but still significant.
 
 #### Recall
 
@@ -75,7 +75,7 @@ A compressed vector has less information than the full, uncompressed vector. A v
 
 To improve recall with quantized vectors, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate fetches the corresponding uncompressed vector before calculating their distances to the query vector to determine the final ranking. This followup rescoring process is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is still very fast. Most importantly, rescoring using the uncompressed vectors greatly improves recall.
 
-The over-fetching and rescoring means you get the benefits of compression without losing the precision of an uncompressed vector search.
+The search algorithm's use of over-fetching and rescoring means you get the benefits of compression without losing the precision of an uncompressed vector search.
 
 #### Query speed
 
