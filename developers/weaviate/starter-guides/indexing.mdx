@@ -16,6 +16,8 @@ By default, Weaviate uses an uncompressed HNSW index for vectors. Properties use
 
 ### Vector indexes
 
+There are two types of vector index, HNSW and flat indexes. A third variety, the dynamic index, lets you switch automatically from a flat index to an HNSW index when your collection reaches a certain size.
+
 #### HNSW indexes
 
 [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
@@ -44,6 +46,16 @@ This chart shows how a dynamic index changes as the number of objects in a colle
 ### Property indexes
 
 Keyword search, also known as BM25 search, uses an inverted index. Weaviate uses inverted indexes to search properties.
+
+### Collection level configuration
+
+The inverted index is configurable on a collection level. These are general settings that determine how the index functions.
+
+For details, see [set inverted index parameters](/developers/weaviate/manage-data/collections#set-inverted-index-parameters)
+
+### Property level configuration
+
+Toggle indexes on or off at the property level/
 
 ## Indexing considerations
 
