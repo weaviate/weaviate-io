@@ -1,5 +1,5 @@
 ---
-title: Scalar Quantization
+title: Scalar Quantization (SQ)
 sidebar_position: 25
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'sq']
