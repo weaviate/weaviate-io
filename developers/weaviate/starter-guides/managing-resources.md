@@ -92,7 +92,7 @@ Weaviate supports the following vector compression methods:
 |---------------------------|------------|-------------------|-------------|
 | Product Quantization (PQ) | HNSW       | Yes               | Each vector becomes an array of integer-based centroids ([read more](../concepts/vector-quantization.md#product-quantization)) |
 | Binary Quantization (BQ)  | HNSW, Flat | No                | Each vector dimension becomes a bit ([read more](../concepts/vector-quantization.md#binary-quantization)) |
-| Scalar Quantization (SQ)  | HNSW, Flat | Yes               | Each vector dimension becomes an integer ([read more](../concepts/vector-quantization.md#scalar-quantization)) |
+| Scalar Quantization (SQ)  | HNSW       | Yes               | Each vector dimension becomes an integer ([read more](../concepts/vector-quantization.md#scalar-quantization)) |
 
 As a starting point, use the following guidelines for selecting a compression method:
 
