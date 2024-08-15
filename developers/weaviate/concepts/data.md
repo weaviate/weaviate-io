@@ -242,7 +242,10 @@ In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was r
 
 #### Offloaded tenants
 
-Offloaded tenants, are introduced in Weaviate `v1.26.0`. This requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
+:::info Added in `v1.26.0`
+:::
+
+Offloading tenants requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
 
 When a tenant is offloaded, the entire tenant shard is moved to cloud storage. This is useful for long-term storage of tenants that are not frequently accessed. Offloaded tenants are not available for read or write operations until they are loaded back into the cluster.
 
