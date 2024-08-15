@@ -1,16 +1,17 @@
 ---
 title: Indexing
 sidebar_position: 25
-image: og/docs/compression.jpg
+image: og/docs/indexing.jpg
 ---
 
 Use indexes to improve search speeds.
 
 ## Overview
 
-Weaviate stores objects and vector representations of those objects (vectors).
+Weaviate stores objects and vector representations of those objects (vectors). Objects also have properties. Properties have their own indexes. This page introduces [vector indexes](#vector-indexes) and [property indexes](#property-indexes).
 
 ## Indexing methods
+
 
 ### Vector indexes
 
@@ -39,7 +40,7 @@ This chart shows how a dynamic index changes as the number of objects in a colle
 | 100,000 | HNSW | Training | The collection has enough training data for PQ or SQ compression to start. |
 | 100,001 | HNSW | SQ or PQ | Compression is active. |
 
-### Keyword indexes
+### Property indexes
 
 ## Indexing considerations
 
