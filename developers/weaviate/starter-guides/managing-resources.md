@@ -21,9 +21,6 @@ This guide covers:
 
 ## Temperatures
 
-:::info Added in `v1.26`
-:::
-
 ![Storage Tiers](../manage-data/img/storage-tiers.jpg)
 
 Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm), and [*cold*](#-cold). Each tier has different performance characteristics and costs.
@@ -44,11 +41,6 @@ Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm)
 - Always available (active) for use
 - Costs increase rapidly with scale
 
-Optimization strategies:
-- Select a `flat` or `dynamic` [index type](#vector-index-types)
-- Apply [vector compression](#vector-compression) (to reduce memory usage)
-- [Offload tenants](#tenant-states)
-
 ### 🟨 Warm
 
 ![Storage Tiers - Warm](./img/storage-tiers-warm.jpg)
@@ -59,12 +51,10 @@ Optimization strategies:
 - Always available (active) for use
 - Costs increase more slowly than hot tier as data grows
 
-Optimization strategies:
-- Apply [vector compression](#vector-compression) (to improve speed)
-- Select an `hnsw` or `dynamic` [index type](#vector-index-types)
-- [Offload tenants](#tenant-states)
-
 ### 🟦 Cold
+
+:::info Added in `v1.26`
+:::
 
 ![Storage Tiers - Cold](./img/storage-tiers-cold.jpg)
 
@@ -73,9 +63,6 @@ Optimization strategies:
 - Primarily driven by [offloaded tenants](#tenant-states)
 - Resources are not available (inactive) for use
 - Requires [reactivation](#tenant-states) to access
-
-Optimization strategy:
-- Develop an offloading and onloading strategy to balance costs and performance
 
 ## Vector index types
 
@@ -149,17 +136,17 @@ If you are unsure which tenants can be made inactive or offloaded, consider a st
 
 ## Tips
 
-### Best Practices:
+### Best Practices
 
-- Start with a dynamic index type for new collections. This is especially important for multi-tenancy collections, as it allows each tenant to use the most appropriate index type.
-- Use vector compression techniques to optimize storage and query performance, especially for large datasets.
+- Start with the dynamic [index type](#vector-index-types) for new collections. This is particularly useful for multi-tenancy collections, as it allows each tenant to use the most appropriate index type.
+- Use [vector compression](#vector-compression) techniques to optimize storage and query performance, especially for large collections or tenants.
 - Conduct thorough testing when changing index types or compression methods to ensure performance meets your requirements.
 
-### Common Pitfalls:
+### Common Pitfalls
 
 - Overprovisioning hot storage: Keeping all data in hot storage can lead to unnecessary costs. Regularly assess what data truly needs the fastest access.
 - Neglecting to plan for growth: Not anticipating data growth can lead to performance issues. Always design your resource management strategy with scalability in mind.
-- Improper tenant management: In multi-tenant scenarios, forgetting to offload inactive tenants can lead to resource waste. Implement automated processes to manage tenant states based on usage patterns.
+- Improper tenant management: In multi-tenant scenarios, forgetting to [offload inactive tenants](#tenant-states) can lead to resource waste. Implement automated processes to manage tenant states based on usage patterns.
 - Mismatch between quantization techniques, model and data: When using compression technique, ensure that the quantization technique is compatible with the model (e.g. BQ) and that the data is sufficient and representative for training (e.g. PQ, SQ).
 
 ## Related pages
