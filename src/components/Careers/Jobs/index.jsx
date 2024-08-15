@@ -14,7 +14,7 @@ export default function Jobs() {
   const [rawJobs, setRawJobs] = useState([]);
   const [tailorJobs, setTailorJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 10;
+  const jobsPerPage = 20;
   const [departments, setDepartments] = useState({});
   const [selectedDepartment, setSelectedDepartment] = useState('');
 
@@ -150,7 +150,7 @@ export default function Jobs() {
               <p>No jobs found</p>
             )}
 
-            <div className={styles.pagination}>
+            {/* <div className={styles.pagination}>
               <button
                 className={styles.paginationButtons}
                 onClick={() => paginate(currentPage - 1)}
@@ -165,7 +165,7 @@ export default function Jobs() {
               >
                 Next
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
