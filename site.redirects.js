@@ -547,7 +547,7 @@ const siteRedirects = {
             },
   // Services Changes
   {
-    to: "/services/enterprise-cloud",
+    to: "/deployment/enterprise-cloud",
     from: "/services/enterprise-dedicated"
   },
 
