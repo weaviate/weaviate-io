@@ -79,7 +79,7 @@ The search algorithm's use of over-fetching and rescoring means you get the bene
 
 #### Query speed
 
-Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to compare compressed vectors than uncompressed vectors. After Weaviate creates a candidate list, there is a small time cost to rescore results using the uncompressed candidate vectors. This cost is small compared to the cost reduction from searching an uncompressed vector index, and the improved recall justifies the time spent.
+Compressed vectors are significantly smaller than uncompressed vectors. It is much faster to compare compressed vectors than uncompressed vectors. After Weaviate creates a candidate list, there is a small time cost to rescore results using the uncompressed candidate vectors. This cost is small, and the improved recall justifies the time spent.
 
 Each compression algorithm has its own characteristics with regard to speed.
 
