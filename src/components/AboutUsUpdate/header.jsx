@@ -36,16 +36,16 @@ export default function AboutUsHeader() {
       <div className={styles.bottomBar}>
         <div className={styles.innerBar}>
           <div className={styles.barText}>
-            4,000,000+<br></br>
+            13,000,000+<br></br>
             <span>Downloads</span>
           </div>
           <div className={styles.barText}>
-            10,000+<br></br>
+            10,500+<br></br>
             <span>GitHub stars</span>
           </div>
           <div className={styles.barText}>
-            10,000+<br></br>
-            <span>Twitter followers</span>
+            90+<br></br>
+            <span>Employees</span>
           </div>
           <div className={styles.barText}>
             4,000+<br></br>
