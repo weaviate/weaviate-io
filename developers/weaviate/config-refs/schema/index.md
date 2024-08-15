@@ -178,9 +178,9 @@ A description of the collection. This is for your reference only.
 
 This configures the inverted index for the collection.
 
-### invertedIndexConfig > bm25
+### `bm25`
 
-The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
+Part of `invertedIndexConfig`. The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
 
 They can be configured per collection, and can optionally be overridden per property:
 
@@ -215,13 +215,9 @@ They can be configured per collection, and can optionally be overridden per prop
 }
 ```
 
-### `invertedIndexConfig` > stopwords (stopword lists)
+### `stopwords` (stopword lists)
 
-:::note
-This feature was introduced in `v1.12.0`.
-:::
-
-`text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
+Part of `invertedIndexConfig`. `text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
 The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language (e.g. [`"en"` preset](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go)). If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
 
@@ -273,13 +269,9 @@ collection_obj = {
 client.schema.update_config("Article", collection_obj)
 ```
 
-### invertedIndexConfig > indexTimestamps
+### `indexTimestamps`
 
-:::note
-This feature was introduced in `v1.13.0`.
-:::
-
-To perform queries that are filtered by timestamps, configure the target collection to maintain an inverted index based on the objects' internal timestamps. Currently the timestamps include `creationTimeUnix` and `lastUpdateTimeUnix`.
+Part of `invertedIndexConfig`. To perform queries that are filtered by timestamps, configure the target collection to maintain an inverted index based on the objects' internal timestamps. Currently the timestamps include `creationTimeUnix` and `lastUpdateTimeUnix`.
 
 To configure timestamp based indexing, set `indexTimestamps` to `true` in the `invertedIndexConfig` object.
 
@@ -289,13 +281,9 @@ To configure timestamp based indexing, set `indexTimestamps` to `true` in the `i
   }
 ```
 
-### invertedIndexConfig > indexNullState
+### `indexNullState`
 
-:::note
-This feature was introduced in `v1.16.0`.
-:::
-
-To perform queries that filter on `null`, configure the target collection to maintain an inverted index that tracks `null` values for each property in a collection .
+Part of `invertedIndexConfig`. To perform queries that filter on `null`, configure the target collection to maintain an inverted index that tracks `null` values for each property in a collection .
 
 To configure `null` based indexing, setting `indexNullState` to `true` in the `invertedIndexConfig` object.
 
@@ -305,13 +293,9 @@ To configure `null` based indexing, setting `indexNullState` to `true` in the `i
   }
 ```
 
-### invertedIndexConfig > indexPropertyLength
+### `indexPropertyLength`
 
-:::note
-This feature was introduced in `v1.16.0`.
-:::
-
-To perform queries that filter by the length of a property, configure the target collection to maintain an inverted index based on the length of the properties.
+Part of `invertedIndexConfig`. To perform queries that filter by the length of a property, configure the target collection to maintain an inverted index based on the length of the properties.
 
 To configure indexing based on property length, set `indexPropertyLength` to `true` in the `invertedIndexConfig` object.
 
@@ -342,10 +326,6 @@ The `vectorIndexConfig` parameter controls the configuration of the vector index
 See the [vector index configuration](./vector-index.md) page for more details.
 
 ### `shardingConfig`
-
-:::note
-Introduced in v1.8.0.
-:::
 
 The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](../../concepts/cluster.md). All values are optional and default to the following settings:
 
