@@ -109,13 +109,14 @@ export default function introduction() {
         </div>
         <div className={styles.investorLogos}>
           <div className={styles.signUp}>
-            <h2>Accelerate your AI projects</h2>
-            <p>Sign up for a free 2-week trial of Weaviate Serverless Cloud.</p>
+            <h2>The AI-native database for a new generation of software</h2>
+            <p>Get started for free</p>
             <Link to="/signup" className={styles.button}>
               Create Account
             </Link>
             <span>
-              Already have an account? <Link to="">Log in</Link>
+              Have questions about pricing? <br></br>
+              <Link to="">Contact us</Link>
             </span>
           </div>
         </div>
