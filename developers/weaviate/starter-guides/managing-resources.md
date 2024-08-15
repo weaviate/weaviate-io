@@ -71,7 +71,7 @@ Weaviate supports HNSW, flat, and dynamic vector index types.
 | Index Type | Resource Usage | Performance | Suitable for      | Description |
 |------------|----------------|-------------|-------------------|-------------|
 | HNSW       | 🟥 Hot         | Fast        | Any object count  | A memory-based, fast index ([read more](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index)) |
-| Flat       | 🟨 Warm        | Medium      | <~100k objects    | A disk-based, brute-force index ([read more](../concepts/vector-index.md#flat-index)) |
+| Flat       | 🟨 Warm        | Medium      | <~10k objects    | A disk-based, brute-force index ([read more](../concepts/vector-index.md#flat-index)) |
 | Dynamic    | Depends        | Depends     | Any object count  | Transitions from flat to HNSW index at a specified threshold ([read more](../concepts/vector-index.md#dynamic-index)) |
 
 The choice of index type depends on the number of objects and the desired performance. As a rule of thumb, use the following guidelines for a multi-tenant collection:
