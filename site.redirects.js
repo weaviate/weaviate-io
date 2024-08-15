@@ -600,6 +600,10 @@ const siteRedirects = {
     to: "/deployment/enablement",
     from: "/services/education-and-support"
  },
+ {
+    to: "/deployment/enablement",
+    from: "/deployment/education-and-support"
+ },
 
     ],
     createRedirects(existingPath) {
