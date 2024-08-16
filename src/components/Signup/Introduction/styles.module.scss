@@ -24,6 +24,8 @@ p {
   color: white;
   display: flex;
   flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 
   h3 {
     color: #130c49;
@@ -51,7 +53,7 @@ p {
 
   background-image: url('/img/site/weaviate-bottom-right-bubble.png');
   background-color: #130c49;
-  background-color: #130c49;
+
   background-position-x: right;
   background-position-y: bottom;
   background-repeat: no-repeat;
@@ -59,6 +61,9 @@ p {
   display: flex;
   align-items: flex-start;
 
+  @media screen and (max-width: 1280px) {
+    background-size: 90%;
+  }
   @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
@@ -314,7 +319,7 @@ p {
   }
 
   p {
-    width: 67%;
+    width: 80%;
     color: #130c49;
     font-family: Inter;
     font-size: 1rem;
@@ -322,7 +327,7 @@ p {
     font-weight: 400;
     line-height: 157.33%;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1280px) {
       width: 100%;
     }
   }

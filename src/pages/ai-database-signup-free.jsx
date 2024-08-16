@@ -21,7 +21,7 @@ export default function signUpPage() {
           property="og:description"
           content="All the power of our open-source vector database, without the burden of self-hosting."
         />
-        <meta property="robots" content="noindex,nofollow" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className="custom-page noBG">
         <Introduction />
