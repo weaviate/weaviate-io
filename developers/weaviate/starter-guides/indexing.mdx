@@ -22,9 +22,19 @@ There are two types of vector index, HNSW and flat indexes. A third variety, the
 
 [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
+Uncompressed vector indexes are large. HNSW indexes are in-memory indexes; they can use a lot of RAM. Consider using [compression](/developers/weaviate/starter-guides/compression) to reduce the memory requirements for your HNSW indexes. Weaviate offers several ways to compress your data:
+
+import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+
+<CompressionAlgorithm />
+
 #### Flat indexes
 
-[Flat indexes](https://weaviate.io/developers/weaviate/concepts/vector-index#flat-index)
+[Flat indexes](/developers/weaviate/concepts/vector-index#flat-index) are stored on disk rather than in RAM like HNSW indexes. They work best when your collection is small. Flat indexes are ideally suited for multi-tenant configurations where there are many small collections rather than one large one.
+
+The vector cache can speed up flat index search.
+
+[Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) works very well with flat indexes. BQ reduces the size of the the index more than 90%. This also helps to speed search.
 
 #### Dynamic indexes
 
@@ -55,13 +65,17 @@ For details, see [set inverted index parameters](/developers/weaviate/manage-dat
 
 ### Property level configuration
 
-Toggle indexes on or off at the property level/
+Toggle indexes on or off at the property level. The `indexFilterable` and `indexSearchable` settings enable fast keyword filters and searches. The `indexRangeFilters` setting speeds numerical range queries when you have very large collections of numerical data.
+
+When you add filters to your search query, the filter can narrow the scope of the vector search to return more relevant answers.
+
+For more on filters, see [Filtering](/developers/weaviate/concepts/prefiltering#indexfilterable-for-text-properties).
 
 ## Indexing considerations
 
-- Indexing adds computational overhead when you import data. Starting in v1.2
+- Indexing adds computational overhead when you import data. Starting in v1.22, [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) allows you to begin working sooner while newly imported objects are indexed in the background.
 
-- If you don't need to search on a property, consider turning indexing off to save space.
+- If you don't need to search or filter on a property, consider turning indexing off to save space.
 
 ## Recommendations
 
@@ -94,10 +108,6 @@ For more documentation details, see:
 For a short course on vector indexes, see:
 
 [Vector indexing](/developers/academy/py/vector_index)
-
-### Blog posts
-
-For in-depth discussions, see:
 
 ## Questions and feedback
 
