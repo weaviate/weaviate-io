@@ -154,6 +154,7 @@ p {
 
   @media screen and (max-width: 780px) {
     background-size: contain;
+    padding: 2rem;
   }
 
   img {
@@ -306,7 +307,12 @@ p {
   flex-direction: column;
   height: auto;
   justify-content: space-between;
-  margin-left: 43px;
+
+  margin: 0px 0px 0px 43px;
+
+  @media screen and (max-width: 500px) {
+    margin: 20px 0px;
+  }
 
   p {
     width: 67%;
@@ -410,10 +416,6 @@ p {
   gap: 40px;
   grid-template-columns: auto auto auto;
   justify-content: center;
-
-  @media screen and (max-width: 950px) {
-    margin: 30px 0px;
-  }
 }
 
 .customerLogo {

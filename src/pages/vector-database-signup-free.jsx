@@ -11,12 +11,12 @@ export default function signUpPage() {
   return (
     <>
       <Head>
-        <title>Get started for free</title>
+        <title>Get Started For Free</title>
         <meta
           name="description"
           content="All the power of our open-source vector database, without the burden of self-hosting."
         />
-        <meta property="og:title" content="Get started for free" />
+        <meta property="og:title" content="Get Started For Free" />
         <meta
           property="og:description"
           content="All the power of our open-source vector database, without the burden of self-hosting."
