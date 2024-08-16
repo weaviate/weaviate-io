@@ -14,90 +14,23 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 ![Storage Tiers](./img/storage-tiers.jpg)
 
-<!-- TODO: change it so that we first list the types storage-tiers, before moving to changing -->
-<!-- Weaviate uses different resources  -->
-
-Resources used in Weaviate can be divided into three storage tiers:
+we categorize storage resources using three tiers, each tier has different performance characteristics and costs:
 * `Hot` (RAM) - fast and expensive,
 * `Warm` (Disk) - medium speed and medium price,
 * `Cold` (Cloud Storage) - cheap, but slow.
 
 In all collections, the choice of [vector index type](#vector-index-temperature) will affect its resource usage.
 
-In multi-tenant collections, you can additionally change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost against resource availability and readiness. <!--This way you can balance performance and cost.-->
+In multi-tenant collections, you can additionally change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost against resource availability and readiness.
 
-<!-- In multi-tenant collections, you can change tenant states to move the key resources (`vector index` and `data`) between `Hot` (RAM), `Warm` (Disk) and `Cold` (Cloud Storage) storage-tiers. -->
-
-## Manage vector index resource temperature
+<details>
+  <summary>Manage vector index resource temperature</summary>
 
 The vector index type affects its default resource type.
 
-:::info Index type vs resource temperature
 * [`HNSW` index (default)](/developers/academy/py/vector_index/hnsw) - uses the vector index in RAM, a **Hot** resource.
 * [`Flat` index](/developers/academy/py/vector_index/flat) - uses the vector index on disk, a **Warm** resource.
 * [`Dynamic` index](/developers/academy/py/vector_index/dynamic) - starts as a flat index (using a **Warm** resource), then switches to an HNSW index (a **Hot** resource) at a predetermined threshold.
-:::
-
-The vector index type can be set for each collection at creation time, between `hnsw`, `flat` and `dynamic` index types.
-
-import CollectionsPyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
-import CollectionsPyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
-import CollectionsTSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
-import CollectionsTSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
-import CollectionsJavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
-import CollectionsGoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={CollectionsPyCode}
-      startMarker="# START SetVectorIndexType"
-      endMarker="# END SetVectorIndexType"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={CollectionsPyCodeV3}
-      startMarker="# START SetVectorIndexType"
-      endMarker="# END SetVectorIndexType"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={CollectionsTSCode}
-      startMarker="// START SetVectorIndexType"
-      endMarker="// END SetVectorIndexType"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={CollectionsTSCodeLegacy}
-      startMarker="// START SetVectorIndexType"
-      endMarker="// END SetVectorIndexType"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={CollectionsJavaCode}
-      startMarker="// START SetVectorIndexType"
-      endMarker="// END SetVectorIndexType"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Additional information</summary>
-
-- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
 
 </details>
 
@@ -105,38 +38,11 @@ import CollectionsGoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage
 
 There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 
-| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |
-|------------------|----------------|--------------|----------------|-------------|------------------|
-| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |
-| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |
-| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |
-
-
-<!--
-There are three tenant states:
-* `Active` (default) - you can query and modify tenant data (CRUD).
-* `Inactive` - you can't query or modify the tenant data.
-  * The vector index and the data is stored locally
-  * Activating the tenant is relatively fast (depending on number of objects).
-* `Offloaded` - you can't query or modify the tenant data.
-  * The vector index and the data is moved to a cloud storage.
-  * Onloading and activating the tenant is slower than activating.  -->
-
-<!-- You can move tenants between three different states:
-* `Active` (default) - tenant is ready for queries and data manipulation.
-    * `vector index` - uses `hot` resouces (with HNSW) or `warm` with (with Flat)
-    * `object data` - uses `warm` resources.
-* `Inactive` - tenenat can't be queried and data can't be modified.
-    * `vectors index` – removed from `hot` storage, reducing the need for RAM.
-    * `object data` - uses `warm` resources.
-    * Activating tenant is relatively fast.
-* `Offloaded` - all tenant data and vectors are moved to a cloud storage. Tenant cannot be queried, data can't be modified:
-    * all resources, including vector index and object data – moved to `cold` storage. No `hot` or `warm` resources used.
-    * Onloading a tenant from cloud . -->
-
-<!-- :::info Every tenants starts Active
-By default, all tenenats start as active.
-::: -->
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |Description |
+|------------------|----------------|--------------|----------------|-------------|------------------|------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |Tenant is available for use |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |Tenant is locally stored but not available for use |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |Tenant is stored in cloud storage and not available for use |
 
 ### Active
 
@@ -254,7 +160,7 @@ To offload an `ACTIVE` or `INACTIVE` tenant to cloud, call:
   </TabItem>
 </Tabs>
 
-:::warning Requires Offload Module
+:::caution Requires Offload Module
 Tenant offloading requires an Offload module.
 
 To enable tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
@@ -287,3 +193,9 @@ Enable this to automatically activate `INACTIVE` tenants if a search, read, upda
   </TabItem>
 
 </Tabs>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
