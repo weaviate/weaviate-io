@@ -4,17 +4,13 @@ sidebar_position: 25
 image: og/docs/indexing.jpg
 ---
 
-Use indexes to improve search speeds.
+Indexes improve search speeds. Weaviate stores objects and vector representations of those objects (vectors). By default, Weaviate uses an uncompressed [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index for vectors.
 
-## Overview
+Objects also have properties, and properties have their own indexes. Property indexes are [inverted indexes](/developers/weaviate/more-resources/performance#inverted-index).
 
-Weaviate stores objects and vector representations of those objects (vectors). Objects also have properties. Properties have their own indexes. This page introduces [vector indexes](#vector-indexes) and [property indexes](#property-indexes).
+This page introduces the [vector indexes](#vector-indexes) and [property indexes](#property-indexes) that Weaviate uses.
 
-## Indexing methods
-
-By default, Weaviate uses an uncompressed HNSW index for vectors. Properties use an inverted keyword index. Two configurations are enabled by default, `indexSearchable` and `indexFilterable`.
-
-### Vector indexes
+## Vector indexes
 
 There are two types of vector index, HNSW and flat indexes. A third variety, the dynamic index, lets you switch automatically from a flat index to an HNSW index when your collection reaches a certain size.
 
@@ -53,9 +49,9 @@ This chart shows how a dynamic index changes as the number of objects in a colle
 | 100,000 | HNSW | Training | The collection has enough training data for PQ or SQ compression to start. |
 | 100,001 | HNSW | SQ or PQ | Compression is active. |
 
-### Property indexes
+## Property indexes
 
-Keyword search, also known as BM25 search, uses an inverted index. Weaviate uses inverted indexes to search properties.
+Keyword search, also known as BM25 search, uses an inverted index. Weaviate uses inverted indexes to search object text-properties quickly and to implement filtering during vector search.
 
 ### Collection level configuration
 
