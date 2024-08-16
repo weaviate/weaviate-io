@@ -9,19 +9,22 @@ image: og/docs/tutorials.jpg
 
 Effective resource management is crucial for building scalable, cost-efficient, and high-performing AI applications. As your data grows and query demands increase, understanding how to balance storage tiers, optimize vector indexing, and manage tenants becomes essential.
 
+<!-- TODO: can we rephrase this to talk about letting you to optimise for what matters to you.
+You could optimise for speed, accuracy/recall and cost. (Or a mix of of the choices)
+ -->
 Weaviate provides flexible resource management options to help build cost-effective and high-performing AI-native applications. This guide will help you make informed decisions about resource allocation, enabling you to minimize costs while maintaining optimal performance for your specific use case.
 
 This guide covers:
 
-- **[Storage tiers (*hot, warm, cold*)](#temperatures)**
+- **[Storage tiers (*hot, warm, cold*)](#storage-tiers---temperatures)**
 - **[Vector index types](#vector-index-types)**
 - **[Vector compression](#vector-compression)**
 - **[Tenant states](#tenant-states)**
 - **[Tips](#tips)**
 
-## Temperatures
+## Storage Tiers - Temperatures
 
-![Storage Tiers](../manage-data/img/storage-tiers.jpg)
+![Storage Tiers](./img/storage-tiers.jpg)
 
 Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm), and [*cold*](#-cold). Each tier has different performance characteristics and costs.
 
@@ -37,7 +40,7 @@ Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm)
 
 - Describes memory usage
 - Fastest and most expensive
-- Primarily driven by [`HNSW`](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index) vector indexes
+- Primarily driven by [`HNSW`](../../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index) vector indexes
 - Always available (active) for use
 - Costs increase rapidly with scale
 
@@ -47,14 +50,11 @@ Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm)
 
 - Describes data stored on disk (SSD)
 - Slower than [hot](#-hot) tier but less expensive
-- Driven by [flat](../concepts/vector-index.md#flat-index) vector index, object data, and [inverted indexes](../concepts/indexing.md#inverted-indexes)
+- Driven by [flat](../../concepts/vector-index.md#flat-index) vector index, object data, and [inverted indexes](../concepts/indexing.md#inverted-indexes)
 - Always available (active) for use
 - Costs increase more slowly than hot tier as data grows
 
 ### 🟦 Cold
-
-:::info Added in `v1.26`
-:::
 
 ![Storage Tiers - Cold](./img/storage-tiers-cold.jpg)
 
@@ -63,6 +63,15 @@ Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm)
 - Primarily driven by [offloaded tenants](#tenant-states)
 - Resources are not available (inactive) for use
 - Requires [reactivation](#tenant-states) to access
+
+
+## Strategies to manage hot, warm and cold resources
+<!-- or 
+## Resource strategies
+## Resource techinques
+ -->
+
+<!-- TODO: Use this to introduce the topic of choosing the right strategy/techinque to achieve desired outcomes. -->
 
 ## Vector index types
 
@@ -80,7 +89,7 @@ The choice of index type depends on the number of objects and the desired perfor
 
 If you are unsure which index type to use, the dynamic index type is a good starting point, as it automatically transitions from a flat to an HNSW index based on the number of objects.
 
-[Read more about vector indexes here](../concepts/vector-index.md).
+[Read more about vector indexes here](../../concepts/vector-index.md).
 
 ## Vector compression
 
@@ -104,7 +113,7 @@ If you are unsure which index type to use, scalar quantization is a good startin
 
 <!-- Replace with compression guide in the future when ready -->
 
-[Read more about vector compression here](../concepts/vector-quantization.md).
+[Read more about vector compression here](../../concepts/vector-quantization.md).
 
 ## Tenant states
 
@@ -155,12 +164,12 @@ If you are unsure which tenants can be made inactive or offloaded, consider a st
 
 ## Related pages
 
-- [Concepts: Vector Index](../concepts/vector-index.md)
-- [Concepts: Vector Quantization](../concepts/vector-quantization.md)
-- [Concepts: Multi-Tenancy](../concepts/data.md#multi-tenancy)
-- [How-to: Set the vector index type](../manage-data/collections.mdx#set-vector-index-type)
-- [How-to: Configure vector compression](../configuration/compression/index.md)
-- [How-to: Perform multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [Concepts: Vector Index](../../concepts/vector-index.md)
+- [Concepts: Vector Quantization](../../concepts/vector-quantization.md)
+- [Concepts: Multi-Tenancy](../../concepts/data.md#multi-tenancy)
+- [How-to: Set the vector index type](../../manage-data/collections.mdx#set-vector-index-type)
+- [How-to: Configure vector compression](../../configuration/compression/index.md)
+- [How-to: Perform multi-tenancy operations](../../manage-data/multi-tenancy.md)
 
 ## Questions and feedback
 
