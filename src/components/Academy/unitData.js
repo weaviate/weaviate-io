@@ -14,11 +14,41 @@ export const unitData = {
       "Connect to the Weaviate instance using the Python client and communicate with it."
     ]
   },
+  "text_setup_weaviate_ts": {
+    title: "Set up Weaviate",
+    body: "Set up a Weaviate instance and connect to it.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_text_data/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance and connect to it with the JavaScript/Typescript client."
+    ],
+    learningOutcomes: [
+      "Install the latest Weaviate JavaScript/Typescript client.",
+      "Create a Weaviate instance.",
+      "Connect to the Weaviate instance using the JavaScript/Typescript client and communicate with it."
+    ]
+  },
   "text_collections": {
     title: "Populate the database",
     body: "Create a collection and import data, and have Weaviate create vectors for you.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_text_data/text_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import text data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "text_collections_ts": {
+    title: "Populate the database",
+    body: "Create a collection and import data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_text_data/text_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import text data using batch imports."
@@ -45,11 +75,42 @@ export const unitData = {
       "Perform a hybrid search.",
     ]
   },
+  "text_searches_ts": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_text_data/text_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform semantic, keyword and hybrid searches."
+    ],
+    learningOutcomes: [
+      "Describe differences between semantic, keyword and hybrid searches at a high level.",
+      "Perform a semantic search with near text functions.",
+      "Perform a keyword search.",
+      "Perform a hybrid search.",
+    ]
+  },
   "text_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_text_data/text_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+  "text_rag_ts": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_text_data/text_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."
