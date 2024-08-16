@@ -9,7 +9,7 @@ Weaviate uses two types of indexes to facilitate fast, scalable search and filte
 This page introduces the [vector indexes](#vector-indexes) and [inverted indexes](#inverted-indexes) available in Weaviate, so you can arrive at an informed indexing strategy.
 
 :::info Indexing and resource usage
-Vector indexes can use *hot* or *warm* resources, depending on the index type. Inverted indexes use *warm* resources. For more on resource types, see [Managing resources](./managing-resources.md).
+Vector indexes can use *hot* or *warm* resources, depending on the index type. Inverted indexes use *warm* resources. For more on resource types, see [Managing resources](./index.mdx).
 :::
 
 :::tip Indexing recommendations
@@ -19,9 +19,9 @@ Vector indexes can use *hot* or *warm* resources, depending on the index type. I
     - If your object count is low, consider a flat index.
     - For larger data sets, use an HNSW index.
     - If you are unsure, use a dynamic index.
-- If you can trade off some accuracy, consider using [compression](../starter-guides/compression.mdx):
-    - For HNSW indexes, [PQ](../configuration/compression/pq-compression.md)/[SQ](../configuration/compression/sq-compression.md)/[BQ](../configuration/compression/bq-compression.md) can reduce memory requirements.
-    - For flat indexes, [binary quantization (BQ)](../configuration/compression/bq-compression.md) can improve search speeds.
+- If you can trade off some accuracy, consider using [compression](./compression.mdx):
+    - For HNSW indexes, [PQ](../../configuration/compression/pq-compression.md)/[SQ](../../configuration/compression/sq-compression.md)/[BQ](../../configuration/compression/bq-compression.md) can reduce memory requirements.
+    - For flat indexes, [binary quantization (BQ)](../../configuration/compression/bq-compression.md) can improve search speeds.
 - Consider your query needs when configuring inverted indexes:
     - If disk space is not a concern, [index all properties](#property-level-configuration) for searching & filtering.
     - If metadata filtering is important, index it [at the collection level](#collection-level-configuration).
@@ -34,7 +34,7 @@ Weaviate offers three types of vector indexes, [Hierarchical Navigable Small Wor
 
 - HNSW indexes enable fast, scalable vector searching that works well even with very large data sets.
 - Flat indexes are memory-efficient indexes that work best with small data sets.
-- Dynamic indexes provide a best-of-both-worlds approach by switching from flat to HNSW indexes when a [collection](../concepts/data.md#collections) (or [tenant](../concepts/data.md#multi-tenancy)) reaches a threshold size.
+- Dynamic indexes provide a best-of-both-worlds approach by switching from flat to HNSW indexes when a [collection](../../concepts/data.md#collections) (or [tenant](../../concepts/data.md#multi-tenancy)) reaches a threshold size.
 
 #### HNSW indexes
 
@@ -42,9 +42,9 @@ Weaviate offers three types of vector indexes, [Hierarchical Navigable Small Wor
 
 HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
 
-While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./managing-resources.md#-hot), as they load the graph structure and vectors into memory.
+While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.mdx#-hot), as they load the graph structure and vectors into memory.
 
-Consider using [compression](/developers/weaviate/starter-guides/compression) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
 
 import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
 
