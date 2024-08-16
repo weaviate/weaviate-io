@@ -224,7 +224,7 @@ await multiCollection.tenants.update({
       // highlight-end
     })
   })
-  // END EnableAutoMT
+  // END EnableAutoActivation
   }
 
 // ============================
