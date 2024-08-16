@@ -33,7 +33,7 @@ This guide provides an overview of these topics to help you make allocate resour
 
 ![Storage Tiers](./img/storage-tiers.jpg)
 
-For convenience of discussion, we categorize storage resources using three tiers: [*hot*](#-hot), [*warm*](#-warm), and [*cold*](#-cold). Each tier has different performance characteristics and costs.
+We categorize storage resources using three tiers: [*hot*](#-hot), [*warm*](#-warm), and [*cold*](#-cold). Each tier has different performance characteristics and costs.
 
 | Tier     | Vector <br/> Index Type | Vector <br/> Compression | Tenant State  | Storage    | Performance           | Cost      |
 |----------|-------------------|--------------------|---------------|------------|-----------------------|----------|
@@ -96,7 +96,8 @@ The choice of index type depends on the number of objects and the desired perfor
 
 If you are unsure which index type to use, the dynamic index type is a good starting point, as it automatically transitions from a flat to an HNSW index based on the number of objects.
 
-[Read more about vector indexes here](./indexing.mdx)
+- [Starter guide: indexes](./indexing.mdx)
+- [How-to: Set the vector index type](../../manage-data/collections.mdx#set-vector-index-type)
 
 ### Vector compression
 
@@ -118,7 +119,8 @@ As a starting point, use the following guidelines for selecting a compression me
 
 If you are unsure which index type to use, scalar quantization is a good starting point, provided that you have a representative sample of your likely final dataset.
 
-[Read more about vector compression here](./compression.mdx)
+- [Starter guide: Vector compression](./compression.mdx)
+- [How-to: Configure vector compression](../../configuration/compression/index.md)
 
 ### Tenant states
 
@@ -138,7 +140,8 @@ Weaviate supports the following tenant states:
 
 Consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
 
-[Read more about tenant states here](./tenant-states.mdx)
+- [Starter guide: tenant states](./tenant-states.mdx)
+- [How-to: Manage tenant states](../../manage-data/tenant-states.mdx)
 
 ## Tips
 
@@ -166,6 +169,7 @@ Consider a strategy of deactivating tenants that are not frequently accessed, an
 - [How-to: Set the vector index type](../../manage-data/collections.mdx#set-vector-index-type)
 - [How-to: Configure vector compression](../../configuration/compression/index.md)
 - [How-to: Perform multi-tenancy operations](../../manage-data/multi-tenancy.md)
+- [How-to: Manage tenant states](../../manage-data/tenant-states.mdx)
 
 ## Questions and feedback
 
