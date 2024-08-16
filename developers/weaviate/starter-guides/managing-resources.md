@@ -84,7 +84,9 @@ If you are unsure which index type to use, the dynamic index type is a good star
 
 ## Vector compression
 
-Vector compression reduces the size of each vector. This can have the impact of reducing memory usage, or improving performance by reducing the amount of data that needs to be read from disk.
+Vector compression techniques reduce the size of vectors by quantizing them into a smaller representation.
+
+This can have the impact of reducing memory usage, or improving performance by reducing the amount of data that needs to be read from disk. The trade-off is that the resulting search quality may be lower.
 
 Weaviate supports the following vector compression methods:
 
@@ -108,23 +110,27 @@ If you are unsure which index type to use, scalar quantization is a good startin
 
 Multi-tenant collections enable you to efficiently manage isolated subsets of data that share the same schema and configuration. Weaviate supports the following tenant states:
 
-| State     | Description |
-|-----------|-------------|
-| Active    | Tenant is available for use |
-| Inactive  | Tenant is locally stored but not available for use |
-| Offloaded | Tenant is stored in cloud storage and not available for use |
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |Description |
+|------------------|----------------|--------------|----------------|-------------|------------------|------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |Tenant is available for use |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |Tenant is locally stored but not available for use |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |Tenant is stored in cloud storage and not available for use |
 
-Tenant states enable you to balance costs and performance by offloading tenants to cold storage when they are not needed, and reactivating them when they are needed.
+A tenant status management strategy can help you to balance cost and performance. Here's why. An active tenant with an HNSW index uses *hot* resources, which are the most expensive. At the other end of the spectrum, an offloaded tenant uses *cold* resources, which are the least expensive.
 
-A tenant status management strategy can help you to optimize cost and performance. Here's why. A tenant with an HNSW index type uses *hot* resources, which are the most expensive.
+*Hot* tenants can be deactivated to *warm* storage to reduce memory usage, and any tenant can be offloaded to *cold* storage to reduce memory and disk usage. Conversely, any tenant can be reactivated when needed.
 
-But not all tenants need to be active all the time. Some tenants may be used infrequently, and others may be used only for a short period of time. So, strategies can be developed to deactivate or offload tenants to *warm* or *cold* storage when they are not needed, and reactivate them when they are needed.
+So, consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
+
+For example, imagine an e-commerce platform with separate tenants for each vendor. During a holiday sale, the tenant for a popular electronics vendor might be kept active for quick access, while tenants for seasonal vendors (e.g., Christmas decorations in July) could be offloaded to cold storage to save resources.
+
+Understanding how tenant states interact with different index types is crucial for developing an effective resource management strategy. Let's explore this relationship in more detail.
 
 ### Tenant states and index types
 
 Tenant states management strategies are tied to index types. This is because the index type determines the resources used by a tenant. For example, a tenant with an HNSW index type uses *hot* resources, while a tenant with a flat index type uses *warm* resources.
 
-If a multi-tenancy collection is configured with a dynamic index type, some tenants may be stored in *warm* storage (flat index) and others in *hot* storage (HNSW index).
+If a multi-tenant collection is configured with a dynamic index type, some tenants may be stored in *warm* storage (flat index) and others in *hot* storage (HNSW index).
 
 So, strategically managing tenant states can help you to optimize costs and performance.
 
@@ -138,7 +144,7 @@ If you are unsure which tenants can be made inactive or offloaded, consider a st
 
 ### Best Practices
 
-- Start with the dynamic [index type](#vector-index-types) for new collections. This is particularly useful for multi-tenancy collections, as it allows each tenant to use the most appropriate index type.
+- Start with the dynamic [index type](#vector-index-types) for new collections. This is particularly useful for multi-tenant collections, as it allows each tenant to use the most appropriate index type.
 - Use [vector compression](#vector-compression) techniques to optimize storage and query performance, especially for large collections or tenants.
 - Conduct thorough testing when changing index types or compression methods to ensure performance meets your requirements.
 
