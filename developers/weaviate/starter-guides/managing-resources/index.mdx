@@ -1,26 +1,33 @@
 ---
 title: Managing resources (Hot, Warm, Cold)
-sidebar_position: 60
+sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 
 ## Overview
 
-Effective resource management is crucial for building scalable, cost-efficient, and high-performing AI applications. As your data grows and query demands increase, understanding how to balance storage tiers, optimize vector indexing, and manage tenants becomes essential.
+Weaviate's flexible resource management features allow you to balance search speeds, accuracy/recall and costs.
 
-<!-- TODO: can we rephrase this to talk about letting you to optimise for what matters to you.
-You could optimise for speed, accuracy/recall and cost. (Or a mix of of the choices)
- -->
-Weaviate provides flexible resource management options to help build cost-effective and high-performing AI-native applications. This guide will help you make informed decisions about resource allocation, enabling you to minimize costs while maintaining optimal performance for your specific use case.
-
-This guide covers:
+This guide will help you make informed decisions about resource allocation by providing an overview of the following:
 
 - **[Storage tiers (*hot, warm, cold*)](#storage-tiers---temperatures)**
 - **[Vector index types](#vector-index-types)**
 - **[Vector compression](#vector-compression)**
 - **[Tenant states](#tenant-states)**
 - **[Tips](#tips)**
+
+:::tip Resource management Tips
+
+- Start with the dynamic [index type](#vector-index-types) unless you have a reason not to.
+- Consider [vector compression](#vector-compression) techniques if some loss of accuracy is acceptable.
+    - This will improve query speeds.
+    - For HNSW indexes, this will reduce memory usage.
+- Avoid overprovisioning storage. Especially *hot* storage.
+    - Can you use [tenant states](#tenant-states) to reduce costs?
+    - Can you use [vector compression](#vector-compression) to reduce memory usage?
+
+:::
 
 ## Storage Tiers - Temperatures
 
@@ -65,15 +72,15 @@ Storage resources are divided into three tiers: [*hot*](#-hot), [*warm*](#-warm)
 - Requires [reactivation](#tenant-states) to access
 
 
-## Strategies to manage hot, warm and cold resources
-<!-- or 
-## Resource strategies
-## Resource techinques
- -->
+## Resource Management - Key Factors
 
-<!-- TODO: Use this to introduce the topic of choosing the right strategy/techinque to achieve desired outcomes. -->
+Effective resource management in Weaviate involves balancing performance, cost, and data accessibility. The key levers to manage resources are:
 
-## Vector index types
+- **[Vector index types](#vector-index-types)**: Choose the right index type based on the number of objects and desired performance.
+- **[Vector compression](#vector-compression)**: Use compression techniques to reduce memory usage and improve query performance at the cost of some accuracy.
+- **[Tenant states](#tenant-states)**: Manage tenant states to balance cost and performance.
+
+### Vector index types
 
 Weaviate supports HNSW, flat, and dynamic vector index types.
 
@@ -89,9 +96,9 @@ The choice of index type depends on the number of objects and the desired perfor
 
 If you are unsure which index type to use, the dynamic index type is a good starting point, as it automatically transitions from a flat to an HNSW index based on the number of objects.
 
-[Read more about vector indexes here](../../concepts/vector-index.md).
+[Read more about vector indexes here](./indexing.mdx).
 
-## Vector compression
+### Vector compression
 
 Vector compression techniques reduce the size of vectors by quantizing them into a smaller representation.
 
@@ -115,7 +122,7 @@ If you are unsure which index type to use, scalar quantization is a good startin
 
 [Read more about vector compression here](../../concepts/vector-quantization.md).
 
-## Tenant states
+### Tenant states
 
 Multi-tenant collections enable you to efficiently manage isolated subsets of data that share the same schema and configuration. Weaviate supports the following tenant states:
 
