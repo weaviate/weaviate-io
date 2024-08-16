@@ -47,7 +47,7 @@ For convenience of discussion, we categorize storage resources using three tiers
 
 - Describes memory usage
 - Fastest and most expensive
-- Primarily driven by [`HNSW`](../../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index) vector indexes
+- Primarily driven by [`HNSW`](./indexing.mdx#hnsw-indexes) vector indexes
 - Always available (active) for use
 - Costs increase rapidly with scale
 
@@ -57,7 +57,7 @@ For convenience of discussion, we categorize storage resources using three tiers
 
 - Describes data stored on disk (SSD)
 - Slower than [hot](#-hot) tier but less expensive
-- Driven by [flat](../../concepts/vector-index.md#flat-index) vector index, object data, and [inverted indexes](../concepts/indexing.md#inverted-indexes)
+- Driven by [flat](./indexing.mdx#flat-indexes) vector index, object data, and [inverted indexes](./indexing.mdx#inverted-indexes)
 - Always available (active) for use
 - Costs increase more slowly than hot tier as data grows
 
@@ -86,9 +86,9 @@ The choice of vector index type can have a significant impact on performance and
 
 | Index Type | Resource Usage | Performance | Suitable for      | Description |
 |------------|----------------|-------------|-------------------|-------------|
-| HNSW       | 🟥 Hot         | Fast        | Any object count  | A memory-based, fast index ([read more](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index)) |
-| Flat       | 🟨 Warm        | Medium      | <~10k objects    | A disk-based, brute-force index ([read more](../concepts/vector-index.md#flat-index)) |
-| Dynamic    | Depends        | Depends     | Any object count  | Transitions from flat to HNSW index at a specified threshold ([read more](../concepts/vector-index.md#dynamic-index)) |
+| HNSW       | 🟥 Hot         | Fast        | Any object count  | A memory-based, fast index ([read more](./indexing.mdx#hnsw-indexes)) |
+| Flat       | 🟨 Warm        | Medium      | <~10k objects    | A disk-based, brute-force index ([read more](./indexing.mdx#flat-indexes)) |
+| Dynamic    | Depends        | Depends     | Any object count  | Transitions from flat to HNSW index at a specified threshold ([read more](./indexing.mdx#dynamic-indexes)) |
 
 The choice of index type depends on the number of objects and the desired performance. As a rule of thumb, use the following guidelines for a multi-tenant collection:
 
@@ -96,7 +96,7 @@ The choice of index type depends on the number of objects and the desired perfor
 
 If you are unsure which index type to use, the dynamic index type is a good starting point, as it automatically transitions from a flat to an HNSW index based on the number of objects.
 
-[Read more about vector indexes here](../indexing.mdx)
+[Read more about vector indexes here](./indexing.mdx)
 
 ### Vector compression
 
@@ -157,6 +157,9 @@ Consider a strategy of deactivating tenants that are not frequently accessed, an
 
 ## Related pages
 
+- [Starter guide: Compression](./compression.mdx)
+- [Starter guide: Indexing](./indexing.mdx)
+- [Starter guide: Tenant states](./tenant-states.mdx)
 - [Concepts: Vector Index](../../concepts/vector-index.md)
 - [Concepts: Vector Quantization](../../concepts/vector-quantization.md)
 - [Concepts: Multi-Tenancy](../../concepts/data.md#multi-tenancy)
