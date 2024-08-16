@@ -9,7 +9,7 @@ Weaviate uses two types of indexes to facilitate fast, scalable search and filte
 This page introduces the [vector indexes](#vector-indexes) and [inverted indexes](#inverted-indexes) available in Weaviate, so you can arrive at an informed indexing strategy.
 
 :::info Indexing and resource usage
-Vector indexes can use *hot* or *warm* resources, depending on the index type. Inverted indexes use *warm* resources. For more on resource types, see [Managing resources](./index.mdx).
+Vector indexes can use *hot* or *warm* resources, depending on the index type. Inverted indexes use *warm* resources. For more on resource types, see [Managing resources](./index.md).
 :::
 
 :::tip Indexing recommendations
@@ -42,7 +42,7 @@ Weaviate offers three types of vector indexes, [Hierarchical Navigable Small Wor
 
 HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
 
-While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.mdx#-hot), as they load the graph structure and vectors into memory.
+While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
 
 Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
 
