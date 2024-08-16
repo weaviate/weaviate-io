@@ -11,7 +11,7 @@ export default function introduction() {
             <div className={styles.logo} />
             <span>Weaviate Cloud</span>
           </div>
-          <h1>Fully managed, AI-native vector database</h1>
+          <h1>Fully-managed, AI database</h1>
 
           <p>
             All the power of our open-source vector database, without the burden
@@ -92,7 +92,7 @@ export default function introduction() {
         </div>
         <div className={styles.investorLogos}>
           <div className={styles.signUp}>
-            <h2>The AI-native database for a new generation of software</h2>
+            <h2>The AI database for a new generation of software</h2>
             <p>Get started for free</p>
             <Link
               to="https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak"
