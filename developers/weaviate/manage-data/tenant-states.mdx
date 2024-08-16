@@ -1,0 +1,201 @@
+---
+title: Manage tenant states & temperature
+sidebar_position: 61
+image: og/docs/configuration.jpg
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+
+## Overview
+
+![Storage Tiers](./img/storage-tiers.jpg)
+
+we categorize storage resources using three tiers, each tier has different performance characteristics and costs:
+* `Hot` (RAM) - fast and expensive,
+* `Warm` (Disk) - medium speed and medium price,
+* `Cold` (Cloud Storage) - cheap, but slow.
+
+In all collections, the choice of [vector index type](#vector-index-temperature) will affect its resource usage.
+
+In multi-tenant collections, you can additionally change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost against resource availability and readiness.
+
+<details>
+  <summary>Manage vector index resource temperature</summary>
+
+The vector index type affects its default resource type.
+
+* [`HNSW` index (default)](/developers/academy/py/vector_index/hnsw) - uses the vector index in RAM, a **Hot** resource.
+* [`Flat` index](/developers/academy/py/vector_index/flat) - uses the vector index on disk, a **Warm** resource.
+* [`Dynamic` index](/developers/academy/py/vector_index/dynamic) - starts as a flat index (using a **Warm** resource), then switches to an HNSW index (a **Hot** resource) at a predetermined threshold.
+
+</details>
+
+## Tenant States Overview
+
+There are three tenant states: `Active`, `Inactive` and `Offloaded`.
+
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate |Description |
+|------------------|----------------|--------------|----------------|-------------|------------------|------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             |Tenant is available for use |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |Tenant is locally stored but not available for use |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |Tenant is stored in cloud storage and not available for use |
+
+### Active
+
+An `Active` tenant is available for queries and CRUD operations. Depending on the [vector index type](#vector-index-temperature) it uses either **hot** or **warm** resources.
+
+The tenant's object data and inverted index are stored on disk, using `warm` resources.
+
+<img
+    src={require('./img/active-tenants.jpg').default}
+    alt="Active Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+### Inactive
+
+An `Inactive` tenant is not available for queries nor CRUD operations.
+
+The tenant's object data, vector index and inverted index are stored on disk, using `warm` resources. This can lower Weaviate's memory requirements compared to active tenants that use `hot` resources.
+
+Since the tenant is stored locally, inactive tenants can be activated quickly.
+
+<img
+    src={require('./img/inactive-tenants.jpg').default}
+    alt="Inactive Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+### Offloaded
+
+An `Offloaded` tenant is not available for queries nor CRUD operations.
+
+The tenant's object data, vector index and inverted index are stored on the cloud, using `cold` resources. Since the tenant is stored remotely, there is a delay when activating an offloaded tenant.
+
+<img
+    src={require('./img/offloaded-tenants.jpg').default}
+    alt="Offloaded Tenant resources"
+    style={{ maxWidth: "50%" }}
+/>
+
+## Activate tenant
+
+To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOADED` tenant from cloud, call:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ActivateTenants"
+      endMarker="# END ActivateTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ActivateTenants"
+      endMarker="// END ActivateTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Deactivate tenant
+
+:::info Added in v1.21.0
+:::
+
+To deactivate an `ACTIVE` tenant, or to onload an `OFFLOADED` tenant from cloud (without activating it), call:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeactivateTenants"
+      endMarker="# END DeactivateTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DeactivateTenants"
+      endMarker="// END DeactivateTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Offload tenant
+
+:::info Added in v1.26.0
+:::
+
+To offload an `ACTIVE` or `INACTIVE` tenant to cloud, call:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START OffloadTenants"
+      endMarker="# END OffloadTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START OffloadTenants"
+      endMarker="// END OffloadTenants"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+:::caution Requires Offload Module
+Tenant offloading requires an Offload module.
+
+To enable tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
+:::
+
+## Automatically activate tenants
+
+:::info Added in `v1.25.2`
+:::
+
+Enable this to automatically activate `INACTIVE` tenants if a search, read, update, or delete operation is performed on them.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableAutoActivation"
+      endMarker="# END EnableAutoActivation"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableAutoActivation"
+      endMarker="// END EnableAutoActivation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
