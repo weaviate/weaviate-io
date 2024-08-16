@@ -120,7 +120,7 @@ A tenant status management strategy can help you to balance cost and performance
 
 *Hot* tenants can be deactivated to *warm* storage to reduce memory usage, and any tenant can be offloaded to *cold* storage to reduce memory and disk usage. Conversely, any tenant can be reactivated when needed.
 
-So, consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
+Therefore, consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
 
 For example, imagine an e-commerce platform with separate tenants for each vendor. During a holiday sale, the tenant for a popular electronics vendor might be kept active for quick access, while tenants for seasonal vendors (e.g., Christmas decorations in July) could be offloaded to cold storage to save resources.
 
@@ -130,11 +130,9 @@ Understanding how tenant states interact with different index types is crucial f
 
 Tenant states management strategies are tied to index types. This is because the index type determines the resources used by a tenant. For example, a tenant with an HNSW index type uses *hot* resources, while a tenant with a flat index type uses *warm* resources.
 
-If a multi-tenant collection is configured with a dynamic index type, some tenants may be stored in *warm* storage (flat index) and others in *hot* storage (HNSW index).
+If a multi-tenant collection is configured with a dynamic index type, some tenants may be stored in *warm* storage (flat index) and others in *hot* storage (HNSW index). As a result, effectively managing tenants with HNSW indexes may have the most significant impact on resource usage.
 
-So, strategically managing tenant states can help you to optimize costs and performance.
-
-As a starting point, use the following guidelines for selecting a tenant state:
+We suggest following the following guidelines for selecting a tenant state:
 
 ![Tenant state selection rule of thumb flowchart](./img/tenant_state_selection.png)
 
