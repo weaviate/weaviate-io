@@ -16,6 +16,9 @@ const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your A
 // START CohereInstantiation
 const cohereApiKey = process.env.COHERE_APIKEY || '';  // Replace with your inference API key
 // END CohereInstantiation
+// START FriendliAIInstantiation
+const friendliaiApiKey = process.env.FRIENDLIAI_APIKEY || '';  // Replace with your inference API key
+// END FriendliAIInstantiation
 // START GoogleInstantiation  // START GoogleVertexInstantiation
 const vertexApiKey = process.env.VERTEX_APIKEY || '';  // Replace with your inference API key
 // START GoogleInstantiation  // END GoogleVertexInstantiation
@@ -66,6 +69,9 @@ const client = await weaviate.connectToWeaviateCloud(
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
+      // START FriendliAIInstantiation
+      'X-FriendliAI-Api-Key': friendliaiApiKey,
+      // END FriendliAIInstantiation
       // START GoogleInstantiation  // START GoogleVertexInstantiation
       'X-Vertex-Api-Key': vertexApiKey,
       // START GoogleInstantiation  // END GoogleVertexInstantiation

@@ -25,6 +25,10 @@ aws_secret_key = os.getenv("AWS_SECRET_KEY")
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
+# START FriendliAIInstantiation
+# Recommended: save sensitive data as environment variables
+friendliai_key = os.getenv("FRIENDLIAI_APIKEY")
+# END FriendliAIInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
 # Recommended: save sensitive data as environment variables
 vertex_key = os.getenv("VERTEX_APIKEY")
@@ -79,6 +83,9 @@ headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
+# START FriendliAIInstantiation
+    "X-FriendliAI-Api-Key": friendliai_key,
+# END FriendliAIInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
     "X-Google-Vertex-Api-Key": vertex_key,
 # START GoogleInstantiation  # END GoogleVertexInstantiation
