@@ -735,6 +735,8 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 
 ### By object timestamp
 
+This filter requires the [property timestamp](../config-refs/schema/index.md#indextimestamps) to [be enabled](../manage-data/collections.mdx#set-inverted-index-parameters).
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
@@ -781,6 +783,8 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 </Tabs>
 
 ### By object property length
+
+This filter requires the [property length index](../config-refs/schema/index.md#indexpropertylength) to [be enabled](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -829,10 +833,20 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 
 ### By object null state
 
+This filter requires the [property null state](../config-refs/schema/index.md#indexnullstate) to [be enabled](../manage-data/collections.mdx#set-inverted-index-parameters).
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START FilterByPropertyNullState"
       endMarker="# END FilterByPropertyNullState"
       language="python"
@@ -844,6 +858,14 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       startMarker="// FilterByPropertyNullState"
       endMarker="// END FilterByPropertyNullState"
       language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GQLFilterByPropertyNullState"
+      endMarker="# END GQLFilterByPropertyNullState"
+      language="graphql"
     />
   </TabItem>
 </Tabs>

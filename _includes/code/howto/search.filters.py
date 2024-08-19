@@ -504,18 +504,18 @@ for o in response.objects:
 # START FilterByPropertyNullState
 from weaviate.classes.query import Filter
 
-collection = client.collections.get("JeopardyQuestion")
+collection = client.collections.get("WineReview")
 
 response = collection.query.fetch_objects(
     limit=3,
     # highlight-start
-    filters=Filter.by_property("answer", length=True).greater_than(length_threshold),
+    # This requires the `country` property to be configured with `index_null_state=True``
+    filters=Filter.by_property("country").is_none(True)  # Find objects where the `country` property is null
     # highlight-end
 )
 
 for o in response.objects:
     print(o.properties)  # Inspect returned objects
-    print(len(o.properties["answer"]))  # Inspect property length
 # END FilterByPropertyNullState
 
 
