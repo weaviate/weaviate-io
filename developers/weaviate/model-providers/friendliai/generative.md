@@ -11,7 +11,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-:::info Added in `v1.26.0`
+:::info Added in `v1.27.0`
 :::
 
 import Tabs from '@theme/Tabs';
