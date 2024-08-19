@@ -784,7 +784,7 @@ This filter requires the [property timestamp](../config-refs/schema/index.md#ind
 
 ### By object property length
 
-This filter requires the [property length index](../config-refs/schema/index.md#indexpropertylength) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
+This filter requires the [property length](../config-refs/schema/index.md#indexpropertylength) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
