@@ -419,7 +419,33 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
 
 ## Manage tenant states
 
-See [How-to: Manage tenant states](./tenant-states.mdx) for more information on managing tenant states between `ACTIVE`, `INACTIVE`, and `OFFLOADED`, to switch between [*hot*, *warm* and *cold* storage tiers](../starter-guides/managing-resources/index.md).
+Change a tenant state between `ACTIVE`, `INACTIVE`, and `OFFLOADED`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ChangeTenantState"
+      endMarker="# END ChangeTenantState"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ChangeTenantState"
+      endMarker="// END ChangeTenantState"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+:::info Learn more
+
+See [How-to: Manage tenant states](./tenant-states.mdx) for more hands-on examples, and the [Guide: Manage resources](../starter-guides/managing-resources/index.md) for more information and strategies to manage **hot**, **warm** and **cold** storage tiers.
+
+:::
 
 ## CRUD operations
 
