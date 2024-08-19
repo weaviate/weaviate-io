@@ -39,9 +39,15 @@ If you are unsure which tenants can be made inactive or offloaded, consider a st
 
 ## Update a tenant state
 
+A tenant state can be switched between `active`, `inactive`, and `offloaded` at any time. (See [How-to: Manage tenant states](../../manage-data/tenant-states.mdx) for instructions and code examples.)
+
+Judiciously [`offload` tenants](#offload-a-tenant) to reduce resource usage and costs. Additionally, you can set your collection to [auto-activate `inactive` or `offloaded` tenants](#auto-activate-tenants) when they are accessed to balance resource usage and performance.
+
+### Offload a tenant
+
 To offload or onload a tenant, you must have the appropriate [`offload` module enabled](../../configuration/modules.md#tenant-offload-modules) in Weaviate.
 
-Add `offload-s3` to the `ENABLE_MODULES` environment variable.
+Check that `ENABLE_MODULES` environment variable includes the `offload-s3` module. For example:
 
 ```yaml
 services:
@@ -55,8 +61,6 @@ services:
 import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
 
 <OffloadingLimitation/>
-
-See [How-to: Manage tenant states](../../manage-data/tenant-states.mdx) for instructions and code examples.
 
 ### Auto-activate tenants
 
