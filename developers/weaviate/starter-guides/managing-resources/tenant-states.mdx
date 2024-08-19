@@ -37,36 +37,25 @@ We suggest following the following guidelines for selecting a tenant state:
 
 If you are unsure which tenants can be made inactive or offloaded, consider a strategy of deactivating tenants that have not been accessed for a certain period of time. And offloading tenants that have not been accessed for a longer period of time.
 
-## Update a tenant state
+## Hands-on
 
-A tenant state can be switched between `active`, `inactive`, and `offloaded` at any time. (See [How-to: Manage tenant states](../../manage-data/tenant-states.mdx) for instructions and code examples.)
+Here are some resources to implement hands-on tenant offloading in Weaviate.
 
-Judiciously [`offload` tenants](#offload-a-tenant) to reduce resource usage and costs. Additionally, you can set your collection to [auto-activate `inactive` or `offloaded` tenants](#auto-activate-tenants) when they are accessed to balance resource usage and performance.
+### Configure tenant offloading
 
-### Offload a tenant
+In order to use tenant offloading, you need to configure an offload module. <br/>
+(See [How-to: Configure tenant offloading](../../configuration/tenant-offloading.md))
 
-To offload or onload a tenant, you must have the appropriate [`offload` module enabled](../../configuration/modules.md#tenant-offload-modules) in Weaviate.
+### Update a tenant state
 
-Check that `ENABLE_MODULES` environment variable includes the `offload-s3` module. For example:
-
-```yaml
-services:
-  weaviate:
-    environment:
-      # highlight-start
-      ENABLE_MODULES: 'offload-s3,<OTHER_MODULE_NAMES>'
-      # highlight-end
-```
-
-import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
-
-<OffloadingLimitation/>
+A tenant state can be switched between `active`, `inactive`, and `offloaded` at any time. <br/>
+(See [How-to: Manage tenant states](../../manage-data/tenant-states.mdx) for instructions and code examples.)
 
 ### Auto-activate tenants
 
-You can configure a collection to automatically activate tenants when they are accessed. This can provide a balance between resource usage and performance.
-
-See [How-to: Auto-activate tenants](../../manage-data/tenant-states.mdx#automatically-activate-tenants) for instructions and code examples.
+You can configure a collection to automatically activate (inactive and offloaded) tenants when they are accessed. <br/>
+This can provide a balance between resource usage and performance. <br/>
+(See [How-to: Auto-activate tenants](../../manage-data/tenant-states.mdx#automatically-activate-tenants) for instructions and code examples.)
 
 ## Questions and feedback
 

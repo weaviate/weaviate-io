@@ -145,6 +145,7 @@ Weaviate supports the following tenant states:
 Consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
 
 - [Starter guide: tenant states](./tenant-states.mdx)
+- [How-to: Configure tenant offloading](../../configuration/tenant-offloading.md)
 - [How-to: Manage tenant states](../../manage-data/tenant-states.mdx)
 
 ## Tips
