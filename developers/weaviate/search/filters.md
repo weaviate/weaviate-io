@@ -686,7 +686,7 @@ Filters also work with metadata properties such as object id, property length, a
 
 For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
-### Metadata filter - by object `id`
+### By object `id`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
