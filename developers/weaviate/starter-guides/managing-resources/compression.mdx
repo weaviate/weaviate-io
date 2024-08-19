@@ -83,7 +83,7 @@ Each compression algorithm has its own characteristics with regard to speed.
 
 - PQ indexes have response rates approach the response rates of uncompressed indexes when recall reaches 97 percent and higher. At those levels of recall, the [speed profile](/blog/pq-rescoring#qps-vs-recall-experiments) for PQ compressed indexes matches the profile for uncompressed indexes.
 
-- BQ uses fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. BQ's bitwise calculations are extremely efficient. Searches of BQ compressed vectors can be as much as [10 to 20 times as fast](/binary-quantization#-performance-improvements-with-bq) as similar searches of uncompressed vectors and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
+- BQ uses fast, bitwise calculations. The flat index relies on brute-force search so it is calculation intensive. BQ's bitwise calculations are extremely efficient. Searches of BQ compressed vectors can be as much as [10 to 20 times as fast](/blog/binary-quantization/#-performance-improvements-with-bq) as similar searches of uncompressed vectors and with equivalent rates of recall. BQ is sensitive to the underlying data. If you use a flat index, evaluate BQ compression to verify the performance improvements with your data set.
 
 - SQ significantly improves search speeds. SQ is new in v1.26. It is faster than PQ, perhaps 3 to 4 times as fast as searching uncompressed vectors. SQ has a higher dimensional resolution than BQ that helps recall. Look for an upcoming blog post that discusses the tradeoffs with SQ compression.
 
@@ -124,9 +124,9 @@ For more information, see these documentation pages and blog posts.
 
 To enable compression, follow the steps on these pages:
 
-- [Product quantization (PQ)](/developers/weaviate/configuration/bq-compression)
-- [Scalar quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
-- [Binary quantization (BQ)](/developers/weaviate/configuration/pq-compression)
+- [Product quantization (PQ)](../../configuration/compression/pq-compression.md)
+- [Scalar quantization (SQ)](../../configuration/compression/sq-compression.md)
+- [Binary quantization (BQ)](../../configuration/compression/bq-compression.md)
 
 For more documentation details, see:
 
