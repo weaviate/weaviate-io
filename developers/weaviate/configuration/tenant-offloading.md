@@ -12,10 +12,9 @@ import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
 
 <OffloadingLimitation/>
 
-To configure tenant offloading in Weaviate, you need to add an offloading module.
+To configure tenant offloading in Weaviate, you need to add an offloading module to the list of [enabled modules](./modules.md).
 
-
-### `offload-s3` module
+## `offload-s3` module
 
 The `offload-s3` module enables you to [offload or onload tenants](../manage-data/tenant-states.mdx#offload-tenant) to/from an S3 bucket.
 
@@ -31,7 +30,7 @@ services:
       # highlight-end
 ```
 
-#### Environment variables
+### Environment variables
 
 The `offload-s3` module reads the following environment variables:
 
@@ -49,7 +48,7 @@ The `offload-s3` module reads the following environment variables:
 
 :::
 
-#### AWS permissions
+### AWS permissions
 
 :::tip Requirements
 The Weaviate instance must have the [necessary permissions to access the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html).
