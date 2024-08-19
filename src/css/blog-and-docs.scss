@@ -27,7 +27,6 @@ html {
   h6 {
     font-family: var(--site-font-base-family);
     font-weight: 500;
-    color: var(--docs-header-color);
   }
 
   h2 {
@@ -97,7 +96,7 @@ html {
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.05;
     font-family: var(--site-font-base-family);
-    font-weight: 500;
+    font-weight: 700;
     color: var(--docs-header-color);
   }
 
@@ -117,7 +116,7 @@ html {
   }
 
   h2 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   h3 {
@@ -125,11 +124,11 @@ html {
   }
 
   h4 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   h5 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   h6 {
