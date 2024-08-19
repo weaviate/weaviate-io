@@ -733,7 +733,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object timestamp
+### By object timestamp
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -780,7 +780,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object property length
+### By object property length
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -823,6 +823,27 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       startMarker="# GQLFilterByPropertyLength"
       endMarker="# END GQLFilterByPropertyLength"
       language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+### By object null state
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByPropertyNullState"
+      endMarker="// END FilterByPropertyNullState"
+      language="js"
     />
   </TabItem>
 </Tabs>
