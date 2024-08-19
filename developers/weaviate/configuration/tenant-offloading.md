@@ -27,7 +27,7 @@ services:
     environment:
       # highlight-start
       ENABLE_MODULES: 'offload-s3' # plus other modules you may need
-      OFFLOAD_S3_BUCKET: 'weaviate-offload' # the name of the S3 bucket 
+      OFFLOAD_S3_BUCKET: 'weaviate-offload' # the name of the S3 bucket
       # highlight-end
 ```
 
@@ -51,16 +51,25 @@ The `offload-s3` module reads the following environment variables:
 
 #### AWS permissions
 
-:::tip AWS permissions
-The Weaviate instance must have the necessary permissions to access the S3 bucket.
-
+:::tip Requirements
+The Weaviate instance must have the [necessary permissions to access the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html).
 - The provided AWS identity must be able to write to the bucket.
 - If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
 :::
 
-:::warning TODO: add instructions on how to do this? Or at least where that goes...
-We need to give the reader enough context for them to know to make this work.
-:::
+In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
+
+#### Option 1: With IAM and ARN roles
+
+The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
+
+#### Option 2: With access key and secret access key
+
+| Environment variable | Description |
+| --- | --- |
+| `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
+| `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
+| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ## Related pages
 - [Configure: Modules](./modules.md)
