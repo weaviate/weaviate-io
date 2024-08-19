@@ -78,7 +78,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
-| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
+| `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 
 ### GCS (Google Cloud Storage)

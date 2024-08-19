@@ -27,8 +27,11 @@ services:
       # highlight-start
       ENABLE_MODULES: 'offload-s3' # plus other modules you may need
       OFFLOAD_S3_BUCKET: 'weaviate-offload' # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true' # create the bucket if it does not exist
       # highlight-end
 ```
+
+If the target S3 bucket does not exist, the `OFFLOAD_S3_BUCKET_AUTO_CREATE` must be set to `true` so that Weaviate can create the bucket automatically.
 
 ### Environment variables
 
@@ -68,7 +71,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
-| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
+| `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 ## Related pages
 - [Configure: Modules](./modules.md)
