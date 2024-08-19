@@ -65,7 +65,11 @@ We categorize storage resources using three tiers: [*hot*](#-hot), [*warm*](#-wa
 
 ![Storage Tiers - Cold](./img/storage-tiers-cold.jpg)
 
-- Describes data stored in cloud storage (e.g., AWS S3)
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+- Describes data stored in cloud storage
 - Slowest and least expensive tier
 - Primarily driven by [offloaded tenants](#tenant-states)
 - Resources are not available (inactive) for use
