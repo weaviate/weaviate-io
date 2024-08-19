@@ -248,7 +248,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- FriendliAI [API documentation](https://docs.friendli.ai/openapi/create-chat-completions)
+- [FriendliAI API documentation](https://docs.friendli.ai/openapi/create-chat-completions)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
