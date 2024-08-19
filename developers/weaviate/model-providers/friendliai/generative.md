@@ -22,11 +22,11 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integration with FriendliAI's APIs allows you to access open source and their models' capabilities directly from Weaviate.
+Weaviate's integrations with FriendliAI's APIs allow you to access open-source models on Friendli and utilize models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an FriendliAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your FriendliAI API key.
+[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your FriendliAI API key.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative AI model to generate outputs.
 
 ![RAG integration illustration](../_includes/integration_friendliai_rag.png)
 

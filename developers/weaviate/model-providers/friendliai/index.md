@@ -24,21 +24,21 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 FriendliAI's generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with FriendliAI's generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform Retrieval Augmented Generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with FriendliAI's generative AI models to generate personalized and context-aware responses.
 
-[FriendliAI generative AI integration page](./generative.md)
+Visit [FriendliAI generative AI integration page](./generative.md) for more information on our integrations with FriendliAI.
 
 ## Summary
 
 These integrations enable developers to leverage FriendliAI's powerful models directly within Weaviate.
 
-In turn, they simplify the process of building AI-driven applications to speed up your development process, so that you can focus on creating innovative solutions.
+FriendliAI helps simplify the process of building AI-driven applications and speeds up your development process so that you can focus on creating innovative solutions.
 
 ## Get started
 
-You must provide a valid FriendliAI API key to Weaviate for these integrations. Go to [FriendliAI](https://suite.friendli.ai/) to sign up and obtain an API key.
+To get started, you need to integrate a valid FriendliAI API key (aka Personal Access Token) to Weaviate for these integrations. Go to [FriendliAI](https://suite.friendli.ai/) to sign up and obtain an API key.
 
-Then, go to the relevant integration page to learn how to configure Weaviate with the FriendliAI models and start using them in your applications.
+Then, go to the relevant integrations page to learn how to configure Weaviate with the FriendliAI models and start using them in your applications.
 
 - [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
