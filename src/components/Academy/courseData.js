@@ -173,6 +173,7 @@ export const courseData = {
       "Configure a collection with multi-tenancy.",
       "Create tenants, delete tenants and update tenant activity statuses.",
       "Perform CRUD operations and queries on a multi-tenancy collection.",
+      "Change tenant states to balance resource use and availability.",
     ],
     note: "Python client (v4)"
   },

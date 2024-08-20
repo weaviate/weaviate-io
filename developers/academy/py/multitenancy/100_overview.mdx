@@ -7,14 +7,21 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-In general, the term "multi-tenancy" refers to a software architecture where a single instance of the software serves multiple "tenants". Each tenant here is a group of users who share common access.
-
 In Weaviate, multi-tenancy allows a collection to efficiently serve isolated groups of data. Each "tenant" in a multi-tenant collection can only access its own data, while sharing the same data structure and settings.
 
 ![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-dark.png#gh-dark-mode-only)
 ![multi-tenancy](../../../../blog/2023-06-15-multi-tenancy/img/multi-tenancy-light.png#gh-light-mode-only)
 
-This allows Weaviate to efficiently serve a large number of tenants with minimal overhead.
+This allows Weaviate to efficiently serve a large number of tenants with minimal overhead. And as you will see later, you can manage individual tenants to balance performance and resource usage.
+
+<details>
+  <summary>"Multi-tenancy" in other contexts</summary>
+
+In general, the term "multi-tenancy" refers to a software architecture where a single instance of the software serves multiple "tenants". In that context, each tenant may be a group of users who share common access.
+
+This is similar to the concept of multi-tenancy in Weaviate, where each tenant is a group of data that is isolated from other tenants.
+
+</details>
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Why use multi-tenancy?
 
@@ -37,40 +44,49 @@ While these may work to some extent, both of these options have significant limi
 
 Multi-tenancy solves these problems.
 
+:::info Example scenario
+Imagine a SaaS journal application `MyPrivateJournal` where each user (e.g. Steve and Alice) can write and store their journal entries.
+<br/>
+
+- Using a monolithic collection:
+    - A developer mistake could easily expose Steve's entries to Alice.
+    - As `MyPrivateJournal` grows, Steve's query would become slower as it must search through all entries.
+    - When Steve ask to delete his data, the process would be complex and error-prone.
+- Using end-user-specific collections:
+    - `MyPrivteJournal` may need to spend more on hardware to support the high number of collections.
+    - Changes to configurations (e.g. adding a new property) would need to be run separately for each collection.
+:::
+
 ### <i class="fa-solid fa-chalkboard"></i> Benefits of multi-tenancy
 
-In multi-tenant collection, each "tenant" can be thought of as an equivalent of a single-tenant collection.
+In multi-tenant collection, each "tenant" is isolated from each other, while sharing the same set of configurations. This arrangement helps make multi-tenancy far more resource-efficient than using many individual collections.
 
-Each tenant is isolated from each other, while sharing the same set of configurations.
+A Weaviate node can thus serve far more tenants than it could single-tenant collections.
 
-This arrangement helps make multi-tenancy far more resource-efficient than using individual collections to store data for each user. A Weaviate node can thus serve far more tenants than it could single-tenant collections.
+It also makes developers' job easier, as there is only one set of collection configurations. The data isolation between tenants eliminates risks of accidental data leakage and makes it easier to manage individual tenants and tenant data.
 
-It also reduces administration overhead, as the collection configuration propagates down to each tenant. Furthermore, the data isolation eliminates risks of accidental data leakage and makes it significantly easier to delete user data upon request.
+:::info Example scenario
+In `MyPrivateJournal`, each user's journal entries would be stored in a separate tenant. This way, Steve's entries are isolated from Alice's, and vice versa. This isolation makes it easier to manage each user's data and reduces the risk of data leakage.
+<br/>
 
-## <i class="fa-solid fa-square-chevron-right"></i> Similarities to collections
+As you will see later, `MyPrivateJournal` can also offload inactive users' data to cold storage, reducing the hot (memory) and warm (disk) resource usage of the Weaviate node.
+:::
 
-Each multi-tenant collection can have any number of tenants. Let's refer to the subset of a multi-tenant collection that belongs to a tenant as "tenant data".
+## <i class="fa-solid fa-square-chevron-right"></i> Tenants vs collections
 
-Tenant data works very similarly to a single-tenant collection. For example:
+Each multi-tenant collection can have any number of tenants.
 
-| Aspect | Tenant data | Sigle-tenant collection |
+A tenant is very similar to a single-tenant collection. For example:
+
+| Aspect | Tenant | Single-tenant collection |
 | ----- | ----- | ----- |
-| An object | Belongs to a tenant | Belong to a collection |
-| Vector index | One per tenant | One per collection |
+| Objects | Belong to a tenant | Belong to a collection |
+| Vector indexes | Belong to a tenant | Belong to a collection |
+| Inverted indexes | Belong to a tenant | Belong to a collection |
 | Deletion | Deleting a tenant deletes all tenant data | Deleting a collection deletes all collection data |
 | Query | Can search one tenant at a time | Can search one collection at a time |
 
-### <i class="fa-solid fa-chalkboard"></i> Tenant activity status
-
-Each tenant includes an activity status. This recognizes that although many users may be frequently active and access their data (i.e. tenant), not all users will share this pattern.
-
-For example, some user may rarely log in, or only active at certain times (e.g. due to time zones). Others may even have been inactive for a long time.
-
-Tenant activity status can help to reduce overhead required to support these infrequent users. The available tenant activity statuses are:
-
-- `Active` (default) tenants are loaded in memory and its data is available for read/write operations.
-- `Inactive` tenants are available on local disk, but not available for any read/write operations. This lowers Weaviate's memory footprint, while still allowing for quick access.
-- `Offloaded` tenants are stored in a remote storage (e.g. AWS S3) and are not available for read/write operations. This is the most resource-efficient option, as it requires virtually no overhead.
+But as you will have guessed, there are also differences. We'll cover these in the next sections, starting with how to configure a multi-tenant collection.
 
 ## Questions and feedback
 

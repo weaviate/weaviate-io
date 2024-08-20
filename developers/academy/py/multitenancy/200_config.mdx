@@ -151,6 +151,18 @@ Tenants can also be created by using the `Tenant` helper class.
 
 Note that a mix of strings and `Tenant` objects can be used to create tenants.
 
+### <i class="fa-solid fa-chalkboard"></i> Tenant activity status
+
+Each tenant includes an activity status. This recognizes that although many users may be frequently active and access their data (i.e. tenant), not all users will share this pattern.
+
+For example, some user may rarely log in, or only active at certain times (e.g. due to time zones). Others may even have been inactive for a long time.
+
+Tenant activity status can help to reduce overhead required to support these infrequent users. The available tenant activity statuses are:
+
+- `Active` (default) tenants are loaded in memory and its data is available for read/write operations.
+- `Inactive` tenants are available on local disk, but not available for any read/write operations. This lowers Weaviate's memory footprint, while still allowing for quick access.
+- `Offloaded` tenants are stored in a remote storage (e.g. AWS S3) and are not available for read/write operations. This is the most resource-efficient option, as it requires virtually no overhead.
+
 [Next up](./250_config_example.mdx), let's take a look at a concrete example.
 
 ## Questions and feedback

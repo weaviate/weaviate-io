@@ -15,7 +15,7 @@ This course is self-contained. However, we recommend that you go through one of 
 
 Multi-tenancy allows you to create a Weaviate collection containing a high number of lightweight "tenants".
 
-Tenants are designed to house isolated, identical data structures. This is suitable for use cases such as software-as-a-service (SaaS) type applications, where each end user's data can be backed by a tenant.
+Tenants are designed to house isolated, identical data structures. This is suitable for use cases such as software-as-a-service (SaaS) type applications, where each end user's data can be backed by a tenant. Tenants can be managed independently, and their data can be offloaded to cold storage to reduce memory and disk usage.
 
 This course introduces you to multi-tenancy. It teaches you how to enable and configure a multi-tenant collection in Weaviate, as well as how to work with tenants and tenant data.
 
