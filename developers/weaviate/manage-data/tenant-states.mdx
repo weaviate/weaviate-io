@@ -72,6 +72,10 @@ Since the tenant is stored locally, inactive tenants can be activated quickly.
 
 ### Offloaded
 
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
 An `Offloaded` tenant is not available for queries nor CRUD operations.
 
 The tenant's object data, vector index and inverted index are stored on the cloud, using `cold` resources. Since the tenant is stored remotely, there is a delay when activating an offloaded tenant.
@@ -171,7 +175,7 @@ To enable tenant offloading, see the [modules page](../configuration/modules.md#
 :::info Added in `v1.25.2`
 :::
 
-Enable this to automatically activate `INACTIVE` tenants if a search, read, update, or delete operation is performed on them.
+Enable this to automatically activate `INACTIVE` or `OFFLOADED` tenants if a search, read, update, or delete operation is performed on them.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

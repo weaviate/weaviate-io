@@ -231,6 +231,26 @@ multi_collection.tenants.update(tenants=[
 tenants = multi_collection.tenants.get()
 assert tenants["tenantA"].activity_status.name == "ACTIVE"
 
+
+# ===============================
+# ===== Change tenant state =====
+# ===============================
+
+# START ChangeTenantState
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
+
+multi_collection = client.collections.get("MultiTenancyCollection")
+# highlight-start
+multi_collection.tenants.update(tenants=[
+    Tenant(
+        name="tenantA",
+        activity_status=TenantActivityStatus.ACTIVE # INACTIVE, OFFLOADED
+    )
+])
+# highlight-end
+
+# END ChangeTenantState
+
 # ===========================
 # ===== Offload tenant  =====
 # ===========================

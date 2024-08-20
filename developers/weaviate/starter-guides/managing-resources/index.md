@@ -65,7 +65,11 @@ We categorize storage resources using three tiers: [*hot*](#-hot), [*warm*](#-wa
 
 ![Storage Tiers - Cold](./img/storage-tiers-cold.jpg)
 
-- Describes data stored in cloud storage (e.g., AWS S3)
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+- Describes data stored in cloud storage
 - Slowest and least expensive tier
 - Primarily driven by [offloaded tenants](#tenant-states)
 - Resources are not available (inactive) for use
@@ -141,6 +145,7 @@ Weaviate supports the following tenant states:
 Consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
 
 - [Starter guide: tenant states](./tenant-states.mdx)
+- [How-to: Configure tenant offloading](../../configuration/tenant-offloading.md)
 - [How-to: Manage tenant states](../../manage-data/tenant-states.mdx)
 
 ## Tips

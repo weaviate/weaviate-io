@@ -144,9 +144,15 @@ Your choice of the `text2vec` module does not restrict your choice of `generativ
 
 ## Tenant offload modules
 
+Tenants can be offloaded to cold storage to reduce memory and disk usage, and onloaded back when needed. An offload module is required for this functionality.
+
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
 ### `offload-s3` module
 
-The `offload-s3` module enables you to [offload tenants](../concepts/data.md#tenant-activity-status) to an S3 bucket.
+The `offload-s3` module enables you to [offload or onload tenants](../manage-data/tenant-states.mdx#offload-tenant) to an S3 bucket.
 
 To use the `offload-s3` module, add `offload-s3` to the `ENABLE_MODULES` environment variable.
 
@@ -176,6 +182,10 @@ The Weaviate instance must have the necessary permissions to access the S3 bucke
 - The provided AWS identity must be able to write to the bucket.
 - If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
 :::
+
+Once the `offload-s3` module is enabled, you can offload and onload tenants between your Weaviate instance and the S3 bucket.
+
+To see how to offload and onload tenants, see the [How-to: manage tenant states page](../manage-data/tenant-states.mdx).
 
 ## Custom modules
 
