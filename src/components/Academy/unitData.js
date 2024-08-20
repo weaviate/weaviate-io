@@ -381,7 +381,7 @@ export const unitData = {
     reviewer: "jp"
   },
   mt_basic_usage: {
-    title: "Basic usage of multi-tenancy",
+    title: "Basic usage",
     body: "Learn the basics of multi-tenant collection creation and usage.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/multitenancy/basic_usage",
@@ -398,11 +398,11 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  mt_advanced_usage: {
-    title: "Advanced usage of multi-tenancy",
+  mt_options_management: {
+    title: "Options and resource management",
     body: "Learn how to use multi-tenancy in more complex scenarios.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/advanced_usage",
+    buttonURL: "/developers/academy/py/multitenancy/options_management",
     badgeType: "practical",
     learningGoals: [
       "How to create & configure a multi-tenant collection for more complex use cases.",

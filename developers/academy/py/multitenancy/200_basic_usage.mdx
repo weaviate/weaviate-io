@@ -37,6 +37,10 @@ The easiest way to create tenants is by providing a list of tenant names to the 
   language="py"
 />
 
+:::caution Tenant names are case-sensitive
+Tenant names are case-sensitive. This means that `bob`, `Bob` and `BoB` are considered different tenants.
+:::
+
 ### <i class="fa-solid fa-code"></i> Complete code example
 
 Putting the two together, your collection creation & tenant creation code may look like this:
@@ -110,6 +114,11 @@ Once a tenant has been populated with data, you can query it just like you would
 />
 </details>
 
+## <i class="fa-solid fa-square-chevron-right"></i> Summary
+
+As you can see, working with a tenant in a multi-tenant collection is very similar to working with a single-tenant collection. The main difference is that you can manage multiple tenants independently.
+
+In the next section, we will discuss more advanced topics such as additional options for collection creation, and how to manage tenants.
 
 ## Questions and feedback
 

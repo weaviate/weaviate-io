@@ -58,21 +58,6 @@ mt_collection.tenants.create(["bob1", "bob2", "alice1", "etienne1"])
 # END BasicTenantCreation # END FullBasicMT
 
 # ================================================================================
-# Basic tenant interaction
-# ================================================================================
-
-# BasicTenantInteraction
-bob = mt_collection.with_tenant("bob1")  # Collection object with tenant specified
-
-# Example query.
-# Note that it is identical to a single tenant query
-response = bob.query.near_text(
-    query="cooking class experience",  # Find journal entries about cooking classes
-    limit=3,
-)
-# END BasicTenantInteraction
-
-# ================================================================================
 # Basic data insertion
 # ================================================================================
 
@@ -89,6 +74,21 @@ bob.data.insert(
     }
 )
 # END BasicDataInsertion
+
+# ================================================================================
+# Basic tenant interaction
+# ================================================================================
+
+# BasicTenantInteraction
+bob = mt_collection.with_tenant("bob1")  # Collection object with tenant specified
+
+# Example query.
+# Note that it is identical to a single tenant query
+response = bob.query.near_text(
+    query="cooking class experience",  # Find journal entries about cooking classes
+    limit=3,
+)
+# END BasicTenantInteraction
 
 # ================================================================================
 # Basic batch data insertion
@@ -139,214 +139,158 @@ for obj in response.objects:
 
 """
 # ExampleResponseBasicMTQuery
-{'date': datetime.datetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc), 'tags': ['cooking', 'hobby'], 'note': 'I had a great cooking class experience today!'}
-{'date': datetime.datetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc), 'tags': ['cooking', 'hobby'], 'note': 'I went to a cooking class and learned how to make sushi!'}
+{
+    "date": datetime.datetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
+    "tags": ["cooking", "hobby"],
+    "note": "I had a great cooking class experience today!",
+}
+{
+    "date": datetime.datetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
+    "tags": ["cooking", "hobby"],
+    "note": "I went to a cooking class and learned how to make sushi!",
+}
 # END ExampleResponseBasicMTQuery
 """
+
 
 # # ================================================================================
 # # More verbose multi-tenancy configuration
 # # ================================================================================
 
-# client.close()
+client.close()
 
-# client = weaviate.connect_to_local(
-#     port=8180,
-#     grpc_port=50151,
-#     headers={
-#         "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
-#     }
-# )
+client = weaviate.connect_to_local(
+    headers={
+        "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
+    }
+)
 
-# client.collections.delete(mt_collection_name)
+client.collections.delete(mt_collection_name)
 
-# # VerboseMTEnable
-# mt_collection = client.collections.create(
-#     name=mt_collection_name,  # e.g. "Note"
-#     # highlight-start
-#     multi_tenancy_config=Configure.multi_tenancy(
-#         enabled=True,
-#         auto_tenant_creation=True,
-#         auto_tenant_activation=True,
-#     ),
-#     # highlight-end
-#     replication_config=Configure.replication(factor=3),  # Replicate tenants
-#     # Additional settings not shown
-#     # END VerboseMTEnable
-#     properties=[
-#         Property(name="note", data_type=DataType.TEXT)
-#     ],
-#     vectorizer_config=[
-#         Configure.NamedVectors.text2vec_ollama(
-#             name="note",
-#             source_properties=["note"],
-#         )
-#     ]
-#     # VerboseMTEnable
-# )
-# # END VerboseMTEnable
+# VerboseMTEnable # FullCustomMT
+from weaviate.classes.config import Configure, Property, DataType
 
-# # ================================================================================
-# # Tenant creation and status
-# # ================================================================================
+mt_collection = client.collections.create(
+    name=mt_collection_name,  # e.g. "Note"
+    # highlight-start
+    multi_tenancy_config=Configure.multi_tenancy(
+        enabled=True,
+        auto_tenant_creation=True,
+        auto_tenant_activation=True,
+    ),
+    # highlight-end
+    # END VerboseMTEnable # FullCustomMT
+    properties=[
+        Property(name="note", data_type=DataType.TEXT),
+        Property(name="date", data_type=DataType.DATE),
+        Property(name="tags", data_type=DataType.TEXT_ARRAY),
+    ],
+    # MTVectorIndexConfig # FullCustomMT
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="note",
+            source_properties=["note"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.dynamic(
+                hnsw=Configure.VectorIndex.hnsw(
+                    quantizer=Configure.VectorIndex.Quantizer.sq(training_limit=50000)
+                ),
+                flat=Configure.VectorIndex.flat(
+                    quantizer=Configure.VectorIndex.Quantizer.bq()
+                ),
+                threshold=10000
+            )
+            # highlight-end
+        )
+    ],
+    # VerboseMTEnable # END MTVectorIndexConfig # FullCustomMT
+    generative_config=Configure.Generative.cohere(model="command-r-plus")
+    # VerboseMTEnable
+)
+# END VerboseMTEnable # END FullCustomMT
 
-# client.close()
+# ================================================================================
+# Tenant creation and status
+# ================================================================================
 
-# client = weaviate.connect_to_local(
-#     port=8180,
-#     grpc_port=50151,
-#     headers={
-#         "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
-#     }
-# )
+# TenantCreationWithStatus
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
 
-# # TenantCaseSensitivity
-# mt_collection = client.collections.get(mt_collection_name)
+mt_collection = client.collections.get(mt_collection_name)
 
-# mt_collection.tenants.create(["Bob", "bob"])  # Beware: tenant names are case-sensitive; this will create two distinct tenants
-# # END TenantCaseSensitivity
+mt_collection.tenants.create([
+    "activeBob",
+    Tenant(name="alsoActiveBob"),
+    Tenant(name="anotherActiveBob", activity_status=TenantActivityStatus.ACTIVE),
+    Tenant(name="inactiveBob", activity_status=TenantActivityStatus.INACTIVE),
+])
+# END TenantCreationWithStatus
 
-# assert mt_collection.tenants.exists("Bob") is True
-# assert mt_collection.tenants.exists("bob") is True
+for t in ["activeBob", "alsoActiveBob", "anotherActiveBob"]:
+    assert mt_collection.tenants.get_by_name(t).activity_status == TenantActivityStatus.ACTIVE
+assert mt_collection.tenants.get_by_name("inactiveBob").activity_status == TenantActivityStatus.INACTIVE
 
-# # TenantCreationWithStatus
-# from weaviate.classes.tenants import Tenant, TenantActivityStatus
+# ================================================================================
+# Update tenant status
+# ================================================================================
 
-# mt_collection = client.collections.get(mt_collection_name)
+mt_collection.tenants.create(["bob1", "alice1", "etienne1"])
 
-# mt_collection.tenants.create([
-#     "ActiveBob",
-#     Tenant(name="AlsoActiveBob"),
-#     Tenant(name="AnotherActiveBob", activity_status=TenantActivityStatus.ACTIVE),
-#     Tenant(name="InactiveBob", activity_status=TenantActivityStatus.INACTIVE),
-# ])
-# # END TenantCreationWithStatus
+# UpdateTenantStatus
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
 
-# for t in ["ActiveBob", "AlsoActiveBob", "AnotherActiveBob"]:
-#     assert mt_collection.tenants.get_by_name(t).activity_status == TenantActivityStatus.ACTIVE
-# assert mt_collection.tenants.get_by_name("InactiveBob").activity_status == TenantActivityStatus.INACTIVE
+mt_collection = client.collections.get(mt_collection_name)
 
+mt_collection.tenants.update([
+    Tenant(name="bob1", activity_status=TenantActivityStatus.INACTIVE),
+    Tenant(name="alice1", activity_status=TenantActivityStatus.OFFLOADED),
+    Tenant(name="etienne1", activity_status=TenantActivityStatus.ACTIVE),
+])
+# END UpdateTenantStatus
 
-# # GetTenantCollection
-# mt_collection = client.collections.get(mt_collection_name)
+# ================================================================================
+# Remove tenants
+# ================================================================================
 
-# tenant_collection = mt_collection.with_tenant("bob")
-# # END GetTenantCollection
+# RemoveTenants
+from weaviate.classes.tenants import Tenant
 
+mt_collection = client.collections.get(mt_collection_name)
 
-# # ================================================================================
-# # "MyPrivateJournal" multi-tenancy configuration
-# # ================================================================================
+# Caution - this will remove all of the associated data for the tenants
+mt_collection.tenants.remove([
+    "bob1",
+    Tenant(name="alice1"),
+])
+# END RemoveTenants
 
-# client.collections.delete(mt_collection_name)
+# ================================================================================
+# Misc methods
+# ================================================================================
 
-# # MyPrivateJournalMTConfig
-# mt_collection = client.collections.create(
-#     name="WeaviNote",
-#     multi_tenancy_config=Configure.multi_tenancy(
-#         enabled=True,
-#         auto_tenant_creation=True,
-#         auto_tenant_activation=True,
-#     ),
-#     replication_config=Configure.replication(factor=3),  # Replicate tenants for high availability
-#     properties=[
-#         Property(name="title", data_type=DataType.TEXT),
-#         Property(name="note", data_type=DataType.TEXT),
-#         Property(name="tags", data_type=DataType.TEXT_ARRAY),
-#     ],
-#     vectorizer_config=[
-#         Configure.NamedVectors.text2vec_cohere(
-#             name="title",
-#             source_properties=["title"],
-#         ),
-#         Configure.NamedVectors.text2vec_cohere(
-#             name="all_text",
-#             source_properties=["title", "note", "tags"],
-#         ),
-#         Configure.NamedVectors.text2vec_cohere(
-#             name="tags",
-#             source_properties=["tags"],
-#         ),
-#     ],
-#     generative_config=Configure.Generative.cohere()
-# )
-# # END MyPrivateJournalMTConfig
+mt_collection.tenants.create(["bob1", "alice1", "etienne1"])
 
-# # MyPrivateJournalNewUser
-# from fastapi import FastAPI
-# from weaviate.collections.collection import Collection
+mt_collection.tenants.update([
+    Tenant(name="bob1", activity_status=TenantActivityStatus.ACTIVE),
+    Tenant(name="alice1", activity_status=TenantActivityStatus.ACTIVE),
+    Tenant(name="etienne1", activity_status=TenantActivityStatus.ACTIVE),
+])
 
-# app = FastAPI()
+# MiscTenantMethods
+mt_collection = client.collections.get(mt_collection_name)
 
-# def onboarding(collection: Collection, username: str) -> bool:
-#     # Onboarding logic
+all_tenants = mt_collection.tenants.get()
+for k, v in all_tenants.items():
+    print(k, v)
 
-#     # Create a new tenant
-#     collection.tenants.create(username)
+tenants = mt_collection.tenants.get_by_names(["bob1", "alice1"])
+for k, v in tenants.items():
+    print(k, v)
 
-#     # Follow-up onboarding logic
-#     return True
+tenant = mt_collection.tenants.get_by_name("bob1")
+print(tenant)
 
-# notes = client.collections.get("WeaviNote")
-
-# # When a new user has signed up, run the onboarding logic (FastAPI example)
-# @app.post("/onboard/{username}")
-# def onboard(username: str):
-#     onboarding(notes, username)
-#     return {"message": f"User {username} onboarded"}
-# # END MyPrivateJournalNewUser
-
-
-# # MyPrivateJournalOffboardUser
-# from fastapi import FastAPI
-# from weaviate.collections.collection import Collection
-
-# app = FastAPI()
-
-# def offboarding(collection: Collection, username: str) -> bool:
-#     # Offboarding logic
-
-#     # Delete the tenant
-#     collection.tenants.remove(username)
-
-#     # Follow-up offboarding logic
-#     return True
-
-# notes = client.collections.get("WeaviNote")
-
-# # When a new user has signed up, run the onboarding logic (FastAPI example)
-# @app.post("/offboard/{username}")
-# def offboard(username: str):
-#     offboard(notes, username)
-#     return {"message": f"User {username} offboarded"}
-# # END MyPrivateJournalOffboardUser
-
-
-# inactive_users = ['bob1', 'alice2']
-
-# # MyPrivateJournalSetUsersInactive
-# from weaviate.collections.collection import Collection
-# from weaviate.classes.tenants import Tenant
-# from typing import List
-
-# def set_inactive(collection: Collection, tenants: List[Tenant]) -> bool:
-#     # Onboarding logic
-
-#     # Update tenant status
-#     collection.tenants.update(tenants)
-
-#     # Follow-up onboarding logic
-#     return True
-
-# notes = client.collections.get("WeaviNote")
-
-# # Get a list of users (`inactive_users`) to set as inactive
-# tenants_to_set_inactive = [
-#     Tenant(name=user, activity_status=TenantActivityStatus.INACTIVE)
-#     for user in inactive_users
-# ]
-
-# set_inactive(tenants_to_set_inactive)
-# # END MyPrivateJournalSetUsersInactive
+print(mt_collection.tenants.exists("etienne1"))
+# END MiscTenantMethods
 
 client.close()

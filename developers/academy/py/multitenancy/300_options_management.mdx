@@ -1,0 +1,273 @@
+---
+title: Options & resource management
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+You've seen how to create a multi-tenant collection and create tenants. Now, let's dive deeper into working with a multi-tenant collection.
+
+These options will help you manage your multi-tenant collection more effectively, and optimize resource usage.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Collection creation options
+
+You've seen that a multi-tenant collection must be specified as such at creation time.
+
+At this time you can also specify one or more of `auto_tenant_creation` or `auto_tenant_activation` parameters for the collection.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# VerboseMTEnable"
+  endMarker="# END VerboseMTEnable"
+  language="py"
+/>
+
+Generally, we recommend enabling `auto_tenant_activation` for multi-tenant collections. This will allow Weaviate to automatically activate any tenants as required.
+
+<details>
+  <summary>More about <code>auto_tenant_creation</code></summary>
+
+:::info Added in `v1.25`
+The auto tenant creation feature is available from `v1.25.0` for batch imports, and from `v1.25.2` for single object insertions.
+:::
+
+Enabling `auto_tenant_creation` will cause Weaviate to automatically create the tenant when an object is inserted against a non-existent tenant.
+
+This option is particularly useful for bulk data ingestion, as it removes the need to create the tenant prior to object insertion. Instead, `auto_tenant_creation` will allow the object insertion process to continue without interruption.
+
+A risk of using `auto_tenant_creation` is that an error in the source data will not be caught during import. For example, a source object with erroneously spelt `"TenntOn"` instead of `"TenantOne"` will create a new tenant for `"TenntOne"` instead of raising an error.
+
+The server-side default for `auto_tenant_creation` is `false`.
+</details>
+
+<details>
+  <summary>More about <code>auto_tenant_activation</code></summary>
+
+:::info Added in `v1.25.2`
+The auto tenant activation feature is available from `v1.25.2`.
+:::
+
+If `auto_tenant_activation` is enabled, Weaviate will automatically activate any deactivated (`INACTIVE` or `OFFLOADED`) tenants when they are accessed.
+
+This option is particularly useful for scenarios where you have a large number of tenants, but only a subset of them are active at any given time. An example is a SaaS app where some tenants may be unlikely due to their local time zone, or their recent activity level.
+
+By enabling `auto_tenant_activation`, you can safely set those less active users to be inactive, knowing that they will be loaded onto memory once requested.
+
+This can help to reduce the memory footprint of your Weaviate instance, as only the active tenants are loaded into memory.
+
+The server-side default for `auto_tenant_activation` is `false`.
+
+</details>
+
+### <i class="fa-solid fa-code"></i> Tenants and vector index types
+
+As discussed earlier, each tenant shares the same schema and configuration. This includes the vector index type.
+
+But, the choice of vector index type can have a significant impact on resource usage. For example, an HNSW index uses hot resources (memory), while a flat index uses warm resources (disk). So for multi-tenant collections, we recommend using a `dynamic` index type.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MTVectorIndexConfig"
+  endMarker="# END MTVectorIndexConfig"
+  language="py"
+/>
+
+A dynamic index starts as a flat index and automatically switches to an HNSW index when the number of objects in the tenant exceeds a certain threshold.
+
+So even though the tenants share the same configuration, the index type will be optimized for each tenant's data size and usage pattern.
+
+### <i class="fa-solid fa-chalkboard"></i> Replication & sharding
+
+#### Replication
+
+Weaviate offers [data replication](../../../weaviate/concepts/replication-architecture/index.md#data-replication) options for fault tolerance.
+
+This applies to tenants as well. Set the replication factor to your desired number (e.g. 3, 5, etc.) and Weaviate will create replicas of each tenant.
+
+#### Sharding
+
+Each tenant in Weaviate is a lightweight shard that will contain all of each tenant's objects. Accordingly, Weaviate's [sharding settings](/developers/weaviate/config-refs/schema/index.md#shardingconfig) such as the number of desired physical or virtual shards do not apply to multi-tenant collections.
+
+### <i class="fa-solid fa-code"></i> Complete code example
+
+Putting the two together, your collection creation code may look like this:
+
+<details>
+  <summary>Complete code example</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# FullCustomMT"
+  endMarker="# END FullCustomMT"
+  language="py"
+/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tenant management options
+
+### <i class="fa-solid fa-code"></i> Tenant creation
+
+You've seen how to create tenants using their names. This creates an `active` tenant. You can also create tenants with explicit activity status setting using the `Tenant` class.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TenantCreationWithStatus"
+  endMarker="# END TenantCreationWithStatus"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Tenant activity statuses
+
+Let's take a closer look at tenant activity status.
+
+Each tenant has an activity status, which can be set to `ACTIVE`, `INACTIVE`, or `OFFLOADED`. This status determines the tenant's availability and resource usage, as shown below:
+
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate | Tenant description |
+|------------------|----------------|--------------|----------------|-------------|------------------|------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             | Available for use |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             | Not available for use, stored locally |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             | Not available for use, stored on the cloud |
+
+This helps you to manage your tenants more effectively, balancing cost and performance.
+
+#### Tenant states and resource usage
+
+![Storage tiers, speed & cost](../../../weaviate/starter-guides/managing-resources/img/storage-tiers.jpg)
+
+Tenant states can be used to achieve a balance between resource usage and performance. For example, an active tenant with an HNSW index uses hot resources (memory), which are the most expensive. Conversely, an offloaded tenant uses cold resources (cloud storage), which are the least expensive.
+
+So, you can activate, deactivate, or offload tenants as required to manage your resource usage.
+
+:::info Example scenario
+Going back to the `MyPrivateJournal` example, let's say that Steve has been inactive for over a week. The engineers at `MyPrivateJournal` can set a policy to deactivate Steve's tenant after a week of inactivity. This will free up memory resources for other active tenants. If Steve is inactive for a longer period, his tenant can be offloaded to cold storage, freeing up memory and disk resources.
+<br/>
+
+Additionally, `MyPrivateJournal` may have a system so that a user's tenant is automatically deactivated during their local night time.
+<br/>
+
+When a user logs in to `MyPrivateJournal`, their tenant can be automatically triggered to reactivate even before they access their data. This way, the user experience is seamless, and wastage of resources is minimized.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> Manage `offloaded` tenants
+
+:::info Added in `v1.26`
+:::
+
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+The ability to offload tenants to cold storage is a powerful feature that can help you manage your Weaviate instance's resource usage.
+
+To use tenant offloading in Weaviate, you need enable a relevant offloading [module](../../../weaviate/configuration/modules.md). Depending on whether your deployment is on Docker or Kubernetes, you can enable the `offload-s3` module as shown below.
+
+<Tabs groupId="languages">
+<TabItem value="docker" label="Docker">
+
+```yaml
+services:
+  weaviate:
+    environment:
+      # highlight-start
+      ENABLE_MODULES: 'offload-s3' # plus other modules you may need
+      OFFLOAD_S3_BUCKET: 'weaviate-offload' # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true' # create the bucket if it does not exist
+      # highlight-end
+```
+
+</TabItem>
+<TabItem value="kubernetes" label="Kubernetes">
+
+```yaml
+offload:
+  s3:
+    enabled: true  # Set this value to true to enable the offload-s3 module
+    envconfig:
+      OFFLOAD_S3_BUCKET: weaviate-offload  # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: true  # create the bucket if it does not exist
+```
+
+</TabItem>
+</Tabs>
+
+If the target S3 bucket does not exist, the `OFFLOAD_S3_BUCKET_AUTO_CREATE` variable must be set to `true` so that Weaviate can create the bucket automatically.
+
+#### AWS permissions
+
+You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication.
+
+<details>
+  <summary>How to provide AWS permissions</summary>
+
+:::tip Requirements
+The Weaviate instance must have the [necessary permissions to access the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html).
+- The provided AWS identity must be able to write to the bucket.
+- If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
+:::
+
+**Option 1: With IAM and ARN roles**
+
+The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
+
+**Option 2: With access key and secret access key**
+
+| Environment variable | Description |
+| --- | --- |
+| `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
+| `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
+| `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
+
+</details>
+
+Once the `offload-s3` module is enabled, you can offload tenants to the S3 bucket by [setting their activity status](#update-tenants) to `OFFLOADED`, or load them back to local storage by setting their status to `ACTIVE` or `INACTIVE`.
+
+### <i class="fa-solid fa-code"></i> Update tenants
+
+You can `update` tenants to change their activity status.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# UpdateTenantStatus"
+  endMarker="# END UpdateTenantStatus"
+  language="py"
+/>
+
+Remember that both inactive and offloaded tenants are not available for CRUD operations or queries. However, inactive tenants are stored locally, while offloaded tenants are stored on the cloud.
+
+As a result, inactive tenants use up more resources than offloaded tenants, but they are also faster to activate.
+
+### <i class="fa-solid fa-code"></i> Remove tenants
+
+You can `remove` tenants from the collection. This will delete the tenant and all its data.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# RemoveTenants"
+  endMarker="# END RemoveTenants"
+  language="py"
+/>
+
+:::info Example scenario
+In `MyPrivateJournal`, an offboarding system can be set up to remove a user's tenant when they request to delete their data. This will ensure that the user's data is permanently deleted from the system.
+:::
+
+### <i class="fa-solid fa-code"></i> Retrieve tenants / check tenant existence
+
+Additionally, methods exist to retrieve all tenants (`.get`), retrieve multiple tenants by name (`.get_by_names`), retrieve a single tenant by name (`.get_by_name`), and check if a tenant exists (`.exists`).
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MiscTenantMethods"
+  endMarker="# END MiscTenantMethods"
+  language="py"
+/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+
