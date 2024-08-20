@@ -36,7 +36,7 @@ FriendliAI helps simplify the process of building AI-driven applications and spe
 
 ## Get started
 
-To get started, you need to integrate a valid FriendliAI API key (aka Personal Access Token) to Weaviate for these integrations. Go to [FriendliAI](https://suite.friendli.ai/) to sign up and obtain an API key.
+To get started, you need to integrate a valid FriendliAI API token (aka Personal Access Token) to Weaviate for these integrations. Go to [FriendliAI](https://suite.friendli.ai/) to sign up and obtain an API key.
 
 Then, go to the relevant integrations page to learn how to configure Weaviate with the FriendliAI models and start using them in your applications.
 
