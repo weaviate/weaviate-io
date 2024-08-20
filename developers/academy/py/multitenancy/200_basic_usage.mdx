@@ -53,7 +53,7 @@ Putting the two together, your collection creation & tenant creation code may lo
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i> Work with tenant data
+## <i class="fa-solid fa-square-chevron-right"></i> Work with a tenant
 
 Interacting with each tenant's data in a multi-tenant collection is similar to interacting with a single-tenant collection.
 
@@ -64,7 +64,52 @@ Interacting with each tenant's data in a multi-tenant collection is similar to i
   language="py"
 />
 
-We will see more of this in the next section. For now, let's explore the range of available configurations for multi-tenant collections.
+### <i class="fa-solid fa-code"></i> Add data to a tenant
+
+#### Single object insertion
+
+To add data to a tenant, you can use the `.data` namespace:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicDataInsertion"
+  endMarker="# END BasicDataInsertion"
+  language="py"
+/>
+
+#### Batch data insertion
+
+Tenants can be used just like collections for batch insertions. Here is a basic example:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicBatchInsertion"
+  endMarker="# END BasicBatchInsertion"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Query data from a tenant
+
+Once a tenant has been populated with data, you can query it just like you would a single-tenant collection:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicMTQuery"
+  endMarker="# END BasicMTQuery"
+  language="py"
+/>
+
+<details>
+  <summary>Example response</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ExampleResponseBasicMTQuery"
+  endMarker="# END ExampleResponseBasicMTQuery"
+  language="json"
+/>
+</details>
+
 
 ## Questions and feedback
 
