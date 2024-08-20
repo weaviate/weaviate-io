@@ -405,6 +405,26 @@ for (const question of result.data.Get.JeopardyQuestion) {
 }
 
 
+// ===================================================
+// ===== Filters using property null state =====
+// ===================================================
+
+// FilterByPropertyNullState
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('points')
+  .withWhere({
+    operator: 'IsNull',
+    path: ['points'],
+    valueBoolean: true,
+  })
+  .withLimit(3)
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END FilterByPropertyNullState
+
 
 // ===================================================
 // ===== Filters with Geolocation =====

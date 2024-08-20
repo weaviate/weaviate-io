@@ -1,6 +1,6 @@
 ---
-title: Python Client v3
-sidebar_position: 15
+title: Legacy (v3) API
+sidebar_position: 80
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
@@ -10,7 +10,7 @@ The current Python client version is `v||site.python_client_version||`
 :::
 
 :::info `v4` client available
-This document relates to the `v3` client. We recommend you upgrade to the [`v4` client](./index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
+This document relates to the legacy `v3` client and API. We recommend you upgrade to the [`v4` client](./index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
 
 We also have a [migration guide for moving from `v3` client to the `v4`](./v3_v4_migration.md).
 :::

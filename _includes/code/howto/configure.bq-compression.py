@@ -65,7 +65,4 @@ client.collections.create(
 )
 # END BQWithOptions
 
-# START-ANY
-
 client.close()
-# END-ANY

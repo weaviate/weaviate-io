@@ -8,7 +8,7 @@ client = weaviate.connect_to_local()
 
 # CreateDemoCollection
 # Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_weaviate_cloud(...) or
 # client = weaviate.connect_to_local()
 
 # END CreateDemoCollection
@@ -27,7 +27,7 @@ tkn_options = [
 properties = []
 for tokenization in tkn_options:
     prop = Property(
-        name=f"text_{tokenization}",
+        name=f"text_{tokenization.replace('.', '_')}",
         data_type=DataType.TEXT,
         tokenization=tokenization
     )

@@ -3,17 +3,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-import HomepageHeader from '/src/components/RAG/Header';
+import Header from '/src/components/RAG/Header';
 import Details from '/src/components/RAG/Details';
-import HomepageWhatYouCanDo from '/src/components/RAG/WhatYouCanDoUpdate';
-import HomepageLovedByDevelopers from '/src/components/RAG/LovedByDeveloperUpdate/index.jsx';
-import HomepageJoinCommunity from '/src/components/RAG/JoinCommunityUpdate';
-import HomepageIntegrations from '/src/components/RAG/IntegrationsUpdate';
-import HomepageTestimonials from '/src/components/RAG/Testimonials';
-import Resources from '/src/components/RAG/Resources';
 import Blogs from '/src/components/RAG/Blogs';
 import CTA from '/src/components/RAG/CTA';
-import ContactForm from '/src/components/RAG/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -21,9 +14,12 @@ export default function Home() {
 
   return (
     <div className="custom-page noBG">
-      <Layout title="Welcome" description="Welcome to Weaviate">
+      <Layout
+        title="Retrieval Augmented Generation"
+        description="Build secure, explainable generative AI applications"
+      >
         <MetaSEO img="og/website/home.jpg" />
-        <HomepageHeader />
+        <Header />
         <main>
           <Details />
           <Blogs />

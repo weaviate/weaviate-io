@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 
-export default function HomepageHeader() {
+export default function Header() {
   return (
     <header className={styles.headerHome}>
       <div className="container">

@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 
 const getRepoVersion = async (repoName) => {
-    const response = await fetch(
-        `https://api.github.com/repos/weaviate/${repoName}/releases/latest`,
+    const response = await fetch( // fetch all release versions
+        `https://api.github.com/repos/weaviate/${repoName}/releases`,
         {
             method: 'GET',
             headers: {
@@ -14,12 +14,18 @@ const getRepoVersion = async (repoName) => {
         }
     );
 
-    const repoData = await response.json();
+    const releases = await response.json();
+    const highestVersion = releases
+        .filter(item => !item.prerelease) // remove pre-release items
+        .map(item => item.tag_name)       // keep only the tag_name
+        .sort()                           // sort items alphabetically – ascending
+        .pop()                            // the last item contains the highest version (what we need)
+        .replace('v', '')                 // remove the v from the name "v1.26.1" => "1.26.1"
 
-    const version = repoData.tag_name.match(/\d{1,2}\.\d{1,2}\.\d{1,2}/g)[0]
-    return version;
+    console.log(`${repoName} ${highestVersion}`)
+
+    return highestVersion;
 }
-
 
 // Build time versions replace values set in versions-config.json
 // versions-config.json values are used for yarn local yarn builds

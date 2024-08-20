@@ -158,5 +158,37 @@
       "title": "Head of Sales Engineering",
       "date": "September 21, 2023"
     }
+  ],
+  "infrastructure": [
+    {
+      "link": "https://www.youtube.com/watch?v=ickqCzFxWj0",
+      "type": "Video",
+      "backgroundImage": "/img/site/hero-gen-01.png",
+      "tagline": "DSPy + Weaviate for the Next Generation of LLM Apps",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "November 21, 2023"
+    },
+    {
+      "link": "/blog/generative-feedback-loops-with-llms",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-gen-02.png",
+      "tagline": "Generative Feedback Loops with LLMs for Vector Databases",
+      "photo": "connor.jpg",
+      "name": "Connor Shorten",
+      "title": "Product Researcher",
+      "date": "May 5, 2023"
+    },
+    {
+      "link": "https://www.youtube.com/watch?v=I4Jle80AOaU",
+      "type": "Video",
+      "backgroundImage": "/img/site/hero-gen-03.png",
+      "tagline": "Weaviate Podcast Search meets Generative Feedback Loops!",
+      "photo": "byron.png",
+      "name": "Byron Voorbach",
+      "title": "Head of Sales Engineering",
+      "date": "September 21, 2023"
+    }
   ]
 }

@@ -3,6 +3,9 @@ import weaviate from 'weaviate-client'
 
 // END-ANY
 
+// START AnthropicInstantiation
+const anthropicApiKey = process.env.ANTHROPIC_APIKEY || '';  // Replace with your inference API key
+// END AnthropicInstantiation
 // START AnyscaleInstantiation
 const anyscaleApiKey = process.env.ANYSCALE_APIKEY || '';  // Replace with your inference API key
 // END AnyscaleInstantiation
@@ -49,6 +52,10 @@ const client = await weaviate.connectToWeaviateCloud(
     // highlight-start
     headers: {
       // END-ANY
+      // START AnthropicInstantiation
+      'X-Anthropic-Api-Key': anthropicApiKey,
+      'X-Anthropic-Baseurl': 'https://api.anthropic.com',  // Optional; for providing a custom base URL
+      // END AnthropicInstantiation
       // START AnyscaleInstantiation
       'X-Anyscale-Api-Key': anyscaleApiKey,
       // END AnyscaleInstantiation

@@ -38,9 +38,9 @@ Weaviate allows partial or complete object updates.
 
 To update a collection property, provide the collection name, the object id, and the properties to update.
 
-If you update a vectorized property, Weaviate re-vectorizes the object automatically. If you change a property for all of the objects in a collection, Weaviate will re-vectorize all of the objects.
+If you update the value of a *previously vectorized* property, Weaviate re-vectorizes the object automatically. This also reindexes the updated object.
 
-If you add a new property, Weaviate only vectorizes the new objects. Weaviate doesn't re-vectorize and re-index existing objects when a new property is added, only when an existing property is updated.
+However, if you add a *new* property to your collection definition, Weaviate only vectorizes the new objects. Weaviate doesn't re-vectorize and re-index existing objects when a new property is defined, only when an existing property is updated.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

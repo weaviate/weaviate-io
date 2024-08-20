@@ -21,6 +21,7 @@ client.collections.create(
     # highlight-start
     reranker_config=Configure.Reranker.cohere()
     # highlight-end
+    # Additional parameters not shown
 )
 # END RerankerCohereBasic
 
@@ -37,6 +38,7 @@ client.collections.create(
         model="rerank-english-v3.0"
     )
     # highlight-end
+    # Additional parameters not shown
 )
 # END RerankerCohereCustomModel
 

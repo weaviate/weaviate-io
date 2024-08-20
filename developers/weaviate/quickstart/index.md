@@ -61,10 +61,12 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
 
-Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCD.
+- Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance.
+- Get the **API key** and **URL** from the `Details` tab in WCD.
+- Come back here to continue this Quickstart.
 
-:::info To use another deployment method (e.g. Docker Compose)
-If you prefer another method, see [this section](#can-i-use-another-deployment-method).
+:::info Alternative Weaviate instances
+If you prefer to use a different Weaviate instance, see [Can I use a different deployment method](#can-i-use-a-different-deployment-method).
 :::
 
 ## Step 2: Install a client library
@@ -124,8 +126,8 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.d
 
 <CodeAutoschemaMinimumSchema />
 
-:::info To use another vectorizer or generative integrations
-If you prefer another setup, see [this section](#can-i-use-different-integrations).
+:::info Change the vectorizer or generator integrations
+If you prefer to use a different setup, see [this section](#can-i-use-different-integrations).
 :::
 
 Now you are ready to add objects to Weaviate.
@@ -285,7 +287,7 @@ We provide answers to some common questions, or potential issues below.
 
 ### Questions
 
-#### Can I use another deployment method?
+#### Can I use a different deployment method?
 
 import ConnectToWeaviateDocker from '/_includes/code/quickstart.autoschema.connect.docker.mdx'
 

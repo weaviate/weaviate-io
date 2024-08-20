@@ -10,7 +10,7 @@ client = weaviate.connect_to_local()
 
 # FilterExampleBasic
 # Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_weaviate_cloud(...) or
 # client = weaviate.connect_to_local()
 
 # END FilterExampleBasic

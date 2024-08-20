@@ -58,7 +58,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 )

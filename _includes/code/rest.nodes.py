@@ -10,9 +10,13 @@ client = weaviate.connect_to_local()
 
 client.close()
 
-client = weaviate.connect_to_wcs(
+from weaviate.classes.init import Auth
+
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    auth_credentials=Auth.api_key(wcd_api_key),
 )
 
 try:

@@ -5,15 +5,22 @@
 # ================================
 
 import weaviate
+from weaviate.classes.init import Auth
 import os
 
 # client = weaviate.Client(
 #     "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
-#     auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),  # Replace with your Weaviate API key
+#     auth_client_secret=Auth.api_key("learn-weaviate"),  # Replace with your Weaviate API key
 # )
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url=wcd_url,  # Replace with your Weaviate URL
+    auth_credentials=Auth.api_key(wcd_api_key),
 )
 
 # =======================

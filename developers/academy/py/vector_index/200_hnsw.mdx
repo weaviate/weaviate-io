@@ -100,7 +100,7 @@ The maximum number of connections between nodes (`maxConnections`) determine how
 
 A higher number of connections will allow for more accurate searches, but will also slow down searches, and require more memory.
 
-The default value is `64`. Note that on the bottom layer of the graph each node can have up to (`2 * maxConnections`) connections.
+The default value is `32`. Note that on the bottom layer of the graph each node can have up to (`2 * maxConnections`) connections.
 
 ### <i class="fa-solid fa-chalkboard"></i> Dynamic list size
 
@@ -193,4 +193,3 @@ There are more, advanced HNSW parameters that can be set in Weaviate. These are 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

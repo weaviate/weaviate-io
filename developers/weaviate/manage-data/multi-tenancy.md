@@ -29,6 +29,10 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
 
 </details>
 
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
 ## Enable multi-tenancy
 
 Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancyConfig`in the collection definition:
@@ -160,7 +164,7 @@ Use the client to update the auto-tenant creation setting. Auto-tenant is only a
 
 ## Add new tenants manually
 
-To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
+To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `ACTIVE`(available, default), `INACTIVE` (not available, on disk), or `OFFLOADED` (not available, [offloaded to cloud](../concepts/data.md#tenant-status)).
 
 This example adds `tenantA` to the `MultiTenancyCollection` collection:
 
@@ -413,16 +417,16 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
   </TabItem>
 </Tabs>
 
-## Update tenant activity status
+## Manage tenant states
 
-Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
+Change a tenant state between `ACTIVE`, `INACTIVE`, and `OFFLOADED`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START UpdateTenants"
-      endMarker="# END UpdateTenants"
+      startMarker="# START ChangeTenantState"
+      endMarker="# END ChangeTenantState"
       language="py"
     />
   </TabItem>
@@ -430,50 +434,18 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START UpdateTenants"
-      endMarker="// END UpdateTenants"
+      startMarker="// START ChangeTenantState"
+      endMarker="// END ChangeTenantState"
       language="ts"
     />
   </TabItem>
 </Tabs>
 
-<details>
-  <summary>
-    Additional information
-  </summary>
+:::info Learn more
 
-- This feature was added in `v1.21`
-- To update the tenant activity status, send a `PUT` request to the [REST API endpoint](/developers/weaviate/api/rest#tag/schema).
+See [How-to: Manage tenant states](./tenant-states.mdx) for more hands-on examples, and the [Guide: Manage resources](../starter-guides/managing-resources/index.md) for more information and strategies to manage **hot**, **warm** and **cold** storage tiers.
 
-</details>
-
-## Automatically activate tenants
-
-:::info Added in `v1.25.2`
 :::
-
-Enable this to automatically activate `COLD` tenants if a read-or-write request comes. This is disabled by default.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START EnableAutoActivation"
-      endMarker="# END EnableAutoActivation"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START EnableAutoActivation"
-      endMarker="// END EnableAutoActivation"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ## CRUD operations
 
@@ -658,6 +630,12 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
     />
   </TabItem>
 </Tabs>
+
+## Backups
+
+:::caution Backups do not include inactive or offloaded tenants
+Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](#activate-tenant) before creating a backup to ensure all data is included.
+:::
 
 ## Related pages
 

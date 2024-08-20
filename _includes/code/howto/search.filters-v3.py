@@ -990,6 +990,58 @@ assert gqlresponse == response
 
 
 # ========================================
+# FilterByPropertyNullState
+# ========================================
+
+# START FilterByPropertyNullState
+response = (
+    client.query
+    .get("JeopardyQuestion", ["points"])
+    .with_where({
+        "path": ["points"],
+        "operator": "IsNull",
+        "valueBoolean": True
+    })
+    .with_limit(3)
+    .do()
+)
+
+print(response)
+# END FilterByPropertyNullState
+
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert question["points"] is None
+
+
+gql_query = """
+# GQLFilterByPropertyNullState
+{
+  Get {
+    JeopardyQuestion(
+# highlight-start
+      limit: 3
+      where: {
+        path: ["points"],
+        operator: IsNull,
+        valueBoolean: true
+      }
+# highlight-end
+    ) {
+      points
+    }
+  }
+}
+# END GQLFilterByPropertyNullState
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+
+assert gqlresponse == response
+# End test
+
+
+# ========================================
 # FilterByGeolocation
 # ========================================
 

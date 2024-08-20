@@ -28,7 +28,7 @@ class_obj = {
     "vectorIndexConfig": {
         "distance": "cosine",
         "efConstruction": 128,
-        "maxConnections": 64
+        "maxConnections": 32
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
@@ -107,7 +107,7 @@ const classObj = {
   vectorIndexConfig: {
     distance: 'cosine',
     efConstruction: 128,
-    maxConnections: 64,
+    maxConnections: 32,
   },
   vectorizer: 'text2vec-contextionary',
   moduleConfig: {
@@ -282,7 +282,7 @@ public class App {
       .distance("cosine")
       .cleanupIntervalSeconds(300)
       .efConstruction(128)
-      .maxConnections(64)
+      .maxConnections(32)
       .vectorCacheMaxObjects(500000)
       .ef(-1)
       .skip(false)
@@ -354,7 +354,7 @@ curl \
     "vectorIndexConfig": {
         "distance": "cosine",
         "efConstruction": 128,
-        "maxConnections": 64
+        "maxConnections": 32
     },
     "vectorizer": "text2vec-contextionary",
     "moduleConfig": {
