@@ -1,0 +1,74 @@
+---
+title: Basic usage
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+Let's discuss how to create and configure a multi-tenant (MT) collection in Weaviate.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Create a multi-tenant collection
+
+### <i class="fa-solid fa-code"></i> Create a collection
+
+A collection's multi-tenancy status can only be set at creation time. This is **immutable**, and can be done as shown below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicMTEnable"
+  endMarker="# END BasicMTEnable"
+  language="py"
+/>
+
+This will create a multi-tenant collection.
+
+### <i class="fa-solid fa-code"></i> Create a tenant
+
+Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace. For now, let's focus on creating tenants.
+
+The easiest way to create tenants is by providing a list of tenant names to the `create` method:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicTenantCreation"
+  endMarker="# END BasicTenantCreation"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Complete code example
+
+Putting the two together, your collection creation & tenant creation code may look like this:
+
+<details>
+  <summary>Complete code example</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# FullBasicMT"
+  endMarker="# END FullBasicMT"
+  language="py"
+/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Work with tenant data
+
+Interacting with each tenant's data in a multi-tenant collection is similar to interacting with a single-tenant collection.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicTenantInteraction"
+  endMarker="# END BasicTenantInteraction"
+  language="py"
+/>
+
+We will see more of this in the next section. For now, let's explore the range of available configurations for multi-tenant collections.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

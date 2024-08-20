@@ -1,5 +1,5 @@
 ---
-title: Configuration options
+title: Using a multi-tenant collection
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,56 +7,22 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
-Let's discuss the key configuration options available in multi-tenancy collections.
+Once a multi-tenant collection has been configured and tenants created, you can interact with each tenant's data very similarly to how you would with a single-tenant collection. This section will show you how to work with data in a multi-tenant collection.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Basic usage
 
-### <i class="fa-solid fa-code"></i> Enabling multi-tenancy
 
-A collection's multi-tenancy status can only be set at creation time. This is immutable, and can be done as shown below:
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# BasicMTEnable"
-  endMarker="# END BasicMTEnable"
-  language="py"
-/>
 
-This will create a multi-tenant collection.
 
-### <i class="fa-solid fa-code"></i> Manage tenants
-
-Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace.
 
 You can `create`, `remove`, or `update` tenants at any point throughout a lifecycle of a collection. You can also check that a tenant `exists`, or get one or more tenants (`get`, `get_by_name`, `get_by_names`) for further operations.
 
 #### Create tenants
 
-You can `create` tenants by providing a list of tenant names:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# BasicTenantCreation"
-  endMarker="# END BasicTenantCreation"
-  language="py"
-/>
 
 #### `Tenant` class
 
 Helper class stuff
-
-## <i class="fa-solid fa-chalkboard"></i> Interacting with tenant data
-
-Interacting with each tenant's data in a multi-tenant collection is similar to interacting with a single-tenant collection.
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# BasicTenantInteraction"
-  endMarker="# END BasicTenantInteraction"
-  language="py"
-/>
-
-We will see more of this in the next section. For now, let's explore the range of available configurations for multi-tenant collections.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Configuration options
 
@@ -164,6 +130,49 @@ Tenant activity status can help to reduce overhead required to support these inf
 - `Offloaded` tenants are stored in a remote storage (e.g. AWS S3) and are not available for read/write operations. This is the most resource-efficient option, as it requires virtually no overhead.
 
 [Next up](./250_config_example.mdx), let's take a look at a concrete example.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tenant-level data
+
+In a single-tenant collection, you would interact with the collection directly. In a multi-tenant collection, you interact with a tenant-level subset of the collection, as shown below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetTenantCollection"
+  endMarker="# END GetTenantCollection"
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> CRUD operations
+
+## <i class="fa-solid fa-square-chevron-right"></i> Searches
+
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Further resources
+
+
 
 ## Questions and feedback
 

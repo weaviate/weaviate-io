@@ -1,3 +1,5 @@
+
+# FullBasicMT
 import weaviate
 import os
 from weaviate.classes.config import Configure, Property, DataType
@@ -8,7 +10,9 @@ client = weaviate.connect_to_local(
     }
 )
 
-mt_collection_name = "WeaviNote"
+mt_collection_name = "MyPrivateJournal"
+
+# END FullBasicMT
 
 client.collections.delete(mt_collection_name)
 
@@ -16,28 +20,29 @@ client.collections.delete(mt_collection_name)
 # Basic multi-tenany configuration
 # ================================================================================
 
-# BasicMTEnable
+# BasicMTEnable # FullBasicMT
 mt_collection = client.collections.create(
     name=mt_collection_name,  # e.g. "Note"
     # highlight-start
     multi_tenancy_config=Configure.multi_tenancy(),
     # highlight-end
     # Additional settings not shown
-    # END BasicMTEnable
+    # END BasicMTEnable # FullBasicMT
     properties=[
         Property(name="note", data_type=DataType.TEXT)
     ],
     vectorizer_config=[
-        Configure.NamedVectors.text2vec_ollama(
+        Configure.NamedVectors.text2vec_cohere(
             name="note",
             source_properties=["note"],
-            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
-            model="snowflake-arctic-embed:22m",  # The model to use, e.g. "nomic-embed-text"
         )
-    ]
-    # BasicMTEnable
+    ],
+    generative_config=Configure.Generative.cohere(
+        model="command-r-plus"
+    )
+    # BasicMTEnable # FullBasicMT
 )
-# END BasicMTEnable
+# END BasicMTEnable # END FullBasicMT
 
 assert mt_collection.config.get().multi_tenancy_config.enabled is True
 
@@ -45,9 +50,13 @@ assert mt_collection.config.get().multi_tenancy_config.enabled is True
 # Basic tenant creation
 # ================================================================================
 
-# BasicTenantCreation
-mt_collection.tenants.create(["bob1", "alice2", "etienne3"])
-# END BasicTenantCreation
+# FullBasicMT  # <--- Adds a blank line below for better readability
+
+# BasicTenantCreation # FullBasicMT
+# highlight-start
+mt_collection.tenants.create(["bob1", "bob2", "alice1", "etienne1"])
+# highlight-end
+# END BasicTenantCreation # END FullBasicMT
 
 # ================================================================================
 # Basic tenant interaction
@@ -96,8 +105,6 @@ mt_collection = client.collections.create(
         Configure.NamedVectors.text2vec_ollama(
             name="note",
             source_properties=["note"],
-            api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
-            model="snowflake-arctic-embed:22m",  # The model to use, e.g. "nomic-embed-text"
         )
     ]
     # VerboseMTEnable
@@ -153,12 +160,12 @@ tenant_collection = mt_collection.with_tenant("bob")
 
 
 # ================================================================================
-# "WeaviNotes" multi-tenancy configuration
+# "MyPrivateJournal" multi-tenancy configuration
 # ================================================================================
 
 client.collections.delete(mt_collection_name)
 
-# WeaviNotesMTConfig
+# MyPrivateJournalMTConfig
 mt_collection = client.collections.create(
     name="WeaviNote",
     multi_tenancy_config=Configure.multi_tenancy(
@@ -188,9 +195,9 @@ mt_collection = client.collections.create(
     ],
     generative_config=Configure.Generative.cohere()
 )
-# END WeaviNotesMTConfig
+# END MyPrivateJournalMTConfig
 
-# WeaviNotesNewUser
+# MyPrivateJournalNewUser
 from fastapi import FastAPI
 from weaviate.collections.collection import Collection
 
@@ -212,10 +219,10 @@ notes = client.collections.get("WeaviNote")
 def onboard(username: str):
     onboarding(notes, username)
     return {"message": f"User {username} onboarded"}
-# END WeaviNotesNewUser
+# END MyPrivateJournalNewUser
 
 
-# WeaviNotesOffboardUser
+# MyPrivateJournalOffboardUser
 from fastapi import FastAPI
 from weaviate.collections.collection import Collection
 
@@ -237,12 +244,12 @@ notes = client.collections.get("WeaviNote")
 def offboard(username: str):
     offboard(notes, username)
     return {"message": f"User {username} offboarded"}
-# END WeaviNotesOffboardUser
+# END MyPrivateJournalOffboardUser
 
 
 inactive_users = ['bob1', 'alice2']
 
-# WeaviNotesSetUsersInactive
+# MyPrivateJournalSetUsersInactive
 from weaviate.collections.collection import Collection
 from weaviate.classes.tenants import Tenant
 from typing import List
@@ -265,6 +272,6 @@ tenants_to_set_inactive = [
 ]
 
 set_inactive(tenants_to_set_inactive)
-# END WeaviNotesSetUsersInactive
+# END MyPrivateJournalSetUsersInactive
 
 client.close()

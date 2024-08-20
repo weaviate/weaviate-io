@@ -380,34 +380,37 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  mt_config: {
-    title: "Manage a multi-tenant collection",
-    body: "Learn how to create, configure and manage a multi-tenant collection end-to-end.",
+  mt_basic_usage: {
+    title: "Basic usage of multi-tenancy",
+    body: "Learn the basics of multi-tenant collection creation and usage.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/config",
+    buttonURL: "/developers/academy/py/multitenancy/basic_usage",
     badgeType: "practical",
     learningGoals: [
-      "How to create & configure a multi-tenant collection.",
+      "How to create & use a basic multi-tenant collection.",
     ],
     learningOutcomes: [
       "Create a multi-tenant collection.",
-      "Configure a multi-tenant collection to suit your needs.",
-      "Create tenants and manage their status."
+      "Create tenants",
+      "Add data to a multi-tenant collection.",
+      "Perform queries on a multi-tenant collection.",
     ],
     owner: "jp",
     reviewer: "jp"
   },
-  mt_usage: {
-    title: "Query a multi-tenant collection",
-    body: "Make use of a multi-tenant collections with queries, and consider how to configure it with queries in mind.",
+  mt_advanced_usage: {
+    title: "Advanced usage of multi-tenancy",
+    body: "Learn how to use multi-tenancy in more complex scenarios.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/usage",
+    buttonURL: "/developers/academy/py/multitenancy/advanced_usage",
     badgeType: "practical",
     learningGoals: [
-      "How to perform queries on a multi-tenant collection, and see how multi-tenancy configuration options affect queries.",
+      "How to create & configure a multi-tenant collection for more complex use cases.",
     ],
     learningOutcomes: [
-      "Extract information from multi-tenant collections with queries, and learn how multi-tenancy options affect queries.",
+      "Create a multi-tenant collection with custom settings.",
+      "Create tenants with different states",
+      "Manage tenant states to balance performance and resource usage.",
     ],
     owner: "jp",
     reviewer: "jp"
