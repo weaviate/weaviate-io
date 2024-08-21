@@ -24,7 +24,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integrations with FriendliAI's APIs allow you to access open-source models on Friendli Suite and utilize models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your FriendliAI API key.
+[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative AI model to generate outputs.
 
@@ -57,7 +57,7 @@ You must provide a valid Friendli Suite API key to Weaviate for this integration
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `FRIENDLIAI_APIKEY` environment variable that is available to Weaviate.
+- Set the `FRIENDLI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -65,8 +65,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START FriendliAIInstantiation"
-      endMarker="# END FriendliAIInstantiation"
+      startMarker="# START FriendliInstantiation"
+      endMarker="# END FriendliInstantiation"
       language="py"
     />
   </TabItem>
@@ -74,8 +74,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START FriendliAIInstantiation"
-      endMarker="// END FriendliAIInstantiation"
+      startMarker="// START FriendliInstantiation"
+      endMarker="// END FriendliInstantiation"
       language="ts"
     />
   </TabItem>

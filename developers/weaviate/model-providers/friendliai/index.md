@@ -40,7 +40,6 @@ To get started, you need to integrate a valid FriendliAI API token (aka Personal
 
 Then, go to the relevant integrations page to learn how to configure Weaviate with the FriendliAI models and start using them in your applications.
 
-- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
