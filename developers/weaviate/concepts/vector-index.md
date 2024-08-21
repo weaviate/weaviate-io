@@ -170,6 +170,10 @@ A drawback of the flat index is that it does not scale well to large collections
 Available starting in `v1.25`. This is an experimental feature. Use with caution.
 :::
 
+import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
+
+<DynamicAsyncRequirements/>
+
 The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution as HNSW speeds up search. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
 
 By configuring a dynamic index, you can automatically switch from flat to HNSW indexes. This switch occurs when the object count exceeds a prespecified threshold (by default 10,000). This functionality only works with async indexing enabled. When the threshold is hit while importing, all the data piles up in the async queue, the HNSW index is constructed in the background and when ready the swap from flat to HNSW is completed.
