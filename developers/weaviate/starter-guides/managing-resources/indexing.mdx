@@ -63,6 +63,10 @@ As a result, flat indexes are best suited for cases where the number of objects 
 :::info Added in `v1.25`
 :::
 
+import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
+
+<DynamicAsyncRequirements/>
+
 A [dynamic index](/developers/weaviate/concepts/vector-index#dynamic-index) offers a flexible approach to indexing. A dynamic index begins as a flat index, and converts automatically to an HNSW index upon reaching a threshold size.
 
 This can be particularly useful in multi-tenant configurations, where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
