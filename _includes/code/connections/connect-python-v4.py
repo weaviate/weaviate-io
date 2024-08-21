@@ -18,6 +18,9 @@ client = weaviate.connect_to_local(
 
 print(client.is_ready())
 # END TimeoutLocal
+
+assert client.is_ready()
+
 client.close()
 
 
@@ -26,18 +29,18 @@ client.close()
 ##########################
 
 # START TimeoutWCD
-# Set these environment variables
-# WEAVIATE_URL       your Weaviate instance URL
-# WEAVIATE_API_KEY   your Weaviate instance API key
-
 import weaviate, os
 from weaviate.classes.init import Auth
 from weaviate.classes.init import AdditionalConfig, Timeout
 
+# Best practice: store your credentials in environment variables
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+
 # Connect to a WCD instance
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
+    cluster_url=weaviate_url,
+    auth_credentials=Auth.api_key(weaviate_api_key),
     # skip_init_checks=True,
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
@@ -46,64 +49,44 @@ client = weaviate.connect_to_weaviate_cloud(
 
 print(client.is_ready())
 # END TimeoutWCD
+
+assert client.is_ready()
+
 client.close()
 
 #########################
 ### Custom connection ###
 #########################
 
-# START CustomConnect
-# Set these environment variables
-# WEAVIATE_URL       your Weaviate instance URL
-# WEAVIATE_GPC_URL   your Weaviate GPC connection URL
-# WEAVIATE_API_KEY   your Weaviate instance API key
-
+# START CustomConnect  # START TimeoutCustom
 import weaviate, os
 from weaviate.classes.init import Auth
 
-client = weaviate.connect_to_custom(
-    http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
-    http_port=443,
-    http_secure=True,   # Set to True if https
-    grpc_host=os.getenv("WEAVIATE_GPC_URL"),
-    grpc_port=443,      # Default is 50051, WCD uses 443
-    grpc_secure=True,   # Edit as needed
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
-)
-
-print(client.is_ready())
-# END CustomConnect
-client.close()
-
-######################################
-### Custom connection with timeout ###
-######################################
-
-# START TimeoutCustom
-# Set these environment variables
-# WEAVIATE_URL       your Weaviate instance URL
-# WEAVIATE_GPC_URL   your Weaviate GPC connection URL
-# WEAVIATE_API_KEY   your Weaviate instance API key
-
-import weaviate, os
-from weaviate.classes.init import Auth
-from weaviate.classes.init import AdditionalConfig, Timeout
+# Best practice: store your credentials in environment variables
+http_host = os.environ["WCD_HTTP_HOST"]
+grpc_host = os.environ["WCD_GRPC_HOST"]
+weaviate_api_key = os.environ["WCD_DEMO_RO_KEY"]
 
 client = weaviate.connect_to_custom(
-    http_host=os.getenv("WEAVIATE_URL"),  # URL only, no http prefix
-    http_port=443,
-    http_secure=True,   # Set to True if https
-    grpc_host=os.getenv("WEAVIATE_GPC_URL"),
-    grpc_port=443,      # Default is 50051, WCD uses 443
-    grpc_secure=True,   # Edit as needed
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
+    http_host=http_host,        # Hostname for the HTTP API connection
+    http_port=443,              # Default is 80, WCD uses 443
+    http_secure=True,           # Whether to use https (secure) for the HTTP API connection
+    grpc_host=grpc_host,        # Hostname for the gRPC API connection
+    grpc_port=443,              # Default is 50051, WCD uses 443
+    grpc_secure=True,           # Whether to use a secure channel for the gRPC API connection
+    auth_credentials=Auth.api_key(weaviate_api_key),  # API key for authentication
+    # END CustomConnect  # START TimeoutCustom
     additional_config=AdditionalConfig(
         timeout=Timeout(init=30, query=60, insert=120)  # Values in seconds
     )
+    # START CustomConnect  # START TimeoutCustom
 )
 
 print(client.is_ready())
-# END TimeoutCustom
+# END CustomConnect  # END TimeoutCustom
+
+assert client.is_ready()
+
 client.close()
 
 #########################
@@ -111,21 +94,24 @@ client.close()
 #########################
 
 # START APIKeyWCD
-# Set these environment variables
-# WEAVIATE_URL       your Weaviate instance URL
-# WEAVIATE_API_KEY   your Weaviate instance API key
-
 import weaviate
 from weaviate.classes.init import Auth
 
+# Best practice: store your credentials in environment variables
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
+    cluster_url=weaviate_url,
+    auth_credentials=Auth.api_key(weaviate_api_key),
 )
 
 print(client.is_ready())
 # END APIKeyWCD
+
+assert client.is_ready()
+
 client.close()
 
 ################################
@@ -139,6 +125,9 @@ client = weaviate.connect_to_local()
 
 print(client.is_ready())
 # END LocalNoAuth
+
+assert client.is_ready()
+
 client.close()
 
 #############################
@@ -146,17 +135,28 @@ client.close()
 #############################
 
 # START LocalAuth
-# Set this environment variable
-# WEAVIATE_API_KEY   your Weaviate instance API key
-
 import weaviate
 from weaviate.classes.init import Auth
 
+# Best practice: store your credentials in environment variables
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+
+# END LocalAuth
+weaviate_api_key = os.environ["WEAVIATE_LOCAL_API_KEY"]
+
+# START LocalAuth
 client = weaviate.connect_to_local(
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY"))
+    # END LocalAuth
+    port=8099,
+    grpc_port=50052,
+    # START LocalAuth
+    auth_credentials=Auth.api_key(weaviate_api_key)
 )
 
 print(client.is_ready())
+
+assert client.is_ready()
+
 # END LocalAuth
 
 ##################################
@@ -164,20 +164,23 @@ print(client.is_ready())
 ##################################
 
 # START LocalThirdPartyAPIKeys
-# Set this environment variable
-# COHERE_API_KEY     your Cohere API key
-
 import os
 import weaviate
 
+# Best practice: store your credentials in environment variables
+cohere_api_key = os.environ["COHERE_API_KEY"]
+
 client = weaviate.connect_to_local(
     headers={
-        "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
+        "X-Cohere-Api-Key": cohere_api_key
     }
 )
 
 print(client.is_ready())
 # END LocalThirdPartyAPIKeys
+
+assert client.is_ready()
+
 client.close()
 
 ##################################
@@ -185,26 +188,29 @@ client.close()
 ##################################
 
 # START ThirdPartyAPIKeys
-# Set these environment variables
-# WEAVIATE_URL       your Weaviate instance URL
-# WEAVIATE_API_KEY   your Weaviate instance API key
-# COHERE_API_KEY     your Cohere API key
-
 import os
 import weaviate
 from weaviate.classes.init import Auth
 
+# Best practice: store your credentials in environment variables
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+cohere_api_key = os.environ["COHERE_API_KEY"]
+
 # Connect to Weaviate Cloud
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WEAVIATE_URL"),
-    auth_credentials=Auth.api_key(os.getenv("WEAVIATE_API_KEY")),
+    cluster_url=weaviate_url,
+    auth_credentials=Auth.api_key(weaviate_api_key),
     headers={
-        "X-Cohere-Api-Key": os.getenv("COHERE_API_KEY")
+        "X-Cohere-Api-Key": cohere_api_key
     }
 )
 
 print(client.is_ready())
 # END ThirdPartyAPIKeys
+
+assert client.is_ready()
+
 client.close()
 
 #########################
@@ -212,16 +218,16 @@ client.close()
 #########################
 
 # START Embedded
-# Set this environment variable
-# OPENAI_API_KEY     your OpenAI API key
-
 import weaviate
 import os
+
+# Best practice: store your credentials in environment variables
+openai_api_key = os.environ["OPENAI_API_KEY"]
 
 client = weaviate.connect_to_embedded(
     version="1.26.1",
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_API_KEY")
+        "X-OpenAI-Api-Key": openai_api_key
     },
 )
 
@@ -229,24 +235,33 @@ client = weaviate.connect_to_embedded(
 # When the client exits, the embedded instance also exits
 # END Embedded
 
+assert client.is_ready()
+
+client.close()
+
 ############
 ### OIDC ###
 ############
 
 # START OIDCConnect
-# Set these environment variables
-# WEAVIATE_USER    your Weaviate OIDC username
-# WEAVIATE_PWD     your Weaviate OIDC password
-# WEAVIATE_URL     your Weaviate instance URL
-
 import os
 import weaviate
+from weaviate.classes.init import Auth
+
+# Best practice: store your credentials in environment variables
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_username = os.environ["WCD_USERNAME"]
+weaviate_password = os.environ["WCD_PASSWORD"]
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WEAVIATE_URL"),   # Replace with your Weaviate Cloud URL
-    auth_credentials=weaviate.auth.AuthClientPassword(
-        username=os.getenv("WEAVIATE_USER"),  # Your Weaviate Cloud username
-        password=os.getenv("WEAVIATE_PWD")   # Your Weaviate Cloud password
+    cluster_url=weaviate_url,   # Replace with your Weaviate Cloud URL
+    auth_credentials=Auth.client_password(
+        username=weaviate_username,  # Your Weaviate Cloud username
+        password=weaviate_password   # Your Weaviate Cloud password
     )
 )
 # END OIDCConnect
+
+assert client.is_ready()
+
+client.close()
