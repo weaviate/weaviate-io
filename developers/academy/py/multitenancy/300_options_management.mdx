@@ -7,6 +7,123 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/100_config.py';
 
+
+
+TODO: show `auto_tenant_creation` and `auto_tenant_activation`  in action
+
+
+
+
+
+
+
+
+
+
+
+
+### <i class="fa-solid fa-code"></i> Create a tenant
+
+Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace. For now, let's focus on creating tenants.
+
+The easiest way to create tenants is by providing a list of tenant names to the `create` method:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicTenantCreation"
+  endMarker="# END BasicTenantCreation"
+  language="py"
+/>
+
+:::caution Tenant names are case-sensitive
+Tenant names are case-sensitive. This means that `bob`, `Bob` and `BoB` are considered different tenants.
+:::
+
+### <i class="fa-solid fa-code"></i> Complete code example
+
+Putting the two together, your collection creation & tenant creation code may look like this:
+
+<details>
+  <summary>Complete code example</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# FullBasicMT"
+  endMarker="# END FullBasicMT"
+  language="py"
+/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Work with a tenant
+
+Interacting with each tenant's data in a multi-tenant collection is similar to interacting with a single-tenant collection.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicTenantInteraction"
+  endMarker="# END BasicTenantInteraction"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Add data to a tenant
+
+#### Single object insertion
+
+To add data to a tenant, you can use the `.data` namespace:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicDataInsertion"
+  endMarker="# END BasicDataInsertion"
+  language="py"
+/>
+
+#### Batch data insertion
+
+Tenants can be used just like collections for batch insertions. Here is a basic example:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicBatchInsertion"
+  endMarker="# END BasicBatchInsertion"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Query data from a tenant
+
+Once a tenant has been populated with data, you can query it just like you would a single-tenant collection:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicMTQuery"
+  endMarker="# END BasicMTQuery"
+  language="py"
+/>
+
+<details>
+  <summary>Example response</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ExampleResponseBasicMTQuery"
+  endMarker="# END ExampleResponseBasicMTQuery"
+  language="json"
+/>
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Summary
+
+As you can see, working with a tenant in a multi-tenant collection is very similar to working with a single-tenant collection. The main difference is that you can manage multiple tenants independently.
+
+In the next section, we will discuss more advanced topics such as additional options for collection creation, and how to manage tenants.
+
+
+
+
+
+
+
 You've seen how to create a multi-tenant collection and create tenants. Now, let's dive deeper into working with a multi-tenant collection.
 
 These options will help you manage your multi-tenant collection more effectively, and optimize resource usage.
@@ -26,40 +143,7 @@ At this time you can also specify one or more of `auto_tenant_creation` or `auto
 
 Generally, we recommend enabling `auto_tenant_activation` for multi-tenant collections. This will allow Weaviate to automatically activate any tenants as required.
 
-<details>
-  <summary>More about <code>auto_tenant_creation</code></summary>
 
-:::info Added in `v1.25`
-The auto tenant creation feature is available from `v1.25.0` for batch imports, and from `v1.25.2` for single object insertions.
-:::
-
-Enabling `auto_tenant_creation` will cause Weaviate to automatically create the tenant when an object is inserted against a non-existent tenant.
-
-This option is particularly useful for bulk data ingestion, as it removes the need to create the tenant prior to object insertion. Instead, `auto_tenant_creation` will allow the object insertion process to continue without interruption.
-
-A risk of using `auto_tenant_creation` is that an error in the source data will not be caught during import. For example, a source object with erroneously spelt `"TenntOn"` instead of `"TenantOne"` will create a new tenant for `"TenntOne"` instead of raising an error.
-
-The server-side default for `auto_tenant_creation` is `false`.
-</details>
-
-<details>
-  <summary>More about <code>auto_tenant_activation</code></summary>
-
-:::info Added in `v1.25.2`
-The auto tenant activation feature is available from `v1.25.2`.
-:::
-
-If `auto_tenant_activation` is enabled, Weaviate will automatically activate any deactivated (`INACTIVE` or `OFFLOADED`) tenants when they are accessed.
-
-This option is particularly useful for scenarios where you have a large number of tenants, but only a subset of them are active at any given time. An example is a SaaS app where some tenants may be unlikely due to their local time zone, or their recent activity level.
-
-By enabling `auto_tenant_activation`, you can safely set those less active users to be inactive, knowing that they will be loaded onto memory once requested.
-
-This can help to reduce the memory footprint of your Weaviate instance, as only the active tenants are loaded into memory.
-
-The server-side default for `auto_tenant_activation` is `false`.
-
-</details>
 
 ### <i class="fa-solid fa-code"></i> Tenants and vector index types
 

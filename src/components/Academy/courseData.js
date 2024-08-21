@@ -163,7 +163,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "mt_overview", "mt_basic_usage", "mt_options_management"
+      "mt_overview", "mt_setup", "mt_options_management"
     ],
     learningGoals: [
       "What multi-tenancy is, when to use it and how to effectively use it to scale for many end users."

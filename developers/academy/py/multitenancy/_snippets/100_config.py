@@ -9,41 +9,80 @@ client = weaviate.connect_to_local(
     }
 )
 
-mt_collection_name = "MyPrivateJournal"
+mt_collection_name = "JournalEntry"
 
 # END FullBasicMT
 
 client.collections.delete(mt_collection_name)
 
 # ================================================================================
-# Basic multi-tenany configuration
+# MyPrivateJournal multi-tenancy configuration
 # ================================================================================
 
-# BasicMTEnable # FullBasicMT
+client.close()
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
+    }
+)
+
+client.collections.delete(mt_collection_name)
+
+# MTConfig # MTFullCollectionCreation
+from weaviate.classes.config import Configure, Property, DataType
+
 mt_collection = client.collections.create(
-    name=mt_collection_name,  # e.g. "Note"
+    name=mt_collection_name,  # e.g. "JournalEntry"
     # highlight-start
-    multi_tenancy_config=Configure.multi_tenancy(),
+    multi_tenancy_config=Configure.multi_tenancy(
+        enabled=True,
+        auto_tenant_creation=True,
+        auto_tenant_activation=True,
+    ),
     # highlight-end
-    # Additional settings not shown
-    # END BasicMTEnable # FullBasicMT
+    # END MTConfig # MTFullCollectionCreation
     properties=[
-        Property(name="note", data_type=DataType.TEXT),
+        Property(name="text", data_type=DataType.TEXT),
         Property(name="date", data_type=DataType.DATE),
         Property(name="tags", data_type=DataType.TEXT_ARRAY),
     ],
+    # DynamicIndexConfig # MTFullCollectionCreation
     vectorizer_config=[
         Configure.NamedVectors.text2vec_cohere(
-            name="note",
-            source_properties=["note"],
+            name="text",
+            source_properties=["text"],
+            # highlight-start
+            vector_index_config=Configure.VectorIndex.dynamic(
+                hnsw=Configure.VectorIndex.hnsw(
+                    quantizer=Configure.VectorIndex.Quantizer.sq(training_limit=50000)
+                ),
+                flat=Configure.VectorIndex.flat(
+                    quantizer=Configure.VectorIndex.Quantizer.bq()
+                ),
+                threshold=10000
+            )
+            # highlight-end
         )
     ],
+    # END DynamicIndexConfig # END MTVectorIndexConfig # MTFullCollectionCreation
     generative_config=Configure.Generative.cohere(model="command-r-plus")
-    # BasicMTEnable # FullBasicMT
+    # MTConfig
 )
-# END BasicMTEnable # END FullBasicMT
+# END MTConfig # END MTFullCollectionCreation
 
-assert mt_collection.config.get().multi_tenancy_config.enabled is True
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ================================================================================
 # Basic tenant creation
@@ -68,7 +107,7 @@ bob = mt_collection.with_tenant("bob1")
 
 bob.data.insert(
     properties={
-        "note": "I had a great cooking class experience today!",
+        "text": "I had a great cooking class experience today!",
         "date": datetime(2024, 5, 15).replace(tzinfo=timezone.utc),
         "tags": ["cooking", "hobby"],
     }
@@ -98,17 +137,17 @@ from datetime import datetime, timezone
 
 journal_entries = [
     {
-        "note": "The Top Gun sequel was amazing!",
+        "text": "The Top Gun sequel was amazing!",
         "date": datetime(2022, 5, 30).replace(tzinfo=timezone.utc),
         "tags": ["movie", "action"],
     },
     {
-        "note": "I went to a cooking class and learned how to make sushi!",
+        "text": "I went to a cooking class and learned how to make sushi!",
         "date": datetime(2024, 5, 16).replace(tzinfo=timezone.utc),
         "tags": ["cooking", "hobby"],
     },
     {
-        "note": "The new taco place in town is amazing!",
+        "text": "The new taco place in town is amazing!",
         "date": datetime(2024, 7, 20).replace(tzinfo=timezone.utc),
         "tags": ["food", "restaurant"],
     },
@@ -142,72 +181,18 @@ for obj in response.objects:
 {
     "date": datetime.datetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
     "tags": ["cooking", "hobby"],
-    "note": "I had a great cooking class experience today!",
+    "text": "I had a great cooking class experience today!",
 }
 {
     "date": datetime.datetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
     "tags": ["cooking", "hobby"],
-    "note": "I went to a cooking class and learned how to make sushi!",
+    "text": "I went to a cooking class and learned how to make sushi!",
 }
 # END ExampleResponseBasicMTQuery
 """
 
 
-# # ================================================================================
-# # More verbose multi-tenancy configuration
-# # ================================================================================
 
-client.close()
-
-client = weaviate.connect_to_local(
-    headers={
-        "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
-    }
-)
-
-client.collections.delete(mt_collection_name)
-
-# VerboseMTEnable # FullCustomMT
-from weaviate.classes.config import Configure, Property, DataType
-
-mt_collection = client.collections.create(
-    name=mt_collection_name,  # e.g. "Note"
-    # highlight-start
-    multi_tenancy_config=Configure.multi_tenancy(
-        enabled=True,
-        auto_tenant_creation=True,
-        auto_tenant_activation=True,
-    ),
-    # highlight-end
-    # END VerboseMTEnable # FullCustomMT
-    properties=[
-        Property(name="note", data_type=DataType.TEXT),
-        Property(name="date", data_type=DataType.DATE),
-        Property(name="tags", data_type=DataType.TEXT_ARRAY),
-    ],
-    # MTVectorIndexConfig # FullCustomMT
-    vectorizer_config=[
-        Configure.NamedVectors.text2vec_cohere(
-            name="note",
-            source_properties=["note"],
-            # highlight-start
-            vector_index_config=Configure.VectorIndex.dynamic(
-                hnsw=Configure.VectorIndex.hnsw(
-                    quantizer=Configure.VectorIndex.Quantizer.sq(training_limit=50000)
-                ),
-                flat=Configure.VectorIndex.flat(
-                    quantizer=Configure.VectorIndex.Quantizer.bq()
-                ),
-                threshold=10000
-            )
-            # highlight-end
-        )
-    ],
-    # VerboseMTEnable # END MTVectorIndexConfig # FullCustomMT
-    generative_config=Configure.Generative.cohere(model="command-r-plus")
-    # VerboseMTEnable
-)
-# END VerboseMTEnable # END FullCustomMT
 
 # ================================================================================
 # Tenant creation and status

@@ -366,7 +366,7 @@ export const unitData = {
   },
   mt_overview: {
     title: "An overview of multi-tenancy",
-    body: "Multi-tenancy enables efficient production use with thousands (or more) end users. Learn what it is and how it works.",
+    body: "Learn what multi-tenancy is and how it helps to build scalable production applications.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/multitenancy/overview",
     badgeType: "theory",
@@ -375,25 +375,25 @@ export const unitData = {
     ],
     learningOutcomes: [
       "Describe what multi-tenancy is",
-      "Describe use cases for multi-tenancy.",
+      "Identify what problems it solves, and when to use multi-tenancy",
+      "Describe an example use case for multi-tenancy.",
     ],
     owner: "jp",
     reviewer: "jp"
   },
-  mt_basic_usage: {
-    title: "Basic usage",
-    body: "Learn the basics of multi-tenant collection creation and usage.",
+  mt_setup: {
+    title: "Multi-tenant setup",
+    body: "See how to set up a Weaviate cluster and collections for multi-tenant usage.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/basic_usage",
+    buttonURL: "/developers/academy/py/multitenancy/mt_setup",
     badgeType: "practical",
     learningGoals: [
-      "How to create & use a basic multi-tenant collection.",
+      "How to create a Weaviate instance and collections for a multi-tenancy use case.",
     ],
     learningOutcomes: [
+      "Set up a Weaviate instance for multi-tenancy, from cluster to collection settings.",
       "Create a multi-tenant collection.",
       "Create tenants",
-      "Add data to a multi-tenant collection.",
-      "Perform queries on a multi-tenant collection.",
     ],
     owner: "jp",
     reviewer: "jp"
@@ -408,6 +408,8 @@ export const unitData = {
       "How to create & configure a multi-tenant collection for more complex use cases.",
     ],
     learningOutcomes: [
+      "Add data to a multi-tenant collection.",
+      "Perform queries on a multi-tenant collection.",
       "Create a multi-tenant collection with custom settings.",
       "Create tenants with different states",
       "Manage tenant states to balance performance and resource usage.",
