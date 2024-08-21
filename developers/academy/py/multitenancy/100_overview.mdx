@@ -27,6 +27,12 @@ This is similar to the concept of multi-tenancy in Weaviate, where each tenant i
 
 A typical multi-tenancy use-case is in a software-as-a-service (SaaS) application. In many SaaS applications, each end user or account will have private data that should be not be accessible to anyone else.
 
+### <i class="fa-solid fa-chalkboard"></i> Example case study
+
+In this course, we'll learn about multi-tenancy by putting ourselves in the shoes of a developer building an application called `MyPrivateJournal`.
+
+`MyPrivateJournal` is a SaaS (software-as-a-service) application where users like *Steve*, *Alice* and so on can write and store their journal entries. Each user's entries should be private and not accessible to anyone else.
+
 Using single-tenant collections, you might implement this with:
 
 1. **A monolithic collection**: To store the entire dataset, with an end user identifier property
@@ -34,28 +40,15 @@ Using single-tenant collections, you might implement this with:
 
 While these may work to some extent, both of these options have significant limitations.
 
-1. Using **a monolithic collection**:
-    - Queries may be slower, as the collection must host all users' data.
-    - For the same reason, deleting individual users' data is also difficult.
-    - Accidental data exposure is possible, as data isn't inherently isolated.
-1. Using **end-user-specific collections**:
-    - Would be very resource-intensive, as a high number of collections will be required.
-    - Administration overhead may be higher, as each collection-level operation (e.g. adding a new property) would need to be run separately.
-
-Multi-tenancy solves these problems.
-
-:::info Example scenario
-Imagine a SaaS journal application `MyPrivateJournal` where each user (e.g. Steve and Alice) can write and store their journal entries.
-<br/>
-
 - Using a monolithic collection:
-    - A developer mistake could easily expose Steve's entries to Alice.
-    - As `MyPrivateJournal` grows, Steve's query would become slower as it must search through all entries.
-    - When Steve ask to delete his data, the process would be complex and error-prone.
+    - A developer mistake could easily expose Steve's entries to Alice, which would be a significant privacy breach.
+    - As `MyPrivateJournal` grows, Steve's query would become slower as it must look through the entire collection.
+    - When Steve asks `MyPrivateJournal` to delete his data, the process would be complex and error-prone.
 - Using end-user-specific collections:
     - `MyPrivteJournal` may need to spend more on hardware to support the high number of collections.
     - Changes to configurations (e.g. adding a new property) would need to be run separately for each collection.
-:::
+
+Multi-tenancy in Weaviate solves these problems by providing a way to isolate each user's data while sharing the same configuration.
 
 ### <i class="fa-solid fa-chalkboard"></i> Benefits of multi-tenancy
 
@@ -65,12 +58,11 @@ A Weaviate node can thus serve far more tenants than it could single-tenant coll
 
 It also makes developers' job easier, as there is only one set of collection configurations. The data isolation between tenants eliminates risks of accidental data leakage and makes it easier to manage individual tenants and tenant data.
 
-:::info Example scenario
-In `MyPrivateJournal`, each user's journal entries would be stored in a separate tenant. This way, Steve's entries are isolated from Alice's, and vice versa. This isolation makes it easier to manage each user's data and reduces the risk of data leakage.
-<br/>
+#### `MyPrivateJournal` and multi-tenancy
+
+So, the `MyPrivateJournal` app can use multi-tenancy and store each user's journal entries in a separate tenant. This way, Steve's entries are isolated from Alice's, and vice versa. This isolation makes it easier to manage each user's data and reduces the risk of data leakage.
 
 As you will see later, `MyPrivateJournal` can also offload inactive users' data to cold storage, reducing the hot (memory) and warm (disk) resource usage of the Weaviate node.
-:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Tenants vs collections
 
@@ -86,7 +78,7 @@ A tenant is very similar to a single-tenant collection. For example:
 | Deletion | Deleting a tenant deletes all tenant data | Deleting a collection deletes all collection data |
 | Query | Can search one tenant at a time | Can search one collection at a time |
 
-But as you will have guessed, there are also differences. We'll cover these in the next sections.
+But as you will have guessed, there are also differences. We'll cover these in the next sections, as we follow `MyPrivateJournal` implementing multi-tenancy in Weaviate.
 
 ## Questions and feedback
 

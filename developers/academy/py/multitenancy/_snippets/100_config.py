@@ -268,15 +268,7 @@ mt_collection.tenants.remove([
 # Misc methods
 # ================================================================================
 
-mt_collection.tenants.create(["bob1", "alice1", "etienne1"])
-
-mt_collection.tenants.update([
-    Tenant(name="bob1", activity_status=TenantActivityStatus.ACTIVE),
-    Tenant(name="alice1", activity_status=TenantActivityStatus.ACTIVE),
-    Tenant(name="etienne1", activity_status=TenantActivityStatus.ACTIVE),
-])
-
-# MiscTenantMethods
+#
 mt_collection = client.collections.get(mt_collection_name)
 
 all_tenants = mt_collection.tenants.get()
@@ -291,6 +283,5 @@ tenant = mt_collection.tenants.get_by_name("bob1")
 print(tenant)
 
 print(mt_collection.tenants.exists("etienne1"))
-# END MiscTenantMethods
 
 client.close()
