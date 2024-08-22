@@ -13,6 +13,7 @@ import io.weaviate.client.v1.schema.model.Property;
 import io.weaviate.client.v1.schema.model.DataType;
 import io.weaviate.client.v1.misc.model.ReplicationConfig;
 import io.weaviate.client.v1.misc.model.BQConfig;
+import io.weaviate.client.v1.schema.model.Tokenization;
 import io.weaviate.docs.helper.EnvHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -63,6 +64,8 @@ class ManageDataClassesTest {
 		createCollectionWithModuleSettings(className);
 		createCollectionWithVectorIndexType(className);
 		createCollectionWithVectorIndexParams(className);
+    createPropertieswithSettings(className);
+    specifyDistanceMetric(className);
 	}
 
 	private void createCollection(String className) {
@@ -236,6 +239,62 @@ private void createCollectionWithVectorIndexParams(String className){
       .run();
       // END SetVectorIndexParams
 	}
+
+  private void createPropertieswithSettings(String className){
+		// START PropModuleSettings
+    Property titleProperty = Property.builder()
+      .name("title")
+      .description("title of the article")
+      .dataType(Arrays.asList(DataType.TEXT))
+      .tokenization(Tokenization.WORD)
+      .build();
+
+    Property bodyProperty = Property.builder()
+      .name("body")
+      .description("body of the article")
+      .dataType(Arrays.asList(DataType.TEXT))
+      .tokenization(Tokenization.LOWERCASE)
+      .build();
+
+    //Add the defined properties to the class
+    WeaviateClass articleClass = WeaviateClass.builder()
+        .className(className)
+        .description("Article Class Description...")
+        .properties(Arrays.asList(titleProperty, bodyProperty))
+        .build();
+
+    Result<Boolean> result = client.schema().classCreator()
+        .withClass(articleClass)
+        .run();
+      // END PropModuleSettings
+		}
+
+  private void specifyDistanceMetric(String className){
+    Property titleProperty = Property.builder()
+      .name("title")
+      .dataType(Arrays.asList(DataType.TEXT))
+      .build();
+    Property bodyProperty = Property.builder()
+      .name("body")
+      .dataType(Arrays.asList(DataType.TEXT))
+      .build();
+    // START DistanceMetric
+    // Additional configuration not shown
+    VectorIndexConfig vectorIndexConfig = VectorIndexConfig.builder()
+        .distance(DistanceType.DOT) // Define Distance Type e.g. Dot, Cosine, hamming...
+        .build();
+
+    WeaviateClass articleClass = WeaviateClass.builder()
+      .className(className)
+      .properties(Arrays.asList(titleProperty, bodyProperty))
+      .vectorIndexConfig(vectorIndexConfig)
+      .build();
+
+    Result<Boolean> classResult = client.schema().classCreator()
+      .withClass(articleClass)
+      .run();
+      // END DistanceMetric
+  }
 
 	private void readOneCollection(String className) {
 		// START ReadOneCollection
