@@ -29,6 +29,10 @@ cohere_key = os.getenv("COHERE_APIKEY")
 # Recommended: save sensitive data as environment variables
 friendli_key = os.getenv("FRIENDLI_APIKEY")
 # END FriendliInstantiation
+# START FriendliDedicatedInstantiation
+# Recommended: save sensitive data as environment variables
+friendli_key = os.getenv("FRIENDLI_APIKEY")
+# END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
 # Recommended: save sensitive data as environment variables
 vertex_key = os.getenv("VERTEX_APIKEY")
@@ -86,6 +90,10 @@ headers = {
 # START FriendliInstantiation
     "X-Friendli-Api-Key": friendli_key,
 # END FriendliInstantiation
+# START FriendliDedicatedInstantiation
+    "X-Friendli-Api-Key": friendli_key,
+    "X-Friendli-Baseurl": "https://inference.friendli.ai/dedicated",
+# END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
     "X-Google-Vertex-Api-Key": vertex_key,
 # START GoogleInstantiation  # END GoogleVertexInstantiation

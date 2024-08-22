@@ -213,7 +213,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.friendliai({
-    model: 'meta-llama-3-70b-instruct'
+    model: 'meta-llama-3.1-70b-instruct'
   }),
   // highlight-end
   // Additional parameters not shown
@@ -228,7 +228,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.friendliai({
-    model: 'meta-llama-3-70b-instruct',
+    model: 'meta-llama-3.1-70b-instruct',
     maxTokens: 500,
     temperature: 0.7,
     baseURL: 'https://inference.friendli.ai'
@@ -240,6 +240,22 @@ await client.collections.create({
 
 // Clean up
 await client.collections.delete('DemoCollection');
+
+// START DedicatedGenerativeFriendliAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.friendliai({
+    model: 'YOUR_ENDPOINT_ID',
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END DedicatedGenerativeFriendliAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 
 // START BasicGenerativeGoogleVertex
 await client.collections.create({

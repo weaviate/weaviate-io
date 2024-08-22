@@ -9,12 +9,12 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-:::info Added in `v1.27.0`
+:::info Added in `v1.26.0`
 :::
 
-FriendliAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with FriendliAI's APIs, allowing users to leverage FriendliAI's models directly within the Weaviate database.
+FriendliAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with FriendliAI APIs, allowing users to leverage FriendliAI's powerful inference engine within the Weaviate database.
 
-These integrations empower developers to build sophisticated AI-driven applications with ease.
+FriendliAI integration empowers developers to build sophisticated AI-driven applications with ease.
 
 ## Integrations with FriendliAI
 
@@ -22,7 +22,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_friendliai_rag_single.png)
 
-FriendliAI's generative AI models can generate human-like text based on given prompts and contexts.
+FriendliAI's generative AI models can generate human-like text based on given prompts and contexts, showing groundbreaking performance at a reasonable price.
 
 [Weaviate's generative AI integration](./generative.md) enables users to perform Retrieval Augmented Generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with FriendliAI's generative AI models to generate personalized and context-aware responses.
 
@@ -30,7 +30,7 @@ Visit [FriendliAI generative AI integration page](./generative.md) for more info
 
 ## Summary
 
-These integrations enable developers to directly leverage FriendliAI's powerful inference engine within Weaviate.
+This integration enables developers to harness the power of FriendliAI's inference engine within Weaviate.
 
 FriendliAI helps simplify the process of building AI-driven applications and speeds up your development process so that you can focus on creating innovative solutions.
 

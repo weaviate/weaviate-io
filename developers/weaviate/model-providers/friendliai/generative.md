@@ -11,7 +11,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-:::info Added in `v1.27.0`
+:::info Added in `v1.26.0`
 :::
 
 import Tabs from '@theme/Tabs';
@@ -22,9 +22,9 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integrations with FriendliAI's APIs allow you to access open-source models on Friendli Suite and utilize models' capabilities directly from Weaviate.
+Weaviate's integrations with FriendliAI APIs allow you to utilize a wide range of models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli API key.
+[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli Suite API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative AI model to generate outputs.
 
@@ -84,7 +84,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an FriendliAI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a FriendliAI generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -204,7 +204,6 @@ In other words, when you have `n` search results, the generative model generates
 
 ### Generative parameters
 
-<!-- Zain: Any parameters discuss here? Pls see e.g. Cohere/OpenAI page for comparison -->
 
 Configure the following generative parameters to customize the model behavior.
 
@@ -233,9 +232,56 @@ For further details on model parameters, see the [FriendliAI API documentation](
 
 ### Available models
 
-* `meta-llama-3-8b-instruct`
-* `meta-llama-3-70b-instruct`
+* `meta-llama-3.1-70b-instruct` (default)
+* `meta-llama-3.1-8b-instruct`
 * `mixtral-8x7b-instruct-v0-1`
+
+If you are looking for further options, you can deploy them on the Friendli Suite and still use them with Weaviate. We provide a wide range of [available models](https://friendli.ai/models), and you can also [fine-tune](https://docs.friendli.ai/guides/dedicated_endpoints/fine-tuning) them to your specific use case. Feel free to explore the models and choose the one that best fits your needs. You can easily deploy them following the [quickstart guide](https://docs.friendli.ai/guides/dedicated_endpoints/quickstart).
+
+The following code snippet is the part that needs to be different when you use your dedicated endpoint within Weaviate:
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyConnect}
+      startMarker="# START FriendliDedicatedInstantiation"
+      endMarker="# END FriendliDedicatedInstantiation"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START FriendliDedicatedInstantiation"
+      endMarker="// END FriendliDedicatedInstantiation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DedicatedGenerativeFriendliAI"
+      endMarker="# END DedicatedGenerativeFriendliAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DedicatedGenerativeFriendliAI"
+      endMarker="// END DedicatedGenerativeFriendliAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Further resources
 
