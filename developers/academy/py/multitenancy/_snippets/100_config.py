@@ -71,68 +71,48 @@ mt_collection = client.collections.create(
 )
 # END MTConfig # END MTFullCollectionCreation
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ================================================================================
 # Basic tenant creation
 # ================================================================================
 
-# FullBasicMT  # <--- Adds a blank line below for better readability
-
-# BasicTenantCreation # FullBasicMT
+# BasicTenantCreation
 # highlight-start
-mt_collection.tenants.create(["bob1", "bob2", "alice1", "etienne1"])
+mt_collection.tenants.create("steve85")  # Create a tenant, e.g. based on a username
 # highlight-end
-# END BasicTenantCreation # END FullBasicMT
+# END BasicTenantCreation
+
+# MultiTenantCreation
+new_usernames = ["bob1", "alice2", "etienne3"]
+
+# highlight-start
+mt_collection.tenants.create(new_usernames)  # Create multiple tenants
+# highlight-end
+# END MultiTenantCreation
 
 # ================================================================================
-# Basic data insertion
+# Single object insertion
 # ================================================================================
 
-# BasicDataInsertion
+# SingleObjectInsertion
 from datetime import datetime, timezone
 
-bob = mt_collection.with_tenant("bob1")
+# Start with the collection object and specify the tenant
+tenant = mt_collection.with_tenant("steve85")
 
-bob.data.insert(
+tenant.data.insert(
     properties={
-        "text": "I had a great cooking class experience today!",
+        "text": "What amazing food we had at Quay! It was totally worth it.",
         "date": datetime(2024, 5, 15).replace(tzinfo=timezone.utc),
-        "tags": ["cooking", "hobby"],
+        "tags": ["restaurant", "experience"],
     }
 )
-# END BasicDataInsertion
+# END SingleObjectInsertion
 
 # ================================================================================
-# Basic tenant interaction
+# Batch data insertion
 # ================================================================================
 
-# BasicTenantInteraction
-bob = mt_collection.with_tenant("bob1")  # Collection object with tenant specified
-
-# Example query.
-# Note that it is identical to a single tenant query
-response = bob.query.near_text(
-    query="cooking class experience",  # Find journal entries about cooking classes
-    limit=3,
-)
-# END BasicTenantInteraction
-
-# ================================================================================
-# Basic batch data insertion
-# ================================================================================
-
+# BatchDataToInsert
 from datetime import datetime, timezone
 
 journal_entries = [
@@ -140,6 +120,21 @@ journal_entries = [
         "text": "The Top Gun sequel was amazing!",
         "date": datetime(2022, 5, 30).replace(tzinfo=timezone.utc),
         "tags": ["movie", "action"],
+    },
+    {
+        "text": "Ahhh the Taylor Swift Eras concert in Denver was sooo much better than I could have hoped for!",
+        "date": datetime(2023, 7, 14).replace(tzinfo=timezone.utc),
+        "tags": ["music", "swifties", "concert"],
+    },
+    {
+        "text": "After watching Kate McKinnon play Weird Barbie I totally feel seen.",
+        "date": datetime(2023, 7, 25).replace(tzinfo=timezone.utc),
+        "tags": ["movie", "barbie", "happy"],
+    },
+    {
+        "text": "Spring is here and I'm loving the new flowers in the garden!",
+        "date": datetime(2024, 4, 5).replace(tzinfo=timezone.utc),
+        "tags": ["garden", "home"],
     },
     {
         "text": "I went to a cooking class and learned how to make sushi!",
@@ -152,86 +147,166 @@ journal_entries = [
         "tags": ["food", "restaurant"],
     },
 ]
+# END BatchDataToInsert
 
 # BasicBatchInsertion
-from datetime import datetime
+tenant = mt_collection.with_tenant("steve85")
 
-bob = mt_collection.with_tenant("bob1")
-
-with bob.batch.fixed_size(100) as batch:
+with tenant.batch.fixed_size(100) as batch:
     for journal_entry in journal_entries:
         batch.add_object(journal_entry)
 # END BasicBatchInsertion
 
 # ================================================================================
-# Basic query
+# Auto tenant creation
 # ================================================================================
 
-# BasicMTQuery
-bob = mt_collection.with_tenant("bob1")
+# AutoTenantCreationAtInsert
+nonexistent_tenant = mt_collection.with_tenant("newsteve15")
 
-response = bob.query.near_text(query="food experience", limit=2)
+nonexistent_tenant.data.insert({
+    "date": datetime(2024, 7, 7).replace(tzinfo=timezone.utc),
+    "tags": ["events", "grand prix"],
+    "text": "Going to Silverstone was a dream come true!",
+})
+# END AutoTenantCreationAtInsert
+
+# ================================================================================
+# Filtering by date range
+# ================================================================================
+
+# DateRangeQuery
+from weaviate.classes.query import Filter
+from datetime import datetime, timezone
+
+tenant = mt_collection.with_tenant("steve85")
+
+start_date = datetime(2023, 7, 1).replace(tzinfo=timezone.utc)
+end_date = datetime(2023, 7, 31).replace(tzinfo=timezone.utc)
+
+response = tenant.query.fetch_objects(
+    filters=(
+        Filter.by_property("date").greater_or_equal(start_date) &
+        Filter.by_property("date").less_or_equal(end_date)
+    ),
+    limit=10
+)
+# END DateRangeQuery
 
 for obj in response.objects:
     print(obj.properties)
-# END BasicMTQuery
 
 """
-# ExampleResponseBasicMTQuery
+# ExampleResponseDateRange
+{
+    "text": "Ahhh the Taylor Swift Eras concert in Denver was sooo much better than I could have hoped for!",
+    "date": datetime.datetime(2023, 7, 14, 0, 0, tzinfo=datetime.timezone.utc),
+    "tags": ["music", "swifties", "concert"],
+}
+{
+    "text": "After watching Kate McKinnon play Weird Barbie I totally feel seen.",
+    "date": datetime.datetime(2023, 7, 25, 0, 0, tzinfo=datetime.timezone.utc),
+    "tags": ["movie", "barbie", "happy"],
+}
+# END ExampleResponseDateRange
+"""
+
+# ================================================================================
+# User query
+# ================================================================================
+
+# UserQuery
+tenant = mt_collection.with_tenant("steve85")
+
+response = tenant.query.hybrid(
+    query="food experience",
+    limit=2
+)
+# END UserQuery
+
+for obj in response.objects:
+    print(obj.properties)
+
+"""
+# ExampleResponseUserQuery
 {
     "date": datetime.datetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
-    "tags": ["cooking", "hobby"],
-    "text": "I had a great cooking class experience today!",
+    "tags": ["restaurant", "experience"],
+    "text": "What amazing food we had at Quay! It was totally worth it.",
 }
 {
     "date": datetime.datetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
     "tags": ["cooking", "hobby"],
     "text": "I went to a cooking class and learned how to make sushi!",
 }
-# END ExampleResponseBasicMTQuery
+# END ExampleResponseUserQuery
 """
 
-
-
-
 # ================================================================================
-# Tenant creation and status
+# Deactivate a tenant
 # ================================================================================
 
-# TenantCreationWithStatus
+mt_collection.tenants.create(["travis1989"])
+
+# UpdateOneTenantStatus
 from weaviate.classes.tenants import Tenant, TenantActivityStatus
 
 mt_collection = client.collections.get(mt_collection_name)
 
-mt_collection.tenants.create([
-    "activeBob",
-    Tenant(name="alsoActiveBob"),
-    Tenant(name="anotherActiveBob", activity_status=TenantActivityStatus.ACTIVE),
-    Tenant(name="inactiveBob", activity_status=TenantActivityStatus.INACTIVE),
-])
-# END TenantCreationWithStatus
+mt_collection.tenants.update(
+    Tenant(name="travis1989", activity_status=TenantActivityStatus.INACTIVE)
+)
+# END UpdateOneTenantStatus
 
-for t in ["activeBob", "alsoActiveBob", "anotherActiveBob"]:
-    assert mt_collection.tenants.get_by_name(t).activity_status == TenantActivityStatus.ACTIVE
-assert mt_collection.tenants.get_by_name("inactiveBob").activity_status == TenantActivityStatus.INACTIVE
 
 # ================================================================================
-# Update tenant status
+# Deactivate multiple tenants
 # ================================================================================
 
-mt_collection.tenants.create(["bob1", "alice1", "etienne1"])
+inactive_users = [f"user{100+i}" for i in range(10)]
 
-# UpdateTenantStatus
+# UpdateMultipleTenantStatuses
 from weaviate.classes.tenants import Tenant, TenantActivityStatus
 
 mt_collection = client.collections.get(mt_collection_name)
 
-mt_collection.tenants.update([
-    Tenant(name="bob1", activity_status=TenantActivityStatus.INACTIVE),
-    Tenant(name="alice1", activity_status=TenantActivityStatus.OFFLOADED),
-    Tenant(name="etienne1", activity_status=TenantActivityStatus.ACTIVE),
-])
-# END UpdateTenantStatus
+tenants_to_deactivate = [
+    Tenant(name=user, activity_status=TenantActivityStatus.INACTIVE)
+    for user in inactive_users
+]
+
+mt_collection.tenants.update(tenants_to_deactivate)
+# END UpdateMultipleTenantStatuses
+
+tenant_names_to_offload = []  # List of tenants to offload
+
+# OffloadMultipleTenants
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
+
+mt_collection = client.collections.get(mt_collection_name)
+
+tenants_to_offload = [
+    Tenant(name=user, activity_status=TenantActivityStatus.OFFLOADED)
+    for user in tenant_names_to_offload
+]
+
+mt_collection.tenants.update(tenants_to_offload)
+# END OffloadMultipleTenants
+
+tenant_names_to_activate = []  # List of tenants to offload
+
+# ActivateMultipleTenants
+from weaviate.classes.tenants import Tenant, TenantActivityStatus
+
+mt_collection = client.collections.get(mt_collection_name)
+
+tenants_to_activate = [
+    Tenant(name=user, activity_status=TenantActivityStatus.ACTIVE)
+    for user in tenant_names_to_activate
+]
+
+mt_collection.tenants.update(tenants_to_activate)
+# END ActivateMultipleTenants
 
 # ================================================================================
 # Remove tenants
@@ -244,8 +319,8 @@ mt_collection = client.collections.get(mt_collection_name)
 
 # Caution - this will remove all of the associated data for the tenants
 mt_collection.tenants.remove([
-    "bob1",
-    Tenant(name="alice1"),
+    "depardieu10",
+    "travis1989",
 ])
 # END RemoveTenants
 
@@ -268,5 +343,13 @@ tenant = mt_collection.tenants.get_by_name("bob1")
 print(tenant)
 
 print(mt_collection.tenants.exists("etienne1"))
+
+
+
+
+
+
+
+
 
 client.close()

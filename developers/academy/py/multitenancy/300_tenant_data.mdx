@@ -1,0 +1,171 @@
+---
+title: Work with tenants & data
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+The team at `MyPrivateJournal` has now set up a Weaviate instance with a multi-tenant collection. In this section, we will learn how to work with tenants and their data.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Add tenants and data
+
+Once a multi-tenant collection is created, you can manage its tenants through the `.tenant` namespace.
+
+Each end user in `MyPrivateJournal` will have their journal entries be backed their own tenant. This means that when a user is onboarded, a tenant is created for them. When a user is offboarded, their tenant is removed.
+
+### <i class="fa-solid fa-code"></i> Create tenants
+
+When a user is onboarded, we can include this code to the onboarding logic.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicTenantCreation"
+  endMarker="# END BasicTenantCreation"
+  language="py"
+/>
+
+Tenant creation can be done in bulk, too.
+
+Let's say that `MyPrivateJournal` has a batch of new users to onboard, from an organization called `AcmeCorp`. They could create tenants for multiple users in one operation:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MultiTenantCreation"
+  endMarker="# END MultiTenantCreation"
+  language="py"
+/>
+
+:::caution Tenant names are case-sensitive
+Tenant names are case-sensitive. This means that `steve`, `Steve` and `STEVE` are considered different tenants.
+:::
+
+### <i class="fa-solid fa-code"></i> Add data objects
+
+Working with a tenant in a multi-tenant collection is similar to working with a single-tenant collection.
+
+Let's see how `MyPrivateJournal` can work with data objects in a tenant as
+
+#### Single object insertion
+
+As an end user (e.g. Steve or `steve85`) writes a new journal entry, `MyPrivateJournal` can insert it into Steve's tenant.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# SingleObjectInsertion"
+  endMarker="# END SingleObjectInsertion"
+  language="py"
+/>
+
+#### Batch data insertion
+
+And if Steve wants to import his journal entries from another system, `MyPrivateJournal` can insert them in a batch.
+
+<details>
+  <summary>Data being inserted</summary>
+
+The objects to be added can be a list of dictionaries, as shown here. Note the use of `datetime` objects with a timezone for `DATE` type properties.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BatchDataToInsert"
+  endMarker="# END BatchDataToInsert"
+  language="py"
+/>
+
+</details>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BasicBatchInsertion"
+  endMarker="# END BasicBatchInsertion"
+  language="py"
+/>
+
+#### Bonus: Auto tenant creation
+
+If `MyPrivateJournal` has enabled auto-tenant creation, they can insert data without explicitly creating a tenant. In this example, the specified tenant does not exist, but Weaviate will create it automatically.
+
+This allows `MyPrivateJournal` to delay creating a tenant until the user writes their first journal entry.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# AutoTenantCreationAtInsert"
+  endMarker="# END AutoTenantCreationAtInsert"
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Query tenant data
+
+Once Steve's tenant has been created and populated with data, `MyPrivateJournal` can allow Steve to interact with his data.
+
+For an application like this, `MyPrivateJournal` might allow Steve to:
+
+- Retrieve his journal entries for a date range, and
+- Search for entries
+
+The good news is that just like our data operations, retrieving and querying data in a tenant is very similar to working with a single-tenant collection.
+
+### <i class="fa-solid fa-code"></i> Retrieve entries for a date range
+
+To retrieve Steve's journal entries for a specific date range, `MyPrivateJournal` can use a query like this:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DateRangeQuery"
+  endMarker="# END DateRangeQuery"
+  language="py"
+/>
+
+<details>
+  <summary>Example response</summary>
+
+Such a query should return a response like:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ExampleResponseDateRange"
+  endMarker="# END ExampleResponseDateRange"
+  language="py"
+/>
+</details>
+
+### <i class="fa-solid fa-code"></i> Search for entries
+
+Additionally, Steve might want to search for entries. For example - he might want to search for entries relating to some food experience that he had.
+
+`MyPrivateJournal` can leverage Weaviate's `hybrid` search to help Steve find the most relevant entries.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# UserQuery"
+  endMarker="# END UserQuery"
+  language="py"
+/>
+
+<details>
+  <summary>Example response</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ExampleResponseUserQuery"
+  endMarker="# END ExampleResponseUserQuery"
+  language="json"
+/>
+</details>
+
+You can see that the search syntax is essentially identical to that of a single-tenant collection. So, any search method available for a single-tenant collection can be applied to a multi-tenant collection.
+
+### <i class="fa-solid fa-chalkboard"></i> Summary
+
+In this section, we learned how to work with tenants and their data in a multi-tenant collection. We saw how to create tenants, add data objects, and query tenant data.
+
+In the next section, we will learn how `MyPrivateJournal` can keep their application running smoothly and efficiently by managing tenants.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+
