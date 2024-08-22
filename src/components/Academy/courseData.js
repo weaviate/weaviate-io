@@ -157,23 +157,27 @@ export const courseData = {
   "multi-tenancy": {
     title: "Multi-tenancy",
     courseId: "PY_280",
-    body: "Multi-tenancy enables lightweight isolation of end user data. Learn how to set up multi-tenancy, work with tenants and tenant data.",
+    body: "Learn how to implement and manage multi-tenancy in Weaviate for efficient data isolation and resource management.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/multitenancy",
     badgeType: "course",
     isCourse: true,
     units: [
-      "mt_overview", "mt_setup", "mt_options_management"
+      "mt_overview", "mt_setup", "mt_tenant_data", "mt_manage_tenants"
     ],
     learningGoals: [
-      "What multi-tenancy is, when to use it and how to effectively use it to scale for many end users."
+      "Understand multi-tenancy concepts and their application in Weaviate",
+      "Learn how to set up and manage multi-tenant collections for scalable applications",
+      "Master techniques for efficient resource management in multi-tenant environments"
     ],
     learningOutcomes: [
-      "Describe use cases for multi-tenancy.",
-      "Configure a collection with multi-tenancy.",
-      "Create tenants, delete tenants and update tenant activity statuses.",
-      "Perform CRUD operations and queries on a multi-tenancy collection.",
-      "Change tenant states to balance resource use and availability.",
+      "Explain the concept of multi-tenancy and its benefits in Weaviate",
+      "Set up a Weaviate instance and configure collections for multi-tenancy",
+      "Create, manage, and remove tenants in a multi-tenant collection",
+      "Perform data operations and queries specific to individual tenants",
+      "Implement efficient resource management using tenant activity states",
+      "Utilize advanced features like auto-tenant creation, activation, and offloading",
+      "Apply multi-tenancy concepts to real-world scenarios for improved scalability and data isolation"
     ],
     note: "Python client (v4)"
   },

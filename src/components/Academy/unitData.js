@@ -365,57 +365,78 @@ export const unitData = {
     ]
   },
   mt_overview: {
-    title: "An overview of multi-tenancy",
-    body: "Learn what multi-tenancy is and how it helps to build scalable production applications.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/overview",
-    badgeType: "theory",
-    learningGoals: [
-      "What multi-tenancy is and when to use it",
+    "title": "An overview of multi-tenancy",
+    "body": "Learn what multi-tenancy is and how it helps to build scalable production applications.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/overview",
+    "badgeType": "theory",
+    "learningGoals": [
+      "Understand multi-tenancy in Weaviate and its benefits",
+      "Identify use cases for multi-tenancy in production applications"
     ],
-    learningOutcomes: [
-      "Describe what multi-tenancy is",
-      "Identify what problems it solves, and when to use multi-tenancy",
-      "Describe an example use case for multi-tenancy.",
+    "learningOutcomes": [
+      "Describe what multi-tenancy is in the context of Weaviate",
+      "Explain the benefits of multi-tenancy for resource management and scalability",
+      "Identify scenarios where multi-tenancy is advantageous",
+      "Understand the concept of tenant isolation within a shared collection"
     ],
     owner: "jp",
     reviewer: "jp"
   },
   mt_setup: {
-    title: "Multi-tenant setup",
-    body: "Set up a Weaviate cluster and collections for multi-tenant usage.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/setup",
-    badgeType: "practical",
-    learningGoals: [
-      "How to create a Weaviate instance and collections for a multi-tenancy use case.",
+    "title": "Multi-tenant setup",
+    "body": "Set up a Weaviate instance and configure collections for multi-tenant usage.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/setup",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Learn how to set up a Weaviate instance and configure collections for multi-tenant usage."
     ],
-    learningOutcomes: [
-      "Set up a Weaviate instance for multi-tenancy.",
-      "Create a multi-tenant collection.",
-      "Identify and configure important collection settings for multi-tenancy.",
+    "learningOutcomes": [
+      "Configure a Weaviate instance for multi-tenancy",
+      "Create a multi-tenant collection with appropriate settings",
+      "Understand and configure auto-tenant creation and activation",
+      "Set up dynamic indexing for efficient resource usage across tenants"
     ],
     owner: "jp",
     reviewer: "jp"
   },
-  mt_options_management: {
-    title: "Work with tenants and data",
-    body: "Create, update and remove tenants as needed, and manage tenant data.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/py/multitenancy/tenant_data",
-    badgeType: "practical",
-    learningGoals: [
-      "How to create, update and remove tenants in a multi-tenant collection, and manage each tenant's data.",
+  mt_tenant_data: {
+    "title": "Work with tenants and data",
+    "body": "Learn how to manage tenants and their data in a multi-tenant collection.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/tenant_data",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Understand how to create and manage tenants as well their data in a multi-tenant environment"
     ],
-    learningOutcomes: [
-      "Create, update and remove tenants",
-      "Name available tenant states and their differences",
-      "Insert or batch import data to a multi-tenant collection.",
-      "Create a multi-tenant collection with custom settings.",
-      "Manage tenant states to balance performance and resource usage.",
+    "learningOutcomes": [
+      "Create single and multiple tenants",
+      "Insert and batch import data for specific tenants",
+      "Perform queries on tenant-specific data",
+      "Understand and utilize auto-tenant creation"
     ],
-    owner: "jp",
-    reviewer: "jp"
+    "owner": "jp",
+    "reviewer": "jp"
+  },
+  mt_manage_tenants: {
+    "title": "Manage tenant states and resources",
+    "body": "Learn how to efficiently manage tenant states and optimize resource usage.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/manage_tenants",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Understand tenant activity states and their implications, and learn how to manage tenant states for optimal resource usage"
+    ],
+    "learningOutcomes": [
+      "Describe the different tenant activity states (ACTIVE, INACTIVE, OFFLOADED)",
+      "Update tenant states individually and in bulk",
+      "Implement tenant offloading to cold storage",
+      "Utilize auto-activation for efficient resource management",
+      "Remove tenants and their associated data"
+    ],
+    "owner": "jp",
+    "reviewer": "jp"
   },
   hello_weaviate: {
     title: "Hello, Weaviate",
