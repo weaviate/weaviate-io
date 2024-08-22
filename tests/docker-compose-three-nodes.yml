@@ -23,10 +23,18 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,text2vec-openai,text2vec-cohere,text2vec-huggingface,generative-openai,reranker-cohere'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
       CLUSTER_DATA_BIND_PORT: '7101'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3
   weaviate-node-2:  # Founding member service name
     command:
     - --host
@@ -41,18 +49,27 @@ services:
      - "8181:8080"
      - 50152:50051
     environment:
+      AUTOSCHEMA_ENABLED: 'false'
       OPENAI_APIKEY: $OPENAI_APIKEY
       COHERE_APIKEY: $COHERE_APIKEY
       QUERY_DEFAULTS_LIMIT: 25
       QUERY_MAXIMUM_RESULTS: 10000
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface,generative-openai,reranker-cohere'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node2'
       CLUSTER_GOSSIP_BIND_PORT: '7102'
       CLUSTER_DATA_BIND_PORT: '7103'
       CLUSTER_JOIN: 'weaviate-node-1:7100'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3
   weaviate-node-3:  # Founding member service name
     command:
     - --host
@@ -67,16 +84,25 @@ services:
      - "8182:8080"
      - 50153:50051
     environment:
+      AUTOSCHEMA_ENABLED: 'false'
       OPENAI_APIKEY: $OPENAI_APIKEY
       COHERE_APIKEY: $COHERE_APIKEY
       QUERY_DEFAULTS_LIMIT: 25
       QUERY_MAXIMUM_RESULTS: 10000
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface,generative-openai,reranker-cohere'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node3'
       CLUSTER_GOSSIP_BIND_PORT: '7104'
       CLUSTER_DATA_BIND_PORT: '7105'
       CLUSTER_JOIN: 'weaviate-node-1:7100'
+      RAFT_JOIN: 'node1,node2,node3'
+      RAFT_BOOTSTRAP_EXPECT: 3
 ...

@@ -12,13 +12,13 @@ import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
 
 <OffloadingLimitation/>
 
-To configure tenant offloading in Weaviate, you need to add an offloading module to the list of [enabled modules](./modules.md).
+To use tenant offloading in Weaviate, you need enable a relevant offloading [module](./modules.md).
 
 ## `offload-s3` module
 
 The `offload-s3` module enables you to [offload or onload tenants](../manage-data/tenant-states.mdx#offload-tenant) to/from an S3 bucket.
 
-To use the `offload-s3` module, add `offload-s3` to the `ENABLE_MODULES` in your docker-compose or kubernetes config.
+To use the `offload-s3` module, add `offload-s3` to the `ENABLE_MODULES` in your docker-compose file as shown below.
 
 ```yaml
 services:
@@ -32,6 +32,18 @@ services:
 ```
 
 If the target S3 bucket does not exist, the `OFFLOAD_S3_BUCKET_AUTO_CREATE` must be set to `true` so that Weaviate can create the bucket automatically.
+
+For kubernetes users, enable the relevant offload service in the helm chart values file, and set the necessary environment variables:
+
+```yaml
+# Configure offload providers
+offload:
+  s3:
+    enabled: true  # Set this value to true to enable the offload-s3 module
+    envconfig:
+      OFFLOAD_S3_BUCKET: weaviate-offload  # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: true  # create the bucket if it does not exist
+```
 
 ### Environment variables
 
@@ -59,7 +71,7 @@ The Weaviate instance must have the [necessary permissions to access the S3 buck
 - If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
 :::
 
-In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
+You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication:
 
 #### Option 1: With IAM and ARN roles
 

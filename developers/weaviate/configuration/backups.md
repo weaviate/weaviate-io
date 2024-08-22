@@ -66,7 +66,7 @@ In addition to enabling the module, you need to configure it using environment v
 
 #### S3 Configuration (AWS-specific)
 
-In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
+You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication:
 
 #### Option 1: With IAM and ARN roles
 

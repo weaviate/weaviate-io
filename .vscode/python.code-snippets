@@ -1,6 +1,6 @@
 {
-  "Edu demo WCD connect": {
-    "prefix": "edu-demo-wcd-connect",
+  "Weaviate WCD connect": {
+    "prefix": "Weaviate-wcd-connect",
     "body": [
       "import weaviate",
       "from weaviate.classes.init import Auth",
