@@ -12,9 +12,19 @@ export default function Header() {
           <div className={styles.box}>
             <h1>Weaviate Learning Centre</h1>
             <p>
-              Training courses, resources, and support options for<br></br>{' '}
-              builders of all levels. We’re with you on your AI journey.
+              A learning resources hub for builders of all levels.
             </p>
+            <div className={styles.boxContainer}>
+              <Link to="#get-started">Get started</Link>
+              &nbsp;|&nbsp;
+              <Link to="#guided-courses">Guided courses</Link>
+              &nbsp;|&nbsp;
+              <Link to="#documentation">Documentation</Link>
+              &nbsp;|&nbsp;
+              <Link to="#code-examples">Code examples</Link>
+              &nbsp;|&nbsp;
+              <Link to="#go-further">Go further</Link>
+            </div>
           </div>
         </div>
       </div>

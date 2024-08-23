@@ -9,7 +9,6 @@ import Documentation from '/src/components/Learn/Documentation';
 import Examples from '/src/components/Learn/Examples';
 import Guides from '/src/components/Learn/Guides';
 import GoFurther from '/src/components/Learn/Further';
-import Resources from '/src/components/Learn/Resources';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
         <MetaSEO img="og/website/home.jpg" />
         <Header />
         <main>
-          <Resources />
           <GetStarted />
           <Guides />
           <Documentation />

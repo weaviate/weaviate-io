@@ -11,8 +11,7 @@ export default function Documentation() {
         <div className={styles.header}>
           <h2>Documentation</h2>
           <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
+            How-tos, concepts, guides, and technical references
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -23,7 +22,7 @@ export default function Documentation() {
                 <h2>Docs: Integration guides</h2>
               </div>
               <div className={styles.typeText}>
-                <p>How Weaviate integrates with various Al model providers</p>
+                <p>How to use Weaviate with various Al model providers</p>
                 <div className={styles.integrations}>
                   <p>AWS</p>
                   <p>Cohere</p>
@@ -38,35 +37,39 @@ export default function Documentation() {
                   to="/developers/weaviate/model-providers"
                   className={styles.button}
                 >
-                  Learn More
+                  Model provider integrations pages
                 </Link>
               </div>
             </div>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
                 <div className={`${styles.homeIcon} ${styles.starter}`}></div>
-                <h2>Docs: Starter guides</h2>
+                <h2>Docs: Concepts</h2>
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Intermediate level workshops, or webinars with industry users
+                  In-depth explanations of key features and ideas that power Weaviate
                 </p>
                 <ul>
                   <li>
-                    <strong>Connect to Weaviate:</strong> Different ways to
-                    connect to Weaviate
+                    <strong>Data structures</strong> explained for
+                    collections and tenants
                   </li>
                   <li>
-                    <strong>Generative search (RAG):</strong> A basic guide to
-                    retrieval augmented generation
+                    <strong>Vector indexing</strong> helps perform
+                    fast and effective searches
+                  </li>
+                  <li>
+                    <strong>Compression</strong> reduces resource usage with
+                    minimal loss of search quality
                   </li>
                 </ul>
 
                 <Link
-                  to="/developers/weaviate/starter-guides"
+                  to="/developers/weaviate/concepts"
                   className={styles.button}
                 >
-                  Learn More
+                  All concepts pages
                 </Link>
               </div>
             </div>
@@ -77,25 +80,25 @@ export default function Documentation() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Intermediate level workshops, or webinars with industry users
+                  Concise snippets to help you perform specific tasks
                 </p>
                 <ul>
                   <li>
-                    <strong>Manage data:</strong> Manage collections, create
-                    objects, read objects, migrate data, ...
+                    <strong>Install:</strong> with Docker, Kubernetes, ...
                   </li>
                   <li>
-                    <strong>Search:</strong> Basics, similarity, hybrid, image,
-                    generative, reranking, filters, ...
+                    <strong>Connect:</strong> to Weaviate
+                  </li>
+                  <li>
+                    <strong>Manage data:</strong> Manage collections & data
+                  </li>
+                  <li>
+                    <strong>Search:</strong> find the data you want
+                  </li>
+                  <li>
+                    <strong>Configure:</strong> Weaviate and its features
                   </li>
                 </ul>
-
-                <Link
-                  to="developers/weaviate/installation"
-                  className={styles.button}
-                >
-                  Learn More
-                </Link>
               </div>
             </div>
             <div className={styles.typeBox}>
@@ -107,21 +110,19 @@ export default function Documentation() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Intermediate level workshops, or webinars with industry users
+                  Detailed feature and API information
                 </p>
                 <ul>
                   <li>
-                    <strong> API references:</strong> Manage collections, create
-                    objects, read objects, migrate data, ...
+                    <strong> API references:</strong> REST, GraphQL, gRPC
                   </li>
                   <li>
-                    <strong>Configuration:</strong> ..
+                    <strong>Configuration:</strong> Collection definitions, data types, environment variables, ...
+                  </li>
+                  <li>
+                    <strong> Client libraries:</strong> Python, TypeScript / JavaScript, Go, Java
                   </li>
                 </ul>
-
-                <Link to="/developers/weaviate/api" className={styles.button}>
-                  Learn More
-                </Link>
               </div>
             </div>
           </div>

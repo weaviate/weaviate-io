@@ -11,8 +11,8 @@ export default function GoFurther() {
         <div className={styles.header}>
           <h2>Go Further</h2>
           <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
+            There's much more to explore. Ask questions, learn about the<br/>
+            latest in AI & data science and dive into big topics from the experts
           </p>
         </div>
         <div className={styles.boxContainer}>

@@ -11,8 +11,7 @@ export default function Guides() {
         <div className={styles.header}>
           <h2>Guided Courses</h2>
           <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
+            Structured learning paths for Weaviate mastery.
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -24,8 +23,7 @@ export default function Guides() {
 
             <div className={`${styles.typeText} ${styles.large}`}>
               <p>
-                End-to-end courses designed to accelerate your<br></br> Weaviate
-                learning journey
+                End-to-end courses designed by the Weaviate team
               </p>
 
               <ul>
@@ -41,6 +39,9 @@ export default function Guides() {
                 </li>
                 <li>
                   <strong>PY_250</strong>: Vector compression
+                </li>
+                <li>
+                  <strong>PY_280</strong>: Multi-tenancy
                 </li>
               </ul>
 
@@ -61,7 +62,7 @@ export default function Guides() {
               </ul>
 
               <Link to="/developers/academy" className={styles.button}>
-                Learn More
+                Weaviate Academy
               </Link>
             </div>
           </div>
@@ -78,12 +79,6 @@ export default function Guides() {
                   <li>DeepLearning.ai: Course 1, Course 2</li>
                   <li>Linkedin Learning: Course 1, Course 2</li>
                 </ul>
-                <Link
-                  to="/developers/weaviate/tutorials"
-                  className={styles.button}
-                >
-                  Learn More
-                </Link>
               </div>
             </div>
             <div className={styles.typeBox}>
@@ -110,7 +105,7 @@ export default function Guides() {
                   to="/community/events#on-demand-webinar"
                   className={styles.button}
                 >
-                  Learn More
+                  Workshops and Webinars
                 </Link>
               </div>
             </div>

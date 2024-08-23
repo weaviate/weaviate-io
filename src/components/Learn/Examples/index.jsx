@@ -11,8 +11,7 @@ export default function Examples() {
         <div className={styles.header}>
           <h2>Code Examples</h2>
           <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
+            Go straight to the <i>source</i> and view these examples
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -24,8 +23,7 @@ export default function Examples() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Self-contained, end-to-end code examples for builders (PY & JS
-                  only)
+                  End-to-end code examples for builders
                 </p>
                 <ul>
                   <li>
@@ -39,10 +37,10 @@ export default function Examples() {
                 </ul>
 
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="https://github.com/weaviate/recipes"
                   className={styles.button}
                 >
-                  Learn More
+                  Weaviate recipes on GitHub
                 </Link>
               </div>
             </div>
@@ -58,12 +56,6 @@ export default function Examples() {
                   <li>Project A:</li>
                   <li>Project B:</li>
                 </ul>
-                <Link
-                  to="/docs/getting-started/quickstart"
-                  className={styles.button}
-                >
-                  Learn More
-                </Link>
               </div>
             </div>
           </div>
@@ -74,23 +66,23 @@ export default function Examples() {
               <h2>Weaviate repositories</h2>
             </div>
             <div className={`${styles.typeText} ${styles.large}`}>
-              <p>We are proudly open source! Here are our key repositories</p>
+              <p>We are proudly open source! Here are some of our main repositories</p>
               <div className={styles.intergrations}>
                 <ul>
-                  <li>weaviate: The "core" database & web server</li>
-                  <li>weaviate-python-client: Python SDK</li>
-                  <li>typescript-client: TS/JS SDK</li>
+                  <li><code>weaviate</code>: The "core" database & web server</li>
+                  <li><code>weaviate-python-client</code>: Python SDK</li>
+                  <li><code>typescript-client</code>: TS/JS SDK</li>
                 </ul>
                 <ul>
-                  <li>weaviate-go-client: Go(lang) SDK</li>
-                  <li>java-client: Java SDK</li>
+                  <li><code>weaviate-go-client</code>: Go(lang) SDK</li>
+                  <li><code>java-client</code>: Java SDK</li>
                 </ul>
               </div>
               <Link
-                to="/docs/getting-started/quickstart"
+                to="https://github.com/weaviate"
                 className={styles.button}
               >
-                Learn More
+                Weaviate repositories on GitHub
               </Link>
             </div>
           </div>
