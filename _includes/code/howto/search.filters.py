@@ -5,14 +5,19 @@
 # ================================
 
 import weaviate
-from weaviate.auth import AuthApiKey
+from weaviate.classes.init import Auth
 import os
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 
@@ -453,11 +458,16 @@ client.close()
 # FilterByPropertyLength
 # ========================================
 
+# Best practice: store your credentials in environment variables
+wcd_url = os.environ["WCD_DEMO_URL"]
+wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
+openai_api_key = os.environ["OPENAI_APIKEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_DEMO_URL"),
-    auth_credentials=AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),
+    cluster_url=wcd_url,
+    auth_credentials=Auth.api_key(wcd_api_key),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-OpenAI-Api-Key": openai_api_key,
     }
 )
 
@@ -479,6 +489,34 @@ for o in response.objects:
     print(o.properties)  # Inspect returned objects
     print(len(o.properties["answer"]))  # Inspect property length
 # END FilterByPropertyLength
+
+
+# Tests
+for o in response.objects:
+    assert len(o.properties["answer"]) > length_threshold
+# End test
+
+
+# ========================================
+# FilterByPropertyNullState
+# ========================================
+
+# START FilterByPropertyNullState
+from weaviate.classes.query import Filter
+
+collection = client.collections.get("WineReview")
+
+response = collection.query.fetch_objects(
+    limit=3,
+    # highlight-start
+    # This requires the `country` property to be configured with `index_null_state=True``
+    filters=Filter.by_property("country").is_none(True)  # Find objects where the `country` property is null
+    # highlight-end
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+# END FilterByPropertyNullState
 
 
 # Tests

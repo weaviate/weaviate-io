@@ -34,10 +34,11 @@ export default function ProductPage() {
         {selectedType === 'serverless' ? (
           // Render Serverless content
           <>
-            <PricingTable />
+            <PricingPlan />
+            {/*   <PricingTable />
             <CalculatorContainer />
-            {/*  <PricingPlan />
-            <HybridBusinessCritical /> */}
+
+             <HybridBusinessCritical /> */}
             <Soc2 socLight="dark" />
             <PricingFAQ faqType="Serverless" />
           </>

@@ -14,8 +14,8 @@ import BetaPageNote from '../_includes/beta_pages.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
-import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.local.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.local.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
@@ -107,7 +107,29 @@ See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/mas
 
 ### Credentials
 
-As this integration runs a local container with the ImageBind model, no additional credentials (e.g. API key) are required.
+As this integration runs a local container with the ImageBind model, no additional credentials (e.g. API key) are required. Connect to Weaviate as usual, such as in the examples below.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyConnect}
+      startMarker="# START BasicInstantiation"
+      endMarker="# END BasicInstantiation"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START BasicInstantiation"
+      endMarker="// END BasicInstantiation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Configure the vectorizer
 

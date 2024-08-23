@@ -7,7 +7,7 @@ client = weaviate.connect_to_local()
 
 # AddObjects
 # Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_weaviate_cloud(...) or
 # client = weaviate.connect_to_local()
 
 # END AddObjects

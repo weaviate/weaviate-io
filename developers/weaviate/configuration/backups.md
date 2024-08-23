@@ -23,14 +23,17 @@ Weaviate's Backup feature is designed to work natively with cloud technology. Mo
 * Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS, or Azure
 * Backup and Restore between different storage providers
 * Single-command backup and restore from the REST API
-* Choice of backing up an entire instance, or selected classes only
+* Choice of backing up an entire instance, or selected collections only
 * Zero downtime & minimal impact for your users when backups are running
 * Easy Migration to new environments
 
 :::note
-_Single node backup is available strating in Weaviate `v1.15`. Multi-node backups is avaiable starting in `v1.16`_.
+_Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`_.
 :::
 
+:::caution Backups do not include inactive or offloaded tenants
+Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](../manage-data/multi-tenancy.md#activate-tenant) before creating a backup to ensure all data is included.
+:::
 
 ## Configuration
 
@@ -63,7 +66,7 @@ In addition to enabling the module, you need to configure it using environment v
 
 #### S3 Configuration (AWS-specific)
 
-In addition to the vendor-agnostic configuration from above, you can set AWS-specific configuration for authentication. You can choose between access-key or ARN-based authentication:
+You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication:
 
 #### Option 1: With IAM and ARN roles
 
@@ -75,7 +78,7 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
-| `AWS_REGION` | The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
+| `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
 
 ### GCS (Google Cloud Storage)
@@ -206,8 +209,8 @@ The request takes a JSON object with the following properties:
 | Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
 | `id` | string (lowercase letters, numbers, underscore, minus) | yes | The id of the backup. This string must be provided on all future requests, such as status checking or restoration. |
-| `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
-| `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `include` | list of strings | no | An optional list of collection names to be included in the backup. If not set, all collections are included. |
+| `exclude` | list of strings | no | An optional list of collection names to be excluded from the backup. If not set, no collections are excluded. |
 | `config`  | object          | no | An optional object to configure the backup.  If not set, it will assign defaults from config table.|
 
 :::note
@@ -381,7 +384,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
 ### Restore Backup
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
 
-Note that a restore fails if any of the classes already exist on this instance.
+Note that a restore fails if any of the collections already exist on this instance.
 
 #### Method and URL
 
@@ -403,13 +406,13 @@ The request takes a json object with the following properties:
 
 | Name | Type | Required | Description |
 | ---- | ---- | ---- | ---- |
-| `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
-| `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `include` | list of strings | no | An optional list of collection names to be included in the backup. If not set, all collections are included. |
+| `exclude` | list of strings | no | An optional list of collection names to be excluded from the backup. If not set, no collections are excluded. |
 | `config`  | object          | no | An optional object to configure the restore.  If not set, it will assign defaults from config table.|
 
 *Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
-*Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
+*Note 2: `include` and `exclude` are relative to the collections contained in the backup. The restore process does not know which collections existed on the source machine if they were not part of the backup.*
 
 ##### Config object properties
 | name | type | required | default | description |

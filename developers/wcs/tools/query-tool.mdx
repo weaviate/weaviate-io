@@ -1,0 +1,80 @@
+---
+title: Query tool
+sidebar_position: 60
+image: og/wcs/user_guides.jpg
+---
+
+import WCDConsoleButton from '/developers/wcs/img/wcs-console-button.png';
+import WCDConnectedInstances from '/developers/wcs/img/wcs-connected-instances.png';
+import WCDQueryDropdown from '/developers/wcs/img/wcs-query-dropdown.png';
+import WCDInferenceApiKey from '/developers/wcs/img/wcs-console-inference-key.png';
+import WCDManyInferenceApiKeys from '/developers/wcs/img/wcs-console-many-inference-keys.png';
+import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
+import WCDQueryApp from '/developers/wcs/img/wcs-console-example-query.png';
+
+The Weaviate Cloud (WCD) query tool is a browser-based GraphQL IDE. Use the query tool to work interactively with your WCD clusters.
+
+<center><img src={WCDQueryApp} width="50%" alt="WCD query tool"/></center>
+
+[GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) is built into the query tool. GraphiQL provides many features that make GraphQL easier to use interactively:
+
+- Syntax highlighting
+- Intelligent type ahead
+- Automatic completion for queries and variables
+- Real-time error highlighting and reporting for queries and variables
+
+## Open the query tool
+
+To open the query tool, connect to your WCD [WCD Dashboard](https://console.weaviate.cloud).
+
+In the left-hand menu, click the query tool icon.
+
+<center><img src={WCDQueryConsoleLocation} width="25%" alt="WCD query tool location"/></center>
+
+## Select a Weaviate instance
+
+The query tool connects directly to your WCD clusters. The query tool can also connect to other Weaviate instances if you have the proper authorization credentials.
+
+### Connect to a WCD cluster
+
+
+In this example, the WCD Dashboard is connected to an external instance as well as the two WCD instances.
+
+<center><img src={WCDConnectedInstances} width="100%" alt="Connected instances"/></center>
+
+The GraphQL console can query any of the instances.
+
+To select a cluster, click the `Query` button and chose a cluster from the list that appears.
+
+### Authentication
+
+The query tool connects to WCD sandboxes and serverless clusters without any additional authentication details. The query tool can also connect to external Weaviate instances if you have anonymous access enabled or the authentication credentials for the remote instance.
+
+### Pass authentication details
+
+import ExternalAuth from '/_includes/wcs/query-auth-details.mdx';
+
+<ExternalAuth/>
+
+### Pass inference keys
+
+To pass API keys for inference modules, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers.
+
+In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
+
+<center><img src={WCDInferenceApiKey} width="100%" alt="How to add an API inference key to a WCD console query"/></center>
+
+The header can pass multiple keys.
+
+<center><img src={WCDManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCD console query"/></center>
+
+## More resources
+
+- [GraphiQL library](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
+- [Vectorizer modules](/developers/weaviate/modules/retriever-vectorizer-modules/)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

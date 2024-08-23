@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Vector - Weaviate Knowledge Cards',
     description:
-      'A quantity having both magnitude and direction represented by an array of numerical values...',
+      'Vectors, or vector embeddings in databases, are quantities with magnitude and direction represented by an array of numerical values. They represent data objects in multi-dimensional space.',
     image: 'https://weaviate.io/img/cards/vector.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/vector',
   };
@@ -79,7 +79,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="A quantity having both magnitude and direction represented by an array of numerical values."
+            content="Vectors, or vector embeddings in databases, are quantities with magnitude and direction represented by an array of numerical values. They represent data objects in multi-dimensional space."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -98,7 +98,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="A quantity having both magnitude and direction represented by an array of numerical values."
+            content="Vectors, or vector embeddings in databases, are quantities with magnitude and direction represented by an array of numerical values. They represent data objects in multi-dimensional space."
           />
           <meta
             name="twitter:image"

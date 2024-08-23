@@ -24,7 +24,7 @@ Thanks again!
 
 <!-- Please select all options that apply -->
 
-- [ ] **Github action** – automated build completed without errors
+- [ ] **GitHub action** – automated build completed without errors
 - [ ] **Local build** - the site works as expected when running `yarn start`
 
 > note, you can run `yarn verify-links` to test site links locally

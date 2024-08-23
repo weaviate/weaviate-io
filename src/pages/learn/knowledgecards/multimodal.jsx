@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Multi-modal - Weaviate Knowledge Cards',
     description:
-      'Multi-modal learning involves integrating various data types like images, text, audio, and sensory inputs...',
+      'Multimodal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce.',
     image: 'https://weaviate.io/img/cards/multi-modal.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/multimodal',
   };
@@ -76,7 +76,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="Multi-modal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce."
+            content="Multimodal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -95,7 +95,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="Multi-modal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce."
+            content="Multimodal learning involves integrating various data types like images, text, audio, and sensory inputs to create models that understand and process information like humans, recognizing patterns and context across different modes for different types of use-cases, like e-commerce."
           />
           <meta
             name="twitter:image"

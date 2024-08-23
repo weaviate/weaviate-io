@@ -22,7 +22,7 @@ image: og/docs/more-resources.jpg
 <details>
   <summary>Answer</summary>
 
-> Other database systems like Elasticsearch rely on inverted indices, which makes search super fast. Weaviate also uses inverted indices to store data and values. But additionally, Weaviate is also a vector-native search database, which means that data is stored as vectors, which enables semantic search. This combination of data storage is unique, and enables fast, filtered and semantic search from end-to-end.
+> Other database systems like Elasticsearch rely on inverted indexes, which makes search super fast. Weaviate also uses inverted indexes to store data and values. But additionally, Weaviate is also a vector-native search database, which means that data is stored as vectors, which enables semantic search. This combination of data storage is unique, and enables fast, filtered and semantic search from end-to-end.
 
 </details>
 
@@ -244,7 +244,7 @@ import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 <details>
   <summary>Answer</summary>
 
-Weaviate makes use of ANN indices to serve vector searches. An ANN index is an approximate nearest neighbor index. The "approximate" part refers to an explicit recall-query-speed tradeoff. This trade-off is presented in detail in the [ANN benchmarks section](/developers/weaviate/benchmarks/ann.md#results). For example, a 98% recall for a given set of HNSW parameters means that 2% of results will not match the true nearest neighbors. What build parameters lead to what recall depends on the dataset used. The benchmark pages shows 4 different example datasets. Based on the characteristic of each dataset you can pick the one closest to your production load and draw conclusions about the expected recall for the respective build and query-time parameters.
+Weaviate makes use of ANN indexes to serve vector searches. An ANN index is an approximate nearest neighbor index. The "approximate" part refers to an explicit recall-query-speed tradeoff. This trade-off is presented in detail in the [ANN benchmarks section](/developers/weaviate/benchmarks/ann.md#results). For example, a 98% recall for a given set of HNSW parameters means that 2% of results will not match the true nearest neighbors. What build parameters lead to what recall depends on the dataset used. The benchmark pages shows 4 different example datasets. Based on the characteristic of each dataset you can pick the one closest to your production load and draw conclusions about the expected recall for the respective build and query-time parameters.
 
 Generally if you need a higher recall than the default parameters provide you with, you can use stronger parameters. This can either be done at build time (`efConstruction`, `maxConnections`) or at query time (`ef`). Roughly speaking, a higher `ef` value at query time means a more thorough search. It will have a slightly higher latency, but also lead to a slightly better recall.
 

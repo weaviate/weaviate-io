@@ -41,7 +41,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Sharding - Weaviate Knowledge Cards',
     description:
-      'Sharding is splitting a database into smaller, faster, more easily managed parts called shards...',
+      'Sharding is splitting a database into smaller, faster, more easily managed parts called shards. Each shard is a self-contained unit with a subset of data, allowing for distribution across servers or data centers for improved performance and scalability.',
     image: 'https://weaviate.io/img/cards/sharding.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/sharding',
   };

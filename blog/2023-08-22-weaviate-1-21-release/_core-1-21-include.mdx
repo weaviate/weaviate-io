@@ -88,13 +88,17 @@ A `ContainsAll` query on the other hand will return all `Person` objects whose `
 
 ### Deactivate / activate tenant shards (experimental)
 
+:::info Tenant status renamed in `v1.26`
+In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
 ![Activate / Deactivate tenants](./img/mt-inactive.png)
 
 We introduced multi-tenancy (MT) with `1.20`, and we are thrilled by your response so far.
 
 `1.21` adds an (experimental) feature to deactivate or activate individual tenants. This will allow you to scale even bigger with ease, because inactive tenants' data will not take up any space in memory.
 
-This is possible because under the hood, each [tenant is a partition shard](https://www.weaviate.io/blog/multi-tenancy-vector-search#built-in-isolation-through-lightweight-shards), and tenant shards can now be deactivated while still retaining the data. Deactivated (`COLD`) shards do not consume memory or file descriptors, so this enables an unlimited number of non-active shards, limited only by disk space, while giving active (`HOT`) shards access to resources that they need.
+This is possible because under the hood, each [tenant is a partition shard](https://www.weaviate.io/blog/multi-tenancy-vector-search#built-in-isolation-through-lightweight-shards), and tenant shards can now be deactivated while still retaining the data. Deactivated (`INACTIVE`) shards do not consume memory or file descriptors, so this enables an unlimited number of non-active shards, limited only by disk space, while giving active (`ACTIVE`) shards access to resources that they need.
 
 Deactivating unused subsets of data will help to reduce cost and improve the overall performance. We are very excited for you to [try it out](/developers/weaviate/manage-data/multi-tenancy).
 

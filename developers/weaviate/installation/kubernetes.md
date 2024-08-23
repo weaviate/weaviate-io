@@ -5,29 +5,26 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
 
-
-:::note Important: Set the correct Weaviate version
-Make sure to set your desired Weaviate version.
-
-This can be done through either explicitly setting it as part of the `values.yaml` or through overwriting the default as outlined in the [deployment step](#deploy-install-the-helm-chart) below.
-:::
-
 :::tip End-to-end guide
-If you are looking for a complete end-to-end tutorial on the topic, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The course is an end-to-end tutorial on how to use MiniKube to deploy Weaviate on Kubernetes.
+For a tutorial on how to use [minikube](https://minikube.sigs.k8s.io/docs/) to deploy Weaviate on Kubernetes, see the Weaviate Academy course, [Weaviate on Kubernetes](../../academy/deployment/k8s/index.md).
 :::
 
 ## Requirements
 
-* A recent Kubernetes Cluster (at least version 1.23).
-  * If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
-* The cluster needs to be able to provision `PersistentVolumes` through
-  `PersistentVolumeClaims`.
-* No special file systems are required. Any file system that has a `ReadWriteOnce` access mode is sufficient.
-* Helm. To use Helm chart version `"v||site.helm_version||"`, you must have Helm v3 or higher.
+* A recent Kubernetes Cluster (at least version 1.23). If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
+* The cluster needs to be able to provision `PersistentVolumes` using Kubernetes' `PersistentVolumeClaims`.
+* A file system that can be mounted read-write by a single node to allow Kubernetes' `ReadWriteOnce` access mode.
+* Helm version v3 or higher. The current Helm chart is version `||site.helm_version||`.
 
 ## Weaviate Helm chart
 
-To obtain and install the Weaviate chart on your Kubernetes cluster, take the following steps:
+:::note Important: Set the correct Weaviate version
+As a best practice, explicitly set the Weaviate version in the Helm chart.<br/><br/>
+
+Set the version in your `values.yaml` file or [overwrite the default value](#deploy-install-the-helm-chart) during deployment.
+:::
+
+To install the Weaviate chart on your Kubernetes cluster, follow these steps:
 
 ### Verify tool setup and cluster access
 
@@ -39,9 +36,9 @@ helm version
 kubectl get pods
 ```
 
-### Obtain the Helm Chart
+### Get the Helm Chart
 
-Add the Weaviate helm repo that contains the Weaviate helm chart
+Add the Weaviate helm repo that contains the Weaviate helm chart.
 
 ```bash
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
@@ -52,37 +49,29 @@ Get the default `values.yaml` configuration file from the Weaviate helm chart:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-### Modify values.yaml (as necessary)
+### Modify values.yaml
 
-:::note May not be needed
-The default values in `values.yaml` may be sufficient. However, we recommend reviewing:
+To customize the Helm chart for your environment, edit the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
+file. The default `yaml` file is extensively documented to help you configure your system.
 
-- The Weaviate version
-- Modules to enable
-- gRPC service configuration
-:::
+#### Replication
 
-In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
-file you can tweak the configuration to align it with your
-setup. The yaml file is extensively documented to help you align the
-configuration with your setup.
+The default configuration defines one Weaviate replica cluster.
 
-Out of the box, the configuration file is setup for:
+#### Local models
 
-- 1 Weaviate replica.
-- Local models, such as `text2vec-transformers`, `qna-transformers` or
-  `img2vec-neural` are disabled by default. They can be enabled by setting the
-  respective `enabled` flag to `true`.
+Local models, such as `text2vec-transformers`, `qna-transformers`, and  `img2vec-neural` are disabled by default. To enable a model, set the model's
+`enabled` flag to `true`.
 
-See the resource requests and limits in the example `values.yaml`. You can
-adjust them based on your expected load and the resources available on the
-cluster.
+#### Resource limits
+
+Starting in Helm chart version 17.0.1, constraints on module resources are commented out to improve performance. To constrain resources for specific modules, add the constraints in your `values.yaml` file.
 
 #### gRPC service configuration
 
-The `grpcService` must be enabled to use the gRPC API. It is enabled by default from helm chart version `v17.0.0`.
+Starting in Helm chart version 17.0.0, the gRPC service is enabled by default. If you use an older Helm chart, edit your `values.yaml` file to enable gRPC.
 
-Check that the `enabled` field is set to `true` and the `type` field to `LoadBalancer`. This allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/grpc-performance-improvements).
+Check that the `enabled` field is set to `true` and the `type` field to `LoadBalancer`. These settings allow you to access the [gRPC API](/blog/grpc-performance-improvements) from outside the Kubernetes cluster.
 
 ```yaml
 grpcService:
@@ -134,6 +123,12 @@ OIDC authentication is also enabled, with WCD as the token issuer/identity provi
 For further, general documentation on authentication and authorization configuration, see:
 - [Authentication](../configuration/authentication.md)
 - [Authorization](../configuration/authorization.md)
+
+#### Run as non-root user
+
+By default, weaviate runs as the root user. To run as a non-privileged user, edit the settings in the `containerSecurityContext` section.
+
+The `init` container always runs as root to configure the node. Once the system is started, it run a non-privileged user if you have one configured.
 
 ### Deploy (install the Helm chart)
 
@@ -226,7 +221,6 @@ For more, general information on running EFS with Fargate, we recommend reading 
     192.168.0.0/16
     198.19.0.0/16
     ```
-
 
 ## Questions and feedback
 

@@ -19,7 +19,7 @@ export default function PartnersHeader() {
               organizations worldwide.
             </p>
             <div className={styles.buttons}>
-              <Link className={styles.buttonGradient} to="#request-form">
+              <Link className={styles.buttonOutline} to="#request-form">
                 Become a Partner
               </Link>
             </div>

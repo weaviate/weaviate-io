@@ -392,7 +392,6 @@
 }
 
 .plans {
-  width: 270px;
   color: #ffffff;
   z-index: 1;
 
@@ -407,10 +406,12 @@
     font-size: 1.625rem;
     font-style: normal;
     font-weight: 700;
-    margin: 0px 0px 55px;
+    margin: 0px 0px 50px;
 
     @media screen and (max-width: 668px) {
       text-align: left;
+
+      margin: 0px 0px 28px;
     }
   }
 
@@ -431,6 +432,21 @@
     span {
       color: #ffffff;
     }
+  }
+}
+
+.priceText {
+  @media screen and (max-width: 1230px) {
+    margin-bottom: 33px !important;
+  }
+
+  @media screen and (max-width: 890px) {
+    margin-bottom: 0px !important;
+  }
+  @media screen and (max-width: 668px) {
+    margin-bottom: 13px !important;
+    width: 157px !important;
+    height: 64px !important;
   }
 }
 
@@ -500,6 +516,14 @@
   transform: translateY(73px);
   max-width: 1056px;
 
+  @media screen and (max-width: 1440px) {
+    max-width: 1144px;
+  }
+
+  @media screen and (max-width: 1308px) {
+    max-width: 1132px;
+  }
+
   @media screen and (max-width: 668px) {
     width: 95%;
   }
@@ -507,12 +531,22 @@
 
 .line1 {
   transform: translateY(105px);
+
+  @media screen and (max-width: 668px) {
+    transform: translateY(97px);
+  }
 }
 .line2 {
   transform: translateY(180px);
+  @media screen and (max-width: 668px) {
+    transform: translateY(170px);
+  }
 }
 .line3 {
   transform: translateY(253px);
+  @media screen and (max-width: 668px) {
+    transform: translateY(240px);
+  }
 }
 
 .explanation {

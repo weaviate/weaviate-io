@@ -284,7 +284,7 @@ The output is like this:
 `Relative Score Fusion` is the default fusion method starting in `v1.24`.
 
 - To use the keyword and vector search relative scores instead of the search rankings, use `Relative Score Fusion`.
-- To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
+- To use [`autocut`](../api/graphql/additional-operators.md#autocut) with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">

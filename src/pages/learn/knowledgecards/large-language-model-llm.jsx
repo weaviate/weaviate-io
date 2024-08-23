@@ -42,7 +42,7 @@ const KnowledgeBasePage = () => {
     '@type': 'Article',
     headline: 'Large Language Model (LLM) - Weaviate Knowledge Cards',
     description:
-      'A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language...',
+      'A Large Language Model (LLM) is a machine learning model that is trained on vast text data, learning language patterns to understand, predict and generate human-like text. It statistically models language to uniquely generate responses to queries with learned context.',
     image: 'https://weaviate.io/img/cards/large-language-model.jpg',
     url: 'https://weaviate.io/learn/knowledgecards/large-language-model-llm',
   };

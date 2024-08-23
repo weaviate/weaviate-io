@@ -1,0 +1,112 @@
+.container {
+  padding: 3rem;
+}
+.bg {
+  background: #ededed;
+}
+
+.title {
+  text-align: left;
+  padding: 1rem 0 2rem 0;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: #130c49;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 900;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  row-gap: 40px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+}
+
+.buttonLine {
+  color: #1c1468;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-decoration-line: underline;
+}
+
+.buttonLine:hover {
+  text-decoration-line: none;
+  color: #1c1468;
+}
+
+.parentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  width: 518px;
+  height: 353px;
+  @media screen and (max-width: 640px) {
+    max-width: 443px;
+  }
+
+  @media screen and (max-width: 450px) {
+    max-width: 300px;
+  }
+}
+
+.imageGrid1 {
+  grid-area: 1 / 1 / 3 / 2;
+  background-image: url('/img/site/enterprise-grid-01.png');
+  background-size: cover;
+}
+.imageGrid2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-image: url('/img/site/enterprise-grid-02.png');
+  background-size: cover;
+  background-position-y: center;
+}
+.imageGrid3 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-image: url('/img/site/enterprise-grid-03.png');
+  background-size: cover;
+  background-position-x: center;
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  margin: 50px 0px;
+
+  @media screen and (max-width: 940px) {
+    flex-direction: column;
+  }
+}

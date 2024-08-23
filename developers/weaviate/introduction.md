@@ -136,7 +136,7 @@ If you work with data, you probably work with search engine technology. The best
 
 Take for example the data object: `{ "data": "The Eiffel Tower is a wrought iron lattice tower on the Champ de Mars in Paris." }`
 
-Storing this in a traditional search engine might leverage inverted indices to index the data. This means that to retrieve the data, you need to search for "Eiffel Tower", "wrought iron lattice", or other exact phrases, to find it. But what if you have vast amounts of data, and you want the document about the Eiffel Tower, but you search for "landmarks in France"? Traditional search engines can't help you there, so this is where vector databases show their superiority.
+Storing this in a traditional search engine might leverage inverted indexes to index the data. This means that to retrieve the data, you need to search for "Eiffel Tower", "wrought iron lattice", or other exact phrases, to find it. But what if you have vast amounts of data, and you want the document about the Eiffel Tower, but you search for "landmarks in France"? Traditional search engines can't help you there, so this is where vector databases show their superiority.
 
 Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorize the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France". This means that Weaviate can't find a 100% match, but it will find a very close one, and return the result.
 

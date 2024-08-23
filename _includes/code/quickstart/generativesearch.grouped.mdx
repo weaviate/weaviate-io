@@ -5,7 +5,7 @@ import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py'
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
-
+import GoGenGrouped from '!!raw-loader!/_includes/code/quickstart/go-query-generative-group.go';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -28,104 +28,44 @@ import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoe
 
 </TabItem> */}
 <TabItem value="py" label="Python Client v4">
-
 <FilteredTextBlock
   text={EndToEndPyCode}
   startMarker="# GenerativeSearchGroupedTaskExample"
   endMarker="# END GenerativeSearchGroupedTaskExample"
   language="py"
 />
-
 </TabItem>
 <TabItem value="py3" label="Python Client v3">
-
 <FilteredTextBlock
   text={EndToEndPy3Code}
   startMarker="# GenerativeSearchGroupedTaskExample"
   endMarker="# END GenerativeSearchGroupedTaskExample"
   language="py"
 />
-
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
-
 <FilteredTextBlock
   text={EndToEndTSCode}
   startMarker="// GenerativeSearchGroupedTaskExample"
   endMarker="// END GenerativeSearchGroupedTaskExample"
   language="ts"
 />
-
 </TabItem>
-
 <TabItem value="js2" label="JS/TS Client v2">
-
 <FilteredTextBlock
   text={EndToEndTSCodeLegacy}
   startMarker="// GenerativeSearchGroupedTaskExample"
   endMarker="// END GenerativeSearchGroupedTaskExample"
   language="ts"
 />
-
 </TabItem>
-
 <TabItem value="go" label="Go">
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"fmt"
-
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
-)
-
-func main() {
-  cfg := weaviate.Config{
-    Host:    "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
-    Scheme:  "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
-    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
-  }
-	client, err := weaviate.NewClient(cfg)
-	if err != nil {
-		panic(err)
-	}
-
-	fields := []graphql.Field{
-		{Name: "question"},
-		{Name: "answer"},
-		{Name: "category"},
-	}
-
-	nearText := client.GraphQL().
-		NearTextArgBuilder().
-		WithConcepts([]string{"biology"})
-
-	generativeSearch := graphql.NewGenerativeSearch().GroupedResult("Write a tweet with emojis about these facts.")
-
-	result, err := client.GraphQL().Get().
-		WithClassName("Question").
-		WithFields(fields...).
-		WithNearText(nearText).
-		WithLimit(2).
-		WithGenerativeSearch(generativeSearch).
-		Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
-
-	jsonOutput, err := json.MarshalIndent(result, "", "  ")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(jsonOutput))
-}
-```
-
+<FilteredTextBlock
+  text={GoGenGrouped}
+  startMarker="// START GenerativeSearchGroupedTaskExample"
+  endMarker="// END GenerativeSearchGroupedTaskExample"
+  language="java"
+/>
 </TabItem>
 {/* <TabItem value="java" label="Java">
 

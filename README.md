@@ -47,7 +47,7 @@ npm install --global yarn
 To contribute to this web site, first fork this repository and create a local
 copy to work on.
 
-1. Log into your Github account.
+1. Log into your GitHub account.
 2. Fork the upstream repository, https://github.com/weaviate/weaviate-io.
 3. Clone the repository to your local system.
 

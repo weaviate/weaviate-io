@@ -73,21 +73,11 @@ export default function MeetTheTeam() {
             </Link>
 
             <Link
-              className={
-                selectedTeam === 'customer-experience' ? styles.linkActive : ''
-              }
-              onClick={() => handleTeamFilter('customer-experience')}
-            >
-              #Customer Experience
-            </Link>
-            <Link
               className={selectedTeam === 'database' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('database')}
             >
               #Database
             </Link>
-          </div>
-          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'developer-growth' ? styles.linkActive : ''
@@ -96,6 +86,8 @@ export default function MeetTheTeam() {
             >
               #Developer Growth
             </Link>
+          </div>
+          <div className={styles.teamFilter}>
             <Link
               className={
                 selectedTeam === 'developer-relations' ? styles.linkActive : ''
@@ -143,6 +135,14 @@ export default function MeetTheTeam() {
               onClick={() => handleTeamFilter('sales')}
             >
               #Sales
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'weaviate-labs' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('weaviate-labs')}
+            >
+              #Weaviate Labs
             </Link>
           </div>
           <hr></hr>

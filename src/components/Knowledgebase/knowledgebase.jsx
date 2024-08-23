@@ -117,7 +117,7 @@ export default function KnowledgeBase({ searchQuery }) {
     const categoryDescriptions = {
       'Intro to Vector Databases':
         'Databases designed to store and search data using vector embeddings, enabling efficient similarity search for unstructured data like text and images.',
-      'Hybrid Search':
+      Search:
         'A search method that combines vector search with traditional keyword search to improve retrieval accuracy and relevance.',
       'Hierarchical Navigable Small World':
         'An indexing algorithm used in vector databases to enable fast and efficient similarity search.',
@@ -213,7 +213,7 @@ export default function KnowledgeBase({ searchQuery }) {
                     checked={selectedCard === 'Search'}
                     onChange={() => handleCardFilter('Search')}
                   />
-                  <label htmlFor="filterSearch">Hybrid Search</label>
+                  <label htmlFor="filterSearch">Search</label>
                 </div>
                 <div>
                   <input
@@ -311,7 +311,7 @@ export default function KnowledgeBase({ searchQuery }) {
                   checked={selectedCard === 'Search'}
                   onChange={() => handleCardFilter('Search')}
                 />
-                <label htmlFor="filterSearch">Hybrid Search</label>
+                <label htmlFor="filterSearch">Search</label>
               </div>
               <div>
                 <input
@@ -362,7 +362,7 @@ export default function KnowledgeBase({ searchQuery }) {
           <div className={styles.filterLine}></div>
           <main className={styles.cardResults}>
             {renderCards('Intro to Vector Databases')}
-            {renderCards('Hybrid Search')}
+            {renderCards('Search')}
             {renderCards('Hierarchical Navigable Small World')}
             {renderCards('Multimodal RAG')}
             {renderCards('Databases')}

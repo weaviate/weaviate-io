@@ -58,7 +58,7 @@ To generate candidates (step 1), a Hamming distance is used on the binary hashes
 
 #### Do we still need a (HNSW or similar) vector index with BPR?
 
-The benefits of an efficient Approximate Nearest Neighbor (ANN) vector index still apply to BPR. Since hashes are much more compact and calculating the Hamming distance is considerably cheaper than calculating cosine distance, the point where brute-force is still possible is raised considerably. So for some cases, you may consider skipping vector-indexing entirely and relying on a flat search. However, when optimizing either for low latency or high throughput, a vector index will produce considerably better results. We therefore expect BPR to be used with our existing indices (currently HNSW) in most cases.
+The benefits of an efficient Approximate Nearest Neighbor (ANN) vector index still apply to BPR. Since hashes are much more compact and calculating the Hamming distance is considerably cheaper than calculating cosine distance, the point where brute-force is still possible is raised considerably. So for some cases, you may consider skipping vector-indexing entirely and relying on a flat search. However, when optimizing either for low latency or high throughput, a vector index will produce considerably better results. We therefore expect BPR to be used with our existing indexes (currently HNSW) in most cases.
 
 #### Will my memory requirements go down by a factor of 32?
 

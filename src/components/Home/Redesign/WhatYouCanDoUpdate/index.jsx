@@ -11,8 +11,9 @@ export default function HomepageWhatYouCanDo() {
         <div className={styles.header}>
           <h2 className={styles.title}>Why build with Weaviate</h2>
           <p className={styles.subtitle}>
-            Weaviate is more than just a database. It’s a flexible platform
-            <br></br> for building powerful, production-ready AI applications.
+            We’re with you at every stage of your AI journey. Our open source
+            AI-native database empowers more developers to build and scale AI
+            applications in production.
           </p>
         </div>
 
@@ -29,55 +30,48 @@ export default function HomepageWhatYouCanDo() {
                   disabled={false}
                 >
                   <h3 className={styles.tabHeader01}>
-                    A partner on your AI journey
+                    AI-native, developer-friendly
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg1}`} />
                   <p>
-                    Open source with a strong community. Resources to help
-                    developers of all levels build production-ready AI apps.
+                    Empower developers to build and scale modern AI applications
+                    more easily.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
 
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                   <h3 className={styles.tabHeader02}>
-                    Hybrid search made easy
+                    Cloud, model, and deployment agnostic
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg2}`} />
                   <p>
-                    Get the best of vector and keyword search. Deliver better
-                    results with less effort.
+                    Run anywhere and integrate with your existing and future
+                    tech stack.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                  <h3 className={styles.tabHeader03}>Pluggable ML models</h3>
+                  <h3 className={styles.tabHeader03}>
+                    Flexible cost-performance optimization
+                  </h3>
                   <div className={`${styles.cImage} ${styles.codeImg3}`} />
                   <p>
-                    Built-in modules for popular machine learning models and
-                    frameworks. Just load your data and go.
+                    Drive efficienct resource management, tailored to the needs
+                    of your use case.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab4">
                   <h3 className={styles.tabHeader04}>
-                    Cost-efficient at scale
+                    <span>
+                      Robust developer community and enablement resources
+                    </span>
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg4}`} />
                   <p>
-                    Advanced multi-tenancy, data compression, and filtering.
-                    Scale confidently and efficiently.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
-                <Tabs.Trigger className={styles.tabsTrigger} value="tab5">
-                  <h3 className={styles.tabHeader05}>
-                    Secure, flexible deployment
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg5}`} />
-                  <p>
-                    Adapts to the needs of your business. Run as an open source
-                    platform, a managed service, or within your VPC.
+                    Stay ahead of the curve with learning resources for
+                    developers of all levels.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>

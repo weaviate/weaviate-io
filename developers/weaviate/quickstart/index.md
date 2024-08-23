@@ -13,12 +13,11 @@ import TabItem from '@theme/TabItem';
 
 Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
 
-In the next ~20 minutes, you will:
-- Build a Weaviate vector database, and
-- Query it with:
-    - *semantic search*,
-    - an added *filter* and
-    - *generative searches* to transform your search results with a large language model (LLM).
+This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
+- Build a Weaviate vector database.
+- Make a *semantic search* query.
+- Add a *filter* to your query.
+- Use *generative searches* and a large language model (LLM) to transform your search results.
 
 #### Object vectors
 
@@ -62,17 +61,19 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
 
-Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCD.
+- Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance.
+- Get the **API key** and **URL** from the `Details` tab in WCD.
+- Come back here to continue this Quickstart.
 
-:::info To use another deployment method (e.g. Docker Compose)
-If you prefer another method, see [this section](#can-i-use-another-deployment-method).
+:::info Alternative Weaviate instances
+If you prefer to use a different Weaviate instance, see [Can I use a different deployment method](#can-i-use-a-different-deployment-method).
 :::
 
 ## Step 2: Install a client library
 
-We suggest using a Weaviate client ([read more](../client-libraries/index.md)) to work with your preferred programming language.
+Install the Weaviate [client library](../client-libraries/index.md)) for your preferred programming language.
 
-To install your preferred client, run the installation code for your language:
+To install the library, run the installation code for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
@@ -84,7 +85,11 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Step 3: Connect to Weaviate
 
-To connect to your Weaviate instance, you need the following information:
+To connect to your Weaviate instance, you need the instance [connection details](#connection-details) and [a client](#client-connection-code) to connect with.
+
+### Connection details
+
+Gather the following information:
 
 - The Weaviate **URL** (get it from WCD `Details` tab)
 
@@ -92,10 +97,14 @@ import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
 
 <img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
 
-- The Weaviate **API key** (if enabled - get it from WCD `Details` tab)
-- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup))
+- The Weaviate **API key** (Get it from the instance `Details`)
+- An OpenAI **inference API key** ([Sign up at OpenAI](https://platform.openai.com/signup))
 
-Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
+### Client connection code
+
+This sample connection code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
+
+Copy the code to a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
@@ -117,8 +126,8 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.d
 
 <CodeAutoschemaMinimumSchema />
 
-:::info To use another vectorizer or generative integrations
-If you prefer another setup, see [this section](#can-i-use-different-integrations).
+:::info Change the vectorizer or generator integrations
+If you prefer to use a different setup, see [this section](#can-i-use-different-integrations).
 :::
 
 Now you are ready to add objects to Weaviate.
@@ -278,7 +287,7 @@ We provide answers to some common questions, or potential issues below.
 
 ### Questions
 
-#### Can I use another deployment method?
+#### Can I use a different deployment method?
 
 import ConnectToWeaviateDocker from '/_includes/code/quickstart.autoschema.connect.docker.mdx'
 

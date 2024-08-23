@@ -166,16 +166,64 @@ assert.deepEqual(tenants.length, 1);
 // ===== Update tenant status =====
 // =======================================
 {
-// START UpdateTenants
+// START DeactivateTenants
 const multiCollection = client.collections.get('MultiTenancyCollection')
 
 // highlight-start
 await multiCollection.tenants.update({
   name: 'tenantA',
-  activityStatus: 'COLD' // or 'HOT'
+  activityStatus: 'INACTIVE'
 })
 // highlight-end
-// END UpdateTenants
+// END DeactivateTenants
+}
+
+// ===========================
+// ===== Activate tenant =====
+// ===========================
+{
+// START ActivateTenants
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'ACTIVE'
+})
+// highlight-end
+// END ActivateTenants
+}
+
+// ===============================
+// ===== Change tenant state =====
+// ===============================
+{
+// START ChangeTenantState
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'ACTIVE' // 'INACTIVE', 'OFFLOADED'
+})
+// highlight-end
+// END ChangeTenantState
+}
+
+// ==========================
+// ===== Offload tenant =====
+// ==========================
+{
+// START OffloadTenants
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'OFFLOADED'
+})
+// highlight-end
+// END OffloadTenants
 }
 
 // =====================
@@ -192,7 +240,7 @@ await multiCollection.tenants.update({
       // highlight-end
     })
   })
-  // END EnableAutoMT
+  // END EnableAutoActivation
   }
 
 // ============================

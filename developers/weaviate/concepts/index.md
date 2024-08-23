@@ -33,7 +33,7 @@ If you are after a practical guide, try the [quickstart tutorial](/developers/we
 
 **[Indexing](./indexing.md)**
 
-- Read how data is indexed within Weaviate using inverted and ANN indices, and about configurable settings.
+- Read how data is indexed within Weaviate using inverted and ANN indexes, and about configurable settings.
 
 **[Vector indexing](./vector-index.md)**
 

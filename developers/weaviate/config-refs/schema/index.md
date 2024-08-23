@@ -63,9 +63,9 @@ An example of a complete collection object including properties:
     "stopwords": {
       ...                                   // Optional, controls which words should be ignored in the inverted index, see section below
     },
-    "indexTimestamps": false,               // Optional, maintains inverted indices for each object by its internal timestamps
-    "indexNullState": false,                // Optional, maintains inverted indices for each property regarding its null state
-    "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
+    "indexTimestamps": false,               // Optional, maintains inverted indexes for each object by its internal timestamps
+    "indexNullState": false,                // Optional, maintains inverted indexes for each property regarding its null state
+    "indexPropertyLength": false            // Optional, maintains inverted indexes for each property by its length
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of the collection in a
@@ -139,9 +139,9 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ### Adding a property after collection creation
 
-Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+Adding a property after importing objects can lead to limitations in inverted-index related behavior, such as filtering by the new property's length or null status.
 
-This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index for metadata such as the length or the null status will not be updated to include the new properties. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
 
 To avoid this, you can either:
 - Add the property before importing objects.
@@ -178,9 +178,9 @@ A description of the collection. This is for your reference only.
 
 This configures the inverted index for the collection.
 
-### invertedIndexConfig > bm25
+### `bm25`
 
-The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
+Part of `invertedIndexConfig`. The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
 
 They can be configured per collection, and can optionally be overridden per property:
 
@@ -215,13 +215,9 @@ They can be configured per collection, and can optionally be overridden per prop
 }
 ```
 
-### `invertedIndexConfig` > stopwords (stopword lists)
+### `stopwords` (stopword lists)
 
-:::note
-This feature was introduced in `v1.12.0`.
-:::
-
-`text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
+Part of `invertedIndexConfig`. `text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
 The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language (e.g. [`"en"` preset](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go)). If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
 
@@ -273,13 +269,9 @@ collection_obj = {
 client.schema.update_config("Article", collection_obj)
 ```
 
-### invertedIndexConfig > indexTimestamps
+### `indexTimestamps`
 
-:::note
-This feature was introduced in `v1.13.0`.
-:::
-
-To perform queries that are filtered by timestamps, configure the target collection to maintain an inverted index based on the objects' internal timestamps. Currently the timestamps include `creationTimeUnix` and `lastUpdateTimeUnix`.
+Part of `invertedIndexConfig`. To perform queries that are filtered by timestamps, configure the target collection to maintain an inverted index based on the objects' internal timestamps. Currently the timestamps include `creationTimeUnix` and `lastUpdateTimeUnix`.
 
 To configure timestamp based indexing, set `indexTimestamps` to `true` in the `invertedIndexConfig` object.
 
@@ -289,13 +281,9 @@ To configure timestamp based indexing, set `indexTimestamps` to `true` in the `i
   }
 ```
 
-### invertedIndexConfig > indexNullState
+### `indexNullState`
 
-:::note
-This feature was introduced in `v1.16.0`.
-:::
-
-To perform queries that filter on `null`, configure the target collection to maintain an inverted index that tracks `null` values for each property in a collection .
+Part of `invertedIndexConfig`. To perform queries that filter on `null`, configure the target collection to maintain an inverted index that tracks `null` values for each property in a collection .
 
 To configure `null` based indexing, setting `indexNullState` to `true` in the `invertedIndexConfig` object.
 
@@ -305,13 +293,9 @@ To configure `null` based indexing, setting `indexNullState` to `true` in the `i
   }
 ```
 
-### invertedIndexConfig > indexPropertyLength
+### `indexPropertyLength`
 
-:::note
-This feature was introduced in `v1.16.0`.
-:::
-
-To perform queries that filter by the length of a property, configure the target collection to maintain an inverted index based on the length of the properties.
+Part of `invertedIndexConfig`. To perform queries that filter by the length of a property, configure the target collection to maintain an inverted index based on the length of the properties.
 
 To configure indexing based on property length, set `indexPropertyLength` to `true` in the `invertedIndexConfig` object.
 
@@ -322,7 +306,7 @@ To configure indexing based on property length, set `indexPropertyLength` to `tr
 ```
 
 :::note
-Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
+Using these features requires more resources. The additional inverted indexes must be created and maintained for the lifetime of the collection.
 :::
 
 ### `vectorizer`
@@ -342,10 +326,6 @@ The `vectorIndexConfig` parameter controls the configuration of the vector index
 See the [vector index configuration](./vector-index.md) page for more details.
 
 ### `shardingConfig`
-
-:::note
-Introduced in v1.8.0.
-:::
 
 The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](../../concepts/cluster.md). All values are optional and default to the following settings:
 
@@ -558,17 +538,44 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 
 For Japanese and Chinese text, we recommend use of `gse` or `trigram` tokenization methods. These methods work better with these languages than the other methods as these languages are not easily able to be tokenized using whitespaces.
 
+The `gse` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_GSE` to `true` on the Weaviate instance.
 
-### `indexFilterable` and `indexSearchable`
+`gse` tokenization examples:
 
-:::info `indexInverted` is deprecated
-The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
+- `"素早い茶色の狐が怠けた犬を飛び越えた"`: `["素早", "素早い", "早い", "茶色", "の", "狐", "が", "怠け", "けた", "犬", "を", "飛び", "飛び越え", "越え", "た", "素早い茶色の狐が怠けた犬を飛び越えた"]`
+- `"すばやいちゃいろのきつねがなまけたいぬをとびこえた"`: `["すばや", "すばやい", "やい", "いち", "ちゃ", "ちゃい", "ちゃいろ", "いろ", "のき", "きつ", "きつね", "つね", "ねが", "がな", "なま", "なまけ", "まけ", "けた", "けたい", "たい", "いぬ", "を", "とび", "とびこえ", "こえ", "た", "すばやいちゃいろのきつねがなまけたいぬをとびこえた"]`
+
+### `kagome_kr` tokenization method
+
+:::caution Experimental feature
+Available starting in `v1.25.7`. This is an experimental feature. Use with caution.
 :::
 
-The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
+For Korean text, we recommend use of the `kagome_kr` tokenization method. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text.
 
-- `indexFilterable` enables/disables a Roaring Bitmap index for fast filtering (default: `true`).
-- `indexSearchable` enables/disables a searchable index for BM25-suitable Map index for BM25 or hybrid searching (default: `true`).
+The `kagome_kr` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_KAGOME_KR` to `true` on the Weaviate instance.
+
+`kagome_kr` tokenization examples:
+
+- `"아버지가방에들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"아버지가 방에 들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"결정하겠다"`: `["결정", "하", "겠", "다"]`
+
+### Inverted index types
+
+:::info `indexInverted` is deprecated
+The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards.
+:::
+
+Multiple [inverted index types](../../concepts/indexing.md#inverted-indexes) are available in Weaviate. Not all inverted index types are available for all data types. The available inverted index types are:
+
+import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.mdx';
+
+<InvertedIndexTypesSummary/>
+
+- Enable one or both of `indexFilterable` and `indexRangeFilters` to index a property for faster filtering.
+    - If only one is enabled, the respective index is used for filtering.
+    - If both are enabled, `indexRangeFilters` is used for operations involving comparison operators, and `indexFilterable` is used for equality and inequality operations.
 
 ## Configure semantic indexing
 

@@ -14,9 +14,9 @@ URL = os.getenv("WCD_URL")
 APIKEY = os.getenv("WCD_API_KEY")
 
 # Connect to Weaviate Cloud
-client = weaviate.connect_to_wcs(
+client = weaviate.connect_to_weaviate_cloud(
     cluster_url=URL,
-    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
+    auth_credentials=wvc.init.Auth.api_key(APIKEY),
 )
 
 # Check connection

@@ -16,9 +16,9 @@ export default function HomepageIntegrations() {
               <h2>Integrations</h2>
               <p>
                 With Weaviate, you can bring your own vectors or choose one of
-                our our out-of-the-box modules with support for vectorization.
-                You can also easily connect to a wide variety of well-known
-                neural search frameworks.
+                our out-of-the-box modules with support for vectorization. You
+                can also easily connect to a wide variety of well-known language
+                model frameworks.
               </p>
             </div>
           </div>
