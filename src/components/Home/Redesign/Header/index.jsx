@@ -138,7 +138,7 @@ export default function HomepageHeader() {
                 >
                   Start Free
                 </Link>
-                <Link className={styles.buttonOutline} to="/services">
+                <Link className={styles.buttonOutline} to="/platform">
                   Learn More
                 </Link>
               </div>
