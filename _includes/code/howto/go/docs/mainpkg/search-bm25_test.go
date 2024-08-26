@@ -66,7 +66,7 @@ func setupClient() *weaviate.Client {
 func TestBasicBM25Query(t *testing.T) {
 	client := setupClient()
 
-	// Basic Go
+	// START Basic Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
@@ -102,7 +102,7 @@ func TestBasicBM25Query(t *testing.T) {
 func TestBM25QueryWithScore(t *testing.T) {
 	client := setupClient()
 
-	// WithScore Go
+	// START Score Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
@@ -123,7 +123,7 @@ func TestBM25QueryWithScore(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END WithScore Go
+	// END Score Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with score")
 
@@ -220,7 +220,7 @@ func TestBM25QueryWithAutocut(t *testing.T) {
 func TestBM25QueryWithProperties(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithPropertiesGo
+	// START Properties Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
@@ -240,7 +240,7 @@ func TestBM25QueryWithProperties(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithPropertiesGo
+	// END Properties Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with properties")
 
@@ -264,7 +264,7 @@ func TestBM25QueryWithProperties(t *testing.T) {
 func TestBM25QueryWithBoostedProperties(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithBoostedPropertiesGo
+	// START BoostedProperties Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food").WithProperties("question^2", "answer")
@@ -279,7 +279,7 @@ func TestBM25QueryWithBoostedProperties(t *testing.T) {
 		WithBM25(query).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithBoostedPropertiesGo
+	// END BoostedProperties Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with boosted properties")
 
@@ -337,7 +337,7 @@ func TestBM25MultipleKeywords(t *testing.T) {
 func TestBM25WithFilter(t *testing.T) {
 	client := setupClient()
 
-	// BM25WithFilterGo
+	// START Filter Go
 	ctx := context.Background()
 	className := "JeopardyQuestion"
 
@@ -360,7 +360,7 @@ func TestBM25WithFilter(t *testing.T) {
 		WithWhere(filter).
 		WithLimit(limit).
 		Do(ctx)
-	// END BM25WithFilterGo
+	// END Filter Go
 
 	require.NoError(t, err, "Failed to execute BM25 query with filter")
 
