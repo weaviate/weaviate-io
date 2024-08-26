@@ -15,7 +15,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestBasicHybridQuery", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridBasicGo
+		// START searchHybridBasic
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -28,7 +28,7 @@ func TestHybrid(t *testing.T) {
 			WithLimit(limit)
 
 		result, err := q.Do(ctx)
-		// END HybridBasicGo
+		// END searchHybridBasic
 
 		if err != nil {
 			t.Fatalf("Failed to execute query: %v", err)
