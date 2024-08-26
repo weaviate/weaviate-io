@@ -132,14 +132,6 @@ A hybrid search on a collection that has [named vectors](../config-refs/schema/m
       language="ts"
     />
   </TabItem>
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START NamedVectorHybrid"
-      endMarker="// END NamedVectorHybrid"
-      language="go"
-    />
-  </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -208,7 +200,7 @@ To see the object rankings, set the `explain score` field in your query. The sea
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// WithScore"
+      startMarker="// START WithScore"
       endMarker="// END WithScore"
       language="go"
     />
@@ -642,15 +634,6 @@ You can specify [vector similarity search](/developers/weaviate/search/similarit
       language="python"
     />
   </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START VectorSimilarity"
-      endMarker="// END VectorSimilarity"
-      language="go"
-    />
-</TabItem>
 
   <TabItem value="py3" label="GraphQL">
     <FilteredTextBlock
