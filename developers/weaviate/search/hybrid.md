@@ -63,7 +63,7 @@ Combine the results of a vector search and a keyword search. The search uses a s
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridBasic"
+      startMarker="// START HybridBasic"
       endMarker="// END searchHybridBasic"
       language="go"
     />
@@ -818,6 +818,15 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START autocut"
+      endMarker="// END autocut"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -882,6 +891,15 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
   language="js"
 />
 </TabItem>
+
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START searchHybridWithFilter"
+      endMarker="// END searchHybridWithFilter"
+      language="go"
+    />
+  </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
