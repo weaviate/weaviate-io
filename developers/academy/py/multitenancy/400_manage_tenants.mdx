@@ -1,0 +1,200 @@
+---
+title: Manage tenants
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tenant activity statuses
+
+As `MyPrivateJournal` grows the team notices that the resource requirements and associated costs are growing.
+
+Meanwhile, the team also notices these usage patterns:
+
+- Many users use the application for small parts of the day, and then log off.
+- Some users are infrequent, accessing the service only occasionally.
+- Some users drop off after a while, and their data is not accessed for a long time.
+
+Weaviate's multi-tenancy features can help `MyPrivateJournal` manage these usage patterns more effectively. Let's see how:
+
+### <i class="fa-solid fa-code"></i> Introduction to tenant activity statuses
+
+But first, let's talk a little about tenant activity statuses. Up to now, you've worked with tenants without specifying an activity status. This creates an `ACTIVE` tenant by default.
+
+But a tenant can be set to have an `ACTIVE`, `INACTIVE`, or `OFFLOADED` status.
+
+| Tenant state     | CRUD & Queries | Vector Index | Inverted Index | Object Data | Time to Activate | Tenant description |
+|------------------|----------------|--------------|----------------|-------------|------------------|------------|
+| Active (default) | **Yes**        | Hot/Warm     | Warm           | Warm        | None             | Available for use |
+| Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             | Not available for use, stored locally |
+| Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             | Not available for use, stored on the cloud |
+
+These states are mutable, letting you manage your tenants more effectively, balancing cost, availability and performance.
+
+### <i class="fa-solid fa-code"></i> Manage tenant activity statuses
+
+So, you might start to see how `MyPrivateJournal` can leverage tenant activity statues to improve their operational efficiency.
+
+#### Deactivate a tenant
+
+Since `INACTIVE` tenants use less resources than `ACTIVE` tenants, `MyPrivateJournal` can deactivate tenants that are unlikely to be immediately accessed.
+
+One example is a user who's just logged out of the application. We could set their tenant to `INACTIVE` as a part of the logout process:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# UpdateOneTenantStatus"
+  endMarker="# END UpdateOneTenantStatus"
+  language="py"
+/>
+
+#### Deactivate multiple tenants
+
+`MyPrivateJournal` can also deactivate multiple tenants at once. For example, they could deactivate all tenants for their local night time, or those who have not logged on for over 7 days:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# UpdateMultipleTenantStatuses"
+  endMarker="# END UpdateMultipleTenantStatuses"
+  language="py"
+/>
+
+#### Offload tenants
+
+`MyPrivateJournal` can also offload tenants to the cloud. This is useful for tenants that are unlikely to be accessed in the near future.
+
+For example, they could offload tenants that have not been accessed for over 30 days:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# OffloadMultipleTenants"
+  endMarker="# END OffloadMultipleTenants"
+  language="py"
+/>
+
+This will move the tenant's data to cold storage, freeing up hot and warm resources. In turn, the overall system requirements and cost will be lowered.
+
+<details>
+  <summary>How to set up offloading</summary>
+
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+The ability to offload tenants to cold storage is a powerful feature that can help you manage your Weaviate instance's resource usage.
+<br/>
+
+To use tenant offloading in Weaviate, you need enable a relevant offloading [module](../../../weaviate/configuration/modules.md). Depending on whether your deployment is on Docker or Kubernetes, you can enable the `offload-s3` module as shown below.
+
+<Tabs groupId="languages">
+<TabItem value="docker" label="Docker">
+
+```yaml
+services:
+  weaviate:
+    environment:
+      # highlight-start
+      ENABLE_MODULES: 'offload-s3' # plus other modules you may need
+      OFFLOAD_S3_BUCKET: 'weaviate-offload' # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true' # create the bucket if it does not exist
+      # highlight-end
+```
+
+</TabItem>
+<TabItem value="kubernetes" label="Kubernetes">
+
+```yaml
+offload:
+  s3:
+    enabled: true  # Set this value to true to enable the offload-s3 module
+    envconfig:
+      OFFLOAD_S3_BUCKET: weaviate-offload  # the name of the S3 bucket
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: true  # create the bucket if it does not exist
+```
+
+</TabItem>
+</Tabs>
+
+If the target S3 bucket does not exist, the `OFFLOAD_S3_BUCKET_AUTO_CREATE` variable must be set to `true` so that Weaviate can create the bucket automatically.
+<br/>
+
+#### AWS permissions
+
+You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication.
+<br/>
+
+:::tip Requirements
+The Weaviate instance must have the [necessary permissions to access the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html).
+- The provided AWS identity must be able to write to the bucket.
+- If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
+:::
+
+**Option 1: With IAM and ARN roles**
+<br/>
+
+The backup module will first try to authenticate itself using AWS IAM. If the authentication fails then it will try to authenticate with `Option 2`.
+<br/>
+
+**Option 2: With access key and secret access key**
+<br/>
+
+| Environment variable | Description |
+| --- | --- |
+| `AWS_ACCESS_KEY_ID` | The id of the AWS access key for the desired account. |
+| `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
+| `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
+
+Once the `offload-s3` module is enabled, you can offload tenants to the S3 bucket by [setting their activity status](#update-tenants) to `OFFLOADED`, or load them back to local storage by setting their status to `ACTIVE` or `INACTIVE`.
+
+</details>
+
+#### Activate users
+
+And then, `MyPrivateJournal` can activate tenants as required. For example, they could activate a tenant when the user logs in, or based on their local time in an inverse pattern to deactivation:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ActivateMultipleTenants"
+  endMarker="# END ActivateMultipleTenants"
+  language="py"
+/>
+
+#### Leverage auto-activation
+
+There may also be cases where a user attempts to perform a query on an `INACTIVE` tenant.
+
+This may sound like a problem, but Weaviate can automatically activate the tenant for the query, if the collection was created with `auto_tenant_activation` enabled (which [we did do earlier](./200_setup.mdx#create-a-collection)).
+
+## <i class="fa-solid fa-square-chevron-right"></i> Offboard users
+
+As with all SaaS applications, `MyPrivateJournal` will need to offboard users from time to time. This could be due to a user request, or any other reason for account deletion.
+
+In a multi-tenant collection, offboarding a user can easily be done by removing their tenant. This will delete the tenant and all its data.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# RemoveTenants"
+  endMarker="# END RemoveTenants"
+  language="py"
+/>
+
+The `MyPrivateJournal` engineers could set up its offboarding system to remove a user's tenant when they delete their account or request data deletion. This will ensure that the user's data is removed from the system.
+
+### <i class="fa-solid fa-chalkboard"></i> Summary
+
+In this section, you learned how to manage tenants in a multi-tenant collection. You saw how to:
+
+- Update a tenant's activity status
+- Offload tenants to cold storage
+- Activate tenants as required
+- Remove tenants from the system
+
+These features can help `MyPrivateJournal` manage its resource usage more effectively, and provide a better experience for its users.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

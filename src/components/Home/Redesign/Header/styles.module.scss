@@ -59,7 +59,7 @@
 .logoSection {
   display: contents;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 950px) {
     display: flex;
     flex-grow: 1;
     overflow-x: hidden;
@@ -150,7 +150,7 @@
   }
 
   @media screen and (max-width: 950px) {
-    height: 20rem;
+    height: 26rem;
   }
 }
 
@@ -182,9 +182,9 @@
 }
 
 .secondLine {
-  height: 6em;
+  height: 9em;
   gap: 40px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   justify-content: center;
 
   @media screen and (max-width: 950px) {
@@ -255,6 +255,13 @@
   background-position: center;
 }
 
+.bunqLogo {
+  background-image: url('/img/site/bunq.svg');
+  background-position: center;
+
+  width: 8rem;
+  height: 6rem;
+}
 .redbull {
   background-image: url('/img/site/redbull-hp-logo.svg');
   background-position: center;

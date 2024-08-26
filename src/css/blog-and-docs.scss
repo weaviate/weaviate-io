@@ -97,23 +97,26 @@ html {
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.05;
     font-family: var(--site-font-base-family);
-    font-weight: 500;
+    font-weight: 700;
     color: var(--docs-header-color);
   }
 
   h1 {
     padding-top: 0.25em;
-    font-size: 30px;
+    font-size: 32px;
   }
 
   h2 {
-    padding-top: 0.25em;
+    padding-top: 0.9em;
+    padding-bottom: 0.25em;
+  }
+  h3 {
+    padding-top: 0.55em;
     padding-bottom: 0.2em;
   }
-  h3,
   h4 {
-    padding-top: 0.3em;
-    padding-bottom: 0.1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.15em;
   }
 
   h2 {
@@ -121,19 +124,19 @@ html {
   }
 
   h3 {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   h4 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   h5 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   h6 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   p {

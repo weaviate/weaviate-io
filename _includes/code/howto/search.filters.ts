@@ -398,6 +398,26 @@ for (let object of result.objects) {
 
 
 // ===================================================
+// ===== Filters using property null state =====
+// ===================================================
+{
+  // FilterByPropertyNullState
+  const result = await jeopardy.query.fetchObjects({
+    // highlight-start
+    // This requires the `points` property to be configured with `index_null_state=True``
+    filters: jeopardy.filter.byProperty('points').isNull(true),
+    // highlight-end
+    limit: 3
+  })
+
+  for (let object of result.objects) {
+    console.log(JSON.stringify(object.properties, null, 2));
+  }
+  // END FilterByPropertyNullState
+  }
+
+
+// ===================================================
 // ===== Filters with Geolocation =====
 // ===================================================
 {

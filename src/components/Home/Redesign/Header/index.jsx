@@ -138,7 +138,7 @@ export default function HomepageHeader() {
                 >
                   Start Free
                 </Link>
-                <Link className={styles.buttonOutline} to="/services">
+                <Link className={styles.buttonOutline} to="/platform">
                   Learn More
                 </Link>
               </div>
@@ -208,6 +208,7 @@ export default function HomepageHeader() {
                 <div
                   className={`${styles.customerLogo} ${styles.netappLogo}`}
                 />
+                <div className={`${styles.customerLogo} ${styles.bunqLogo}`} />
               </div>
             </div>
           </div>
