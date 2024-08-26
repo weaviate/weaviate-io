@@ -15,7 +15,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestBasicHybridQuery", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridBasicGo
+		// HybridBasicGo
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -47,7 +47,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithScore", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithScoreGo
+		// HybridWithScoreGo
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"

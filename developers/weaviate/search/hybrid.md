@@ -63,8 +63,8 @@ Combine the results of a vector search and a keyword search. The search uses a s
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START HybridBasic"
-      endMarker="// END searchHybridBasic"
+      startMarker="// START Basic"
+      endMarker="// END Basic"
       language="go"
     />
   </TabItem>
@@ -209,8 +209,8 @@ To see the object rankings, set the `explain score` field in your query. The sea
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithScore"
-      endMarker="// END searchHybridWithScore"
+      startMarker="// WithScore"
+      endMarker="// END WithScore"
       language="go"
     />
   </TabItem>
