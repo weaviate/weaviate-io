@@ -285,8 +285,8 @@ Hybrid search results can favor the keyword component or the vector component. T
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithAlpha"
-      endMarker="// END searchHybridWithAlpha"
+      startMarker="// START WithAlpha"
+      endMarker="// END WithAlpha"
       language="go"
     />
 </TabItem>
@@ -362,8 +362,8 @@ The output is like this:
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithFusionType"
-      endMarker="// END searchHybridWithFusionType"
+      startMarker="// START WithFusionType"
+      endMarker="// END WithFusionType"
       language="go"
     />
 </TabItem>
@@ -448,8 +448,8 @@ The keyword search portion of hybrid search can be directed to only search a sub
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithProperties"
-      endMarker="// END searchHybridWithProperties"
+      startMarker="// START WithProperties"
+      endMarker="// END WithProperties"
       language="go"
     />
 </TabItem>
@@ -522,8 +522,8 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithPropertyWeighting"
-      endMarker="// END searchHybridWithPropertyWeighting"
+      startMarker="// START WithPropertyWeighting"
+      endMarker="// END WithPropertyWeighting"
       language="go"
     />
 </TabItem>
@@ -596,8 +596,8 @@ The vector component of hybrid search can use a query string or a query vector. 
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithVector"
-      endMarker="// END searchHybridWithVector"
+      startMarker="// START WithVector"
+      endMarker="// END WithVector"
       language="go"
     />
 </TabItem>
@@ -894,8 +894,8 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
 <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START searchHybridWithFilter"
-      endMarker="// END searchHybridWithFilter"
+      startMarker="// START WithFilter"
+      endMarker="// END WithFilter"
       language="go"
     />
   </TabItem>

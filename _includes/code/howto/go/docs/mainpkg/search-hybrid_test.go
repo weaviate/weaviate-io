@@ -15,7 +15,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestBasicHybridQuery", func(t *testing.T) {
 		client := setupClient()
 
-		// HybridBasicGo
+		// START Basic Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -28,7 +28,7 @@ func TestHybrid(t *testing.T) {
 			WithLimit(limit)
 
 		result, err := q.Do(ctx)
-		// END HybridBasicGo
+		// END Basic Go
 
 		if err != nil {
 			t.Fatalf("Failed to execute query: %v", err)
@@ -47,7 +47,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithScore", func(t *testing.T) {
 		client := setupClient()
 
-		// HybridWithScoreGo
+		// START WithScore Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -63,7 +63,7 @@ func TestHybrid(t *testing.T) {
 			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithScoreGo
+		// END WithScore Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -75,7 +75,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithAlpha", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithAlphaGo
+		// START WithAlpha Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -91,7 +91,7 @@ func TestHybrid(t *testing.T) {
 			).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithAlphaGo
+		// END WithAlpha Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -102,7 +102,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithFusionType", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithFusionTypeGo
+		// START WithFusionType Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -118,7 +118,7 @@ func TestHybrid(t *testing.T) {
 			).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithFusionTypeGo
+		// END WithFusionType Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -129,7 +129,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithProperties", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithPropertiesGo
+		// START WithProperties Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -147,7 +147,7 @@ func TestHybrid(t *testing.T) {
 			).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithPropertiesGo
+		// END WithProperties Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -158,7 +158,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithPropertyWeighting", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithPropertyWeightingGo
+		// START WithPropertyWeighting Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -176,7 +176,7 @@ func TestHybrid(t *testing.T) {
 			).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithPropertyWeightingGo
+		// END WithPropertyWeighting Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -187,7 +187,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithVector", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithVectorGo
+		// START WithVector Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -216,7 +216,7 @@ func TestHybrid(t *testing.T) {
 			).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithVectorGo
+		// END WithVector Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
@@ -227,7 +227,7 @@ func TestHybrid(t *testing.T) {
 	t.Run("TestHybridQueryWithFilter", func(t *testing.T) {
 		client := setupClient()
 
-		// START HybridWithFilterGo
+		// START WithFilter Go
 		ctx := context.Background()
 		className := "JeopardyQuestion"
 		query := "food"
@@ -245,7 +245,7 @@ func TestHybrid(t *testing.T) {
 			WithWhere(filter).
 			WithLimit(limit).
 			Do(ctx)
-		// END HybridWithFilterGo
+		// END WithFilter Go
 
 		require.NoError(t, err)
 		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
