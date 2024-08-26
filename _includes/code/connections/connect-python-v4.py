@@ -24,6 +24,26 @@ assert client.is_ready()
 client.close()
 
 
+####################################
+### Local with custom URL & port ###
+####################################
+
+# START CustomURL
+import weaviate
+
+client = weaviate.connect_to_local(
+    host="127.0.0.1",  # Use a string to specify the host
+    port=8080,
+    grpc_port=50051,
+)
+
+print(client.is_ready())
+# END CustomURL
+
+assert client.is_ready()
+
+client.close()
+
 ##########################
 ### WCD with a timeout ###
 ##########################
