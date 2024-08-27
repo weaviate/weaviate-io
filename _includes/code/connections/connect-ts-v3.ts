@@ -160,6 +160,29 @@ const client = await weaviate.connectToCustom(
 console.log(client)
 // END CustomConnect
 
+
+//////////////////////
+/// Custom URL///
+//////////////////////
+
+// START CustomURL
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client = await weaviate.connectToLocal(
+ {
+    host: "127.0.0.1",   // URL only, no http prefix
+    port: 8080,
+    grpcPort: 50051,     // Default is 50051, WCD uses 443
+ })
+
+async function main() {
+  console.log(await client.isReady())
+}
+
+main()
+// END CustomURL
+
+
 /////////////////////////////
 /// Custom with a timeout ///
 /////////////////////////////
