@@ -24,7 +24,7 @@ func TestHybrid(t *testing.T) {
 		q := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().WithQuery(query)).
 			WithLimit(limit)
 
 		result, err := q.Do(ctx)
@@ -60,7 +60,7 @@ func TestHybrid(t *testing.T) {
 				graphql.Field{Name: "answer"},
 				graphql.Field{Name: "_additional", Fields: []graphql.Field{{Name: "score"}, {Name: "explainScore"}}},
 			).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().WithQuery(query)).
 			WithLimit(limit).
 			Do(ctx)
 		// END WithScore Go
@@ -85,7 +85,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().
 				WithQuery(query).
 				WithAlpha(alpha),
 			).
@@ -112,7 +112,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().
 				WithQuery(query).
 				WithFusionType(graphql.FusionType(fusionType)),
 			).
@@ -140,7 +140,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().
 				WithQuery(query).
 				WithAlpha(alpha).
 				WithProperties(properties),
@@ -169,7 +169,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().
 				WithQuery(query).
 				WithAlpha(alpha).
 				WithProperties(properties),
@@ -210,7 +210,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().
 				WithQuery(query).
 				WithVector(vector),
 			).
@@ -241,7 +241,7 @@ func TestHybrid(t *testing.T) {
 		result, err := client.GraphQL().Get().
 			WithClassName(className).
 			WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{Name: "round"}).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().WithQuery(query)).
 			WithWhere(filter).
 			WithLimit(limit).
 			Do(ctx)
@@ -274,7 +274,7 @@ func TestHybrid(t *testing.T) {
 				graphql.Field{Name: "answer"},
 				graphql.Field{Name: "_additional", Fields: []graphql.Field{{Name: "score"}}},
 			).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().WithQuery(query)).
 			WithLimit(limit).
 			Do(ctx)
 		// END limit Go
@@ -302,7 +302,7 @@ func TestHybrid(t *testing.T) {
 				graphql.Field{Name: "answer"},
 				graphql.Field{Name: "_additional", Fields: []graphql.Field{{Name: "score"}}},
 			).
-			WithHybrid((&graphql.HybridArgumentBuilder{}).WithQuery(query)).
+			WithHybrid(client.GraphQL().HybridArgumentBuilder().WithQuery(query)).
 			WithAutocut(autocut).
 			Do(ctx)
 		// END autocut Go
