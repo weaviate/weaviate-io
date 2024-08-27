@@ -1,12 +1,12 @@
 ---
-title: Unstructured
-sidebar_position: 4
+title: Confluent Cloud
+sidebar_position: 1
 ---
-
 [content]
 
-## Unstructured and Weaviate
+## Confluent Cloud and Weaviate
 [content]
+
 
 ## Our Resources 
 **Hands on Learning**: Build your technical understanding with end-to-end tutorials.
