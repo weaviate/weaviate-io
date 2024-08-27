@@ -9,22 +9,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-import PyCode from '!!raw-loader!/_includes/code/config/multi-vector-examples.py';
-
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
 ## Syntax
 
-Single vector collections are valid and continue to use the original collection syntax. However, if you configure multiple vectors, you must use the new, named vector syntax.
+Single vector collections are valid and continue to use the original collection syntax. However, if you configure multiple vectors, you must use the new, named vector syntax to query your collections.
 
-## Collection definition
+### Collection definition
 
 Use the collection definition to [configure the vector spaces](/developers/weaviate/manage-data/collections#define-multiple-named-vectors) for each data object.
 
-
-## Query a named vector
+### Query a named vector
 
 To do a vector search on a collection with named vectors, specify the vector space to search.
 
@@ -36,7 +33,7 @@ Named vector collections support hybrid search, but only for one vector at a tim
 
 ## Related pages
 
-- [How-to: manage data](/developers/weaviate/manage-data/collections#define-multiple-named-vectors: Configure collections
+- [How-to: manage data](/developers/weaviate/manage-data/collections#define-multiple-named-vectors): Configure collections
 - [How-to: search](/developers/weaviate/search/index.md): Code examples for search
 - [Weaviate academy: Named vectors](../../../academy/py/named_vectors/index.md)
 
