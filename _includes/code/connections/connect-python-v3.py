@@ -46,7 +46,7 @@ import weaviate
 
 # Create the client
 client = weaviate.Client(
-    url="http://localhost:8080"
+    url="http://127.0.0.1:8080"
     # The v3 client doesn't use the gRPC port
 )
 
