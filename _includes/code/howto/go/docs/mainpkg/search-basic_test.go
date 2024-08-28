@@ -18,12 +18,12 @@ func TestBasicGet(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START BasicGet Go
+	// START BasicGet
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}).
 		Do(ctx)
-	// END BasicGet Go
+	// END BasicGet
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -42,7 +42,7 @@ func TestGetWithLimit(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetWithLimit Go
+	// START GetWithLimit
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}).
@@ -50,7 +50,7 @@ func TestGetWithLimit(t *testing.T) {
 		WithLimit(1).
 		// highlight-end
 		Do(ctx)
-	// END GetWithLimit Go
+	// END GetWithLimit
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -70,7 +70,7 @@ func TestGetWithLimitOffset(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetWithLimitOffset Go
+	// START GetWithLimitOffset
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}).
@@ -79,7 +79,7 @@ func TestGetWithLimitOffset(t *testing.T) {
 		WithOffset(1).
 		// highlight-end
 		Do(ctx)
-	// END GetWithLimitOffset Go
+	// END GetWithLimitOffset
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -99,7 +99,7 @@ func TestGetProperties(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetProperties Go
+	// START GetProperties
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		// highlight-start
@@ -111,7 +111,7 @@ func TestGetProperties(t *testing.T) {
 		// highlight-end
 		WithLimit(1).
 		Do(ctx)
-	// END GetProperties Go
+	// END GetProperties
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -134,7 +134,7 @@ func TestGetObjectVector(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetObjectVector Go
+	// START GetObjectVector
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields().
@@ -150,7 +150,7 @@ func TestGetObjectVector(t *testing.T) {
 		// highlight-end
 		WithLimit(1).
 		Do(ctx)
-	// END GetObjectVector Go
+	// END GetObjectVector
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -172,7 +172,7 @@ func TestGetObjectId(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetObjectId Go
+	// START GetObjectId
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields().
@@ -188,7 +188,7 @@ func TestGetObjectId(t *testing.T) {
 		// highlight-end
 		WithLimit(1).
 		Do(ctx)
-	// END GetObjectId Go
+	// END GetObjectId
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
@@ -210,7 +210,7 @@ func TestGetWithCrossRefs(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetWithCrossRefs Go
+	// START GetWithCrossRefs
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		// highlight-start
@@ -226,7 +226,7 @@ func TestGetWithCrossRefs(t *testing.T) {
 		// highlight-end
 		WithLimit(2).
 		Do(ctx)
-	// END GetWithCrossRefs Go
+	// END GetWithCrossRefs
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -248,7 +248,7 @@ func TestGetWithMetadata(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetWithMetadata Go
+	// START GetWithMetadata
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}).
@@ -264,7 +264,7 @@ func TestGetWithMetadata(t *testing.T) {
 		).
 		// highlight-end
 		Do(ctx)
-	// END GetWithMetadata Go
+	// END GetWithMetadata
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -288,7 +288,7 @@ func TestMultiTenancy(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START ultiTenancy Go
+	// START ultiTenancy
 	response, err := client.GraphQL().Get().
 		WithClassName("MultiTenancyClass").
 		WithFields(graphql.Field{Name: "property1"}, graphql.Field{Name: "property2"}).
@@ -297,7 +297,7 @@ func TestMultiTenancy(t *testing.T) {
 		WithTenant("tenantA").
 		// highlight-end
 		Do(ctx)
-	// END MultiTenancy Go
+	// END MultiTenancy
 
 	require.NoError(t, err)
 	t.Logf("%+v", response)
