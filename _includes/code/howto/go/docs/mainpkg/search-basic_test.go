@@ -137,7 +137,6 @@ func TestGetObjectVector(t *testing.T) {
 	// START GetObjectVector
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
-		WithFields().
 		// highlight-start
 		WithFields(
 			graphql.Field{
@@ -175,7 +174,6 @@ func TestGetObjectId(t *testing.T) {
 	// START GetObjectId
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
-		WithFields().
 		// highlight-start
 		WithFields(
 			graphql.Field{
