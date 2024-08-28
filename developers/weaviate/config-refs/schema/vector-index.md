@@ -7,36 +7,6 @@ image: og/docs/configuration.jpg
 
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
-## Multiple vectors
-
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
-
-<MultiVectorSupport />
-
-## Index configuration parameters
-
-:::caution Experimental feature
-Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
-:::
-
-Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
-
-| Parameter | Type | Default | Details |
-| :-- | :-- | :-- | :-- |
-| `vectorIndexType` | string | `hnsw` | Optional. The index type - can be `hnsw`, `flat` or `dynamic`. |
-| `vectorIndexConfig` | object | - | Optional. Set parameters that are specific to the vector index type. |
-
-<details>
-  <summary>How to select the index type</summary>
-
-Generally, the `hnsw` index type is recommended for most use cases. The `flat` index type is recommended for use cases where the data the number of objects per index is low, such as in multi-tenancy cases. You can also opt for the `dynamic` index which will initially configure a `flat` index and once the object count exceeds a specified threshold it will automatically convert to an `hnsw` index.
-
-See [this section](../../concepts/vector-index.md#which-vector-index-is-right-for-me) for more information about the different index types and how to choose between them.
-
-</details>
-
-If faster import speeds are desired, [asynchronous indexing](#asynchronous-indexing) allows de-coupling of indexing from object creation.
-
 ## HNSW indexes
 
 HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process.
@@ -208,6 +178,30 @@ The goal of `dynamic` indexing is to shorten latencies during query time at the 
 | `flat` | object | default Flat | [Flat index configuration](#flat-indexes) to be used. |
 | `threshold` | integer | 10000 | Threshold object count at which `flat` to `hnsw` conversion happens |
 
+## Index configuration parameters
+
+:::caution Experimental feature
+Available starting in `v1.25`. Dynamic indexing is an experimental feature. Use with caution.
+:::
+
+Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
+
+| Parameter | Type | Default | Details |
+| :-- | :-- | :-- | :-- |
+| `vectorIndexType` | string | `hnsw` | Optional. The index type - can be `hnsw`, `flat` or `dynamic`. |
+| `vectorIndexConfig` | object | - | Optional. Set parameters that are specific to the vector index type. |
+
+<details>
+  <summary>How to select the index type</summary>
+
+Generally, the `hnsw` index type is recommended for most use cases. The `flat` index type is recommended for use cases where the data the number of objects per index is low, such as in multi-tenancy cases. You can also opt for the `dynamic` index which will initially configure a `flat` index and once the object count exceeds a specified threshold it will automatically convert to an `hnsw` index.
+
+See [this section](../../concepts/vector-index.md#which-vector-index-is-right-for-me) for more information about the different index types and how to choose between them.
+
+</details>
+
+If faster import speeds are desired, [asynchronous indexing](#asynchronous-indexing) allows de-coupling of indexing from object creation.
+
 ## Asynchronous indexing
 
 :::caution Experimental
@@ -299,14 +293,18 @@ The `vectorQueueLength` field will show the number of remaining objects to be in
   ]
 }
 ```
-
 </details>
 
+## Multiple vectors
 
-:::info Related pages
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
+
+## Related pages
+
 - [Concepts: Indexing](../../concepts/indexing.md)
 - [Concepts: Vector Indexing](../../concepts/vector-index.md)
-:::
 
 ## Questions and feedback
 
