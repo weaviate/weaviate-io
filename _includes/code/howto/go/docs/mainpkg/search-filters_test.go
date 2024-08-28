@@ -332,7 +332,7 @@ func TestCrossReference(t *testing.T) {
 }
 
 func TestFilterByDate(t *testing.T) {
-	client := setupClient() // Assume this function is defined elsewhere to set up the Weaviate client
+	client := setupClient()
 	ctx := context.Background()
 
 	// START FilterByDateDatatype Go
@@ -341,9 +341,8 @@ func TestFilterByDate(t *testing.T) {
 	// Alternatively, you can use an RFC 3339 timestamp:
 	// filterTime, _ := time.Parse(time.RFC3339, "2022-06-10T00:00:00Z")
 
-	collectionWithDate := client.Collections().GetCollection("CollectionWithDate") // Adjust the collection name as needed
-
-	result, err := collectionWithDate.Query().
+	result, err := client.GraphQL().Get().
+		WithClassName("JeopardyQuestion").
 		WithLimit(3).
 		WithFields(graphql.Field{Name: "some_date"}).
 		WithWhere(filters.Where().
@@ -550,8 +549,6 @@ func TestFilterByGeolocation(t *testing.T) {
 	ctx := context.Background()
 
 	// START FilterbyGeolocation Go
-	publications := client.Collections().GetCollection("Publication")
-
 	geoFilter := filters.Where().
 		WithPath([]string{"headquartersGeoLocation"}).
 		WithOperator(filters.WithinGeoRange).
@@ -561,7 +558,8 @@ func TestFilterByGeolocation(t *testing.T) {
 			MaxDistance: 1000,
 		})
 
-	geoResult, err := publications.Query().
+	geoResult, err := client.GraphQL().Get().
+		WithClassName("Publication").
 		WithWhere(geoFilter).
 		WithFields(graphql.Field{Name: "name"}).
 		WithFields(graphql.Field{
@@ -572,6 +570,7 @@ func TestFilterByGeolocation(t *testing.T) {
 			},
 		}).
 		Do(ctx)
+	// END FilterbyGeolocation Go
 
 	if err != nil {
 		log.Fatalf("Error executing query: %v", err)
@@ -583,6 +582,5 @@ func TestFilterByGeolocation(t *testing.T) {
 		log.Fatalf("Error marshaling result to JSON: %v", err)
 	}
 	fmt.Printf("%s\n", resultJSON)
-	// END FilterbyGeolocation Go
 
 }
