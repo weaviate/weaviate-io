@@ -2,7 +2,7 @@
 title: What is Late Chunking ?
 
 slug: late-chunking
-authors: [charles]
+authors: [charles-pierse]
 date: 2024-09-05
 tags: ['concepts']
 # image: ./img/hero.png
@@ -13,7 +13,11 @@ Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context
 
 This article explores why late chunking may just be the happy medium between naive (but cheap) solutions and more advanced (expensive) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
 
-## What is late chunking?
+## What is Late Chunking?
+
+:::note
+Late chunking's similarity in name to late interaction is no coincidence, the authors of late chunking chose the name due to its links with late interaction.
+:::
 
 ![Chunking Strategies](./img/chunking-strategies.png)
 
@@ -21,11 +25,11 @@ Late chunking aims to help preserve contextual information across large document
 
 In typical setups, all of these token embeddings would be pooled (mean, cls etc) into a single vector representation. However, with the onset of RAG it has become a concern that a single vector for long documents does not preserve enough contextual information and ultimately results in sacrificing precision during retrieval. Additionally, very long documents can result in more expensive calls to LLMs, increased latency, and a higher chance of hallucination as a result.
 
-## How is long context retrieval currently approached?
+## Current Approaches to Long Context Retrieval
 
-### The Naive Approach
+### Naive Chunking
 
-This approach breaks up a long document into chunks ([for which there exist numerous chunking strategies](https://weaviate.io/developers/academy/py/standalone/chunking)) and individually embeds each of those chunks. While this solution can work in some setups it inherently does not account for any contextual dependencies that may exist between chunks because their embeddings are generated independently. Take for example the below paragraph:
+This approach breaks up a long document into chunks (for which there exist numerous [chunking strategies](https://weaviate.io/developers/academy/py/standalone/chunking)) and individually embeds each of those chunks. While this solution can work in some setups it inherently does not account for any contextual dependencies that may exist between chunks because their embeddings are generated independently. Take for example the below paragraph:
 
 > _Alice went for a walk in the woods one day and on her walk, she spotted something. She saw a rabbit hole at the base of a large tree. She fell into the hole and found herself in a strange new world._
 
@@ -37,11 +41,7 @@ If we were to chunk this paragraph by sentences we would get:
 
 Now imagine that a user has populated their vector database with multiple documents, paragraphs from a book, or even multiple books. If they were to ask "Where did Alice fall" we as humans can intuitively understand that the coreference of "her" in sentence 3 refers to Alice from the first sentence. However, since these embeddings were created independently of one another there is no way for the model representation of sentence 3 to represent this relationship to the name Alice.
 
-### Late Interaction and ColBERT Approach
-
-:::note
-Late Interaction and late chunking are related approaches, the authors of late chunking chose the name due to its links with late interaction.
-:::
+### Late Interaction and ColBERT
 
 On the other side of this is the ColBERT approach which utilizes late interaction (source). Unlike the naive approach described above, late interaction performs no pooling step on the token embeddings belonging to the query and document. Instead, each query token is compared with all document tokens. In a retrieval setup each document has its token-level representations stored in a vector index and then at query time they can be compared via late interaction.
 
@@ -57,7 +57,7 @@ If I have a document that has 8000 tokens, each of those tokens will need to be 
 
 It appears we have a goldilocks problem, the naive approach may be more cost-effective but can reduce precision, while on the other hand, late interaction and ColBERT offer us increased precision at extreme costs. Surely there must be something in the middle that's just right? Well, late chunking may just be that.
 
-## How does Late Chunking work?
+## How Late Chunking Works
 
 As mentioned earlier late chunking origins are linked closely with late interaction in that both utilise the token-level vector representations that are produced during the forward pass of an embedding model.
 
@@ -75,11 +75,13 @@ There are however some requirements needed ahead of performing late chunking:
 
 2. **Chunking logic:** being able to chunk text ahead of inference as well as associating each chunk with its corresponding token spans is also critical to making late chunking work. Luckily there are many ways to create chunks in this manner and given late chunking's ability to condition each chunk on previous ones chunking approaches like fixed-size chunking without any overlap may be all that is needed.
 
-## See it in action
+## Late Chunking in Action
 
-In the below head-to-head comparison, we used our recent [blog](https://weaviate.io/blog/launching-into-production) as an example to test late chunking vs naive chunking against. Using a fixed token chunking strategy (num tokens = 128) resulted in the following sentence being split across two different chunks:
+In the below head-to-head comparison, we used our recent [blog](https://weaviate.io/blog/launching-into-production) as a sample to test late chunking vs naive chunking against. Using a fixed token chunking strategy (**num tokens = 128**) resulted in the following sentence being split across two different chunks:
 
-> Weaviate's native, multi-tenant architecture shines for customers who need to prioritize data privacy while maintaining fast retrieval and accuracy.\*
+> Weaviate's native, multi-tenant architecture shines for customers who need to prioritize data privacy while maintaining fast retrieval and accuracy.
+
+The two chunks that sentence was split split between are:
 
 <table>
   <tr>
@@ -108,13 +110,13 @@ In the below head-to-head comparison, we used our recent [blog](https://weaviate
   </tr>
 </table>
 
-### Head to head comparison of top 2 results
+### Head to Head Comparison
 
 Given the query:
 
 > what do customers need to prioritise?
 
-We can see that to answer this query correctly we need to return both of the above chunks. However, with the naive approach we end up with two separate chunks that are not neighbouring one another.
+To answer this query correctly we need to return **both** of the above chunks. However, with the naive approach we end up with two separate chunks that are not neighbouring one another.
 
 But when we apply late chunking we end returning the two exact paragraphs over which the query is most relevant.
 
@@ -155,7 +157,9 @@ But when we apply late chunking we end returning the two exact paragraphs over w
   </tr>
 </table>
 
-Intuitively we can as reader of the two chunks understand the link between prioritization and data privacy however with the naive approach there is no ability to condition the two separate embeddings with information about its neighbour. However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
+Intuitively we can as readers understand the link between the two chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighbouring chunks.
+
+However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
 
 ## What does this mean for users building RAG applications?
 
