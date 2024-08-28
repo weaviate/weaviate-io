@@ -26,5 +26,6 @@ The resources are broken into two categories:
 
 ### Read and Listen 
 | Topic | Description | Resource | 
+| --- | --- | --- |
 | The Sphere Dataset in Weaviate | Learn how to import and query the Sphere dataset in Weaviate. | [Blog](/blog/sphere-dataset-in-weaviate) |
 | The Details Behind the Sphere Dataset in Weaviate | The details on how we ingested ~1 billion article snippets into Weaviate | [Blog](/blog/details-behind-the-sphere-dataset-in-weaviate) |
