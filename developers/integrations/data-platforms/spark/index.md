@@ -21,11 +21,11 @@ The resources are broken into two categories:
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| Weaviate Tutorial | Learn how to ingest data into Weaviate with Spark | [Tutorial](/developers/weaviate/tutorials/spark-connector)
+| Weaviate Tutorial | Learn how to ingest data into Weaviate with Spark. | [Tutorial](/developers/weaviate/tutorials/spark-connector)
 | Using the Spark Connector for Weaviate | Learn how to take data from a Spark dataframe and feed it into Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/spark/spark-connector.ipynb) |
 
 ### Read and Listen 
 | Topic | Description | Resource | 
 | --- | --- | --- |
 | The Sphere Dataset in Weaviate | Learn how to import and query the Sphere dataset in Weaviate. | [Blog](/blog/sphere-dataset-in-weaviate) |
-| The Details Behind the Sphere Dataset in Weaviate | The details on how we ingested ~1 billion article snippets into Weaviate | [Blog](/blog/details-behind-the-sphere-dataset-in-weaviate) |
+| The Details Behind the Sphere Dataset in Weaviate | The details on how we ingested ~1 billion article snippets into Weaviate. | [Blog](/blog/details-behind-the-sphere-dataset-in-weaviate) |
