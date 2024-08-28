@@ -53,9 +53,13 @@ This sliding window approach itself may actually result in the loss of important
 
 Late interaction's core benefit is through the contextual information stored in each individual token representation being compared directly with each token representation in the query, without any pooling method being applied. While this approach is highly performant it can quickly become prohibitive for users from a storage and cost perspective.
 
-If I have a document that has 8000 tokens, each of those tokens will need to be stored in my vector index. Extend this to 100k documents and we now need to store 800 million vectors for a use case that could be solved with more than 1/500th of resources using the naive approach (assuming fixed embedding sizes of 512 tokens).
+For example, If I have a document that has **8000 tokens**, each of those tokens will need to be stored in my vector index. Extend this to **100k documents** and we now need to store **800 million vectors** for a use case that could be solved with more than **1/500th of resources using the naive approach** (assuming fixed embedding sizes of 512 tokens).
 
-It appears we have a goldilocks problem, the naive approach may be more cost-effective but can reduce precision, while on the other hand, late interaction and ColBERT offer us increased precision at extreme costs. Surely there must be something in the middle that's just right? Well, late chunking may just be that.
+### Too hot, too cold, just right?
+
+![Goldilocks](./img/goldilocks.png)
+
+It appears we have a goldilocks problem, the naive approach may be more cost-effective but can reduce precision, while on the other hand, late interaction and ColBERT offer us increased precision at extreme costs. Surely there must be something in the middle that's just right? Well, late chunking may exactly that.
 
 ## How Late Chunking Works
 
