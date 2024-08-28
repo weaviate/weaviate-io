@@ -1,6 +1,6 @@
 ---
 title: Firecrawl
-sidebar_position: 2
+sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 

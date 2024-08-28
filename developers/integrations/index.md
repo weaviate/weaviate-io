@@ -32,6 +32,6 @@ The ecosystem is divided into these categories:
 |------------------|-----------|
 | Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
 | Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
-| Data Platforms | Confluent, Spark, Unstructured, Firecrawl |
+| Data Platforms | Composio, Confluent Cloud, Spark, Unstructured, Firecrawl |
 | LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |
 | Observability and Evaluation | Arize, Langtrace, LangWatch, Nomic, Ragas, Weights & Biases |
