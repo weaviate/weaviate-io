@@ -288,7 +288,7 @@ func TestMultiTenancy(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START ultiTenancy
+	// START MultiTenancy
 	response, err := client.GraphQL().Get().
 		WithClassName("MultiTenancyClass").
 		WithFields(graphql.Field{Name: "property1"}, graphql.Field{Name: "property2"}).
