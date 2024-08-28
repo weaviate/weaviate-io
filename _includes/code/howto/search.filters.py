@@ -333,7 +333,7 @@ from weaviate.classes.query import Filter
 
 collection = client.collections.get("Article")
 
-target_id = "00037775-1432-35e5-bc59-443baaef7d80"
+target_id = "0002bf92-80c8-5d94-af34-0d6c5fea1aaf"
 response = collection.query.fetch_objects(
     filters=Filter.by_id().equal(target_id)
 )
