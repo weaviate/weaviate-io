@@ -569,8 +569,8 @@ To retrieve properties from cross-referenced objects, specify:
 <TabItem value="go" label="Go">
   <FilteredTextBlock
     text={GoCode}
-    startMarker="// START GetWithCrossRefsGraph"
-    endMarker="// END GetWithCrossRefsGraph"
+    startMarker="// START GetWithCrossRefs"
+    endMarker="// END GetWithCrossRefs"
     language="go"
   />
 </TabItem>
@@ -650,8 +650,8 @@ You can specify metadata fields to be returned.
 <TabItem value="go" label="Go">
   <FilteredTextBlock
     text={GoCode}
-    startMarker="// START GetWithMetadataGraph"
-    endMarker="// END GetWithMetadataGraph"
+    startMarker="// START GetWithMetadata"
+    endMarker="// END GetWithMetadata"
     language="go"
   />
 </TabItem>
