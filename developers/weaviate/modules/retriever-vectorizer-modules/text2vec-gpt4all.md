@@ -45,7 +45,6 @@ This configuration enables `text2vec-gpt4all`, sets it as the default vectorizer
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

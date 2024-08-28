@@ -43,7 +43,6 @@ This configuration enables `text2vec-ollama`, sets it as the default vectorizer,
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

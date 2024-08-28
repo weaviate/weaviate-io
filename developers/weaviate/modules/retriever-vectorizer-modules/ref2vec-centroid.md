@@ -22,7 +22,6 @@ Which modules to use in a Weaviate instance can be specified in the `Docker Comp
 
 ```yaml
 ---
-version: '3.4'
 services:html
   weaviate:
     command:

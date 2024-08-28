@@ -83,7 +83,6 @@ A class-specific vectorizer setting will always take precedence over the default
 For example, you can specify the default vectorizer module in the `docker-compose.yml` file:
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     environment:

@@ -44,7 +44,6 @@ To use `text2vec-huggingface`, you must enable it in your Docker Compose file (`
 This configuration enables `text2vec-huggingface`, sets it as the default vectorizer, and sets the API keys.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

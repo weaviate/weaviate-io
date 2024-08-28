@@ -127,7 +127,6 @@ Once the inference container is configured and running, you can send queries it 
 First, expose the inference container. If deployed using Docker, forward the port by adding the following to the `t2v-transformers` service in your `docker-compose.yml`:
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     # Additional settings not shown

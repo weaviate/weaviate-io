@@ -83,7 +83,6 @@ Here is a full example of a Docker configuration, which uses the `generative-coh
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

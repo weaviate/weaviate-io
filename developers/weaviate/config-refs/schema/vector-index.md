@@ -217,7 +217,6 @@ To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable t
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

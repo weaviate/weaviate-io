@@ -48,7 +48,6 @@ This configuration enables `text2vec-voyageai`, sets it as the default vectorize
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

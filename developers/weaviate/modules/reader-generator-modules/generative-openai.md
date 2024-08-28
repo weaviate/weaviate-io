@@ -93,7 +93,6 @@ Here is a full example of a Docker configuration, which uses the `generative-ope
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

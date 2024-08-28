@@ -69,7 +69,6 @@ Here is a full example of a `Docker Compose` file - with the `text2vec-openai` a
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

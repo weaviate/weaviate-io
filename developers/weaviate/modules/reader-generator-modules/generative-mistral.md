@@ -60,7 +60,6 @@ This configuration enables `generative-mistral` and sets the Mistral authenticat
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

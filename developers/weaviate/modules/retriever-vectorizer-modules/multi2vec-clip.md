@@ -55,7 +55,6 @@ As of Weaviate `v1.24.2`, you can use multiple inference containers with `multi2
 This configuration enables `multi2vec-clip`, sets it as the default vectorizer, and sets the parameters for the Docker container, including setting it to use `multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1` image and to disable CUDA acceleration.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

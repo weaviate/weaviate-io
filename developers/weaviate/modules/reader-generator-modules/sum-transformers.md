@@ -46,7 +46,6 @@ An example Docker Compose file for using the `sum-transformers` module (with the
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:
