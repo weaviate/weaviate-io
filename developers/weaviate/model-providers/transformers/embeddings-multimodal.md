@@ -64,7 +64,6 @@ Follow the instructions on the [Weaviate Docker installation configurator](../..
 Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
 
 ```yaml
-
 services:
   weaviate:
     # Other Weaviate configuration
