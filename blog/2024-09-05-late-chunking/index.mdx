@@ -145,18 +145,33 @@ But when we apply late chunking we end returning the two exact paragraphs over w
       scale, infrastructure costs can quickly become prohibitive..."
     </td>
     <td>
-      2. <b>Chunk 1</b> (Similarity: 0.689): "tech stacks to evolve. This optionality, combined with ease of use, helps teams scale AI prototypes into production faster. Flexibility is also vital when it comes to architecture. Different use cases have different requirements. For example, we work with many software companies and those operating in regulated industries. They often require multi-tenancy to isolate data and maintain compliance. When building a Retrieval Augmented Generation (RAG) application, using account or user-specific data to contextualize results, data must remain within a dedicated tenant for its user group. Weaviate’s native, multi-tenant architecture shines for customers who need to prioritize"
+      2. <b>Chunk 1</b> (Similarity: 0.689): "tech stacks to evolve. This
+      optionality, combined with ease of use, helps teams scale AI prototypes
+      into production faster. Flexibility is also vital when it comes to
+      architecture. Different use cases have different requirements. For
+      example, we work with many software companies and those operating in
+      regulated industries. They often require multi-tenancy to isolate data and
+      maintain compliance. When building a Retrieval Augmented Generation (RAG)
+      application, using account or user-specific data to contextualize results,
+      data must remain within a dedicated tenant for its user group. Weaviate’s
+      native, multi-tenant architecture shines for customers who need to
+      prioritize"
     </td>
   </tr>
 </table>
 
-Intuitively we can as readers understand the link between the two chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighbouring chunks.
+Intuitively we as readers understand the link between the two correlated chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighbouring chunks.
 
 However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
 
 ## What does this mean for users building RAG applications?
 
 Many RAG setups today have to try and implement imperfect chunking heuristics to try and overcome this issue or utilise high strategies such as ColBERT to get the required performance. Late chunking is extremely promising as it lessens the requirement for very extremely tailored chunking strategies and provides a cost-effective path forward for users doing long context retrieval.
+
+However the potential benefits go even further. If our ability to retrieve the right context is improved and semantical related passages can be retrieved in groups, users should also be able to:
+
+- Reduce the total number of documents requested at query time.
+- Only pass the most relevant contexts to LLMs, which should result in faster, cheaper, and more accurate responses.
 
 ## What's next?
 
