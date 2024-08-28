@@ -17,7 +17,7 @@ const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your A
 const cohereApiKey = process.env.COHERE_APIKEY || '';  // Replace with your inference API key
 // END CohereInstantiation
 // START FriendliInstantiation
-const friendliApiKey = process.env.FRIENDLI_APIKEY || '';  // Replace with your inference API key
+const friendliApiKey = process.env.FRIENDLI_TOKEN || '';  // Replace with your inference API key
 // END FriendliInstantiation
 // START GoogleInstantiation  // START GoogleVertexInstantiation
 const vertexApiKey = process.env.VERTEX_APIKEY || '';  // Replace with your inference API key

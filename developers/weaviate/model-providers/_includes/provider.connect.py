@@ -27,11 +27,11 @@ cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
 # START FriendliInstantiation
 # Recommended: save sensitive data as environment variables
-friendli_key = os.getenv("FRIENDLI_APIKEY")
+friendli_key = os.getenv("FRIENDLI_TOKEN")
 # END FriendliInstantiation
 # START FriendliDedicatedInstantiation
 # Recommended: save sensitive data as environment variables
-friendli_key = os.getenv("FRIENDLI_APIKEY")
+friendli_key = os.getenv("FRIENDLI_TOKEN")
 # END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
 # Recommended: save sensitive data as environment variables

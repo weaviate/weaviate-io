@@ -24,7 +24,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integrations with FriendliAI APIs allow you to utilize a wide range of models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli Suite API key.
+[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli token.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative AI model to generate outputs.
 
@@ -53,12 +53,12 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid Friendli Suite API key to Weaviate for this integration. Go to [Friendli Suite](https://docs.friendli.ai/openapi/create-chat-completions) to sign up and obtain an API key.
+You must provide a valid Friendli Suite Token to Weaviate for this integration. Go to [Friendli Suite](https://docs.friendli.ai/openapi/create-chat-completions) to sign up and obtain a personal access token.
 
-Provide the API key to Weaviate using one of the following methods:
+Provide the Friendli token to Weaviate using one of the following methods:
 
-- Set the `FRIENDLI_APIKEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+- Set the `FRIENDLI_TOKEN` environment variable that is available to Weaviate.
+- Provide the token at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
