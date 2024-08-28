@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
+import Head from '@docusaurus/Head';
 
 import HomepageHeader from '/src/components/Home/Redesign/Header';
 import HomepageWhatYouCanDo from '/src/components/Home/Redesign/WhatYouCanDoUpdate';
@@ -20,9 +21,13 @@ export default function Home() {
 
   return (
     <div className="custom-page noBG">
-      <Layout title="Welcome" description="Welcome to Weaviate">
+      <Layout
+        title="The AI-native database developers love"
+        description="Bring AI-native applications to life with less hallucination, data leakage, and vendor lock-in"
+      >
         <MetaSEO img="og/website/home.jpg" />
         <HomepageHeader />
+
         <main>
           <HomepageLovedByDevelopers />
           <HomepageTestimonials />
