@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"strings"
 	"testing"
 	"time"
@@ -29,7 +30,7 @@ func TestSingleFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// SingleFilterGo
+	// START SingleFilter Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{Name: "round"}).
@@ -41,7 +42,7 @@ func TestSingleFilter(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END SingleFilterGo
+	// END SingleFilter Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -63,7 +64,7 @@ func TestSingleFilterNearText(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// SingleFilterNearTextGo
+	// START searchFilterNearText Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{Name: "round"}, graphql.Field{Name: "points"}).
@@ -77,7 +78,7 @@ func TestSingleFilterNearText(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END SingleFilterNearTextGo
+	// END searchFilterNearText GO
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -90,7 +91,7 @@ func TestSingleFilterNearText(t *testing.T) {
 		assert.Greater(t, question["points"].(float64), float64(200))
 	}
 }
-	*/
+*/
 
 // ==========================================
 // ===== ContainsAny Filter =====
@@ -100,7 +101,7 @@ func TestContainsAnyFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// ContainsAnyFilter
+	// START ContainsAnyFilter Go
 	// highlight-start
 	tokenList := []string{"australia", "india"}
 	// highlight-end
@@ -116,7 +117,7 @@ func TestContainsAnyFilter(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END ContainsAnyFilter
+	// END ContainsAnyFilter Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -139,7 +140,7 @@ func TestContainsAllFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// ContainsAllFilter
+	// START ContainsAllFilter Go
 	// highlight-start
 	tokenList := []string{"blue", "red"}
 	// highlight-end
@@ -155,7 +156,7 @@ func TestContainsAllFilter(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END ContainsAllFilter
+	// END ContainsAllFilter Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -178,7 +179,7 @@ func TestLikeFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// LikeFilterGo
+	// START LikeFilter Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{Name: "round"}).
@@ -190,7 +191,7 @@ func TestLikeFilter(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END LikeFilterGo
+	// END LikeFilter Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -208,12 +209,11 @@ func TestLikeFilter(t *testing.T) {
 // ===== Multiple Filters with And =====
 // ==========================================
 
-
 func TestMultipleFiltersAnd(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// MultipleFiltersAndGo
+	// START MultipleFiltersAnd Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}, graphql.Field{Name: "round"}, graphql.Field{Name: "points"}).
@@ -228,7 +228,7 @@ func TestMultipleFiltersAnd(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END MultipleFiltersAndGo
+	// END MultipleFiltersAnd Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -243,7 +243,6 @@ func TestMultipleFiltersAnd(t *testing.T) {
 	}
 }
 
-
 // ==========================================
 // ===== Multiple Filters with Nesting =====
 // ==========================================
@@ -252,13 +251,11 @@ func TestMultipleFiltersNested(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-
-	// MultipleFiltersNestedGo
-	operands :=[]*filters.WhereBuilder{
+	// START MultipleFiltersNested Go
+	operands := []*filters.WhereBuilder{
 		filters.Where().WithPath([]string{"points"}).WithOperator(filters.GreaterThan).WithValueInt(700),
 		filters.Where().WithPath([]string{"points"}).WithOperator(filters.LessThan).WithValueInt(300),
 	}
-
 
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
@@ -270,7 +267,7 @@ func TestMultipleFiltersNested(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END MultipleFiltersNestedGo
+	// END MultipleFiltersNested Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -286,7 +283,6 @@ func TestMultipleFiltersNested(t *testing.T) {
 	}
 }
 
-
 // ===================================================
 // ===== Filters using Cross-referenced property =====
 // ===================================================
@@ -295,7 +291,7 @@ func TestCrossReference(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// CrossReferenceGo
+	// START CrossReference Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -317,7 +313,7 @@ func TestCrossReference(t *testing.T) {
 		// highlight-end
 		WithLimit(3).
 		Do(ctx)
-	// END CrossReferenceGo
+	// END CrossReference Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -335,6 +331,59 @@ func TestCrossReference(t *testing.T) {
 	}
 }
 
+func TestFilterByDate(t *testing.T) {
+	client := setupClient() // Assume this function is defined elsewhere to set up the Weaviate client
+	ctx := context.Background()
+
+	// START FilterByDateDatatype Go
+	// Note: In Go, months are 1-indexed
+	filterTime := time.Date(2020, 6, 10, 0, 0, 0, 0, time.UTC)
+	// Alternatively, you can use an RFC 3339 timestamp:
+	// filterTime, _ := time.Parse(time.RFC3339, "2022-06-10T00:00:00Z")
+
+	collectionWithDate := client.Collections().GetCollection("CollectionWithDate") // Adjust the collection name as needed
+
+	result, err := collectionWithDate.Query().
+		WithLimit(3).
+		WithFields(graphql.Field{Name: "some_date"}).
+		WithWhere(filters.Where().
+			WithPath([]string{"some_date"}).
+			WithOperator(filters.GreaterThan).
+			WithValueDate(filterTime)).
+		Do(ctx)
+	// END FilterByDateDatatype Go
+
+	// Check for errors
+	require.NoError(t, err, "Error executing query")
+
+	// Assert that we got results
+	objects, ok := result.Data["Get"].(map[string]interface{})["CollectionWithDate"].([]interface{})
+	require.True(t, ok, "Failed to get objects from result")
+	require.NotEmpty(t, objects, "No objects returned from query")
+
+	// Check each object
+	for _, obj := range objects {
+		properties, ok := obj.(map[string]interface{})
+		require.True(t, ok, "Object is not a map")
+
+		// Print the properties for debugging
+		jsonProperties, err := json.MarshalIndent(properties, "", "  ")
+		require.NoError(t, err, "Error marshaling properties to JSON")
+		t.Logf("Object properties: %s", jsonProperties)
+
+		// Assert that 'some_date' exists and is after filterTime
+		someDate, ok := properties["some_date"].(string)
+		require.True(t, ok, "'some_date' is not a string")
+
+		objectTime, err := time.Parse(time.RFC3339, someDate)
+		require.NoError(t, err, "Error parsing 'some_date'")
+
+		assert.True(t, objectTime.After(filterTime), "Object date is not after filter date")
+	}
+
+	// Assert that we got no more than 3 results
+	assert.LessOrEqual(t, len(objects), 3, "Got more than 3 results")
+}
 
 // ========================================
 // FilterByID
@@ -344,7 +393,7 @@ func TestFilterById(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START FilterById
+	// START FilterById Go
 	targetID := "00037775-1432-35e5-bc59-443baaef7d80"
 	response, err := client.GraphQL().Get().
 		WithClassName("Article").
@@ -353,24 +402,23 @@ func TestFilterById(t *testing.T) {
 			WithPath([]string{"id"}).
 			WithOperator(filters.Equal).
 			WithValueString(targetID)).
-			WithFields(
-				graphql.Field{Name: "question"},
-				graphql.Field{
-					Name: "_additional",
-					Fields: []graphql.Field{
-						{Name: "id"},
-					},
+		WithFields(
+			graphql.Field{Name: "question"},
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "id"},
 				},
-			).
+			},
+		).
 		Do(ctx)
-	// END FilterById
+	// END FilterById Go
 
 	require.NoError(t, err)
 
 	outBytes, err := json.Marshal(response)
 	require.NoError(t, err)
 	fmt.Printf("%s\n", string(outBytes))
-
 
 	object := response.Data["Get"].(map[string]interface{})["Article"].([]interface{})[0].(map[string]interface{})
 	assert.Equal(t, targetID, object["_additional"].(map[string]interface{})["id"])
@@ -384,15 +432,15 @@ func TestFilterByTimestamp(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START FilterByTimestamp
+	// START FilterByTimestamp Go
 	timestampStr := "2020-01-01T00:00:00+00:00"
-layout := "2006-01-02T15:04:05Z07:00"
+	layout := "2006-01-02T15:04:05Z07:00"
 
-timestamp, err := time.Parse(layout, timestampStr)
-if err != nil {
-    fmt.Println("Error parsing time:", err)
-    return
-}
+	timestamp, err := time.Parse(layout, timestampStr)
+	if err != nil {
+		fmt.Println("Error parsing time:", err)
+		return
+	}
 
 	response, err := client.GraphQL().Get().
 		WithClassName("Article").
@@ -401,18 +449,18 @@ if err != nil {
 			WithPath([]string{"_creationTimeUnix"}).
 			WithOperator(filters.GreaterThan).
 			WithValueDate(timestamp)).
-			WithFields(
-				graphql.Field{Name: "question"},
-				graphql.Field{
-					Name: "_additional",
-					Fields: []graphql.Field{
-						{Name: "creationTimeUnix"},
-					},
+		WithFields(
+			graphql.Field{Name: "question"},
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "creationTimeUnix"},
 				},
-			).
+			},
+		).
 		WithLimit(3).
 		Do(ctx)
-	// END FilterByTimestamp
+	// END FilterByTimestamp Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -435,7 +483,7 @@ func TestFilterByPropertyLength(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START FilterByPropertyLength
+	// START FilterByPropertyLength Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "answer"}).
@@ -445,7 +493,7 @@ func TestFilterByPropertyLength(t *testing.T) {
 			WithValueInt(20)).
 		WithLimit(3).
 		Do(ctx)
-	// END FilterByPropertyLength
+	// END FilterByPropertyLength Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -467,7 +515,7 @@ func TestFilterByPropertyNullState(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START FilterByPropertyNullState
+	// START FilterByPropertyNullState Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{Name: "points"}).
@@ -477,7 +525,7 @@ func TestFilterByPropertyNullState(t *testing.T) {
 			WithValueBoolean(true)).
 		WithLimit(3).
 		Do(ctx)
-	// END FilterByPropertyNullState
+	// END FilterByPropertyNullState Go
 
 	require.NoError(t, err)
 	outBytes, err := json.Marshal(response)
@@ -496,43 +544,45 @@ func TestFilterByPropertyNullState(t *testing.T) {
 // ========================================
 
 // TODO - Add geolocation data to the test data set & uncomment this section
-/*
+
 func TestFilterByGeolocation(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START FilterbyGeolocation
-	query := `
-	{
-		Get {
-			Publication(where: {
-				operator: WithinGeoRange,
-				valueGeoRange: {
-					geoCoordinates: {
-						latitude: 52.3932696,    # latitude
-						longitude: 4.8374263     # longitude
-					},
-					distance: {
-						max: 1000           # distance in meters
-					}
-				},
-				path: ["headquartersGeoLocation"]  # property needs to be a geoLocation data type.
-			}) {
-				name
-				headquartersGeoLocation {
-					latitude
-					longitude
-				}
-			}
-		}
+	// START FilterbyGeolocation Go
+	publications := client.Collections().GetCollection("Publication")
+
+	geoFilter := filters.Where().
+		WithPath([]string{"headquartersGeoLocation"}).
+		WithOperator(filters.WithinGeoRange).
+		WithValueGeoRange(&filters.GeoCoordinatesParameter{
+			Latitude:    52.39,
+			Longitude:   4.84,
+			MaxDistance: 1000,
+		})
+
+	geoResult, err := publications.Query().
+		WithWhere(geoFilter).
+		WithFields(graphql.Field{Name: "name"}).
+		WithFields(graphql.Field{
+			Name: "headquartersGeoLocation",
+			Fields: []graphql.Field{
+				{Name: "latitude"},
+				{Name: "longitude"},
+			},
+		}).
+		Do(ctx)
+
+	if err != nil {
+		log.Fatalf("Error executing query: %v", err)
 	}
-	`
 
-	result, err := client.GraphQL().Raw().WithQuery(query).Do(ctx)
-	require.NoError(t, err)
-	fmt.Printf("%s\n", result)
-	// END FilterbyGeolocation
+	// Pretty print the result
+	resultJSON, err := json.MarshalIndent(geoResult.Data, "", "  ")
+	if err != nil {
+		log.Fatalf("Error marshaling result to JSON: %v", err)
+	}
+	fmt.Printf("%s\n", resultJSON)
+	// END FilterbyGeolocation Go
 
-	// Add assertions here
 }
-*/
