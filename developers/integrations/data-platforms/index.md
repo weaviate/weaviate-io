@@ -8,6 +8,7 @@ Data Platforms offer robust solutions for managing, processing, and analyzing la
 
 Learn about how Weaviate integrates with these solutions:
 * [Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud)
+* [Context Data](/developers/integrations/data-platforms/context-data/)
 * [Spark](/developers/integrations/data-platforms/spark)
 * [Unstructured](/developers/integrations/data-platforms/unstructured)
 * [Firecrawl](/developers/integrations/data-platforms/firecrawl/)
