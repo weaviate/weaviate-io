@@ -36,7 +36,6 @@ As an example, the snippet below maps `50051` as the host port so that it can be
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     # ... Other settings

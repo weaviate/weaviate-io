@@ -304,7 +304,6 @@ Using Docker Compose may be a convenient option for many. To do so:
 1. Save this `Docker Compose` file as `docker-compose.yml`,
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

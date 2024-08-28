@@ -522,7 +522,7 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 > Then, make a `docker-compose.yml` file with this new image. For example:
 >
 > ```yml
-> version: '3.4'
+>
 > services:
 >   weaviate:
 >     image: name-of-your-weaviate-image

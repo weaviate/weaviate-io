@@ -1,5 +1,4 @@
 ---
-version: '3.4'
 services:
   weaviate-node-1:  # Founding member service name
     command:

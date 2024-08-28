@@ -61,7 +61,6 @@ This configuration enables `generative-anyscale` and sets the Anyscale authentic
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

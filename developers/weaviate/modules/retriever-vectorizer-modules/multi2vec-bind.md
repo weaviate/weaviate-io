@@ -64,7 +64,6 @@ Inference container:
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:
