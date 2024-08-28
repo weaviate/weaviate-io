@@ -23,7 +23,7 @@ export default function Resources() {
                 className={`${styles.resourceIcon} ${styles.resource1}`}
               ></div>
               <h3>Blog</h3>
-              <p>Concepts, releases, research, how-tos and more.</p>
+              <p>Concepts, releases, research, how-tos, and more.</p>
             </div>
           </Link>
           <Link to="/developers/academy">
