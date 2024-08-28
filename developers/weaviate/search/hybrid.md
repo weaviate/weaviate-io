@@ -59,14 +59,14 @@ Combine the results of a vector search and a keyword search. The search uses a s
 />
 </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START Basic"
-      endMarker="// END Basic"
-      language="go"
-    />
-  </TabItem>
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START Basic"
+    endMarker="// END Basic"
+    language="go"
+  />
+</TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
