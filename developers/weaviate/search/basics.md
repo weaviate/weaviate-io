@@ -402,8 +402,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 <TabItem value="go" label="Go">
   <FilteredTextBlock
     text={GoCode}
-    startMarker="// START GetObjectVectorGraph"
-    endMarker="// END GetObjectVectorGraph"
+    startMarker="// START GetObjectVector"
+    endMarker="// END GetObjectVector"
     language="go"
   />
 </TabItem>
