@@ -21,4 +21,4 @@ Weaviate is a [target connection](https://context-data.gitbook.io/context-data-1
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| VectorETL into Weaviate | Three examples showing you how to ingest data from Google Cloud Storage, Postgress, and S3 into Weaviate. | [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/data-platforms/context-data) |
+| VectorETL into Weaviate | Three examples showing you how to ingest data from Google Cloud Storage, Postgres, and S3 into Weaviate. | [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/data-platforms/context-data) |
