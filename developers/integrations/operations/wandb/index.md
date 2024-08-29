@@ -4,4 +4,17 @@ sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
-Home page for Weights and Biases
+[Weights and Biases(W&B)](https://wandb.ai/site) is an AI developer platform with products such as `Models` and `Weave`. Weights and Biases is famous for `Models` and machine learning model training visualizations such as `runs` and `sweeps`.
+
+## Weights and Biases and Weaviate 
+`Weave` from W&B offers a user interface and data analysis APIs for monitoring applications using LLM, RAG, Agents, and Vector Databases.
+
+## Our Resources 
+[**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
+
+### Hands on Learning
+
+| Topic | Description | Resource | 
+| --- | --- | --- |
+| W&B Logging with DSPy and Cohere RAG app | An example of using wandb logging to monitor optimizing a RAG system with DSPy, Weaviate, and Cohere. | [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/observability-and-evaluation/weights_and_biases) |
+
