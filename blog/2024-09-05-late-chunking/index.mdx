@@ -9,7 +9,7 @@ tags: ['concepts']
 description: 'Learn about Late Chunking and how it may be the best fit for you long context retrieval applications'
 ---
 
-Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. For users looking to build large-scale RAG applications, the difficulties of developing precise long context retrieval applications will be a very familiar.
+Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. For users looking to build large-scale RAG applications, the difficulties of developing precise long context retrieval applications will be very familiar.
 
 This article explores why late chunking may just be the happy medium between naive (but cheap) solutions and more precise (but expensive) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
 
@@ -53,7 +53,21 @@ This sliding window approach itself may actually result in the loss of important
 
 Late interaction's core benefit is through the contextual information stored in each individual token representation being compared directly with each token representation in the query, without any pooling method being applied. While this approach is highly performant it can quickly become prohibitive for users from a storage and cost perspective.
 
-For example, If I have a document that has **8000 tokens**, each of those tokens will need to be stored in my vector index. Extend this to **100k documents** and we now need to store **800 million vectors** for a use case that could be solved with more than **1/500th of resources using the naive approach** (assuming fixed embedding sizes of 512 tokens).
+For example, let's compare the storage requirements for a long context model that outputs **8000 token-level embeddings**:
+
+:::note
+This comparison assumes a fixed chunking strategy of 512 tokens for the naive approach. Where the text is split into chunks of 512 tokens, and each of those text chunks are individually embedded.
+:::
+
+| Approach                               | Number of embeddings | Number of Documents | Total Vectors Stored |
+| -------------------------------------- | -------------------- | ------------------- | -------------------- |
+| **Late Interaction (no pooling)**      | 8,000 (tokens)       | 100,000             | 800 million          |
+| **Naive Approach (pooling + chunked)** | 8,000 / 512 (tokens) | 100,000             | ~1.6 million         |
+
+**Key Takeaway:**
+
+- The naive approach requires only **1/500th** of the storage resources compared to late interaction.
+- Late interaction, while more precise, demands significantly more storage capacity.
 
 ### Too hot, too cold, just right?
 
