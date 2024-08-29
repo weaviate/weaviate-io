@@ -98,13 +98,18 @@
 
   a {
     height: 45px;
-    width: 340px;
+    width: 440px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
     cursor: pointer;
     text-decoration: none;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      padding: 40px;
+    }
   }
 
   .buttonGradient {
