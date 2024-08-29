@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: August, 2024**
+**Last Updated: 29th August, 2024**
 <br></br>
 
 
