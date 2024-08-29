@@ -5,7 +5,7 @@ image: og/integrations/home.jpg
 ---
 [Ragas](https://docs.ragas.io/en/stable/) is a framework to help you evaluate your retrieval augmented generation (RAG) applications.
 
-## Nomic and Weaviate 
+## Ragas and Weaviate 
 You'll need to store the `question`, `answer`, `ground_truths`, and `contexts` in a json to load it into Ragas. The Ragas metrics are:
 * faithfulness
 * answer_relevancy
