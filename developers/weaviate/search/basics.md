@@ -236,8 +236,8 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 <TabItem value="go" label="Go">
   <FilteredTextBlock
     text={GoCode}
-    startMarker="// START GetWithLimitOffset"
-    endMarker="// END GetWithLimitOffset"
+    startMarker="// START GetWithOffset"
+    endMarker="// END GetWithOffset"
     language="go"
   />
 </TabItem>

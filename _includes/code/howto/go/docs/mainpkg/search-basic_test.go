@@ -78,7 +78,7 @@ func TestGetWithLimitOffset(t *testing.T) {
 	t.Run("Get With Limit Offset", func(t *testing.T) {
 		ctx := context.Background()
 
-		// START GetWithLimitOffset
+		// START GetWithOffset
 		response, err := client.GraphQL().Get().
 			WithClassName("JeopardyQuestion").
 			WithFields(graphql.Field{Name: "question"}).
@@ -87,7 +87,7 @@ func TestGetWithLimitOffset(t *testing.T) {
 			WithOffset(1).
 			// highlight-end
 			Do(ctx)
-		// END GetWithLimitOffset
+		// END GetWithOffset
 
 		require.NoError(t, err)
 		t.Logf("%+v", response)
