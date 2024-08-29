@@ -713,7 +713,6 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="js"
     />
   </TabItem>
-
  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}

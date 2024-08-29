@@ -1,18 +1,39 @@
 ---
-title: Legacy (v3) API
+title: "Legacy (v3) API (DEPRECATED)"
 sidebar_position: 80
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
 
-:::note Python client version
-The current Python client version is `v||site.python_client_version||`
-:::
+:::info `v3` client is deprecated
+This document relates to the legacy `v3` client and API.
+<br/>
 
-:::info `v4` client available
-This document relates to the legacy `v3` client and API. We recommend you upgrade to the [`v4` client](./index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
+Starting in December 2024, the `v4` [client installations](https://pypi.org/project/weaviate-client/) will no longer include the `v3` API (i.e. the `weaviate.Client` class). This will help us to provide the best developer experience for you, support for the latest features, and clearly separate the two.
+<br/>
 
-We also have a [migration guide for moving from `v3` client to the `v4`](./v3_v4_migration.md).
+The `v3` client will continue to get critical security updates and bugfixes for the foreseeable future, but it will not support any new features.
+<br/>
+
+**What does this mean for me?**
+<br/>
+
+To take advantage of the latest developments on the Weaviate core database, we recommend migrating your codebase to use the [`v4` client API](./index.md).
+<br/>
+
+Our documentation includes [a migration guide here](./v3_v4_migration.md), and many code examples include both `v3` and `v4` syntax. We will be adding more dedicated resources for you to ease the migration experience.
+<br/>
+
+If you have an existing codebase and Weaviate core database that you expect to remain static, we recommend pinning the version in your requirements file (e.g. `requirements.txt`), like so:
+
+```bash
+  weaviate-client>=3.26.7,<4.0.0
+```
+
+We appreciate that code migration can be cumbersome, but we feel strongly that the end experience and feature set will make your time worthwhile.
+<br/>
+
+If you have specific requests for migration documentation or resources, please reach out through [our GitHub repository](https://github.com/weaviate/weaviate-io/issues).
 :::
 
 ## Installation and setup
