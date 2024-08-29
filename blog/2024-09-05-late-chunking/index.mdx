@@ -1,11 +1,11 @@
 ---
-title: 'Late Chunking: A cheaper, and simpler alternative to ColBERT'
+title: 'Late Chunking: Balancing Precision and Cost in Long Context Retrieval'
 slug: late-chunking
 authors: [charles-pierse, connor, akanksha]
 date: 2024-09-05
 tags: ['concepts']
 # image: ./img/hero.png
-description: 'Learn about Late Chunking and how it may be the best fit for balancing cost and performance in your long context retrieval applications'
+description: 'Learn about Late Chunking and how it may be the right fit for balancing cost and performance in your long context retrieval applications'
 ---
 
 Large-scale RAG applications that require long context retrieval deal with a unique set of challenges. The volume of data is often huge, while the precision of the retrieval system is critical. However, ensuring high-quality retrieval in such systems is often at odds with cost and performance. For users this can present a difficult balancing act. But there may be a new solution that can even the scales.
@@ -46,7 +46,7 @@ On the other side of this is the ColBERT approach which utilizes [late interacti
 
 While ColBERT was not initially designed to work with long context, [recent extensions](https://blog.vespa.ai/announcing-long-context-colbert-in-vespa/) to the underlying model have successfully extended the capabilities (via a sliding window approach) to achieve this. It is worth noting that this sliding window approach itself may actually result in the loss of important contextual information as it is a heuristic approach to creating overlaps in chunks and does not guarantee that all tokens have to ability to attend to all other tokens in the document.
 
-Late interaction's core benefit is through the **contextual information** stored in **each individual token representation** being compared directly with each token representation in the query, without any pooling method being applied ahead of retrieval. While this approach is highly performant it can quickly become prohibitive for users from a storage and cost perspective.
+Late interaction's core benefit is through the **contextual information** stored in **each individual token representation** being compared directly with each token representation in the query, without any pooling method being applied ahead of retrieval. While this approach is highly performant it can become expensive for users from a storage and cost perspective depending on their use case.
 
 For example, let's compare the storage requirements for a long context model that outputs **8000 token-level embeddings** and either uses late interaction or naive chunking:
 
@@ -126,14 +126,14 @@ The two chunks that sentence was split between are:
 :::note
 The comparison below compares a naive chunking approach with late chunking using the same long context model (jina-embeddings-v2-base-en) and the same chunking strategy (num tokens = 128).
 
-We do not include ColBERT in this comparison as for this qualitative comparison there is only a single document, therefore ColBERT in a retrieval setup would only have one document it can return. However, in our linked notebook we have include a ColBERT comparison using it as a reranker.
+We do not include ColBERT in this comparison as for this qualitative experiment there is only a single document, therefore ColBERT in a retrieval setup would only have one document it can return. However, in our linked notebook we have included a ColBERT comparison using it as a reranker.
 :::
 
 To answer the query:
 
 > what do customers need to prioritise?
 
-We need to return **both** of the above chunks. However, with the naive approach we end up with two separate chunks that are not neighboring one another.
+We need to return **both** of the above chunks for a gold standard answer. However, with the naive approach we end up with two separate chunks that are not neighboring one another.
 
 But when we apply late chunking we end returning the two exact paragraphs over which the query is most relevant.
 
@@ -195,10 +195,8 @@ We believe that late chunking is extremely promising for a number of reasons:
 
 ## Conclusion
 
-In retrieval, there is no one-size-fits-all solution and the best approach will always be that which solves the user's problem given their specific constraints. However, if you want to avoid the pitfalls of naive chunking and the high potential costs of ColBERT, late chunking may be a great alternative when you need to strike a balance between cost and performance.
+In retrieval, there is no one-size-fits-all solution and the best approach will always be that which solves the **user's problem** given their specific constraints. However, if you want to avoid the pitfalls of naive chunking and the high potential costs of ColBERT, late chunking may be a great alternative for you to explore when you need to strike a balance between cost and performance.
 
-Late chunking is a new approach and as such there is limited data available on its performance in benchmarks, which for long context retrieval are already scarcely available.
-
-The initial [quantitative benchmarks from JinaAI](https://github.com/jina-ai/late-chunking) are promising showing improved results across the board against naive chunking. Specifically the relative uplift in performance from late chunking was also shown to improve as the document length in characters increased, which makes sense given where the late chunking operation comes into effect.
+Late chunking is a new approach and as such there is limited data available on its performance in benchmarks, which for long context retrieval are already scarcely available. The initial [quantitative benchmarks from JinaAI](https://github.com/jina-ai/late-chunking) are promising showing improved results across the board against naive chunking. Specifically the relative uplift in performance from late chunking was also shown to improve as the **document length in characters increased**, which makes sense given where the late chunking operation comes into effect.
 
 We are keen to test late chunking out in further detail, particularly in benchmarks designed for assessing performance in long embedding retrieval. So stay tuned for more on this topic as we continue to explore the benefits of late chunking and integrate it into Weaviate.
