@@ -20,9 +20,18 @@ Late chunking's similarity in name to late interaction is no coincidence, the au
 
 ![Chunking Strategies](./img/chunking-strategies.png)
 
-Late chunking aims to help preserve contextual information across large documents by performing the pooling step of embedding models' token representations at a later stage. To do this late chunking utilizes a long context embedding model to create token embeddings for every token in a document which are later broken up and pooled into multiple embeddings representing each chunk in the text.
+Late chunking is a novel approach that aims to preserve contextual information across large documents by inverting the traditional order of embedding and chunking. The key distinction lies in when the chunking occurs:
 
-In typical setups, all of these token embeddings would be pooled (mean, cls etc) into a single vector representation. However, with the onset of RAG it has become a concern that a single vector for long documents does not preserve enough contextual information and ultimately results in sacrificing precision during retrieval. Additionally, very long documents can result in more expensive calls to LLMs, increased latency, and a higher chance of hallucination as a result.
+1. Traditional approach: Chunk first, then embed each chunk separately.
+2. Late chunking: Embed the entire document first, then chunk the embeddings.
+
+This method utilizes a long context embedding model to create token embeddings for every token in a document. These token-level embeddings are then broken up and pooled into multiple embeddings representing each chunk in the text.
+
+In typical setups, all token embeddings would be pooled (mean, cls, etc.) into a single vector representation for the entire document. However, with the rise of RAG applications, there's growing concern that a single vector for long documents doesn't preserve enough contextual information, potentially sacrificing precision during retrieval.
+
+Late chunking addresses this by maintaining the contextual relationships between tokens across the entire document during the embedding process, and only afterwards dividing these contextually-rich embeddings into chunks. This approach aims to strike a balance between the precision of full-document embedding and the granularity needed for effective retrieval.
+
+Additionally, this method can help mitigate issues associated with very long documents, such as expensive LLM calls, increased latency, and a higher chance of hallucination.
 
 ## Current Approaches to Long Context Retrieval
 
@@ -182,6 +191,16 @@ But when we apply late chunking we end returning the two exact paragraphs over w
 Intuitively we as readers understand the link between the two correlated chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighboring chunks.
 
 However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
+
+Let's revisit our theoretical storage comparison from earlier:
+
+| Approach                                       | Total embeddings required per document | Number of Documents | Total Vectors Stored |
+| ---------------------------------------------- | -------------------------------------- | ------------------- | -------------------- |
+| **Late Interaction (no pooling)**              | 8,000                                  | 100,000             | 800 million          |
+| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | ~1.6 million         |
+| **Late Chunking (chunking after inference)**   | 16 ( 8,000 / 512 )                     | 100,000             | ~1.6 million         |
+
+As we can see late chunking offers the same reduction in storage requirements as the naive approach while giving stronger preservation of the contextual information that late interaction offers.
 
 ## What this means for users building RAG applications?
 
