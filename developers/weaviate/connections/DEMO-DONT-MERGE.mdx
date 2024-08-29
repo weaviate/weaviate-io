@@ -1,0 +1,48 @@
+---
+title: FORMAT DEMO
+sidebar_position: 20
+image: og/docs/connect.jpg
+# tags: ['getting started', 'connect']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
+
+
+<Tabs groupId="languages">
+<TabItem value="go" label="GoFormat">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="go"
+   />
+</TabItem>
+<TabItem value="go-js" label="JsFormat">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go-py" label="PyFormat">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="py"
+   />
+</TabItem>
+<TabItem value="go-java" label="JavaFormat">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START LocalNoAuth"
+     endMarker="// END LocalNoAuth"
+     language="java"
+   />
+</TabItem>
+</Tabs>
