@@ -39,35 +39,32 @@ If we were to chunk this paragraph by sentences we would get:
 2. _She saw a rabbit hole at the base of a large tree._
 3. _She fell into the hole and found herself in a strange new world._
 
-Now imagine that a user has populated their vector database with multiple documents, paragraphs from a book, or even multiple books. If they were to ask "Where did Alice fall" we as humans can intuitively understand that the coreference of "her" in sentence 3 refers to Alice from the first sentence. However, since these embeddings were created independently of one another there is no way for the model representation of sentence 3 to represent this relationship to the name Alice.
+Now imagine that a user has populated their vector database with multiple documents, paragraphs from a book, or even multiple books. If they were to ask **"Where did Alice fall"** we as humans can intuitively understand that the coreference of "her" in sentence 3 refers to Alice from sentence 1. However, since these embeddings were created independently of one another there is no way for the model representation of sentence 3 to account for this relationship to the name Alice.
 
 ### Late Interaction and ColBERT
 
 On the other side of this is the ColBERT approach which utilizes [late interaction](https://arxiv.org/pdf/2004.12832). Unlike the naive approach described above, late interaction performs no pooling step on the token embeddings belonging to the query and document. Instead, each query token is compared with all document tokens. In a retrieval setup each document has its token-level representations stored in a vector index and then at query time they can be compared via late interaction.
 
-While ColBERT was not initially designed to work with long context, [recent extensions](https://blog.vespa.ai/announcing-long-context-colbert-in-vespa/) to the underlying model have extended the capabilities (via a sliding window approach) to achieve this.
+While ColBERT was not initially designed to work with long context, [recent extensions](https://blog.vespa.ai/announcing-long-context-colbert-in-vespa/) to the underlying model have successfully extended the capabilities (via a sliding window approach) to achieve this. It is worth noting that this sliding window approach itself may actually result in the loss of important contextual information as it is a heuristic approach to creating overlaps in chunks and does not guarantee that all tokens have to ability to attend to all other tokens in the document.
 
-:::note
-This sliding window approach itself may actually result in the loss of important contextual information as it is a heuristic approach to creating overlaps in chunks.
-:::
+Late interaction's core benefit is through the **contextual information** stored in **each individual token representation** being compared directly with each token representation in the query, without any pooling method being applied ahead of retrieval. While this approach is highly performant it can quickly become prohibitive for users from a storage and cost perspective.
 
-Late interaction's core benefit is through the contextual information stored in each individual token representation being compared directly with each token representation in the query, without any pooling method being applied. While this approach is highly performant it can quickly become prohibitive for users from a storage and cost perspective.
-
-For example, let's compare the storage requirements for a long context model that outputs **8000 token-level embeddings**:
+For example, let's compare the storage requirements for a long context model that outputs **8000 token-level embeddings** and either uses late interaction or naive chunking:
 
 :::note
 This comparison assumes a fixed chunking strategy of 512 tokens for the naive approach. Where the text is split into chunks of 512 tokens, and each of those text chunks are individually embedded.
 :::
 
-| Approach                          | Number of embeddings | Number of Documents | Total Vectors Stored |
-| --------------------------------- | -------------------- | ------------------- | -------------------- |
-| **Late Interaction (no pooling)** | 8,000 (tokens)       | 100,000             | 800 million          |
-| **Naive Approach (chunking)**     | 8,000 / 512 (tokens) | 100,000             | ~1.6 million         |
+| Approach                                       | Total embeddings required per document | Number of Documents | Total Vectors Stored |
+| ---------------------------------------------- | -------------------------------------- | ------------------- | -------------------- |
+| **Late Interaction (no pooling)**              | 8,000                                  | 100,000             | 800 million          |
+| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | ~1.6 million         |
 
 **Key Takeaway:**
 
 - The naive approach requires only **1/500th** of the storage resources compared to late interaction.
 - Late interaction, while more precise, demands significantly more storage capacity.
+- As we will see later, late chunking can offer the **same reduction in storage requirements** as the naive approach while preserving the contextual information that late interaction offers.
 
 ### Too hot, too cold, just right?
 
@@ -81,7 +78,7 @@ As mentioned earlier late chunking origins are linked closely with late interact
 
 Unlike late interaction, there is a pooling step that occurs after the initial inference. This pooling differs from traditional embedding models that pool all representations from every token into a single representation. In late interaction, this pooling is done on segments of the text according to some predetermined chunking strategy that can be aligned based on token spans or boundary cues, thus the term late chunking.
 
-The result is that a long document is still represented by numerous embeddings but critically those embeddings are primed with contextual information relevant to their neighbouring chunks.
+The result is that a long document is still represented by numerous embeddings but critically those embeddings are primed with contextual information relevant to their neighboring chunks.
 
 ### What's required
 
@@ -89,7 +86,7 @@ Late chunking requires a relatively simple alteration to the pooling step that c
 
 There are however some requirements needed ahead of performing late chunking:
 
-1. **Long context models** are a requirement as we need token representation for the entirety of the long document to make them contextually aware. Notably, JinaAI tested using their model [jina-embeddings-v2-base-en](https://huggingface.co/jinaai/jina-embeddings-v2-base-en) which has the highest performance to parameter ratio on MTEBs long embed retrieval benchmark. This model supports up to 8192 tokens which is roughly equivalent to 10 standard pages of text. This model also uses a mean pooling strategy in typical behaviour which is a requirement for any model looking to take advantage of late interaction.
+1. **Long context models** are a requirement as we need token representation for the entirety of the long document to make them contextually aware. Notably, JinaAI tested using their model [jina-embeddings-v2-base-en](https://huggingface.co/jinaai/jina-embeddings-v2-base-en) which has the highest performance to parameter ratio on MTEBs long embed retrieval benchmark. This model supports up to 8192 tokens which is roughly equivalent to 10 standard pages of text. This model also uses a mean pooling strategy in typical behavior which is a requirement for any model looking to take advantage of late interaction.
 
 2. **Chunking logic:** being able to chunk text ahead of inference as well as associating each chunk with its corresponding token spans is also critical to making late chunking work. Luckily there are many ways to create chunks in this manner and given late chunking's ability to condition each chunk on previous ones chunking approaches like fixed-size chunking without any overlap may be all that is needed.
 
@@ -124,11 +121,11 @@ The two chunks that sentence was split split between are:
 
 ### Head to Head Comparison
 
-Given the query:
+To answer the query:
 
 > what do customers need to prioritise?
 
-To answer this query correctly we need to return **both** of the above chunks. However, with the naive approach we end up with two separate chunks that are not neighbouring one another.
+We need to return **both** of the above chunks. However, with the naive approach we end up with two separate chunks that are not neighboring one another.
 
 But when we apply late chunking we end returning the two exact paragraphs over which the query is most relevant.
 
@@ -174,7 +171,7 @@ But when we apply late chunking we end returning the two exact paragraphs over w
   </tr>
 </table>
 
-Intuitively we as readers understand the link between the two correlated chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighbouring chunks.
+Intuitively we as readers understand the link between the two correlated chunks, however with the naive approach there is no ability to **condition** the two separate embeddings with information about their neighboring chunks.
 
 However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
 
