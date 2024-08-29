@@ -46,3 +46,42 @@ import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
    />
 </TabItem>
 </Tabs>
+
+Hard coded in the file:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+// Create the client
+func CreateClient() {
+	cfg := weaviate.Config{
+		Host:       "localhost:8080",
+		Scheme:     "http",
+        Headers:    nil,
+	}
+
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// Check the connection
+	live, err := client.Misc().LiveChecker().Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", live)
+
+}
+
+func main() {
+	CreateClient()
+}
+```
