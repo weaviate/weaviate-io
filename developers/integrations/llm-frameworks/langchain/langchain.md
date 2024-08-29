@@ -34,3 +34,4 @@ The resources are broken into two categories:
 | --- | --- | --- |
 | Combining LangChain and Weaviate | Learn about how Weaviate is integrated in LangChain and the different `CombineDocuments` techniques. | [Blog](https://weaviate.io/blog/combining-langchain-and-weaviate) |
 | Weaviate Podcast #36 | LangChain and Weaviate with Harrison Chase and Bob van Luijt | [Podcast](https://www.youtube.com/watch?v=lhby7Ql7hbk) |
+| Weaviate + LangChain for LLM apps | An overview of how LangChain and Weaviate work together. | [Video](https://youtu.be/7AGj4Td5Lgw?feature=shared) |
