@@ -13,33 +13,32 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ---
 
-### **Weaviate Offering**
+### 1. **Weaviate Offering**
 
-#### Provision of Weaviate Offering
 
+1. **Provision of Weaviate Offering.**  
 Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Offering available to Customer pursuant to this Agreement, any applicable Exhibits to this Agreement, and the applicable Order Form.
 <br></br>
 
-#### Customer Responsibilities
+2. **Customer Responsibilities.** 
 
-1. Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation and materials as reasonably required and any other access as may be specified in the applicable Order Form) and Customer will provide all such cooperation in a diligent and timely manner.
-2. Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
- <br></br>
+   - Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation and materials as reasonably required and any other access as may be specified in the applicable Order Form) and Customer will provide all such cooperation in a diligent and timely manner.
+   - Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
+   <br></br>
 
-#### Open Source Software
 
-The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
+3. **Open Source Software.**  
+   The Weaviate Offering may include individual open-source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
 <br></br>
 
-#### Weaviate Enterprise Cloud
-
+4. **Weaviate Enterprise Cloud.**  
    When Weaviate Offering entails Weaviate Enterprise Cloud, Offering is
 charged through Weaviate AIUs; details are described in Exhibit A.
    <br></br>
 
 ---
 
-### 1. **Fees**
+### 2. **Fees**
 
 1. **Fees**. Customer will pay Weaviate the fees set forth in the applicable Order Form. Customer shall pay those amounts due and not disputed in good faith within thirty (30) days of the date of receipt of the applicable invoice, unless a specific date for payment is set forth in such Order Form, in which case payment will be due on the date specified. Except as otherwise specified in this Agreement or in any applicable Order Form, (a) fees are quoted and payable in United States dollars, and (b) payment obligations are non-cancelable and non-pro-ratable for partial months, and fees paid are non-refundable.
 
@@ -49,7 +48,7 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ---
 
-### 2. **Proprietary Rights**
+### 3. **Proprietary Rights**
 
 1. **Proprietary Rights**. As between the parties, Weaviate exclusively owns all right, title, and interest in and to the Weaviate Offering, System Data, and Weaviate’s Confidential Information, while Customer exclusively owns all right, title, and interest in and to the Customer Data and the Customer Confidential Information.
 
@@ -59,7 +58,7 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ---
 
-### 3. **Confidentiality; Restrictions**
+### 4. **Confidentiality; Restrictions**
 
 1. **Confidentiality**. The confidentiality obligations in this Section supersede any prior confidentiality agreements entered into between the parties. Each party agrees that it will use the Confidential Information of the other party solely in accordance with the provisions of this Agreement and it will not disclose the same directly or indirectly to any third party without the other party’s prior written consent, except as otherwise permitted hereunder. However, either party may disclose Confidential Information (a) to its employees, officers, directors, attorneys, auditors, financial advisors, and other representatives who have a need to know and are legally bound to keep such information confidential by confidentiality obligations consistent with those of this Agreement; and (b) as required by law (in which case the receiving party will provide the disclosing party with prior written notification thereof, will provide the disclosing party with the opportunity to contest such disclosure, and will use its reasonable efforts to minimize such disclosure to the extent permitted by applicable law). Neither party will disclose the terms of this Agreement to any third party, except that either party may confidentially disclose such terms to actual or potential lenders, investors, or acquirers. Each party agrees to exercise due care in protecting the Confidential Information from unauthorized use and disclosure. In the event of actual or threatened breach of the provisions of this Section 5, the non-breaching party will be entitled to seek immediate injunctive and other equitable relief, without waiving any other rights or remedies available to it. Each party will promptly notify the other in writing if it becomes aware of any violations of the confidentiality obligations set forth in this Agreement.
 
@@ -67,7 +66,7 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ---
 
-### 4. **Warranties and Disclaimers**
+### 5. **Warranties and Disclaimers**
 
 1. **Weaviate**. Weaviate warrants that it will, consistent with prevailing industry standards, provide the Weaviate Offering in a professional and workmanlike manner and the Weaviate Offering will conform in all material respects with the Documentation. For breach of the foregoing express warranty, Customer’s exclusive remedy shall be the re-performance of the deficient Weaviate Offering or, if Weaviate cannot re-perform such deficient Weaviate Offering as warranted within thirty (30) days after receipt of written notice of the warranty breach, Customer shall be entitled to terminate the applicable Order Form and recover a pro-rata portion of the prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering.
 
@@ -79,7 +78,7 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ---
 
-### 5. **Indemnification**
+### 6. **Indemnification**
 
 1. **Indemnity by Weaviate**. Weaviate will defend Customer against any Claim made or brought against Customer by a third party alleging that the use of the Weaviate Offering as permitted hereunder infringes or misappropriates a patent, copyright, or trade secret and will indemnify Customer for any damages finally awarded against Customer (or any settlement approved by Weaviate) in connection with any such Claim; provided that (a) Customer will promptly notify Weaviate of such Claim, (b) Weaviate will have the sole and exclusive authority to defend and/or settle any such Claim, and (c) Customer reasonably cooperates with Weaviate in connection therewith. Customer may at its option and expense assist Weaviate in the defense of the Claim. If the use of the Weaviate Offering by Customer has become or in Weaviate’s opinion is likely to become the subject of any claim of infringement, Weaviate may at its option and expense (i) procure for Customer the right to continue using and receiving the Weaviate Offering as set forth under this Agreement; (ii) replace or modify the Weaviate Offering to make it non-infringing (with comparable functionality); or (iii) if the options in clauses (i) or (ii) are not reasonably practicable, terminate the applicable Order Form and provide a pro rata refund of any prepaid unused fees corresponding to the terminated portion of the applicable Weaviate Offering. Weaviate will have no liability or obligation with respect to any Claim if such Claim is caused in whole or in part by (A) compliance with designs, guidelines, plans or specifications provided by Customer; (B) use of the Weaviate Offering by Customer not in accordance with this Agreement; (C) modification of the Weaviate Offering by or on behalf of Customer; (D) Customer’s collection, treatment or providing of Customer Confidential Information in a manner than violates applicable law or otherwise infringes third party rights; (E) open-source software; or (F) the combination, operation or use of the Weaviate Offering with other products or services where the Weaviate Offering would not by itself be infringing (clauses (A) through (F) “**_Excluded Claims_**”). This Section states Weaviate’s sole and exclusive liability and obligation, and Customer’s exclusive remedy for any claim of any nature related to infringement or misappropriation of intellectual property.
 
@@ -87,13 +86,13 @@ charged through Weaviate AIUs; details are described in Exhibit A.
 
 ---
 
-### 6. **Limitation of Liability**
+### 7. **Limitation of Liability**
 
 UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PARTY BE LIABLE TO THE OTHER UNDER THIS AGREEMENT FOR ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES OF ANY CHARACTER, INCLUDING DAMAGES FOR LOSS OF GOODWILL, LOST PROFITS, LOST SALES OR BUSINESS, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, LOST CONTENT OR DATA, EVEN IF A REPRESENTATIVE OF SUCH PARTY HAS BEEN ADVISED, KNEW OR SHOULD HAVE KNOWN OF THE POSSIBILITY OF SUCH DAMAGES. EXCEPT FOR A PARTY’S BREACH OF THE CONFIDENTIALITY OBLIGATIONS AND RESTRICTIONS UNDER SECTION 4, A PARTY’S INDEMNIFICATION OBLIGATIONS UNDER SECTION 6, A PARTY’S INFRINGEMENT OR MISAPPROPRIATION OF THE OTHER PARTY’S INTELLECTUAL PROPERTY RIGHTS, AND CUSTOMER’S PAYMENT OBLIGATIONS UNDER SECTION 2, NEITHER PARTY’S TOTAL AGGREGATE LIABILITY UNDER THIS AGREEMENT WILL EXCEED THE AMOUNTS PAID BY CUSTOMER UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
 
 ---
 
-### 7. **Termination**
+### 8. **Termination**
 
 1. **Term**. The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below.  The initial term will begin on the Effective Date of the Order Form and will continue for the subscription term set forth in the Order Form. Except as set forth in such Order Form, the term of such Order Form will automatically renew for successive renewal terms on a month-to-month basis at the same price, or at Weaviate’s then-current list prices, unless either party provides the other party with written notice of non-renewal at least thirty (30) days prior to the end of the then-current term."
 
@@ -103,7 +102,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 ---
 
-### 8. **General**
+### 9. **General**
 
 1. **Insurance**. Weaviate shall, during the term of this Agreement, maintain in force the following insurance coverage at its own cost and expense: (a) Statutory Worker’s Compensation and Employer’s Liability as required by state law with a minimum limit of $1,000,000 each accident / $1,000,000 each disease / $1,000,000 policy limit per occurrence, Disability and Unemployment Insurance, and all other insurance as required by law, including Employer’s Liability Insurance with limits of no less than $1,000,000 per occurrence, or any amount required by applicable law, whichever is greater; (b) Commercial General Liability, on an occurrence basis, including premises-operations, product completed-operations, broad form property damage, contractual liability, independent contractors and personal liability, with a minimum combined single limit of $1,000,000 per occurrence; and (c) Professional Errors and Omissions and Cyber Liability coverage covering the Weaviate Offering, with coverage limits of not less than $2,000,000 per claim or per occurrence/$2,000,000 aggregate, placed either on an “occurrence” basis or on a “claims made” basis.
 
@@ -128,19 +127,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 ---
 
-### 9. **Updates to Terms & Polices**
 
-
-1. **Document**
-   1. Weaviate Customer Agreement US & Non-US
-      1. New. Section 1.4
-      2.  New. Exhibit A
-      3.  Update. Chapter 10: Definition
-           1.  New term “Technical Services”
-           2.  Updated term “Weaviate Ofering”
-
-
----
 
 ### 10. **Definitions**
 
