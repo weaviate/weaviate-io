@@ -197,8 +197,8 @@ Let's revisit our theoretical storage comparison from earlier:
 | Approach                                       | Total embeddings required per document | Number of Documents | Total Vectors Stored |
 | ---------------------------------------------- | -------------------------------------- | ------------------- | -------------------- |
 | **Late Interaction (no pooling)**              | 8,000                                  | 100,000             | 800 million          |
-| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | ~1.6 million         |
-| **Late Chunking (chunking after inference)**   | 16 ( 8,000 / 512 )                     | 100,000             | ~1.6 million         |
+| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million         |
+| **Late Chunking (chunking after inference)**   | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million         |
 
 As we can see late chunking offers the same reduction in storage requirements as the naive approach while giving stronger preservation of the contextual information that late interaction offers.
 
