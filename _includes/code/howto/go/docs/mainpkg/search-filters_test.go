@@ -253,8 +253,8 @@ func TestMultipleFiltersNested(t *testing.T) {
 
 	// START MultipleFiltersNested Go
 	operands := []*filters.WhereBuilder{
-		filters.Where().WithPath([]string{"points"}).WithOperator(filters.GreaterThan).WithValueInt(700),
-		filters.Where().WithPath([]string{"points"}).WithOperator(filters.LessThan).WithValueInt(300),
+		filters.Where().WithPath([]string{"points"}).WithOperator(filters.GreaterThan).WithValueInt(300),
+		filters.Where().WithPath([]string{"points"}).WithOperator(filters.LessThan).WithValueInt(700),
 	}
 
 	response, err := client.GraphQL().Get().
