@@ -34,4 +34,4 @@ The ecosystem is divided into these categories:
 | Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
 | Data Platforms |[Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud), [Firecrawl](/developers/integrations/data-platforms/firecrawl), [Spark](/developers/integrations/data-platforms/spark), [Unstructured](/developers/integrations/data-platforms/unstructured) |
 | LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |
-| Observability and Evaluation | Arize, Langtrace, LangWatch, Nomic, Ragas, Weights & Biases |
+| Operations | Arize, Langtrace, LangWatch, Nomic, Ragas, Weights & Biases |
