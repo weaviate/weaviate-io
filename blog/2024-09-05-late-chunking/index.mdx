@@ -9,9 +9,9 @@ tags: ['concepts']
 description: 'Learn about Late Chunking and how it may be the best fit for you long context retrieval applications'
 ---
 
-Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. For users looking to build large-scale RAG applications, the numerous problems of developing precise long context retrieval applications will be a very familiar one.
+Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. For users looking to build large-scale RAG applications, the difficulties of developing precise long context retrieval applications will be a very familiar.
 
-This article explores why late chunking may just be the happy medium between naive (but cheap) solutions and more advanced (expensive) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
+This article explores why late chunking may just be the happy medium between naive (but cheap) solutions and more precise (but expensive) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
 
 ## What is Late Chunking?
 
@@ -43,7 +43,7 @@ Now imagine that a user has populated their vector database with multiple docume
 
 ### Late Interaction and ColBERT
 
-On the other side of this is the ColBERT approach which utilizes late interaction (source). Unlike the naive approach described above, late interaction performs no pooling step on the token embeddings belonging to the query and document. Instead, each query token is compared with all document tokens. In a retrieval setup each document has its token-level representations stored in a vector index and then at query time they can be compared via late interaction.
+On the other side of this is the ColBERT approach which utilizes [late interaction](https://arxiv.org/pdf/2004.12832). Unlike the naive approach described above, late interaction performs no pooling step on the token embeddings belonging to the query and document. Instead, each query token is compared with all document tokens. In a retrieval setup each document has its token-level representations stored in a vector index and then at query time they can be compared via late interaction.
 
 While ColBERT was not initially designed to work with long context, [recent extensions](https://blog.vespa.ai/announcing-long-context-colbert-in-vespa/) to the underlying model have extended the capabilities (via a sliding window approach) to achieve this.
 
@@ -94,10 +94,10 @@ The two chunks that sentence was split split between are:
   </tr>
   <tr>
     <td>
-      ...{ommitted for brevity} When building a Retrieval Augmented Generation (RAG) application, using account or
-      user-specific data to contextualize results, data must remain within a
-      dedicated tenant for its user group. Weaviate’s native, multi-tenant
-      architecture shines for customers who need to prioritize...
+      ...When building a Retrieval Augmented Generation (RAG) application, using
+      account or user-specific data to contextualize results, data must remain
+      within a dedicated tenant for its user group. Weaviate’s native,
+      multi-tenant architecture shines for customers who need to prioritize...
     </td>
     <td>
       ...data privacy while maintaining fast retrieval and accuracy. On the
