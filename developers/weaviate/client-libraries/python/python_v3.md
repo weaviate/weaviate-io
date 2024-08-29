@@ -18,7 +18,7 @@ The `v3` client will continue to get critical security updates and bugfixes for 
 **What does this mean for me?**
 <br/>
 
-To take advantage of the latest developments on the Weaviate core database, we recommend migrating your codebase to use the `v4` API.
+To take advantage of the latest developments on the Weaviate core database, we recommend migrating your codebase to use the [`v4` client API](./index.md).
 <br/>
 
 Our documentation includes [a migration guide here](./v3_v4_migration.md), and many code examples include both `v3` and `v4` syntax. We will be adding more dedicated resources for you to ease the migration experience.
