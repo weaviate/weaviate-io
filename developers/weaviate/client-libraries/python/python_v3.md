@@ -27,7 +27,7 @@ Our documentation includes [a migration guide here](./v3_v4_migration.md), and m
 If you have an existing codebase and Weaviate core database that you expect to remain static, we recommend pinning the version in your requirements file (e.g. `requirements.txt`), like so:
 
 ```bash
-  weaviate-client>=3.26.4,<4.0.0
+  weaviate-client>=3.26.7,<4.0.0
 ```
 
 We appreciate that code migration can be cumbersome, but we feel strongly that the end experience and feature set will make your time worthwhile.
