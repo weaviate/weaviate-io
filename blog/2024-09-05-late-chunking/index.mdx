@@ -59,10 +59,10 @@ For example, let's compare the storage requirements for a long context model tha
 This comparison assumes a fixed chunking strategy of 512 tokens for the naive approach. Where the text is split into chunks of 512 tokens, and each of those text chunks are individually embedded.
 :::
 
-| Approach                               | Number of embeddings | Number of Documents | Total Vectors Stored |
-| -------------------------------------- | -------------------- | ------------------- | -------------------- |
-| **Late Interaction (no pooling)**      | 8,000 (tokens)       | 100,000             | 800 million          |
-| **Naive Approach (pooling + chunked)** | 8,000 / 512 (tokens) | 100,000             | ~1.6 million         |
+| Approach                          | Number of embeddings | Number of Documents | Total Vectors Stored |
+| --------------------------------- | -------------------- | ------------------- | -------------------- |
+| **Late Interaction (no pooling)** | 8,000 (tokens)       | 100,000             | 800 million          |
+| **Naive Approach (chunking)**     | 8,000 / 512 (tokens) | 100,000             | ~1.6 million         |
 
 **Key Takeaway:**
 
