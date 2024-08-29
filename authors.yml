@@ -136,7 +136,7 @@ sam:
   name: Sam Stoelinga
   title: Contributor to Substratus.AI
   url: https://github.com/samos123
-  image_url:  /img/people/icon/sam.png
+  image_url: /img/people/icon/sam.png
 femke:
   name: Femke Plantinga
   title: Content Manager
@@ -190,3 +190,8 @@ charles-pierse:
   title: Head of Weaviate Labs
   url: https://github.com/cdpierse
   image_url: /img/people/icon/charles-pierse.png
+akanksha:
+  name: Akanksha Sharma
+  title: Product Research Intern
+  url:
+  image_url: /img/people/icon/akanksha.png
