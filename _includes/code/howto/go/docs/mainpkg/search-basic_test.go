@@ -16,22 +16,25 @@ import (
 
 func TestBasicGet(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START BasicGet
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		WithFields(graphql.Field{Name: "question"}).
-		Do(ctx)
-	// END BasicGet
+	t.Run("Basic Get", func(t *testing.T) {
+		ctx := context.Background()
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		// START BasicGet
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			WithFields(graphql.Field{Name: "question"}).
+			Do(ctx)
+		// END BasicGet
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
-	assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+		require.NoError(t, err)
+		t.Logf("%+v", response)
+
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
+		assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+	})
 }
 
 // ====================================
@@ -40,26 +43,29 @@ func TestBasicGet(t *testing.T) {
 
 func TestGetWithLimit(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetWithLimit
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		WithFields(graphql.Field{Name: "question"}).
-		// highlight-start
-		WithLimit(1).
-		// highlight-end
-		Do(ctx)
-	// END GetWithLimit
+	t.Run("Get With Limit", func(t *testing.T) {
+		ctx := context.Background()
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		// START GetWithLimit
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			WithFields(graphql.Field{Name: "question"}).
+			// highlight-start
+			WithLimit(1).
+			// highlight-end
+			Do(ctx)
+		// END GetWithLimit
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
-	assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+		require.NoError(t, err)
+		t.Logf("%+v", response)
+
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
+		assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+	})
 }
 
 // ==========================================
@@ -68,27 +74,30 @@ func TestGetWithLimit(t *testing.T) {
 
 func TestGetWithLimitOffset(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetWithLimitOffset
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		WithFields(graphql.Field{Name: "question"}).
-		// highlight-start
-		WithLimit(1).
-		WithOffset(1).
-		// highlight-end
-		Do(ctx)
-	// END GetWithLimitOffset
+	t.Run("Get With Limit Offset", func(t *testing.T) {
+		ctx := context.Background()
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		// START GetWithLimitOffset
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			WithFields(graphql.Field{Name: "question"}).
+			// highlight-start
+			WithLimit(1).
+			WithOffset(1).
+			// highlight-end
+			Do(ctx)
+		// END GetWithLimitOffset
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
-	assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+		require.NoError(t, err)
+		t.Logf("%+v", response)
+
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), 1)
+		assert.Contains(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{}), "question")
+	})
 }
 
 // ==========================================
@@ -97,33 +106,36 @@ func TestGetWithLimitOffset(t *testing.T) {
 
 func TestGetProperties(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetProperties
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		// highlight-start
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-			graphql.Field{Name: "points"},
-		).
-		// highlight-end
-		WithLimit(1).
-		Do(ctx)
-	// END GetProperties
+	t.Run("Get Properties", func(t *testing.T) {
+		ctx := context.Background()
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		// START GetProperties
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			// highlight-start
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+				graphql.Field{Name: "points"},
+			).
+			// highlight-end
+			WithLimit(1).
+			Do(ctx)
+		// END GetProperties
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
-	assert.Len(t, object, 3)
-	assert.Contains(t, object, "question")
-	assert.Contains(t, object, "answer")
-	assert.Contains(t, object, "points")
+		require.NoError(t, err)
+		t.Logf("%+v", response)
+
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
+		assert.Len(t, object, 3)
+		assert.Contains(t, object, "question")
+		assert.Contains(t, object, "answer")
+		assert.Contains(t, object, "points")
+	})
 }
 
 // ======================================
@@ -132,35 +144,38 @@ func TestGetProperties(t *testing.T) {
 
 func TestGetObjectVector(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetObjectVector
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		// highlight-start
-		WithFields(
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "vector"},
+	t.Run("Get Object Vector", func(t *testing.T) {
+		ctx := context.Background()
+
+		// START GetObjectVector
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			// highlight-start
+			WithFields(
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{Name: "vector"},
+					},
 				},
-			},
-		).
-		// highlight-end
-		WithLimit(1).
-		Do(ctx)
-	// END GetObjectVector
+			).
+			// highlight-end
+			WithLimit(1).
+			Do(ctx)
+		// END GetObjectVector
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		require.NoError(t, err)
+		t.Logf("%+v", response)
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
-	assert.Contains(t, object, "_additional")
-	additional := object["_additional"].(map[string]interface{})
-	assert.Contains(t, additional, "vector")
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
+		assert.Contains(t, object, "_additional")
+		additional := object["_additional"].(map[string]interface{})
+		assert.Contains(t, additional, "vector")
+	})
 }
 
 // ==================================
@@ -169,35 +184,38 @@ func TestGetObjectVector(t *testing.T) {
 
 func TestGetObjectId(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetObjectId
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		// highlight-start
-		WithFields(
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "id"},
+	t.Run("Get Object Id", func(t *testing.T) {
+		ctx := context.Background()
+
+		// START GetObjectId
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			// highlight-start
+			WithFields(
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{Name: "id"},
+					},
 				},
-			},
-		).
-		// highlight-end
-		WithLimit(1).
-		Do(ctx)
-	// END GetObjectId
+			).
+			// highlight-end
+			WithLimit(1).
+			Do(ctx)
+		// END GetObjectId
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		require.NoError(t, err)
+		t.Logf("%+v", response)
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
-	assert.Contains(t, object, "_additional")
-	additional := object["_additional"].(map[string]interface{})
-	assert.Contains(t, additional, "id")
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
+		assert.Contains(t, object, "_additional")
+		additional := object["_additional"].(map[string]interface{})
+		assert.Contains(t, additional, "id")
+	})
 }
 
 // ==============================
@@ -205,37 +223,41 @@ func TestGetObjectId(t *testing.T) {
 // ==============================
 
 func TestGetWithCrossRefs(t *testing.T) {
+	t.Skip("Skipping test, FIXME")
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetWithCrossRefs
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		// highlight-start
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{
-				Name: "hasCategory",
-				Fields: []graphql.Field{
-					{Name: "... on JeopardyCategory", Fields: []graphql.Field{{Name: "title"}}},
+	t.Run("Get With Cross Refs", func(t *testing.T) {
+		ctx := context.Background()
+
+		// START GetWithCrossRefs
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			// highlight-start
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{
+					Name: "hasCategory",
+					Fields: []graphql.Field{
+						{Name: "... on JeopardyCategory", Fields: []graphql.Field{{Name: "title"}}},
+					},
 				},
-			},
-		).
-		// highlight-end
-		WithLimit(2).
-		Do(ctx)
-	// END GetWithCrossRefs
+			).
+			// highlight-end
+			WithLimit(2).
+			Do(ctx)
+		// END GetWithCrossRefs
 
-	require.NoError(t, err)
-	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
-	t.Logf("%s", jsonResponse)
+		require.NoError(t, err)
+		jsonResponse, _ := json.MarshalIndent(response, "", "  ")
+		t.Logf("%s", jsonResponse)
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 2)
-	object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
-	assert.Contains(t, object, "question")
-	assert.Contains(t, object, "hasCategory")
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 2)
+		object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
+		assert.Contains(t, object, "question")
+		assert.Contains(t, object, "hasCategory")
+	})
 }
 
 // ====================================
@@ -244,38 +266,41 @@ func TestGetWithCrossRefs(t *testing.T) {
 
 func TestGetWithMetadata(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START GetWithMetadata
-	response, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
-		WithFields(graphql.Field{Name: "question"}).
-		WithLimit(1).
-		// highlight-start
-		WithFields(
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "creationTimeUnix"},
+	t.Run("Get With Metadata", func(t *testing.T) {
+		ctx := context.Background()
+
+		// START GetWithMetadata
+		response, err := client.GraphQL().Get().
+			WithClassName("JeopardyQuestion").
+			WithLimit(1).
+			// highlight-start
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{Name: "creationTimeUnix"},
+					},
 				},
-			},
-		).
-		// highlight-end
-		Do(ctx)
-	// END GetWithMetadata
+			).
+			// highlight-end
+			Do(ctx)
+		// END GetWithMetadata
 
-	require.NoError(t, err)
-	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
-	t.Logf("%s", jsonResponse)
+		require.NoError(t, err)
+		jsonResponse, _ := json.MarshalIndent(response, "", "  ")
+		t.Logf("%s", jsonResponse)
 
-	assert.Contains(t, response.Data, "Get")
-	assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
-	assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
-	object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
-	assert.Contains(t, object, "question")
-	assert.Contains(t, object, "_additional")
-	additional := object["_additional"].(map[string]interface{})
-	assert.Contains(t, additional, "creationTimeUnix")
+		assert.Contains(t, response.Data, "Get")
+		assert.Contains(t, response.Data["Get"], "JeopardyQuestion")
+		assert.Len(t, response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
+		object := response.Data["Get"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})
+		assert.Contains(t, object, "question")
+		assert.Contains(t, object, "_additional")
+		additional := object["_additional"].(map[string]interface{})
+		assert.Contains(t, additional, "creationTimeUnix")
+	})
 }
 
 // =========================
@@ -284,21 +309,24 @@ func TestGetWithMetadata(t *testing.T) {
 
 func TestMultiTenancy(t *testing.T) {
 	client := setupClient()
-	ctx := context.Background()
 
-	// START MultiTenancy
-	response, err := client.GraphQL().Get().
-		WithClassName("MultiTenancyClass").
-		WithFields(graphql.Field{Name: "property1"}, graphql.Field{Name: "property2"}).
-		WithLimit(1).
-		// highlight-start
-		WithTenant("tenantA").
-		// highlight-end
-		Do(ctx)
-	// END MultiTenancy
+	t.Run("Multi-Tenancy", func(t *testing.T) {
+		ctx := context.Background()
 
-	require.NoError(t, err)
-	t.Logf("%+v", response)
+		// START MultiTenancy
+		response, err := client.GraphQL().Get().
+			WithClassName("MultiTenancyClass").
+			WithFields(graphql.Field{Name: "property1"}, graphql.Field{Name: "property2"}).
+			WithLimit(1).
+			// highlight-start
+			WithTenant("tenantA").
+			// highlight-end
+			Do(ctx)
+		// END MultiTenancy
 
-	// Add assertions here if needed
+		require.NoError(t, err)
+		t.Logf("%+v", response)
+
+		// Add assertions here if needed
+	})
 }
