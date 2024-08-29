@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.basics-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-basic_test.go';
 
 
 With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
@@ -63,6 +64,15 @@ You can get objects without specifying any parameters. This returns objects orde
   language="js"
 />
 
+</TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START BasicGet"
+    endMarker="// END BasicGet"
+    language="go"
+  />
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
@@ -141,8 +151,17 @@ Use `limit` to set a fixed maximum number of objects to return.
   endMarker="// END GetWithLimitJS"
   language="js"
 />
-
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetWithLimit"
+    endMarker="// END GetWithLimit"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -212,8 +231,18 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
 />
-
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetWithOffset"
+    endMarker="// END GetWithOffset"
+    language="go"
+  />
+</TabItem>
+
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -289,6 +318,16 @@ You can specify which object properties to return.
 />
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetProperties"
+    endMarker="// END GetProperties"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -359,6 +398,16 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 />
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetObjectVector"
+    endMarker="// END GetObjectVector"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -431,6 +480,16 @@ You can retrieve the object `id` (uuid).
 />
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetObjectId"
+    endMarker="// END GetObjectId"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -506,6 +565,16 @@ To retrieve properties from cross-referenced objects, specify:
 />
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetWithCrossRefs"
+    endMarker="// END GetWithCrossRefs"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -577,6 +646,16 @@ You can specify metadata fields to be returned.
 />
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START GetWithMetadata"
+    endMarker="// END GetWithMetadata"
+    language="go"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -632,6 +711,17 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
   language="js"
 />
 </TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START MultiTenancy"
+    endMarker="// END MultiTenancy"
+    language="go"
+  />
+</TabItem>
+
+
 </Tabs>
 
 ## Replication
