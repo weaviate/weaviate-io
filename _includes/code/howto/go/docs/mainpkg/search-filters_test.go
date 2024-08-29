@@ -344,7 +344,7 @@ func TestFilterByDate(t *testing.T) {
 	result, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithLimit(3).
-		WithFields(graphql.Field{Name: "some_date"}).
+		WithFields(graphql.Field{Name: "some_date_property_field"}).
 		WithWhere(filters.Where().
 			WithPath([]string{"some_date"}).
 			WithOperator(filters.GreaterThan).
@@ -402,7 +402,7 @@ func TestFilterById(t *testing.T) {
 			WithOperator(filters.Equal).
 			WithValueString(targetID)).
 		WithFields(
-			graphql.Field{Name: "question"},
+			graphql.Field{Name: "title"},
 			graphql.Field{
 				Name: "_additional",
 				Fields: []graphql.Field{
@@ -449,7 +449,7 @@ func TestFilterByTimestamp(t *testing.T) {
 			WithOperator(filters.GreaterThan).
 			WithValueDate(timestamp)).
 		WithFields(
-			graphql.Field{Name: "question"},
+			graphql.Field{Name: "title"},
 			graphql.Field{
 				Name: "_additional",
 				Fields: []graphql.Field{
