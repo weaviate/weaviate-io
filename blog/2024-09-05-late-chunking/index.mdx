@@ -1,5 +1,5 @@
 ---
-title: Late Chunking: Late Chunking/:\ A cheaper, and simpler alternative to ColBERT 
+title: Late Chunking/:\ A cheaper, and simpler alternative to ColBERT
 slug: late-chunking
 authors: [charles-pierse]
 date: 2024-09-05
@@ -106,14 +106,17 @@ The two chunks that sentence was split between are:
     <td>
       ...When building a Retrieval Augmented Generation (RAG) application, using
       account or user-specific data to contextualize results, data must remain
-      within a dedicated tenant for its user group. Weaviate’s native,
-      multi-tenant architecture shines for customers who need to prioritize...
+      within a dedicated tenant for its user group.{' '}
+      <b>
+        Weaviate’s native, multi-tenant architecture shines for customers who
+        need to prioritize...
+      </b>
     </td>
     <td>
-      ...data privacy while maintaining fast retrieval and accuracy. On the
-      other hand, we support some very large scale single-tenant use cases that
-      orient toward real-time data access. Many of these are in e-commerce and
-      industries that compete on speed and customer experience.
+      ...<b>data privacy while maintaining fast retrieval and accuracy.</b> On
+      the other hand, we support some very large scale single-tenant use cases
+      that orient toward real-time data access. Many of these are in e-commerce
+      and industries that compete on speed and customer experience.
     </td>
   </tr>
 </table>
@@ -174,14 +177,15 @@ Intuitively we as readers understand the link between the two correlated chunks,
 
 However, when we apply late chunking this contextual conditioning is preserved and we are able to return the two exact paragraphs needed to answer the query in a RAG application.
 
-## What does this mean for users building RAG applications?
+## What this means for users building RAG applications?
 
-Many RAG setups today have to try and implement imperfect chunking heuristics to try and overcome this issue or utilise high strategies such as ColBERT to get the required performance. Late chunking is extremely promising as it lessens the requirement for very extremely tailored chunking strategies and provides a cost-effective path forward for users doing long context retrieval.
+We believe that late chunking is extremely promising for a number of reasons:
 
-However the potential benefits go even further. If our ability to retrieve the right context is improved and semantical related passages can be retrieved in groups, users should also be able to:
-
-- Reduce the total number of documents requested at query time.
-- Only pass the most relevant contexts to LLMs, which should result in faster, cheaper, and more accurate responses.
+- It lessens the requirement for very tailored chunking strategies
+- It provides a cost-effective path forward for users doing long context retrieval
+- Its additions can be implemented in under 30 lines of code and require no modification to the retrieval pipeline
+- It can result in a reduction of the total number of documents required to be returned at query time
+- It can enable more efficient calls to LLMs by passing less context that is more relevant.
 
 ## Conclusion
 
