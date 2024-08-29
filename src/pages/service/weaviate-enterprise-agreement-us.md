@@ -154,21 +154,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 ---
 
 
-### 9. **Updates to Terms & Polices**
-
-
-1. **Document**
-   1. Weaviate Customer Agreement US & Non-US
-      1. New. Section 1.4
-      2.  New. Exhibit A
-      3.  Update. Chapter 10: Definition
-           1.  New term “Technical Services”
-           2.  Updated term “Weaviate Ofering”
-
-
----
-
-### 10. **Definitions**
+### 9. **Definitions**
 
 1. **Affiliates** means an entity that directly or indirectly Controls, is Controlled by, or is under common Control with another entity, so long as such Control exists. For the purposes of this definition, “Control” means beneficial ownership of 50% or more of the voting power or equity in an entity.
 
