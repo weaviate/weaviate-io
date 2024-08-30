@@ -3,15 +3,19 @@ title: DSPy
 sidebar_position: 1
 image: og/docs/more-resources.jpg
 ---
-[DSPy](https://github.com/stanfordnlp/dspy) is a framework for programming language models created by Stanford NLP. DSPy introduces two key concepts: **programming model** and **optimizers**.
+[DSPy](https://github.com/stanfordnlp/dspy) from Stanford NLP is a framework for programming language models.
 
-- **Programing model**: The programming model lets you define a series of components that make a language model request. Components include input and output fields, task descriptions, and calls to a vector database like Weaviate.
+DSPy introduces two key concepts, the **programming model** and **optimizers**.
+
+- **Programing model**: The programming model lets you define a series of components that make a language model request. Components include input fields, output fields, task descriptions, and calls to a vector database like Weaviate.
 
 - **Optimizers**: Optimizers compile your DSPy program to tune the language model prompt and/or the weights.
 
 ## DSPy and Weaviate
 
-Weaviate is integrated with DSPy through the retriever module! You only need to connect to your Weaviate cluster through [WCD](https://console.weaviate.cloud/) or localhost, and pass in your collection:
+Weaviate is integrated with DSPy through the retriever model! 
+
+Connect your Weaviate cluster (WCD or local instance) to DSPy, use the [retriever module](https://dspy-docs.vercel.app/docs/deep-dive/retrieval_models_clients/WeaviateRM) and pass in your collection:
 
 ```python
 weaviate_client = weaviate.Client("http://localhost:8080") # or pass in your WCD cluster url
@@ -21,7 +25,7 @@ retriever_module = WeaviateRM("WeaviateBlogChunk", # collection name
 ```
 
 ## Our Resources 
-Here are a few resources on using DSPy from the Weaviate team!
+Here are a few resources from the Weaviate team on using DSPy!
 
 The resources are broken into two categories: 
 1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
@@ -33,7 +37,7 @@ The resources are broken into two categories:
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| Getting Started with RAG in DSPy | Learn about the four components needed to build a DSPy program: Installation, settings, datasets with `dspy.Example`, LLM metrics, DSPy programming model, and optimization. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb), [Video](https://youtu.be/CEuUG4Umfxs?si=4Gp8gR9glmoMJNaU) |
+| Getting Started with RAG in DSPy | Learn about DSPy and how to build a program: Installation, settings, datasets, LLM metrics, DSPy programming model, and optimization. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb), [Video](https://youtu.be/CEuUG4Umfxs?si=4Gp8gR9glmoMJNaU) |
 | DSPy + Weaviate for the Next Generation of LLM Apps | Build a 4-layer DSPy program for generating blog posts from queries. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/2.Writing-Blog-Posts-with-DSPy.ipynb), [Video](https://youtu.be/ickqCzFxWj0?si=AxCbD9tq2cbAH6bB)|
 | RAG with Persona | Build a compound AI system with DSPy, Cohere, and Weaviate, where you'll add a persona to the language model. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/fullstack-recipes/RAGwithPersona/4.RAG-with-Persona.ipynb), [Post](https://twitter.com/ecardenas300/status/1765444492348243976)|
 | Adding Depth to RAG Programs | Enhancing DSPy programs by integrating unique input-output examples and multiple LLMs. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/3.Adding-Depth-to-RAG-Programs.ipynb), [Video](https://youtu.be/0c7Ksd6BG88?si=YUF2wm1ncUTkSuPQ) |
@@ -51,7 +55,7 @@ The resources are broken into two categories:
 | Topic | Description | Resource | 
 | --- | --- | --- |
 | DSPy and ColBERT with Omar Khattab! - Weaviate Podcast #85 | Omar Khattab joins the Weaviate podcast to discuss DSPy and ColBERT. | [Video](https://www.youtube.com/watch?v=CDung1LnLbY) |
-| DSPy Explained| The core concepts of DSPy and walks through the introduction notebooks showing how to compile a simple retrieve-then-read RAG program and Multi-Hop RAG Program. | [Video](https://youtu.be/41EfOY0Ldkc?si=sFieUeHc9rXRn6uk)|
+| DSPy Explained| Learn about the core concepts of DSPy. Walk through the introduction notebooks to compile a simple retrieve-then-read RAG program and Multi-Hop RAG Program. | [Video](https://youtu.be/41EfOY0Ldkc?si=sFieUeHc9rXRn6uk)|
 | XMC.dspy with Karel D'Oosterlinck - Weaviate Podcast #87 | Karel D'Oosterlinck joins the Weaviate podcast to discuss IReRa (Infer-Retrieve-Rank). | [Video](https://youtu.be/_ye26_8XPcs?si=ZBodgHbOcaq2Kwky)
 | Intro to DSPy: Goodbye Prompting, Hello Programming | Overview of DSPy and how it solves the fragility problem in LLM-based applications. | [Blog](https://towardsdatascience.com/intro-to-dspy-goodbye-prompting-hello-programming-4ca1c6ce3eb9)|
 | Fine-Tuning Cohere’s Reranker | Generate synthetic data with DSPy to fine-tune Cohere’s reranker model. |[Blog](/blog/fine-tuning-coheres-reranker)|

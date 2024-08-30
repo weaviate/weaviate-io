@@ -4,10 +4,14 @@ sidebar_position: 1
 image: og/integrations/home.jpg
 ---
 
-Confluent Cloud is a fully managed Apache Kafka service that offers real-time data streaming with seamless integration across major cloud providers, high performance, and robust security features. Learn more at [Confluent Cloud](https://www.confluent.io/confluent-cloud/).
+Confluent Cloud is a fully managed Apache Kafka service that offers real-time data streaming, seamless integration across major cloud providers, high performance, and robust security features.
+
+Learn more at [Confluent Cloud](https://www.confluent.io/confluent-cloud/).
 
 ## Confluent and Weaviate
-You can stream data from Confluent Cloud to Weaviate using the [Weaviate Confluent Connector](https://github.com/weaviate/confluent-connector). For setup and usage details, refer to the connector's [README](https://github.com/weaviate/confluent-connector/blob/main/README.md).
+Stream data from Confluent Cloud to Weaviate with the [Weaviate Confluent Connector](https://github.com/weaviate/confluent-connector). 
+
+For setup and usage details, see the [connector README](https://github.com/weaviate/confluent-connector/blob/main/README.md).
 
 
 ## Our Resources 

@@ -4,7 +4,7 @@ sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
-The following integrations with Weaviate facilitate operations associated with running Vector Database applications.
+These operational integrations make it easier to monitor and evaluate AI Native applications. 
 
 For example, Vector Databases are typically paired with Large Language Models in Retrieval-Augmented Generation systems. To help monitor these applications in productions, several tools have emerged with user interface and logging services.
 

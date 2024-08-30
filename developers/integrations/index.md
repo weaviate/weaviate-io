@@ -22,7 +22,7 @@ The ecosystem is divided into these categories:
 * **Compute Infrastructure** - Run and scale containerized applications
 * **Data Platforms** - Data ingestion and web scraping 
 * **LLM Frameworks** - Build generative AI applications
-* **Observability and Evaluation** - Monitor and analyze generative AI workflows
+* **Operations** - Tools for monitoring and analyzing generative AI workflows
 
 
 
@@ -30,7 +30,7 @@ The ecosystem is divided into these categories:
 
 | Company Category | Companies |
 |------------------|-----------|
-| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
+| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws)|
 | Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
 | Data Platforms |[Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud), [Context Data](/developers/integrations/data-platforms/context-data/), [Firecrawl](/developers/integrations/data-platforms/firecrawl), [Spark](/developers/integrations/data-platforms/spark), [Unstructured](/developers/integrations/data-platforms/unstructured) |
 | LLM Frameworks | [Composio](/developers/integrations/llm-frameworks/composio/), [DSPy](/developers/integrations/llm-frameworks/dspy/), [LangChain](/developers/integrations/llm-frameworks/langchain/), [LlamaIndex](/developers/integrations/llm-frameworks/llamaindex/), [Semantic Kernel](/developers/integrations/llm-frameworks/semantic-kernel/) |

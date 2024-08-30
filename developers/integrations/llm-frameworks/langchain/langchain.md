@@ -3,12 +3,12 @@ title: LangChain
 sidebar_position: 4
 ---
 
-[LangChain](https://python.langchain.com/v0.2/docs/introduction/) is a framework used for building applications around large language models (LLMs).
+[LangChain](https://python.langchain.com/v0.2/docs/introduction/) is a framework for building applications that use large language models (LLMs).
 
 ## LangChain and Weaviate 
 Weaviate is a supported [vector store](https://python.langchain.com/v0.2/docs/integrations/vectorstores/weaviate/#step-1-data-import) in LangChain. You will need a running Weaviate cluster (any deployment) to use the integration.
 
-You can connect to your Weaviate cluster:
+Connect LangChain to your Weaviate cluster:
 ```python
 weaviate_client = weaviate.connect_to_local()
 db = WeaviateVectorStore.from_documents(docs, embeddings, client=weaviate_client)
@@ -24,7 +24,7 @@ The resources are broken into two categories:
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| LangChain LCEL | This repository currently contains a notebook showcasing how to define a language program with LangChain LCEL, compile it with DSPy, and convert it back to LangChain LCEL. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/LCEL/RAG-with-LangChain-LCEL-and-DSPy.ipynb) |
+| LangChain LCEL | A notebook that defines a language program with LangChain LCEL, compiles it with DSPy, and converts it back to LangChain LCEL. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/LCEL/RAG-with-LangChain-LCEL-and-DSPy.ipynb) |
 | LangChain and Multi-Tenancy | Build a multi-language RAG by multiple PDFs per tenant with Langchain, OpenAI, and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/loading-data/langchain-simple-pdf-multitenant.ipynb) |
 | Multi-Language RAG | Simple notebook showing you how to build a RAG application using LangChain and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/loading-data/langchain-simple-pdf.ipynb) |
 

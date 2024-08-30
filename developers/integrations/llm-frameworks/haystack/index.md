@@ -3,7 +3,7 @@ title: Haystack
 sidebar_position: 3
 ---
 
-[Haystack](https://haystack.deepset.ai/) is a language model framework for build large language model applications 
+[Haystack](https://haystack.deepset.ai/) is a framework for building large language model applications.
 
 ## Haystack and Weaviate
 Weaviate is a [supported document store](https://haystack.deepset.ai/integrations/weaviate-document-store) in Haystack. You need a running Weaviate cluster to build the document store. 

@@ -4,10 +4,10 @@ sidebar_position: 2
 image: og/integrations/home.jpg
 ---
 
-[Langtrace](https://langtrace.ai/) is an open-source project that uses Open Telemetry observability.
+[Langtrace](https://langtrace.ai/) is an open-source project that uses OpenTelemetry for observability.
 
 ## Langtrace and Weaviate
-The integration allows you to view vector search and generative calls made to your Weaviate cluster. 
+This integration allows you to view vector search queries and generative calls that are made to your Weaviate cluster.
 
 ## Our Resources 
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.

@@ -3,10 +3,10 @@ title: Nomic
 sidebar_position: 3
 image: og/integrations/home.jpg
 ---
-[Nomic AI's] Atlas  is a visualization tool for vector embeddings. This describes reducing the dimensionality of high-dimensional vectors into 2 or 3 dimensions with algorithms such as t-SNE, UMAP, or PCA. These vectors can then be easily visualized by humans in scatter plots.
+[Nomic AI's](https://www.nomic.ai/) Atlas uses algorithms such as t-SNE, UMAP, or PCA to reduce high-dimensional vectors into 2 or 3 dimensions. The lower dimensional vectors are useful for visualizing vector embeddings. 
 
 ## Nomic and Weaviate 
-Connect to your Weaviate cluster to visualize the embeddings in your collection. 
+Connect Nomic to your Weaviate cluster to visualize the embeddings in your collection. 
 
 ## Our Resources 
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.

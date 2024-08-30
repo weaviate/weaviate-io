@@ -4,17 +4,19 @@ sidebar_position: 1
 image: og/integrations/home.jpg
 ---
 
-[Composio](https://docs.composio.dev/introduction/intro/overview) uses function calling for managing and integrating tools with language models and AI agents.  
+[Composio](https://docs.composio.dev/introduction/intro/overview) uses function calling to manage and integrate tools with language models and AI agents.  
 
 ## Composio and Weaviate 
-With Weaviate's retrieval, you can make the agent more personalized and context-aware. 
+With Weaviate's retrieval, you can personalize the agent(s) and make them more context aware. 
 
-The integration is supported through our LangChain vector store. You need to have a running Weaviate instance and create the vector store with: 
+The integration is supported through our LangChain vector store. 
+
+To configure the integration, create the vector store and connect to your Weaviate instance:
 ```python
 WeaviateVectorStore.from_documents( )
 ```
 
-You can learn more about how to create a vector store [here](https://python.langchain.com/v0.2/docs/integrations/vectorstores/weaviate/#step-1-data-import).
+Learn how to [create a vector store](https://python.langchain.com/v0.2/docs/integrations/vectorstores/weaviate/#step-1-data-import).
 
 ## Our Resources 
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.

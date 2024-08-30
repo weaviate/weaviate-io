@@ -4,7 +4,7 @@ sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
-[Unstructured](https://unstructured.io/) offers a platform and tools for ingesting and processing unstructured data for building retrieval augmented generation (RAG) applications.
+[Unstructured](https://unstructured.io/) offers a platform and tools to work with unstructured data. Ingest and process unstructured data to use in retrieval augmented generation (RAG) applications.
 
 Unstructured has two offerings:
 1. [Unstructured Platform](https://docs.unstructured.io/platform/overview): No-code user interface

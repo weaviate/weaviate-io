@@ -4,12 +4,12 @@ sidebar_position: 4
 image: og/integrations/home.jpg
 ---
 
-[Apache Spark](https://spark.apache.org/docs/latest/api/python/index.html) (or the Python API, PySpark) is an open-source data processing framework used for real-time, large-scale data processing. 
+[Apache Spark](https://spark.apache.org/docs/latest/api/python/index.html) (or the Python API, [PySpark](https://spark.apache.org/docs/latest/api/python/index.html#:~:text=PySpark%20is%20the%20Python%20API,for%20interactively%20analyzing%20your%20data.)) is an open-source data processing framework used for real-time, large-scale data processing. 
 
 ## Spark and Weaviate
 The Spark connector enables you to easily ingest data from Spark data structures into Weaviate. 
 
-You can learn more about the Weaviate connector for Spark in [this repository](https://github.com/weaviate/spark-connector).
+Learn more about the connector in the Weaviate[ Spark connector repository](https://github.com/weaviate/spark-connector).
 
 ## Our Resources 
 The resources are broken into two categories: 

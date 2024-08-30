@@ -3,10 +3,12 @@ title: Langwatch
 sidebar_position: 3
 image: og/integrations/home.jpg
 ---
-[LangWatch](https://langwatch.ai/) is an LLM operations platform offering tools to control the quality of your AI application. 
+[LangWatch](https://langwatch.ai/) is an LLM operations platform that offers tools to control the quality of your AI application. 
 
 ## LangWatch and Weaviate
-Connect to your Weaviate instance to log the traces. It also connects to DSPy to track the performance of each prompt paraphrasing. 
+Connect LangWatch to your Weaviate instance to log operational traces.
+
+LangWatch also connects to DSPy to track the performance of each prompt paraphrasing.
 
 ## Our Resources 
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
