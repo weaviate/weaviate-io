@@ -4,26 +4,26 @@ slug: late-chunking
 authors: [charles-pierse, connor, akanksha]
 date: 2024-09-05
 tags: ['concepts']
-# image: ./img/hero.png
+image: ./img/hero.png
 description: 'Learn about Late Chunking and how it may be the right fit for balancing cost and performance in your long context retrieval applications'
 ---
 
 Large-scale RAG applications that require long context retrieval deal with a unique set of challenges. The volume of data is often huge, while the precision of the retrieval system is critical. However, ensuring high-quality retrieval in such systems is often at odds with cost and performance. For users this can present a difficult balancing act. But there may be a new solution that can even the scales.
 
-Last week, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. This article explores why late chunking may just be the happy medium between naive (but cheap) solutions and more precise (but expensive) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
+Two weeks ago, [JinaAI announced](https://jina.ai/news/late-chunking-in-long-context-embedding-models/) a new methodology to aid in long-context retrieval called late chunking. This article explores why late chunking may just be the happy medium between naive (but inexpensive) solutions and more sophisticated (but costly) solutions like ColBERT for users looking to build high-quality retrieval systems on long documents.
 
 ## What is Late Chunking?
 
 :::note
-Late chunking's similarity in name to late interaction is no coincidence, the authors of late chunking chose the name due to its links with late interaction.
+The similarity between the names "late chunking" and "late interaction" is intentional—the authors of late chunking chose the name to reflect its connection with late interaction.
 :::
 
 ![Chunking Strategies](./img/chunking-strategies.png)
 
 Late chunking is a novel approach that aims to preserve contextual information across large documents by inverting the traditional order of embedding and chunking. The key distinction lies in when the chunking occurs:
 
-1. Traditional approach: Chunk first, then embed each chunk separately.
-2. Late chunking: Embed the entire document first, then chunk the embeddings.
+1. **Traditional approach:** Chunk first, then embed each chunk separately.
+2. **Late chunking:** Embed the entire document first, then chunk the embeddings.
 
 This method utilizes a long context embedding model to create token embeddings for every token in a document. These token-level embeddings are then broken up and pooled into multiple embeddings representing each chunk in the text.
 
@@ -47,7 +47,7 @@ If we were to chunk this paragraph by sentences we would get:
 2. _She saw a rabbit hole at the base of a large tree._
 3. _She fell into the hole and found herself in a strange new world._
 
-Now imagine that a user has populated their vector database with multiple documents, paragraphs from a book, or even multiple books. If they were to ask **"Where did Alice fall"** we as humans can intuitively understand that the coreference of "her" in sentence 3 refers to Alice from sentence 1. However, since these embeddings were created independently of one another there is no way for the model representation of sentence 3 to account for this relationship to the name Alice.
+Now imagine that a user has populated their vector database with multiple documents, paragraphs from a book, or even multiple books. If they were to ask **"Where did Alice fall"** we as humans can intuitively understand that the coreference of "she" in sentence 3 refers to Alice from sentence 1. However, since these embeddings were created independently of one another there is no way for the model representation of sentence 3 to account for this relationship to the name Alice.
 
 ### Late Interaction and ColBERT
 
@@ -113,9 +113,15 @@ The two chunks that sentence was split between are:
   </tr>
   <tr>
     <td>
-      ...When building a Retrieval Augmented Generation (RAG) application, using
-      account or user-specific data to contextualize results, data must remain
-      within a dedicated tenant for its user group.{' '}
+      ...tech stacks to evolve. This optionality, combined with ease of use,
+      helps teams scale AI prototypes into production faster. Flexibility is
+      also vital when it comes to architecture. Different use cases have
+      different requirements. For example, we work with many software companies
+      and those operating in regulated industries. They often require
+      multi-tenancy to isolate data and maintain compliance. When building a
+      Retrieval Augmented Generation (RAG) application, using account or
+      user-specific data to contextualize results, data must remain within a
+      dedicated tenant for its user group.{' '}
       <b>
         Weaviate’s native, multi-tenant architecture shines for customers who
         need to prioritize...
@@ -135,7 +141,7 @@ The two chunks that sentence was split between are:
 :::note
 The comparison below compares a naive chunking approach with late chunking using the same long context model (jina-embeddings-v2-base-en) and the same chunking strategy (num tokens = 128).
 
-We do not include ColBERT in this comparison as for this qualitative experiment there is only a single document, therefore ColBERT in a retrieval setup would only have one document it can return. However, in our linked notebook we have included a ColBERT comparison using it as a reranker.
+We do not include ColBERT in this comparison as for this qualitative experiment as there is only a single document, therefore ColBERT in a retrieval setup would only have one document it can return and would not be useful comparison.
 :::
 
 To answer the query:
@@ -197,8 +203,8 @@ Let's revisit our theoretical storage comparison from earlier:
 | Approach                                       | Total embeddings required per document | Number of Documents | Total Vectors Stored |
 | ---------------------------------------------- | -------------------------------------- | ------------------- | -------------------- |
 | **Late Interaction (no pooling)**              | 8,000                                  | 100,000             | 800 million          |
-| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million         |
-| **Late Chunking (chunking after inference)**   | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million         |
+| **Naive Approach (chunking before inference)** | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million          |
+| **Late Chunking (chunking after inference)**   | 16 ( 8,000 / 512 )                     | 100,000             | 1.6 million          |
 
 As we can see late chunking offers the same reduction in storage requirements as the naive approach while giving stronger preservation of the contextual information that late interaction offers.
 
