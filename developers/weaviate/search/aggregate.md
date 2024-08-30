@@ -151,6 +151,15 @@ This example counts occurrence frequencies in the `question` property:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START TextProp"
+      endMarker="// END TextProp"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -212,6 +221,15 @@ This  example sums the `points` property.
       startMarker="// IntProp TS"
       endMarker="// END IntProp TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START IntProp"
+      endMarker="// END IntProp"
+      language="go"
     />
   </TabItem>
 
@@ -281,6 +299,15 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START groupBy"
+      endMarker="// END groupBy"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -341,6 +368,15 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       startMarker="// nearTextWithLimit TS"
       endMarker="// END nearTextWithLimit TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START nearTextWithLimit"
+      endMarker="// END nearTextWithLimit"
+      language="go"
     />
   </TabItem>
 
@@ -422,6 +458,15 @@ Use `distance` to specify how similar the objects should be.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START nearTextWithDistance"
+      endMarker="// END nearTextWithDistance"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -483,6 +528,15 @@ For more specific results, use a `filter` to narrow your search.
       startMarker="// whereFilter TS"
       endMarker="// END whereFilter TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START whereFilter"
+      endMarker="// END whereFilter"
+      language="go"
     />
   </TabItem>
 
