@@ -15,11 +15,16 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
       format = input => input.replace(/^    /, '');
       break
     case "go":
+      const spacesPerTab = 2;
+      const spaces = ' '.repeat(spacesPerTab);
+
       format = input => input
-        // remove leading indent of 2 or 1 tabs
-        .replace(input.match(/^\t\t/) ? /^\t\t/ : /^\t/, '')
-        // replace remaining tabs with 2 spaces
-        .replace(/\t/, "  ")
+      // Replace newline + n tabs with n spaces
+      .replace(/\n[\t]+/g, match =>
+        match.replace(/\t/g, spaces)
+      )
+      // Replace any remaining tabs with n spaces
+      .replace(/\t/g, spaces)
       break;
     default:
       format = input => input;
