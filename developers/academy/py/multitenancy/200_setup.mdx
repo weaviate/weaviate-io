@@ -188,10 +188,10 @@ services:
 
 ### <i class="fa-solid fa-chalkboard"></i> Configuration highlights
 
-You may have seen Docker configurations elsewhere ([e.g. Docs](../../../weaviate/installation/docker-compose.md), [Academy](../starter_text_data/101_setup_weaviate/20_create_instance/20_create_docker.mdx)). But the highlighted configurations may be new to you:
+You may have seen Docker configurations elsewhere ([e.g. Docs](../../../weaviate/installation/docker-compose.md), [Academy](../starter_text_data/101_setup_weaviate/20_create_instance/20_create_docker.mdx)). But these highlighted configurations may be new to you:
 
 - `ASYNC_INDEXING`: This will enable asynchronous indexing. This is useful for high-volume data insertion, and enables us to use the `dynamic` index type, which you will learn about later on.
-- `ENABLE_MODULES`: We include `offload-s3` to enable tenant offloading to an S3 bucket. This will help us manage inactive users' data efficiently.
+- `ENABLE_MODULES`: We enable `offload-s3` to demonstrate tenant offloading later on. Offloading helps us to manage inactive users' data efficiently.
 - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`: These are the AWS credentials that Weaviate will use to access the S3 bucket.
 - `OFFLOAD_S3_BUCKET_AUTO_CREATE`: This will automatically create the S3 bucket if it does not exist.
 
@@ -200,6 +200,10 @@ Save the file to `docker-compose.yaml`, and run the following command to start W
 ```bash
 docker compose up
 ```
+
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
 
 ### <i class="fa-solid fa-chalkboard"></i> Your Weaviate instance details
 
