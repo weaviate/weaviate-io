@@ -25,9 +25,11 @@ func TestMetaCount(t *testing.T) {
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
 			Name: "meta",
+			// highlight-start
 			Fields: []graphql.Field{
 				{Name: "count"},
 			},
+			// highlight-end
 		}).
 		Do(ctx)
 	// END MetaCount Go
@@ -42,7 +44,7 @@ func TestMetaCount(t *testing.T) {
 	assert.Contains(t, response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0], "meta")
 	
 	meta := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["meta"].(map[string]interface{})
-	assert.Equal(t, float64(10000), meta["count"])
+	assert.Equal(t, float64(216930), meta["count"]) //or 10,000 if you are using the smaller dataset
 }
 
 // ==================================
@@ -53,7 +55,7 @@ func TestTextProp(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// TextProp Go
+	// START TextProp Go
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
@@ -77,7 +79,7 @@ func TestTextProp(t *testing.T) {
 	t.Logf("%s", jsonResponse)
 
 	answer := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["answer"].(map[string]interface{})
-	assert.Equal(t, float64(10000), answer["count"])
+	assert.Equal(t, float64(216930), answer["count"]) //or 10,000 if you are using the smaller dataset
 	assert.Equal(t, "text", answer["type"])
 	assert.Len(t, answer["topOccurrences"].([]interface{}), 5)
 }
@@ -90,14 +92,16 @@ func TestIntProp(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// IntProp Go
+	// START IntProp Go
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
 			Name: "points",
+			// highlight-start
 			Fields: []graphql.Field{
 				{Name: "count"},
 				{Name: "sum"},
+			// highlight-end
 			},
 		}).
 		Do(ctx)
@@ -108,8 +112,8 @@ func TestIntProp(t *testing.T) {
 	t.Logf("%s", jsonResponse)
 
 	points := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["points"].(map[string]interface{})
-	assert.Equal(t, float64(10000), points["count"])
-	assert.Equal(t, float64(6324100), points["sum"])
+	assert.Equal(t, float64(216930), points["count"]) //or 10,000 if you are using the smaller dataset
+	assert.Equal(t, float64(141871083), points["sum"]) // or 6324100 if you are using the smaller dataset
 }
 
 // ============================
@@ -121,11 +125,11 @@ func TestGroupBy(t *testing.T) {
 	ctx := context.Background()
 
 	// START groupBy Go
-	groupby := client.GraphQL().GroupByArgBuilder().
 
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
-		WithGroupBy(client.GraphQL().AggregateGroupByBuilder().WithPath([]string{"round"})).
+		// highlight-start
+		WithGroupBy("round").
 		WithFields(
 			graphql.Field{
 				Name: "groupedBy",
@@ -140,6 +144,7 @@ func TestGroupBy(t *testing.T) {
 				},
 			},
 		).
+		// highlight-end
 		Do(ctx)
 	// END groupBy Go
 
@@ -148,7 +153,7 @@ func TestGroupBy(t *testing.T) {
 	t.Logf("%s", jsonResponse)
 
 	groups := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})
-	assert.Len(t, groups, 3)
+	assert.Len(t, groups, 4) // 3 if you are using the smaller dataset
 	for _, group := range groups {
 		g := group.(map[string]interface{})
 		assert.Contains(t, g, "groupedBy")
@@ -164,12 +169,14 @@ func TestNearTextWithLimit(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// nearTextWithLimit Go
+	// START nearTextWithLimit Go
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in space"})).
+		// highlight-start
 		WithObjectLimit(10).
+		// highlight-end
 		WithFields(graphql.Field{
 			Name: "points",
 			Fields: []graphql.Field{
@@ -195,12 +202,14 @@ func TestNearTextWithDistance(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// nearTextWithDistance Go
+	// START nearTextWithDistance Go
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in space"}).
+			// highlight-start
 			WithDistance(0.19)).
+			// highlight-end
 		WithFields(graphql.Field{
 			Name: "points",
 			Fields: []graphql.Field{
@@ -226,13 +235,15 @@ func TestWhereFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// whereFilter Go
+	// START whereFilter Go
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
+		// highlight-start
 		WithWhere(filters.Where().
 			WithPath([]string{"round"}).
 			WithOperator(filters.Equal).
 			WithValueString("Final Jeopardy!")).
+		// highlight-end
 		WithFields(graphql.Field{
 			Name: "meta",
 			Fields: []graphql.Field{
