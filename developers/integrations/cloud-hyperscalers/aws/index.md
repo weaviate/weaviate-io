@@ -12,7 +12,7 @@ Weaviate integrates with [AWS](https://aws.amazon.com/) infrastructure and servi
 * [Run embedding and generative models on SageMaker and Bedrock](/developers/weaviate/model-providers/aws)
 
 ## Our Resources 
-**Hands on Learning**: Content framed to build your technical understanding with end-to-end tutorials.
+**Hands on Learning**: Build your technical understanding with end-to-end tutorials.
 
 | Topic | Description | Resource | 
 | --- | --- | --- |

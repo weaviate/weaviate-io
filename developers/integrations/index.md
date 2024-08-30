@@ -19,10 +19,10 @@ All the notebooks and code examples are on [Weaviate Recipes](https://github.com
 The ecosystem is divided into these categories:
 
 * **Cloud Hyperscalers** - Large-scale computing and storage
-* **Container Infrastructure** - Run and scale containerized applications
-* **Data Pipeline** - Data ingestion and web scraping 
+* **Compute Infrastructure** - Run and scale containerized applications
+* **Data Platforms** - Data ingestion and web scraping 
 * **LLM Frameworks** - Build generative AI applications
-* **Observability and Evaluation** - Monitor and analyze generative AI workflows
+* **Operations** - Tools for monitoring and analyzing generative AI workflows
 
 
 
@@ -30,8 +30,8 @@ The ecosystem is divided into these categories:
 
 | Company Category | Companies |
 |------------------|-----------|
-| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws), Azure|
-| Container Infrastructure | Modal, Replicate |
-| Data Pipeline | Spark, Unstructured, Firecrawl |
-| LLM Frameworks | DSPy, LangChain, LlamaIndex, Semantic Kernel |
-| Observability and Evaluation | Arize, Langtrace, Nomic, Ragas, Weights & Biases |
+| Cloud Hyperscalers | [Google](/developers/integrations/cloud-hyperscalers/google), [AWS](/developers/integrations/cloud-hyperscalers/aws)|
+| Compute Infrastructure | [Modal](/developers/integrations/compute-infrastructure/modal), [Replicate](/developers/integrations/compute-infrastructure/replicate) |
+| Data Platforms |[Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud), [Context Data](/developers/integrations/data-platforms/context-data/), [Firecrawl](/developers/integrations/data-platforms/firecrawl), [Spark](/developers/integrations/data-platforms/spark), [Unstructured](/developers/integrations/data-platforms/unstructured) |
+| LLM Frameworks | [Composio](/developers/integrations/llm-frameworks/composio/), [DSPy](/developers/integrations/llm-frameworks/dspy/), [LangChain](/developers/integrations/llm-frameworks/langchain/), [LlamaIndex](/developers/integrations/llm-frameworks/llamaindex/), [Semantic Kernel](/developers/integrations/llm-frameworks/semantic-kernel/) |
+| Operations | [Arize](/developers/integrations/operations/arize/), [Langtrace](/developers/integrations/operations/langtrace/), [LangWatch](/developers/integrations/operations/langwatch/), [Nomic](/developers/integrations/operations/nomic/), [Ragas](/developers/integrations/operations/ragas/), [Weights & Biases](/developers/integrations/operations/wandb/) |
