@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-similarity_test.go';
 
 Vector search returns the objects with most similar vectors to that of the query.
 
