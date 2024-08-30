@@ -57,6 +57,15 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearText"
+      endMarker="// END GetNearText"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -174,10 +183,19 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearObject"
+      endMarker="// END GetNearObject"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# GetNearObjectGraphQL"
+      startMarker="# START GetNearObjectGraphQL"
       endMarker="# END GetNearObjectGraphQL"
       language="graphql"
     />
@@ -232,6 +250,15 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
       startMarker="// GetNearVector"
       endMarker="// END GetNearVector"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearVector"
+      endMarker="// END GetNearVector"
+      language="go"
     />
   </TabItem>
 
@@ -354,6 +381,15 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithDistance"
+      endMarker="// END GetWithDistance"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -416,6 +452,15 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetLimitOffset"
+      endMarker="// END GetLimitOffset"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -464,6 +509,15 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       startMarker="// START Autocut"
       endMarker="// END Autocut"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="go"
     />
   </TabItem>
 
@@ -532,6 +586,15 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithGroupBy"
+      endMarker="// END GetWithGroupBy"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -594,6 +657,15 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
       startMarker="// GetWithFilter"
       endMarker="// END GetWithFilter"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithFilter"
+      endMarker="// END GetWithFilter"
+      language="go"
     />
   </TabItem>
 
