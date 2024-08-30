@@ -385,22 +385,12 @@ p {
     width: 63%;
   }
 
-  @media screen and (max-width: 1050px) {
-    p {
-      font-size: 1.1rem;
-    }
-    width: 53%;
-  }
-
   @media screen and (max-width: 1120px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
     margin: auto;
 
-    p {
-      font-size: 15px;
-    }
     .date {
       display: none;
     }
@@ -418,5 +408,11 @@ p {
     width: 59%;
     margin: auto;
     padding: 25px;
+  }
+
+  @media screen and (max-width: 1050px) {
+    p {
+      font-size: 1.1rem;
+    }
   }
 }
