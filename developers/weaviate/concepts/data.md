@@ -210,6 +210,10 @@ Tenant shards are more lightweight. You can easily have 50,000, or more, active 
 
 Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
 
+:::caution Tenant deletion == Tenant data deletion
+Deleting a tenant deletes the associated shard. As a result, deleting a tenant also deletes all of its objects.
+:::
+
 ### Tenant status
 
 :::info Multi-tenancy availability
@@ -242,9 +246,16 @@ In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was r
 
 #### Offloaded tenants
 
-Frozen, also called "offloaded" tenants, are introduced in Weaviate `v1.26.0`. This requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
+:::info Added in `v1.26.0`
+:::
 
-As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `OFFLOADED` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+Offloading tenants requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
+
+When a tenant is offloaded, the entire tenant shard is moved to cloud storage. This is useful for long-term storage of tenants that are not frequently accessed. Offloaded tenants are not available for read or write operations until they are loaded back into the cluster.
 
 ### Backups
 

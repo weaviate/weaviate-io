@@ -1,0 +1,6 @@
+- [Product Quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression) PQ reduces the size of the vector embedding in two ways. PQ trains on your data to create custom segments. PQ creates segments to reduce the number of dimensions, and segments are stored as 8 bit integers instead of 32 bit floats. Compared to dimensions, there are fewer segments and each segment is much smaller than a single dimension.
+
+  The PQ compression algorithm is [configurable](/developers/weaviate/config-refs/schema/vector-index#pq-configuration-parameters).
+You control the number of segments, segment granularity, and the size of the training set.
+- [Scalar Quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression) SQ reduces the size of each vector dimension from 32 bits to 8 bits. SQ trains on your data to create custom buckets for each dimension. This training helps SQ to preserve data characteristics when it maps information from the 32 bit dimensions into 8 bit buckets.
+- [Binary Quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) BQ reduces the size of each vector dimension to a single bit. This compression algorithm works best for vectors with high dimensionality.

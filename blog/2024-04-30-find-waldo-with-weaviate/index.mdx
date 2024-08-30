@@ -39,7 +39,6 @@ Besides text, Weaviate also supports image, or multimodal data and performs the 
 To start I need to spin up an instance of Weaviate and a vectorizer that supports a multi-modal dataset. Weaviate provides a docker image for the Clip model which is perfectly suited for this use case. It’s lightweight and I can spin up both the vectorizer and Weaviate together using Docker-Compose:
 
 ```
-version: '3.4'
 services:
  weaviate:
    image: cr.weaviate.io/semitechnologies/weaviate:latest

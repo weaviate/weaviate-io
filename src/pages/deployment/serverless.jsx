@@ -11,7 +11,10 @@ import Integrations from '../../components/Service/Serverless/Integrations/index
 export default function ServerlessPage() {
   return (
     <div className="custom-page noBG">
-      <Layout title="Serverless Cloud" description="Serverless Cloud Service">
+      <Layout
+        title="Serverless Vector Database"
+        description="All the power of Weaviate, as a fully-managed vector database as a service."
+      >
         <ServiceHeader />
         <ServicePlan />
         <CalculatorContainer />

@@ -686,7 +686,7 @@ Filters also work with metadata properties such as object id, property length, a
 
 For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
-### Metadata filter - by object `id`
+### By object `id`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -713,7 +713,6 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="js"
     />
   </TabItem>
-
  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
@@ -733,7 +732,9 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object timestamp
+### By object timestamp
+
+This filter requires the [property timestamp](../config-refs/schema/index.md#indextimestamps) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -780,7 +781,9 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object property length
+### By object property length
+
+This filter requires the [property length](../config-refs/schema/index.md#indexpropertylength) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -822,6 +825,45 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       text={PyCodeV3}
       startMarker="# GQLFilterByPropertyLength"
       endMarker="# END GQLFilterByPropertyLength"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+### By object null state
+
+This filter requires the [property null state](../config-refs/schema/index.md#indexnullstate) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByPropertyNullState"
+      endMarker="// END FilterByPropertyNullState"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GQLFilterByPropertyNullState"
+      endMarker="# END GQLFilterByPropertyNullState"
       language="graphql"
     />
   </TabItem>

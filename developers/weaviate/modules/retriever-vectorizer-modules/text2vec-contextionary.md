@@ -58,7 +58,6 @@ This configuration enables `text2vec-contextionary`, sets it as the default vect
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

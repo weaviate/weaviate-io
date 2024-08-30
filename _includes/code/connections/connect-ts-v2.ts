@@ -36,6 +36,22 @@ const client: WeaviateClient = weaviate.client({
 console.log(client)
 // END LocalNoAuth
 
+///////////////////////////
+/// Custom URL or port  ///
+///////////////////////////
+
+// START CustomURL
+import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: '127.0.0.1:8080',
+  // The v2 client doesn't use the gRPC port
+});
+
+console.log(client)
+// END CustomURL
+
 //////////////////
 /// Local auth ///
 //////////////////

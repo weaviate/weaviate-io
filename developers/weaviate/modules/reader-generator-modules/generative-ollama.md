@@ -58,7 +58,6 @@ This configuration enables `generative-ollama`.
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

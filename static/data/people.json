@@ -217,7 +217,7 @@
   },
   {
     "name": "Femke Plantinga",
-    "title": "Developer Marketing Manager",
+    "title": "Developer Growth Manager",
     "photo": "femke.png",
     "linkedin": "femke-plantinga-a60b9a172",
     "twitter": "femke_plantinga",
@@ -306,6 +306,13 @@
     "photo": "joseph-green.jpg",
     "team": "delivery",
     "linkedin": "joe-green-11381620a"
+  },
+  {
+    "name": "Josh Goldstein",
+    "title": "Enterprise Solution Engineer",
+    "photo": "josh-goldstein.jpg",
+    "team": "sales",
+    "linkedin": "joshsgoldstein"
   },
   {
     "name": "Kaviraj Kanagaraj",
@@ -491,6 +498,12 @@
     "team": "sales"
   },
   {
+    "name": "Spiros Andreou",
+    "title": "Security & Compliance Lead",
+    "photo": "spiros.jpg",
+    "team": "delivery"
+  },
+  {
     "name": "Staci Blue",
     "title": "Event Marketing Manager",
     "photo": "staci.jpg",
@@ -512,6 +525,13 @@
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
     "team": "marketing"
+  },
+  {
+    "name": "Thomas Maurice",
+    "title": "Platform Engineer",
+    "photo": "thomas.jpg",
+    "linkedin": "thomas-maurice-80846b61",
+    "team": "wcd"
   },
   {
     "name": "Thomas Smith",

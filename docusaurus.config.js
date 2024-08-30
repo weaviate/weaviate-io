@@ -16,7 +16,7 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Weaviate - Vector Database',
+    title: 'Weaviate',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',
@@ -183,6 +183,11 @@ const config = {
                 tagName: 'script',
                 innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
               },
+                 // Add Koala
+                 {
+                    tagName: 'script',
+                    innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
+                },
 
                     ],
                 };
@@ -287,7 +292,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/education-and-support">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/education-and-support">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -419,7 +424,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/#contact-us">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/#contact-us">Contact Us</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/#contact-us">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/#contact-us">Contact Us</a></li><li class="menu__list-item"><a class="menu__link" href="/partners">Partners Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"></ul>',
                                className: 'dropDownContainer2',
                             },
                         ],
@@ -486,18 +491,29 @@ const config = {
                     {
                         title: 'Product',
                         items: [
+
                             {
-                                label: 'Weaviate Database',
+                                label: 'Vector Database',
                                 to: '/platform',
                             },
+
                             {
-                                label: 'Services',
-                                to: '#',
-                                className: 'footer__title subtitle',
+                                label: 'Workbench',
+                                to: '/workbench',
                             },
                             {
-                                label: 'Services Overview',
-                                to: '/services',
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+
+                                label: 'Weaviate Cloud',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                            {
+                                label: 'Deployment',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
                                 label: 'Serverless Cloud',
@@ -512,12 +528,58 @@ const config = {
                                 to: '/deployment/byoc',
                             },
                             {
-                                label: 'Education & Support',
-                                to: '/deployment/education-and-support',
+                                label: 'Enablement',
+                                to: '/deployment/enablement',
                             },
                             {
-                                label: 'Pricing',
-                                to: '/pricing',
+                                label: 'Trust',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Security',
+                                to: '/security',
+                            },
+                            {
+                                label: 'Terms & Policies',
+                                to: '/service',
+                            },
+
+                        ],
+                    },
+                    {
+                        title: 'Use Cases',
+                        items: [
+
+                            {
+                                label: 'RAG',
+                                to: '/RAG',
+                            },
+                            {
+                                label: 'Hybrid Search',
+                                to: '/hybrid-search',
+                            },
+                            {
+                                label: 'Generative Feedback Loops',
+                                to: '/gen-feedback-loops',
+                            },
+                            {
+                                label: 'Cost Performance Optimization',
+                                to: '/cost-performance-optimization',
+                            },
+                            {
+                                label: 'Examples',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+
+                                label: 'Showcases',
+                                to: '/community/build-with-weaviate',
+                            },
+                            {
+                                label: 'Demos',
+                                to: 'community/demos',
                             },
                         ],
                     },
@@ -525,16 +587,13 @@ const config = {
                         title: 'Learn',
                         items: [
                             {
-                                label: 'Docs',
-                                to: '/developers/weaviate',
-                            },
-                            {
-                                label: 'Quickstart',
-                                to: '/developers/weaviate/quickstart',
-                            },
-                            {
                                 label: 'Blog',
                                 to: '/blog',
+                            },
+                            {
+
+                                label: 'Academy',
+                                to: '/developers/academy',
                             },
                             {
                                 label: 'Workshops',
@@ -545,41 +604,54 @@ const config = {
                                 to: '/learn/knowledgecards',
                             },
                             {
-                                label: 'Academy',
-                                to: '/developers/academy',
+
+                                label: 'Paper Reviews',
+                                to: '/papers',
                             },
                             {
-                                label: 'Contributor Guide',
-                                to: '/developers/contributor-guide',
+                                label: 'Podcasts',
+                                to: '/podcast',
                             },
-                        ],
-                    },
-                    {
-                        title: 'Connect',
-                        items: [
+
                             {
-                                label: 'Community',
-                                href: '/community',
+                                label: 'Build',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
-                                label: 'Build With Weaviate',
-                                href: '/community/build-with-weaviate',
+                                label: 'Documentation',
+                                to: '/developers/weaviate',
                             },
                             {
-                                label: 'Demos',
-                                href: '/community/demos',
+                                label: 'Weaviate Cloud Docs',
+                                to: '/developers/wcs',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://github.com/weaviate/weaviate',
+                            },
+
+                            {
+                                label: 'Engage',
+                                to: '#',
+                                className: 'footer__title subtitle',
                             },
                             {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },
                             {
+                                label: 'Weaviate Hero Program',
+                                href: '/community',
+                            },
+
+                            {
                                 label: 'Forum',
                                 to: 'https://forum.weaviate.io/',
                             },
                             {
-                                label: 'Podcast',
-                                to: '/podcast',
+                                label: 'Slack',
+                                to: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Meetups',
@@ -608,11 +680,12 @@ const config = {
                             },
                         ],
                     },
+
                     {
-                        title: 'Company',
+                        title: 'About',
                         items: [
                             {
-                                label: 'About',
+                                label: 'Company',
                                 to: '/company/about-us',
                             },
                             {
@@ -628,17 +701,22 @@ const config = {
                                 to: 'company/playbook',
                             },
                             {
-                                label: 'Security',
-                                to: '/security',
+                                label: 'Investors',
+                                to: 'company/investors',
                             },
                             {
-                                label: 'Terms & Policies',
-                                to: '/service',
+                                label: 'Contact Us',
+                                to: '/#contact-us',
                             },
                             {
                                 label: 'Partners',
                                 to: '#',
                                 className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Overview',
+                                to: '/partners',
+
                             },
                             {
                                 label: 'AWS',
@@ -688,6 +766,37 @@ const config = {
                                 label: 'Linkedin',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
+                            {
+                                label: 'Meetups',
+                                to: '#',
+                                className: 'footer__title subtitle',
+                            },
+                            {
+                                label: 'Amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
+
+                            },
+                            {
+                                label: 'Boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
+
+                            },
+                            {
+                                label: 'New York',
+                                to: 'https://www.meetup.com/weaviate-NYC',
+
+                            },
+                            {
+                                label: 'San Francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
+
+                            },
+                            {
+                                label: 'Toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
+
+                            },
+
 
                         ],
                     },

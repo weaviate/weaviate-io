@@ -58,7 +58,6 @@ This configuration enables `text2vec-openai`, sets it as the default vectorizer,
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

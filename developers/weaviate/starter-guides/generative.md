@@ -66,7 +66,7 @@ This makes it easier, faster and more efficient to implement generative search w
 
 Let's begin by viewing examples of generative search in action. We will then explore how to configure Weaviate for generative search.
 
-We will use the publicly available `https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud` instance, which you can access with the `nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus` read-only API key. These examples are configured with the `generative-openai` module and the `gpt-3.5-turbo` model, so you will need an OpenAI API key.
+We have run this demo with an OpenAI language model and a cloud instance of Weaviate. But you can run it with any [deployment method](./which-weaviate.md) and with any generative AI [model integration](../model-providers/index.md).
 
 Connect to the instance like so, remembering to replace the API key for the LLM used (OpenAI in this case) with your own API key:
 

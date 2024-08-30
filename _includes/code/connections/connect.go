@@ -58,7 +58,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 )
@@ -89,6 +88,49 @@ func main() {
 	CreateClient()
 }
 // END LocalNoAuth
+
+//////////////////////////
+/// Custom URL or port ///
+//////////////////////////
+
+// START CustomURL
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+)
+
+// Create the client
+func CreateClient() {
+	cfg := weaviate.Config{
+		Host:       "localhost:8080",
+		Scheme:     "http",
+        Headers:    nil,
+        // The Go client doesn't use the gRPC port
+	}
+
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// Check the connection
+	live, err := client.Misc().LiveChecker().Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%v", live)
+
+}
+
+func main() {
+	CreateClient()
+}
+// END CustomURL
+
 
 //////////////////
 /// Local auth ///

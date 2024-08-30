@@ -34,6 +34,7 @@ git_slack_map=(
     ["thomashacker"]="<@U056E1ZEM3L>"
     ["Wera"]="<@U043TKSEU5V>"
     ["Zain Hasan"]="<@U043TKSJQF9>"
+    ["Mohamed Shahin"]="<@U05V4HPJ3M0>"
 )
 
 # Get the Author name and map it to their Slack handle

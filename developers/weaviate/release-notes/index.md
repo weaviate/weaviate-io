@@ -16,6 +16,8 @@ This chart shows the latest client release at the time of the Weaviate core rele
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
+| [1.26.3][c1.26.3] | 2024-08-29 | [4.7.1][p4.7.1] | [3.1.4][ts3.1.4] | [4.15.1][g4.15.1] | [4.8.2][j4.8.2] |
+| [1.26.2][c1.26.2] | 2024-08-29 | '' | '' | '' | '' |
 | [1.26.1][c1.26.1] | 2024-07-23 | [4.6.6][p4.6.6] | [3.0.8][ts3.0.8] | [4.14.2][g4.14.2] | [4.8.0][j4.8.0] |
 | [1.26.0][c1.26.0] | 2024-07-22 | '' | '' | '' | [4.7.0][j4.7.0] |
 
@@ -68,8 +70,12 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.26.3][c1.26.3] | 2024-08-29 |
+  | [1.26.2][c1.26.2] | 2024-08-29 |
   | [1.26.1][c1.26.1] | 2024-07-23 |
   | [1.26.0][c1.26.0] | 2024-07-22 |
+  | [1.25.13][c1.25.13] | 2024-08-19 |
+  | [1.25.12][c1.25.12] | 2024-08-19 |
   | [1.25.11][c1.25.11] | 2024-08-05 |
   | [1.25.10][c1.25.10] | 2024-07-31 |
   | [1.25.9][c1.25.9] | 2024-07-26 |
@@ -82,6 +88,8 @@ For links to the Weaviate Core releases, expand this section.
   | [1.25.2][c1.25.2] | 2024-05-31 |
   | [1.25.1][c1.25.1] | 2024-05-17 |
   | [1.25.0][c1.25.0] | 2024-05-10 |
+  | [1.24.23][c1.24.23] | 2024-08-20 |
+  | [1.24.22][c1.24.22] | 2024-08-08 |
   | [1.24.21][c1.24.21] | 2024-07-18 |
   | [1.24.20][c1.24.20] | 2024-07-09 |
   | [1.24.19][c1.24.19] | 2024-06-13 |
@@ -264,6 +272,7 @@ For links to the Python Client releases, expand this section.
    | [4.4.2][p4.4.2] | 2024-02-05 |
    | [4.4.1][p4.4.1] | 2024-02-01 |
    | [4.4.0][p4.4.0] | 2024-01-31 |
+   | [3.26.7][p3.26.7] | 2024-08-15 |
    | [3.26.6][p3.26.6] | 2024-07-24 |
    | [3.26.5][p3.26.5] | 2024-07-02 |
    | [3.26.4][p3.26.4] | 2024-07-02 |
@@ -427,6 +436,7 @@ For links to the Go Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.15.1][g4.15.1] | 2024-08-07 |
   | [4.15.0][g4.15.0] | 2024-07-25 |
   | [4.14.3][g4.14.3] | 2024-07-25 |
   | [4.14.2][g4.14.2] | 2024-07-17 |
@@ -544,8 +554,12 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( core links )
 
+[c1.26.3]: https://github.com/weaviate/weaviate/releases/tag/v1.26.3
+[c1.26.2]: https://github.com/weaviate/weaviate/releases/tag/v1.26.2
 [c1.26.1]: https://github.com/weaviate/weaviate/releases/tag/v1.26.1
 [c1.26.0]: https://github.com/weaviate/weaviate/releases/tag/v1.26.0
+[c1.25.13]: https://github.com/weaviate/weaviate/releases/tag/v1.25.13
+[c1.25.12]: https://github.com/weaviate/weaviate/releases/tag/v1.25.12
 [c1.25.11]: https://github.com/weaviate/weaviate/releases/tag/v1.25.11
 [c1.25.10]: https://github.com/weaviate/weaviate/releases/tag/v1.25.10
 [c1.25.9]: https://github.com/weaviate/weaviate/releases/tag/v1.25.9
@@ -558,6 +572,8 @@ For links to the Java Client releases, expand this section.
 [c1.25.2]: https://github.com/weaviate/weaviate/releases/tag/v1.25.2
 [c1.25.1]: https://github.com/weaviate/weaviate/releases/tag/v1.25.1
 [c1.25.0]: https://github.com/weaviate/weaviate/releases/tag/v1.25.0
+[c1.24.23]: https://github.com/weaviate/weaviate/releases/tag/v1.24.23
+[c1.24.22]: https://github.com/weaviate/weaviate/releases/tag/v1.24.22
 [c1.24.21]: https://github.com/weaviate/weaviate/releases/tag/v1.24.21
 [c1.24.20]: https://github.com/weaviate/weaviate/releases/tag/v1.24.20
 [c1.24.19]: https://github.com/weaviate/weaviate/releases/tag/v1.24.19
@@ -726,6 +742,7 @@ For links to the Java Client releases, expand this section.
 [p4.4.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.2
 [p4.4.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.1
 [p4.4.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.0
+[p3.26.7]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.7
 [p3.26.6]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.6
 [p3.26.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.5
 [p3.26.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.4
@@ -796,6 +813,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( go client links )
 
+[g4.15.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.15.1
 [g4.15.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.15.0
 [g4.14.3]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.3
 [g4.14.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.14.2

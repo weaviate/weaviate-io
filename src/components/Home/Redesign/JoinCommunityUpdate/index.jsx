@@ -10,8 +10,9 @@ export default function HomepageJoinCommunity() {
           <h2>Join the global community</h2>
           <span className={styles.rightText}>
             Connect with the Weaviate Team and hundreds of developers and data
-            engineers! Our community is here to help you with your projects and
-            provide expert advice. Share how you build your apps with Weaviate.
+            engineers! Our AI database community is here to help you with your
+            projects and provide expert advice. Share how you build your apps
+            with Weaviate.
           </span>
 
           <span className={styles.rightText}>

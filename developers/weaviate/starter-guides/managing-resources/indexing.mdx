@@ -1,0 +1,157 @@
+---
+title: Indexing
+sidebar_position: 50
+image: og/docs/indexing.jpg
+---
+
+Weaviate uses two types of indexes to facilitate fast, scalable search and filtering. It uses vector indexes for vector searches and inverted indexes for filtering and keyword searches.
+
+This page introduces the [vector indexes](#vector-indexes) and [inverted indexes](#inverted-indexes) available in Weaviate, so you can arrive at an informed indexing strategy.
+
+:::info Indexing and resource usage
+Vector indexes can use *hot* or *warm* resources, depending on the index type. Inverted indexes use *warm* resources. For more on resource types, see [Managing resources](./index.md).
+:::
+
+:::tip Indexing recommendations
+
+- For multi-tenant configurations, use a [dynamic index](#dynamic-indexes).
+- Consider the size of your data set when choosing an index type:
+    - If your object count is low, consider a flat index.
+    - For larger data sets, use an HNSW index.
+    - If you are unsure, use a dynamic index.
+- If you can trade off some accuracy, consider using [compression](./compression.mdx):
+    - For HNSW indexes, [PQ](../../configuration/compression/pq-compression.md)/[SQ](../../configuration/compression/sq-compression.md)/[BQ](../../configuration/compression/bq-compression.md) can reduce memory requirements.
+    - For flat indexes, [binary quantization (BQ)](../../configuration/compression/bq-compression.md) can improve search speeds.
+- Consider your query needs when configuring inverted indexes:
+    - If disk space is not a concern, [index all properties](#property-level-configuration) for searching & filtering.
+    - If metadata filtering is important, index it [at the collection level](#collection-level-configuration).
+
+:::
+
+## Vector indexes
+
+Weaviate offers three types of vector indexes, [Hierarchical Navigable Small World (HNSW)](#hnsw-indexes), [flat](#flat-indexes) and [dynamic](#dynamic-indexes).
+
+- HNSW indexes enable fast, scalable vector searching that works well even with very large data sets.
+- Flat indexes are memory-efficient indexes that work best with small data sets.
+- Dynamic indexes provide a best-of-both-worlds approach by switching from flat to HNSW indexes when a [collection](../../concepts/data.md#collections) (or [tenant](../../concepts/data.md#multi-tenancy)) reaches a threshold size.
+
+#### HNSW indexes
+
+[HNSW](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) are high-performance, in-memory indexes. HNSW indexes scale well, meaning that vector searches remain fast even for very large data sets.
+
+HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
+
+While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
+
+Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+
+import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+
+<CompressionAlgorithm />
+
+#### Flat indexes
+
+[Flat indexes](/developers/weaviate/concepts/vector-index#flat-index) are memory-efficient. They are disk based indexes that perform brute-force vector searches. Vector search speeds with flat indexes scale linearly with the number of objects.
+
+As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
+
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+
+#### Dynamic indexes
+
+:::info Added in `v1.25`
+:::
+
+import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
+
+<DynamicAsyncRequirements/>
+
+A [dynamic index](/developers/weaviate/concepts/vector-index#dynamic-index) offers a flexible approach to indexing. A dynamic index begins as a flat index, and converts automatically to an HNSW index upon reaching a threshold size.
+
+This can be particularly useful in multi-tenant configurations, where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
+
+The threshold size is 10,000 objects by default. You can configure the threshold size when you create the dynamic index.
+
+This table shows how a dynamic index changes as the number of objects in a collection grows. The assumed set up is a dynamic index with:
+
+- A threshold of 10,000 objects.
+- Flat index + BQ configuration.
+- HNSW index + PQ or SQ configuration, with 100,000 objects as the PQ/SQ training threshold.
+
+| Number of objects | Index type | Compression | Notes |
+| :- | :- | :- | :- |
+| 0 - 9,999 | Flat index | BQ | Flat index by default |
+| 10,000 | Flat -> HNSW | None | The index converts to HNSW. The index is stored in RAM. |
+| 100,000 | HNSW | Training | The collection object count == PQ/SQ training threshold. |
+| 100,001 | HNSW | PQ/SQ | PQ/SQ is active. |
+
+:::info Dynamic index requires flat and HNSW index settings
+A dynamic index requires its flat and HNSW index settings at creation time. The dynamic index will use the flat index settings initially, then automatically switch to the HNSW index with provided settings when the threshold is reached.
+:::
+
+### Asynchronous vector indexing
+
+:::info Added in `v1.22`
+:::
+
+Building an HNSW index can be resource-intensive and slow down the time it takes to import objects into Weaviate.
+
+[Asynchronous vector indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) allows you to import objects into Weaviate without waiting for the HNSW index to be built.
+
+This allows decoupling of data ingestion from vector index creation.
+
+With asynchronous vector indexing, you can import objects into Weaviate without waiting for the HNSW index to finish building. You should be aware that vector searches during this time may be based on an incomplete index, which can affect search results.
+
+## Inverted indexes
+
+Weaviate uses inverted indexes for keyword searches as well as filtering.
+
+There are multiple types of inverted indexes, including:
+- `indexSearchable`: for keyword searches
+- `indexFilterable`: for faster filtering
+- `indexRangeFilters`: for faster filtering on numerical ranges
+
+Aspects of these indexes can be configured at the collection and property level.
+
+### Collection level configuration
+
+The inverted index is configurable on a collection level. The collection level settings determine BM25 parameters, and what metadata is indexed for filtering. For example, you can configure whether timestamps, null state, or property lengths are indexed.
+
+For details, see [set inverted index parameters](/developers/weaviate/manage-data/collections#set-inverted-index-parameters)
+
+### Property level configuration
+
+Property level configuration is more limited. Individual indexes can be turned on or off at the property level, and keyword tokenization options can be set.
+
+`indexSearchable` determines whether a property is indexed for keyword searches. `indexFilterable` determines whether a property is indexed to speed up match-based filtering. `indexRangeFilters` determines whether a property is indexed for numerical range filters.
+
+For more on filters, see [Filtering](/developers/weaviate/concepts/prefiltering).
+
+## Related pages
+
+For more information, see these documentation pages and blog posts.
+
+### Documentation pages
+
+To configure indexing, follow the steps on these pages:
+
+- [Configure vector indexes](/developers/weaviate/config-refs/schema/vector-index)
+- [Configure inverted indexes](/developers/weaviate/manage-data/collections#set-inverted-index-parameters)
+
+For more documentation details, see:
+
+- [Vector indexing](/developers/weaviate/concepts/vector-index)
+- [Inverted indexes](/developers/weaviate/concepts/indexing)
+
+### Weaviate academy
+
+For a short course on vector indexes, see:
+
+- [Vector indexing](/developers/academy/py/vector_index)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

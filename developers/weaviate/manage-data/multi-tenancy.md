@@ -357,9 +357,11 @@ This example returns a tenant from the `MultiTenancyCollection` collection:
 
 ## Delete tenants
 
-To delete tenants from a collection, specify the collection and the tenants. The delete operation ignores tenant names if the named tenant is not a part of the collection.
+To delete tenants from a collection, specify the collection (e.g. `MultiTenancyCollection`) and the tenants (`tenantB` and `tenantX`). The delete operation ignores tenant names if a named tenant is not a part of the collection.
 
-In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancyCollection` collection.
+:::caution Tenant deletion == Tenant data deletion
+Deleting a tenant deletes all associated objects.
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -417,19 +419,16 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
   </TabItem>
 </Tabs>
 
-## Activate tenant
+## Manage tenant states
 
-:::info Added in v1.21.0
-:::
-
-To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOADED` tenant from cloud, call:
+Change a tenant state between `ACTIVE`, `INACTIVE`, and `OFFLOADED`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START ActivateTenants"
-      endMarker="# END ActivateTenants"
+      startMarker="# START ChangeTenantState"
+      endMarker="# END ChangeTenantState"
       language="py"
     />
   </TabItem>
@@ -437,100 +436,18 @@ To activate an `INACTIVE` tenant from disk, or to onload and activate an `OFFLOA
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START ActivateTenants"
-      endMarker="// END ActivateTenants"
+      startMarker="// START ChangeTenantState"
+      endMarker="// END ChangeTenantState"
       language="ts"
     />
   </TabItem>
 </Tabs>
 
-## Deactivate tenant
+:::info Learn more
 
-:::info Added in v1.21.0
+See [How-to: Manage tenant states](./tenant-states.mdx) for more hands-on examples, and the [Guide: Manage resources](../starter-guides/managing-resources/index.md) for more information and strategies to manage **hot**, **warm** and **cold** storage tiers.
+
 :::
-
-To deactivate an `ACTIVE`, or to onload an `OFFLOADED` tenant from cloud (without activating it), call:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START DeactivateTenants"
-      endMarker="# END DeactivateTenants"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START DeactivateTenants"
-      endMarker="// END DeactivateTenants"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
-
-## Offload tenant
-
-:::info Added in v1.26.0
-:::
-
-To offload an `ACTIVE` or `INACTIVE` tenant to cloud, call:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START OffloadTenants"
-      endMarker="# END OffloadTenants"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START OffloadTenants"
-      endMarker="// END OffloadTenants"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
-
-:::warning Requires Offload Module 
-Tenant offloading requires and Offload module.
-
-To configure tenant offloading, see the [modules page](../configuration/modules.md#tenant-offload-modules)
-:::
-
-## Automatically activate tenants
-
-:::info Added in `v1.25.2`
-:::
-
-Enable this to automatically activate `INACTIVE` tenants if a read-or-write request comes. This is disabled by default.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START EnableAutoActivation"
-      endMarker="# END EnableAutoActivation"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START EnableAutoActivation"
-      endMarker="// END EnableAutoActivation"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ## CRUD operations
 

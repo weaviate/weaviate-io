@@ -72,7 +72,6 @@ As of Weaviate `v1.24.2`, you can use multiple inference containers with `text2v
 This configuration enables `text2vec-transformers`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `sentence-transformers-multi-qa-MiniLM-L6-cos-v1` image and to disable CUDA acceleration.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

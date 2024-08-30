@@ -11,7 +11,7 @@ export default function ServicePlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Highlights</h2>
+          <h2>Benefits of our hosted vector database service</h2>
           <span>
             All the features of our{' '}
             <Link to="/platform">AI-native vector database</Link>, plus:
@@ -49,8 +49,8 @@ export default function ServicePlan() {
           </div>
           <h2>Ready to get started? Choose your plan.</h2>
           <p className={styles.subHeader}>
-            Our pricing is based on dimensions stored and chosen SLA tier. The
-            exact calculation can be found in the{' '}
+            Our serverless vector database pricing is based on dimensions stored
+            and chosen SLA tier. The exact calculation can be found in the{' '}
             <Link className={styles.faqLink} to="/pricing#faq">
               FAQ
             </Link>{' '}

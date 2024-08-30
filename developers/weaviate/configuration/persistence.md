@@ -44,7 +44,6 @@ A complete example of a Weaviate without modules but with an externally mounted 
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:
@@ -97,7 +96,7 @@ changed the thresholds) you can use the [Shards API](/developers/weaviate/api/re
 :::info Added in `v1.21`
 :::
 
-Weaviate maps data on disk to memory. To configure how Weaviate uses virtual memory, set the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable. The default value is `mmap`. Use `pread` to as an alternative. 
+Weaviate maps data on disk to memory. To configure how Weaviate uses virtual memory, set the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable. The default value is `mmap`. Use `pread` to as an alternative.
 
 The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
 

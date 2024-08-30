@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-hybrid_test.go';
 
 `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
@@ -56,6 +57,15 @@ Combine the results of a vector search and a keyword search. The search uses a s
   endMarker="// END searchHybridBasic"
   language="js"
 />
+</TabItem>
+
+<TabItem value="go" label="Go">
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// START Basic"
+    endMarker="// END Basic"
+    language="go"
+  />
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
@@ -187,6 +197,15 @@ To see the object rankings, set the `explain score` field in your query. The sea
 />
 </TabItem>
 
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithScore"
+      endMarker="// END WithScore"
+      language="go"
+    />
+  </TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -255,6 +274,15 @@ Hybrid search results can favor the keyword component or the vector component. T
 />
 </TabItem>
 
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithAlpha"
+      endMarker="// END WithAlpha"
+      language="go"
+    />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -321,6 +349,15 @@ The output is like this:
   endMarker="// END searchHybridWithFusionType"
   language="ts"
 />
+</TabItem>
+
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithFusionType"
+      endMarker="// END WithFusionType"
+      language="go"
+    />
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
@@ -400,6 +437,15 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithProperties"
+      endMarker="// END WithProperties"
+      language="go"
+    />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -463,6 +509,15 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
   endMarker="// END searchHybridWithPropertyWeighting"
   language="js"
 />
+</TabItem>
+
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithPropertyWeighting"
+      endMarker="// END WithPropertyWeighting"
+      language="go"
+    />
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
@@ -530,6 +585,15 @@ The vector component of hybrid search can use a query string or a query vector. 
 />
 </TabItem>
 
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithVector"
+      endMarker="// END WithVector"
+      language="go"
+    />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -570,6 +634,7 @@ You can specify [vector similarity search](/developers/weaviate/search/similarit
       language="python"
     />
   </TabItem>
+
   <TabItem value="py3" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -675,6 +740,15 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START limit"
+      endMarker="// END limit"
+      language="go"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -723,6 +797,15 @@ To limit results to groups with similar distances from the query, use the [`auto
       startMarker="// START autocut"
       endMarker="// END autocut"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START autocut"
+      endMarker="// END autocut"
+      language="go"
     />
   </TabItem>
 
@@ -790,6 +873,15 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
   language="js"
 />
 </TabItem>
+
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START WithFilter"
+      endMarker="// END WithFilter"
+      language="go"
+    />
+  </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock

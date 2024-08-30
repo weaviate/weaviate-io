@@ -36,7 +36,6 @@ Below is an example Docker Compose file, which will spin up Weaviate with the `r
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

@@ -221,7 +221,7 @@ Collection level settings override default values and general configuration para
 </Tabs>
 
 
-## Define multiple (named) vectors
+## Define multiple named vectors
 
 :::info Added in `v1.24`
 :::
@@ -330,7 +330,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
 
 ## Set vector index type
 
-The vector index type can be set for each collection between `hnsw`, `flat` and `dynamic` index types.
+The vector index type can be set for each collection at creation time, between `hnsw`, `flat` and `dynamic` index types.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -426,6 +426,15 @@ Various vector index parameters are configurable at collection creation time, in
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -479,6 +488,15 @@ Configure individual properties in a collection. Each property can have it's own
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a distance metric
@@ -519,6 +537,15 @@ If you choose to bring your own vectors, you should specify the `distance metric
       startMarker="// START DistanceMetric"
       endMarker="// END DistanceMetric"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="java"
     />
   </TabItem>
 </Tabs>

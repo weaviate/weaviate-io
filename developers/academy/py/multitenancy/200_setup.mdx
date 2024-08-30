@@ -1,0 +1,318 @@
+---
+title: Database setup
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_config.py';
+
+Let's see we can build a Weaviate instance to support `MyPrivateJournal`'s requirements.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Project requirements
+
+As a SaaS application, `MyPrivateJournal` has determined that they need the following features:
+
+- **Data isolation**: Each user's data should be private.
+- **Efficient scalability**:
+    - As `MyPrivateJournal` grows, it should be able to handle tens or hundreds of thousands users.
+    - It must be fast for active users, but inactive users should not consume resources.
+- **Ease of management**:
+    - Adding new users should be simple and fast.
+    - Removing users should be straightforward.
+- **Flexibility**:
+    - It should be efficient for low-volume users as well as high-volume users.
+- **Fault tolerance**:
+    - A node failure should not lead to complete downtime for a user.
+- **Developer experience**:
+    - These features should be easy to implement and maintain.
+
+After reviewing potential solutions, we determined that Weaviate with multi-tenant collections can meet these challenges. Let's see how we can implement a proof-of-concept (PoC) solution for `MyPrivateJournal`.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Weaviate configuration
+
+As a development setup, we will use a local Weaviate instance with Docker. This will allow us to quickly set up a Weaviate instance for development and testing.
+
+Here is our `docker-compose.yml` file:
+
+```yaml
+---
+services:
+  weaviate_anon:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 50051:50051
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_API_BASED_MODULES: 'true'
+      # highlight-start
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'backup-filesystem,offload-s3'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      # highlight-end
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
+      CLUSTER_HOSTNAME: 'node1'
+...
+```
+
+<details>
+  <summary>What about a multi-node setup?</summary>
+
+Great question! As you probably noticed, we are using a single-node setup here for simplicity.
+<br/>
+
+But we can easily extend this to a multi-node setup by adding additional services. This will allow you to scale your Weaviate instance horizontally, and provide fault tolerance with replication.
+<br/>
+
+For example, here is a multi-node setup with three nodes.
+
+```yaml
+---
+services:
+  weaviate-node-1:  # Founding member service name
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    restart: on-failure:0
+    ports:
+     - "8180:8080"
+     - 50151:50051
+    environment:
+      AUTOSCHEMA_ENABLED: 'false'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      COHERE_APIKEY: $COHERE_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
+      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_GOSSIP_BIND_PORT: '7100'
+      CLUSTER_DATA_BIND_PORT: '7101'
+  weaviate-node-2:  # Founding member service name
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    restart: on-failure:0
+    ports:
+     - "8181:8080"
+     - 50152:50051
+    environment:
+      AUTOSCHEMA_ENABLED: 'false'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      COHERE_APIKEY: $COHERE_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
+      CLUSTER_HOSTNAME: 'node2'
+      CLUSTER_GOSSIP_BIND_PORT: '7102'
+      CLUSTER_DATA_BIND_PORT: '7103'
+      CLUSTER_JOIN: 'weaviate-node-1:7100'
+  weaviate-node-3:  # Founding member service name
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:1.26.1
+    restart: on-failure:0
+    ports:
+     - "8182:8080"
+     - 50153:50051
+    environment:
+      AUTOSCHEMA_ENABLED: 'false'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      COHERE_APIKEY: $COHERE_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ASYNC_INDEXING: 'true'
+      image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+      ENABLE_API_BASED_MODULES: 'true'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
+      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
+      CLUSTER_HOSTNAME: 'node3'
+      CLUSTER_GOSSIP_BIND_PORT: '7104'
+      CLUSTER_DATA_BIND_PORT: '7105'
+      CLUSTER_JOIN: 'weaviate-node-1:7100'
+...
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Configuration highlights
+
+You may have seen Docker configurations elsewhere ([e.g. Docs](../../../weaviate/installation/docker-compose.md), [Academy](../starter_text_data/101_setup_weaviate/20_create_instance/20_create_docker.mdx)). But these highlighted configurations may be new to you:
+
+- `ASYNC_INDEXING`: This will enable asynchronous indexing. This is useful for high-volume data insertion, and enables us to use the `dynamic` index type, which you will learn about later on.
+- `ENABLE_MODULES`: We enable `offload-s3` to demonstrate tenant offloading later on. Offloading helps us to manage inactive users' data efficiently.
+- `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`: These are the AWS credentials that Weaviate will use to access the S3 bucket.
+- `OFFLOAD_S3_BUCKET_AUTO_CREATE`: This will automatically create the S3 bucket if it does not exist.
+
+Save the file to `docker-compose.yaml`, and run the following command to start Weaviate:
+
+```bash
+docker compose up
+```
+
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
+### <i class="fa-solid fa-chalkboard"></i> Your Weaviate instance details
+
+Once the instance is created, you can access it at `http://localhost:8080`.
+
+Now, we are ready to create a collection for `MyPrivateJournal`.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Create a collection
+
+### <i class="fa-solid fa-code"></i> Enable multi-tenancy
+
+A collection must be specified as multi-tenant when it is created. So, we enable multi-tenancy in the collection configuration.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MTConfig"
+  endMarker="# END MTConfig"
+  language="py"
+/>
+
+We also set `auto_tenant_creation` and `auto_tenant_activation` here to `true`. You'll learn more about these features later on. But here is a brief overview:
+
+- `auto_tenant_activation`: if `true`, activate any deactivated (`INACTIVE` or `OFFLOADED`) tenants when they are accessed.
+- `auto_tenant_creation`: if `true`, automatically create the tenant when an object is inserted against a non-existent tenant.
+
+You will see these features in action later on.
+
+<details>
+  <summary>More about <code>auto_tenant_creation</code></summary>
+
+:::info Added in `v1.25`
+The auto tenant creation feature is available from `v1.25.0` for batch imports, and from `v1.25.2` for single object insertions.
+:::
+
+Enabling `auto_tenant_creation` will cause Weaviate to automatically create the tenant when an object is inserted against a non-existent tenant.
+<br/>
+
+This option is particularly useful for bulk data ingestion, as it removes the need to create the tenant prior to object insertion. Instead, `auto_tenant_creation` will allow the object insertion process to continue without interruption.
+<br/>
+
+A risk of using `auto_tenant_creation` is that an error in the source data will not be caught during import. For example, a source object with erroneously spelt `"TenntOn"` instead of `"TenantOne"` will create a new tenant for `"TenntOne"` instead of raising an error.
+<br/>
+
+The server-side default for `auto_tenant_creation` is `false`.
+</details>
+
+<details>
+  <summary>More about <code>auto_tenant_activation</code></summary>
+
+:::info Added in `v1.25.2`
+The auto tenant activation feature is available from `v1.25.2`.
+:::
+
+If `auto_tenant_activation` is enabled, Weaviate will automatically activate any deactivated (`INACTIVE` or `OFFLOADED`) tenants when they are accessed.
+<br/>
+
+This option is particularly useful for scenarios where you have a large number of tenants, but only a subset of them are active at any given time. An example is a SaaS app where some tenants may be unlikely due to their local time zone, or their recent activity level.
+<br/>
+
+By enabling `auto_tenant_activation`, you can safely set those less active users to be inactive, knowing that they will be loaded onto memory once requested.
+<br/>
+
+This can help to reduce the memory footprint of your Weaviate instance, as only the active tenants are loaded into memory.
+<br/>
+
+The server-side default for `auto_tenant_activation` is `false`.
+
+</details>
+
+### <i class="fa-solid fa-code"></i> Configure vector index
+
+From what we know about other journal use cases, a majority of users will only have a small number of entries. But, a few of those users may have a large number of entries.
+
+This is a tricky situation to balance. If we use a `hnsw` index, it will be fast for users with many entries, but it will require a lot of memory. If we use a `flat` index, it will require less memory, but potentially slower for users with many entries.
+
+What we can do here is to choose a `dynamic` index. A `dynamic` index will automatically switch from `flat` to `hnsw` once it passes a threshold count. This way, we can balance the memory usage and speed for our users.
+
+Here is an example code snippet, configuring a "note" named vector with a `dynamic` index.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DynamicIndexConfig"
+  endMarker="# END DynamicIndexConfig"
+  language="py"
+/>
+
+Note (no pun intended) that the `dynamic` index configuration accepts both `flat` and `hnsw` index configurations. Each index configuration is used when the `dynamic` index is in that state.
+
+### <i class="fa-solid fa-code"></i> Full code snippet
+
+Here is the complete code snippet to create the collection. Take a look at the configuration and see if you agree with our choices.
+
+In our PoC, we create just the one collection (`"JournalEntry"`), with `"text"`, `"date"`, and `"tags"` properties to keep things simple.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MTFullCollectionCreation"
+  endMarker="# END MTFullCollectionCreation"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Summary
+
+In this section, we set up a Weaviate instance with multi-tenancy enabled. We also created a collection for `MyPrivateJournal`, with multi-tenancy and a dynamic index configuration.
+
+Now, the `MyPrivateJournal` team can start onboarding users and storing their journal entries in the collection.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

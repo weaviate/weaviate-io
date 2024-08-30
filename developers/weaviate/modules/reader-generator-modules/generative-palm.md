@@ -131,7 +131,6 @@ Here is a full example of a Docker configuration that uses the `generative-palm`
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

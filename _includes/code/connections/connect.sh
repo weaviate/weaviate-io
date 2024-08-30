@@ -36,6 +36,15 @@ curl https://${WEAVIATE_URL}/v1/meta \
 curl http://localhost:8080/v1/meta | jq
 # END LocalNoAuth
 
+##########################
+### Custom URL or port ###
+##########################
+
+# START CustomURL
+curl http://localhost:8080/v1/meta | jq
+# The cURL connection doesn't use the gRPC port
+# END CustomURL
+
 ##################
 ### Local auth ###
 ##################

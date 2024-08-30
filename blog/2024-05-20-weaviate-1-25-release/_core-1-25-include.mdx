@@ -44,6 +44,10 @@ Above the threshold value, HNSW indexes are faster for queries, but they also ha
 
 Dynamic indexes are particularly useful in a multi-tenant clusters. HNSW indexes have higher resource costs, but they do not have to be enabled for every tenant. All tenants start with less resource intensive flat indexes. If particular tenant collection grows large enough, the index dynamically switches that tenant to HNSW. The smaller tenants continue to use flat indexes.
 
+import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
+
+<DynamicAsyncRequirements/>
+
 ## Raft
 
 import WV8onRaft from './img/raft-weaviate.png';

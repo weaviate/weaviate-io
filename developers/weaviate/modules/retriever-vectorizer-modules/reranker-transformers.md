@@ -31,7 +31,6 @@ It also configures `reranker-transformers` to use the `cross-encoder/ms-marco-Mi
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

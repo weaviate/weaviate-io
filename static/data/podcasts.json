@@ -1,5 +1,21 @@
 [
   {
+    "title": "MIPRO and DSPy with Krista Opsahl-Ong! - Weaviate Podcast #103",
+    "description": "Welcome to the 103rd Weaviate Podcast with Krista Opsahl-Ong from Stanford University. Krista is the lead author of MIPRO and one of the leading developers and scientists behind DSPy! ",
+    "youtube": "skMH3DOV_UQ",
+    "date": "24-08-28",
+    "cover_image": "/img/podcasts/podcast-103.png",
+    "is_use_case": false
+  },
+  {
+    "title": "AI-Native Development with Guy Podjarny and Bob van Luijt - Weaviate Podcast #102!",
+    "description": "What does it mean for a software application to be AI-Native versus AI-Enabled? This episode we dive into a deep discussion with Guy Podjarny and Bob van Luijt",
+    "youtube": "k6ZxYl2iI3k",
+    "date": "24-08-14",
+    "cover_image": "/img/podcasts/podcast-102.png",
+    "is_use_case": false
+  },
+  {
     "title": "Scaling Pandas with Devin Petersohn - Weaviate Podcast #101!",
     "description": "Welcome to the 101st episode of the Weaviate Podcast with Devin Petersohn! Devin is the creator of Modin, one of the world's most advanced systems for scaling Pandas!",
     "youtube": "r4XSsgyYR9c",

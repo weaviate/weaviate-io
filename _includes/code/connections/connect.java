@@ -117,6 +117,31 @@ public class App
 }
 // END LocalNoAuth
 
+//////////////////////////
+/// Custom URL or port ///
+//////////////////////////
+
+// START CustomURL
+package your.application;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+
+public class App
+{
+    public static void main( String[] args ) throws Exception
+    {
+
+    String scheme = "http";
+    String host = "localhost:8080";
+    // The Java client doesn't use the gRPC port
+
+    Config config = new Config(scheme, host);
+    WeaviateClient client = new WeaviateClient(config);
+    }
+}
+// END CustomURL
+
 //////////////////////
 /// Local 3d party ///
 //////////////////////

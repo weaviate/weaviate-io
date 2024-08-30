@@ -64,7 +64,6 @@ This configuration enables `generative-aws` and sets the AWS authentication cred
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

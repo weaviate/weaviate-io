@@ -731,9 +731,13 @@ button.close {
 
 .custom-page .footer__col {
   white-space: nowrap;
-}
 
-/* .custom-page *:not(input):focus {
+  @media screen and (max-width: 1440px) {
+    white-space: normal;
+  }
+}
+/* 
+.custom-page *:not(input):focus {
   border-radius: 0.3125rem;
   outline: 1px solid #130c49;
   background: rgb(15, 0, 50);
@@ -749,16 +753,12 @@ Dropdown style removed.
 .custom-page .footer__links:before {
   content: '';
   background-image: url('/img/site/weaviate-nav-logo-dark.svg');
-  background-size: cover;
-  width: 139px;
-  height: 45px;
-  top: -11px;
-  margin: -3px 69px 0px 0px;
-  position: relative;
 
-  @media screen and (max-width: 768px) {
-    margin: -3px 69px 12px 14px;
-  }
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 11rem;
+  height: 11rem;
+  margin: -21px 0px 0px 0px;
 }
 
 .content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module {
