@@ -16,9 +16,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 Storage resources are grouped into tiers. Each tier has different performance characteristics and costs:
 
-* `Hot` (RAM) - fast and expensive,
-* `Warm` (Disk) - medium speed and medium price,
-* `Cold` (Cloud Storage) - cheap, but slow.
+* `Hot` (RAM) - fastest access, most expensive
+* `Warm` (Disk) - medium speed, medium price
+* `Cold` (Cloud Storage) - slowest access, least expensive
 
 In multi-tenant collections, you can change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost against resource availability and readiness.
 
