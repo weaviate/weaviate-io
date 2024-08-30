@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.aggregate-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-aggregation_test.go';
 
 
 `Aggregate` queries process the result set to return calculated results. Use `aggregate` queries for groups of objects or the entire result set.
@@ -74,6 +75,15 @@ Return the number  of objects matched by the query.
       startMarker="// MetaCount TS"
       endMarker="// END MetaCount TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START MetaCount"
+      endMarker="// END MetaCount"
+      language="go"
     />
   </TabItem>
 
