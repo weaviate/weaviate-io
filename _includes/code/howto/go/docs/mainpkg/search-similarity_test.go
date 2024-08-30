@@ -28,8 +28,10 @@ func TestNearText(t *testing.T) {
 				},
 			},
 		).
+		// highlight-start
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in movies"})).
+		// highlight-end
 		WithLimit(2).
 		Do(ctx)
 	// END GetNearText
@@ -69,8 +71,10 @@ func TestNearObject(t *testing.T) {
 				},
 			},
 		).
+		// highlight-start
 		WithNearObject(client.GraphQL().NearObjectArgBuilder().
 			WithID("56b9449e-65db-5df4-887b-0a4773f52aa7")).
+		// highlight-end
 		WithLimit(2).
 		Do(ctx)
 	// END GetNearObject
@@ -111,8 +115,10 @@ func TestNearVector(t *testing.T) {
 				},
 			},
 		).
+		// highlight-start
 		WithNearVector(client.GraphQL().NearVectorArgBuilder().
 			WithVector(vector)).
+		// highlight-end
 		WithLimit(2).
 		Do(ctx)
 	// END GetNearVector
@@ -154,8 +160,10 @@ func TestLimitOffset(t *testing.T) {
 		).
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in movies"})).
+		// highlight-start
 		WithLimit(2).
 		WithOffset(1).
+		// highlight-end
 		Do(ctx)
 	// END GetLimitOffset
 
@@ -189,7 +197,9 @@ func TestWithDistance(t *testing.T) {
 		).
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in movies"}).
+			// highlight-start
 			WithDistance(maxDistance)).
+			// highlight-end
 		Do(ctx)
 	// END GetWithDistance
 
@@ -227,7 +237,9 @@ func TestWithAutocut(t *testing.T) {
 		).
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in movies"})).
+		// highlight-start
 		WithAutocut(1).
+		// highlight-end
 		Do(ctx)
 	// END Autocut
 
@@ -330,10 +342,12 @@ func TestWithWhere(t *testing.T) {
 		WithNearText(client.GraphQL().NearTextArgBuilder().
 			WithConcepts([]string{"animals in movies"})).
 		WithLimit(2).
+		// highlight-start
 		WithWhere(filters.Where().
 			WithPath([]string{"round"}).
 			WithOperator(filters.Equal).
 			WithValueString("Double Jeopardy!")).
+		// highlight-end
 		Do(ctx)
 	// END GetWithFilter
 
