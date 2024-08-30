@@ -210,6 +210,10 @@ Tenant shards are more lightweight. You can easily have 50,000, or more, active 
 
 Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
 
+:::caution Tenant deletion == Tenant data deletion
+Deleting a tenant deletes the associated shard. As a result, deleting a tenant also deletes all of its objects.
+:::
+
 ### Tenant status
 
 :::info Multi-tenancy availability
