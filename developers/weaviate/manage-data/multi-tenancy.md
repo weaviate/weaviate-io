@@ -357,9 +357,11 @@ This example returns a tenant from the `MultiTenancyCollection` collection:
 
 ## Delete tenants
 
-To delete tenants from a collection, specify the collection and the tenants. The delete operation ignores tenant names if the named tenant is not a part of the collection.
+To delete tenants from a collection, specify the collection (e.g. `MultiTenancyCollection`) and the tenants (`tenantB` and `tenantX`). The delete operation ignores tenant names if a named tenant is not a part of the collection.
 
-In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancyCollection` collection.
+:::caution Tenant deletion == Tenant data deletion
+Deleting a tenant deletes all associated objects.
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
