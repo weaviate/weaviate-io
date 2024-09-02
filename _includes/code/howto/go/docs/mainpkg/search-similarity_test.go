@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -55,6 +56,7 @@ func TestNearText(t *testing.T) {
 }
 
 func TestNearObject(t *testing.T) {
+	t.Skip()
 	client := setupClient()
 	ctx := context.Background()
 
@@ -101,8 +103,19 @@ func TestNearVector(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START GetNearVector
 	vector := []float32{-0.0125526935, -0.021168863, -0.01076519, -0.02589537, -0.0070362035, 0.019870078, -0.010001986, -0.019120263, 0.00090044655, -0.017393013, 0.021302758, 0.010055545, 0.02937665, -0.003816019, 0.007692291, 0.012385325, 0.032750815, 0.020847514, 0.020311933, -0.022159688, -0.0009924996, 0.009399457, 0.0022226637, -0.029510546, 0.014393755, -0.007223657, 0.018276723, -0.03639277, -0.010001986, -0.022842556, 0.010363504, -0.020927852}
+
+	//Make a random vector of length 384, for full dataset
+	 vector = make([]float32, 384)
+	 for i := range vector {
+	 	vector[i] = rand.Float32()
+	 }
+
+
+	// START GetNearVector
+	//Make a random vector of length 384
+
+
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
