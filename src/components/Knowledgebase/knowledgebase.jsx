@@ -127,6 +127,8 @@ export default function KnowledgeBase({ searchQuery }) {
         'Systems for storing and storing, organizing, and retrieving structured or unstructured data efficiently.',
       'Large Language Models':
         'Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.',
+      'Information Retrieval/Search':
+        'Techniques for finding relevant information in a large collection of data, such as documents, images, or videos.',
     };
 
     const totalCards = categoryCards.length;
@@ -259,6 +261,19 @@ export default function KnowledgeBase({ searchQuery }) {
                   />
                   <label htmlFor="filterLLMS">LLMS</label>
                 </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterIRS"
+                    name="cardFilter"
+                    value="IRS"
+                    checked={selectedCard === 'IRS'}
+                    onChange={() => handleCardFilter('IRS')}
+                  />
+                  <label htmlFor="filterIRS">
+                    Information Retrieval/Search
+                  </label>
+                </div>
               </div>
             </div>
             <div className={styles.filterLine}></div>
@@ -357,6 +372,17 @@ export default function KnowledgeBase({ searchQuery }) {
                 />
                 <label htmlFor="filterLLMS">LLMS</label>
               </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterIRS"
+                  name="cardFilter"
+                  value="IRS"
+                  checked={selectedCard === 'IRS'}
+                  onChange={() => handleCardFilter('IRS')}
+                />
+                <label htmlFor="filterIR">Information Retrieval/Search</label>
+              </div>
             </div>
           </div>
           <div className={styles.filterLine}></div>
@@ -367,6 +393,7 @@ export default function KnowledgeBase({ searchQuery }) {
             {renderCards('Multimodal RAG')}
             {renderCards('Databases')}
             {renderCards('Large Language Models')}
+            {renderCards('Information Retrieval/Search')}
           </main>
         </div>
       </div>
