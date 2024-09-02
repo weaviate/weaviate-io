@@ -689,7 +689,7 @@
       "bloglink": "https://weaviate.io/blog/rag-evaluation#rag-metrics",
       "blogTitle": "RAG Metrics",
       "bloglink2": "https://weaviate.io/blog/multimodal-rag",
-      "blogTitle2": "Multimodal Retrieval Augmented Generation(RAG)",
+      "blogTitle2": "Multimodal RAG",
       "doclink": "https://weaviate.io/developers/weaviate/search/generativeg",
       "docTitle": "Generative search",
       "tags": ["LLMs", "Weaviate", "rag"],
