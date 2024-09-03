@@ -41,7 +41,7 @@ movies = client.collections.get("Movie")
 
 // # Perform query
 
-response = movies.query.nearText('dystopian future', {
+response = await movies.query.nearText('dystopian future', {
     limit: 5,
     returnMetadata: ['distance']
 })
@@ -63,7 +63,7 @@ for (let item of response.objects) {
 // # Get the collection
 movies = client.collections.get("Movie")
 
-response = movies.query.bm25('history', {
+response = await movies.query.bm25('history', {
     limit: 5,
     returnMetadata: ['score']
 })
@@ -71,7 +71,7 @@ response = movies.query.bm25('history', {
 // # Inspect the response
 for (let item of response.objects) {
     // Print the title and release year 
-    console.log(`${item.properties.title}: ${item.properties.release_date} `)
+    console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the BM25 score of the object from the query
     console.log(`BM25 score: ${item.metadata.score}`)
 
@@ -85,7 +85,7 @@ for (let item of response.objects) {
 // # Get the collection
 movies = client.collections.get("Movie")
 
-response = movies.query.hybrid('history', {
+response = await movies.query.hybrid('history', {
     limit: 5,
     returnMetadata: ['score']
 })
@@ -94,7 +94,7 @@ response = movies.query.hybrid('history', {
 for (let item of response.objects) {
     // Print the title and release year 
 
-    console.log(`${item.properties.title}: ${item.properties.release_date} `)
+    console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the hybrid search score of the object from the query
 
     console.log(`Hybrid score: ${item.metadata.score}`)
@@ -109,7 +109,7 @@ for (let item of response.objects) {
 movies = client.collections.get("Movie")
 
 // # Perform query
-response = movies.query.nearText('dystopian future', {
+response = await movies.query.nearText('dystopian future', {
     limit: 5,
     returnMetadata: ['distance'],
     // highlight-start
@@ -121,7 +121,7 @@ response = movies.query.nearText('dystopian future', {
 for (let item of response.objects) {
     // Print the title and release year 
 
-    console.log(`${item.properties.title}: ${item.properties.release_date} `)
+    console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the distance of the object from the query
 
     console.log(`Distance to query: ${item.metadata.distance}`)

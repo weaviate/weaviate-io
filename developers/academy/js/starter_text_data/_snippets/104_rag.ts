@@ -40,7 +40,6 @@ for (let item of response.objects) {
     console.log(`${item.properties.title} - ${item.generated}`)
 }
  
-client.close()
 // # END SinglePromptGeneration
 
 
