@@ -5,7 +5,7 @@ title: Keyword & Hybrid search
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+import TSCode from '!!raw-loader!../_snippets/103_searches.ts';
 
 You can also perform keyword (BM25) searches to find items based on their keyword similarity, or hybrid searches that combine BM25 and semantic/vector searches.
 
@@ -16,10 +16,10 @@ You can also perform keyword (BM25) searches to find items based on their keywor
 This example finds entries in "Movie" with the highest keyword search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# MetadataBM25Search"
   endMarker="# END MetadataBM25Search"
-  language="py"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Explain the code
@@ -28,7 +28,7 @@ The results are based on a keyword search score using what's called the [BM25f](
 
 The `limit` parameter here sets the maximum number of results to return.
 
-The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the BM25 score of the result.
+The `returnMetadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the BM25 score of the result.
 
 <details>
   <summary>Example results</summary>
@@ -60,10 +60,10 @@ BM25 score: 1.529
 This example finds entries in "Movie" with the highest hybrid search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# MetadataHybridSearch"
   endMarker="# END MetadataHybridSearch"
-  language="py"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Explain the code
@@ -72,7 +72,7 @@ The results are based on a hybrid search score. A hybrid search blends results o
 
 The `limit` parameter here sets the maximum number of results to return.
 
-The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the hybrid score of the result.
+The `returnMetadata` parameter takes an instance of the `metadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the hybrid score of the result.
 
 <details>
   <summary>Example results</summary>

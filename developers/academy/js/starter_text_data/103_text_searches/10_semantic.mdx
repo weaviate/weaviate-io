@@ -5,7 +5,7 @@ title: Semantic search
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+import TSCode from '!!raw-loader!../_snippets/103_searches.ts';
 
 With Weaviate, you can perform semantic searches to find similar items based on their meaning. This is done by comparing the vector embeddings of the items in the database.
 
@@ -14,10 +14,10 @@ With Weaviate, you can perform semantic searches to find similar items based on 
 This example finds entries in "Movie" based on their similarity to the query "dystopian future", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# MetadataSemanticSearch"
   endMarker="# END MetadataSemanticSearch"
-  language="py"
+  language="ts"
 />
 
 ## <i class="fa-solid fa-chalkboard"></i> Explain the code
@@ -26,7 +26,7 @@ The results are based on similarity of the vector embeddings between the query a
 
 The `limit` parameter here sets the maximum number of results to return.
 
-The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
+The `returnMetadata` parameter takes an instance of the `metadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
 
 <details>
   <summary>Example results</summary>

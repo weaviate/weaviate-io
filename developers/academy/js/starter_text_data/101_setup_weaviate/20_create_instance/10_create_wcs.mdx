@@ -5,7 +5,7 @@ title: "Option 1: A cloud WCD instance"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../../_snippets/101_connect.py';
+import TSCode from '!!raw-loader!../../_snippets/101_connect.ts';
 
 Here, you will create a Weaviate Cloud (WCD) instance. WCD is a fully managed Weaviate instance that runs in the cloud. It's a great way to get started with Weaviate, as it requires no installation or maintenance.
 
@@ -33,26 +33,26 @@ You will need these details to connect to your Weaviate instance.
 
 To connect to the Weaviate Cloud (WCD) instance, you need to use the cluster URL and the API key. You can find these details in the WCD Console.
 
-Use the `connect_to_weaviate_cloud` function to connect to your WCD instance.
+Use the `connectToWeaviateCloud()` function to connect to your WCD instance.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# WCDInstantiation"
   endMarker="# END WCDInstantiation"
-  language="py"
+  language="ts"
 />
 
 #### Provide inference API keys
 
 Some Weaviate modules can use inference APIs for vectorizing data or large language model integration. You can provide the API keys for these services to Weaviate at instantiation.
 
-This course uses OpenAI, so you can provide the OpenAI API key to Weaviate through `headers={"X-OpenAI-Api-Key": <YOUR_KEY>}` as shown below:
+This course uses OpenAI, so you can provide the OpenAI API key to Weaviate through `headers: {"X-OpenAI-Api-Key": <YOUR_KEY>}` as shown below:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# WCDAPIKeyInstantiation"
   endMarker="# END WCDAPIKeyInstantiation"
-  language="py"
+  language="ts"
 />
 
 :::note What next?

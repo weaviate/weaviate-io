@@ -5,17 +5,17 @@ title: Import data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
 
 ## <i class="fa-solid fa-code"></i> Code
 
 This example imports the movie data into our collection.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# BatchImportData"
   endMarker="# END BatchImportData"
-  language="py"
+  language="ts"
 />
 
 The code:
@@ -37,10 +37,10 @@ Then, we create a collection object (with `client.collections.get`) so we can in
 The `batch` object is a context manager that allows you to add objects to the batcher. This is useful when you have a large amount of data to import, as it abstracts away the complexity of managing the batch size and when to send the batch.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# Enter context manager"
   endMarker="# Loop through the data"
-  language="py"
+  language="ts"
 />
 
 This example uses the `.dynamic()` method to create a dynamic batcher, which automatically determines and updates the batch size during the import process. There are also other batcher types, like `.fixed_size()` for specifying the number of objects per batch, and `.rate_limit()` for specifying the number of objects per minute.
@@ -52,10 +52,10 @@ This example uses the `.dynamic()` method to create a dynamic batcher, which aut
 The data is converted from a string to the correct data types for Weaviate. For example, the `release_date` is converted to a datetime object, and the `genre_ids` are converted to a list of integers.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# Convert data types"
   endMarker="# Build the object payload"
-  language="py"
+  language="ts"
 />
 
 #### Add objects to the batcher
@@ -63,10 +63,10 @@ The data is converted from a string to the correct data types for Weaviate. For 
 Then we loop through the data and add each object to the batcher. The `batch.add_object` method is used to add the object to the batcher, and the batcher will send the batch according to the specified batcher type.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# Build the object payload"
   endMarker="# Batcher automatically sends batches"
-  language="py"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Error handling
@@ -76,10 +76,10 @@ Because a batch includes multiple objects, it's possible that some objects will 
 You can print out the errors to see what went wrong, and then decide how to handle them, such as by raising an exception. In this example, we simply print out the errors.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# Check for failed objects"
   endMarker="finally"
-  language="py"
+  language="ts"
 />
 
 Note that the list of errors is cleared when a new context manager is entered, so you must handle the errors before initializing a new batcher.

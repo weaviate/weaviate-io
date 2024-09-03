@@ -5,7 +5,7 @@ title: Filters
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+import TSCode from '!!raw-loader!../_snippets/103_searches.ts';
 
 Filters can be used to precisely refine search results. You can filter by properties as well as metadata, and you can combine multiple filters with `and` or `or` conditions to further narrow down the results.
 
@@ -14,10 +14,10 @@ Filters can be used to precisely refine search results. You can filter by proper
 This example finds entries in "Movie" based on their similarity to the query "dystopian future", only from those released after 2020. It prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
+  text={TSCode}
   startMarker="# FilteredSemanticSearch"
   endMarker="# END FilteredSemanticSearch"
-  language="py"
+  language="ts"
 />
 
 ## <i class="fa-solid fa-chalkboard"></i> Explain the code
