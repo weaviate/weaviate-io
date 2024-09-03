@@ -19,6 +19,8 @@ import (
 
 // Helper functions to convert to base64
 func urlToBase64(url string) (string, error) {
+
+	// START helper base64 functions
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
@@ -30,7 +32,10 @@ func urlToBase64(url string) (string, error) {
 		return "", err
 	}
 
-	return base64.StdEncoding.EncodeToString(content), nil
+	base64string := base64.StdEncoding.EncodeToString(content)
+	// END helper base64 functions
+	return base64string, nil
+
 }
 
 func fileToBase64(path string) (string, error) {

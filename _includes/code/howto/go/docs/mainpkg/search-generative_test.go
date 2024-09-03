@@ -73,7 +73,7 @@ func TestSingleGenerative(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START SingleGenerative Go
+	// START SingleGenerativeProperties Go
 	generatePrompt := "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
 	
 	response, err := client.GraphQL().Get().
@@ -91,7 +91,7 @@ func TestSingleGenerative(t *testing.T) {
 			WithConcepts([]string{"World history"})).
 		WithLimit(2).
 		Do(ctx)
-	// END SingleGenerative Go
+	// END SingleGenerativeProperties Go
 
 	require.NoError(t, err)
 	

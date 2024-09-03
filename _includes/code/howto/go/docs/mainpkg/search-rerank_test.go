@@ -19,7 +19,7 @@ func TestNearTextBeforeRerank(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START nearText Go
+	// START NamedVectorNearText Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -30,7 +30,7 @@ func TestNearTextBeforeRerank(t *testing.T) {
 		WithNearText((&graphql.NearTextArgumentBuilder{}).WithConcepts([]string{"flying"})).
 		WithLimit(10).
 		Do(ctx)
-	// END nearText Go
+	// END NamedVectorNearText Go
 
 	require.NoError(t, err)
 
@@ -54,7 +54,7 @@ func TestNearTextAfterRerank(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START nearTextRerank Go
+	// START RerankNearText Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -71,7 +71,7 @@ func TestNearTextAfterRerank(t *testing.T) {
 		WithNearText((&graphql.NearTextArgumentBuilder{}).WithConcepts([]string{"flying"})).
 		WithLimit(10).
 		Do(ctx)
-	// END nearTextRerank Go
+	// END RerankNearText Go
 
 	require.NoError(t, err)
 
