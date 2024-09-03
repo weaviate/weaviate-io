@@ -35,3 +35,8 @@ The ecosystem is divided into these categories:
 | Data Platforms |[Aryn](/developers/integrations/data-platforms/aryn/), [Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud), [Context Data](/developers/integrations/data-platforms/context-data/), [Firecrawl](/developers/integrations/data-platforms/firecrawl), [Spark](/developers/integrations/data-platforms/spark), [Unstructured](/developers/integrations/data-platforms/unstructured) |
 | LLM Frameworks | [Composio](/developers/integrations/llm-frameworks/composio/), [DSPy](/developers/integrations/llm-frameworks/dspy/), [LangChain](/developers/integrations/llm-frameworks/langchain/), [LlamaIndex](/developers/integrations/llm-frameworks/llamaindex/), [Semantic Kernel](/developers/integrations/llm-frameworks/semantic-kernel/) |
 | Operations | [Arize](/developers/integrations/operations/arize/), [Langtrace](/developers/integrations/operations/langtrace/), [LangWatch](/developers/integrations/operations/langwatch/), [Nomic](/developers/integrations/operations/nomic/), [Ragas](/developers/integrations/operations/ragas/), [Weights & Biases](/developers/integrations/operations/wandb/) |
+
+## Model Provider Integrations 
+Weaviate integrates with many self-hosted and API-based models from a range of providers. 
+
+Refer to the [documentation page](/developers/weaviate/model-providers) to see the full list of model providers.
