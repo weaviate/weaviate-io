@@ -81,6 +81,12 @@ As of Weaviate `v1.16`, the only supported internal backup provider is the [file
 - [Configuration: Modules](../configuration/modules.md)
 - [Concepts: Modules](../concepts/modules.md)
 
+## Other third party integrations
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
