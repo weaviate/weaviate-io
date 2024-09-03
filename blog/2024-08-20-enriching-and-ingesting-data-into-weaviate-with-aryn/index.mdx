@@ -11,7 +11,11 @@ description: "Demo on how to ingest PDFs into Weaviate using Aryn."
 
 ![PDFs to Weaviate using Sycamore](img/hero.png)
 
-LLMs and natural-language search tools like Weaviate now make it possible to build powerful search applications over unstructured data, but much of this data is trapped in formats like PDF that are notoriously difficult to process automatically. Real-world use-cases require more than just answering basic questions over text — they often need to answer complex questions over tables and figures, to name just a few examples. As more and more organizations have built and deployed these types of applications, it has become increasingly clear that the quality of data is key to making them successful. Vector embeddings work best when the text to embed is partitioned into semantically meaningful chunks. And, it’s often necessary to augment this data with additional metadata before embedding it to provide useful context for retrieval.
+Much of today's data is in unstructured data formats that are difficult to process and extract information from. Large Language Models (LLMs) and natural-language search tools make it possible to build powerful search applications over unstructured data. 
+
+Real-world use-cases require more than just answering basic questions over text — they often need to answer complex questions over tables and figures. As more organizations build and deploy these types of applications, it will become increasingly clear that the **quality of data** is key to making them successful. 
+
+Vector embeddings work best when the text to embed is partitioned into semantically meaningful chunks. It’s often necessary to augment this data with additional metadata before embedding it to provide useful context for retrieval.
 
 # About Aryn
 
@@ -24,8 +28,12 @@ Next, you can use [Sycamore](https://github.com/aryn-ai/sycamore), Aryn’s Apac
 
 # Getting Started
 
-In this post, we will show how to use the open-source [Sycamore](https://www.github.com/aryn-ai/sycamore) library and Aryn Partitioning Service to load PDFs into Weaviate. We will use the same two academic papers that were introduced in [this previous post](https://weaviate.io/blog/ingesting-pdfs-into-weaviate) on loading PDFs into Weaviate. We will walk through how to read and partition these documents, how to use Sycamore to augment each document with additional metadata, and how to load the documents into Weaviate.
+In this post, we will show how to use the open-source [Sycamore](https://www.github.com/aryn-ai/sycamore) library and Aryn Partitioning Service to load PDFs into Weaviate. We will use two academic papers as our dataset. You learn how to:
+* Read and partition these documents
+* Use Sycamore to augment each document with additional metadata
+* Load the documents into Weaviate
 
+You can find the [demo in Weaviate Recipes](https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/aryn/weaviate_blog_post.ipynb).
 
 ## Sycamore DocSets
 
