@@ -85,7 +85,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
 
 ## Multiple vectors
 
-import MultiVectorCompress from '/_includes/multi-vector-support-compress.mdx';
+import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
 <MultiVectorCompress />
 

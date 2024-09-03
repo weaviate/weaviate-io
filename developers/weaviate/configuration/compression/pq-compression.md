@@ -369,7 +369,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
 
 ## Multiple vectors
 
-import MultiVectorCompress from '/_includes/multi-vector-support-compress.mdx';
+import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
 <MultiVectorCompress />
 
