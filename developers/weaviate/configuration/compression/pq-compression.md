@@ -111,7 +111,7 @@ To manually enable PQ, follow these steps:
 
 - Phase One: Create a codebook
 
-    - [Configure an initial schema without PQ](./pq-compression.md#1-configure-an-initial-schema-without-pq)
+    - [Define a collection without PQ](./pq-compression.md#1-define-a-collection-without-pq)
     - [Load some training data](./pq-compression.md#2-load-training-data)
     - [Enable and train PQ](./pq-compression.md#3-enable-pq-and-create-the-codebook)
 
@@ -131,7 +131,7 @@ Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vec
 
 The next few sections work through these steps.
 
-### 1. Configure an initial schema without PQ
+### 1. Define a collection without PQ
 
 [Create a collection](/developers/weaviate/manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
@@ -210,7 +210,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
 <PQMakesCodebook />
 
-To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
+To enable PQ, update your collection definition as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -385,7 +385,7 @@ Similarly, compression must be enabled independently for each vector. The proced
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 - [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
-- [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
+- [Guide: Schemas and collection definitions](/developers/weaviate/starter-guides/schema)
 
 ## Questions and feedback
 
