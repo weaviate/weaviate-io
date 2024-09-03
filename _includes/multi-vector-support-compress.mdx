@@ -1,0 +1,16 @@
+:::info Added in v1.24.0
+Weaviate collections support multiple named vectors.
+:::
+
+Collections can have multiple [named vectors](/developers/weaviate/config-refs/schema/multi-vector).
+
+The vectors in a collection can have their own configurations. Each vector space can set its own index, its own compression algorithm, and its own vectorizer. This means you can use different vectorization models, and apply different distance metrics, to the same object.
+
+To work with named vectors, adjust your queries to specify a target vector for [vector search](/developers/weaviate/search/similarity#named-vectors) or [hybrid search](/developers/weaviate/search/hybrid#named-vectors) queries.
+:::note
+Starting in v1.24, collections support multiple named vectors.
+:::
+
+Collections can have multiple [named vectors](/weaviate/config-refs/schema/multi-vector). The vectors in a collection can have their own configurations, and compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same.
+
+Every vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), [SQ](/weaviate/configuration/compression/sq-compression), or no compression.
