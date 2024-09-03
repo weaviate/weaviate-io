@@ -167,11 +167,9 @@ For example:
 
 ## Multiple vectors
 
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
-<MultiVectorSupport />
-
-Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
+<MultiVectorCompress />
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
