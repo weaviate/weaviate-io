@@ -41,6 +41,6 @@ The resources are broken into two categories:
 | Topic | Description | Resource | 
 | --- | --- | --- |
 | Episode 1: Data Loading | This episode shows you how to connect your data to LlamaIndex and Weaviate.| [Video](https://youtu.be/Bu9skgCrJY8?feature=shared) | 
-| Indexes in LlamaIndex | The video covers the three LlamaIndex indexes (Vector Store Index, List Index, and Tree Index) and walks through the architecture design. The video ends with a demo using the Vector Store Index and List Index.  | [Video](https://youtu.be/6pLgOJrFL38?feature=shared) |
+| Episode 2: Indexes in LlamaIndex | The video covers the three LlamaIndex indexes (Vector Store Index, List Index, and Tree Index) and walks through the architecture design. The video ends with a demo using the Vector Store Index and List Index.  | [Video](https://youtu.be/6pLgOJrFL38?feature=shared) |
 | Episode 3: RAG Techniques in LlamaIndex | Learn about four query engines implemented in LlamaIndex. | [Video](https://youtu.be/Su-ROQMaiaw?feature=shared) | 
 | LlamaIndex and Weaviate Blog | An introduction on LlamaIndex and an overview of the integration. | [Blog](https://weaviate.io/blog/llamaindex-and-weaviate) | 
