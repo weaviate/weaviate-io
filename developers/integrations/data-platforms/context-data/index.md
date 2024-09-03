@@ -13,7 +13,7 @@ VectorETL by [Context Data](https://contextdata.ai/) is a modular no-code Python
 ## Context Data and Weaviate
 Weaviate is a [target connection](https://context-data.gitbook.io/context-data-1/adding-target-connections#add-a-weaviate-target-connection) in Context Data. 
 
-To connect to ContextData, open the console and input your Weaviate instance's URL and authentication credentials when prompted.
+To connect to Context Data, open the console and input your Weaviate instance's URL and authentication credentials when prompted.
 
 ## Our Resources 
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.

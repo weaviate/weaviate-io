@@ -9,7 +9,7 @@ image: og/integrations/home.jpg
 ## Spark and Weaviate
 The Spark connector enables you to easily ingest data from Spark data structures into Weaviate. 
 
-Learn more about the connector in the Weaviate[ Spark connector repository](https://github.com/weaviate/spark-connector).
+Learn more about the connector in the [Weaviate Spark connector repository](https://github.com/weaviate/spark-connector).
 
 ## Our Resources 
 The resources are broken into two categories: 

@@ -6,7 +6,7 @@ sidebar_position: 1
 [Modal](https://modal.com/) provides a serverless platform that has on-demand access to GPUs and a custom high-performance container runtime. Use Modal to easily deploy and automatically scale high-performance applications.
 
 ## Modal and Weaviate
-Weaviate leverages Modal's serverless infrastructure for fast embedding generation and for fast generative model calls.
+Weaviate leverages Modal's serverless infrastructure for fast embedding generation and generative model calls.
 
 To dynamically scale your application based on workload demands, [host the Weaviate client](https://modal.com/docs/examples/vector-analogies-wikipedia#deploy-a-serverless-read-only-weaviate-client-with-modal) on Modal.
 

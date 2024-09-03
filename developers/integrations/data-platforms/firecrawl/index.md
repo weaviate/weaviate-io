@@ -9,7 +9,7 @@ image: og/integrations/home.jpg
 It allows you to easily crawl and extract clean, structured data from websites. It is an API service that converts a URL into clean markdown or structured data.
 
 ## Firecrawl and Weaviate
- Firecrawl handles the complexities of web scraping like proxies, caching, rate limits, and dynamic content. It produces markdown or JSON formatted output that is ready to be ingested into vector databases like Weaviate.
+Firecrawl handles the complexities of web scraping like proxies, caching, rate limits, and dynamic content. It produces markdown or JSON formatted output that is ready to be ingested into vector databases like Weaviate.
 
 ## Our Resources
 [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.

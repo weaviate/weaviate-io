@@ -37,6 +37,6 @@ The ecosystem is divided into these categories:
 | Operations | [Arize](/developers/integrations/operations/arize/), [Langtrace](/developers/integrations/operations/langtrace/), [LangWatch](/developers/integrations/operations/langwatch/), [Nomic](/developers/integrations/operations/nomic/), [Ragas](/developers/integrations/operations/ragas/), [Weights & Biases](/developers/integrations/operations/wandb/) |
 
 ## Model Provider Integrations 
-Weaviate integrates with many self-hosted and API-based models from a range of providers. 
+Weaviate integrates with self-hosted and API-based embedding models from a range of providers.
 
 Refer to the [documentation page](/developers/weaviate/model-providers) to see the full list of model providers.
