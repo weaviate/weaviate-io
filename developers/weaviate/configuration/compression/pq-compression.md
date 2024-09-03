@@ -54,9 +54,7 @@ AutoPQ requires asynchronous indexing.
 
 ### 2. Configure PQ
 
-Specify PQ settings for each collection for which it is to be enabled.
-
-For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
+To configure PQ in a collection, use the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -105,7 +103,7 @@ AutoPQ creates the PQ codebook when the object count reaches the training limit.
 
 ## Manually configure PQ
 
-As an alternative to AutoPQ, you can also manually enable PQ on an existing collection. Upon enabling PQ, Weaviate will train the PQ codebook, using the pre-loaded set of objects.
+You can manually enable PQ on an existing collection. After PQ is enabled, Weaviate trains the PQ codebook. Before you enable PQ, verify that the training set has 100,000 objects per shard.
 
 To manually enable PQ, follow these steps:
 
@@ -120,16 +118,12 @@ To manually enable PQ, follow these steps:
     - [Load the rest of your data](./pq-compression.md#4-load-the-rest-of-your-data)
 
 :::tip How large should the training set be?
-When PQ is enabled, Weaviate uses the smaller of training limit or the collection object count to train PQ.
-
-We recommend importing a set of 10,000 to 100,000 training objects per shard before you enable PQ.
+Import 10,000 to 100,000 training objects per shard before you enable PQ.
 :::
 
-:::note
-Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete.
-:::
+Weaviate [logs a message](#check-the-system-logs) when PQ is enabled and another message when vector compression is complete. Do not import the rest of your data until the initial training step is complete.
 
-The next few sections work through these steps.
+Follow these steps to manually enable PQ.
 
 ### 1. Define a collection without PQ
 
