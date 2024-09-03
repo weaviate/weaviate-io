@@ -266,7 +266,7 @@ const config = {
             image: 'og/default.jpg',
             announcementBar: {
                 id: 'announcement-bar-may2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/update-126">Product Update Webinar: Thurs, Aug 22</a> | Learn about new capabilities for cost optimization, performance, and developer efficiency`,
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/update-126">Product Update Webinar</a> | Learn about new capabilities for cost optimization, performance, and developer efficiency`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
