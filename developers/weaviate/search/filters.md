@@ -64,7 +64,7 @@ Add a `filter` to your query, to limit the result set.
       text={GoCode}
       startMarker="// START SingleFilter"
       endMarker="// END SingleFilter"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -177,7 +177,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
       text={GoCode}
       startMarker="// START MultipleFiltersAnd"
       endMarker="// END MultipleFiltersAnd"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -251,7 +251,7 @@ You can group and nest filters.
       text={GoCode}
       startMarker="// START MultipleFiltersNested"
       endMarker="// END MultipleFiltersNested"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -339,7 +339,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
       text={GoCode}
       startMarker="// START searchFilterNearText"
       endMarker="// END searchFilterNearText"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -413,7 +413,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
       text={GoCode}
       startMarker="// START ContainsAnyFilter"
       endMarker="// END ContainsAnyFilter"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -487,7 +487,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
       text={GoCode}
       startMarker="// START ContainsAllFilter"
       endMarker="// END ContainsAllFilter"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -565,7 +565,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
       text={GoCode}
       startMarker="// START LikeFilter"
       endMarker="// END LikeFilter"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -651,7 +651,7 @@ To filter on properties from a cross-referenced object, add the collection name 
       text={GoCode}
       startMarker="// START CrossReference"
       endMarker="// END CrossReference"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -725,7 +725,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       text={GoCode}
       startMarker="// START FilterbyGeolocation"
       endMarker="// END FilterbyGeolocation"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -765,7 +765,7 @@ To filter by a `DATE` datatype property, specify the date/time as an [RFC 3339](
       text={GoCode}
       startMarker="// START FilterByDateDatatype"
       endMarker="// END FilterByDateDatatype"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 </Tabs>
@@ -818,7 +818,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       text={GoCode}
       startMarker="// START FilterById"
       endMarker="// END FilterById"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -876,7 +876,7 @@ This filter requires the [property timestamp](../config-refs/schema/index.md#ind
       text={GoCode}
       startMarker="// START FilterByTimestamp"
       endMarker="// END FilterByTimestamp"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -934,7 +934,7 @@ This filter requires the [property length](../config-refs/schema/index.md#indexp
       text={GoCode}
       startMarker="// START FilterByPropertyLength"
       endMarker="// END FilterByPropertyLength"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -982,7 +982,7 @@ This filter requires the [property null state](../config-refs/schema/index.md#in
       text={GoCode}
       startMarker="// START FilterByPropertyNullState"
       endMarker="// END FilterByPropertyNullState"
-      language="go"
+      language="gonew"
     />
   </TabItem>
   <TabItem value="graphql" label="GraphQL">
