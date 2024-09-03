@@ -186,7 +186,7 @@ for i in range(1, 4, 1):
     print(f"\n\033[91mCompiled RAG Score at Demos = {i}: {compiled_RAG_score}\n")
 ```
 
-In [PR #849](https://github.com/stanfordnlp/dspy/pull/849), we introduced Weights & Biases logging to `BootstrapFewShot`! This can be used for monitoring runs to BootstrapFewShot in order to see the `metric_val` returned for each bootstrapped example. To motivate the use case, you may have a rating on a scale of 1 to 5 for answers and you only want to use examples that achieve a 5 in your prompt. Further, you can visualize how each teacher model is doing with bootstrapping, as shown below. Please see this [notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evalaution/weights_and_biases/wandb_logging_RAG_dspy_cohere.ipynb) for more details!
+In [PR #849](https://github.com/stanfordnlp/dspy/pull/849), we introduced Weights & Biases logging to `BootstrapFewShot`! This can be used for monitoring runs to BootstrapFewShot in order to see the `metric_val` returned for each bootstrapped example. To motivate the use case, you may have a rating on a scale of 1 to 5 for answers and you only want to use examples that achieve a 5 in your prompt. Further, you can visualize how each teacher model is doing with bootstrapping, as shown below. Please see this [notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/weights_and_biases/wandb_logging_RAG_dspy_cohere.ipynb) for more details!
 
 ![W&B Dashboard](img/RAG-optimization-dashboard.png)
 

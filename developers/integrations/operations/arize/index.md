@@ -18,4 +18,4 @@ Phoenix provides a data visualization UI and additional APIs for accessing logge
 
 | Topic | Description | Resource |
 | --- | --- | --- |
-| DSPy Instrumentor | Log calls sent to DSPy using Phoenix | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evaluation/arize/DSPy-Instrumentor.py) |
+| DSPy Instrumentor | Log calls sent to DSPy using Phoenix | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/arize/DSPy-Instrumentor.py) |

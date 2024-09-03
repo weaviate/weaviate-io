@@ -15,6 +15,6 @@ Connect Nomic to your Weaviate cluster to visualize the embeddings in your colle
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| Vector Space Visual | Visualize the embeddings in your Weaviate cluster. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evaluation/nomic/vector_space_visual.ipynb) |
+| Vector Space Visual | Visualize the embeddings in your Weaviate cluster. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/nomic/vector_space_visual.ipynb) |
 
 

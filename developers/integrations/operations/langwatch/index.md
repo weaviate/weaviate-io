@@ -17,4 +17,4 @@ LangWatch also connects to DSPy to track the performance of each prompt paraphra
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| DSPy with Weaviate + LangWatch DSPy Visualizer | This notebook shows an example of DSPy RAG program using Weaviate as the vector database and LangWatch for visualization of the DSPy optimization process. | [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/observability-and-evaluation/langwatch) |
+| DSPy with Weaviate + LangWatch DSPy Visualizer | This notebook shows an example of DSPy RAG program using Weaviate as the vector database and LangWatch for visualization of the DSPy optimization process. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/langwatch/weaviate_dspy_visualization.ipynb) |

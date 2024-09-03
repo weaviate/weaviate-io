@@ -21,5 +21,5 @@ To use Ragas, you'll need to store the `question`, `answer`, `ground_truths`, an
 
 | Topic | Description | Resource |
 | --- | --- | --- |
-| Introduction Ragas Demo | Learn how to use Weaviate and Ragas | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evaluation/ragas/ragas-demo.ipynb) |
-| Ragas and LangChain | Learn how to connect Ragas and LangChain. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evaluation/ragas/RAGAs-RAG-langchain.ipynb) |
+| Introduction Ragas Demo | Learn how to use Weaviate and Ragas | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/ragas-demo.ipynb) |
+| Ragas and LangChain | Learn how to connect Ragas and LangChain. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/ragas/RAGAs-RAG-langchain.ipynb) |
