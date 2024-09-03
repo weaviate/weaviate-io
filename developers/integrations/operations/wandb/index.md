@@ -16,5 +16,5 @@ image: og/integrations/home.jpg
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| W&B Logging with DSPy and Cohere RAG app | An example of using wandb logging to monitor optimizing a RAG system with DSPy, Weaviate, and Cohere. | [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/observability-and-evaluation/weights_and_biases) |
+| W&B Logging with DSPy and Cohere RAG app | An example of using wandb logging to monitor optimizing a RAG system with DSPy, Weaviate, and Cohere. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/weights_and_biases/wandb_logging_RAG_dspy_cohere.ipynb) |
 

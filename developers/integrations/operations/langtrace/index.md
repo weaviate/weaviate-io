@@ -16,4 +16,4 @@ This integration allows you to view vector search queries and generative calls t
 
 | Topic | Description | Resource |
 | --- | --- | --- |
-| Weaviate and Langtrace Observability | View the vector and generative calls made to your application. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/observability-and-evaluation/langtrace/weaviate_observability.ipynb) |
+| Weaviate and Langtrace Observability | View the vector and generative calls made to your application. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/operations/langtrace/weaviate_observability.ipynb) |
