@@ -7,10 +7,10 @@ image: og/integrations/home.jpg
 
 ## Ragas and Weaviate
 The Ragas metrics are:
-* faithfulness
-* answer_relevancy
-* context_precision
-* context_recall
+* `faithfulness`
+* `answer_relevancy`
+* `context_precision`
+* `context_recall`
 
 To use Ragas, you'll need to store the `question`, `answer`, `ground_truths`, and `contexts` in a json object to send to Ragas.
 

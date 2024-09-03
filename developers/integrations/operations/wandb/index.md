@@ -1,10 +1,10 @@
 ---
-title: Weights and Biases
+title: Weights & Biases
 sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
-[Weights and Biases(W&B)](https://wandb.ai/site) is an AI developer platform with products such as `Models` and `Weave`. 
+[Weights & Biases (W&B)](https://wandb.ai/site) is an AI developer platform with products such as `Models` and `Weave`. 
 
 ## Weights and Biases and Weaviate 
 `Weave` has a user interface and data analysis APIs for monitoring applications that use LLM, RAG, Agents, and Vector Databases.

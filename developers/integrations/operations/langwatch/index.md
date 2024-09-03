@@ -1,5 +1,5 @@
 ---
-title: Langwatch
+title: LangWatch
 sidebar_position: 3
 image: og/integrations/home.jpg
 ---
