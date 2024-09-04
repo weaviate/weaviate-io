@@ -48,8 +48,11 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
     .map(format)
     .join('\n');
 
+    let language2 =  (language === 'gonew') ? 'go' : language;
+
+
   return (
-    <CodeBlock className={`language-${language}`}>
+    <CodeBlock className={`language-${language2}`}>
       {filteredLines}
     </CodeBlock>
   );
