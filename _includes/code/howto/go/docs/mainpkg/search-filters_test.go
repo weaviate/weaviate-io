@@ -341,12 +341,12 @@ func TestFilterByDate(t *testing.T) {
 	// Alternatively, you can use an RFC 3339 timestamp:
 	// filterTime, _ := time.Parse(time.RFC3339, "2022-06-10T00:00:00Z")
 
-	result, err := client.GraphQL().Get().
-		WithClassName("JeopardyQuestion").
+	response, err := client.GraphQL().Get().
+		WithClassName("Article").
 		WithLimit(3).
-		WithFields(graphql.Field{Name: "some_date_property_field"}).
+		WithFields(graphql.Field{Name: "publicationDate"}).
 		WithWhere(filters.Where().
-			WithPath([]string{"some_date"}).
+			WithPath([]string{"publicationDate"}).
 			WithOperator(filters.GreaterThan).
 			WithValueDate(filterTime)).
 		Do(ctx)
@@ -558,7 +558,7 @@ func TestFilterByGeolocation(t *testing.T) {
 			MaxDistance: 1000,
 		})
 
-	geoResult, err := client.GraphQL().Get().
+	response, err := client.GraphQL().Get().
 		WithClassName("Publication").
 		WithWhere(geoFilter).
 		WithFields(graphql.Field{Name: "name"}).
