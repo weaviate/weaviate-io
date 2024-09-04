@@ -236,6 +236,8 @@ func TestWhereFilter(t *testing.T) {
 	ctx := context.Background()
 
 	// START whereFilter
+  // Add this line to imports: "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+  
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		// highlight-start
