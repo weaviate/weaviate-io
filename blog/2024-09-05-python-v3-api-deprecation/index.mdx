@@ -1,0 +1,76 @@
+---
+title: "Weaviate Python Client: v3 API deprecation"
+slug: python-v3-client-deprecation
+description: ""
+authors: [jp, dirk, tommy]
+date: 2024-09-04
+tags: ['engineering']
+image: ./img/hero.png
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+
+![Weaviate Python Client: v3 API deprecation; hero image with Python logo and text](./img/hero.png)
+
+## Introduction
+
+All good things have to come to an end. In this case, it's time for us to start saying goodbye to the v3 API in our [Weaviate Python client](/developers/weaviate/client-libraries/python).
+
+You probably know that the Weaviate Python client got a glow-up to an extensively re-written (and improved) v4 API around [six months ago](/blog/py-client-v4-release). This brought more speed through gRPC and improved usability through expanded IDE support and additional type-safety.
+
+Here's an illustrative example of the difference between the two versions. Note how little of the v4 API is based on raw strings, and how much more is based on type-safe objects:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+The v4 API is a significant improvement over the v3 API, and we want to encourage all of our users to migrate to the new version.
+
+Having said that, we appreciate that code migration isn't an overnight task. So the v4 client versions had included the older v3 API in order to ease the transition.
+
+But this will be coming to an end in a few months. Here's what you need to know:
+
+## Deprecation plan
+
+Starting in December 2024, the v4 client will no longer include the v3 API (i.e. the weaviate.Client class).
+
+The v3 client (latest version `3.26.7`) will continue to be available [on PyPI](https://pypi.org/project/weaviate-client/3.26.7/) for existing projects. But it will not receive any new features or updates, except for any critical security updates.
+
+This will help us to provide the best developer experience for you, continue to add support for the latest features in a timely manner, and clearly separate the two.
+
+### What does this mean for me?
+
+To take advantage of the latest developments on the Weaviate core database, we recommend migrating your codebase to use the v4 API.
+
+Our documentation includes a migration guide here, and many code examples include both v3 and v4 syntax. We will be adding more dedicated resources for you to ease the migration experience.
+
+If you have an existing codebase and Weaviate core database that you expect to remain static, we recommend pinning the version in your requirements file (e.g. requirements.txt), like so:
+
+  weaviate-client>=3.26.7,<4.0.0
+We appreciate that code migration can be cumbersome, but we feel strongly that the end experience and feature set will make your time worthwhile.
+
+If you have specific requests for migration documentation or resources, please reach out through our GitHub repository.
+
+import WhatNext from '/_includes/what-next.mdx';
+
+<WhatNext />
