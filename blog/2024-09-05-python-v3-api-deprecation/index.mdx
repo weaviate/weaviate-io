@@ -3,7 +3,7 @@ title: "Weaviate Python Client: v3 API deprecation"
 slug: python-v3-client-deprecation
 description: ""
 authors: [jp, dirk, tommy]
-date: 2024-09-04
+date: 2024-09-05
 tags: ['engineering']
 image: ./img/hero.png
 ---
@@ -60,16 +60,27 @@ This will help us to provide the best developer experience for you, continue to 
 
 ### What does this mean for me?
 
-To take advantage of the latest developments on the Weaviate core database, we recommend migrating your codebase to use the v4 API.
+#### New projects or projects with active development
 
-Our documentation includes a migration guide here, and many code examples include both v3 and v4 syntax. We will be adding more dedicated resources for you to ease the migration experience.
+The v4 client API is the only way to take advantage of the latest Weaviate core database versions. So if you want to use the latest features, you will need to migrate to the v4 API.
+
+Our documentation includes a [migration guide here](/developers/weaviate/client-libraries/python/v3_v4_migration), and many code examples include both v3 and v4 syntax. We will be adding more dedicated resources for you to ease the migration experience.
+
+#### Frozen codebases
 
 If you have an existing codebase and Weaviate core database that you expect to remain static, we recommend pinning the version in your requirements file (e.g. requirements.txt), like so:
 
-  weaviate-client>=3.26.7,<4.0.0
+```shell
+weaviate-client>=3.26.7,<4.0.0
+```
+
+## Conclusion
+
 We appreciate that code migration can be cumbersome, but we feel strongly that the end experience and feature set will make your time worthwhile.
 
-If you have specific requests for migration documentation or resources, please reach out through our GitHub repository.
+If you have specific requests for migration documentation or resources, please reach out through our [docs GitHub repository](https://github.com/weaviate/weaviate-io/issues).
+
+We're excited to see the amazing AI-native apps that you build with the v4 API. Thanks for reading and happy coding!
 
 import WhatNext from '/_includes/what-next.mdx';
 
