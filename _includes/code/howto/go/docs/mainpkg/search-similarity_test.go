@@ -10,6 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"strings"
+	"fmt"
 )
 
 func TestNearText(t *testing.T) {
@@ -376,5 +378,68 @@ func TestWithWhere(t *testing.T) {
 	for _, q := range jeopardyQuestions {
 		question := q.(map[string]interface{})
 		assert.Equal(t, "Double Jeopardy!", question["round"])
+	}
+}
+
+func TestNearTextSearchWithNamedVector(t *testing.T) {
+	client := setupClient()
+	ctx := context.Background()
+
+	// START NamedVectorNearText Go
+
+	className := "WineReviewNV"
+	targetVector := "title_country"
+	limit := 2
+
+	response, err := client.GraphQL().Get().
+		WithClassName(className).
+		WithFields(
+			graphql.Field{Name: "properties"}, // This will return all properties
+			graphql.Field{Name: "_additional", Fields: []graphql.Field{{Name: "distance"}}},
+		).
+		WithNearText((&graphql.NearTextArgumentBuilder{}).
+			WithConcepts([]string{"a sweet German white wine"}).
+			WithTargetVectors(targetVector),
+		).
+		WithLimit(limit).
+		Do(ctx)
+
+	// END NamedVectorNearText Go
+
+	require.Nil(t, err)
+	if response.Errors != nil {
+		errors := make([]string, len(response.Errors))
+		for i, e := range response.Errors {
+			errors[i] = e.Message
+		}
+		t.Fatalf("errors: %v", strings.Join(errors, ", "))
+	}
+
+	require.NotNil(t, response.Data)
+
+	// Print the response
+	jsonResponse, err := json.MarshalIndent(response, "", "  ")
+	require.Nil(t, err)
+	fmt.Printf("%s\n", jsonResponse)
+
+	// Additional assertions to check the response content
+	reviews := response.Data["Get"].(map[string]interface{})[className].([]interface{})
+	require.NotEmpty(t, reviews, "No reviews returned")
+	require.Len(t, reviews, limit, "Unexpected number of reviews returned")
+
+	for _, review := range reviews {
+		r := review.(map[string]interface{})
+		
+		// Print properties
+		properties := r["properties"].(map[string]interface{})
+		fmt.Printf("Properties: %+v\n", properties)
+
+		// Print distance
+		distance := r["_additional"].(map[string]interface{})["distance"].(float64)
+		fmt.Printf("Distance: %f\n", distance)
+
+		// Additional assertions
+		require.NotNil(t, properties, "Properties should not be nil")
+		require.NotNil(t, distance, "Distance should not be nil")
 	}
 }
