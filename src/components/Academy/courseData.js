@@ -154,12 +154,33 @@ export const courseData = {
     ],
     note: "Python client (v4)"
   },
+  "setup_weaviate_typescript": {
+    title: "Set up TypeScript (or Javascript) for Weaviate",
+    courseId: "TS_100",
+    body: "A quick run through of how to set up and install the Weaviate TypeScript client.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/set_up_typescript",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "setup_weaviate_typescript"
+    ],
+    learningGoals: [
+      "Setup Weaviate to get started building TypeScript (or JavaScript) apps."
+    ],
+    learningOutcomes: [
+      "Install Node.js",
+      "(Optionally) Install and set up TypeScript",
+      "Install the Weaviate client",
+    ],
+    note: "TS clients"
+  },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with TypeScript (or JavaScript)",
-    courseId: "TS_100",
-    body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
+    courseId: "TS_101",
+    body: "A practical course where you can learn how to use Weaviate in a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/js/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/js/starter_text_data",
     badgeType: "course",
     isCourse: true,
     units: [

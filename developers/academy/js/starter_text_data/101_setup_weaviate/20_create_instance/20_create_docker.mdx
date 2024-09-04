@@ -46,7 +46,6 @@ services:
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node1'
 ...
-
 ```
 
 ### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
@@ -67,8 +66,8 @@ To connect to the Weaviate instance, use the `connectToLocal()` function.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="# DockerInstantiation"
-  endMarker="# END DockerInstantiation"
+  startMarker="// DockerInstantiation"
+  endMarker="// END DockerInstantiation"
   language="ts"
 />
 
@@ -80,8 +79,8 @@ This course uses OpenAI, so you can provide the OpenAI API key to Weaviate throu
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="# DockerAPIKeyInstantiation"
-  endMarker="# END DockerAPIKeyInstantiation"
+  startMarker="// DockerAPIKeyInstantiation"
+  endMarker="// END DockerAPIKeyInstantiation"
   language="ts"
 />
 

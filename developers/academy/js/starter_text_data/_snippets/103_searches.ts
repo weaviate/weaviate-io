@@ -1,15 +1,8 @@
 // # START-ANY
 import weaviate, { WeaviateClient } from 'weaviate-client'
+
 let client: WeaviateClient
-
-
-// # END-ANY
-
-// # FilteredSemanticSearch
-
-// # END FilteredSemanticSearch
-
-// # START-ANY
+let response
 
 // # END-ANY
 
@@ -32,65 +25,54 @@ client = await weaviate.connectToWeaviateCloud(
 
 // # END-ANY
 
-// # MetadataSemanticSearch
-// # Get the collection
-let response
-let movies
+// MetadataSemanticSearch
+// Get the collection
+// END MetadataSemanticSearch
+// MetadataBM25Search // MetadataSemanticSearch // MetadataHybridSearch // FilteredSemanticSearch
+const movies = client.collections.get("Movie")
+// END MetadataBM25Search // END MetadataSemanticSearch // END MetadataHybridSearch // END FilteredSemanticSearch
+// MetadataSemanticSearch
 
-movies = client.collections.get("Movie")
-
-// # Perform query
-
+// Perform query
 response = await movies.query.nearText('dystopian future', {
     limit: 5,
     returnMetadata: ['distance']
 })
 
-// # Inspect the response
+// Inspect the response
 for (let item of response.objects) {
     // Print the title and release year 
     console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the distance of the object from the query
     console.log(`Distance to query: ${item.metadata.distance}`)
-
 }
+// END MetadataSemanticSearch
 
-
-// # END MetadataSemanticSearch
-
-
-// # MetadataBM25Search
-// # Get the collection
-movies = client.collections.get("Movie")
+// MetadataBM25Search
 
 response = await movies.query.bm25('history', {
     limit: 5,
     returnMetadata: ['score']
 })
 
-// # Inspect the response
+// Inspect the response
 for (let item of response.objects) {
     // Print the title and release year 
     console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the BM25 score of the object from the query
     console.log(`BM25 score: ${item.metadata.score}`)
-
 }
+// END MetadataBM25Search
 
 
-// # END MetadataBM25Search
-
-
-// # MetadataHybridSearch
-// # Get the collection
-movies = client.collections.get("Movie")
+// MetadataHybridSearch
 
 response = await movies.query.hybrid('history', {
     limit: 5,
     returnMetadata: ['score']
 })
 
-// # Inspect the response
+// Inspect the response
 for (let item of response.objects) {
     // Print the title and release year 
 
@@ -98,17 +80,13 @@ for (let item of response.objects) {
     // Print the hybrid search score of the object from the query
 
     console.log(`Hybrid score: ${item.metadata.score}`)
-
 }
+// END MetadataHybridSearch
 
-// # END MetadataHybridSearch
 
+// FilteredSemanticSearch
 
-// # FilteredSemanticSearch
-// # Get the collection
-movies = client.collections.get("Movie")
-
-// # Perform query
+// Perform query
 response = await movies.query.nearText('dystopian future', {
     limit: 5,
     returnMetadata: ['distance'],
@@ -117,17 +95,12 @@ response = await movies.query.nearText('dystopian future', {
     // highlight-end
 })
 
-// # Inspect the response
+// Inspect the response
 for (let item of response.objects) {
     // Print the title and release year 
-
     console.log(`${item.properties.title}: ${item.properties.release_date.getUTCFullYear()} `)
     // Print the distance of the object from the query
-
     console.log(`Distance to query: ${item.metadata.distance}`)
-
 }
-
-
 client.close()
-// # END FilteredSemanticSearch
+// END FilteredSemanticSearch

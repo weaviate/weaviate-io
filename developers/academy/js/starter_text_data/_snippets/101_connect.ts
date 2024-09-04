@@ -1,67 +1,65 @@
-// # WCDInstantiation // # WCDAPIKeyInstantiation // # DockerInstantiation // # DockerAPIKeyInstantiation // # TryFinallyCloseDemo
-import weaviate, { WeaviateClient } from "weaviate-client"
-let client: WeaviateClient
-// # END WCDInstantiation // # END WCDAPIKeyInstantiation // # END DockerInstantiation // # END DockerAPIKeyInstantiation // # END TryFinallyCloseDemo
+// WCDInstantiation // WCDAPIKeyInstantiation // DockerInstantiation // DockerAPIKeyInstantiation // TryFinallyCloseDemo
+import weaviate, { WeaviateClient } from "weaviate-client";
+let client: WeaviateClient;
+// END WCDInstantiation // END WCDAPIKeyInstantiation // END DockerInstantiation // END DockerAPIKeyInstantiation // END TryFinallyCloseDemo
 
 
-// # WCDInstantiation
+// WCDInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,
-  {
+  process.env.WCD_URL as string,{
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
   } 
 )
 
-// # END WCDInstantiation
+// END WCDInstantiation
 
 client.close()
 
-// # WCDAPIKeyInstantiation
+// WCDAPIKeyInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,
-  {
+  process.env.WCD_URL as string,{
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
     }
   } 
 )
-// # END WCDAPIKeyInstantiation
+// END WCDAPIKeyInstantiation
 
 client.close()
 
-// # DockerInstantiation
+// DockerInstantiation
 
 client = await weaviate.connectToLocal()
-// # END DockerInstantiation
+// END DockerInstantiation
 
 client.close()
 
-// # DockerAPIKeyInstantiation
+// DockerAPIKeyInstantiation
 
 client = await weaviate.connectToLocal({
   host: '...',
   headers: {
   'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
 }})
-// # END DockerAPIKeyInstantiation
+// END DockerAPIKeyInstantiation
 
-// # PollLiveness
+// PollLiveness
 if (await client.isLive()) {
   // This will raise an exception if the client is not live
 } 
-// # END PollLiveness
+// END PollLiveness
 
 
-// # GetMeta
+// GetMeta
 console.log(await client.getMeta())
-// # END GetMeta
+// END GetMeta
 
 
 const outputString = 
-// # OutputGetMeta
+// OutputGetMeta
 {
   hostname: 'http://[::]:8080',
   modules: {
@@ -141,7 +139,7 @@ const outputString =
   },
   version: '1.25.5'
 }
-// # END OutputGetMeta
+// END OutputGetMeta
 
 
 
@@ -157,7 +155,7 @@ client = await weaviate.connectToWeaviateCloud(
   } 
 )
 
-// # TryFinallyCloseDemo
+// TryFinallyCloseDemo
 
 // Instantiate your client (not shown). e.g.:
 // client = weaviate.connect_to_weaviate_cloud(...) or
@@ -170,8 +168,5 @@ try {
   }
 } finally { // This will always be executed, even if an exception is raised
   client.close()  // Close the connection & release resources
-
 }
-
-
-// # END TryFinallyCloseDemo
+// END TryFinallyCloseDemo
