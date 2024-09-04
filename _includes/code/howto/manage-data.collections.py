@@ -402,6 +402,36 @@ assert config.vector_index_config.distance_metric.value == "cosine"
 client.close()
 
 # =======================
+# ===== REPLICATION =====
+# =======================
+
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# clean slate
+client.collections.delete("Article")
+# START ReplicationSettings
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+    )
+    # highlight-end
+)
+# END ReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.replication_config.factor == 3
+
+client.close()
+
+# =======================
 # ===== REPLICATION WITH ASYNC REPAIR ====
 # =======================
 
