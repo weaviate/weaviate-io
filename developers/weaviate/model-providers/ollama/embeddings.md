@@ -80,7 +80,9 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Ollama embedding model by setting the vectorizer as follows:
+Your Weaviate instance has to communicate with the Ollama instance. When you configure the vectorizer, be sure to specify the Ollama API endpoint.
+
+Configure the vectorizer and the Ollama embedding model like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,7 +105,13 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+If you don't specify a model, the collection uses the [default model](#available-models).
+
+import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
+
+<APIEndpoint/>
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 

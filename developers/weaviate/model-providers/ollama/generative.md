@@ -82,7 +82,9 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Ollama generative AI model as follows:
+Your Weaviate instance has to communicate with the Ollama instance. When you configure the vectorizer, be sure to specify the Ollama API endpoint.
+
+Configure the collection like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -105,7 +107,13 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+If you don't specify a model, the collection uses the [default model](#available-models).
+
+import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
+
+<APIEndpoint/>
+
+For more information on configuring a generative model, see [Specify a generative model](/developers/weaviate/manage-data/collections#specify-a-generative-module).
 
 ## Retrieval augmented generation
 
