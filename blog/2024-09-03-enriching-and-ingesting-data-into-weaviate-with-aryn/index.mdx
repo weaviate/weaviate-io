@@ -82,7 +82,7 @@ The first step in preparing our documents for ingestion into Weaviate is to part
 
 Since PDF is intended as a display format, it can be difficult to automatically extract this partitioning from the file format itself. An alternative approach is to treat the PDF as an image and use a vision model to identify and label different segments of the document. To support partitioning in Sycamore, Aryn trained a state-of-the-art vision model on more than 80,000 document pages from the [DocLayNet dataset](https://arxiv.org/abs/2206.01062). This model is fully open-source with an Apache 2.0 license and is available for [download on HuggingFace](https://huggingface.co/Aryn/deformable-detr-DocLayNet).
 
-The easiest way to use the Aryn Partitioner in Sycamore is via the Aryn Partitioning Service, which provides a REST endpoint for partitioning PDFs. You can sign up for this service at [https://www.aryn.ai/sign-up](https://www.aryn.ai/sign-up). You invoke this using the `partition` transform on a DocSet and specify the `ArynPartitioner`. In this case we specify two flags: `extract_table_structure` and `extract_images`, which identify table cells and images, respectively:
+The easiest way to use the Aryn Partitioner in Sycamore is via the Aryn Partitioning Service, which provides a REST endpoint for partitioning PDFs. You can sign up for this service at [https://www.aryn.ai/get-started](https://www.aryn.ai/get-started). You invoke this using the `partition` transform on a DocSet and specify the `ArynPartitioner`. In this case we specify two flags: `extract_table_structure` and `extract_images`, which identify table cells and images, respectively:
 
 ```python
 from sycamore.transforms import ArynPartitioner
@@ -551,7 +551,7 @@ This does a few things:
 3. The `embed` transform computes the vector embedding for each chunk. By default, Sycamore will embed the `text_represention` field of each chunk in the DocSet using the specified embedder. Here we use the `all-MiniLM-L6-v2` sentence-transformer model, which is a small model that works well for tests and demos. Sycamore supports a range of embedding models, including remote models from OpenAI and others. It is also possible to let Weaviate do the embeddings by omitting this step and adjusting the collection configuration.
 4. Finally, we perform the `write` to Weaviate. You will notice here that we set the `flatten_properties` attribute to `True` . This addresses the fact that Sycamore properties can be nested, but Weaviate currently only allows filtering by top-level attributes. Flattened column names are separated by `__` characters. For example, if you have the property `{"properties": {"authors": []}}`, it will be stored with the key `properties__authors` in Weaviate. Supporting nested objects is on Weaviate's radar. Please upvote [this issue](https://github.com/weaviate/weaviate/issues/3694) to help the team prioritize. 
 
-You can find more information about Sycamore transformations in the [Sycamore documentation](https://sycamore.readthedocs.io/en/stable/data_ingestion_and_preparation/transforms.html).
+You can find more information about Sycamore transformations in the [Sycamore documentation](https://sycamore.readthedocs.io/en/stable/sycamore/transforms.html).
 
 ## Putting it all together
 
@@ -620,7 +620,7 @@ context.read.binary(paths=paths, binary_format="pdf")\
                 flatten_properties=True)
 ```
 
-As with any Sycamore script, this script can be run on a few documents on a laptop or scale to a cluster to process a large set of documents without changing the code. You can learn more about Sycamore's approach to scalability [here](https://sycamore.readthedocs.io/en/stable/data_ingestion_and_preparation/data_preparation_concepts.html).
+As with any Sycamore script, this script can be run on a few documents on a laptop or scale to a cluster to process a large set of documents without changing the code. You can learn more about Sycamore's approach to scalability [here](https://sycamore.readthedocs.io/en/stable/sycamore/get_started/concepts.html).
 
 ### Reading from Weaviate
 
