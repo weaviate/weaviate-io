@@ -82,9 +82,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-Your Weaviate instance has to communicate with the Ollama instance. When you configure the vectorizer, be sure to specify the Ollama API endpoint.
-
-Configure the collection like this:
+Configure the default generative model for the collection like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -107,7 +105,7 @@ Configure the collection like this:
 
 </Tabs>
 
-If you don't specify a model, the collection uses the [default model](#available-models).
+If you don't specify a generative model, the collection uses the [default model](#available-models).
 
 import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
 
