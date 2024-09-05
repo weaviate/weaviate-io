@@ -1,5 +1,5 @@
 ---
-title: Basic search examples
+title: Search patterns and basics
 sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
