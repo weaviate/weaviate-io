@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-## Data object nomenclature
+## Data object concepts
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
 
@@ -113,7 +113,7 @@ The collection looks like this:
 
 Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
 
-#### UUIDs
+### UUIDs
 
 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
 
@@ -178,7 +178,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-## Weaviate Schema
+## Data Schema
 
 Weaviate requires a data schema before you add data. However, you don't have to create a data schema manually. If you don't provide one, Weaviate generates a schema based on the incoming data.
 
