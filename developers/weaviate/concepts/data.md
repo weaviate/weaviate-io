@@ -121,8 +121,7 @@ You can [use a deterministic UUID](../manage-data/import.mdx#specify-an-id-value
 
 If you don't specify an ID, Weaviate generates a random UUID for you.
 
-In queries without any other ordering specified, Weaviate returns objects in the order of UUIDs. This means that queries to [read objects](../search/basics.md#list-objects), or [delete objects](../manage-data/delete.mdx#delete-multiple-objects-by-id), without any other ordering specified, will be processed in the order of UUIDs.
-
+In requests without any other ordering specified, Weaviate processes them in ascending UUID order. This means that requests to [list objects](../search/basics.md#list-objects), use of the [cursor API](../manage-data/read-all-objects.mdx), or requests to [delete objects](../manage-data/delete.mdx#delete-multiple-objects-by-id), without any other ordering specified, will be processed in ascending UUID order.
 
 ### Cross-references
 
