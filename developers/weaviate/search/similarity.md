@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-similarity_test.go';
 
 Vector search returns the objects with most similar vectors to that of the query.
 
@@ -53,6 +54,15 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
       startMarker="// GetNearText"
       endMarker="// END GetNearText"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearText"
+      endMarker="// END GetNearText"
+      language="gonew"
     />
   </TabItem>
 
@@ -173,10 +183,19 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearObject"
+      endMarker="// END GetNearObject"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# GetNearObjectGraphQL"
+      startMarker="# START GetNearObjectGraphQL"
       endMarker="# END GetNearObjectGraphQL"
       language="graphql"
     />
@@ -234,6 +253,15 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetNearVector"
+      endMarker="// END GetNearVector"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -285,6 +313,15 @@ To search a collection that has [named vectors](../config-refs/schema/multi-vect
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="gonew"
     />
   </TabItem>
 
@@ -353,6 +390,15 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithDistance"
+      endMarker="// END GetWithDistance"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -415,6 +461,15 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetLimitOffset"
+      endMarker="// END GetLimitOffset"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -463,6 +518,15 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       startMarker="// START Autocut"
       endMarker="// END Autocut"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="gonew"
     />
   </TabItem>
 
@@ -531,6 +595,15 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithGroupBy"
+      endMarker="// END GetWithGroupBy"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -593,6 +666,15 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
       startMarker="// GetWithFilter"
       endMarker="// END GetWithFilter"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetWithFilter"
+      endMarker="// END GetWithFilter"
+      language="gonew"
     />
   </TabItem>
 
