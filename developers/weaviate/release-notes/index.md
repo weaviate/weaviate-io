@@ -16,7 +16,8 @@ This chart shows the latest client release at the time of the Weaviate core rele
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
-| [1.26.3][c1.26.3] | 2024-08-29 | [4.7.1][p4.7.1] | [3.1.4][ts3.1.4] | [4.15.1][g4.15.1] | [4.8.2][j4.8.2] |
+| [1.26.4][c1.26.4] | 2024-09-06 | [4.7.1][p4.7.1] | [3.1.4][ts3.1.4] | [4.15.1][g4.15.1] | [4.8.2][j4.8.2] |
+| [1.26.3][c1.26.3] | 2024-08-29 | '' | '' | '' | '' |
 | [1.26.2][c1.26.2] | 2024-08-29 | '' | '' | '' | '' |
 | [1.26.1][c1.26.1] | 2024-07-23 | [4.6.6][p4.6.6] | [3.0.8][ts3.0.8] | [4.14.2][g4.14.2] | [4.8.0][j4.8.0] |
 | [1.26.0][c1.26.0] | 2024-07-22 | '' | '' | '' | [4.7.0][j4.7.0] |
@@ -70,6 +71,7 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.26.4][c1.26.4] | 2024-09-06 |
   | [1.26.3][c1.26.3] | 2024-08-29 |
   | [1.26.2][c1.26.2] | 2024-08-29 |
   | [1.26.1][c1.26.1] | 2024-07-23 |
@@ -89,6 +91,7 @@ For links to the Weaviate Core releases, expand this section.
   | [1.25.2][c1.25.2] | 2024-05-31 |
   | [1.25.1][c1.25.1] | 2024-05-17 |
   | [1.25.0][c1.25.0] | 2024-05-10 |
+  | [1.24.24][c1.24.24] | 2024-09-06 |
   | [1.24.23][c1.24.23] | 2024-08-20 |
   | [1.24.22][c1.24.22] | 2024-08-08 |
   | [1.24.21][c1.24.21] | 2024-07-18 |
@@ -555,6 +558,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( core links )
 
+[c1.26.4]: https://github.com/weaviate/weaviate/releases/tag/v1.26.4
 [c1.26.3]: https://github.com/weaviate/weaviate/releases/tag/v1.26.3
 [c1.26.2]: https://github.com/weaviate/weaviate/releases/tag/v1.26.2
 [c1.26.1]: https://github.com/weaviate/weaviate/releases/tag/v1.26.1
@@ -574,6 +578,7 @@ For links to the Java Client releases, expand this section.
 [c1.25.2]: https://github.com/weaviate/weaviate/releases/tag/v1.25.2
 [c1.25.1]: https://github.com/weaviate/weaviate/releases/tag/v1.25.1
 [c1.25.0]: https://github.com/weaviate/weaviate/releases/tag/v1.25.0
+[c1.24.24]: https://github.com/weaviate/weaviate/releases/tag/v1.24.24
 [c1.24.23]: https://github.com/weaviate/weaviate/releases/tag/v1.24.23
 [c1.24.22]: https://github.com/weaviate/weaviate/releases/tag/v1.24.22
 [c1.24.21]: https://github.com/weaviate/weaviate/releases/tag/v1.24.21
