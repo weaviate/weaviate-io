@@ -604,7 +604,15 @@ const siteRedirects = {
     to: "/deployment/enablement",
     from: "/deployment/education-and-support"
  },
-
+ // KC Component Changes
+ {
+    to: "/learn/knowledgecards",
+    from: "/learn/knowledgecards/shareoptions"
+ },
+ {
+    to: "/learn/knowledgecards",
+    from: "/learn/knowledgecards/knowledgeheader"
+ },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
