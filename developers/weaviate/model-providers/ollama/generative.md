@@ -82,7 +82,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-Configure the default generative model for the collection like this:
+Configure the generative model like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

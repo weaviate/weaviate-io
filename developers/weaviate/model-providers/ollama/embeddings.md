@@ -80,7 +80,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure the vectorizer
 
-Configure the default vectorizer for the collection like this:
+Configure the vectorizer like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,7 +103,7 @@ Configure the default vectorizer for the collection like this:
 
 </Tabs>
 
-If you don't specify an embedding model, the collection uses the [default model](#available-models).
+If you don't specify an embedding model, the vectorizer uses the [default model](#available-models).
 
 import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
 
