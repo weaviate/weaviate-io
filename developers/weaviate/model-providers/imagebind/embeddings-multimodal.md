@@ -335,6 +335,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 - [ImageBind GitHub page](https://github.com/facebookresearch/ImageBind)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

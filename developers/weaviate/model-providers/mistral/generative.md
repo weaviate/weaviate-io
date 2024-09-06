@@ -250,6 +250,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Mistral [AI API documentation](https://docs.mistral.ai/api/)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

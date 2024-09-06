@@ -267,6 +267,8 @@ Once the integrations are configured at the collection, the data management and 
 - AWS [Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
 - AWS [SageMaker documentation](https://docs.aws.amazon.com/sagemaker/)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

@@ -1,5 +1,5 @@
 ---
-title: Basic search examples
+title: Search patterns and basics
 sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
@@ -19,9 +19,9 @@ With Weaviate you can query your data using [vector similarity search](./similar
 
 This page provides fundamental search syntax to get you started.
 
-## Basic search
+## List objects
 
-You can get objects without specifying any parameters. This returns objects ordered by their UUID.
+You can get objects without specifying any parameters. This returns objects in ascending UUID order.
 
 <Tabs groupId="languages">
 
