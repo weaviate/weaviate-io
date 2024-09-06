@@ -200,59 +200,11 @@ In other words, when you have `n` search results, the generative model generates
 
 </Tabs>
 
-## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeOpenAI"
-      endMarker="# END FullGenerativeOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeOpenAI"
-      endMarker="// END FullGenerativeOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
-
-### Available models
-
-* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
-* [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-
-<details>
-  <summary>Older models</summary>
-
-The following models are available, but not recommended:
-
-* [davinci 002](https://platform.openai.com/docs/models/overview)
-* [davinci 003](https://platform.openai.com/docs/models/overview)
-
-</details>
-
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI embedding models + Weaviate](./embeddings.md).
+- [KubeAI embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -260,10 +212,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
-
-### References
-
-- OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
 
 ## Questions and feedback
 
