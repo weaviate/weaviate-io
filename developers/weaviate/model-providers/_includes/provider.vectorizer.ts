@@ -606,6 +606,36 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START FullVectorizerKubeAI
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOpenAI(
+      {
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        model: 'nomic-embed-text-cpu',
+        dimensions: 8192,
+        baseURL: 'http://kubeai/openai/v1',
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerKubeAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+
 // START BasicVectorizerAzureOpenAI
 await client.collections.create({
   name: 'DemoCollection',
