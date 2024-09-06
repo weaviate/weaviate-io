@@ -14,7 +14,7 @@ export default function BWWPage() {
     <div className="custom-page noBG">
       <Layout
         title="Build With Weaviate"
-        description="Did you built something cool with Weaviate? Share it with us and let your work get noticed!"
+        description="Build something cool with Weaviate? Let us know so we can help spread the word."
       >
         <MetaSEO img="og/content/BWW-OG.jpg" />
         <Header />

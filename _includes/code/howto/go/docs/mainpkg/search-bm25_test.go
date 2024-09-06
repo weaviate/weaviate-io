@@ -35,21 +35,20 @@ func setupClient() *weaviate.Client {
 		cfg = weaviate.Config{
 			Host:   wcdURL,
 			Scheme: wcdScheme,
-
 		}
 	} else {
 
-	cfg = weaviate.Config{
-		Host:   wcdURL,
-		Scheme: wcdScheme,
-		AuthConfig: auth.ApiKey{
-			Value: wcdAPIKey,
-		},
-		//Headers: map[string]string{
-		//	"X-OpenAI-Api-Key": openaiAPIKey,
-		//},
+		cfg = weaviate.Config{
+			Host:   wcdURL,
+			Scheme: wcdScheme,
+			AuthConfig: auth.ApiKey{
+				Value: wcdAPIKey,
+			},
+			//Headers: map[string]string{
+			//	"X-OpenAI-Api-Key": openaiAPIKey,
+			//},
+		}
 	}
-}
 
 	client, err := weaviate.NewClient(cfg)
 	if err != nil {
@@ -66,33 +65,36 @@ func setupClient() *weaviate.Client {
 func TestBasicBM25Query(t *testing.T) {
 	client := setupClient()
 
-	// START Basic Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
-	limit := int(3)
+	t.Run("Basic BM25 Query", func(t *testing.T) {
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END Basic Go
+		// START Basic Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
+		limit := int(3)
 
-	require.NoError(t, err, "Failed to execute basic BM25 query")
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			Do(ctx)
+		// END Basic Go
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+		require.NoError(t, err, "Failed to execute basic BM25 query")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
-	}
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
+		}
+	})
 }
 
 // ================================================
@@ -102,41 +104,43 @@ func TestBasicBM25Query(t *testing.T) {
 func TestBM25QueryWithScore(t *testing.T) {
 	client := setupClient()
 
-	// START Score Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
-	limit := int(3)
+	t.Run("BM25 Query with Score", func(t *testing.T) {
+		// START Score Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
+		limit := int(3)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "score"},
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{Name: "score"},
+					},
 				},
-			},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END Score Go
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			Do(ctx)
+		// END Score Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with score")
+		require.NoError(t, err, "Failed to execute BM25 query with score")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		additional := properties["_additional"].(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		fmt.Printf("Score: %v\n", additional["score"])
-		assert.NotNil(t, additional["score"], "Expected a non-nil score")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			additional := properties["_additional"].(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			fmt.Printf("Score: %v\n", additional["score"])
+			assert.NotNil(t, additional["score"], "Expected a non-nil score")
+		}
+	})
 }
 
 // =================================
@@ -146,35 +150,37 @@ func TestBM25QueryWithScore(t *testing.T) {
 func TestBM25QueryWithLimit(t *testing.T) {
 	client := setupClient()
 
-	// START limit Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety")
-	limit := int(3)
-	offset := int(1)
+	t.Run("BM25 Query with Limit", func(t *testing.T) {
+		// START limit Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety")
+		limit := int(3)
+		offset := int(1)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		WithOffset(offset).
-		Do(ctx)
-	// END limit Go
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			WithOffset(offset).
+			Do(ctx)
+		// END limit Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with limit")
+		require.NoError(t, err, "Failed to execute BM25 query with limit")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "safety", "Expected 'safety' in the properties")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "safety", "Expected 'safety' in the properties")
+		}
+	})
 }
 
 // ===================================
@@ -184,33 +190,35 @@ func TestBM25QueryWithLimit(t *testing.T) {
 func TestBM25QueryWithAutocut(t *testing.T) {
 	client := setupClient()
 
-	// START autocut Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety")
-	autoLimit := int(1)
+	t.Run("BM25 Query with Autocut", func(t *testing.T) {
+		// START autocut Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety")
+		autoLimit := int(1)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-		).
-		WithBM25(query).
-		WithAutocut(autoLimit).
-		Do(ctx)
-	// END autocut Go
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+			).
+			WithBM25(query).
+			WithAutocut(autoLimit).
+			Do(ctx)
+		// END autocut Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with autocut")
+		require.NoError(t, err, "Failed to execute BM25 query with autocut")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.GreaterOrEqual(t, len(objects), 1, "Expected at least 1 object in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.GreaterOrEqual(t, len(objects), 1, "Expected at least 1 object in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "safety", "Expected 'safety' in the properties")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "safety", "Expected 'safety' in the properties")
+		}
+	})
 }
 
 // ===============================================
@@ -220,41 +228,43 @@ func TestBM25QueryWithAutocut(t *testing.T) {
 func TestBM25QueryWithProperties(t *testing.T) {
 	client := setupClient()
 
-	// START Properties Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
-	limit := int(3)
+	t.Run("BM25 Query with Properties", func(t *testing.T) {
+		// START Properties Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("safety").WithProperties("question")
+		limit := int(3)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{Name: "score"},
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{Name: "score"},
+					},
 				},
-			},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END Properties Go
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			Do(ctx)
+		// END Properties Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with properties")
+		require.NoError(t, err, "Failed to execute BM25 query with properties")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		additional := properties["_additional"].(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		fmt.Printf("Score: %v\n", additional["score"])
-		assert.Contains(t, strings.ToLower(properties["question"].(string)), "safety", "Expected 'safety' in the question")
-		assert.NotNil(t, additional["score"], "Expected a non-nil score")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			additional := properties["_additional"].(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			fmt.Printf("Score: %v\n", additional["score"])
+			assert.Contains(t, strings.ToLower(properties["question"].(string)), "safety", "Expected 'safety' in the question")
+			assert.NotNil(t, additional["score"], "Expected a non-nil score")
+		}
+	})
 }
 
 // ==============================================
@@ -264,33 +274,35 @@ func TestBM25QueryWithProperties(t *testing.T) {
 func TestBM25QueryWithBoostedProperties(t *testing.T) {
 	client := setupClient()
 
-	// START BoostedProperties Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food").WithProperties("question^2", "answer")
-	limit := int(3)
+	t.Run("BM25 Query with Boosted Properties", func(t *testing.T) {
+		// START BoostedProperties Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food").WithProperties("question^2", "answer")
+		limit := int(3)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END BoostedProperties Go
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			Do(ctx)
+		// END BoostedProperties Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with boosted properties")
+		require.NoError(t, err, "Failed to execute BM25 query with boosted properties")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 3, len(objects), "Expected 3 objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
+		}
+	})
 }
 
 // ==================================
@@ -300,34 +312,36 @@ func TestBM25QueryWithBoostedProperties(t *testing.T) {
 func TestBM25MultipleKeywords(t *testing.T) {
 	client := setupClient()
 
-	// START MultipleKeywords Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food wine").WithProperties("question")// search for food or wine
-	limit := int(5)
+	t.Run("BM25 Multiple Keywords", func(t *testing.T) {
+		// START MultipleKeywords Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food wine").WithProperties("question") // search for food or wine
+		limit := int(5)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-		).
-		WithBM25(query).
-		WithLimit(limit).
-		Do(ctx)
-	// END MultipleKeywords Go
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+			).
+			WithBM25(query).
+			WithLimit(limit).
+			Do(ctx)
+		// END MultipleKeywords Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with multiple keywords")
+		require.NoError(t, err, "Failed to execute BM25 query with multiple keywords")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.Equal(t, 5, len(objects), "Expected 5 objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.Equal(t, 5, len(objects), "Expected 5 objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties["question"])
-		assert.True(t, strings.Contains(strings.ToLower(properties["question"].(string)), "food") || 
-						strings.Contains(strings.ToLower(properties["question"].(string)), "wine"),
-					"Expected either 'food' or 'wine' in the question")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties["question"])
+			assert.True(t, strings.Contains(strings.ToLower(properties["question"].(string)), "food") ||
+				strings.Contains(strings.ToLower(properties["question"].(string)), "wine"),
+				"Expected either 'food' or 'wine' in the question")
+		}
+	})
 }
 
 // ==================================
@@ -337,42 +351,44 @@ func TestBM25MultipleKeywords(t *testing.T) {
 func TestBM25WithFilter(t *testing.T) {
 	client := setupClient()
 
-	// START Filter Go
-	ctx := context.Background()
-	className := "JeopardyQuestion"
+	t.Run("BM25 With Filter", func(t *testing.T) {
+		// START Filter Go
+		ctx := context.Background()
+		className := "JeopardyQuestion"
 
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
-	limit := int(3)
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("food")
+		limit := int(3)
 
-	filter := filters.Where().
-		WithPath([]string{"round"}).
-		WithOperator(filters.Equal).
-		WithValueString("Double Jeopardy!")
+		filter := filters.Where().
+			WithPath([]string{"round"}).
+			WithOperator(filters.Equal).
+			WithValueString("Double Jeopardy!")
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "answer"},
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "round"},
-		).
-		WithBM25(query).
-		WithWhere(filter).
-		WithLimit(limit).
-		Do(ctx)
-	// END Filter Go
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "answer"},
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "round"},
+			).
+			WithBM25(query).
+			WithWhere(filter).
+			WithLimit(limit).
+			Do(ctx)
+		// END Filter Go
 
-	require.NoError(t, err, "Failed to execute BM25 query with filter")
+		require.NoError(t, err, "Failed to execute BM25 query with filter")
 
-	objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.LessOrEqual(t, len(objects), 3, "Expected 3 or fewer objects in the result")
+		objects := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.LessOrEqual(t, len(objects), 3, "Expected 3 or fewer objects in the result")
 
-	for _, obj := range objects {
-		properties := obj.(map[string]interface{})
-		fmt.Printf("%v\n", properties)
-		assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
-		assert.Equal(t, "Double Jeopardy!", properties["round"], "Expected 'Double Jeopardy!' as the round")
-	}
+		for _, obj := range objects {
+			properties := obj.(map[string]interface{})
+			fmt.Printf("%v\n", properties)
+			assert.Contains(t, strings.ToLower(fmt.Sprintf("%v", properties)), "food", "Expected 'food' in the properties")
+			assert.Equal(t, "Double Jeopardy!", properties["round"], "Expected 'Double Jeopardy!' as the round")
+		}
+	})
 }
 
 // ==================================
@@ -383,75 +399,77 @@ func TestBM25GroupBy(t *testing.T) {
 	t.Skip("Skipping test - bug in client.  Or in request.  Not sure.")
 	client := setupClient()
 
-	// START BM25GroupByGo
-	ctx := context.Background()
-	className := "JeopardyQuestion"
-	query := (&graphql.BM25ArgumentBuilder{}).WithQuery("California")
-	group := (&graphql.GroupByArgumentBuilder{}).WithPath([]string{"round"}).WithGroups(2).WithObjectsPerGroup(3)
+	t.Run("BM25 GroupBy", func(t *testing.T) {
+		// START BM25GroupByGo
+		ctx := context.Background()
+		className := "JeopardyQuestion"
+		query := (&graphql.BM25ArgumentBuilder{}).WithQuery("California")
+		group := (&graphql.GroupByArgumentBuilder{}).WithPath([]string{"round"}).WithGroups(2).WithObjectsPerGroup(3)
 
-	result, err := client.GraphQL().Get().
-		WithClassName(className).
-		WithFields(
-			graphql.Field{Name: "question"},
-			graphql.Field{Name: "answer"},
-			graphql.Field{Name: "round"},
-			graphql.Field{
-				Name: "_additional",
-				Fields: []graphql.Field{
-					{
-						Name: "groupedBy",
-						Fields: []graphql.Field{
-							{Name: "value"},
+		result, err := client.GraphQL().Get().
+			WithClassName(className).
+			WithFields(
+				graphql.Field{Name: "question"},
+				graphql.Field{Name: "answer"},
+				graphql.Field{Name: "round"},
+				graphql.Field{
+					Name: "_additional",
+					Fields: []graphql.Field{
+						{
+							Name: "groupedBy",
+							Fields: []graphql.Field{
+								{Name: "value"},
+							},
 						},
+						{Name: "id"},
 					},
-					{Name: "id"},
 				},
-			},
-			graphql.Field{
-				Name: "_group",
-				Fields: []graphql.Field{
-					{Name: "count"},
-					{
-						Name: "groupedBy",
-						Fields: []graphql.Field{
-							{Name: "path"},
-							{Name: "value"},
+				graphql.Field{
+					Name: "_group",
+					Fields: []graphql.Field{
+						{Name: "count"},
+						{
+							Name: "groupedBy",
+							Fields: []graphql.Field{
+								{Name: "path"},
+								{Name: "value"},
+							},
 						},
+						{Name: "maxScore"},
+						{Name: "minScore"},
 					},
-					{Name: "maxScore"},
-					{Name: "minScore"},
 				},
-			},
-		).
-		WithBM25(query).
-		WithGroupBy(group).
-		Do(ctx)
-	// END BM25GroupByGo
+			).
+			WithBM25(query).
+			WithGroupBy(group).
+			Do(ctx)
+		// END BM25GroupByGo
 
-	require.NoError(t, err, "Failed to execute BM25 query with groupBy")
+		require.NoError(t, err, "Failed to execute BM25 query with groupBy")
 
-	groups := result.Data["Get"].(map[string]interface{})[className].([]interface{})
-	assert.LessOrEqual(t, len(groups), 2, "Expected 2 or fewer groups")
+		groups := result.Data["Get"].(map[string]interface{})[className].([]interface{})
+		assert.LessOrEqual(t, len(groups), 2, "Expected 2 or fewer groups")
 
-	for _, group := range groups {
-		groupData := group.(map[string]interface{})
-		groupInfo := groupData["_group"].(map[string]interface{})
-		groupedBy := groupInfo["groupedBy"].(map[string]interface{})
-		fmt.Printf("Group: %v\n", groupedBy["value"])
-		fmt.Printf("Count: %v\n", groupInfo["count"])
-		fmt.Printf("Max Score: %v\n", groupInfo["maxScore"])
-		fmt.Printf("Min Score: %v\n", groupInfo["minScore"])
-		
-		objects := groupData["_additional"].([]interface{})
-		assert.LessOrEqual(t, len(objects), 3, "Expected 3 or fewer objects in each group")
-		for _, obj := range objects {
-			fmt.Printf("%v\n", obj)
+		for _, group := range groups {
+			groupData := group.(map[string]interface{})
+			groupInfo := groupData["_group"].(map[string]interface{})
+			groupedBy := groupInfo["groupedBy"].(map[string]interface{})
+			fmt.Printf("Group: %v\n", groupedBy["value"])
+			fmt.Printf("Count: %v\n", groupInfo["count"])
+			fmt.Printf("Max Score: %v\n", groupInfo["maxScore"])
+			fmt.Printf("Min Score: %v\n", groupInfo["minScore"])
+
+			objects := groupData["_additional"].([]interface{})
+			assert.LessOrEqual(t, len(objects), 3, "Expected 3 or fewer objects in each group")
+			for _, obj := range objects {
+				fmt.Printf("%v\n", obj)
+			}
+			fmt.Println()
+
+			assert.NotNil(t, groupedBy["value"], "Expected a non-nil group value")
+			assert.NotNil(t, groupInfo["count"], "Expected a non-nil count")
+			assert.NotNil(t, groupInfo["maxScore"], "Expected a non-nil maxScore")
+			assert.NotNil(t, groupInfo["minScore"], "Expected a non-nil minScore")
 		}
-		fmt.Println()
-
-		assert.NotNil(t, groupedBy["value"], "Expected a non-nil group value")
-		assert.NotNil(t, groupInfo["count"], "Expected a non-nil count")
-		assert.NotNil(t, groupInfo["maxScore"], "Expected a non-nil maxScore")
-		assert.NotNil(t, groupInfo["minScore"], "Expected a non-nil minScore")
-	}
+	})
 }

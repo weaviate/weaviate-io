@@ -71,7 +71,13 @@ Recall measures how well an algorithm finds true positive matches in a data set.
 
 A compressed vector has less information than the full, uncompressed vector. A vector that would match a search might be missed if key information is missing from the compressed vector. That lowers recall.
 
-To improve recall with quantized vectors, Weaviate over-fetches a list of candidate vectors during a search. Then, for each item on the candidate list, Weaviate fetches the corresponding uncompressed vector before calculating their distances to the query vector to determine the final ranking. This followup rescoring process is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is still very fast. Most importantly, rescoring using the uncompressed vectors greatly improves recall.
+To improve recall with quantized vectors, Weaviate over-fetches a list of candidate vectors during a search. For each item on the candidate list, Weaviate fetches the corresponding uncompressed vector. To determine the final ranking, Weaviate calculates the distances from the uncompressed vectors to the query vector.
+
+import RescoringIllustration from '/developers/weaviate/starter-guides/managing-resources/img/rescore-uncompressed-vectors.png';
+
+<img src={RescoringIllustration} width="100%" alt="Rescoring illustration"/>
+
+The followup rescoring process is slower than an in-memory search, but since Weaviate only has to search a limited number of uncompressed vectors, it is still very fast. Most importantly, rescoring using the uncompressed vectors greatly improves recall.
 
 The search algorithm's use of over-fetching and rescoring means you get the benefits of compression without losing the precision of an uncompressed vector search.
 

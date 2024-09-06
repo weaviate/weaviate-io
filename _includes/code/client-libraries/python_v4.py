@@ -127,10 +127,10 @@ import weaviate
 
 client = weaviate.connect_to_custom(
     http_host="localhost",
-    http_port="8080",
+    http_port=8080,
     http_secure=False,
     grpc_host="localhost",
-    grpc_port="50051",
+    grpc_port=50051,
     grpc_secure=False,
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Or any other inference API keys
@@ -203,10 +203,10 @@ import os
 client = weaviate.WeaviateClient(
     connection_params=ConnectionParams.from_params(
         http_host="localhost",
-        http_port="8099",
+        http_port=8099,
         http_secure=False,
         grpc_host="localhost",
-        grpc_port="50052",
+        grpc_port=50052,
         grpc_secure=False,
     ),
     auth_client_secret=Auth.api_key("secr3tk3y"),
@@ -1186,10 +1186,10 @@ import os
 
 async_client = weaviate.use_async_with_custom(
     http_host="localhost",
-    http_port="8080",
+    http_port=8080,
     http_secure=False,
     grpc_host="localhost",
-    grpc_port="50051",
+    grpc_port=50051,
     grpc_secure=False,
 )
 # END AsyncCustomInstantiationBasic
@@ -1217,10 +1217,10 @@ import os
 async_client = weaviate.WeaviateAsyncClient(
     connection_params=ConnectionParams.from_params(
         http_host="localhost",
-        http_port="8099",
+        http_port=8099,
         http_secure=False,
         grpc_host="localhost",
-        grpc_port="50052",
+        grpc_port=50052,
         grpc_secure=False,
     ),
     auth_client_secret=Auth.api_key("secr3tk3y"),
@@ -1245,10 +1245,10 @@ async def instantiate_and_connect() -> WeaviateAsyncClient:
     client = weaviate.WeaviateAsyncClient(
         connection_params=ConnectionParams.from_params(
             http_host="localhost",
-            http_port="8099",
+            http_port=8099,
             http_secure=False,
             grpc_host="localhost",
-            grpc_port="50052",
+            grpc_port=50052,
             grpc_secure=False,
         ),
         # Additional settings not shown

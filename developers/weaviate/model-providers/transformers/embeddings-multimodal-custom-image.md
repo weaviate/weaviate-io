@@ -141,6 +141,8 @@ If the container is running and configured correctly, you should receive a respo
 
 - Hugging Face [Model Hub](https://huggingface.co/models)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

@@ -162,6 +162,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Voyage AI [Reranker API documentation](https://docs.voyageai.com/docs/reranker)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

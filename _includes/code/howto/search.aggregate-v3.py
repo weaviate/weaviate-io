@@ -428,7 +428,7 @@ expected_response = (
       "JeopardyQuestion": [
         {
           "points": {
-            "sum": 3000
+            "sum": 2500
           }
         }
       ]

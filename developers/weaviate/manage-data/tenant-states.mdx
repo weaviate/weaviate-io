@@ -14,14 +14,17 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 ![Storage Tiers](./img/storage-tiers.jpg)
 
-we categorize storage resources using three tiers, each tier has different performance characteristics and costs:
-* `Hot` (RAM) - fast and expensive,
-* `Warm` (Disk) - medium speed and medium price,
-* `Cold` (Cloud Storage) - cheap, but slow.
+Storage resources are grouped into tiers. Each tier has different performance characteristics and costs:
 
-In all collections, the choice of [vector index type](#vector-index-temperature) will affect its resource usage.
+| Tier | Location | Speed | Cost |
+| :- | :- | :- | :- |
+| Hot | RAM | Fastest access | Most expensive |
+| Warm | Disk | Medium speed | Medium price |
+| Cold | Cloud Storage | Slowest access | Least expensive |
 
-In multi-tenant collections, you can additionally change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost against resource availability and readiness.
+The pricing difference between Hot and Cold tiers is significant. Cloud storage is several orders of magnitude cheaper than RAM.
+
+In multi-tenant collections, you can change tenant states (`Active`, `Inactive`, `Offloaded`) to move data between storage tiers. This allows granular trade-offs between cost, resource availability, and readiness.
 
 <details>
   <summary>Manage vector index resource temperature</summary>
@@ -46,7 +49,7 @@ There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 
 ### Active
 
-An `Active` tenant is available for queries and CRUD operations. Depending on the [vector index type](#vector-index-temperature) it uses either **hot** or **warm** resources.
+An `Active` tenant is available for queries and CRUD operations. Depending on the [vector index type](/developers/weaviate/starter-guides/managing-resources#vector-index-types) it uses either **hot** or **warm** resources.
 
 The tenant's object data and inverted index are stored on disk, using `warm` resources.
 
@@ -76,7 +79,7 @@ import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
 
 <OffloadingLimitation/>
 
-An `Offloaded` tenant is not available for queries nor CRUD operations.
+An `offloaded` tenant is not available for queries or CRUD operations.
 
 The tenant's object data, vector index and inverted index are stored on the cloud, using `cold` resources. Since the tenant is stored remotely, there is a delay when activating an offloaded tenant.
 
