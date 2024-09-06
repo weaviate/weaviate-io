@@ -394,8 +394,8 @@ func TestNearTextSearchWithNamedVector(t *testing.T) {
 	response, err := client.GraphQL().Get().
 		WithClassName(className).
 		WithFields(
-			graphql.Field{Name: "properties"}, // This will return all properties
-			graphql.Field{Name: "_additional", Fields: []graphql.Field{{Name: "distance"}}},
+			graphql.Field{Name: "_additional",
+				Fields: []graphql.Field{{Name: "distance"}}},
 		).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).
 			WithConcepts([]string{"a sweet German white wine"}).
