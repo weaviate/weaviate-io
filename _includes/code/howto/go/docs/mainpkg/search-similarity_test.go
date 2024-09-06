@@ -6,12 +6,13 @@ import (
 	"math/rand"
 	"testing"
 
+	"fmt"
+	"strings"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
-	"strings"
-	"fmt"
 )
 
 func TestNearText(t *testing.T) {
@@ -107,16 +108,15 @@ func TestNearVector(t *testing.T) {
 
 	vector := []float32{-0.0125526935, -0.021168863, -0.01076519, -0.02589537, -0.0070362035, 0.019870078, -0.010001986, -0.019120263, 0.00090044655, -0.017393013, 0.021302758, 0.010055545, 0.02937665, -0.003816019, 0.007692291, 0.012385325, 0.032750815, 0.020847514, 0.020311933, -0.022159688, -0.0009924996, 0.009399457, 0.0022226637, -0.029510546, 0.014393755, -0.007223657, 0.018276723, -0.03639277, -0.010001986, -0.022842556, 0.010363504, -0.020927852}
 
-	//Make a random vector of length 384, for full dataset
-	 vector = make([]float32, 384)
-	 for i := range vector {
-	 	vector[i] = rand.Float32()
-	 }
-
+	// Make a random vector of length 384, for full dataset
+	vector = make([]float32, 384)
+	for i := range vector {
+		vector[i] = rand.Float32()
+	}
 
 	// START GetNearVector
-	//Make a random vector of length 384
-
+	// Edit the vector variable to add a vector of length 384
+	// vector := ADD_A_VECTOR_HERE
 
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
@@ -214,7 +214,7 @@ func TestWithDistance(t *testing.T) {
 			WithConcepts([]string{"animals in movies"}).
 			// highlight-start
 			WithDistance(maxDistance)).
-			// highlight-end
+		// highlight-end
 		Do(ctx)
 	// END GetWithDistance
 
@@ -341,6 +341,8 @@ func TestWithWhere(t *testing.T) {
 	ctx := context.Background()
 
 	// START GetWithFilter
+	// Add "github.com/weaviate/weaviate-go-client/v4/weaviate/filters" to import
+
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyQuestion").
 		WithFields(
@@ -429,7 +431,7 @@ func TestNearTextSearchWithNamedVector(t *testing.T) {
 
 	for _, review := range reviews {
 		r := review.(map[string]interface{})
-		
+
 		// Print properties
 		properties := r["properties"].(map[string]interface{})
 		fmt.Printf("Properties: %+v\n", properties)
