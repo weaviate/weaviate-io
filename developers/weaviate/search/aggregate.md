@@ -83,7 +83,7 @@ Return the number  of objects matched by the query.
       text={GoCode}
       startMarker="// START MetaCount"
       endMarker="// END MetaCount"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -156,7 +156,7 @@ This example counts occurrence frequencies in the `question` property:
       text={GoCode}
       startMarker="// START TextProp"
       endMarker="// END TextProp"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -229,7 +229,7 @@ This  example sums the `points` property.
       text={GoCode}
       startMarker="// START IntProp"
       endMarker="// END IntProp"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -304,7 +304,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={GoCode}
       startMarker="// START groupBy"
       endMarker="// END groupBy"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -376,7 +376,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       text={GoCode}
       startMarker="// START nearTextWithLimit"
       endMarker="// END nearTextWithLimit"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -463,7 +463,7 @@ Use `distance` to specify how similar the objects should be.
       text={GoCode}
       startMarker="// START nearTextWithDistance"
       endMarker="// END nearTextWithDistance"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
@@ -536,7 +536,7 @@ For more specific results, use a `filter` to narrow your search.
       text={GoCode}
       startMarker="// START whereFilter"
       endMarker="// END whereFilter"
-      language="go"
+      language="gonew"
     />
   </TabItem>
 
