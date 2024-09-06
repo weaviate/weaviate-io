@@ -5,7 +5,6 @@ export default function ContactForm() {
   const [title, setTitle] = useState('Get in touch with us');
 
   useEffect(() => {
-    // Determine the title based on the current path
     if (window.location.pathname === '/deployment/enterprise-cloud') {
       setTitle('Get Started with our Enterprise Cloud Vector Database');
     } else {
@@ -17,9 +16,7 @@ export default function ContactForm() {
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
-      // @TS-ignore
       if (window.hbspt) {
-        // @TS-ignore
         window.hbspt.forms.create({
           portalId: '8738733',
           formId: '228989b7-50f5-446c-90a6-5ed524210df9',
