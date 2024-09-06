@@ -20,7 +20,7 @@ func TestMetaCount(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START MetaCount Go
+	// START MetaCount
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
@@ -32,7 +32,7 @@ func TestMetaCount(t *testing.T) {
 			// highlight-end
 		}).
 		Do(ctx)
-	// END MetaCount Go
+	// END MetaCount
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -55,7 +55,7 @@ func TestTextProp(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START TextProp Go
+	// START TextProp
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
@@ -72,7 +72,7 @@ func TestTextProp(t *testing.T) {
 			},
 		}).
 		Do(ctx)
-	// END TextProp Go
+	// END TextProp
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -92,7 +92,7 @@ func TestIntProp(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START IntProp Go
+	// START IntProp
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithFields(graphql.Field{
@@ -105,7 +105,7 @@ func TestIntProp(t *testing.T) {
 			},
 		}).
 		Do(ctx)
-	// END IntProp Go
+	// END IntProp
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -124,7 +124,7 @@ func TestGroupBy(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START groupBy Go
+	// START groupBy
 
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
@@ -146,7 +146,7 @@ func TestGroupBy(t *testing.T) {
 		).
 		// highlight-end
 		Do(ctx)
-	// END groupBy Go
+	// END groupBy
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -169,7 +169,7 @@ func TestNearTextWithLimit(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START nearTextWithLimit Go
+	// START nearTextWithLimit
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithNearText(client.GraphQL().NearTextArgBuilder().
@@ -184,7 +184,7 @@ func TestNearTextWithLimit(t *testing.T) {
 			},
 		}).
 		Do(ctx)
-	// END nearTextWithLimit Go
+	// END nearTextWithLimit
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -202,7 +202,7 @@ func TestNearTextWithDistance(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START nearTextWithDistance Go
+	// START nearTextWithDistance
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		WithNearText(client.GraphQL().NearTextArgBuilder().
@@ -217,7 +217,7 @@ func TestNearTextWithDistance(t *testing.T) {
 			},
 		}).
 		Do(ctx)
-	// END nearTextWithDistance Go
+	// END nearTextWithDistance
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -235,7 +235,9 @@ func TestWhereFilter(t *testing.T) {
 	client := setupClient()
 	ctx := context.Background()
 
-	// START whereFilter Go
+	// START whereFilter
+  // Add this line to imports: "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+  
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		// highlight-start
@@ -251,7 +253,7 @@ func TestWhereFilter(t *testing.T) {
 			},
 		}).
 		Do(ctx)
-	// END whereFilter Go
+	// END whereFilter
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
