@@ -1,9 +1,17 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 export default function ContactForm() {
+  const [title, setTitle] = useState('Get in touch with us');
+
   useEffect(() => {
+    // Determine the title based on the current path
+    if (window.location.pathname === '/deployment/enterprise-cloud') {
+      setTitle('Get Started with our Enterprise Cloud Vector Database');
+    } else {
+      setTitle('Get in touch with us');
+    }
+
     const script = document.createElement('script');
     script.src = '//js.hsforms.net/forms/embed/v2.js';
     document.body.appendChild(script);
@@ -20,13 +28,14 @@ export default function ContactForm() {
       }
     });
   }, []);
+
   return (
     <div className={styles.contactBackground} id="contact-sales">
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>
             <form className={styles.formContact}>
-              <h2 className={styles.title}>Get in touch with us</h2>
+              <h2 className={styles.title}>{title}</h2>
               <div className={styles.links}></div>
               <div id="hubspotForm"></div>
             </form>
