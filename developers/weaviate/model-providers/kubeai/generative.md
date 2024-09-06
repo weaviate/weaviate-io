@@ -1,11 +1,11 @@
 ---
 title: Generative AI
 sidebar_position: 50
-image: og/docs/integrations/provider_integrations_openai.jpg
+# image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai', 'generative', 'rag']
 ---
 
-# OpenAI Generative AI with Weaviate
+# KubeAI Generative AI with Weaviate
 
 import BetaPageNote from '../_includes/beta_pages.md';
 
@@ -19,13 +19,16 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with KubeAI's OpenAI compatible API allows you to access private models' directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use KubeAI, and Weaviate will perform retrieval augmented generation (RAG) using the specified model.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the KubeAI generative model to generate outputs.
 
+<!---
+commenting out until we have images
 ![RAG integration illustration](../_includes/integration_openai_rag.png)
+--->
 
 ## Requirements
 
@@ -50,7 +53,7 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide a valid OpenAI API key to Weaviate for this integration. However, KubeAI ignores the OpenAI API key. So you can provide any value for the API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
@@ -79,16 +82,38 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
+
 ## Configure collection
+We need to configure the collection to use a Text Generation model from KubeAI.
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OpenAI generative AI model as follows:
+For example, you can enable Gemma 2B model running on CPU. Create a file named
+`helm-values.yaml` with the following content:
+
+```yaml
+models:
+  catalog:
+    gemma2-2b-cpu:
+      enabled: true
+      minReplicas: 1
+```
+
+Then, upgrade the KubeAI Helm chart with the new configuration:
+
+```bash
+helm repo add kubeai https://www.kubeai.org
+helm upgrade --install kubeai kubeai/kubeai \
+    -f ./helm-values.yaml --reuse-values
+```
+
+
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use the KubeAI OpenAI compatible API and the model you want to use:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeOpenAI"
-      endMarker="# END BasicGenerativeOpenAI"
+      startMarker="# START FullGenerativeKubeAI"
+      endMarker="# END FullGenerativeKubeAI"
       language="py"
     />
   </TabItem>
@@ -96,40 +121,18 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeOpenAI"
-      endMarker="// END BasicGenerativeOpenAI"
+      startMarker="// START FullGenerativeKubeAI"
+      endMarker="// END FullGenerativeKubeAI"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-### Select a model
+There are also other models available in the catalog.
+You also can configure any model that's supported by vLLM or Ollama. Checkout the docs on
+[management of models](https://www.kubeai.org/how-to/manage-models/) for more information.
 
-You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START GenerativeOpenAICustomModel"
-      endMarker="# END GenerativeOpenAICustomModel"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START GenerativeOpenAICustomModel"
-      endMarker="// END GenerativeOpenAICustomModel"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-The [default model](#available-models) is used if no model is specified.
 
 ## Retrieval augmented generation
 

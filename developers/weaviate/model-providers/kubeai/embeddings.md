@@ -85,8 +85,6 @@ Provide the API key to Weaviate using one of the following methods:
 
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an KubeAI embedding model by setting the vectorizer as follows:
 
-You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration examples.
-
 You need to specify a model name for it work with KubeAI. No default model is
 configured.
 
@@ -239,34 +237,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 In most cases the `baseURL` is `http://kubeai/openai/v1`. Unless you have Weaviate
 deployed in a different cluster or namespace.
-
-#### Example configuration
-
-The following examples show how to configure OpenAI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerOpenAI"
-      endMarker="# END FullVectorizerOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerOpenAI"
-      endMarker="// END FullVectorizerOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
-
 
 ## Further resources
 

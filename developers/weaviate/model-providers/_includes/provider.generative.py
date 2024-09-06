@@ -444,6 +444,31 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START FullGenerativeKubeAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        # Setting the model and base_url is required
+        model="gemma2-2b-cpu",
+        base_url="http://kubeai/openai/v1", # Your private KubeAI API endpoint
+        # These parameters are optional
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeKubeAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullGenerativeAzureOpenAI
 from weaviate.classes.config import Configure
 
