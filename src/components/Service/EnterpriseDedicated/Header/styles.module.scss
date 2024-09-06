@@ -62,6 +62,11 @@ p {
     font-weight: 700;
     line-height: 140%;
     margin-bottom: 1rem;
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
   }
 
   .headerBox {
