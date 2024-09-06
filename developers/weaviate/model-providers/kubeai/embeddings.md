@@ -56,7 +56,7 @@ You must provide a valid OpenAI API key to Weaviate for this integration. Howeve
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `OPENAI_APIKEY` environment variable that is available to Weaviate.
+- Set the following environment variable `export OPENAI_APIKEY=thisIsIgnored`.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
