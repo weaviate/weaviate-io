@@ -12,7 +12,10 @@ import Availability from '../../components/Service/EnterpriseDedicated/Availabil
 export default function EDPage() {
   return (
     <div className="custom-page noBG">
-      <Layout title="Enterprise Cloud" description="Enterprise Cloud Service">
+      <Layout
+        title="Enterprise Cloud Vector Database"
+        description="Fully managed vector database on dedicated resources, ensuring consistent, high-speed results without the complexities of self-management."
+      >
         <ServiceHeader />
         <ServicePlan />
         <QuoteBox />
