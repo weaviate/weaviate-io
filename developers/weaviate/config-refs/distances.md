@@ -49,9 +49,9 @@ You can use the following overview to find the best possible combination of dist
 
 | Distance | `linux/amd64 AVX2` | `darwin/amd64 AVX2` | `linux/amd64 AVX512` | `linux/arm64` | `darwin/arm64` |
 | --- | --- | --- | --- | --- | --- |
-| `cosine` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | no SIMD | no SIMD | no SIMD |
-| `dot` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | no SIMD | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_arm64.s)<br/><small>From `v1.21`</small> | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_arm64.s)<br/><small>From `v1.21`</small> |
-| `l2-squared` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | no SIMD | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_arm64.s)<br/><small>From `v1.21`</small> | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_arm64.s)<br/><small>From `v1.21`</small> |
+| `cosine` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
+| `dot` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
+| `l2-squared` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
 | `hamming` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
 | `manhattan` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
 
