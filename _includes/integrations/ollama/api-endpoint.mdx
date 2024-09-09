@@ -1,3 +1,3 @@
-The Weaviate server has to be able to reach the Ollama API endpoint. If Weaviate is running in a Docker container and Ollama is running on the Docker host machine, use the built-in docker `localhost` alias, `host.docker.internal`, to direct Weaviate to your local Ollama instance.
+The Weaviate server has to be able to reach the Ollama API endpoint. If Weaviate is running in a Docker container and Ollama is running locally on the machine the hosts the Docker container, use the built-in docker `localhost` alias, `host.docker.internal`, to direct Weaviate to the locally hosted Ollama instance.
 
 If your Weaviate instance and Ollama instance are hosted in a different way, adjust the API endpoint parameter so it points to your Ollama instance.
