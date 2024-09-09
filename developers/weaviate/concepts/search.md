@@ -109,9 +109,19 @@ Search relevance may be affected by the following aspects.
 
 ### Vector Search Quality
 
-- Vectorizer model selection
-- Which fields to vectorize
-- ANN index settings
+#### Vectorizer model selection
+
+The vectorizer model determines how an object is converted into a vector.
+
+The model should be appropriate for your data modality (text, images, audio, etc.). Consider domain-specific models, and balancing model complexity and performance requirements.
+
+Weaviate integrates with ::model provider integrations::
+
+#### Which fields to vectorize
+
+Identify fields that contribute most to semantic understanding. Consider combining multiple fields into a single vector representation. Evaluate the impact of vectorizing structured vs. unstructured data
+
+#### ANN index settings
 
 ### Keyword Search
 
