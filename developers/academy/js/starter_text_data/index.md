@@ -15,8 +15,8 @@ You will get hands-on experience on how to store and index text data by meaning,
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 
-<LearningGoals courseName="starter_text_data"/>
+<LearningGoals courseName="starter_text_data_typescript"/>
 
 ## <i class="fa-solid fa-book-open-reader"></i> Units
 
-<CourseUnits courseData={courseData} courseName="starter_text_data" />
+<CourseUnits courseData={courseData} courseName="starter_text_data_typescript" />

@@ -14,7 +14,29 @@ export const courseData = {
       "How to create a Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
     ],
     learningOutcomes: [
-      "Create a instance of Weaviate for you to use",
+      "Create an instance of Weaviate for you to use",
+      "Produce, store and index semantic (vector) data from source text",
+      "Perform semantic, keyword and hybrid searches",
+      "Use AI (large language models) to augment and transform retrieved data",
+    ],
+    note: "Python client (v4); project-based"
+  },
+  "starter_text_data_typescript": {
+    title: "Text data with Weaviate",
+    courseId: "TS_101",
+    body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_text_data",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "text_setup_weaviate_ts", "text_collections_ts", "text_searches_ts", "text_rag_ts"
+    ],
+    learningGoals: [
+      "How to create a Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
+    ],
+    learningOutcomes: [
+      "Create an instance of Weaviate for you to use",
       "Produce, store and index semantic (vector) data from source text",
       "Perform semantic, keyword and hybrid searches",
       "Use AI (large language models) to augment and transform retrieved data",
