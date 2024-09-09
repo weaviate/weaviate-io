@@ -35,7 +35,7 @@ For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provide
 
 ## Use cases
 
-Here are some configuration options for different use cases.
+Here are some recommendations for different use cases.
 
 ### Quick evaluation
 
