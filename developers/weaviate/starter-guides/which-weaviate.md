@@ -24,8 +24,8 @@ Weaviate can be deployed in the following ways:
 ## Vectorization options
 
 When adding data objects to Weaviate, you have two choices:
-- Specify the object vector directly
-- Use a Weaviate vectorizer module to generate the object vector
+- Specify the object vector directly.
+- Use a Weaviate vectorizer module to generate the object vector.
 
 If you are using a vectorizer module, your choices depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
 
@@ -81,9 +81,9 @@ Keep in mind two other factors, which are cost, and their footprint.
 
 For production deployments, consider one of these hosting models:
 
-- [Weaviate Cloud (WCD)](https://console.weaviate.cloud/)
-- Self-managed Kubernetes
-- Hybrid SaaS
+- [Weaviate Cloud (WCD)](/developers/wcs)
+- [Self-managed Kubernetes](developers/weaviate/installation/kubernetes)
+- [Hybrid SaaS](/developers/wcs#bring-your-own-cloud)
 
 All of these options are scalable. Kubernetes and Hybrid SaaS offer the most configuration flexibility.
 
