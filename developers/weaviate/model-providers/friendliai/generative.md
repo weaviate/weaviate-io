@@ -11,7 +11,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-:::info Added in `v1.26.0`
+:::info Added in `v1.26.3`
 :::
 
 import Tabs from '@theme/Tabs';
@@ -22,11 +22,11 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integrations with FriendliAI APIs allow you to utilize a wide range of models' capabilities directly from Weaviate.
+Weaviate's integrations with FriendliAI APIs allow you to access their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli token.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative AI model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative model to generate outputs.
 
 ![RAG integration illustration](../_includes/integration_friendliai_rag.png)
 
@@ -236,9 +236,11 @@ For further details on model parameters, see the [FriendliAI API documentation](
 * `meta-llama-3.1-8b-instruct`
 * `mixtral-8x7b-instruct-v0-1`
 
-If you are looking for further options, you can deploy them on the Friendli Suite and still use them with Weaviate. We provide a wide range of [available models](https://friendli.ai/models), and you can also [fine-tune](https://docs.friendli.ai/guides/dedicated_endpoints/fine-tuning) them to your specific use case. Feel free to explore the models and choose the one that best fits your needs. You can easily deploy them following the [quickstart guide](https://docs.friendli.ai/guides/dedicated_endpoints/quickstart).
+You can use any model deployed on Friendli Suite with Weaviate.
 
-The following code snippet is the part that needs to be different when you use your dedicated endpoint within Weaviate:
+FriendliAI's provide a wide range of [available models](https://friendli.ai/models), which can optionally be [fine-tuned](https://docs.friendli.ai/guides/dedicated_endpoints/fine-tuning). See the [FriendliAI quickstart guide](https://docs.friendli.ai/guides/dedicated_endpoints/quickstart) for instructions.
+
+If using a dedicated FriendliAI endpoint with the Weaviate integration, specify it as shown below:
 
 <Tabs groupId="languages">
 
