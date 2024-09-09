@@ -24,12 +24,12 @@ Weaviate can be deployed in the following ways:
 ## Vectorization options
 
 When adding data objects to Weaviate, you have two choices:
-- Specify the object vector directly, or
-- Use a Weaviate vectorizer module to generate the object vector.
+- Specify the object vector directly
+- Use a Weaviate vectorizer module to generate the object vector
 
-If you are using a vectorizer module, your choices will depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
+If you are using a vectorizer module, your choices depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
 
-Generally speaking, an API-based vectorizer will be more convenient to use, but will incur additional costs. On the other hand, a local vectorizer will be lower cost, but may require specialized hardware (such as a GPU) to run at comparable speeds.
+Generally speaking, an API-based vectorizer is more convenient to use, but it incurs additional costs. A local vectorizer can cost less, but may require specialized hardware (such as a GPU) to run at comparable speeds.
 
 For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Remember, domain-specific and real-world performance may vary.
 
