@@ -385,8 +385,8 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.openAI({
     // Setting the model and base_url is required
-    model: 'gemma2-2b-cpu',
-    baseURL: 'http://kubeai/openai/v1',
+    model: 'gpt-3.5-turbo',
+    baseURL: 'http://kubeai/openai',
     // These parameters are optional
     // frequencyPenaltyProperty: 0,
     // maxTokensProperty: 500,

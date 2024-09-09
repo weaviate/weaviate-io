@@ -87,14 +87,19 @@ Provide the API key to Weaviate using one of the following methods:
 We need to configure the collection to use a Text Generation model from KubeAI.
 
 For example, you can enable Gemma 2B model running on CPU. Create a file named
-`helm-values.yaml` with the following content:
+`kubeai-values.yaml` with the following content:
 
 ```yaml
 models:
   catalog:
-    gemma2-2b-cpu:
+    gpt-3.5-turbo:
       enabled: true
       minReplicas: 1
+      features: ["TextGeneration"]
+      owner: google
+      url: "ollama://gemma2:2b"
+      engine: OLlama
+      resourceProfile: cpu:2
 ```
 
 Then, upgrade the KubeAI Helm chart with the new configuration:
@@ -102,7 +107,7 @@ Then, upgrade the KubeAI Helm chart with the new configuration:
 ```bash
 helm repo add kubeai https://www.kubeai.org
 helm upgrade --install kubeai kubeai/kubeai \
-    -f ./helm-values.yaml --reuse-values
+    -f ./kubeai-values.yaml --reuse-values
 ```
 
 

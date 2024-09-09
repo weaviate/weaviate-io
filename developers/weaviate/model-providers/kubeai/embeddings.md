@@ -89,15 +89,21 @@ You need to specify a model name for it work with KubeAI. No default model is
 configured.
 
 KubeAI comes with a `nomic-embed-text-cpu` model that can be used for text embeddings.
-You can enable the model by setting `enabled: true` in the `helm-values.yaml` file.
+You can enable the model by setting `enabled: true` in the `kubeai-values.yaml` file.
+Note that the model name is `text-embedding-ada-002`.
 
-Create a file named `helm-values.yaml` with the following content:
+Create a file named `kubeai-values.yaml` with the following content:
 ```yaml
 models:
   catalog:
-    nomic-embed-text-cpu:
+    text-embedding-ada-002:
       enabled: true
       minReplicas: 1
+      features: ["TextEmbedding"]
+      owner: nomic
+      url: "ollama://nomic-embed-text"
+      engine: OLlama
+      resourceProfile: cpu:1
 ```
 
 Afterwards apply the new configuration to the KubeAI Helm chart:
@@ -105,10 +111,10 @@ Afterwards apply the new configuration to the KubeAI Helm chart:
 helm repo add kubeai https://www.kubeai.org
 helm repo update
 helm upgrade --install kubeai kubeai/kubeai \
-    -f ./helm-values.yaml --reuse-values
+    -f ./kubeai-values.yaml --reuse-values
 ```
 
-Now you should be able to configure the vectorizer with the model name `nomic-embed-text-cpu`.
+Now you should be able to configure the vectorizer with the model name `text-embedding-ada-002`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -235,7 +241,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 - `dimensions`: The number of dimensions for the model.
 - `baseURL`: The OpenAI compatible endpoint provided by KubeAI.
 
-In most cases the `baseURL` is `http://kubeai/openai/v1`. Unless you have Weaviate
+In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate
 deployed in a different cluster or namespace.
 
 ## Further resources

@@ -44,10 +44,37 @@ In turn, they simplify the process of building AI-driven applications to speed u
 
 ## Get started
 
-Deploy KubeAI inside your Kubernetes cluster:
+Deploy KubeAI inside your Kubernetes cluster with an embedding and generative model.
+
+Create a file named `kubeai-values.yaml` with the following content:
+
+```yaml
+models:
+  catalog:
+    text-embedding-ada-002:
+      enabled: true
+      minReplicas: 1
+      features: ["TextEmbedding"]
+      owner: nomic
+      url: "ollama://nomic-embed-text"
+      engine: OLlama
+      resourceProfile: cpu:1
+    gpt-3.5-turbo:
+      enabled: true
+      minReplicas: 1
+      features: ["TextGeneration"]
+      owner: google
+      url: "ollama://gemma2:2b"
+      engine: OLlama
+      resourceProfile: cpu:2
 ```
+
+Deploy KubeAI by running the following command:
+
+```bash
 helm repo add kubeai https://www.kubeai.org
-helm upgrade --install kubeai kubeai/kubeai
+helm upgrade --install kubeai kubeai/kubeai \
+    -f ./kubeai-values.yaml
 ```
 
 You can use the `kubeai` service as the OpenAI endpoint if
@@ -56,12 +83,12 @@ expose the `kubeai` service as a LoadBalancer.
 
 Within Kubernetes cluster:
 ```bash
-export OPENAI_API_HOST=http://kubeai/openai/v1
+OPENAI_BASEURL=http://kubeai/openai
 ```
 
 Outside Kubernetes cluster:
 ```bash
-export OPENAI_API_HOST=http://<kubeai-loadbalancer-ip>/openai/v1
+OPENAI_BASEURL=http://<kubeai-loadbalancer-ip>/openai
 ```
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the KubeAI:

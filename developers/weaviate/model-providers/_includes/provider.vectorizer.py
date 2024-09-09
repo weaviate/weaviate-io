@@ -560,9 +560,8 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             # Further options
-            model="nomic-embed-text-cpu",
-            dimensions=8192,
-            base_url="http://kubeai/openai/v1",
+            model="text-embedding-ada-002",
+            base_url="http://kubeai/openai",
         )
     ],
     # highlight-end

@@ -452,8 +452,8 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.openai(
         # Setting the model and base_url is required
-        model="gemma2-2b-cpu",
-        base_url="http://kubeai/openai/v1", # Your private KubeAI API endpoint
+        model="gpt-3.5-turbo",
+        base_url="http://kubeai/openai", # Your private KubeAI API endpoint
         # These parameters are optional
         # frequency_penalty=0,
         # max_tokens=500,
