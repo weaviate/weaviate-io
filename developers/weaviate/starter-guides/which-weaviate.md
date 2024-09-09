@@ -53,7 +53,7 @@ The [Quickstart guide](/developers/weaviate/quickstart) uses a WCD sandbox and a
 For development, we recommend using
 
 - [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) or [Docker Compose](/developers/weaviate/installation/docker-compose).
-- A vectorization strategy that approximates your production strategy.
+- A vectorization strategy that matches your production vectorization strategy.
 
 #### Docker-Compose vs. Weaviate Cloud (WCD)
 
@@ -87,7 +87,7 @@ For production deployments, consider one of these hosting models:
 
 All of these options are scalable. Kubernetes and Hybrid SaaS offer the most configuration flexibility.
 
-A WCD-based solution is the easiest in terms of setup and maintenance. A self-managed Kubernetes deployment combines flexibility and scalability.
+A WCD-based solution is the easiest way to deploy Weaviate in terms of setup and maintenance. A self-managed Kubernetes deployment combines flexibility and scalability.
 
 If you need additional configuration control, but you don't want to manage your Weaviate deployment, Hybrid SaaS offers a best-of-both-worlds solution.
 
