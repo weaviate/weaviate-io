@@ -12,8 +12,8 @@ export default function PlatformHeader() {
           <h1>Build with Weaviate</h1>
           <div className={styles.headerBox}>
             <p>
-              Did you built something cool with Weaviate?<br></br>Share it with
-              us and let your work get noticed!
+              Build something cool with Weaviate?<br></br> Let us know so we can
+              help spread the word.
             </p>
           </div>
           <div className={styles.buttons}>

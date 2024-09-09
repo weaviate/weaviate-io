@@ -85,11 +85,9 @@ To tune SQ, set these `vectorIndexConfig` parameters.
 
 ## Multiple vectors
 
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
-<MultiVectorSupport />
-
-Compression must be enabled independently for each vector. If the index supports it, any vector can use any of [BQ](/weaviate/configuration/compression/bq-compression.md), [PQ](/weaviate/configuration/compression/pq-compression.md), [SQ](/weaviate/configuration/compression/sq-compression.md), or no compression.
+<MultiVectorCompress />
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)

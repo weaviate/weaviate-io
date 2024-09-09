@@ -295,6 +295,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Cohere [Embed API documentation](https://docs.cohere.com/reference/embed)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

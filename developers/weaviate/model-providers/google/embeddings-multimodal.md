@@ -322,6 +322,8 @@ Once the integrations are configured at the collection, the data management and 
 - [Google Vertex AI](https://cloud.google.com/vertex-ai)
 - [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

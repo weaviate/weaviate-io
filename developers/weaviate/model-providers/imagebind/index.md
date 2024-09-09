@@ -41,6 +41,14 @@ Go to the relevant integration page to learn how to configure Weaviate with the 
 
 - [Multimodal Embeddings](./embeddings-multimodal.md)
 
+## Other third party integrations
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

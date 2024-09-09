@@ -272,6 +272,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Jina AI [Embeddings API documentation](https://jina.ai/embeddings/)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

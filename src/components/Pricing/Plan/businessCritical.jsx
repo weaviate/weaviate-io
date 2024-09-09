@@ -66,7 +66,7 @@ export default function PricingBusinessCritical() {
               <span>Various SLA tiers to meet your needs</span>
             </li>
           </ul>
-          <Link className={styles.buttonView} to="/services/byoc">
+          <Link className={styles.buttonView} to="/deployment/byoc">
             Learn More
           </Link>
         </div>

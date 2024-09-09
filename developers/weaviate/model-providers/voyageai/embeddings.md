@@ -281,6 +281,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Voyage AI [Embeddings API documentation](https://docs.voyageai.com/docs/embeddings)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

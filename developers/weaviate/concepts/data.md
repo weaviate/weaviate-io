@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-## Data object nomenclature
+## Data object concepts
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
 
@@ -113,9 +113,15 @@ The collection looks like this:
 
 Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
 
-:::tip
+### UUIDs
+
 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
-:::
+
+You can [use a deterministic UUID](../manage-data/import.mdx#specify-an-id-value) to ensure that the same object always has the same UUID. This is useful when you want to update an object without changing its UUID.
+
+If you don't specify an ID, Weaviate generates a random UUID for you.
+
+In requests without any other ordering specified, Weaviate processes them in ascending UUID order. This means that requests to [list objects](../search/basics.md#list-objects), use of the [cursor API](../manage-data/read-all-objects.mdx), or requests to [delete objects](../manage-data/delete.mdx#delete-multiple-objects-by-id), without any other ordering specified, will be processed in ascending UUID order.
 
 ### Cross-references
 
@@ -172,7 +178,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-## Weaviate Schema
+## Data Schema
 
 Weaviate requires a data schema before you add data. However, you don't have to create a data schema manually. If you don't provide one, Weaviate generates a schema based on the incoming data.
 

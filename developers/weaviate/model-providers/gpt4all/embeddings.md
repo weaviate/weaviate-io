@@ -298,6 +298,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - [GPT4All documentation](https://docs.gpt4all.io/)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
