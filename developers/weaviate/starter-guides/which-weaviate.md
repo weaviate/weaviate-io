@@ -1,20 +1,18 @@
 ---
-title: Which Weaviate setup to use?
+title: Weaviate configurations
 sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
-Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:
+Weaviate can be configured and deployed in many different ways. Important configuration decisions include:
 
-- The choice of [deployment setup](../installation/index.md), and
-- The choice of [vectorizer modules](../modules/retriever-vectorizer-modules/index.md) to enable.
+- The [deployment setup](../installation/index.md)
+- The [vectorizer modules](../modules/retriever-vectorizer-modules/index.md) to enable
 
-This page helps you to find the right combination for your needs.
+This page helps you to find the right combination for your project.
 
-## Available options
-
-### Deployment
+## Deploy Weaviate
 
 Weaviate can be deployed in the following ways:
 - [Embedded Weaviate](../installation/embedded.md)
@@ -23,40 +21,39 @@ Weaviate can be deployed in the following ways:
 - [Self-managed Kubernetes](../installation/kubernetes.md)
 - [Hybrid SaaS](https://weaviate.io/pricing)
 
-### Vectorization
+## Vectorization options
 
 When adding data objects to Weaviate, you have two choices:
-- Specify the object vector directly, or
+- Specify the object vector directly.
 - Use a Weaviate vectorizer module to generate the object vector.
 
-If you are using a vectorizer module, your choices will depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
+If you are using a vectorizer module, your choices depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
 
-Generally speaking, an API-based vectorizer will be more convenient to use, but will incur additional costs. On the other hand, a local vectorizer will be lower cost, but may require specialized hardware (such as a GPU) to run at comparable speeds.
+Generally speaking, an API-based vectorizer is more convenient to use, but it incurs additional costs. A local vectorizer can cost less, but may require specialized hardware (such as a GPU) to run at comparable speeds.
 
 For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Remember, domain-specific and real-world performance may vary.
 
-## By use case
+## Use cases
 
-As a starting point, we recommend the following setups for different use cases.
+Here are some recommendations for different use cases.
 
 ### Quick evaluation
 
-If you are evaluating Weaviate, we recommend the following easy and convenient setup:
+If you are evaluating Weaviate, we recommend using one of these instance types to get started quickly:
 
-- An easy-to-use Weaviate instance, with
-    - A [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) sandbox, or
-    - Embedded Weaviate
-- An inference-API based text vectorizer
-    - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
+- [Weaviate Cloud (WCD)](/developers/wcs) sandbox
+- [Embedded Weaviate](/developers/weaviate/installation/embedded)
 
-This will allow you to quickly get started with Weaviate, and evaluate its capabilities. Note that the Quickstart guide uses this setup, with a WCD sandbox, and an API vectorizer.
+Use an inference-API based text vectorizer with your instance, for example, `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`.
+
+The [Quickstart guide](/developers/weaviate/quickstart) uses a WCD sandbox and an API based vectorizer to run the examples.
 
 ### Development
 
 For development, we recommend using
 
-- Docker-Compose or [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), with
-- A vectorization strategy that at least approximates your production needs.
+- [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) or [Docker Compose](/developers/weaviate/installation/docker-compose).
+- A vectorization strategy that matches your production vectorization strategy.
 
 #### Docker-Compose vs. Weaviate Cloud (WCD)
 
@@ -82,17 +79,17 @@ Keep in mind two other factors, which are cost, and their footprint.
 
 ### Production
 
-For use in production, generally we recommend
+For production deployments, consider one of these hosting models:
 
-- [Weaviate Cloud (WCD)](https://console.weaviate.cloud/),
-- Self-managed Kubernetes, or
-- Hybrid SaaS.
+- [Weaviate Cloud (WCD)](/developers/wcs)
+- [Self-managed Kubernetes](developers/weaviate/installation/kubernetes)
+- [Hybrid SaaS](/developers/wcs#bring-your-own-cloud)
 
-All of these options are scalable, with Kubernetes and Hybrid SaaS options offering the most flexibility in configuration.
+All of these options are scalable. Kubernetes and Hybrid SaaS offer the most configuration flexibility.
 
-As with the development use case, a WCD-based solution would be the easiest in terms of setup and maintenance, while a self-managed Kubernetes deployment combines the flexibility and scalability.
+A WCD-based solution is the easiest way to deploy Weaviate in terms of setup and maintenance. A self-managed Kubernetes deployment combines flexibility and scalability.
 
-If you wish to fully control your Weaviate deployment without having to manage it yourself, Hybrid SaaS offers the best-of-both-worlds solution.
+If you need additional configuration control, but you don't want to manage your Weaviate deployment, Hybrid SaaS offers a best-of-both-worlds solution.
 
 ## By Vectorizer & Reranker
 
