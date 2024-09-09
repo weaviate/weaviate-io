@@ -622,7 +622,6 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         model: 'text-embedding-ada-002',
-        dimensions: 8192,
         baseURL: 'http://kubeai/openai',
       },
     ),
