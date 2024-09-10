@@ -25,7 +25,6 @@ The Spell Check module can be added as a service to the Docker Compose file. You
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

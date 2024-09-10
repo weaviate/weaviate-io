@@ -45,7 +45,6 @@ Save the text below as `docker-compose.yml`:
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:
@@ -140,7 +139,6 @@ After running a `docker compose up -d`, Docker will mount `/var/weaviate` on the
 An example Docker Compose setup for Weaviate without any modules can be found below. In this case, no model inference is performed at either import or search time. You will need to provide your own vectors (e.g. from an outside ML model) at import and search time:
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
@@ -161,7 +159,6 @@ services:
 An example Docker Compose file with the transformers model [`sentence-transformers/multi-qa-MiniLM-L6-cos-v1`](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) is:
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||

@@ -31,11 +31,29 @@ import weaviate
 
 # Create the client
 client = weaviate.Client(
-    url="http:localhost:8080"
+    url="http://localhost:8080"
 )
 
 print(client.is_ready())
 # END LocalNoAuth
+
+###############################
+### Local change URL & port ###
+###############################
+
+# START CustomURL
+import weaviate
+
+# Create the client
+client = weaviate.Client(
+    url="http://127.0.0.1:8080"
+    # The v3 client doesn't use the gRPC port
+)
+
+print(client.is_ready())
+# END CustomURL
+
+
 
 ##################
 ### Local auth ###

@@ -55,13 +55,18 @@ p {
 
   h1 {
     color: #130c49;
-    text-align: center;
+
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
     font-style: normal;
     font-weight: 700;
     line-height: 140%;
     margin-bottom: 1rem;
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
   }
 
   .headerBox {

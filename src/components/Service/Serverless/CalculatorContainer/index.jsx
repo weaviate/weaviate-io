@@ -292,7 +292,7 @@ export default function CalculatorContainer() {
             className={styles.buttonOutline}
             to="https://console.weaviate.cloud/"
           >
-            Get started with Serverless
+            Get started with our Serverless Vector Database
           </Link>
         </div>
       </div>

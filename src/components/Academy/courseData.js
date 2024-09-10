@@ -197,6 +197,33 @@ export const courseData = {
     ],
     note: "TS clients"
   },
+  "multi-tenancy": {
+    title: "Multi-tenancy",
+    courseId: "PY_280",
+    body: "Learn how to implement and manage multi-tenancy in Weaviate for efficient data isolation and resource management.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/multitenancy",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "mt_overview", "mt_setup", "mt_tenant_data", "mt_manage_tenants"
+    ],
+    learningGoals: [
+      "Understand multi-tenancy concepts and their application in Weaviate",
+      "Learn how to set up and manage multi-tenant collections for scalable applications",
+      "Master techniques for efficient resource management in multi-tenant environments"
+    ],
+    learningOutcomes: [
+      "Explain the concept of multi-tenancy and its benefits in Weaviate",
+      "Set up a Weaviate instance and configure collections for multi-tenancy",
+      "Create, manage, and remove tenants in a multi-tenant collection",
+      "Perform data operations and queries specific to individual tenants",
+      "Implement efficient resource management using tenant activity states",
+      "Utilize advanced features like auto-tenant creation, activation, and offloading",
+      "Apply multi-tenancy concepts to real-world scenarios for improved scalability and data isolation"
+    ],
+    note: "Python client (v4)"
+  },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with TypeScript (or JavaScript)",
     courseId: "TS_101",

@@ -98,7 +98,6 @@ To quickly get a Weaviate instance running you can save the following `docker-co
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

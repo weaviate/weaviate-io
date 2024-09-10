@@ -1,0 +1,42 @@
+---
+title: Wrap-up / Next steps
+---
+
+Congratulations! You have completed this course on multi-tenancy. We hope you found it helpful and informative.
+
+## Multi-tenant collections
+
+Multi-tenant collections are a powerful feature in Weaviate that allow you to manage multiple tenants in a single Weaviate instance. Each tenant has its own isolated data, while sharing the same schema and configuration.
+
+A multi-tenant collection is also much more efficient than creating multiple Weaviate collections. This allows you to scale your application more easily and cost-effectively.
+
+## Multi-tenancy and resource management
+
+While each tenant belongs to a collection and shares the same settings, you can still manage each tenant's resources individually.
+
+This can be done by setting the tenant's state (to `ACTIVE`, `INACTIVE`, or `OFFLOADED`), or setting the index type as `dynamic`, which allows each tenant to only use HNSW once they pass a certain threshold of objects.
+
+A carefully constructed strategy to manage the resources of each tenant can help you optimize your application's performance and cost-effectiveness.
+
+## Further resources
+
+These resources will help you continue your learning journey:
+
+- [Starter guide: Resource management](/developers/weaviate/starter-guides/managing-resources/index.md)
+- [Concepts: Multi-tenancy](/developers/weaviate/concepts/data.md#multi-tenancy)
+- [How-to: Manage collections](/developers/weaviate/manage-data/collections.mdx)
+- [How-to: Multi-tenant operations](/developers/weaviate/manage-data/multi-tenancy.md)
+- [How-to: Manage tenant states](/developers/weaviate/manage-data/tenant-states.mdx)
+- [Weaviate Academy: Vector indexes](../vector_index/index.md)
+
+import CTASocials from '../_snippets/cta_socials.mdx';
+
+<CTASocials />
+
+See you soon! 👋
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

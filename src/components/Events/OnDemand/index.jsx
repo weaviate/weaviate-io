@@ -48,6 +48,15 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>
+              Weaviate Product Update: Optimizing AI infrastructure for your use
+              case
+            </p>
+            <Link to="https://events.weaviate.io/update-126">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

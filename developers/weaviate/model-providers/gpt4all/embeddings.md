@@ -71,7 +71,6 @@ Follow the instructions on the [Weaviate Docker installation configurator](../..
 Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     # Other Weaviate configuration
@@ -298,6 +297,8 @@ Once the integrations are configured at the collection, the data management and 
 ### External resources
 
 - [GPT4All documentation](https://docs.gpt4all.io/)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -27,7 +27,6 @@ The NER module can be added as a service to the Docker Compose file. You must ha
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

@@ -425,27 +425,80 @@ export const unitData = {
       "Implement an appropriate tokenization option in Weaviate for a given use case.",
     ]
   },
-  // multi_tenancy_intro: {
-  //   title: "Introduction to multi-tenancy",
-  //   body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
-  //   buttonType: "TBD",
-  //   // buttonURL: "/developers/academy/py/standalone/multi_tenancy",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     "What multi-tenancy is and when to use it",
-  //     "How to enable it and create tenants",
-  //     "Using Weaviate with multi-tenancy",
-  //   ],
-  //   learningOutcomes: [
-  //     "Describe what multi-tenancy is",
-  //     "Appropriately select when to use multi-tenancy",
-  //     "Create tenants and ingest data with multi-tenancy enabled",
-  //     "Perform operations at tenant level",
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
-
+  mt_overview: {
+    "title": "An overview of multi-tenancy",
+    "body": "Learn what multi-tenancy is and how it helps to build scalable production applications.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/overview",
+    "badgeType": "theory",
+    "learningGoals": [
+      "Understand multi-tenancy in Weaviate and its benefits",
+      "Identify use cases for multi-tenancy in production applications"
+    ],
+    "learningOutcomes": [
+      "Describe what multi-tenancy is in the context of Weaviate",
+      "Explain the benefits of multi-tenancy for resource management and scalability",
+      "Identify scenarios where multi-tenancy is advantageous",
+      "Understand the concept of tenant isolation within a shared collection"
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  mt_setup: {
+    "title": "Multi-tenant setup",
+    "body": "Set up a Weaviate instance and configure collections for multi-tenant usage.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/setup",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Learn how to set up a Weaviate instance and configure collections for multi-tenant usage."
+    ],
+    "learningOutcomes": [
+      "Configure a Weaviate instance for multi-tenancy",
+      "Create a multi-tenant collection with appropriate settings",
+      "Understand and configure auto-tenant creation and activation",
+      "Set up dynamic indexing for efficient resource usage across tenants"
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  mt_tenant_data: {
+    "title": "Work with tenants and data",
+    "body": "Learn how to manage tenants and their data in a multi-tenant collection.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/tenant_data",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Understand how to create and manage tenants as well their data in a multi-tenant environment"
+    ],
+    "learningOutcomes": [
+      "Create single and multiple tenants",
+      "Insert and batch import data for specific tenants",
+      "Perform queries on tenant-specific data",
+      "Understand and utilize auto-tenant creation"
+    ],
+    "owner": "jp",
+    "reviewer": "jp"
+  },
+  mt_manage_tenants: {
+    "title": "Manage tenant states and resources",
+    "body": "Learn how to efficiently manage tenant states and optimize resource usage.",
+    "buttonType": "Click here",
+    "buttonURL": "/developers/academy/py/multitenancy/manage_tenants",
+    "badgeType": "practical",
+    "learningGoals": [
+      "Understand tenant activity states and their implications, and learn how to manage tenant states for optimal resource usage"
+    ],
+    "learningOutcomes": [
+      "Describe the different tenant activity states (ACTIVE, INACTIVE, OFFLOADED)",
+      "Update tenant states individually and in bulk",
+      "Implement tenant offloading to cold storage",
+      "Utilize auto-activation for efficient resource management",
+      "Remove tenants and their associated data"
+    ],
+    "owner": "jp",
+    "reviewer": "jp"
+  },
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
@@ -544,7 +597,7 @@ export const unitData = {
     body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/py/building_with_weaviate/which_search",
+    buttonURL: "/developers/academy/py/standalone/which_search",
     learningGoals: [
       "Impact of search type on search quality.",
       "Impact of search type on search performance.",

@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 import JavaScriptCodeLegacy from '!!raw-loader!/_includes/code/howto/search.filters-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-filters_test.go';
 
 
 Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
@@ -55,6 +56,15 @@ Add a `filter` to your query, to limit the result set.
       startMarker="// searchSingleFilter"
       endMarker="// END searchSingleFilter"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SingleFilter"
+      endMarker="// END SingleFilter"
+      language="gonew"
     />
   </TabItem>
 
@@ -162,6 +172,15 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START MultipleFiltersAnd"
+      endMarker="// END MultipleFiltersAnd"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -224,6 +243,15 @@ You can group and nest filters.
       startMarker="// searchMultipleFiltersNested"
       endMarker="// END searchMultipleFiltersNested"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START MultipleFiltersNested"
+      endMarker="// END MultipleFiltersNested"
+      language="gonew"
     />
   </TabItem>
 
@@ -306,6 +334,15 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START searchFilterNearText"
+      endMarker="// END searchFilterNearText"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -371,6 +408,15 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ContainsAnyFilter"
+      endMarker="// END ContainsAnyFilter"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -433,6 +479,15 @@ The `ContainsAll` operator works on text properties and take an array of values 
       startMarker="// ContainsAllFilter"
       endMarker="// END ContainsAllFilter"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ContainsAllFilter"
+      endMarker="// END ContainsAllFilter"
+      language="gonew"
     />
   </TabItem>
 
@@ -502,6 +557,15 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
       startMarker="// searchLikeFilter"
       endMarker="// END searchLikeFilter"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START LikeFilter"
+      endMarker="// END LikeFilter"
+      language="gonew"
     />
   </TabItem>
 
@@ -582,6 +646,15 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
+<TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CrossReference"
+      endMarker="// END CrossReference"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -647,6 +720,15 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterbyGeolocation"
+      endMarker="// END FilterbyGeolocation"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -678,6 +760,14 @@ To filter by a `DATE` datatype property, specify the date/time as an [RFC 3339](
       language="js"
     />
   </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterByDateDatatype"
+      endMarker="// END FilterByDateDatatype"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 ## Filter by metadata
@@ -686,7 +776,7 @@ Filters also work with metadata properties such as object id, property length, a
 
 For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
-### Metadata filter - by object `id`
+### By object `id`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -713,13 +803,21 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="js"
     />
   </TabItem>
-
  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// filterById"
       endMarker="// END filterById"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterById"
+      endMarker="// END FilterById"
+      language="gonew"
     />
   </TabItem>
 
@@ -733,7 +831,9 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object timestamp
+### By object timestamp
+
+This filter requires the [property timestamp](../config-refs/schema/index.md#indextimestamps) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -770,6 +870,15 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterByTimestamp"
+      endMarker="// END FilterByTimestamp"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -780,7 +889,9 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Metadata filter - by object property length
+### By object property length
+
+This filter requires the [property length](../config-refs/schema/index.md#indexpropertylength) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -817,11 +928,67 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterByPropertyLength"
+      endMarker="// END FilterByPropertyLength"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# GQLFilterByPropertyLength"
       endMarker="# END GQLFilterByPropertyLength"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+### By object null state
+
+This filter requires the [property null state](../config-refs/schema/index.md#indexnullstate) to [be indexed](../manage-data/collections.mdx#set-inverted-index-parameters).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterByPropertyNullState"
+      endMarker="# END FilterByPropertyNullState"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByPropertyNullState"
+      endMarker="// END FilterByPropertyNullState"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FilterByPropertyNullState"
+      endMarker="// END FilterByPropertyNullState"
+      language="gonew"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GQLFilterByPropertyNullState"
+      endMarker="# END GQLFilterByPropertyNullState"
       language="graphql"
     />
   </TabItem>

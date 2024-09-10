@@ -64,7 +64,6 @@ Follow the instructions on the [Weaviate Docker installation configurator](../..
 Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     # Other Weaviate configuration
@@ -454,6 +453,8 @@ To run the integration with a custom model, refer to [the custom image guide](./
 ### External resources
 
 - Hugging Face [Model Hub](https://huggingface.co/models)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

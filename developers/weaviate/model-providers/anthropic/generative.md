@@ -264,6 +264,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Anthropic [API documentation](https://www.anthropic.com/docs)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

@@ -14,7 +14,7 @@ The code in this guide configures a sample SPCS instance. The sample instance de
 
 Download the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client. Use the SnowSQL client to connect to Snowflake.
 
-```bash  
+```bash
 snowsql -a "YOURINSTANCE" -u "YOURUSER"
 ```
 
@@ -57,7 +57,7 @@ CREATE USER weaviate_user
   DEFAULT_ROLE = WEAVIATE_ROLE
   DEFAULT_SECONDARY_ROLES = ('ALL')
   MUST_CHANGE_PASSWORD = FALSE;
-  
+
 USE ROLE SECURITYADMIN;
 GRANT ROLE WEAVIATE_ROLE TO USER weaviate_user;
 ```
@@ -83,7 +83,7 @@ CREATE OR REPLACE WAREHOUSE WEAVIATE_WAREHOUSE WITH
 
 Create a Weaviate database and stages.
 
-```sql  
+```sql
 USE ROLE SYSADMIN;
 CREATE DATABASE IF NOT EXISTS WEAVIATE_DEMO;
 USE DATABASE WEAVIATE_DEMO;
@@ -110,7 +110,7 @@ GRANT ALL PRIVILEGES ON STAGE WEAVIATE_DEMO.PUBLIC.FILES TO WEAVIATE_ROLE;
 :::warning External access
 The user credentials on this page are for demonstration purposes only. Change the user credentials and password before you connect to the open internet.
 :::
-  
+
 ```sql
 USE ROLE ACCOUNTADMIN;
 USE DATABASE WEAVIATE_DEMO;
@@ -129,7 +129,7 @@ GRANT USAGE ON INTEGRATION allow_all_eai TO ROLE SYSADMIN;
 
 ### 4. Setup compute pools
 
-Create compute pools. The compute pools run the application services. 
+Create compute pools. The compute pools run the application services.
 
 ```sql
 USE ROLE SYSADMIN;
@@ -170,7 +170,7 @@ Build the Docker images in your local shell. There are three images.
 - The `text2vec` image lets you process data without leaving Snowpark.
 - The Jupyter image serves notebooks.
 
-The Docker files are in [this repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/images). Clone the repo, and go to the top level directory. 
+The Docker files are in [this repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/images). Clone the repo, and go to the top level directory.
 
 You don't need to modify the Dockerfiles to run this sample instance. However, if you need to use non-standard ports, or make other changes for your deployment, edit the Dockerfiles before you create the containers.
 
@@ -206,22 +206,22 @@ docker push <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/
 
 ### 6. Setup services
 
-SPCS uses `spec files` to configure services. The configuration spec files are also in [the repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/specs) you cloned earlier. 
+SPCS uses `spec files` to configure services. The configuration spec files are also in [the repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/specs) you cloned earlier.
 
 Edit the `spec files` to specify an image repository for each service. For example, update `weaviate.yaml` to reference the `weaviate`
-image. 
+image.
 
 ```bash
 image: "<SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/weaviate"
 ```
 
-When you edit the `jupyter.yaml` spec file, update the `SNOW_ACCOUNT` field with your Snowflake account name. 
+When you edit the `jupyter.yaml` spec file, update the `SNOW_ACCOUNT` field with your Snowflake account name.
 
 ```bash
 SNOW_ACCOUNT: <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>
 ```
 
-After the spec files are updated, use the `snowsql` client to upload them. 
+After the spec files are updated, use the `snowsql` client to upload them.
 
 ```sql
 PUT file:///path/to/jupyter.yaml @yaml_stage overwrite=true auto_compress=false;
@@ -239,31 +239,31 @@ USE DATABASE WEAVIATE_DEMO;
 USE SCHEMA PUBLIC;
 
 CREATE SERVICE WEAVIATE
-  IN COMPUTE POOL WEAVIATE_COMPUTE_POOL 
+  IN COMPUTE POOL WEAVIATE_COMPUTE_POOL
   FROM @YAML_STAGE
   SPEC='weaviate.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
 CREATE SERVICE JUPYTER
-  IN COMPUTE POOL JUPYTER_COMPUTE_POOL 
+  IN COMPUTE POOL JUPYTER_COMPUTE_POOL
   FROM @YAML_STAGE
   SPEC='jupyter.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
 CREATE SERVICE TEXT2VEC
-  IN COMPUTE POOL TEXT2VEC_COMPUTE_POOL 
+  IN COMPUTE POOL TEXT2VEC_COMPUTE_POOL
   FROM @YAML_STAGE
   SPEC='text2vec.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
-```  
+```
 
 ### 8. Grant user permissions
 
-Grant permission for the services to the `weaviate_role`. 
+Grant permission for the services to the `weaviate_role`.
 
 ```sql
 USE ROLE SECURITYADMIN;
@@ -279,7 +279,7 @@ USE ROLE SYSADMIN;
 SHOW ENDPOINTS IN SERVICE WEAVIATE_DEMO.PUBLIC.JUPYTER;
 ```
 
-Open the `ingress_url` in a browser. Use the `weaviate_user` credentials to log in. 
+Open the `ingress_url` in a browser. Use the `weaviate_user` credentials to log in.
 
 ### 10. Load data into your Weaviate instance
 
@@ -301,10 +301,10 @@ import os
 
 client = weaviate.connect_to_custom(
     http_host="weaviate",
-    http_port="8080",
+    http_port=8080,
     http_secure=False,
     grpc_host="weaviate",
-    grpc_port="50051",
+    grpc_port=50051,
     grpc_secure=False
 )
 
@@ -317,10 +317,10 @@ for o in response.objects:
     print(o.vector)
 
 # Hybrid search	client.close()
-response = collection.query.hybrid(	
-    query="animals",	
-    limit=5	
-)	
+response = collection.query.hybrid(
+    query="animals",
+    limit=5
+)
 
 client.close()
 ```

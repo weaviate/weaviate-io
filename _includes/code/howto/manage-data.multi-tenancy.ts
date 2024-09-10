@@ -194,6 +194,22 @@ await multiCollection.tenants.update({
 // END ActivateTenants
 }
 
+// ===============================
+// ===== Change tenant state =====
+// ===============================
+{
+// START ChangeTenantState
+const multiCollection = client.collections.get('MultiTenancyCollection')
+
+// highlight-start
+await multiCollection.tenants.update({
+  name: 'tenantA',
+  activityStatus: 'ACTIVE' // 'INACTIVE', 'OFFLOADED'
+})
+// highlight-end
+// END ChangeTenantState
+}
+
 // ==========================
 // ===== Offload tenant =====
 // ==========================
@@ -224,7 +240,7 @@ await multiCollection.tenants.update({
       // highlight-end
     })
   })
-  // END EnableAutoMT
+  // END EnableAutoActivation
   }
 
 // ============================

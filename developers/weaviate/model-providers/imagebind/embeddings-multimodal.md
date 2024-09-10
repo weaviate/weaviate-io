@@ -64,7 +64,6 @@ Follow the instructions on the [Weaviate Docker installation configurator](../..
 Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     # Other Weaviate configuration
@@ -335,6 +334,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 ### External resources
 
 - [ImageBind GitHub page](https://github.com/facebookresearch/ImageBind)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

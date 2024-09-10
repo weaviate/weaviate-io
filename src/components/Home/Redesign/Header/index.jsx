@@ -40,10 +40,11 @@ export default function HomepageHeader() {
                   The AI-native database<br></br> for a new generation of
                   <br></br> software
                 </h1>
-                <p>
-                  Bring intuitive applications to life with less <br></br>{' '}
-                  hallucination, data leakage, and vendor lock-in
-                </p>
+                <h2>
+                  Bring intuitive AI-native applications to life with less
+                  hallucination, data leakage, and vendor lock-in with the open
+                  source vector database developers love.
+                </h2>
               </div>
 
               <div className={styles.buttons}>
@@ -67,9 +68,9 @@ export default function HomepageHeader() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Improve search experiences by merging vector and keyword
-                  techniques. Deliver contextual, precise results across all of
-                  your data in any modality, with less effort.
+                  Improve search experiences by merging vector search with
+                  keyword search techniques. Deliver contextual, precise results
+                  across all of your data in any modality, with less effort.
                 </p>
                 <Link to="/hybrid-search">Learn more</Link>
               </div>
@@ -77,13 +78,15 @@ export default function HomepageHeader() {
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
                 <div className={` ${styles.homeIcon} ${styles.ragIcon}`}></div>
-                <h2>RAG</h2>
+                <h2>
+                  Retrieval-Augmented<br></br>Generation
+                </h2>
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Build trustworthy generative AI applications using your own
-                  data, with privacy and security top-of-mind. Surface relevant
-                  and accurate answers using your favorite LLMs.
+                  Build trustworthy generative AI applications with your own
+                  data using RAG. Use your favorite LLMs while keeping privacy
+                  and security top-of-mind.
                 </p>
                 <Link to="/rag">Learn more</Link>
               </div>
@@ -126,10 +129,9 @@ export default function HomepageHeader() {
               <h2>Empower every developer to build AI-native applications</h2>
               <span>With flexible, reliable, open source foundations.</span>
               <p>
-                At the core of the Weaviate ecosystem is our open source
-                AI-native database. Our surrounding services, tools, and
-                offerings are meant to further enable teams of all sizes on
-                their AI journey.
+                At the core of the Weaviate ecosystem is our open source vector
+                database. Our surrounding services, tools, and offerings are
+                meant to further enable teams of all sizes on their AI journey.
               </p>
               <div className={styles.buttons}>
                 <Link
@@ -138,7 +140,7 @@ export default function HomepageHeader() {
                 >
                   Start Free
                 </Link>
-                <Link className={styles.buttonOutline} to="/services">
+                <Link className={styles.buttonOutline} to="/platform">
                   Learn More
                 </Link>
               </div>
@@ -176,8 +178,9 @@ export default function HomepageHeader() {
         <div className="container">
           <div className={styles.bottomBar}>
             <h2 className={styles.text}>
-              With over 1M monthly downloads, Weaviate is a core piece<br></br>{' '}
-              of the AI-native stack for developers and enterprises alike.
+              With over 1M monthly downloads, our open source vector database is
+              a core piece of the AI-native stack for developers and enterprises
+              alike.
             </h2>
             <div className={styles.innerBar}>
               <div className={styles.logoSection}>

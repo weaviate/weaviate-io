@@ -101,7 +101,7 @@ try:
 
     # ===== Test query responses =====
     assert len(response.objects) == 2
-    assert response.objects[0].properties["answer"] == "DNA"
+    assert response.objects[0].properties["answer"] == "the nose or snout"
 
     # NearTextWhereExample
     questions = client.collections.get("Question")
@@ -117,7 +117,7 @@ try:
 
     # ===== Test query responses =====
     assert len(response.objects) == 2
-    assert response.objects[0].properties["category"] == "ANIMALS"
+    assert response.objects[0].properties["category"] == "SCIENCE"
 
 
     # GenerativeSearchExample

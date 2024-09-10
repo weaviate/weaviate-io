@@ -84,7 +84,6 @@ Here is a full example of a Docker configuration, which uses the `qna-openai` mo
 
 ```yaml
 ---
-version: '3.4'
 services:
   weaviate:
     command:

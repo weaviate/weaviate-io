@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-## Data object nomenclature
+## Data object concepts
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
 
@@ -113,9 +113,15 @@ The collection looks like this:
 
 Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
 
-:::tip
+### UUIDs
+
 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
-:::
+
+You can [use a deterministic UUID](../manage-data/import.mdx#specify-an-id-value) to ensure that the same object always has the same UUID. This is useful when you want to update an object without changing its UUID.
+
+If you don't specify an ID, Weaviate generates a random UUID for you.
+
+In requests without any other ordering specified, Weaviate processes them in ascending UUID order. This means that requests to [list objects](../search/basics.md#list-objects), use of the [cursor API](../manage-data/read-all-objects.mdx), or requests to [delete objects](../manage-data/delete.mdx#delete-multiple-objects-by-id), without any other ordering specified, will be processed in ascending UUID order.
 
 ### Cross-references
 
@@ -172,7 +178,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-## Weaviate Schema
+## Data Schema
 
 Weaviate requires a data schema before you add data. However, you don't have to create a data schema manually. If you don't provide one, Weaviate generates a schema based on the incoming data.
 
@@ -210,6 +216,10 @@ Tenant shards are more lightweight. You can easily have 50,000, or more, active 
 
 Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
 
+:::caution Tenant deletion == Tenant data deletion
+Deleting a tenant deletes the associated shard. As a result, deleting a tenant also deletes all of its objects.
+:::
+
 ### Tenant status
 
 :::info Multi-tenancy availability
@@ -245,11 +255,13 @@ In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was r
 :::info Added in `v1.26.0`
 :::
 
+import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
+
+<OffloadingLimitation/>
+
 Offloading tenants requires the relevant `offload-<storage>` module to be [enabled](../configuration/modules.md) in the Weaviate cluster.
 
 When a tenant is offloaded, the entire tenant shard is moved to cloud storage. This is useful for long-term storage of tenants that are not frequently accessed. Offloaded tenants are not available for read or write operations until they are loaded back into the cluster.
-
-As of Weaviate `v1.26.0`, only S3-compatible cloud storage is supported for `OFFLOADED` tenants through the `offload-s3` module. Additional storage options may be added in future releases.
 
 ### Backups
 

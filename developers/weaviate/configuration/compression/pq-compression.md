@@ -1,6 +1,6 @@
 ---
-title: Product Quantization
-sidebar_position: 15
+title: Product Quantization (PQ)
+sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
 ---
@@ -54,9 +54,7 @@ AutoPQ requires asynchronous indexing.
 
 ### 2. Configure PQ
 
-Specify PQ settings for each collection for which it is to be enabled.
-
-For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
+To configure PQ in a collection, use the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -105,13 +103,13 @@ AutoPQ creates the PQ codebook when the object count reaches the training limit.
 
 ## Manually configure PQ
 
-As an alternative to AutoPQ, you can also manually enable PQ on an existing collection. Upon enabling PQ, Weaviate will train the PQ codebook, using the pre-loaded set of objects.
+You can manually enable PQ on an existing collection. After PQ is enabled, Weaviate trains the PQ codebook. Before you enable PQ, verify that the training set has 100,000 objects per shard.
 
 To manually enable PQ, follow these steps:
 
 - Phase One: Create a codebook
 
-    - [Configure an initial schema without PQ](./pq-compression.md#1-configure-an-initial-schema-without-pq)
+    - [Define a collection without PQ](./pq-compression.md#1-define-a-collection-without-pq)
     - [Load some training data](./pq-compression.md#2-load-training-data)
     - [Enable and train PQ](./pq-compression.md#3-enable-pq-and-create-the-codebook)
 
@@ -120,18 +118,14 @@ To manually enable PQ, follow these steps:
     - [Load the rest of your data](./pq-compression.md#4-load-the-rest-of-your-data)
 
 :::tip How large should the training set be?
-When PQ is enabled, Weaviate uses the smaller of training limit or the collection object count to train PQ.
-
-We recommend importing a set of 10,000 to 100,000 training objects per shard before you enable PQ.
+Import 10,000 to 100,000 training objects per shard before you enable PQ.
 :::
 
-:::note
-Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete.
-:::
+Weaviate [logs a message](#check-the-system-logs) when PQ is enabled and another message when vector compression is complete. Do not import the rest of your data until the initial training step is complete.
 
-The next few sections work through these steps.
+Follow these steps to manually enable PQ.
 
-### 1. Configure an initial schema without PQ
+### 1. Define a collection without PQ
 
 [Create a collection](/developers/weaviate/manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
@@ -210,7 +204,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
 <PQMakesCodebook />
 
-To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
+To enable PQ, update your collection definition as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -375,17 +369,15 @@ To review the current `pq` configuration, you can retrieve it as shown below.
 
 ## Multiple vectors
 
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
-<MultiVectorSupport />
-
-Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/compression/pq-compression.md), [BQ](/weaviate/configuration/compression/bq-compression.md), or no compression.
+<MultiVectorCompress />
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 - [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
-- [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
+- [Guide: Schemas and collection definitions](/developers/weaviate/starter-guides/schema)
 
 ## Questions and feedback
 

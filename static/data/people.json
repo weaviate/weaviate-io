@@ -116,6 +116,12 @@
     "team": "weaviate-labs"
   },
   {
+    "name": "Christopher McCurry",
+    "title": "Commercial Account Executive",
+    "photo": "Christopher-McCurry.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Connor Shorten",
     "title": "Research Scientist",
     "photo": "connor.png",
@@ -129,6 +135,13 @@
     "title": "Developer Advocate",
     "photo": "daniel.png",
     "team": "developer-relations"
+  },
+  {
+    "name": "Daniel McGee",
+    "title": "Full Stack Engineer",
+    "photo": "Daniel-McGee.jpg",
+    "linkedin": "danieltmcgee",
+    "team": "developer-growth"
   },
   {
     "name": "Daniel Williams",
@@ -367,6 +380,20 @@
     "team": "finance"
   },
   {
+    "name": "Mary Newhauser",
+    "title": "Machine Learning Engineer",
+    "photo": "Mary-Newhauser.jpg",
+    "linkedin": "mary-newhauser-02273551/",
+    "team": "developer-growth"
+  },
+  {
+    "name": "Michael Morgan",
+    "title": "Marketing Operations and Lifecycle Manager",
+    "photo": "Michael-Morgan.jpg",
+    "linkedin": "michaelkmorgan",
+    "team": "marketing"
+  },
+  {
     "name": "Mike Hoppe",
     "title": "Client-Focused SRE",
     "photo": "Mike-Hoppe.jpeg",
@@ -454,6 +481,13 @@
     "team": "applied-research"
   },
   {
+    "name": "Rodrigo López",
+    "title": "QA Engineer",
+    "photo": "Rodrigo-Lopez.jpg",
+    "linkedin": "rodrigo-antonio-lópez-manrique-a3778a93",
+    "team": "delivery"
+  },
+  {
     "name": "Scott Alexander",
     "title": "Client-Focused SRE",
     "photo": "scott-alexander.jpg",
@@ -496,6 +530,12 @@
     "linkedin": "sohammaniar",
     "twitter": "sohammaniar",
     "team": "sales"
+  },
+  {
+    "name": "Spiros Andreou",
+    "title": "Security & Compliance Lead",
+    "photo": "spiros.jpg",
+    "team": "delivery"
   },
   {
     "name": "Staci Blue",

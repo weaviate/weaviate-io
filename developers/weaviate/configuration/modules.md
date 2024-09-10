@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'modules']
 ---
 
-
-<!-- :::caution Migrated From:
-- Mostly newly written
-- Previous `Configuration/Modules` content has been migrated to `References:Modules/index`
-::: -->
-
-
 Weaviate's functionality can be customized by using [modules](../concepts/modules.md). This page explains how to enable and configure modules.
 
 ## Instance-level configuration
@@ -144,38 +137,9 @@ Your choice of the `text2vec` module does not restrict your choice of `generativ
 
 ## Tenant offload modules
 
-### `offload-s3` module
+Tenants can be offloaded to cold storage to reduce memory and disk usage, and onloaded back when needed.
 
-The `offload-s3` module enables you to [offload tenants](../concepts/data.md#tenant-activity-status) to an S3 bucket.
-
-To use the `offload-s3` module, add `offload-s3` to the `ENABLE_MODULES` environment variable.
-
-```yaml
-services:
-  weaviate:
-    environment:
-      # highlight-start
-      ENABLE_MODULES: 'text2vec-cohere,generative-cohere,offload-s3'
-      # highlight-end
-```
-
-The `offload-s3` module reads the following environment variables:
-
-- `OFFLOAD_S3_BUCKET`: The S3 bucket where `INACTIVE` tenants are offloaded.
-    - The default is `weaviate-offload`.
-    - If the bucket does not exist, and `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, Weaviate creates the bucket automatically.
-- `OFFLOAD_S3_BUCKET_AUTO_CREATE`: When `true`, Weaviate automatically creates an S3 bucket if it does not exist. The default is `false`.
-- `OFFLOAD_S3_CONCURRENCY`: The number of concurrent offload operations. The default is `25`.
-- `OFFLOAD_TIMEOUT`: The timeout for offloading operations (create bucket, upload, download). The default is `120` (in seconds)
-    - Offload operations are asynchronous. As a result, the timeout is for the operation to start, not to complete.
-    - Each operation will retry up to 10 times on timeouts, except on authentication/authorization errors.
-
-:::tip AWS permissions
-The Weaviate instance must have the necessary permissions to access the S3 bucket.
-
-- The provided AWS identity must be able to write to the bucket.
-- If `OFFLOAD_S3_BUCKET_AUTO_CREATE` is set to `true`, the AWS identity must have permission to create the bucket.
-:::
+See the [dedicated page on tenant offloading](./tenant-offloading.md) for more information on how to configure Weaviate for tenant offloading. For information on how to offload and onload tenants, see [How-to: manage tenant states](../manage-data/tenant-states.mdx).
 
 ## Custom modules
 
