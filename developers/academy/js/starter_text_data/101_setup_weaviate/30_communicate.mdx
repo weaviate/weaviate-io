@@ -1,0 +1,64 @@
+---
+title: Communicate with Weaviate
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!../_snippets/101_connect.ts';
+
+Here, we'll perform basic operations to communicate with Weaviate using the TypeScript client library.
+
+### <i class="fa-solid fa-code"></i> Check Weaviate status
+
+You can check whether the Weaviate instance is up using the `isLive` function.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// PollLiveness"
+  endMarker="// END PollLiveness"
+  language="ts"
+/>
+
+### <i class="fa-solid fa-code"></i> Retrieve server meta information
+
+You can retrieve meta information about the Weaviate instance using the `getMeta` function.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// GetMeta"
+  endMarker="// END GetMeta"
+  language="ts"
+/>
+
+This will print the server meta information to the console. The output will look similar to the following:
+
+<details>
+  <summary>Example <code>getMeta()</code> output</summary>
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// OutputGetMeta"
+  endMarker="// END OutputGetMeta"
+  language="ts"
+/>
+</details>
+
+### <i class="fa-solid fa-code"></i> Close the connection
+
+After you have finished using the Weaviate client, you should close the connection. This frees up resources and ensures that the connection is properly closed.
+
+We suggest using a `try`-`finally` block as a best practice. For brevity, we will not include the `try`-`finally` blocks in the remaining code snippets.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// TryFinallyCloseDemo"
+  endMarker="// END TryFinallyCloseDemo"
+  language="ts"
+/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
