@@ -47,7 +47,7 @@ This integration is not available for Weaviate Cloud (WCD) serverless instances,
 
 #### Configure the integration
 
-To use this integration, you must configure the container image of the CLIP model, and the inference endpoint of the containerized model.
+To use this integration, configure the container image of the CLIP model and the inference endpoint of the containerized model.
 
 The following example shows how to configure the CLIP integration in Weaviate:
 
@@ -135,7 +135,7 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a CLIP embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -158,8 +158,8 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 </Tabs>
 
-:::note Model selection via container image used
-Model selection in this integration is done by selecting the appropriate [container image in the integration](#configure-the-integration).
+:::note Chose a container image to select a model
+To chose an model, select the [container image](#configure-the-integration) that hosts it.
 :::
 
 ## Data import

@@ -118,7 +118,7 @@ When using a custom image, you may set the `USE_SENTENCE_TRANSFORMERS_VECTORIZER
 
 Once you have built and configured the custom Transformers model image, continue on to the [Transformers embeddings integrations](./embeddings.md) guide to use the model with Weaviate.
 
-Following the above example, set the `image` parameter in the `t2v-transformers` service as the name of the custom image, e.g. `my-inference-image`.
+Follow the sample code above to set the `image` parameter in the `t2v-transformers` service as the name of the custom image, for examples `my-inference-image`.
 
 ## (Optional) Test the inference container
 
