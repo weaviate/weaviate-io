@@ -13,6 +13,9 @@ Weaviate supports a variety of search types, including vector search, keyword se
 
 The following sections provide an overview of search in Weaviate, including different search types, configurable query settings, and best practices for search performance and scalability.
 
+:::warning ADD BRIEF EXAMPLES OF EACH SEARCH TYPE
+:::
+
 ## Search Features
 
 The following diagram illustrates the different search features supported by Weaviate, and how they fit together:
