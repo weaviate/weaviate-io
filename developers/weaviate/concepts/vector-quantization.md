@@ -1,8 +1,8 @@
 ---
 title: Compression (Vector Quantization)
-sidebar_position: 5
+sidebar_position: 19
 image: og/docs/concepts.jpg
-# tags: ['vector index plugins']
+# tags: ['vector compression', 'quantization']
 ---
 
 **Vector quantization** reduces the memory footprint of the [vector index](./vector-index.md) by compressing the vector embeddings, and thus reduces deployment costs and improves the speed of the vector similarity search process.
