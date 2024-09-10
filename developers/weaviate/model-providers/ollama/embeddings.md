@@ -105,7 +105,7 @@ Configure the vectorizer like this:
 
 If you don't specify an embedding model, the vectorizer uses the [default model](#available-models).
 
-import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
+import APIEndpoint from '/_includes/model-providers/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
 

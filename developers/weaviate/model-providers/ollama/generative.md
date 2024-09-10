@@ -107,7 +107,7 @@ Configure the generative model like this:
 
 If you don't specify a generative model, the collection uses the [default model](#available-models).
 
-import APIEndpoint from '/_includes/integrations/ollama/api-endpoint.mdx';
+import APIEndpoint from '/_includes/model-providers/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
 
