@@ -103,13 +103,13 @@ Configure the vectorizer like this:
 
 </Tabs>
 
-If you don't specify an embedding model, the vectorizer uses the [default model](#available-models).
-
 import APIEndpoint from '/_includes/model-providers/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import ConfigAfter from '/_includes/model-providers/more-info-embeddings.mdx
+
+<ConfigAfter/>
 
 ## Data import
 
