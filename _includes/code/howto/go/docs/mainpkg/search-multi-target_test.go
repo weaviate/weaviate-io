@@ -4,32 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
-
-func setupClient() *weaviate.Client {
-	cfg := weaviate.Config{
-		Host:   "http://localhost:8080",
-		Scheme: "http",
-		Headers: map[string]string{
-			"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),
-		},
-	}
-
-	client, err := weaviate.NewClient(cfg)
-	if err != nil {
-		panic(fmt.Sprintf("Failed to create Weaviate client: %v", err))
-	}
-
-	return client
-}
 
 // ========================
 // ===== Basic search =====
@@ -42,17 +22,22 @@ func TestMultiBasic(t *testing.T) {
 	// START MultiBasic Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
+			graphql.Field{
+				Name: "_additional",
+				Fields: []graphql.Field{
+					{Name: "distance"},
+				},
+			}).
 		WithNearText((&graphql.NearTextArgumentBuilder{}).
-			WithConcepts([]string{"a wild animal"})).
+			WithConcepts([]string{"a wild animal"}).
+			WithTargetVectors("jeopardy_questions_vector", "jeopardy_answers_vector")).
 		WithLimit(2).
-		WithTargetVectors([]string{"jeopardy_questions_vector", "jeopardy_answers_vector"}).
-		WithAdditional("distance").
 		Do(ctx)
 	// END MultiBasic Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -76,33 +61,34 @@ func TestMultiTargetNearVector(t *testing.T) {
 	ctx := context.Background()
 
 	// First, fetch some vectors
-	resp, err := client.Data().Creator().
+	resp, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields("jeopardy_questions_vector", "jeopardy_answers_vector").
+		WithFields(graphql.Field{Name:"jeopardy_questions_vector"}, graphql.Field{Name:"jeopardy_answers_vector"}).
 		WithLimit(1).
 		Do(ctx)
 
 	require.NoError(t, err)
 	require.Len(t, resp, 1)
 
-	v1 := resp[0].Properties.(map[string]interface{})["jeopardy_questions_vector"].([]float32)
-	v2 := resp[0].Properties.(map[string]interface{})["jeopardy_answers_vector"].([]float32)
+	v1 := resp.Data["Get"].(map[string]interface{})["JeopardyTiny"].([]interface{})[0].(map[string]interface{})["jeopardy_questions_vector"].([]float32)
+	v2 := resp.Data["Get"].(map[string]interface{})["JeopardyTiny"].([]interface{})[0].(map[string]interface{})["jeopardy_questions_vector"].([]float32)
 
 	// START MultiTargetNearVector Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-		WithNearVector((&graphql.NearVectorArgumentBuilder{}).
-			WithVectorJeopardyQuestionsVector(v1).
-			WithVectorJeopardyAnswersVector(v2)).
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},graphql.Field{
+			Name: "_additional",
+			Fields: []graphql.Field{
+				{Name: "distance"},
+			},
+		}).
+		WithNearVector(client.GraphQL().NearVectorArgBuilder().WithVectorPerTarget(  map[string][]float32{"jeopardy_questions_vector": v1, "jeopardy_answers_vector": v2})).
 		WithLimit(2).
-		WithTargetVectors([]string{"jeopardy_questions_vector", "jeopardy_answers_vector"}).
-		WithAdditional("distance").
 		Do(ctx)
 	// END MultiTargetNearVector Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -128,18 +114,23 @@ func TestMultiTargetWithSimpleJoin(t *testing.T) {
 	// START MultiTargetWithSimpleJoin Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-		WithNearText((&graphql.NearTextArgumentBuilder{}).
-			WithConcepts([]string{"a wild animal"})).
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
+		graphql.Field{
+			Name: "_additional",
+			Fields: []graphql.Field{
+				{Name: "distance"},
+			},
+		}).
+
+		WithNearText(client.GraphQL().NearTextArgBuilder().
+			WithConcepts([]string{"a wild animal"}).
+			WithTargets(client.GraphQL().MultiTargetArgumentBuilder().Average("jeopardy_questions_vector", "jeopardy_answers_vector"))).
 		WithLimit(2).
-		WithTargetVectors([]string{"jeopardy_questions_vector", "jeopardy_answers_vector"}).
-		WithVectorJoinOperation(graphql.Average).
-		WithAdditional("distance").
 		Do(ctx)
 	// END MultiTargetWithSimpleJoin Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -165,21 +156,25 @@ func TestMultiTargetManualWeights(t *testing.T) {
 	// START MultiTargetManualWeights Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-		WithNearText((&graphql.NearTextArgumentBuilder{}).
-			WithConcepts([]string{"a wild animal"})).
-		WithLimit(2).
-		WithTargetVectors([]string{"jeopardy_questions_vector", "jeopardy_answers_vector"}).
-		WithVectorWeights(map[string]float32{
-			"jeopardy_questions_vector": 10,
-			"jeopardy_answers_vector":   50,
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
+		graphql.Field{
+			Name: "_additional",
+			Fields: []graphql.Field{
+				{Name: "distance"},
+			},
 		}).
-		WithAdditional("distance").
+		WithNearText((&graphql.NearTextArgumentBuilder{}).
+			WithConcepts([]string{"a wild animal"}).
+			WithTargets(client.GraphQL().MultiTargetArgumentBuilder().ManualWeights(map[string]float32{
+				"jeopardy_questions_vector": 10,
+				"jeopardy_answers_vector":   50,
+			}))).
+		WithLimit(2).
 		Do(ctx)
 	// END MultiTargetManualWeights Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
@@ -205,21 +200,26 @@ func TestMultiTargetRelativeScore(t *testing.T) {
 	// START MultiTargetRelativeScore Go
 	response, err := client.GraphQL().Get().
 		WithClassName("JeopardyTiny").
-		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"}).
-		WithNearText((&graphql.NearTextArgumentBuilder{}).
-			WithConcepts([]string{"a wild animal"})).
-		WithLimit(2).
-		WithTargetVectors([]string{"jeopardy_questions_vector", "jeopardy_answers_vector"}).
-		WithVectorWeights(map[string]float32{
-			"jeopardy_questions_vector": 10,
-			"jeopardy_answers_vector":   10,
+		WithFields(graphql.Field{Name: "question"}, graphql.Field{Name: "answer"},
+		graphql.Field{
+			Name: "_additional",
+			Fields: []graphql.Field{
+				{Name: "distance"},
+			},
 		}).
-		WithAdditional("distance").
+		WithNearText(client.GraphQL().NearTextArgBuilder().
+			WithConcepts([]string{"a wild animal"}).
+			WithTargetVectors("jeopardy_questions_vector", "jeopardy_answers_vector").
+			WithTargets(client.GraphQL().MultiTargetArgumentBuilder().ManualWeights(map[string]float32{
+				"jeopardy_questions_vector": 10,
+				"jeopardy_answers_vector":   10,
+			}))).
+		WithLimit(2).
 		Do(ctx)
 	// END MultiTargetRelativeScore Go
 
 	require.NoError(t, err)
-	
+
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("%s\n", jsonResponse)
 
