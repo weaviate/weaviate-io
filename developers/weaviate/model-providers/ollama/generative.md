@@ -105,13 +105,13 @@ Configure the generative model like this:
 
 </Tabs>
 
-If you don't specify a generative model, the collection uses the [default model](#available-models).
-
-import APIEndpoint from '/_includes/model-providers/ollama/api-endpoint.mdx';
+import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
 
-For more information on configuring a generative model, see [Specify a generative model](/developers/weaviate/manage-data/collections#specify-a-generative-module).
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/model-providers/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 

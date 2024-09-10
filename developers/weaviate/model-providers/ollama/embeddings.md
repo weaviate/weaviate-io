@@ -103,13 +103,13 @@ Configure the vectorizer like this:
 
 </Tabs>
 
-import APIEndpoint from '/_includes/model-providers/ollama/api-endpoint.mdx';
+import APIEndpoint from '/developers/weaviate/model-providers/_includes/model-providers/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
 
-import ConfigAfter from '/_includes/model-providers/more-info-embeddings.mdx
+import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/model-providers/more-info-embeddings.mdx';
 
-<ConfigAfter/>
+<ConfigAfterEmb/>
 
 ## Data import
 
