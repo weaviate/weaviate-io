@@ -54,3 +54,15 @@ Read more about [enabling all API-based modules](../configuration/modules.md#ena
 | [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md), [Multimodal (CLIP)](./transformers/embeddings-multimodal.md) | - | - |
 | [Meta ImageBind](./imagebind/index.md) | [Multimodal](./imagebind/embeddings-multimodal.md) | - | - |
 | [Ollama](./ollama/index.md) | [Text](./ollama/embeddings.md) | [Text](./ollama/generative.md) | - |
+
+## Further resources
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

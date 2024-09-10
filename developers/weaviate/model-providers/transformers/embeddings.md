@@ -454,6 +454,8 @@ To run the integration with a custom model, refer to [the custom image guide](./
 
 - Hugging Face [Model Hub](https://huggingface.co/models)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

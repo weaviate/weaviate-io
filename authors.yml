@@ -119,7 +119,7 @@ john:
   image_url: /img/people/icon/john.png
 shukri:
   name: Mohd Shukri Hasan
-  title: Community Solution Engineer
+  title: Integration Solution Engineer
   url: https://github.com/hsm207
   image_url: /img/people/icon/shukri.jpeg
 tommy:
@@ -136,7 +136,7 @@ sam:
   name: Sam Stoelinga
   title: Contributor to Substratus.AI
   url: https://github.com/samos123
-  image_url:  /img/people/icon/sam.png
+  image_url: /img/people/icon/sam.png
 femke:
   name: Femke Plantinga
   title: Content Manager
@@ -185,3 +185,13 @@ randy:
   title: Senior iOS Developer
   url: https://www.linkedin.com/in/randy-fong-1530545/
   image_url: /img/people/icon/randy.jpeg
+charles-pierse:
+  name: Charles Pierse
+  title: Head of Weaviate Labs
+  url: https://github.com/cdpierse
+  image_url: /img/people/icon/charles-pierse.jpg
+akanksha:
+  name: Akanksha Sharma
+  title: Product Management Intern
+  url: https://www.linkedin.com/in/akankshasharmaiitg/
+  image_url: /img/people/icon/akanksha.jpg

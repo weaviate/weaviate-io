@@ -248,6 +248,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Anyscale [Endpoints API documentation](https://docs.endpoints.anyscale.com/)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

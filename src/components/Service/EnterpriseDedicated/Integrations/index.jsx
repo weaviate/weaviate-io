@@ -15,10 +15,10 @@ export default function Integrations() {
             <div className={styles.imageGrid3}> </div>
           </div>
           <div className={styles.right}>
-            <h3>
+            <h2>
               Our team of experts will manage everything for you in a dedicated
               instance in Weaviate Cloud.
-            </h3>
+            </h2>
             <p>
               We help you run large-scale production workloads, without the
               complexities of self-management.

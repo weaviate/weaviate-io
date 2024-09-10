@@ -258,6 +258,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Cohere [Chat API documentation](https://docs.cohere.com/reference/chat)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

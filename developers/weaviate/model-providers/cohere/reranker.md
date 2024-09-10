@@ -198,6 +198,8 @@ Once the integrations are configured at the collection, the data management and 
 
 - Cohere [Rerank API documentation](https://docs.cohere.com/reference/rerank)
 
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
