@@ -81,7 +81,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-To select the model, specify the Azure resource name. Configure the generative model like this:
+Configure Weaviate to use an OpenAI Azure generative model.
+
+To select the model, specify the Azure resource name.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

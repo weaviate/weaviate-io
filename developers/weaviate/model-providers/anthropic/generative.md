@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure the Anthropic generative model like this:
+Configure Weaviate to use the Anthropic generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

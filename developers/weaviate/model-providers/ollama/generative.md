@@ -82,7 +82,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-Configure the generative model like this:
+Configure Weaviate to use an Ollama generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
