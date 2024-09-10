@@ -80,7 +80,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use Ollama:
+Set the vectorizer to configure Weaviate to use an Ollama embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

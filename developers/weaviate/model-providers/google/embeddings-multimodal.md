@@ -114,7 +114,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Google AI embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a Google AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -140,6 +140,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. Currently, `multimodalembedding@001` is the only available model.
 
 <!-- The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified. -->
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 

@@ -159,7 +159,7 @@ Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 </Tabs>
 
 :::note Chose a container image to select a model
-To chose an model, select the [container image](#configure-the-integration) that hosts it.
+To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
 
 ## Data import
