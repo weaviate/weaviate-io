@@ -109,7 +109,7 @@ import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/a
 
 <APIEndpoint/>
 
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/model-providers/more-info-generative.mdx';
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
 
 <ConfigAfterGen/>
 

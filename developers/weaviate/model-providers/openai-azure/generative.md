@@ -81,9 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OpenAI generative AI model as follows:
-
-Select the model to be used by specifying the Azure resource name.
+To select the model, specify the Azure resource name. Configure the generative model like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -105,6 +103,10 @@ Select the model to be used by specifying the Azure resource name.
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 

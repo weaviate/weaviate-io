@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Mistral generative AI model as follows:
+Configure the Mistral generative model like this:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,6 +103,10 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ### Select a model
 
