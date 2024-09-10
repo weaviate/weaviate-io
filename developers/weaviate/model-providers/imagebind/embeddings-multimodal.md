@@ -157,6 +157,8 @@ Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
 
 There is only one ImageBind model available.
 
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.

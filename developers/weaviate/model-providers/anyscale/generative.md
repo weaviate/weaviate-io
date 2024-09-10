@@ -104,7 +104,9 @@ Configure Weaviate to use the Anyscale generative model:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ### Select a model
 

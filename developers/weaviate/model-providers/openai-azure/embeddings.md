@@ -83,7 +83,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 Set the vectorizer to configure Weaviate to use an Azure OpenAI embedding model:
 
-Specify the Azure resource name to select the model.
+To select the model, specify the Azure resource name.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

@@ -162,6 +162,8 @@ Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
 
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
