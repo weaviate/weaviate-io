@@ -71,7 +71,7 @@ If you prefer to use a different Weaviate instance, see [Can I use a different d
 
 ## Step 2: Install a client library
 
-Install the Weaviate [client library](../client-libraries/index.md)) for your preferred programming language.
+Install the Weaviate [client library](../client-libraries/index.md) for your preferred programming language.
 
 To install the library, run the installation code for your language:
 
@@ -257,12 +257,12 @@ Generative search sends retrieved data from Weaviate to a large language model, 
 ## Recap
 
 Well done! You have:
-- Created your own cloud-based vector database with Weaviate,
-- Populated it with data objects using an inference API,
+- Created your own cloud-based vector database with Weaviate
+- Populated it with data objects using an inference API
 - Performed searches, including:
-    - Semantic search,
-    - Semantic search with a filter and
-    - Generative search.
+    - Semantic search
+    - Semantic search with a filter
+    - Generative search
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
 
@@ -270,9 +270,9 @@ Where next is up to you. We include a few links below - or you can check out the
 
 ## Next
 
-You can do much more with Weaviate. We suggest trying:
+You can do much more with Weaviate. We suggest trying one of these:
 
-- Examples from our [search how-to](../search/index.md) guides for [keyword](../search/bm25.md), [similarity](../search/similarity.md), [hybrid](../search/hybrid.md), [generative](../search/generative.md) searches and [filters](../search/filters.md) or
+- Examples from our [search how-to](../search/index.md) guides for [keyword](../search/bm25.md), [similarity](../search/similarity.md), [hybrid](../search/hybrid.md), [generative](../search/generative.md), and [filtered](../search/filters.md) search.
 - Learning [how to manage data](../manage-data/index.md), like [reading](../manage-data/read.mdx), [batch importing](../manage-data/import.mdx), [updating](../manage-data/update.mdx), [deleting](../manage-data/delete.mdx) objects or [bulk exporting](../manage-data/read-all-objects.mdx) data.
 
 For more holistic learning, try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx). We have built free courses for you to learn about Weaviate and the world of vector search.

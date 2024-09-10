@@ -209,6 +209,8 @@ See the [Ollama documentation](https://ollama.com/library) for a list of availab
 
 Download the desired model with `ollama pull <model-name>`.
 
+If no model is specified, the default model (`llama3`) is used.
+
 ## Further resources
 
 ### Other integrations

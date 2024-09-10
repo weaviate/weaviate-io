@@ -14,9 +14,15 @@ The TypeScript client is version `v||site.typescript_client_version||`. Use the 
 
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
+
+
 <TSClientIntro />
 
 If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers/weaviate/client-libraries/typescript/v2_v3_migration) for additional details.
+
+:::tip Jump straight to code?
+If you want to dive straight into demo applications and code examples that use the client, please take a look at the **[example code](./typescript-v3.mdx#example-code)** section of this page.
+:::
 
 ## Client configuration
 
@@ -73,7 +79,8 @@ Edit your project's configuration files to make these changes:
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-  }
+  },
+  "include": ["src/index.ts"] // this compiles only src/.index.ts, to compile all .ts files, use ["*.ts"]
 }
 ```
 
@@ -284,18 +291,24 @@ The v3 client also adds internal features that make JavaScript development more 
 
 ## Example code
 
-Here are some resources to help you get started using the client.
+It is recommended to take a look at our [Typescript quick start](https://github.com/weaviate-tutorials/quickstart-typescript) to get started with using the client. We have a more in-depth course; [TS_101: Working with text data](../../../academy/js/starter_text_data) in Weaviate on our academy that uses the client. In addition, here are some resources to help you get started using the client.
 
 ### Recipes
 
-The [recipes repository](https://github.com/weaviate/recipes-ts) on GitHub has sample code for common use cases.
+The [recipes repository](https://github.com/weaviate/recipes-ts) (a W.I.P) on GitHub has sample code for common use cases.
+
 
 ### Demo applications
 
 There are demo applications written in TypeScript and JavaScript here:
 
-- [QuoteFinder](https://github.com/weaviate/quote-finder/tree/main)
-- [NuxtVectorSearch](https://github.com/malgamves/nuxt-typescript-vector-search)
+- [QuoteFinder](https://github.com/weaviate/quote-finder/tree/main): A hybrid, and vector search application to search through famous quotes built with React (Next.js), OpenAI and Weaviate.
+- [Nuxt Vector Search](https://github.com/weaviate-tutorials/nuxt-vector-search): A vector search and RAG application to search through Wikipedia pages with Vue (Nuxt.js), OpenAI and Weaviate.
+- [Next Vector Search](https://github.com/weaviate-tutorials/next-vector-search): A vector search and RAG application to search through Wikipedia pages with React (Next.js), OpenAI and Weaviate.
+- [Next Multimodal Search](https://github.com/weaviate-tutorials/next-multimodal-search-demo): A multimodal search application to search through images with React (Next.js), Google Vertex AI and Weaviate.
+- [Nuxt Multimodal Search](https://github.com/weaviate-tutorials/nuxt-multimodal-search): A multimodal search application to search through images with Vue (Nuxt.js), Google Vertex AI and Weaviate.
+- [FlickPicker](https://github.com/weaviate-tutorials/flick-picker):  A multimodal search application with generative search (RAG) functionality to search through images with Vue (Nuxt.js), Google Vertex AI and Weaviate.
+- [Nuxt eCommerce RAG](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag): An eCommerce site with vector search and RAG to search through outdoor product listing and help you plan hikes built with Vue (Nuxt.js), OpenAI and Weaviate.
 
 ## Client releases
 

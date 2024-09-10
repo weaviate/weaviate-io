@@ -45,15 +45,12 @@ If you're missing your favorite distance type and would like to contribute it to
 
 On a typical Weaviate use case the largest portion of CPU time is spent calculating vector distances. Even with an approximate nearest neighbor index - which leads to far fewer calculations - the efficiency of distance calculations has a major impact on [overall performance](/developers/weaviate/benchmarks/ann.md).
 
-You can use the following overview to find the best possible combination of distance metric and CPU architecture / instruction set.
+Weaviate uses SIMD (Single Instruction, Multiple Data) instructions for the following distance metrics and architectures. The available optimizations are resolved in the shown order (e.g. SVE -> Neon).
 
-| Distance | `linux/amd64 AVX2` | `darwin/amd64 AVX2` | `linux/amd64 AVX512` | `linux/arm64` | `darwin/arm64` |
-| --- | --- | --- | --- | --- | --- |
-| `cosine` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
-| `dot` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
-| `l2-squared` | optimized | optimized | optimized<br/><small>From `v1.24.2`</small> | optimized<br/><small>From `v1.21`</small> | optimized<br/><small>From `v1.21`</small> |
-| `hamming` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
-| `manhattan` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
+| Distance | `arm64` | `amd64` |
+| --- | --- | --- |
+| `cosine`, `dot`, `l2-squared` | SVE or Neon | Sapphire Rapids with AVX512, or Any with AVX2 |
+| `hamming`, `manhattan` | No SIMD | No SIMD |
 
 If you like dealing with Assembly programming, SIMD, and vector instruction sets we would love to receive your contribution for one of the combinations that have not yet received an SIMD-specific optimization.
 
