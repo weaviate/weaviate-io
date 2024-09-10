@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Anyscale generative AI model as follows:
+Configure Weaviate to use the Anyscale generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
