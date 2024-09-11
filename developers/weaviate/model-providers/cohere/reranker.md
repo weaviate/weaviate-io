@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 
 # Cohere Reranker Models with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -16,15 +16,15 @@ You can follow along the demo on the [Weaviate SPCS Repo](https://github.com/Sno
 
 As described in my colleague Connor Shorten’s [blog post](/blog/generative-feedback-loops-with-llms), a Generative Feedback Loop is the idea of using a Large Language Model (LLM) to generate data, then using that data to drive a semantic search. This is an incredibly powerful use case that can enable a whole new kind of search experience. By providing data to an LLM, you have an opportunity to enrich, enhance or even summarize it which can enable new opportunities to search through your data and provide better search results.
 
-In a recent [blog post](https://medium.com/@iamleonie/recreating-amazons-new-generative-ai-feature-product-review-summaries-50640e40872a) from another colleague, Leonie Monigatti shows an example of doing this by summarizing user reviews for products, then using the summaries as a way to give users the highlights from a lot of review information. Amazon has recently started doing this for certain products, which helps users reduce time spent reading several reviews before making a decision.  
+In a recent [blog post](https://medium.com/@iamleonie/recreating-amazons-new-generative-ai-feature-product-review-summaries-50640e40872a) from another colleague, Leonie Monigatti shows an example of doing this by summarizing user reviews for products, then using the summaries as a way to give users the highlights from a lot of review information. Amazon has recently started doing this for certain products, which helps users reduce time spent reading several reviews before making a decision.
 
-In this blog, we are going to take Leonie’s example a step further and use the reviews to also generate a product name, description, and features. Then, we are going to load these new products and information into Weaviate to drive three types of searches: 
+In this blog, we are going to take Leonie’s example a step further and use the reviews to also generate a product name, description, and features. Then, we are going to load these new products and information into Weaviate to drive three types of searches:
 
 * **Keyword** search on product metadata (features)
-* **Semantic** search on product descriptions 
+* **Semantic** search on product descriptions
 * **Hybrid** search based on the product experience
 
-This allows users to look for products that **feel** a certain way.  
+This allows users to look for products that **feel** a certain way.
 
 For example, let’s say a user is trying to find an “easy to learn instrument.”
 
@@ -35,14 +35,14 @@ Once this generated data is loaded into Weaviate, we can support this type of se
 ## The Challenge
 As I started to create this demo, Weaviate’s CEO Bob van Luijt approached me with additional criteria:
 * Data must start in Snowflake
-* No data leaves Snowflake 
+* No data leaves Snowflake
 * Use Mistral as the LLM (Large Language Model) to generate the data
 
 Challenge accepted!
 
-This type of implementation can be achieved using open-source software like [Weaviate](https://weaviate.io/), [Ollama](https://ollama.ai/), and [Mistral](https://mistral.ai/).  Ollama is an open-source LLM manager that allows you to easily [run LLM models](https://ollama.ai/library) on a local server. I will use this and the [Mistral 0.2](https://ollama.ai/library/mistral) model running on Ollama to generate the product data. 
+This type of implementation can be achieved using open-source software like [Weaviate](https://weaviate.io/), [Ollama](https://ollama.ai/), and [Mistral](https://mistral.ai/).  Ollama is an open-source LLM manager that allows you to easily [run LLM models](https://ollama.ai/library) on a local server. I will use this and the [Mistral 0.2](https://ollama.ai/library/mistral) model running on Ollama to generate the product data.
 
-Weaviate is an AI-native [open-source vector database](https://weaviate.io/blog/what-is-a-vector-database) that excels at searching through data semantically and also has the hybrid search capabilities I need for this use case. Weaviate is also where I work as a Solutions Engineer! 
+Weaviate is an AI-native [open-source vector database](https://weaviate.io/blog/what-is-a-vector-database) that excels at searching through data semantically and also has the hybrid search capabilities I need for this use case. Weaviate is also where I work as a Solutions Engineer!
 
 ![Snowpark Container Services](img/SCS.png)
 
@@ -70,9 +70,9 @@ This data only includes reviews and has no product information except the ASIN, 
 
 ![data](img/data.png)
 
-Now that my data is available in Snowflake I need to start creating Docker images locally that I can upload to SPCS. In the repository for this blog, I have included the commands you will need to create the docker images for Weaviate, a text2vec vectorizer module, Jupyter Notebooks, and Ollama.  
+Now that my data is available in Snowflake I need to start creating Docker images locally that I can upload to SPCS. In the repository for this blog, I have included the commands you will need to create the docker images for Weaviate, a text2vec vectorizer module, Jupyter Notebooks, and Ollama.
 
-I am using the [text2vec](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally. 
+I am using the [text2vec-transformers](/developers/weaviate/model-providers/transformers/embeddings) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally.
 
 The goal is to send data from Snowflake, to Mistral, back to Snowflake, then to Weaviate.  Weaviate will automatically vectorize the data using the text2vec vectorizer, then we are ready to start searching!
 
@@ -92,7 +92,7 @@ This Dockerfile will not only install and run Ollama, but will also download and
 
 Once I had the Ollama image, I created images for Jupyter, Weaviate, and the text2vec module.
 
-I tagged the images, then uploaded them to the image repository in SPCS. 
+I tagged the images, then uploaded them to the image repository in SPCS.
 
 :::caution
 Remember to login to Docker in SPCS before attempting to push it
@@ -129,7 +129,7 @@ CREATE COMPUTE POOL OLLAMA_POOL
 ```
 
 #### GPUs
-In this example, I am using a Medium NVIDIA GPU class instance for the Ollama compute pool, a small GPU instance for the vectorizer, and two small CPU instances for Weaviate and Jupyter to run on.  
+In this example, I am using a Medium NVIDIA GPU class instance for the Ollama compute pool, a small GPU instance for the vectorizer, and two small CPU instances for Weaviate and Jupyter to run on.
 
 Ollama has the flexibility to be able to handle both CPU and GPU instances, but GPUs are best for an LLM or vectorizer. For a list of available instance types you can spin up in SPCS, check out [this page](https://docs.snowflake.com/en/sql-reference/sql/create-compute-pool).
 
@@ -200,7 +200,7 @@ Next, I needed to access the Jupyter Notebooks endpoint.  You can find your endp
 SHOW ENDPOINTS IN SERVICE JUPYTER;
 ```
 
-This showed me the endpoint for Jupyter that I can use to access it.  I grabbed the URL for the Jupyter endpoint and pasted it into my browser. 
+This showed me the endpoint for Jupyter that I can use to access it.  I grabbed the URL for the Jupyter endpoint and pasted it into my browser.
 
 Using the Snowflake Login I set up earlier, I logged into the Jupyter Notebooks interface.  It should load a file browser like in the screenshot below:
 
@@ -212,7 +212,7 @@ The first few steps installs the libraries needed and creates the connection int
 
 ![Steps](img/steps.png)
 
-Then I loaded all the review data by using a distinct list of 50 ASINs (Note: you can adjust this higher for more data).  For each ASIN I created a prompt using the latest  20 reviews with SQL. 
+Then I loaded all the review data by using a distinct list of 50 ASINs (Note: you can adjust this higher for more data).  For each ASIN I created a prompt using the latest  20 reviews with SQL.
 
 ![prompt](img/prompt.png)
 
@@ -224,7 +224,7 @@ You should see the message `Done!` if everything went well. Sometimes the LLM pr
 
 ![Review Summary](img/review-summary.png)
 
-Back in Snowflake I checked the table to make sure all the data made it over.  
+Back in Snowflake I checked the table to make sure all the data made it over.
 
 ![Snowflake Table](img/snowflake-table.png)
 
@@ -246,7 +246,7 @@ Run through the notebook and it will copy the newly generated data over to Weavi
 ### Step 6: Search
 
 Finally, I ran through some queries on the data to test out Weaviate’s semantic and hybrid search capabilities. With this data, I can now search for experiences, feelings, keywords, or product names of the music-related products.
-  
+
 ![Keyword Search](img/keyword.png)
 ![Hybrid Search](img/hybrid.png)
 
@@ -268,7 +268,7 @@ This took me about 2-3 hours to complete end-to-end after I had all the steps an
 The costs to spin up my own private LLM, vectorizer endpoint, and Weaviate within SPCS was pretty surprisingly affordable considering two of these services are running on GPUs. For the entire day of testing and troubleshooting, I used about $55 in credits, so I would expect someone could run through these steps for the first time for less than $30 as long as you turned off the services when you were finished. To learn more about the SPCS instance families, check out their documentation [here](https://docs.snowflake.com/en/sql-reference/sql/create-compute-pool).
 
 ## Summary
-By utilizing open-source software, such as [**Weaviate**](https://weaviate.io/) and [**Ollama**](https://ollama.ai/) within SPCS, I was able to generate data I did not previously have (Products), and using that data, I created a unique search experience for users.  Taking advantage of Hybrid Search capabilities of Weaviate, users can now search for metadata about products, or search for an experience they are looking for; Creating a highly optimized semantic search experience.  This is incredibly powerful for any ecomm site with a large product catalog that wants to create a more natural search experience.  
+By utilizing open-source software, such as [**Weaviate**](https://weaviate.io/) and [**Ollama**](https://ollama.ai/) within SPCS, I was able to generate data I did not previously have (Products), and using that data, I created a unique search experience for users.  Taking advantage of Hybrid Search capabilities of Weaviate, users can now search for metadata about products, or search for an experience they are looking for; Creating a highly optimized semantic search experience.  This is incredibly powerful for any ecomm site with a large product catalog that wants to create a more natural search experience.
 
 Using these steps, you can do all of this while keeping your **private or sensitive data right where it is**, and never have it leave the [Snowflake](https://www.snowflake.com/) network.
 

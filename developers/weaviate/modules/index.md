@@ -5,13 +5,11 @@ image: og/docs/modules/_title.jpg
 # tags: ['modules']
 ---
 
-<!-- :::caution Migrated From:
-- `Modules`
-- High-level configuration options are now in `Configuration/Modules`
-- Some theoretical elements are now in `Concepts:Essential/Modules`
-::: -->
-
 This section describes Weaviate's individual modules, including their capabilities and how to use them.
+
+:::tip Looking for vectorizer, generative AI, or reranker integration docs?
+They have moved to our [model provider integrations](../model-providers/index.md) section, for a more focussed, user-centric look at these integrations.
+:::
 
 - The Vectorizer (also called Retrievers sometimes) modules such as `text2vec-*` or `img2vec-*` convert data objects and query inputs to vectors.
 - The (Re)Ranker modules such as `rerank-*` apply a(n) (additional) ranking process to the search results.

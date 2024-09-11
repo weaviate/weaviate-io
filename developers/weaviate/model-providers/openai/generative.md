@@ -7,9 +7,9 @@ image: og/docs/integrations/provider_integrations_openai.jpg
 
 # OpenAI Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+:::info Looking for Azure OpenAI integration docs?
+For Azure OpenAI integration docs, see [this page instead](../openai-azure/generative.md).
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

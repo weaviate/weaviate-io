@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_friendliai.jpg
 
 # FriendliAI Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 :::info Added in `v1.26.3`
 :::
