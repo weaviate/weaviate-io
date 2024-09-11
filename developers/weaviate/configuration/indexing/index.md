@@ -1,7 +1,7 @@
 ---
 title: Indexing
 sidebar_position: 0
-image: og/docs/configuration.jpg
+image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
 
