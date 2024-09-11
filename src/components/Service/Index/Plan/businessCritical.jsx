@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function PricingBusinessCritical() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="services/byoc">
+      <Link className={styles.box} to="deployment/byoc">
         <div className={styles.title}>
           <h3>Bring Your Own Cloud</h3>
         </div>
@@ -41,7 +41,7 @@ export default function PricingBusinessCritical() {
         <hr></hr>
         <div className={styles.benefitsBox}>
           <p>Running workflows within your Virtual Private Cloud (VPC).</p>
-          <Link className={styles.boxLink} to="services/byoc">
+          <Link className={styles.boxLink} to="deployment/byoc">
             Learn More
           </Link>
         </div>
