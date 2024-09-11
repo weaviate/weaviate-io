@@ -463,6 +463,42 @@ const siteRedirects = {
             to: 'developers/weaviate/model-providers/voyageai/reranker',
             from: 'developers/weaviate/modules/retriever-vectorizer-modules/reranker-voyageai',
         },
+        {
+            to: 'developers/weaviate/model-providers/transformers/reranker',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/reranker-transformers',
+        },
+        // Generative modules
+        {
+            to: 'developers/weaviate/model-providers/anyscale/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-anyscale',
+        },
+        {
+            to: 'developers/weaviate/model-providers/aws/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-aws',
+        },
+        {
+            to: 'developers/weaviate/model-providers/cohere/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-cohere',
+        },
+        {
+            to: 'developers/weaviate/model-providers/mistral/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-mistral',
+        },
+        {
+            to: 'developers/weaviate/model-providers/ollama/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-ollama',
+        },
+        {
+            to: 'developers/weaviate/model-providers/openai/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-openai',
+        },
+        {
+            to: 'developers/weaviate/model-providers/google/generative',
+            from: 'developers/weaviate/modules/reader-generator-modules/generative-palm',
+        },
+        // =============================================================================================
+        // END - 202409 Remove old module docs & redirect to model provider integration
+        // =============================================================================================
 
 
         // moved Quickstart installation to Quickstart
