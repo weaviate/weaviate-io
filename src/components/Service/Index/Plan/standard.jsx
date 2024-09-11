@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function PricingStandard() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="services/serverless">
+      <Link className={styles.box} to="deployment/serverless">
         <div className={styles.title}>
           <h3>Serverless Cloud</h3>
         </div>
