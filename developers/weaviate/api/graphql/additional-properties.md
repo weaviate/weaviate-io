@@ -79,7 +79,7 @@ Use the `vector` field to fetch the vector representation of the data object
 
 ### generate
 
-:::info Requires a [`generative-xxx` module](../../modules/reader-generator-modules/index.md)
+:::info Requires a [generative model integration](../../model-providers/index.md)
 :::
 
 The `generate` field can be used to perform a [generative search](../../search/generative.md).
@@ -91,7 +91,7 @@ For examples, see the [related how-to page](../../search/generative.md).
 
 ### rerank
 
-:::info Requires a [`reranker-xxx` module](../../modules/retriever-vectorizer-modules/index.md)
+:::info Requires a [reranker integration](../../model-providers/index.md)
 :::
 
 The `rerank` field can be used to [reorder the search results](../../search/rerank.md). It accepts two parameters:

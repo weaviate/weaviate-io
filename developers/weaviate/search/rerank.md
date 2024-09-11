@@ -27,10 +27,7 @@ Reranking modules reorder the search result set according to a different set of 
 
 **Configure reranking**
 
-To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. For details, see the reranker's reference page:
-
-- [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+To rerank search results, enable a reranker [model integration](../model-providers/index.md) for your collection.
 
 A collection can have multiple rerankers. If multiple `reranker` modules are enabled, specify the module you want to use in the `moduleConfig` section of your schema.
 
@@ -226,8 +223,7 @@ The response should look like this:
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [API References: GraphQL - Sorting](/developers/weaviate/api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
-- [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+- [Model providers integrations](../model-providers/index.md)
 
 ## Questions and feedback
 

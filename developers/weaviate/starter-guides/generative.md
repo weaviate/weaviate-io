@@ -432,7 +432,7 @@ And the `generative-openai` module may be configured as follows:
     }
 ```
 
-See the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
+See the [documentation](../model-providers/index.md) for various model provider integrations.
 
 </details>
 

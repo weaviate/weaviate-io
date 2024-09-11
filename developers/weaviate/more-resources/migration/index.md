@@ -18,7 +18,7 @@ Since filterable & searchable are separate indexes, filterable does not exist in
 
 * *New Features*
   * ### First Multi-modal module: CLIP Module (#1756, #1766)
-    This release [introduces the `multi2vec-clip` module](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
+    This release [introduces the `multi2vec-clip` integration](/developers/weaviate/model-providers/transformers/embeddings-multimodal.md), a module that allows for multi-modal vectorization within a single vector space. A class can have `image` or `text` fields or both. Similarly, the module provides both a `nearText` and a `nearImage` search and allows for various search combinations, such as text-search on image-only content and various other combinations.
 
     #### How to use
 
