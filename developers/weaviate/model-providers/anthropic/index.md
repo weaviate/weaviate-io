@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_anthropic.jpg
 # tags: ['model providers', 'anthropic']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 Anthropic offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Anthropic's APIs, allowing users to leverage Anthropic's models directly within the Weaviate database.
 

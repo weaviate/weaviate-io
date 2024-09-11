@@ -13,6 +13,21 @@ client = weaviate.connect_to_local(
     }
 )
 
+# START RerankerTransformersBasic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.transformers()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END RerankerTransformersBasic
+
+# Clean up
+client.collections.delete("DemoCollection")
+
 # START RerankerCohereBasic
 from weaviate.classes.config import Configure
 

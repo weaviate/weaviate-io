@@ -8,7 +8,7 @@ image: og/docs/tutorials.jpg
 Weaviate can be configured and deployed in many different ways. Important configuration decisions include:
 
 - The [deployment setup](../installation/index.md)
-- The [vectorizer modules](../modules/retriever-vectorizer-modules/index.md) to enable
+- The [model integration](../model-providers/index.md) to enable
 
 This page helps you to find the right combination for your project.
 
@@ -95,23 +95,9 @@ If you need additional configuration control, but you don't want to manage your 
 
 Weaviate makes various vectorizer & reranker modules available for different media types, also called modalities.
 
-We recommend starting from the following table of vectorizers and their availability in different Weaviate setups.
+Some model types such as Ollama or Transformers models are locally hosted, while others such as Cohere or OpenAI are API-based. This affects their availability in different Weaviate setups.
 
-| Module type | Modality | Module | Embedded Weaviate  | Weaviate Cloud | Docker-Compose | Kubernetes | Hybrid SaaS |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Vectorizer | **Text** | [`text2vec-cohere`](../modules/retriever-vectorizer-modules/text2vec-cohere.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-huggingface`](../modules/retriever-vectorizer-modules/text2vec-huggingface.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-openai`](../modules/retriever-vectorizer-modules/text2vec-openai.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-palm`](../modules/retriever-vectorizer-modules/text2vec-palm.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-transformers`](../modules/retriever-vectorizer-modules/text2vec-transformers.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-gpt4all`](../modules/retriever-vectorizer-modules/text2vec-gpt4all.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text** | [`text2vec-contextionary`](../modules/retriever-vectorizer-modules/text2vec-contextionary.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Text & Image** | [`multi2vec-clip`](../modules/retriever-vectorizer-modules/multi2vec-clip.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **7 ([List](../modules/retriever-vectorizer-modules/multi2vec-bind.md#class-level))** | [`multi2vec-bind`](../modules/retriever-vectorizer-modules/multi2vec-bind.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Image** | [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Vectorizer | **Vectors** | [`ref2vec-centroid`](../modules/retriever-vectorizer-modules/ref2vec-centroid.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Reranker | **Text** | [`reranker-cohere`](../modules/retriever-vectorizer-modules/reranker-cohere.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Reranker | **Text** | [`reranker-transformers`](../modules/retriever-vectorizer-modules/reranker-transformers.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+We recommend reviewing from the available [model integrations](../model-providers/index.md) and their availability in different Weaviate setups. Then, choose the one that best fits your needs.
 
 
 ## Questions and feedback

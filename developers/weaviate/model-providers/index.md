@@ -5,10 +5,6 @@ image: og/docs/model-provider-integrations.jpg
 # tags: ['getting started', 'model providers', 'integrations']
 ---
 
-import BetaPageNote from './_includes/beta_pages.md';
-
-<BetaPageNote />
-
 Weaviate integrates with a variety of [self-hosted](#self-hosted) and [API-based](#api-based) models from a range of providers.
 
 This enables an enhanced developed experience, such as the ability to:

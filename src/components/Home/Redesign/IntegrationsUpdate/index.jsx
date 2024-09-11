@@ -26,12 +26,12 @@ export default function HomepageIntegrations() {
 
         <div className={styles.integrationsLogos} id={'interLogos'}>
           <div className={styles.inside}>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoAI} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
+            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoH} />
               </div>
@@ -42,7 +42,7 @@ export default function HomepageIntegrations() {
               </div>
             </Link>
 
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
+            <Link to="/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
               </div>
@@ -52,7 +52,7 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoW} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <Link to="/developers/weaviate/model-providers/google/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoG} />
               </div>
@@ -75,12 +75,12 @@ export default function HomepageIntegrations() {
           </div>
 
           <div className={styles.inside}>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoAI} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
+            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoH} />
               </div>
@@ -95,7 +95,7 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoLa} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <Link to="/developers/weaviate/model-providers/google/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoG} />
               </div>
@@ -110,7 +110,7 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoD} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
+            <Link to="/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
               </div>
@@ -132,7 +132,7 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoL} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
+            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoH} />
               </div>
@@ -147,17 +147,17 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoLa} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <Link to="/developers/weaviate/model-providers/google/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoG} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
+            <Link to="/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoAI} />
               </div>
@@ -191,27 +191,27 @@ export default function HomepageIntegrations() {
               </div>
             </Link>
 
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
+            <Link to="https://weaviate.io/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoH} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <Link to="/developers/weaviate/model-providers/google/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoG} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoAI} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
+            <Link to="/developers/weaviate/model-providers/cohere/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
               </div>
             </Link>
-            <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <Link to="/developers/weaviate/model-providers/openai/embeddings">
               <div className={styles.logoBg}>
                 <span className={styles.logoAI} />
               </div>

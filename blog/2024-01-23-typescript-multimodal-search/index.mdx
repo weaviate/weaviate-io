@@ -95,7 +95,7 @@ services:
 ```
 
 
-Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind) module, the tool that enables us to store vector embeddings of video, text, audio and image data.
+Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](/developers/weaviate/model-providers/imagebind/embeddings-multimodal) module, the tool that enables us to store vector embeddings of video, text, audio and image data.
 
 :::tip Memory requirements
 Make sure that you have enough memory allocated to Docker. The `multi2vec-bind` module loads a very large model, and you may need to allocate more memory (e.g. 12GB or higher) to Docker to avoid out-of-memory errors.
