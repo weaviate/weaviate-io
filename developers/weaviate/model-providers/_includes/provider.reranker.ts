@@ -12,6 +12,15 @@ const client = await weaviate.connectToLocal({
   },
 });
 
+// START RerankerTransformersBasic
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.transformers(),
+  // highlight-end
+});
+// END RerankerTransformersBasic
+
 // START RerankerCohereBasic
 await client.collections.create({
   name: 'DemoCollection',
