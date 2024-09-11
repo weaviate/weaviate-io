@@ -360,7 +360,7 @@ const siteRedirects = {
         },
         {
             // to: '/blog/generative-search',
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-openai',
+            to: '/developers/weaviate/model-providers/openai/generative',
             from: '/blog/chatgpt-for-generative-search',
         },
 
@@ -388,11 +388,11 @@ const siteRedirects = {
         // },
         // REMOVE WHEN MODULE RENAMING IMPLEMENTED: Temp redirect.
         {
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+            to: '/developers/weaviate/model-providers/google/generative',
             from: '/developers/weaviate/modules/reader-generator-modules/generative-google',
         },
         {
-            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+            to: '/developers/weaviate/model-providers/google/embeddings',
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
         },
 
