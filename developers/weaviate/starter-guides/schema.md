@@ -32,7 +32,7 @@ This example will create a simple collection called **Question**, with three pro
 
 import CodeCreateSchema from '/_includes/code/tutorial.schema.create.mdx';
 
-<CreateSchema />
+<CodeCreateSchema />
 
 The returned configuration should look something like this:
 
