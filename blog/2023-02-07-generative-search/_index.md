@@ -49,8 +49,8 @@ You can create a free 14-day sandbox on [WCD](https://console.weaviate.cloud) an
 
 :::note Available modules out of the box
 The following modules are enabled by default:
-* [text2vec-openai](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai)
-* [text2vec-cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere)
+* [text2vec-openai](/developers/weaviate/model-providers/openai/embeddings)
+* [text2vec-cohere](/developers/weaviate/model-providers/cohere/embeddings)
 * [text2vec-huggingface](/developers/weaviate/model-providers/cohere/embeddings)
 * [generative-openai](/developers/weaviate/model-providers/openai/generative)
 :::

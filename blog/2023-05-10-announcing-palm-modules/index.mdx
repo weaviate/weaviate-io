@@ -54,11 +54,11 @@ In other words, you can not only use PaLM off-the-shelf, but also customize the 
 
 ![You can use Weaviate with the Vertex PALM API](./img/highlight.png)
 
-And we are excited to tell you about the ['text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) and ['generative-palm'](/developers/weaviate/model-providers/google/generative) modules. These modules will help you to bring the power of the newest LLM on the block to the, *ahem*, `PaLM` of your hand - or at least, to your Weaviate instance.
+And we are excited to tell you about the ['text2vec-palm`](/developers/weaviate/model-providers/google/embeddings) and ['generative-palm'](/developers/weaviate/model-providers/google/generative) modules. These modules will help you to bring the power of the newest LLM on the block to the, *ahem*, `PaLM` of your hand - or at least, to your Weaviate instance.
 
 ### <i class="fa-solid fa-input-numeric"></i> Embeddings with `text2vec-palm`
 
-The [`text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) module can use a PaLM model to convert text to vector embeddings that represent their meaning.
+The [`text2vec-palm`](/developers/weaviate/model-providers/google/embeddings) module can use a PaLM model to convert text to vector embeddings that represent their meaning.
 
 So, you can use the `text2vec-palm` module to build a Weaviate database using PaLM-derived vectors for text objects, and perform lightning-fast searches.
 
@@ -86,7 +86,7 @@ The base PaLM model for generative search is `text-bison-001`, which has the fol
 
 You can read more about how to use these modules in our documentation! See the pages for:
 
-- [`text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm), and
+- [`text2vec-palm`](/developers/weaviate/model-providers/google/embeddings), and
 - [`generative-palm`](/developers/weaviate/model-providers/google/generative).
 
 import WhatNext from '/_includes/what-next.mdx'
