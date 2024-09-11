@@ -41,7 +41,7 @@ export default function PricingBusinessCritical() {
         <hr></hr>
         <div className={styles.benefitsBox}>
           <p>Running workflows within your Virtual Private Cloud (VPC).</p>
-          <Link className={styles.boxLink} to="services/byoc">
+          <Link className={styles.boxLink} to="deployment/byoc">
             Learn More
           </Link>
         </div>

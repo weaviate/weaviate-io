@@ -43,7 +43,7 @@ export default function PricingEnterprise() {
             Deploying large-scale production use cases without the complexities
             of self-management.
           </p>
-          <Link className={styles.boxLink} to="services/enterprise-cloud">
+          <Link className={styles.boxLink} to="deployment/enterprise-cloud">
             Learn More
           </Link>
         </div>

@@ -40,7 +40,7 @@ export default function PricingStandard() {
             Building and prototyping with seamless scaling and flexible
             pay-as-you-go pricing.
           </p>
-          <Link className={styles.boxLink} to="services/serverless">
+          <Link className={styles.boxLink} to="deployment/serverless">
             Learn More
           </Link>
         </div>
