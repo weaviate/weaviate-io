@@ -84,7 +84,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an OctoAI embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use an OctoAI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -106,6 +106,10 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
+
+<ConfigAfterEmb/>
 
 ### Select a model
 

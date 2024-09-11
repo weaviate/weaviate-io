@@ -79,9 +79,11 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Jina AI embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a Jina AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

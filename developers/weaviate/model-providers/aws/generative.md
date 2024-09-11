@@ -93,7 +93,7 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an AWS generative AI model as follows:
+Configure Weaviate to use an AWS generative model:
 
 ### Bedrock
 
@@ -144,6 +144,10 @@ For SageMaker, you must provide the endpoint address in the generative AI config
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 

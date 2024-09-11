@@ -1,0 +1,93 @@
+---
+title: Import data
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
+
+## <i class="fa-solid fa-code"></i> Code
+
+This example imports the movie data into our collection.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// BatchImportData"
+  endMarker="// END BatchImportData"
+  language="ts"
+/>
+
+The code:
+- Loads the source data & gets the collection
+- Loops through the data and adds objects to the batcher
+- Prints out any import errors
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+### <i class="fa-solid fa-chalkboard"></i> Preparation
+
+We use the requests library to load the data from the source, in this case a JSON file. 
+
+Then, we create a collection object (with `client.collections.get`) so we can interact with the collection.
+
+### <i class="fa-solid fa-chalkboard"></i> Iterating over data
+
+The `for` loop is used in conjunction with `Object.keys()` to iterate through the elements in our JSON file. While iterating we increment the counter variable that lets us bulk insert objects in batches.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// Iterate through data"
+  endMarker="// END Iterate through data"
+  language="ts"
+/>
+
+
+### <i class="fa-solid fa-chalkboard"></i> Add data to the Object
+
+#### Convert data types and build the Object
+
+The data is converted from a string to the correct data types for Weaviate. For example, the `release_date` is converted to a `Date` object, and the `genre_ids` are converted to a list of integers.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// Format genre_ids and release_date"
+  endMarker="// Insert"
+  language="ts"
+/>
+
+After converting data to the correct format, we build the object by its properties preparing it to be inserted into Weaviate. 
+
+#### Bulk insert data 
+
+Then we create on object that includes the uuid generated with `generateUuid5` from Weaviate and the object containing properties we previously define, we push this object to `itemsToInsert` for them to be bulk inserted with `insertMany()` once the batch is ready..
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// Insert"
+  endMarker="// END Insert"
+  language="ts"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Error handling
+
+If you have any errors in your bulk insertion, you want to know something went wrong. That way you can decide how to handle them, such as by raising an exception. In this example, we simply print out that there was an error with the import.
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// Handle Errors"
+  endMarker="// END Handle Errors"
+  language="ts"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Where do the vectors come from?
+
+When the batcher sends the queue to Weaviate, the objects are added to the collection. In our case, the movie collection.
+
+Recall that the collection has a vectorizer module, and we do not specify vectors here. So Weaviate uses the specified vectorizer to generate vector embeddings from the data.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
