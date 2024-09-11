@@ -8,22 +8,53 @@ image: og/docs/concepts.jpg
 
 This page describes how the nodes or clusters in Weaviate's replication design behave.
 
-In Weaviate, schema replication and data replication are separate. For the schema, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
+In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
 
-## Schema replication: Raft
+## Node Discovery
+
+By default, Weaviate nodes in a cluster use a gossip-like protocol through [Hashicorp's Memberlist](https://github.com/hashicorp/memberlist) to communicate node state and failure scenarios.
+
+Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery.
+
+### FQDN for node discovery
+
+:::info Added in `v1.25.15`
+:::
+
+There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../config-refs/env-vars.md#multi-node-instances) to enable fully qualified domain name (FQDN) based node discovery.
+
+If this feature is enabled, Weaviate uses the FQDN resolver to resolve the node name to the node IP address for metadata (e.g., Raft) communication.
+
+:::info FQDN: For metadata changes only
+This feature is only used for metadata changes which use Raft as the consensus mechanism. It does not affect data read/write operations.
+:::
+
+#### Examples of when to use FQDN for node discovery
+
+The use of FQDN can resolve a situation where if IP addresses are re-used across different clusters, the nodes in one cluster could mistakenly discover nodes in another cluster.
+
+It can also be useful when using services (for example, Kubernetes) where the IP of the services is different from the actual node IP, but it proxies the connection to the node.
+
+#### Environment variables for FQDN node discovery
+
+`RAFT_ENABLE_FQDN_RESOLVER` is a Boolean flag. This flag enables the FQDN resolver. If set to `true`, Weaviate uses the FQDN resolver to resolve the node name to the node IP address. If set to `false`, Weaviate uses the memberlist lookup to resolve the node name to the node IP address. The default value is `false`.
+
+`RAFT_FQDN_RESOLVER_TLD` is a string that is appended in the format `[node-id].[tld]` when resolving a node-id to an IP address, where `[tld]` is the top-level domain.
+
+To use this feature, set `RAFT_ENABLE_FQDN_RESOLVER` to `true`.
+
+## Metadata replication: Raft
 
 :::info Added in `v1.25`
 :::
 
-Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for schema replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft).
+Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for metadata replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft). Metadata in this context includes collection configuration and data schema.
 
-Raft ensures that schema changes are consistent across the cluster. A schema change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
+Raft ensures that metadata changes are consistent across the cluster. A metadata change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
 
-This architecture ensures that schema changes are consistent across the cluster, even in the event of (a minority of) node failures.
+This architecture ensures that metadata changes are consistent across the cluster, even in the event of (a minority of) node failures.
 
-As a result, a Weaviate cluster will include a leader node that is responsible for schema changes. The leader node is elected by the Raft algorithm and is responsible for coordinating schema changes.
-
-On the other hand - data replication in Weaviate is leaderless.
+As a result, a Weaviate cluster will include a leader node that is responsible for metadata changes. The leader node is elected by the Raft algorithm and is responsible for coordinating metadata changes.
 
 ## Data replication: Leaderless
 
