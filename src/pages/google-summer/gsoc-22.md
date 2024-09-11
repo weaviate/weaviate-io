@@ -83,7 +83,7 @@ We are happy to announce a great pool of mentors this year. Depending on the sub
 
 * [Developers · Weaviate Documentation](/developers/weaviate/)
 * [Modules · Weaviate Documentation](/developers/weaviate/modules/)
-* [CLIP · Weaviate Documentation](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip)
+* [CLIP · Weaviate Documentation](/developers/weaviate/model-providers/transformers/embeddings-multimodal)
 
 ---
 

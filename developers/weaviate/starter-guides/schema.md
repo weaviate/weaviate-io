@@ -197,7 +197,7 @@ Each collection can be configured with a vectorizer and a generative module. The
 
 These settings are currently immutable once the collection is created. Accordingly, you should choose the vectorizer and generative module carefully.
 
-If you are not sure where to start, modules that integrate with popular API-based model providers such as Cohere or OpenAI are good starting points. You can find a list of available [vectorizer modules here](../modules/retriever-vectorizer-modules/index.md) and [generative modules here](../modules/reader-generator-modules/index.md).
+If you are not sure where to start, modules that integrate with popular API-based model providers such as Cohere or OpenAI are good starting points. You can find a [list of available model integrations here](../model-providers/index.md).
 
 ### Multi-tenancy settings
 

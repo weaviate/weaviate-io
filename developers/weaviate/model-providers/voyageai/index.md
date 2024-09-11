@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 Voyage AI offers a wide range of models for natural language processing. Weaviate seamlessly integrates with Voyage AI's APIs, allowing users to leverage Voyage AI's models directly within the Weaviate database.
 

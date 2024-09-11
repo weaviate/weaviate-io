@@ -360,7 +360,7 @@ const siteRedirects = {
         },
         {
             // to: '/blog/generative-search',
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-openai',
+            to: '/developers/weaviate/model-providers/openai/generative',
             from: '/blog/chatgpt-for-generative-search',
         },
 
@@ -388,13 +388,117 @@ const siteRedirects = {
         // },
         // REMOVE WHEN MODULE RENAMING IMPLEMENTED: Temp redirect.
         {
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+            to: '/developers/weaviate/model-providers/google/generative',
             from: '/developers/weaviate/modules/reader-generator-modules/generative-google',
         },
         {
-            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+            to: '/developers/weaviate/model-providers/google/embeddings',
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
         },
+
+        // =============================================================================================
+        // 202409 Remove old module docs & redirect to model provider integration
+        // =============================================================================================
+        // API-based T2V modules
+        {
+            to: '/developers/weaviate/model-providers/aws/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-aws',
+        },
+        {
+            to: '/developers/weaviate/model-providers/cohere/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere',
+        },
+        {
+            to: '/developers/weaviate/model-providers/huggingface/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface',
+        },
+        {
+            to: '/developers/weaviate/model-providers/jinaai/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-jinaai',
+        },
+        {
+            to: '/developers/weaviate/model-providers/openai/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai',
+        },
+        {
+            to: '/developers/weaviate/model-providers/google/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+        },
+        {
+            to: '/developers/weaviate/model-providers/voyageai/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-voyageai',
+        },
+        // Local T2V modules
+        {
+            to: '/developers/weaviate/model-providers/gpt4all/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-gpt4all',
+        },
+        {
+            to: '/developers/weaviate/model-providers/ollama/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-ollama',
+        },
+        {
+            to: '/developers/weaviate/model-providers/transformers/embeddings',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers',
+        },
+        // Other vectorizer modules
+        {
+            to: '/developers/weaviate/model-providers/imagebind/embeddings-multimodal',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind',
+        },
+        {
+            to: '/developers/weaviate/model-providers/transformers/embeddings-multimodal',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip',
+        },
+        {
+            to: '/developers/weaviate/model-providers/google/embeddings-multimodal',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-palm',
+        },
+        // Reranker modules
+        {
+            to: '/developers/weaviate/model-providers/cohere/reranker',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/reranker-cohere',
+        },
+        {
+            to: '/developers/weaviate/model-providers/voyageai/reranker',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/reranker-voyageai',
+        },
+        {
+            to: '/developers/weaviate/model-providers/transformers/reranker',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/reranker-transformers',
+        },
+        // Generative modules
+        {
+            to: '/developers/weaviate/model-providers/anyscale/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-anyscale',
+        },
+        {
+            to: '/developers/weaviate/model-providers/aws/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-aws',
+        },
+        {
+            to: '/developers/weaviate/model-providers/cohere/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-cohere',
+        },
+        {
+            to: '/developers/weaviate/model-providers/mistral/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-mistral',
+        },
+        {
+            to: '/developers/weaviate/model-providers/ollama/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-ollama',
+        },
+        {
+            to: '/developers/weaviate/model-providers/openai/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-openai',
+        },
+        {
+            to: '/developers/weaviate/model-providers/google/generative',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+        },
+        // =============================================================================================
+        // END - 202409 Remove old module docs & redirect to model provider integration
+        // =============================================================================================
 
 
         // moved Quickstart installation to Quickstart

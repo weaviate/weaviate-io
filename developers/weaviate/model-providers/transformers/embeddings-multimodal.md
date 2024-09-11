@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 # Locally Hosted CLIP Embeddings + Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -335,6 +332,8 @@ Lists of pre-built Docker images for this integration are below.
 | ViT-B-16-laion2b_s34b_b88k | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-16-laion2b_s34b_b88k` | The base model uses a ViT-B/16 Transformer architecture as an image encoder trained with LAION-2B dataset using OpenCLIP. |
 | ViT-B-32-quickgelu-laion400m_e32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-32-quickgelu-laion400m_e32` | The base model uses a ViT-B/32 Transformer architecture as an image encoder trained with LAION-400M dataset using OpenCLIP. |
 | xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k | `cr.weaviate.io/semitechnologies/multi2vec-clip:xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k` | Uses ViT-B/32 xlm roberta base model trained with the LAION-5B dataset using OpenCLIP. |
+
+We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [multi2vec-clip](https://hub.docker.com/r/semitechnologies/multi2vec-clip/tags) container.
 
 ## Advanced configuration
 

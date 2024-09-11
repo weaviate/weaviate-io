@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 # Locally Hosted Transformers Text Embeddings + Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -408,6 +405,8 @@ They are indicated by the `-onnx` suffix in the image name.
 
 </TabItem>
 </Tabs>
+
+We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [transformers-inference](https://hub.docker.com/r/semitechnologies/transformers-inference/tags) container.
 
 ## Advanced configuration
 

@@ -10,7 +10,7 @@ image: og/docs/modules/custom-modules.jpg
 
 Besides using one of the out-of-the-box vectorization models, you can also attach your own machine learning model to Weaviate. This way, you can use Weaviate to scale your ML and NLP models, since Weaviate takes care of efficient data storage and retrieval. A custom vectorizer module is, for example, a model that you trained on your own training data, that is able to transform data (e.g. text or image data) to embeddings.
 
-If you have model that already fits with an existing model architecture (e.g. Transformers), you don't have to write any custom code and you can just run this Transformer model with the existing [`text2vec-transformer` module](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md).
+If you have model that already fits with an existing model architecture (e.g. Transformers), you don't have to write any custom code and you can just run this Transformer model with the existing [`text2vec-transformer` module](/developers/weaviate/model-providers/transformers/embeddings.md).
 
 This page contains information about how you can attach your own ML model to Weaviate. You will need to attach your ML model to Weaviate's Module API as a module. First, there is some information about how (vectorizer/embedding) modules in Weaviate work.
 
@@ -52,7 +52,7 @@ To use a custom ML model with Weaviate, you have two options: ([further explaine
 
 <!-- ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview") -->
 
-Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module, you set `ENABLE_MODULES=text2vec-transformers` in the Docker Compose file, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module:
+Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/model-providers/transformers/embeddings.md) module, you set `ENABLE_MODULES=text2vec-transformers` in the Docker Compose file, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/model-providers/transformers/embeddings.md) module:
 
 1. **Module code for Weaviate, written in Go:**
    * Tells the Weaviate GraphQL API that the module provides a specific `nearText` method.

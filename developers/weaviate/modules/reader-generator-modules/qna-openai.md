@@ -5,10 +5,10 @@ image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
 
-:::caution `generative-openai` recommended for new projects
-For new projects, we recommend using the [generative-openai](./generative-openai.md) module instead of `qna-openai`. This uses older models such as `gpt-3.5-turbo-instruct` which is older than model such as `gpt-4` used in `generative-openai`.
+:::caution OpenAI generative integration recommended for new projects
+Currently, `qna-openai` is not maintained and uses older models such as `gpt-3.5-turbo-instruct`. For new projects, we recommend using the [OpenAI generative integration](../../model-providers/openai/generative.md) instead of `qna-openai`.
 
-Additionally, the `generative-openai` module is more versatile and can be used for a wider range of use cases, not limited to question answering. Since `gpt-3.5-turbo-instruct` is not necessarily strictly trained for question answering, there are limited use cases where `qna-openai` is the best choice.
+Additionally, the generative integration is more versatile and can be used for a wider range of use cases, not limited to question answering. Since `gpt-3.5-turbo-instruct` is not necessarily strictly trained for question answering, there are limited use cases where `qna-openai` is the best choice.
 :::
 
 

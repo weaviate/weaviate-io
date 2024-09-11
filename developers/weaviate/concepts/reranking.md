@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-Reranking seeks to improve search relevance by reordering the result set returned by a [retriever](../modules/retriever-vectorizer-modules/index.md) with a different model.
+Reranking seeks to improve search relevance by reordering the result set returned by a search with a different model.
 
 Reranking computes a relevance score between the query and each data object, and returns the list of objects sorted from the most to the least relevant. Computing this score for all `(query, data_object)` pairs would typically be prohibitively slow, which is why reranking is used as a second stage after retrieving the relevant objects first.
 
@@ -55,8 +55,9 @@ You can specify which `property` of the `JeopardyQuestion` class you want to pas
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [How-to search: Rerank](../search/rerank.md)
-- [Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+- [Cohere reranker integration](../model-providers/cohere/reranker.md)
+- [Transformers reranker integration](../model-providers/transformers/reranker.md)
+- [VoyageAI reranker integration](../model-providers/voyageai/reranker.md)
 :::
 
 ## Questions and feedback
