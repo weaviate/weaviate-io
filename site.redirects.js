@@ -441,6 +441,29 @@ const siteRedirects = {
             to: 'developers/weaviate/model-providers/transformers/embeddings',
             from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers',
         },
+        // Other vectorizer modules
+        {
+            to: 'developers/weaviate/model-providers/imagebind/embeddings-multimodal',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind',
+        },
+        {
+            to: 'developers/weaviate/model-providers/transformers/embeddings-multimodal',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip',
+        },
+        {
+            to: 'developers/weaviate/model-providers/google/embeddings-multimodal',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-palm',
+        },
+        // Reranker modules
+        {
+            to: 'developers/weaviate/model-providers/cohere/reranker',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/reranker-cohere',
+        },
+        {
+            to: 'developers/weaviate/model-providers/voyageai/reranker',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/reranker-voyageai',
+        },
+
 
         // moved Quickstart installation to Quickstart
         {
