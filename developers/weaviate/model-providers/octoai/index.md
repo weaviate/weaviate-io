@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 :::info Added in `v1.25.0`
 :::

@@ -396,6 +396,51 @@ const siteRedirects = {
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
         },
 
+        // =============================================================================================
+        // 202409 Remove old module docs & redirect to model provider integration
+        // =============================================================================================
+        // API-based T2V modules
+        {
+            to: 'developers/weaviate/model-providers/aws/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-aws',
+        },
+        {
+            to: 'developers/weaviate/model-providers/cohere/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere',
+        },
+        {
+            to: 'developers/weaviate/model-providers/huggingface/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface',
+        },
+        {
+            to: 'developers/weaviate/model-providers/jinaai/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-jinaai',
+        },
+        {
+            to: 'developers/weaviate/model-providers/openai/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai',
+        },
+        {
+            to: 'developers/weaviate/model-providers/google/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+        },
+        {
+            to: 'developers/weaviate/model-providers/voyageai/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-voyageai',
+        },
+        // Local T2V modules
+        {
+            to: 'developers/weaviate/model-providers/gpt4all/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-gpt4all',
+        },
+        {
+            to: 'developers/weaviate/model-providers/ollama/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-ollama',
+        },
+        {
+            to: 'developers/weaviate/model-providers/transformers/embeddings',
+            from: 'developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers',
+        },
 
         // moved Quickstart installation to Quickstart
         {

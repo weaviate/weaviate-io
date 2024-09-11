@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_gpt4all.jpg
 
 # GPT4All Embeddings with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
