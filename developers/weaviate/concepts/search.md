@@ -5,42 +5,76 @@ image: og/docs/concepts.jpg
 # tags: ['vector compression', 'quantization']
 ---
 
-## Introduction: Search and Weaviate
-
 As a scalable AI-native database, search a core capability for Weaviate. Flexible, fast and scalable search helps users to find the right data quickly even as the dataset grows.
 
-Weaviate supports a variety of search types, including vector search, keyword search, and hybrid search, to meet the needs of different use cases. Users can also configure search settings to optimize performance and accuracy.
+Weaviate supports a variety of search types, including vector search, keyword search, and hybrid search, to meet the needs of different use cases.
+
+Users can also configure search settings to optimize performance and accuracy.
 
 The following sections provide an overview of search in Weaviate, including different search types, configurable query settings, and best practices for search performance and scalability.
 
-:::warning ADD BRIEF EXAMPLES OF EACH SEARCH TYPE
+## Search process
+
+The following diagram illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+
+| Step | Description |
+|------|-------------|
+| 1. [Filter](#filter) | Narrow result sets based on criteria |
+| 2. [Search](#search) | Find the most relevant entries, using [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types |
+| 3. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model |
+| 4. [Generative search](#generative-search--rag) | Perform RAG (Retrieval-Augmented Generation) |
+
+Here's a brief overview of each step:
+
+### Filter
+
+:::warning TODO
+Add simple wide fig
 :::
 
-## Search Features
+Filters reduce the number of objects based on specific criteria. This can include:
 
-The following diagram illustrates the different search features supported by Weaviate, and how they fit together:
-
-| Step | Option | Description |
-|------|--------|-------------|
-| 1. Filtering | Optional | Pre-filter data before search |
-| 2. Search Type | Required (choose one) | - Keyword Search<br>- Vector Search<br>- Hybrid Search |
-| 3. Reranking | Optional | Reorder results for better relevance |
-| 4. Generative Search | Optional | Apply RAG (Retrieval-Augmented Generation) |
-
-### Filtering
-
-Filtering narrows down results based on specific criteria, such as:
-
-- Date ranges
+- Text matches
 - Numerical thresholds
+- Date ranges
 - Categorical values
 - Geographical locations
 
-Effective filtering can significantly improve search relevance by reducing the dataset before performing searches.
+Effective filtering can significantly improve search relevance. This is due to filters' ability to precisely reduce the result set based on exact criteria.
 
-Weaivate applies [pre-filtering](./prefiltering.md), where filtering is performed before searches. A filtered result set is passed to search algorithms as a parameter, so that search results are only considered if they meet the filter criteria. This ensures that the requested number of search results are returned.
+:::info How filters interact with searches?
+Weaivate applies [pre-filtering](./prefiltering.md), where filters are performed before searches.
+<br/>
 
-### Vector Search
+This ensures that search results overlap with the filter criteria to make sure that the right objects are retrieved.
+:::
+
+### Search
+
+:::warning TODO
+Add simple wide fig
+:::
+
+Search is about finding the closest, or most relevant data objects. Weaviate supports three primary search types: [vector search](#vector-search), [keyword search](#keyword-search), and [hybrid search](#hybrid-search).
+
+Here's a summary of these search types:
+
+| Search Type | Description |
+|-------------|-------------|
+| Vector Search | Similarity-based search using vector embeddings. |
+| Keyword Search | Traditional text-based search using "token" frequency. |
+| Hybrid Search | Combines vector and keyword search results. |
+
+Let's review these search types in more detail.
+
+:::tip Search vs Filter
+A filter simply passes or blocks objects based on criteria. Therefore, there is no ranking of results.
+<br/>
+
+Unlike filters, Search results will be **ranked** based on their relevance to the query.
+:::
+
+#### Vector Search
 
 Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against the data to find the closest matches, based on a predefined [distance metric](../config-refs/distances.md).
 
@@ -56,7 +90,7 @@ For example:
 
 </details>
 
-### Keyword Search
+#### Keyword Search
 
 Traditional text-based search using occurrences of "tokens" in the query. This method uses how often the tokens appear in each data object, against how common they are in the dataset. These metrics are combined using the [BM25 algorithm](#bm25f-algorithm) to produce a score.
 
@@ -73,7 +107,7 @@ For example:
 
 </details>
 
-### Hybrid Search
+#### Hybrid Search
 
 Combines vector and keyword search to leverage the strengths of both approaches. Both searches are carried out and the results are combined using the selected [hybrid fusion method](#hybrid-fusion-method) and the given [alpha](#alpha-hybrid-search) value.
 
@@ -90,21 +124,38 @@ For example:
 
 </details>
 
+#### Object retrieval / no search
+
+Although it is not a search type, it is worth mentioning that Weaviate can also retrieve objects without specifying a search type.
+
+For example, you can simply use a filter, or without any other criteria.
+
+In this case, Weaviate will retrieve objects in order of their UUIDs.
+
 ### Reranking
 
-Reranking improves relevance by reordering initial results with a different model.
+:::warning TODO
+Add simple wide fig
+:::
 
-The chosen reranking algorithm is applied to a smaller set of results retrieved with the first-stage search. This allows a more computationally expensive algorithm to be used for re-ranking, potentially boosting the relevance of the top results.
+Reranking improves search relevance by reordering initial results.
+
+You might ask - why not just use the best model from the start? The answer is that the best models are often computationally expensive. By using a simpler model for the initial search, we can reduce the result set to a manageable size. The reranking algorithm then uses a more computationally expensive model to refine the order of the top results.
 
 ### Generative Search / RAG
 
+:::warning TODO
+Add simple wide fig
+:::
+
 Generative search is another name for Retrieval-Augmented Generation (RAG). RAG uses AI to generate responses based on a prompt, and the added context that is retrieved through the above search process.
 
-This approach:
+This approach combines the power of large language models with the accuracy of retrieved information.
 
-- Combines the power of large language models with the accuracy of retrieved information
-- Can provide natural language summaries or answers based on search results
-- Enhances user experience by offering more context-aware and detailed responses
+Example use cases include:
+- Provide natural language summaries of retrieved documents
+- Chatbot responses based on retrieved information
+- Present translations of retrieved information
 
 ## Optimizing Search Relevance
 
