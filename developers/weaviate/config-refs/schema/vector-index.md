@@ -208,9 +208,9 @@ If faster import speeds are desired, [asynchronous indexing](#asynchronous-index
 Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
-Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+import EnableAsynch from '/_includes/indexes/enable-async.mdx';
 
-To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration (the `docker-compose.yml` file if you use Docker Compose). This setting enables asynchronous indexing for all collections.
+<EnableAsynch/>
 
 <details>
   <summary>Example Docker Compose configuration</summary>

@@ -5,16 +5,47 @@ image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
 
-This section discusses indexing Weaviate collections.
+This section provides examples of how to index Weaviate collections.
+
+Collection objects contain vectors and properties. Vector indexes let you search the collection's vectors quickly and efficiently. Inverted indexes make filtering and searching object properties faster.
 
 ## Vector indexes
 
-- [Overview](add)
-- [Hierarchical Navigable Small World (HNSW) indexes](add)
-- [Flat indexes](add)
-- [Dynamic indexes](add)
+import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
-## Keyword indexes
+<VectorIntro/>
+
+### HNSW indexes
+
+import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
+
+<HNSWIntro/>
+
+See also:
+
+ - [HNSW index parameters](/developers/weaviate/config-refs/schema/vector-index#hnsw-index-parameters)
+
+### Flat indexes
+
+import FlatIntro from '/_includes/indexes/flat-intro.mdx';
+
+<FlatIntro/>
+
+See also:
+
+- [Flat index parameters](/developers/weaviate/config-refs/schema/vector-index#flat-indexes)
+
+### Dynamic indexes
+
+import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
+
+<DynamicIntro/>
+
+See also:
+
+- [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
+
+## Inverted indexes
 
 - [Overview](add)
 - [indexSearchable]](add)
@@ -23,5 +54,10 @@ This section discusses indexing Weaviate collections.
 
 ## Additional considerations
 
-- [Async indexing](add)
-- [Index level](add)
+- [Asynchronous indexing](add)
+
+import EnableAsynch from '/_includes/indexes/enable-async.mdx';
+
+<EnableAsynch/>
+
+- [Availability levels](add)

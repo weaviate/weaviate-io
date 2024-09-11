@@ -30,15 +30,15 @@ Vector indexes can use *hot* or *warm* resources, depending on the index type. I
 
 ## Vector indexes
 
-Weaviate offers three types of vector indexes, [Hierarchical Navigable Small World (HNSW)](#hnsw-indexes), [flat](#flat-indexes) and [dynamic](#dynamic-indexes).
+import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
-- HNSW indexes enable fast, scalable vector searching that works well even with very large data sets.
-- Flat indexes are memory-efficient indexes that work best with small data sets.
-- Dynamic indexes provide a best-of-both-worlds approach by switching from flat to HNSW indexes when a [collection](../../concepts/data.md#collections) (or [tenant](../../concepts/data.md#multi-tenancy)) reaches a threshold size.
+<VectorIntro/>
 
 #### HNSW indexes
 
-[HNSW](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) are high-performance, in-memory indexes. HNSW indexes scale well, meaning that vector searches remain fast even for very large data sets.
+import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
+
+<HNSWIntro/>
 
 HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
 
@@ -52,7 +52,9 @@ import CompressionAlgorithms from '/_includes/starter-guides/compression-types.m
 
 #### Flat indexes
 
-[Flat indexes](/developers/weaviate/concepts/vector-index#flat-index) are memory-efficient. They are disk based indexes that perform brute-force vector searches. Vector search speeds with flat indexes scale linearly with the number of objects.
+import FlatIntro from '/_includes/indexes/flat-intro.mdx';
+
+<FlatIntro/>
 
 As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
 
@@ -67,7 +69,9 @@ import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
 
 <DynamicAsyncRequirements/>
 
-A [dynamic index](/developers/weaviate/concepts/vector-index#dynamic-index) offers a flexible approach to indexing. A dynamic index begins as a flat index, and converts automatically to an HNSW index upon reaching a threshold size.
+import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
+
+<DynamicIntro/>
 
 This can be particularly useful in multi-tenant configurations, where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
 
