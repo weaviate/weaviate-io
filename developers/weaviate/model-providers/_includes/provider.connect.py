@@ -67,6 +67,10 @@ azure_key = os.getenv("AZURE_APIKEY")
 # Recommended: save sensitive data as environment variables
 voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # END VoyageAIInstantiation
+# START DatabricksInstantiation
+# Recommended: save sensitive data as environment variables
+databricks_key = os.getenv("DATABRICKS_TOKEN")
+# END DatabricksInstantiation
 
 
 # START-ANY
@@ -120,6 +124,9 @@ headers = {
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation
+# START DatabricksInstantiation
+    "X-Databricks-Token": databricks_key,
+# END DatabricksInstantiation
 # START-ANY
 }
 # highlight-end

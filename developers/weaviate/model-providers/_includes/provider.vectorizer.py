@@ -473,6 +473,25 @@ client.collections.create(
 )
 # END BasicVectorizerOpenAI
 
+# START BasicVectorizerDatabricks
+from weaviate.classes.config import Configure
+
+databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_databricks(
+            name="title_vector",
+            source_properties=["title"],
+            endpoint = databricks_vectorizer_endpoint,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerDatabricks
+
 # clean up
 client.collections.delete("DemoCollection")
 

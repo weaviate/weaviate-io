@@ -215,6 +215,45 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeDatabricks
+from weaviate.classes.config import Configure
+
+databricks_generative_endpoint = os.getenv("DATABRICKS_GENERATIVE_ENDPOINT")
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.databricks(endpoint=databricks_generative_endpoint)
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeDatabricks
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeDatabricks
+from weaviate.classes.config import Configure
+
+databricks_generative_endpoint = os.getenv("DATABRICKS_GENERATIVE_ENDPOINT")
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.databricks(
+        endpoint=databricks_generative_endpoint
+        # # These parameters are optional
+        # max_tokens=500,
+        # temperature=0.7,
+        # top_p=0.7,
+        # top_k=0.1
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeDatabricks
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeFriendliAI
 from weaviate.classes.config import Configure
 
