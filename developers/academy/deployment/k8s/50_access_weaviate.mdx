@@ -90,6 +90,15 @@ Note that not all systems have `nc` installed by default. It's okay if you don't
 
 </details>
 
+Your external IP may not always be `127.0.0.1`, and by default, the Weaviate pod listens for TCP traffics on the `localhost` or `127.0.0.1`. To make the pod reachable, expose the Weaviate services using port-forwarding.
+
+```bash
+kubectl port-forward svc/weaviate 8080:80 -n weaviate
+kubectl port-forward svc/weaviate-grpc 50051:50051 -n weaviate
+```
+
+Execute each command on a new terminal. Note that if the terminal is closed or the process is stopped, the forwarded ports
+will be closed, hence making the pod inaccessible.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Configure Weaviate
 
