@@ -12,8 +12,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.basics-v2.ts';
-import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-basic_test.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/BasicSearchTest.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-basic_test.go';
 
 With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
 
@@ -335,6 +335,7 @@ You can specify which object properties to return.
     language="go"
   />
 </TabItem>
+
 
 <TabItem value="java" label="Java">
     <FilteredTextBlock
@@ -671,6 +672,7 @@ You can specify metadata fields to be returned.
     language="go"
   />
 </TabItem>
+
 
 <TabItem value="java" label="Java">
     <FilteredTextBlock
