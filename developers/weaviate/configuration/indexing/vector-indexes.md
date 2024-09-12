@@ -9,6 +9,14 @@ import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
 <VectorIntro/>
 
+HNSW indexes are the default index type. If your collection has more than 10,000 objects, you should use an HNSW index. A flat index works best for smaller collections. Collections that start small and grow beyond 10,000 objects should consider a dynamic index.
+
+In addition to indexes, consider compression as a way to manage resource usage. Weaviate provides these compression methods;
+
+import CompressMethods from '/_includes/configuration/compression-methods.mdx';
+
+<CompressMethods/>
+
 ### HNSW indexes
 
 import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
@@ -45,7 +53,7 @@ These are some additional things to consider when you configure indexing.
 
 ### Compression
 
-Vector indexes can be large. Compressed vectors lose some information, but they use fewer resources and can be very cost effective. In most cases,
+Vector indexes can be large. Compressed vectors lose some information, but they use fewer resources and can be very cost effective. In most cases the resource savings significantly outweigh the slight loss in performance.
 
 See also:
 
