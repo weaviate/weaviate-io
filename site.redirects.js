@@ -500,6 +500,44 @@ const siteRedirects = {
             to: '/developers/weaviate/model-providers/google/generative',
             from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
         },
+
+        {
+            to: '/developers/weaviate/modules/custom-modules',
+            from: '/developers/weaviate/modules/other-modules/custom-modules',
+        },
+        {
+            to: '/developers/weaviate/modules/spellcheck',
+            from: '/developers/weaviate/modules/other-modules/spellcheck',
+        },
+        {
+            to: '/developers/weaviate/modules/ner-transformers',
+            from: '/developers/weaviate/modules/reader-generator-modules/ner-transformers',
+        },
+        {
+            to: '/developers/weaviate/modules/qna-transformers',
+            from: '/developers/weaviate/modules/reader-generator-modules/qna-transformers',
+        },
+        {
+            to: '/developers/weaviate/modules/sum-transformers',
+            from: '/developers/weaviate/modules/reader-generator-modules/sum-transformers',
+        },
+        {
+            to: '/developers/weaviate/modules/qna-openai',
+            from: '/developers/weaviate/modules/reader-generator-modules/qna-openai',
+        },
+        {
+            to: '/developers/weaviate/modules/img2vec-neural',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural',
+        },
+        {
+            to: '/developers/weaviate/modules/ref2vec-centroid',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid',
+        },
+        {
+            to: '/developers/weaviate/modules/text2vec-contextionary',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary',
+        },
+
         // =============================================================================================
         // END - 202409 Remove old module docs & redirect to model provider integration
         // =============================================================================================

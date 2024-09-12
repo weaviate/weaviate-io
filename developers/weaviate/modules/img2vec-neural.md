@@ -1,12 +1,12 @@
 ---
-title: img2vec-neural
-sidebar_position: 30
+title: ResNet Image Vectorizer
+sidebar_position: 20
 image: og/docs/modules/img2vec-neural.jpg
 # tags: ['img2vec', 'img2vec-neural']
 ---
 
 :::caution CLIP recommended for new projects
-For new projects, we recommend using the [Transformers multi-modal integration](../../model-providers/transformers/embeddings-multimodal.md) module instead of `img2vec-neural`. This uses CLIP models, which uses a more modern model architecture than `resnet` models used in `img2vec-neural`. CLIP models are also multi-modal, meaning they can handle both images and text and therefore applicable to a wider range of use cases.
+For new projects, we recommend using the [Transformers multi-modal integration](../model-providers/transformers/embeddings-multimodal.md) module instead of `img2vec-neural`. This uses CLIP models, which uses a more modern model architecture than `resnet` models used in `img2vec-neural`. CLIP models are also multi-modal, meaning they can handle both images and text and therefore applicable to a wider range of use cases.
 :::
 
 

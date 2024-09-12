@@ -70,7 +70,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/modules/retriever-vectorizer-modules"
+                to="/developers/weaviate/model-providers"
               >
                 Learn more
               </Link>

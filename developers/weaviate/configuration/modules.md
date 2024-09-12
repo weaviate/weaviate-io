@@ -139,7 +139,7 @@ See the [dedicated page on tenant offloading](./tenant-offloading.md) for more i
 
 ## Custom modules
 
-See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
+See [here](../modules/custom-modules.md) how you can create and use your own modules.
 
 ## Related pages
 - [Concepts: Modules](../concepts/modules.md)

@@ -135,7 +135,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 
 ### 4. Make a new Weaviate module (e.g. [gene2vec](https://github.com/jingcheng-du/Gene2vec#:~:text=Gene2Vec%20is%20a%20distributed%20representation,sets%20from%20the%20GEO%20databases.), or a new type of ML model)
 
-**Project Description:** Weaviate is a vector database that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to vectorize data or other functionalities like question answering. The goal of this project is to make a new module for Weaviate. Think about a gene2vec model or a text2text generation like summarization model).  See [here](/developers/weaviate/modules/other-modules/custom-modules#how-to-build-and-use-a-custom-module) for more details.
+**Project Description:** Weaviate is a vector database that is completely modularized. The Core of Weaviate, without any modules attached, is a pure vector-native database. The functionality of the vector-native database can be enriched by modules. One or more modules can be attached, for example to vectorize data or other functionalities like question answering. The goal of this project is to make a new module for Weaviate. Think about a gene2vec model or a text2text generation like summarization model).  See [here](/developers/weaviate/modules/custom-modules#how-to-build-and-use-a-custom-module) for more details.
 You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you can learn along the way
 
 **Required Skills:**  Creating a new type of Weaviate module by using our Weaviate.go module. Basic knowledge of golang is required.
@@ -176,7 +176,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Documentation:**
 
 * [Go · Weaviate Documentation](/developers/weaviate/client-libraries/go)
-* [Custom modules · Weaviate Documentation](/developers/weaviate/modules/other-modules/custom-modules)
+* [Custom modules · Weaviate Documentation](/developers/weaviate/modules/custom-modules)
 * [Modules · Weaviate Documentation](/developers/weaviate/modules/)
 
 ---
