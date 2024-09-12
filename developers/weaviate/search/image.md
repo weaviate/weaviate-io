@@ -81,6 +81,8 @@ If your query image is stored in a file, you can use the client library to searc
     endMarker="// END ImageFileSearch"
     language="ts"
   />
+  </TabItem>
+
 
   <TabItem value="go" label="Go">
     <FilteredTextBlock
@@ -91,7 +93,6 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  </TabItem>
 </Tabs>
 
 <details>
