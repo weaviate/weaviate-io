@@ -33,7 +33,7 @@ import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 #### Collection configuration
 
-Configure an HNSW index for a collection this way:
+Configure an HNSW index for a collection:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -72,7 +72,7 @@ Configure an HNSW index for a collection this way:
 
 #### Multiple named vectors configuration
 
-Configure an HNSW index for multiple named vectors this way:
+Configure an HNSW index for multiple named vectors:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
