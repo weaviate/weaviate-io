@@ -483,7 +483,7 @@ client.collections.create(
     vectorizer_config=[
         Configure.NamedVectors.text2vec_databricks(
             name="title_vector",
-            source_properties=["title"]
+            source_properties=["title"],
             endpoint = databricks_vectorizer_endpoint,
         )
     ],

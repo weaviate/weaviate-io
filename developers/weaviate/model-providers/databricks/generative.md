@@ -1,12 +1,14 @@
 ---
 title: Generative AI
 sidebar_position: 50
-image: og/docs/integrations/provider_integrations_openai.jpg
+image: og/docs/integrations/provider_integrations_databricks.jpg
 # tags: ['model providers', 'databricks', 'generative', 'rag']
 ---
 
-# Databricks Generative AI with Weaviate
+:::info Added in `v1.26.3`
+:::
 
+# Databricks Generative AI with Weaviate
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -22,7 +24,7 @@ Weaviate's integration with Databricks' APIs allows you to access their models' 
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Databricks generative model to generate outputs.
 
-![RAG integration illustration](../_includes/integration_openai_rag.png)
+![RAG integration illustration](../_includes/integration_databricks_rag.png)
 
 ## Requirements
 
@@ -83,13 +85,15 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
 </Tabs>
 
+This will configure Weaviate to use the generative AI model served through the endpoint you specify.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_openai_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_databricks_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -112,7 +116,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_openai_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_databricks_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -167,7 +171,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
+- [Databricks foundation model documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html)
 
 ## Questions and feedback
 

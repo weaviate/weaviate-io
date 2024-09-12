@@ -1,11 +1,12 @@
 ---
 title: Databricks + Weaviate
 sidebar_position: 10
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai']
+image: og/docs/integrations/provider_integrations_databricks.jpg
+# tags: ['model providers', 'databricks']
 ---
 
-
+:::info Added in `v1.26.3`
+:::
 
 Databricks offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Databricks' Foundation Model APIs, allowing users to leverage Databricks' models directly within the Weaviate database.
 
@@ -15,7 +16,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ### Embedding models for semantic search
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_databricks_embedding.png)
 
 Databricks' embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
 
@@ -42,7 +43,6 @@ In turn, they simplify the process of building AI-driven applications to speed u
 ## Get started
 
 You must provide a valid Databricks personal access token to Weaviate for these integrations. Refer to the [Databricks documentation](https://docs.databricks.com/en/dev-tools/auth/pat.html) for instructions on generating your personal access token in your workspace.
-
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the OpenAI models and start using them in your applications.
 

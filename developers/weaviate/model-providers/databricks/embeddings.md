@@ -1,9 +1,12 @@
 ---
 title: Text Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_openai.jpg
+image: og/docs/integrations/provider_integrations_databricks.jpg
 # tags: ['model providers', 'databricks', 'embeddings']
 ---
+
+:::info Added in `v1.26.3`
+:::
 
 # Databricks Embeddings with Weaviate
 
@@ -21,7 +24,7 @@ Weaviate's integration with Databricks' APIs allows you to access models hosted 
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_databricks_embedding.png)
 
 ## Requirements
 
@@ -82,11 +85,11 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
 </Tabs>
 
-
+This will configure Weaviate to use the vectorizer served through the endpoint you specify.
 
 ## Data import
 
-After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
+After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using [the specified model](#vectorizer-parameters).
 
 <Tabs groupId="languages">
 
@@ -107,9 +110,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified OpenAI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified model.
 
-![Embedding integration at search illustration](../_includes/integration_openai_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_databricks_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -151,8 +154,6 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
-
-
 </Tabs>
 
 ## References
@@ -163,8 +164,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 - `instruction`:An optional instruction to pass to the embedding model.
 
 For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#embedding-request).
-
-
 
 ## Further resources
 
