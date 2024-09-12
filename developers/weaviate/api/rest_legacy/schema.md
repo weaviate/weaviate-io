@@ -350,8 +350,8 @@ import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 Update settings of an existing collection. Use this endpoint to alter an existing collection in the schema.
 
 :::info Not all settings are mutable
-
 Some settings are immutable, they cannot be updated after the collection is created.
+:::
 
 Follow these steps to update an immutable setting:
 
@@ -372,8 +372,6 @@ import CollectionMutableParameters from '/_includes/collection-mutable-parameter
 <CollectionMutableParameters/>
 
 </details>
-
-:::
 
 This endpoint cannot be used to introduce additional properties. For this, use [`POST /v1/schema/{collection_name}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as `vectorIndexConfig/dynamicEfFactor`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 

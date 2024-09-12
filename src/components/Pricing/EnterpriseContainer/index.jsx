@@ -208,7 +208,7 @@ export default function EnterpriseContainer({ closeModal }) {
           </Link>
           <Link
             className={styles.buttonOutline}
-            to="/services/enterprise-cloud"
+            to="/deployment/enterprise-cloud"
           >
             Explore all benefits and features
           </Link>

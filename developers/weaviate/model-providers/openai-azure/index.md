@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_openai_azure.jpg
 # tags: ['model providers', 'azure', 'openai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 Microsoft Azure offers a wide range of OpenAI models for natural language processing and generation. Weaviate seamlessly integrates with Microsoft Azure's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database.
 

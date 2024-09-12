@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_imagebind.jpg
 
 # Locally Hosted ImageBind Embeddings + Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -132,7 +129,7 @@ As this integration runs a local container with the ImageBind model, no addition
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an ImageBind embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -156,6 +153,8 @@ As this integration runs a local container with the ImageBind model, no addition
 </Tabs>
 
 There is only one ImageBind model available.
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 

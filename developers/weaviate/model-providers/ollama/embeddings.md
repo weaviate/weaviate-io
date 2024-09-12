@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_ollama.jpg
 
 # Ollama Embeddings with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -80,7 +77,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Ollama embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use an Ollama embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,7 +100,13 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/api-endpoint.mdx';
+
+<APIEndpoint/>
+
+import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
+
+<ConfigAfterEmb/>
 
 ## Data import
 
@@ -233,6 +236,8 @@ The query below returns the `n` best scoring objects from the database, set by `
 See the [Ollama documentation](https://ollama.com/library) for a list of available models. This list includes both large language models and embedding models; look for the word `embed` in the name or description to identify embedding models.
 
 Download the desired model with `ollama pull <model-name>`.
+
+If no model is specified, the default model (`nomic-embed-text`) is used.
 
 ## Further resources
 

@@ -17,9 +17,6 @@ export default function Integrations() {
             <Link className={styles.buttonGradient} to="#contact-sales">
               Get in Touch
             </Link>
-            <Link className={styles.buttonOutline} to="/services">
-              Check our Services
-            </Link>
           </div>
           <div className={styles.parentGrid}>
             <div className={styles.imageGrid1}> </div>

@@ -38,7 +38,7 @@ The `generative-openai` module can be used to get GPT-3 to accomplish tasks grou
 We’ll provide a guide on how you can set up the module, examples of how you can use the module, as well as show you the nuances of how to prompt GPT-3 to utilize the search results from Weaviate. So without further ado, let's get into it!
 
 ## How to use it
-The [Generative OpenAI](/developers/weaviate/modules/reader-generator-modules/generative-openai) module is a new feature that can generate responses based on your data. To access this module, you will need to use Weaviate `1.17.3` or a newer version.
+The [Generative OpenAI](/developers/weaviate/model-providers/openai/generative) module is a new feature that can generate responses based on your data. To access this module, you will need to use Weaviate `1.17.3` or a newer version.
 
 ### Weaviate Cloud
 The `Generative OpenAI` module is enabled by default in the Weaviate Cloud (WCD). If your instance version is on `1.17.3` or newer, then you are good to go.
@@ -49,10 +49,10 @@ You can create a free 14-day sandbox on [WCD](https://console.weaviate.cloud) an
 
 :::note Available modules out of the box
 The following modules are enabled by default:
-* [text2vec-openai](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai)
-* [text2vec-cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere)
-* [text2vec-huggingface](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface)
-* [generative-openai](/developers/weaviate/modules/reader-generator-modules/generative-openai)
+* [text2vec-openai](/developers/weaviate/model-providers/openai/embeddings)
+* [text2vec-cohere](/developers/weaviate/model-providers/cohere/embeddings)
+* [text2vec-huggingface](/developers/weaviate/model-providers/cohere/embeddings)
+* [generative-openai](/developers/weaviate/model-providers/openai/generative)
 :::
 
 ### Local deployment with Docker
@@ -95,7 +95,7 @@ services:
 Before running the Docker Compose file, you will need to request an [OpenAI API-key](https://openai.com/api/). You can either input your key in the Docker Compose file in the `OPENAI_APIKEY` parameter, or provide it at insert/query time.
 
 :::note
-Notice in `ENABLE_MODULES`, we are enabling two modules. In the above example we are using the `text2vec-openai` vectorization module; however, you can use another module of choice (Cohere or Hugging Face). Check out the [documentation](/developers/weaviate/modules/reader-generator-modules/generative-openai#introduction) to learn more about this.
+Notice in `ENABLE_MODULES`, we are enabling two modules. In the above example we are using the `text2vec-openai` vectorization module; however, you can use another module of choice (Cohere or Hugging Face). Check out the [documentation](/developers/weaviate/model-providers/openai/generative#introduction) to learn more about this.
 :::
 
 ### Schema configuration

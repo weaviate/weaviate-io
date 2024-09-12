@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_aws.jpg
 
 # AWS Embeddings with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -93,7 +90,9 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an AWS embedding model by setting the vectorizer as follows. Note that the required parameters differ between Bedrock and SageMaker models.
+Set the vectorizer to configure Weaviate to use an AWS embedding model.
+
+The required parameters for the Bedrock and the SageMaker models are different.
 
 ### Bedrock
 
@@ -144,6 +143,8 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
   </TabItem>
 
 </Tabs>
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 

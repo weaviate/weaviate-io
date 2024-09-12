@@ -23,13 +23,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-im
 
 **Configure image search**
 
-To use images as search inputs, configure an image vectorizer [module](../configuration/modules.md) for your collection.
-
-For details, see the modules reference page:
-
-- [img2vec-neural](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
-- [multi2vec-clip](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
-- [multi2vec-bind](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind.md)
+To use images as search inputs, configure an image vectorizer integration for your collection. See the model provider integrations page for a [list of available integrations](../model-providers/index.md).
 
 </details>
 
