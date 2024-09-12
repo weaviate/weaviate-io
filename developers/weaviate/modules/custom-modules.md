@@ -1,6 +1,6 @@
 ---
 title: Custom modules
-sidebar_position: 9
+sidebar_position: 90
 image: og/docs/modules/custom-modules.jpg
 # tags: ['modules', 'other modules', 'custom modules']
 ---
@@ -15,7 +15,7 @@ If you have model that already fits with an existing model architecture (e.g. Tr
 This page contains information about how you can attach your own ML model to Weaviate. You will need to attach your ML model to Weaviate's Module API as a module. First, there is some information about how (vectorizer/embedding) modules in Weaviate work.
 
 Quick links:
-* To build your own inference container (which uses an existing Weaviate Module API), click [here](/developers/weaviate/modules/other-modules/custom-modules.md#a-replace-parts-of-an-existing-module).
+* To build your own inference container (which uses an existing Weaviate Module API), click [here](/developers/weaviate/modules/custom-modules.md#a-replace-parts-of-an-existing-module).
 * To build a completely new module (to create your own Weaviate Module API to e.g. add fields to GraphQL, etc), click [here](/developers/contributor-guide/weaviate-modules/how-to-build-a-new-module.md).
 
 ## Video: How to create custom modules in Weaviate?

@@ -130,7 +130,7 @@ In terms of the user experience for a **single podcast**... I think this is an i
 I think the real innovation in the podcasting user experience is in a **collection of podcasts**. A collection of podcasts now achieves knowledge base reference functionality, similar to code documentation or survey papers!
 
 Further I think this will transform podcast **recommendation**. One way of doing this could be to use each chunk of a podcast to search across all the atomic chunks of other podcasts. Or we could construct a single embedding for the entire podcast episode.
-This is one of my favorite applications of our new [`ref2vec` module](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid). The first solution to ref2vec describes constructing Podcast – (hasSegment) → Segment cross-references, and then averaging the vectors of the segments to form the `Podcast` vector. We are exploring additional aggregation ideas as well such as:
+This is one of my favorite applications of our new [`ref2vec` module](/developers/weaviate/modules/ref2vec-centroid). The first solution to ref2vec describes constructing Podcast – (hasSegment) → Segment cross-references, and then averaging the vectors of the segments to form the `Podcast` vector. We are exploring additional aggregation ideas as well such as:
 
 * Ref2vec-centroids: Cluster the return multiple vectors<!-- TODO --> to represent `Podcast`. This also requires solving how we want to add multi-vector object representations to Weaviate.
 

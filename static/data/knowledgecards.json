@@ -650,7 +650,7 @@
       "link": "/developers/weaviate/quickstart",
       "bloglink": "https://weaviate.io/blog/vector-embeddings-explained#transformer-models-bert-elmo-and-others",
       "blogTitle": "Transformer models (BERT, ELMo, and others)",
-      "doclink": "https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#custom-qa-transformer-module",
+      "doclink": "https://weaviate.io/developers/weaviate/modules/qna-transformers#custom-qa-transformer-module",
       "docTitle": "Custom Q&A Transformer module",
       "tags": ["LLMs", "Weaviate", "Transformer Model"],
       "cardImage": "transformer-model.jpg",

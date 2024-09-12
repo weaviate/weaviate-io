@@ -19,7 +19,7 @@ In this day and age, this is a more common problem than ever. For a while now, t
 
 You probably already know that Weaviate, as a vector database, can help with information cataloging and discovery. But did you know that Weaviate can also summarize information during retrieval?
 
-Our summarizer module ([`sum-transformers`](/developers/weaviate/modules/reader-generator-modules/sum-transformers)) can be added to a Weaviate instance to do exactly that.
+Our summarizer module ([`sum-transformers`](/developers/weaviate/modules/sum-transformers)) can be added to a Weaviate instance to do exactly that.
 
 And as a bonus, we will also show you how to use our new generative module (`generative-openai`) to do the same thing as well.
 
@@ -409,7 +409,7 @@ It will run much faster on systems that support GPU acceleration with CUDA. CPUs
 
 Currently, the `sum-transformers` module uses the `bart-large-cnn` model under the hood by default, with an option for the `pegasus-xsum` model. Both of these are well-known, high-performance models trained by Facebook and Google respectively.
 
-In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/reader-generator-modules/sum-transformers#use-another-summarization-module-from-hugging-face).
+In addition to these two models, however, you can use any model from the Hugging Face Hub (or your own) by following [this guide](/developers/weaviate/modules/sum-transformers#use-another-summarization-module-from-hugging-face).
 
 Even when looking only at language models that are trained for summarization tasks, there is still a wide range of choices in terms of sheer numbers, which vary in the target domain (e.g. medical, legal, scientific, etc.) and size (number of parameters, i.e. speed). If you have specific needs, we recommend investigating other models.
 

@@ -1,6 +1,6 @@
 ---
-title: img2vec-neural
-sidebar_position: 30
+title: ResNet Image Vectorizer
+sidebar_position: 20
 image: og/docs/modules/img2vec-neural.jpg
 # tags: ['img2vec', 'img2vec-neural']
 ---

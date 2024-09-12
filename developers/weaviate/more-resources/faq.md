@@ -175,7 +175,7 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 <details>
   <summary>Answer</summary>
 
-> Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
+> Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](/developers/weaviate/modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 </details>
 
@@ -306,7 +306,7 @@ If you need a higher search quality for a given limit you can consider the follo
 <details>
   <summary>Answer</summary>
 
-> [Yes!](/developers/weaviate/modules/other-modules/custom-modules.md)
+> [Yes!](/developers/weaviate/modules/custom-modules.md)
 
 </details>
 
@@ -315,7 +315,7 @@ If you need a higher search quality for a given limit you can consider the follo
 <details>
   <summary>Answer</summary>
 
-> Not at the moment. You can currently use the [available contextionaries](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed.
+> Not at the moment. You can currently use the [available contextionaries](/developers/weaviate/modules/text2vec-contextionary.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed.
 
 </details>
 
