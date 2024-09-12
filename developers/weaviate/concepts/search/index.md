@@ -2,7 +2,7 @@
 title: Search
 sidebar_position: 5
 image: og/docs/concepts.jpg
-# tags: ['vector compression', 'quantization']
+# tags: ['concepts', 'search']
 ---
 
 As a scalable AI-native database, search a core capability for Weaviate. Flexible, fast and scalable search helps users to find the right data quickly even as the dataset grows.
@@ -43,7 +43,7 @@ Filters reduce the number of objects based on specific criteria. This can includ
 Effective filtering can significantly improve search relevance. This is due to filters' ability to precisely reduce the result set based on exact criteria.
 
 :::info How filters interact with searches?
-Weaivate applies [pre-filtering](./prefiltering.md), where filters are performed before searches.
+Weaivate applies [pre-filtering](../prefiltering.md), where filters are performed before searches.
 <br/>
 
 This ensures that search results overlap with the filter criteria to make sure that the right objects are retrieved.
@@ -76,7 +76,7 @@ Unlike filters, Search results will be **ranked** based on their relevance to th
 
 #### Vector Search
 
-Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against the data to find the closest matches, based on a predefined [distance metric](../config-refs/distances.md).
+Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against the data to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
 
 <details>
   <summary>When to use vector search</summary>
@@ -132,7 +132,7 @@ For example, you can simply use a filter, or without any other criteria.
 
 In this case, Weaviate will retrieve objects in order of their UUIDs.
 
-### Reranking
+### Rerank
 
 :::warning TODO
 Add simple wide fig
@@ -140,105 +140,38 @@ Add simple wide fig
 
 Reranking improves search relevance by reordering initial results.
 
-You might ask - why not just use the best model from the start? The answer is that the best models are often computationally expensive. By using a simpler model for the initial search, we can reduce the result set to a manageable size. The reranking algorithm then uses a more computationally expensive model to refine the order of the top results.
+If a collection is [configured with a reranker integration](../../model-providers/index.md), Weaviate will use the configured reranker model to reorder the initial search results.
 
-### Generative Search / RAG
-
-:::warning TODO
-Add simple wide fig
-:::
-
-Generative search is another name for Retrieval-Augmented Generation (RAG). RAG uses AI to generate responses based on a prompt, and the added context that is retrieved through the above search process.
-
-This approach combines the power of large language models with the accuracy of retrieved information.
-
-Example use cases include:
-- Provide natural language summaries of retrieved documents
-- Chatbot responses based on retrieved information
-- Present translations of retrieved information
-
-## Optimizing Search Relevance
-
-Search relevance may be affected by the following aspects.
-
-### Vector Search Quality
-
-#### Vectorizer model selection
-
-The vectorizer model determines how an object is converted into a vector.
-
-The model should be appropriate for your data modality (text, images, audio, etc.). Consider domain-specific models, and balancing model complexity and performance requirements.
-
-Weaviate integrates with ::model provider integrations::
-
-#### Which fields to vectorize
-
-Identify fields that contribute most to semantic understanding. Consider combining multiple fields into a single vector representation. Evaluate the impact of vectorizing structured vs. unstructured data
-
-#### ANN index settings
-
-### Keyword Search
-
-- Index property length, null properties, etc.
-- How these settings affect search behavior and available queries
-- k1 and b values
-
-### Hybrid search
-
-- Hybrid fusion method
-- Alpha values
-
-## Search Performance and Scalability
-
-- Vector index settings & query performance
-- Quantization and queries
-- Best practices for optimizing search in large datasets
-
-## AI Models and Search
-
-### Overview
-
-- Role of AI models in searches (vector search; reranking; gen search) (clarify their role in others)
-
-### Model selection guide
-
-- Criteria for choosing appropriate models
-- Trade-offs between different model types
-
-## Search Relevance and Ranking
-
-- How Weaviate determines result order
-- Techniques for improving search relevance
-
-## Common Use Cases
-
-- E-commerce product search
-- Content recommendation systems
-- Semantic document retrieval
-- Image and multimedia search
-
-## Troubleshooting and Common Pitfalls
-
-- Addressing frequent issues in search implementation
-- Tips for diagnosing and resolving search-related problems
+This allows you to use a more computationally expensive model on a smaller subset of results, improving the overall search quality.
 
 ## Glossary
 
-### Search
-
 #### Vector embeddings
 
-- What is a vector embedding?
+A vector embedding captures semantic meaning of an object in a vector space. It consists of a set of numbers that represent the object's features. Vector embeddings are generated by a vectorizer model, which is a machine learning model that is trained for this purpose.
 
 #### BM25F algorithm
 
-- What is BM25
+The BM25 algorithm ranks matching documents according to their relevance to a given search query. At a high level, the BM25 algorithm uses the count of query terms in the document (term frequency) against the overall frequency of the term in the dataset (inverse document frequency) to calculate a relevance score.
+
+The BM25F variant extends the BM25 algorithm to support multiple fields in the search index.
 
 #### Hybrid fusion method
 
--
+Weaviate uses a hybrid fusion method to combine the results of vector and keyword searches. The method determines how the results of the two searches are combined to produce the final search results.
+
+There are two algorithms available: `relativeScoreFusion` (default from `1.24`) and `rankedFusion` (default until `1.24`).
+
+With `rankedFusion`, each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches.
+
+With `relativeScoreFusion`, each object is scored by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
 
 #### Alpha (hybrid search)
 
-- What is the alpha values
+The alpha value determines the weight of the vector search results in the final hybrid search results. The alpha value ranges from 0 to 1, where 0 means only keyword search results are considered, and 1 means only vector search results are considered.
 
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
