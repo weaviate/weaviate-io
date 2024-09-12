@@ -16,6 +16,8 @@ import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similari
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-rerank_test.go';
+
 
 
 Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
@@ -77,6 +79,15 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={SimilarityPyCodeV3}
@@ -125,6 +136,15 @@ To rerank the results of a vector search, configure the object properties to sor
       startMarker="// START RerankNearText"
       endMarker="// END RerankNearText"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RerankNearText"
+      endMarker="// END RerankNearText"
+      language="gonew"
     />
   </TabItem>
 
@@ -190,6 +210,15 @@ To rerank the results of a keyword search, configure the object properties to so
       startMarker="// START bm25Rerank"
       endMarker="// END bm25Rerank"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START bm25Rerank"
+      endMarker="// END bm25Rerank"
+      language="gonew"
     />
   </TabItem>
 

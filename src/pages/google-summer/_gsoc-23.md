@@ -78,7 +78,7 @@ The demo app is expected to be developed in Python or JavaScript, but we are ope
 
 This project is a great opportunity to gain hands-on experience, and should be suitable even for those new to Weaviate.
 
-There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/retriever-vectorizer-modules/ref2vec-centroid), ['text2vec-openai'](/developers/weaviate/model-providers/openai/embeddings), ['text2vec-cohere'](/developers/weaviate/model-providers/cohere/embeddings) or ['qna-openai`](/developers/weaviate/modules/reader-generator-modules/qna-openai) modules are relatively new and could be used to create a demo app that is unique and exciting.
+There are opportunities to build demo apps that will stand out incorporating one of many new cutting-edge Weaviate modules. For example, our [`ref2vec`](/developers/weaviate/modules/ref2vec-centroid), ['text2vec-openai'](/developers/weaviate/model-providers/openai/embeddings), ['text2vec-cohere'](/developers/weaviate/model-providers/cohere/embeddings) or ['qna-openai`](/developers/weaviate/modules/qna-openai) modules are relatively new and could be used to create a demo app that is unique and exciting.
 
 **Required Skills:** Some experience with Python (or another appropriate language), git + GitHub, and conceptual familiarity with vectors in machine learning context. Ability to work independently and communicate clearly.
 

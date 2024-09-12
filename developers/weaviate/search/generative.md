@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-generative_test.go';
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -77,6 +78,15 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -127,6 +137,15 @@ The properties you use in the prompt do not have to be among the properties you 
       startMarker="// SingleGenerativeProperties TS"
       endMarker="// END SingleGenerativeProperties TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SingleGenerativeProperties"
+      endMarker="// END SingleGenerativeProperties"
+      language="gonew"
     />
   </TabItem>
 
@@ -195,6 +214,15 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GroupedGenerative"
+      endMarker="// END GroupedGenerative"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -260,6 +288,15 @@ Define object `properties` to use in the prompt. This limits the information in 
       startMarker="// GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GroupedGenerativeProperties"
+      endMarker="// END GroupedGenerativeProperties"
+      language="gonew"
     />
   </TabItem>
 

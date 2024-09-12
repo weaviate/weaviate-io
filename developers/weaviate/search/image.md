@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.image-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-image_test.go';
 
 `Image` search uses an **image as a search input** to perform vector similarity search.
 
@@ -80,8 +81,18 @@ If your query image is stored in a file, you can use the client library to searc
     endMarker="// END ImageFileSearch"
     language="ts"
   />
-
   </TabItem>
+
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ImageFileSearch"
+      endMarker="// END ImageFileSearch"
+      language="gonew"
+    />
+  </TabItem>
+
 </Tabs>
 
 <details>
@@ -137,6 +148,15 @@ You can search by a base64 representation of an image:
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="gonew"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -171,6 +191,15 @@ You can create a base64 representation of an online image, and use it as input f
       startMarker="// START helper base64 functions"
       endMarker="// END helper base64 functions"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START helper base64 functions"
+      endMarker="// END helper base64 functions"
+      language="gonew"
     />
   </TabItem>
 

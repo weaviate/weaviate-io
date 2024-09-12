@@ -76,6 +76,7 @@ For links to the Weaviate Core releases, expand this section.
   | [1.26.2][c1.26.2] | 2024-08-29 |
   | [1.26.1][c1.26.1] | 2024-07-23 |
   | [1.26.0][c1.26.0] | 2024-07-22 |
+  | [1.25.16][c1.25.16] | 2024-09-12 |
   | [1.25.15][c1.25.15] | 2024-09-10 |
   | [1.25.14][c1.25.14] | 2024-09-05 |
   | [1.25.13][c1.25.13] | 2024-08-19 |
@@ -565,6 +566,7 @@ For links to the Java Client releases, expand this section.
 [c1.26.2]: https://github.com/weaviate/weaviate/releases/tag/v1.26.2
 [c1.26.1]: https://github.com/weaviate/weaviate/releases/tag/v1.26.1
 [c1.26.0]: https://github.com/weaviate/weaviate/releases/tag/v1.26.0
+[c1.25.16]: https://github.com/weaviate/weaviate/releases/tag/v1.25.16
 [c1.25.15]: https://github.com/weaviate/weaviate/releases/tag/v1.25.15
 [c1.25.14]: https://github.com/weaviate/weaviate/releases/tag/v1.25.14
 [c1.25.13]: https://github.com/weaviate/weaviate/releases/tag/v1.25.13

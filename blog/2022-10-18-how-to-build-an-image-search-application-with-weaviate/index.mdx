@@ -45,7 +45,7 @@ For a use case like ours, where we would like to identify similar types of dogs,
 The `img2vec-neural` module in Weaviate is designed to solve this exact problem! The module vectorizes each image to something that represents its contents, so that we can search images based on their semantic similarity. In other words, we can use `img2vec-neural` to query our database to see how similar the dogs are based on the image.
 
 ### Img2vec-neural Module
-[Weaviate's img2vec-neural module](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the [ImageNet database](https://www.image-net.org/). The model was trained on more than 10 million images and 20,000 classes.
+[Weaviate's img2vec-neural module](/developers/weaviate/modules/img2vec-neural) is a flexible vectorizer that enables conversion of images to meaningful vectors. `ResNet-50` is the first model that is supported on Weaviate. `ResNet-50` is a Convolutional Neural Network (CNN) that was trained on the [ImageNet database](https://www.image-net.org/). The model was trained on more than 10 million images and 20,000 classes.
 
 ## Weaviate Database
 ### Setup
@@ -215,7 +215,7 @@ app.config["UPLOAD_FOLDER"] = "/temp_images"
 client = weaviate.Client("http://localhost:8080")
 ```
 
-We will use the [`nearImage`](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural#nearimage-search) operator in Weaviate, so that it will search for images closest to the image uploaded by the user. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results.
+We will use the [`nearImage`](/developers/weaviate/modules/img2vec-neural#nearimage-search) operator in Weaviate, so that it will search for images closest to the image uploaded by the user. To do this we will construct the `weaviate_img_search` function to get the relevant results. The response from our search query will include the closest objects in the Dog class. From the response, the function will output the dog image with the breed name and filepath. Note that the query is also formulated so that the response is limited to two results.
 
 ```python
 def weaviate_img_search(img_str):
