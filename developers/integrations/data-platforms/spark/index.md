@@ -11,6 +11,12 @@ The Spark connector enables you to easily ingest data from Spark data structures
 
 Learn more about the connector in the [Weaviate Spark connector repository](https://github.com/weaviate/spark-connector).
 
+### Databricks and Weaviate
+[Databricks](https://www.databricks.com/) is a data intelligence platform that unifies data, AI and governance on the lakehouse. You can ingest Spark data structures from Databricks into Weaviate using the Weaviate Spark connector.
+
+Databricks' Foundation Model APIs can be called directly from Weaviate, allowing you to use models hosted on the Databricks platform through the [`text2vec-databricks`](/developers/weaviate/model-providers/databricks/embeddings) and [`generative-databricks`](/developers/weaviate/model-providers/databricks/generative) modules.
+
+
 ## Our Resources 
 The resources are broken into two categories: 
 1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
