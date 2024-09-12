@@ -47,6 +47,15 @@ To enable SQ, set `vector_index_config`.
         language="py"
       />
   </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START EnableSQ"
+       endMarker="// END EnableSQ"
+       language="ts"
+     />
+  </TabItem>
 </Tabs>
 
 
@@ -80,6 +89,15 @@ To tune SQ, set these `vectorIndexConfig` parameters.
         endMarker="# END SQWithOptions"
         language="py"
       />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+     <FilteredTextBlock
+       text={TSCodeSQOptions}
+       startMarker="// START SQWithOptions"
+       endMarker="// END SQWithOptions"
+       language="ts"
+     />
   </TabItem>
 </Tabs>
 

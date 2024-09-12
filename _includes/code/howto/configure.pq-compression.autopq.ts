@@ -26,8 +26,8 @@ const collection = await client.collections.create({
 
 let collectionConfig = await collection.config.get();
 
-assert.equal((collectionConfig.vectorizer.default.indexConfig as VectorIndexConfigHNSW).quantizer.type, "pq")
-assert.equal(((collectionConfig.vectorizer.default.indexConfig as VectorIndexConfigHNSW).quantizer as PQConfig).trainingLimit, 50000)
+assert.equal((collectionConfig.vectorizers.default.indexConfig as VectorIndexConfigHNSW).quantizer.type, "pq")
+assert.equal(((collectionConfig.vectorizers.default.indexConfig as VectorIndexConfigHNSW).quantizer as PQConfig).trainingLimit, 50000)
 
 // Clean-up
 await client.collections.delete(collectionName);
