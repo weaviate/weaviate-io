@@ -103,6 +103,10 @@ const siteRedirects = {
             to: '/developers/weaviate/',
             from: '/developers/weaviate/current/more-resources/deprecation-messages',
         },
+        {
+            to: '/developers/integrations/llm-frameworks/dspy',
+            from: '/developers/weaviate/more-resources/dspy',
+        },
 
         // Quickstart redirects
         {
