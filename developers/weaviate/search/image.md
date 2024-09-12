@@ -58,15 +58,6 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START ImageFileSearch"
-      endMarker="// END ImageFileSearch"
-      language="gonew"
-    />
-  </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
@@ -90,6 +81,15 @@ If your query image is stored in a file, you can use the client library to searc
     endMarker="// END ImageFileSearch"
     language="ts"
   />
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ImageFileSearch"
+      endMarker="// END ImageFileSearch"
+      language="gonew"
+    />
+  </TabItem>
 
   </TabItem>
 </Tabs>
