@@ -29,6 +29,10 @@ try:
                 name="answer",
                 data_type=wvc.config.DataType.TEXT,
             ),
+            wvc.config.Property(
+                name="category",
+                data_type=wvc.config.DataType.TEXT,
+            )
         ]
     )
 
