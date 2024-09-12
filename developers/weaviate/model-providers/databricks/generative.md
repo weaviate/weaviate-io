@@ -58,13 +58,20 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START DatabricksInstantiation"
       endMarker="# END DatabricksInstantiation"
       language="py"
     />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -81,6 +88,14 @@ Provide the Dataricks token to Weaviate using one of the following methods:
       endMarker="# END BasicGenerativeDatabricks"
       language="py"
     />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -103,13 +118,20 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SinglePromptExample"
       endMarker="# END SinglePromptExample"
       language="py"
     />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -125,7 +147,7 @@ In other words, when you have `n` search results, the generative model generates
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
+  <FilteredTextBlock
       text={PyCode}
       startMarker="# START GroupedTaskExample"
       endMarker="# END GroupedTaskExample"
@@ -133,6 +155,13 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
+  </TabItem>
 
 </Tabs>
 
@@ -150,6 +179,14 @@ Configure the following generative parameters to customize the model behavior.
       endMarker="# END FullGenerativeDatabricks"
       language="py"
     />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>

@@ -67,6 +67,14 @@ Provide the Dataricks token to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -81,6 +89,14 @@ Provide the Dataricks token to Weaviate using one of the following methods:
       endMarker="# END BasicVectorizerDatabricks"
       language="py"
     />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -100,6 +116,14 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       endMarker="# END BatchImportExample"
       language="py"
     />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -131,6 +155,14 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -152,6 +184,14 @@ The query below returns the `n` best scoring objects from the database, set by `
       endMarker="# END HybridExample"
       language="py"
     />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// Typescript client support coming soon
+```
+
   </TabItem>
 
 </Tabs>
