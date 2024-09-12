@@ -160,7 +160,7 @@ go_memstats_heap_inuse_bytes
 
 Batch latency is important as batch operations are the most efficient way to write data to
 Weaviate. Monitoring this can give an indication if there is a problem with indexing data. This metric has a label `operation` which
-allows you to see how long objects, vectors, and inverted index sub operations take. If you are using a [vectorizer module](/developers/weaviate/modules/retriever-vectorizer-modules) you will see additional latency due to the overhead of sending data to the module.
+allows you to see how long objects, vectors, and inverted index sub operations take. If you are using a [vectorizer module](/developers/weaviate/model-providers/) you will see additional latency due to the overhead of sending data to the module.
 
 ```
 rate(batch_durations_ms_sum[30s])/rate(batch_durations_ms_count[30s])
