@@ -554,39 +554,39 @@ const siteRedirects = {
 
         // Legacy REST API redirects
         {
-            to:   '/developers/weaviate/api/rest_legacy/schema',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/schema',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/objects',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/objects',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/batch',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/batch',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/backups',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/backups',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/classification',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/classification',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/meta',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/meta',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/nodes',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/nodes',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/well-known',
+            to:   '/developers/weaviate/api/rest/',
             from: '/developers/weaviate/api/rest/well-known',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/modules',
+            to:   '/developers/weaviate/model-providers',
             from: '/developers/weaviate/api/rest/modules',
         },
 
