@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_jinaai.jpg
 # tags: ['model providers', 'jinaai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 Jina AI offers a wide range of models for natural language processing. Weaviate seamlessly integrates with Jina AI's APIs, allowing users to leverage Jina AI's models directly within the Weaviate database.
 

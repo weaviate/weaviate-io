@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_gpt4all.jpg
 
 # GPT4All Embeddings with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -133,7 +130,7 @@ As this integration connects to a local GPT4All container, no additional credent
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an GPT4All embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a GPT4All embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -157,6 +154,8 @@ As this integration connects to a local GPT4All container, no additional credent
 </Tabs>
 
 Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 

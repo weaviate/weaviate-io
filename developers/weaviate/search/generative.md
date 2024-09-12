@@ -23,12 +23,7 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 
 ### Configure generative search
 
-1. Configure Weaviate to use a generator module. For details, see the module reference page:
-
-   - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
-   - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
-   - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
-
+1. Configure Weaviate to enable a [generative model integration](../model-providers/index.md).
  2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
  3. Query your database to retrieve one or more objects.
  4. Use the query results to generate a new result.
@@ -295,9 +290,7 @@ The output is like this:
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
-- [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
-- [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [Model provider integrations](../model-providers/index.md).
 - [API References: GraphQL: Get](../api/graphql/get.md)
 
 ## Questions and feedback

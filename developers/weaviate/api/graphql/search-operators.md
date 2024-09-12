@@ -248,9 +248,8 @@ Some modules, such as `multi2vec-clip` and `multi2vec-bind` allow you to search 
 
 For more information, see specific module pages such as these:
 
-* [img2vec-neural](../../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage)
-* [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md#additional-search-operators)
-* [multi2vec-bind](../../modules/retriever-vectorizer-modules/multi2vec-bind.md#additional-search-operators)
+* [Transformers multimodal embeddings](../../model-providers/transformers/embeddings-multimodal.md)
+* [ImageBind multimodal embeddings](../../model-providers/imagebind/embeddings-multimodal.md)
 
 
 ## hybrid

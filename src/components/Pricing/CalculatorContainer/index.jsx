@@ -250,10 +250,7 @@ export default function CalculatorContainer() {
           >
             Get started with Serverless
           </Link>
-          <Link
-            className={styles.buttonOutline}
-            to="/services/enterprise-cloud"
-          >
+          <Link className={styles.buttonOutline} to="/deployment/serverless">
             Explore all benefits and features
           </Link>
         </div>
