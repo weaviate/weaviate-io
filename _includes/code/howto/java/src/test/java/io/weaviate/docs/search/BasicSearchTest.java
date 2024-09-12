@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 @Tag("crud")
 @Tag("search")
-public class BasicSearch {
+public class BasicSearchTest {
 
   private static WeaviateClient client;
 
@@ -38,11 +38,14 @@ public class BasicSearch {
   public void shouldPerformBasicSearch() {
     String className = "Article";
     String tenantName = "TenantA";
+    String propertyName = "body";
 
     listObjects(className);
     limitReturnedObjects(className);
     paginateObjects(className);
+    specifyObjectProperties(className, propertyName);
     retrieveObjectVector(className);
+    retrieveMetadata(className);
     retrieveTenant(className, tenantName);
   }
 
@@ -54,14 +57,13 @@ public class BasicSearch {
     // END BasicGet
   }
 
-  //Metadata Returns as well
   private void limitReturnedObjects(String className) {
-    // START GetWithLimit  // START GetObjectIdJS // START GetWithMetadata
+    // START GetWithLimit  // START GetObjectIdJS
     Result<List<WeaviateObject>> resultObj = client.data().objectsGetter()
       .withClassName(className)
-      .withLimit(1) // Metadata and Object IDs are included by default with the Java client
+      .withLimit(1) // Object IDs are included by default with the Java client
       .run();
-    // END GetWithLimit  // END GetObjectIdJS // END GetWithMetadata
+    // END GetWithLimit  // END GetObjectIdJS
   }
 
   private void paginateObjects(String className) {
@@ -74,6 +76,16 @@ public class BasicSearch {
     // END GetWithOffset
   }
 
+  private void specifyObjectProperties(String className, String propertyName) {
+    // START GetProperties
+    Result<List<WeaviateObject>> resultObj = client.data().objectsGetter()
+      .withClassName(className)
+      .withLimit(1)
+      .run();
+    resultObj.getResult().get(0).getProperties().get(propertyName);
+    // END GetProperties
+  }
+
   private void retrieveObjectVector(String className) {
     // START GetObjectVector
     Result<List<WeaviateObject>> resultObj = client.data().objectsGetter()
@@ -82,6 +94,16 @@ public class BasicSearch {
       .withVector()
       .run();
     // END GetObjectVector
+  }
+
+  private void retrieveMetadata(String className) {
+    // START GetWithMetadata
+    Result<List<WeaviateObject>> resultObj = client.data().objectsGetter()
+      .withClassName(className)
+      .run();
+    resultObj.getResult().get(0).getLastUpdateTimeUnix();
+    resultObj.getResult().get(0).getCreationTimeUnix();
+    // END GetWithMetadata
   }
 
   private void retrieveTenant(String className, String tenantName) {
