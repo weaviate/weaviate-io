@@ -49,7 +49,7 @@ Read more about [enabling all API-based modules](../configuration/modules.md#ena
 | Model provider | Embeddings | Generative AI | Others |
 | --- | --- | --- | --- |
 | [GPT4All](./gpt4all/index.md) | [Text](./gpt4all/embeddings.md) | - | - |
-| [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md), [Multimodal (CLIP)](./transformers/embeddings-multimodal.md) | - | [Reranker](./huggingface/reranker.md) |
+| [Hugging Face](./transformers/index.md) | [Text](./transformers/embeddings.md), [Multimodal (CLIP)](./transformers/embeddings-multimodal.md) | - | [Reranker](./transformers/reranker.md) |
 | [Meta ImageBind](./imagebind/index.md) | [Multimodal](./imagebind/embeddings-multimodal.md) | - | - |
 | [Ollama](./ollama/index.md) | [Text](./ollama/embeddings.md) | [Text](./ollama/generative.md) | - |
 
