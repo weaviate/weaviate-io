@@ -1,9 +1,6 @@
 // TODO: Configure as part of the test harness
 // TODO: Needs tests
 
-
-var DEBUG = true;
-
 // Imports
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 
@@ -31,14 +28,72 @@ function deleteClass(client, className: string){
 // ENABLE HNSW - COLLECTION //
 //////////////////////////////
 
-async function createHNSWCollection(client, className: string){
- if(DEBUG) console.log("START HNSW: " + await client.schema.exists(className))
 // START EnableHNSW
-// Add this import line
-// import { vectorizer, dataType, configure } from 'weaviate-client';
+async function createHNSWCollection(client: WeaviateClient, className: string){
 
- if(DEBUG) console.log("END HNSW: " + await client.schema.exists(className))
+  const setIndexType = {
+    class: className,
+    // Add property definitions
+    vectorizer: 'text2vec-openai',
+    vectorIndexType: 'hnsw',
+    vectorIndexConfig: {
+      distance: 'cosine',
+      ef_construction: '256',  // Dynamic list size during construction
+      max_connections: '128',  // Maximum number of connections per node
+      quantizer: 'Configure.VectorIndex.Quantizer.pq()',  // Quantizer configuration
+      ef: '-1',  // Dynamic list size during search; -1 enables dynamic Ef
+      dynamic_ef_factor: '15',  // Multiplier for dynamic Ef
+      dynamic_ef_min: '200',  // Minimum threshold for dynamic Ef
+      dynamic_ef_max: '1000',  // Maximum threshold for dynamic Ef
+      pq: {
+        enabled: true,
+        trainingLimit: 100000,
+        segments: 96,
+      },
+    },
+  };
+
+  // Add the class to the schema
+  await client.schema.classCreator().withClass(setIndexType).do();
 }
+// END EnableHNSW
+
+//////////////////////////////
+/// ENABLE HNSW - MULTIPLE ///
+//////////////////////////////
+
+// START EnableMulti
+async function createMultiCollection(client: WeaviateClient, className: string){
+
+ const classWithNamedVectors = {
+    class: className,
+    vectorConfig: {
+     // Define a named vector
+     vectorForFieldOne: {
+       vectorizer: {
+         'text2vec-cohere': {
+           properties: ['FieldOne'],
+         },
+       },
+       vectorIndexType: 'hnsw',
+     },
+     // Define another named vector
+     vectorForFieldTwo: {
+       vectorizer: {
+         'text2vec-openai': {
+           properties: ['FieldTwo'],
+         },
+       },
+       vectorIndexType: 'flat'
+      },
+    }
+  // Configure properties
+  }
+
+  // Add the class to the schema
+  await client.schema.classCreator().withClass(classWithNamedVectors).do();
+}
+// END EnableMulti
 
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
@@ -49,24 +104,21 @@ async function main(){
  const className = "ConfigCollection";
 
  const client = await getClient();
- if(DEBUG) console.log(client) ;
-
- if(DEBUG) console.log("START: " + await client.schema.exists(className))
  deleteClass(client, className)
- if(DEBUG) console.log("START +1: " + await client.schema.exists(className))
 
  // Only one create can run at a time due to aynsc code
  // Run enable HNSW collection code
- deleteClass(client, className)
- if(await client.schema.exists(className) != true){
-   createHNSWCollection(client, className);
-  }
-
- // // Run multiple named vector collection code
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
- //   createMultiCollection(client, className);
- //   }
+ //   createHNSWCollection(client, className);
+ //  }
+
+ // // Run multiple named vector collection code
+ deleteClass(client, className)
+ if(await client.schema.exists(className) != true){
+   createMultiCollection(client, className);
+   }
+
 }
 
 main()

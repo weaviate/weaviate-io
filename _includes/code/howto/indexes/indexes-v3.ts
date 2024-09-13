@@ -44,9 +44,8 @@ async function createHNSWCollection(client: WeaviateClient, collectionName: stri
 /// ENABLE HNSW - MULTIPLE ///
 //////////////////////////////
 
-async function createMultiCollection(client: WeaviateClient, collectionName: string){
 // START EnableMulti
-
+async function createMultiCollection(client: WeaviateClient, collectionName: string){
  // Add this import line
  // import { vectorizer, configure } from 'weaviate-client';
 
@@ -54,7 +53,7 @@ async function createMultiCollection(client: WeaviateClient, collectionName: str
     name: collectionName,
     vectorizers: [
       // Define a named vector
-      vectorizer.text2VecOpenAI({
+      vectorizer.text2VecCohere({
         name: "vectorForFieldOne",
         sourceProperties: ['FieldOne'],
         vectorIndexConfig: configure.vectorIndex.hnsw()
@@ -68,8 +67,8 @@ async function createMultiCollection(client: WeaviateClient, collectionName: str
   ],
   // Configure properties
   })
-// END EnableMulti
 }
+// END EnableMulti
 
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
