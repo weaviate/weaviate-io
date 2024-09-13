@@ -46,6 +46,7 @@ public class BasicSearchTest {
     paginateObjects(className);
     specifyObjectProperties(className, propertyName);
     retrieveObjectVector(className);
+    retrieveObjectId(className);
     retrieveMetadata(className);
     retrieveTenant(className, tenantName);
   }
