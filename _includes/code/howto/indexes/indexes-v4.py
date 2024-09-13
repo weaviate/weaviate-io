@@ -1,18 +1,13 @@
 # TODO: Configure as part of the test harness
 
-# DEBUG = True
-DEBUG = False
 collection_name = "ConfigCollection"
-
 
 def print_response(title, response):
     print(f"{title}: {response}")
 
-
 def print_response_iter(title, response):
     for r in response:
         print(f"{title}: {r}")
-
 
 ########################
 ### CLIENT CONNECTION ##
@@ -24,9 +19,6 @@ import weaviate
 cohere_api_key = os.environ["COHERE_API_KEY"]
 
 client = weaviate.connect_to_local(headers={"X-Cohere-Api-Key": cohere_api_key})
-
-if DEBUG:
-    print(f"CLIENT IS READY: {client.is_ready()}")
 
 ################################
 ### ENABLE HNSW - COLLECTION ###
@@ -62,11 +54,6 @@ client.collections.create(
 collection = client.collections.get(collection_name)
 collections_response = client.collections.list_all()
 schema_response = collection.config.get()
-
-if DEBUG:
-    print_response_iter("COLLECTIONS", collections_response)
-if DEBUG:
-    print_response("SCHEMA", schema_response)
 
 assert collection_name in collections_response.keys(), "Collection missing"
 assert (
@@ -106,17 +93,9 @@ client.collections.create(
 )
 # END EnableMulti
 
-if DEBUG:
-    print("START: Enable HNSW for multiple named vectors")
-
 collection = client.collections.get(collection_name)
 collections_response = client.collections.list_all()
 schema_response = collection.config.get()
-
-if DEBUG:
-    print_response_iter("COLLECTIONS", collections_response)
-if DEBUG:
-    print_response("SCHEMA", schema_response)
 
 assert collection_name in collections_response.keys(), "Collection missing"
 assert (
