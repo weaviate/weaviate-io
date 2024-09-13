@@ -10,6 +10,6 @@ Learn about how Weaviate integrates with these solutions:
 * [Aryn](/developers/integrations/data-platforms/aryn/)
 * [Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud)
 * [Context Data](/developers/integrations/data-platforms/context-data/)
+* [Databricks](/developers/integrations/data-platforms/databricks/)
 * [Firecrawl](/developers/integrations/data-platforms/firecrawl/)
-* [Spark](/developers/integrations/data-platforms/spark)
 * [Unstructured](/developers/integrations/data-platforms/unstructured)
