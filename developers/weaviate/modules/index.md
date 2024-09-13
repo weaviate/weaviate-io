@@ -1,5 +1,5 @@
 ---
-title: References - Modules (Legacy modules)
+title: References - Modules
 sidebar_position: 0
 image: og/docs/modules/_title.jpg
 # tags: ['modules']

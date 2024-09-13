@@ -13,7 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.basics-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-basic_test.go';
-
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/BasicSearchTest.java';
 
 With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
 
@@ -72,6 +72,15 @@ You can get objects without specifying any parameters. This returns objects in a
     startMarker="// START BasicGet"
     endMarker="// END BasicGet"
     language="go"
+  />
+</TabItem>
+
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START BasicGet"
+    endMarker="// END BasicGet"
+    language="java"
   />
 </TabItem>
 
@@ -162,6 +171,15 @@ Use `limit` to set a fixed maximum number of objects to return.
   />
 </TabItem>
 
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetWithLimit"
+    endMarker="// END GetWithLimit"
+    language="java"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -242,6 +260,14 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   />
 </TabItem>
 
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetWithOffset"
+    endMarker="// END GetWithOffset"
+    language="java"
+  />
+</TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
@@ -328,6 +354,15 @@ You can specify which object properties to return.
   />
 </TabItem>
 
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetProperties"
+    endMarker="// END GetProperties"
+    language="java"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -405,6 +440,15 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
     startMarker="// START GetObjectVector"
     endMarker="// END GetObjectVector"
     language="go"
+  />
+</TabItem>
+
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetObjectVector"
+    endMarker="// END GetObjectVector"
+    language="java"
   />
 </TabItem>
 
@@ -487,6 +531,15 @@ You can retrieve the object `id` (uuid).
     startMarker="// START GetObjectId"
     endMarker="// END GetObjectId"
     language="go"
+  />
+</TabItem>
+
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetObjectId"
+    endMarker="// END GetObjectId"
+    language="java"
   />
 </TabItem>
 
@@ -656,6 +709,15 @@ You can specify metadata fields to be returned.
   />
 </TabItem>
 
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START GetWithMetadata"
+    endMarker="// END GetWithMetadata"
+    language="java"
+  />
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -718,6 +780,15 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
     startMarker="// START MultiTenancy"
     endMarker="// END MultiTenancy"
     language="go"
+  />
+</TabItem>
+
+<TabItem value="java" label="Java">
+  <FilteredTextBlock
+    text={JavaCode}
+    startMarker="// START MultiTenancy"
+    endMarker="// END MultiTenancy"
+    language="java"
   />
 </TabItem>
 

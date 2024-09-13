@@ -266,8 +266,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-may2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/update-126">Product Update Webinar</a> | Learn about new capabilities for cost optimization, performance, and developer efficiency`,
+                id: 'announcement-bar-sept-2024',
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-sea">AI [in Prod] Seattle – Sept 19th</a> | Request a ticket to join expert tech talks and hands-on generative AI training!`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
