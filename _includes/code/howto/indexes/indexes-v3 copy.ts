@@ -6,13 +6,16 @@ import weaviate, { WeaviateClient,vectorizer, configure } from 'weaviate-client'
 
 // Delete pre-existing collections
 function deleteCollection(client: WeaviateClient, collectionName: string){
- try {
-   client.collections.delete(collectionName)
-} catch (e) {
-  // ignore error if class doesn't exist
-}
+  console.log("DEBUG 1")
 
-return true
+  try {
+    client.collections.delete(collectionName)
+    console.log("DEBUG 2")
+  } catch (e) {
+    // ignore error if class doesn't exist
+  }
+
+  console.log("DEBUG 3")
 }
 
 // Create client connection
@@ -77,24 +80,21 @@ async function createMultiCollection(client: WeaviateClient, collectionName: str
 
 // Main
 async function main(){
-  const collectionName = "ConfigCollection";
+ const collectionName = "ConfigCollection";
 
-  const client = await getClient();
+ const client = await getClient();
 
-  deleteCollection(client, collectionName)
+ // Only run one of these at a time. Async code causes race condition crashes
+ // // Run enable HNSW collection code
+ // deleteCollection(client, collectionName);
+ // createHNSWCollection(client, collectionName);
 
-  // Only one create can run at a time due to aynsc code
-  // Run enable HNSW collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    createHNSWCollection(client, collectionName);
-   }
-
-  // // Run multiple named vector collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createMultiCollection(client, collectionName);
-  //   }
+ // Run multiple named vector collection code
+ console.log("DEBUG 0")
+ deleteCollection(client, collectionName);
+ console.log("DEBUG 4")
+ createMultiCollection(client, collectionName);
+ console.log("DEBUG 5")
 }
 
 main()

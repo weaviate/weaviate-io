@@ -90,6 +90,7 @@ client.collections.create(
             vector_index_config=Configure.VectorIndex.flat(),
         ),
     ],
+    # Configure properties
 )
 # END EnableMulti
 
