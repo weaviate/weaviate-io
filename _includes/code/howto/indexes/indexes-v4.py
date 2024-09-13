@@ -48,7 +48,6 @@ client.collections.create(
         dynamic_ef_max=1000,  # Maximum threshold for dynamic Ef
     ),
 )
-
 # END EnableHNSW
 
 collection = client.collections.get(collection_name)
@@ -111,6 +110,31 @@ assert (
     .vector_index_config.vector_index_type()
     == "flat"
 ), "Wrong index type"
+
+###################
+### ENABLE FLAT ###
+###################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START EnableHNSW
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
+    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
+    # This line enables the index
+    # vector_index_config=Configure.VectorIndex.hnsw()
+    # These lines enable and configure the index
+    vector_index_config=Configure.VectorIndex.flat(
+        distance_metric=VectorDistances.COSINE,
+        vector_cache_max_objects=100000,
+        quantizer=Configure.VectorIndex.Quantizer.bq()
+    ),
+)
+# END EnableHNSW
 
 ################
 ### CLEAN UP ###
