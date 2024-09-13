@@ -25,13 +25,13 @@ import CompressMethods from '/_includes/configuration/compression-methods.mdx';
 
 <CompressMethods/>
 
-### HNSW indexes
+## HNSW indexes
 
 import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-#### Collection configuration
+### Collection configuration
 
 Configure an HNSW index for a collection:
 
@@ -70,9 +70,33 @@ Configure an HNSW index for a collection:
   </TabItem>
 </Tabs>
 
-#### Multiple named vectors configuration
+See also:
 
-Configure an HNSW index for multiple named vectors:
+ - [HNSW index parameters](/developers/weaviate/config-refs/schema/vector-index#hnsw-index-parameters)
+
+## Flat indexes
+
+import FlatIntro from '/_includes/indexes/flat-intro.mdx';
+
+<FlatIntro/>
+
+See also:
+
+- [Flat index parameters](/developers/weaviate/config-refs/schema/vector-index#flat-indexes)
+
+## Dynamic indexes
+
+import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
+
+<DynamicIntro/>
+
+See also:
+
+- [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
+
+## Multiple named vectors
+
+Configure a collection to use [multiple named vectors](/developers/weaviate/config-refs/schema/multi-vector):
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -108,30 +132,6 @@ Configure an HNSW index for multiple named vectors:
     />
   </TabItem>
 </Tabs>
-
-See also:
-
- - [HNSW index parameters](/developers/weaviate/config-refs/schema/vector-index#hnsw-index-parameters)
-
-### Flat indexes
-
-import FlatIntro from '/_includes/indexes/flat-intro.mdx';
-
-<FlatIntro/>
-
-See also:
-
-- [Flat index parameters](/developers/weaviate/config-refs/schema/vector-index#flat-indexes)
-
-### Dynamic indexes
-
-import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
-
-<DynamicIntro/>
-
-See also:
-
-- [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
 
 ## Additional considerations
 

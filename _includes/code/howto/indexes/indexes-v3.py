@@ -83,9 +83,8 @@ assert correct_index, "Wrong index type"
 # ### ENABLE HNSW - MULTIPLE ###
 # ##############################
 
-# START EnableHNSW
+# START EnableMulti
+# The Python client v3 doesn't support multiple named vectors.
 
-# The Python client v3 doesn't support multiple named vectors. To use
-# multiple named vectors, upgrade to the Python client v4.
-#
+# To use multiple named vectors, upgrade to the Python client v4.
 # END EnableMulti

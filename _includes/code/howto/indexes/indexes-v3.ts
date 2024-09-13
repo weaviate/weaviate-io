@@ -45,10 +45,10 @@ async function createHNSWCollection(client: WeaviateClient, collectionName: stri
 //////////////////////////////
 
 // START EnableMulti
-async function createMultiCollection(client: WeaviateClient, collectionName: string){
- // Add this import line
- // import { vectorizer, configure } from 'weaviate-client';
+// Add this import line
+// import { vectorizer, configure } from 'weaviate-client';
 
+async function createMultiCollection(client: WeaviateClient, collectionName: string){
   await client.collections.create({
     name: collectionName,
     vectorizers: [
