@@ -6,11 +6,11 @@ var DEBUG = true;
 // var DEBUG = false;
 
 // Imports
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 import { vectorizer, dataType, configure } from 'weaviate-client';
 
 // Delete pre-existing collections
-function deletePrior(client, collectionName){
+function deletePrior(client: WeaviateClient, collectionName: string){
  if (client.collections.get(collectionName))
    client.collections.delete(collectionName);
 
@@ -19,9 +19,9 @@ function deletePrior(client, collectionName){
 
 // Create client connection
 async function getClient(){
- const client: WeaviateClient = weaviate.connectToLocal();
+  const client: WeaviateClient = weaviate.connectToLocal();
 
- return client;
+  return client;
 }
 
 //////////////////////////////
@@ -32,7 +32,7 @@ async function getClient(){
 // Add this import line
 // import { vectorizer, dataType, configure } from 'weaviate-client';
 
-async function createHNSWCollection(client, collectionName){
+async function createHNSWCollection(client: WeaviateClient, collectionName: string){
   if(DEBUG) console.log("Create HNSW: " + collectionName);
 
   await client.collections.create({
@@ -49,13 +49,10 @@ async function createHNSWCollection(client, collectionName){
 //////////////////////////////
 
 // START EnableMulti
-async function createMultiCollection(client, collectionName){
+async function createMultiCollection(client: WeaviateClient, collectionName: string){
   if(DEBUG) console.log("Create Multi: " + collectionName);
 
-  const c = client;
-  const cn = collectionName;
-
-  console.log("Multi no-op: " + cn);
+  console.log("Multi no-op: " + collectionName);
 }
 // END EnableMulti
 
