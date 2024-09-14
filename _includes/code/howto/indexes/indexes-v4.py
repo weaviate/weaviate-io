@@ -125,9 +125,6 @@ from weaviate.classes.config import Configure, VectorDistances
 client.collections.create(
     name=collection_name,
     vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
-    # This line enables the index
-    # vector_index_config=Configure.VectorIndex.hnsw()
-    # These lines enable and configure the index
     vector_index_config=Configure.VectorIndex.flat(
         distance_metric=VectorDistances.COSINE,
         vector_cache_max_objects=100000,
@@ -135,6 +132,55 @@ client.collections.create(
     ),
 )
 # END EnableFlat
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.FLAT"
+), "Wrong index type"
+
+######################
+### ENABLE DYNAMIC ###
+######################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START EnableDynamic
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
+    vector_index_config=Configure.VectorIndex.dynamic(
+        distance_metric=VectorDistances.COSINE,
+        threshold=20000,
+        hnsw=Configure.VectorIndex.hnsw(
+            # Any hnsw configuration parameters
+            dynamic_ef_factor=15,  # Multiplier for dynamic Ef
+            dynamic_ef_min=200,    # Minimum threshold for dynamic Ef
+            dynamic_ef_max=1000,   # Maximum threshold for dynamic Ef
+        ),
+        flat=Configure.VectorIndex.flat(
+            # Any flat index configuration parameters
+            vector_cache_max_objects=100000,
+            quantizer=Configure.VectorIndex.Quantizer.bq()
+        ),
+    )
+)
+# END EnableDynamic
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.DYNAMIC"
+), "Wrong index type"
 
 ################
 ### CLEAN UP ###

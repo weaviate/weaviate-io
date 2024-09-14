@@ -125,6 +125,8 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
+Dynamic indexes require [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing). Enable asynchronous indexing before you configure a collection to use dynamic indexing.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
