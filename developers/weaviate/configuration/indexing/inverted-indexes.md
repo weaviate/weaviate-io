@@ -34,7 +34,12 @@ The `indexFilterable` index improves [filtering](/developers/weaviate/search/fil
 If you don't anticipate searching on a property field, you can disable this index to save disk space and import time. The property is still filterable.
 
 ## indexRangeFilters
+
 The `indexRangeFilters` is a range-based index for filtering by [numerical ranges](/developers/weaviate/release-notes/release_1_26#improved-range-queries). This index is not enabled by default.
+
+## bm25 index
+
+The [`bm25` index](/developers/weaviate/config-refs/schema#bm25) is configured on the collection level. These collection-wide settings can be overwritten on the property level.
 
 ## Configuration example
 
