@@ -119,6 +119,25 @@ async function createFlatCollection(client: WeaviateClient, className: string){
 }
 // END EnableFlat
 
+////////////////////
+// ENABLE DYNAMIC //
+////////////////////
+
+// START EnableDynamic
+async function createDynamicCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   // Add property definitions
+   vectorizer: 'text2vec-openai',
+   vectorIndexType: 'dynamic',
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END EnableDynamic
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -136,20 +155,25 @@ async function main(){
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
  //   createHNSWCollection(client, className);
- //  }
+ // }
 
  // // Run multiple named vector collection code
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
  //   createMultiCollection(client, className);
- //   }
+ // }
 
- // Run enable flat collection code
- deleteClass(client, className)
- if(await client.schema.exists(className) != true){
-  createFlatCollection(client, className);
-   }
+ // // Run enable flat collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  createFlatCollection(client, className);
+ // }
 
+  // Run enable dynamic collection code
+  deleteClass(client, className)
+  if(await client.schema.exists(className) != true){
+   createDynamicCollection(client, className);
+  }
 }
 
 main()
