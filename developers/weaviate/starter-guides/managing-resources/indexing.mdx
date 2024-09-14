@@ -128,7 +128,9 @@ For details, see [set inverted index parameters](/developers/weaviate/manage-dat
 
 Property level configuration is more limited. Individual indexes can be turned on or off at the property level, and keyword tokenization options can be set.
 
-`indexSearchable` determines whether a property is indexed for keyword searches. `indexFilterable` determines whether a property is indexed to speed up match-based filtering. `indexRangeFilters` determines whether a property is indexed for numerical range filters.
+- `indexSearchable` indexes are used with keyword searches
+- `indexFilterable` indexes are used for filtering
+- `indexRangeFilters` indexes are used for numerical range filters
 
 For more on filters, see [Filtering](/developers/weaviate/concepts/prefiltering).
 
