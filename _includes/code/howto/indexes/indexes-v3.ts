@@ -103,27 +103,28 @@ async function main(){
 
   const client = await getClient();
 
+  // Clean up from earlier runs
   deleteCollection(client, collectionName)
 
   // Only one create can run at a time due to aynsc code
 
-  // // Run enable HNSW collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createHNSWCollection(client, collectionName);
-  //  }
+  // Run enable HNSW collection code
+  deleteCollection(client, collectionName)
+  if(await client.collections.get(collectionName).exists() != true){
+    createHNSWCollection(client, collectionName);
+  }
 
   // // Run multiple named vector collection code
   // deleteCollection(client, collectionName)
   // if(await client.collections.get(collectionName).exists() != true){
   //   createMultiCollection(client, collectionName);
-  //   }
+  // }
 
-  // Run enable Flat collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    createFlatCollection(client, collectionName);
-   }
+  // // Run enable Flat collection code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   createFlatCollection(client, collectionName);
+  // }
 }
 
 main()

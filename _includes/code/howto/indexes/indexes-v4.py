@@ -119,7 +119,7 @@ assert (
 if client.collections.exists(collection_name):
     client.collections.delete(collection_name)
 
-# START EnableHNSW
+# START EnableFlat
 from weaviate.classes.config import Configure, VectorDistances
 
 client.collections.create(
@@ -134,7 +134,7 @@ client.collections.create(
         quantizer=Configure.VectorIndex.Quantizer.bq()
     ),
 )
-# END EnableHNSW
+# END EnableFlat
 
 ################
 ### CLEAN UP ###

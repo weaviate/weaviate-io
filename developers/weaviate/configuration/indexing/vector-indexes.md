@@ -125,6 +125,41 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START EnableDynamic"
+      endMarker="# END EnableDynamic"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START EnableDynamic"
+        endMarker="# END EnableDynamic"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START EnableDynamic"
+        endMarker="// END EnableDynamic"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START EnableDynamic"
+        endMarker="// END EnableDynamic"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
 See also:
 
 - [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
