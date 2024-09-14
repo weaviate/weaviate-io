@@ -125,5 +125,5 @@ async function main(){
     createFlatCollection(client, collectionName);
    }
 }
-createFlatCollection
+
 main()
