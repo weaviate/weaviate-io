@@ -93,6 +93,24 @@ async function createFlatCollection(client: WeaviateClient, collectionName: stri
 }
 // END EnableFlat
 
+////////////////////
+// ENABLE DYNAMIC //
+////////////////////
+
+// START EnableDynamic
+// Add this import line
+// import { vectorizer, dataType, configure } from 'weaviate-client';
+
+async function createDynamicCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   vectorizers: vectorizer.text2VecOpenAI({
+     vectorIndexConfig: configure.vectorIndex.dynamic(),
+       }),
+     })
+}
+// END EnableDynamic
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -108,11 +126,11 @@ async function main(){
 
   // Only one create can run at a time due to aynsc code
 
-  // Run enable HNSW collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    createHNSWCollection(client, collectionName);
-  }
+  // // Run enable HNSW collection code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   createHNSWCollection(client, collectionName);
+  // }
 
   // // Run multiple named vector collection code
   // deleteCollection(client, collectionName)
@@ -125,6 +143,12 @@ async function main(){
   // if(await client.collections.get(collectionName).exists() != true){
   //   createFlatCollection(client, collectionName);
   // }
+
+  // // Run dynamic collection code
+  deleteCollection(client, collectionName)
+  if(await client.collections.get(collectionName).exists() != true){
+    createDynamicCollection(client, collectionName);
+  }
 }
 
 main()
