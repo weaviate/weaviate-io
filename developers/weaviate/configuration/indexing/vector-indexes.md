@@ -80,6 +80,41 @@ import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START EnableFlat"
+      endMarker="# END EnableFlat"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START EnableFlat"
+        endMarker="# END EnableFlat"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START EnableFlat"
+        endMarker="// END EnableFlat"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START EnableFlat"
+        endMarker="// END EnableFlat"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
 See also:
 
 - [Flat index parameters](/developers/weaviate/config-refs/schema/vector-index#flat-indexes)

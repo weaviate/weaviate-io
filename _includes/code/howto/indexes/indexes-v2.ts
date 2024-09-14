@@ -95,6 +95,30 @@ async function createMultiCollection(client: WeaviateClient, className: string){
 }
 // END EnableMulti
 
+/////////////////
+// ENABLE FLAT //
+/////////////////
+
+// START EnableFlat
+async function createFlatCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   // Add property definitions
+   vectorizer: 'text2vec-openai',
+   vectorIndexType: 'flat',
+   vectorIndexConfig: {
+     distance: 'cosine',
+     vector_cache_max_objects: 100000,
+     bq: { enabled: true, },
+   },
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END EnableFlat
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -107,6 +131,7 @@ async function main(){
  deleteClass(client, className)
 
  // Only one create can run at a time due to aynsc code
+
  // Run enable HNSW collection code
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
@@ -114,9 +139,15 @@ async function main(){
  //  }
 
  // // Run multiple named vector collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //   createMultiCollection(client, className);
+ //   }
+
+ // Run enable flat collection code
  deleteClass(client, className)
  if(await client.schema.exists(className) != true){
-   createMultiCollection(client, className);
+  createFlatCollection(client, className);
    }
 
 }

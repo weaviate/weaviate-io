@@ -70,6 +70,29 @@ async function createMultiCollection(client: WeaviateClient, collectionName: str
 }
 // END EnableMulti
 
+/////////////////
+// ENABLE FLAT //
+/////////////////
+
+// START EnableFlat
+// Add this import line
+// import { vectorizer, dataType, configure } from 'weaviate-client';
+
+async function createFlatCollection(client: WeaviateClient, collectionName: string){
+  await client.collections.create({
+    name: collectionName,
+    vectorizers: vectorizer.text2VecOpenAI({
+      vectorIndexConfig: configure.vectorIndex.flat({
+        quantizer: configure.vectorIndex.quantizer.bq({
+          rescoreLimit: 200,
+          cache: true
+          }),
+        }),
+      })
+    })
+}
+// END EnableFlat
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -83,17 +106,24 @@ async function main(){
   deleteCollection(client, collectionName)
 
   // Only one create can run at a time due to aynsc code
-  // Run enable HNSW collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    createHNSWCollection(client, collectionName);
-   }
+
+  // // Run enable HNSW collection code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   createHNSWCollection(client, collectionName);
+  //  }
 
   // // Run multiple named vector collection code
   // deleteCollection(client, collectionName)
   // if(await client.collections.get(collectionName).exists() != true){
   //   createMultiCollection(client, collectionName);
   //   }
-}
 
+  // Run enable Flat collection code
+  deleteCollection(client, collectionName)
+  if(await client.collections.get(collectionName).exists() != true){
+    createFlatCollection(client, collectionName);
+   }
+}
+createFlatCollection
 main()
