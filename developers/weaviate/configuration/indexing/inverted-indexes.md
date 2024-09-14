@@ -5,16 +5,18 @@ image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
 
-- [Overview](add)
-- [indexSearchable]](add)
-- [indexFilterable]](add)
-- [indexRangeFilters]](add)
+Properties use an [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make property searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data:
 
-## Additional considerations
+- [indexSearchable](#indexSearchable)
+- [indexFilterable](#indexfilterable)
+- [indexRangeFilters](#indexrangefilters)
 
-These are some additional things to consider when you configure indexing.
+Use these indexes to improve your searches.
 
-### Availability levels
+## indexSearchable
+
+## indexFilterable
+## indexRangeFilters
 
 ## Related pages
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)
