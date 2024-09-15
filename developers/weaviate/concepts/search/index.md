@@ -9,22 +9,21 @@ Weaviate performs flexible, fast and scalable searches to help users to find the
 
 With Weaviate, you can perform variety of search types to suit your needs, and configure search settings to optimize performance and accuracy.
 
-The following sections provide a conceptual overview of search in Weaviate. including [an overview of the search process and types](#search-process), configurable settings, and best practices for search performance and scalability.
+The following sections provide a conceptual overview of search in Weaviate, including [an overview of the search process and types](#search-process).
 
 ## Search process
 
-The following diagram illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
 | Step | Description |
 |------|-------------|
-| 1. [Filter](#filter) | Narrow result sets based on criteria |
-| 2. [Search](#search) | Find the most relevant entries, using [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types |
-| 3. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model |
-| 4. [Generative search](#generative-search--rag) | Perform RAG (Retrieval-Augmented Generation) |
+| 1. [Retrieval](#retrieval) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> |
+| 2. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model |
+| 3. [Generative search / RAG](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. |
 
-Here's a brief overview of each step:
+Here is a brief overview of each step:
 
-### Filter
+### Retrieval: Filter
 
 :::warning TODO
 Add simple wide fig
@@ -73,7 +72,7 @@ A filter for `"black"` in the `"description"` would return only the objects with
 In Weaviate, the order of these results are based on the UUIDs of the objects, if no other ranking is applied. As a result, the order of these objects would be essentially random, as the filter only passes or blocks objects based on the criteria.
 </details>
 
-### Search
+### Retrieval: Search
 
 :::warning TODO
 Add simple wide fig
@@ -89,14 +88,14 @@ Here's a summary of these search types:
 | Keyword Search | Traditional text-based search using "token" frequency. |
 | Hybrid Search | Combines vector and keyword search results. |
 
-Let's review these search types in more detail.
-
 :::tip Search vs Filter
 A filter simply passes or blocks objects based on criteria. Therefore, there is no ranking of results.
 <br/>
 
 Unlike filters, Search results will be **ranked** based on their relevance to the query.
 :::
+
+Let's review these search types in more detail.
 
 #### Keyword Search
 
@@ -235,13 +234,11 @@ For example:
 
 </details>
 
-#### Object retrieval / no search
+#### Unordered retrieval
 
-Although it is not a search type, it is worth mentioning that Weaviate can also retrieve objects without specifying a search type.
+Queries can be formulated without any ranking mechanisms. For example, a query may simply consist of a filter, or you may wish to iterate through the entire dataset.
 
-For example, you can simply use a filter, or without any other criteria.
-
-In this case, Weaviate will retrieve objects in order of their UUIDs.
+In such cases of unordered retrieval requests, Weaviate will retrieve objects in order of their UUIDs.
 
 ### Rerank
 
@@ -270,6 +267,10 @@ Add simple wide fig
 :::
 
 Generative search, also called retrieval augmented generation or RAG, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
+
+Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
+
+As a result, generative searches in Weaviate are [easy to set up](../../manage-data/collections.mdx#specify-a-generative-module), and can be conveniently executed as [an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
   <summary>Generative Search: Example</summary>
