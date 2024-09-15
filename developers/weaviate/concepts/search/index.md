@@ -15,18 +15,18 @@ The following sections provide a conceptual overview of search in Weaviate, incl
 
 The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
-| Step | Description |
-|------|-------------|
-| 1. [Retrieval](#retrieval) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> |
-| 2. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model |
-| 3. [Generative search / RAG](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. |
+| Step | Description | Optional |
+|------|-------------|----------|
+| 1. [Retrieval](#retrieval) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
+| 2. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model | Optional |
+| 3. [Generative](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
 
 Here is a brief overview of each step:
 
 ### Retrieval: Filter
 
-:::warning TODO
-Add simple wide fig
+:::info In one sentence
+<i class="fa-solid fa-filter"></i> A filter reduces the number of objects based on specific criteria.
 :::
 
 Filters reduce the number of objects based on specific criteria. This can include:
@@ -74,8 +74,8 @@ In Weaviate, the order of these results are based on the UUIDs of the objects, i
 
 ### Retrieval: Search
 
-:::warning TODO
-Add simple wide fig
+:::info In one sentence
+<i class="fa-solid fa-magnifying-glass"></i> A search produces an ordered list of objects based on relevance to a query.
 :::
 
 Search is about finding the closest, or most relevant data objects. Weaviate supports three primary search types: [vector search](#vector-search), [keyword search](#keyword-search), and [hybrid search](#hybrid-search).
@@ -141,7 +141,7 @@ For example:
 
 #### Vector Search
 
-Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against the data to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
+Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against those of the stored objects to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
 
 In Weaviate, you can perform vector searches in multiple ways. You can search for similar objects based on [a text input](../../search/similarity.md#search-with-text), [a vector input](../../search/similarity.md#search-with-a-vector), or [an exist object](../../search/similarity.md#search-with-an-existing-object). You can even search for similar objects with other modalities such as [with images](../../search/image.md).
 
@@ -234,16 +234,18 @@ For example:
 
 </details>
 
-#### Unordered retrieval
+### Retrieval: Unordered
 
-Queries can be formulated without any ranking mechanisms. For example, a query may simply consist of a filter, or you may wish to iterate through the entire dataset.
+Queries can be formulated without any ranking mechanisms.
 
-In such cases of unordered retrieval requests, Weaviate will retrieve objects in order of their UUIDs.
+For example, a query may simply consist of a filter, or you may wish to iterate through the entire dataset, using the [cursor API](../../manage-data/read-all-objects.mdx).
+
+In such cases of unordered retrieval requests, Weaviate will retrieve objects in order of their UUIDs. This retrieval method will result in an essentially randomly-ordered object list.
 
 ### Rerank
 
-:::warning TODO
-Add simple wide fig
+:::info In one sentence
+<i class="fa-solid fa-sort"></i> A reranker reorders initial retrieval results with a more complex model or different criteria.
 :::
 
 Reranking improves search relevance by reordering initial results.
@@ -251,6 +253,8 @@ Reranking improves search relevance by reordering initial results.
 If a collection is [configured with a reranker integration](../../model-providers/index.md), Weaviate will use the configured reranker model to reorder the initial search results.
 
 This allows you to use a more computationally expensive model on a smaller subset of results, improving the overall search quality. Typically, reranking models such as [Cohere Rerank](../../model-providers/cohere/reranker.md) or [Hugging Face Reranker](../../model-providers/transformers/reranker.md) models are cross-encoder models that can provide a more nuanced understanding of the text.
+
+A reranker can also be used to provide a different input query to that used for retrieval, allowing for more complex search strategies.
 
 <details>
   <summary>When to use reranking</summary>
@@ -262,8 +266,8 @@ For example, searches in legal, medical, or scientific literature may require a 
 
 ### Generative search / RAG
 
-:::warning TODO
-Add simple wide fig
+:::info In one sentence
+<i class="fa-solid fa-robot"></i> Generative search combines search with a generative AI model to produce new content based on the search results.
 :::
 
 Generative search, also called retrieval augmented generation or RAG, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
