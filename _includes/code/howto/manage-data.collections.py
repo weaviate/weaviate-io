@@ -700,7 +700,7 @@ articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
-    status="READONLY",
+    status="READY",
     shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end

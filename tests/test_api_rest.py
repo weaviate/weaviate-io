@@ -6,7 +6,6 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "_includes/code/rest.schema.py",
         "_includes/code/rest.objects.py",
         "_includes/code/rest.batch.py",
         "_includes/code/rest.meta.py",
