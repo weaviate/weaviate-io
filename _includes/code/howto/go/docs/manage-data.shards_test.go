@@ -23,22 +23,22 @@ func Test_ManageDataUpdateShard(t *testing.T) {
 	require.NoError(t, err)
 
 	t.Run("Update shard status", func(t *testing.T) {
-		tempCollectionName := "TestCollection"
+		myCollectionName := "TestCollection"
 
-		class := &models.Class{Class: tempCollectionName}
+		class := &models.Class{Class: myCollectionName}
 
 		_ = client.Schema().ClassDeleter().
-			WithClassName(tempCollectionName).Do(context.Background())
+			WithClassName(myCollectionName).Do(context.Background())
 
 		_ = client.Schema().ClassCreator().
 			WithClass(class).Do(context.Background())
 
-		shard, err := client.Schema().ShardsGetter().WithClassName(tempCollectionName).Do(ctx)
+		shard, err := client.Schema().ShardsGetter().WithClassName(myCollectionName).Do(ctx)
 		if err != nil {
 			panic(err)
 		}
 		shardName := shard[0].Name
-		OldShardStatus, err := client.Schema().ShardUpdater().WithClassName(tempCollectionName).
+		OldShardStatus, err := client.Schema().ShardUpdater().WithClassName(myCollectionName).
 			WithShardName(shardName).WithStatus("READONLY").Do(ctx)
 		if err != nil {
 			// handle error
@@ -48,8 +48,8 @@ func Test_ManageDataUpdateShard(t *testing.T) {
 
 		// UpdateShardStatus START
 		shardStatus, err := client.Schema().ShardUpdater().
-			WithClassName(tempCollectionName).
-			WithShardName(shardName).
+			WithClassName(myCollectionName). // Set your collection name
+			WithShardName(shardName).        // Set the shard name to update
 			WithStatus("READY").
 			Do(ctx)
 		if err != nil {
@@ -62,6 +62,6 @@ func Test_ManageDataUpdateShard(t *testing.T) {
 		require.Equal(t, shardStatus.Status, "READY")
 
 		_ = client.Schema().ClassDeleter().
-			WithClassName(tempCollectionName).Do(context.Background())
+			WithClassName(myCollectionName).Do(context.Background())
 	})
 }
