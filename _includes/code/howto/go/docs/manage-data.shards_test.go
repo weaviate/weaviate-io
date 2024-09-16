@@ -47,8 +47,11 @@ func Test_ManageDataUpdateShard(t *testing.T) {
 		require.Equal(t, OldShardStatus.Status, "READONLY")
 
 		// UpdateShardStatus START
-		shardStatus, err := client.Schema().ShardUpdater().WithClassName(tempCollectionName).
-			WithShardName(shardName).WithStatus("READY").Do(ctx)
+		shardStatus, err := client.Schema().ShardUpdater().
+			WithClassName(tempCollectionName).
+			WithShardName(shardName).
+			WithStatus("READY").
+			Do(ctx)
 		if err != nil {
 			// handle error
 			panic(err)
