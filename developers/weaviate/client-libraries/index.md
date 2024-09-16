@@ -1,5 +1,5 @@
 ---
-title: References - Client Libraries
+title: Reference - Client Libraries
 sidebar_position: 0
 image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
