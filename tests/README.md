@@ -21,6 +21,15 @@ Additionally, [install Node](https://nodejs.org/en/download) for running the Jav
 
 After installing Node, run `yarn` to install the project dependencies.
 
+#### Golang
+
+Install `go` and set up your Go workspace.
+
+The testable `go` code examples are in the `/_includes/code/howto/go/` directory.
+
+Each file in this directory is a self-contained, testable Go code example. Review existing code examples for the patterns to follow.
+
+Mark the start and end of the code snippet to display in the documentation with comments such as `// START <SnippetName>` and `// END <SnippetName>`. Then, use these markers to filter the code snippet in the documentation using the `FilteredTextBlock` component.
 
 ### 💻 Run tests
 
