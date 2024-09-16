@@ -80,8 +80,8 @@ Set these indexes on the property level.
   </TabItem>
 </Tabs>
 
-
 ## Related pages
+
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)
 
 ## Questions and feedback

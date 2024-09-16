@@ -106,28 +106,18 @@ See also:
 
 ## Compression
 
-Vector indexes can be large. Compressed vectors lose some information, but they use fewer resources and can be very cost effective. In most cases the resource savings significantly outweigh the slight loss in performance.
+import IndexCompression from '/_includes/indexes/index-compression.mdx';
 
-Weaviate provides these compression methods:
-
-import CompressMethods from '/_includes/configuration/compression-methods.mdx';
-
-<CompressMethods/>
-
-See also:
-
-- [Compression overview](/developers/weaviate/starter-guides/managing-resources/compression)
-- [Enable compression](/developers/weaviate/configuration/compression)
+<IndexCompression/>
 
 ## Asynchronous indexing
 
-Asynchronous indexing is a prerequisite for dynamic indexing and for [AutoPQ](/developers/weaviate/configuration/compression/pq-compression#configure-autopq).
+import AsynchIndexing from '/_includes/indexes/async-indexing.mdx';
 
-import EnableAsynch from '/_includes/indexes/enable-async.mdx';
-
-<EnableAsynch/>
+<AsynchIndexing/>
 
 ## Related pages
+
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)
 
 ## Questions and feedback
