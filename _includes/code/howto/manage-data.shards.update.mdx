@@ -3,6 +3,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.shards_test.go';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -54,37 +55,12 @@ console.log(JSON.stringify(shards, null, 2));
 
 </TabItem>
 <TabItem value="go" label="Go">
-
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-)
-
-func main() {
-  cfg := weaviate.Config{
-    Host:   "localhost:8080",
-    Scheme: "http",
-  }
-  client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
-  shards, err := client.Schema().
-    ShardsGetter().
-    WithClassName("Article").
-    Do(context.Background())
-  if err != nil {
-    panic(err)
-  }
-  fmt.Printf("%v", shards)
-}
-```
-
+  <FilteredTextBlock
+    text={GoCode}
+    startMarker="// UpdateShardStatus START"
+    endMarker="// UpdateShardStatus END"
+    language="go"
+  />
 </TabItem>
 <TabItem value="java" label="Java">
 
