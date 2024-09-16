@@ -1,15 +1,11 @@
 ---
 title: Text Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'embeddings']
+image: og/docs/integrations/provider_integrations_mistral.jpg
+# tags: ['model providers', 'mistral', 'embeddings']
 ---
 
-# OpenAI Embeddings with Weaviate
-
-:::info Looking for Azure OpenAI integration docs?
-For Azure OpenAI integration docs, see [this page instead](../openai-azure/embeddings.md).
-:::
+# Mistral Embeddings with Weaviate
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,19 +15,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an OpenAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your OpenAI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Mistral embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Mistral API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_mistral_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI vectorizer integration (`text2vec-openai`) module.
+Your Weaviate instance must be configured with the Mistral vectorizer integration (`text2vec-mistral`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -50,11 +46,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide a valid Mistral API key to Weaviate for this integration. Go to [Mistral](https://mistral.ai/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `OPENAI_APIKEY` environment variable that is available to Weaviate.
+- Set the `MISTRAL_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -62,8 +58,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START MistralInstantiation"
+      endMarker="# END MistralInstantiation"
       language="py"
     />
   </TabItem>
@@ -71,8 +67,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START MistralInstantiation"
+      endMarker="// END MistralInstantiation"
       language="ts"
     />
   </TabItem>
@@ -81,14 +77,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an OpenAI embedding model:
+Set the vectorizer to configure Weaviate to use an Mistral embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerOpenAI"
-      endMarker="# END BasicVectorizerOpenAI"
+      startMarker="# START BasicVectorizerMistral"
+      endMarker="# END BasicVectorizerMistral"
       language="py"
     />
   </TabItem>
@@ -96,8 +92,8 @@ Set the vectorizer to configure Weaviate to use an OpenAI embedding model:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerOpenAI"
-      endMarker="// END BasicVectorizerOpenAI"
+      startMarker="// START BasicVectorizerMistral"
+      endMarker="// END BasicVectorizerMistral"
       language="ts"
     />
   </TabItem>
@@ -112,16 +108,12 @@ import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-
 
 You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration examples.
 
-#### For `text-embedding-3` model family
-
-For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
-
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START VectorizerOpenAICustomModelV3"
-      endMarker="# END VectorizerOpenAICustomModelV3"
+      startMarker="# START FullVectorizerMistral"
+      endMarker="# END FullVectorizerMistral"
       language="py"
     />
   </TabItem>
@@ -129,33 +121,8 @@ For `v3` models such as `text-embedding-3-large`, provide the model name and opt
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START VectorizerOpenAICustomModelV3"
-      endMarker="// END VectorizerOpenAICustomModelV3"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-#### For older model families (e.g. `ada`)
-
-For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START VectorizerOpenAICustomModelLegacy"
-      endMarker="# END VectorizerOpenAICustomModelLegacy"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START VectorizerOpenAICustomModelLegacy"
-      endMarker="// END VectorizerOpenAICustomModelLegacy"
+      startMarker="// START FullVectorizerMistral"
+      endMarker="// END FullVectorizerMistral"
       language="ts"
     />
   </TabItem>
@@ -196,9 +163,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified OpenAI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Mistral model.
 
-![Embedding integration at search illustration](../_includes/integration_openai_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_mistral_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -262,77 +229,15 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
-
-- `model`: The OpenAI model name or family.
-- `dimensions`: The number of dimensions for the model.
-- `modelVersion`: The version string for the model.
-- `type`: The model type, either `text` or `code`.
-- `baseURL`: The URL to use (e.g. a proxy) instead of the default OpenAI URL.
-
-#### (`model` & `dimensions`) or (`model` & `modelVersion`)
-
-For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
-
-For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
-
-#### Example configuration
-
-The following examples show how to configure OpenAI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerOpenAI"
-      endMarker="# END FullVectorizerOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerOpenAI"
-      endMarker="// END FullVectorizerOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
-
 ### Available models
 
-You can use any OpenAI embedding model with `text2vec-openai`. For document embeddings, choose from the following [embedding model families](https://platform.openai.com/docs/models/embeddings):
-
-* `text-embedding-3`
-    * Available dimensions:
-        * `text-embedding-3-large`: `256`, `1024`, `3072` (default)
-        * `text-embedding-3-small`: `512`, `1536` (default)
-* `ada`
-* `babbage`
-* `davinci`
-
-<details>
-  <summary>Deprecated models</summary>
-
-The following models are available, but deprecated:
-* Codex
-* babbage-001
-* davinci-001
-* curie
-
-[Source](https://platform.openai.com/docs/deprecations)
-
-</details>
+As of September 2024, the only available model is `mistral-embed`.
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI generative models + Weaviate](./generative.md).
+- [Mistral generative models + Weaviate](./generative.md).
 
 ### Code examples
 
@@ -343,7 +248,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- OpenAI [Embed API documentation](https://platform.openai.com/docs/api-reference/embeddings)
+- Mistral [Embeddings documentation](https://docs.mistral.ai/capabilities/embeddings/)
 
 ## Questions and feedback
 
