@@ -13,7 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.py';
 import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.ts';
 import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v2.ts';
 
-Properties use an [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make property searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data:
+Properties use [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make property searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data:
 
 - [indexSearchable](#indexSearchable)
 - [indexFilterable](#indexfilterable)
