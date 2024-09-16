@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const BackToBlogHub = () => (
 
     <Link to="/blog" className={styles.blogHome}>
-      ← Blog Home
+      ← Back to Blogs
     </Link>
 
 );
