@@ -111,7 +111,6 @@ async function createDynamicCollection(client: WeaviateClient, collectionName: s
 }
 // END EnableDynamic
 
-
 //////////////////////
 // Inverted Indexes //
 //////////////////////

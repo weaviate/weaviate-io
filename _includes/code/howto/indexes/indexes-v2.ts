@@ -138,6 +138,50 @@ async function createDynamicCollection(client: WeaviateClient, className: string
 }
 // END EnableDynamic
 
+//////////////////////
+// Inverted Indexes //
+//////////////////////
+
+// START PropIndex
+async function createInvertedCollection(client: WeaviateClient, className: string){
+ const invertedIndexSettings = {
+  class: className,
+  vectorizer: 'text2vec-huggingface',
+  properties: [
+    {
+      name: 'textProperty',
+      dataType: ['text'],
+      indexFilterable: true,
+      indexSearchable: true,
+      moduleConfig: {
+        'text2vec-huggingface': {},
+      },
+    },
+    {
+      name: 'numericProperty',
+      dataType: ['int'],
+      indexRangeFilters: true,
+    },
+  ],
+  invertedIndexConfig: {
+    bm25: {
+        b: 0.7,
+        k1: 1.25
+    },
+    indexTimestamps: true,
+    indexNullState: true,
+    indexPropertyLength: true
+  }
+};
+
+// Add the class to the schema
+const result = await client.schema
+  .classCreator()
+  .withClass(invertedIndexSettings)
+  .do();
+}
+// END PropIndex
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -169,11 +213,17 @@ async function main(){
  //  createFlatCollection(client, className);
  // }
 
-  // Run enable dynamic collection code
-  deleteClass(client, className)
-  if(await client.schema.exists(className) != true){
-   createDynamicCollection(client, className);
-  }
+ // // Run enable dynamic collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  createDynamicCollection(client, className);
+ // }
+
+ // Run inverted collection code
+ deleteClass(client, className)
+ if(await client.schema.exists(className) != true){
+  createInvertedCollection(client, className);
+ }
 }
 
 main()
