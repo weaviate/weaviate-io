@@ -1,6 +1,6 @@
 ---
-title: Vector index overview
-sidebar_position: 10
+title: Flat indexes
+sidebar_position: 20
 image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
@@ -27,7 +27,44 @@ import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-[Configure an HNSW index](/developers/weaviate/configuration/indexing/hnsw-indexes.md).
+### Collection configuration
+
+Configure an HNSW index for a collection:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START EnableHNSW"
+      endMarker="# END EnableHNSW"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START EnableHNSW"
+        endMarker="# END EnableHNSW"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START EnableHNSW"
+        endMarker="// END EnableHNSW"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START EnableHNSW"
+        endMarker="// END EnableHNSW"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
 
 See also:
 
@@ -39,7 +76,40 @@ import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
 
-[Configure a flat index](/developers/weaviate/configuration/indexing/flat-indexes.md).
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START EnableFlat"
+      endMarker="# END EnableFlat"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START EnableFlat"
+        endMarker="# END EnableFlat"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START EnableFlat"
+        endMarker="// END EnableFlat"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START EnableFlat"
+        endMarker="// END EnableFlat"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
 
 See also:
 
@@ -53,7 +123,40 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 Dynamic indexes require [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing). Enable asynchronous indexing before you configure a collection to use dynamic indexing.
 
-[Configure a dynamic index](/developers/weaviate/configuration/indexing/dynamic-indexes.md).
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START EnableDynamic"
+      endMarker="# END EnableDynamic"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START EnableDynamic"
+        endMarker="# END EnableDynamic"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START EnableDynamic"
+        endMarker="// END EnableDynamic"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START EnableDynamic"
+        endMarker="// END EnableDynamic"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
 
 See also:
 
@@ -61,9 +164,7 @@ See also:
 
 ## Multiple named vectors
 
-Items in a collection can have multiple named vectors. Each named vectors has it's own vector index. These vector indexes can be configured independently.
-
-Configure a collection to use named vectors:
+Configure a collection to use [multiple named vectors](/developers/weaviate/config-refs/schema/multi-vector):
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -100,11 +201,11 @@ Configure a collection to use named vectors:
   </TabItem>
 </Tabs>
 
-See also:
+## Additional considerations
 
-- [Multiple named vectors](/developers/weaviate/config-refs/schema/multi-vector)
+These are some additional things to consider when you configure indexing.
 
-## Compression
+### Compression
 
 Vector indexes can be large. Compressed vectors lose some information, but they use fewer resources and can be very cost effective. In most cases the resource savings significantly outweigh the slight loss in performance.
 
@@ -119,13 +220,15 @@ See also:
 - [Compression overview](/developers/weaviate/starter-guides/managing-resources/compression)
 - [Enable compression](/developers/weaviate/configuration/compression)
 
-## Asynchronous indexing
+### Asynchronous indexing
 
-Asynchronous indexing is a prerequisite for dynamic indexing and for [AutoPQ](/developers/weaviate/configuration/compression/pq-compression#configure-autopq).
+Asynchronous indexing is a prerequisite for dynamic indexing and [AutoPQ](/developers/weaviate/configuration/compression/pq-compression#configure-autopq).
 
 import EnableAsynch from '/_includes/indexes/enable-async.mdx';
 
 <EnableAsynch/>
+
+### Availability levels
 
 ## Related pages
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)

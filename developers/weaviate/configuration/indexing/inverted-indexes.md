@@ -1,6 +1,6 @@
 ---
 title: Inverted indexes
-sidebar_position: 20
+sidebar_position: 60
 image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
