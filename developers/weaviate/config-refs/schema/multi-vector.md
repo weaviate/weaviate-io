@@ -9,9 +9,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+[comment]: # ( This section is duplicated, with a link to this page, in:_includes/multi-vector-support.mdx )
 
-<MultiVectorSupport />
+Collections can have multiple named vectors.
+
+The vectors in a collection can have their own configurations. Each vector space can set its own index, its own compression algorithm, and its own vectorizer. This means you can use different vectorization models, and apply different distance metrics, to the same object.
+
+To work with named vectors, adjust your queries to specify a target vector for [vector search](/developers/weaviate/search/similarity#named-vectors) or [hybrid search](/developers/weaviate/search/hybrid#named-vectors) queries.
 
 ## Syntax
 
