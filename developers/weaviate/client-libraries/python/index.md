@@ -1218,8 +1218,6 @@ For links to the Python Client releases, expand this section.
 | [4.6.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.5) | 2024-06-19 |
 | [4.6.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.4) | 2024-06-19 |
 | [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
-| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
-| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
 | [4.6.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.2) | 2024-05-21 |
 | [4.6.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.1) | 2024-05-17 |
 | [4.6.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.0) | 2024-05-10 |
