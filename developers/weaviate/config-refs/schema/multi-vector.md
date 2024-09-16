@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-[comment]: # ( This section is duplicated, with a link to this page, in:_includes/multi-vector-support.mdx )
+[comment]: # ( This section is duplicated, with a link to this page, in: multi-vector-support dot mdx )
 
 Collections can have multiple named vectors.
 
