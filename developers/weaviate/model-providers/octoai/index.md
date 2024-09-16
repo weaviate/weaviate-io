@@ -5,6 +5,7 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai']
 ---
 
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 :::info Added in `v1.25.0`
 :::

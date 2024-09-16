@@ -428,6 +428,11 @@ Then, set `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. If Weaviate is p
 
 ## Further resources
 
+### Other integrations
+
+- [Transformers multi-modal embedding models + Weaviate](./embeddings-multimodal.md).
+- [Transformers reranker models + Weaviate](./reranker.md).
+
 ### Chunking
 
 This integration automatically chunks text if it exceeds the model's maximum token length before it is passed to the model. It will then return the pooled vectors.

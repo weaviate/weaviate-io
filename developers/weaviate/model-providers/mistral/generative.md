@@ -240,6 +240,10 @@ For further details on model parameters, see the [Mistral API documentation](htt
 
 ## Further resources
 
+### Other integrations
+
+- [Mistral embedding models + Weaviate](./embeddings.md).
+
 ### Code examples
 
 Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:

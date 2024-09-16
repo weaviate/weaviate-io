@@ -5,6 +5,7 @@ image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws']
 ---
 
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 AWS offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with AWS's APIs, allowing users to leverage AWS's models directly within the Weaviate database.
 
