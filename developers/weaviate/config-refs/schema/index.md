@@ -80,7 +80,7 @@ An example of a complete collection object including properties:
 
 ### Mutability
 
-Some parameters are mutable after creation, other parameters cannot be changed after collection creation. To change immutable parameters, delete the collection and recreate it.
+Some, but not all, parameters are mutable after you create your collection. To modify immutable parameters, export your data, create a new collection, and import your data into it.
 
 <details>
   <summary>Mutable parameters</summary>
