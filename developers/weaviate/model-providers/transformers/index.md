@@ -5,6 +5,7 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'transformers']
 ---
 
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 Hugging Face's Transformers library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates with the Transformers library, allowing users to leverage compatible models directly within the Weaviate database.
 
