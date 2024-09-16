@@ -15,13 +15,13 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ### Embedding models for semantic search
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_mistral_embedding.png)
 
-OpenAI's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+Mistral's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
 
-[Weaviate integrates with OpenAI's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
+[Weaviate integrates with Mistral's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
-[OpenAI embedding integration page](./embeddings.md)
+[Mistral embedding integration page](./embeddings.md)
 
 ### Generative AI models for RAG
 
@@ -45,6 +45,7 @@ You must provide a valid Mistral API key to Weaviate for these integrations. Go 
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Mistral models and start using them in your applications.
 
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 ## Other third party integrations
