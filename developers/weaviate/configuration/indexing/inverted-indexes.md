@@ -8,18 +8,18 @@ image: og/docs/indexes.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV4 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v4.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.py';
-import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.ts';
-import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v2.ts';
+import PyCodeV4 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v4.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v3.py';
+import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v3.ts';
+import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v2.ts';
 
-Properties use [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make property searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data:
+Weaviate uses [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make textual and numeric searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data. These indexes are normally configured on a property level:
 
 - [indexSearchable](#indexSearchable)
 - [indexFilterable](#indexfilterable)
 - [indexRangeFilters](#indexrangefilters)
 
-Use these indexes to improve your searches.
+To tune inverted indexes at the collection level, use the `invertedIndexConfig` to adjust the settings for the [BM25 inverted index](#bm25-index) and other collection level parameters.
 
 ## indexSearchable
 
@@ -148,7 +148,7 @@ Set these indexes on the property level.
 
 ## bm25 index
 
-The [`bm25` index](/developers/weaviate/config-refs/schema#bm25) is configured on the collection level. These collection-wide settings can be overwritten on the property level.
+The [`bm25` index](/developers/weaviate/config-refs/schema#bm25) is configured on the collection level.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -180,6 +180,45 @@ The [`bm25` index](/developers/weaviate/config-refs/schema#bm25) is configured o
       text={TSCodeV2}
         startMarker="// START BM25Index"
         endMarker="// END BM25Index"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
+## Collection level properties
+
+These properties are configured on the collection level.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START CollLevIndex"
+      endMarker="# END CollLevIndex"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START CollLevIndex"
+        endMarker="# END CollLevIndex"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START CollLevIndex"
+        endMarker="// END CollLevIndex"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START CollLevIndex"
+        endMarker="// END CollLevIndex"
         language="js"
     />
   </TabItem>

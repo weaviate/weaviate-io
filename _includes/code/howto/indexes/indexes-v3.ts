@@ -201,43 +201,6 @@ async function createDynamicCollection(client: WeaviateClient, collectionName: s
 }
 // END EnableDynamic
 
-//////////////////////
-// Inverted Indexes //
-//////////////////////
-
-// START PropIndex
-// Add this import line
-// import { dataType } from 'weaviate-client';
-
-async function createInvertedCollection(client: WeaviateClient, collectionName: string){
-  await client.collections.create({
-    name: collectionName,
-    properties: [
-      {
-        name: 'TextProperty',
-        dataType: dataType.TEXT,
-        indexFilterable: true,
-        indexSearchable: true,
-      },
-      {
-        name: 'NumericProperty',
-        dataType: dataType.INT,
-        indexRangeFilters: true,
-      },
-    ],
-    invertedIndex: {
-      bm25: {
-        b: 0.7,
-        k1: 1.25
-      },
-      indexNullState: true,
-      indexPropertyLength: true,
-      indexTimestamps: true
-    }
-  })
-}
-// END PropIndex
-
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -301,11 +264,6 @@ async function main(){
   //   createDynamicCollection(client, collectionName);
   // }
 
-  // // Run inverted collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createInvertedCollection(client, collectionName);
-  // }
 }
 
 main()
