@@ -28,9 +28,11 @@ Here's a brief overview of each step:
 
 ### Filter
 
+<!--
 :::warning TODO
 Add simple wide fig
 :::
+-->
 
 Filters reduce the number of objects based on specific criteria. This can include:
 
@@ -51,9 +53,11 @@ This ensures that search results overlap with the filter criteria to make sure t
 
 ### Search
 
+<!--
 :::warning TODO
 Add simple wide fig
 :::
+-->
 
 Search is about finding the closest, or most relevant data objects. Weaviate supports three primary search types: [vector search](#vector-search), [keyword search](#keyword-search), and [hybrid search](#hybrid-search).
 
@@ -134,9 +138,11 @@ In this case, Weaviate will retrieve objects in order of their UUIDs.
 
 ### Reranking
 
+<!--
 :::warning TODO
 Add simple wide fig
 :::
+-->
 
 Reranking improves search relevance by reordering initial results.
 
@@ -144,9 +150,11 @@ You might ask - why not just use the best model from the start? The answer is th
 
 ### Generative Search / RAG
 
+<!--
 :::warning TODO
 Add simple wide fig
 :::
+-->
 
 Generative search is another name for Retrieval-Augmented Generation (RAG). RAG uses AI to generate responses based on a prompt, and the added context that is retrieved through the above search process.
 
@@ -241,4 +249,3 @@ Identify fields that contribute most to semantic understanding. Consider combini
 #### Alpha (hybrid search)
 
 - What is the alpha values
-
