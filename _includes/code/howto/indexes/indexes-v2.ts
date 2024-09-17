@@ -33,30 +33,62 @@ async function createHNSWCollection(client: WeaviateClient, className: string){
 
   const setIndexType = {
     class: className,
-    // Add property definitions
-    vectorizer: 'text2vec-openai',
     vectorIndexType: 'hnsw',
-    vectorIndexConfig: {
-      distance: 'cosine',
-      ef_construction: '256',  // Dynamic list size during construction
-      max_connections: '128',  // Maximum number of connections per node
-      quantizer: 'Configure.VectorIndex.Quantizer.pq()',  // Quantizer configuration
-      ef: '-1',  // Dynamic list size during search; -1 enables dynamic Ef
-      dynamic_ef_factor: '15',  // Multiplier for dynamic Ef
-      dynamic_ef_min: '200',  // Minimum threshold for dynamic Ef
-      dynamic_ef_max: '1000',  // Maximum threshold for dynamic Ef
-      pq: {
-        enabled: true,
-        trainingLimit: 100000,
-        segments: 96,
-      },
-    },
+    // Configure properties, vectorizer
   };
 
   // Add the class to the schema
   await client.schema.classCreator().withClass(setIndexType).do();
 }
 // END EnableHNSW
+
+
+////////////////////
+// CONFIGURE HNSW //
+////////////////////
+
+// START ConfigHNSW
+async function configHNSWCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   vectorIndexType: 'hnsw',
+   vectorIndexConfig: {
+     distance: 'cosine',
+     ef_construction: '256',  // Dynamic list size during construction
+     max_connections: '128',  // Maximum number of connections per node
+     ef: '-1',  // Dynamic list size during search; -1 enables dynamic Ef
+     dynamic_ef_factor: '15',  // Multiplier for dynamic Ef
+     dynamic_ef_min: '200',  // Minimum threshold for dynamic Ef
+     dynamic_ef_max: '1000',  // Maximum threshold for dynamic Ef
+     quantizer: 'Configure.VectorIndex.Quantizer.pq()',  // Quantizer configuration
+   },
+   // Configure properties, vectorizer
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END ConfigHNSW
+
+///////////////////
+// COMPRESS HNSW //
+///////////////////
+
+// START CompressHNSW
+async function compressHNSWCollection(client: WeaviateClient, className: string){
+ const setIndexType = {
+   class: className,
+   vectorIndexConfig: {
+     quantizer: 'Configure.VectorIndex.Quantizer.pq()',
+   },
+   // Configure properties, vectorizer
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END CompressHNSW
 
 //////////////////////////////
 /// ENABLE HNSW - MULTIPLE ///
@@ -86,8 +118,8 @@ async function createMultiCollection(client: WeaviateClient, className: string){
        },
        vectorIndexType: 'flat'
       },
-    }
-  // Configure properties
+    },
+    // Configure properties
   }
 
   // Add the class to the schema
@@ -104,20 +136,58 @@ async function createFlatCollection(client: WeaviateClient, className: string){
 
  const setIndexType = {
    class: className,
-   // Add property definitions
-   vectorizer: 'text2vec-openai',
    vectorIndexType: 'flat',
-   vectorIndexConfig: {
-     distance: 'cosine',
-     vector_cache_max_objects: 100000,
-     bq: { enabled: true, },
-   },
+   // Configure properties, vectorizer
  };
 
  // Add the class to the schema
  await client.schema.classCreator().withClass(setIndexType).do();
 }
 // END EnableFlat
+
+////////////////////
+// CONFIGURE FLAT //
+////////////////////
+
+// START ConfigFlat
+async function configureFlatCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   vectorIndexType: 'flat',
+   vectorIndexConfig: {
+     distance: 'cosine',
+     vector_cache_max_objects: 100000,
+     bq: { enabled: true, },
+   },
+   // Configure properties, vectorizer
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END ConfigFlat
+
+///////////////////
+// COMPRESS FLAT //
+///////////////////
+
+// START CompressFlat
+async function compressFlatCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   vectorIndexType: 'flat',
+   vectorIndexConfig: {
+     bq: { enabled: true, },
+   },
+   // Configure properties, vectorizer
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END CompressFlat
 
 ////////////////////
 // ENABLE DYNAMIC //
@@ -195,11 +265,17 @@ async function main(){
 
  // Only one create can run at a time due to aynsc code
 
- // Run enable HNSW collection code
+ // // Run enable HNSW collection code
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
  //   createHNSWCollection(client, className);
  // }
+
+ // Run configure HNSW collection code
+ deleteClass(client, className)
+ if(await client.schema.exists(className) != true){
+   configHNSWCollection(client, className);
+ }
 
  // // Run multiple named vector collection code
  // deleteClass(client, className)
@@ -213,17 +289,29 @@ async function main(){
  //  createFlatCollection(client, className);
  // }
 
+ // // Run configure flat collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  configureFlatCollection(client, className);
+ // }
+
+ // Run compress flat collection code
+ deleteClass(client, className)
+ if(await client.schema.exists(className) != true){
+  compressFlatCollection(client, className);
+ }
+
  // // Run enable dynamic collection code
  // deleteClass(client, className)
  // if(await client.schema.exists(className) != true){
  //  createDynamicCollection(client, className);
  // }
 
- // Run inverted collection code
- deleteClass(client, className)
- if(await client.schema.exists(className) != true){
-  createInvertedCollection(client, className);
- }
+ // // Run inverted collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  createInvertedCollection(client, className);
+ // }
 }
 
 main()

@@ -115,6 +115,45 @@ import IndexCompression from '/_includes/indexes/index-compression.mdx';
 
 <IndexCompression/>
 
+### Enable compression
+
+Enable compression on a flat index:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START CompressFlat"
+      endMarker="# END CompressFlat"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START CompressFlat"
+        endMarker="# END CompressFlat"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START CompressFlat"
+        endMarker="// END CompressFlat"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START CompressFlat"
+        endMarker="// END CompressFlat"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
 ## Related pages
 
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)

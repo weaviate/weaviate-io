@@ -63,18 +63,56 @@ class_obj = {
         "distance_metric": "cosine",
         "ef_construction": 256,  # Dynamic list size during construction
         "max_connections": 128,  # Maximum number of connections per node
-        "pq": {
-            "enabled": True,
-        },  # Enable compression
         "ef": -1,  # Dynamic list size during search; -1 enables dynamic Ef
         "dynamic_ef_factor": 15,  # Multiplier for dynamic Ef
         "dynamic_ef_min": 200,  # Minimum threshold for dynamic Ef
         "dynamic_ef_max": 1000,  # Maximum threshold for dynamic Ef
+        "pq": {
+            "enabled": True,
+        },  # Enable compression
     },
 }
 
 client.schema.create_class(class_obj)
 # END ConfigHNSW
+
+class_response = client.schema.get()
+schema_response = client.schema.get(class_name)
+
+classes = []
+for c in class_response["classes"]:
+    classes.append(c["class"])
+assert class_name in classes, "Class missing"
+
+correct_index = False
+if (schema_response["class"] == class_name) and (
+    schema_response["vectorIndexType"] == "hnsw"
+):
+    correct_index = True
+assert correct_index, "Wrong index type"
+
+#####################
+### COMPRESS HNSW ###
+#####################
+
+# Delete data from prior runs
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START CompressHNSW
+class_obj = {
+    "class": class_name,
+    "vectorIndexType": "hnsw",
+    "vectorIndexConfig": {
+        "distance_metric": "cosine",
+        "pq": {
+            "enabled": True,
+        },
+    },
+}
+
+client.schema.create_class(class_obj)
+# END CompressHNSW
 
 class_response = client.schema.get()
 schema_response = client.schema.get(class_name)
@@ -154,6 +192,42 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 # END ConfigFlat
+
+class_response = client.schema.get()
+schema_response = client.schema.get(class_name)
+
+classes = []
+for c in class_response["classes"]:
+    classes.append(c["class"])
+assert class_name in classes, "Class missing"
+
+correct_index = False
+if (schema_response["class"] == class_name) and (
+    schema_response["vectorIndexType"] == "flat"
+):
+    correct_index = True
+
+assert correct_index, "Wrong index type"
+
+#####################
+### COMPRESS FLAT ###
+#####################
+
+# Delete data from prior runs
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START CompressFlat
+class_obj = {
+    "class": class_name,
+    "vectorIndexType": "flat",
+    "vectorIndexConfig": {
+        "bq": {"enabled": True}
+    },
+}
+
+client.schema.create_class(class_obj)
+# END CompressFlat
 
 class_response = client.schema.get()
 schema_response = client.schema.get(class_name)

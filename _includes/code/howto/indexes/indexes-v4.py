@@ -83,6 +83,35 @@ assert (
     str(schema_response.vector_index_type) == "VectorIndexType.HNSW"
 ), "Wrong index type"
 
+#####################
+### COMPRESS HNSW ###
+#####################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START CompressHNSW
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
+    vector_index_config=Configure.VectorIndex.hnsw(
+        quantizer=Configure.VectorIndex.Quantizer.pq(),  # Quantizer configuration
+    ),
+    # Configure properties, vectorizer
+)
+# END CompressHNSW
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.HNSW"
+), "Wrong index type"
+
 ##############################
 ### ENABLE HNSW - MULTIPLE ###
 ##############################
@@ -183,6 +212,35 @@ client.collections.create(
     # Configure properties, vectorizer
 )
 # END ConfigFlat
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.FLAT"
+), "Wrong index type"
+
+###################
+### COMPRESS FLAT ###
+###################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START CompressFlat
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
+    vector_index_config=Configure.VectorIndex.flat(
+        quantizer=Configure.VectorIndex.Quantizer.bq()
+    ),
+    # Configure properties, vectorizer
+)
+# END CompressFlat
 
 collection = client.collections.get(collection_name)
 collections_response = client.collections.list_all()
