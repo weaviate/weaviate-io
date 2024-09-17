@@ -22,42 +22,112 @@ async function getClient(){
   return client;
 }
 
-//////////////////////
-// Inverted Indexes //
-//////////////////////
+////////////
+// SEARCH //
+////////////
 
-// START PropIndex
+// START SearchIndex
 // Add this import line
 // import { dataType } from 'weaviate-client';
 
-async function createInvertedCollection(client: WeaviateClient, collectionName: string){
+async function searchInvertedCollection(client: WeaviateClient, collectionName: string){
   await client.collections.create({
     name: collectionName,
     properties: [
       {
         name: 'TextProperty',
         dataType: dataType.TEXT,
-        indexFilterable: true,
         indexSearchable: true,
       },
-      {
-        name: 'NumericProperty',
-        dataType: dataType.INT,
-        indexRangeFilters: true,
-      },
     ],
-    invertedIndex: {
-      bm25: {
-        b: 0.7,
-        k1: 1.25
-      },
-      indexNullState: true,
-      indexPropertyLength: true,
-      indexTimestamps: true
-    }
   })
 }
+// END SearchIndex
+
+////////////
+// FILTER //
+////////////
+
+// START FilerIndex
+// Add this import line
+// import { dataType } from 'weaviate-client';
+
+async function filterInvertedCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   properties: [
+     {
+       name: 'TextProperty',
+       dataType: dataType.TEXT,
+       indexFilterable: true,
+     },
+   ],
+ })
+}
 // END PropIndex
+
+///////////
+// RANGE //
+///////////
+
+// START RangeIndex
+// Add this import line
+// import { dataType } from 'weaviate-client';
+
+async function rangeInvertedCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   properties: [
+     {
+       name: 'NumericProperty',
+       dataType: dataType.INT,
+       indexRangeFilters: true,
+     },
+   ],
+ })
+}
+// END RangeIndex
+
+//////////
+// BM25 //
+//////////
+
+// START BM25Index
+// Add this import line
+// import { dataType } from 'weaviate-client';
+
+async function bm25InvertedCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   invertedIndex: {
+     bm25: {
+       b: 0.7,
+       k1: 1.25
+     },
+   }
+ })
+}
+// END BM25Index
+
+//////////////////////
+// COLLECTION LEVEL //
+//////////////////////
+
+// START CollLevIndex
+// Add this import line
+// import { dataType } from 'weaviate-client';
+
+async function collLevInvertedCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   invertedIndex: {
+     indexNullState: true,
+     indexPropertyLength: true,
+     indexTimestamps: true
+   }
+ })
+}
+// END CollLevIndex
 
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
@@ -74,11 +144,36 @@ async function main(){
 
   // Only safe to run one at a time due to aynsc code
 
-  // // Run inverted collection code
+  // // Run search code
   // deleteCollection(client, collectionName)
   // if(await client.collections.get(collectionName).exists() != true){
-  //   createInvertedCollection(client, collectionName);
+  //   searchInvertedCollection(client, collectionName);
   // }
+
+  // // Run filter code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   filterInvertedCollection(client, collectionName);
+  // }
+
+  // // Run range code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   rangeInvertedCollection(client, collectionName);
+  // }
+
+  // // Run bm25 code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   bm25InvertedCollection(client, collectionName);
+  // }
+
+  // Run collection level code
+  deleteCollection(client, collectionName)
+  if(await client.collections.get(collectionName).exists() != true){
+    collLevInvertedCollection(client, collectionName);
+  }
+
 }
 
 main()
