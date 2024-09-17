@@ -473,6 +473,20 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerMistral
+// TS support & code example coming soon
+// END BasicVectorizerMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerMistral
+// TS support & code example coming soon
+// END FullVectorizerMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerOctoAI
 // Code example coming soon
 // END BasicVectorizerOctoAI
@@ -621,7 +635,7 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         resourceName: '<azure-resource-name>',
-        deploymentID: '<azure-deployment-id>',
+        deploymentId: '<azure-deployment-id>',
       },
     ),
   ],
@@ -648,7 +662,7 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         resourceName: '<azure-resource-name>',
-        deploymentID: '<azure-deployment-id>',
+        deploymentId: '<azure-deployment-id>',
         // // Further options
         // baseURL: '<custom_azure_url>'
       },

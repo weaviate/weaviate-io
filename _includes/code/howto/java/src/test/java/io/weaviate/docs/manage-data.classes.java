@@ -8,6 +8,9 @@ import io.weaviate.client.base.Result;
 import io.weaviate.client.v1.misc.model.DistanceType;
 import io.weaviate.client.v1.misc.model.VectorIndexConfig;
 import io.weaviate.client.v1.schema.model.Schema;
+import io.weaviate.client.v1.schema.model.Shard;
+import io.weaviate.client.v1.schema.model.ShardStatus;
+import io.weaviate.client.v1.schema.model.ShardStatuses;
 import io.weaviate.client.v1.schema.model.WeaviateClass;
 import io.weaviate.client.v1.schema.model.Property;
 import io.weaviate.client.v1.schema.model.DataType;
@@ -65,6 +68,10 @@ class ManageDataClassesTest {
     createCollectionWithVectorIndexParams(className);
     createPropertieswithSettings(className);
     specifyDistanceMetric(className);
+    deleteCollection(className);
+    addProperty(className);
+    inspectShard(className);
+    updateShardStatus(className);
   }
 
   private void createCollection(String className) {
@@ -439,4 +446,85 @@ class ManageDataClassesTest {
     System.out.println(json);
     // END ReadOneCollection // END ReadAllCollections
   }
+
+  private void deleteCollection(String className) {
+    // DeleteCollection START
+    Result<Boolean> result = client.schema().classDeleter()
+      .withClassName(className)
+      .run();
+    // DeleteCollection END
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+
+    System.out.println(result.getResult());
+
+  }
+
+  private void addProperty(String className) {
+    String propertyName = "Ref";
+    // AddProperty START
+    Property property = Property.builder()
+      .dataType(Arrays.asList(DataType.BOOLEAN))
+      .name(propertyName)
+      .build();
+
+    Result<Boolean> result = client.schema().propertyCreator()
+      .withClassName(className)
+      .withProperty(property)
+      .run();
+    // AddProperty END
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+
+    System.out.println(result.getResult());
+  }
+
+  private void inspectShard(String className) {
+    // InspectShard START
+    Result<Shard[]> result = client.schema().shardsGetter()
+      .withClassName(className)
+      .run();
+
+    Shard[] shards = result.getResult();
+    if (shards == null || shards.length == 0) {
+      System.out.println("No shards found in this collection.");
+      return;
+    }
+
+    // Iterate over each shard and print its status
+    for (Shard shard : shards) {
+      System.out.println("Shard name: " + shard.getName());
+      System.out.println("Shard status: " + shard.getStatus());  // Get shard status (whether it's READY or READONLY)
+    }
+    // InspectShard END
+  }
+
+  private void updateShardStatus(String className) {
+    Result<Shard[]> result = client.schema()
+      .shardsGetter()
+      .withClassName(className)
+      .run();
+
+    String shardName = result.getResult()[0].getName();
+
+    // UpdateShardStatus START
+    Result<ShardStatus> updateToReadyStatus = client.schema().shardUpdater()
+      .withClassName(className)
+      .withShardName(shardName)
+      .withStatus(ShardStatuses.READY)
+      .run();
+
+    if (updateToReadyStatus.hasErrors()) {
+      System.out.println(updateToReadyStatus.getError());
+      return;
+    }
+
+    System.out.println(updateToReadyStatus.getResult());
+    // UpdateShardStatus END
+  }
 }
+

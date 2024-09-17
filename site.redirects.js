@@ -628,6 +628,44 @@ const siteRedirects = {
             from: '/developers/weaviate/api/rest/modules',
         },
 
+        // Legacy REST API redirects
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/schema',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/objects',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/batch',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/backups',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/classification',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/meta',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/nodes',
+        },
+        {
+            to:   '/developers/weaviate/api/rest/',
+            from: '/developers/weaviate/api/rest_legacy/well-known',
+        },
+        {
+            to:   '/developers/weaviate/model-providers',
+            from: '/developers/weaviate/api/rest_legacy/modules',
+        },
+
      // Products to Pricing redirects
 
         {

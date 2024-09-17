@@ -355,6 +355,11 @@ Then, set `CLIP_INFERENCE_API="http://localhost:8000"`. If Weaviate is part of t
 
 ## Further resources
 
+### Other integrations
+
+- [Transformers text embedding models + Weaviate](./embeddings.md).
+- [Transformers reranker models + Weaviate](./reranker.md).
+
 ### Code examples
 
 Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:

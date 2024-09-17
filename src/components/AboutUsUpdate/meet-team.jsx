@@ -123,6 +123,12 @@ export default function MeetTheTeam() {
               #Partnerships
             </Link>
             <Link
+              className={selectedTeam === 'product' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('product')}
+            >
+              #Product
+            </Link>
+            <Link
               className={
                 selectedTeam === 'people-and-culture' ? styles.linkActive : ''
               }

@@ -5,6 +5,7 @@ image: og/docs/integrations/provider_integrations_anyscale.jpg
 # tags: ['model providers', 'anyscale']
 ---
 
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 Anyscale offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Anyscale's Endpoints APIs, allowing users to leverage Anyscale's models directly within the Weaviate database.
 

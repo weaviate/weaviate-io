@@ -1,5 +1,5 @@
 ---
-title: "'Contextionary' Vectorizer"
+title: "Contextionary Vectorizer"
 sidebar_position: 10
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']

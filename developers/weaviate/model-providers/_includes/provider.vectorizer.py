@@ -398,6 +398,47 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_mistral(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerMistral
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_mistral(
+            name="title_vector",
+            source_properties=["title"],
+            model="mistral-embed"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerMistral
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOctoAI
 from weaviate.classes.config import Configure
 

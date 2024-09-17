@@ -30,6 +30,14 @@
     "team": "marketing"
   },
   {
+    "name": "Alvin Richards",
+    "title": "Head of Product",
+    "photo": "Alvin.jpg",
+    "linkedin": "alvinrichards",
+    "twitter": "jonnyeight",
+    "team": "product"
+  },
+  {
     "name": "André Duis",
     "title": "Technical Executive",
     "photo": "andre.png",
@@ -98,6 +106,14 @@
     "photo": "cari.jpeg",
     "linkedin": "cari-liebenberg-1b40b0a6",
     "team": "wcd"
+  },
+  {
+    "name": "Chad Tindel",
+    "title": "Solution Engineer",
+    "photo": "Chad.jpg",
+    "linkedin": "ctindel",
+    "twitter": "ctindel",
+    "team": "sales"
   },
   {
     "name": "Charles Harr",
@@ -242,6 +258,14 @@
     "photo": "griffin.jpg",
     "linkedin": "griffin-foster",
     "team": "sales"
+  },
+  {
+    "name": "Hina Shah",
+    "title": "System Integrator Partner Manager",
+    "photo": "Hina.jpg",
+    "linkedin": "hinashah1",
+    "twitter": "hinashah98",
+    "team": "partnerships"
   },
   {
     "name": "Ieva Urbaite",

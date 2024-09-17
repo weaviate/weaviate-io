@@ -1,15 +1,21 @@
 ---
-title: Spark
-sidebar_position: 4
+title: Databricks
+sidebar_position: 3
 image: og/integrations/home.jpg
 ---
 
+[Databricks](https://www.databricks.com/) is a data intelligence platform that unifies data, AI and governance on the lakehouse.
+
+## Databricks and Weaviate
+
+Databricks' Foundation Model APIs can be called directly from Weaviate, allowing you to use models hosted on the Databricks platform through the [`text2vec-databricks`](/developers/weaviate/model-providers/databricks/embeddings) and [`generative-databricks`](/developers/weaviate/model-providers/databricks/generative) modules.
+
+## Spark Connector and Weaviate
+
 [Apache Spark](https://spark.apache.org/docs/latest/api/python/index.html) (or the Python API, [PySpark](https://spark.apache.org/docs/latest/api/python/index.html#:~:text=PySpark%20is%20the%20Python%20API,for%20interactively%20analyzing%20your%20data.)) is an open-source data processing framework used for real-time, large-scale data processing. 
 
-## Spark and Weaviate
-The Spark connector enables you to easily ingest data from Spark data structures into Weaviate. 
+You can ingest Spark data structures from Databricks into Weaviate using the Weaviate Spark connector. Learn more about the connector in the [Weaviate Spark connector repository](https://github.com/weaviate/spark-connector).
 
-Learn more about the connector in the [Weaviate Spark connector repository](https://github.com/weaviate/spark-connector).
 
 ## Our Resources 
 The resources are broken into two categories: 

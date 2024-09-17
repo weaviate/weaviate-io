@@ -1,8 +1,4 @@
 import weaviate
-# START ConfigHNSW  # START CustomConfigHNSW
-from weaviate.classes.config import Configure, VectorDistances
-
-# END ConfigHNSW  # END CustomConfigHNSW
 
 client = weaviate.connect_to_local()
 
