@@ -33,10 +33,33 @@ from weaviate.classes.config import Configure, VectorDistances
 
 client.collections.create(
     name=collection_name,
-    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
-    # This line enables the index
-    # vector_index_config=Configure.VectorIndex.hnsw()
-    # These lines enable and configure the index
+    vector_index_config=Configure.VectorIndex.hnsw(),
+    # Configure properties, vectorizer
+)
+# END EnableHNSW
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.HNSW"
+), "Wrong index type"
+
+################################
+### CONFIG HNSW - COLLECTION ###
+################################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START ConfigHNSW
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
     vector_index_config=Configure.VectorIndex.hnsw(
         distance_metric=VectorDistances.COSINE,
         ef_construction=256,  # Dynamic list size during construction
@@ -47,8 +70,9 @@ client.collections.create(
         dynamic_ef_min=200,  # Minimum threshold for dynamic Ef
         dynamic_ef_max=1000,  # Maximum threshold for dynamic Ef
     ),
+    # Configure properties, vectorizer
 )
-# END EnableHNSW
+# END ConfigHNSW
 
 collection = client.collections.get(collection_name)
 collections_response = client.collections.list_all()
@@ -124,14 +148,41 @@ from weaviate.classes.config import Configure, VectorDistances
 
 client.collections.create(
     name=collection_name,
-    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),
+    vector_index_config=Configure.VectorIndex.flat(),
+    # Configure properties, vectorizer
+)
+# END EnableFlat
+
+collection = client.collections.get(collection_name)
+collections_response = client.collections.list_all()
+schema_response = collection.config.get()
+
+assert collection_name in collections_response.keys(), "Collection missing"
+assert (
+    str(schema_response.vector_index_type) == "VectorIndexType.FLAT"
+), "Wrong index type"
+
+###################
+### CONFIG FLAT ###
+###################
+
+# Delete data from prior runs
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START ConfigFlat
+from weaviate.classes.config import Configure, VectorDistances
+
+client.collections.create(
+    name=collection_name,
     vector_index_config=Configure.VectorIndex.flat(
         distance_metric=VectorDistances.COSINE,
         vector_cache_max_objects=100000,
         quantizer=Configure.VectorIndex.Quantizer.bq()
     ),
+    # Configure properties, vectorizer
 )
-# END EnableFlat
+# END ConfigFlat
 
 collection = client.collections.get(collection_name)
 collections_response = client.collections.list_all()

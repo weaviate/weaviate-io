@@ -59,51 +59,6 @@ See also:
 
 - [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
 
-## Multiple named vectors
-
-Items in a collection can have multiple named vectors. Each named vectors has it's own vector index. These vector indexes can be configured independently.
-
-Configure a collection to use named vectors:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCodeV4}
-      startMarker="# START EnableMulti"
-      endMarker="# END EnableMulti"
-      language="py"
-    />
-  </TabItem>
-  <TabItem value="py3" label="Python Client v3">
-    <FilteredTextBlock
-      text={PyCodeV3}
-        startMarker="# START EnableMulti"
-        endMarker="# END EnableMulti"
-        language="py"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCodeV3}
-        startMarker="// START EnableMulti"
-        endMarker="// END EnableMulti"
-        language="js"
-    />
-  </TabItem>
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeV2}
-        startMarker="// START EnableMulti"
-        endMarker="// END EnableMulti"
-        language="js"
-    />
-  </TabItem>
-</Tabs>
-
-See also:
-
-- [Multiple named vectors](/developers/weaviate/config-refs/schema/multi-vector)
-
 ## Compression
 
 import IndexCompression from '/_includes/indexes/index-compression.mdx';

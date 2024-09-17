@@ -25,7 +25,39 @@ if client.schema.exists(class_name):
 # START EnableHNSW
 class_obj = {
     "class": class_name,
-    # Additional configuration not shown
+    "vectorIndexType": "hnsw",
+}
+
+client.schema.create_class(class_obj)
+# END EnableHNSW
+
+class_response = client.schema.get()
+schema_response = client.schema.get(class_name)
+
+classes = []
+for c in class_response["classes"]:
+    classes.append(c["class"])
+assert class_name in classes, "Class missing"
+
+correct_index = False
+if (schema_response["class"] == class_name) and (
+    schema_response["vectorIndexType"] == "hnsw"
+):
+    correct_index = True
+assert correct_index, "Wrong index type"
+
+
+###################
+### CONFIG HNSW ###
+###################
+
+# Delete data from prior runs
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START ConfigHNSW
+class_obj = {
+    "class": class_name,
     "vectorIndexType": "hnsw",
     "vectorIndexConfig": {
         "distance_metric": "cosine",
@@ -42,7 +74,7 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)
-# END EnableHNSW
+# END ConfigHNSW
 
 class_response = client.schema.get()
 schema_response = client.schema.get(class_name)
@@ -80,13 +112,7 @@ if client.schema.exists(class_name):
 # START EnableFlat
 class_obj = {
     "class": class_name,
-    # Additional configuration not shown
     "vectorIndexType": "flat",
-    "vectorIndexConfig": {
-        "distance_metric": "cosine",
-        "vector_cache_max_objects": 100000,
-        "bq": {"enabled": True}
-    },
 }
 
 client.schema.create_class(class_obj)
@@ -107,18 +133,17 @@ if (schema_response["class"] == class_name) and (
     correct_index = True
 assert correct_index, "Wrong index type"
 
-###################
-### ENABLE FLAT ###
-###################
+######################
+### CONFIGURE FLAT ###
+######################
 
 # Delete data from prior runs
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
-# START EnableFlat
+# START ConfigFlat
 class_obj = {
     "class": class_name,
-    # Additional configuration not shown
     "vectorIndexType": "flat",
     "vectorIndexConfig": {
         "distance_metric": "cosine",
@@ -128,7 +153,7 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)
-# END EnableFlat
+# END ConfigFlat
 
 class_response = client.schema.get()
 schema_response = client.schema.get(class_name)
@@ -143,6 +168,7 @@ if (schema_response["class"] == class_name) and (
     schema_response["vectorIndexType"] == "flat"
 ):
     correct_index = True
+
 assert correct_index, "Wrong index type"
 
 ######################

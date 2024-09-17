@@ -22,9 +22,9 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
 
 <ConsiderComp/>
 
-## Collection configuration
+## Enable an HNSW index
 
-Configure an HNSW index for a collection:
+HNSW is the default vector index. You do not have to explicitly enable HNSW if you want to use the default vector index type.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -61,21 +61,60 @@ Configure an HNSW index for a collection:
   </TabItem>
 </Tabs>
 
+## Configure an HNSW index
+
+Configure an HNSW index for a collection:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START ConfigHNSW"
+      endMarker="# END ConfigHNSW"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START ConfigHNSW"
+        endMarker="# END ConfigHNSW"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START ConfigHNSW"
+        endMarker="// END ConfigHNSW"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START ConfigHNSW"
+        endMarker="// END ConfigHNSW"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
 See also:
 
  - [HNSW index parameters](/developers/weaviate/config-refs/schema/vector-index#hnsw-index-parameters)
+
+## Multiple named vectors
+
+import MultiNameVec from '/_includes/indexes/multiple-named-vectors.mdx';
+
+<MultiNameVec/>
 
 ## Compression
 
 import IndexCompression from '/_includes/indexes/index-compression.mdx';
 
 <IndexCompression/>
-
-## Asynchronous indexing
-
-import AsynchIndexing from '/_includes/indexes/async-indexing.mdx';
-
-<AsynchIndexing/>
 
 ## Related pages
 

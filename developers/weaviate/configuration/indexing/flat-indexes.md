@@ -21,6 +21,10 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
 
 <ConsiderComp/>
 
+## Enable a flat index
+
+Enable a flat index for a collection:
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
@@ -56,9 +60,54 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
   </TabItem>
 </Tabs>
 
+## Configure a flat index
+
+Configure a flat index for a collection:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START ConfigFlat"
+      endMarker="# END ConfigFlat"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START ConfigFlat"
+        endMarker="# END ConfigFlat"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START ConfigFlat"
+        endMarker="// END ConfigFlat"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START ConfigFlat"
+        endMarker="// END ConfigFlat"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
 See also:
 
 - [Flat index parameters](/developers/weaviate/config-refs/schema/vector-index#flat-indexes)
+
+## Multiple named vectors
+
+import MultiNameVec from '/_includes/indexes/multiple-named-vectors.mdx';
+
+<MultiNameVec/>
 
 ## Compression
 
