@@ -24,12 +24,38 @@ function deleteClass(client, className: string){
   return true
 }
 
-//////////////////////
-// Inverted Indexes //
-//////////////////////
+////////////
+// SEARCH //
+///////////
 
-// START PropIndex
-async function createInvertedCollection(client: WeaviateClient, className: string){
+// START SearchIndex
+async function searchInvertedCollection(client: WeaviateClient, className: string){
+ const invertedIndexSettings = {
+  class: className,
+  vectorizer: 'text2vec-huggingface',
+  properties: [
+    {
+      name: 'textProperty',
+      dataType: ['text'],
+      indexSearchable: true,
+    },
+  ],
+};
+
+// Add the class to the schema
+const result = await client.schema
+  .classCreator()
+  .withClass(invertedIndexSettings)
+  .do();
+}
+// END SearchIndex
+
+////////////
+// FILTER //
+////////////
+
+// START FilterIndex
+async function filterInvertedCollection(client: WeaviateClient, className: string){
  const invertedIndexSettings = {
   class: className,
   vectorizer: 'text2vec-huggingface',
@@ -38,22 +64,78 @@ async function createInvertedCollection(client: WeaviateClient, className: strin
       name: 'textProperty',
       dataType: ['text'],
       indexFilterable: true,
-      indexSearchable: true,
-      moduleConfig: {
-        'text2vec-huggingface': {},
-      },
     },
+  ],
+};
+
+// Add the class to the schema
+const result = await client.schema
+  .classCreator()
+  .withClass(invertedIndexSettings)
+  .do();
+}
+// END FilterIndex
+
+///////////
+// RANGE //
+///////////
+
+// START RangeIndex
+async function rangeInvertedCollection(client: WeaviateClient, className: string){
+ const invertedIndexSettings = {
+  class: className,
+  vectorizer: 'text2vec-huggingface',
+  properties: [
     {
       name: 'numericProperty',
       dataType: ['int'],
       indexRangeFilters: true,
     },
   ],
+};
+
+// Add the class to the schema
+const result = await client.schema
+  .classCreator()
+  .withClass(invertedIndexSettings)
+  .do();
+}
+// END RangeIndex
+
+//////////
+// BM25 //
+//////////
+
+// START BM25Index
+async function bm25InvertedCollection(client: WeaviateClient, className: string){
+ const invertedIndexSettings = {
+  class: className,
+  vectorizer: 'text2vec-huggingface',
   invertedIndexConfig: {
     bm25: {
         b: 0.7,
         k1: 1.25
     },
+};
+
+// Add the class to the schema
+const result = await client.schema
+  .classCreator()
+  .withClass(invertedIndexSettings)
+  .do();
+}
+// END BM25Index
+
+//////////////////////
+// COLLECTION LEVEL //
+//////////////////////
+
+// START CollLevIndex
+async function collLevInvertedCollection(client: WeaviateClient, className: string){
+ const invertedIndexSettings = {
+  class: className,
+  vectorizer: 'text2vec-huggingface',
+  invertedIndexConfig: {
     indexTimestamps: true,
     indexNullState: true,
     indexPropertyLength: true
@@ -66,7 +148,7 @@ const result = await client.schema
   .withClass(invertedIndexSettings)
   .do();
 }
-// END PropIndex
+// END CollLevIndex
 
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
@@ -81,11 +163,36 @@ async function main(){
 
  // Only safe to run one at a time due to aynsc code
 
- // // Run inverted collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //  createInvertedCollection(client, className);
+ // Run search code
+ deleteCollection(client, collectionName)
+ if(await client.collections.get(collectionName).exists() != true){
+   searchInvertedCollection(client, collectionName);
+ }
+
+ // // Run filter code
+ // deleteCollection(client, collectionName)
+ // if(await client.collections.get(collectionName).exists() != true){
+ //   filterInvertedCollection(client, collectionName);
  // }
+
+ // // Run range code
+ // deleteCollection(client, collectionName)
+ // if(await client.collections.get(collectionName).exists() != true){
+ //   rangeInvertedCollection(client, collectionName);
+ // }
+
+ // // Run bm25 code
+ // deleteCollection(client, collectionName)
+ // if(await client.collections.get(collectionName).exists() != true){
+ //   bm25InvertedCollection(client, collectionName);
+ // }
+
+ // // Run collection level code
+ // deleteCollection(client, collectionName)
+ // if(await client.collections.get(collectionName).exists() != true){
+ //   collLevInvertedCollection(client, collectionName);
+ // }
+
 }
 
 main()

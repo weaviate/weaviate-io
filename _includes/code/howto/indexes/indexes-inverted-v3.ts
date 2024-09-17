@@ -48,7 +48,7 @@ async function searchInvertedCollection(client: WeaviateClient, collectionName: 
 // FILTER //
 ////////////
 
-// START FilerIndex
+// START FilterIndex
 // Add this import line
 // import { dataType } from 'weaviate-client';
 
@@ -64,7 +64,7 @@ async function filterInvertedCollection(client: WeaviateClient, collectionName: 
    ],
  })
 }
-// END PropIndex
+// END FilterIndex
 
 ///////////
 // RANGE //
