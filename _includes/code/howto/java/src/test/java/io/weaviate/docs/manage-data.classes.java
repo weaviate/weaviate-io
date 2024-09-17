@@ -498,7 +498,7 @@ class ManageDataClassesTest {
     // Iterate over each shard and print its status
     for (Shard shard : shards) {
       System.out.println("Shard name: " + shard.getName());
-      System.out.println("Shard status: " + shard.getStatus());  // Get shard status (whether it's ready or not)
+      System.out.println("Shard status: " + shard.getStatus());  // Get shard status (whether it's READY or READONLY)
     }
     // InspectShard END
   }
