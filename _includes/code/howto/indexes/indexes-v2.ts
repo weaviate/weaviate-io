@@ -263,7 +263,7 @@ async function main(){
  const client = await getClient();
  deleteClass(client, className)
 
- // Only one create can run at a time due to aynsc code
+ // Only safe to run one at a time due to aynsc code
 
  // // Run enable HNSW collection code
  // deleteClass(client, className)
@@ -295,11 +295,11 @@ async function main(){
  //  configureFlatCollection(client, className);
  // }
 
- // Run compress flat collection code
- deleteClass(client, className)
- if(await client.schema.exists(className) != true){
-  compressFlatCollection(client, className);
- }
+ // // Run compress flat collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  compressFlatCollection(client, className);
+ // }
 
  // // Run enable dynamic collection code
  // deleteClass(client, className)

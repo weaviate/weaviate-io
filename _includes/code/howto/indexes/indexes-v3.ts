@@ -251,7 +251,7 @@ async function main(){
   // Clean up from earlier runs
   deleteCollection(client, collectionName)
 
-  // Only one create can run at a time due to aynsc code
+  // Only safe to run one at a time due to aynsc code
 
   // // Run enable HNSW collection code
   // deleteCollection(client, collectionName)
