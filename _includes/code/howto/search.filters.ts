@@ -22,14 +22,14 @@ const client = await weaviate.connectToWeaviateCloud(
  }
 )
 
-// searchSingleFilter // searchLikeFilter // ContainsAnyFilter // ContainsAllFilter // searchMultipleFiltersNested // searchMultipleFiltersAnd // searchFilterNearText // FilterByPropertyLength // searchCrossReference // filterById // searchCrossReference // searchMultipleFiltersNested
+// searchSingleFilter // searchLikeFilter // ContainsAnyFilter // ContainsAllFilter // searchMultipleFiltersNested // searchMultipleFiltersAnd // searchFilterNearText // FilterByPropertyLength // searchCrossReference  // searchCrossReference // searchMultipleFiltersNested
 const jeopardy = client.collections.get('JeopardyQuestion');
 
-// END searchSingleFilter // END searchLikeFilter // END ContainsAnyFilter // END ContainsAllFilter // END searchMultipleFiltersNested // END searchMultipleFiltersAnd // END searchFilterNearText // END FilterByPropertyLength // END searchCrossReference // END filterById // END searchCrossReference // END searchMultipleFiltersNested
+// END searchSingleFilter // END searchLikeFilter // END ContainsAnyFilter // END ContainsAllFilter // END searchMultipleFiltersNested // END searchMultipleFiltersAnd // END searchFilterNearText // END FilterByPropertyLength // END searchCrossReference // END searchCrossReference // END searchMultipleFiltersNested
 
-// FilterByTimestamp
+// FilterByTimestamp // filterById
 const myArticleCollection = client.collections.get('Article');
-// END FilterByTimestamp
+// END FilterByTimestamp // END filterById
 
 
 // =========================
@@ -270,9 +270,9 @@ for (let object of result.objects) {
 // filterById
 const targetId = '00037775-1432-35e5-bc59-443baaef7d80'
 
-result = await jeopardy.query.fetchObjects({
+result = await article.query.fetchObjects({
   // highlight-start
-  filters: jeopardy.filter.byId().equal(targetId),
+  filters: article.filter.byId().equal(targetId),
   // highlight-end
 })
 

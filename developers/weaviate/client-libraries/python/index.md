@@ -1209,14 +1209,14 @@ For links to the Python Client releases, expand this section.
 
 | Client Version | Release Date |
 | :- | :- |
+| [4.8.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.8.1) | 2024-09-16 |
+| [4.8.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.8.0) | 2024-09-10 |
 | [4.7.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.1) | 2024-07-25 |
 | [4.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-24 |
 | [4.6.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.7) | 2024-07-19 |
 | [4.6.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.6) | 2024-07-02 |
 | [4.6.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.5) | 2024-06-19 |
 | [4.6.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.4) | 2024-06-19 |
-| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
-| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
 | [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
 | [4.6.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.2) | 2024-05-21 |
 | [4.6.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.1) | 2024-05-17 |

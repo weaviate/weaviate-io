@@ -16,6 +16,8 @@ import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similari
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-rerank_test.go';
+
 
 
 Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
@@ -27,10 +29,7 @@ Reranking modules reorder the search result set according to a different set of 
 
 **Configure reranking**
 
-To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. For details, see the reranker's reference page:
-
-- [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+To rerank search results, enable a reranker [model integration](../model-providers/index.md) for your collection.
 
 A collection can have multiple rerankers. If multiple `reranker` modules are enabled, specify the module you want to use in the `moduleConfig` section of your schema.
 
@@ -77,6 +76,15 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="gonew"
     />
   </TabItem>
 
@@ -128,6 +136,15 @@ To rerank the results of a vector search, configure the object properties to sor
       startMarker="// START RerankNearText"
       endMarker="// END RerankNearText"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RerankNearText"
+      endMarker="// END RerankNearText"
+      language="gonew"
     />
   </TabItem>
 
@@ -196,6 +213,15 @@ To rerank the results of a keyword search, configure the object properties to so
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START bm25Rerank"
+      endMarker="// END bm25Rerank"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -226,8 +252,7 @@ The response should look like this:
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
 - [API References: GraphQL - Sorting](/developers/weaviate/api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
-- [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
-- [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
+- [Model providers integrations](../model-providers/index.md)
 
 ## Questions and feedback
 

@@ -5,9 +5,7 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 :::info Added in `v1.25.0`
 :::
@@ -52,6 +50,14 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 
 - [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
+
+## Other third party integrations
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

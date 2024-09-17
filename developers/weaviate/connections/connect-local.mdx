@@ -92,6 +92,70 @@ To connect to a local instance without authentication, follow these examples.
 </TabItem>
 </Tabs>
 
+## Change the URL or port
+
+To change the default URL or port number, follow these examples.
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START CustomURL"
+     endMarker="# END CustomURL"
+     language="py"
+   />
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+   <FilteredTextBlock
+     text={PyCodeV3}
+     startMarker="# START CustomURL"
+     endMarker="# END CustomURL"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START CustomURL"
+     endMarker="// END CustomURL"
+     language="js"
+   />
+</TabItem>
+<TabItem value="ts2" label="JS/TS Client v2">
+   <FilteredTextBlock
+     text={TsCodeV2}
+     startMarker="// START CustomURL"
+     endMarker="// END CustomURL"
+     language="js"
+   />
+</TabItem>
+<TabItem value="go" label="Go">
+   <FilteredTextBlock
+     text={GoCode}
+     startMarker="// START CustomURL"
+     endMarker="// END CustomURL"
+     language="py"
+   />
+</TabItem>
+<TabItem value="java" label="Java">
+   <FilteredTextBlock
+     text={JavaCode}
+     startMarker="// START CustomURL"
+     endMarker="// END CustomURL"
+     language="java"
+   />
+</TabItem>
+<TabItem value="shell" label="cURL">
+   <FilteredTextBlock
+     text={ShellCode}
+     startMarker="# START CustomURL"
+     endMarker="# END CustomURL"
+     language="shell"
+   />
+</TabItem>
+</Tabs>
+
+
 ## Authentication enabled
 
 To authenticate with a Weaviate API key, follow these examples.

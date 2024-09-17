@@ -5,9 +5,7 @@ image: og/docs/integrations/provider_integrations_huggingface.jpg
 # tags: ['model providers', 'huggingface']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 Hugging Face offers a wide range of models for natural language processing. Weaviate seamlessly integrates with Hugging Face's Inference API, allowing users to leverage Hugging Face Hub's models directly within the Weaviate database.
 
@@ -38,6 +36,14 @@ You must provide a valid Hugging Face API key to Weaviate for these integrations
 Then, go to the relevant integration page to learn how to configure Weaviate with the Hugging Face Hub models and start using them in your applications.
 
 - [Text Embeddings](./embeddings.md)
+
+## Other third party integrations
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

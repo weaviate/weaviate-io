@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_mistral.jpg
 
 # Mistral Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -81,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Mistral generative AI model as follows:
+Configure Weaviate to use the Mistral generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,6 +100,10 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ### Select a model
 
@@ -239,6 +240,10 @@ For further details on model parameters, see the [Mistral API documentation](htt
 
 ## Further resources
 
+### Other integrations
+
+- [Mistral embedding models + Weaviate](./embeddings.md).
+
 ### Code examples
 
 Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:
@@ -249,6 +254,8 @@ Once the integrations are configured at the collection, the data management and 
 ### References
 
 - Mistral [AI API documentation](https://docs.mistral.ai/api/)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

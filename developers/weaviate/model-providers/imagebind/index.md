@@ -5,9 +5,7 @@ image: og/docs/integrations/provider_integrations_imagebind.jpg
 # tags: ['model providers', 'huggingface', 'imagebind']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 Meta's ImageBind library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates with the ImageBind library, allowing users to leverage compatible models directly within the Weaviate database.
 
@@ -40,6 +38,14 @@ A locally hosted Weaviate instance is required for these integrations so that yo
 Go to the relevant integration page to learn how to configure Weaviate with the ImageBind model and start using it in your applications.
 
 - [Multimodal Embeddings](./embeddings-multimodal.md)
+
+## Other third party integrations
+
+import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
+
+<IntegrationLinkBack/>
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -167,7 +167,7 @@ Specify a `vectorizer` for a collection.
 
 Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).
 
-- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
+- [Available model integrations](../model-providers/index.md)
 - [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
 
 </details>
@@ -221,7 +221,7 @@ Collection level settings override default values and general configuration para
 </Tabs>
 
 
-## Define multiple (named) vectors
+## Define multiple named vectors
 
 :::info Added in `v1.24`
 :::
@@ -488,6 +488,15 @@ Configure individual properties in a collection. Each property can have it's own
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify a distance metric
@@ -528,6 +537,15 @@ If you choose to bring your own vectors, you should specify the `distance metric
       startMarker="// START DistanceMetric"
       endMarker="// END DistanceMetric"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="java"
     />
   </TabItem>
 </Tabs>
@@ -593,7 +611,7 @@ Specify a `generative` module for a collection (for RAG).
 <details>
   <summary>Additional information</summary>
 
-- [Available generative modules](../modules/reader-generator-modules/index.md)
+- [Available generative model integrations](../model-providers/index.md)
 
 </details>
 
@@ -637,7 +655,7 @@ Specify a `generative` module for a collection (for RAG).
 
 ## Specify a generative model name
 
-Specify a specific generative `model name`.
+Specify a generative `model name`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -1224,7 +1242,7 @@ import CodeSchemaShardsGet from '/_includes/code/howto/manage-data.shards.inspec
 
 ## Update shard status
 
-You can manually a shard to `READY` from `READONLY`, for example after disk pressure has been lowered.
+You can manually update a shard to change it's status. For example, update the shard status from `READONLY` to `READY` after you make other changes.
 
 import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.update.mdx';
 

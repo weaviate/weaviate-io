@@ -224,13 +224,13 @@ For further information see:
 
 The following search operators are available.
 
-| Argument | Description | Required modules (at least one of) | Learn more |
+| Argument | Description | Required integration type | Learn more |
 | --- | --- | --- | --- |
 | `nearObject` | Vector search using a Weaviate object | *none* | [Learn more](./search-operators.md#nearobject) |
 | `nearVector` | Vector search using a raw vector | *none* | [Learn more](./search-operators.md#nearvector) |
-| `nearText` | Vector search using a text query | `text2vec-xxx` | [Transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Hugging Face](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
-| `nearImage` | Vector search using an image | `multi2vec-clip`, `img2vec-neural` | [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
-| `hybrid` | Combine vector and BM25 search results |   *none* | [Learn more](../graphql/search-operators.md#hybrid) |
+| `nearText` | Vector search using a text query | Text embedding model |  |
+| `nearImage` | Vector search using an image | Multi-modal embedding model |
+| `hybrid` | Combine vector and BM25 search results |  *none* | [Learn more](../graphql/search-operators.md#hybrid) |
 | `bm25`   | Keyword search with BM25F ranking  | *none* | [Learn more](../graphql/search-operators.md#bm25) |
 
 For further information see:

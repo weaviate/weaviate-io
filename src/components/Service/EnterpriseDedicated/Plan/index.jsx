@@ -10,8 +10,8 @@ export default function ServicePlan() {
         <div className={styles.diagramBox}>
           <div className={styles.header}>
             <h2>
-              The benefits of a managed service,<br></br> without the noisy
-              neighbors.
+              The benefits of a professionally managed vector database service,
+              without the noisy neighbors.
             </h2>
           </div>
           <div className={styles.content}>

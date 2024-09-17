@@ -135,7 +135,7 @@ p {
     'div1 div2'
     'div3 div3';
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     grid-template-columns: 1fr;
     grid-template-areas:
       'div1'
@@ -154,7 +154,7 @@ p {
   background-image: url('/img/site/events-connor.png');
   background-position: -18% 100%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     border-radius: 0.4375rem;
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
@@ -170,7 +170,7 @@ p {
   a {
     color: #130c49;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #fff;
     }
   }
@@ -186,7 +186,7 @@ p {
   background-image: url('/img/site/press-background-2.png');
   background-position: 120% 1%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     border-radius: 0.4375rem;
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
@@ -197,7 +197,7 @@ p {
   a {
     color: #130c49;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #fff;
     }
   }
@@ -213,7 +213,7 @@ p {
   background-image: url('/img/site/press-background-3.png');
   background-position: 0% 58%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     border-radius: 0.4375rem;
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
@@ -224,7 +224,7 @@ p {
   a {
     color: #130c49;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #fff;
     }
   }
@@ -251,14 +251,14 @@ p {
     font-size: 1.25rem;
     font-weight: 400;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #61bd73;
       font-size: 1.5rem;
       text-decoration-line: underline;
     }
   }
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
@@ -299,7 +299,7 @@ p {
     color: #130c49;
     font-size: 1.25rem;
     font-weight: 400;
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #61bd73;
       font-size: 1.5rem;
       text-decoration-line: underline;
@@ -310,7 +310,7 @@ p {
     margin-top: 60px;
   }
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
@@ -360,7 +360,7 @@ p {
     font-size: 1.25rem;
     font-weight: 400;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #61bd73;
       font-size: 1.5rem;
       text-decoration-line: underline;
@@ -374,7 +374,7 @@ p {
     font-style: normal;
     font-weight: 700;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 1120px) {
       color: #fff;
       font-size: 1.3rem;
       margin: 20px 0px;
@@ -385,22 +385,12 @@ p {
     width: 63%;
   }
 
-  @media screen and (max-width: 1050px) {
-    p {
-      font-size: 1.1rem;
-    }
-    width: 53%;
-  }
-
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1120px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
     margin: auto;
 
-    p {
-      font-size: 15px;
-    }
     .date {
       display: none;
     }
@@ -418,5 +408,11 @@ p {
     width: 59%;
     margin: auto;
     padding: 25px;
+  }
+
+  @media screen and (max-width: 1050px) {
+    p {
+      font-size: 1.1rem;
+    }
   }
 }

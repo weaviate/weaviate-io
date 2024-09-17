@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 
 # Cohere Reranker Models with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -197,6 +194,8 @@ Once the integrations are configured at the collection, the data management and 
 ### References
 
 - Cohere [Rerank API documentation](https://docs.cohere.com/reference/rerank)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

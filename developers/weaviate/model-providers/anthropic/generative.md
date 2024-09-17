@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_anthropic.jpg
 
 # Anthropic Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -81,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Anthropic generative AI model as follows:
+Configure Weaviate to use the Anthropic generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -104,7 +101,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ### Select a model
 
@@ -263,6 +262,8 @@ Once the integrations are configured at the collection, the data management and 
 ### References
 
 - Anthropic [API documentation](https://www.anthropic.com/docs)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

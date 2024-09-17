@@ -5,9 +5,6 @@ image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'reranking']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -161,6 +158,8 @@ Once the integrations are configured at the collection, the data management and 
 ### References
 
 - Voyage AI [Reranker API documentation](https://docs.voyageai.com/docs/reranker)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

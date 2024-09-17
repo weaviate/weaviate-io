@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_ollama.jpg
 
 # Ollama Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -82,7 +79,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Ollama generative AI model as follows:
+Configure Weaviate to use an Ollama generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -105,7 +102,13 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/api-endpoint.mdx';
+
+<APIEndpoint/>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 
@@ -202,6 +205,8 @@ In other words, when you have `n` search results, the generative model generates
 See the [Ollama documentation](https://ollama.com/library) for a list of available models. Note that this list includes both generative models and embedding models; specify a generative model for the `generative-ollama` module.
 
 Download the desired model with `ollama pull <model-name>`.
+
+If no model is specified, the default model (`llama3`) is used.
 
 ## Further resources
 

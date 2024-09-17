@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 # Locally Hosted Transformers Embeddings + Weaviate (Custom Image)
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -127,7 +124,6 @@ Once the inference container is configured and running, you can send queries it 
 First, expose the inference container. If deployed using Docker, forward the port by adding the following to the `t2v-transformers` service in your `docker-compose.yml`:
 
 ```yaml
-version: '3.4'
 services:
   weaviate:
     # Additional settings not shown
@@ -148,6 +144,8 @@ If the container is running and configured correctly, you should receive a respo
 ### External resources
 
 - Hugging Face [Model Hub](https://huggingface.co/models)
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -2,6 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 
 You can delete any unwanted collection(s), along with the data that they contain.
 
@@ -76,34 +77,16 @@ if err := client.Schema().ClassDeleter().WithClassName(className).Do(context.Bac
 ```
 
 </TabItem>
-<TabItem value="java" label="Java">
 
-```java
-package io.weaviate;
+ <TabItem value="java" label="Java">
+     <FilteredTextBlock
+       text={JavaCode}
+       startMarker="// DeleteCollection START"
+       endMarker="// DeleteCollection END"
+       language="java"
+     />
+  </TabItem>
 
-import io.weaviate.client.Config;
-import io.weaviate.client.WeaviateClient;
-import io.weaviate.client.base.Result;
-
-public class App {
-  public static void main(String[] args) {
-    Config config = new Config("http", "localhost:8080");
-    WeaviateClient client = new WeaviateClient(config);
-
-    Result<Boolean> result = client.schema().classDeleter()
-      .withClassName("Article")
-      .run();
-
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
-    }
-    System.out.println(result.getResult());
-  }
-}
-```
-
-</TabItem>
 <TabItem value="curl" label="Curl">
 
 ```bash

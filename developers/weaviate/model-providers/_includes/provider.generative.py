@@ -215,6 +215,107 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeDatabricks
+from weaviate.classes.config import Configure
+
+databricks_generative_endpoint = os.getenv("DATABRICKS_GENERATIVE_ENDPOINT")
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.databricks(endpoint=databricks_generative_endpoint)
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeDatabricks
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeDatabricks
+from weaviate.classes.config import Configure
+
+databricks_generative_endpoint = os.getenv("DATABRICKS_GENERATIVE_ENDPOINT")
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.databricks(
+        endpoint=databricks_generative_endpoint
+        # # These parameters are optional
+        # max_tokens=500,
+        # temperature=0.7,
+        # top_p=0.7,
+        # top_k=0.1
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeDatabricks
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeFriendliAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.friendliai()
+    # Additional parameters not shown
+)
+# END BasicGenerativeFriendliAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START GenerativeFriendliAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.friendliai(
+        model = "meta-llama-3.1-70b-instruct",
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeFriendliAICustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeFriendliAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.friendliai(
+        # # These parameters are optional
+        model = "meta-llama-3.1-70b-instruct",
+        max_tokens = 500,
+        temperature = 0.7,
+        base_url = "https://inference.friendli.ai"
+    )
+)
+# END FullGenerativeFriendliAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START DedicatedGenerativeFriendliAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.friendliai(
+        model = "YOUR_ENDPOINT_ID",
+    )
+)
+# END DedicatedGenerativeFriendliAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeGoogleVertex
 from weaviate.classes.config import Configure
 

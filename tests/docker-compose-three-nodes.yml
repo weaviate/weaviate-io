@@ -1,5 +1,4 @@
 ---
-version: '3.4'
 services:
   weaviate-node-1:  # Founding member service name
     command:
@@ -9,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.26.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.26.4
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -43,7 +42,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.26.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.26.4
     restart: on-failure:0
     ports:
      - "8181:8080"
@@ -78,7 +77,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.26.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.26.4
     restart: on-failure:0
     ports:
      - "8182:8080"

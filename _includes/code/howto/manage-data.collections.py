@@ -402,6 +402,36 @@ assert config.vector_index_config.distance_metric.value == "cosine"
 client.close()
 
 # =======================
+# ===== REPLICATION =====
+# =======================
+
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# clean slate
+client.collections.delete("Article")
+# START ReplicationSettings
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+    )
+    # highlight-end
+)
+# END ReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.replication_config.factor == 3
+
+client.close()
+
+# =======================
 # ===== REPLICATION WITH ASYNC REPAIR ====
 # =======================
 
@@ -670,7 +700,7 @@ articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
-    status="READONLY",
+    status="READY",
     shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end

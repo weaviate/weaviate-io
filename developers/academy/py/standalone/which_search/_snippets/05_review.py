@@ -1,13 +1,16 @@
 from uuid import UUID
 import os
 
+weaviate_url = os.getenv("WEAVIATE_URL")
+weaviate_key = os.getenv("WEAVIATE_API_KEY")
+
 # START connectionCode
 import weaviate
 import weaviate.classes as wvc
 
 client = weaviate.connect_to_weaviate_cloud(
-    cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",  # Demo instance URL
-    auth_credentials=wvc.init.Auth.api_key("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),  # Read-only key
+    cluster_url=weaviate_url,
+    auth_credentials=wvc.init.Auth.api_key(weaviate_key),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY") # Replace with your OpenAI API key (for vector and hybrid searches)
     }

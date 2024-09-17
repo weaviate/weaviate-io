@@ -148,7 +148,7 @@ This operator is enabled if a compatible vectorizer module is configured for the
 | `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `distance` | no | `float` | The maximum allowed distance to the provided search input. Cannot be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
-| `autocorrect` | no | `boolean` | Autocorrect input text values. Requires the [`text-spellcheck` module](../../modules/other-modules/spellcheck.md) to be present & enabled.  |
+| `autocorrect` | no | `boolean` | Autocorrect input text values. Requires the [`text-spellcheck` module](../../modules/spellcheck.md) to be present & enabled.  |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
 | `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. |
@@ -248,9 +248,8 @@ Some modules, such as `multi2vec-clip` and `multi2vec-bind` allow you to search 
 
 For more information, see specific module pages such as these:
 
-* [img2vec-neural](../../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage)
-* [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md#additional-search-operators)
-* [multi2vec-bind](../../modules/retriever-vectorizer-modules/multi2vec-bind.md#additional-search-operators)
+* [Transformers multimodal embeddings](../../model-providers/transformers/embeddings-multimodal.md)
+* [ImageBind multimodal embeddings](../../model-providers/imagebind/embeddings-multimodal.md)
 
 
 ## hybrid
@@ -543,7 +542,7 @@ import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm2
 
 ## ask
 
-Enabled by the module: [Question Answering](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md).
+Enabled by the module: [Question Answering](/developers/weaviate/modules/qna-transformers.md).
 
 This operator allows you to return answers to questions by running the results through a Q&A model.
 

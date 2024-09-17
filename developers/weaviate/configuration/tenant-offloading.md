@@ -6,6 +6,8 @@ image: og/docs/configuration.jpg
 
 Tenants can be offloaded to cold storage to reduce memory and disk usage, and onloaded back when needed.
 
+This page explains how to configure tenant offloading in Weaviate. For information on how to offload and onload tenants, see [How-to: manage tenant states](../manage-data/tenant-states.mdx).
+
 ## Tenant offload modules
 
 import OffloadingLimitation from '/_includes/offloading-limitation.mdx';
