@@ -32,6 +32,7 @@ class_obj = {
             "dataType": ["text"],
             "indexSearchable": False,
         },
+    ]
 }
 
 client.schema.create_class(class_obj)
@@ -64,6 +65,7 @@ class_obj = {
             "dataType": ["text"],
             "indexFilterable": False,
         },
+    ]
 }
 
 client.schema.create_class(class_obj)
