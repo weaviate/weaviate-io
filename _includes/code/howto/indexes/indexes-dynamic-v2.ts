@@ -43,6 +43,25 @@ async function createDynamicCollection(client: WeaviateClient, className: string
 }
 // END EnableDynamic
 
+////////////////////
+// CONFIGURE DYNAMIC //
+////////////////////
+
+// START ConfigDynamic
+async function configureDynamicCollection(client: WeaviateClient, className: string){
+
+ const setIndexType = {
+   class: className,
+   // Add property definitions
+   vectorizer: 'text2vec-openai',
+   vectorIndexType: 'dynamic',
+ };
+
+ // Add the class to the schema
+ await client.schema.classCreator().withClass(setIndexType).do();
+}
+// END ConfigDynamic
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -61,6 +80,13 @@ async function main(){
  // if(await client.schema.exists(className) != true){
  //  createDynamicCollection(client, className);
  // }
+
+ // // Run configure dynamic collection code
+ // deleteClass(client, className)
+ // if(await client.schema.exists(className) != true){
+ //  configureDynamicCollection(client, className);
+ // }
+
 }
 
 main()

@@ -13,7 +13,6 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic
 import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v3.ts';
 import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v2.ts';
 
-
 import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
@@ -25,6 +24,8 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
 <ConsiderComp/>
 
 ## Enable dynamic indexes
+
+Enable a dynamic index that uses default parameters for the dynamic, HNSW, and flat indexes:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -62,6 +63,8 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
 </Tabs>
 
 ## Configure dynamic indexes
+
+Configure the dynamic, HNSW, and flat indexes:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

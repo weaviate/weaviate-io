@@ -33,21 +33,8 @@ from weaviate.classes.config import Configure, VectorDistances
 
 client.collections.create(
     name=collection_name,
-    vector_index_config=Configure.VectorIndex.dynamic(
-        distance_metric=VectorDistances.COSINE,
-        threshold=20000,
-        hnsw=Configure.VectorIndex.hnsw(
-            # Any hnsw configuration parameters
-            dynamic_ef_factor=15,  # Multiplier for dynamic Ef
-            dynamic_ef_min=200,    # Minimum threshold for dynamic Ef
-            dynamic_ef_max=1000,   # Maximum threshold for dynamic Ef
-        ),
-        flat=Configure.VectorIndex.flat(
-            # Any flat index configuration parameters
-            vector_cache_max_objects=100000,
-            quantizer=Configure.VectorIndex.Quantizer.bq()
-        ),
-    )
+    vector_index_config=Configure.VectorIndex.dynamic(),
+    # Configure vectorizer, properties
 )
 # END EnableDynamic
 
@@ -87,7 +74,8 @@ client.collections.create(
             vector_cache_max_objects=100000,
             quantizer=Configure.VectorIndex.Quantizer.bq()
         ),
-    )
+    ),
+    # Configure vectorizer, properties
 )
 # END ConfigDynamic
 

@@ -40,6 +40,25 @@ async function createDynamicCollection(client: WeaviateClient, collectionName: s
 }
 // END EnableDynamic
 
+
+///////////////////////
+// CONFIGURE DYNAMIC //
+///////////////////////
+
+// START ConfigDynamic
+// Add this import line
+// import { vectorizer, dataType, configure } from 'weaviate-client';
+
+async function configureDynamicCollection(client: WeaviateClient, collectionName: string){
+ await client.collections.create({
+   name: collectionName,
+   vectorizers: vectorizer.text2VecOpenAI({
+     vectorIndexConfig: configure.vectorIndex.dynamic(),
+       }),
+     })
+}
+// END ConfigDynamic
+
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -55,12 +74,17 @@ async function main(){
 
   // Only safe to run one at a time due to aynsc code
 
-  // // Run dynamic collection code
+  // // Run enable dynamic collection code
   // deleteCollection(client, collectionName)
   // if(await client.collections.get(collectionName).exists() != true){
   //   createDynamicCollection(client, collectionName);
   // }
 
-}
+  // // Run configure dynamic collection code
+  // deleteCollection(client, collectionName)
+  // if(await client.collections.get(collectionName).exists() != true){
+  //   createDynamicCollection(client, collectionName);
+  // }
+ }
 
 main()
