@@ -1,7 +1,15 @@
 [
   {
+    "title": "AI Agents That Matter with Sayash Kapoor and Benedikt Stroebl - Weaviate Podcast #104",
+    "description": "Welcome to the 104th Weaviate Podcast with Sayash Kapoor and Benedikt Stroebl from Princeton Language and Intelligence! Sayash and Benedikt are co-first authors of \"AI Agents That Matter\".",
+    "youtube": "gCP-W_BNzg4",
+    "date": "24-09-18",
+    "cover_image": "/img/podcasts/podcast-104.png",
+    "is_use_case": false
+  },
+  {
     "title": "MIPRO and DSPy with Krista Opsahl-Ong! - Weaviate Podcast #103",
-    "description": "Welcome to the 103rd Weaviate Podcast with Krista Opsahl-Ong from Stanford University. Krista is the lead author of MIPRO and one of the leading developers and scientists behind DSPy! ",
+    "description": "Welcome to the 103rd Weaviate Podcast with Krista Opsahl-Ong from Stanford University. Krista is the lead author of MIPRO and one of the leading developers and scientists behind DSPy!",
     "youtube": "skMH3DOV_UQ",
     "date": "24-08-28",
     "cover_image": "/img/podcasts/podcast-103.png",
