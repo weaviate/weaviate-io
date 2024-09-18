@@ -63,18 +63,6 @@ See also:
 
 - [Dynamic index parameters](/developers/weaviate/config-refs/schema/vector-index#dynamic-index-parameters)
 
-## Multiple named vectors
-
-import MultiNameVec from '/_includes/indexes/multiple-named-vectors.mdx';
-
-<MultiNameVec/>
-
-## Compression
-
-import IndexCompression from '/_includes/indexes/index-compression.mdx';
-
-<IndexCompression/>
-
 ## Asynchronous indexing
 
 import AsynchIndexing from '/_includes/indexes/async-indexing.mdx';
