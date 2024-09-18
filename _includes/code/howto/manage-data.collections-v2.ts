@@ -451,6 +451,38 @@ assert.equal(
 await client.schema.classDeleter().withClassName(className).do();
 
 // ===============================================
+// ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
+// ===============================================
+
+// START SetReranker
+const classWithReranker = {
+  class: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+  ],
+  vectorizer: 'text2vec-openai', // this could be any vectorizer
+  // highlight-start
+  moduleConfig: {
+    'reranker-cohere': {}, // set your reranker module
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema.classCreator().withClass(classWithReranker).do();
+// END SetReranker
+
+// Test
+Object.keys(result['moduleConfig']).includes('reranker-cohere');
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
+
+// ===============================================
 // ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 // ===============================================
 
