@@ -5,14 +5,10 @@
 import weaviate, { dataType, WeaviateClient,vectorizer, configure } from 'weaviate-client';
 
 // Delete pre-existing collections
-function deleteCollection(client: WeaviateClient, collectionName: string){
- try {
-   client.collections.delete(collectionName)
-} catch (e) {
-  // ignore error if class doesn't exist
-}
-
-return true
+async function deleteCollection(client: WeaviateClient, collectionName: string){
+ if(client.collections.exists(collectionName)){
+   await client.collections.delete(collectionName)
+  }
 }
 
 // Create client connection
@@ -193,52 +189,39 @@ async function main(){
 
   const client = await getClient();
 
-  // Clean up from earlier runs
-  deleteCollection(client, collectionName)
-
-  // Only safe to run one at a time due to async code
-
   // // Run enable HNSW collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createHNSWCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await createHNSWCollection(client, collectionName);
+
 
   // // Run configure HNSW collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   configureHNSWCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await configureHNSWCollection(client, collectionName);
 
-  // Run compress HNSW collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    compressHNSWCollection(client, collectionName);
-  }
+
+  // // Run compress HNSW collection code
+  // await deleteCollection(client, collectionName)
+  // await compressHNSWCollection(client, collectionName);
+
 
   // // Run multiple named vector collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createMultiCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await createMultiCollection(client, collectionName);
+
 
   // // Run enable Flat collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createFlatCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await createFlatCollection(client, collectionName);
+
 
   // // Run configure Flat collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   configureFlatCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await configureFlatCollection(client, collectionName);
 
-  // // Run compress Flat collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   compressFlatCollection(client, collectionName);
-  // }
+
+  // Run compress Flat collection code
+  await deleteCollection(client, collectionName)
+  await compressFlatCollection(client, collectionName);
 
 }
 

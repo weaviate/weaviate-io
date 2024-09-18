@@ -5,22 +5,15 @@
 import weaviate, { dataType, WeaviateClient,vectorizer, configure } from 'weaviate-client';
 
 // Delete pre-existing collections
-function deleteCollection(client: WeaviateClient, collectionName: string){
-
-var success = false;
- try {
-   client.collections.delete(collectionName)
-   success = true;
-} catch (e) {
-  // ignore error if class doesn't exist
-}
-
-return success
+async function deleteCollection(client: WeaviateClient, collectionName: string){
+  if(client.collections.exists(collectionName)){
+    await client.collections.delete(collectionName)
+   }
 }
 
 // Create client connection
 async function getClient(){
-  const client: WeaviateClient = weaviate.connectToLocal();
+  const client: WeaviateClient = await weaviate.connectToLocal();
   return client;
 }
 
@@ -88,19 +81,14 @@ async function main(){
 
   const client = await getClient();
 
-  // Only safe to run one at a time due to async code
+  // Run enable dynamic collection code
+  await deleteCollection(client, collectionName)
+  await createDynamicCollection(client, collectionName);
 
-  // // Run enable dynamic collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createDynamicCollection(client, collectionName);
-  // }
+  // // Run configure dynamic collection code
+  // await deleteCollection(client, collectionName)
+  // await configureDynamicCollection(client, collectionName);
 
-  // Run configure dynamic collection code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    configureDynamicCollection(client, collectionName);
-  }
- }
+}
 
 main()

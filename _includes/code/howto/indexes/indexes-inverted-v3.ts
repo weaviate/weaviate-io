@@ -5,14 +5,10 @@
 import weaviate, { dataType, WeaviateClient,vectorizer, configure } from 'weaviate-client';
 
 // Delete pre-existing collections
-function deleteCollection(client: WeaviateClient, collectionName: string){
- try {
-   client.collections.delete(collectionName)
-} catch (e) {
-  // ignore error if class doesn't exist
-}
-
-return true
+async function deleteCollection(client: WeaviateClient, collectionName: string){
+ if(client.collections.exists(collectionName)){
+   await client.collections.delete(collectionName)
+  }
 }
 
 // Create client connection
@@ -139,40 +135,26 @@ async function main(){
 
   const client = await getClient();
 
-  // Clean up from earlier runs
-  deleteCollection(client, collectionName)
-
-  // Only safe to run one at a time due to async code
-
-  // // Run search code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   searchInvertedCollection(client, collectionName);
-  // }
+  // Run search code
+  await deleteCollection(client, collectionName)
+  await searchInvertedCollection(client, collectionName);
 
   // // Run filter code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   filterInvertedCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await filterInvertedCollection(client, collectionName);
 
   // // Run range code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   rangeInvertedCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await rangeInvertedCollection(client, collectionName);
 
   // // Run bm25 code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   bm25InvertedCollection(client, collectionName);
-  // }
+  // await deleteCollection(client, collectionName)
+  // await bm25InvertedCollection(client, collectionName);
 
-  // Run collection level code
-  deleteCollection(client, collectionName)
-  if(await client.collections.get(collectionName).exists() != true){
-    collLevInvertedCollection(client, collectionName);
-  }
+  // // Run collection level code
+  // await deleteCollection(client, collectionName)
+  // await collLevInvertedCollection(client, collectionName);
+
 
 }
 
