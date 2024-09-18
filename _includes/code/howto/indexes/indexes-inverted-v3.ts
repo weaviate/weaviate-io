@@ -142,7 +142,7 @@ async function main(){
   // Clean up from earlier runs
   deleteCollection(client, collectionName)
 
-  // Only safe to run one at a time due to aynsc code
+  // Only safe to run one at a time due to async code
 
   // // Run search code
   // deleteCollection(client, collectionName)

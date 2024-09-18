@@ -183,24 +183,6 @@ async function compressFlatCollection(client: WeaviateClient, collectionName: st
 }
 // END CompressFlat
 
-////////////////////
-// ENABLE DYNAMIC //
-////////////////////
-
-// START EnableDynamic
-// Add this import line
-// import { vectorizer, dataType, configure } from 'weaviate-client';
-
-async function createDynamicCollection(client: WeaviateClient, collectionName: string){
- await client.collections.create({
-   name: collectionName,
-   vectorizers: vectorizer.text2VecOpenAI({
-     vectorIndexConfig: configure.vectorIndex.dynamic(),
-       }),
-     })
-}
-// END EnableDynamic
-
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -214,7 +196,7 @@ async function main(){
   // Clean up from earlier runs
   deleteCollection(client, collectionName)
 
-  // Only safe to run one at a time due to aynsc code
+  // Only safe to run one at a time due to async code
 
   // // Run enable HNSW collection code
   // deleteCollection(client, collectionName)
@@ -256,12 +238,6 @@ async function main(){
   // deleteCollection(client, collectionName)
   // if(await client.collections.get(collectionName).exists() != true){
   //   compressFlatCollection(client, collectionName);
-  // }
-
-  // // Run dynamic collection code
-  // deleteCollection(client, collectionName)
-  // if(await client.collections.get(collectionName).exists() != true){
-  //   createDynamicCollection(client, collectionName);
   // }
 
 }

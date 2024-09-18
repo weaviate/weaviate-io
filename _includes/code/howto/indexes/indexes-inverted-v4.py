@@ -2,13 +2,6 @@
 
 collection_name = "ConfigCollection"
 
-def print_response(title, response):
-    print(f"{title}: {response}")
-
-def print_response_iter(title, response):
-    for r in response:
-        print(f"{title}: {r}")
-
 ########################
 ### CLIENT CONNECTION ##
 ########################

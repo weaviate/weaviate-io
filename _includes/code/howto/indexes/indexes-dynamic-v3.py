@@ -25,7 +25,6 @@ if client.schema.exists(class_name):
 # START EnableDynamic
 class_obj = {
     "class": class_name,
-    # Additional configuration not shown
     "vectorIndexType": "dynamic",
 }
 
@@ -46,37 +45,54 @@ if (schema_response["class"] == class_name) and (
 ):
     correct_index = True
 assert correct_index, "Wrong index type"
-
 
 #########################
 ### CONFIGURE DYNAMIC ###
 #########################
 
-# Delete data from prior runs
-if client.schema.exists(class_name):
-    client.schema.delete_class(class_name)
+# START ConfigDynamic
+# Configuration details coming soon
+# END ConfigDynamic
 
-# START EnableDynamic
-class_obj = {
-    "class": class_name,
-    # Additional configuration not shown
-    "vectorIndexType": "dynamic",
-}
+# # Delete data from prior runs
+# if client.schema.exists(class_name):
+#     client.schema.delete_class(class_name)
 
-client.schema.create_class(class_obj)
-# END EnableDynamic
+# #\ START ConfigDynamic
+# class_obj = {
+#     "class": class_name,
+#     "vectorIndexType": "dynamic",
+#     "vectorIndexConfigDynamic": {
+#         "hnsw": {
+#             "vectorIndexConfig": {
+#                 "dynamic_ef_factor": 15,  # Multiplier for dynamic Ef
+#                 "dynamic_ef_min": 200,    # Minimum threshold for dynamic Ef
+#                 "dynamic_ef_max": 1000,   # Maximum threshold for dynamic Ef
+#             }
+#         },
+#         "flat": {
+#             "vectorIndexConfig": {
+#                 "vector_cache_max_objects": 100000,  # Limit index cache size
+#                 "bq": {"enabled": True}   # Enable compression
+#             }
+#         },
+#     }
+# }
 
-class_response = client.schema.get()
-schema_response = client.schema.get(class_name)
+# client.schema.create_class(class_obj)
+# #\ END ConfigDynamic
 
-classes = []
-for c in class_response["classes"]:
-    classes.append(c["class"])
-assert class_name in classes, "Class missing"
+# class_response = client.schema.get()
+# schema_response = client.schema.get(class_name)
 
-correct_index = False
-if (schema_response["class"] == class_name) and (
-    schema_response["vectorIndexType"] == "dynamic"
-):
-    correct_index = True
-assert correct_index, "Wrong index type"
+# classes = []
+# for c in class_response["classes"]:
+#     classes.append(c["class"])
+# assert class_name in classes, "Class missing"
+
+# correct_index = False
+# if (schema_response["class"] == class_name) and (
+#     schema_response["vectorIndexType"] == "dynamic"
+# ):
+#     correct_index = True
+# assert correct_index, "Wrong index type"

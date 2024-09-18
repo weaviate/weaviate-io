@@ -2,13 +2,6 @@
 
 collection_name = "ConfigCollection"
 
-def print_response(title, response):
-    print(f"{title}: {response}")
-
-def print_response_iter(title, response):
-    for r in response:
-        print(f"{title}: {r}")
-
 ########################
 ### CLIENT CONNECTION ##
 ########################
@@ -17,7 +10,6 @@ import os
 import weaviate
 
 cohere_api_key = os.environ["COHERE_API_KEY"]
-
 client = weaviate.connect_to_local(headers={"X-Cohere-Api-Key": cohere_api_key})
 
 ######################
@@ -29,12 +21,17 @@ if client.collections.exists(collection_name):
     client.collections.delete(collection_name)
 
 # START EnableDynamic
-from weaviate.classes.config import Configure, VectorDistances
+from weaviate.classes.config import Configure, Property, DataType, VectorDistances
 
 client.collections.create(
     name=collection_name,
+    description="Configuration example",
     vector_index_config=Configure.VectorIndex.dynamic(),
     # Configure vectorizer, properties
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="body", data_type=DataType.TEXT),
+    ]
 )
 # END EnableDynamic
 

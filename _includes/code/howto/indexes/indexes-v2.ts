@@ -15,13 +15,10 @@ function getClient(){
 }
 
 // Delete pre-existing collections
-function deleteClass(client, className: string){
-  try {
-    client.schema.classDeleter().withClassName(className).do();
-  } catch (e) {
-    // ignore error if class doesn't exist
-  }
-  return true
+async function deleteClass(client: WeaviateClient, className: string){
+ if (client.schema.exists(className)) {
+   await client.schema.classDeleter().withClassName(className).do();
+   }
 }
 
 //////////////////////////////
@@ -189,25 +186,6 @@ async function compressFlatCollection(client: WeaviateClient, className: string)
 }
 // END CompressFlat
 
-////////////////////
-// ENABLE DYNAMIC //
-////////////////////
-
-// START EnableDynamic
-async function createDynamicCollection(client: WeaviateClient, className: string){
-
- const setIndexType = {
-   class: className,
-   // Add property definitions
-   vectorizer: 'text2vec-openai',
-   vectorIndexType: 'dynamic',
- };
-
- // Add the class to the schema
- await client.schema.classCreator().withClass(setIndexType).do();
-}
-// END EnableDynamic
-
 /////////////////////////////
 /// AVOID TOP LEVEL AWAIT ///
 /////////////////////////////
@@ -217,51 +195,31 @@ async function main(){
  const className = "ConfigCollection";
 
  const client = await getClient();
- deleteClass(client, className)
 
- // Only safe to run one at a time due to aynsc code
+ // Run enable HNSW collection code
+ await deleteClass(client, className)
+ createHNSWCollection(client, className);
 
- // // Run enable HNSW collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //   createHNSWCollection(client, className);
- // }
-
- // Run configure HNSW collection code
- deleteClass(client, className)
- if(await client.schema.exists(className) != true){
-   configHNSWCollection(client, className);
- }
+ // // Run configure HNSW collection code
+ // await deleteClass(client, className)
+ // configHNSWCollection(client, className);
 
  // // Run multiple named vector collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //   createMultiCollection(client, className);
- // }
+ // await deleteClass(client, className)
+ // createMultiCollection(client, className);
 
  // // Run enable flat collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //  createFlatCollection(client, className);
- // }
+ // await deleteClass(client, className)
+ // createFlatCollection(client, className);
 
  // // Run configure flat collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //  configureFlatCollection(client, className);
- // }
+ // await deleteClass(client, className)
+ // configureFlatCollection(client, className);
 
- // // Run compress flat collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //  compressFlatCollection(client, className);
- // }
+ // Run compress flat collection code
+ await deleteClass(client, className)
+ compressFlatCollection(client, className);
 
- // // Run enable dynamic collection code
- // deleteClass(client, className)
- // if(await client.schema.exists(className) != true){
- //  createDynamicCollection(client, className);
- // }
 }
 
 main()
