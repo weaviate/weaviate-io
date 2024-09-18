@@ -913,8 +913,9 @@
 .typeText {
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 230px;
   gap: 12px;
+  justify-content: space-evenly;
 
   @media screen and (max-width: 1440px) {
     gap: 6px;

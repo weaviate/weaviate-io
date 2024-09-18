@@ -1,5 +1,5 @@
 .container {
-  padding: 3rem;
+  padding: 2rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -30,16 +30,20 @@
 }
 
 .bgCol {
-  background: #ecf4f8;
+  background: #130c49;
 }
 
 .header {
   width: 70%;
   margin: 30px 0px;
 
+  h2 {
+    color: #ffffff;
+  }
+
   p {
     color: #130c49;
-
+    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -47,12 +51,6 @@
   }
   @media screen and (max-width: 950px) {
     width: 100%;
-  }
-
-  @media screen and (max-width: 750px) {
-    br {
-      display: none;
-    }
   }
 }
 
@@ -249,7 +247,7 @@
     background: #130c49;
     color: #fff;
     text-align: center;
-
+    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -268,7 +266,7 @@
     border-radius: 0.375rem;
     background: #fff;
     text-align: center;
-
+    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -301,7 +299,7 @@
 
     span {
       color: #fff;
-
+      font-family: Inter;
       font-size: 1rem;
       font-style: normal;
       font-weight: 400;
@@ -743,7 +741,7 @@
 
   p {
     color: #130c49;
-
+    font-family: Inter;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
@@ -825,47 +823,66 @@
 
 .boxContainer {
   display: flex;
-  gap: 30px;
-  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-  @media screen and (max-width: 1100px) {
-    display: flex;
-    gap: 14px;
-    flex-direction: column;
+  p {
+    color: #ffffff;
+  }
+  ul {
+    color: #ffffff;
+    width: 210px;
+  }
+
+  a {
+    color: #ffffff;
+
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.84275rem */
+
+    margin-left: -13px;
+    transition: all 0.5s ease;
+  }
+
+  a:hover {
+    color: #61bd73;
+    text-decoration-line: underline;
   }
 }
 
 .typeContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  flex: 1;
+  gap: 10px;
 }
 
 .typeBox {
-  max-width: 37.25rem;
+  max-width: 38.25rem;
   width: 100%;
-  height: 20.5625rem;
+  height: 11.125rem;
   border-radius: 0.625rem;
   background: #fff;
   padding: 20px;
   flex-shrink: 0;
+
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1440px) {
-    max-width: 100%;
-    height: auto;
+  @media screen and (max-width: 800px) {
+    width: 100%;
   }
 }
 
 .big {
-  max-width: 76.25rem;
+  max-width: 37.25rem;
   width: 100%;
-  height: 18.9375rem;
-
-  @media screen and (max-width: 1440px) {
-    height: 22.9375rem;
-  }
+  height: 22.9375rem;
+  flex: 1;
 }
 
 .typeIcon {
@@ -875,7 +892,7 @@
   flex-direction: row;
 
   .homeIcon {
-    background-image: url('/img/site/learn-recipes-icon.svg');
+    background-image: url('/img/site/learn-quickstart-icon.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 2.3125rem;
@@ -883,12 +900,12 @@
     flex-shrink: 0;
   }
 
-  .repos {
-    background-image: url('/img/site/learn-logo-icon.svg');
+  .docs {
+    background-image: url('/img/site/learn-docs-icon.svg');
   }
 
-  .demos {
-    background-image: url('/img/site/learn-play-icon.svg');
+  .workshops {
+    background-image: url('/img/site/learn-workshop-icon.svg');
   }
 
   h2 {
@@ -909,18 +926,12 @@
 .typeText {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 230px;
 
-  ul {
-    line-height: 200%;
-    height: 150px;
-    margin: 0;
-  }
+  gap: 12px;
 
   p {
     color: #130c49;
-
+    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -928,7 +939,7 @@
   }
   a {
     color: #61bd73;
-
+    font-family: Inter;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -937,25 +948,9 @@
   }
 }
 
-.intergrations {
-  display: flex;
-  flex-direction: column;
-  height: 120px;
-  flex-wrap: wrap;
-
-  @media screen and (max-width: 1440px) {
-    flex-wrap: nowrap;
-    height: 200px;
-  }
-}
-
 .large {
-  height: 220px;
+  height: 270px;
   justify-content: space-between;
-
-  @media screen and (max-width: 1440px) {
-    height: 290px;
-  }
 }
 
 .serviceBox {
@@ -995,7 +990,7 @@
 
   span {
     color: #61bb73;
-
+    font-family: Inter;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -1005,7 +1000,7 @@
 
   p {
     color: #fff;
-
+    font-family: Inter;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;

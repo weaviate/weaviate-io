@@ -10,10 +10,7 @@ export default function Examples() {
       <div className="container">
         <div className={styles.header}>
           <h2>Code Examples</h2>
-          <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
-          </p>
+          <p>Go straight to the source and view these examples.</p>
         </div>
         <div className={styles.boxContainer}>
           <div className={styles.typeContainer}>
@@ -23,10 +20,7 @@ export default function Examples() {
                 <h2>Recipes</h2>
               </div>
               <div className={styles.typeText}>
-                <p>
-                  Self-contained, end-to-end code examples for builders (PY & JS
-                  only)
-                </p>
+                <p>End-to-end code examples for builders.</p>
                 <ul>
                   <li>
                     Python: Integrations (DSPy, Llamalndex, ...), Reranking,
@@ -42,7 +36,7 @@ export default function Examples() {
                   to="/docs/getting-started/quickstart"
                   className={styles.button}
                 >
-                  Learn More
+                  Weaviate recipes on GitHub
                 </Link>
               </div>
             </div>
@@ -54,9 +48,22 @@ export default function Examples() {
               <div className={styles.typeText}>
                 <p>Example projects and demo apps powered by Weaviate</p>
                 <ul>
-                  <li>Verba:</li>
-                  <li>Project A:</li>
-                  <li>Project B:</li>
+                  <li>
+                    <Link to="https://verba.weaviate.io/">Verba:</Link> The
+                    Golden RAGtriever
+                  </li>
+                  <li>
+                    <Link to="https://healthsearch.weaviate.io/">
+                      Healthsearch:
+                    </Link>{' '}
+                    Generative AI in Healthcare
+                  </li>
+                  <li>
+                    <Link to="https://awesome-moviate.weaviate.io/">
+                      Awesome-moviate:
+                    </Link>{' '}
+                    A Movie Search Engine
+                  </li>
                 </ul>
                 <Link
                   to="/docs/getting-started/quickstart"
@@ -77,20 +84,27 @@ export default function Examples() {
               <p>We are proudly open source! Here are our key repositories</p>
               <div className={styles.intergrations}>
                 <ul>
-                  <li>weaviate: The "core" database & web server</li>
-                  <li>weaviate-python-client: Python SDK</li>
-                  <li>typescript-client: TS/JS SDK</li>
+                  <li>
+                    <strong>weaviate:</strong> The "core" database & web server
+                  </li>
+                  <li>
+                    <strong>weaviate-python-client:</strong> Python SDK
+                  </li>
+                  <li>
+                    <strong>typescript-client:</strong> TS/JS SDK
+                  </li>
                 </ul>
                 <ul>
-                  <li>weaviate-go-client: Go(lang) SDK</li>
-                  <li>java-client: Java SDK</li>
+                  <li>
+                    <strong>weaviate-go-client:</strong> Go(lang) SDK
+                  </li>
+                  <li>
+                    <strong>java-client:</strong> Java SDK
+                  </li>
                 </ul>
               </div>
-              <Link
-                to="/docs/getting-started/quickstart"
-                className={styles.button}
-              >
-                Learn More
+              <Link to="https://github.com/weaviate" className={styles.button}>
+                Weaviate repositories on GitHub
               </Link>
             </div>
           </div>

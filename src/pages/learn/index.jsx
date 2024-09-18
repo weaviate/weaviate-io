@@ -9,7 +9,7 @@ import Documentation from '/src/components/Learn/Documentation';
 import Examples from '/src/components/Learn/Examples';
 import Guides from '/src/components/Learn/Guides';
 import GoFurther from '/src/components/Learn/Further';
-import Resources from '/src/components/Learn/Resources';
+import Resources from '../../components/Learn/ResourcesV2';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {

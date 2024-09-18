@@ -13,6 +13,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.57331rem */
+    width: 70%;
+
+    @media screen and (max-width: 1050px) {
+      width: 100%;
+    }
   }
   @media screen and (max-width: 950px) {
     width: 100%;

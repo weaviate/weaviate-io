@@ -11,8 +11,7 @@ export default function GetStarted() {
         <div className={styles.header}>
           <h2>Get Started</h2>
           <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
+            See what you can do with Weaviate through demos and hands-on guides.
           </p>
         </div>
         <div className={styles.boxContainer}>
@@ -23,7 +22,7 @@ export default function GetStarted() {
                 <h2>Quickstart guide</h2>
               </div>
               <div className={styles.typeText}>
-                <p>See what you can do with Weaviate, in 20-30 minutes</p>
+                <p>Essential concepts demonstrated (20-30 minutes).</p>
                 <Link
                   to="/docs/getting-started/quickstart"
                   className={styles.button}
@@ -38,10 +37,7 @@ export default function GetStarted() {
                 <h2>Live Online Workshops</h2>
               </div>
               <div className={styles.typeText}>
-                <p>
-                  Live, <strong>introductory</strong> workshops for Weaviate
-                  with code & key concepts
-                </p>
+                <p>Introductory workshops with an instructor (60 minutes).</p>
                 <Link to="/community/events" className={styles.button}>
                   Learn More
                 </Link>
@@ -55,12 +51,13 @@ export default function GetStarted() {
               <h2>Docs: Starter guides</h2>
             </div>
             <div className={`${styles.typeText} ${styles.large}`}>
-              <p>Short guides for common task types</p>
+              <p>Roadmaps for important topics.</p>
               <ul>
                 <li>Connect to Weaviate</li>
                 <li>Generative search (RAG)</li>
                 <li>Which Weaviate is right for me?</li>
-                <li>Schema (collection definitions)</li>
+                <li>Collection definitions & data schema</li>
+                <li>Managing resources (hot, warm & cold)</li>
               </ul>
               <Link
                 to="/developers/weaviate/starter-guides"

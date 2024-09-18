@@ -10,10 +10,7 @@ export default function Guides() {
       <div className="container">
         <div className={styles.header}>
           <h2>Guided Courses</h2>
-          <p>
-            Training courses, resources, and support options for builders of all
-            levels.<br></br> We’re with you on your AI journey.
-          </p>
+          <p>Structured learning paths for Weaviate mastery.</p>
         </div>
         <div className={styles.boxContainer}>
           <div className={`${styles.typeBox} ${styles.big}`}>
@@ -23,45 +20,47 @@ export default function Guides() {
             </div>
 
             <div className={`${styles.typeText} ${styles.large}`}>
-              <p>
-                End-to-end courses designed to accelerate your<br></br> Weaviate
-                learning journey
-              </p>
+              <p>End-to-end courses designed by the Weaviate team.</p>
 
-              <ul>
-                <strong>Featured</strong>
-                <li>
-                  <strong>PY_101T</strong>: Work with text data
-                </li>
-                <li>
-                  <strong>PY_101V</strong>: Work with your own vectors
-                </li>
-                <li>
-                  <strong>PY_101M</strong>: Work with multimodal data
-                </li>
-                <li>
-                  <strong>PY_250</strong>: Vector compression
-                </li>
-              </ul>
+              <div className={styles.featuredList}>
+                <ul>
+                  <strong>Featured</strong>
+                  <li>
+                    <strong>PY_101T</strong>: Work with text data
+                  </li>
+                  <li>
+                    <strong>PY_101V</strong>: Work with your own vectors
+                  </li>
+                  <li>
+                    <strong>PY_101M</strong>: Work with multimodal data
+                  </li>
+                  <li>
+                    <strong>PY_250</strong>: Vector compression
+                  </li>
+                  <li>
+                    <strong>PY_280</strong>: Multi-tenancy
+                  </li>
+                </ul>
 
-              <ul>
-                <strong>Latest</strong>
-                <li>
-                  <strong>D_200</strong>: Run Weaviate on Kubernetes
-                </li>
-                <li>
-                  <strong>PY_220</strong>: Named vectors
-                </li>
-                <li>
-                  <strong>PY_250</strong>: Vector compression
-                </li>
-                <li>
-                  <strong>PY_920</strong>: Chunking long texts
-                </li>
-              </ul>
+                <ul>
+                  <strong>Latest</strong>
+                  <li>
+                    <strong>D_200</strong>: Run Weaviate on Kubernetes
+                  </li>
+                  <li>
+                    <strong>PY_220</strong>: Named vectors
+                  </li>
+                  <li>
+                    <strong>PY_250</strong>: Vector compression
+                  </li>
+                  <li>
+                    <strong>PY_920</strong>: Chunking long texts
+                  </li>
+                </ul>
+              </div>
 
               <Link to="/developers/academy" className={styles.button}>
-                Learn More
+                Weaviate Academy
               </Link>
             </div>
           </div>
@@ -74,9 +73,19 @@ export default function Guides() {
               <div className={styles.typeText}>
                 <p>Courses created in conjunction with partners</p>
                 <ul>
-                  <p>Featured</p>
-                  <li>DeepLearning.ai: Course 1, Course 2</li>
-                  <li>Linkedin Learning: Course 1, Course 2</li>
+                  <strong>Featured</strong>
+                  <li>
+                    <strong>DeepLearning.AI:</strong>{' '}
+                    <Link to="">
+                      Vector Databases: from Embeddings to Applications
+                    </Link>
+                  </li>
+                  <li>
+                    <strong>Linkedin Learning:</strong>{' '}
+                    <Link to="">
+                      Introduction to AI-Native Vector Databases
+                    </Link>
+                  </li>
                 </ul>
                 <Link
                   to="/developers/weaviate/tutorials"
@@ -97,12 +106,14 @@ export default function Guides() {
                 </p>
                 <ul>
                   <li>
-                    Python: Integrations (DSPy, LlamaIndex, ...), Reranking,
-                    Search, Multi-tenancy, ...
+                    <Link to="">Intro to Hybrid Search</Link>: Combining the
+                    power of keyword and vector search
                   </li>
                   <li>
-                    JavaScript: Integrations (LlamaIndex, ...), Reranking,
-                    Search
+                    <Link to="">
+                      Build AI apps with Weaviate's TypeScript client
+                    </Link>
+                    : Vue.js, React.js and Angular.js
                   </li>
                 </ul>
 
@@ -118,7 +129,7 @@ export default function Guides() {
         </div>
 
         <div className={styles.ctaContainer}>
-          <span>Free crash course</span>
+          <span>Live online workshop</span>
           <h2>Intro to building applications with Weaviate</h2>
           <div className={styles.innerCta}>
             <p>
@@ -130,7 +141,7 @@ export default function Guides() {
               to="/docs/getting-started/quickstart"
               className={styles.button}
             >
-              Learn More
+              Register for Free
             </Link>
           </div>
         </div>
