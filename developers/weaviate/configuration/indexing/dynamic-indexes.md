@@ -8,10 +8,10 @@ image: og/docs/indexes.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV4 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v4.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.py';
-import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.ts';
-import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v2.ts';
+import PyCodeV4 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v4.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v3.py';
+import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v3.ts';
+import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-dynamic-v2.ts';
 
 
 import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
@@ -23,6 +23,8 @@ Dynamic indexes require [asynchronous indexing](/developers/weaviate/config-refs
 import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
 
 <ConsiderComp/>
+
+## Enable dynamic indexes
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -54,6 +56,43 @@ import ConsiderComp from '/_includes/indexes/consider-compression.mdx';
       text={TSCodeV2}
         startMarker="// START EnableDynamic"
         endMarker="// END EnableDynamic"
+        language="js"
+    />
+  </TabItem>
+</Tabs>
+
+## Configure dynamic indexes
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START ConfigDynamic"
+      endMarker="# END ConfigDynamic"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+        startMarker="# START ConfigDynamic"
+        endMarker="# END ConfigDynamic"
+        language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeV3}
+        startMarker="// START ConfigDynamic"
+        endMarker="// END ConfigDynamic"
+        language="js"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeV2}
+        startMarker="// START ConfigDynamic"
+        endMarker="// END ConfigDynamic"
         language="js"
     />
   </TabItem>
