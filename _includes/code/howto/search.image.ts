@@ -91,12 +91,12 @@ fs.writeFileSync('image.jpg', content);
 const myCollection = client.collections.get('Dog');
 
 // highlight-start
-// Read the file into a base-64 encoded string
-const contentsBase64 = await fs.promises.readFile('image.jpg', { encoding: 'base64' });
+// Read the file
+const image = await fs.promises.readFile('image.jpg');
 // highlight-end
 
-// Query based on base64-encoded image
-const result = await myCollection.query.nearImage(contentsBase64, {
+// Query based on the image content
+const result = await myCollection.query.nearImage(image, {
   returnProperties: ['breed'],
   limit: 1,
   // targetVector: 'vector_name' // required when using multiple named vectors
@@ -107,7 +107,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 }
 
 // Tests
-// assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
+assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
 
 
 // ============================

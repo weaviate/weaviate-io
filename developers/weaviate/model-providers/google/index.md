@@ -45,6 +45,8 @@ You must provide a valid Google AI API credentials to Weaviate for these integra
 
 ### Vertex AI
 
+##### Automatic token generation
+
 import UseGoogleAuthInstructions from './_includes/use_google_auth_instructions.mdx';
 
 <UseGoogleAuthInstructions/>

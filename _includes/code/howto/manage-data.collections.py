@@ -246,6 +246,33 @@ client.collections.delete("Article")
 
 
 # ===============================================
+# ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+# START SetReranker
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    reranker_config=Configure.Reranker.cohere()
+    # highlight-end
+)
+# END SetReranker
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.reranker_config.reranker == "reranker-cohere"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
