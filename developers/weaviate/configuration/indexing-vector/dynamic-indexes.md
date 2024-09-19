@@ -107,9 +107,9 @@ See also:
 
 ## Asynchronous indexing
 
-import AsynchIndexing from '/_includes/indexes/async-indexing.mdx';
+import AsyncIndexing from '/_includes/indexes/async-indexing.mdx';
 
-<AsynchIndexing/>
+<AsyncIndexing/>
 
 ## Related pages
 

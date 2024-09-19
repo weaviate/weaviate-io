@@ -5,14 +5,6 @@ image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV4 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v4.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.py';
-import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v3.ts';
-import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-v2.ts';
-
 import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
 <VectorIntro/>
@@ -27,7 +19,7 @@ import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-[Configure an HNSW index](/developers/weaviate/configuration/indexing/hnsw-indexes.md).
+[Configure an HNSW index](/developers/weaviate/configuration/indexing-vector/hnsw-indexes.md).
 
 See also:
 
@@ -39,7 +31,7 @@ import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
 
-[Configure a flat index](/developers/weaviate/configuration/indexing/flat-indexes.md).
+[Configure a flat index](/developers/weaviate/configuration/indexing-vector/flat-indexes.md).
 
 See also:
 
@@ -53,7 +45,7 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 Dynamic indexes require [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing). Enable asynchronous indexing before you configure a collection to use dynamic indexing.
 
-[Configure a dynamic index](/developers/weaviate/configuration/indexing/dynamic-indexes.md).
+[Configure a dynamic index](/developers/weaviate/configuration/indexing-vector/dynamic-indexes.md).
 
 See also:
 
@@ -67,13 +59,15 @@ import IndexCompression from '/_includes/indexes/index-compression.mdx';
 
 ## Asynchronous indexing
 
-import AsynchIndexing from '/_includes/indexes/async-indexing.mdx';
+import AsyncIndexing from '/_includes/indexes/async-indexing.mdx';
 
-<AsynchIndexing/>
+<AsyncIndexing/>
 
 ## Related pages
 
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)
+- [Configure inverted indexes](/developers/weaviate/configuration/inverted-indexes)
+
 
 ## Questions and feedback
 

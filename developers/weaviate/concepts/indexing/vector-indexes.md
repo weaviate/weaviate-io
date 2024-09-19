@@ -48,7 +48,10 @@ You might be also interested in our blog post [Why is vector search to fast?](ht
 
 **Hierarchical Navigable Small World (HNSW)** is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
-Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
+Weaviate's `hnsw` index is a custom implementation of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
+
+
+DWCTODO: implementation https://github.com/weaviate/weaviate/tree/main/adapters/repos/db/vector/hnsw
 
 At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
 
@@ -196,7 +199,7 @@ Vectors that aren't currently in cache are added to the cache if there is still 
 
 ### Can I use vector indexing with vector quantization?
 
-Yes, you can read more about it in [vector quantization (compression)](./vector-quantization.md).
+Yes, you can read more about it in [vector quantization (compression)](DWCTODO).
 
 ### Which vector index is right for me?
 
@@ -206,7 +209,7 @@ Note that the vector index type parameter only specifies how the vectors of data
 
 The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
 
-To learn more about configuring the collection, see [this how-to page](../manage-data/collections.mdx).
+To learn more about configuring the collection, see [this how-to page](/developers/weaviate/manage-data/collections).
 
 ### Which distance metrics can I use with vector indexing?
 
@@ -214,7 +217,7 @@ All of [the distance metrics](/developers/weaviate/config-refs/distances.md), su
 
 ### How to configure the vector index type in Weaviate?
 
-The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings, according to available [vector index settings](../config-refs/schema/vector-index.md).
+The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings, according to available [vector index settings](/developers/weaviate/config-refs/schema/vector-index).
 
 ### When to skip indexing
 
@@ -235,10 +238,10 @@ The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide
 ## Further resources
 
 :::info Related pages
-- [Concepts: Indexing](./indexing.md)
-- [Concepts: Vector quantization (compression)](./vector-quantization.md)
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
-- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
+- [Concepts: Inverted indexes](/developers/weaviate/concepts/indexing/inverted-indexes)
+- [Concepts: Vector quantization (compression)](/developers/weaviate/concepts/vector-quantization)
+- [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index)
+- [Configuration: Schema (Configure semantic indexing)](/developers/weaviate/config-refs/schema#configure-semantic-indexing)
 :::
 
 ## Questions and feedback

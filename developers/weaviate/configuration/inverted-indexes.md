@@ -1,6 +1,6 @@
 ---
 title: Inverted indexes
-sidebar_position: 60
+sidebar_position: 15
 image: og/docs/indexes.jpg
 # tags: ['configuration']
 ---
@@ -13,13 +13,20 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverte
 import TSCodeV3 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v3.ts';
 import TSCodeV2 from '!!raw-loader!/_includes/code/howto/indexes/indexes-inverted-v2.ts';
 
-Weaviate uses [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make textual and numeric searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data. These indexes are normally configured on a property level:
+Weaviate uses [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes), also known as keyword indexes, to make textual and numeric searches more efficient. Weaviate provides different kinds to inverted index so you can match better match the index to your data.
+
+These indexes are normally configured on a property level:
 
 - [indexSearchable](#indexSearchable)
 - [indexFilterable](#indexfilterable)
 - [indexRangeFilters](#indexrangefilters)
 
-To tune inverted indexes at the collection level, use the `invertedIndexConfig` to adjust the settings for the [BM25 inverted index](#bm25-index) and other collection level parameters.
+To tune inverted indexes at the collection level, adjust these configuration settings:
+
+- [BM25 search algorithm](#bm25)
+- [indexNullState](#collection-level-properties)
+- [indexPropertyLength](#collection-level-properties)
+- [indexTimestamps](#collection-level-properties)
 
 ## indexSearchable
 
@@ -66,7 +73,7 @@ If you don't anticipate searching on a property field, you can disable this inde
 
 The `indexFilterable` index improves [filtering](/developers/weaviate/search/filters). This index is enabled by default.
 
-If you don't anticipate searching on a property field, you can disable this index to save disk space and import time. The property is still filterable.
+If you don't anticipate searching on a property field, disable this index to save disk space and import time. The property is still filterable.
 
 Set these indexes on the property level.
 
@@ -146,9 +153,13 @@ Set these indexes on the property level.
   </TabItem>
 </Tabs>
 
-## bm25 index
+## bm25
 
-The [`bm25` index](/developers/weaviate/config-refs/schema#bm25) is configured on the collection level.
+The [`bm25`](/developers/weaviate/config-refs/schema#bm25) ranking algorithm is configured on the collection level. The BM25 algorithm does not specify values for `b` or `k1`. Use these ["free parameters"](https://en.wikipedia.org/wiki/Free_parameter) to tailor the ranking algorithm for your data.
+
+To adjust for document length, modify `b`. Values range from 0 to 1.
+
+To adjust for word frequency within a document, modify `k1`. Values are usually in the range from 0 to 3. There isn't an upper limit.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -227,6 +238,7 @@ These properties are configured on the collection level.
 ## Related pages
 
 - [Indexes overview](/developers/weaviate/starter-guides/managing-resources/indexing)
+- [Configure vector indexes](/developers/weaviate/configuration/indexing-vector)
 
 ## Questions and feedback
 
