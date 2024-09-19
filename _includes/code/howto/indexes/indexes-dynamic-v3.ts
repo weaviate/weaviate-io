@@ -2,7 +2,7 @@
 // TODO: Needs tests
 
 // Imports
-import weaviate, { dataType, WeaviateClient,vectorizer, configure } from 'weaviate-client';
+import weaviate, { WeaviateClient,vectorizer, configure } from 'weaviate-client';
 
 // Delete pre-existing collections
 async function deleteCollection(client: WeaviateClient, collectionName: string){
@@ -81,13 +81,13 @@ async function main(){
 
   const client = await getClient();
 
-  // Run enable dynamic collection code
-  await deleteCollection(client, collectionName)
-  await createDynamicCollection(client, collectionName);
-
-  // // Run configure dynamic collection code
+  // // Run enable dynamic collection code
   // await deleteCollection(client, collectionName)
-  // await configureDynamicCollection(client, collectionName);
+  // await createDynamicCollection(client, collectionName);
+
+  // Run configure dynamic collection code
+  await deleteCollection(client, collectionName)
+  await configureDynamicCollection(client, collectionName);
 
 }
 
