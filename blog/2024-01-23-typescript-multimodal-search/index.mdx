@@ -13,12 +13,15 @@ description: "We look at how to build Multimodal applications in TypeScript and 
 ![Cover, Building Multimodal AI in TypeScript](./img/hero.png)
 
 
-For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioural changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
+For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioral changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
 
 
 
-## Modalities
+## What are modalities in AI
 > A modality is a particular mode in which something exists or is experienced or expressed.
+
+For machine learning programs, we use modality to describe the type of input or output that a machine learning model can process or interact with to run.
+
 
 ### Single Modality
 
@@ -69,74 +72,52 @@ Create your Next.js application that comes with TypeScript, Tailwind CSS and the
 create-next-app <project-name> –ts –tailwind –app
 ```
 
-### Getting Weaviate Running
-In the newly created folder, create a `docker-compose.yml` file and paste the following code into it.
+### Step 1: Getting Weaviate Running
 
-```yml
-services:
-  weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
-    restart: on-failure:0
-    ports:
-      - "8080:8080"
-    environment:
-        QUERY_DEFAULTS_LIMIT: 25
-        AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-        PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-        DEFAULT_VECTORIZER_MODULE: 'multi2vec-bind'
-        ENABLE_MODULES: 'multi2vec-bind'
-        BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
-        CLUSTER_HOSTNAME: 'node1'
-  multi2vec-bind:
-    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
-    environment:
-      ENABLE_CUDA: '0'
+To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using [Vertex's multimodal embedding](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) models. 
 
-```
+Once set up add your Weaviate URL, Admin API key and [Vertex API](https://weaviate.io/developers/weaviate/model-providers/google/embeddings-multimodal#api-credentials) key to a .env file in the root of your project.
 
+### Step 2: Importing Data
 
-Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](/developers/weaviate/model-providers/imagebind/embeddings-multimodal) module, the tool that enables us to store vector embeddings of video, text, audio and image data.
+Next, we will create a Weaviate collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application.
 
-:::tip Memory requirements
-Make sure that you have enough memory allocated to Docker. The `multi2vec-bind` module loads a very large model, and you may need to allocate more memory (e.g. 12GB or higher) to Docker to avoid out-of-memory errors.
-:::
+We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-client) and other project dependencies with the following command.
 
-### Importing Data
-
-Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application.
-
-We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-ts-client) and other project dependencies with the following command.
 ```bash
-yarn add weaviate-ts-client use-debounce rimraf
+yarn add weaviate-client use-debounce dotenv
 ```
 
-To import our data, we need to create a folder called `src` where our import scripts will go.
+To import our data, we need to create a folder called `import` where our import scripts will go.
 
 To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client.
 
 ```typescript
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+import weaviate, { type WeaviateClient } from 'weaviate-client';
+import 'dotenv/config'
 
 let client: WeaviateClient;
 
-export const getWeaviateClient = () => {
+export const getWeaviateClient = async () => {
   if (!client) {
-    client = weaviate.client({
-      scheme: 'http',
-      host: 'localhost:8080',
-    });
+    client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
+    headers: {
+      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || '',  // Replace with your inference API key
+    }
+  }
+)
   };
-
-  return client;
+  
+ return client;
 }
-
 ```
 
 
 Next, still in `./src` we create a file called `util.ts` and paste the following code in it.
 
 ```typescript
-import {readdirSync, readFileSync, } from 'fs'
+import { readdirSync, readFileSync } from 'fs'
 
 export interface FileInfo {
     name: string;
@@ -155,7 +136,6 @@ export const listFiles = (path: string): FileInfo[] => {
 export const getBase64 = (file: string) => {
     return readFileSync(file, { encoding: 'base64' });
 }
-
 ```
 
 This file defines base64 as the encoding for the files we are importing and lists all the files in a directory.
@@ -163,248 +143,189 @@ This file defines base64 as the encoding for the files we are importing and list
 We then create a file called `collection.ts`, where we define our Weaviate collection and its properties.
 
 ```typescript
-import { WeaviateClient } from 'weaviate-ts-client';
+import weaviate, { type WeaviateClient } from 'weaviate-client';
 import { getWeaviateClient } from './client';
 
-const client: WeaviateClient = getWeaviateClient();
+const client: WeaviateClient = await getWeaviateClient();
 
 const collectionExists = async (name: string) => {
-  return client.schema.exists(name);
+  return client.collections.exists(name);
 }
 
-export const createBindCollection = async (name: string) => {
+export const createCollection = async (name: string) => {
   if(await collectionExists(name)) {
     console.log(`The collection [${name}] already exists. No need to create it.`);
     return;
   }
-
+  
   console.log(`Creating collection [${name}].`);
 
-  const bindSchema = {
-    class: name,
-    moduleConfig: {
-      'multi2vec-bind': {
-        imageFields: ['image'],
-        audioFields: ['audio'],
-        videoFields: ['video'],
-      }
-    },
+  const newCollection = await client.collections.create({
+    name: name,
+    vectorizers: weaviate.configure.vectorizer.multi2VecPalm({
+      projectId: 'semi-random-dev',
+      location: 'us-central1',
+      imageFields: ['image'],
+    }),
+    generative: weaviate.configure.generative.openAI(),
     properties: [
       {
         name: 'name',
-        dataType: ['text'],
-        moduleConfig: {
-          'multi2vec-bind': { skip: true },
-        },
+        dataType: 'text',
       },
       {
-        name: 'media',
-        dataType: ['text'],
-        moduleConfig: {
-          'multi2vec-bind': { skip: true },
-        },
+        name: 'image', 
+        dataType: 'blob',
       },
-      {
-        name: 'image',
-        dataType: ['blob'],
-      },
-      {
-        name: 'audio',
-        dataType: ['blob'],
-      },
-      {
-        name: 'video',
-        dataType: ['blob'],
-      }
-    ],
-    vectorIndexType: 'hnsw',
-    vectorizer: 'multi2vec-bind'
-  }
-
-  const res = await client
-    .schema.classCreator()
-    .withClass(bindSchema)
-    .do();
-
+    ]
+  })
+  
+  console.log(JSON.stringify(newCollection, null, 2));
 }
 
 export const deleteCollection = async (name: string) => {
   console.log(`Deleting collection ${name}...`);
-  await client.schema
-  .classDeleter()
-  .withClassName(name)
-  .do();
+  await client.collections.delete(name);
 
   console.log(`Deleted collection ${name}.`);
 }
-
 ```
 
 This file contains a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
 
-Notably, we create a new class and define media types of image, video and audio to our `multi2vec-bind` module. We also add the following properties to our collection: `media`, `name`, `image`, `audio`, and `video`. Think of these as properties we will be able to query against when we start to make queries or import data to Weavaite.
+Notably, we create a new collection and define media types of image, and video and to our `multi2vecPalm` module. We also add the following properties to our collection:  `name`, `image`, and optionally you can add audio. Think of these as properties we will be able to query against when we start to make queries or import data to Weaviate.
 
 
 
-Now we create a file called `import.ts` that uses Weaviates `ObjectsBatcher` to batch import files.
+Now we create a file called `import.ts` that uses a batching system to bulk import files.
 
 ```typescript
-import { ObjectsBatcher, WeaviateClient, generateUuid5 } from 'weaviate-ts-client';
-import { getWeaviateClient } from './client';
-import { FileInfo, getBase64, listFiles } from './util';
+import { WeaviateClient, generateUuid5, type Collection } from 'weaviate-client';
+import { getWeaviateClient } from './client.ts';
+import { getBase64, listFiles } from './util.ts';
 
 const sourceBase = 'public';
-const sourceImages = sourceBase + '/image/'
-const sourceAudio = sourceBase + '/audio/';
+const sourceImages = sourceBase + '/image/';
+const sourceAudio = sourceBase + '/audio/'; // for Audio 
 const sourceVideo = sourceBase + '/video/';
 
-const client: WeaviateClient = getWeaviateClient();
+const client: WeaviateClient = await getWeaviateClient();
+
 
 export const importMediaFiles = async (collectionName: string) => {
-    await insertImages(collectionName);
-    await insertAudio(collectionName);
-    await insertVideo(collectionName);
+
+    const vertexCollection = client.collections.get(collectionName); 
+
+    await insertImages(vertexCollection);
+    // await insertAudio(vertexCollection);  # Uncomment to import Audio
+    await insertVideo(vertexCollection);
 }
 
-const insertImages = async (collectionName: string) => {
-    let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-    let counter = 0;
-    const batchSize = 5;
+const insertImages = async (myCollection: Collection) => {
+
+    const batchSize = 10;
+    let dataObject = [];
 
     const files = listFiles(sourceImages);
-    console.log(`Importing ${files.length} images.`)
+    console.log(`Importing ${files.length} images.`);
 
-    for (const file of files) {
+    let counter = 0
+
+    for (let file of files) {
+        console.log(`Adding ${file.name}`);
+        
         const item = {
             name: file.name,
+            extension: file.name.split('.')[1],
             image: getBase64(file.path),
-            media: 'image'
+            media: 'image',
         };
 
-        console.log(`Adding [${item.media}]: ${item.name}`);
+        dataObject.push(item);
+        counter++
 
-        batcher = batcher.withObject({
-            class: collectionName,
-            properties: item,
-            id: generateUuid5(file.name)
-        });
+        if (counter % batchSize == 0) {
+            await myCollection.data.insertMany(dataObject);
 
-        if (++counter == batchSize) {
-            console.log(`Flushing ${counter} items.`)
-
-            // flush the batch queue
-            await batcher.do();
-
-            // restart the batch queue
-            counter = 0;
-            batcher = client.batch.objectsBatcher();
+            dataObject = []
         }
     }
 
-    if (counter > 0) {
-        console.log(`Flushing remaining ${counter} item(s).`)
-        await batcher.do();
-
-    }
+    if (counter % batchSize !== 0)
+        await myCollection.data.insertMany(dataObject);
 }
+// Uncomment if you are using a model with an audio encoder
+// const insertAudio = async (myCollection: Collection) => {
 
+//     const batchSize = 5;
+//     let dataObject = [];
 
-const insertAudio = async (collectionName: string) => {
-    let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-    let counter = 0;
-    const batchSize = 3;
+//     const files = listFiles(sourceAudio);
+//     console.log(`Importing ${files.length} audios.`);
 
-    const files = listFiles(sourceAudio);
-    console.log(`Importing ${files.length} audio files.`)
+//     let counter = 0;
+//     for (let file of files) {
+//         console.log(`Adding ${file.name}`);
 
-    for (const file of files) {
-        const item = {
-            name: file.name,
-            audio: getBase64(file.path),
-            media: 'audio'
-        };
+//         const item = {
+//             name: file.name,
+//             extension: file.name.split('.')[1],
+//             audio: getBase64(file.path),
+//             media: 'audio',
+//         };
 
-        console.log(`Adding [${item.media}]: ${item.name}`);
+//         dataObject.push(item);
+//         counter++;
 
-        batcher = batcher.withObject({
-            class: collectionName,
-            properties: item,
-            id: generateUuid5(file.name)
-        });
+//         if (counter % batchSize == 0) {
+//             await myCollection.data.insertMany(dataObject);
+//             // Clear the dataObject array
+//             dataObject = [];
+//         }
+//     }
 
-        if (++counter == batchSize) {
-            console.log(`Flushing ${counter} items.`)
-            // flush the batch queue
-            await batcher.do();
+//     if (counter % batchSize !== 0)
+//         await myCollection.data.insertMany(dataObject);
+// }
 
-            // restart the batch queue
-            counter = 0;
-            batcher = client.batch.objectsBatcher();
-        }
-    }
+const insertVideo = async (myCollection: Collection) => {
 
-    if (counter > 0) {
-        console.log(`Flushing remaining ${counter} item(s).`)
-        await batcher.do();
-    }
-}
-
-const insertVideo = async (collectionName: string) => {
-    let batcher: ObjectsBatcher = client.batch.objectsBatcher();
-    let counter = 0;
     const batchSize = 1;
 
     const files = listFiles(sourceVideo);
-    console.log(`Importing ${files.length} video files.`)
+    console.log(`Importing ${files.length} videos.`);
 
-    for (const file of files) {
+    console.log('meta', await myCollection.config.get())
+
+    for (let file of files) {
+        console.log(`Adding ${file.name}`);
+
         const item = {
             name: file.name,
+            extension: file.name.split('.')[1],
             video: getBase64(file.path),
-            media: 'video'
+            media: 'video',
         };
 
-        console.log(`Adding [${item.media}]: ${item.name}`);
-
-        batcher = batcher.withObject({
-            class: collectionName,
-            properties: item,
-            id: generateUuid5(file.name)
-        });
-
-        if (++counter == batchSize) {
-            console.log(`Flushing ${counter} items.`)
-            // flush the batch queue
-            await batcher.do();
-
-            // restart the batch queue
-            counter = 0;
-            batcher = client.batch.objectsBatcher();
-        }
-    }
-
-    if (counter > 0) {
-        console.log(`Flushing remaining ${counter} item(s).`)
-        await batcher.do();
+        await myCollection.data.insert(item)
     }
 }
 
 ```
 
-This file reads out images, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
-
+This file reads out images, and video directories for media and then encodes them before sending them to Weaviate to be stored.
 
 We then create a file called `index.ts` where we run all the files we created above.
 
 ```typescript
-import { createBindCollection, deleteCollection } from './collection';
+import { createCollection, deleteCollection } from './collection';
 import { importMediaFiles } from './import';
 
-const collectionName = 'BindExample';
+const collectionName = 'PalmMultimodalSearch';
 
 const run = async () => {
   await deleteCollection(collectionName);
-  await createBindCollection(collectionName);
+  await createCollection(collectionName);
   await importMediaFiles(collectionName);
 }
 
@@ -414,8 +335,6 @@ run();
 
 In `index.ts` we can change our collection name to our liking. When this file is run, we delete any existing collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
 
-> It's important to note that we need our Weaviate instance running with Docker before going to the next step.
-
 
 To run our import process, we need to add the following scripts to our `package.json` file.
 
@@ -423,16 +342,15 @@ To run our import process, we need to add the following scripts to our `package.
   …
 "scripts": {
       …
-    "preimport": "rimraf ./build && tsc src/*.ts --outDir build",
-    "import": "npm run preimport && node build/index.js"
-        …
+    "import": "npx tsc && node import/index.js"
+      …
   },
   …
 ```
 
 We can now run `yarn run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that runs, let's create our Search interface.
 
-### Building Search Functionality
+### Step 3: Building Search Functionality
 
 Now we need to create a couple of components that will go in our web application.
 
@@ -444,7 +362,10 @@ Create a `./components` folder and add a file called `search.tsx`. Paste the fol
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
 import { useDebouncedCallback } from "use-debounce"
 
-export default function Search({ placeholder }: { placeholder: string }) {
+export default function Search(
+    { placeholder }: { placeholder: string},
+    
+    ) {
     const searchParams = useSearchParams()
     const pathname = usePathname()
     const { replace } = useRouter()
@@ -474,33 +395,52 @@ export default function Search({ placeholder }: { placeholder: string }) {
         </div>
     )
 }
-
 ```
 
 We have an input tag that takes search terms from users. We then pass these search terms to our URL params and then use the `replace` method from `next/navigation` to update the URL. This will update the URL and trigger a new search when the user stops typing.
 
 
-Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer!
+Optionally, you can import the [footer](https://github.com/weaviate-tutorials/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/weaviate-tutorials/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer!
 
+Next in `./utils/action.ts`, paste the following code.
+
+```typescript
+"use server";
+
+import weaviate from "weaviate-client";
+
+
+export async function vectorSearch(searchTerm: string) {
+  const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
+    headers: {
+      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || ''
+    }
+  },
+);
+    
+const myCollection = client.collections.get('PalmMultimodalSearch');
+
+
+const response = await myCollection.query.nearText(searchTerm, {
+limit: 8,
+returnMetadata: ['distance'],
+})
+
+return response
+   
+  }
+```
+Here we define a function `vectorSearch()`, which makes a call to Weaviate to search for the given search term. Weaviate lets us run a vector search from our `PalmMultimodalSearch` collection with `nearText()` and pass the user-entered search term as a query. We also define metadata we want to access in the response with `returnMetadata` and the number of results we want to return with `limit`. We can now call this server action from the client side of our application.
 
 In the `./app` folder, paste the following code in `page.tsx`,
 
 ```typescript
-// import Footer from '@/components/footer';
-// import Navigation from '@/components/navigation';
-import Search from '../components/search'
-import Link from 'next/link'
+import Footer from '@/components/footer.tsx';
+import Search from '../components/search.tsx'
+import { vectorSearch } from '@/utils/action.ts';
 
-import weaviate, {
-  WeaviateClient,
-  WeaviateObject,
-} from "weaviate-ts-client";
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
-
+import Navigation from '@/components/navigation.tsx';
 
 export default async function Home({
   searchParams
@@ -509,89 +449,66 @@ export default async function Home({
     search?: string;
   }
 }) {
-  const search = searchParams?.search || "";
-  const data = await searchDB(search);
-
+  const search = searchParams?.search || "people";
+  const data = await vectorSearch(search);
 
   return (
     <html lang="en">
       <body>
         <div className="fixed h-screen w-full bg-gradient-to-br from-lime-100 via-teal-50 to-amber-100" />
-
-       {/* <Navigation />  */}
+        
+        <Navigation /> 
 
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
 
           <Search placeholder="Search for a word" />
-
+          
           <div className="relative flex grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 p-20">
 
-            {data.map((result: WeaviateObject) => (
-              <div key={result?._additional.id} className="">
+            {data.objects.map((result) => (
+              <div key={result.uuid} className="">
 
                 <div className="h-40 w-50">
-                  <p className=" w-16 h-6 mt-2 ml-2 block text-center whitespace-nowrap items-center justify-center rounded-lg translate-y-8 transform  bg-white px-2.5 py-0.5 text-sm text-black">
-                    {result.media}
+                  <div className="flex justify-between">
+                  <p className="w-16 h-6 mt-2 ml-2 block text-center whitespace-nowrap items-center justify-center rounded-lg translate-y-8 transform  bg-white px-2.5 py-0.5 text-sm text-black">
+                    { result?.properties.media }
                   </p>
-
-                  {result?.media == 'image' &&
+                  <p className="w-24 h-6 mt-2 mr-2 block text-center whitespace-nowrap items-center justify-end rounded-lg translate-y-8 transform  bg-white px-2.5 py-0.5 text-sm text-black">
+                    dist: { result.metadata?.distance?.toString().slice(0,6) }
+                  </p>
+                  </div>
+                  {result?.properties.media == 'image' &&
                     <img
-
                       alt="Certainty: "
                       className='block object-cover w-full h-full rounded-lg'
                       src={
-                        '/' + result.media + '/' + result.name
+                        '/' + result.properties.media + '/' + result.properties.name
                       }
                     />
                   }
 
-                  {result?.media == 'audio' &&
-                    <audio controls src={
-                      '/' + result.media + '/' + result.name
-                    } className='block object-none w-full h-full rounded-lg'>
-                      Your browser does not support the audio element.
-                    </audio>
-
-                  }
-
-                  {result.media == 'video' &&
+                  {result.properties.media == 'video' &&
                     <video controls src={
-                      '/' + result.media + '/' + result.name
-                    } className='block object-none w-full h-full rounded-lg'>
+                      '/' + result.properties.media + '/' + result.properties.name
+                    } className='block object-fit w-full h-full rounded-lg'>
                       Your browser does not support the video element.
                     </video>
-
                   }
-
                 </div>
-
               </div>
             ))}
           </div>
         </main>
-         {/* <Footer /> */}
+
+        <Footer />
+
       </body>
     </html>
   )
 }
 
-
-async function searchDB(search: string) {
-
-  const res = await client.graphql
-    .get()
-    .withClassName("BindExample")
-    .withFields("media name _additional{ certainty id }")
-    .withNearText({ concepts: [`${search}`] })
-    .withLimit(8)
-    .do();
-
-  return res.data.Get.BindExample;
-}
-
 ```
-
-Here we define a function `searchDB()`, which makes a call to Weaviate to search for the given search term. We then map the results to the UI. Weaviate lets us run a vector search from our `BindExample` collection with `withNearText()` and pass the user-entered search term as a query. We can define properties we want to search on with `withFields()` and the number of results we want to return with `withLimit()`. We then pass the query response to be displayed on the UI.
+Here was call the `vectorSearch()` server action we created above and pass the query response to be displayed on the UI. Now we have our search working!  
 
 
 ### Final Result
