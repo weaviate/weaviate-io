@@ -1,6 +1,6 @@
 ---
 title: Modules
-sidebar_position: 15
+sidebar_position: 50
 image: og/docs/concepts.jpg
 # tags: ['modules']
 ---

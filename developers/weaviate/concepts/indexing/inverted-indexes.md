@@ -1,14 +1,10 @@
 ---
-title: Indexing
-sidebar_position: 20
-image: og/docs/concepts.jpg
+title: Inverted indexes
+sidebar_position: 110
+image: og/docs/indexing.jpg
 # tags: ['basics']
 ---
 
-Weaviate supports several types of indexes.
-
-1. **Vector indexes** - a vector index (e.g. HNSW or flat) is used to serve all vector-search queries.
-1. **Inverted indexes** - inverted indexes enable BM25 queries, or speed up filtering.
 
 You can configure indexes in Weaviate per collection.
 
@@ -134,6 +130,10 @@ To create a collection without any indexes, skip indexing on the collection and 
     ]
 }
 ```
+
+## BM25 ranking algorithm
+
+Some stuff
 
 ## Further resources
 

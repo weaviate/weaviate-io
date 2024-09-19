@@ -1,6 +1,6 @@
 ---
 title: Storage
-sidebar_position: 18
+sidebar_position: 70
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'storage']
 ---

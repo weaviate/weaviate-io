@@ -1,6 +1,6 @@
 ---
 title: Resource Planning
-sidebar_position: 90
+sidebar_position: 60
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
 ---
