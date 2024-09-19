@@ -63,6 +63,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media screen and (max-width: 1440px) {
+    justify-content: flex-start;
+    gap: 10px;
+  }
 }
 
 .typeBox {
@@ -133,12 +138,9 @@
 .typeText {
   display: flex;
   flex-direction: column;
-  width: 180px;
+  max-width: max-content;
+  width: 100%;
   gap: 12px;
-
-  @media screen and (max-width: 540px) {
-    width: 380px;
-  }
 
   ul {
     line-height: 240%;

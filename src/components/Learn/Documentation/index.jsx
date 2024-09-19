@@ -39,7 +39,7 @@ export default function Documentation() {
                 </Link>
               </div>
             </div>
-            <div className={styles.typeBox}>
+            <div className={`${styles.typeBox} ${styles.tall}`}>
               <div className={styles.typeIcon}>
                 <div className={`${styles.homeIcon} ${styles.starter}`}></div>
                 <h2>Docs: Concepts</h2>
@@ -67,7 +67,7 @@ export default function Documentation() {
                 </ul>
 
                 <Link
-                  to="/developers/weaviate/starter-guides"
+                  to="/developers/weaviate/concepts"
                   className={styles.button}
                 >
                   All concepts

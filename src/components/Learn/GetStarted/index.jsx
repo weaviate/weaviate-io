@@ -24,10 +24,10 @@ export default function GetStarted() {
               <div className={styles.typeText}>
                 <p>Essential concepts demonstrated (20-30 minutes).</p>
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="/developers/weaviate/quickstart"
                   className={styles.button}
                 >
-                  Learn More
+                  Quickstart
                 </Link>
               </div>
             </div>
@@ -39,7 +39,7 @@ export default function GetStarted() {
               <div className={styles.typeText}>
                 <p>Introductory workshops with an instructor (60 minutes).</p>
                 <Link to="/community/events" className={styles.button}>
-                  Learn More
+                  Workshops
                 </Link>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function GetStarted() {
                 to="/developers/weaviate/starter-guides"
                 className={styles.button}
               >
-                Learn More
+                Started guides
               </Link>
             </div>
           </div>

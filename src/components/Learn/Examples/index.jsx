@@ -33,7 +33,7 @@ export default function Examples() {
                 </ul>
 
                 <Link
-                  to="/docs/getting-started/quickstart"
+                  to="https://github.com/weaviate/recipes"
                   className={styles.button}
                 >
                   Weaviate recipes on GitHub
@@ -49,26 +49,34 @@ export default function Examples() {
                 <p>Example projects and demo apps powered by Weaviate</p>
                 <ul>
                   <li>
-                    <Link to="https://verba.weaviate.io/">Verba:</Link> The
-                    Golden RAGtriever
+                    <Link
+                      className={styles.external}
+                      to="https://verba.weaviate.io/"
+                    >
+                      Verba:
+                    </Link>{' '}
+                    The Golden RAGtriever
                   </li>
                   <li>
-                    <Link to="https://healthsearch.weaviate.io/">
+                    <Link
+                      className={styles.external}
+                      to="https://healthsearch.weaviate.io/"
+                    >
                       Healthsearch:
                     </Link>{' '}
                     Generative AI in Healthcare
                   </li>
                   <li>
-                    <Link to="https://awesome-moviate.weaviate.io/">
+                    <Link
+                      className={styles.external}
+                      to="https://awesome-moviate.weaviate.io/"
+                    >
                       Awesome-moviate:
                     </Link>{' '}
                     A Movie Search Engine
                   </li>
                 </ul>
-                <Link
-                  to="/docs/getting-started/quickstart"
-                  className={styles.button}
-                >
+                <Link to="/community/demos" className={styles.button}>
                   Learn More
                 </Link>
               </div>

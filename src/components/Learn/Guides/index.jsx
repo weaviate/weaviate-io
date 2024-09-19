@@ -72,27 +72,27 @@ export default function Guides() {
               </div>
               <div className={styles.typeText}>
                 <p>Courses created in conjunction with partners</p>
+                <strong>Featured</strong>
                 <ul>
-                  <strong>Featured</strong>
                   <li>
                     <strong>DeepLearning.AI:</strong>{' '}
-                    <Link to="">
+                    <Link
+                      className={styles.external}
+                      to="https://www.deeplearning.ai/short-courses/vector-databases-embeddings-applications/"
+                    >
                       Vector Databases: from Embeddings to Applications
                     </Link>
                   </li>
                   <li>
                     <strong>Linkedin Learning:</strong>{' '}
-                    <Link to="">
+                    <Link
+                      className={styles.external}
+                      to="https://www.linkedin.com/learning/introduction-to-ai-native-vector-databases"
+                    >
                       Introduction to AI-Native Vector Databases
                     </Link>
                   </li>
                 </ul>
-                <Link
-                  to="/developers/weaviate/tutorials"
-                  className={styles.button}
-                >
-                  Learn More
-                </Link>
               </div>
             </div>
             <div className={styles.typeBox}>
@@ -106,22 +106,27 @@ export default function Guides() {
                 </p>
                 <ul>
                   <li>
-                    <Link to="">Intro to Hybrid Search</Link>: Combining the
-                    power of keyword and vector search
+                    <Link
+                      className={`${styles.external} ${styles.bold}`}
+                      to="https://events.weaviate.io/hybrid-search-webinar"
+                    >
+                      Intro to Hybrid Search:
+                    </Link>{' '}
+                    Combining the power of keyword and vector search
                   </li>
                   <li>
-                    <Link to="">
-                      Build AI apps with Weaviate's TypeScript client
-                    </Link>
-                    : Vue.js, React.js and Angular.js
+                    <Link
+                      className={`${styles.external} ${styles.bold}`}
+                      to="https://events.weaviate.io/js-june-24"
+                    >
+                      Build AI apps with Weaviate's TypeScript client:
+                    </Link>{' '}
+                    Vue.js, React.js and Angular.js
                   </li>
                 </ul>
 
-                <Link
-                  to="/community/events#on-demand-webinar"
-                  className={styles.button}
-                >
-                  Learn More
+                <Link to="/community/events" className={styles.button}>
+                  More workshops & webinars
                 </Link>
               </div>
             </div>
@@ -137,10 +142,7 @@ export default function Guides() {
               Weaviate, and how to use<br></br> it with real data, including a
               demo app and an end-to-end Jupyter notebook example.
             </p>
-            <Link
-              to="/docs/getting-started/quickstart"
-              className={styles.button}
-            >
+            <Link to="community/events" className={styles.button}>
               Register for Free
             </Link>
           </div>

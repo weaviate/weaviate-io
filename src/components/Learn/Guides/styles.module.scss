@@ -1,34 +1,3 @@
-.container {
-  padding: 3rem;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 2rem;
-    background-image: url('/img/site/bg-light-mobile.svg');
-    background-position-y: 0px;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-  .container {
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-}
-
-.sliderContainer {
-  padding: 0rem 3rem;
-
-  @media screen and (max-width: 600px) {
-    padding: 2rem 0rem;
-    background: #130c49;
-  }
-}
-
 .bgCol {
   background: #ecf4f8;
 }
@@ -53,265 +22,6 @@
     br {
       display: none;
     }
-  }
-}
-
-.grid {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 110px;
-
-  @media screen and (max-width: 950px) {
-    margin: none;
-    gap: 0px;
-  }
-
-  @media screen and (max-width: 1050px) {
-    grid-template-columns: 1fr;
-    margin: 0px 10px;
-  }
-}
-
-.bottomBar {
-  height: 12rem;
-
-  display: flex;
-  place-content: center;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-
-  h2 {
-    color: #130c49;
-  }
-
-  @media screen and (max-width: 950px) {
-    height: 20rem;
-  }
-}
-
-.innerBar {
-  height: 6em;
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  /* gap: 10px; */
-  margin: 0 auto;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0 var(--ifm-spacing-horizontal);
-  width: 100%;
-  max-width: var(--ifm-container-width-xl);
-
-  @media screen and (max-width: 950px) {
-    height: 180px;
-    display: flex;
-    margin: 0 auto;
-    padding: 0 var(--ifm-spacing-horizontal);
-    width: 100%;
-    max-width: var(--ifm-container-width-xl);
-    justify-items: left;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    white-space: nowrap;
-  }
-}
-
-.innerBar > p {
-  text-align: left;
-  padding: 20px 0;
-
-  width: 200px;
-
-  @media screen and (max-width: 950px) {
-    text-align: left;
-    padding: 20px 0;
-    color: #ffffff;
-    grid-column: 1 / span 2;
-    width: auto;
-  }
-}
-
-.customerLogo {
-  background-image: url('/img/site/redhat-logo.svg');
-
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  width: 8rem;
-  height: 3rem;
-  margin: 0px 10px;
-
-  @media screen and (max-width: 950px) {
-    grid-row: 1;
-    grid-column: auto;
-  }
-}
-
-.redhatLogo {
-  background-image: url('/img/site/red-hat-logo.svg');
-  background-position: center;
-}
-
-.stackoverflowLogo {
-  background-image: url('/img/site/stack-overflow-logo.svg');
-  background-position: center;
-}
-
-.instabaseLogo {
-  background-image: url('/img/site/instabase-logo.svg');
-  background-position: center;
-}
-
-.shippoLogo {
-  background-image: url('/img/site/shippo-logo.svg');
-  background-position: center;
-}
-
-.mulinyLogo {
-  background-image: url('/img/site/muliny-logo.svg');
-  background-position: center;
-}
-.title {
-  font-size: 50px;
-  font-weight: bold;
-
-  margin: 2rem 0rem;
-  height: 250px;
-
-  @media screen and (max-width: 500px) {
-    font-size: 53px;
-    text-align: left;
-
-    height: 200px;
-  }
-
-  h1 {
-    color: #130c49;
-
-    font-family: Plus Jakarta Sans;
-    font-size: 2.625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%; /* 3.15rem */
-  }
-}
-.text {
-  @media screen and (max-width: 800px) {
-    text-align: left;
-    width: 347px;
-    padding: 20px 0;
-  }
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-
-  align-items: flex-start;
-  text-align: left;
-  margin-bottom: 40px;
-  flex: 1;
-
-  h1 {
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 3rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-
-  span {
-    color: #130c49;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: uppercase;
-  }
-
-  p {
-    color: #130c49;
-    font-family: Inter;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 2.1rem */
-  }
-}
-
-.exampleBox {
-  border-radius: 0.93325rem;
-  border: 0.747px solid #0073b4;
-  background: #262262;
-  width: 26.50388rem;
-  height: 23.9375rem;
-  flex: 1;
-}
-
-.homeBanner {
-  display: block;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position-y: bottom;
-  max-width: 1029px;
-  height: 150px;
-  margin: auto;
-
-  background-image: url('/img/site/ai-in-prod-weaviate.png');
-
-  @media screen and (max-width: 1600px) and (min-width: 800px) {
-    max-width: 1029px;
-    flex-basis: 100%;
-    height: 150px;
-    margin: auto;
-    margin-bottom: -35px;
-  }
-
-  @media screen and (max-width: 1090px) and (min-width: 800px) {
-    width: 88%;
-    height: 150px;
-    margin-bottom: 30px;
-  }
-  @media screen and (max-width: 900px) and (min-width: 800px) {
-    margin-bottom: 15px;
-    width: 88%;
-    height: calc(58px + 3.1vw);
-  }
-
-  @media screen and (max-width: 800px) and (min-width: 700px) {
-    background-size: cover;
-    width: 100%;
-    max-width: 648px;
-    height: calc(53px + 3.1vw);
-    margin: auto auto 15px;
-  }
-  @media screen and (max-width: 700px) and (min-width: 600px) {
-    background-size: cover;
-    width: 100%;
-    max-width: 480px;
-    height: calc(38px + 3.1vw);
-    margin: auto auto 15px;
-  }
-
-  @media screen and (max-width: 600px) and (min-width: 500px) {
-    background-size: cover;
-    width: 100%;
-    height: calc(52px + 1.1vw);
-    margin: auto auto 0px;
-  }
-
-  @media screen and (max-width: 500px) {
-    background-image: url('/img/site/ai-in-prod-weaviate-m.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-    width: 100%;
-    margin-bottom: 0;
-    height: calc(94px + 3.1vw);
   }
 }
 
@@ -417,7 +127,6 @@
 
   p {
     color: #130c49;
-    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -425,7 +134,6 @@
   }
   a {
     color: #61bd73;
-    font-family: Inter;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -435,6 +143,15 @@
 
   @media screen and (max-width: 1440px) {
     width: unset;
+  }
+  .external {
+    color: #130c49;
+    font-weight: 400;
+    text-decoration-line: underline;
+  }
+
+  .bold {
+    font-weight: 700;
   }
 }
 
