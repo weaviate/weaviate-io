@@ -1,6 +1,6 @@
 ---
 title: Tenant Offloading
-sidebar_position: 15
+sidebar_position: 25
 image: og/docs/configuration.jpg
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Modules
-sidebar_position: 11
+sidebar_position: 17
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'modules']
 ---

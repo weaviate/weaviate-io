@@ -1,6 +1,6 @@
 ---
 title: Backups
-sidebar_position: 12
+sidebar_position: 20
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'backups']
 ---
