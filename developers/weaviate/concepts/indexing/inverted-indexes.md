@@ -5,7 +5,6 @@ image: og/docs/indexing.jpg
 # tags: ['basics']
 ---
 
-
 You can configure indexes in Weaviate per collection.
 
 Some things to bear in mind:
@@ -137,12 +136,8 @@ Some stuff
 
 ## Further resources
 
-:::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
-:::
-
-
 
 ## Questions and feedback
 

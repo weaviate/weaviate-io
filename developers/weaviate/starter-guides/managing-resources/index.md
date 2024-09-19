@@ -168,7 +168,7 @@ Consider a strategy of deactivating tenants that are not frequently accessed, an
 - [Starter guide: Compression](./compression.mdx)
 - [Starter guide: Indexing](./indexing.mdx)
 - [Starter guide: Tenant states](./tenant-states.mdx)
-- [Concepts: Vector Index](../../concepts/vector-index.md)
+- [Concepts: Vector Index](../../concepts/indexing/vector-indexes)
 - [Concepts: Vector Quantization](../../concepts/vector-quantization.md)
 - [Concepts: Multi-Tenancy](../../concepts/data.md#multi-tenancy)
 - [How-to: Set the vector index type](../../manage-data/collections.mdx#set-vector-index-type)

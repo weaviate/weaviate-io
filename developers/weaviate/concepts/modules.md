@@ -15,7 +15,7 @@ Weaviate has a modularized structure. Functionality such as vectorization or bac
 The core of Weaviate, without any modules attached, is a pure vector-native database.
 [![Weaviate modules introduction](./img/weaviate-module-diagram.svg "Weaviate Module Diagram")](./img/weaviate-module-diagram.svg)
 
-Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/vector-index.md). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object.
+Data is stored in Weaviate as the combination of an object and its vector, and these vectors are searchable by the provided [vector index algorithm](../concepts/indexing/vector-indexes). Without any vectorizer modules attached, Weaviate does not know how to *vectorize* an object, i.e. *how* to calculate the vectors given an object.
 
 Depending on the type of data you want to store and search (text, images, etc.), and depending on the use case (like search, question answering, etc., depending on language, classification, ML model, training set, etc.), you can choose and attach a vectorizer module that best fits your use case. Or, you can "bring your own" vectors to Weaviate.
 

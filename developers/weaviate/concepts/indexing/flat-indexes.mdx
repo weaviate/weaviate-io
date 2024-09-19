@@ -4,3 +4,12 @@ sidebar_position: 30
 image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
+
+:::info Added in `v1.23`
+:::
+
+The **flat index** is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
+
+As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
+
+A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.

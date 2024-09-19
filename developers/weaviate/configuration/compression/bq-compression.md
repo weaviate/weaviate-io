@@ -17,7 +17,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
 
 :::info Added in `v1.23`
-BQ is available for the [`flat` index](/developers/weaviate/concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](/developers/weaviate/concepts/vector-index.md#hnsw-index)  type from `v1.24`.
+BQ is available for the [`flat` index](/developers/weaviate/concepts/indexing/flat-indexes) type from `v1.23` onwards and for the [`hnsw` index](/developers/weaviate/concepts/indexing/hnsw-indexes)  type from `v1.24`.
 :::
 
 Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector.
@@ -104,7 +104,7 @@ The following parameters are available for BQ compression, under `vectorIndexCon
 | `bq` : `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable BQ with the v4 client, set a `quantizer` in the collection definition. |
 | `bq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
 | `bq` : `cache` | boolean | `false` | Whether to use the vector cache. |
-| `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/vector-index.md#vector-cache-considerations). |
+| `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/indexing/vector-indexes). |
 
 
 For example:
@@ -173,7 +173,7 @@ import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
-- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [Concepts: Vector index](/developers/weaviate/concepts/indexing/vector-indexes)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 

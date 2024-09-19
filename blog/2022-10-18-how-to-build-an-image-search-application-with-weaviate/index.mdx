@@ -230,7 +230,7 @@ def weaviate_img_search(img_str):
    return weaviate_results["data"]["Get"]["Dog"]
 ```
 
-How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](/developers/weaviate/concepts/vector-index).
+How cool is that? We can find visually similar dogs in just a simple query to Weaviate. We could even scale this to millions of images running in milliseconds with [Weaviate's ANN index](/developers/weaviate/concepts/indexing/hnsw-indexes).
 
 Once we've created the app, we need to define the pages that will be on the website. The homepage will have the ten images of the dogs in our dataset. If you add images, it will also populate on the homepage!
 

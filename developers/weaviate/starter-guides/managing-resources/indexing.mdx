@@ -65,19 +65,21 @@ As a result, flat indexes are best suited for cases where the number of objects 
 :::info Added in `v1.25`
 :::
 
-import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
-
-<DynamicAsyncRequirements/>
-
 import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
 This can be particularly useful in multi-tenant configurations, where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
 
-The threshold size is 10,000 objects by default. You can configure the threshold size when you create the dynamic index.
+The `dynamic` vector index type requires asynchronous indexing. To enable asynchronous indexing, set the `ASYNC_INDEXING` [environment variable](/developers/weaviate/config-refs/env-vars#general) to `true`.
 
-This table shows how a dynamic index changes as the number of objects in a collection grows. The assumed set up is a dynamic index with:
+Configure the settings for the flat and HNSW indexes when you create the collection definition. The dynamic index uses the flat index configuration when the collection is small. It converts the flat index to an HNSW index when the collection size reaches the dynamic index threshold.
+
+The threshold size is 10,000 objects by default. Configure the threshold size when you create the dynamic index.
+
+##### Dynamic index behavior
+
+This table shows how a dynamic index changes as the number of objects in a collection grows. The table assumes a dynamic index configure like this:
 
 - A threshold of 10,000 objects.
 - Flat index + BQ configuration.
@@ -89,10 +91,6 @@ This table shows how a dynamic index changes as the number of objects in a colle
 | 10,000 | Flat -> HNSW | None | The index converts to HNSW. The index is stored in RAM. |
 | 100,000 | HNSW | Training | The collection object count == PQ/SQ training threshold. |
 | 100,001 | HNSW | PQ/SQ | PQ/SQ is active. |
-
-:::info Dynamic index requires flat and HNSW index settings
-A dynamic index requires its flat and HNSW index settings at creation time. The dynamic index will use the flat index settings initially, then automatically switch to the HNSW index with provided settings when the threshold is reached.
-:::
 
 ### Asynchronous vector indexing
 

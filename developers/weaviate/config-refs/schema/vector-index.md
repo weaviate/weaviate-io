@@ -19,16 +19,16 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | :-- | :-- | :-- | :-- | :-- |
 | `cleanupIntervalSeconds` | integer | 300 | Yes | Cleanup frequency. This value does not normally need to be adjusted. A higher value means cleanup runs less frequently, but it does more in a single batch. A lower value means cleanup is more frequent, but it may be less efficient on each run. |
 | `distance` | string | `cosine` | No | Distance metric. The metric that measures the distance between two arbitrary vectors. For available distance metrics, see [supported distance metrics](/developers/weaviate/config-refs/distances.md). |
-| `ef` | integer | -1 | Yes |  Balance search speed and recall. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is also slower. `ef` values greater than 512 show diminishing improvements in recall.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value and creates a dynamic `ef` list when `ef` is set to -1. For more details, see [dynamic ef](../../concepts/vector-index.md#dynamic-ef). |
+| `ef` | integer | -1 | Yes |  Balance search speed and recall. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is also slower. `ef` values greater than 512 show diminishing improvements in recall.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value and creates a dynamic `ef` list when `ef` is set to -1. For more details, see [dynamic ef](../../concepts/indexing/hnsw-indexes#dynamic-ef). |
 | `efConstruction` | integer | 128 | No | Balance index search speed and build speed. A high `efConstruction` value means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` must be greater than 0. |
 | `maxConnections` | integer | 32 | No | Maximum number of connections per element. `maxConnections` is the connection limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections) connections. <br/><br/> `maxConnections` must be greater than 0. |
-| `dynamicEfMin` | integer | 100 | Yes | *New in `v1.10.0`.* <br/><br/> Lower bound for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Protects against a creating search list that is too short.<br/><br/>This setting is only used when `ef` is -1. |
-| `dynamicEfMax` | integer | 500 | Yes | *New in `v1.10.0`.* <br/><br/> Upper bound for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Protects against creating a search list that is too long. <br/><br/>If `dynamicEfMax` is higher than the limit, `dynamicEfMax` does not have any effect. In this case, `ef` is the limit.<br/><br/>This setting is only used when `ef` is -1. |
-| `dynamicEfFactor` | integer | 8 | Yes | *New in `v1.10.0`.* <br/><br/> Multiplier for [dynamic `ef`](../../concepts/vector-index.md#dynamic-ef). Sets the potential length of the search list. <br/><br/>This setting is only used when `ef` is -1. |
+| `dynamicEfMin` | integer | 100 | Yes | *New in `v1.10.0`.* <br/><br/> Lower bound for [dynamic `ef`](../../concepts/indexing/hnsw-indexes#dynamic-ef). Protects against a creating search list that is too short.<br/><br/>This setting is only used when `ef` is -1. |
+| `dynamicEfMax` | integer | 500 | Yes | *New in `v1.10.0`.* <br/><br/> Upper bound for [dynamic `ef`](../../concepts/indexing/hnsw-indexes#dynamic-ef). Protects against creating a search list that is too long. <br/><br/>If `dynamicEfMax` is higher than the limit, `dynamicEfMax` does not have any effect. In this case, `ef` is the limit.<br/><br/>This setting is only used when `ef` is -1. |
+| `dynamicEfFactor` | integer | 8 | Yes | *New in `v1.10.0`.* <br/><br/> Multiplier for [dynamic `ef`](../../concepts/indexing/hnsw-indexes#dynamic-ef). Sets the potential length of the search list. <br/><br/>This setting is only used when `ef` is -1. |
 | `flatSearchCutoff` | integer | 40000 | Yes | Optional. Threshold for the [flat-search cutoff](/developers/weaviate/concepts/prefiltering.md#flat-search-cutoff). To force a vector index search, set `"flatSearchCutoff": 0`. |
-| `skip` | boolean | `false` | No | When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](../../concepts/vector-index.md#when-to-skip-indexing). |
-| `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
+| `skip` | boolean | `false` | No | When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](../../concepts/indexing/hnsw-indexes#when-to-skip-indexing). |
+| `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/indexing/hnsw-indexes). |
+| `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/indexing/hnsw-indexes) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
 
 ### Database parameters for HNSW
 
@@ -140,7 +140,7 @@ Flat indexes are recommended for use cases where the number of objects per index
 
 | Parameter | Type | Default | Changeable | Details |
 | :-- | :-- | :-- | :-- | :-- |
-| `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
+| `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/indexing/vector-indexes). |
 | `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-quantization.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
 
 ### BQ configuration parameters
@@ -194,10 +194,11 @@ Use these parameters to configure the index type and their properties. They can 
 <details>
   <summary>How to select the index type</summary>
 
-Generally, the `hnsw` index type is recommended for most use cases. The `flat` index type is recommended for use cases where the data the number of objects per index is low, such as in multi-tenancy cases. You can also opt for the `dynamic` index which will initially configure a `flat` index and once the object count exceeds a specified threshold it will automatically convert to an `hnsw` index.
+The `hnsw` index type is recommended for most use cases.
 
-See [this section](../../concepts/vector-index.md#which-vector-index-is-right-for-me) for more information about the different index types and how to choose between them.
+The `flat` index type is recommended for use cases where the number of objects per index is low, such as in multi-tenancy cases.
 
+The `dynamic` index is useful if your collection size starts small and grows. A dynamic index starts as a flat index and converts to an hnsw index when the object count exceeds a specified threshold.
 </details>
 
 If faster import speeds are desired, [asynchronous indexing](#asynchronous-indexing) allows de-coupling of indexing from object creation.
@@ -303,7 +304,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 ## Related pages
 
 - [Concepts: Indexing](../../concepts/indexing.md)
-- [Concepts: Vector Indexing](../../concepts/vector-index.md)
+- [Concepts: Vector Indexing](../../concepts/indexing/vector-indexes)
 
 ## Questions and feedback
 
