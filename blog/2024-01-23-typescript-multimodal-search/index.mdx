@@ -13,12 +13,15 @@ description: "We look at how to build Multimodal applications in TypeScript and 
 ![Cover, Building Multimodal AI in TypeScript](./img/hero.png)
 
 
-For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioural changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
+For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioral changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in TypeScript and dive into everything that needs to happen in between.
 
 
 
-## Modalities
+## What are modalities in AI
 > A modality is a particular mode in which something exists or is experienced or expressed.
+
+For machine learning programs, we use modality to describe the type of input or output that a machine learning model can process or interact with to run.
+
 
 ### Single Modality
 
@@ -69,48 +72,23 @@ Create your Next.js application that comes with TypeScript, Tailwind CSS and the
 create-next-app <project-name> –ts –tailwind –app
 ```
 
-### Getting Weaviate Running
-In the newly created folder, create a `docker-compose.yml` file and paste the following code into it.
+### Step 1: Getting Weaviate Running
 
-```yml
-services:
-  weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
-    restart: on-failure:0
-    ports:
-      - "8080:8080"
-    environment:
-        QUERY_DEFAULTS_LIMIT: 25
-        AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-        PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-        DEFAULT_VECTORIZER_MODULE: 'multi2vec-bind'
-        ENABLE_MODULES: 'multi2vec-bind'
-        BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
-        CLUSTER_HOSTNAME: 'node1'
-  multi2vec-bind:
-    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
-    environment:
-      ENABLE_CUDA: '0'
+To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using [Vertex's multimodal embedding](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) models. 
 
-```
+Once set up add your Weaviate URL, Admin API key and [Vertex API](https://weaviate.io/developers/weaviate/model-providers/google/embeddings-multimodal#api-credentials) key to a .env file in the root of your project.
 
+### Step 2: Importing Data
 
-Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](/developers/weaviate/model-providers/imagebind/embeddings-multimodal) module, the tool that enables us to store vector embeddings of video, text, audio and image data.
+Next, we will create a Weaviate collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application.
 
-:::tip Memory requirements
-Make sure that you have enough memory allocated to Docker. The `multi2vec-bind` module loads a very large model, and you may need to allocate more memory (e.g. 12GB or higher) to Docker to avoid out-of-memory errors.
-:::
+We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-client) and other project dependencies with the following command.
 
-### Importing Data
-
-Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application.
-
-We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-ts-client) and other project dependencies with the following command.
 ```bash
-yarn add weaviate-client use-debounce rimraf
+yarn add weaviate-client use-debounce dotenv
 ```
 
-To import our data, we need to create a folder called `src` where our import scripts will go.
+To import our data, we need to create a folder called `import` where our import scripts will go.
 
 To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client.
 
@@ -122,10 +100,10 @@ let client: WeaviateClient;
 
 export const getWeaviateClient = async () => {
   if (!client) {
-    client = await weaviate.connectToWeaviateCloud(process.env.NUXT_WEAVIATE_HOST_URL || '',{
-    authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_ADMIN_KEY || ''),
+    client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
     headers: {
-      'X-Palm-Api-Key': process.env.NUXT_GOOGLE_API_KEY || '',  // Replace with your inference API key
+      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || '',  // Replace with your inference API key
     }
   }
 )
@@ -215,11 +193,11 @@ export const deleteCollection = async (name: string) => {
 
 This file contains a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
 
-Notably, we create a new class and define media types of image, video and audio to our `multi2vec-bind` module. We also add the following properties to our collection: `media`, `name`, `image`, `audio`, and `video`. Think of these as properties we will be able to query against when we start to make queries or import data to Weavaite.
+Notably, we create a new collection and define media types of image, and video and to our `multi2vecPalm` module. We also add the following properties to our collection:  `name`, `image`, and optionally you can add audio. Think of these as properties we will be able to query against when we start to make queries or import data to Weaviate.
 
 
 
-Now we create a file called `import.ts` that uses Weaviates `ObjectsBatcher` to batch import files.
+Now we create a file called `import.ts` that uses a batching system to bulk import files.
 
 ```typescript
 import { WeaviateClient, generateUuid5, type Collection } from 'weaviate-client';
@@ -335,20 +313,19 @@ const insertVideo = async (myCollection: Collection) => {
 
 ```
 
-This file reads out images, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
-
+This file reads out images, and video directories for media and then encodes them before sending them to Weaviate to be stored.
 
 We then create a file called `index.ts` where we run all the files we created above.
 
 ```typescript
-import { createBindCollection, deleteCollection } from './collection';
+import { createCollection, deleteCollection } from './collection';
 import { importMediaFiles } from './import';
 
-const collectionName = 'BindExample';
+const collectionName = 'PalmMultimodalSearch';
 
 const run = async () => {
   await deleteCollection(collectionName);
-  await createBindCollection(collectionName);
+  await createCollection(collectionName);
   await importMediaFiles(collectionName);
 }
 
@@ -357,8 +334,6 @@ run();
 ```
 
 In `index.ts` we can change our collection name to our liking. When this file is run, we delete any existing collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
-
-> It's important to note that we need our Weaviate instance running with Docker before going to the next step.
 
 
 To run our import process, we need to add the following scripts to our `package.json` file.
@@ -375,7 +350,7 @@ To run our import process, we need to add the following scripts to our `package.
 
 We can now run `yarn run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that runs, let's create our Search interface.
 
-### Building Search Functionality
+### Step 3: Building Search Functionality
 
 Now we need to create a couple of components that will go in our web application.
 
@@ -425,8 +400,38 @@ export default function Search(
 We have an input tag that takes search terms from users. We then pass these search terms to our URL params and then use the `replace` method from `next/navigation` to update the URL. This will update the URL and trigger a new search when the user stops typing.
 
 
-Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer!
+Optionally, you can import the [footer](https://github.com/weaviate-tutorials/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/weaviate-tutorials/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer!
 
+Next in `./utils/action.ts`, paste the following code.
+
+```typescript
+"use server";
+
+import weaviate from "weaviate-client";
+
+
+export async function vectorSearch(searchTerm: string) {
+  const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_URL || '',{
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_ADMIN_KEY || ''),
+    headers: {
+      'X-Palm-Api-Key': process.env.GOOGLE_API_KEY || ''
+    }
+  },
+);
+    
+const myCollection = client.collections.get('PalmMultimodalSearch');
+
+
+const response = await myCollection.query.nearText(searchTerm, {
+limit: 8,
+returnMetadata: ['distance'],
+})
+
+return response
+   
+  }
+```
+Here we define a function `vectorSearch()`, which makes a call to Weaviate to search for the given search term. Weaviate lets us run a vector search from our `PalmMultimodalSearch` collection with `nearText()` and pass the user-entered search term as a query. We also define metadata we want to access in the response with `returnMetadata` and the number of results we want to return with `limit`. We can now call this server action from the client side of our application.
 
 In the `./app` folder, paste the following code in `page.tsx`,
 
@@ -503,8 +508,7 @@ export default async function Home({
 }
 
 ```
-
-Here we define a function `searchDB()`, which makes a call to Weaviate to search for the given search term. We then map the results to the UI. Weaviate lets us run a vector search from our `BindExample` collection with `withNearText()` and pass the user-entered search term as a query. We can define properties we want to search on with `withFields()` and the number of results we want to return with `withLimit()`. We then pass the query response to be displayed on the UI.
+Here was call the `vectorSearch()` server action we created above and pass the query response to be displayed on the UI. Now we have our search working!  
 
 
 ### Final Result

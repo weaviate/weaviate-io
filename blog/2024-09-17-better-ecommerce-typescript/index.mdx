@@ -1,5 +1,5 @@
 ---
-title: AI Enabled eCommerce with Weaviate and TypeScript
+title: AI-Enabled eCommerce with Weaviate and TypeScript
 slug: ai-enabled-ecommerce-typescript
 authors: [daniel]
 date: 2024-09-17
@@ -10,7 +10,7 @@ description: 'We dive into how AI can craft better eCommerce experiences with a 
 
 ![AI Enabled eCommerce with Weaviate and TypeScript](./img/hero.png)
 
-Today, there are [2.64 billion online buyers](https://www.yaguara.co/online-shopping-statistics/#:~:text=online%20shopping%2Dconsumer.-,There%20are%202.64%20billion%20online%20buyers%20in%20the%20world%20as,3.1%25%20increase%20in%20online%20buyers.) in the world. Making up more than 33% of the world’s total population. For comparison, [5.35 billion people](https://www.forbes.com/home-improvement/internet/internet-statistics/#:~:text=There%20are%205.35%20billion%20internet%20users%20worldwide.&text=Out%20of%20the%20nearly%208,the%20internet%2C%20according%20to%20Statista.) have access to the internet as of 2024. Almost half of the people using the internet shop online. However, that experience could be anything but perfect. A [Google report ](https://cloud.google.com/blog/topics/retail/search-abandonment-impacts-retail-sales-brand-loyalty)shows that nearly $300 billion is lost each year from bad online search experiences with 85% of global online customers viewing a brand differently after an unsuccessful search. Search clearly very important for great e-commerce experiences. 
+Today, there are [2.64 billion online buyers](https://www.yaguara.co/online-shopping-statistics/#:~:text=online%20shopping%2Dconsumer.-,There%20are%202.64%20billion%20online%20buyers%20in%20the%20world%20as,3.1%25%20increase%20in%20online%20buyers.) in the world. Making up more than 33% of the world’s total population. For comparison, [5.35 billion people](https://www.forbes.com/home-improvement/internet/internet-statistics/#:~:text=There%20are%205.35%20billion%20internet%20users%20worldwide.&text=Out%20of%20the%20nearly%208,the%20internet%2C%20according%20to%20Statista.) have access to the internet as of 2024. Almost half of the people using the internet shop online. However, that experience could be anything but perfect. A [Google report ](https://cloud.google.com/blog/topics/retail/search-abandonment-impacts-retail-sales-brand-loyalty)shows that nearly $300 billion is lost each year from bad online search experiences with 85% of global online customers viewing a brand differently after an unsuccessful search. Search is clearly very important for great e-commerce experiences. 
 
 
 Here are a few more stats to drive the point home.
@@ -23,6 +23,8 @@ Here are a few more stats to drive the point home.
 * Site searchers are [2-3x more likely to convert.](https://neilpatel.com/blog/site-search-killing-your-conversion/)
 
 A few standouts, but clearly, all drive the conclusion that search is a critical component of any e-commerce product.  
+
+## eCommerce search pitfalls 
  
 A few things are responsible for terrible search experiences, namely...
 
@@ -35,7 +37,7 @@ In this article, we’ll look at how we can make eCommerce search better by solv
 
 
 
-## Understanding Semantic Search
+## Understanding Semantic Search for eCommerce
 
 Leveraging semantic search to power our e-commerce search solves each of the e-commerce search pitfalls we detailed above, but what exactly is semantic search? 
 
@@ -49,11 +51,10 @@ Behind the scenes, it uses approximate nearest neighbors (ANN) algorithms to cal
 ![GIF](./img/semantic-search.png)
 
 
-Semantic Search with a Vector database will rid us of the most terrible responses and assure of responses for non-keyword searches. The first problem is sorted. 
+Semantic search with a vector database will rid us of the most terrible responses and assure of responses for non-keyword searches. The first problem is sorted. 
 
 
-
-## Building our Web application
+## Building an AI-enabled Search Web Application for eCommerce
 
 We will use Nuxt.js, Weaviate, and Cohere to build our web application.
 
@@ -67,7 +68,10 @@ You need the following to go through with this tutorial.
 
 > The project that this tutorial is based on is available on [GitHub](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag) if you’d like to give it a try before going through with the tutorial.
 
-Create your Nuxt.js application that comes with Typescript. 
+
+### Step 1: Installing dependencies
+
+Create your Nuxt.js application with the command below.
 
 ```bash
 npx nuxi@latest init <project-name>
@@ -79,7 +83,7 @@ You will also need to install a few dependencies. The Weaviate Typescript client
 npm install weaviate-client dotenv zod tsc typescript
 ```
 
-We need addition steps for tailwind as we install it as a Nuxt module.
+We need additional steps for tailwind as we install it as a Nuxt module.
 
 ```bash
 npx nuxi@latest module add tailwindcss
@@ -93,22 +97,22 @@ export default defineNuxtConfig({
 })
 ```
 
-> To get typescript and Weaviate setup, please follow these instruction detailed in the [client library documentation](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3#typescript-setup). 
+> To get Typescript and Weaviate setup, please follow these instructions detailed in the [client library documentation](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3#typescript-setup). 
 
-## Getting Weaviate Running
+### Step 2: Getting Weaviate Running
 
 
-To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using Cohere's multilingual embedding models. This will enable us to run searches in multiple languages helping us over come one of the pitfalls. 
+To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using Cohere's multilingual embedding models. This will enable us to run searches in multiple languages helping us overcome one of the pitfalls. 
 
-Once setup add your Weaviate URL, Admin API key and Cohere API to a `.env` file in the root of your project. 
+Once set up add your Weaviate URL, Admin API key and Cohere API to a `.env` file in the root of your project. 
 
 Your `nuxt.config` file should include your project secrets following [this format](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag/blob/9b717ece0036eb8945ff4244689c71c41aafac06/nuxt.config.ts#L16). 
 
 
-## Importing data
+### Step 3: Importing data
 
 
-We’ll be using [Amazon Products Sales Dataset 2023](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset). You can find a clean up version of the file on [Github](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag/blob/main/public/products.csv). Download it and place it in your `./public` folder. 
+We’ll be using [Amazon Products Sales Dataset 2023](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset). You can find a clean-up version of the file on [Github](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag/blob/main/public/products.csv). Download it and place it in your `./public` folder. 
 
 In the root of your file, create a folder called import. Create a file called `simple.ts` to act as your import script.
 
@@ -129,9 +133,9 @@ async function initClient() {
             authCredentials: new weaviate.ApiKey(process.env.NUXT_WEAVIATE_ADMIN_KEY!!),
             headers: {
                 "X-Cohere-Api-Key": process.env.NUXT_COHERE_API_KEY!!,
-            },
-        });
-    }
+ },
+ });
+ }
 
     const ready = await client.isReady()
     console.info('Client is ready?', ready)
@@ -146,8 +150,8 @@ async function createCollection() {
         vectorizers: weaviate.configure.vectorizer.text2VecCohere({
             model: 'embed-multilingual-v3.0',
             sourceProperties: ['name', 'sub_category'] 
-        }),
-    })
+ }),
+ })
 
 }
 
@@ -168,7 +172,7 @@ async function importProductData(fileName: string, collectionName: string) {
         counter++
         if (counter % 1000 == 0) {
             console.log(`Import: ${counter}`);
-        }
+ }
 
         itemsToInsert.push({
             name: item[0],
@@ -178,7 +182,7 @@ async function importProductData(fileName: string, collectionName: string) {
             link: item[4],
             rating: item[5],
             price: item[8]
-        });
+ });
 
         // insert data in batches of 2k objects
         if (itemsToInsert.length == 2000) {
@@ -187,10 +191,10 @@ async function importProductData(fileName: string, collectionName: string) {
 
             if (response.hasErrors) {
                 throw new Error("Something went wrong in import!");
-            }
-        }
+ }
+ }
 
-    }
+ }
 
 
     // insert the remaining objects
@@ -199,30 +203,30 @@ async function importProductData(fileName: string, collectionName: string) {
 
         if (response.hasErrors) {
             throw new Error("Something went wrong in import!");
-        }
-    }
+ }
+ }
 
     return { status: "Import Complete" };
 }
 
 
-// Uncomment to create collection and import data before you run script
+// Uncomment to create collection and import data before you run the script
 // await createCollection()
 // await importProductData('products.csv','TestProduct')
 ```
 
-This creates a collection with the `createCollection()` called "TestProduct" that has the Cohere embedding model defined as vectorizers. It then imports the data in our `products.csv` file into Weaviate.
+This creates a collection with the `createCollection()` called "TestProduct" which has the Cohere embedding model defined as vectorizers. It then imports the data in our `products.csv` file into Weaviate.
 
 To run our import process, we need to add the following scripts to our `package.json` file.
 
 ```json
-  …
+ …
 "scripts": {
       …
     "import": "npx tsc && node import/simple.js"
       …
-  },
-  …
+ },
+ …
 
 ```
 
@@ -230,10 +234,10 @@ To run our import process, we need to add the following scripts to our `package.
 We can now run `npm run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that runs, let's create our search experience.
 
 
-## Building Search Functionality
+### Step 4: Building Semantic Search Functionality
 
 
-To start, we'll create an api route to make an initial call and display products. 
+To start, we'll create an API route to make an initial call and display products. 
 
 In `server/api` create a file called `init.ts` and paste the following code.
 
@@ -248,8 +252,8 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(config.weav
     authCredentials: new weaviate.ApiKey(config.weaviateReadKey),
     headers: {
       'X-Cohere-Api-Key': config.cohereApiKey,
-    }
-  }
+ }
+ }
 )
 
 async function initialFetch() {
@@ -264,11 +268,11 @@ return response.objects
   return defineEventHandler(async () => {
   
     return await initialFetch()
-  })
+ })
 })
 ```
 
-This code calls `initialFetch()` which fetches 20 objects from the Weaviate database and displays them so we have products for our user to see when they land on our page.
+This code calls `initialFetch()` which fetches 20 objects from the Weaviate database and displays them so we have products for our users to see when they land on our page.
 
 Next, in `server/api` create a file called `search.ts`
 
@@ -283,8 +287,8 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(config.weav
     authCredentials: new weaviate.ApiKey(config.weaviateReadKey),
     headers: {
       'X-Cohere-Api-Key': config.cohereApiKey,
-    }
-  }
+ }
+ }
 )
 
 const responseSchema = z.object({
@@ -310,7 +314,7 @@ return response.objects
     const searchTerm = result.data.query
   
     return await vectorSearch(searchTerm)
-  })
+ })
 })
 ```
 
@@ -355,20 +359,20 @@ To give everything an interface, in `app.vue` paste the following code.
                                                         <div class="relative bg-white pt-3">
                                                             <h3
                                                                 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                                                {{ item.properties.name.slice(0, 80) }}...
+ {{ item.properties.name.slice(0, 80) }}...
                                                             </h3>
 
                                                             <p class="mt-2">
                                                                 <span class="sr-only"> Regular Price </span>
                                                                 <span class="tracking-wider text-gray-900">
-                                                                    ${{ parseFloat(item.properties.price.replace("₹", ''))
+ ${{ parseFloat(item.properties.price.replace("₹", ''))
                                                                     }}</span>
                                                             </p>
 
                                                         </div>
                                                     </a>
                                                     <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add
-                                                        to Cart</button>
+ to Cart</button>
                                                 </li>
                                             </div>
                                         </ul>
@@ -385,7 +389,7 @@ To give everything an interface, in `app.vue` paste the following code.
                                     <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Product Collection</h2>
 
                                     <p class="mt-4 max-w-md text-gray-500">
-                                        gorp is a lifestyle, gorp is a state of mind, gorp. gorp.
+ gorp is a lifestyle, gorp is a state of mind, gorp. gorp.
                                     </p>
                                 </header>
 
@@ -416,20 +420,20 @@ To give everything an interface, in `app.vue` paste the following code.
                                                         <div class="relative bg-white pt-3">
                                                             <h3
                                                                 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                                                {{ item.properties.name.slice(0, 80) }}...
+ {{ item.properties.name.slice(0, 80) }}...
                                                             </h3>
 
                                                             <p class="mt-2">
                                                                 <span class="sr-only"> Regular Price </span>
 
                                                                 <span class="tracking-wider text-gray-900">
-                                                                    ${{ parseFloat(item.properties.price.replace("₹", ''))
+ ${{ parseFloat(item.properties.price.replace("₹", ''))
                                                                     }}</span>
                                                             </p>
                                                         </div>
                                                     </a>
                                                     <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add
-                                                        to Cart</button>
+ to Cart</button>
                                                 </li>
                                             </div>
                                         </ul>
@@ -446,9 +450,9 @@ To give everything an interface, in `app.vue` paste the following code.
 </template>
 ```
 
-This put up an interface
+This puts up an interface we can interact with i.e. a search input and search button.
 
-And for the logic to actually run our searches, below your `<template>` tag, paste the following.
+For the logic to actually run our searches, below your `<template>` tag, paste the following.
 
 ```ts
 <script setup>
@@ -477,29 +481,27 @@ async function submitSearch() {
 </script>
 ```
 
-This 
-
+This snippet makes a call to the API route we created earlier and then passes the user's search as a query. We then display the results on our web page.
 
 
 ## Final Result
 
-![Final App](./img/final-application.png)
+![Final Semantic Search](./img//final-sem-search.gif)
 
 Searching for "too much sunlight" gives relevant products back.
 
-Searching "randonee glacee " (French for icy hike) will give your relevant products for icy hikes showing the miltiligual understanding and caterring for non product searches.
-
+Searching "randonee glacee" (French for an icy hike) will give you relevant products for icy hikes showing multilingual understanding and catering to non-product searches.
 
 
 We have one pitfall left, Semantic search lets us leverage the best of multimodality, you can read more about how to do that in that [blog post here](../2024-01-23-typescript-multimodal-search/index.mdx).
 
-As a challenge, if you can to get multimodality working on your version of an e-commerce application. Send [me a message on LinkedIn](https://www.linkedin.com/in/malgamves/) and we’ll send you some goodies. 
+
+> As a challenge, if you can get multimodality working on your version of an e-commerce application. Send [me a message on LinkedIn](https://www.linkedin.com/in/malgamves/) and we’ll send you some goodies. 
 
 
 ## Conclusion
 
 We just saw how to marginally make our eCommerce experiences better with AI search. Without even getting into RAG or recommendations. If you'd like to see the full implementation of this project, find it [on Github](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag/tree/main) and keep an eye on our blog as we will publish a second part talking about RAG in eCommerce. If this is something you find interesting or would love to continue a conversation on, find me online at [malgamves](https://twitter.com/malgamves).
-
 
 
 import WhatsNext from '/_includes/what-next.mdx';
