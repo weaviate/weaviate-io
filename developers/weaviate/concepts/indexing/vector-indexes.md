@@ -57,7 +57,7 @@ At build time, the HNSW algorithm creates a series of layers. At query time, the
 
 Consider this diagram of a vector search using HNSW.
 
-![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
+![HNSW layers](../img/hnsw-layers.svg "HNSW layers")
 
 An individual object can exist in more than one layer, but every object in the database is represented in the lowest layer (layer zero in the picture). The layer zero data objects are very well connected to each other. Each layer above the lowest layer has fewer data object, and fewer connections. The data objects in the higher layers correspond to the objects in the lower layers, but each higher layer has exponentially fewer objects than the layer below. The HNSW algorithm takes advantage of the layers to efficiently process large amounts of data.
 
