@@ -5,7 +5,7 @@ authors: [daniel]
 date: 2024-09-17
 tags: ['concepts', 'how-to', 'search']
 image: ./img/hero.png
-description: 'We dive into how AI can craft better eCommerce experiences with a focus on one critical component; Search.'
+description: 'Dive into how AI enables better eCommerce experiences with a focus on one critical component; Search.'
 ---
 
 ![AI Enabled eCommerce with Weaviate and TypeScript](./img/hero.png)
@@ -36,19 +36,18 @@ A few things are responsible for terrible search experiences, namely...
 In this article, we’ll look at how we can make eCommerce search better by solving the pitfalls mentioned above. At the end of this post, we’ll have a demo e-commerce application to act as a basis for what a good search is.
 
 
-
 ## Understanding Semantic Search for eCommerce
 
 Leveraging semantic search to power our e-commerce search solves each of the e-commerce search pitfalls we detailed above, but what exactly is semantic search? 
 
 Semantic search, also known as vector search, uses machine learning to grasp the context of data by converting it to numerical vectors. It then uses these vectors to find matches based on conceptual similarity for accurate, relevant search results. 
 
-![GIF](./img/semantic-search-flow.gif)
+![Semantic Search visualised](./img/semantic-search-slide.gif)
 
 
 Behind the scenes, it uses approximate nearest neighbors (ANN) algorithms to calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors.
 
-![GIF](./img/semantic-search.png)
+![Semantic Search explained](./img/semantic-search.png)
 
 
 Semantic search with a vector database will rid us of the most terrible responses and assure of responses for non-keyword searches. The first problem is sorted. 
@@ -104,7 +103,7 @@ export default defineNuxtConfig({
 
 To get started with Weaviate, we'll create a Weaviate instance on Weaviate Cloud Services as described in [this guide](https://weaviate.io/developers/wcs/quickstart). Weaviate is an AI-Native database. It gives you the flexibility to pick what embedding models you use. Embedding models come in all shapes and sizes, for this project, you will be using Cohere's multilingual embedding models. This will enable us to run searches in multiple languages helping us overcome one of the pitfalls. 
 
-Once set up add your Weaviate URL, Admin API key and Cohere API to a `.env` file in the root of your project. 
+Once set up add your Weaviate URL, Admin API key and Cohere API key to a `.env` file in the root of your project. 
 
 Your `nuxt.config` file should include your project secrets following [this format](https://github.com/weaviate-tutorials/nuxt-ecommerce-rag/blob/9b717ece0036eb8945ff4244689c71c41aafac06/nuxt.config.ts#L16). 
 
@@ -359,20 +358,19 @@ To give everything an interface, in `app.vue` paste the following code.
                                                         <div class="relative bg-white pt-3">
                                                             <h3
                                                                 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
- {{ item.properties.name.slice(0, 80) }}...
+                                                                    {{ item.properties.name.slice(0, 80) }}...
                                                             </h3>
 
                                                             <p class="mt-2">
                                                                 <span class="sr-only"> Regular Price </span>
                                                                 <span class="tracking-wider text-gray-900">
- ${{ parseFloat(item.properties.price.replace("₹", ''))
+                                                                   ${{ parseFloat(item.properties.price.replace("₹", ''))
                                                                     }}</span>
                                                             </p>
 
                                                         </div>
                                                     </a>
-                                                    <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add
- to Cart</button>
+                                                    <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add to Cart</button>
                                                 </li>
                                             </div>
                                         </ul>
@@ -388,8 +386,7 @@ To give everything an interface, in `app.vue` paste the following code.
                                 <header>
                                     <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Product Collection</h2>
 
-                                    <p class="mt-4 max-w-md text-gray-500">
- gorp is a lifestyle, gorp is a state of mind, gorp. gorp.
+                                    <p class="mt-4 max-w-md text-gray-500"> gorp is a lifestyle, gorp is a state of mind, gorp. gorp.
                                     </p>
                                 </header>
 
@@ -419,21 +416,20 @@ To give everything an interface, in `app.vue` paste the following code.
 
                                                         <div class="relative bg-white pt-3">
                                                             <h3
-                                                                class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
- {{ item.properties.name.slice(0, 80) }}...
+                                                               class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                                                 {{ item.properties.name.slice(0, 80) }}...
                                                             </h3>
 
                                                             <p class="mt-2">
                                                                 <span class="sr-only"> Regular Price </span>
 
                                                                 <span class="tracking-wider text-gray-900">
- ${{ parseFloat(item.properties.price.replace("₹", ''))
+                                                                     ${{ parseFloat(item.properties.price.replace("₹", ''))
                                                                     }}</span>
                                                             </p>
                                                         </div>
                                                     </a>
-                                                    <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add
- to Cart</button>
+                                                    <button @click="addToCart(item)" class="bg-blue-300 text-white p-1">Add to Cart</button>
                                                 </li>
                                             </div>
                                         </ul>
@@ -486,17 +482,16 @@ This snippet makes a call to the API route we created earlier and then passes th
 
 ## Final Result
 
-![Final Semantic Search](./img//final-sem-search.gif)
+![Final Semantic Search Application for eCommerce demo](./img//final-sem-search.gif)
 
 Searching for "too much sunlight" gives relevant products back.
 
-Searching "randonee glacee" (French for an icy hike) will give you relevant products for icy hikes showing multilingual understanding and catering to non-product searches.
+Searching "randoneé glaceé" (French for an icy hike) will give you relevant products for icy hikes showing multilingual understanding and catering to non-product searches.
+
+We have one pitfall left, semantic search lets us leverage the best of multi-modality, you can read more about how to do that in that [blog post here](../2024-01-23-typescript-multimodal-search/index.mdx).
 
 
-We have one pitfall left, Semantic search lets us leverage the best of multimodality, you can read more about how to do that in that [blog post here](../2024-01-23-typescript-multimodal-search/index.mdx).
-
-
-> As a challenge, if you can get multimodality working on your version of an e-commerce application. Send [me a message on LinkedIn](https://www.linkedin.com/in/malgamves/) and we’ll send you some goodies. 
+> As a challenge, if you can get multi-modality working on your version of an e-commerce application. Send [me a message on LinkedIn](https://www.linkedin.com/in/malgamves/) and we’ll send you some goodies. 
 
 
 ## Conclusion
