@@ -78,14 +78,14 @@ In Weaviate, the order of these results are based on the UUIDs of the objects, i
 <i class="fa-solid fa-magnifying-glass"></i> A search produces an ordered list of objects based on relevance to a query.
 :::
 
-Search is about finding the closest, or most relevant data objects. Weaviate supports three primary search types: [vector search](#vector-search), [keyword search](#keyword-search), and [hybrid search](#hybrid-search).
+Search is about finding the closest, or most relevant data objects. Weaviate supports three primary search types: [keyword search](#keyword-search), [vector search](#vector-search), and [hybrid search](#hybrid-search).
 
 Here's a summary of these search types:
 
 | Search Type | Description |
 |-------------|-------------|
-| Vector Search | Similarity-based search using vector embeddings. |
 | Keyword Search | Traditional text-based search using "token" frequency. |
+| Vector Search | Similarity-based search using vector embeddings. |
 | Hybrid Search | Combines vector and keyword search results. |
 
 :::tip Search vs Filter
