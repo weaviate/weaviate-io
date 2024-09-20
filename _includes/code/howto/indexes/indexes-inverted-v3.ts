@@ -6,7 +6,7 @@ import weaviate, { dataType, WeaviateClient,vectorizer, configure } from 'weavia
 
 // Delete pre-existing collections
 async function deleteCollection(client: WeaviateClient, collectionName: string){
- if(client.collections.exists(collectionName)){
+ if(await client.collections.exists(collectionName)){
    await client.collections.delete(collectionName)
   }
 }

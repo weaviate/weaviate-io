@@ -16,7 +16,7 @@ function getClient(){
 
 // Delete pre-existing collections
 async function deleteClass(client: WeaviateClient, className: string){
- if (client.schema.exists(className)) {
+ if (await client.schema.exists(className)) {
    await client.schema.classDeleter().withClassName(className).do();
    }
 }

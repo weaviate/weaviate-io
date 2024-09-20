@@ -11,7 +11,7 @@ For configuration examples without additional contextual material, see the [Vect
 
 ## Vector indexes
 
-Vector embeddings encapsulate meaning for the objects that they represent. Vector indexes make it easier efficiently search large vector spaces in order to find objects with similar vector embeddings.
+Vector embeddings encapsulate meaning for the objects that they represent. Vector indexes make it easier to efficiently search large vector spaces in order to find objects with similar vector embeddings.
 
 Weaviate offers these vector index types:
 

@@ -7,16 +7,16 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 // Create client connection
 function getClient(){
   const client: WeaviateClient = weaviate.client({
-    scheme: 'http',
-    host: 'localhost:8080',
-  });
+  scheme: 'http',
+  host: 'localhost:8080',
+})
 
   return client;
 }
 
 // Delete pre-existing collections
 async function deleteClass(client: WeaviateClient, className: string){
- if (client.schema.exists(className)) {
+ if (await client.schema.exists(className)) {
    await client.schema.classDeleter().withClassName(className).do();
    }
 }
@@ -64,8 +64,7 @@ async function configureDynamicCollection(client: WeaviateClient, className: str
    dynamic_ef_min: '200',  // Minimum threshold for dynamic Ef
    dynamic_ef_max: '1000',  // Maximum threshold for dynamic Ef
    quantizer: 'Configure.VectorIndex.Quantizer.pq()',  // Quantizer configuration
- },
-
+  },
  };
 
  // Add the class to the schema

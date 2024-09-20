@@ -5,6 +5,22 @@ image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
 
+
+
+#### Flat indexes
+
+import FlatIntro from '/_includes/indexes/flat-intro.mdx';
+
+<FlatIntro/>
+
+As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
+
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+
+
+
+
+
 :::info Added in `v1.23`
 :::
 

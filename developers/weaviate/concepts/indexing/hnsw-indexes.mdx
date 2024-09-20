@@ -5,6 +5,28 @@ image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
 
+
+
+#### HNSW indexes
+
+import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
+
+<HNSWIntro/>
+
+HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
+
+While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
+
+Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+
+import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+
+<CompressionAlgorithms/>
+
+
+
+
+
 **Hierarchical Navigable Small World (HNSW)** is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
 Weaviate's `hnsw` index is a custom implementation of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).

@@ -5,6 +5,48 @@ image: og/docs/indexing.jpg
 # tags: ['vector index plugins']
 ---
 
+## Vector indexes
+
+import VectorIntro from '/_includes/indexes/vector-intro.mdx';
+
+<VectorIntro/>
+
+#### HNSW indexes
+
+import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
+
+<HNSWIntro/>
+
+HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
+
+While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
+
+Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+
+import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+
+<CompressionAlgorithms/>
+
+#### Flat indexes
+
+import FlatIntro from '/_includes/indexes/flat-intro.mdx';
+
+<FlatIntro/>
+
+As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
+
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+
+#### Dynamic indexes
+
+:::info Added in `v1.25`
+:::
+
+import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
+
+<DynamicIntro/>
+
+
 Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
