@@ -15,7 +15,7 @@ const client = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // searchHybridBasic  // searchHybridWithScore  // searchHybridWithAlpha  // searchHybridWithFusionType  // searchHybridWithProperties  // searchHybridWithVector // VectorSimilarity // searchHybridWithFilter  // START limit  // START autocut // searchHybridWithPropertyWeighting
@@ -230,9 +230,10 @@ for (let object of result.objects) {
 
 const result = await jeopardy.query.hybrid('California', {
   vector: {
-    text: 'large animal',
+    query: 'large animal',
     moveAway: { force: 0.5, concepts:['mamal', 'terrestrial'] }
   },
+  // maxVectorDistance support coming soon
   alpha: 0.75,
   limit: 5
 })

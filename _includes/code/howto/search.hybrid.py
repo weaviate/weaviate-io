@@ -312,6 +312,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="California",
     # highlight-start
+    max_vector_distance=0.4,  # Maximum threshold for the vector search component
     vector=HybridVector.near_text(
         query="large animal",
         move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
