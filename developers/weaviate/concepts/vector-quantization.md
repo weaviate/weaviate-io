@@ -133,7 +133,7 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 :::info Related pages
 - [Concepts: Indexing](/developers/weaviate/concepts/indexing)
 - [Concepts: Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes)
-- [Configuration: Vector index](/developers/weaviate/concepts/config-refs/schema/vector-index.md)
+- [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 - [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 - [How to configure: Binary quantization (compression)](../configuration/compression/bq-compression.md)
 - [How to configure: Product quantization (compression)](../configuration/compression/pq-compression.md)

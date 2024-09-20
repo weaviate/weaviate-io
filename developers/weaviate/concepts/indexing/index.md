@@ -35,6 +35,7 @@ For more information, see the following:
 
 - [Configure vector indexes](/developers/weaviate/configuration/indexing-vector)
 - [Configure inverted indexes](/developers/weaviate/configuration/inverted-indexes)
+- [Indexing starter guide](/developers/weaviate/starter-guides/managing-resources/indexing)
 
 ## Questions and feedback
 

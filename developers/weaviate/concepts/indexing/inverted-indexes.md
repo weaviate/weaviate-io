@@ -136,7 +136,7 @@ Some stuff
 
 ## Further resources
 
-- [Concepts: Vector Indexing](./vector-index.md)
+- [Concepts: Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes)
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 
 ## Questions and feedback
