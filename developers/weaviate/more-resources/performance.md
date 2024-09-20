@@ -28,7 +28,7 @@ The inverted index currently does not do any weighing (e.g. tf-idf) for sorting,
 ## Vector index
 Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. Weaviate currently supports [HNSW](https://arxiv.org/abs/1603.09320) and flat vector indexes.
 
-See [Concepts: vector index](../concepts/indexing/vector-indexes) for more information about the vector index.
+See [Concepts: vector index](/developers/weaviate/concepts/indexing/vector-indexes) for more information about the vector index.
 
 ## Costs of queries and operations
 
