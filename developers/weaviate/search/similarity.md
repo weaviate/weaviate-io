@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-similarity_test.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/VectorSearchTest.java';
 
 Vector search returns the objects with most similar vectors to that of the query.
 
@@ -63,6 +64,15 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
       startMarker="// START GetNearText"
       endMarker="// END GetNearText"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetNearText"
+      endMarker="// END GetNearText"
+      language="java"
     />
   </TabItem>
 
@@ -137,6 +147,15 @@ This example uses a base64 representation of an image.
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 See [Image search](./image.md) for more information.
@@ -189,6 +208,15 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
       startMarker="// START GetNearObject"
       endMarker="// END GetNearObject"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetNearObject"
+      endMarker="// END GetNearObject"
+      language="java"
     />
   </TabItem>
 
@@ -271,6 +299,15 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
 
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetNearVector"
+      endMarker="// END GetNearVector"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -331,6 +368,15 @@ To search a collection that has [named vectors](../config-refs/schema/multi-vect
       startMarker="// START NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="java"
     />
   </TabItem>
 
@@ -408,6 +454,15 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetWithDistance"
+      endMarker="// END GetWithDistance"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -479,6 +534,15 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetLimitOffset"
+      endMarker="// END GetLimitOffset"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -536,6 +600,15 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       startMarker="// START Autocut"
       endMarker="// END Autocut"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="java"
     />
   </TabItem>
 
@@ -613,6 +686,15 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetWithGroupBy"
+      endMarker="// END GetWithGroupBy"
+      language="java"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -684,6 +766,15 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
       startMarker="// START GetWithFilter"
       endMarker="// END GetWithFilter"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START GetWithFilter"
+      endMarker="// END GetWithFilter"
+      language="java"
     />
   </TabItem>
 
