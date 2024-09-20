@@ -69,9 +69,9 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
-      text={TsConnect}
-      startMarker="# START DatabricksInstantiation"
-      endMarker="# END DatabricksInstantiation"
+      text={TSConnect}
+      startMarker="// START DatabricksInstantiation"
+      endMarker="// END DatabricksInstantiation"
       language="ts"
     />
   </TabItem>
@@ -95,8 +95,8 @@ Provide the Dataricks token to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="# START BasicVectorizerDatabricks"
-      endMarker="# END BasicVectorizerDatabricks"
+      startMarker="// START BasicVectorizerDatabricks"
+      endMarker="// END BasicVectorizerDatabricks"
       language="ts"
     />
   </TabItem>
@@ -123,8 +123,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="# START BatchImportExample"
-      endMarker="# END BatchImportExample"
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
       language="ts"
     />
   </TabItem>
@@ -160,8 +160,8 @@ The query below returns the `n` most similar objects from the database, set by `
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="# START NearTextExample"
-      endMarker="# END NearTextExample"
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
       language="ts"
     />
   </TabItem>
@@ -192,8 +192,8 @@ The query below returns the `n` best scoring objects from the database, set by `
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="# START HybridExample"
-      endMarker="# END HybridExample"
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
       language="ts"
     />
   </TabItem>
