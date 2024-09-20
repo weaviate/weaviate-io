@@ -1,6 +1,7 @@
 // CreateMovieCollection // SubmoduleImport // BatchImportData
 import weaviate from "weaviate-client";
-// END BatchImportData
+// END BatchImportData // END CreateMovieCollection // END SubmoduleImport
+// CreateMovieCollection // SubmoduleImport
 import { WeaviateClient, configure, vectorizer } from "weaviate-client";
 // END CreateMovieCollection  // END SubmoduleImport
 
