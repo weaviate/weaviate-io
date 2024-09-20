@@ -66,32 +66,11 @@ You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN a
 
 ## Flat index
 
-:::info Added in `v1.23`
-:::
-
-The **flat index** is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
-
-As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
-
-A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
+Add summary
 
 ## Dynamic index
 
-:::caution Experimental feature
-Available starting in `v1.25`. This is an experimental feature. Use with caution.
-:::
-
-import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
-
-<DynamicAsyncRequirements/>
-
-The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution as HNSW speeds up search. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
-
-By configuring a dynamic index, you can automatically switch from flat to HNSW indexes. This switch occurs when the object count exceeds a prespecified threshold (by default 10,000). This functionality only works with async indexing enabled. When the threshold is hit while importing, all the data piles up in the async queue, the HNSW index is constructed in the background and when ready the swap from flat to HNSW is completed.
-
-Currently, this is only a one-way upgrade from a flat to an HNSW index, it does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
-
-This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce extra overhead. With a dynamic index, as individual tenants grow their index will switch from flat to HNSW, while smaller tenants' indexes remain flat.
+Add summary
 
 ## Vector cache considerations
 
@@ -107,7 +86,7 @@ Vectors that aren't currently in cache are added to the cache if there is still 
 
 ### Can I use vector indexing with vector quantization?
 
-Yes, you can read more about it in [vector quantization (compression)](DWCTODO).
+Yes, you can read more about it in [vector quantization (compression)]DWCTODO.
 
 ### Which vector index is right for me?
 

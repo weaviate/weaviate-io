@@ -128,7 +128,7 @@ Weaviate is an open source vector database that stores both objects and vectors.
 **Weaviate in a nutshell**:
 
 * Weaviate is an open source [vector database](https://weaviate.io/blog/what-is-a-vector-database).
-* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./concepts/indexing/vector-indexes).
+* Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](/developers/weaviate/concepts/indexing/vector-indexes).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a [GraphQL-API](./api/graphql/index.md) to access your data easily.
 * Weaviate is fast (check our [open source benchmarks](./benchmarks/index.md)).
@@ -186,7 +186,7 @@ Within Weaviate, all individual data objects are based on a class property struc
 
 You can add data to Weaviate through the [RESTful API](/developers/weaviate/api/rest) end-points and retrieve data through the [GraphQL interface](./api/graphql/index.md).
 
-Weaviate's [vector indexing mechanism is modular](./concepts/indexing/vector-indexes), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
+Weaviate's [vector indexing mechanism is modular](/developers/weaviate/concepts/indexing/vector-indexes), and the current available plugin is the Hierarchical Navigable Small World (HNSW) multilayered graph.
 
 ## What are Weaviate modules?
 

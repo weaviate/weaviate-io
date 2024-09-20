@@ -45,7 +45,7 @@ When search throughput is limited, add CPUs to increase the number of queries pe
 Memory determines the maximum supported dataset size. Memory does not directly influence query speed.
 :::
 
-The HNSW index must be stored in memory. The memory required is directly related to the size of your dataset. There is no correlation between the size of your dataset and the current query load. You can use [`product quantization (PQ)`](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq) to compress the vectors in your dataset in increase the number of vectors your can hold in memory.
+The HNSW index must be stored in memory. The memory required is directly related to the size of your dataset. There is no correlation between the size of your dataset and the current query load. You can use [`product quantization (PQ)`](/developers/weaviate/concepts/indexing/hnsw-indexes) to compress the vectors in your dataset in increase the number of vectors your can hold in memory.
 
 Weaviate let's you configure a limit to the number of vectors held in memory in order to prevent unexpected Out-of-Memory ("OOM") situations. The default value is one trillion (`1e12`) objects.  per collection. To adjust the number of objects, update the value of [`vectorCacheMaxObjects`](../config-refs/schema/vector-index.md) in your index settings.
 

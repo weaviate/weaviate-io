@@ -323,7 +323,7 @@ The `vectorIndexType` parameter controls the type of vector index that is used f
 
 The `vectorIndexConfig` parameter controls the configuration of the vector index. The available parameters depend on the `vectorIndexType` that is used.
 
-See the [vector index configuration](./vector-index.md) page for more details.
+See the [vector index configuration](/developers/weaviate/concepts/indexing/vector-indexes) page for more details.
 
 ### `shardingConfig`
 
@@ -567,7 +567,7 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
 The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards.
 :::
 
-Multiple [inverted index types](../../concepts/indexing.md#inverted-indexes) are available in Weaviate. Not all inverted index types are available for all data types. The available inverted index types are:
+Multiple [inverted index types](/developers/weaviate/concepts/indexing/inverted-indexes) are available in Weaviate. Not all inverted index types are available for all data types. The available inverted index types are:
 
 import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.mdx';
 

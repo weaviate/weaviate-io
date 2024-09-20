@@ -11,7 +11,7 @@ Some things to bear in mind:
 
 * Especially for large datasets, configuring the indexes is important because the more you index, the more storage is needed.
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
-* One of Weaviate's unique features is how the indexes are configured (learn more about this [here](../concepts/prefiltering.md)).
+* One of Weaviate's unique features is how the indexes are configured (learn more about this [here](/developers/weaviate/concepts/prefiltering.md)).
 
 ## Vector indexes
 
@@ -21,7 +21,7 @@ A vector index is used to serve all vector-search queries. Weaviate supports mul
 2. **Flat** - a vector index that is used for brute-force searches. This is useful for small datasets.
 2. **Dynamic** - a vector index that is flat when the dataset is small and switches to HNSW when the dataset is large.
 
-For more information on vector indexes, see the [Vector Indexing](./vector-index.md) page.
+For more information on vector indexes, see the [Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes) page.
 
 ## Inverted indexes
 
@@ -30,16 +30,16 @@ For more information on vector indexes, see the [Vector Indexing](./vector-index
 There are three inverted index types in Weaviate:
 
 - `indexSearchable` - a searchable index for BM25 or hybrid search
-- `indexFilterable` - a match-based index for fast [filtering](./prefiltering.md) by matching criteria
-- `indexRangeFilters` - a range-based index for [filtering](./prefiltering.md) by numerical ranges
+- `indexFilterable` - a match-based index for fast [filtering](/developers/weaviate/concepts/prefiltering.md) by matching criteria
+- `indexRangeFilters` - a range-based index for [filtering](/developers/weaviate/concepts/prefiltering.md) by numerical ranges
 
 Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indexes are on by default, while the `indexRangeFilters` index is off by default.
 
-The filterable indexes are only capable of [filtering](./prefiltering.md), while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
+The filterable indexes are only capable of [filtering](/developers/weaviate/concepts/prefiltering.md), while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
 
 So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
 
-See the [related how-to section](../manage-data/collections.mdx#property-level-settings) to learn how to enable or disable inverted indexes on a property level.
+See the [related how-to section](/developers/weaviate/manage-data/collections.mdx#property-level-settings) to learn how to enable or disable inverted indexes on a property level.
 
 A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
 
@@ -137,7 +137,7 @@ Some stuff
 ## Further resources
 
 - [Concepts: Vector Indexing](./vector-index.md)
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
 
 ## Questions and feedback
 
