@@ -142,9 +142,6 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// Clean up
-await client.collections.delete('DemoCollection');
-
 // START BasicGenerativeCohere
 await client.collections.create({
   name: 'DemoCollection',
@@ -191,6 +188,44 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeDatabricks // START FullGenerativeDatabricks
+const databricksGenerativeEndpoint = process.env.DATABRICKS_VECTORIZER_ENDPOINT || '';  // If saved as an environment variable
+// START BasicGenerativeDatabricks // END FullGenerativeDatabricks
+
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.databricks({
+    endpoint: databricksGenerativeEndpoint,  // Required for Databricks
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeDatabricks
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeDatabricks
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.databricks({
+    endpoint: databricksGenerativeEndpoint,  // Required for Databricks
+    // These parameters are optional
+    // maxTokens: 500,
+    // temperature: 0.7,
+    // topP: 0.7,
+    // topK: 0.1
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeDatabricks
 
 // Clean up
 await client.collections.delete('DemoCollection');

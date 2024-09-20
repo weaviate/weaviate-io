@@ -517,15 +517,16 @@ client.collections.create(
 # START BasicVectorizerDatabricks
 from weaviate.classes.config import Configure
 
-databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")
+databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")  # If saved as an environment variable
+
 client.collections.create(
     "DemoCollection",
     # highlight-start
     vectorizer_config=[
         Configure.NamedVectors.text2vec_databricks(
+            endpoint=databricks_vectorizer_endpoint,  # Required for Databricks
             name="title_vector",
             source_properties=["title"],
-            endpoint = databricks_vectorizer_endpoint,
         )
     ],
     # highlight-end

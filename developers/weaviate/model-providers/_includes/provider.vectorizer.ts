@@ -173,6 +173,33 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerDatabricks
+const databricksVectorizerEndpoint = process.env.DATABRICKS_VECTORIZER_ENDPOINT || '';  // If saved as an environment variable
+
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecDatabricks({
+      endpoint: databricksVectorizerEndpoint,  // Required for Databricks
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    })
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerDatabricks
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
