@@ -19,7 +19,7 @@ export default function Home() {
         title="Weaviate Learning Centre"
         description="Training courses, resources, and support options for builders of all levels. We’re with you on your AI journey."
       >
-        <MetaSEO img="og/website/home.jpg" />
+        <MetaSEO img="og/content/learning-centre.jpg" />
         <Header />
         <main>
           <Resources />
