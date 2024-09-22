@@ -1,6 +1,6 @@
 ---
-title: Inverted indexes
-sidebar_position: 100
+title: indeSearchable indexes
+sidebar_position: 120
 image: og/docs/indexing.jpg
 # tags: ['basics']
 ---
@@ -13,15 +13,6 @@ Some things to bear in mind:
 * A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
 * One of Weaviate's unique features is how the indexes are configured (learn more about this [here](/developers/weaviate/concepts/prefiltering.md)).
 
-## Vector indexes
-
-A vector index is used to serve all vector-search queries. Weaviate supports multiple types of vector indexes:
-
-1. **HNSW** - an approximate nearest neighbor (ANN) search based vector index. HNSW indexes scale well with large datasets.
-2. **Flat** - a vector index that is used for brute-force searches. This is useful for small datasets.
-2. **Dynamic** - a vector index that is flat when the dataset is small and switches to HNSW when the dataset is large.
-
-For more information on vector indexes, see the [Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes) page.
 
 ## Inverted indexes
 
@@ -63,76 +54,6 @@ This chart shows which filter makes the comparison when one or both index type i
 | Greater than equal | `indexRangeFilters` | `indexFilterable` | `indexRangeFilters` |
 | Less than | `indexRangeFilters` | `indexFilterable` | `indexRangeFilters` |
 | Less than equal | `indexRangeFilters` | `indexFilterable` | `indexRangeFilters` |
-
-#### Inverted index for timestamps
-
-You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
-
-Timestamps are currently indexed using the `indexFilterable` index.
-
-## Collections without indexes
-
-If you don't want to set an index at all, this is possible too.
-
-To create a collection without any indexes, skip indexing on the collection and on the properties.
-
-```js
-{
-    "class": "Author",
-    "description": "A description of this collection, in this case, it's about authors",
-    "vectorIndexConfig": {
-        "skip": true // <== disable vector index
-    },
-    "properties": [
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "indexSearchable": false,  // <== disable searchable index for this property
-            "dataType": [
-                "text"
-            ],
-            "description": "The name of the Author",
-            "name": "name"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "int"
-            ],
-            "description": "The age of the Author",
-            "name": "age"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "date"
-            ],
-            "description": "The date of birth of the Author",
-            "name": "born"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "boolean"
-            ],
-            "description": "A boolean value if the Author won a nobel prize",
-            "name": "wonNobelPrize"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "indexSearchable": false,  // <== disable searchable index for this property
-            "dataType": [
-                "text"
-            ],
-            "description": "A description of the author",
-            "name": "description"
-        }
-    ]
-}
-```
-
-## BM25 ranking algorithm
-
-Some stuff
 
 ## Further resources
 

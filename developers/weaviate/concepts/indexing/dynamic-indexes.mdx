@@ -5,23 +5,44 @@ image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
 
-:::info Added in `v1.25`
-:::
-
 import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
-The flat index is ideal for collections with low object counts, less than 10,000 objects. Even though they are disk based, at that scale flat indexes provide lower memory overhead and good latency. When the number of objects increases, so does search latency. For collections with more than 10,000 objects, an HNSW index is usually a better indexing solution. The dynamic index balances search latency costs against in-memory costs. Memory costs are low until search latencies grow too large, then the index type switches to preserve low search latencies as your collection grows in size.
+## Overview
 
-The dynamic index automatically switches from a flat index to an HNSW index when the object count exceeds a pre-specified threshold. (The default is 10,000 objects.) This functionality only works with async indexing enabled. When the threshold is hit while importing, all the data piles up in the async queue, the HNSW index is constructed in the background and when ready the swap from flat to HNSW is completed.
+Dynamic indexes are flat indexed collections that Weaviate converts to HNSW indexed collections when the collection reaches a certain size. Flat indexes work well for collections with less than 10,000 objects. At that size, flat indexes have low memory overhead and good latency. But, search latency increases as the number of objects in a collection increases. When the collection grows to about 10,000 objects, an HNSW index usually has better latency than a flat index.
 
-Currently, this is only a one-way upgrade from a flat to an HNSW index, it does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
+The dynamic index helps to balance resource costs against search latency. Flat indexes are disc-based. HNSW indexes reside in RAM. Disk storage is orders of magnitude cheaper than RAM memory so hosting an index on disc is cheaper than hosting it in RAM.
 
-This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce extra overhead. With a dynamic index, as individual tenants grow their index will switch from flat to HNSW, while smaller tenants' indexes remain flat.
+If your collection size grows over time, or if you have a mix of smaller and larger tenants, dynamic indexes let you take advantage of lower cost flat indexes while search latency times are low. When the object count increase and latencies grow larger, converting the flat index to an HNSW index preserves low search latencies at the expense of increased RAM memory costs.
 
+The dynamic index automatically switches from a flat index to an HNSW index when the object count exceeds a pre-specified threshold. (The default is 10,000 objects.)
 
+Dynamic indexing requires [asynchronous indexing](/developers/weaviate/configuration/indexing-vector/dynamic-indexes#asynchronous-indexing). After the dynamic index reaches the threshold value to change from a flat index to an HNSW index, newly added objects are sent to the async queue while Weaviate converts the indexes. When the HNSW index is ready, Weaviate processes the objects in the async queue and adds them to the index.
 
-import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
+## Index transformations
 
-<DynamicAsyncRequirements/>
+The dynamic index only changes the index type once. The change only happens in one direction. The dynamic index converts a flat index to an HNSW index. If the size of a collection drops below the threshold value, the dynamic index does not revert the HNSW index back to a flat index.
+
+## Multi-tenant collections
+
+The size of tenants in a multi-tenant collection can have vary considerably. If you anticipate having tenants of different sizes, consider a dynamic index. The flat index reduces memory overhead for small tenants. If individual tenants grow larger than others, dynamically switching those tenants to HNSW preserves latency while saving on overall resource usage.
+
+## Other considerations
+
+- Asynchronous indexing is a prerequisite for dynamic indexing. [Enable asynchronous indexing.](/developers/weaviate/configuration/indexing-vector/dynamic-indexes#asynchronous-indexing)
+- Configure the flat index and HNSW index when you [define the collection](/developers/weaviate/configuration/indexing-vector/dynamic-indexes#configure-dynamic-indexes). Many [index parameters](/developers/weaviate/config-refs/schema/vector-index) cannot be modified after the collection is created.
+
+## Related pages
+
+For more information, see the following:
+
+- [Configure dynamic indexes](/developers/weaviate/configuration/indexing-vector/dynamic-indexes)
+- [Indexing starter guide](/developers/weaviate/starter-guides/managing-resources/indexing)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

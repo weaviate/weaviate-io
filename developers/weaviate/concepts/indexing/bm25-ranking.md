@@ -1,6 +1,6 @@
 ---
-title: Inverted indexes
-sidebar_position: 100
+title: BM25 ranking
+sidebar_position: 110
 image: og/docs/indexing.jpg
 # tags: ['basics']
 ---
