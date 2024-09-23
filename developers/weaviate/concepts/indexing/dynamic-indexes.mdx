@@ -13,9 +13,9 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 Dynamic indexes are flat indexed collections that Weaviate converts to HNSW indexed collections when the collection reaches a certain size. Flat indexes work well for collections with less than 10,000 objects. At that size, flat indexes have low memory overhead and good latency. But, search latency increases as the number of objects in a collection increases. When the collection grows to about 10,000 objects, an HNSW index usually has better latency than a flat index.
 
-The dynamic index helps to balance resource costs against search latency. Flat indexes are disc-based. HNSW indexes reside in RAM. Disk storage is orders of magnitude cheaper than RAM memory so hosting an index on disc is cheaper than hosting it in RAM.
+The dynamic index helps to balance resource costs against search latency times. Flat indexes are disc-based. They are responsive at low object counts, but get slower as object counts grow. HNSW indexes reside in RAM. They are very fast, but RAM is expensive. Disk storage is orders of magnitude cheaper than RAM memory, so hosting an index on disc is significantly cheaper than hosting it in RAM.
 
-If your collection size grows over time, or if you have a mix of smaller and larger tenants, dynamic indexes let you take advantage of lower cost flat indexes while search latency times are low. When the object count increase and latencies grow larger, converting the flat index to an HNSW index preserves low search latencies at the expense of increased RAM memory costs.
+If your collection size grows over time, or if you have a mix of smaller and larger tenants, dynamic indexes let you take advantage of lower cost flat indexes while object counts and search latency times are low. When the object count increase, and latencies grow larger, converting the flat index to an HNSW index preserves low search latencies at the expense of increased RAM memory costs.
 
 The dynamic index automatically switches from a flat index to an HNSW index when the object count exceeds a pre-specified threshold. (The default is 10,000 objects.)
 
@@ -27,7 +27,7 @@ The dynamic index only changes the index type once. The change only happens in o
 
 ## Multi-tenant collections
 
-The size of tenants in a multi-tenant collection can have vary considerably. If you anticipate having tenants of different sizes, consider a dynamic index. The flat index reduces memory overhead for small tenants. If individual tenants grow larger than others, dynamically switching those tenants to HNSW preserves latency while saving on overall resource usage.
+The size of tenants in a multi-tenant collection can vary considerably. If you anticipate having tenants of different sizes, consider a dynamic index. The flat index reduces memory overhead for small tenants. If individual tenants grow larger than others, dynamically switching those tenants to HNSW preserves latency while saving on overall resource usage.
 
 ## Other considerations
 
