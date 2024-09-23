@@ -137,18 +137,10 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 <details>
   <summary>Answer</summary>
 
-> Yes, a UUID will be created if not specified.
+> Yes, Weaviate creates a UUID if one is not specified.
 
 </details>
 
-#### Q: Can I use Weaviate to create a traditional knowledge graph?
-
-<details>
-  <summary>Answer</summary>
-
-> Yes, you can! Weaviate support ontology, RDF-like definitions in its schema, and it runs out of the box. It is scalable, and the GraphQL API will allow you to query through your knowledge graph easily. But now you are here. We like to suggest you really try its semantic features. After all, you are creating a _knowledge_ graph 😉.
-
-</details>
 
 #### Q: Why does Weaviate have a schema and not an ontology?
 
