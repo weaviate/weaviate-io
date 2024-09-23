@@ -86,84 +86,56 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 For more details, see [dynamic indexes](/developers/weaviate/concepts/indexing/dynamic-indexes).
 
+## Asynchronous indexing
 
-# # # # # # # # #  # NEXT
-
-Not only words or text can be indexed as vectors, but also images, video, DNA sequences, etc. Read more about which model to use [here](/developers/weaviate/modules/index.md).
-
-### Asynchronous indexing
-
-:::caution Experimental
-Available starting in `v1.22`. This is an experimental feature. Use with caution.
+:::info Added in `v1.22`
 :::
 
-Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+Asynchronous indexing separates indexing and object creation. Weaviate creates new objects faster. The vector index updates in the background.
 
-Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force. Brute force searches are slower, so search performance drops during indexing. The 100,000 object limit means that any un-indexed objects beyond the limit are not included in the search.
 
-While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
+Asynchronous indexing is not enabled by default. [Enable asynchronous indexing](/developers/weaviate/configuration/indexing-vector/dynamic-indexes#asynchronous-indexing).
 
-:::tip
-You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw).
-:::
+## Compression
 
-## Flat index
+Weaviate stores objects and vector representations of those objects (vectors). Vectors can be very large. Vector dimensions are stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage. When collections have millions of objects, the resulting size can lead to significant costs, especially where an in-memory vector index is used.
 
-Add summary
-
-## Dynamic index
-
-Add summary
+Consider [enabling compression](/developers/weaviate/configuration/compression) to manage system resources.
 
 ## Vector cache considerations
 
-For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.
+Weaviate uses an in-memory cache to hold vectors in RAM.
 
-During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drops drastically when there isn't enough memory to hold all of the vectors in the cache.
+Each import requires multiple searches for indexing. By default, the cache is set to one trillion (`1e12`) objects when a new collection is created. During data import, set [`vectorCacheMaxObjects`](/developers/weaviate/configuration/indexing-vector) high enough that all of the vectors can be held in memory. Import performance drops drastically when there isn't enough memory to hold all of the vectors in the cache.
 
 After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
 
-Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries run against the cache until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+Vectors that aren't currently in cache are added to the cache until it reaches the maximum size. If the cache fills, Weaviate drops the whole cache. Subsequent queries force data to be read from disk until the cache fills up again.
 
-## Vector indexing FAQ
+Depending of query patterns, you may be able to tune the cache to hold frequently queried vectors in memory. Then, search only has to do slower disk lookups for less frequent queries.
 
-### Can I use vector indexing with vector quantization?
+## Benchmarks
 
-Yes, you can read more about it in [vector quantization (compression)]DWCTODO.
+The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) has a wide variety of vector search use cases and relative benchmarks.
 
-### Which vector index is right for me?
+Consult the page to find a dataset similar to yours. The benchmarks are a good starting point to learn to optimal configuration settings for each type of workload.
 
-A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
+## Recommendations
 
-Note that the vector index type parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search.
+- Large collections or tenants with more than 10,000 objects should use the HNSW index.
 
-The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
+- Collections or tenants with less than 10,000 objects should use the flat index.
 
-To learn more about configuring the collection, see [this how-to page](/developers/weaviate/manage-data/collections).
+- Collections, especially multi-tenant collections with a variety of tenant sizes, should use a dynamic index.
 
-### Which distance metrics can I use with vector indexing?
+## Other considerations
 
-All of [the distance metrics](/developers/weaviate/config-refs/distances.md), such as cosine similarity, can be used with any vector index type.
+- If a collection consists of references between two other collections, don't index it.
 
-### How to configure the vector index type in Weaviate?
+- Duplicate vectors are expensive to import. Avoid importing duplicate vectors since import speeds are very slow.
 
-The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings, according to available [vector index settings](/developers/weaviate/config-refs/schema/vector-index).
-
-### When to skip indexing
-
-There are situations where it doesn't make sense to vectorize a collection. For example, if the collection consists solely of references between two other collections, or if the collection contains mostly duplicate elements.
-
-Importing duplicate vectors into HNSW is very expensive. The import algorithm checks early on if a candidate vector's distance is greater than the worst candidate's distance. When there are lots of duplicate vectors, this early exit condition is never met so each import or query results in an exhaustive search.
-
-To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
-
-### What ANN algorithms exist?
-
-There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>.
-
-### Are there indicative benchmarks for Weaviate's ANN performance?
-
-The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
+- The vector index type specifies how vectors are indexed. The `vectorizer` parameter specifies how to create a vector embedding. See [model providers](/developers/weaviate/model-providers) or set `vectorizer` to `none` to import your own vectors.
 
 ## Further resources
 
@@ -172,6 +144,7 @@ The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index)
 - [Configuration: Schema (Configure semantic indexing)](/developers/weaviate/config-refs/schema#configure-semantic-indexing)
 - [Compression overview](/developers/weaviate/starter-guides/managing-resources/compression)
+- [Blog post: Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw)
 
 ## Questions and feedback
 

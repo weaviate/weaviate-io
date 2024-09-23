@@ -130,7 +130,6 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 
 ## Further resources
 
-:::info Related pages
 - [Concepts: Indexing](/developers/weaviate/concepts/indexing)
 - [Concepts: Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes)
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
@@ -138,7 +137,6 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 - [How to configure: Binary quantization (compression)](../configuration/compression/bq-compression.md)
 - [How to configure: Product quantization (compression)](../configuration/compression/pq-compression.md)
 - [Weaviate Academy: 250 Vector Compression](../../academy/py/compression/index.md)
-:::
 
 ## Questions and feedback
 
