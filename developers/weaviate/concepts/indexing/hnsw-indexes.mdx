@@ -5,68 +5,61 @@ image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
 
-
-
-#### HNSW indexes
-
 import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
+import HNSWHow from '/_includes/indexes/hnsw-how.mdx';
 
-While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
+<HNSWHow/>
 
-Consider using [compression](/developers/weaviate/starter-guides/managing-resources/compression) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+To configure an HNSW index, see: [Configure HNSW indexes](/developers/weaviate/configuration/indexing-vector/hnsw-indexes).
 
-import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+## Overview
 
-<CompressionAlgorithms/>
+HNSW is an algorithm that works on multi-layered graphs. It is also an index. An HNSW index is the vector index that Weaviate creates when it applies the HNSW algorithm to the vectors in a collection. Weaviate's [implementation](https://github.com/weaviate/weaviate/tree/main/adapters/repos/db/vector/hnsw) offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
+When Weaviate builds the index, the HNSW algorithm creates a series of layers. The layers improve search because the database engine doesn't have to scan the entire vector space at query time. Instead, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
 
+### Example - HNSW search
 
-
-
-**Hierarchical Navigable Small World (HNSW)** is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
-
-Weaviate's `hnsw` index is a custom implementation of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
-
-
-DWCTODO: implementation https://github.com/weaviate/weaviate/tree/main/adapters/repos/db/vector/hnsw
-
-At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
-
-Consider this diagram of a vector search using HNSW.
+Consider this diagram of a vector search that uses HNSW.
 
 ![HNSW layers](../img/hnsw-layers.svg "HNSW layers")
 
-An individual object can exist in more than one layer, but every object in the database is represented in the lowest layer (layer zero in the picture). The layer zero data objects are very well connected to each other. Each layer above the lowest layer has fewer data object, and fewer connections. The data objects in the higher layers correspond to the objects in the lower layers, but each higher layer has exponentially fewer objects than the layer below. The HNSW algorithm takes advantage of the layers to efficiently process large amounts of data.
+Layer zero is the lowest layer. Layer zero contains every object in the database, and the objects are well connected to each other.
 
-When a search query comes in, the HNSW algorithm finds the closest matching data points in the highest layer. Then, HNSW goes one layer deeper, and finds the closest data points in that layer to the ones in the higher layer. These are the nearest neighbors. The algorithm searches the lower layer to create a new list of nearest neighbors. Then, HNSW uses the new list and repeats the process on the next layer down. When it gets to the deepest layer, the HNSW algorithm returns the data objects closest to the search query.
+Some of the objects are also represented in the layers above layer zero. Each layer above layer zero has fewer objects and fewer connections.
 
-Since there are relatively few data objects on the higher layers, HNSW has to search fewer objects. This means HNSW 'jumps' over large amounts of data that it doesn't need to search. When a data store has only one layer, the search algorithm can't skip unrelated objects. It has to search significantly more data objects even though they are unlikely to match.
+When HNSW searches the graph, it starts at the highest layer. The algorithm finds the closest matching data points in the highest layer. Then, HNSW goes one layer deeper, and finds the closest matching data points in the lower layer that correspond to the objects in the higher layer. These are the nearest neighbors.
 
-HNSW is very fast, memory efficient, approach to similarity search. The memory cache only stores the highest layer instead of storing all of the data objects in the lowest layer. When the search moves from a higher layer to a lower one, HNSW only adds the data objects that are closest to the search query. This means HNSW uses a relatively small amount of memory compared to other search algorithms.
+The HNSW algorithm searches the lower layer and creates list of nearest neighbors. The nearest neighbors list is the starting point for a similar search on the next layer down. The process repeats until the search reaches the lowest (deepest) layer. Finally, the HNSW algorithm returns the data objects that are closest to the search query.
 
-Have another look at the diagram; it demonstrates how the HNSW algorithm searches. The blue search vector in the top layer connects to a partial result in layer one. The objects in layer one lead HNSW to the result set in layer zero. HNSW makes three hops through the layers (the dotted blue lines) and skips objects that are unrelated to the search query.
+Since there are relatively few data objects on the higher layers, HNSW 'jumps' over large amounts of data that it doesn't need to search. In contrast, when a data store has only one layer, the search algorithm can't skip unrelated objects. Flat hierarchies mean the search engine has to scan significantly more data objects even though those object are unlikely to match the search criteria.
 
-If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)).
+Weaviate's HNSW implementation is a very fast, memory efficient, approach to similarity search. The memory cache only stores the highest layer of the index instead of storing all of the data objects from the lowest layer. As a search moves from a higher layer to a lower one, HNSW only adds the data objects that are closest to the search query. This means HNSW uses a relatively small amount of memory compared to other search algorithms.
 
-### Managing search quality vs speed tradeoffs
+The diagram demonstrates how the HNSW algorithm searches. The blue search vector in the top layer connects to a partial result in layer one. The objects in layer one lead HNSW to the result set in layer zero. In this example, HNSW makes three hops through the layers (the dotted blue lines) and skips the objects that are unrelated to the search query.
+
+## Search quality vs search speed
 
 HNSW parameters can be adjusted to adjust search quality against speed.
 
 The `ef` parameter is a critical setting for balancing the trade-off between search speed and quality.
 
-The `ef` parameter dictates the size of the dynamic list used by the HNSW algorithm during the search process. A higher `ef` value results in a more extensive search, enhancing accuracy but potentially slowing down the query.
+The `ef` parameter dictates the size of the dynamic list (the nearest neighbors list in the example above) that the HNSW algorithm uses during the search process. A higher `ef` value results in a more extensive search. A higher `ef` value improves accuracy but it can also slow down the query.
 
-In contrast, a lower `ef` makes the search faster but might compromise on accuracy. This balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. Conversely, in analytical or research contexts where precision is paramount, a higher `ef` would be more suitable, despite the increased query time.
+A lower value for `ef` makes the search faster, but it might compromise on accuracy.
 
-`ef` can be configured explicitly or dynamically. This feature is particularly beneficial in environments with varying query patterns. When `ef` is configured dynamically, Weaviate optimizes the balance between speed and recall based on real-time query requirements.
+The balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. In analytical or research contexts where precision is paramount, a higher `ef` might be better, despite the increased query time.
 
-To enable dynamic `ef`, set `ef`: -1. Weaviate adjusts the size of the ANN list based on the query response limit. The calculation also takes into account the values of `dynamicEfMin`, `dynamicEfMax`, and `dynamicEfFactor`.
+### Configure ef
 
-### Dynamic ef
+You can set `ef` explicitly or allow Weaviate to set it dynamically. When `ef` is configured dynamically, Weaviate optimizes the balance between speed and recall based on real-time query requirements. If your query patterns are variable, consider setting dynamic `ef`.
+
+To enable dynamic `ef`, set `ef: -1` in your [collection configuration](/developers/weaviate/configuration/indexing-vector/hnsw-indexes#configure-an-hnsw-index). When dynamic `ef` is enabled, Weaviate adjusts the size of the ANN list based on the query response limit. The calculation also takes into account the values of `dynamicEfMin`, `dynamicEfMax`, and `dynamicEfFactor`.
+
+### Configure dynamic ef
 
 The `ef` parameter controls the size of the ANN list at query time. You can configure a specific list size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
 
@@ -78,9 +71,13 @@ The length of the list is determined by the query response limit that you set in
 
 To keep search recall high, the actual dynamic `ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
 
-To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value. If the query limit is higher than `dynamicEfMax`, `dynamicEfMax` does not have any effect. In this case, dynamic `ef` value is equal to the query limit.
+To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value.
+
+If the query limit is higher than `dynamicEfMax`, `dynamicEfMax` does not have any effect. In this case, the dynamic `ef` value is equal to the query limit.
 
 To determine the length of the ANN list, Weaviate multiples the query limit by `dynamicEfFactor`. The list range is modified by `dynamicEfMin` and `dynamicEfMax`.
+
+### Dynamic ef example
 
 Consider this GraphQL query that sets a limit of 4.
 
@@ -113,13 +110,37 @@ The resulting search list has these characteristics.
 - A maximum length of 25 objects ("dynamicEfMax": 25).
 - An actual size of 5 to 25 objects.
 
-If you use the [`docker-compose.yml` file from Weaviate](/developers/weaviate/installation/docker-compose) to run your local instance, the `QUERY_DEFAULTS_LIMIT` environment variable sets a reasonable default query limit. To prevent out of memory errors,`QUERY_DEFAULTS_LIMIT` is significantly lower than `QUERY_MAXIMUM_RESULTS`.
+#### Related environment variables
+
+If you use the [`docker-compose.yml` file from Weaviate](/developers/weaviate/installation/docker-compose) to run your local instance, the `QUERY_DEFAULTS_LIMIT` environment variable sets a reasonable default query limit.
+
+To prevent out of memory errors, the default setting for `QUERY_DEFAULTS_LIMIT` is significantly lower than `QUERY_MAXIMUM_RESULTS`.
 
 To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
 
-### Deletions
+## Deletions
 
-Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+Deleted objects are marked as deleted, but Weaviate doesn't remove them immediately. Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. During cleanup, Weaviate updates the graph and actually removes the deleted objects from the collection.
+
+Cleanup can affect system performance if your instance has a large number of deletes. These environment variables tune the cleanup process:
+
+- `TOMBSTONE_DELETION_CONCURRENCY`
+- `TOMBSTONE_DELETION_MAX_PER_CYCLE`
+- `TOMBSTONE_DELETION_MIN_PER_CYCLE`
+
+For more details, see [environment variables](/developers/weaviate/config-refs/env-vars).
+
+## Compression
+
+Consider using [compression](/developers/weaviate/starter-guides/managing-resources/compression) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+
+import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
+
+<CompressionAlgorithms/>
+
+## Other considerations
+
+HNSW indexes enable very fast queries, but they are not as fast at import time. Rebuilding the index when you add new vectors can be resource intensive. If you use HNSW, consider [enabling asynchronous indexing](/developers/weaviate/configuration/indexing-vector/dynamic-indexes#asynchronous-indexing) to improve system response during imports.
 
 ## Related pages
 

@@ -5,28 +5,16 @@ image: og/docs/indexing.jpg
 # tags: ['basics']['indexes']
 ---
 
-#### Flat indexes
+:::info Added in `v1.23`
+:::
 
 import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
 
-As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
-
 [Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
 
-
-
-
-
-:::info Added in `v1.23`
-:::
-
-The **flat index** is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
-
-As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
-
-A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
+To configure a flat index, see: [Configure flat indexes](/developers/weaviate/configuration/indexing-vector/flat-indexes).
 
 ## Related pages
 

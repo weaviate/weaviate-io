@@ -51,9 +51,9 @@ import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-HNSW indexes build a multi-layered object graph. The graph structure and HNSW algorithm result in fast, approximate nearest neighbor [(ANN)](https://en.wikipedia.org/wiki/Nearest_neighbor_search) searches.
+import HNSWHow from '/_includes/indexes/hnsw-how.mdx';
 
-The index and graph structure are stored in RAM memory. This makes HNSW indexes fast, but RAM is an expensive resource. Consider using [compression](/developers/weaviate/starter-guides/managing-resources/compression) to reduce the size of for your HNSW indexes.
+<HNSWHow/>
 
 Weaviate offers these methods to compress ("quantize") your HNSW index:
 
@@ -68,8 +68,6 @@ For more details, see [HNSW indexes](/developers/weaviate/concepts/indexing/hnsw
 import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
-
-Flat indexes are best suited for collections that have relatively small object counts. If you expect the object count to grow significantly, consider using a [dynamic index](#dynamic-indexes).
 
 [Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) is a compression technique that also improves search speed for flat indexes. BQ reduces the amount of data the search engine reads. It also permits efficient binary calculations. These benefits of compression shorten the time needed to calculate vector distances during search.
 

@@ -1,5 +1,5 @@
 ---
-title: Inverted indexes overview
+title: Inverted indexes
 sidebar_position: 100
 image: og/docs/indexing.jpg
 # tags: ['basics']
@@ -93,12 +93,27 @@ If you so not intend to filter on these properties, do not enable these indexes.
 
 ## BM25 ranking algorithm
 
-Some stuff
+The [BM25 ranking algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) ranks documents based on how frequently particular words appear in the document. Weaviate uses BM25 with [keyword searches](/developers/weaviate/search/bm25) and [hybrid searches](/developers/weaviate/search/hybrid).
+
+The `indexSearchable` index enables BM25 on a property. You cannot do a hybrid search or a keyword search on a property if `indexSearchable` is disabled.
+
+The BM25 algorithm has two parameters that change how the `indexSearchable` index is created:
+
+- To adjust for document length, modify `b`. Values range from 0 to 1.
+- To adjust for word frequency within a document, modify `k1`. Values are usually in the range from 0 to 3. There isn't an upper limit.
+
+For configuration examples, see [BM25](/developers/weaviate/configuration/inverted-indexes#bm25).
+
 
 ## Further resources
 
 - [Concepts: Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes)
 - [Configuration: Inverted indexes](/developers/weaviate/configuration/inverted-indexes)
+- [Concepts: Inverted Indexes](/developers/weaviate/concepts/indexing/inverted-indexes)
+- [Configuration: BM25 algorithm](/developers/weaviate/configuration/inverted-indexes#bm25)
+- [Blog: Ranking models](https://weaviate.io/blog/ranking-models-for-better-search)
+- [Blog: Hybrid search](https://weaviate.io/blog/hybrid-search-for-web-developers)
+- [Blog: Fusion algorithms](https://weaviate.io/blog/hybrid-search-fusion-algorithms)
 
 ## Questions and feedback
 

@@ -9,6 +9,8 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
+To configure a dynamic index, see: [Configure dynamic indexes](/developers/weaviate/configuration/indexing-vector/dynamic-indexes).
+
 ## Overview
 
 Dynamic indexes are flat indexed collections that Weaviate converts to HNSW indexed collections when the collection reaches a certain size. Flat indexes work well for collections with less than 10,000 objects. At that size, flat indexes have low memory overhead and good latency. But, search latency increases as the number of objects in a collection increases. When the collection grows to about 10,000 objects, an HNSW index usually has better latency than a flat index.
