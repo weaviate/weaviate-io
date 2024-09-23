@@ -20,7 +20,7 @@ This tutorial will guide you through the process of defining a schema for your d
 
 The database schema defines how data is stored, organized and retrieved in Weaviate.
 
-Define a collection before importing data. Weaviate cannot import data if the collection is undefined. If [auto-schema feature](../config-refs/schema/index.md#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the schema manually as possible since manual definition gives you the most control.
+Define a collection before importing data. Weaviate cannot import data if the collection is undefined. If [auto-schema](../config-refs/schema/index.md#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the schema as possible since manual definition gives you the most control.
 
 Let's begin with a simple example before diving into the details.
 
