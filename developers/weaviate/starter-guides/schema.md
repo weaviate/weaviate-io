@@ -22,24 +22,22 @@ This tutorial will guide you through the process of defining a schema for your d
 
 The database schema defines how data is stored, organized and retrieved in Weaviate.
 
-A schema **must** be defined before data can be imported. We generally recommend defining as much of the schema manually, although Weaviate can also infer the schema during import if [auto-schema feature](../config-refs/schema/index.md#auto-schema) is enabled.
+A schema **must** be defined before data can be imported. We generally recommend defining as much of the schema manually as possible, although Weaviate can also infer the schema during import if [auto-schema feature](../config-refs/schema/index.md#auto-schema) is enabled.
 
 Let's begin with a simple example before diving into the details.
 
 ### Basic schema creation
 
-This example will create a simple collection called **Question**, with three properties (`answer`, `question`, and `category`), the `text2vec-openai` vectorizer and the `generative-cohere` module for RAG. It then retrieves the schema and displays it.
+This example creates a collection called `Question`. The collection has three properties, `answer`, `question`, and `category`. The definition specifies the `text2vec-openai` vectorizer and the `generative-cohere` module for RAG.
 
 import CodeCreateSchema from '/_includes/code/tutorial.schema.create.mdx';
 
 <CodeCreateSchema />
 
-The returned configuration should look something like this:
+The returned configuration looks similar to this:
 
 <details>
   <summary>See the returned schema</summary>
-
-Note: results will vary depending on your client library.
 
 ```json
 {
