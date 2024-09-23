@@ -78,15 +78,6 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START NamedVectorNearText"
-      endMarker="// END NamedVectorNearText"
-      language="gonew"
-    />
-  </TabItem>
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
