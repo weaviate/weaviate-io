@@ -1,5 +1,5 @@
 ---
-title: Inverted indexes
+title: Inverted indexes overview
 sidebar_position: 100
 image: og/docs/indexing.jpg
 # tags: ['basics']

@@ -5,39 +5,77 @@ image: og/docs/indexing.jpg
 # tags: ['vector index plugins']
 ---
 
-## Vector indexes
+Weaviate is a vector database. Most objects in Weaviate collections have one or more vectors. Individual vectors can have thousands of dimensions. Collections can have millions of objects. The resulting vector space can be exceedingly large.
+
+Weaviate uses vector indexes to [efficiently search]((https://weaviate.io/blog/why-is-vector-search-so-fast)) the vector space. Different vector index types offer trade-offs in resource use, speed, and accuracy.
 
 import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
 <VectorIntro/>
 
-#### HNSW indexes
+## Vector indexing
+
+[Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) are arrays of elements that can capture meaning. The original data can come from text, images, videos, or other content types. A model transforms the underlying data into an embedding. The elements in the embedding are called dimensions. High dimension vectors, with thousands of elements, capture more information, but they are harder to work with.
+
+Vector databases make it easier to work with high dimensional vector embeddings. Embeddings that capture similar meanings are closer to each other than embeddings that capture different meanings. To find objects that have similar semantics, vector databases must efficiently calculate the "distance" between the objects' embeddings.
+
+In Weaviate, the [distance calculation method](/developers/weaviate/manage-data/collections#specify-a-distance-metric) is configurable. The [distance threshold](/developers/weaviate/search/similarity#set-a-similarity-threshold) is also configurable. A lower threshold returns more specific results.
+
+### Example - relative dimensions in space
+
+The elements in a vector define a point in a multi-dimensional space, similar to how the coordinates (X,Y) define a point on a graph and (X,Y,Z) define a point in three dimensional space.
+
+Consider a very simple vector embedding that uses two elements to represent the meanings of some English words. Taken together, the vectors in the collection define a two dimensional space like this one:
+
+![2D Vector embedding visualization](./img/vectors-2d.png "2D Vectors visualization")
+
+Apples and bananas are both fruits. Newspapers and magazines are both publications. In the representation, the fruits are close to each other. The publications are also close to each other, but relatively far from the fruits. The vector distances are smaller between items with similar semantics and larger between objects that don't share similar meanings.
+
+In a real example, the embeddings would have hundreds or thousands of elements. The vector space is difficult to visualize, but the concept is the same. Similar embeddings capture similar meanings and are closer to each other than to embeddings that capture different meanings.
+
+For more details on this representation, see the [GloVe model](https://github.com/stanfordnlp/GloVe) from Stanford or our [vector embeddings blog post](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings).
+
+### Example - supermarket layout
+
+Consider how items are arranged in a supermarket. Similar products are close to each other. Apples and bananas are close to each other in the fruit section. Newspapers and magazines aren't fruit. They aren't even food. They are displayed in a different section of the supermarket.
+
+![Supermarket map visualization as analogy for vector indexing](./img/supermarket.svg "Supermarket map visualization")
+
+If you walk into the supermarket to buy an apple, you move away from the publications and move towards the fruits. You minimize the distance from where you are to the object you are searching for.
+
+Vector search works the same way. Weaviate turns search queries into vector embeddings and then searches the collection to find objects that are close to the query in the vector space.
+
+## HNSW indexes
 
 import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 <HNSWIntro/>
 
-HNSW indexes achieve this by building a multi-layered graph of objects, allowing for fast, approximate nearest neighbor searches.
+HNSW indexes build a multi-layered object graph. The graph structure and HNSW algorithm result in fast, approximate nearest neighbor [(ANN)](https://en.wikipedia.org/wiki/Nearest_neighbor_search) searches.
 
-While HNSW indexes enable fast searches, they use a lot of [*hot* resources](./index.md#-hot), as they load the graph structure and vectors into memory.
+The index and graph structure are stored in RAM memory. This makes HNSW indexes fast, but RAM is an expensive resource. Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes.
 
-Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes. Weaviate offers several ways to compress your data:
+Weaviate offers these methods to compress ("quantize") your HNSW index:
 
 import CompressionAlgorithms from '/_includes/starter-guides/compression-types.mdx';
 
 <CompressionAlgorithms/>
 
-#### Flat indexes
+For more details, see [HNSW indexes](/developers/weaviate/concepts/indexing/hnsw-indexes).
+
+## Flat indexes
 
 import FlatIntro from '/_includes/indexes/flat-intro.mdx';
 
 <FlatIntro/>
 
-As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
+Flat indexes are best suited for collections that have relatively small object counts. If you expect the object count to grow significantly, consider using a [dynamic index](#dynamic-indexes).
 
-[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) is a compression technique that also improves search speed for flat indexes. BQ reduces the amount of data the search engine reads. It also permits efficient binary calculations. These benefits of compression shorten the time needed to calculate vector distances during search.
 
-#### Dynamic indexes
+For more details, see [flat indexes](/developers/weaviate/concepts/indexing/flat-indexes).
+
+## Dynamic indexes
 
 :::info Added in `v1.25`
 :::
@@ -46,49 +84,12 @@ import DynamicIntro from '/_includes/indexes/dynamic-intro.mdx';
 
 <DynamicIntro/>
 
+For more details, see [dynamic indexes](/developers/weaviate/concepts/indexing/dynamic-indexes).
 
-Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
-Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
+# # # # # # # # #  # NEXT
 
-Weaviate supports these vector index types:
-* [flat index](#flat-index): a simple, lightweight index that is designed for small datasets.
-* [HNSW index](#hierarchical-navigable-small-world-hnsw-index): a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
-* [dynamic index](#dynamic-index): allows you to automatically switch from a flat index to an HNSW index as object count scales
-
-:::caution Experimental feature
-Available starting in `v1.25`. This is an experimental feature. Use with caution.
-:::
-
-This page explains what vector indexes are, and what purpose they serve in the Weaviate vector database.
-
-## Why do you need vector indexing?
-
-[Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) are a great way to represent meaning. Vectors embeddings are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The number of elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
-
-Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure semantic similarity between data objects. When you run a [similarity search](https://weaviate.io/developers/weaviate/search/similarity), a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
-
-Vectors are like coordinates in a multi-dimensional space. A very simple vector might represent objects, *words* in this case, in a 2-dimensional space.
-
-In the graph below, the words `Apple` and `Banana` are shown close to each other. `Newspaper` and `Magazine` are also close to each other, but they are far away from `Apple` and `Banana` in the same vector space.
-
-Within each pair, the distance between words is small because the objects have similar vector representations. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
-
-For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings).
-
-![2D Vector embedding visualization](./img/vectors-2d.png "2D Vectors visualization")
-
-Another way to think of this is how products are placed in a supermarket. You'd expect to find `Apples` close to `Bananas`, because they are both fruit. But when you are searching for a `Magazine`, you would move away from the `Apples` and `Bananas`, more towards the aisle with, for example, `Newspapers`. This is how the semantics of concepts can be stored in Weaviate as well, depending on the module you're using to calculate the numbers in the vectors. Not only words or text can be indexed as vectors, but also images, video, DNA sequences, etc. Read more about which model to use [here](/developers/weaviate/modules/index.md).
-
-![Supermarket map visualization as analogy for vector indexing](./img/supermarket.svg "Supermarket map visualization")
-
-:::tip
-You might be also interested in our blog post [Why is vector search to fast?](https://weaviate.io/blog/why-is-vector-search-so-fast).
-:::
-
-## Hierarchical Navigable Small World (HNSW) index
-
-Add summary
+Not only words or text can be indexed as vectors, but also images, video, DNA sequences, etc. Read more about which model to use [here](/developers/weaviate/modules/index.md).
 
 ### Asynchronous indexing
 
@@ -166,12 +167,11 @@ The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide
 
 ## Further resources
 
-:::info Related pages
 - [Concepts: Inverted indexes](/developers/weaviate/concepts/indexing/inverted-indexes)
 - [Concepts: Vector quantization (compression)](/developers/weaviate/concepts/vector-quantization)
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index)
 - [Configuration: Schema (Configure semantic indexing)](/developers/weaviate/config-refs/schema#configure-semantic-indexing)
-:::
+- [Compression overview](/developers/weaviate/starter-guides/managing-resources/compression)
 
 ## Questions and feedback
 
