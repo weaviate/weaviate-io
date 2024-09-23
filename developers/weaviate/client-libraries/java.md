@@ -430,6 +430,7 @@ For links to the Go Client releases, expand this section.
 
 | Client Version | Release Date |
 | :- | :- |
+| [4.8.3](https://github.com/weaviate/java-client/releases/tag/4.8.3) | 2024-09-21 |
 | [4.8.2](https://github.com/weaviate/java-client/releases/tag/4.8.2) | 2024-07-24 |
 | [4.8.1](https://github.com/weaviate/java-client/releases/tag/4.8.1) | 2024-07-24 |
 | [4.8.0](https://github.com/weaviate/java-client/releases/tag/4.8.0) | 2024-07-23 |
