@@ -31,34 +31,36 @@ Keyword searches and hybrid searches use the BM25 ranking algorithm in conjuncti
 
 ## indexSearchable
 
+[Keyword searches](/developers/weaviate/search/bm25) and [hybrid searches](/developers/weaviate/search/hybrid) use the BM25 ranking algorithm in conjunction with the `indexSearchable` index. These searches match the search terms in a query to the same term in the database. They only match terms, not meanings. To match meanings, a semantic search, use a [vector similarity search](/developers/weaviate/search/similarity).
+
+`indexSearchable` is enabled by default. This index is required for BM25 search.
+
+For simple (non-BM25) filters, the `indexFilterable` index enables faster filtering. However, if the `indexFilterable` index is not enabled, Weaviate uses the `indexSearchable` index to [filter](/developers/weaviate/concepts/prefiltering).
+
+For configuration examples, see [`indexSearchable`](/developers/weaviate/configuration/inverted-indexes#indexsearchable).
+
 ## indexFilterable
-[Filters](/developers/weaviate/concepts/prefiltering.md)
+
+`indexFilterable` is enabled by default. This index is not required for filtering of BM25 search. However, this index is much faster for filtering than the `indexSearchable` index.
+
+If you do not expect to filter on a property often, disable this filter to save space and to improve import times. For occasional filtered queries, the `indexSearchable` index is sufficient. If you expect to filter on a property regularly, leave this index enabled.
+
+For configuration examples, see [`indexFilterable`](/developers/weaviate/configuration/inverted-indexes#indexfilterable).
 
 ## indexRangeFilters
 
 :::info Added in `1.26`
 :::
 
-Weaviate `1.26` introduces the `indexRangeFilters` index for filtering by numerical ranges. This index is available for properties of type `int`, `number`, or `date`. The index is not available for arrays of these data types.
+The `indexRangeFilters` index is for filtering by numerical ranges. This index is not enabled by default.
 
-Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). The roaring bitmap data structure limits the `indexRangeFilters` index to values that can be stored as 64 bit integers. This index is available for properties of type `int`, `number`, or `date`. The `indexRangeFilters` index is not available for arrays of these data types.
 
 The `indexRangeFilters` index is only available for new properties. Existing properties cannot be converted to use the rangeable index.
 
+For configuration examples, see [`indexRangeFilters](/developers/weaviate/configuration/inverted-indexes#indexrangefilters).
 
-
-
-Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indexes are on by default, while the `indexRangeFilters` index is off by default.
-
-The filterable indexes are only capable of [filtering](/developers/weaviate/concepts/prefiltering.md), while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
-
-So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
-
-See the [related how-to section](/developers/weaviate/manage-data/collections.mdx#property-level-settings) to learn how to enable or disable inverted indexes on a property level.
-
-A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
-
-#### Inverted index types summary
+## Inverted index types summary
 
 import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.mdx';
 
