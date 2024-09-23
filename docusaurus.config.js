@@ -593,6 +593,10 @@ const config = {
                         title: 'Learn',
                         items: [
                             {
+                                label: 'Learning Centre',
+                                to: '/learn',
+                            },
+                            {
                                 label: 'Blog',
                                 to: '/blog',
                             },
