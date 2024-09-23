@@ -120,3 +120,16 @@ To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you 
 ### Deletions
 
 Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+
+## Related pages
+
+For more information, see the following:
+
+- [Configure dynamic indexes](/developers/weaviate/configuration/indexing-vector/dynamic-indexes)
+- [Indexing starter guide](/developers/weaviate/starter-guides/managing-resources/indexing)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

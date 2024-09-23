@@ -5,33 +5,48 @@ image: og/docs/indexing.jpg
 # tags: ['basics']
 ---
 
-You can configure indexes in Weaviate per collection.
-
-Some things to bear in mind:
-
-* Especially for large datasets, configuring the indexes is important because the more you index, the more storage is needed.
-* A rule of thumb -- if you don't query over a specific field or vector space, don't index it.
-* One of Weaviate's unique features is how the indexes are configured (learn more about this [here](/developers/weaviate/concepts/prefiltering.md)).
-
-## Vector indexes
-
-A vector index is used to serve all vector-search queries. Weaviate supports multiple types of vector indexes:
-
-1. **HNSW** - an approximate nearest neighbor (ANN) search based vector index. HNSW indexes scale well with large datasets.
-2. **Flat** - a vector index that is used for brute-force searches. This is useful for small datasets.
-2. **Dynamic** - a vector index that is flat when the dataset is small and switches to HNSW when the dataset is large.
-
-For more information on vector indexes, see the [Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes) page.
-
-## Inverted indexes
-
-### Configure the inverted index
+[Inverted indexes](https://en.wikipedia.org/wiki/Inverted_index) map the contents of documents to improve search performance. The Weaviate database uses inverted indexes to search object properties efficiently.
 
 There are three inverted index types in Weaviate:
 
-- `indexSearchable` - a searchable index for BM25 or hybrid search
-- `indexFilterable` - a match-based index for fast [filtering](/developers/weaviate/concepts/prefiltering.md) by matching criteria
-- `indexRangeFilters` - a range-based index for [filtering](/developers/weaviate/concepts/prefiltering.md) by numerical ranges
+- [`indexSearchable`](#indexsearchable) A default index. BM25 (keyword) and hybrid search use `indexSearchable`.
+- [`indexFilterable`](#indexfilterable) A default index. Filters use the `indexFilterable` index.
+- [`indexRangeFilters](#indexrangefilters) An optional index. Numerical filters use the `indexRangeFilter`.
+
+## Configuration
+
+These indexes are set on the property level. `indexSearchable` and `indexFilterable` indexes are enabled by default. The `indexRangeFilters` index is off by default.
+
+If you do not plan to search or filter on an object property, disable the index. Unused indexes waste space and they slow import processing.
+
+To configure an inverted index see these examples:
+
+- [`indexSearchable`](/developers/weaviate/configuration/inverted-indexes#indexsearchable)
+- [`indexFilterable`](/developers/weaviate/configuration/inverted-indexes#indexfilterable)
+- [`indexRangeFilters](/developers/weaviate/configuration/inverted-indexes#indexrangefilters)
+
+Keyword searches and hybrid searches use the BM25 ranking algorithm in conjunction with the `indexSearchable` index. To configure the BM25 algorithm, see these examples:
+
+- [BM25]/developers/weaviate/configuration/inverted-indexes#bm25)
+
+## indexSearchable
+
+## indexFilterable
+[Filters](/developers/weaviate/concepts/prefiltering.md)
+
+## indexRangeFilters
+
+:::info Added in `1.26`
+:::
+
+Weaviate `1.26` introduces the `indexRangeFilters` index for filtering by numerical ranges. This index is available for properties of type `int`, `number`, or `date`. The index is not available for arrays of these data types.
+
+Internally, rangeable indexes are implemented as [roaring bitmap slices](https://www.featurebase.com/blog/range-encoded-bitmaps). This data structure limits the index to values that can be stored as 64 bit integers.
+
+The `indexRangeFilters` index is only available for new properties. Existing properties cannot be converted to use the rangeable index.
+
+
+
 
 Each inverted index can be set to `true` (on) or `false` (off) on a property level. The `indexSearchable` and `indexFilterable` indexes are on by default, while the `indexRangeFilters` index is off by default.
 

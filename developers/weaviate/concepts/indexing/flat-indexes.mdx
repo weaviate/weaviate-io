@@ -27,3 +27,16 @@ The **flat index** is a simple, lightweight index that is fast to build and has 
 As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
 
 A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
+
+## Related pages
+
+For more information, see the following:
+
+- [Configure dynamic indexes](/developers/weaviate/configuration/indexing-vector/dynamic-indexes)
+- [Indexing starter guide](/developers/weaviate/starter-guides/managing-resources/indexing)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
