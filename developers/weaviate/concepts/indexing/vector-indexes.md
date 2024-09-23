@@ -7,7 +7,7 @@ image: og/docs/indexing.jpg
 
 Weaviate is a vector database. Most objects in Weaviate collections have one or more vectors. Individual vectors can have thousands of dimensions. Collections can have millions of objects. The resulting vector space can be exceedingly large.
 
-Weaviate uses vector indexes to [efficiently search]((https://weaviate.io/blog/why-is-vector-search-so-fast)) the vector space. Different vector index types offer trade-offs in resource use, speed, and accuracy.
+Weaviate uses vector indexes to [efficiently search](https://weaviate.io/blog/why-is-vector-search-so-fast) the vector space. Different vector index types offer trade-offs in resource use, speed, and accuracy.
 
 import VectorIntro from '/_includes/indexes/vector-intro.mdx';
 
@@ -53,7 +53,7 @@ import HNSWIntro from '/_includes/indexes/hnsw-intro.mdx';
 
 HNSW indexes build a multi-layered object graph. The graph structure and HNSW algorithm result in fast, approximate nearest neighbor [(ANN)](https://en.wikipedia.org/wiki/Nearest_neighbor_search) searches.
 
-The index and graph structure are stored in RAM memory. This makes HNSW indexes fast, but RAM is an expensive resource. Consider using [compression](./compression.mdx) to reduce the size of for your HNSW indexes.
+The index and graph structure are stored in RAM memory. This makes HNSW indexes fast, but RAM is an expensive resource. Consider using [compression](/developers/weaviate/starter-guides/managing-resources/compression) to reduce the size of for your HNSW indexes.
 
 Weaviate offers these methods to compress ("quantize") your HNSW index:
 

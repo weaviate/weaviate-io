@@ -11,7 +11,7 @@ There are three inverted index types in Weaviate:
 
 - [`indexSearchable`](#indexsearchable) A default index. BM25 (keyword) and hybrid search use `indexSearchable`.
 - [`indexFilterable`](#indexfilterable) A default index. Filters use the `indexFilterable` index.
-- [`indexRangeFilters](#indexrangefilters) An optional index. Numerical filters use the `indexRangeFilter`.
+- [`indexRangeFilters`](#indexrangefilters) An optional index. Numerical filters use the `indexRangeFilter`.
 
 ## Configuration
 
@@ -27,7 +27,7 @@ To configure an inverted index see these examples:
 
 Keyword searches and hybrid searches use the BM25 ranking algorithm in conjunction with the `indexSearchable` index. To configure the BM25 algorithm, see these examples:
 
-- [BM25]/developers/weaviate/configuration/inverted-indexes#bm25)
+- [BM25](/developers/weaviate/configuration/inverted-indexes#bm25)
 
 ## indexSearchable
 
@@ -43,6 +43,7 @@ For configuration examples, see [`indexSearchable`](/developers/weaviate/configu
 
 `indexFilterable` is enabled by default. This index is not required for filtering of BM25 search. However, this index is much faster for filtering than the `indexSearchable` index.
 
+You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
 If you do not expect to filter on a property often, disable this filter to save space and to improve import times. For occasional filtered queries, the `indexSearchable` index is sufficient. If you expect to filter on a property regularly, leave this index enabled.
 
 For configuration examples, see [`indexFilterable`](/developers/weaviate/configuration/inverted-indexes#indexfilterable).
@@ -66,11 +67,14 @@ import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.m
 
 <InvertedIndexTypesSummary/>
 
-- Enable one or both of `indexFilterable` and `indexRangeFilters` to index a property for faster filtering.
-    - If only one is enabled, the respective index is used for filtering.
-    - If both are enabled, `indexRangeFilters` is used for operations involving comparison operators, and `indexFilterable` is used for equality and inequality operations.
+## Multiple filter indexes
 
-This chart shows which filter makes the comparison when one or both index type is `true` for an applicable property.
+`indexFilterable` and `indexRangeFilters` both enable faster filtering.
+
+- If only one of them is enabled on a property, that index is used for filtering.
+- If both are enabled on a property, `indexRangeFilters` is used with numeric comparison operators, and `indexFilterable` is used for equality and inequality operations.
+
+This chart shows Weaviate applies the filters:
 
 | Operator | `indexRangeFilters` only | `indexFilterable` only | Both enabled |
 | :- | :- | :- | :- |
@@ -81,71 +85,11 @@ This chart shows which filter makes the comparison when one or both index type i
 | Less than | `indexRangeFilters` | `indexFilterable` | `indexRangeFilters` |
 | Less than equal | `indexRangeFilters` | `indexFilterable` | `indexRangeFilters` |
 
-#### Inverted index for timestamps
+## Collection level settings
 
-You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
+Some inverted index values are configured at the collection level. These settings allow you do create indexes for [timestamps](/developers/weaviate/config-refs/schema#indextimestamps), filter on [`null`](/developers/weaviate/config-refs/schema#indexnullstate) and filter on [property length](/developers/weaviate/config-refs/schema#indexpropertylength).
 
-Timestamps are currently indexed using the `indexFilterable` index.
-
-## Collections without indexes
-
-If you don't want to set an index at all, this is possible too.
-
-To create a collection without any indexes, skip indexing on the collection and on the properties.
-
-```js
-{
-    "class": "Author",
-    "description": "A description of this collection, in this case, it's about authors",
-    "vectorIndexConfig": {
-        "skip": true // <== disable vector index
-    },
-    "properties": [
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "indexSearchable": false,  // <== disable searchable index for this property
-            "dataType": [
-                "text"
-            ],
-            "description": "The name of the Author",
-            "name": "name"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "int"
-            ],
-            "description": "The age of the Author",
-            "name": "age"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "date"
-            ],
-            "description": "The date of birth of the Author",
-            "name": "born"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "dataType": [
-                "boolean"
-            ],
-            "description": "A boolean value if the Author won a nobel prize",
-            "name": "wonNobelPrize"
-        },
-        {
-            "indexFilterable": false,  // <== disable filterable index for this property
-            "indexSearchable": false,  // <== disable searchable index for this property
-            "dataType": [
-                "text"
-            ],
-            "description": "A description of the author",
-            "name": "description"
-        }
-    ]
-}
-```
+If you so not intend to filter on these properties, do not enable these indexes.
 
 ## BM25 ranking algorithm
 
@@ -154,7 +98,7 @@ Some stuff
 ## Further resources
 
 - [Concepts: Vector Indexing](/developers/weaviate/concepts/indexing/vector-indexes)
-- [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
+- [Configuration: Inverted indexes](/developers/weaviate/configuration/inverted-indexes)
 
 ## Questions and feedback
 
