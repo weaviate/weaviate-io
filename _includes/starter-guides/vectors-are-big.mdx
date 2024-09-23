@@ -1,0 +1,3 @@
+Weaviate stores vector representations, also called "vector embeddings" or simply "vectors." Each element of a vector embedding is a dimension. The values are commonly stored as 32 bit floats. A single vector with 1536 dimensions uses about 6 KB of storage.
+
+When collections have millions of objects, the total storage size for the vectors can be very large. The collection index can also grow very large, especially when a collection uses an in-memory vector index such as the Hierarchical navigable Small Worlds (HNSW) index.
