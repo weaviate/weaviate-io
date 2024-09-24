@@ -54,6 +54,8 @@ import IndexesFlatAbout from '/_includes/starter-guides/indexes-flat-about.mdx';
 
 <IndexesFlatAbout/>
 
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+
 #### Dynamic indexes
 
 :::info Added in `v1.25`
@@ -67,8 +69,8 @@ import DynamicAbout from '/_includes/starter-guides/indexes-dynamic-about.mdx';
 
 <DynamicAbout/>
 
-:::info Dynamic index requires flat and HNSW index settings
-A dynamic index requires its flat and HNSW index settings at creation time. The dynamic index uses the flat index settings initially, then automatically switch to the HNSW index with provided settings when the threshold is reached.
+:::info Configure the flat index and the HNSW index
+Configure the flat index and the HNSW index when you define the dynamic index. The dynamic index uses the flat index initially, then switches to the HNSW index. Both indexes should be configured before they are used.
 :::
 
 ### Asynchronous vector indexing

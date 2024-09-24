@@ -32,6 +32,22 @@ import CostSavings from '/_includes/starter-guides/cost-savings.mdx';
 
 The Cloud [pricing calculator](https://weaviate.io/pricing) demonstrates the savings. Enter the number of objects in your collection and the dimensionality of each object. Under `Storage Type`, compare the costs for "Performance" and for "Compression." Compressed storage is significantly cheaper.
 
+## Compression availability
+
+This table shows which compression algorithm is available for each index type.
+
+| Compression type | HNSW index | Flat index | Dynamic index |
+| :- | :- | :- | :- |
+| PQ | Yes | No | Yes |
+| SQ | Yes | No | Yes |
+| BQ | Yes | Yes | Yes |
+
+## Activate compression
+
+import ActivateComp from '/_includes/starter-guides/activate-compression.mdx';
+
+<ActivateComp/>
+
 ## Performance
 
 Performance has multiple components. Recall and response latency are important at query time. Indexing speed is important for data imports and updates.
@@ -52,27 +68,11 @@ import QuerySpeed from '/_includes/starter-guides/query-speed.mdx';
 
 Importing and compressing vectors takes slightly longer than importing uncompressed vectors, but this is a one time cost. In contrast, loading a compressed index into memory is faster since there is less data to load. This means restarts are faster.
 
-## Compression availability
-
-This table shows which compression algorithm is available for each index type.
-
-| Compression type | HNSW index | Flat index | Dynamic index |
-| :- | :- | :- | :- |
-| PQ | Yes | No | Yes |
-| SQ | Yes | No | Yes |
-| BQ | Yes | Yes | Yes |
-
-## Activate compression
-
-import ActivateComp from '/_includes/starter-guides/activate-compression.mdx';
-
-<ActivateComp/>
-
 ## Asynchronous indexing
 
 [Asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) changes the import process. In many cases, you can work with newly imported data sooner if asynchronous indexing is enabled. Asynchronous indexing is also a prerequisite for dynamic indexes.
 
-### Enable asynchronous indexing
+### Enable async indexing
 
 Enable asynchronous indexing to improve imports and to allow dynamic indexes.
 
@@ -95,6 +95,50 @@ If you have a stand-alone cluster, the update requires system downtime. Consider
 
 ## Indexing
 
+Vector indexes are a central feature of the Weaviate database. These indexes enable efficient search of large vector spaces. Weaviate also uses inverted indexes. Inverted indexes are used for filtering and keyword searches.
+
+### Vector indexes
+
+import IndexesIntro from '/_includes/starter-guides/indexes-intro.mdx';
+
+<IndexesIntro/>
+
+### HNSW indexes
+
+[HNSW indexes](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) are high-performance, in-memory indexes. HNSW indexes scale well. Vector searches are fast, even for very large data sets.
+
+HNSW indexes enable fast searches, but they also require a lot of RAM memory to load the index and the underlying vector embeddings. RAM is an expensive resource. To see how compression can lower costs in Weaviate Cloud, use the [price calculator](#price-calculator) to estimate your savings compared to uncompressed indexes.
+
+Quantization is an effective way to compress the vector embeddings. Weaviate provides three quantization algorithms that work with HNSW indexes:
+
+- [Product quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
+- [Scalar quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
+- [Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression)
+
+### Flat indexes
+
+import IndexesFlatAbout from '/_includes/starter-guides/indexes-flat-about.mdx';
+
+<IndexesFlatAbout/>
+
+Flat indexes are usually smaller than HNSW indexes since they index fewer vectors. However, flat indexes can also benefit from compression.
+
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) improves search time by reducing the amount of data to read, and by shortening the time needed to calculate distances between vectors. If you have a lot of tenants, BQ also saves significant space on disk. Each compressed index is roughly 1/32 the size of an uncompressed index.
+
+### Dynamic indexes
+
+:::info Added in `v1.25`
+:::
+
+import DynamicAbout from '/_includes/starter-guides/indexes-dynamic-about.mdx';
+
+<DynamicAbout/>
+
+:::info Configure the flat index and the HNSW index
+Configure the flat index and the HNSW index when you define the dynamic index. The dynamic index uses the flat index initially, then switches to the HNSW index. Both indexes should be configured before they are used.
+:::
+
+## Inverted indexes
 
 ## Recommendations
 
