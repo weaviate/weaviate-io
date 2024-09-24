@@ -1,7 +1,7 @@
-PQ and SQ both require training data. PQ has to define centroids for each segment. SQ has to determine the minimum and maximum values for the bucket boundaries. When you have imported a large enough training set, the algorithm compresses your data.
-
 SQ has to be enabled when you create the collection.
 
-If you have async indexing and [AutoPQ enabled](/developers/weaviate/configuration/compression/pq-compression#configure-autopq), PQ compression can be started anytime. If not, you should only enable PQ after you have imported enough objects to [train the algorithm](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq).
+PQ and SQ both require training data before they begin to compress data. PQ's training step defines centroids for each segment. SQ's determines the minimum and maximum values for bucket boundaries. PQ and SQ both begin to compress data after you have imported a large enough training set, and the training step is complete.
+
+If you have async indexing and [AutoPQ enabled](/developers/weaviate/configuration/compression/pq-compression#configure-autopq), PQ compression can be enabled anytime. If not, you should only enable PQ after you have imported enough objects to [train the algorithm](/developers/weaviate/configuration/compression/pq-compression#manually-configure-pq).
 
 BQ doesn't require a training step, however it can only be enabled when you create your collection. BQ cannot be enabled after you start to add data to the collection.

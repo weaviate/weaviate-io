@@ -4,9 +4,9 @@ sidebar_position: 20
 image: og/wcs/user_guides.jpg
 ---
 
-Weaviate provides flexible resource management features that let you balance system performance and system resource costs.
+Weaviate Cloud provides flexible resource management features that let you balance system performance and system resource costs.
 
-Indexes and compression are powerful tools. This page discusses configuration strategies to help you to get the most value from Weaviate Cloud.
+Indexes and compression are powerful tools. This page discusses configuration strategies to help you configure indexes and compression to get the most value from Weaviate Cloud.
 
 ## Compression
 
@@ -14,7 +14,7 @@ import VectorsBig from '/_includes/starter-guides/vectors-are-big.mdx';
 
 <VectorsBig/>
 
-Careful choice of indexes and compression can significantly reduce the hosting requirements for your collection.
+Careful choice of indexes and compression can significantly reduce the hosting requirements for your collection. Lower hosting requirements translate directly to cost savings.
 
 ### Compression algorithms
 
@@ -30,11 +30,15 @@ import CostSavings from '/_includes/starter-guides/cost-savings.mdx';
 
 ### Price calculator
 
-The Cloud [pricing calculator](https://weaviate.io/pricing) demonstrates the savings. Enter the number of objects in your collection and the dimensionality of each object. Under `Storage Type`, compare the costs for "Performance" and for "Compression." Compressed storage is significantly cheaper.
+The Cloud [pricing calculator](https://weaviate.io/pricing) demonstrates the savings with compressed indexes.
+
+To use the calculator, enter the number of objects in your collection and the dimensionality of each object. Under `Storage Type`, select "Compression". Compare the costs for "Performance" and for "Compression."
+
+Compressed storage is significantly cheaper.
 
 ## Compression availability
 
-This table shows which compression algorithm is available for each index type.
+This table shows the compression algorithms that are available for each index type.
 
 | Compression type | HNSW index | Flat index | Dynamic index |
 | :- | :- | :- | :- |
@@ -44,13 +48,15 @@ This table shows which compression algorithm is available for each index type.
 
 ## Activate compression
 
+You should define a compression algorithm when you define your collection.
+
 import ActivateComp from '/_includes/starter-guides/activate-compression.mdx';
 
 <ActivateComp/>
 
 ## Performance
 
-Performance has multiple components. Recall and response latency are important at query time. Indexing speed is important for data imports and updates.
+Performance has multiple components. Recall and response latency are important considerations at query time. Indexing speed is important for data imports and updates. Compression and index choice both affect performance.
 
 ### Recall
 
@@ -76,22 +82,26 @@ Importing and compressing vectors takes slightly longer than importing uncompres
 
 Enable asynchronous indexing to improve imports and to allow dynamic indexes.
 
-1. For a new cluster, go to the cluster creation page.
-1. Under `Advanced Configuration`, find `Enable async indexing`.
-1. Select `Enable async indexing`.
-
 import EnableAsync from '/developers/wcs/img/wcd-enable-async.jpg';
 
-<img src={EnableAsync} width="75%" alt="Enable asynchronous indexing"/>
+<img src={EnableAsync} width="100%" alt="Enable asynchronous indexing"/>
 
-1. For an existing cluster, go to the cluster details page.
-1. Under `Advanced Configuration`, find `Enable async indexing`.
-1. Select `Enable async indexing`.
+#### New clusters
+
+1. Go to the cluster creation page.
+1. Under `Advanced Configuration`, select `Enable async indexing`.
+
+#### Existing clusters
+
+1. Go to the cluster details page.
+1. Under `Advanced Configuration`, select `Enable async indexing`.
 1. Select save to restart the cluster.
 
-There is no downtime if you have a high availability (HA) cluster.
+:::warning Possible downtime
+If you have a stand-alone cluster, the update requires system downtime. Consider your business needs, and update your cluster when you have a suitable maintenance window.<br/><br/>
 
-If you have a stand-alone cluster, the update requires system downtime. Consider your business needs, and update your cluster when you have a suitable maintenance window.
+There is no downtime if you have a high availability (HA) cluster.
+:::
 
 ## Indexing
 
@@ -109,7 +119,7 @@ import IndexesIntro from '/_includes/starter-guides/indexes-intro.mdx';
 
 HNSW indexes enable fast searches, but they also require a lot of RAM memory to load the index and the underlying vector embeddings. RAM is an expensive resource. To see how compression can lower costs in Weaviate Cloud, use the [price calculator](#price-calculator) to estimate your savings compared to uncompressed indexes.
 
-Quantization is an effective way to compress the vector embeddings. Weaviate provides three quantization algorithms that work with HNSW indexes:
+Quantization is an effective way to compress the vector embeddings. Weaviate provides these quantization algorithms that compress HNSW indexes:
 
 - [Product quantization (PQ)](/developers/weaviate/configuration/compression/pq-compression)
 - [Scalar quantization (SQ)](/developers/weaviate/configuration/compression/sq-compression)
@@ -140,23 +150,23 @@ Configure the flat index and the HNSW index when you define the dynamic index. T
 
 ## Inverted indexes
 
-Inverted indexes are very important for searching and filtering. They don't use expensive resources the same way as vector indexes, however you can configure inverted indexes to make better use of resources.
+Inverted indexes don't use resources the same way as vector indexes, however you can still configure inverted indexes to make better use of the resources they do use.
 
 The `invertedFilterable` and `invertedSearchable` indexes are enabled by default on collection properties.
 
 - If you never search or filter on a property, turn off `invertedFilterable` and `invertedSearchable` indexing.
 - If you only filter on a property occasionally, turn off `invertedFilterable` indexing. The property is still filterable, just less efficiently.
 
-Turning off these indexes saves disk space. It also improves import times since Weaviate has to do less work.
+[Turn off](/developers/weaviate/manage-data/collections#property-level-settings) these indexes to save disk space. Turning them off also improves import times since Weaviate has to do less work for each object that it imports.
 
 ## Recommendations
 
 Most applications benefit from compression.
 
-- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster than the uncompressed equivalent.
-- If you have specialized needs and a very large data set, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
-- Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are faster than searches with uncompressed vectors. Recall is similar to uncompressed vectors.
+- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much faster than the uncompressed equivalent.
 - For collections that are small, but that are expected to grow, consider a dynamic index. In addition to setting the dynamic index type, configure the collection to use BQ compression while the index is flat and SQ compression when the collection grows large enough to move from a flat index to an HNSW index.
+- Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are faster than searches with uncompressed vectors. Recall is similar to uncompressed vectors.
+- If you have a very large data set or specialized search needs, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
 - For multi-tenant collections, consider the sizes of the tenants. The index and compression recommendations are the same for individual tenants as for single collections.
 
 ## Support

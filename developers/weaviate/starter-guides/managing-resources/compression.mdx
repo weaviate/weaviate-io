@@ -13,9 +13,9 @@ import VectorsBig from '/_includes/starter-guides/vectors-are-big.mdx';
 
 <VectorsBig/>
 
-Weaviate creates indexes to search the vector space for your collection. By default, the vector index is an [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index which includes the vector as well as a graph structure. HNSW indexes allow fast vector searches while maintaining excellent recall, but they can be expensive to use as they are stored in memory.
+Weaviate creates indexes to search the vector space for your collection. By default, the vector index is an [Hierarchical Navigable Small World (HNSW)](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) index. This data structure includes the vector as well as an index graph. HNSW indexes allow fast vector searches while maintaining excellent recall, but they can be expensive to use because they are stored in RAM memory.
 
-In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data, and still maintain high levels of recall. Updating the default settings can result in significant cost savings and performance improvements.
+In many cases, you can use compression or a different index type to change the way Weaviate stores and searches your data, and still maintain high levels of recall. Updating the default index configuration settings can result in significant cost savings and even performance improvements.
 
 This page discusses compression algorithms. For more on indexes, see [Vector indexing](/developers/weaviate/concepts/vector-index).
 
@@ -39,7 +39,7 @@ Performance and cost are also important considerations. See [Cost, recall, and s
 
 ### Underlying vector index
 
-This table shows which compression algorithm is available for each index type.
+This table shows the compression algorithms that are available for each index type.
 
 | Compression type | HNSW index | Flat index | Dynamic index |
 | :- | :- | :- | :- |
@@ -87,12 +87,11 @@ import ActivateComp from '/_includes/starter-guides/activate-compression.mdx';
 
 ## Recommendations
 
-Most applications benefit from compression.
+Most applications benefit from compression. The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, compressed collections can be more than 80% cheaper than uncompressed collections.
 
-- The cost savings are significant. In [Weaviate Cloud](https://weaviate.io/pricing), for example, compressed collections can be more than 80% cheaper than uncompressed collections.
-- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much, much faster than the uncompressed equivalent.
-- If you have specialized needs and a very large data set, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
+- If you have a small collection that uses a flat index, consider a BQ index. The BQ index is 32 times smaller and much faster than the uncompressed equivalent.
 - Most users with medium to large data sets should consider SQ compression. SQ compressed vectors are one quarter the size of uncompressed vectors. Searches with SQ are faster than searches with uncompressed vectors. Recall is similar to uncompressed vectors.
+- If you have a very large data set or specialized search needs, consider PQ compression. PQ compression is very configurable, but it requires more expertise to tune well than SQ or BQ.
 
 For collections that are small, but that are expected to grow, consider a dynamic index. In addition to setting the dynamic index type, configure the collection to use BQ compression while the index is flat and SQ compression when the collection grows large enough to move from a flat index to an HNSW index.
 
