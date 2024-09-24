@@ -140,6 +140,15 @@ Configure the flat index and the HNSW index when you define the dynamic index. T
 
 ## Inverted indexes
 
+Inverted indexes are very important for searching and filtering. They don't use expensive resources the same way as vector indexes, however you can configure inverted indexes to make better use of resources.
+
+The `invertedFilterable` and `invertedSearchable` indexes are enabled by default on collection properties.
+
+- If you never search or filter on a property, turn off `invertedFilterable` and `invertedSearchable` indexing.
+- If you only filter on a property occasionally, turn off `invertedFilterable` indexing. The property is still filterable, just less efficiently.
+
+Turning off these indexes saves disk space. It also improves import times since Weaviate has to do less work.
+
 ## Recommendations
 
 Most applications benefit from compression.

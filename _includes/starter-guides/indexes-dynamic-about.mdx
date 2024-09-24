@@ -1,18 +1,19 @@
-A [dynamic index](/developers/weaviate/concepts/vector-index#dynamic-index) offers a flexible approach to indexing. A dynamic index begins as a flat index, and converts automatically to an HNSW index upon reaching a threshold size.
+[Dynamic indexes](/developers/weaviate/concepts/vector-index#dynamic-index) offer a flexible approach to indexing. A dynamic index starts as a flat index and converts automatically to an HNSW index when the object count reaches a threshold amount.
 
-This can be particularly useful in multi-tenant configurations where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
+In multi-tenant configurations where different tenants have different object counts, dynamic indexes are a good choice. Collections with dynamic indexes have less overhead since tenants can use flat indexes when the HNSW index isn't needed.
 
-The threshold size is 10,000 objects by default. You can configure the threshold size when you create the dynamic index.
+The index conversion threshold is 10,000 objects by default. You can configure the threshold value when you create the dynamic index.
 
-This table shows how a dynamic index changes as the number of objects in a collection grows. The assumed set up is a dynamic index with:
+This table shows how a dynamic index changes as the number of objects in a collection grows. The example configuration is for a dynamic index with the following properties:
 
-- A threshold of 10,000 objects.
-- Flat index + BQ configuration.
-- HNSW index + PQ or SQ configuration, with 100,000 objects as the PQ/SQ training threshold.
+- A conversion threshold of 10,000 objects.
+- Flat index with BQ configured.
+- HNSW index with SQ configured
+- The training threshold for SQ is 100,000 objects.
 
 | Number of objects | Index type | Compression | Notes |
 | :- | :- | :- | :- |
 | 0 - 9,999 | Flat index | BQ | Flat index by default |
 | 10,000 | Flat -> HNSW | None | The index converts to HNSW. The index is stored in RAM. |
-| 100,000 | HNSW | Training | The collection object count == PQ/SQ training threshold. |
-| 100,001 | HNSW | PQ/SQ | PQ/SQ is active. |
+| 100,000 | HNSW | Training | The collection's object count reaches the SQ training threshold. |
+| 100,001 | HNSW | SQ | SQ is active. |
