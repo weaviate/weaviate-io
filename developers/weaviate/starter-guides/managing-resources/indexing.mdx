@@ -30,11 +30,9 @@ Vector indexes can use *hot* or *warm* resources, depending on the index type. I
 
 ## Vector indexes
 
-Weaviate offers three types of vector indexes, [Hierarchical Navigable Small World (HNSW)](#hnsw-indexes), [flat](#flat-indexes) and [dynamic](#dynamic-indexes).
+import IndexesIntro from '/_includes/starter-guides/indexes-intro.mdx';
 
-- HNSW indexes enable fast, scalable vector searching that works well even with very large data sets.
-- Flat indexes are memory-efficient indexes that work best with small data sets.
-- Dynamic indexes provide a best-of-both-worlds approach by switching from flat to HNSW indexes when a [collection](../../concepts/data.md#collections) (or [tenant](../../concepts/data.md#multi-tenancy)) reaches a threshold size.
+<IndexesIntro/>
 
 #### HNSW indexes
 
@@ -52,11 +50,9 @@ import CompressionAlgorithms from '/_includes/starter-guides/compression-types.m
 
 #### Flat indexes
 
-[Flat indexes](/developers/weaviate/concepts/vector-index#flat-index) are memory-efficient. They are disk based indexes that perform brute-force vector searches. Vector search speeds with flat indexes scale linearly with the number of objects.
+import IndexesFlatAbout from '/_includes/starter-guides/indexes-flat-about.mdx';
 
-As a result, flat indexes are best suited for cases where the number of objects is low and will not grow significantly.
-
-[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
+<IndexesFlatAbout/>
 
 #### Dynamic indexes
 
@@ -67,27 +63,12 @@ import DynamicAsyncRequirements from '/_includes/dynamic-index-async-req.mdx';
 
 <DynamicAsyncRequirements/>
 
-A [dynamic index](/developers/weaviate/concepts/vector-index#dynamic-index) offers a flexible approach to indexing. A dynamic index begins as a flat index, and converts automatically to an HNSW index upon reaching a threshold size.
+import DynamicAbout from '/_includes/starter-guides/indexes-dynamic-about.mdx';
 
-This can be particularly useful in multi-tenant configurations, where different tenants may have different numbers of objects. With a dynamic index, you can avoid the overhead of an HNSW index when it's not needed.
-
-The threshold size is 10,000 objects by default. You can configure the threshold size when you create the dynamic index.
-
-This table shows how a dynamic index changes as the number of objects in a collection grows. The assumed set up is a dynamic index with:
-
-- A threshold of 10,000 objects.
-- Flat index + BQ configuration.
-- HNSW index + PQ or SQ configuration, with 100,000 objects as the PQ/SQ training threshold.
-
-| Number of objects | Index type | Compression | Notes |
-| :- | :- | :- | :- |
-| 0 - 9,999 | Flat index | BQ | Flat index by default |
-| 10,000 | Flat -> HNSW | None | The index converts to HNSW. The index is stored in RAM. |
-| 100,000 | HNSW | Training | The collection object count == PQ/SQ training threshold. |
-| 100,001 | HNSW | PQ/SQ | PQ/SQ is active. |
+<DynamicAbout/>
 
 :::info Dynamic index requires flat and HNSW index settings
-A dynamic index requires its flat and HNSW index settings at creation time. The dynamic index will use the flat index settings initially, then automatically switch to the HNSW index with provided settings when the threshold is reached.
+A dynamic index requires its flat and HNSW index settings at creation time. The dynamic index uses the flat index settings initially, then automatically switch to the HNSW index with provided settings when the threshold is reached.
 :::
 
 ### Asynchronous vector indexing

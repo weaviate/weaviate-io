@@ -1,0 +1,5 @@
+[Flat indexes](/developers/weaviate/concepts/vector-index#flat-index) are memory-efficient. They are disk based indexes that perform brute-force vector searches. Vector search speeds with flat indexes scale linearly with the number of objects.
+
+Flat indexes are best suited for cases where the number of objects is low (less than 10,000) and will not grow significantly.
+
+[Binary quantization (BQ)](/developers/weaviate/configuration/compression/bq-compression) can improve flat indexes' search speeds. BQ improves search time by reducing the amount of data to read, and speeding up time taken to calculate the distance between vectors.
