@@ -94,7 +94,6 @@ headers = {
 # START DatabricksInstantiation
     "X-Databricks-Token": databricks_token,
 # END DatabricksInstantiation
-# START-ANY
 # START FriendliInstantiation
     "X-Friendli-Api-Key": friendli_key,
 # END FriendliInstantiation
@@ -128,6 +127,7 @@ headers = {
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation
+# START-ANY
 }
 # highlight-end
 # END-ANY
