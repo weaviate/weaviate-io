@@ -140,6 +140,9 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
+- `rerank-2`
+- `rerank-2-lite`
+- `rerank-1`
 - `rerank-lite-1`
 
 ## Further resources
