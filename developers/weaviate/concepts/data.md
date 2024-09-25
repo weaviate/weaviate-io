@@ -1,5 +1,5 @@
 ---
-title: Data structure
+title: Data structures
 sidebar_position: 10
 image: og/docs/concepts.jpg
 # tags: ['basics']

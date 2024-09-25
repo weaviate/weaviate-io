@@ -5,16 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['getting started']
 ---
 
-
-<!-- :::caution Migrated From:
-- `Core knowledge`
-  - `Data objects` from `Core knowledge/Basics`
-  - `Modules`: Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`
-- `Architecture`
-- `Vector indexing` from `Vector Index (ANN) Plugins:Index` + `HNSW`
-  - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
-::: -->
-
 The **Concepts** section explains various aspects related to Weaviate and its architecture to help you get the most out of it. You can read these sections in any order.
 
 :::info
@@ -31,11 +21,11 @@ If you are after a practical guide, try the [quickstart tutorial](/developers/we
 
 - An overview of Weaviate's module system, including what can be done with modules, existing module types, and custom modules.
 
-**[Indexing](./indexing.md)**
+**[Indexing](/developers/weaviate/concepts/indexing)**
 
 - Read how data is indexed within Weaviate using inverted and ANN indexes, and about configurable settings.
 
-**[Vector indexing](./vector-index.md)**
+**[Vector indexing](/developers/weaviate/concepts/indexing/vector-indexes)**
 
 - Read more about Weaviate's vector indexing architecture, such as the HNSW algorithm, distance metrics, and configurable settings.
 

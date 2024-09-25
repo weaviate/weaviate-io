@@ -19,7 +19,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/basics',
         },
         {
-            to: '/developers/weaviate/concepts/vector-index',
+            to: '/developers/weaviate/concepts/indexing/vector-indexes',
             from: [
                 '/developers/weaviate/current/vector-index-plugins',
                 '/developers/weaviate/current/vector-index-plugins/hnsw',
@@ -219,7 +219,7 @@ const siteRedirects = {
 
         // Remove BPR page
         {
-            to: '/developers/weaviate/concepts/vector-index',
+            to: '/developers/weaviate/concepts/indexing/vector-indexes',
             from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
 

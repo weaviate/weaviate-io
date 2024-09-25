@@ -60,7 +60,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
 | `sq`: `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
 | `sq`: `trainingLimit` | integer | 100000 | The size of the training set to determine scalar bucket boundaries. |
 | `sq`: `cache` | boolean | `false` | Use the vector cache when true. |
-| `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/vector-index.md#vector-cache-considerations). |
+| `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](/developers/weaviate/concepts/indexing/vector-indexes). |
 
 
 <Tabs groupId="languages">
@@ -91,7 +91,7 @@ import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
 ## Related pages
 - [Configuration: Vector index](/developers/weaviate/config-refs/schema/vector-index.md)
-- [Concepts: Vector index](/developers/weaviate/concepts/vector-index.md)
+- [Concepts: Vector index](/developers/weaviate/concepts/indexing/vector-indexes)
 - [Concepts: Vector quantization](/developers/weaviate/concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 

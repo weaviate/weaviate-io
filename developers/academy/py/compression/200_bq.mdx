@@ -8,7 +8,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!./_snippets/200_bq.py';
 
 
-[Binary quantization](/developers/weaviate/concepts/vector-quantization#binary-quantization) (BQ), is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index) or the disk-based [flat index](/developers/weaviate/concepts/vector-index.md#flat-index).
+[Binary quantization](/developers/weaviate/concepts/vector-quantization#binary-quantization) (BQ), is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/indexing/hnsw-indexes) or the disk-based [flat index](/developers/weaviate/concepts/indexing/flat-indexes).
 
 For HNSW, BQ can decrease its memory footprint and thus improve performance and reduce resource requirements as well as costs. For the flat index, BQ can reduce the size of the index on disk, which can improve performance.
 
@@ -65,4 +65,3 @@ Some BQ parameters are configurable. An important one is `rescore_limit`, which 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

@@ -40,7 +40,7 @@ Weaviate does not look for the exact closest vectors in the store. Instead, it l
 
 Weaviate incrementally builds up an index (graph representation of the vectors and their closest neighbors) with each incoming object. Then when a query arrives, Weaviate traverses the index to obtain a good approximated answer to the query in a fraction of the time that a brute-force approach would take.
 
-[HNSW](/developers/weaviate/concepts/vector-index#hnsw) is the first production-ready indexing algorithm we implemented in Weaviate. It is a robust and fast algorithm that builds a hierarchical representation of the index **in memory** that could be quickly traversed to find the k nearest neighbors of a query vector.
+[HNSW](/developers/weaviate/concepts/indexing/hnsw-indexes) is the first production-ready indexing algorithm we implemented in Weaviate. It is a robust and fast algorithm that builds a hierarchical representation of the index **in memory** that could be quickly traversed to find the k nearest neighbors of a query vector.
 
 ## Need for disk solutions
 There are other challenges to overcome. Databases have grown so fast that even the above-described algorithms will not be enough. We no longer talk about thousands of vectors but **hundred of millions** or **even billions**! Keeping all the vectors in memory and adding a graph representation of vector connections **requires a lot of RAM**. This sparked the emergence of a new set of algorithms that allow vectors to reside on disk instead of in memory whilst retaining high performance.
