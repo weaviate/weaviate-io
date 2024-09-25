@@ -9,7 +9,7 @@ function getClient(){
   const client: WeaviateClient = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-})
+});
 
   return client;
 }
