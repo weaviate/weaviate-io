@@ -259,7 +259,9 @@ For further details on model parameters, see the [Voyage AI Embedding API docume
 
 ### Available models
 
-- `voyage-large-2` (default)
+- `voyage-3` (default)
+- `voyage-3-lite` 
+- `voyage-large-2` 
 - `voyage-code-2`
 - `voyage-2`
 - `voyage-law-2`
