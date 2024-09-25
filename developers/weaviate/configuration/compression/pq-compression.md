@@ -367,7 +367,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
   </TabItem>
 </Tabs>
 
-## Multiple vectors
+## Multiple vectors (named vectors)
 
 import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 

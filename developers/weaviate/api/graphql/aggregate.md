@@ -44,7 +44,6 @@ Each data type has its own set of available aggregated properties. The following
 | Integer | `count`, `type`, `minimum`, `maximum`, `mean`, `median`, `mode`, `sum` |
 | Boolean | `count`, `type`, `totalTrue`, `totalFalse`, `percentageTrue`, `percentageFalse` |
 | Date | `count`, `type`, `minimum`, `maximum`, `mean`, `median`, `mode` |
-| UUID | `count`, `type`, `topOccurrences` |
 
 
 <details>

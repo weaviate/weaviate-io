@@ -83,7 +83,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
   </TabItem>
 </Tabs>
 
-## Multiple vectors
+## Multiple vectors (named vectors)
 
 import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 
