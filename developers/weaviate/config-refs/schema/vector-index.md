@@ -294,7 +294,7 @@ The `vectorQueueLength` field will show the number of remaining objects to be in
 ```
 </details>
 
-## Multiple vectors
+## Multiple vectors (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
