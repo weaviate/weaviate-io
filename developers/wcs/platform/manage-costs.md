@@ -57,6 +57,14 @@ To use the calculator, enter the number of objects in your collection and the di
 
 Multi-tenant applications often have active and inactive tenants. Inactive tenants continue to use system resources. If you are an enterprise customer, it is possible to offload inactive tenants to low-cost, Amazon S3 storage. For pricing and configuration details, [contact support](mailto:support@weaviate.io).
 
+## High availability
+
+Production systems have stringent uptime and resiliency requirements. [High availability (HA)](/developers/weaviate/concepts/replication-architecture/motivation#high-availability-redundancy) clusters help you meet these requirements.
+
+In Weaviate Cloud highly available clusters are three times as expensive as standalone clusters. The extra cost is due to replication. HA clusters use more resources so they cost correspondingly more.
+
+To lower the cost of an HA cluster, choose an appropriate index for your workload and enable compression. An HA system with compression enabled is about 1/3 the price of a similar standalone system that doesn't use compression.
+
 ## Support
 
 import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
