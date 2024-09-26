@@ -1,15 +1,11 @@
 ---
 title: Text Embeddings
 sidebar_position: 20
-# image: og/docs/integrations/provider_integrations_openai.jpg
+image: og/docs/integrations/provider_integrations_kubeai.jpg
 # tags: ['model providers', 'openai', 'embeddings']
 ---
 
 # KubeAI Embeddings with Weaviate
-
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,17 +15,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with OpenAI's APIs allows you to access KubeAI models' directly from Weaviate.
+Weaviate's integration with OpenAI-style APIs allows you to access KubeAI models' directly from Weaviate.
 
-[KubeAI](https://github.com/substratusai/kubeai) provides private OpenAI compatible API endpoint for OSS or custom LLMs for embeddings.
-
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an OpenAI embedding model, and Weaviate will generate embeddings for various operations using the specified model. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a KubeAI embedding model, and Weaviate will generate embeddings for various operations using the specified model. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_kubeai_embedding.png)
 
 ## Requirements
+
+### KubeAI configuration
+
+KubeAI must be deployed in a Kubernetes cluster with an embedding model. For more specific instructions, see this [KubeAI deployment guide](https://www.kubeai.org/tutorials/weaviate/#kubeai-configuration).
 
 ### Weaviate configuration
 
@@ -52,11 +50,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. However, KubeAI ignores the OpenAI API key. So you can provide any value for the API key.
+The OpenAI integration requires an API key value. To use KubeAI, provide any value for the API key, as this value is not used by KubeAI.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the following environment variable `export OPENAI_APIKEY=thisIsIgnored`.
+- Set the `OPENAI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -83,38 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an KubeAI embedding model by setting the vectorizer as follows:
-
-You need to specify a model name for it work with KubeAI. No default model is
-configured.
-
-KubeAI comes with a `nomic-embed-text-cpu` model that can be used for text embeddings.
-You can enable the model by setting `enabled: true` in the `kubeai-values.yaml` file.
-Note that the model name is `text-embedding-ada-002`.
-
-Create a file named `kubeai-values.yaml` with the following content:
-```yaml
-models:
-  catalog:
-    text-embedding-ada-002:
-      enabled: true
-      minReplicas: 1
-      features: ["TextEmbedding"]
-      owner: nomic
-      url: "ollama://nomic-embed-text"
-      engine: OLlama
-      resourceProfile: cpu:1
-```
-
-Afterwards apply the new configuration to the KubeAI Helm chart:
-```bash
-helm repo add kubeai https://www.kubeai.org
-helm repo update
-helm upgrade --install kubeai kubeai/kubeai \
-    -f ./kubeai-values.yaml --reuse-values
-```
-
-Now you should be able to configure the vectorizer with the model name `text-embedding-ada-002`.
+Set the vectorizer to configure Weaviate to use a KubeAI embedding model.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -171,7 +138,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified KubeAI model.
 
-![Embedding integration at search illustration](../_includes/integration_openai_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_kubeai_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -239,10 +206,8 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 - `model`: The KubeAI model name.
 - `dimensions`: The number of dimensions for the model.
-- `baseURL`: The OpenAI compatible endpoint provided by KubeAI.
-
-In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate
-deployed in a different cluster or namespace.
+- `baseURL`: The OpenAI-style endpoint provided by KubeAI.
+    - In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate deployed in a different cluster or namespace.
 
 ## Further resources
 
@@ -259,7 +224,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- OpenAI [Embed API documentation](https://platform.openai.com/docs/api-reference/embeddings)
+- [KubeAI documentation](https://www.kubeai.org/)
 
 ## Questions and feedback
 

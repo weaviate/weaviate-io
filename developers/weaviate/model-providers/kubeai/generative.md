@@ -1,15 +1,11 @@
 ---
 title: Generative AI
 sidebar_position: 50
-# image: og/docs/integrations/provider_integrations_openai.jpg
+image: og/docs/integrations/provider_integrations_kubeai.jpg
 # tags: ['model providers', 'openai', 'generative', 'rag']
 ---
 
 # KubeAI Generative AI with Weaviate
-
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,18 +15,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integration with KubeAI's OpenAI compatible API allows you to access private models' directly from Weaviate.
+Weaviate's integration with OpenAI-style APIs allows you to access KubeAI models' directly from Weaviate.
 
 [Configure a Weaviate collection](#configure-collection) to use KubeAI, and Weaviate will perform retrieval augmented generation (RAG) using the specified model.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the KubeAI generative model to generate outputs.
 
-<!---
-commenting out until we have images
-![RAG integration illustration](../_includes/integration_openai_rag.png)
---->
+![RAG integration illustration](../_includes/integration_kubeai_rag.png)
 
 ## Requirements
+
+### KubeAI configuration
+
+KubeAI must be deployed in a Kubernetes cluster with an embedding model. For more specific instructions, see this [KubeAI deployment guide](https://www.kubeai.org/tutorials/weaviate/#kubeai-configuration).
 
 ### Weaviate configuration
 
@@ -53,11 +50,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. However, KubeAI ignores the OpenAI API key. So you can provide any value for the API key.
+The OpenAI integration requires an API key value. To use KubeAI, provide any value for the API key, as this value is not used by KubeAI.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the following environment variable `export OPENAI_APIKEY=thisIsIgnored`.
+- Set the `OPENAI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -82,36 +79,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-
 ## Configure collection
-We need to configure the collection to use a Text Generation model from KubeAI.
 
-For example, you can enable Gemma 2B model running on CPU. Create a file named
-`kubeai-values.yaml` with the following content:
-
-```yaml
-models:
-  catalog:
-    gpt-3.5-turbo:
-      enabled: true
-      minReplicas: 1
-      features: ["TextGeneration"]
-      owner: google
-      url: "ollama://gemma2:2b"
-      engine: OLlama
-      resourceProfile: cpu:2
-```
-
-Then, upgrade the KubeAI Helm chart with the new configuration:
-
-```bash
-helm repo add kubeai https://www.kubeai.org
-helm upgrade --install kubeai kubeai/kubeai \
-    -f ./kubeai-values.yaml --reuse-values
-```
-
-
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use the KubeAI OpenAI compatible API and the model you want to use:
+Configure Weaviate to use a KubeAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -134,10 +104,9 @@ helm upgrade --install kubeai kubeai/kubeai \
 
 </Tabs>
 
-There are also other models available in the catalog.
-You also can configure any model that's supported by vLLM or Ollama. Checkout the docs on
-[management of models](https://www.kubeai.org/how-to/manage-models/) for more information.
+Any model that is supported by vLLM or Ollama can be used with KubeAI.
 
+Refer to the [KubeAI docs on model management](https://www.kubeai.org/how-to/manage-models/) for more information on available models and how to configure them.
 
 ## Retrieval augmented generation
 
@@ -145,7 +114,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_openai_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_kubeai_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -177,7 +146,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_openai_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_kubeai_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -217,6 +186,11 @@ Once the integrations are configured at the collection, the data management and 
 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
+
+### External resources
+
+- [KubeAI documentation](https://www.kubeai.org/)
+- [KubeAI documentation on model management](https://www.kubeai.org/how-to/manage-models/)
 
 ## Questions and feedback
 
