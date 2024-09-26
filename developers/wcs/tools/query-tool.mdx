@@ -4,15 +4,9 @@ sidebar_position: 60
 image: og/wcs/user_guides.jpg
 ---
 
-import WCDConsoleButton from '/developers/wcs/img/wcs-console-button.png';
-import WCDConnectedInstances from '/developers/wcs/img/wcs-connected-instances.png';
-import WCDQueryDropdown from '/developers/wcs/img/wcs-query-dropdown.png';
-import WCDInferenceApiKey from '/developers/wcs/img/wcs-console-inference-key.png';
-import WCDManyInferenceApiKeys from '/developers/wcs/img/wcs-console-many-inference-keys.png';
-import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
-import WCDQueryApp from '/developers/wcs/img/wcs-console-example-query.png';
-
 The Weaviate Cloud (WCD) query tool is a browser-based GraphQL IDE. Use the query tool to work interactively with your WCD clusters.
+
+import WCDQueryApp from '/developers/wcs/img/wcs-console-example-query.png';
 
 <center><img src={WCDQueryApp} width="50%" alt="WCD query tool"/></center>
 
@@ -29,12 +23,15 @@ To open the query tool, connect to your WCD [WCD Dashboard](https://console.weav
 
 In the left-hand menu, click the query tool icon.
 
+import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
+
 <center><img src={WCDQueryConsoleLocation} width="25%" alt="WCD query tool location"/></center>
 
 ### Connect to a WCD cluster
 
-
 In this example, the WCD Dashboard is connected to the two WCD instances.
+
+import WCDConnectedInstances from '/developers/wcs/img/wcs-connected-instances.jpg';
 
 <center><img src={WCDConnectedInstances} width="100%" alt="Connected instances"/></center>
 
@@ -56,9 +53,13 @@ To pass API keys for inference modules, use request headers. The `Header` tab is
 
 In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
 
+import WCDInferenceApiKey from '/developers/wcs/img/wcs-console-inference-key.png';
+
 <center><img src={WCDInferenceApiKey} width="100%" alt="How to add an API inference key to a WCD console query"/></center>
 
 The header can pass multiple keys.
+
+import WCDManyInferenceApiKeys from '/developers/wcs/img/wcs-console-many-inference-keys.png';
 
 <center><img src={WCDManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCD console query"/></center>
 
