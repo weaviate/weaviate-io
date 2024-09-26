@@ -16,22 +16,24 @@ The default vector index in Weaviate Cloud is a [Hierarchical Navigable Small Wo
 
 ### Vector index alternatives
 
-Weaviate offers these vector index alternatives:
+Weaviate Cloud costs are based on usage. More expensive resources, like RAM, incur more cost than cheaper resources such as disk or offline storage. Weaviate offers vector index types that can shift resource usage between RAM and disk:
 
 - [HNSW indexes](/developers/weaviate/starter-guides/managing-resources/indexing#hnsw-indexes). HNSW indexes are in-memory indexes that enable fast searching even with very large data sets.
 - [Flat indexes](/developers/weaviate/starter-guides/managing-resources/indexing#flat-indexes). Flat indexes are disk-based indexes that work best with small data sets.
 - [Dynamic indexes](/developers/weaviate/starter-guides/managing-resources/indexing#dynamic-indexes). Dynamic indexes are a configuration option that converts a flat index to an HNSW index at a threshold object count.
 
-Weaviate Cloud costs are based on usage. More expensive resources, like RAM, incur more cost than cheaper resources, like disk or offline storage. If you don't need the precision and [control of an HNSW index](/developers/weaviate/config-refs/schema/vector-index#hnsw-indexes), consider using a flat index to shift resource costs.
+If you don't need the precision and [control of an HNSW index](/developers/weaviate/config-refs/schema/vector-index#hnsw-indexes), consider using a flat index to shift resource costs.
 
-If your application is multi-tenanted, consider [configuring a dynamic index](/developers/weaviate/manage-data/collections#set-vector-index-type) for your tenants. Smaller tenant indexes are flat, and stored on disk. Larger tenants are stored in RAM as HNSW indexes, but the overall cost is lower.
+If might need an HNSW index and your application is multi-tenanted, consider [configuring a dynamic index](/developers/weaviate/manage-data/collections#set-vector-index-type) for your tenants.
+
+When a dynamic index is configured, smaller tenants use flat indexes that are stored on disk. Larger tenants use HNSW indexes that are stored in RAM. Even though some tenants use expensive RAM, the overall costs are lower because some of the tenants are able to use cheaper resources.
 
 ### Inverted indexes
 
 Weaviate uses inverted indexes for filtering and keyword searches. Compared to vector indexes, inverted indexes aren't a major component of Cloud resource costs. However, inverted indexes do use some resources. [Turn off](/developers/weaviate/manage-data/collections#property-level-settings) unused indexes to save disk space.
 
-- If you never search or filter on a property, turn off `invertedFilterable` and `invertedSearchable` indexing.
-- If you only filter on a property occasionally, turn off `invertedFilterable` indexing. The property is still filterable, just less efficiently.
+- If you never search or filter on a property, turn off `invertedFilterable` and `invertedSearchable` indexing. Properties are not searchable if `invertedSearchable` is not enabled.
+- If you only filter on a property occasionally, turn off `invertedFilterable` indexing. Properties are still filterable if `invertedFilterable` is not enabled. The filter is just less efficient.
 
 ## Compression
 
