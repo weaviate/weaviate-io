@@ -9,9 +9,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+[comment]: # ( This section is duplicated, with a link to this page, in: multi-vector-support dot mdx )
 
-<MultiVectorSupport />
+Collections can have multiple named vectors.
+
+The vectors in a collection can have their own configurations. Each vector space can set its own index, its own compression algorithm, and its own vectorizer. This means you can use different vectorization models, and apply different distance metrics, to the same object.
+
+To work with named vectors, adjust your queries to specify a target vector for [vector search](/developers/weaviate/search/similarity#named-vectors) or [hybrid search](/developers/weaviate/search/hybrid#named-vectors) queries.
 
 ## Syntax
 
@@ -20,6 +24,10 @@ Single vector collections are valid and continue to use the original collection 
 ### Collection definition
 
 Use the collection definition to [configure the vector spaces](/developers/weaviate/manage-data/collections#define-multiple-named-vectors) for each data object.
+
+:::info Named vectors must be defined at collection creation
+All named vectors must be defined when you create a collection. Currently, it is not possible to add or remove named vectors from a collection after it has been created.
+:::
 
 ### Query a named vector
 

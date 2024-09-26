@@ -38,7 +38,7 @@ Vectorizer modules, like the `text2vec-*`, `multi2vec-*` or `img2vec-*` modules,
 
 ### Reader & Generator modules
 
-Reader or Generator modules can be used on top of a Vectorizer module. These modules take the set of relevant documents that are retrieved, and performs another operation, such as question answering, or a generative task. An example Reader module is [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, which extracts an answer directly from a document. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document.
+Reader or Generator modules can be used on top of a Vectorizer module. These modules take the set of relevant documents that are retrieved, and performs another operation, such as question answering, or a generative task. An example Reader module is [`qna-transformers`](../modules/qna-transformers.md) module, which extracts an answer directly from a document. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document.
 
 ### Other modules
 
@@ -46,7 +46,7 @@ These include those such as `gcs-backup` or `text-spellcheck`.
 
 ## Dependencies
 
-Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, *exactly one* text vectorization module is required.
+Modules can be dependent on other modules to be present. For example, to use the [`qna-transformers`](../modules/qna-transformers.md) module, *exactly one* text vectorization module is required.
 
 ## Weaviate without modules
 
@@ -54,7 +54,7 @@ Weaviate can also be used without any modules, as pure vector native database an
 
 ## Custom modules
 
-It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/other-modules/custom-modules.md) to see how you can create and use your own modules.
+It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/custom-modules.md) to see how you can create and use your own modules.
 
 ## Further resources
 

@@ -398,6 +398,47 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_mistral(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerMistral
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_mistral(
+            name="title_vector",
+            source_properties=["title"],
+            model="mistral-embed"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerMistral
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOctoAI
 from weaviate.classes.config import Configure
 
@@ -472,6 +513,26 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicVectorizerOpenAI
+
+# START BasicVectorizerDatabricks
+from weaviate.classes.config import Configure
+
+databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")  # If saved as an environment variable
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_databricks(
+            endpoint=databricks_vectorizer_endpoint,  # Required for Databricks
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerDatabricks
 
 # clean up
 client.collections.delete("DemoCollection")

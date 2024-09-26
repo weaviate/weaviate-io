@@ -167,7 +167,7 @@ Specify a `vectorizer` for a collection.
 
 Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).
 
-- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
+- [Available model integrations](../model-providers/index.md)
 - [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
 
 </details>
@@ -604,6 +604,48 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
   </TabItem>
 </Tabs>
 
+## Specify a reranker
+
+Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retrieved results](../search/rerank.md).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetReranker"
+      endMarker="# END SetReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetReranker"
+      endMarker="# END SetReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Specify a generative module
 
 Specify a `generative` module for a collection (for RAG).
@@ -611,7 +653,7 @@ Specify a `generative` module for a collection (for RAG).
 <details>
   <summary>Additional information</summary>
 
-- [Available generative modules](../modules/reader-generator-modules/index.md)
+- [Available generative model integrations](../model-providers/index.md)
 
 </details>
 
@@ -1242,7 +1284,7 @@ import CodeSchemaShardsGet from '/_includes/code/howto/manage-data.shards.inspec
 
 ## Update shard status
 
-You can manually a shard to `READY` from `READONLY`, for example after disk pressure has been lowered.
+You can manually update a shard to change it's status. For example, update the shard status from `READONLY` to `READY` after you make other changes.
 
 import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.update.mdx';
 

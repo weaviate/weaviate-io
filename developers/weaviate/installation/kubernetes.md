@@ -42,6 +42,7 @@ Add the Weaviate helm repo that contains the Weaviate helm chart.
 
 ```bash
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
+helm repo update
 ```
 
 Get the default `values.yaml` configuration file from the Weaviate helm chart:

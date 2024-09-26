@@ -113,6 +113,7 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
+                  // Last updated to 1.26.4
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
                 hideModels: true,
@@ -264,13 +265,13 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-            announcementBar: {
-                id: 'announcement-bar-may2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/update-126">Product Update Webinar</a> | Learn about new capabilities for cost optimization, performance, and developer efficiency`,
+            /**  announcementBar: {
+               id: 'announcement-bar-sept-2024',
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-sea">AI [in Prod] Seattle – Sept 19th</a> | Request a ticket to join expert tech talks and hands-on generative AI training!`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            },
+            }, **/
             docs: {
                 sidebar: {
                     hideable: true,

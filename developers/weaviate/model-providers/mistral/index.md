@@ -5,15 +5,23 @@ image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 Mistral offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Mistral's APIs, allowing users to leverage Mistral's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
 ## Integrations with Mistral
+
+### Embedding models for semantic search
+
+![Embedding integration illustration](../_includes/integration_mistral_embedding.png)
+
+Mistral's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+
+[Weaviate integrates with Mistral's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
+
+[Mistral embedding integration page](./embeddings.md)
 
 ### Generative AI models for RAG
 
@@ -37,6 +45,7 @@ You must provide a valid Mistral API key to Weaviate for these integrations. Go 
 
 Then, go to the relevant integration page to learn how to configure Weaviate with the Mistral models and start using them in your applications.
 
+- [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
 ## Other third party integrations

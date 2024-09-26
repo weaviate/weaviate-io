@@ -5,9 +5,11 @@ image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-<BetaPageNote />
+:::info Looking for Azure OpenAI integration docs?
+For Azure OpenAI integration docs, see [this page instead](../openai-azure/index.md).
+:::
 
 OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database.
 

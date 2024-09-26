@@ -66,7 +66,7 @@ But Embedded Weaviate is not the only way to make testing easier. In the followi
 ## Scoping tests
 
 While you may be familiar with tests and integration tests in general, here are some specific suggestions for Weaviate-powered applications:
-* **Whether to test search quality**: This depends primarily on the model used for vectorization, such as by a [Weaviate vectorizer module](/developers/weaviate/modules/retriever-vectorizer-modules). We suggest evaluating models separately, but not tested as a part of the application.
+* **Whether to test search quality**: This depends primarily on the model used for vectorization, such as by a [Weaviate vectorizer module](/developers/weaviate/model-providers). We suggest evaluating models separately, but not tested as a part of the application.
 * **Focus on interactions with the inference provider**: Search itself is a core Weaviate functionality that we can trust. So, we suggest any integration tests focus on the interaction with the inference provider. For example,
   * is the vectorization model the expected one?
   * if switching to a different inference provider or model, does the application still function as expected?
@@ -143,7 +143,7 @@ Now, let's walk through some examples of how you might construct integration tes
 
 As a simple example, let's create a class and then test that it was created correctly.
 
-We'll create a class for question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai)).
+We'll create a class for question & answer objects from the game show *Jeopardy!*, by specifying its name and the vectorizer ([`text2vec-openai`](/developers/weaviate/model-providers/openai/embeddings)).
 
 Here, the integration test will consist of checking that the class was created with the expected default OpenAI vectorization model type, [`ada`](https://platform.openai.com/docs/guides/embeddings/embedding-models).
 

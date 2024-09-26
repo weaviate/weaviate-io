@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 # Locally Hosted CLIP Embeddings + Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -47,7 +44,7 @@ This integration is not available for Weaviate Cloud (WCD) serverless instances,
 
 #### Configure the integration
 
-To use this integration, you must configure the container image of the CLIP model, and the inference endpoint of the containerized model.
+To use this integration, configure the container image of the CLIP model and the inference endpoint of the containerized model.
 
 The following example shows how to configure the CLIP integration in Weaviate:
 
@@ -135,7 +132,7 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a CLIP embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -158,9 +155,11 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 </Tabs>
 
-:::note Model selection via container image used
-Model selection in this integration is done by selecting the appropriate [container image in the integration](#configure-the-integration).
+:::note Chose a container image to select a model
+To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 
@@ -334,6 +333,8 @@ Lists of pre-built Docker images for this integration are below.
 | ViT-B-32-quickgelu-laion400m_e32 | `cr.weaviate.io/semitechnologies/multi2vec-clip:ViT-B-32-quickgelu-laion400m_e32` | The base model uses a ViT-B/32 Transformer architecture as an image encoder trained with LAION-400M dataset using OpenCLIP. |
 | xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k | `cr.weaviate.io/semitechnologies/multi2vec-clip:xlm-roberta-base-ViT-B-32-laion5b_s13b_b90k` | Uses ViT-B/32 xlm roberta base model trained with the LAION-5B dataset using OpenCLIP. |
 
+We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [multi2vec-clip](https://hub.docker.com/r/semitechnologies/multi2vec-clip/tags) container.
+
 ## Advanced configuration
 
 ### Run a separate inference container
@@ -353,6 +354,11 @@ docker run -itp "8000:8080" semitechnologies/multi2vec-clip:sentence-transformer
 Then, set `CLIP_INFERENCE_API="http://localhost:8000"`. If Weaviate is part of the same Docker network, as a part of the same `docker-compose.yml` file, you can use the Docker networking/DNS, such as `CLIP_INFERENCE_API=http://multi2vec-clip:8080`.
 
 ## Further resources
+
+### Other integrations
+
+- [Transformers text embedding models + Weaviate](./embeddings.md).
+- [Transformers reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 

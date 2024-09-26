@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-generative_test.go';
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -23,12 +24,7 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 
 ### Configure generative search
 
-1. Configure Weaviate to use a generator module. For details, see the module reference page:
-
-   - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
-   - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
-   - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
-
+1. Configure Weaviate to enable a [generative model integration](../model-providers/index.md).
  2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
  3. Query your database to retrieve one or more objects.
  4. Use the query results to generate a new result.
@@ -135,6 +131,15 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START SingleGenerativeProperties"
+      endMarker="// END SingleGenerativeProperties"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -197,6 +202,15 @@ Grouped task search returns one response that includes all of the query results.
       startMarker="// GroupedGenerative TS"
       endMarker="// END GroupedGenerative TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GroupedGenerative"
+      endMarker="// END GroupedGenerative"
+      language="gonew"
     />
   </TabItem>
 
@@ -268,6 +282,15 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GroupedGenerativeProperties"
+      endMarker="// END GroupedGenerativeProperties"
+      language="gonew"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -295,9 +318,7 @@ The output is like this:
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
-- [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
-- [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [Model provider integrations](../model-providers/index.md).
 - [API References: GraphQL: Get](../api/graphql/get.md)
 
 ## Questions and feedback

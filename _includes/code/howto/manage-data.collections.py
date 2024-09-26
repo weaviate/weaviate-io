@@ -246,6 +246,33 @@ client.collections.delete("Article")
 
 
 # ===============================================
+# ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+# START SetReranker
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    reranker_config=Configure.Reranker.cohere()
+    # highlight-end
+)
+# END SetReranker
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.reranker_config.reranker == "reranker-cohere"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
@@ -398,6 +425,36 @@ client.collections.create(
 collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.vector_index_config.distance_metric.value == "cosine"
+
+client.close()
+
+# =======================
+# ===== REPLICATION =====
+# =======================
+
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# clean slate
+client.collections.delete("Article")
+# START ReplicationSettings
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+    )
+    # highlight-end
+)
+# END ReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.replication_config.factor == 3
 
 client.close()
 
@@ -670,7 +727,7 @@ articles = client.collections.get("Article")
 
 # highlight-start
 article_shards = articles.config.update_shards(
-    status="READONLY",
+    status="READY",
     shard_names=shard_names  # The names (List[str]) of the shard to update (or a shard name)
 )
 # highlight-end

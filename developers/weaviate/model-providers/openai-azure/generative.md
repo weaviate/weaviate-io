@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_openai_azure.jpg
 
 # Azure OpenAI Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -81,9 +78,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OpenAI generative AI model as follows:
+Configure Weaviate to use an OpenAI Azure generative model.
 
-Select the model to be used by specifying the Azure resource name.
+To select the model, specify the Azure resource name.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -105,6 +102,10 @@ Select the model to be used by specifying the Azure resource name.
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 

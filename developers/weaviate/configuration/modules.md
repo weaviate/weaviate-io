@@ -80,10 +80,10 @@ Refer to the individual [module documentation](../modules/index.md) for more det
 
 ## Vectorizer modules
 
-The [vectorization modules](../modules/retriever-vectorizer-modules/index.md) enable Weaviate to vectorize data at import, and to perform [`near<Media>`](../search/similarity.md#an-input-medium) searches such as `nearText` or `nearImage`.
+The [vectorization integration](../model-providers/index.md) enable Weaviate to vectorize data at import, and to perform [`near<Media>`](../search/similarity.md#an-input-medium) searches such as `nearText` or `nearImage`.
 
-:::info List of available vectorizer (`xxx2vec-xxx`) modules
-Can be found [in this section](../modules/retriever-vectorizer-modules/index.md).
+:::info List of available vectorizer integrations
+Can be found [in this section](../model-providers/index.md).
 :::
 
 ### Enable vectorizer modules
@@ -112,13 +112,9 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-huggingface
 ```
 
-## Generative modules
+## Generative model integrations
 
-The [generative modules](../modules/reader-generator-modules/index.md) enable [generative search](../search/generative.md) functions.
-
-:::info List of available generative (`generative-xxx`) modules
-Can be found [in this section](../modules/reader-generator-modules/index.md).
-:::
+The [generative model integrations](../model-providers/index.md) enable [generative search](../search/generative.md) functions.
 
 ### Enable a generative module
 
@@ -143,7 +139,7 @@ See the [dedicated page on tenant offloading](./tenant-offloading.md) for more i
 
 ## Custom modules
 
-See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
+See [here](../modules/custom-modules.md) how you can create and use your own modules.
 
 ## Related pages
 - [Concepts: Modules](../concepts/modules.md)

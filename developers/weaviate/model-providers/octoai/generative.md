@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 
 # OctoAI Generative AI with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 :::info Added in `v1.25.0`
 :::
@@ -84,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OctoAI generative AI model as follows:
+Configure Weaviate to use an OctoAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -106,6 +103,10 @@ Provide the API key to Weaviate using one of the following methods:
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+
+<ConfigAfterGen/>
 
 ### Select a model
 

@@ -19,7 +19,7 @@ In this blog post, I will introduce you to the six pillars outlining how Weaviat
 
 ### Ingestion and Search Pipelines
 ![Ingestion and Search Pipelines](./img/search-pipeline.png)
-Weaviate’s strong and growing module ecosystem gives you plenty of flexibility. Whether you use Weaviate as a pure vector search engine or with the addition of vectorizer, reader, and generator modules, you can always configure it to your liking. In early 2023 we even saw the addition of the [`generative-openai`](/developers/weaviate/modules/reader-generator-modules/generative-openai) module (with other generative modules to come).
+Weaviate’s strong and growing module ecosystem gives you plenty of flexibility. Whether you use Weaviate as a pure vector search engine or with the addition of vectorizer, reader, and generator modules, you can always configure it to your liking. In early 2023 we even saw the addition of the [`generative-openai`](/developers/weaviate/model-providers/openai/generative) module (with other generative modules to come).
 
 We want to give you even more flexibility in combining these steps this year. You can control arbitrary querying steps through the [proposed Pipe API](https://github.com/weaviate/weaviate/issues/2560), such as reading, re-ranking, summarizing, generating, and others. Similarly, we want to give you more flexibility during ingestion time: how about [extracting PDFs](https://github.com/weaviate/weaviate/issues/2509) or applying [stemming](https://github.com/weaviate/weaviate/issues/2439) to your BM25 and hybrid search?
 
@@ -53,7 +53,7 @@ This is why we will offer you not just one but two memory-saving options to inde
 ### Improving our Client and Module Ecosystem
 ![client modules](./img/client-modules.png)
 
-So far, we have only discussed features related to Weaviate Core, the server in your setup. But the Weaviate experience is more than that. Modules allow you to integrate seamlessly with various embedding providers, and our language clients make Weaviate accessible right from your application. This year, we will further improve both. This includes [improved APIs](https://github.com/weaviate/weaviate-python-client/issues/205) on the client side, new modules, for example, for [generative search](/developers/weaviate/modules/reader-generator-modules/generative-openai), and improvements to our existing modules.
+So far, we have only discussed features related to Weaviate Core, the server in your setup. But the Weaviate experience is more than that. Modules allow you to integrate seamlessly with various embedding providers, and our language clients make Weaviate accessible right from your application. This year, we will further improve both. This includes [improved APIs](https://github.com/weaviate/weaviate-python-client/issues/205) on the client side, new modules, for example, for [generative search](/developers/weaviate/model-providers/openai/generative), and improvements to our existing modules.
 
 <br></br>
 

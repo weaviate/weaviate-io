@@ -137,18 +137,10 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 <details>
   <summary>Answer</summary>
 
-> Yes, a UUID will be created if not specified.
+> Yes, Weaviate creates a UUID if one is not specified.
 
 </details>
 
-#### Q: Can I use Weaviate to create a traditional knowledge graph?
-
-<details>
-  <summary>Answer</summary>
-
-> Yes, you can! Weaviate support ontology, RDF-like definitions in its schema, and it runs out of the box. It is scalable, and the GraphQL API will allow you to query through your knowledge graph easily. But now you are here. We like to suggest you really try its semantic features. After all, you are creating a _knowledge_ graph 😉.
-
-</details>
 
 #### Q: Why does Weaviate have a schema and not an ontology?
 
@@ -175,7 +167,7 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 <details>
   <summary>Answer</summary>
 
-> Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
+> Sometimes, users work with custom terminology, which often comes in the form of abbreviations or jargon. You can find more information on how to use the endpoint [here](/developers/weaviate/modules/text2vec-contextionary.md#extending-the-contextionary-v1modulestext2vec-contextionaryextensions)
 
 </details>
 
@@ -306,7 +298,7 @@ If you need a higher search quality for a given limit you can consider the follo
 <details>
   <summary>Answer</summary>
 
-> [Yes!](/developers/weaviate/modules/other-modules/custom-modules.md)
+> [Yes!](/developers/weaviate/modules/custom-modules.md)
 
 </details>
 
@@ -315,7 +307,7 @@ If you need a higher search quality for a given limit you can consider the follo
 <details>
   <summary>Answer</summary>
 
-> Not at the moment. You can currently use the [available contextionaries](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed.
+> Not at the moment. You can currently use the [available contextionaries](/developers/weaviate/modules/text2vec-contextionary.md) in a variety of languages and use the transfer learning feature to add custom concepts if needed.
 
 </details>
 

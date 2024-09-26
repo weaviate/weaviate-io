@@ -6,7 +6,7 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 import weaviate, { WeaviateClient, vectorIndex } from 'weaviate-client';
-import { vectorizer, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
+import { vectorizer, reranker, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL,
@@ -433,6 +433,32 @@ assert.equal(
   ],
   false
 );
+
+// Delete the class to recreate it
+await client.collections.delete(collectionName)
+
+
+// ===============================================
+// ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
+// ===============================================
+
+// START SetReranker
+// import { vectorizer, reranker } from 'weaviate-client';
+
+// END SetReranker
+
+// START SetReranker
+await client.collections.create({
+  name: 'Article',
+  vectorizers: vectorizer.text2VecOpenAI(),
+  // highlight-start
+  reranker: reranker.cohere(),
+  // highlight-end
+})
+// END SetReranker
+
+// Test
+Object.keys(result['moduleConfig']).includes('reranker-cohere');
 
 // Delete the class to recreate it
 await client.collections.delete(collectionName)

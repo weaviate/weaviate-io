@@ -25,6 +25,18 @@ aws_secret_key = os.getenv("AWS_SECRET_KEY")
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
+# START DatabricksInstantiation
+# Recommended: save sensitive data as environment variables
+databricks_token = os.getenv("DATABRICKS_TOKEN")
+# END DatabricksInstantiation
+# START FriendliInstantiation
+# Recommended: save sensitive data as environment variables
+friendli_key = os.getenv("FRIENDLI_TOKEN")
+# END FriendliInstantiation
+# START FriendliDedicatedInstantiation
+# Recommended: save sensitive data as environment variables
+friendli_key = os.getenv("FRIENDLI_TOKEN")
+# END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
 # Recommended: save sensitive data as environment variables
 vertex_key = os.getenv("VERTEX_APIKEY")
@@ -65,6 +77,7 @@ voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # highlight-start
 headers = {
 # END-ANY
+
 # START AnthropicInstantiation
     "X-Anthropic-Api-Key": anthropic_key,
     "X-Anthropic-Baseurl": "https://api.anthropic.com",  # Optional; for providing a custom base URL
@@ -79,6 +92,16 @@ headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
+# START DatabricksInstantiation
+    "X-Databricks-Token": databricks_token,
+# END DatabricksInstantiation
+# START FriendliInstantiation
+    "X-Friendli-Api-Key": friendli_key,
+# END FriendliInstantiation
+# START FriendliDedicatedInstantiation
+    "X-Friendli-Api-Key": friendli_key,
+    "X-Friendli-Baseurl": "https://inference.friendli.ai/dedicated",
+# END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
     "X-Google-Vertex-Api-Key": vertex_key,
 # START GoogleInstantiation  # END GoogleVertexInstantiation
@@ -105,6 +128,7 @@ headers = {
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation
+
 # START-ANY
 }
 # highlight-end

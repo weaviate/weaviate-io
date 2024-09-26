@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate/entities/models"
-	"github.com/weaviate/weaviate/entities/vectorindex/hnsw"
+	"github.com/weaviate/weaviate/entities/vectorindex/common"
 	"weaviate.io/docs/docs/helper"
 )
 
@@ -94,7 +94,7 @@ func Test_ManageDataClasses(t *testing.T) {
 		originalClass := &models.Class{
 			Class: className,
 			VectorIndexConfig: map[string]interface{}{
-				"distance": hnsw.DistanceCosine, // Note the distance metric
+				"distance": common.DistanceCosine, // Note the distance metric
 			},
 		}
 
@@ -112,7 +112,7 @@ func Test_ManageDataClasses(t *testing.T) {
 		updatedClass := &models.Class{
 			Class: className,
 			VectorIndexConfig: map[string]interface{}{
-				"distance": hnsw.DistanceDot, // Note the distance metric
+				"distance": common.DistanceDot, // Note the distance metric
 			},
 		}
 

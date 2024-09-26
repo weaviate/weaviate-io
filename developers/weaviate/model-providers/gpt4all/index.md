@@ -5,9 +5,7 @@ image: og/docs/integrations/provider_integrations_gpt4all.jpg
 # tags: ['model providers', 'gpt4all']
 ---
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
+<!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 The GPT4All library allows you to easily run a wide range of models on your own device. Weaviate seamlessly integrates with the GPT4All library, allowing users to leverage compatible models directly within the Weaviate database.
 

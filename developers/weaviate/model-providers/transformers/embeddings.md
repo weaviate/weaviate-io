@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 # Locally Hosted Transformers Text Embeddings + Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -47,7 +44,7 @@ This integration is not available for Weaviate Cloud (WCD) serverless instances,
 
 #### Configure the integration
 
-To use this integration, you must configure the container image of the Hugging Face Transformers model, and the inference endpoint of the containerized model.
+To use this integration, configure the container image of the Hugging Face Transformers model and the inference endpoint of the containerized model.
 
 The following example shows how to configure the Hugging Face Transformers integration in Weaviate:
 
@@ -137,7 +134,7 @@ As this integration runs a local container with the Transformers model, no addit
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use the Transformer inference container by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use the Transformer inference container:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -160,9 +157,11 @@ As this integration runs a local container with the Transformers model, no addit
 
 </Tabs>
 
-:::note Model selection via container image used
-Model selection in this integration is done by selecting the appropriate [container image in the integration](#configure-the-integration).
+:::note Chose a container image to select a model
+To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
+
+For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 ## Data import
 
@@ -407,6 +406,8 @@ They are indicated by the `-onnx` suffix in the image name.
 </TabItem>
 </Tabs>
 
+We add new model support over time. For a complete list of available models, see the Docker Hub tags for the [transformers-inference](https://hub.docker.com/r/semitechnologies/transformers-inference/tags) container.
+
 ## Advanced configuration
 
 ### Run a separate inference container
@@ -426,6 +427,11 @@ docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-tra
 Then, set `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. If Weaviate is part of the same Docker network, as a part of the same `docker-compose.yml` file, you can use the Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
 ## Further resources
+
+### Other integrations
+
+- [Transformers multi-modal embedding models + Weaviate](./embeddings-multimodal.md).
+- [Transformers reranker models + Weaviate](./reranker.md).
 
 ### Chunking
 

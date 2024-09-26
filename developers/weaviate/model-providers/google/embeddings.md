@@ -7,9 +7,6 @@ image: og/docs/integrations/provider_integrations_google.jpg
 
 # Google AI Text Embeddings with Weaviate
 
-import BetaPageNote from '../_includes/beta_pages.md';
-
-<BetaPageNote />
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -116,11 +113,9 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Google AI embedding model by setting the vectorizer as follows:
+Set the vectorizer to configure Weaviate to use a Google AI embedding model:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
-
-The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 
@@ -169,6 +164,10 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
   </TabItem>
 
 </Tabs>
+
+import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
+
+<ConfigAfterEmb/>
 
 ## Data import
 

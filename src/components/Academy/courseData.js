@@ -14,7 +14,7 @@ export const courseData = {
       "How to create a Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
     ],
     learningOutcomes: [
-      "Create a instance of Weaviate for you to use",
+      "Create an instance of Weaviate for you to use",
       "Produce, store and index semantic (vector) data from source text",
       "Perform semantic, keyword and hybrid searches",
       "Use AI (large language models) to augment and transform retrieved data",
@@ -154,6 +154,27 @@ export const courseData = {
     ],
     note: "Python client (v4)"
   },
+  "setup_weaviate_typescript": {
+    title: "Set up TypeScript (or Javascript) for Weaviate",
+    courseId: "TS_100",
+    body: "A quick run through of how to set up and install the Weaviate TypeScript client.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/set_up_typescript",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "setup_weaviate_typescript"
+    ],
+    learningGoals: [
+      "Setup Weaviate to get started building TypeScript (or JavaScript) apps."
+    ],
+    learningOutcomes: [
+      "Install Node.js",
+      "(Optionally) Install and set up TypeScript",
+      "Install the Weaviate client",
+    ],
+    note: "TS clients"
+  },
   "multi-tenancy": {
     title: "Multi-tenancy",
     courseId: "PY_280",
@@ -181,26 +202,25 @@ export const courseData = {
     ],
     note: "Python client (v4)"
   },
-  "intro_weaviate_typescript": {
-    title: "Intro to Weaviate with TypeScript (or JavaScript)",
-    courseId: "TS_100",
-    body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
+  "starter_text_data_typescript": {
+    title: "Text data with Weaviate",
+    courseId: "TS_101T",
+    body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/js/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/js/starter_text_data",
     badgeType: "course",
     isCourse: true,
     units: [
-      "intro_weaviate_typescript"
+      "text_setup_weaviate_ts", "text_collections_ts", "text_searches_ts", "text_rag_ts"
     ],
     learningGoals: [
-      "The basics of Weaviate, and how to integrate it to a TypeScript app."
+      "How to create a Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
     ],
     learningOutcomes: [
-      "Create a cloud (WCD) instance fo Weaviate.",
-      "Gain an understanding of what a vector database is.",
-      "Define a schema (collection definition) and import data.",
-      "Perform queries on your data.",
-      "Integrate Weaviate into your TypeScript/JavaScript app.",
+      "Create an instance of Weaviate for you to use",
+      "Produce, store and index semantic (vector) data from source text",
+      "Perform semantic, keyword and hybrid searches",
+      "Use AI (large language models) to augment and transform retrieved data",
     ],
     note: "TS clients; project-based"
   },

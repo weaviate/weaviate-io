@@ -14,7 +14,7 @@ As their name suggest, Weaviate modules are options components to enhance Weavia
 
 ## Vectorizers & Rerankers
 
-Vectorizers and rerankers are used for vector search, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
+Vectorizers and rerankers are used for vector search, which goes both for vectorizing the data objects and the queries. For example, if you enable an embedding model integration, semantic searches (`nearText`) become available. It will automatically vectorize your query and match it against the vectors stored in the index.
 
 You can set up the vectorization per class as follows:
 

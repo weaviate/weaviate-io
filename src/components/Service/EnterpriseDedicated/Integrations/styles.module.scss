@@ -200,6 +200,15 @@
   @media screen and (max-width: 500px) {
     width: 100%;
   }
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 2.25rem */
+  }
 }
 
 .iconText {

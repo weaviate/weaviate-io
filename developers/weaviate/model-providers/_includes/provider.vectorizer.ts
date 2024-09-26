@@ -173,6 +173,33 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerDatabricks
+const databricksVectorizerEndpoint = process.env.DATABRICKS_VECTORIZER_ENDPOINT || '';  // If saved as an environment variable
+
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecDatabricks({
+      endpoint: databricksVectorizerEndpoint,  // Required for Databricks
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    })
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerDatabricks
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerGoogleVertex
 await client.collections.create({
   name: 'DemoCollection',
@@ -473,6 +500,20 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerMistral
+// TS support & code example coming soon
+// END BasicVectorizerMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerMistral
+// TS support & code example coming soon
+// END FullVectorizerMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerOctoAI
 // Code example coming soon
 // END BasicVectorizerOctoAI
@@ -650,7 +691,7 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         resourceName: '<azure-resource-name>',
-        deploymentID: '<azure-deployment-id>',
+        deploymentId: '<azure-deployment-id>',
       },
     ),
   ],
@@ -677,7 +718,7 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         resourceName: '<azure-resource-name>',
-        deploymentID: '<azure-deployment-id>',
+        deploymentId: '<azure-deployment-id>',
         // // Further options
         // baseURL: '<custom_azure_url>'
       },

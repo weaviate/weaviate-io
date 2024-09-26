@@ -1,5 +1,5 @@
 ---
-title: References - API
+title: Reference - API
 sidebar_position: 0
 image: og/docs/api.jpg
 # tags: ['schema']

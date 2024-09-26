@@ -9,20 +9,20 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **UPDATES TO TERMS & POLICIES**
 
-**Last Updated: 29th August, 2024**
+**Last Updated: September, 2024**
 <br></br>
 
 
+1. **_September 2024_ - Document: Weaviate Cloud Agreement**
+   1. New section: 8.3. Newsletter Consent
 
 
-
-1. **Document**
-   1. Weaviate Customer Agreement US & Non-US
-      1. New. Section 1.4
-      2.  New. Exhibit A
-      3.  Update. Chapter 10: Definition
-           1.  New term “Technical Services”
-           2.  Updated term “Weaviate Offering”
+2. **_August 2024_ - Document: Weaviate Customer Agreement US & Non-US**
+   1. New. Section 1.4
+   2.  New. Exhibit A
+   3.  Update. Chapter 10: Definition
+        1.  New term “Technical Services”
+        2.  Updated term “Weaviate Offering”
 
 
 
