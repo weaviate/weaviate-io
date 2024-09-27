@@ -259,13 +259,15 @@ For further details on model parameters, see the [Voyage AI Embedding API docume
 
 ### Available models
 
-- `voyage-3` (default)
-- `voyage-3-lite` 
-- `voyage-large-2` 
-- `voyage-code-2`
-- `voyage-2`
-- `voyage-law-2`
-- `voyage-large-2-instruct`
+| Model name | Available in Weaviate | Default in Weaviate |
+| ---------- | ------------------------------ | ---------------------------- |
+| `voyage-3` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` |
+| `voyage-3-lite` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` | |
+| `voyage-large-2` | `v1.24.2+` | `<=v1.24.24`, `<=v1.25.17`, `<=v1.26.4` |
+| `voyage-code-2` | `v1.24.2+` | |
+| `voyage-2` | `v1.24.2+` | |
+| `voyage-law-2` | `v1.24.9+` | |
+| `voyage-large-2-instruct` | `v1.24.9+` | |
 
 ## Further resources
 
