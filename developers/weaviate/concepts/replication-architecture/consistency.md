@@ -126,6 +126,18 @@ Depending on the desired tradeoff between consistency and speed, below are three
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
 
+### Tenant states and data objects
+
+Each tenant in a multi-tenant collection has a configurable [tenant state](../../starter-guides/managing-resources/tenant-states.mdx), which determines the availability and location of the tenant's data. The tenant state can be set to `active`, `inactive`, or `offloaded`.
+
+An `active` tenant's data should be available for queries and updates, while `inactive` or `offloaded` tenants are not.
+
+However, there can be a delay between the time a tenant state is set, and when the tenant's data reflects the (declarative) tenant state. This delay is due to the tenant state information being eventually consistent in the cluster.
+
+As a result, a tenant's data may be available for queries and updates for a period of time even if the tenant state is set to `inactive` or `offloaded`. Conversely, a tenant's data may not be available for queries and updates for a period of time even if the tenant state is set to `active`.
+
+<!-- Q for Loic: Is there something a user could to to trigger read repairs or such to speed up the process? -->
+
 ## Repairs
 
 import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
