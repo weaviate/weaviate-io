@@ -1,5 +1,5 @@
 ---
-title: MODEL PROVIDER INTEGRATIONS
+title: Model Provider Integrations
 sidebar_position: 0
 image: og/docs/modules/_title.jpg
 # tags: ['modules']
