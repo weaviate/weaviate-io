@@ -259,15 +259,33 @@ For further details on model parameters, see the [Voyage AI Embedding API docume
 
 ### Available models
 
-| Model name | Available in Weaviate | Default in Weaviate |
-| ---------- | ------------------------------ | ---------------------------- |
-| `voyage-3` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` |
-| `voyage-3-lite` | `v1.24.25+`, `v1.25.18+`, `v1.26.5+` | |
-| `voyage-large-2` | `v1.24.2+` | `<=v1.24.24`, `<=v1.25.17`, `<=v1.26.4` |
-| `voyage-code-2` | `v1.24.2+` | |
-| `voyage-2` | `v1.24.2+` | |
-| `voyage-law-2` | `v1.24.9+` | |
-| `voyage-large-2-instruct` | `v1.24.9+` | |
+- voyage-3 (default)
+- voyage-3-lite
+- voyage-large-2 (default up to `v1.24.24`, `v1.25.17`, `v1.26.4`)
+- voyage-code-2
+- voyage-2
+- voyage-law-2
+- voyage-large-2-instruct
+- voyage-finance-2
+- voyage-multilingual-2
+
+<details>
+  <summary>
+    Model support history
+  </summary>
+
+- `v1.24.25`, `v1.25.18`, `v1.26.5`:
+    - Added `voyage-3`, `voyage-3-lite`
+    - Default model changed to `voyage-3` from `voyage-large-2`
+- `v1.24.14`, `v1.25.1`:
+    - Added `voyage-large-2-instruct`
+    - Removed `voyage-lite-02-instruct`
+- `v1.24.9`:
+    - Added `voyage-law-2`, `voyage-lite-02-instruct`
+- `v1.24.2`:
+    - Introduced `text2vec-voyage`, with `voyage-large-2`, `voyage-code-2`, `voyage-2` support
+
+</details>
 
 ## Further resources
 
