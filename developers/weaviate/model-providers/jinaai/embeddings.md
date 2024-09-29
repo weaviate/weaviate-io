@@ -101,6 +101,31 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
+### Vectorizer parameters
+
+The following examples show how to configure Jina AI-specific options.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerJinaAI"
+      endMarker="# END FullVectorizerJinaAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerJinaAI"
+      endMarker="// END FullVectorizerJinaAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ### Select a model
 
 You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration example.
@@ -234,31 +259,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Jina AI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerJinaAI"
-      endMarker="# END FullVectorizerJinaAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerJinaAI"
-      endMarker="// END FullVectorizerJinaAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

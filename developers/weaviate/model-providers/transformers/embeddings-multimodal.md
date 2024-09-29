@@ -168,6 +168,37 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+#### Inference URL parameters
+
+Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
+
+If no parameters are specified, the default inference URL from the Weaviate configuration is used.
+
+Specify `inferenceUrl` for a single inference container.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerCLIP"
+      endMarker="# END FullMMVectorizerCLIP"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerCLIP"
+      endMarker="// END FullMMVectorizerCLIP"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
@@ -295,37 +326,6 @@ The query below returns the `n` most similar objects to the input image from the
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-#### Inference URL parameters
-
-Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
-
-If no parameters are specified, the default inference URL from the Weaviate configuration is used.
-
-Specify `inferenceUrl` for a single inference container.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerCLIP"
-      endMarker="# END FullMMVectorizerCLIP"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerCLIP"
-      endMarker="// END FullMMVectorizerCLIP"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

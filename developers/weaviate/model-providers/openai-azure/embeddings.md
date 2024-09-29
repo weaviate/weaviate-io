@@ -112,6 +112,37 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+The following examples show how to configure Azure OpenAI-specific options.
+
+- `resource_name` (Required): The name of the Azure OpenAI resource to use.
+- `deployment_id` (Required): The deployment ID of the Azure OpenAI resource.
+- `base_url` (Optional): The base URL of the Azure OpenAI API.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerAzureOpenAI"
+      endMarker="# END FullVectorizerAzureOpenAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerAzureOpenAI"
+      endMarker="// END FullVectorizerAzureOpenAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -209,37 +240,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Azure OpenAI-specific options.
-
-- `resource_name` (Required): The name of the Azure OpenAI resource to use.
-- `deployment_id` (Required): The deployment ID of the Azure OpenAI resource.
-- `base_url` (Optional): The base URL of the Azure OpenAI API.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerAzureOpenAI"
-      endMarker="# END FullVectorizerAzureOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerAzureOpenAI"
-      endMarker="// END FullVectorizerAzureOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ### Available models
 

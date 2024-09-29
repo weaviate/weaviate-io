@@ -169,6 +169,47 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+- `model`: The OpenAI model name or family.
+- `dimensions`: The number of dimensions for the model.
+- `modelVersion`: The version string for the model.
+- `type`: The model type, either `text` or `code`.
+- `baseURL`: The URL to use (e.g. a proxy) instead of the default OpenAI URL.
+
+#### (`model` & `dimensions`) or (`model` & `modelVersion`)
+
+For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
+
+For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
+
+#### Example configuration
+
+The following examples show how to configure OpenAI-specific options.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerOpenAI"
+      endMarker="# END FullVectorizerOpenAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerOpenAI"
+      endMarker="// END FullVectorizerOpenAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -266,47 +307,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-- `model`: The OpenAI model name or family.
-- `dimensions`: The number of dimensions for the model.
-- `modelVersion`: The version string for the model.
-- `type`: The model type, either `text` or `code`.
-- `baseURL`: The URL to use (e.g. a proxy) instead of the default OpenAI URL.
-
-#### (`model` & `dimensions`) or (`model` & `modelVersion`)
-
-For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
-
-For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
-
-#### Example configuration
-
-The following examples show how to configure OpenAI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerOpenAI"
-      endMarker="# END FullVectorizerOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerOpenAI"
-      endMarker="// END FullVectorizerOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
 
 ### Available models
 

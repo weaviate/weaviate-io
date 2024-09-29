@@ -113,6 +113,13 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+- `model`: The KubeAI model name.
+- `dimensions`: The number of dimensions for the model.
+- `baseURL`: The OpenAI-style endpoint provided by KubeAI.
+    - In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate deployed in a different cluster or namespace.
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -210,13 +217,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-- `model`: The KubeAI model name.
-- `dimensions`: The number of dimensions for the model.
-- `baseURL`: The OpenAI-style endpoint provided by KubeAI.
-    - In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate deployed in a different cluster or namespace.
 
 ## Further resources
 

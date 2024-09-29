@@ -112,6 +112,24 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+The following examples show how to configure Hugging Face-specific options.
+
+#### Model selection parameters
+
+Only select one of the following parameters to specify the model:
+
+- `model`,
+- `passageModel` and `queryModel`, or
+- `endpointURL`
+
+:::note Differences between `model`, `passageModel`/`queryModel` and `endpointURL`
+The `passageModel` and `queryModel` parameters are used together to specify a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage and query model.
+
+The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
+:::
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -209,24 +227,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Hugging Face-specific options.
-
-#### Model selection parameters
-
-Only select one of the following parameters to specify the model:
-
-- `model`,
-- `passageModel` and `queryModel`, or
-- `endpointURL`
-
-:::note Differences between `model`, `passageModel`/`queryModel` and `endpointURL`
-The `passageModel` and `queryModel` parameters are used together to specify a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage and query model.
-
-The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
-:::
 
 #### Other Parameters
 

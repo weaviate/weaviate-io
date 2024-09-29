@@ -163,6 +163,31 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerBind"
+      endMarker="# END FullMMVectorizerBind"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerBind"
+      endMarker="// END FullMMVectorizerBind"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
@@ -292,31 +317,6 @@ The query below returns the `n` most similar objects to the input image from the
 You can perform similar searches for other media types such as audio, video, thermal, IMU, and depth, by using an equivalent search query for the respective media type.
 
 ## References
-
-### Vectorizer parameters
-
-The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerBind"
-      endMarker="# END FullMMVectorizerBind"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerBind"
-      endMarker="// END FullMMVectorizerBind"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

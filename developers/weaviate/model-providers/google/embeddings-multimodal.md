@@ -147,6 +147,37 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+The following examples show how to configure Google AI-specific options.
+
+- `location` (Required): e.g. `"us-central1"`
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
+- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
+- `modelId` (Optional): e.g. `multimodalembedding@001`
+- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerGoogle"
+      endMarker="# END FullMMVectorizerGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerGoogle"
+      endMarker="// END FullMMVectorizerGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
@@ -274,37 +305,6 @@ The query below returns the `n` most similar objects to the input image from the
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Google AI-specific options.
-
-- `location` (Required): e.g. `"us-central1"`
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `multimodalembedding@001`
-- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerGoogle"
-      endMarker="# END FullMMVectorizerGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerGoogle"
-      endMarker="// END FullMMVectorizerGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

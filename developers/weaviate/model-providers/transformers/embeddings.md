@@ -170,6 +170,46 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
+### Vectorizer parameters
+
+The following examples show how to configure Transformers-specific options.
+
+#### Inference URL parameters
+
+Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
+
+If no parameters are specified, the default inference URL from the Weaviate configuration is used.
+
+Specify `inferenceUrl` for a single inference container.
+
+Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) model.
+
+#### Additional parameters
+
+- `poolingStrategy` – the pooling strategy to use when the input exceeds the model's context window.
+  - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerTransformers"
+      endMarker="# END FullVectorizerTransformers"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerTransformers"
+      endMarker="// END FullVectorizerTransformers"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
@@ -267,46 +307,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Transformers-specific options.
-
-#### Inference URL parameters
-
-Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
-
-If no parameters are specified, the default inference URL from the Weaviate configuration is used.
-
-Specify `inferenceUrl` for a single inference container.
-
-Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) model.
-
-#### Additional parameters
-
-- `poolingStrategy` – the pooling strategy to use when the input exceeds the model's context window.
-  - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerTransformers"
-      endMarker="# END FullVectorizerTransformers"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerTransformers"
-      endMarker="// END FullVectorizerTransformers"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 
