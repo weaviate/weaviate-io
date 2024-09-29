@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Hugging Face embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Hugging Face embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -102,8 +102,6 @@ Set the vectorizer to configure Weaviate to use a Hugging Face embedding model:
 </Tabs>
 
 You must specify one of the [available models](#available-models) for the vectorizer to use.
-
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 

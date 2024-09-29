@@ -132,7 +132,7 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a CLIP embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a CLIP embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -158,8 +158,6 @@ Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 :::note Chose a container image to select a model
 To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
-
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 

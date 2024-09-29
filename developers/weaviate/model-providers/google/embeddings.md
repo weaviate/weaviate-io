@@ -113,7 +113,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google AI embedding model:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 

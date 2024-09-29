@@ -129,7 +129,7 @@ As this integration runs a local container with the ImageBind model, no addition
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an ImageBind embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -153,8 +153,6 @@ Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
 </Tabs>
 
 There is only one ImageBind model available.
-
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 

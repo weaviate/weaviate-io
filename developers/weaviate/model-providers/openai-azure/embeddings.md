@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an Azure OpenAI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an Azure OpenAI embedding model:
 
 To select the model, specify the Azure resource name.
 

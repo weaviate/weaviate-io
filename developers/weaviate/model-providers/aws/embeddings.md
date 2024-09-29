@@ -90,7 +90,7 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an AWS embedding model.
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an AWS embedding model.
 
 The required parameters for the Bedrock and the SageMaker models are different.
 
@@ -143,8 +143,6 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
   </TabItem>
 
 </Tabs>
-
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
