@@ -68,11 +68,12 @@ Provide the Dataricks token to Weaviate using one of the following methods:
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START DatabricksInstantiation"
+      endMarker="// END DatabricksInstantiation"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -92,11 +93,12 @@ Provide the Dataricks token to Weaviate using one of the following methods:
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicVectorizerDatabricks"
+      endMarker="// END BasicVectorizerDatabricks"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -119,13 +121,13 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="ts"
+    />
   </TabItem>
-
 </Tabs>
 
 :::tip Re-use existing vectors
@@ -156,11 +158,12 @@ The query below returns the `n` most similar objects from the database, set by `
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -187,13 +190,13 @@ The query below returns the `n` best scoring objects from the database, set by `
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="ts"
+    />
   </TabItem>
-
 </Tabs>
 
 ## References

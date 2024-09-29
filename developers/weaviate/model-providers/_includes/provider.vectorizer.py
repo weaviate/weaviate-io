@@ -517,15 +517,16 @@ client.collections.create(
 # START BasicVectorizerDatabricks
 from weaviate.classes.config import Configure
 
-databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")
+databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")  # If saved as an environment variable
+
 client.collections.create(
     "DemoCollection",
     # highlight-start
     vectorizer_config=[
         Configure.NamedVectors.text2vec_databricks(
+            endpoint=databricks_vectorizer_endpoint,  # Required for Databricks
             name="title_vector",
             source_properties=["title"],
-            endpoint = databricks_vectorizer_endpoint,
         )
     ],
     # highlight-end
@@ -608,6 +609,30 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+
+# START FullVectorizerKubeAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            model="text-embedding-ada-002",
+            base_url="http://kubeai/openai",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerKubeAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 
 # START BasicVectorizerAzureOpenAI
 from weaviate.classes.config import Configure

@@ -604,6 +604,48 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
   </TabItem>
 </Tabs>
 
+## Specify a reranker
+
+Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retrieved results](../search/rerank.md).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetReranker"
+      endMarker="# END SetReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetReranker"
+      endMarker="# END SetReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetReranker"
+      endMarker="// END SetReranker"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Specify a generative module
 
 Specify a `generative` module for a collection (for RAG).

@@ -41,7 +41,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
 ```
 
-## Multiple vectors
+## Multiple vectors (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 

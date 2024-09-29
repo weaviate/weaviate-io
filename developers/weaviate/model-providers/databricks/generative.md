@@ -67,11 +67,12 @@ Provide the Dataricks token to Weaviate using one of the following methods:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START DatabricksInstantiation"
+      endMarker="// END DatabricksInstantiation"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -91,13 +92,13 @@ Provide the Dataricks token to Weaviate using one of the following methods:
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicGenerativeDatabricks"
+      endMarker="// END BasicGenerativeDatabricks"
+      language="ts"
+    />
   </TabItem>
-
 </Tabs>
 
 This will configure Weaviate to use the generative AI model served through the endpoint you specify.
@@ -127,11 +128,12 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
     />
   </TabItem>
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SinglePromptExample"
+      endMarker="// END SinglePromptExample"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -146,8 +148,8 @@ In other words, when you have `n` search results, the generative model generates
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
-  <FilteredTextBlock
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
       text={PyCode}
       startMarker="# START GroupedTaskExample"
       endMarker="# END GroupedTaskExample"
@@ -156,11 +158,12 @@ In other words, when you have `n` search results, the generative model generates
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GroupedTaskExample"
+      endMarker="// END GroupedTaskExample"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>
@@ -182,11 +185,12 @@ Configure the following generative parameters to customize the model behavior.
   </TabItem>
 
   <TabItem value="js" label="JS/TS API v3">
-
-```ts
-// Typescript client support coming soon
-```
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeDatabricks"
+      endMarker="// END FullGenerativeDatabricks"
+      language="ts"
+    />
   </TabItem>
 
 </Tabs>

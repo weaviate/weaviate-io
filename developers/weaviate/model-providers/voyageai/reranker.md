@@ -101,8 +101,9 @@ Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 
 </Tabs>
 
-You can specify one of the [available models](#available-models) for the reranker to use. Currently, `rerank-lite-1` is the only available model.
-<!-- The [default model](#available-models) is used if no model is specified. -->
+You can specify one of the [available models](#available-models) for the reranker to use.
+
+The [default model](#available-models) is used if no model is specified.
 
 ## Reranking query
 
@@ -140,7 +141,24 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
-- `rerank-lite-1`
+- rerank-2
+- rerank-2-lite
+- rerank-1
+- rerank-lite-1 (default)
+
+<details>
+  <summary>
+    Model support history
+  </summary>
+
+- `v1.24.25`, `v1.25.18`, `v1.26.5`:
+    - Added `rerank-2`, `rerank-2-lite`
+- `v1.24.18`, `v1.25.3`:
+    - Added `rerank-1`
+- `1.24.7`:
+    - Introduced `reranker-voyageai`, with `rerank-lite-1` support
+
+</details>
 
 ## Further resources
 

@@ -327,6 +327,36 @@ assert result["invertedIndexConfig"]["bm25"]["k1"] == 1.25
 client.schema.delete_class(class_name)
 
 # ===============================================
+# ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START SetReranker
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "reranker-cohere": {}  # set your reranker module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetReranker
+
+# Test
+result = client.schema.get(class_name)
+assert "reranker-cohere" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
