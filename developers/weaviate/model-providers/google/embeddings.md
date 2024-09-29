@@ -117,7 +117,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 

@@ -158,7 +158,7 @@ For older models such as `text-embedding-ada-002`, provide the model name (`ada`
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
