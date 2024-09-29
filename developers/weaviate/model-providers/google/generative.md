@@ -115,9 +115,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Google AI generative AI model as follows:
+
 Note that the required parameters differ between Vertex AI and AI Studio.
 
-Configure Weaviate to use Google AI generative AI model:
+The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 
@@ -166,10 +168,6 @@ Vertex AI users must provide the Google Cloud project ID in the collection confi
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
-
-<ConfigAfterGen/>
 
 ## Retrieval augmented generation
 

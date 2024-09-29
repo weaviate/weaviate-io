@@ -100,13 +100,11 @@ As this integration connects to a local Ollama container, no additional credenti
 
 </Tabs>
 
+The [default model](#available-models) is used if no model is specified.
+
 import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/api-endpoint.mdx';
 
 <APIEndpoint/>
-
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
-
-<ConfigAfterEmb/>
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 

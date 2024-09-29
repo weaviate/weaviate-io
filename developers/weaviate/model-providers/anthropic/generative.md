@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure Weaviate to use the Anthropic generative model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an Anthropic generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -100,10 +100,6 @@ Configure Weaviate to use the Anthropic generative model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
-
-<ConfigAfterGen/>
 
 ### Select a model
 

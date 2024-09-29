@@ -103,10 +103,6 @@ To select the model, specify the Azure resource name.
 
 </Tabs>
 
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
-
-<ConfigAfterEmb/>
-
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 <details>
