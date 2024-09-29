@@ -128,6 +128,33 @@ You can specify one of the [available models](#available-models) for Weaviate to
 
 </Tabs>
 
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeAnyscale"
+      endMarker="# END FullGenerativeAnyscale"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeAnyscale"
+      endMarker="// END FullGenerativeAnyscale"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -195,33 +222,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAnyscale"
-      endMarker="# END FullGenerativeAnyscale"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAnyscale"
-      endMarker="// END FullGenerativeAnyscale"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
 
 ### Available models
 

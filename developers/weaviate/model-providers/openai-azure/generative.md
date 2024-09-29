@@ -103,6 +103,33 @@ To select the model, specify the Azure resource name.
 
 </Tabs>
 
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeAzureOpenAI"
+      endMarker="# END FullGenerativeAzureOpenAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeAzureOpenAI"
+      endMarker="// END FullGenerativeAzureOpenAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -170,33 +197,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAzureOpenAI"
-      endMarker="# END FullGenerativeAzureOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAzureOpenAI"
-      endMarker="// END FullGenerativeAzureOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ### Available models
 

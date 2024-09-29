@@ -104,6 +104,33 @@ Provide the Friendli token to Weaviate using one of the following methods:
 
 </Tabs>
 
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeFriendliAI"
+      endMarker="# END FullGenerativeFriendliAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeFriendliAI"
+      endMarker="// END FullGenerativeFriendliAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [FriendliAI API documentation](https://docs.friendli.ai/openapi/create-chat-completions).
+
 ### Select a model
 
 You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
@@ -198,34 +225,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeFriendliAI"
-      endMarker="# END FullGenerativeFriendliAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeFriendliAI"
-      endMarker="// END FullGenerativeFriendliAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [FriendliAI API documentation](https://docs.friendli.ai/openapi/create-chat-completions).
 
 ### Available models
 

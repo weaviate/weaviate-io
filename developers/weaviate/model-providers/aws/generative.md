@@ -144,6 +144,10 @@ For SageMaker, you must provide the endpoint address in the generative AI config
 
 You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
+### Generative parameters
+
+For further details on model parameters, see the [relevant AWS documentation](#further-resources).
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -211,10 +215,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 
 ### Available models
 

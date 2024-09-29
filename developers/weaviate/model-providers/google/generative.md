@@ -169,6 +169,31 @@ Vertex AI users must provide the Google Cloud project ID in the collection confi
 
 </Tabs>
 
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeGoogle"
+      endMarker="# END FullGenerativeGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeGoogle"
+      endMarker="// END FullGenerativeGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -236,31 +261,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeGoogle"
-      endMarker="# END FullGenerativeGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeGoogle"
-      endMarker="// END FullGenerativeGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 
