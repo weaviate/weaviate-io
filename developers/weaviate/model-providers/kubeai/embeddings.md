@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a KubeAI embedding model.
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a KubeAI embedding model.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,6 +103,22 @@ Set the vectorizer to configure Weaviate to use a KubeAI embedding model.
   </TabItem>
 
 </Tabs>
+
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+- `model`: The KubeAI model name.
+- `dimensions`: The number of dimensions for the model.
+- `baseURL`: The OpenAI-style endpoint provided by KubeAI.
+    - In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate deployed in a different cluster or namespace.
 
 ## Data import
 
@@ -201,13 +217,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-- `model`: The KubeAI model name.
-- `dimensions`: The number of dimensions for the model.
-- `baseURL`: The OpenAI-style endpoint provided by KubeAI.
-    - In most cases the `baseURL` is `http://kubeai/openai`. Unless you have Weaviate deployed in a different cluster or namespace.
 
 ## Further resources
 

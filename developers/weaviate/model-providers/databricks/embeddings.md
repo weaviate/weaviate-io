@@ -105,6 +105,13 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
 This will configure Weaviate to use the vectorizer served through the endpoint you specify.
 
+### Vectorizer parameters
+
+- `endpoint`: The URL of the embedding model hosted on Databricks.
+- `instruction`:An optional instruction to pass to the embedding model.
+
+For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#embedding-request).
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using [the specified model](#vectorizer-parameters).
@@ -200,13 +207,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-- `endpoint`: The URL of the embedding model hosted on Databricks.
-- `instruction`:An optional instruction to pass to the embedding model.
-
-For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#embedding-request).
 
 ## Further resources
 

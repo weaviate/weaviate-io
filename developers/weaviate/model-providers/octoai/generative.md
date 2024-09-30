@@ -81,7 +81,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure Weaviate to use an OctoAI generative AI model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an OctoAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,10 +103,6 @@ Configure Weaviate to use an OctoAI generative AI model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
-
-<ConfigAfterGen/>
 
 ### Select a model
 
@@ -133,7 +129,34 @@ You can specify one of the [available models](#available-models) for Weaviate to
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeOctoAI"
+      endMarker="# END FullGenerativeOctoAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeOctoAI"
+      endMarker="// END FullGenerativeOctoAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
 
 ## Retrieval augmented generation
 
@@ -202,35 +225,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-<!-- Zain: Any parameters discuss here? Pls see e.g. Cohere/OpenAI page for comparison -->
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeOctoAI"
-      endMarker="# END FullGenerativeOctoAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeOctoAI"
-      endMarker="// END FullGenerativeOctoAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
 
 ### Available models
 
