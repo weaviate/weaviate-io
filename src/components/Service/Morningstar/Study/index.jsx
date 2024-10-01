@@ -54,7 +54,7 @@ export default function Study() {
                 Docker container and start experimenting.
               </li>
               <li>
-                <strong>Data privacy and security:</strong>Flexible deployment
+                <strong>Data privacy and security:</strong> Flexible deployment
                 options and multi-tenant architecture allowed for strict data
                 privacy and security compliance.
               </li>
@@ -65,7 +65,7 @@ export default function Study() {
               </li>
 
               <li>
-                <strong>Support:</strong>Weaviate offered great support from
+                <strong>Support:</strong> Weaviate offered great support from
                 local development all the way to production. 
               </li>
             </ul>
