@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Confluent Cloud",
+    "image": "/img/site/confluent-logo-partners.svg",
+    "link": "/developers/integrations/data-platforms/confluent-cloud",
+    "description": "Confluent Cloud is a fully managed Apache Kafka service that offers real-time data streaming, seamless integration across major cloud providers, high performance, and robust security features.",
+    "tags": [
+      "popular",
+      "trending",
+      "integration",
+      "develop apps",
+      "analytics",
+      "model data"
+    ]
+  },
+  {
+    "name": "Amazon",
+    "image": "/img/site/aws-logo-partners.svg",
+    "link": "/developers/integrations/cloud-hyperscalers/aws",
+    "description": "AWS supports model provider integrations through SageMaker and Bedrock.",
+    "tags": ["integration", "trending", "HyperScalers"]
+  },
+  {
+    "name": "Google",
+    "image": "/img/site/gcp-icon-partners.svg",
+    "link": "/developers/integrations/cloud-hyperscalers/aws",
+    "description": "AWS supports model provider integrations through SageMaker and Bedrock.",
+    "tags": ["integration", "trending", "HyperScalers"]
+  },
+  {
+    "name": "Aryn",
+    "image": "/img/site/aryn-logo-partners.svg",
+    "link": "/developers/integrations/data-platforms/aryn",
+    "description": "Aryn is an AI powered ETL system for language model applications and vector databases.",
+    "tags": ["integration", "trending", "ETL"]
+  }
+]
