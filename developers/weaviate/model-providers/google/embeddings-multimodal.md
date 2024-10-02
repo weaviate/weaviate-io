@@ -111,7 +111,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -138,7 +138,45 @@ You can [specify](#vectorizer-parameters) one of the [available models](#availab
 
 <!-- The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified. -->
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Google AI-specific options.
+
+- `location` (Required): e.g. `"us-central1"`
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
+- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
+- `modelId` (Optional): e.g. `multimodalembedding@001`
+- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerGoogle"
+      endMarker="# END FullMMVectorizerGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerGoogle"
+      endMarker="// END FullMMVectorizerGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -267,37 +305,6 @@ The query below returns the `n` most similar objects to the input image from the
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Google AI-specific options.
-
-- `location` (Required): e.g. `"us-central1"`
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `multimodalembedding@001`
-- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerGoogle"
-      endMarker="# END FullMMVectorizerGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerGoogle"
-      endMarker="// END FullMMVectorizerGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

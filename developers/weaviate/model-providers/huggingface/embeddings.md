@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Hugging Face embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Hugging Face embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,7 +103,32 @@ Set the vectorizer to configure Weaviate to use a Hugging Face embedding model:
 
 You must specify one of the [available models](#available-models) for the vectorizer to use.
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Hugging Face-specific options.
+
+#### Model selection parameters
+
+Only select one of the following parameters to specify the model:
+
+- `model`,
+- `passageModel` and `queryModel`, or
+- `endpointURL`
+
+:::note Differences between `model`, `passageModel`/`queryModel` and `endpointURL`
+The `passageModel` and `queryModel` parameters are used together to specify a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage and query model.
+
+The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
+:::
 
 ## Data import
 
@@ -202,24 +227,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Hugging Face-specific options.
-
-#### Model selection parameters
-
-Only select one of the following parameters to specify the model:
-
-- `model`,
-- `passageModel` and `queryModel`, or
-- `endpointURL`
-
-:::note Differences between `model`, `passageModel`/`queryModel` and `endpointURL`
-The `passageModel` and `queryModel` parameters are used together to specify a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage and query model.
-
-The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
-:::
 
 #### Other Parameters
 
