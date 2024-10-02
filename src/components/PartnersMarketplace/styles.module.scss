@@ -1,3 +1,22 @@
+.cardsFilterContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.sideFilter {
+  width: 250px;
+  border-right: 1px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.filterOption {
+  margin-bottom: 1rem;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -9,6 +28,12 @@
   border-radius: 8px;
   padding: 1rem;
   width: 300px;
+  background-color: #ffffff;
+
+  p {
+    font-size: 1rem;
+    height: 200px;
+  }
 }
 
 .cardImage {
@@ -33,9 +58,25 @@
 }
 
 .searchInput {
-  margin-bottom: 1rem;
+  width: 80%;
+  margin: 1rem 0rem;
   padding: 0.5rem;
-  width: 100%;
+
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+}
+
+.cardLink {
+  color: rgb(97, 189, 115);
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 157.33%;
+  text-decoration-line: underline;
 }

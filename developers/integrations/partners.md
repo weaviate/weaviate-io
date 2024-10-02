@@ -8,7 +8,7 @@ Weaviate's integration ecosystem enables developers to build various application
 
 All the notebooks and code examples are on [Weaviate Recipes](https://github.com/weaviate/recipes)!
 
-import CardsFilter from '/src/components/PartnersMarketplace/CardsFilter.jsx'
+import CardsFilter from '/src/components/PartnersMarketplace/DocVersion/CardsFilter.jsx'
 
 <CardsFilter />
 
