@@ -77,7 +77,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an Mistral embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an Mistral embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -99,10 +99,6 @@ Set the vectorizer to configure Weaviate to use an Mistral embedding model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
-
-<ConfigAfterEmb/>
 
 ### Select a model
 
@@ -130,6 +126,15 @@ You can specify one of the [available models](#available-models) for the vectori
 </Tabs>
 
 The [default model](#available-models) is used if no model is specified.
+
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
 
 ## Data import
 

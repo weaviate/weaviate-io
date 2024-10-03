@@ -132,7 +132,7 @@ As this integration runs a local container with the CLIP model, no additional cr
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a CLIP embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a CLIP embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -159,7 +159,45 @@ Set the vectorizer to configure Weaviate to use a CLIP embedding model:
 To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+#### Inference URL parameters
+
+Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
+
+If no parameters are specified, the default inference URL from the Weaviate configuration is used.
+
+Specify `inferenceUrl` for a single inference container.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerCLIP"
+      endMarker="# END FullMMVectorizerCLIP"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerCLIP"
+      endMarker="// END FullMMVectorizerCLIP"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -288,37 +326,6 @@ The query below returns the `n` most similar objects to the input image from the
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-#### Inference URL parameters
-
-Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
-
-If no parameters are specified, the default inference URL from the Weaviate configuration is used.
-
-Specify `inferenceUrl` for a single inference container.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerCLIP"
-      endMarker="# END FullMMVectorizerCLIP"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerCLIP"
-      endMarker="// END FullMMVectorizerCLIP"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

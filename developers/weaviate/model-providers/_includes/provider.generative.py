@@ -274,7 +274,7 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.friendliai(
-        model = "meta-llama-3.1-70b-instruct",
+        model="meta-llama-3.1-70b-instruct",
     )
     # highlight-end
     # Additional parameters not shown
@@ -291,10 +291,10 @@ client.collections.create(
     "DemoCollection",
     generative_config=Configure.Generative.friendliai(
         # # These parameters are optional
-        model = "meta-llama-3.1-70b-instruct",
-        max_tokens = 500,
-        temperature = 0.7,
-        base_url = "https://inference.friendli.ai"
+        model="meta-llama-3.1-70b-instruct",
+        max_tokens=500,
+        temperature=0.7,
+        base_url="https://inference.friendli.ai"
     )
 )
 # END FullGenerativeFriendliAI

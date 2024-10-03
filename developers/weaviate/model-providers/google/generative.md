@@ -115,9 +115,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Google AI generative AI model as follows:
+
 Note that the required parameters differ between Vertex AI and AI Studio.
 
-Configure Weaviate to use Google AI generative AI model:
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 
@@ -167,9 +169,30 @@ Vertex AI users must provide the Google Cloud project ID in the collection confi
 
 </Tabs>
 
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+### Generative parameters
 
-<ConfigAfterGen/>
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeGoogle"
+      endMarker="# END FullGenerativeGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeGoogle"
+      endMarker="// END FullGenerativeGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Retrieval augmented generation
 
@@ -238,31 +261,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeGoogle"
-      endMarker="# END FullGenerativeGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeGoogle"
-      endMarker="// END FullGenerativeGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

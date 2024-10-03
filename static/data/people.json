@@ -76,6 +76,12 @@
     "team": "applied-research"
   },
   {
+    "name": "Augustas Skaburskas",
+    "title": "Full Stack Engineer",
+    "photo": "augustas.jpg",
+    "team": "weaviate-labs"
+  },
+  {
     "name": "Benjamin Sabrin",
     "title": "Head of Sales",
     "photo": "benjamin.jpg",
@@ -188,6 +194,14 @@
     "team": "wcd"
   },
   {
+    "name": "Darwin Corn (they/them)",
+    "title": "Client-Focused SRE",
+    "photo": "darwin.jpg",
+    "linkedin": "darwincorn",
+    "twitter": "ndc@pnw.zone",
+    "team": "delivery"
+  },
+  {
     "name": "Deepti Naidu",
     "title": "Partner Solution Engineer",
     "photo": "deepti.jpg",
@@ -200,6 +214,12 @@
     "photo": "dirk.png",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
+    "team": "database"
+  },
+  {
+    "name": "Dmytro Solovei",
+    "title": "Software Engineer",
+    "photo": "dmytro.jpg",
     "team": "database"
   },
   {
@@ -459,6 +479,13 @@
     "team": "database"
   },
   {
+    "name": "Nenad Malić",
+    "title": "Product Marketing Manager",
+    "photo": "nenad.jpg",
+    "team": "marketing",
+    "linkedin": "nenadmalic"
+  },
+  {
     "name": "Nick Olivetti",
     "title": "Enterprise Account Executive",
     "photo": "nick.png",
@@ -620,13 +647,6 @@
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
-  },
-  {
-    "name": "Zain Hasan",
-    "title": "Senior Developer Advocate",
-    "photo": "zain.png",
-    "linkedin": "zainhas",
-    "team": "developer-relations"
   },
   {
     "name": "Chrétien Minke",
