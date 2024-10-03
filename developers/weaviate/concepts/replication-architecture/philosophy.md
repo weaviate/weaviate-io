@@ -15,9 +15,9 @@ The architecture that guides the principles for Weaviate’s replication systems
 * Weaviate is sometimes used alongside strongly consistent, transactional databases if transactional data exists in a use case. In cases where Weaviate is used as the primary database, data is typically not transactional.
 * Weaviate’s users have a lot of experience working with cloud-native technologies, including NoSQL databases, and know how an application needs to be structured to deal with eventually consistent systems correctly.
 
-Based on the above usage patterns, and keeping the [CAP theorem](./index.md#cap-theorem) trade-offs in mind, Weaviate implements two different architectures for schema and data replication.
+Based on the above usage patterns, and keeping the [CAP theorem](./index.md#cap-theorem) trade-offs in mind, Weaviate implements two different architectures for cluster metadata and data replication.
 
-1. **Schema replication** is based on the [Raft consensus algorithm](https://raft.github.io/), which provides strong consistency. This means that schema changes are consistent across the cluster, even in the event of (a minority of) node failures. Schema operations are considered critical, so Weaviate has a strongly consistent schema.
+1. **Cluster metadata replication** is based on the [Raft consensus algorithm](https://raft.github.io/), which provides log-based consistency operations coordinated by an elected leader. This means that cluster metadata changes can be made even in the event of (a minority of) node failures.
 
 2. **Data replication** is based on a leaderless design with tunable consistency. This means there is no central leader or primary node that will replicate to follower nodes. Weaviate’s data replication architecture **prefers availability over consistency**. Nevertheless, individual requests might have stricter consistency requirements than others. For those cases, Weaviate offers both [tunable read and write consistency](./consistency.md).
 

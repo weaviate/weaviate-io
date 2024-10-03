@@ -227,7 +227,7 @@ Deleting a tenant deletes the associated shard. As a result, deleting a tenant a
 - `OFFLOADED` status added in `v1.26`
 :::
 
-Tenants can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
+Tenants have an activity status (also called a tenant state) that reflects their availability and storage location. A tenant can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
 
 - `ACTIVE` tenants are loaded and available for read and write operations.
 - In all other states, the tenant is not available for read or write access. Access attempts return an error message.

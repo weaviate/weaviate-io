@@ -8,7 +8,7 @@ image: og/docs/concepts.jpg
 
 This page describes how the nodes or clusters in Weaviate's replication design behave.
 
-In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
+In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the Raft consensus algorithm. For data replication, Weaviate uses a leaderless design with eventual consistency.
 
 ## Node Discovery
 
@@ -48,7 +48,7 @@ To use this feature, set `RAFT_ENABLE_FQDN_RESOLVER` to `true`.
 :::info Added in `v1.25`
 :::
 
-Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for metadata replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft). Metadata in this context includes collection configuration and data schema.
+Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for metadata replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft). Metadata in this context includes collection definition and shard/tenant states.
 
 Raft ensures that metadata changes are consistent across the cluster. A metadata change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
 
