@@ -47,6 +47,10 @@ There are three tenant states: `Active`, `Inactive` and `Offloaded`.
 | Inactive         | **No**         | Warm         | Warm           | Warm        | Fast             |Tenant is locally stored but not available for use |
 | Offloaded        | **No**         | Cold         | Cold           | Cold        | Slow             |Tenant is stored in cloud storage and not available for use |
 
+:::tip Tenant state and consistency
+Tenant states are eventually consistent. [Read more](/developers/weaviate/concepts/replication-architecture/consistency#tenant-states-and-data-objects)
+:::
+
 ### Active
 
 An `Active` tenant is available for queries and CRUD operations. Depending on the [vector index type](/developers/weaviate/starter-guides/managing-resources#vector-index-types) it uses either **hot** or **warm** resources.

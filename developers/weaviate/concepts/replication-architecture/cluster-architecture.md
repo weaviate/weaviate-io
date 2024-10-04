@@ -8,20 +8,20 @@ image: og/docs/concepts.jpg
 
 This page describes how the nodes or clusters in Weaviate's replication design behave.
 
-In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
+In Weaviate, metadata replication and data replication are separate. For the metadata, Weaviate uses the [Raft](https://raft.github.io/) consensus algorithm. For data replication, Weaviate uses a leaderless design with eventual consistency.
 
 ## Node Discovery
 
 By default, Weaviate nodes in a cluster use a gossip-like protocol through [Hashicorp's Memberlist](https://github.com/hashicorp/memberlist) to communicate node state and failure scenarios.
 
-Weaviate - especially when running as a cluster - is optimized to run on Kubernetes. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery.
+Weaviate is optimized to run on Kubernetes, especially when operating as a cluster. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery.
 
 ### FQDN for node discovery
 
 :::info Added in `v1.25.15`
 :::
 
-There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../../config-refs/env-vars.md#multi-node-instances) to enable fully qualified domain name (FQDN) based node discovery.
+There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../../config-refs/env-vars.md#multi-node-instances) to enable [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) based node discovery.
 
 If this feature is enabled, Weaviate uses the FQDN resolver to resolve the node name to the node IP address for metadata (e.g., Raft) communication.
 
@@ -48,7 +48,7 @@ To use this feature, set `RAFT_ENABLE_FQDN_RESOLVER` to `true`.
 :::info Added in `v1.25`
 :::
 
-Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for metadata replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft). Metadata in this context includes collection configuration and data schema.
+Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for metadata replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft). Metadata in this context includes collection definition and shard/tenant states.
 
 Raft ensures that metadata changes are consistent across the cluster. A metadata change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
 
@@ -58,7 +58,7 @@ As a result, a Weaviate cluster will include a leader node that is responsible f
 
 ## Data replication: Leaderless
 
-Weaviate uses a leaderless architecture for data replication. This means there is no central leader or primary node that will replicate to follower nodes. Instead, all nodes can accept writes and reads from the client, which can offer better availability. There is no single point of failure. A leaderless replication approach is also known as [Dynamo-style](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) data replication, used by Amazon, and was also implemented by other open source projects like [Apache Cassandra](https://cassandra.apache.org).
+Weaviate uses a leaderless architecture for data replication. This means there is no central leader or primary node that will replicate to follower nodes. Instead, all nodes can accept writes and reads from the client, which can offer better availability. There is no single point of failure. A leaderless replication approach, also known as [Dynamo-style](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) data replication (after Amazon's implementation), has been adopted by other open-source projects like [Apache Cassandra](https://cassandra.apache.org).
 
 In Weaviate, a coordination pattern is used to relay a client’s read and write requests to the correct nodes. Unlike in a leader-based database, a coordinator node does not enforce any ordering of the operations.
 
@@ -93,8 +93,8 @@ On a write operation, the client’s request will be sent to any node in the clu
 **Steps**
 1. The client sends data to any node, which will be assigned as the coordinator node
 2. The coordinator node sends the data to more than one replica node in the cluster
-3. The coordinator node waits for acknowledgement from x nodes. Starting with v1.18, x is [configurable](./consistency.md), and defaults to `ALL` nodes.
-4. When x ACKs are received by the coordinator node, the write is successful.
+3. The coordinator node waits for acknowledgement from a specified proportion (let's call it `x`) of cluster nodes. Starting with v1.18, `x` is [configurable](./consistency.md), and defaults to `ALL` nodes.
+4. When `x` ACKs are received by the coordinator node, the write is successful.
 
 As an example, consider a cluster size of 3 with replication factor of 3. So, all nodes in the distributed setup contain a copy of the data. When the client sends new data, this will be replicated to all three nodes.
 
