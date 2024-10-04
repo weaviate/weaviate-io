@@ -15,9 +15,9 @@ Weaviate uses multiple consistency models. One for its cluster metadata, and ano
 
 ### Consistency models in Weaviate
 
-Weaviate uses the [Raft](https://raft.github.io/) consensus algorithm for cluster metadata replication. Cluster metadata in this context includes the collection definitions and tenant activity statuses. This allows cluster metadata updates to occur even when some nodes are down.
+Weaviate uses the [Raft](https://raft.github.io/) consensus algorithm for [cluster metadata replication](./cluster-architecture.md#metadata-replication-raft). Cluster metadata in this context includes the collection definitions and tenant activity statuses. This allows cluster metadata updates to occur even when some nodes are down.
 
-Data objects are replicated using a leaderless design using tunable consistency levels. So, data operations can be tuned to be more consistent or more available, depending on the desired tradeoff.
+Data objects are replicated using a [leaderless design](./cluster-architecture.md#data-replication-leaderless) using tunable consistency levels. So, data operations can be tuned to be more consistent or more available, depending on the desired tradeoff.
 
 These designs reflect the trade-off between consistency and availability that is described in the [CAP Theorem](./index.md#cap-theorem).
 
@@ -137,7 +137,7 @@ Depending on the desired tradeoff between consistency and speed, below are three
 
 ### Tenant states and data objects
 
-Each tenant in a multi-tenant collection has a configurable [tenant state](../../starter-guides/managing-resources/tenant-states.mdx), which determines the availability and location of the tenant's data. The tenant state can be set to `active`, `inactive`, or `offloaded`.
+Each tenant in a [multi-tenant collection](../data.md#multi-tenancy) has a configurable [tenant state](../../starter-guides/managing-resources/tenant-states.mdx), which determines the availability and location of the tenant's data. The tenant state can be set to `active`, `inactive`, or `offloaded`.
 
 An `active` tenant's data should be available for queries and updates, while `inactive` or `offloaded` tenants are not.
 

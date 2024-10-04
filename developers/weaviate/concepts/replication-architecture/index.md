@@ -71,7 +71,7 @@ In this Replication Architecture section, you will find information about:
 
 ## What is replication?
 
-<p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Read consistency QUORUM" width="75%"/></p>
+<p align="center"><img src="/img/docs/replication-architecture/replication-rf3-c-QUORUM.png" alt="Example setup with replication" width="75%"/></p>
 
 Database replication refers to keeping a copy of the same data point on multiple nodes of a cluster.
 
@@ -80,17 +80,19 @@ The resulting system is a distributed database. A distributed database consists 
 ## CAP Theorem
 
 The primary goal of introducing replication is to improve reliability. [Eric Brewer](https://en.wikipedia.org/wiki/Eric_Brewer_(scientist)) states that there are some limits on reliability for distributed databases, described by the [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem). The CAP theorem states that a distributed database can only provide two of the following three guarantees:
-* **Consistency (C)** - Every database read receives the most recent write after creation or modification (or an error).
+* **Consistency (C)** - Every read receives the most recent write or an error, ensuring all nodes see the same data at the same time.
 * **Availability (A)** - Every request receives a non-error response all the time, without the guarantee that it contains the most recent write.
 * **Partition tolerance (P)** - The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.
 
 <p align="center"><img src="/img/docs/replication-architecture/repliction-cap.png" alt="CAP Theorem" width="60%"/></p>
 
-Ideally you want a database, like Weaviate, to have the highest reliability as possible, but this is limited by the tradeoff between consistency, availability and partition tolerance.
+Ideally, you want a database, like Weaviate, to have the highest reliability as possible, but this is limited by the tradeoff between consistency, availability and partition tolerance.
 
 ### Consistency vs Availability
 
-:::tip Only two out of (**C**, **A**, and **P**) can be guaranteed:
+:::tip
+Only two out of Consistency (C), Availability (A), and Partition tolerance (P) can be guaranteed simultaneously
+
 Given that partition tolerance is required, consider which of the other two are more important for your system.
 :::
 
@@ -100,7 +102,7 @@ When you prioritize **consistency** over availability, the database will return 
 
 C over A is preferred when the database contains critical data, such as transactional bank account data. For transactional data, you want the data to always be consistent (otherwise your bank balance is not guaranteed to be correct if you make transactions while some nodes (e.g. ATMs) are down).
 
-When a database involves less critical data, A over C can be preferred. An example can be a messaging service, where you can tolerate showing some old data but the application should be highly available and handle large amounts of writes with minimal latency.
+When a database involves less-critical data, A over C can be preferred. An example can be a messaging service, where you can tolerate showing some old data but the application should be highly available and handle large amounts of writes with minimal latency.
 
 Weaviate generally follows this latter design, since Weaviate typically deals with less critical data and is used for approximate search as a secondary database in use cases with more critical data. More about this design decision in [Philosophy](./philosophy.md). However, you can use Weaviate's [tunable consistency](./consistency.md#tunable-consistency-strategies) options according to your needs.
 
@@ -111,7 +113,7 @@ Weaviate, as a database, must provide reliable answers to users' requests. As di
 1. **High availability (redundancy)**<br/>
   With a distributed (replicated) database structure, service will not be interrupted if one server node goes down. The database can still be available, read queries will just be (unnoticeably) redirected to an available node.
 2. **Increased (read) throughput**<br/>
-  Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. When reading is set to a low consistency level, then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly.
+  Adding extra server nodes to your database setup means that the throughput scales with it. The more server nodes, the more users (read operations) the system will be able to handle. When reading with consistency level of `ONE`, then scaling the replication factor (i.e. how many database server nodes) increases the throughput linearly.
 3. **Zero downtime upgrades**<br/>
   Without replication, there is a window of downtime when you update a Weaviate instance. This is because the single node needs to stop, update and restart before it's ready to serve again. With replication, upgrades are done using a rolling update, in which at most one node is unavailable at any point in time while the other nodes can still serve traffic.
 4. **Regional proximity**<br/>
@@ -153,7 +155,7 @@ If you are using Weaviate `v1.24` or earlier, you can [upgrade to `v1.25`](../..
 
 In Weaviate, availability is generally favored over consistency. Weaviate's data replication uses a leaderless design, which means there are no primary and secondary nodes. When writing and reading data, the client contacts one or more nodes. A load balancer exists between the user and the nodes, so the user doesn't know which node they are talking to (Weaviate will forward internally if a user is requesting a wrong node).
 
-The number of nodes that need to acknowledge the read or write (from v1.18) operation is tunable, to `ONE`, `QUORUM` (n/2+1) or `ALL`. When write operations are configured to `ALL`, the database works synchronously. If write is not set to `ALL` (possible from v1.18), writing data is asynchronous from the user's perspective.
+The number of nodes that need to acknowledge the read or write (from v1.18) operation is tunable, to `ONE`, `QUORUM` (n/2+1) or `ALL`. When write operations are carried out with consistency level `ALL`, the database works synchronously. If write is not set to `ALL` (possible from v1.18), writing data is asynchronous from the user's perspective.
 
 The number of replicas doesn't have to match the number of nodes (cluster size). It is possible to split data in Weaviate based on collections. Note that this is [different from Sharding](#replication-vs-sharding).
 
