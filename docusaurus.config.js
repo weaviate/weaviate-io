@@ -221,6 +221,22 @@ const config = {
    locales: ['en','ja'],
     }, */
 
+    scripts: [
+        {
+          src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+          "data-website-id": "109019ee-418e-4434-b485-85a09533c865",
+          "data-project-name": "Weaviate",
+          "data-project-color": "#45E21F",
+          "data-project-logo": "https://yt3.googleusercontent.com/1fQYeRGQ4E01NAbQcYYGHECcnksWTr5_kUZQT-An_9kEogPcUMUZn5aRjB0-3p47Szx2z8ppyA=s900-c-k-c0x00ffffff-no-rj",
+          "data-search-mode-enabled": "true",
+          "data-modal-open-by-default": "true",
+          "data-modal-disclaimer": "This is a custom LLM for Weaviate with access to all [developer docs](https://weaviate.io/developers/weaviate), [WCS Cloud docs](https://weaviate.io/developers/wcs), [academy lessons](https://weaviate.io/developers/academy), [contributor guides](https://weaviate.io/developers/contributor-guide), last year of open [GitHub issues](https://github.com/weaviate/weaviate) and recently resolved [forum questions](https://forum.weaviate.io/).",
+          "data-modal-example-questions": "How to run Weaviate?,What are the characteristics of modules?,Is the cloud services pre-configured?,How to create an object with Vector",
+          "data-modal-footer": "Powered by [weaviate](https://weaviate.io/) and [kapa.ai](https://www.kapa.ai/)",
+          async: true,
+        },
+      ],
+
     presets: [
         [
             '@docusaurus/preset-classic',
