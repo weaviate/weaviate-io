@@ -57,7 +57,6 @@ export default function Use() {
       
       </div>
 
-      
       <div className={styles.safetyTypeBottom} />
     </div>
   );

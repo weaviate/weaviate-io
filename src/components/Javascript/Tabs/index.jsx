@@ -26,11 +26,10 @@ const ProjectTabs = () => {
           </div>
           <Tabs>
             <TabList>
-              <Tab>Featured</Tab>
-              <Tab>Ecommerce</Tab>
-              <Tab>Recommender</Tab>
-              <Tab>Agents</Tab>
-              <Tab>Search</Tab>
+              <Tab>Vue</Tab>
+              <Tab>Express</Tab>
+              <Tab>React</Tab>
+              <Tab>Angular</Tab>
             </TabList>
 
             <TabPanel>
@@ -62,14 +61,6 @@ const ProjectTabs = () => {
                 <h3> coming soon</h3>
               </div>
             </TabPanel>
-
-            <TabPanel>
-              <div className="container">
-                <h3> coming soon</h3>
-              </div>
-            </TabPanel>
-
-           
 
           </Tabs>
         </div>
