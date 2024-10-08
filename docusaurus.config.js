@@ -179,16 +179,16 @@ const config = {
                             },
                         },
 
-                         // Add CommonRoom
-            {
-                tagName: 'script',
-                innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
-              },
-                 // Add Koala
-                 {
-                    tagName: 'script',
-                    innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
-                },
+                        // Add CommonRoom
+                        {
+                            tagName: 'script',
+                            innerHTML: `(function() { if (typeof window === 'undefined') return; if (typeof window.signals !== 'undefined') return; var script = document.createElement('script'); script.src = 'https://cdn.cr-relay.com/v1/site/3709e2b3-c0eb-4239-9087-775e484fab16/signals.js'; script.async = true; window.signals = Object.assign([], ['page', 'identify', 'form'].reduce(function (acc, method){ acc[method] = function () { signals.push([method, arguments]); return signals; }; return acc; }, {})); document.head.appendChild(script); })();`,
+                        },
+                        // Add Koala
+                        {
+                            tagName: 'script',
+                            innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
+                        },
 
                     ],
                 };
@@ -227,9 +227,9 @@ const config = {
           "data-website-id": "109019ee-418e-4434-b485-85a09533c865",
           "data-project-name": "Weaviate",
           "data-project-color": "#45E21F",
-          "data-project-logo": "https://yt3.googleusercontent.com/1fQYeRGQ4E01NAbQcYYGHECcnksWTr5_kUZQT-An_9kEogPcUMUZn5aRjB0-3p47Szx2z8ppyA=s900-c-k-c0x00ffffff-no-rj",
+          "data-project-logo": "https://weaviate.io/img/favicon.ico",
           "data-search-mode-enabled": "true",
-          "data-modal-open-by-default": "true",
+          "data-modal-open-by-default": "false",
           "data-modal-disclaimer": "This is a custom LLM for Weaviate with access to all [developer docs](https://weaviate.io/developers/weaviate), [WCS Cloud docs](https://weaviate.io/developers/wcs), [academy lessons](https://weaviate.io/developers/academy), [contributor guides](https://weaviate.io/developers/contributor-guide), last year of open [GitHub issues](https://github.com/weaviate/weaviate) and recently resolved [forum questions](https://forum.weaviate.io/).",
           "data-modal-example-questions": "How to run Weaviate?,What are the characteristics of modules?,Is the cloud services pre-configured?,How to create an object with Vector",
           "data-modal-footer": "Powered by [weaviate](https://weaviate.io/) and [kapa.ai](https://www.kapa.ai/)",
