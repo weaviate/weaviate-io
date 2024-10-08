@@ -713,7 +713,7 @@
       "tags": ["Embedding Types", "Weaviate", "Dimensions"],
       "cardImage": "variable-dimensions.jpg",
       "next": "/learn/knowledgecards/sparse-embeddings",
-      "previous": "/learn/knowledgecards/reranking"
+      "previous": "/learn/knowledgecards/binary-embeddings"
     },
     {
       "id": "et-2",
@@ -748,7 +748,7 @@
       "docTitle": "Vector Quantization",
       "tags": ["Embedding Types", "Weaviate", "Quantized"],
       "cardImage": "sparse-embeddings.jpg",
-      "next": "/learn/knowledgecards/multi-vector-embeddings",
+      "next": "/learn/knowledgecards/multivector-embeddings",
       "previous": "/learn/knowledgecards/sparse-embeddings"
     },
     {
@@ -781,7 +781,7 @@
       "tags": ["Embedding Types", "Weaviate", "Dense"],
       "cardImage": "dense-embeddings.jpg",
       "next": "/learn/knowledgecards/binary-embeddings",
-      "previous": "/learn/knowledgecards/multi-vector-embeddings"
+      "previous": "/learn/knowledgecards/multivector-embeddings"
     },
     {
       "id": "et-6",

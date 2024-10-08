@@ -43,7 +43,7 @@ const KnowledgeBasePage = () => {
     description:
       'Usage of multiple vectors instead of one pooled vector  to represent e.g., token-wise embeddings (e.g., ColBERT). Allows for more detailed representation of complex texts.',
     image: 'https://weaviate.io/img/cards/multi-vector-embeddings.jpg',
-    url: 'https://weaviate.io/learn/knowledgecards/multi-vector-embeddings',
+    url: 'https://weaviate.io/learn/knowledgecards/multivector-embeddings',
   };
 
   const formattedTitle = formatTitleForUrl(card.title);
@@ -75,7 +75,7 @@ const KnowledgeBasePage = () => {
           <meta property="og:image:alt" content="Knowledge card image" />
           <meta
             property="og:url"
-            content="https://weaviate.io/learn/knowledgecards/multi-vector-embeddings"
+            content="https://weaviate.io/learn/knowledgecards/multivector-embeddings"
           />
           <meta
             property="og:description"
