@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import Calculator from '../Calculator';
-import SlaPlan from '../SLAS';
-import { keysIn } from 'lodash';
 import CalculatorContainer from '../CalculatorContainer';
+
 export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (e) => {
+  const openModal = () => {
     setIsModalOpen(true);
+    window.location.hash = 'serverless';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    window.history.replaceState(null, null, window.location.pathname);
   };
 
   useEffect(() => {
@@ -29,6 +30,12 @@ export default function PricingStandard() {
       document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (window.location.hash === '#serverless') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   return (
     <>

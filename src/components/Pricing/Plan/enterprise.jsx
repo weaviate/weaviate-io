@@ -8,10 +8,13 @@ export default function PricingEnterprise() {
 
   const openModal = () => {
     setIsModalOpen(true);
+    window.location.hash = 'enterprise';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    window.history.replaceState(null, null, window.location.pathname);
   };
 
   useEffect(() => {
@@ -27,6 +30,12 @@ export default function PricingEnterprise() {
       document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (window.location.hash === '#enterprise') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   return (
     <>
