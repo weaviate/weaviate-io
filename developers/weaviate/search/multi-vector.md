@@ -103,6 +103,9 @@ You can also specify the query vectors as an array of vectors. The array will be
 
 ### Specify array(s) of query vectors
 
+:::info Added in `v1.27`
+:::
+
 You can specify the value of the query vector dictionary/map as an array of vectors.
 
 #### Target vectors as an array
