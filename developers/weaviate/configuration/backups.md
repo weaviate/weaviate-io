@@ -380,6 +380,29 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
   </TabItem>
 </Tabs>
 
+### Cancel Backup
+
+An ongoing backup can be cancelled at any time. The backup process will be stopped, and the backup will be marked as `CANCELLED`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CancelBackup"
+      endMarker="# END CancelBackup"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+    ```ts
+    // Coming soon
+    ```
+
+  </TabItem>
+</Tabs>
+
+This operation is particularly useful if you have started a backup by accident, or if you would like to stop a backup that is taking too long.
 
 ### Restore Backup
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
