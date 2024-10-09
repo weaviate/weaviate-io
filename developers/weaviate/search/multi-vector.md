@@ -12,6 +12,9 @@ import PyCodeV4 from '!!raw-loader!/_includes/code/howto/search.multi-target-v4.
 import TSCodeV3 from '!!raw-loader!/_includes/code/howto/search.multi-target-v3.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/search.multi-target.go';
 
+:::info Added in `v1.26`
+:::
+
 Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
 
 ## Combining search results
@@ -97,6 +100,54 @@ Specify query vectors as a dictionary/map of names and vectors.
 </Tabs>
 
 You can also specify the query vectors as an array of vectors. The array will be parsed according to the order of the specified target vectors.
+
+### Specify array(s) of query vectors
+
+You can specify the value of the query vector dictionary/map as an array of vectors.
+
+#### Target vectors as an array
+
+The target vectors can be specified as an array as shown here.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiTargetMultipleNearVectorsV1"
+  endMarker="# END MultiTargetMultipleNearVectorsV1"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+
+```ts
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+
+#### Target vectors as a map of weights
+
+The target vectors can be specified as a dictionary/map of weights and vectors as shown below.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+<FilteredTextBlock
+  text={PyCodeV4}
+  startMarker="# START MultiTargetMultipleNearVectorsV2"
+  endMarker="# END MultiTargetMultipleNearVectorsV2"
+  language="python"
+/>
+</TabItem>
+<TabItem value="ts" label="JS/TS Client v3">
+
+```ts
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
 
 ## Specify target vector names and join strategy
 
