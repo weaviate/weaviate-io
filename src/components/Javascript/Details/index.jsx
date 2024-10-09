@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 
-import posts from '/data/templates.json';
-import TabCard from '../Tabs/tabCard';
-
+import paths from '/data/paths.json'
 
 export default function Details() {
-  const option2Data = posts.javascript;
+  const resoursesSite = paths.siteSearch;
+  const resoursesEcommerce = paths.ecommerce;
+  const resoursesAutomation = paths.automation;
+  const resoursesChatbots = paths.chatbots;
+
 
   return (
     <div className={styles.bgCol}>
@@ -55,250 +54,109 @@ export default function Details() {
 
             <TabPanel>
             <div className={styles.typeContainer}>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={styles.homeIcon}></div>
-              <h2>1. Getting Started with Vector Search</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Understand the concepts and technology behind Vector Search.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/search"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>2. Using Machine Learning Models</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to pick and use various Machine Learning models.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/modules"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>3. Building Web Applications </h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to build production ready full-stack Web Applications.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-              </div>
+            {resoursesSite.map((post) => {
+                    return <div className={styles.typeBox}>
+                      <div className={styles.typeIcon}>
+                        <div className={styles.homeIcon}></div>
+                        <h2>{post.title}</h2>
+                      </div>
+                      <div className={styles.typeText}>
+                        <p>
+                          {post.description}
+                        </p>
+                        <p>
+                        <Link
+                          className={styles.cardLink}
+                          to={post.Link}
+                        >
+                          Learn more
+                        </Link>
+                      </p>
+                      </div>
+                    </div>;
+                     })}
+                        </div>
+                
             </TabPanel>
 
-            <TabPanel>
-              <div className={styles.typeContainer}>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={styles.homeIcon}></div>
-              <h2>1. Getting Started with Vector Search</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Understand the concepts and technology behind Vector Search.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/search"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>2. Using Machine Learning Models</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to pick and use various Machine Learning models.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/modules"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>3. Building Web Applications </h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to build production ready full-stack Web Applications.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-              </div>
-            </TabPanel>
+   
 
             <TabPanel>
-              <div className={styles.typeContainer}>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={styles.homeIcon}></div>
-              <h2>1. Getting Started with Vector Search</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Understand the concepts and technology behind Vector Search.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/search"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>2. Using Machine Learning Models</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to pick and use various Machine Learning models.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/modules"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>3. Building Web Applications </h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to build production ready full-stack Web Applications.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-              </div>
+            <div className={styles.typeContainer}>
+            {resoursesChatbots.map((post) => {
+                    return <div className={styles.typeBox}>
+                      <div className={styles.typeIcon}>
+                        <div className={styles.homeIcon}></div>
+                        <h2>{post.title}</h2>
+                      </div>
+                      <div className={styles.typeText}>
+                        <p>
+                          {post.description}
+                        </p>
+                        <p>
+                        <Link
+                          className={styles.cardLink}
+                          to={post.Link}
+                        >
+                          Learn more
+                        </Link>
+                      </p>
+                      </div>
+                    </div>;
+                     })}
+                        </div>
             </TabPanel>
 
             <TabPanel>
             <div className={styles.typeContainer}>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={styles.homeIcon}></div>
-              <h2>1. Getting Started with Vector Search</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Understand the concepts and technology behind Vector Search.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/search"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>2. Using Machine Learning Models</h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to pick and use various Machine Learning models.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/modules"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-          <div className={styles.typeBox}>
-            <div className={styles.typeIcon}>
-              <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>3. Building Web Applications </h2>
-            </div>
-            <div className={styles.typeText}>
-              <p>
-                Learn how to build production ready full-stack Web Applications.
-              </p>
-              <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
-              >
-                Learn more
-              </Link>
-            </p>
-            </div>
-          </div>
-        </div>
+            {resoursesEcommerce.map((post) => {
+                    return <div className={styles.typeBox}>
+                      <div className={styles.typeIcon}>
+                        <div className={styles.homeIcon}></div>
+                        <h2>{post.title}</h2>
+                      </div>
+                      <div className={styles.typeText}>
+                        <p>
+                          {post.description}
+                        </p>
+                        <p>
+                        <Link
+                          className={styles.cardLink}
+                          to={post.Link}
+                        >
+                          Learn more
+                        </Link>
+                      </p>
+                      </div>
+                    </div>;
+                     })}
+                        </div>
+            </TabPanel>
+
+            <TabPanel>
+            <div className={styles.typeContainer}>
+            {resoursesAutomation.map((post) => {
+                    return <div className={styles.typeBox}>
+                      <div className={styles.typeIcon}>
+                        <div className={styles.homeIcon}></div>
+                        <h2>{post.title}</h2>
+                      </div>
+                      <div className={styles.typeText}>
+                        <p>
+                          {post.description}
+                        </p>
+                        <p>
+                        <Link
+                          className={styles.cardLink}
+                          to={post.Link}
+                        >
+                          Learn more
+                        </Link>
+                      </p>
+                      </div>
+                    </div>;
+                     })}
+                        </div>
             </TabPanel>
 
           </Tabs>

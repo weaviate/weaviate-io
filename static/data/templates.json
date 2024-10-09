@@ -32,7 +32,6 @@
     }
   ],
   "javascript": [
-
     {
       "link": "https://github.com/weaviate-tutorials/nuxt-vector-search",
       "type": "Weaviate Starter Nuxt",

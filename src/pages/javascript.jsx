@@ -5,7 +5,6 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 import Header from '/src/components/Javascript/Header';
 import Details from '/src/components/Javascript/Details';
-import Use from '/src/components/Javascript/Use';
 import CTA from '/src/components/Javascript/CTA';
 import List from '/src/components/Javascript/List';
 import Tabs from '/src/components/Javascript/Tabs'
@@ -27,7 +26,6 @@ export default function Home() {
           <Tabs />
           <Header />
           <List />
-          {/* <Blogs /> */}
         </main>
       </Layout>
       <ThemeSwitch />
