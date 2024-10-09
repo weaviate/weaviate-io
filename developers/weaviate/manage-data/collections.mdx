@@ -762,6 +762,33 @@ For details on the configuration parameters, see the following:
 
 </details>
 
+## Object deletion resolution
+
+:::info Added in `v1.27`
+:::
+
+You can optionally set a collection option on how to resolve object deletion conflicts in multi-node clusters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ObjectDeletionConflictResolution"
+      endMarker="# END ObjectDeletionConflictResolution"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+  ```js
+  // Code example coming soon
+  ```
+
+  </TabItem>
+
+</Tabs>
+
 ## Sharding settings
 
 Configure sharding per collection.

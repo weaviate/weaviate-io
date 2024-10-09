@@ -487,7 +487,41 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-# assert config.replication_config.factor == 3   #ASYNC NEEDS TEST
+assert config.replication_config.async_enabled == True
+
+client.close()
+
+# ==============================================
+# ===== REPLICATION WITH ObjectDeletionConflictResolution
+# ==============================================
+
+# Connect to a setting with 3 replicas
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# Clean slate
+client.collections.delete("Article")
+
+# START ObjectDeletionConflictResolution
+from weaviate.classes.config import Configure, ObjectDeletionConflictResolution
+
+client.collections.create(
+    "Article",
+    replication_config=Configure.replication(
+        factor=3,
+        async_enabled=True,
+        # highlight-start
+        object_deletion_conflict_resolution=ObjectDeletionConflictResolution.PERMANENT_DELETION  # Or ObjectDeletionConflictResolution.NO_AUTOMATED_RESOLUTION
+        # highlight-end
+    )
+)
+# END ObjectDeletionConflictResolution
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+# assert config.replication_config.object_deletion_conflict_resolution == ObjectDeletionConflictResolution.PERMANENT_DELETION  # Something like this for the test?
 
 client.close()
 
