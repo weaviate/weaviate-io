@@ -572,6 +572,30 @@ await client.collections.create({
 // Test
 // TODO NEEDS TEST assert.equal(result.replicationConfig.factor, 3);
 
+// =======================
+// ===== ObjectDeletionConflictResolution ====
+// =======================
+
+// /*
+// // START ObjectDeletionConflictResolution
+// import { configure } from 'weaviate-client';
+
+// // END ObjectDeletionConflictResolution
+// */
+
+// // START ObjectDeletionConflictResolution
+// await client.collections.create({
+//   name: 'Article',
+//   // highlight-start
+//   replication: configure.replication({
+//     factor: 3,
+//     asyncEnabled: true,
+//     objectDeletionConflictResolution: 'permanentDeletion'
+//   }),
+//   // highlight-end
+//  })
+//  // END ObjectDeletionConflictResolution
+
 // ====================
 // ===== SHARDING =====
 // ====================

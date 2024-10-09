@@ -191,6 +191,26 @@ Async replication supplements the repair-on-read mechanism. If a node becomes in
 
 To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
 
+### Object deletion conflict resolution
+
+:::info Added in `v1.27`
+:::
+
+If a consistency level other than `ALL` is used, an object deletion may only have been applied to a subset of replicas.
+
+This can lead to a conflict where the deleted object can still be read, or where the object is recreated after deletion.
+
+To resolve this, you can set an option in the replication config section of each collection.
+
+The available strategies are:
+
+- `PermanentlyDelete` - The object is deleted from all replicas.
+- `NoAutomatedResolution` - Conflicts in deletions are resolved in the same way as other conflicts.
+
+:::tip Related pages
+- See [this how-to page](../../configuration/replication.md#object-deletion-conflict-resolution) for an example of how to set the object deletion conflict resolution strategy.
+:::
+
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
 - [API References | REST | Objects](/developers/weaviate/api/rest#tag/objects)
