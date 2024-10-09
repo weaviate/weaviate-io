@@ -62,6 +62,36 @@ import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/repl
 
 <ReplicationConfigWithAsyncRepair />
 
+### Object deletion conflict resolution
+
+import ManageDataPyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import ManageDataTSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+
+:::info Added in `v1.27`
+:::
+
+You can optionally set a collection option on how to resolve object deletion conflicts in multi-node clusters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ManageDataPyCode}
+      startMarker="# START ObjectDeletionConflictResolution"
+      endMarker="# END ObjectDeletionConflictResolution"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+  ```js
+  // Code example coming soon
+  ```
+
+  </TabItem>
+
+</Tabs>
+
 ## How to use: Queries
 
 When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
