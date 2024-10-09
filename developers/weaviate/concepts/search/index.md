@@ -17,8 +17,8 @@ The following table illustrates the search process in Weaviate. Around the core 
 
 | Step | Description | Optional |
 |------|-------------|----------|
-| 1. [Retrieval](#retrieval) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
-| 2. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model | Optional |
+| 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
+| 2. [Reranking](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
 | 3. [Generative](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
 
 Here is a brief overview of each step:
