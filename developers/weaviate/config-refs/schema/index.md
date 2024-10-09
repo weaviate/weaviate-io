@@ -131,7 +131,7 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-### Multiple vectors
+### Multiple vectors (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -579,9 +579,18 @@ import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.m
 
 ## Configure semantic indexing
 
-import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+Weaviate can generate vector embeddings for objects using [model provider integrations](/developers/weaviate/model-providers/).
 
-<VectorizationBehavior/>
+For instance, text embedding integrations (e.g. `text2vec-cohere` for Cohere, or `text2vec-ollama` for Ollama) can generate vectors from text objects. Weaviate follows the collection configuration and a set of predetermined rules to vectorize objects.
+
+Unless specified otherwise in the collection definition, the default behavior is to:
+
+- Only vectorize properties that use the `text` or `text[]` data type (unless [skip](/developers/weaviate/manage-data/collections#property-level-module-settings)ped)
+- Sort properties in alphabetical (a-z) order before concatenating values
+- If `vectorizePropertyName` is `true` (`false` by default) prepend the property name to each property value
+- Join the (prepended) property values with spaces
+- Prepend the class name (unless `vectorizeClassName` is `false`)
+- Convert the produced string to lowercase
 
 For example, this data object,
 

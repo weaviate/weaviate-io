@@ -476,6 +476,29 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START FullGenerativeKubeAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.openAI({
+    // Setting the model and base_url is required
+    model: 'gpt-3.5-turbo',
+    baseURL: 'http://kubeai/openai',
+    // These parameters are optional
+    // frequencyPenaltyProperty: 0,
+    // maxTokensProperty: 500,
+    // presencePenaltyProperty: 0,
+    // temperatureProperty: 0.7,
+    // topPProperty: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeKubeAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeAzureOpenAI
 await client.collections.create({
   name: 'DemoCollection',

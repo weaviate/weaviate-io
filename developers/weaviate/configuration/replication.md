@@ -52,9 +52,9 @@ The example data schema has a [write consistency](../concepts/replication-archit
 
 ## Data consistency
 
-import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
+When Weaviate detects inconsistent data across nodes, it attempts to repair the out of sync data.
 
-<RepairIntro />
+Starting in v1.26, Weaviate adds [async replication](../concepts/replication-architecture/consistency.md#async-replication) to proactively detect inconsistencies. In earlier versions, Weaviate uses a [repair-on-read](../concepts/replication-architecture/consistency.md#repair-on-read) strategy to repair inconsistencies at read time.
 
 Repair-on-read is automatic. To activate async replication, set `asyncEnabled` to true in the `replicationConfig` section of your collection definition.
 

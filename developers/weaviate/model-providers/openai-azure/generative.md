@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure Weaviate to use an OpenAI Azure generative model.
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an OpenAI Azure generative model.
 
 To select the model, specify the Azure resource name.
 
@@ -103,9 +103,32 @@ To select the model, specify the Azure resource name.
 
 </Tabs>
 
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+### Generative parameters
 
-<ConfigAfterGen/>
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeAzureOpenAI"
+      endMarker="# END FullGenerativeAzureOpenAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeAzureOpenAI"
+      endMarker="// END FullGenerativeAzureOpenAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ## Retrieval augmented generation
 
@@ -174,33 +197,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAzureOpenAI"
-      endMarker="# END FullGenerativeAzureOpenAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAzureOpenAI"
-      endMarker="// END FullGenerativeAzureOpenAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
 ### Available models
 

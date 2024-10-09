@@ -274,7 +274,7 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.friendliai(
-        model = "meta-llama-3.1-70b-instruct",
+        model="meta-llama-3.1-70b-instruct",
     )
     # highlight-end
     # Additional parameters not shown
@@ -291,10 +291,10 @@ client.collections.create(
     "DemoCollection",
     generative_config=Configure.Generative.friendliai(
         # # These parameters are optional
-        model = "meta-llama-3.1-70b-instruct",
-        max_tokens = 500,
-        temperature = 0.7,
-        base_url = "https://inference.friendli.ai"
+        model="meta-llama-3.1-70b-instruct",
+        max_tokens=500,
+        temperature=0.7,
+        base_url="https://inference.friendli.ai"
     )
 )
 # END FullGenerativeFriendliAI
@@ -541,6 +541,31 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END BasicGenerativeAzureOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeKubeAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        # Setting the model and base_url is required
+        model="gpt-3.5-turbo",
+        base_url="http://kubeai/openai", # Your private KubeAI API endpoint
+        # These parameters are optional
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeKubeAI
 
 # clean up
 client.collections.delete("DemoCollection")

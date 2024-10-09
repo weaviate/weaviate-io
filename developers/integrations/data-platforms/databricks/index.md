@@ -29,6 +29,7 @@ The resources are broken into two categories:
 | --- | --- | --- |
 | Weaviate Tutorial | Learn how to ingest data into Weaviate with Spark. | [Tutorial](/developers/weaviate/tutorials/spark-connector)
 | Using the Spark Connector for Weaviate | Learn how to take data from a Spark dataframe and feed it into Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/spark/spark-connector.ipynb) |
+| Ingest data from Spark into Weaviate | Learn how to ingest data from a Spark dataframe to Weaviate and use the `text2vec-databricks` and `generative-databricks` module. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/databricks/databricks-spark-connector-demo.ipynb) |
 
 ### Read and Listen 
 | Topic | Description | Resource | 

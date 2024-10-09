@@ -130,7 +130,7 @@ As this integration connects to a local GPT4All container, no additional credent
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a GPT4All embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a GPT4All embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -155,7 +155,14 @@ Set the vectorizer to configure Weaviate to use a GPT4All embedding model:
 
 Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
 
 ## Data import
 
