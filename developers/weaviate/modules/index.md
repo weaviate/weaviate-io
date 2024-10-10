@@ -11,14 +11,29 @@ This section describes Weaviate's individual modules, including their capabiliti
 They have moved to our [model provider integrations](../model-providers/index.md) section, for a more focussed, user-centric look at these integrations.
 :::
 
-- The Vectorizer (also called Retrievers sometimes) modules such as `text2vec-*` or `img2vec-*` convert data objects and query inputs to vectors.
-- The (Re)Ranker modules such as `rerank-*` apply a(n) (additional) ranking process to the search results.
-- The Reader & Generator modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
-- The other modules include everything else, such as a spellcheck module.
-
 ## General
 
-Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
+Weaviate's modules are built into the codebase, and [enabled through environment variables](../configuration/modules.md) to provide additional functionalities.
+
+### Module types
+
+Weaviate modules can be divided into the following categories:
+
+- [Vectorizers](#vectorizer-reranker-and-generative-ai-integrations): Convert data into vector embeddings for import and vector search.
+- [Rerankers](#vectorizer-reranker-and-generative-ai-integrations): Improve search results by reordering initial search results.
+- [Generative AI](#vectorizer-reranker-and-generative-ai-integrations): Integrate generative AI models for retrieval augmented generation (RAG).
+- [Backup](#backup-modules): Facilitate backup and restore operations in Weaviate.
+- [Offloading](#offloading-modules): Facilitate offloading of tenant data to external storage.
+- [Others]: Modules that provide additional functionalities.
+
+#### Vectorizer, reranker, and generative AI integrations
+
+For vectorizers, rerankers and generative AI, see the [model provider integrations](../model-providers/index.md) documentation. These pages are organized by the model provider (e.g. Hugging Face, OpenAI) and then the model type (e.g. vectorizer, reranker, generative AI).
+
+![Embedding integration illustration](../model-providers/_includes/integration_huggingface_embedding.png)
+
+### Module characteristics
+
 - Naming convention:
   - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `img2vec-neural` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`, for example `qna-transformers`.
@@ -41,19 +56,13 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
 ```
 
-## Multiple vectors (named vectors)
-
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
-
-<MultiVectorSupport />
-
 ## Backup Modules
 
 Backup and restore operations in Weaviate are facilitated by the use of backup provider modules.
 
-These are interchangeable storage backends which exist either internally or externally. The following sections will explain the difference between these two types of backup provider modules, and their intended usages.
+These are interchangeable storage backends which exist either internally or externally.
 
-## External provider
+### External provider
 
 External backup providers coordinate the storage and retrieval of backed-up Weaviate data with external storage services.
 
@@ -68,11 +77,30 @@ The supported external backup providers are:
 
 Thanks to the extensibility of the module system, new providers can be readily added. If you are interested in an external provider other than the ones listed above, feel free to reach out via our [forum](https://forum.weaviate.io/), or open an issue on [GitHub](https://github.com/weaviate/weaviate).
 
-## Internal provider
+### Internal provider
 
 Internal providers coordinate the storage and retrieval of backed-up Weaviate data within a Weaviate instance. This type of provider is intended for developmental or experimental use, and is not recommended for production. Internal Providers are not compatible for multi-node backups, which require the use of an external provider.
 
 As of Weaviate `v1.16`, the only supported internal backup provider is the [filesystem](/developers/weaviate/configuration/backups.md#filesystem) provider.
+
+## Offloading Modules
+
+:::info Added in `v1.26`
+:::
+
+Offloading modules facilitate the offloading of tenant data to external storage. This is useful for managing resources and costs.
+
+See [how to configure: offloading](../configuration/tenant-offloading.md) for more information on how to configure and use offloading modules.
+
+## Other modules
+
+In addition to the above, there are other modules such as:
+
+- [qna-transformers](./qna-transformers.md): Question-answering (answer extraction) capability using transformers models.
+- [qna-openai](./qna-openai.md): Question-answering (answer extraction) capability using OpenAI models.
+- [ner-transformers](./ner-transformers.md): Named entity recognition capability using transformers models.
+- [text-spellcheck](./ner-transformers.md): Spell checking capability for GraphQL queries.
+- [sum-transformers](./sum-transformers.md): Summarize text using transformer models.
 
 ## Related pages
 
