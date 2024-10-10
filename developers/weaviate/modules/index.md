@@ -28,9 +28,36 @@ Weaviate modules can be divided into the following categories:
 
 #### Vectorizer, reranker, and generative AI integrations
 
-For vectorizers, rerankers and generative AI, see the [model provider integrations](../model-providers/index.md) documentation. These pages are organized by the model provider (e.g. Hugging Face, OpenAI) and then the model type (e.g. vectorizer, reranker, generative AI).
+For these modules, see the [model provider integrations](../model-providers/index.md) documentation. These pages are organized by the model provider (e.g. Hugging Face, OpenAI) and then the model type (e.g. vectorizer, reranker, generative AI).
 
-![Embedding integration illustration](../model-providers/_includes/integration_huggingface_embedding.png)
+For example:
+
+- [The OpenAI embedding integration page](../model-providers/openai/embeddings.md) shows how to use OpenAI's embedding models in Weaviate.
+
+<img
+    src={require('../model-providers/_includes/integration_openai_embedding.png').default}
+    alt="Embedding integration illustration"
+    style={{ maxWidth: "50%", display: "block", marginLeft: "auto", marginRight: "auto"}}
+/>
+<br/>
+
+- [The Cohere reranker integration page](../model-providers/cohere/reranker.md) shows how to use Cohere's reranker models in Weaviate.
+
+<img
+    src={require('../model-providers/_includes/integration_cohere_reranker.png').default}
+    alt="Reranker integration illustration"
+    style={{ maxWidth: "50%", display: "block", marginLeft: "auto", marginRight: "auto"}}
+/>
+<br/>
+
+- [The Anthropic generative AI integration page](../model-providers/anthropic/generative.md) shows how to use Anthropic's generative AI models in Weaviate.
+
+<img
+    src={require('../model-providers/_includes/integration_anthropic_rag.png').default}
+    alt="Generative integration illustration"
+    style={{ maxWidth: "50%", display: "block", marginLeft: "auto", marginRight: "auto"}}
+/>
+<br/>
 
 ### Module characteristics
 
@@ -43,18 +70,7 @@ For vectorizers, rerankers and generative AI, see the [model provider integratio
 - General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](../config-refs/meta.md).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](../api/graphql/additional-properties.md).
 - A module can add [filters](../api/graphql/filters.md) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](../manage-data/collections.mdx#specify-a-vectorizer).
-
-## Default vectorizer module
-
-Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the Docker Compose file:
-
-``` yaml
-services:
-  weaviate:
-    environment:
-      DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
-```
+- Which vectorizer and other modules are applied to which data collection is configured in the [schema](../manage-data/collections.mdx#specify-a-vectorizer).
 
 ## Backup Modules
 
