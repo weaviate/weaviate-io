@@ -7,15 +7,24 @@ export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
+    if (window.location.pathname === '/pricing') {
+      window.history.pushState(null, null, '/pricing/serverless');
+    }
     setIsModalOpen(true);
-    window.location.hash = 'serverless';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-
-    window.history.replaceState(null, null, window.location.pathname);
+    if (window.location.pathname === '/pricing/serverless') {
+      window.history.replaceState(null, null, '/pricing');
+    }
   };
+
+  useEffect(() => {
+    if (window.location.pathname === '/pricing/serverless') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
@@ -25,17 +34,10 @@ export default function PricingStandard() {
     };
 
     document.addEventListener('keydown', handleEscapeKey);
-
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isModalOpen]);
-
-  useEffect(() => {
-    if (window.location.hash === '#serverless') {
-      setIsModalOpen(true);
-    }
-  }, []);
 
   return (
     <>
@@ -65,15 +67,9 @@ export default function PricingStandard() {
             pay-as-you-go pricing.
           </p>
           <ul>
-            <li>
-              <span>Serverless SaaS deployment</span>
-            </li>
-            <li>
-              <span>Get started with a free trial in minutes</span>
-            </li>
-            <li>
-              <span>Various SLA tiers to meet your needs</span>
-            </li>
+            <li>Serverless SaaS deployment</li>
+            <li>Get started with a free trial in minutes</li>
+            <li>Various SLA tiers to meet your needs</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing
