@@ -9,35 +9,42 @@ function CardsFilter() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredPartners, setFilteredPartners] = useState(partners);
 
-  // Function to handle search input changes
-  const handleSearch = (event) => {
+  const handleSearch = (event) =>
     setSearchQuery(event.target.value.toLowerCase());
-  };
 
-  // Function to handle filter changes
-  const handleFilterChange = (filters) => {
-    setSelectedFilters(filters);
-  };
+  const handleFilterChange = (filters) => setSelectedFilters(filters);
 
-  // UseEffect to filter partners based on search query and selected filters
+  // Filtering logic
   useEffect(() => {
     let updatedPartners = partners;
 
-    // Filter by search query
+    // Filter by search query (applies to name and description)
     if (searchQuery) {
       updatedPartners = updatedPartners.filter(
         (partner) =>
           partner.name.toLowerCase().includes(searchQuery) ||
-          partner.description.toLowerCase().includes(searchQuery) ||
-          partner.tags.some((tag) => tag.toLowerCase().includes(searchQuery))
+          partner.description.toLowerCase().includes(searchQuery)
       );
     }
 
-    // Filter by selected filters
+    // Filter by selected filters (applies to tags, maintainedBy, programmingLanguage, weaviateFeatures)
     if (selectedFilters.length > 0) {
-      updatedPartners = updatedPartners.filter((partner) =>
-        partner.tags.some((tag) => selectedFilters.includes(tag))
-      );
+      updatedPartners = updatedPartners.filter((partner) => {
+        // Ensure these fields exist, if not, use empty strings or arrays
+        const tags = partner.tags || [];
+        const maintainedBy = partner.maintainedBy || '';
+        const programmingLanguage = partner.programmingLanguage || '';
+        const weaviateFeatures = partner.weaviateFeatures || '';
+
+        // Check if the selected filters are included in any of the fields
+        return selectedFilters.every(
+          (filter) =>
+            tags.includes(filter) ||
+            maintainedBy.includes(filter) ||
+            programmingLanguage.includes(filter) ||
+            weaviateFeatures.includes(filter)
+        );
+      });
     }
 
     setFilteredPartners(updatedPartners);
@@ -45,13 +52,10 @@ function CardsFilter() {
 
   return (
     <div className={styles.cardsFilterContainer}>
-      {/* Side Filter */}
       <SideFilter
         selectedFilters={selectedFilters}
         onFilterChange={handleFilterChange}
       />
-
-      {/* Main Content */}
       <div className={styles.mainContent}>
         <input
           type="text"
@@ -68,7 +72,7 @@ function CardsFilter() {
               image={partner.image}
               link={partner.link}
               description={partner.description}
-              tags={partner.tags}
+              tags={partner.tags} // Updated tags array
             />
           ))}
         </div>

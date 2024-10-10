@@ -3,13 +3,32 @@ import styles from './styles.module.scss';
 
 // Example tags/categories that you want to filter by
 const availableFilters = [
-  { label: 'Integration', value: 'integration' },
-  { label: 'Popular', value: 'popular' },
-  { label: 'Trending', value: 'trending' },
+  {
+    label: 'Technical Tags',
+    values: [
+      'Cloud Hyperscalers',
+      'Model Providers',
+      'Data Platforms',
+      'Compute Infrastructure',
+      'LLM Framework',
+      'Operations',
+    ],
+  },
+  {
+    label: 'Additional',
+    values: ['Module', 'Popular', 'Integration'],
+  },
+  {
+    label: 'Programming Languages',
+    values: ['All languages', 'Python', 'TS/JS', 'C#'],
+  },
+  {
+    label: 'Weaviate Features',
+    values: ['Hybrid Search', 'Filters', 'Multi-tenancy'],
+  },
 ];
 
 function SideFilter({ selectedFilters, onFilterChange }) {
-  // Handle changes to the checkboxes
   const handleFilterChange = (value) => {
     if (selectedFilters.includes(value)) {
       onFilterChange(selectedFilters.filter((filter) => filter !== value));
@@ -21,16 +40,21 @@ function SideFilter({ selectedFilters, onFilterChange }) {
   return (
     <div className={styles.sideFilter}>
       <h3>Filter by</h3>
-      {availableFilters.map((filter) => (
-        <div key={filter.value} className={styles.filterOption}>
-          <input
-            type="checkbox"
-            id={filter.value}
-            value={filter.value}
-            checked={selectedFilters.includes(filter.value)}
-            onChange={() => handleFilterChange(filter.value)}
-          />{' '}
-          <label htmlFor={filter.value}>{filter.label}</label>
+      {availableFilters.map((filterCategory) => (
+        <div key={filterCategory.label}>
+          <h4>{filterCategory.label}</h4>
+          {filterCategory.values.map((value) => (
+            <div key={value} className={styles.filterOption}>
+              <input
+                type="checkbox"
+                id={value}
+                value={value}
+                checked={selectedFilters.includes(value)}
+                onChange={() => handleFilterChange(value)}
+              />
+              <label htmlFor={value}> {value}</label>
+            </div>
+          ))}
         </div>
       ))}
     </div>
