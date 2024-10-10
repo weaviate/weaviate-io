@@ -18,6 +18,32 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-fi
 Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
 For a list of filter operators, see the [API reference page](../api/graphql/filters.md#filter-structure).
 
+## Set a filter strategy
+
+:::info Added in `v1.27`
+:::
+
+A filter strategy defines the filtering algorithm used in combination with the vector index.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SetFilterStrategy"
+      endMarker="# END SetFilterStrategy"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+  ```js
+  // Coming soon
+  ```
+
+  </TabItem>
+</Tabs>
+
 ## Filter with one condition
 
 Add a `filter` to your query, to limit the result set.

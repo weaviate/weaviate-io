@@ -21,6 +21,30 @@ client = weaviate.connect_to_weaviate_cloud(
     }
 )
 
+
+# ==========================================
+# ===== Set Filter Strategy =====
+# ==========================================
+
+client.collections.delete("Article")
+
+# START SetFilterStrategy
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    vector_index_config=Configure.VectorIndex.hnsw(
+        filter_strategy=Configure.FilterStrategy.acorn_v1  # Configure.FilterStrategy.sweeping
+    ),
+    # highlight-end
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="body", data_type=DataType.TEXT),
+    ]
+)
+# END SetFilterStrategy
+
 # ==========================================
 # ===== Single Filter =====
 # ==========================================
