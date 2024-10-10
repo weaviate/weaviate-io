@@ -69,6 +69,10 @@ export default function KnowledgeBase({ searchQuery }) {
     setShowMore((prev) => ({ ...prev, [card.category]: true }));
   };
 
+  useEffect(() => {
+    document.body.style.overflow = activeCard ? 'hidden' : 'visible';
+  }, [activeCard]); // Dependency on activeCard to stop overflow when modal is open
+
   // Helper function to create URL-friendly names
   function formatTitleForUrl(title) {
     return title
