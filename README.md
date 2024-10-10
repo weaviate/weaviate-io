@@ -21,7 +21,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 After you install `nvm`, use `nvm` to install Node.js.
 
 ```
-nvm install node
+nvm install
 ```
 
 By default, `nvm` installs the most recent version of Node.js. Install Node.js
@@ -29,7 +29,7 @@ By default, `nvm` installs the most recent version of Node.js. Install Node.js
 `weaviate.io` project dependencies.
 
 ```
-nvm install node 19.9.0
+nvm install 19.9.0
 nvm use 19.9.0
 ```
 

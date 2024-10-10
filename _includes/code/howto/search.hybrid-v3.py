@@ -907,10 +907,10 @@ gql_query = """
              nearText: {
                 concepts: [ "large animal" ]
              }
-             maxVectorDistance: 0.5
-           # highlight-end
            }
-           alpha: 0.75,
+           maxVectorDistance: 0.5
+           # highlight-end
+           alpha: 0.75
            query: "California"
          }
        )
