@@ -108,7 +108,8 @@ All other values are interpreted as `false`.
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
 
 <!-- Docs notes:
-MAINTENANCE_NODES is not documented as it is for internal use only
+MAINTENANCE_NODES: not documented, for internal use only
+ASYNC_BRUTE_FORCE_SEARCH_LIMIT: not documented, for internal use only
 -->
 
 ## Questions and feedback
