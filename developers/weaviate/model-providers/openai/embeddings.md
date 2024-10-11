@@ -48,6 +48,8 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 </details>
 
+<!-- Docs note: the `OPENAI_ORGANIZATION` environment variable is not documented, as it is not the recommended way to provide the OpenAI organization parameter. -->
+
 ### API credentials
 
 You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
