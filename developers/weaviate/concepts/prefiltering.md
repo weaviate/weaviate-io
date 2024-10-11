@@ -53,7 +53,7 @@ The `ACORN` algorithm is especially useful when the filter is negatively correla
 
 As of `v1.27`, the `ACORN` algorithm can be enabled in one of two ways:
 - By setting the `FILTER_STRATEGY` [environment variable](../config-refs/env-vars.md#general) to `acorn` for the entire Weaviate instance.
-- By setting the `filterStrategy` field for the relevant vector index in the collection configuration.
+- By setting the `filterStrategy` field for the relevant HNSW vector index [in the collection configuration](../manage-data/collections.mdx#set-vector-index-parameters).
 
 ### Sweeping
 
