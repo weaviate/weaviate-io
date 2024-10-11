@@ -8,7 +8,7 @@ export default function Video() {
         <div className={styles.header}>
           <h2>Our Company</h2>
           <p>
-            Check out our video to learn more about our company and our mission
+            Check out our video to learn more about Weaviate and our mission
             through the fantastic work we do for our customers, partners, and
             people.
           </p>
