@@ -5,20 +5,23 @@ authors: [mary]
 date: 2024-10-15
 tags: ['concepts']
 image: ./img/hero.png
-description: 'TBD'
+description: 'Everything you need to know about RAG, including architecture, use cases, implementation, and evaluation.'
 ---
+![Introduction to Retrieval Augmented Generation (RAG)](./img/hero.png)
+
+import Verba from './img/verba_nocompress.mp4';
 
 Despite the steady release of increasingly larger and smarter models, state-of-the-art generative large language models (LLMs) still have a big problem: they struggle with tasks that require specialized knowledge. This lack of specialized knowledge can lead to issues like hallucinations, where the model generates inaccurate or fabricated information. **Retrieval-Augmented Generation (RAG)** helps mitigate this by allowing the model to pull in real-time, niche data from external sources, enhancing its ability to provide accurate and detailed responses.
+
+Despite these limitations, generative models are impactful tools that automate mundane processes, assist us in our everyday work, and enable us to interact with data in new ways. So how can we leverage their broad knowledge while also making them work for our specific use cases? The answer lies in providing generative models with task-specific data.
+
+In this article, we take a deep dive into Retrieval Augmented Generation (RAG), a framework that enhances the capabilities of generative models by allowing them to reference external data. We’ll explore the limitations of generative models that led to the creation of RAG, explain how RAG works, and break down the architecture behind RAG pipelines. We’ll also get practical and outline some real-world RAG use cases, suggest concrete ways to implement RAG, introduce you to a few advanced RAG techniques, and discuss RAG evaluation methods.
 
 :::note
 
 LLM is a broad term that refers to language models trained on large datasets that are capable of performing a variety of text- and language-related tasks. LLMs that generate novel text in response to a user prompt, like those used in chatbots, are called generative LLMs, or **generative models**. LLMs that encode text data in the semantic space are called **embedding models**. Thus, we use the terms generative model and embedding model to distinguish between these two types of models in this article.
 
 :::
-
-Despite these limitations, generative models are impactful tools that automate mundane processes, assist us in our everyday work, and enable us to interact with data in new ways. So how can we leverage their broad knowledge while also making them work for our specific use cases? The answer lies in providing generative models with task-specific data.
-
-In this article, we take a deep dive into Retrieval Augmented Generation (RAG), a framework that enhances the capabilities of generative models by allowing them to reference external data. We’ll explore the limitations of generative models that led to the creation of RAG, explain how RAG works, and break down the architecture behind RAG pipelines. We’ll also get practical and outline some real-world RAG use cases, suggest concrete ways to implement RAG, introduce you to a few advanced RAG techniques, and discuss RAG evaluation methods.
 
 ## **Limitations of generative models**
 
@@ -145,7 +148,13 @@ Weaviate provides [integrations](https://weaviate.io/developers/integrations) an
 
 If you’re looking for a way to get up and running with RAG quickly, check out [**Verba**](https://github.com/weaviate/Verba), an open source out-of-the-box RAG application with a shiny, pre-built frontend. Verba enables you to visually explore datasets, extract insights, and build customizable RAG pipelines in just a few easy steps, without having to learn an entirely new framework. Verba is a multifunctional tool that can be used as a playground for testing and experimenting with RAG pipelines as well as for personal tasks like assisting with research, analyzing internal documents, and streamlining various RAG-related tasks.
 
-![Verba Demo](./img/verba_nocompress.mp4)
+<figure>
+  <video width="100%" autoplay loop muted controls>
+    <source src={Verba} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Out-of-the-box RAG implementation with Verba</figcaption>
+</figure>
 
 ## **RAG techniques**
 
@@ -207,11 +216,17 @@ At a minimum, each section in this post deserves its own individual blog post, i
 ### Resource guide
 
 📄 [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) (Original RAG paper)
+
 👩‍🍳 [Getting Started with RAG in DSPy](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/1.Getting-Started-with-RAG-in-DSPy.ipynb) (Recipe)
+
 👩‍🍳 [Naive RAG with LlamaIndex](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/llamaindex/retrieval-augmented-generation/naive_rag.ipynb) (Recipe)
+
 📝 [Advanced RAG Techniques](https://weaviate.io/blog/advanced-rag#3-fine-tuning-embedding-models) (Blog post)
+
 📒 [Agentic RAG with Multi-Document Agents](https://github.com/cobusgreyling/LlamaIndex/blob/d8902482a247c76c7902ded143a875d5580f072a/Agentic_RAG_Multi_Document_Agents-v1.ipynb) (Notebook)
+
 📝 [An Overview of RAG Evaluation](https://weaviate.io/blog/rag-evaluation) (Blog post)
+
 📄 [Evaluation of Retrieval-Augmented Generation: A Survey](https://arxiv.org/abs/2405.07437) (Academic paper)
 
 import WhatsNext from '/_includes/what-next.mdx';
