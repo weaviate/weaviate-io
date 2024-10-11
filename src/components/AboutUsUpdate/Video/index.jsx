@@ -10,7 +10,7 @@ export default function Video() {
           <p>
             Check out our video to learn more about our company and our mission
             through the fantastic work we do for our customers, partners, and
-            employees.
+            people.
           </p>
         </div>
         <div className={styles.techContainer}>
