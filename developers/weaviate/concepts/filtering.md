@@ -118,7 +118,7 @@ Version `v1.8.0` introduces the ability to automatically switch to a flat (brute
 
 The following graphic shows filters with varying restrictiveness. From left (0%) to right (100%), the filters become more restrictive. The **cut-off is configured at ~15% of the dataset** size.  This means the right side of the dotted line uses a brute-force search.
 
-![Prefiltering with flat search cutoff](./img/prefiltering-response-times-with-filter-cutoff.png "Prefiltering with flat search cutoff")
+![Prefiltering with flat search cutoff](./img/filtering-response-times-with-filter-cutoff.png "Prefiltering with flat search cutoff")
 
 As a comparison, with pure HNSW - without the cutoff - the same filters would look like the following:
 
