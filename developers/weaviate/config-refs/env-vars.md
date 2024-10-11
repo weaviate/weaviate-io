@@ -107,6 +107,10 @@ All other values are interpreted as `false`.
 | `RAFT_JOIN` | Manually set Raft voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of Raft voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
 
+<!-- Docs notes:
+MAINTENANCE_NODES is not documented as it is for internal use only
+-->
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
