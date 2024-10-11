@@ -158,6 +158,7 @@ class_obj = {
             "cache": True,  # Enable use of vector cache. Default: False
         },
         "vectorCacheMaxObjects": 100000,  # Cache size if `cache` enabled. Default: 1000000000000
+        "filterStrategy": "acorn"  # or "sweeping" (Available from Weaviate v1.27.0)
     }
     # highlight-end
 }

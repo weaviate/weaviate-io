@@ -247,6 +247,7 @@ await client.collections.create({
         cache: true
       }),
       vectorCacheMaxObjects: 100000
+      filterStrategy: 'acorn'  // or 'sweeping' (Available from Weaviate v1.27.0)
     })
     // highlight-end
   })

@@ -182,7 +182,8 @@ client.collections.create(
             rescore_limit=200,
             cache=True
         ),
-        vector_cache_max_objects=100000
+        vector_cache_max_objects=100000,
+        filter_strategy="acorn"  # or "sweeping" (Available from Weaviate v1.27.0)
     ),
     # highlight-end
 )

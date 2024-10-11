@@ -5,7 +5,13 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
 ---
 
-Weaviate provides powerful filtered vector search capabilities, meaning that you can eliminate candidates in your "fuzzy" vector search based on individual properties. Thanks to Weaviate's efficient pre-filtering mechanism, you can keep the recall high - even when filters are very restrictive. Additionally, the process is efficient and has minimal overhead compared to an unfiltered vector search.
+Weaviate provides powerful filtered vector search capabilities, allowing you to combine vector searches with structured, scalar filters. This enables you to find the closest vectors to a query vector that also match certain conditions.
+
+Filtered vector search in Weaviate is based on the concept of pre-filtering. This means that the filter is applied before the vector search is performed.
+
+The Weaviate implementation allows you to keep the recall high - even when filters are very restrictive. Additionally, the process is efficient and has minimal overhead compared to an unfiltered vector search.
+
+Starting in `v1.27`, Weaviate introduces its implementation of [`ACORN`](#acorn) filter strategy. This filtering method significantly improves performance for large datasets, especially when the filter is negatively correlated with the vector search.
 
 ## Post-Filtering vs Pre-Filtering
 
@@ -26,6 +32,34 @@ In the section about Storage, [we have described in detail which parts make up a
 
 1. An inverted index (similar to a traditional search engine) is used to create an allow-list of eligible candidates. This list is essentially a list of `uint64` ids, so it can grow very large without sacrificing efficiency.
 2. A vector search is performed where the allow-list is passed to the HNSW index. The index will move along any node's edges normally, but will only add ids to the result set that are present on the allow list. The exit conditions for the search are the same as for an unfiltered search: The search will stop when the desired limit is reached and additional candidates no longer improve the result quality.
+
+## Filter strategy
+
+As of `v1.27`, Weaviate supports two filter strategies: `sweeping` and `acorn`. The filter strategy can be set for the entire Weaviate instance or for individual vector indexes in the schema.
+
+### ACORN
+
+:::info Added in `1.27`
+:::
+
+Weaviate `1.27` adds the a new filtering algorithm that is based on the [`ACORN`](https://arxiv.org/html/2403.04871v1) paper. We refer to this as `ACORN`, but the actual implementation in Weaviate is a custom implementation that is inspired by the paper. (References to `ACORN` in this document refer to the Weaviate implementation.)
+
+The `ACORN` algorithm is designed to speed up filtered searches with the [HNSW index](./vector-index.md#hierarchical-navigable-small-world-hnsw-index) by the following:
+
+- Objects that do not meet the filters are ignored in distance calculations.
+- The algorithm reaches the relevant part of the HNSW graph faster, by using a multi-hop approach to evaluate the neighborhood of candidates.
+
+The `ACORN` algorithm is especially useful when the filter is negatively correlated with the vector search. In other words, when a filter excludes many objects in the region of the graph most similar to the query vector.
+
+As of `v1.27`, the `ACORN` algorithm can be enabled in one of two ways:
+- By setting the `FILTER_STRATEGY` [environment variable](../config-refs/env-vars.md#general) to `acorn` for the entire Weaviate instance.
+- By setting the `filterStrategy` field for the relevant vector index in the collection configuration.
+
+### Sweeping
+
+The existing filter strategy in Weaviate is referred to as `sweeping`. This strategy is based on the concept of "sweeping" through the HNSW graph.
+
+The algorithm starts at the root node and traverses the graph, evaluating the distance to the query vector at each node, while keeping the "allow list" of the filter as context. If the filter is not met, the node is skipped and the traversal continues. This process is repeated until the desired number of results is reached.
 
 ## `indexFilterable`
 
@@ -72,9 +106,13 @@ Thanks to Weaviate's custom HNSW implementation, which persists in following all
 
 The graphic below shows filters of varying levels of restrictiveness. From left (100% of dataset matched) to right (1% of dataset matched) the filters become more restrictive without negatively affecting recall on `k=10`, `k=15` and `k=20` vector searches with filters.
 
+<!-- TODO - replace this graph with ACORN test figures -->
+
 ![Recall for filtered vector search](./img/recall-of-filtered-vector-search.png "Recall of filtered vector search in Weaviate")
 
 ## Flat-Search Cutoff
+
+<!-- Need to update this section with ACORN figures. -->
 
 Version `v1.8.0` introduces the ability to automatically switch to a flat (brute-force) vector search when a filter becomes too restrictive. This scenario only applies to combined vector and scalar searches. For a detailed explanation of why HNSW requires switching to a flat search on certain filters, see this article in [towards data science](https://towardsdatascience.com/effects-of-filtered-hnsw-searches-on-recall-and-latency-434becf8041c). In short, if a filter is very restrictive (i.e. a small percentage of the dataset is matched), an HNSW traversal becomes exhaustive. In other words, the more restrictive the filter becomes, the closer the performance of HNSW is to a brute-force search on the entire dataset. However, with such a restrictive filter, we have already narrowed down the dataset to a small fraction. So if the performance is close to brute-force anyway, it is much more efficient to only search on the matching subset as opposed to the entire dataset.
 
@@ -86,7 +124,7 @@ As a comparison, with pure HNSW - without the cutoff - the same filters would lo
 
 ![Prefiltering with pure HNSW](./img/prefiltering-pure-hnsw-without-cutoff.png "Prefiltering without cutoff, i.e. pure HNSW")
 
-The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) for each class separately.
+The cutoff value can be configured as [part of the `vectorIndexConfig` settings in the schema](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) for each collection separately.
 
 <!-- TODO - replace figures with updated post-roaring bitmaps figures -->
 
@@ -94,62 +132,23 @@ The cutoff value can be configured as [part of the `vectorIndexConfig` settings 
 From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
 :::
 
-## Cacheable Filters
-
-Starting with `v1.8.0`, the inverted index portion of a filter can be cached and reused - even across different vector searches. As outlined in the sections above, pre-filtering is a two-step process. First, the inverted index is queried and potential matches are retrieved. This list is then passed to the HNSW index. Reading the potential matches from disk (step 1) can become a bottleneck in the following scenarios:
-
-* when a very large amount of IDs match the filter or
-* when complex query operations (e.g. wildcards, long filter chains) are used
-
-If the state of the inverted index has not changed since the last query, these "allow lists" can now be reused.
-
-:::note
-Even with the filter portion from cache, each vector search is still performed at query time. This means that two previously unseen vector searches can still make use of the cache as long as they use the same filter.
-:::
-
-Example:
-
-```graphql
-# search 1
-where: {
-  operator: Equal
-  path: ["publication"]
-  valueText: "NYT"
-}
-nearText: {
-  concepts: ["housing prices in the western world"]
-}
-
-# search 2
-where: {
-  operator: Equal
-  path: ["publication"]
-  valueText: "NYT"
-}
-nearText: {
-  concepts: ["where do the best wines come from?"]
-}
-```
-
-The two semantic queries have very little relation and most likely there will be no overlap in the results. However, because the scalar filter (`publication==NYT`) was the same on both it can be reused on the second query. This makes the second query as fast as an unfiltered vector search.
-
-## Performance of vector searches with cached filters
+<!-- ## Performance of vector searches with cached filters
 
 The following was run single-threaded (i.e. you can add more CPU threads to increase throughput) on a dataset of 1M objects with random vectors of 384d with a warm filter cache (pre-`Roaring bitmap` implementation).
 
-Each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter.
+Each search uses a completely unique (random) search vector, meaning that only the filter portion is cached, but not the vector search portion, i.e. on `count=100`, 100 unique query vectors were used with the same filter. -->
 
 <!-- TODO - replace table with updated post-roaring bitmaps figures -->
 
-[![Performance of filtered vector search with caching](./img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](./img/filtered-vector-search-with-caches-performance.png)
+<!-- [![Performance of filtered vector search with caching](./img/filtered-vector-search-with-caches-performance.png "Performance of filtered vector searches with 1M 384d objects")](./img/filtered-vector-search-with-caches-performance.png) -->
 
-:::note
+<!-- :::note
 Wildcard filters show considerably worse performance than exact match filters. This is because - even with caching - multiple rows need to be read from disk to make sure that no stale entries are served when using wildcards. See also "Automatic Cache Invalidation" below.
-:::
+::: -->
 
-## Automatic Cache Invalidation
+<!-- ## Automatic Cache Invalidation
 
-The cache is built in a way that it cannot ever serve a stale entry. Any write to the inverted index updates a hash for the specific row. This hash is used as part of the key in the cache. This means that if the underlying inverted index is changed, the new query would first read the updated hash and then run into a cache miss (as opposed to ever serving a stale entry). The cache has a fixed size and entries for stale hashes - which cannot be accessed anymore - are overwritten when it runs full.
+The cache is built in a way that it cannot ever serve a stale entry. Any write to the inverted index updates a hash for the specific row. This hash is used as part of the key in the cache. This means that if the underlying inverted index is changed, the new query would first read the updated hash and then run into a cache miss (as opposed to ever serving a stale entry). The cache has a fixed size and entries for stale hashes - which cannot be accessed anymore - are overwritten when it runs full. -->
 
 ## Further resources
 :::info Related pages
