@@ -191,7 +191,7 @@ Async replication supplements the repair-on-read mechanism. If a node becomes in
 
 To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
 
-### Object deletion conflict resolution
+### Deletion strategy
 
 :::info Added in `v1.27`
 :::
@@ -202,13 +202,13 @@ This can lead to a conflict where the deleted object can still be read, or where
 
 To resolve this, you can set an option in the replication config section of each collection.
 
-The available strategies are:
+The available deletion strategies are:
 
-- `PermanentlyDelete` - The object is deleted from all replicas.
+- `DeleteOnConflict` - The object is deleted from all replicas.
 - `NoAutomatedResolution` - Conflicts in deletions are resolved in the same way as other conflicts.
 
 :::tip Related pages
-- See [this how-to page](../../configuration/replication.md#object-deletion-conflict-resolution) for an example of how to set the object deletion conflict resolution strategy.
+- See [this how-to page](../../configuration/replication.md#deletion-strategy) for an example of how to set the object deletion conflict resolution strategy.
 :::
 
 ## Related pages

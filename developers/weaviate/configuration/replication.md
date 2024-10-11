@@ -5,6 +5,10 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 Weaviate instances can be replicated. Replication can improve read throughput, improve availability, and enable zero-downtime upgrades.
 
 For more details on how replication is designed and built in Weaviate, see [Replication Architecture](../concepts/replication-architecture/index.md).
@@ -62,7 +66,7 @@ import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/repl
 
 <ReplicationConfigWithAsyncRepair />
 
-### Object deletion conflict resolution
+### Deletion strategy
 
 import ManageDataPyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 import ManageDataTSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
@@ -76,8 +80,8 @@ You can optionally set a collection option on how to resolve object deletion con
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={ManageDataPyCode}
-      startMarker="# START ObjectDeletionConflictResolution"
-      endMarker="# END ObjectDeletionConflictResolution"
+      startMarker="# START DeletionStrategy"
+      endMarker="# END DeletionStrategy"
       language="py"
     />
   </TabItem>
@@ -89,7 +93,6 @@ You can optionally set a collection option on how to resolve object deletion con
   ```
 
   </TabItem>
-
 </Tabs>
 
 ## How to use: Queries
