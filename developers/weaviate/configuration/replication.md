@@ -17,28 +17,17 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 Replication is disabled by default. It can be enabled per collection in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset.
 
-To enable replication, set the replication factor:
+To enable replication, you can set one or both of the following:
+- `REPLICATION_MINIMUM_FACTOR` environment variable for the entire Weaviate instance, or
+- `replicationFactor` parameter for a collection.
 
-```yaml
-{
-  "class": "ExampleClass",
-  "properties": [
-    {
-      "name": "exampleProperty",
-      "dataType": [
-        "text"
-      ]
-    }
-  ],
-  # highlight-start
-  "replicationConfig": {
-    "factor": 3   # Integer, default 1. How many copies of this class will be stored.
-  }
-  # highlight-end
-}
-```
+### Weaviate-wide minimum replication factor
 
-The client code looks like this:
+The `REPLICATION_MINIMUM_FACTOR` environment variable sets the minimum replication factor for all collections in the Weaviate instance.
+
+If you set the [replication factor for a collection](#replication-factor-for-a-collection), the collection's replication factor overrides the minimum replication factor.
+
+### Replication factor for a collection
 
 import SchemaReplication from '/_includes/code/schema.things.create.replication.mdx';
 
