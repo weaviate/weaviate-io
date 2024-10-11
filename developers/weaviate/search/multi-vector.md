@@ -15,16 +15,32 @@ import GoCode from '!!raw-loader!/_includes/code/howto/search.multi-target.go';
 :::info Added in `v1.26`
 :::
 
-Multiple target vector search uses a single query to search multiple-target vectors. Weaviate searches the target vectors concurrently and automatically combines the results.
+In a multi-target vector search, Weaviate searches multiple target vector spaces concurrently and combines the results. A multi-target vector search produce a single set of search results.
+
+There are multiple ways to specify the target vectors and query vectors, such as:
+
+- [Specify target vector names only](#specify-target-vector-names-only)
+- [Specify query vectors](#specify-query-vectors)
+- [Specify target vector names and join strategy](#specify-target-vector-names-and-join-strategy)
+- [Weight raw vector distances](#weight-raw-vector-distances)
+- [Weight normalized vector distances](#weight-normalized-vector-distances)
+
+<!-- TODO: Move most of the description/prose to a new "vector.md" page under concepts/search. -->
 
 ## Combining search results
 
-Each multi-target vector search is composed of multiple single-target vector searches. The search results are combined based on the join strategy. The join strategy determines how the distances between the query vector and the target vectors are combined to produce a single distance score.
+A multi-target vector search involves multiple, concurrent, single-target vector searches. These searches will produce multiple sets of results, each with a vector distance score.
+
+These distances are combined using a ["join strategy"](#available-join-strategies).
+
+<details>
+  <summary>How Weaviate combines search results</summary>
 
 - If an object is missing any of the target vectors, it will not be included in the search results.
 - If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
+- If an object doesn't have all of the selected target vectors, Weaviate ignores that object and does not include it in the search results.
 
-If an object doesn't have all of the selected target vectors, Weaviate ignores that object and does not include it in the search results.
+</details>
 
 ### Available join strategies.
 
@@ -38,7 +54,7 @@ These are the available join strategies:
 
 ## Specify target vector names only
 
-Specify target vectors as a list/array of named vectors. The default join strategy is `minimum`, which means that the search results are sorted by the minimum distance in each query/target vector pair.
+As a minimum, specify the target vector names as an array of named vectors. This will use the [default join strategy](#available-join-strategies).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -78,7 +94,7 @@ Specify target vectors as a list/array of named vectors. The default join strate
 
 ## Specify query vectors
 
-Specify query vectors as a dictionary/map of names and vectors.
+You can specify multiple query vectors in the search query with a `nearVector` search. This allows use of a different query vector for each corresponding target vector.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -106,9 +122,11 @@ You can also specify the query vectors as an array of vectors. The array will be
 :::info Added in `v1.27`
 :::
 
-You can specify the value of the query vector dictionary/map as an array of vectors.
+Additionally to the above, you can specify the same target vector multiple times with different query vectors. In other words, you can use multiple query vectors for the same target vector.
 
-#### Target vectors as an array
+The query vectors in this case are specified as an array of vectors. There are multiple ways to specify the target vectors in this case:
+
+#### Target vector names only
 
 The target vectors can be specified as an array as shown here.
 
@@ -130,9 +148,9 @@ The target vectors can be specified as an array as shown here.
 </TabItem>
 </Tabs>
 
-#### Target vectors as a map of weights
+#### Target vectors and weights
 
-The target vectors can be specified as a dictionary/map of weights and vectors as shown below.
+If you want to provide weights for each target vector you can do it as shown here.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
