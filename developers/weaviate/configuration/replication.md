@@ -74,7 +74,7 @@ import ManageDataTSCode from '!!raw-loader!/_includes/code/howto/manage-data.col
 :::info Added in `v1.27`
 :::
 
-You can optionally set a collection option on how to resolve object deletion conflicts in multi-node clusters.
+You can optionally set a [deletion strategy](../concepts/replication-architecture/consistency.md#deletion-strategy) in multi-node clusters in case of conflicts.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
