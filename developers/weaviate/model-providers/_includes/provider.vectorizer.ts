@@ -489,6 +489,7 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         // model: 'text-embedding-3-large'
+        // dimensions: 512,  // e.g. 1024, 256, 64  // Support for this parameter is coming soon
       },
     ),
   ],
