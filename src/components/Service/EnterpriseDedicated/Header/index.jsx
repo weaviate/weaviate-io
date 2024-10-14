@@ -8,8 +8,11 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Enterprise Cloud</h1>
+          <p className={styles.headText}>Enterprise Cloud</p>
+
           <div className={styles.headerBox}>
+            <h1>Professionally-managed Cloud Vector Database.</h1>
+
             <p>
               Tailored for businesses seeking high performance, Weaviate’s
               Enterprise Cloud solution provides a fully managed vector database
