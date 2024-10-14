@@ -26,7 +26,7 @@
     "weaviateFeatures": ""
   },
   {
-    "name": "Amazon Web Services - AWS",
+    "name": "Amazon Web Services",
     "image": "/img/site/awsLogo.svg",
     "link": "https://www.notion.so/Amazon-Web-Services-AWS-76233b27179f49af9778102906b72dc6?pvs=21",
     "description": "Use AWS\u2019s SageMaker and Bedrock API to access a variety of models.",
@@ -43,7 +43,7 @@
   },
   {
     "name": "Firecrawl",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/firecrawl_logo.svg",
     "link": "https://www.notion.so/Firecrawl-11470562ccd680cd9ffcce821c2aa661?pvs=21",
     "description": "AI-first web scraping tool.",
     "tags": ["Data Platforms", "Integration", "External", "Python"],
@@ -53,7 +53,7 @@
   },
   {
     "name": "Context Data",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/contextdata_logo.png",
     "link": "https://www.notion.so/Context-Data-52a770de7e674395834080c099a7f443?pvs=21",
     "description": "VectorETL enables you to ingest data into Weaviate by using the target connection.",
     "tags": ["Data Platforms", "Integration"],
@@ -63,7 +63,7 @@
   },
   {
     "name": "Aryn",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/aryn_logo.svg",
     "link": "https://www.notion.so/Aryn-913802a6fdd34c0cbaf3b0c8c342e65c?pvs=21",
     "description": "AI powered ETL system for language model applications.",
     "tags": ["Data Platforms", "Integration", "External", "Python"],
@@ -73,7 +73,7 @@
   },
   {
     "name": "Airbyte",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/airbyte_logo.svg",
     "link": "https://www.notion.so/Airbyte-10570562ccd68077a149df9615c2a604?pvs=21",
     "description": "An open-source data integration engine.",
     "tags": ["Data Platforms", "Integration", "External", "Python"],
@@ -83,7 +83,7 @@
   },
   {
     "name": "Confluent",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/confluent_logo.svg",
     "link": "https://www.notion.so/Confluent-8b33a2cc5a7944e487e9b4e7ceae1034?pvs=21",
     "description": "Fully managed Apache Kafka service for real-time streaming. ",
     "tags": ["Data Platforms", "Integration", "Internal", "Python"],
@@ -93,7 +93,7 @@
   },
   {
     "name": "Astronomer",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/astronomer_logo.svg",
     "link": "https://www.notion.so/Astronomer-d4643e205a4d4df4a0327ac061c4a25c?pvs=21",
     "description": "Managed Apache Airflow for data ingestion into Weaviate.",
     "tags": ["Data Platforms", "Integration", "External", "Python"],
@@ -103,7 +103,7 @@
   },
   {
     "name": "Databricks",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/databricks_logo.svg",
     "link": "https://www.notion.so/Databricks-ec331e78d0db45d1bbcef1f6a7f315cf?pvs=21",
     "description": "Use models hosted on the Databricks platform and ingest Spark data structured from Databricks into Weaviate.",
     "tags": [
@@ -120,7 +120,7 @@
   },
   {
     "name": "Unstructured.io",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/unstructuredio_logo.png",
     "link": "https://www.notion.so/Unstructured-io-af6c73690d6c436b9c88246c8201dae5?pvs=21",
     "description": "Platform and tools to work with unstructured data for RAG applications.",
     "tags": ["Data Platforms", "Integration", "External", "Python"],
@@ -130,7 +130,7 @@
   },
   {
     "name": "Replicate",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/replicate_logo.jpeg",
     "link": "https://www.notion.so/Replicate-8c81d83b9d3f40708f4dcfd1889cb1c9?pvs=21",
     "description": "Run machine learning models through a cloud API.",
     "tags": ["Compute Infrastructure", "Integration"],
@@ -140,7 +140,7 @@
   },
   {
     "name": "Modal",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/modal_logo.svg",
     "link": "https://www.notion.so/Modal-0cc0529e65eb44259792340fe2ec6d21?pvs=21",
     "description": "Serverless platform for on-demand access to GPUs.",
     "tags": ["Compute Infrastructure", "Integration"],
@@ -150,7 +150,7 @@
   },
   {
     "name": "Composio",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/composio_logo.png",
     "link": "https://www.notion.so/Composio-11470562ccd680a1acb2e619287c7b3c?pvs=21",
     "description": "Manage and integrate tools with language models and AI agents. ",
     "tags": ["LLM Framework", "Integration", "External", "Python"],
@@ -160,7 +160,7 @@
   },
   {
     "name": "Semantic Kernel",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/sk_logo.png",
     "link": "https://www.notion.so/Semantic-Kernel-bc6a82f11e264465997b51a86310fd59?pvs=21",
     "description": "Framework by Microsoft for building large language model (LLM) applications.",
     "tags": ["LLM Framework", "Integration", "External", "C#, Python"],
@@ -170,7 +170,7 @@
   },
   {
     "name": "Deepset",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/deepset_logo.svg",
     "link": "https://www.notion.so/Deepset-90026ee25f6d4a08bb312c165e5dc608?pvs=21",
     "description": "Build with Haystack for a simple way to build LLM applications.",
     "tags": ["LLM Framework", "Integration", "External", "Python"],
@@ -180,7 +180,7 @@
   },
   {
     "name": "LlamaIndex",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/llamaindex_logo.svg",
     "link": "https://www.notion.so/LlamaIndex-9ba2935313a1480ea5f4df7d6a1ebc3e?pvs=21",
     "description": "Framework for building large language model (LLM) applications and ingesting data.",
     "tags": [
@@ -196,7 +196,7 @@
   },
   {
     "name": "LangChain",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/langchain_logo.png",
     "link": "https://www.notion.so/LangChain-917834a005264576b52db8b9f58bac56?pvs=21",
     "description": "Framework for building large language models (LLM) applications.",
     "tags": [
@@ -212,7 +212,7 @@
   },
   {
     "name": "DSPy",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/dspy_logo.png",
     "link": "https://www.notion.so/DSPy-36c3013b9bed4cd5be2bc11c5baeffa0?pvs=21",
     "description": "Framework for programming language model applications. ",
     "tags": [
@@ -229,7 +229,7 @@
   },
   {
     "name": "KubeAI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/kubeai_logo.png",
     "link": "https://www.notion.so/KubeAI-11470562ccd680ceb1e0ca61e5d9f7fa?pvs=21",
     "description": "Run Open AI embedding and generative models on kubernetes.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -239,7 +239,7 @@
   },
   {
     "name": "Anyscale",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/anyscale_logo.jpg",
     "link": "https://www.notion.so/Anyscale-8dfb2fb3b3f94601b98864fca2a485b1?pvs=21",
     "description": "Seamlessly connect to models on Anyscale directly from Weaviate.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -249,7 +249,7 @@
   },
   {
     "name": "FriendliAI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/friendliai_logo.svg",
     "link": "https://www.notion.so/FriendliAI-10e70562ccd680fc8974df7d84fa3e94?pvs=21",
     "description": "Access models on FriendliAI directly from Weaviate.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -259,7 +259,7 @@
   },
   {
     "name": "Mistral",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/mistralai_logo.png",
     "link": "https://www.notion.so/Mistral-db0e518acdac4869aebefb8b1de68fa3?pvs=21",
     "description": "Access embedding and generative models from Mistral.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -269,7 +269,7 @@
   },
   {
     "name": "Jina AI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/jina_logo.svg",
     "link": "https://www.notion.so/Jina-AI-cb7c2315d20a4e6baf6ca4e94a346543?pvs=21",
     "description": "Access embedding models from Jina AI.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -279,7 +279,7 @@
   },
   {
     "name": "Hugging Face",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/huggingface_logo.svg",
     "link": "https://www.notion.so/Hugging-Face-c2fecf9d74ff48638b76544d600e4902?pvs=21",
     "description": "Weaviate integrates with Hugging Face\u2019s API and Transformers library.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -289,7 +289,7 @@
   },
   {
     "name": "Ollama",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/ollama_logo.png",
     "link": "https://www.notion.so/Ollama-366d308ba9ca474daf5480e7d06d56b1?pvs=21",
     "description": "Easily run a range of embedding and generative models locally.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -299,7 +299,7 @@
   },
   {
     "name": "OctoAI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/octoai_logo.png",
     "link": "https://www.notion.so/OctoAI-e3cc6b4b0f5b416e8d7f578f7f94e799?pvs=21",
     "description": "Access models on OctoAI directly from Weaviate.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -309,7 +309,7 @@
   },
   {
     "name": "VoyageAI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/voyageai_logo.svg",
     "link": "https://www.notion.so/VoyageAI-4d35cd9b801945b892bc3bcd33c2b743?pvs=21",
     "description": "Access Voyage AI\u2019s models (embedding and reranker) directly from Weaviate.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -319,7 +319,7 @@
   },
   {
     "name": "Anthropic",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/anthropic_logo.svg",
     "link": "https://www.notion.so/Anthropic-f9527d282d374a27b25fed6a5d1311a1?pvs=21",
     "description": "Access a variety of generative models from Anthropic.",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -329,7 +329,7 @@
   },
   {
     "name": "Cohere",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/cohere_logo.svg",
     "link": "https://www.notion.so/Cohere-6c948a7d3ed44ffba5c35e46bf3c6d32?pvs=21",
     "description": "Use a variety of embedding, reranker, and language models from Cohere.",
     "tags": [
@@ -345,7 +345,7 @@
   },
   {
     "name": "OpenAI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/openai_logo.svg",
     "link": "https://www.notion.so/OpenAI-48c13aae9ab04d2cad104687d81b50de?pvs=21",
     "description": "Use a variety of embedding and language models from OpenAI",
     "tags": ["Model Providers", "Module", "Internal", "All languages"],
@@ -355,7 +355,7 @@
   },
   {
     "name": "Weights and Biases",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/wandb_logo2.png",
     "link": "https://www.notion.so/Weights-and-Biases-fd60be621bba46a7b47a155ff03d355f?pvs=21",
     "description": "Weave by W&B offers data analysis APIs for monitoring applications.",
     "tags": ["Operations", "Integration", "External"],
@@ -365,7 +365,7 @@
   },
   {
     "name": "Ragas",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/ragas_logo.png",
     "link": "https://www.notion.so/Ragas-11470562ccd68050854bda35a6fca7b9?pvs=21",
     "description": "Evaluate your retrieval augmented generation (RAG) applications. ",
     "tags": ["Operations", "Integration", "External", "Python"],
@@ -375,7 +375,7 @@
   },
   {
     "name": "Nomic",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/nomic_logo.svg",
     "link": "https://www.notion.so/Nomic-6d30278e8e92455199a7839d3ea13086?pvs=21",
     "description": "Connect Nomic to your Weaviate cluster to visualize the embeddings in your collection.",
     "tags": [
@@ -392,7 +392,7 @@
   },
   {
     "name": "LangWatch",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/langwatch_logo.png",
     "link": "https://www.notion.so/LangWatch-11470562ccd680ccab03d41436512f40?pvs=21",
     "description": "Connect LangWatch to your Weaviate instance to log operational traces.",
     "tags": ["Operations", "Integration", "External", "Python"],
@@ -402,7 +402,7 @@
   },
   {
     "name": "Langtrace",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/langtrace_logo.png",
     "link": "https://www.notion.so/Langtrace-11470562ccd68083bcf3d50c69a07233?pvs=21",
     "description": "View vector search queries and generative calls that are made to your Weaviate cluster.",
     "tags": ["Operations", "Integration", "External", "Python"],
@@ -412,7 +412,7 @@
   },
   {
     "name": "Arize AI",
-    "image": "/img/site/gcp-icon-partners.svg",
+    "image": "/img/site/arize_logo.svg",
     "link": "https://www.notion.so/Arize-AI-c3ece90d5cf446728e502da2ac488c3a?pvs=21",
     "description": "Log search queries sent to Weaviate and requests sent to LLM providers in Phoenix.",
     "tags": ["Operations", "Integration", "External", "Python"],
