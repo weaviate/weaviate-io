@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure Weaviate to use the Anyscale generative model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an Anyscale generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -101,9 +101,7 @@ Configure Weaviate to use the Anyscale generative model:
 
 </Tabs>
 
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
-
-<ConfigAfterGen/>
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Select a model
 
@@ -129,6 +127,33 @@ You can specify one of the [available models](#available-models) for Weaviate to
   </TabItem>
 
 </Tabs>
+
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeAnyscale"
+      endMarker="# END FullGenerativeAnyscale"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeAnyscale"
+      endMarker="// END FullGenerativeAnyscale"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
 
 ## Retrieval augmented generation
 
@@ -197,33 +222,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAnyscale"
-      endMarker="# END FullGenerativeAnyscale"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAnyscale"
-      endMarker="// END FullGenerativeAnyscale"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
 
 ### Available models
 

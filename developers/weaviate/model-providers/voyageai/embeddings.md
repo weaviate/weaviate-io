@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Voyage AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Voyage AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -100,10 +100,6 @@ Set the vectorizer to configure Weaviate to use a Voyage AI embedding model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
-
-<ConfigAfterEmb/>
 
 ### Select a model
 
@@ -130,7 +126,43 @@ You can specify one of the [available models](#available-models) for the vectori
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Voyage AI-specific options.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerVoyageAI"
+      endMarker="# END FullVectorizerVoyageAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerVoyageAI"
+      endMarker="// END FullVectorizerVoyageAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
 
 ## Data import
 
@@ -230,40 +262,35 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
-
-The following examples show how to configure Voyage AI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerVoyageAI"
-      endMarker="# END FullVectorizerVoyageAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerVoyageAI"
-      endMarker="// END FullVectorizerVoyageAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
-
 ### Available models
 
-- `voyage-large-2` (default)
-- `voyage-code-2`
-- `voyage-2`
-- `voyage-law-2`
-- `voyage-large-2-instruct`
+- voyage-3 (default)
+- voyage-3-lite
+- voyage-large-2 (default up to `v1.24.24`, `v1.25.17`, `v1.26.4`)
+- voyage-code-2
+- voyage-2
+- voyage-law-2
+- voyage-large-2-instruct
+- voyage-finance-2
+- voyage-multilingual-2
+
+<details>
+  <summary>
+    Model support history
+  </summary>
+
+- `v1.24.25`, `v1.25.18`, `v1.26.5`:
+    - Added `voyage-3`, `voyage-3-lite`
+    - Default model changed to `voyage-3` from `voyage-large-2`
+- `v1.24.14`, `v1.25.1`:
+    - Added `voyage-large-2-instruct`
+    - Removed `voyage-lite-02-instruct`
+- `v1.24.9`:
+    - Added `voyage-law-2`, `voyage-lite-02-instruct`
+- `v1.24.2`:
+    - Introduced `text2vec-voyage`, with `voyage-large-2`, `voyage-code-2`, `voyage-2` support
+
+</details>
 
 ## Further resources
 

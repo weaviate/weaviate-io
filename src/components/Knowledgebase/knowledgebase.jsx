@@ -69,6 +69,10 @@ export default function KnowledgeBase({ searchQuery }) {
     setShowMore((prev) => ({ ...prev, [card.category]: true }));
   };
 
+  useEffect(() => {
+    document.body.style.overflow = activeCard ? 'hidden' : 'visible';
+  }, [activeCard]); // Dependency on activeCard to stop overflow when modal is open
+
   // Helper function to create URL-friendly names
   function formatTitleForUrl(title) {
     return title
@@ -129,6 +133,10 @@ export default function KnowledgeBase({ searchQuery }) {
         'Deep learning models trained on massive datasets to understand and generate human-like text, used in applications like chatbots and content generation.',
       'Information Retrieval/Search':
         'Techniques for finding relevant information in a large collection of data, such as documents, images, or videos.',
+      'Embedding Types':
+        'Different types of embeddings used in vector databases, such as text embeddings, image embeddings, and multimodal embeddings.',
+      'Chunking Techniques':
+        'Techniques for breaking down large data into smaller, more manageable chunks for processing and storage.',
     };
 
     const totalCards = categoryCards.length;
@@ -274,6 +282,28 @@ export default function KnowledgeBase({ searchQuery }) {
                     Information Retrieval/Search
                   </label>
                 </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterET"
+                    name="cardFilter"
+                    value="ET"
+                    checked={selectedCard === 'ET'}
+                    onChange={() => handleCardFilter('ET')}
+                  />
+                  <label htmlFor="filterET">Embedding Types</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterCT"
+                    name="cardFilter"
+                    value="CT"
+                    checked={selectedCard === 'CT'}
+                    onChange={() => handleCardFilter('CT')}
+                  />
+                  <label htmlFor="filterCT">Chunking Techniques</label>
+                </div>
               </div>
             </div>
             <div className={styles.filterLine}></div>
@@ -381,7 +411,29 @@ export default function KnowledgeBase({ searchQuery }) {
                   checked={selectedCard === 'IRS'}
                   onChange={() => handleCardFilter('IRS')}
                 />
-                <label htmlFor="filterIR">Information Retrieval/Search</label>
+                <label htmlFor="filterIRS">Information Retrieval/Search</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterET"
+                  name="cardFilter"
+                  value="ET"
+                  checked={selectedCard === 'ET'}
+                  onChange={() => handleCardFilter('ET')}
+                />
+                <label htmlFor="filterET">Embedding Types</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterCT"
+                  name="cardFilter"
+                  value="CT"
+                  checked={selectedCard === 'CT'}
+                  onChange={() => handleCardFilter('CT')}
+                />
+                <label htmlFor="filterCT">Chunking Techniques</label>
               </div>
             </div>
           </div>
@@ -394,6 +446,8 @@ export default function KnowledgeBase({ searchQuery }) {
             {renderCards('Databases')}
             {renderCards('Large Language Models')}
             {renderCards('Information Retrieval/Search')}
+            {renderCards('Embedding Types')}
+            {renderCards('Chunking Techniques')}
           </main>
         </div>
       </div>

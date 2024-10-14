@@ -90,7 +90,7 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an AWS embedding model.
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an AWS embedding model.
 
 The required parameters for the Bedrock and the SageMaker models are different.
 
@@ -144,7 +144,44 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
 
 </Tabs>
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure AWS-specific options.
+
+The AWS region setting is required for all AWS integrations.
+
+- Bedrock users must set `service` to `bedrock` and provide the `model` name.
+- SageMaker users must set `service` to `sagemaker` and provide the `endpoint` address.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerAWS"
+      endMarker="# END FullVectorizerAWS"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerAWS"
+      endMarker="// END FullVectorizerAWS"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -243,36 +280,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure AWS-specific options.
-
-The AWS region setting is required for all AWS integrations.
-
-- Bedrock users must set `service` to `bedrock` and provide the `model` name.
-- SageMaker users must set `service` to `sagemaker` and provide the `endpoint` address.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerAWS"
-      endMarker="# END FullVectorizerAWS"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerAWS"
-      endMarker="// END FullVectorizerAWS"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

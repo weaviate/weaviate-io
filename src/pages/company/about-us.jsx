@@ -8,6 +8,7 @@ import MeetTheTeam from '/src/components/AboutUsUpdate/meet-team';
 import Investors from '/src/components/AboutUsUpdate/Investors/investors';
 import Press from '/src/components/AboutUsUpdate/Press/press';
 import Playbook from '/src/components/AboutUsUpdate/Playbook/playbook';
+import Video from '/src/components/AboutUsUpdate/Video';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function AboutUsPage() {
@@ -16,6 +17,7 @@ export default function AboutUsPage() {
       <Layout>
         <MetaSEO img="og/company/about-us.jpg" />
         <AboutUsHeader />
+
         <CompanyValues />
         <MeetTheTeam />
         <Investors />
