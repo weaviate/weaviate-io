@@ -15,14 +15,16 @@ export default function Video() {
         </div>
         <div className={styles.techContainer}>
           <br></br>
-          <video width="720" height="400" controls title="Company video">
-            <source
-              src="/img/site/Austria_Video_Public_small.mp4"
-              type="video/mp4"
-            />
-            <source src="/img/site/Austria_Video_Public.ogv" type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
+
+          <iframe
+            width="720"
+            height="400"
+            src="https://www.youtube.com/embed/NObCyVszHdo"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; controls"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>

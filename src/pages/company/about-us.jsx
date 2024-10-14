@@ -17,7 +17,7 @@ export default function AboutUsPage() {
       <Layout>
         <MetaSEO img="og/company/about-us.jpg" />
         <AboutUsHeader />
-
+        <Video />
         <CompanyValues />
         <MeetTheTeam />
         <Investors />
