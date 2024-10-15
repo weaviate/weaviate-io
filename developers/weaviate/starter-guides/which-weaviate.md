@@ -44,7 +44,7 @@ If you are evaluating Weaviate, we recommend using one of these instance types t
 - [Weaviate Cloud (WCD)](/developers/wcs) sandbox
 - [Embedded Weaviate](/developers/weaviate/installation/embedded)
 
-Use an inference-API based text vectorizer with your instance, for example, `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-google`.
+Use an inference-API based text vectorizer with your instance, for example, `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`.
 
 The [Quickstart guide](/developers/weaviate/quickstart) uses a WCD sandbox and an API based vectorizer to run the examples.
 
