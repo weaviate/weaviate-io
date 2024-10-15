@@ -415,7 +415,7 @@
       "longText": "Multimodal RAG involves retrieving from a multimodal knowledge base and then generation using a large multimodal model by generating text or images grounded in the retrieved context, which can include images, text, audio, and other modalities.",
       "link": "/developers/weaviate/quickstart",
       "bloglink": "https://weaviate.io/blog/multimodal-rag#multimodal-retrieval-augmented-generationmmrag",
-      "blogTitle": "Multimodal Retrieval Augmented Generation (MMRAG)",
+      "blogTitle": "Multimodal Retrieval Augmented Generation",
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/search-operators#multimodal-search",
       "docTitle": "Multimodal Search",
       "tags": ["RAG", "Weaviate", "Image"],

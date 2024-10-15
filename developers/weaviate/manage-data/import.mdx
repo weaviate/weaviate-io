@@ -372,6 +372,10 @@ The Python clients have built-in batching methods to help you optimize import sp
 - [Python client `v4`](../client-libraries/python/index.md#batching)
 - [Python client `v3`](../client-libraries/python/python_v3.md#batching)
 
+### Async Python client and batching
+
+Currently, the [async Python client does not support batching](../client-libraries/python/async.md#bulk-data-insertion). To use batching, use the sync Python client.
+
 ## Stream data from large files
 
 If your dataset is large, consider streaming the import to avoid out-of-memory issues.
