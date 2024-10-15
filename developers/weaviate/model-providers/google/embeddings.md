@@ -32,11 +32,7 @@ At the time of writing (November 2023), AI Studio is not available in all region
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-google`) module.
-
-:::info Module name change
-`text2vec-google` was called `text2vec-palm` in Weaviate versions prior to `v1.27`.
-:::
+Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>

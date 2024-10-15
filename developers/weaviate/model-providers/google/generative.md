@@ -32,11 +32,7 @@ At the time of writing (November 2023), AI Studio is not available in all region
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI generative AI integration (`generative-google`) module.
-
-:::info Module name change
-`generative-google` was called `generative-palm` in Weaviate versions prior to `v1.27`.
-:::
+Your Weaviate instance must be configured with the Google AI generative AI integration (`generative-palm`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>

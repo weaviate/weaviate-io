@@ -31,7 +31,7 @@ To run the server locally with the OpenAI module.
 
 The default configuration is `local-development` which will run the server locally with the `text2vec-contextionary` and `backup-filesystem` modules.
 
-You can also create your own configuration. For instance, you can clone an entry (`local-all-openai-cohere-google` is a good start) and add the required [environment variables](../../weaviate/config-refs/env-vars.md).
+You can also create your own configuration. For instance, you can clone an entry (`local-all-openai-cohere-palm` is a good start) and add the required [environment variables](../../weaviate/config-refs/env-vars.md).
 
 
 ## Running with Docker
