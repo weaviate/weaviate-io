@@ -488,7 +488,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecJina({
         name: 'title_vector',
         sourceProperties: ['title'],
-        // model: 'text-embedding-3-large'
+        // model: 'jina-embeddings-v3-small-en'
         // dimensions: 512,  // e.g. 1024, 256, 64  // Support for this parameter is coming soon
       },
     ),

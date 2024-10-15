@@ -366,7 +366,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_jinaai(
             name="title_vector",
             source_properties=["title"],
-            model="jina-embeddings-v2-small-en",
+            model="jina-embeddings-v3-small-en",
             dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
