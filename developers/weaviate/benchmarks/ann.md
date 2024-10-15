@@ -48,11 +48,11 @@ Add a note about how many runs there were. Or, if there's only one run because o
 
 For each set of parameters, we've run 10,000 requests, and we measured the following metrics:
 
-- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the ground truths specified in each dataset.
+- The **Recall@10** and **Recall@100** - by comparing Weaviate's results to the ground truths specified in each dataset.
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
   achieve with each configuration.
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests.
-- **P99 Latency** - 99% of all requests (9,900 out of 10,000) have a latency that is lower than or equal to this number – this shows how fast
+- **P99 Latency** - 99% of all requests (9,900 out of 10,000) have a latency that is lower than or equal to this number
 - **Import time** - Since varying build parameters has an effect on import time, the import time is also included.
 
 By request, we mean:
@@ -84,10 +84,10 @@ This section contains datasets modeled after the [ANN Benchmarks](https://github
 
 | **Dataset** | **Number of Objects** | **Vector Dimensions** | **[Distance metric](https://weaviate.io/blog/distance-metrics-in-vector-search)** | **Use case** |
 | --- | --- | --- | --- | --- |
-| [SIFT1M](http://corpus-texmex.irisa.fr/) | 1 M | 128 | Euclidean | This dataset reflects a common use case with a small number of objects. |
-| [Glove-25](https://nlp.stanford.edu/projects/glove/) | 1.28 M | 25 | Cosine | Because of the smaller vectors, Weaviate can achieve the highest throughput on this dataset. |
-| [Deep Image 96](https://sites.skoltech.ru/compvision/noimi/) | 10 M | 96 | Cosine | This dataset gives a good indication of expected speed and throughput when datasets grow. It is about 10 times larger than SIFT1M, but the throughput is only slightly lower. |
-| [GIST 960](http://corpus-texmex.irisa.fr/) | 1 M | 960 | Euclidean | This dataset highlights the cost of high-dimensional vector comparisons. It has the lowest throughput of the sample datasets. Use this one if you run high-dimensional loads. |
+| [SIFT1M](http://ann-benchmarks.com/sift-128-euclidean.hdf5) | 1 M | 128 | l2-squared | This dataset reflects a common use case with a small number of objects. |
+| [OpenAI-Ada002-DBPedia](https://storage.googleapis.com/ann-datasets/ann-benchmarks/dbpedia-openai-1000k-angular.hdf5) | 1 M | 1536 | cosine |  |
+| [Snowflake-MTEB](https://storage.googleapis.com/ann-datasets/custom/snowflake-msmarco-arctic-embed-m-v1.5-angular.hdf5) | 8.8 M | 768 | l2-squared |  |
+| [Sphere-DPR](https://storage.googleapis.com/ann-datasets/custom/sphere-10M-meta-dpr.hdf5) | 10 M | 768 | dot |  |
 
 #### Benchmark Datasets
 These are the results for each dataset:
@@ -97,9 +97,9 @@ These are the results for each dataset:
 
 #### QPS vs Recall for SIFT1M
 
-![SIFT1M Benchmark results](./img/benchmark_sift_128.png)
+![SIFT1M Benchmark results](./img/sift-128-euclidean.png)
 
-import AnnSift128 from '/_includes/ann-sift-128.mdx';
+import AnnSift128 from '/_includes/ann-sift-128-euclidean.mdx';
 
 <AnnSift128/>
 
@@ -114,69 +114,69 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 128 | 32 | 64 | 98.83% | 8905 | 3.31ms | 4.49ms |
+| 256 | 32 | 64 | 98.35% | 10940 | 1.44ms | 3.13ms |
 
 
 </TabItem>
-<TabItem value="10" label="Glove-25">
+<TabItem value="10" label="OpenAI-Ada002-DBPedia">
 
-#### QPS vs Recall for Glove-25
+#### QPS vs Recall for OpenAI-Ada002-DBPedia
 
-![Glove25 Benchmark results](./img/benchmark_glove_25.png)
+![OpenAI-Ada002-DBPedia Benchmark results](./img/dbpedia-openai-1000k-angular.png)
 
-import AnnGlove25 from '/_includes/ann-glove-25.mdx';
+import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 
-<AnnGlove25/>
+<AnnDBPedia/>
 
 <AnnReadResultsTable/>
 
-#### Recommended configuration for Glove-25
+#### Recommended configuration for OpenAI-Ada002-DBPedia
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 64 | 16 | 64 | 95.56% | 15003 | 1.93ms | 2.94ms |
+| 256 | 16 | 96 | 97.24% | 5639 | 2.80ms | 4.43ms |
 
 </TabItem>
-<TabItem value="100" label="Deep Image 96">
+<TabItem value="100" label="Snowflake-MTEB">
 
-#### QPS vs Recall for Deep Image 96
+#### QPS vs Recall for Snowflake-MTEB
 
-![Deep Image 96 Benchmark results](./img/benchmark_deepimage_96.png)
+![Snowflake-MTEB Benchmark results](./img/snowflake-msmarco-arctic-embed-m-v1.png)
 
-import AnnDeep96 from '/_includes/ann-deep-96.mdx';
+import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1.5-angular.mdx';
 
-<AnnDeep96/>
+<AnnSnowflakeMTEB/>
 
 <AnnReadResultsTable/>
 
-#### Recommended configuration for Deep Image 96
+#### Recommended configuration for Snowflake-MTEB
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 128 | 32 | 64 | 96.43% | 6112 | 4.7ms | 15.87ms |
+| 256 | 64 | 48 | 97.43% | 7016 | 2.26ms | 4.01ms |
 
 </TabItem>
-<TabItem value="1000" label="GIST 960">
+<TabItem value="1000" label="Sphere-DPR">
 
-#### QPS vs Recall for GIST 960
+#### QPS vs Recall for Sphere-DPR
 
-![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
+![Sphere-DPR Benchmark results](./img/sphere-10M-meta-dpr.png)
 
-import AnnGist960 from '/_includes/ann-gist-960.mdx';
+import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
 
-<AnnGist960/>
+<AnnSphereDPR/>
 
 <AnnReadResultsTable/>
 
 
-#### Recommended configuration for GIST 960
+#### Recommended configuration for Sphere-DPR
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 512 | 32 | 128 | 94.14% | 1935 | 15.05ms | 19.86ms |
+| 384 | 64 | 64 | 96.23% | 3725 | 4.23ms | 7.10ms |
 
 </TabItem>
 </Tabs>
@@ -195,12 +195,11 @@ This benchmark is [open source](https://github.com/weaviate/weaviate-benchmarkin
 
 ![Setup with Weaviate and benchmark machine](/img/docs/weaviate_benchmark_setup.png)
 
-This benchmark test uses two GCP instances within the same VPC:
+This benchmark test uses one GCP instances to run both Weaviate and the Benchmark scripts:
 
-* **Benchmark** – a `c2-standard-30` instance with 30 vCPU cores and 120 GB memory – to host Weaviate.
-* **Script** – a smaller instance with 8 vCPU – to run benchmarking scripts.
+* a `n4-highmem-16` instance with 16 vCPU cores and 128 GB memory.
 
-:::info Here's why we chose the `c2-standard-30`:
+:::info Here's why we chose the `n4-highmem-16`:
 
 * It is large enough to show that Weaviate is a highly concurrent [vector search engine](https://weaviate.io/blog/what-is-a-vector-database).
 * It scales well while running thousands of searches across multiple threads.
@@ -222,10 +221,10 @@ We modeled our dataset selection after
 queries are used to test speed, throughput, and recall. The provided ground
 truths are used to calculate the recall.
 
-We use Weaviate's Python client to import data.
+We use Weaviate's Golang client to import data.
 We use Go to measure the concurrent (multi-threaded) queries.
- Each language has its own performance characteristics.
- You may get different results if you use a different language to send your queries.
+Each language has its own performance characteristics.
+You may get different results if you use a different language to send your queries.
 
 For maximum throughput, we recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 [Java](/developers/weaviate/client-libraries/java.md) client libraries.
