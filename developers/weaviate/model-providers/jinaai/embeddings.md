@@ -266,6 +266,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 - `jina-embeddings-v3` (Added in Weaviate `v1.26.5` and `v1.27`)
     - When using this model, Weaviate will automatically use the appropriate `task` type, applying `retrieval.passage` for embedding entries and `retrieval.query` for queries.
+    - By default, Weaviate uses `1024` dimensions
 - `jina-embeddings-v2-base-en` (Default)
 - `jina-embeddings-v2-small-en`
 
