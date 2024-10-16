@@ -54,13 +54,11 @@ The `ACORN` algorithm is especially useful when the filter is negatively correla
 
 Our internal testing indicates that for negatively correlated, restrictive filters, the `ACORN` algorithm can be significantly faster, especially for large datasets. If this has been a bottleneck for your use case, we recommend enabling the `ACORN` algorithm.
 
-As of `v1.27`, the `ACORN` algorithm can be enabled in one of two ways:
-- By setting the `FILTER_STRATEGY` [environment variable](../config-refs/env-vars.md#general) to `acorn` for the entire Weaviate instance.
-- By setting the `filterStrategy` field for the relevant HNSW vector index [in the collection configuration](../manage-data/collections.mdx#set-vector-index-parameters).
+As of `v1.27`, the `ACORN` algorithm can be enabled by setting the `filterStrategy` field for the relevant HNSW vector index [in the collection configuration](../manage-data/collections.mdx#set-vector-index-parameters).
 
 ### Sweeping
 
-The existing filter strategy in Weaviate is referred to as `sweeping`. This strategy is based on the concept of "sweeping" through the HNSW graph.
+The existing and current default filter strategy in Weaviate is referred to as `sweeping`. This strategy is based on the concept of "sweeping" through the HNSW graph.
 
 The algorithm starts at the root node and traverses the graph, evaluating the distance to the query vector at each node, while keeping the "allow list" of the filter as context. If the filter is not met, the node is skipped and the traversal continues. This process is repeated until the desired number of results is reached.
 

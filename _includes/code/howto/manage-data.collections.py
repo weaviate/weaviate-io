@@ -171,7 +171,7 @@ assert config.vector_index_type.name == "HNSW"
 client.collections.delete("Article")
 
 # START SetVectorIndexParams
-from weaviate.classes.config import Configure, Property, DataType
+from weaviate.classes.config import Configure, Property, DataType, VectorFilterStrategy
 
 client.collections.create(
     "Article",
@@ -183,7 +183,7 @@ client.collections.create(
             cache=True
         ),
         vector_cache_max_objects=100000,
-        filter_strategy="acorn"  # or "sweeping" (Available from Weaviate v1.27.0)
+        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)
     ),
     # highlight-end
 )

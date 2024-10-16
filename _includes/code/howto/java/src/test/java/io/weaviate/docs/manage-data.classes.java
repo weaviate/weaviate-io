@@ -284,7 +284,6 @@ class ManageDataClassesTest {
         .cache(true)
         .build())
       .vectorCacheMaxObjects(100000L)
-      .filterStrategy("acorn")  // or "sweeping" (Available from Weaviate v1.27.0)
       .build();
 
     WeaviateClass articleClass = WeaviateClass.builder()
