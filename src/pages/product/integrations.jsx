@@ -14,12 +14,11 @@ export default function PartnersPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Partners | Snowflake"
-        description="Explore our Snowflake partner page to learn more about our partnership and how we can help you with your cloud journey."
+        title="Product | Modules and Intergrations"
+        description="Find new ways to extend your applications and infrastructure with our partner integrations."
       >
         <Header />
         <CardFilter />
-
         <ContactForm />
       </Layout>
       <ThemeSwitch />

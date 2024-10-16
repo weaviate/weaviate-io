@@ -16,15 +16,7 @@ const availableFilters = [
   },
   {
     label: 'Additional',
-    values: ['Module', 'Popular', 'Integration'],
-  },
-  {
-    label: 'Programming Languages',
-    values: ['All languages', 'Python', 'TS/JS', 'C#'],
-  },
-  {
-    label: 'Weaviate Features',
-    values: ['Hybrid Search', 'Filters', 'Multi-tenancy'],
+    values: ['Module', 'Integration'],
   },
 ];
 
@@ -43,18 +35,20 @@ function SideFilter({ selectedFilters, onFilterChange }) {
       {availableFilters.map((filterCategory) => (
         <div key={filterCategory.label}>
           <h4>{filterCategory.label}</h4>
-          {filterCategory.values.map((value) => (
-            <div key={value} className={styles.filterOption}>
-              <input
-                type="checkbox"
-                id={value}
-                value={value}
-                checked={selectedFilters.includes(value)}
-                onChange={() => handleFilterChange(value)}
-              />
-              <label htmlFor={value}> {value}</label>
-            </div>
-          ))}
+          <div className={styles.filterResults}>
+            {filterCategory.values.map((value) => (
+              <div key={value} className={styles.filterOption}>
+                <input
+                  type="checkbox"
+                  id={value}
+                  value={value}
+                  checked={selectedFilters.includes(value)}
+                  onChange={() => handleFilterChange(value)}
+                />
+                <label htmlFor={value}> {value}</label>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
