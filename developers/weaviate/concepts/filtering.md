@@ -7,11 +7,9 @@ image: og/docs/concepts.jpg
 
 Weaviate provides powerful filtered vector search capabilities, allowing you to combine vector searches with structured, scalar filters. This enables you to find the closest vectors to a query vector that also match certain conditions.
 
-Filtered vector search in Weaviate is based on the concept of pre-filtering. This means that the filter is applied before the vector search is performed. Unlike some pre-filtering implementations, Weaviate's pre-filtering does not require a brute-force vector search and is highly efficient.
+Filtered vector search in Weaviate is based on the concept of pre-filtering. This means that the filter is constructed before the vector search is performed. Unlike some pre-filtering implementations, Weaviate's pre-filtering does not require a brute-force vector search and is highly efficient.
 
-This implementation allows you to keep the recall high and speed performant, even when filters are very restrictive. Additionally, the process is efficient and has minimal overhead compared to an unfiltered vector search.
-
-Starting in `v1.27`, Weaviate introduces its implementation of [`ACORN`](#acorn) filter strategy. This filtering method significantly improves performance for large datasets, especially when the filter is negatively correlated with the vector search.
+Starting in `v1.27`, Weaviate introduces its implementation of the [`ACORN`](#acorn) filter strategy. This filtering method significantly improves performance for large datasets, especially when the filter has low correlation with the query vector.
 
 ## Post-Filtering vs Pre-Filtering
 
@@ -35,7 +33,7 @@ In the section about Storage, [we have described in detail which parts make up a
 
 ## Filter strategy
 
-As of `v1.27`, Weaviate supports two filter strategies: `sweeping` and `acorn`. The filter strategy can be set for the entire Weaviate instance or for individual vector indexes in the schema.
+As of `v1.27`, Weaviate supports two filter strategies: `sweeping` and `acorn` specifically for the HNSW index type.
 
 ### ACORN
 
@@ -48,11 +46,11 @@ The `ACORN` algorithm is designed to speed up filtered searches with the [HNSW i
 
 - Objects that do not meet the filters are ignored in distance calculations.
 - The algorithm reaches the relevant part of the HNSW graph faster, by using a multi-hop approach to evaluate the neighborhood of candidates.
-- The entry points are randomly seeded to speed up convergence to the filtered zone.
+- Additional entrypoints matching the filter are randomly seeded to speed up convergence to the filtered zone.
 
-The `ACORN` algorithm is especially useful when the filter is negatively correlated with the vector search. In other words, when a filter excludes many objects in the region of the graph most similar to the query vector.
+The `ACORN` algorithm is especially useful when the filter has low correlation with the query vector. In other words, when a filter excludes many objects in the region of the graph most similar to the query vector.
 
-Our internal testing indicates that for negatively correlated, restrictive filters, the `ACORN` algorithm can be significantly faster, especially for large datasets. If this has been a bottleneck for your use case, we recommend enabling the `ACORN` algorithm.
+Our internal testing indicates that for lowly correlated, restrictive filters, the `ACORN` algorithm can be significantly faster, especially for large datasets. If this has been a bottleneck for your use case, we recommend enabling the `ACORN` algorithm.
 
 As of `v1.27`, the `ACORN` algorithm can be enabled by setting the `filterStrategy` field for the relevant HNSW vector index [in the collection configuration](../manage-data/collections.mdx#set-vector-index-parameters).
 

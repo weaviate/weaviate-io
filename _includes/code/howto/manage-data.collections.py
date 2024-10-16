@@ -171,18 +171,16 @@ assert config.vector_index_type.name == "HNSW"
 client.collections.delete("Article")
 
 # START SetVectorIndexParams
-from weaviate.classes.config import Configure, Property, DataType, VectorFilterStrategy
+from weaviate.classes.config import Configure, Property, DataType, VectorDistances, VectorFilterStrategy
 
 client.collections.create(
     "Article",
     # Additional configuration not shown
     # highlight-start
-    vector_index_config=Configure.VectorIndex.flat(
-        quantizer=Configure.VectorIndex.Quantizer.bq(
-            rescore_limit=200,
-            cache=True
-        ),
-        vector_cache_max_objects=100000,
+    vector_index_config=Configure.VectorIndex.hnsw(
+        quantizer=Configure.VectorIndex.Quantizer.bq(),
+        ef_construction=300,
+        distance_metric=VectorDistances.COSINE,
         filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)
     ),
     # highlight-end
@@ -192,7 +190,8 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.vector_index_type.name == "FLAT"
+assert config.vector_index_config.filter_strategy.name == "SWEEPING"
+assert config.vector_index_type.name == "HNSW"
 
 
 # ===================================================================

@@ -246,7 +246,7 @@ await client.collections.create({
         rescoreLimit: 200,
         cache: true
       }),
-      vectorCacheMaxObjects: 100000,
+      vectorCacheMaxObjects: 100000
     })
     // highlight-end
   })
