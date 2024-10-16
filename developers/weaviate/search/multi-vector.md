@@ -37,7 +37,7 @@ These distances are combined using a ["join strategy"](#available-join-strategie
   <summary>How Weaviate combines search results</summary>
 
 - If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
-- If an object doesn't have all of the selected target vectors, Weaviate ignores that object and does not include it in the search results.
+- If an object does not contain vectors for any selected target vector, Weaviate ignores that object and does not include it in the search results.
 
 </details>
 
