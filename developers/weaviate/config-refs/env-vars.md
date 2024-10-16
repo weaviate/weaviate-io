@@ -19,6 +19,8 @@ All other values are interpreted as `false`.
 | --- | --- | --- | --- |
 | `ASYNC_INDEXING` | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
 | `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
+| `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the
+default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
 | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | `DISABLE_LAZY_LOAD_SHARDS` | New in v1.23. When `false`, enable lazy shard loading to improve mean time to recovery in multi-tenant deployments. | `string` | `false` |
 | `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
@@ -96,7 +98,7 @@ All other values are interpreted as `false`.
 | --- | --- | --- | --- |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
-| `CLUSTER_HOSTNAME` | Hostname of a node | `string` | `node1` |
+| `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
 | `CLUSTER_JOIN` | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
 | `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | If `true`, vector cache prefill is synchronous when a node starts. The node reports ready to serve when the cache is hot. Defaults to `false`. Added in 1.24.20 and 1.25.5. | `boolean` | `false` |
 | `RAFT_ENABLE_FQDN_RESOLVER` | If `true`, use DNS lookup instead of memberlist lookup for Raft. Added in `v1.25.15`. ([Read more](../concepts/cluster.md#fqdn-for-node-discovery)) | `boolean` | `true` |
@@ -109,8 +111,9 @@ All other values are interpreted as `false`.
 | `REPLICATION_MINIMUM_FACTOR` | The minimum replication factor for all collections in the cluster. | `string - number` | `3` |
 
 <!-- Docs notes:
-MAINTENANCE_NODES: not documented, for internal use only
-ASYNC_BRUTE_FORCE_SEARCH_LIMIT: not documented, for internal use only
+Undocumented environment variables - for internal use only:
+MAINTENANCE_NODES
+ASYNC_BRUTE_FORCE_SEARCH_LIMIT
 -->
 
 ## Questions and feedback
