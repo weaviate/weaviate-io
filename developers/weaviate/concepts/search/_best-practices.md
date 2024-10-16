@@ -13,7 +13,7 @@ This page lays out suggested best practices for optimizing search quality and pe
 
 Filters narrow down search results based on specific criteria related to properties or metadata.
 
-Weaviate applies [pre-filtering](../prefiltering.md) where filtering is done, and passed to the search as a parameter. This helps to keep the recall high even when the filter is very restrictive.
+Weaviate applies [pre-filtering](../filtering.md) where filtering is done, and passed to the search as a parameter. This helps to keep the recall high even when the filter is very restrictive.
 
 Enable or disable [indexes for each property](#index-types-and-filters) or [index optional metadata](#optional-metadata-filtering) to trade off filter performance against disk usage.
 
@@ -21,7 +21,7 @@ Enable or disable [indexes for each property](#index-types-and-filters) or [inde
 
 Weaviate makes use of indexes to speed up filtering operations.
 
-[Roaring bitmap indexes (`indexFilterable`)](../prefiltering.md#indexfilterable) were added in `v1.18` to improve the performance of filtering operations. [Range-based indexes (`indexRangeFilters`)](../prefiltering.md#indexrangefilters) were added in `v1.26` to speed up range-based numerical filtering for `int`, `number`, or `date` properties.
+[Roaring bitmap indexes (`indexFilterable`)](../filtering.md#indexfilterable) were added in `v1.18` to improve the performance of filtering operations. [Range-based indexes (`indexRangeFilters`)](../filtering.md#indexrangefilters) were added in `v1.26` to speed up range-based numerical filtering for `int`, `number`, or `date` properties.
 
 These indexes can be [enabled or disabled](../../manage-data/collections.mdx#set-inverted-index-parameters) for each property.
 
