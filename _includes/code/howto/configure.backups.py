@@ -93,7 +93,7 @@ client.collections.delete(["Article", "Publication"])
 # ==============================================
 
 # START CancelBackup
-result = client.backup.cancel_backup(
+result = client.backup.cancel(
     backup_id="my-very-first-backup",
     backend="filesystem",
 )
