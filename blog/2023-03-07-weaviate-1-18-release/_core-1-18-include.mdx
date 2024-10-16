@@ -30,7 +30,7 @@ With the introduction of the natively-implemented `RoaringSet` data type in `1.1
 
 The extra efficiencies are due to various strategies that Roaring Bitmaps employ, where it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in much improved filtering speeds for Weaviate.
 
-Weaviate version `1.18` and onwards will include this feature, and our team will be maintaining our underlying Roaring Bitmap library to address any issues and make improvements as needed. To read more about pre-filtering read the documentation [here](/developers/weaviate/concepts/prefiltering)
+Weaviate version `1.18` and onwards will include this feature, and our team will be maintaining our underlying Roaring Bitmap library to address any issues and make improvements as needed. To read more about pre-filtering read the documentation [here](/developers/weaviate/concepts/filtering)
 
 ### What this means for you
 From your perspective, the only visible change will be the a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.

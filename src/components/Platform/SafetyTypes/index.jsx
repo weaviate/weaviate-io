@@ -36,7 +36,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/concepts/prefiltering"
+                to="/developers/weaviate/concepts/filtering"
               >
                 Learn more
               </Link>

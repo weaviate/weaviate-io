@@ -53,6 +53,25 @@ Read more about [enabling all API-based modules](../configuration/modules.md#ena
 | [Meta ImageBind](./imagebind/index.md) | [Multimodal](./imagebind/embeddings-multimodal.md) | - | - |
 | [Ollama](./ollama/index.md) | [Text](./ollama/embeddings.md) | [Text](./ollama/generative.md) | - |
 
+## How does Weaviate generate embeddings?
+
+When a model provider integration for embeddings is enabled, Weaviate automatically generates embeddings for objects that are added to the database.
+
+This is done by providing the source data to the integration provider, which then returns the embeddings to Weaviate. The embeddings are then stored in the Weaviate database.
+
+Weaviate generates embeddings for objects as follows:
+
+- Selects properties with `text` or `text[]` data types unless they are configured to be skipped
+- Sorts properties in alphabetical (a-z) order before concatenating values
+- Prepends the collection name if configured
+
+:::note Case sensitivity
+For Weaviate versions before `v1.27`, the string created above is lowercased before being sent to the model provider. Starting in `v1.27`, the string is sent as is.
+
+If you prefer the text to be lowercased, you can do so by setting the `LOWERCASE_VECTORIZATION_INPUT` environment variable.
+The text is always lowercased for the `text2vec-contextionary` integration.
+:::
+
 ## Further resources
 
 import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';

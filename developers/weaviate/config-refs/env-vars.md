@@ -53,7 +53,7 @@ default hostname has changed and a single node cluster believes there are suppos
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | `QUERY_SLOW_LOG_ENABLED` | Log slow queries for debugging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `boolean` | `False` |
 | `QUERY_SLOW_LOG_THRESHOLD` | Set a threshold time for slow query logging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `string` | `2s` <br/> Values are times: `3h`, `2s`, `100ms` |
-| `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
+| `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/filtering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
 | `TOMBSTONE_DELETION_CONCURRENCY` | The maximum number of cores to use for tombstone deletion. Set this to limit the number of cores used for cleanup. Default: Half of the available cores. (New in `v1.24.0`) | `string - int` | `4` |
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
@@ -67,6 +67,7 @@ default hostname has changed and a single node cluster believes there are suppos
 | `CLIP_INFERENCE_API` | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | `IMAGE_INFERENCE_API` | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
+| `LOWERCASE_VECTORIZATION_INPUT` | If `true`, Weaviate lowercases all input text before vectorization. <br/>Added in `v1.27` (default: `false`) <br/>For `text2vec-contextionary`, set this to `true` | `boolean` | `true` |
 | `OFFLOAD_S3_BUCKET` | The S3 bucket to use for offloading (default: `weaviate-offload`) | `string` | `my-custom-offload-bucket` |
 | `OFFLOAD_S3_BUCKET_AUTO_CREATE` | Whether to automatically create the S3 bucket for offloading if it does not exist (default: `false`) | `boolean` | `true` |
 | `OFFLOAD_S3_CONCURRENCY` | The maximum number of parts that will be uploaded/downloaded in parallel during offloading operations (default: `25`) | `string - number` | `10` |

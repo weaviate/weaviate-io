@@ -40,7 +40,7 @@ Filters reduce the number of objects based on specific criteria. This can includ
 Effective filtering can significantly improve search relevance. This is due to filters' ability to precisely reduce the result set based on exact criteria.
 
 :::info How do filters interact with searches?
-Weaivate applies [pre-filtering](../prefiltering.md), where filters are performed before searches.
+Weaivate applies [pre-filtering](../filtering.md), where filters are performed before searches.
 <br/>
 
 This ensures that search results overlap with the filter criteria to make sure that the right objects are retrieved.
