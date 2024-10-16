@@ -157,7 +157,6 @@ response = collection.query.near_vector(
     target_vector=[
         "jeopardy_questions_vector",
         "jeopardy_answers_vector",
-        "jeopardy_answers_vector"
     ],
     return_metadata=MetadataQuery(distance=True)
 )

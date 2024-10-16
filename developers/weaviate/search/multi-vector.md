@@ -36,7 +36,6 @@ These distances are combined using a ["join strategy"](#available-join-strategie
 <details>
   <summary>How Weaviate combines search results</summary>
 
-- If an object is missing any of the target vectors, it will not be included in the search results.
 - If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
 - If an object doesn't have all of the selected target vectors, Weaviate ignores that object and does not include it in the search results.
 
@@ -46,7 +45,7 @@ These distances are combined using a ["join strategy"](#available-join-strategie
 
 These are the available join strategies:
 
-- **minimum** (*default*) Use the minimum of the vector distances.
+- **minimum** (*default*) Use the minimum of all vector distances.
 - **sum** Use the sum of the vector distances.
 - **average** Use the average of the vector distances.
 - **manual weights** Use the sum of weighted distances, where the weight is provided for each target vector.
@@ -202,9 +201,7 @@ Search by sums of weighted, **raw** distances to each target vector.
 <details>
   <summary>The weighting in detail</summary>
 
-Each distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
-
-For a more detailed explanation of how scores are normalized, see the blog post on [hybrid relative score fusion](/blog/hybrid-search-fusion-algorithms#relative-score-fusion)
+Each distance between the query vector and the target vector is multiplied by the specified weight, then the resulting weighted distances are summed for each object to produce a combined distance. The search results are sorted by this combined distance.
 
 </details>
 
@@ -234,8 +231,9 @@ Search by sums of weighted, **normalized** distances to each target vector.
 <details>
   <summary>The weighting in detail</summary>
 
-Each distance is normalized against other results for that target vector. Each normalized distance between the query vector and the target vector is multiplied by the specified weight. The resulting weighted distances are summed for each object to produce a weighted distance. The search results are sorted by the weighted distance.
+Each distance is normalized against other results for that target vector. Each normalized distance between the query vector and the target vector is multiplied by the specified weight. The resulting weighted distances are summed for each object to produce a combined distance. The search results are sorted by this combined distance.
 
+For a more detailed explanation of how scores are normalized, see the blog post on [hybrid relative score fusion](/blog/hybrid-search-fusion-algorithms#relative-score-fusion)
 </details>
 
 <Tabs groupId="languages">
