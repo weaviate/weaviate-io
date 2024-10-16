@@ -133,7 +133,7 @@ for o in response.objects:
 # ===== NearVectorWithMultipleVectorsPerTarget =====
 # ================================================
 
-some_result = collection.query.fetch_objects(limit=2, include_vector=True)
+some_result = collection.query.fetch_objects(limit=3, include_vector=True)
 
 v1 = some_result.objects[0].vector["jeopardy_questions_vector"]
 v2 = some_result.objects[1].vector["jeopardy_answers_vector"]
