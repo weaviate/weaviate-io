@@ -1,10 +1,14 @@
 .box {
   display: flex;
-
   justify-content: center;
   align-items: flex-start;
   text-align: left;
   margin-bottom: 40px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 70px;
+  }
 
   span {
     color: #130c49;
@@ -62,6 +66,11 @@
     flex-shrink: 0;
     border-radius: 1.25rem;
     background-position: right;
+
+    @media screen and (max-width: 900px) {
+      width: 44.6875rem;
+      height: 26.6875rem;
+    }
   }
 }
 
@@ -130,4 +139,65 @@
   line-height: 120%; /* 1.5rem */
   text-transform: uppercase;
   margin: 10px 0px;
+}
+
+.bottomBar {
+  background: #130c49;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .logo {
+    background-image: url('/img/site/stackoverflow-cs-variant.svg');
+    background-size: cover;
+    background-position: center;
+    width: 4.05294rem;
+    height: 1.2745rem;
+    flex-shrink: 0;
+  }
+
+  .logo1 {
+    background-image: url('/img/site/instabase-cs-variant.svg');
+    width: 7.00806rem;
+    height: 0.73581rem;
+    flex-shrink: 0;
+  }
+  .logo2 {
+    background-image: url('/img/site/redhat-cs-variant.svg');
+    width: 5.41038rem;
+    height: 1.25881rem;
+    flex-shrink: 0;
+  }
+  .logo3 {
+    background-image: url('/img/site/mutiny-cs-variant.svg');
+    width: 2.70644rem;
+    height: 1.30169rem;
+    flex-shrink: 0;
+  }
+  .logo4 {
+    background-image: url('/img/site/shippo-cs-variant.svg');
+    width: 4.04431rem;
+    height: 1.02769rem;
+    flex-shrink: 0;
+  }
+  .logo5 {
+    background-image: url('/img/site/redbull-cs-variant.svg');
+    width: 6.5175rem;
+    height: 1.03213rem;
+    flex-shrink: 0;
+  }
+  .logo6 {
+    background-image: url('/img/site/writesonic-cs-variant.svg');
+    width: 5.296rem;
+    height: 1.33944rem;
+    flex-shrink: 0;
+  }
+  .logo7 {
+    background-image: url('/img/site/netapp-cs-variant.svg');
+    width: 5.27531rem;
+    height: 0.927rem;
+    flex-shrink: 0;
+  }
 }

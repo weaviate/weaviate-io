@@ -30,6 +30,16 @@ export default function StudyHeader() {
           </div>
         </div>
       </div>
+      <div className={styles.bottomBar}>
+        <div className={styles.logo}></div>
+        <div className={`${styles.logo} ${styles.logo1}`}></div>
+        <div className={`${styles.logo} ${styles.logo2}`}></div>
+        <div className={`${styles.logo} ${styles.logo3}`}></div>
+        <div className={`${styles.logo} ${styles.logo4}`}></div>
+        <div className={`${styles.logo} ${styles.logo5}`}></div>
+        <div className={`${styles.logo} ${styles.logo6}`}></div>
+        <div className={`${styles.logo} ${styles.logo7}`}></div>
+      </div>
     </header>
   );
 }
