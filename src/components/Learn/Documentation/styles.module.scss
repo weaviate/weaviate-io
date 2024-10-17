@@ -106,10 +106,10 @@
     max-width: 100%;
     gap: 10px;
     justify-content: unset;
+    height: auto;
   }
 
   @media screen and (max-width: 500px) {
-    height: 22.5rem;
     justify-content: stretch;
   }
 }
@@ -182,6 +182,7 @@
 
   @media screen and (max-width: 1440px) {
     gap: 6px;
+    height: auto;
   }
 
   p {
