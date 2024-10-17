@@ -7,7 +7,8 @@
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
-    gap: 70px;
+    gap: 40px;
+    margin-bottom: 0px;
   }
 
   span {
@@ -57,19 +58,35 @@
 }
 
 .right {
+  @media screen and (max-width: 970px) {
+    display: none;
+  }
   .image {
     background: url('/img/site/case-study-header-image-01.png');
-    background-size: cover;
-    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 36.6875rem;
     height: 26.6875rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
     background-position: right;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 1200px) {
+      width: 30.6875rem;
+      height: 26.6875rem;
+    }
+
+    @media screen and (max-width: 1100px) {
+      width: 26.6875rem;
+      height: 26.6875rem;
+    }
 
     @media screen and (max-width: 900px) {
-      width: 44.6875rem;
+      width: 100%;
+      min-width: 29rem;
       height: 26.6875rem;
+      background-position: unset;
     }
   }
 }
@@ -140,64 +157,111 @@
   text-transform: uppercase;
   margin: 10px 0px;
 }
-
 .bottomBar {
   background: #130c49;
   width: 100%;
   height: 5rem;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center; /* Center logos horizontally */
+  overflow: hidden;
+  position: relative;
+}
 
-  .logo {
-    background-image: url('/img/site/stackoverflow-cs-variant.svg');
-    background-size: cover;
-    background-position: center;
-    width: 4.05294rem;
-    height: 1.2745rem;
-    flex-shrink: 0;
+.logoWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* Ensure logos are aligned horizontally */
+  justify-content: space-evenly; /* Distribute logos evenly */
+  align-items: center; /* Center logos vertically */
+  gap: 40px; /* Adjust gap between logos if necessary */
+  animation: slide 20s linear infinite;
+}
+
+.logo {
+  background-image: url('/img/site/stackoverflow-cs-variant.svg');
+  background-size: cover;
+  background-position: center;
+  width: 4.05294rem;
+  height: 1.2745rem;
+  flex-shrink: 0;
+}
+
+.logo1 {
+  background-image: url('/img/site/instabase-cs-variant.svg');
+  width: 7.00806rem;
+  height: 0.73581rem;
+}
+
+.logo2 {
+  background-image: url('/img/site/redhat-cs-variant.svg');
+  width: 5.41038rem;
+  height: 1.25881rem;
+}
+
+.logo3 {
+  background-image: url('/img/site/mutiny-cs-variant.svg');
+  width: 2.70644rem;
+  height: 1.30169rem;
+}
+
+.logo4 {
+  background-image: url('/img/site/shippo-cs-variant.svg');
+  width: 4.04431rem;
+  height: 1.02769rem;
+}
+
+.logo5 {
+  background-image: url('/img/site/redbull-cs-variant.svg');
+  width: 6.5175rem;
+  height: 1.03213rem;
+}
+
+.logo6 {
+  background-image: url('/img/site/writesonic-cs-variant.svg');
+  width: 5.296rem;
+  height: 1.33944rem;
+}
+
+.logo7 {
+  background-image: url('/img/site/netapp-cs-variant.svg');
+  width: 5.27531rem;
+  height: 0.927rem;
+}
+
+/* Slideshow animation for 800px and below */
+@media (max-width: 950px) {
+  .bottomBar {
+    justify-content: unset;
   }
 
-  .logo1 {
-    background-image: url('/img/site/instabase-cs-variant.svg');
-    width: 7.00806rem;
-    height: 0.73581rem;
-    flex-shrink: 0;
+  .logoWrapper {
+    display: flex;
+    flex-direction: row; /* Ensure logos move horizontally */
   }
-  .logo2 {
-    background-image: url('/img/site/redhat-cs-variant.svg');
-    width: 5.41038rem;
-    height: 1.25881rem;
-    flex-shrink: 0;
+
+  .bottomBar::before,
+  .bottomBar::after {
+    content: '';
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(to right, #130c49, transparent);
   }
-  .logo3 {
-    background-image: url('/img/site/mutiny-cs-variant.svg');
-    width: 2.70644rem;
-    height: 1.30169rem;
-    flex-shrink: 0;
+
+  .bottomBar::after {
+    right: 0;
+    transform: rotate(180deg);
   }
-  .logo4 {
-    background-image: url('/img/site/shippo-cs-variant.svg');
-    width: 4.04431rem;
-    height: 1.02769rem;
-    flex-shrink: 0;
-  }
-  .logo5 {
-    background-image: url('/img/site/redbull-cs-variant.svg');
-    width: 6.5175rem;
-    height: 1.03213rem;
-    flex-shrink: 0;
-  }
-  .logo6 {
-    background-image: url('/img/site/writesonic-cs-variant.svg');
-    width: 5.296rem;
-    height: 1.33944rem;
-    flex-shrink: 0;
-  }
-  .logo7 {
-    background-image: url('/img/site/netapp-cs-variant.svg');
-    width: 5.27531rem;
-    height: 0.927rem;
-    flex-shrink: 0;
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 }
