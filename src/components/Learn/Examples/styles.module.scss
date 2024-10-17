@@ -66,7 +66,11 @@
   height: 18.9375rem;
 
   @media screen and (max-width: 1440px) {
-    height: 22.9375rem;
+    height: auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    height: auto;
   }
 }
 
@@ -114,6 +118,10 @@
   justify-content: space-between;
   height: 230px;
 
+  @media screen and (max-width: 600px) {
+    height: auto;
+  }
+
   ul {
     line-height: 200%;
     height: 150px;
@@ -134,7 +142,7 @@
   }
   a {
     color: #61bd73;
-
+    margin: 30px 0px 0px 0px;
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
@@ -157,7 +165,7 @@
 
   @media screen and (max-width: 1440px) {
     flex-wrap: nowrap;
-    height: 200px;
+    height: auto;
   }
 }
 
@@ -166,7 +174,7 @@
   justify-content: space-between;
 
   @media screen and (max-width: 1440px) {
-    height: 290px;
+    height: auto;
   }
 }
 
