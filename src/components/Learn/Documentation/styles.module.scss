@@ -116,11 +116,11 @@
 
 .tall {
   @media screen and (max-width: 600px) {
-    height: 26rem;
+    height: auto;
   }
 
   @media screen and (max-width: 450px) {
-    height: 27rem;
+    height: auto;
   }
 }
 
