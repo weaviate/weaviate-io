@@ -1,0 +1,75 @@
+{
+  "siteSearch": [
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "1. Getting Started with Vector Search",
+      "description": "Understand the concepts and technology behind Vector Search."
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "2. Using Machine Learning Models",
+      "description": "Learn how to pick and use various Machine Learning models"
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "3. Building Web Applications",
+      "description": "Learn how to build production ready full-stack Web Applications"
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "4. The client-server architecture",
+      "description": "Understand the need for building with a client-server architecture"
+    }
+  ],
+  "chatbots": [
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "1. Getting Started with Vector Search",
+      "description": "Understand the concepts and technology behind Vector Search."
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "2. Using Machine Learning Models",
+      "description": "Learn how to pick and use various Machine Learning models"
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "3. Building Web Applications",
+      "description": "Learn how to build production ready full-stack Web Applications"
+    }
+  ],
+  "ecommerce": [
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "1. Getting Started with Vector Search",
+      "description": "Understand the concepts and technology behind Vector Search."
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "2. Using Machine Learning Models",
+      "description": "Learn how to pick and use various Machine Learning models"
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "3. Building Web Applications",
+      "description": "Learn how to build production ready full-stack Web Applications"
+    }
+  ],
+  "automation": [
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "1. Getting Started with Vector Search",
+      "description": "Understand the concepts and technology behind Vector Search."
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "2. Using Machine Learning Models",
+      "description": "Learn how to pick and use various Machine Learning models"
+    },
+    {
+      "link": "https://weaviate.io/developers/academy/js/set_up_typescript",
+      "title": "3. Building Web Applications",
+      "description": "Learn how to build production ready full-stack Web Applications"
+    }
+  ]
+}
