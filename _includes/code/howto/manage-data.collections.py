@@ -653,7 +653,7 @@ for _ in range(5):
 
 
 # START UpdateCollection
-from weaviate.classes.config import Reconfigure
+from weaviate.classes.config import Reconfigure, VectorFilterStrategy
 
 articles = client.collections.get("Article")
 
@@ -661,6 +661,9 @@ articles = client.collections.get("Article")
 articles.config.update(
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
+    ),
+    vector_index_config=Reconfigure.VectorIndex.hnsw(
+        filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
     )
 )
 # END UpdateCollection
