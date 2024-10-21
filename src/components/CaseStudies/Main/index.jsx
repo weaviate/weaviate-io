@@ -14,7 +14,15 @@ export default function Main() {
         </div>
 
         <div className={styles.bentoGrid}>
-          <div className={styles.bento01}></div>
+          <div className={styles.bento01}>
+            <div className={styles.bentoText}>
+              <h3>Turning Unstructured Data into Insights</h3>
+              <p>How Instabase delivers enterprise-ready AI with Weaviate</p>
+            </div>
+            <div className={styles.buttons}>
+              <Link to="" className={styles.arrowButton}></Link>
+            </div>
+          </div>
           <div className={styles.bento02}></div>
           <div className={styles.bento03}></div>
           <div className={styles.bento04}></div>

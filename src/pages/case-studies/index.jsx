@@ -11,8 +11,8 @@ export default function CaseStudyPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Case Study - Instabase"
-        description="How Instabase delivers enterprise-ready AI with Weaviate"
+        title="Case Studies - Weaviate"
+        description="Read how companies are using Weaviate to build AI-powered applications."
       >
         <StudyHeader />
         <Main />
