@@ -21,7 +21,7 @@ Weaviate's ACORN algorithm will particularly benefit those of you with very larg
 
 :::tip What is a negatively correlated filtered search?
 
-A filtered search combined the structured, rule-based inclusion and exclusion of entities with the vector-based similarity search. The structured part is the filter, and the vector-based part is the search.
+A filtered search combines the structured, rule-based inclusion and exclusion of entities with the vector-based similarity search. The structured part is the filter, and the vector-based part is the search.
 <br/>
 
 In a negatively correlated filtered search, the filter disproportionately removes entities that would be most similar to the search query, as shown below.
@@ -86,7 +86,7 @@ In one search!
 
 In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query.
 
-These new options provide even more options for comprehensive, flexible searches through your data with Weaviate.
+These new options provide even more flexibility for comprehensive searches through your data with Weaviate.
 
 Take a look at the [multi-target vector search page](/developers/weaviate/search/multi-vector) for more examples.
 
@@ -104,7 +104,7 @@ The v3 model adopts binary passage retrieval capabilities, which understands the
 Weaviate automatically implements this for convenience, embedding objects as `passages` during import, and as `queries` during `nearText` search.
 <br/>
 
-Furthermore, the v3 model produces Matryoshka style embeddings, This means that the generated embeddings can be truncated to suit the required precision.
+Furthermore, the v3 model produces Matryoshka-style embeddings, This means that the generated embeddings can be truncated to suit the required precision.
 
 :::
 
@@ -130,23 +130,15 @@ To address this, we have added a backup cancellation feature. Now, an unwanted, 
 
 Backups can be cancelled [through a supported Weaviate client](/developers/weaviate/configuration/backups#cancel-backup), or through the [REST endpoint](/developers/weaviate/api/rest).
 
-## Deletion strategy settings
-
-Weaviate supports [data replication](/developers/weaviate/concepts/replication-architecture/) to help support higher server loads, and provide data redundancy.
-
-Providing [data consistency](/developers/weaviate/concepts/replication-architecture/consistency) is a big part of such distributed systems. We have found that in some cases, performing deletion with a consistency level other than `ALL` can lead to non-deterministic outcomes, with the deleted objects coming back in certain conditions.
-
-So, we add a deletion strategy option that allows you to explicitly specify how to resolve such conflicts. You can [set this value in a collection's replication configuration](/developers/weaviate/configuration/replication#deletion-strategy) to `DELETE_ON_CONFLICT` for example. This will configure the collection to always delete the object if it encounters such a conflict.
-
-:::note More deletion strategies being evaluated
-We are evaluating additional deletion strategies for resolving these conflicts. Keep an eye out on this space :).
-:::
-
 ## Other changes
 
 ### Case sensitive vectorization
 
-Weaviate [integrates with embedding model providers](/developers/weaviate/model-providers) in order to conveniently vectorize data during import. With `v1.27`, we have slightly tweaked this process, so that the text is no longer lowercased by default before vectorization.
+:::info How does Weaviate vectorize text?
+Weaviate [integrates with embedding model providers](/developers/weaviate/model-providers) in order to conveniently vectorize data during import.
+:::
+
+From `v1.27`, text is no longer lowercased by default before vectorization.
 
 This change reflects the modern embeddings' capabilities to deal with uppercase (vs lowercase) characters. We expect that any changes to embeddings here will be very small, but we expect this to be closer to how modern embedding models expect inputs to look.
 
@@ -158,15 +150,25 @@ The Weaviate modules that underpin its [Google model integrations](/developers/w
 
 They have been renamed to `text2vec-google`, `generative-google`, `multi2vec-google` respectively.
 
-These modules are aliased under-the-hood in Weaviate, so your existing codebase will continue to work. However, we recommend updating your existing code if you are upgrading Weaviate - so that your codebase follows the latest conventions.
+These modules are aliased under-the-hood in Weaviate, so your existing codebase will continue to work. However, we recommend updating your existing code if you are upgrading Weaviate so that your codebase follows the latest conventions.
 
 ## Reliability and performance improvements
 
-In between `1.26` and `1.27`, Weaviate's engineering and applied research teams have been hard at work, making significant improvements under-the-hood for reliability and performance improvements.
+Between `1.26` and `1.27`, Weaviate's database and applied research teams have been hard at work, making significant improvements under-the-hood for reliability and performance improvements.
 
-We won't list them all here, but they include improvements to BM25 & hybrid query performance, Raft improvements, tombstone cleanup improvements and more.
+We won't list them all here, but they include:
+- improvements to BM25 & hybrid query performance
+- data (LSM) store improvements,
+- cluster (Raft) improvements,
+- tombstone cleanup improvements
 
-As always, we recommend updating your version of Weaviate to the latest available patch release (e.g. `1.26.2` ➡️ `1.26.5`). And we encourage to consider upgrading to the latest release (e.g. `1.26.2` ➡️ `1.27.0`).
+and many more.
+
+As always, we recommend updating your version of Weaviate to the latest available patch release (e.g. `1.26.2` ➡️ `1.26.5`). And we encourage you to consider upgrading to the latest release (e.g. `1.26.2` ➡️ `1.27.0`).
+
+:::info Release notes
+For a full list of changes, see the [release notes for each version](https://github.com/weaviate/weaviate/tags).
+:::
 
 ## Summary
 
