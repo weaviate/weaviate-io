@@ -48,17 +48,37 @@
   width: 37.1875rem;
   height: 24.875rem;
   border-radius: 1.25rem;
-  background: linear-gradient(208deg, #f7f9fd 35.02%, #2f2fa9 82.6%);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(47, 47, 169, 0.8) 100%
+    ),
+    url('/img/site/instabase-bg-image.png');
   background-size: cover;
+  background-position: center;
   transition: all 0.3s ease-in-out;
-  position: relative; /* Required for absolute positioning of button */
-  padding: 40px; /* Space for content inside */
+  position: relative;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out text and button */
+  justify-content: space-around;
   transition: all 0.3s ease-in-out;
 
   .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/instabase-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12.3125rem;
+      height: 1.3125rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
     h3 {
       color: #f7f9fd;
       font-family: 'Plus Jakarta Sans';
@@ -66,6 +86,11 @@
       font-style: normal;
       font-weight: 700;
       line-height: 140%; /* 3.15rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
     }
 
     p {
@@ -84,17 +109,99 @@
   height: 24.875rem;
   border-radius: 1.25rem;
   background: #f7f9fd;
-  background-size: cover;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(47, 47, 169, 0.1) 100%
+    ),
+    url('/img/site/neople-background-image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/neople-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%; /* 2.275rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .bento03 {
   width: 26.5625rem;
   height: 33.9375rem;
   border-radius: 1.25rem;
-  background: linear-gradient(195deg, #f7f9fd 34.07%, #2e288b 90.66%);
-  background-size: cover;
+
+  background: linear-gradient(
+      180deg,
+      rgba(247, 249, 253, 0) 0%,
+      rgba(46, 40, 139, 0.8) 100%
+    ),
+    url('/img/site/moonsift-background-image.png');
+  background-size: contain;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/moonsift-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+    }
+  }
 }
 
 .bento04 {
@@ -104,6 +211,40 @@
   background: #85e3bc;
   background-size: cover;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoImage {
+      background: url('/img/site/unbody-header-image.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 18.25rem;
+      flex-shrink: 0;
+      margin: 0px 0px 20px 0px;
+
+      @media screen and (max-width: 900px) {
+        height: 13.25rem;
+      }
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 2.8rem */
+    }
+  }
 }
 
 .bento05 {
@@ -113,15 +254,100 @@
   background: #130c49;
   background-size: cover;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+    .bentoImage {
+      background: url('/img/site/morningstar-header-image.png');
+      background-size: cover;
+      background-position-x: center;
+      width: 11.9375rem;
+      height: 15.6875rem;
+      border-radius: 1.25rem;
+      flex-shrink: 0;
+      margin: 0px 0px 20px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 150%; /* 3rem */
+    }
+
+    p {
+      color: #61bd73;
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 157.33%; /* 2.35994rem */
+    }
+
+    span {
+      color: #61bd73;
+      font-family: Inter;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%; /* 1.96663rem */
+    }
+  }
 }
 
 .bento06 {
   width: 65.625rem;
   height: 18.875rem;
   border-radius: 1.25rem;
-  background: lightgray;
+  background: url('/img/site/gradient-bg-cs.png');
   background-size: cover;
+  background-position-x: center;
+
   transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.5rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
 }
 
 /* Responsive adjustments */
@@ -168,6 +394,7 @@
   .bento05,
   .bento06 {
     width: 100%;
+    height: auto;
   }
 }
 
@@ -246,5 +473,53 @@
     width: 3.6875rem;
     height: 3.6875rem;
     flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrowButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: #130c49;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
   }
 }

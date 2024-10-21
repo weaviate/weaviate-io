@@ -16,10 +16,13 @@ export default function StudyHeader() {
             </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
-                <Link to="" className={styles.buttonDark}>
+                <Link
+                  to="/case-studies/morningstar"
+                  className={styles.buttonDark}
+                >
                   Read the story
                 </Link>
-                <Link to="" className={styles.buttonLight}>
+                <Link to="/#contact-us" className={styles.buttonLight}>
                   Contact sales
                 </Link>
               </div>
