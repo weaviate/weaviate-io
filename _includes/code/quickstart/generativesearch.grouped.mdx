@@ -142,13 +142,13 @@ echo '{
         category
         _additional {
           generate(
-            groupedTask: {
-              prompt: \"\"\"
+            groupedResult: {
+              task: \"\"\"
                 Write a tweet with emojis about these facts.
               \"\"\"
             }
           ) {
-            singleResult
+            groupedResult
             error
           }
         }

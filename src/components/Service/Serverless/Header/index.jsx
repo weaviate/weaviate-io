@@ -8,8 +8,9 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Fully-managed Serverless Vector Database</h1>
+          <p className={styles.headText}>Serverless Cloud</p>
           <div className={styles.headerBox}>
+            <h1>Fully-managed Serverless Vector Database.</h1>
             <p>
               The easiest way to get started with Weaviate. All the power of our
               AI-native vector database, as a vector database as a service. Best

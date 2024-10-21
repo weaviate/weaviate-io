@@ -71,7 +71,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/concepts/prefiltering',
+            to: '/developers/weaviate/concepts/filtering',
             from: '/developers/weaviate/config-refs/schema/range-index',
         },
         {
@@ -216,6 +216,11 @@ const siteRedirects = {
          from: '/developers/weaviate/starter-guides/connect',
         },
 
+        // 2024.10 Rename "prefiltering" to "filtering"
+        {
+            to: '/developers/weaviate/concepts/filtering',
+            from: '/developers/weaviate/concepts/prefiltering',
+        },
 
         // Remove BPR page
         {
@@ -665,6 +670,8 @@ const siteRedirects = {
             to:   '/developers/weaviate/model-providers',
             from: '/developers/weaviate/api/rest_legacy/modules',
         },
+
+
 
      // Products to Pricing redirects
 

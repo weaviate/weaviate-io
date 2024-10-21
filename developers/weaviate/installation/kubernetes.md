@@ -223,6 +223,15 @@ For more, general information on running EFS with Fargate, we recommend reading 
     198.19.0.0/16
     ```
 
+### Set `CLUSTER_HOSTNAME` if it may change over time
+
+In some systems, the cluster hostname may change over time. This is known to create issues with a single-node Weaviate deployment. To avoid this, set the `CLUSTER_HOSTNAME` environment variable in the `values.yaml` file to the cluster hostname.
+
+```yaml
+env:
+  - CLUSTER_HOSTNAME: "node-1"
+```
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
