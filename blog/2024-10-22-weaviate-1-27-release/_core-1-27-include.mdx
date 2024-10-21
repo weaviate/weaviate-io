@@ -2,14 +2,10 @@ Weaviate `1.27` is here!
 
 Here are the release ⭐️*highlights*⭐️!
 
-:::warning TODO
-Svitlana: I've just got the old hero image here. I think the `1.27` one could be a "standard" release image, or perhaps we could incorporate the "Acorn" image suggested below.
-:::
-
 ![Weaviate 1.27](./img/hero.png)
 
 - [**Big filtered search improvements**](#improved-filtered-search)
-- [**Multi-target vector search improvements**](#multi-target-vector-search-improvements)
+- [**Multi-target vector search enhancement**](#multi-target-vector-search-enhancement)
 - [**Jina V3 embedding support**](#jina-v3-embedding-support)
 - [**Cancel backups**](#cancel-backups)
 - [**Deletion strategy settings**](#deletion-strategy-settings)
@@ -17,11 +13,11 @@ Svitlana: I've just got the old hero image here. I think the `1.27` one could be
 
 ## Improved Filtered Search
 
-Weaviate `1.27` introduces a new filtering strategy with big potential benefits for performance and scalability.
+Weaviate `1.27` introduces a new filtering strategy with big benefits for performance and scalability.
 
-This exciting new search strategy/algorithm comes from our Applied Research team, who was inspired by the popular [`ACORN`](https://arxiv.org/html/2403.04871v1) paper. This ACORN implementation builds on the paper's algorithm to make it even better for Weaviate users.
+This exciting new search strategy/algorithm comes from our Applied Research team. Weaviate's new filtered search implementation is inspired by the popular [`ACORN`](https://arxiv.org/html/2403.04871v1) paper, improving on it to make it even better for Weaviate users.
 
-If you ever found yourself wishing filtered vector search was faster, we encourage you to try this out. The ACORN algorithm is particularly beneficial for the negatively correlated filtered HNSW searches.
+Weaviate's ACORN algorithm will particularly benefit those of you with very large datasets. More specifically, it should significantly improve performance challenges with negatively correlated filtered HNSW searches.
 
 :::tip What is a negatively correlated filtered search?
 
@@ -30,25 +26,20 @@ A filtered search combined the structured, rule-based inclusion and exclusion of
 
 In a negatively correlated filtered search, the filter disproportionately removes entities that would be most similar to the search query, as shown below.
 
-:::
-
-:::warning Img needs update
-Femke/Svitlana: What do you think about making a version of this with Weaviate styling? Or, we could just re-use it with credit to the original source.
-
-Source: https://arxiv.org/html/2403.04871v1
-:::
-
 <figure>
 
 <p align="center"><img src="https://arxiv.org/html/2403.04871v1/extracted/5452001/diagrams/clustering_and_correlation.png" width="75%" alt="Range query section graphic"/></p>
 
-<figcaption align="center"> An illustration of vector query / filter correlation (<a href="https://arxiv.org/html/2403.04871v1">original figure</a>). </figcaption>
+<figcaption align="center"> An illustration of vector query / filter correlation (<a href="https://arxiv.org/html/2403.04871v1">original from https://arxiv.org/html/2403.04871v1</a>). </figcaption>
 
 </figure>
 
 This type of filtered search can be slower than other filtered searches. As in the figure, the vector search starts at the "wrong" end of the vector space, where the most similar entities are removed by the filter.
+<br/>
 
 The new ACORN filter strategy in Weaviate `1.27` dramatically improves the filtered vector search performance in situations like this.
+
+:::
 
 ### How does ACORN work?
 
@@ -62,58 +53,55 @@ This implementation is [Weaviate's own version](/developers/weaviate/concepts/fi
 
 ### How to use ACORN
 
-ACORN can be enabled as the filter strategy in one of two ways:
+ACORN can be enabled as the filter strategy by setting `filterStrategy` for the relevant HNSW vector index [in the collection configuration](/developers/weaviate/manage-data/collections#set-vector-index-parameters).
 
-- Set the `FILTER_STRATEGY` [environment variable](/developers/weaviate/config-refs/env-vars#general) to `acorn`.
-- Set the `filterStrategy` field for the relevant HNSW vector index [in the collection configuration](/developers/weaviate/manage-data/collections#set-vector-index-parameters).
-
-According to our internal tests, using the ACORN algorithm will improve the filtered vector search performance overall, with the most significant improvements in negatively correlated filtered searches.
+According to our internal tests, the ACORN algorithm generally improves the filtered vector search performances, with the most significant improvements in negatively correlated filtered searches.
 
 Note that there may be a small cost in recall, but our testing has found this to be minimal if not negligible.
 
-:::warning TODO
-Should we create a forum thread for feedback, and link it below?
+We are really excited for you to try it out.
+
+:::tip Who should use ACORN?
+We think that ACORN will benefit most users. But, we especially encourage you to try it out if you have experienced challenges with filtered HNSW searches.
 :::
 
 :::note Tell us about your experience ACORN
 We would love to hear from you about your experiences with ACORN. Please drop by to [our forum](https://forum.weaviate.io/) and tell us about it!
 :::
 
-## Multi-Target Vector Search Improvements
+## Multi-Target Vector Search Enhancement
 
 :::info What is a multi-target vector search?
 
 Weaviate `1.26` introduced [multi-target vector searches](/developers/weaviate/search/multi-vector), where one search query can search across multiple target vectors.
 <br/>
 
-For example, you can search a product object with a query, and compare the query to both the product's title vector and the product's description vector in one search.
+For example, you can search a product object with a query, and compare the query to the product's:
+- title vector and
+- description vector
+
+In one search!
 
 :::
 
-In Weaviate `1.27`, multi-target vector search has been improved further to allow for even more flexibility in your searches.
+In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query.
 
-You can now search the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query. These new options provide even more options for comprehensive, flexible searches through your data with Weaviate.
+These new options provide even more options for comprehensive, flexible searches through your data with Weaviate.
 
 Take a look at the [multi-target vector search page](/developers/weaviate/search/multi-vector) for more examples.
 
 ## Jina V3 embedding support
 
-:::warning Femke/Svitlana
-Should we create an image like this one below, but for Jina?
-:::
-
-import WeaviateAndJinaImg from '/blog/2023-10-31-weaviate-1-22-release/img/Weaviate-release-1-22-python.png';
-
-<p align="center"><img src={WeaviateAndJinaImg} width="75%" alt="Weaviate and Jina AI graphic"/></p>
-
-Weaviate's [Jina AI embedding integration](/developers/weaviate/model-providers/jinaai/embeddings) has been updated to support Jina AI's new V3 embeddings.
+Weaviate's [Jina AI embedding integration](/developers/weaviate/model-providers/jinaai/embeddings) now supports Jina AI's new V3 embeddings.
 
 :::info About Jina AI's v3 embedding model
 
 This model is a multilingual model that remains small and efficient while performing well on standard retrieval benchmarks.
 <br/>
 
-The v3 model adopts binary passage retrieval capabilities, which understands the difference between the database entries (`passages`) and the user `queries`. Weaviate automatically implements this for convenience, embedding objects as `passages` during import, and as `queries` during `nearText` search.
+The v3 model adopts binary passage retrieval capabilities, which understands the difference between the database entries (`passages`) and the user `queries`.
+
+Weaviate automatically implements this for convenience, embedding objects as `passages` during import, and as `queries` during `nearText` search.
 <br/>
 
 Furthermore, the v3 model produces Matryoshka style embeddings, This means that the generated embeddings can be truncated to suit the required precision.
@@ -140,7 +128,7 @@ In some cases, however, a backup process may be unwanted. Perhaps a backup was t
 
 To address this, we have added a backup cancellation feature. Now, an unwanted, ongoing backup process can be stopped instead of consuming valuable CPU cycles.
 
-Backups can be cancelled [through a supported Weaviate client](/developers/weaviate/configuration/backups), or through the [REST endpoint](/developers/weaviate/api/rest).
+Backups can be cancelled [through a supported Weaviate client](/developers/weaviate/configuration/backups#cancel-backup), or through the [REST endpoint](/developers/weaviate/api/rest).
 
 ## Deletion strategy settings
 
