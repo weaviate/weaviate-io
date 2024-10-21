@@ -610,7 +610,6 @@ assert class_name in class_names
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
-# START UpdateCollection
 # Define and create a class
 original_class_obj = {
     "class": class_name,
@@ -622,7 +621,6 @@ original_class_obj = {
 }
 
 client.schema.create_class(original_class_obj)
-# END UpdateCollection
 
 
 # Create an object to make sure it remains mutable
@@ -633,18 +631,20 @@ for _ in range(5):
 old_class_response = client.schema.get(class_name)
 
 # START UpdateCollection
-
-# Update the class definition
-changed_class_obj = {
+# Update the collection definition
+collection_def_changes = {
     "class": class_name,
     "invertedIndexConfig": {
         "bm25": {
             "k1": 1.5  # Change the k1 parameter from 1.2
         }
+    },
+    "vectorIndexConfig": {
+        "filterStrategy": "acorn"  #  Available from Weaviate v1.27.0
     }
 }
 
-client.schema.update_config("Article", changed_class_obj)
+client.schema.update_config("Article", collection_def_changes)
 # END UpdateCollection
 
 changed_class_response = client.schema.get(class_name)
