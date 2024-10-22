@@ -8,11 +8,12 @@ import { vectorizer, dataType, tokenization } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToLocal();
 
-const collectionName = 'TestCollection';
+await client.collections.delete('Movie');
 
 // START ConfigureDataType
+// Create collection
 const myCollection = await client.collections.create({
-  name: collectionName,
+  name: 'Movie',
   properties: [
     {
       name: 'title',
@@ -30,6 +31,7 @@ const myCollection = await client.collections.create({
       tokenization: tokenization.WORD,
     },
   ],
+  // END ConfigureDataType
   vectorizers: [
     vectorizer.text2VecOllama({
       name: 'main',
@@ -38,15 +40,25 @@ const myCollection = await client.collections.create({
       model: 'snowflake-arctic-embed', // The model to use, e.g. "nomic-embed-text"
     }),
   ],
+  // START ConfigureDataType
+  // Other properties are omitted for brevity
 });
 // END ConfigureDataType
 
-const new_uuid = await myCollection.data.insert({
+// START AddObject
+const exampleObject = {
   title: 'Rogue One',
   movie_id: 'ro123456',
   genres: ['Action', 'Adventure', 'Sci-Fi'],
-});
+}
 
-assert.notEqual(new_uuid, null);
+const obj_uuid = await myCollection.data.insert(exampleObject);
+// END AddObject
+
+const returnedObject = await myCollection.query.fetchObjectById(obj_uuid);
+
+assert.notEqual(obj_uuid, null);
+assert.deepEqual(returnedObject?.properties, exampleObject);
+
 
 client.close();

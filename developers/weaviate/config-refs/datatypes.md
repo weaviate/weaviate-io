@@ -21,20 +21,29 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 <DataTypes />
 
-## DataType: `text`
+## `text`
 
-Use this type for any textual data. Properties with the `text` type is used for vectorization and keyword search unless specified otherwise [in the property settings](../manage-data/collections.mdx#property-level-settings).
+Use this type for any textual data.
 
-If using [named vectors](../concepts/data.md#multiple-vectors-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-multiple-named-vectors).
+- Properties with the `text` type is used for vectorization and keyword search unless specified otherwise [in the property settings](../manage-data/collections.mdx#property-level-settings).
+- If using [named vectors](../concepts/data.md#multiple-vectors-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-multiple-named-vectors).
+- Text properties are tokenized prior to being indexed for keyword/BM25 searches. See [collection definition: tokenization](../config-refs/schema/index.md#property-tokenization) for more information.
 
-### Tokenization configuration
+<details>
+  <summary><code>string</code> is deprecated</summary>
 
-Text properties are tokenized prior to being indexed for keyword/BM25 searches. See [collection definition: tokenization](../config-refs/schema/index.md#property-tokenization) for more information.
+Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
 
-### Usage examples
+Use `text` instead of `string`. `text` supports the tokenization options that are available through `string`.
+
+</details>
+
+### Examples
 
 import TextTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.text.py';
 import TextTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.text.ts';
+
+#### Property definition
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -55,89 +64,28 @@ import TextTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
   </TabItem>
 </Tabs>
 
-<details>
-  <summary><code>string</code> is deprecated</summary>
+#### Object insertion
 
-Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={TextTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TextTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
-Use `text` instead of `string`. `text` supports the tokenization options that are available through `string`.
-
-</details>
-
-## DataType: `cross-reference`
-
-The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list are names of classes defined elsewhere in the schema. For example:
-
-```json
-{
-  "properties": [
-    {
-      "name": "hasWritten",
-      "dataType": [
-        "Article",
-        "Blog"
-      ]
-    }
-  ]
-}
-```
-
-### Number of linked instances
-
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
-
-In the above example, our objects can be linked to:
-* **0** Articles and **1** Blog
-* **1** Article and **3** Blogs
-* **2** Articles and **5** Blogs
-* etc.
-
-## DataType: `object`
-
-:::info Added in `v1.22`
-:::
-
-The `object` type allows you to store nested data structures in Weaviate. The data structure is a JSON object, and can be nested to any depth.
-
-For example, a `Person` class could have an `address` property, as an object. It could in turn include nested properties such as `street` and `city`:
-
-```json
-{
-    "class": "Person",
-    "properties": [
-        {
-            "dataType": ["text"],
-            "name": "last_name",
-        },
-        {
-            "dataType": ["object"],
-            "name": "address",
-            "nestedProperties": [
-                {"dataType": ["text"], "name": "street"},
-                {"dataType": ["text"], "name": "city"}
-            ],
-        }
-    ],
-}
-```
-
-An object for this class may have a structure such as follows:
-
-```json
-{
-    "last_name": "Franklin",
-    "address": {
-        "city": "London",
-        "street": "King Street"
-    }
-}
-```
-
-As of `1.22`, `object` and `object[]` datatype properties are not indexed and not vectorized.
-
-Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
-
-## DataType: `date`
+## `date`
 
 A `date` in Weaviate is represented by an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp in the `date-time` format. The timestamp includes the time and an offset.
 
@@ -149,7 +97,7 @@ For example:
 
 To add a list of dates as a single entity, use an array of `date-time` formatted strings. For example: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
 
-## DataType: `blob`
+## `blob`
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
 * Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this.
@@ -194,7 +142,7 @@ curl \
   }' \
     http://localhost:8080/v1/objects
 ```
-## DataType: `uuid`
+## `uuid`
 
 :::info Added in `v1.19`
 :::
@@ -208,7 +156,7 @@ The dedicated `uuid` and `uuid[]` data types are more space-efficient than stori
 It is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
 :::
 
-## DataType: `geoCoordinates`
+## `geoCoordinates`
 
 Weaviate allows you to store geo coordinates. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
 
@@ -231,7 +179,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
 
 <GeoLimitations/>
 
-## DataType: `phoneNumber`
+## `phoneNumber`
 
 There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
 
@@ -254,6 +202,130 @@ There are two fields that accept input. `input` must always be set, while `defau
 - When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
+
+## `object`
+
+:::info Added in `v1.22`
+:::
+
+The `object` type allows you to store nested data as a JSON object that can be nested to any depth.
+
+For example, a `Person` collection could have an `address` property as an object. It could in turn include nested properties such as `street` and `city`:
+
+:::note Limitations
+Currently, `object` and `object[]` datatype properties are not indexed and not vectorized.
+
+Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
+:::
+
+### Examples
+
+import ObjectTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.object.py';
+import ObjectTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.object.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ObjectTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={ObjectTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ObjectTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={ObjectTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<!-- Old example - could re-use for other language examples -->
+<!--
+```json
+{
+    "class": "Person",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+An object for this class may have a structure such as follows:
+
+```json
+{
+    "last_name": "Franklin",
+    "address": {
+        "city": "London",
+        "street": "King Street"
+    }
+}
+``` -->
+
+## `cross-reference`
+
+The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list are names of classes defined elsewhere in the schema. For example:
+
+```json
+{
+  "properties": [
+    {
+      "name": "hasWritten",
+      "dataType": [
+        "Article",
+        "Blog"
+      ]
+    }
+  ]
+}
+```
+
+### Number of linked instances
+
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
+
+In the above example, our objects can be linked to:
+* **0** Articles and **1** Blog
+* **1** Article and **3** Blogs
+* **2** Articles and **5** Blogs
+* etc.
 
 ## More information
 
