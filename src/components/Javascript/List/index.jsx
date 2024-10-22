@@ -14,15 +14,8 @@ export default function List() {
             <div className={`${styles.cardIcon} ${styles.icon01}`}></div>
             <h3 className={styles.cardTextColor}>Weaviate Stacks</h3>
             <p className={styles.textCardContent}>
-              Weave through the noise, quick battle tested stacks to build AI Apps.
-            </p>
-            <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/search/hybrid"
-              >
-                Learn more
-              </Link>
+              Weave through the noise, quick battle tested stacks to build AI
+              Apps.
             </p>
           </div>
         </div>
@@ -31,15 +24,7 @@ export default function List() {
             <div className={`${styles.cardIcon} ${styles.icon02}`}></div>
             <h3 className={styles.cardTextColor}>AI Concepts</h3>
             <p className={styles.textCardContent}>
-              Learn all the jargon, step into your AI era. 
-            </p>
-            <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/concepts/prefiltering"
-              >
-                Learn more
-              </Link>
+              Learn all the jargon, step into your AI era.
             </p>
           </div>
         </div>
@@ -50,14 +35,6 @@ export default function List() {
             <p className={styles.textCardContent}>
               Find references for how to use Weaviate.
             </p>
-            <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/starter-guides/generative"
-              >
-                Learn more
-              </Link>
-            </p>
           </div>
         </div>
         <div className={styles.card}>
@@ -67,17 +44,8 @@ export default function List() {
             <p className={styles.textCardContent}>
               Get guided courses on various topics.
             </p>
-            <p>
-              <Link
-                className={styles.cardLink}
-                to="/developers/weaviate/model-providers"
-              >
-                Learn more
-              </Link>
-            </p>
           </div>
         </div>
-  
       </div>
     </div>
   );

@@ -1,36 +1,6 @@
-.container {
-  padding: 3rem;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 2rem;
-    background-image: url('/img/site/bg-light-mobile.svg');
-    background-position-y: 0px;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-  .container {
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-}
-
-.sliderContainer {
-  padding: 0rem 3rem;
-
-  @media screen and (max-width: 600px) {
-    padding: 2rem 0rem;
-    background: #130c49;
-  }
-}
-
 .bgCol {
   background: #ecf4f8;
+  max-height: 13rem;
 }
 
 .header {
@@ -827,7 +797,7 @@
 
   /* Updated border with increased radius for more rounded corners */
   border: 1px solid #ccc;
-  border-radius: 1rem;  /* Increased from 0.3125rem for more noticeable rounding */
+  border-radius: 1rem; /* Increased from 0.3125rem for more noticeable rounding */
 
   /* Background color */
   background-color: #f5f5f5;
@@ -845,7 +815,6 @@
   height: 150px;
   flex-direction: column;
   padding: 15px;
-
 
   .homeIcon {
     background-image: url('/img/site/rag-page-icon-01.svg');
@@ -909,9 +878,9 @@
 }
 
 .serviceBox {
-  max-width: 76.6875rem;
+  width: 64.9375rem;
+  height: 20.6875rem;
   padding: 20px;
-  height: 31.75rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
   background: #130c49;
@@ -919,8 +888,12 @@
   display: flex;
   transform: translateY(-200px);
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1080px) {
     height: auto;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 0px;
+    transform: translateY(-140px);
   }
 }
 
@@ -928,11 +901,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 74px;
+  padding: 20px;
   flex: 1;
 
-  @media screen and (max-width: 800px) {
-    padding: 25px;
+  @media screen and (max-width: 1080px) {
+    gap: 20px;
   }
 
   h2 {
@@ -976,6 +949,28 @@
     background: #61bd73;
     color: #130c49;
   }
+
+  .codeContainer {
+    display: flex;
+    gap: 20px;
+
+    i {
+      font-size: larger;
+    }
+
+    code {
+      width: 80%;
+
+      @media screen and (max-width: 800px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .copyButton {
+    background: none;
+    color: white;
+  }
 }
 
 .serviceIcon {
@@ -987,16 +982,17 @@
 }
 
 .serviceImage {
-  background-image: url('https://weaviate.io/assets/images/js-ts-weaviate-3b86dd38bb4324ca9c1e0eac2dfff6b5.png');
+  background-image: url('/img/site/js-diagram-header.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 20.0625rem;
-  height: 19.4375rem;
+  height: 14.4375rem;
   border-radius: 0.625rem;
   flex: 1;
   margin: auto;
 
-  @media screen and (max-width: 800px) {
-    display: none;
+  @media screen and (max-width: 1080px) {
+    flex: auto;
+    padding: 20px;
   }
 }

@@ -17,8 +17,9 @@
   flex-direction: column;
   justify-content: space-around;
 
-  width: 14.3125rem;
-  height: 19.75rem;
+  width: 15.625rem;
+  height: 15.625rem;
+  flex-shrink: 0;
 
   background-color: #141f39;
   margin: 1rem;
@@ -55,12 +56,13 @@
   }
 
   .cardTextColor {
-    color: #02fe0c;
-    height: 5rem;
-
-    @media screen and (max-width: 600px) {
-      margin-left: 1rem;
-    }
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 1.75rem */
+    margin: 20px 0px;
   }
 
   @media screen and (max-width: 600px) {
@@ -73,9 +75,12 @@
 }
 
 .textCardContent {
-  line-height: 1.6rem;
-  font-size: 17px;
   color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.3125rem */
 }
 
 .cardFooter {
@@ -340,42 +345,34 @@
   height: 2.8rem;
   margin-right: auto;
   margin-bottom: 1rem;
-  background-image: url('/img/site/platform-feature-01.svg');
+  background-image: url('/img/site/js-whatsnext-01.svg');
   background-size: 100% 100%;
 }
 
 .icon01 {
-  background-image: url('/img/site/platform-feature-01.svg');
+  background-image: url('/img/site/js-whatsnext-01.svg');
+  width: 1.71431rem;
+  height: 1.71413rem;
+  transform: rotate(-90deg);
+  flex-shrink: 0;
 }
 .icon02 {
-  background-image: url('/img/site/platform-feature-02.svg');
+  background-image: url('/img/site/js-whatsnext-02.svg');
+  width: 1.85713rem;
+  height: 1.57144rem;
+  flex-shrink: 0;
 }
 .icon03 {
-  background-image: url('/img/site/platform-feature-03.svg');
-}
-.icon04 {
-  background-image: url('/img/site/platform-feature-04.svg');
-}
-.icon05 {
-  background-image: url('/img/site/platform-feature-05.svg');
-}
-.icon06 {
-  background-image: url('/img/site/platform-feature-06.svg');
-}
-.icon07 {
-  background-image: url('/img/site/platform-feature-07.svg');
-}
-.icon08 {
-  background-image: url('/img/site/platform-feature-08.svg');
+  background-image: url('/img/site/js-whatsnext-03.svg');
+  width: 1.57144rem;
+  height: 1.28569rem;
+  transform: rotate(-90deg);
+  flex-shrink: 0;
 }
 
-.cardLink {
-  color: #130c49;
-  font-family: Inter;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%; /* 1.37663rem */
-  text-decoration-line: underline;
-  margin: 20px 0px;
+.icon04 {
+  background-image: url('/img/site/js-whatsnext-04.svg');
+  width: 1.875rem;
+  height: 1.5rem;
+  flex-shrink: 0;
 }

@@ -14,8 +14,12 @@ export default function Resources() {
           <h2 className={styles.title}>
             Build AI-Native Applications with Javascript
           </h2>
+          <p>A learning resources hub for builders of all levels.</p>
           <div className={styles.buttons}>
-            <Link className={styles.buttonOutline} to="/developers/weaviate/client-libraries/typescript/typescript-v3">
+            <Link
+              className={styles.buttonGradient}
+              to="/developers/weaviate/client-libraries/typescript/typescript-v3"
+            >
               Explore the Docs
             </Link>
           </div>
