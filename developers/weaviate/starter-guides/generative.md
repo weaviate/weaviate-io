@@ -23,7 +23,7 @@ import TSCodeLocalLegacy from '!!raw-loader!/_includes/code/starter-guides/gener
 - [How-to: Retrieval augmented generation](../search/generative.md)
 :::
 
-This pages introduces you to retrieval augmented generation (RAG) with Weaviate. It covers:
+This pages introduces you to retrieval augmented generation (RAG) using Weaviate. It covers:
 
 - What RAG is.
 - How to configure Weaviate for RAG.
@@ -320,7 +320,7 @@ Now, let's go through an end-to-end example for using Weaviate for RAG.
 
 For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCD instance.
 
-### Configure RAG
+### Configure Weaviate for RAG
 
 :::caution Generative module cannot be changed
 Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
