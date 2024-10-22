@@ -36,6 +36,7 @@ obj_uuid = my_collection.data.insert(example_object)
 returned_obj = my_collection.query.fetch_object_by_id(obj_uuid)
 
 assert obj_uuid is not None
-assert [str(i) for i in returned_obj.properties["related_movie_uuids"]] == example_object["related_movie_uuids"]
+assert (returned_obj.properties["location"].latitude - -33.8688) < 0.0001
+assert (returned_obj.properties["location"].longitude - 151.2093) < 0.0001
 
 client.close()

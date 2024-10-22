@@ -40,7 +40,7 @@ const obj_uuid = await myCollection.data.insert(exampleObject);
 // END AddObject
 
 const returnedObject = await myCollection.query.fetchObjectById(obj_uuid, {
-  returnProperties: ['name', 'image']  // Need to specify `image` to get the blob
+  returnProperties: ['title', 'image']  // Need to specify `image` to get the blob
 });
 
 assert.notEqual(obj_uuid, null);
