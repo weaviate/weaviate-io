@@ -594,31 +594,11 @@ An object for this class may have a structure such as follows:
 
 ## `cross-reference`
 
-The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list are names of classes defined elsewhere in the schema. For example:
+The `cross-reference` type allows a link to be created from one object to another. This is useful for creating relationships between collections, such as linking a `Person` collection to a `Company` collection.
 
-```json
-{
-  "properties": [
-    {
-      "name": "hasWritten",
-      "dataType": [
-        "Article",
-        "Blog"
-      ]
-    }
-  ]
-}
-```
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given collection (including zero).
 
-### Number of linked instances
-
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
-
-In the above example, our objects can be linked to:
-* **0** Articles and **1** Blog
-* **1** Article and **3** Blogs
-* **2** Articles and **5** Blogs
-* etc.
+For more information on cross-references, see the [cross-references](../concepts/data.md#cross-references). To see how to work with cross-references, see [how to manage data: cross-references](../manage-data/cross-references.mdx).
 
 ## More information
 
