@@ -2,7 +2,7 @@
 |------|------------|------------|---------------------------|------|
 | text | string | `string` | ✅ `["string one", "string two"]` |
 | boolean | boolean | `true`/`false` | ✅ `[true, false]` | |
-| int | int64 (see [notes](/developers/weaviate/config-refs/datatypes#notes)) | `123` | ✅ `[123, 456]` | |
+| int | int64 (see [notes](/developers/weaviate/config-refs/datatypes#note-graphql-and-int64)) | `123` | ✅ `[123, -456]` | |
 | number | float64 | `0.0` | ✅ `[0.0, 1.1]` | |
 | date | string | [more info](/developers/weaviate/config-refs/datatypes#date) | ✅ | |
 | uuid | string | `"c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c"` | ✅ `["c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"]` | |

@@ -85,6 +85,61 @@ import TextTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
   </TabItem>
 </Tabs>
 
+## `boolean` / `int` / `number`
+
+The `boolean`, `int`, and `number` types are used for storing boolean, integer, and floating-point numbers, respectively.
+
+### Examples
+
+import NumericalTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.numerical.py';
+import NumericalTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.numerical.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={NumericalTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={NumericalTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={NumericalTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={NumericalTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+### Note: GraphQL and `int64`
+
+Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
+
 ## `date`
 
 A `date` in Weaviate is represented by an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp in the `date-time` format. The timestamp includes the time and an offset.
@@ -336,10 +391,6 @@ In the above example, our objects can be linked to:
 :::
 
 ### Notes
-
-#### GraphQL and `int64`
-
-Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
 #### Formatting in payloads
 
