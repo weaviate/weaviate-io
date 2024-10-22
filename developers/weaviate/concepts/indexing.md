@@ -33,7 +33,7 @@ For more information on vector indexes, see the [Vector Indexing](./vector-index
 <details>
   <summary>Performance improvements added in Oct 2024</summary>
 
-In Weaviate versions `v1.24.25`, `v1.25.20`, `v1.26.6` and `v1.27.0`, we introduced performance improvements and bugfixes for the BM25F scoring algorithm.
+In Weaviate versions `v1.24.26`, `v1.25.20`, `v1.26.6` and `v1.27.0`, we introduced performance improvements and bugfixes for the BM25F scoring algorithm.
 <br/>
 
 - The BM25 segment merging algorithm was made faster.
