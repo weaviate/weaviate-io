@@ -5,12 +5,9 @@ image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 
-
-:::info Related pages
-- [Configuration: Schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
-- [Concepts: Data Structure](../concepts/data.md)
-:::
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 ## Introduction
 
@@ -26,16 +23,46 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 ## DataType: `text`
 
+Use this type for any textual data. Properties with the `text` type is used for vectorization and keyword search unless specified otherwise [in the property settings](../manage-data/collections.mdx#property-level-settings).
+
+If using [named vectors](../concepts/data.md#multiple-vectors-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-multiple-named-vectors).
+
 ### Tokenization configuration
 
-Refer to [this section](../config-refs/schema/index.md#property-tokenization) on how to configure the tokenization behavior of a `text` property.
+Text properties are tokenized prior to being indexed for keyword/BM25 searches. See [collection definition: tokenization](../config-refs/schema/index.md#property-tokenization) for more information.
 
-:::tip `string` is deprecated
+### Usage examples
+
+import TextTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.text.py';
+import TextTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.text.ts';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={TextTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TextTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary><code>string</code> is deprecated</summary>
 
 Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was differentiated by tokenization behavior to `text`. As of `v1.19`, this type is deprecated and will be removed in a future release.
 
 Use `text` instead of `string`. `text` supports the tokenization options that are available through `string`.
-:::
+
+</details>
 
 ## DataType: `cross-reference`
 
@@ -228,13 +255,21 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-## Notes
+## More information
 
-### GraphQL and `int64`
+:::info Related pages
+- [How-to: Manage collections](../manage-data/collections.mdx)
+- [Concepts: Data Structure](../concepts/data.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
+:::
+
+### Notes
+
+#### GraphQL and `int64`
 
 Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
 
-### Formatting in payloads
+#### Formatting in payloads
 
 In raw payloads (e.g. JSON payloads for REST), data types are specified as an array (e.g. `["text"]`, or `["text[]"]`), as it is required for some cross-reference specifications.
 
