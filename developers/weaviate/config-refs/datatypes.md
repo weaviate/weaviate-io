@@ -412,7 +412,7 @@ The datatype blob accepts any binary data. The data should be `base64` encoded, 
 * There is no max file size limit.
 * This `blob` field is always skipped in the inverted index, regardless of setting. This mean you can not search by this `blob` field in a Weaviate GraphQL `where` filter, and there is no `valueBlob` field accordingly. Depending on the module, this field can be used in module-specific filters (e.g. `nearImage`{} in the `img2vec-neural` filter).
 
-Example:
+<!-- Example:
 
 The dataType `blob` can be used as property dataType in the data schema as follows:
 
@@ -425,7 +425,7 @@ The dataType `blob` can be used as property dataType in the data schema as follo
     }
   ]
 }
-```
+``` -->
 
 To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
 
@@ -433,7 +433,7 @@ To obtain the base64-encoded value of an image, you can run the following comman
 cat my_image.png | base64
 ```
 
-You can then import data with `blob` dataType to Weaviate as follows:
+<!-- You can then import data with `blob` dataType to Weaviate as follows:
 
 ```bash
 curl \
@@ -447,7 +447,54 @@ curl \
       }
   }' \
     http://localhost:8080/v1/objects
-```
+``` -->
+
+### Examples
+
+import BlobTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.blob.py';
+import BlobTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.blob.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={BlobTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={BlobTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={BlobTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={BlobTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## `object`
 
