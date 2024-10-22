@@ -2,7 +2,7 @@ import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // START ConfigureDataType
-import { vectorizer, dataType, tokenization } from 'weaviate-client';
+import { dataType } from 'weaviate-client';
 
 // END ConfigureDataType
 

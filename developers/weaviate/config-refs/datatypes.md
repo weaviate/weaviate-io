@@ -152,6 +152,55 @@ For example:
 
 To add a list of dates as a single entity, use an array of `date-time` formatted strings. For example: `["1985-04-12T23:20:50.52Z", "1937-01-01T12:00:27.87+00:20"]`
 
+In specific client libraries, you may be able to use the native date object as shown in the following examples.
+
+### Examples
+
+import DateTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.date.py';
+import dateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.date.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={DateTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={dateTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={DateTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={dateTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## `blob`
 
 The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:

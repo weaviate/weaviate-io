@@ -1,7 +1,7 @@
 import weaviate
 
 # START ConfigureDataType
-from weaviate.classes.config import Property, DataType, Configure, Tokenization
+from weaviate.classes.config import Property, DataType
 
 # END ConfigureDataType
 
