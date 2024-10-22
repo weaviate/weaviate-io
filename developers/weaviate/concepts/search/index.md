@@ -19,7 +19,7 @@ The following table illustrates the search process in Weaviate. Around the core 
 |------|-------------|----------|
 | 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
 | 2. [Reranking](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
-| 3. [Generative](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+| 3. [Generative](#retrieval-augmented-generation-rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
 
 Here is a brief overview of each step:
 
@@ -264,22 +264,22 @@ Reranking is useful when you want to improve the quality of search results by ap
 For example, searches in legal, medical, or scientific literature may require a more nuanced understanding of the text. Reranking can help to ensure that the most relevant results are surfaced.
 </details>
 
-### Generative search / RAG
+### Retrieval augmented generation (RAG)
 
 :::info In one sentence
-<i class="fa-solid fa-robot"></i> Generative search combines search with a generative AI model to produce new content based on the search results.
+<i class="fa-solid fa-robot"></i> Retrieval Augmented Generation combines search with a generative AI model to produce new content based on the search results.
 :::
 
-Generative search, also called retrieval augmented generation or RAG, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
+Retrieval augmented generation (RAG), also called generative search, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
 
 Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
 
-As a result, generative searches in Weaviate are [easy to set up](../../manage-data/collections.mdx#specify-a-generative-module), and can be conveniently executed as [an integrated, single query](../../search/generative.md#grouped-task-search).
+As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-module), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
-  <summary>Generative Search: Example</summary>
+  <summary>RAG: Example</summary>
 
-In a dataset such as `animal_objs` below, you could combine generative search with any other search method to find relevant objects and then transform it.
+In a dataset such as `animal_objs` below, you could combine retrieval augmented generation with any other search method to find relevant objects and then transform it.
 <br/>
 
 ```json
@@ -293,7 +293,7 @@ In a dataset such as `animal_objs` below, you could combine generative search wi
 ]
 ```
 
-Take an example of a keyword search for `"black"`, and a generative search request `"What do these animal descriptions have in common?"`.
+Take an example of a keyword search for `"black"`, and a RAG request `"What do these animal descriptions have in common?"`.
 <br/>
 
 The search results consist of `{"description": "black bear"}` and `{"description": "small domestic black cat"}` as you saw before. Then, the generative model would produce an output based on our query. In one example, it produced:
