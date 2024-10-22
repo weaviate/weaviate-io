@@ -21,9 +21,11 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 <DataTypes />
 
+Further details on each data type are provided below.
+
 ## `text`
 
-Use this type for any textual data.
+Use this type for any text data.
 
 - Properties with the `text` type is used for vectorization and keyword search unless specified otherwise [in the property settings](../manage-data/collections.mdx#property-level-settings).
 - If using [named vectors](../concepts/data.md#multiple-vectors-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-multiple-named-vectors).
