@@ -678,12 +678,13 @@ assert new_config.inverted_index_config.bm25.k1 == 1.5
 # ===== DELETE A COLLECTION =====
 # ================================
 
+collection_name = "Article"
+
 # START DeleteCollection
-# delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
-client.collections.delete("Article")  # Replace with your collection name
-# note: you can also delete multiple collections at once
-# client.collections.delete(["Article", "Category"])
-# or all collections of a cluster
+# collection_name can be a string ("Article") or a list of strings (["Article", "Category"])
+client.collections.delete(collection_name)  # THIS WILL DELETE THE SPECIFIED COLLECTION(S) AND THEIR OBJECTS
+
+# Note: you can also delete all collections in the Weaviate instance with:
 # client.collections.delete_all()
 # END DeleteCollection
 
