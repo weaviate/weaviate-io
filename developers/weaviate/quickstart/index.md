@@ -17,7 +17,7 @@ This Quickstart takes about 20 minutes to complete. It introduces some common ta
 - Build a Weaviate vector database.
 - Make a *semantic search* query.
 - Add a *filter* to your query.
-- Use *generative searches* and a large language model (LLM) to transform your search results.
+- Use *retrieval augmented generation* and a large language model (LLM) to transform your search results.
 
 #### Object vectors
 
@@ -212,9 +212,9 @@ The results are limited to objects from the `ANIMALS` category.
 Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
 :::
 
-### Generative search (single prompt)
+### Retrieval augmented generation (single prompt)
 
-Next, let's try a generative search. A generative search, also called retrieval augmented generation, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
+Next, let's try a retrieval augmented generation (RAG). RAG, also called generative search, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
 
 To see what happens when an LLM uses query results to perform a task that is based on our prompt, run the code below.
 
@@ -232,7 +232,7 @@ import BiologyGenerativeSearchJson from '/_includes/code/quickstart/response.bio
 
 We see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
 
-### Generative search (grouped task)
+### Retrieval augmented generation (grouped task)
 
 The next example uses a `grouped task` prompt instead to combine all search results and send them to the LLM with a prompt.
 
@@ -249,7 +249,7 @@ import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart/respo
 <BiologyGenerativeSearchGroupedJson />
 
 :::tip Why is this useful?
-Generative search sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
+RAG sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
 :::
 
 <hr/>
@@ -262,7 +262,7 @@ Well done! You have:
 - Performed searches, including:
     - Semantic search
     - Semantic search with a filter
-    - Generative search
+    - Retrieval augmented generation
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
 
