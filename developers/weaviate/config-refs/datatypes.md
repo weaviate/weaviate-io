@@ -14,16 +14,15 @@ image: og/docs/configuration.jpg
 
 ## Introduction
 
-When creating a property, Weaviate needs to know what type of data you will give it. Weaviate accepts the following types:
+When [creating a property](../manage-data/collections.mdx#add-a-property), you must specify a data type. Weaviate accepts the following types.
+
+:::note Array types
+Arrays of a data type are specified by adding `[]` to the type (e.g. `text` ➡ `text[]`). Note that not all data types support arrays.
+:::
 
 import DataTypes from '/_includes/datatypes.mdx';
 
 <DataTypes />
-
-:::note Notes
--  Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
-- Data types are specified as an array (e.g. ["text"]), as it is required for some cross-reference specifications.
-:::
 
 ## DataType: `text`
 
@@ -229,6 +228,15 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
+## Notes
+
+### GraphQL and `int64`
+
+Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
+
+### Formatting in payloads
+
+In raw payloads (e.g. JSON payloads for REST), data types are specified as an array (e.g. `["text"]`, or `["text[]"]`), as it is required for some cross-reference specifications.
 
 ## Questions and feedback
 
