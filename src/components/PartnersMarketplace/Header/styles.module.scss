@@ -19,14 +19,19 @@
   }
 
   .buttonGradient {
+    width: 10.5625rem;
+    height: 2.5rem;
+    flex-shrink: 0;
     border-radius: 0.3125rem;
-    background: #130c49;
-    color: #fff;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+    color: #130c49;
     text-align: center;
-    font-size: 1rem;
+    font-family: Inter;
+    font-size: 0.875rem;
     font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.37663rem */
   }
 
   .buttonOutline {
@@ -87,7 +92,33 @@ p {
   }
 }
 
+.buttonGradient {
+  width: 10.5625rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  border: 1px solid #130c49;
+  background: #130c49;
+  color: #f7f9fd;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+
+  line-height: 157.33%; /* 1.37663rem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: #f7f9fd;
+  }
+}
+
 .buttonOutline {
+  width: 10.5625rem;
+  height: 2.5rem;
   border-radius: 0.3125rem;
   border: 1px solid #130c49;
   background: #f4f4f4;
@@ -95,18 +126,18 @@ p {
   color: #130c49;
   text-align: center;
   font-family: Inter;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
+  font-weight: 500;
+  line-height: 157.33%; /* 1.37663rem */
   transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: #130c49;
+  }
 }
 
 .buttonsContainer {

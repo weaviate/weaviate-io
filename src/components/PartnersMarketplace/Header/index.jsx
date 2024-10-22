@@ -15,6 +15,20 @@ export default function ServiceHeader() {
               our partner integrations.
             </p>
           </div>
+          <div className={styles.buttonsContainer}>
+            <Link
+              to="/developers/weaviate/model-providers"
+              className={styles.buttonGradient}
+            >
+              Model Providers
+            </Link>
+            <Link
+              to="/developers/integrations"
+              className={styles.buttonOutline}
+            >
+              Integrations
+            </Link>
+          </div>
         </div>
       </div>
     </header>
