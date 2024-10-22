@@ -264,11 +264,11 @@ import UUIDTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
 
 ## `geoCoordinates`
 
-Weaviate allows you to store geo coordinates. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
+Geo coordinates can be used to find objects in a radius around a query location. A geo coordinate value stored as a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
 
 To supply a `geoCoordinates` property, specify the `latitude` and `longitude` as floating point decimal degrees.
 
-An example of how geo coordinates are used in a data object:
+<!-- An example of how geo coordinates are used in a data object:
 
 ```json
 {
@@ -279,7 +279,54 @@ An example of how geo coordinates are used in a data object:
     }
   }
 }
-```
+``` -->
+
+### Examples
+
+import GeoTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.geocoordinates.py';
+import GeoTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.geocoordinates.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={GeoTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={UUIDTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={GeoTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={GeoTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 import GeoLimitations from '/_includes/geo-limitations.mdx';
 
@@ -287,7 +334,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
 
 ## `phoneNumber`
 
-There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
+A `phoneNumber` input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object with multiple fields.
 
 ```yaml
 {
@@ -304,10 +351,57 @@ There is a special, primitive data type `phoneNumber`. When a phone number is ad
 ```
 
 There are two fields that accept input. `input` must always be set, while `defaultCountry` must only be set in specific situations. There are two scenarios possible:
-- When you entered an international number (e.g. `"+31 20 1234567"`) to the `input` field, no `defaultCountry` needs to be entered. The underlying parser will automatically recognize the number's country.
-- When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
+- When you enter an international number (e.g. `"+31 20 1234567"`) to the `input` field, no `defaultCountry` needs to be entered. The underlying parser will automatically recognize the number's country.
+- When you enter a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
 
-As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
+Weaviate will also add further read-only fields such as `internationalFormatted`, `countryCode`, `national`, `nationalFormatted` and `valid` when reading back a field of type `phoneNumber`.
+
+### Examples
+
+import PhoneTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.phonenumber.py';
+import PhoneTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.phonenumber.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PhoneTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={PhoneTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PhoneTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={PhoneTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## `blob`
 
