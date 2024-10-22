@@ -157,7 +157,7 @@ In specific client libraries, you may be able to use the native date object as s
 ### Examples
 
 import DateTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.date.py';
-import dateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.date.ts';
+import DateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.date.ts';
 
 #### Property definition
 
@@ -172,7 +172,7 @@ import dateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={dateTypeTs}
+      text={DateTypeTs}
       startMarker="// START ConfigureDataType"
       endMarker="// END ConfigureDataType"
       language="ts"
@@ -193,7 +193,7 @@ import dateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={dateTypeTs}
+      text={DateTypeTs}
       startMarker="// START AddObject"
       endMarker="// END AddObject"
       language="ts"
@@ -201,57 +201,12 @@ import dateTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.data
   </TabItem>
 </Tabs>
 
-## `blob`
-
-The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
-* Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this.
-* When storing, the data is `base64` decoded (so Weaviate stores it more efficiently).
-* When serving, the data is `base64` encoded (so it is safe to serve as `json`).
-* There is no max file size limit.
-* This `blob` field is always skipped in the inverted index, regardless of setting. This mean you can not search by this `blob` field in a Weaviate GraphQL `where` filter, and there is no `valueBlob` field accordingly. Depending on the module, this field can be used in module-specific filters (e.g. `nearImage`{} in the `img2vec-neural` filter).
-
-Example:
-
-The dataType `blob` can be used as property dataType in the data schema as follows:
-
-```json
-{
-  "properties": [
-    {
-      "name": "image",
-      "dataType": ["blob"]
-    }
-  ]
-}
-```
-
-To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
-
-```bash
-cat my_image.png | base64
-```
-
-You can then import data with `blob` dataType to Weaviate as follows:
-
-```bash
-curl \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-      "class": "FashionPicture",
-      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4302",
-      "properties": {
-          "image": "iVBORw0KGgoAAAANS..."
-      }
-  }' \
-    http://localhost:8080/v1/objects
-```
 ## `uuid`
 
 :::info Added in `v1.19`
 :::
 
-The dedicated `uuid` and `uuid[]` data types are more space-efficient than storing the same data as text.
+The dedicated `uuid` and `uuid[]` data types efficiently store [UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
 -   Each `uuid` is a 128-bit (16-byte) number.
 -   The filterable index uses roaring bitmaps.
@@ -259,6 +214,53 @@ The dedicated `uuid` and `uuid[]` data types are more space-efficient than stori
 :::note Aggregate/sort currently not possible
 It is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
 :::
+
+### Examples
+
+import UUIDTypePy from '!!raw-loader!/_includes/code/python/config-refs.datatypes.uuid.py';
+import UUIDTypeTs from '!!raw-loader!/_includes/code/typescript/config-refs.datatypes.uuid.ts';
+
+#### Property definition
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={UUIDTypePy}
+      startMarker="# START ConfigureDataType"
+      endMarker="# END ConfigureDataType"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={UUIDTypeTs}
+      startMarker="// START ConfigureDataType"
+      endMarker="// END ConfigureDataType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+#### Object insertion
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={UUIDTypePy}
+      startMarker="# START AddObject"
+      endMarker="# END AddObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={UUIDTypeTs}
+      startMarker="// START AddObject"
+      endMarker="// END AddObject"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## `geoCoordinates`
 
@@ -306,6 +308,52 @@ There are two fields that accept input. `input` must always be set, while `defau
 - When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
+
+## `blob`
+
+The datatype blob accepts any binary data. The data should be `base64` encoded, and passed as a `string`. Characteristics:
+* Weaviate doesn't make assumptions about the type of data that is encoded. A module (e.g. `img2vec`) can investigate file headers as it wishes, but Weaviate itself does not do this.
+* When storing, the data is `base64` decoded (so Weaviate stores it more efficiently).
+* When serving, the data is `base64` encoded (so it is safe to serve as `json`).
+* There is no max file size limit.
+* This `blob` field is always skipped in the inverted index, regardless of setting. This mean you can not search by this `blob` field in a Weaviate GraphQL `where` filter, and there is no `valueBlob` field accordingly. Depending on the module, this field can be used in module-specific filters (e.g. `nearImage`{} in the `img2vec-neural` filter).
+
+Example:
+
+The dataType `blob` can be used as property dataType in the data schema as follows:
+
+```json
+{
+  "properties": [
+    {
+      "name": "image",
+      "dataType": ["blob"]
+    }
+  ]
+}
+```
+
+To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
+
+```bash
+cat my_image.png | base64
+```
+
+You can then import data with `blob` dataType to Weaviate as follows:
+
+```bash
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "class": "FashionPicture",
+      "id": "36ddd591-2dee-4e7e-a3cc-eb86d30a4302",
+      "properties": {
+          "image": "iVBORw0KGgoAAAANS..."
+      }
+  }' \
+    http://localhost:8080/v1/objects
+```
 
 ## `object`
 
