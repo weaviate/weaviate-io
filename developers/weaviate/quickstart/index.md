@@ -1,110 +1,175 @@
 ---
-title: Quickstart Tutorial
+title: Quickstart
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
+hide_table_of_contents: true
 ---
 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
+<span class="badge badge--secondary">Expected time: 20 minutes</span> <span class="badge badge--secondary">Prerequisites: None</span>
+<br/><br/>
 
-Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
+:::info What you will learn
 
-This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
-- Build a Weaviate vector database.
-- Make a *semantic search* query.
-- Add a *filter* to your query.
-- Use *generative searches* and a large language model (LLM) to transform your search results.
+Welcome! Here, you will get hands-on experience with Weaviate. You will:
 
-#### Object vectors
+1. Create a Weaviate database.
+1. Add data.
+1. Perform a semantic search.
+1. Use retrieval augmented generation (RAG).
 
-Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate.
+:::
 
-With Weaviate, you have options to:
-- Have **Weaviate create vectors** for you, or
-- Specify **custom vectors**.
+<!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-This tutorial demonstrates having Weaviate create vectors with a vectorizer. For a tutorial on using custom vectors, see [this tutorial](../starter-guides/custom-vectors.mdx).
+### Prerequisites
 
-#### Source data
+This tutorial uses a [Weaviate Cloud](https://console.weaviate.cloud) Sandbox instance, and an [OpenAI](https://platform.openai.com/) API key.
 
-We will use a (tiny) dataset of quizzes.
+The Weaviate Sandbox is free, but the OpenAI API key usage may incur a (small) cost. If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
 
-<details>
-  <summary>See the dataset</summary>
-
-The data comes from a TV quiz show ("Jeopardy!")
-
-|    | Category   | Question                                                                                                          | Answer                  |
-|---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
-|  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   |
-|  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                |
-|  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       |
-|  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                |
-|  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler |
-|  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 |
-|  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    |
-|  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
-|  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
-|  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
-
-</details>
-
-:::tip For Python users
-Try it directly on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) ([or go to the file](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)).
+:::note For Python users
+We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
 :::
 
 ## Step 1: Create a Weaviate database
 
-You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
+Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-- Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance.
-- Get the **API key** and **URL** from the `Details` tab in WCD.
-- Come back here to continue this Quickstart.
+<!-- ### Create a WCD account -->
 
-:::info Alternative Weaviate instances
-If you prefer to use a different Weaviate instance, see [Can I use a different deployment method](#can-i-use-a-different-deployment-method).
+<!-- import WCDRegister from '/developers/weaviate/quickstart/img/wcd_register.png';
+
+<div class="row">
+  <div class="col col--4">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDRegister} alt="Sign up with WCD"/>
+      </div>
+      <div class="card__body">
+        <ol>
+          <li>Go the <a href="https://console.weaviate.cloud">WCD homepage</a>.</li>
+          <li>Click "Register here".</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<br/> -->
+
+### Create a Sandbox Cluster
+
+import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
+import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li><a href="https://console.weaviate.cloud">Log onto WCD</a>.</li>
+      <li>Click on <code>Clusters</code> on the sidebar.</li>
+      <li>In the following pane, click <code>Create cluster</code>.</li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateCluster} alt="Create a cluster"/>
+      </div>
+      <div class="card__body">
+        Click here to create a cluster
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>Give your cluster a name.</li>
+      <li>Set your preferred cloud region.</li>
+      <li>Click "Create".</li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateSandbox} alt="Create a Sandbox Cluster"/>
+      </div>
+      <div class="card__body">
+        Populate these fields and create a sandbox.
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
+
+:::note
+- It takes a minute or two to provision the new cluster.
+- When the cluster is ready, WCD displays a check mark (`✔️`) next to the cluster name.
+- Note that WCD adds a random suffix to sandbox cluster names to ensure uniqueness.
 :::
+
+<!-- import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/> -->
+
 
 ## Step 2: Install a client library
 
-Install the Weaviate [client library](../client-libraries/index.md) for your preferred programming language.
+We recommend using a [client library](../client-libraries/index.md) to work with Weaviate.
 
-To install the library, run the installation code for your language:
+Follow the instructions below to install one of the official client libraries, available in [Python](../client-libraries/python/index.md), [JavaScript/TypeScript](../client-libraries/typescript/index.mdx), [Go](../client-libraries/go.md), and [Java](../client-libraries/java.md).
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
-:::info Install client libraries
-
 <CodeClientInstall />
-
-:::
 
 ## Step 3: Connect to Weaviate
 
-To connect to your Weaviate instance, you need the instance [connection details](#connection-details) and [a client](#client-connection-code) to connect with.
+Now you can connect to your Weaviate instance. Get the instance **URL** and the **Administrator API Key** from the WCD console as shown below.
 
-### Connection details
+import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
 
-Gather the following information:
+import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
 
-- The Weaviate **URL** (get it from WCD `Details` tab)
+<div class="row">
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
+        </div>
+        <div class="card__body">
+          The <code>REST Endpoint</code> is the URL to use.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
+        </div>
+        <div class="card__body">
+          We will use the <code>Admin</code> API key.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
-
-<img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
-
-- The Weaviate **API key** (Get it from the instance `Details`)
-- An OpenAI **inference API key** ([Sign up at OpenAI](https://platform.openai.com/signup))
+<br/>
 
 ### Client connection code
 
-This sample connection code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
-
-Copy the code to a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
+The following code example shows how to connect to Weaviate.
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
