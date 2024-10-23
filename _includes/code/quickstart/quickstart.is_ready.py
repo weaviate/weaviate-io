@@ -15,7 +15,7 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 try:
-    client.is_ready()
+    assert client.is_ready()  # Should throw an exception if not ready
 
 finally:
     client.close()  # Close client gracefully

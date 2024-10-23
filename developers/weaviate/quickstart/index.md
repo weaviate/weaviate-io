@@ -169,11 +169,15 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
 
 ### Client connection code
 
-With the **URL** and **API key**, you can connect to Weaviate. Here is a basic script for connecting to Weaviate and checking the cluster status.
+With the **URL** and **API key**, you can connect to Weaviate.
+
+The below script connects to Weaviate and checks the cluster status.
 
 import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
 <ConnectIsReady />
+
+If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
 
 ## Step 4: Define a data collection
 
