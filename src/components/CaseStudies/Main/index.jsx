@@ -6,7 +6,7 @@ import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 export default function Main() {
   return (
     <header className={styles.headerSecurity}>
-      <div className={styles.container}>
+      <div className="container">
         <div className={styles.box}>
           <h2>
             Thousands of companies rely on Weaviate to power their businesses
