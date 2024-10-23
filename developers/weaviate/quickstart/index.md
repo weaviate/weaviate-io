@@ -169,11 +169,11 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
 
 ### Client connection code
 
-The following code example shows how to connect to Weaviate.
+With the **URL** and **API key**, you can connect to Weaviate. Here is a basic script for connecting to Weaviate and checking the cluster status.
 
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
+import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
-<ConnectToWeaviateWithKey />
+<ConnectIsReady />
 
 ## Step 4: Define a data collection
 

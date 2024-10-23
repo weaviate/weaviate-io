@@ -1,0 +1,118 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/quickstart.is_ready.py';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
+import GoConnectCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go';
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# InstantiationExample"
+  endMarker="# END InstantiationExample"
+  language="py"
+  title="quickstart_check_readiness.py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# InstantiationExample"
+  endMarker="# END InstantiationExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
+
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="ts"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS Client v2">
+
+<FilteredTextBlock
+  text={EndToEndTSCodeLegacy}
+  startMarker="// InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="ts"
+/>
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoConnectCode}
+  startMarker="// START InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="java"
+/>
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+- With `curl`, add the API key to the header as shown below:
+<br/>
+
+```bash
+echo '{
+  "query": "<QUERY>"
+}' | curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+</Tabs>
