@@ -6,14 +6,18 @@ export default function BuildWith() {
   return (
     <div className="container">
       <div className={styles.Container}>
-        <h2>Build with Weaviate</h2>
-        <p>Look at how developers are building with Weaviate.</p>
-
+        <div className={styles.headerContainer}>
+          <h2>Build with Weaviate</h2>
+          <p>Look at how developers are building with Weaviate.</p>
+        </div>
         <div className={styles.boxContainer}>
           <div className={styles.largeBox}>
             <div className={styles.boxTop}>
               <div className={styles.boxLogo}></div>
-              <Link to="" className={styles.boxButton}>
+              <Link
+                to="/community/build-with-weaviate"
+                className={styles.boxButton}
+              >
                 {'See the showcase >'}
               </Link>
             </div>
@@ -31,7 +35,10 @@ export default function BuildWith() {
                 generating test cases and performing various tests.
               </p>
 
-              <Link to="" className={styles.boxButton}>
+              <Link
+                to="/community/build-with-weaviate"
+                className={styles.boxButton}
+              >
                 {'See the showcase >'}
               </Link>
             </div>
@@ -42,7 +49,10 @@ export default function BuildWith() {
                 opportunities tailored to your resume!
               </p>
 
-              <Link to="" className={styles.boxButton}>
+              <Link
+                to="/community/build-with-weaviate"
+                className={styles.boxButton}
+              >
                 {'See the showcase >'}
               </Link>
             </div>

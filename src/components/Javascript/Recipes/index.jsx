@@ -11,8 +11,8 @@ export default function Recipes() {
         <div className={styles.box}>
           <h2>Try our recipes</h2>
           <p>
-            Recipes are topical code snippets covering popular<br></br> use
-            cases and integrations.
+            Recipes are topical code snippets covering popular use cases and
+            integrations.
           </p>
           <div className={styles.buttons}>
             <Link

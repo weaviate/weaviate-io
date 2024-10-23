@@ -1,6 +1,8 @@
 .Container {
   margin-top: 2rem;
+}
 
+.headerContainer {
   h2 {
     color: #130c49;
     font-family: 'Plus Jakarta Sans';
@@ -70,6 +72,14 @@
     background-size: contain;
     background-repeat: no-repeat;
     background: url('/img/site/unbody-logo.svg');
+
+    @media screen and (max-width: 850px) {
+      width: 6.0625rem;
+      height: 2.46713rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-y: center;
+    }
   }
 
   .boxButton {
@@ -124,6 +134,14 @@
   flex-direction: column;
   justify-content: space-between;
 
+  p {
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.225rem */
+  }
+
   .boxButton {
     width: 10.9375rem;
     height: 2.5rem;
@@ -141,6 +159,10 @@
     font-style: normal;
     font-weight: 500;
     line-height: 157.33%; /* 1.37663rem */
+
+    @media screen and (max-width: 500px) {
+      margin: 10px 0px;
+    }
   }
 
   @media (max-width: 1300px) {
@@ -156,7 +178,7 @@
 
 .light {
   border-radius: 1.25rem;
-  background: url('/img/site/bww-bg-logo-01.svg'), #85e3bc;
+  background: url('/img/site/RicAI.svg'), #85e3bc;
   background-repeat: no-repeat;
   background-position-y: -90px;
   background-position-x: right;

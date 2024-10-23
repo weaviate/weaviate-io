@@ -17,6 +17,7 @@ export default function List() {
               Weave through the noise, quick battle tested stacks to build AI
               Apps.
             </p>
+            <Link to="/developers/weaviate/roadmap#backlog">Learn More</Link>
           </div>
         </div>
         <div className={styles.card}>
@@ -26,6 +27,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Learn all the jargon, step into your AI era.
             </p>
+            <Link to="/developers/weaviate/concepts">Learn More</Link>
           </div>
         </div>
         <div className={styles.card}>
@@ -35,6 +37,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Find references for how to use Weaviate.
             </p>
+            <Link to="/developers/weaviate">Learn More</Link>
           </div>
         </div>
         <div className={styles.card}>
@@ -44,6 +47,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Get guided courses on various topics.
             </p>
+            <Link to="/developers/academy">Learn More</Link>
           </div>
         </div>
       </div>

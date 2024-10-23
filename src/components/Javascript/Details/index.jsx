@@ -19,8 +19,8 @@ export default function Details() {
     navigator.clipboard.writeText(text);
     setIsCopied(true);
     setTimeout(() => {
-      setIsCopied(false); // Reset the copied state after a few seconds
-    }, 2000); // 2 seconds timeout
+      setIsCopied(false);
+    }, 2000);
   };
 
   return (
@@ -34,18 +34,18 @@ export default function Details() {
               <code
                 onClick={() => copyToClipboard('npm install weaviate-client')}
               >
-                npm install weaviate-client
+                {'> npm install weaviate-client'}
+                <button
+                  className={styles.copyButton}
+                  onClick={() => copyToClipboard('npm install weaviate-client')}
+                >
+                  {isCopied ? (
+                    <i class="fa-solid fa-check"></i>
+                  ) : (
+                    <i class="fa-regular fa-copy"></i>
+                  )}
+                </button>
               </code>
-              <button
-                className={styles.copyButton}
-                onClick={() => copyToClipboard('npm install weaviate-client')}
-              >
-                {isCopied ? (
-                  <i class="fa-solid fa-check"></i>
-                ) : (
-                  <i class="fa-regular fa-copy"></i>
-                )}
-              </button>
             </div>
             <p>2. Search!!</p>
           </div>

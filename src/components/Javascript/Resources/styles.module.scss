@@ -5,7 +5,7 @@
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 120%; /* 2.4rem */
+    line-height: 120%;
     margin-bottom: 0.5rem;
   }
 
@@ -15,7 +15,7 @@
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 1.5rem */
+    line-height: 150%;
     margin-bottom: 2rem;
   }
 }
@@ -28,7 +28,7 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center; /* Center the tab list items for smaller screens */
+    align-items: center;
   }
 }
 
@@ -39,10 +39,25 @@
 
   @media (max-width: 768px) {
     flex-direction: row;
-    flex-flow: wrap;
-    justify-content: center;
-    gap: 15px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
     margin: 40px 0px;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
   }
 
   .tabs {
@@ -58,7 +73,9 @@
     cursor: pointer;
 
     @media (max-width: 768px) {
-      margin: 10px; /* Reduce margin for smaller screens */
+      margin: 0 10px;
+      display: inline-block;
+      font-size: 1.2rem;
     }
 
     &--selected {
@@ -81,11 +98,11 @@
 
 .boxesGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* One column on screens smaller than 768px */
+    grid-template-columns: 1fr;
   }
 }
 
@@ -128,7 +145,7 @@
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 130%; /* 1.95rem */
+    line-height: 130%;
   }
 
   h3 {
@@ -137,7 +154,7 @@
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 130%; /* 1.625rem */
+    line-height: 130%;
     margin-bottom: 0.5rem;
   }
 
@@ -147,6 +164,6 @@
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 1.3125rem */
+    line-height: 150%;
   }
 }

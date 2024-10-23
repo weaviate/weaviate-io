@@ -6,7 +6,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import Recipes from '/src/components/Javascript/Recipes';
 import Steps from '/src/components/Javascript/Steps';
 import Details from '/src/components/Javascript/Details';
-import CTA from '/src/components/Javascript/CTA';
+import Header from '/src/components/Javascript/Header';
 import List from '/src/components/Javascript/List';
 import Tabs from '/src/components/Javascript/Tabs';
 import ThemeSwitch from '/src/components/ThemeSwitch';
@@ -23,7 +23,7 @@ export default function Home() {
         description="Build AI-Native Applications with Javascript"
       >
         <MetaSEO img="og/website/home.jpg" />
-        <CTA />
+        <Header />
         <main>
           <Details />
           <Resources />

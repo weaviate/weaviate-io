@@ -61,11 +61,20 @@
     width: 100%;
     height: 18.1198rem;
   }
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .buttons {
   display: flex;
   gap: 10px;
+
+  @media screen and (max-width: 850px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 
   .buttonDark {
     width: 10.5625rem;

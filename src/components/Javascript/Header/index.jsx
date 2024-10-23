@@ -6,7 +6,7 @@ import { ButtonContainer } from '../../../theme/Buttons';
 import Image from 'react';
 import Link from '@docusaurus/Link';
 
-export default function Resources() {
+export default function Header() {
   return (
     <div className={styles.bgContain}>
       <div className="container">
