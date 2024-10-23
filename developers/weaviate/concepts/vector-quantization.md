@@ -56,6 +56,12 @@ When the training step is triggered, a background job converts the index to the 
 
 After the PQ conversion completes, query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
 
+:::info Which objects are used for training?
+- (`v1.27` and later) If the collection has more objects than the training limit, Weaviate randomly selects objects from the collection to train the codebook.
+    - (`v1.26` and earlier) Weaviate uses the first `trainingLimit` objects in the collection to train the codebook.
+- If the collection has fewer objects than the training limit, Weaviate uses all objects in the collection to train the codebook.
+:::
+
 ### Encoders
 
 In the configuration above you can see that you can set the `encoder` object to specify how the codebook centroids are generated. Weaviate’s PQ supports using two different encoders. The default is `kmeans` which maps to the traditional approach used for creating centroid.
