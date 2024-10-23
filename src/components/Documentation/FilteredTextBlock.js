@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeBlock from '@theme/CodeBlock';
 
-const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStartMarker='false' }) => {
+const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStartMarker='false', title=''}) => {
   // Filter out lines that are before the start marker, and lines with or after the end marker
   includeStartMarker = includeStartMarker == 'true';
   const lines = text.split('\n');
@@ -52,7 +52,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
 
 
   return (
-    <CodeBlock className={`language-${language2}`}>
+    <CodeBlock className={`language-${language2}`} title={title}>
       {filteredLines}
     </CodeBlock>
   );
