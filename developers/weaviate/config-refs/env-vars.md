@@ -115,6 +115,7 @@ default hostname has changed and a single node cluster believes there are suppos
 Undocumented environment variables - for internal use only:
 MAINTENANCE_NODES
 ASYNC_BRUTE_FORCE_SEARCH_LIMIT
+RAFT_FORCE_ONE_NODE_RECOVERY
 -->
 
 ## Questions and feedback

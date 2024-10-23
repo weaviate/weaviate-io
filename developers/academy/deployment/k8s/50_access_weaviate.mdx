@@ -2,6 +2,11 @@
 title: Access & Configure Weaviate
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/connect.py';
+
 We have now spun up a Weaviate instance in our Kubernetes cluster. So what's next? In this section, we will look at how to access the Weaviate service, and how to configure it to suit your needs.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Access Weaviate
@@ -90,6 +95,29 @@ Note that not all systems have `nc` installed by default. It's okay if you don't
 
 </details>
 
+### <i class="fa-solid fa-code"></i> Connecting to your cluster
+
+Depending on your external IP address, you may need to use different strategies to connect to your cluster.
+
+If the external IP for both services is `127.0.0.1`, connect to Weaviate with:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="START BasicConnect"
+  endMarker="# END BasicConnect"
+  language="py"
+/>
+
+But the `weaviate` and `weaviate-grpc` services have different external IP addresses, you can connect to Weaviate with:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="START CustomConnect"
+  endMarker="# END CustomConnect"
+  language="py"
+/>
+
+Where parameters are `WEAVIATE_SVC_EXTERNAL_IP` and `GRPC_SVC_EXTERNAL_IP` are your external IP addresses for the `weaviate` and `weaviate-grpc` services respectively.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Configure Weaviate
 

@@ -1,4 +1,4 @@
-// Starter-guides: Generative search (RAG)
+// Starter-guides: Retreval augmented generation (RAG)
 
 import assert from 'assert';
 

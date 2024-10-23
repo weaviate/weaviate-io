@@ -139,7 +139,9 @@ import weaviate.classes.config as wc
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
     vector_index_config=wc.Reconfigure.VectorIndex.hnsw(
-        quantizer=wc.Reconfigure.VectorIndex.Quantizer.pq()
+        quantizer=wc.Reconfigure.VectorIndex.Quantizer.pq(
+            training_limit=50000  # Default: 100000
+        )
     )
 )
 # END UpdateSchema

@@ -1,4 +1,4 @@
-// Starter-guides: Generative search (RAG)
+// Starter-guides: Retreval augmented generation (RAG)
 
 import assert from 'assert';
 
@@ -16,7 +16,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 // END Instantiation
 

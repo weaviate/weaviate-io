@@ -1,5 +1,5 @@
 ---
-title: Collection schema
+title: Collection definition
 sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
@@ -7,7 +7,7 @@ image: og/docs/configuration.jpg
 
 ## Introduction
 
-A collection schema describes how to store and index a set of data objects in Weaviate. This page discuses the collection schema, collection parameters and collection configuration.
+A collection definition describes how to store and index a set of data objects in Weaviate. This page discuses the collection definition, collection parameters and collection configuration.
 
 import Terminology from '/_includes/collection-class-terminology.md';
 
@@ -311,7 +311,7 @@ Using these features requires more resources. The additional inverted indexes mu
 
 ### `vectorizer`
 
-The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](../../modules/index.md) for available vectorizer modules.
+The vectorizer (`"vectorizer": "..."`) can be specified per collection in the definition. Check the [modules page](../../modules/index.md) for available vectorizer modules.
 
 You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../manage-data/import.mdx#specify-a-vector)), or if you want to create a collection without any vectors.
 
@@ -364,7 +364,7 @@ These parameters are explained below:
 
 <RaftRFChangeWarning/>
 
-[Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
+[Replication](../../configuration/replication.md) configurations can be set using the definition, through the `replicationConfig` parameter.
 
 The `factor` parameter sets the number of copies of to be stored for objects in this collection.
 

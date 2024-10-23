@@ -192,9 +192,9 @@ To delete objects that match a set of criteria, specify the collection and a [`w
 </details>
 
 
-## Use ContainsAny / ContainsAll
+### ContainsAny / ContainsAll
 
-The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a set of criteria.
+Use `ContainsAny` / `ContainsAll` filters to delete of objects by a set of criteria.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -381,6 +381,9 @@ client.batch().objectsBatchDeleter()
   </TabItem>
 </Tabs>
 
+## Delete all objects
+
+Objects must belong to a collection in Weaviate. Accordingly, <a href="/developers/weaviate/manage-data/collections#delete-a-collection">deleting collections</a> will remove all objects within them.
 
 ## Optional parameters
 

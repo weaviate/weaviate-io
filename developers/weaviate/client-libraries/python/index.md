@@ -208,7 +208,7 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
   language="py"
 />
 
-:::tip Timeouts on `generate` (RAG) queries
+:::tip Timeouts on `generate` queries
 
 If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). <br/><br/>The `generate` submodule uses a large language model to generate text. The submodule is dependent on the speed of the language model and any API that serves the language model. <br/><br/>Increase the timeout values to allow the client to wait longer for the language model to respond.
 :::
@@ -637,7 +637,7 @@ The results are organized by both their individual objects as well as the group.
 
 ### `generate`
 
-The RAG / generative search functionality is a two-step process involving a search followed by prompting a large language model. Therefore, function names are shared across the `query` and `generate` submodules, with additional parameters available in the `generate` submodule.
+The `generate` methods perform [retrieval augmented generation (RAG)](../../starter-guides/generative.md). This is a two-step process involving a search followed by prompting a large language model. Therefore, function names are shared across the `query` and `generate` submodules, with additional parameters available in the `generate` submodule.
 
 <Tabs groupId="languages">
 <TabItem value="generate" label="Generate">

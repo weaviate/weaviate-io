@@ -9,14 +9,15 @@
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`  (not mutable in `v1.25`)
+  - `asyncEnabled`  (introduced in `v1.26.0`)
+  - `factor`  (not mutable in `v1.25` or higher)
+  <!-- - `deletionStrategy`  (introduced in `v1.27.0`) -->
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
   - `dynamicEfMax`
+  - `filterStrategy`  (introduced in `v1.27.0`, applicable for HNSW)
   - `flatSearchCutoff`
-  - `skip`
-  - `vectorCacheMaxObjects`
   - `pq`
     - `centroids`
     - `enabled`
@@ -25,6 +26,8 @@
     - `encoder`
       - `type`
       - `distribution`
+  - `skip`
+  - `vectorCacheMaxObjects`
 - `MultiTenancyConfig`
   - `autoTenantCreation`  (introduced in `v1.25.0`)
   - `autoTenantActivation`  (introduced in `v1.25.2`)

@@ -1,4 +1,4 @@
-// Howto: Search -> Generative search - TypeScript examples
+// Howto: Search -> Retreval augmented generation - TypeScript examples
 // Run with: node --loader=ts-node/esm search.generative.ts
 import assert from 'assert';
 

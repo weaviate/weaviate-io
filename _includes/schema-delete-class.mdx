@@ -46,6 +46,9 @@ client.schema.delete_class("Article")  # Replace with your class name
 ```ts
 // delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
 await client.collections.delete('Article')
+
+// you can also delete all collections of a cluster
+// await client.collections.deleteAll()
 ```
 
 </TabItem>

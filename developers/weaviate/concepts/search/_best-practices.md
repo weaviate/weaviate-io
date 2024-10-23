@@ -170,9 +170,9 @@ Identify fields that contribute most to semantic understanding. Consider combini
 - Quantization and queries
 - Best practices for optimizing search in large datasets
 
-## Generative Search (RAG)
+## Retrieval Augmented Generation (RAG)
 
-Generative search, also known as Retrieval Augmented Generation (RAG), combines traditional search mechanisms with generative AI models to produce new content based on retrieved information.
+Retrieval Augmented Generation (RAG), also known as generative search, combines traditional search mechanisms with generative AI models to produce new content based on retrieved information.
 
 ### RAG Architecture
 

@@ -118,7 +118,7 @@ To manually enable PQ, follow these steps:
     - [Load the rest of your data](./pq-compression.md#4-load-the-rest-of-your-data)
 
 :::tip How large should the training set be?
-Import 10,000 to 100,000 training objects per shard before you enable PQ.
+We suggest 10,000 to 100,000 objects per shard.
 :::
 
 Weaviate [logs a message](#check-the-system-logs) when PQ is enabled and another message when vector compression is complete. Do not import the rest of your data until the initial training step is complete.
@@ -191,14 +191,11 @@ Follow these steps to manually enable PQ.
 
 We recommend loading a representative sample such that the trained centroids are representative of the entire dataset.
 
+From `v1.27.0`, Weaviate uses a sparse [Fisher-Yates algorithm](https://en.wikipedia.org/wiki/Fisher–Yates_shuffle) to select the training set from the available objects when PQ is enabled manually. Nonetheless, it is still recommended to load a representative sample of the data so that the trained centroids are representative of the entire dataset.
+
 ### 3. Enable PQ and create the codebook
 
 Update your collection definition to enable PQ. Once PQ is enabled, Weaviate trains the codebook using the training data.
-
-:::info Which objects are used for training?
-- If the collection has more objects than the training limit, Weaviate randomly selects objects from the collection to train the codebook.
-- If the collection has fewer objects than the training limit, Weaviate uses all objects in the collection to train the codebook.
-:::
 
 import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 

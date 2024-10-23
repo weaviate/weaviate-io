@@ -82,7 +82,7 @@ Use the `vector` field to fetch the vector representation of the data object
 :::info Requires a [generative model integration](../../model-providers/index.md)
 :::
 
-The `generate` field can be used to perform a [generative search](../../search/generative.md).
+The `generate` field can be used to perform [retrieval augmented generation](../../search/generative.md).
 
 A `generate` query will cause corresponding additional result fields to be available, such as `singleResult`, `groupedResult` and `error`.
 

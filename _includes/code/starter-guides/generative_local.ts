@@ -1,4 +1,4 @@
-// Starter-guides: Generative search (RAG)
+// Starter-guides: Retreval augmented generation (RAG)
 
 import assert from 'assert';
 
@@ -77,7 +77,7 @@ if (collectionExists) {
 }
 // CreateClass
 
-const newCollection = await client.collections.create(schemaDefinition) 
+const newCollection = await client.collections.create(schemaDefinition)
 console.log('We have a new class!', newCollection['name']);
 
 // END CreateClass
