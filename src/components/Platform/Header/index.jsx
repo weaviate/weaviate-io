@@ -8,10 +8,11 @@ export default function PlatformHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>The AI-Native Vector Database</h1>
+          <h1>The AI-Native, Open Source Vector Database</h1>
           <div className={styles.headerBox}>
             <p className="text-center">
-              Purpose-built for a new breed of software applications.
+              Purpose-built open source vector database for a new breed of
+              software applications.
             </p>
           </div>
           <div className={styles.buttons}>

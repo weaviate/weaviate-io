@@ -196,6 +196,12 @@
   gap: 20px;
   justify-content: space-between;
 
+  a {
+    color: #130c49;
+    font-size: 1rem;
+    text-decoration-line: underline;
+  }
+
   @media screen and (max-width: 500px) {
     width: 100%;
   }

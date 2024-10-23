@@ -76,6 +76,11 @@
   line-height: 1.6rem;
   font-size: 17px;
   color: #130c49;
+  height: 110px;
+
+  @media screen and (max-width: 600px) {
+    height: 90px;
+  }
 }
 
 .cardFooter {
