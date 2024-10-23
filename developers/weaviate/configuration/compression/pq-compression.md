@@ -191,6 +191,8 @@ Follow these steps to manually enable PQ.
 
 We recommend loading a representative sample such that the trained centroids are representative of the entire dataset.
 
+From `v1.27.0`, Weaviate uses a sparse [Fisher-Yates algorithm](https://en.wikipedia.org/wiki/Fisher–Yates_shuffle) to select the training set from the available objects when PQ is enabled manually. Nonetheless, it is still recommended to load a representative sample of the data so that the trained centroids are representative of the entire dataset.
+
 ### 3. Enable PQ and create the codebook
 
 Update your collection definition to enable PQ. Once PQ is enabled, Weaviate trains the codebook using the training data.
