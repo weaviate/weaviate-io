@@ -122,8 +122,8 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# MultipleFiltersAllOfPython"
-    endMarker="# END MultipleFiltersAllOfPython"
+    startMarker="# MultipleFiltersAnyOfPython"
+    endMarker="# END MultipleFiltersAnyOfPython"
     language="python"
   />
 
