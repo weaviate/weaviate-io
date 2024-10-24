@@ -804,65 +804,59 @@ const siteRedirects = {
     to: "/learn/knowledgecards",
     from: "/learn/knowledgecards/knowledgeheader"
  },
+// Broken Links Redirects
+{
+    to: '/developers/contributor-guide/',
+    from: "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest",
+},
 
-    // Broken Links Redirects
-    {
-        to: '/developers/contributor-guide/',
-        from: [
-            "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest#tag/meta",
-            "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest"
-           
-        ],
-    },
+{
+    to: '/developers/weaviate/release-notes',
+    from: [
+        '/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes',
+        '/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest',
+    ],
+},
+{
+    to: "/developers/weaviate/config-refs/nodes",
+    from: "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes",
+},
 
-    {
-        to: "/developers/weaviate/release-notes",
-        from: [
-        "/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes",
-        "/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest"
-        ],
-    },
-    {
-        to: "/developers/weaviate/config-refs/nodes",
-        from: "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes"
-     },
-
-     {
-        to: "/blog/",
-        from: [
+{
+    to: "/blog/",
+    from: [
         "/blog/developers/weaviate/api/rest",
-        "/blog/developers/weaviate/config-refs/nodes"
-        ],
-    },
-    {
-        to: "/developers/weaviate/connections",
-        from: "/developers/connections"
-     },
-     {
-        to: "/developers/weaviate/client-libraries/typescript/typescript-v3",
-        from: "/developers/weaviate/client-libraries/typescript/developers/weaviate/client-libraries/typescript/typescript-v3"
-     },
-     {
-        to: "/developers/weaviate/modules",
-        from: "/developers/weaviate/modules/developers/weaviate/api/rest"
-     },
-     {
-        to: "/developers/weaviate/release-notes",
-        from: [
-            "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes",
-            "/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest",
-            "/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes"
-            ],
-     },
-     {
-        to: "/developers/weaviate/starter-guides",
-        from: [
-            "/developers/weaviate/starter-guides/developers/weaviate/installation/kubernetes",
-            "/developers/weaviate/starter-guides/developers/weaviate/manage-data/collections"
-            ],
-     },
+        "/blog/developers/weaviate/config-refs/nodes",
+    ],
+},
+{
+    to: "/developers/weaviate/connections",
+    from: "/developers/connections",
+},
+{
+    to: "/developers/weaviate/client-libraries/typescript/typescript-v3",
+    from: "/developers/weaviate/client-libraries/typescript/developers/weaviate/client-libraries/typescript/typescript-v3",
+},
+{
+    to: "/developers/weaviate/modules",
+    from: "/developers/weaviate/modules/developers/weaviate/api/rest",
+},
+{
+    to: "/developers/weaviate/release-notes",
+    from: [
+        "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes",
+        "/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest",
+        "/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes",
+    ],
+},
+{
+    to: "/developers/weaviate/starter-guides",
+    from: [
+        "/developers/weaviate/starter-guides/developers/weaviate/installation/kubernetes",
+        "/developers/weaviate/starter-guides/developers/weaviate/manage-data/collections",
+    ],
+},
 
-     
    
 
     ],
