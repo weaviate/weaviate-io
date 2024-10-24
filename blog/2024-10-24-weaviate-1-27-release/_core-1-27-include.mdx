@@ -8,7 +8,6 @@ Here are the release ⭐️*highlights*⭐️!
 - [**Multi-target vector search enhancement**](#multi-target-vector-search-enhancement)
 - [**Jina V3 embedding support**](#jina-v3-embedding-support)
 - [**Cancel backups**](#cancel-backups)
-- [**Deletion strategy settings**](#deletion-strategy-settings)
 - [**Other changes**](#other-changes)
 
 ## Improved Filtered Search
@@ -152,7 +151,13 @@ They have been renamed to `text2vec-google`, `generative-google`, `multi2vec-goo
 
 These modules are aliased under-the-hood in Weaviate, so your existing codebase will continue to work. However, we recommend updating your existing code if you are upgrading Weaviate so that your codebase follows the latest conventions.
 
-## Reliability and performance improvements
+### PQ training set sampling
+
+[Product quantization (PQ)](/developers/weaviate/concepts/vector-quantization.md#product-quantization) is a technique used to compress vectors for efficient storage and retrieval.
+
+PQ requires calculation of centroids using a training set. From `1.27`, if you have ingested more objects than the training set size, Weaviate will now sample the training set from the ingested objects. This should make it more likely that the training set is representative of the data.
+
+### Reliability and performance improvements
 
 Between `1.26` and `1.27`, Weaviate's database and applied research teams have been hard at work, making significant improvements under-the-hood for reliability and performance improvements.
 
