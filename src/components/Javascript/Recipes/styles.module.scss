@@ -13,7 +13,7 @@
   background-size: cover;
   justify-content: space-around;
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1060px) {
     width: 100%;
   }
 
@@ -47,6 +47,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 1.5rem */
+    width: 60%;
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+    }
   }
 }
 

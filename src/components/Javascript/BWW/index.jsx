@@ -59,7 +59,7 @@ export default function BuildWith() {
           </div>
         </div>
         <div className={styles.buttonContainer}>
-          <Link to="" className={styles.button}>
+          <Link to="/community/build-with-weaviate" className={styles.button}>
             See all Showcases
           </Link>
         </div>

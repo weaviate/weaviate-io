@@ -1,4 +1,6 @@
 .resourcesContainer {
+  margin-top: 40px;
+
   h2 {
     color: #130c49;
     font-family: 'Plus Jakarta Sans';
@@ -23,8 +25,7 @@
 .reactTabs {
   display: flex;
   justify-content: flex-start;
-  column-gap: 140px;
-  justify-content: center;
+  column-gap: 80px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -36,6 +37,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+  padding: 0;
 
   @media (max-width: 768px) {
     flex-direction: row;
@@ -101,7 +103,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 980px) {
     grid-template-columns: 1fr;
   }
 }
