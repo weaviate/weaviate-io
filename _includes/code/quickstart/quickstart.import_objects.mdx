@@ -1,0 +1,108 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/quickstart.import_objects.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/quickstart.is_ready.ts';
+import GoConnectCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go';
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={EndToEndPyCode}
+    startMarker="# ShortImport"
+    endMarker="# END ShortImport"
+    language="py"
+  />
+
+  <details>
+    <summary>Complete code example</summary>
+
+  <FilteredTextBlock
+    text={EndToEndPyCode}
+    startMarker="# Import"
+    endMarker="# END Import"
+    language="py"
+    title="quickstart_import.py"
+  />
+
+  </details>
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS">
+
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="ts"
+  title="quickstart_check_readiness.ts"
+/>
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoConnectCode}
+  startMarker="// START InstantiationExample"
+  endMarker="// END InstantiationExample"
+  language="java"
+/>
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+- With `curl`, add the API key to the header as shown below:
+<br/>
+
+```bash
+# Replace WEAVIATE_INSTANCE_URL with your instance URL
+# Replace WEAVIATE_API_KEY with your instance API key
+
+curl -w "\nResponse code: %{http_code}\n" \
+  -H "Authorization: Bearer WEAVIATE_API_KEY" \
+  https://WEAVIATE_INSTANCE_URL/v1/.well-known/ready
+
+# You should see "Response code: 200" if the instance is ready
+```
+
+</TabItem>
+</Tabs>

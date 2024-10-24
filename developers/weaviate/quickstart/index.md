@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 Welcome! Here, you will get hands-on experience with Weaviate. You will:
 
 1. Create a Weaviate database.
-1. Add data.
+1. Populate the database.
 1. Perform a semantic search.
 1. Use retrieval augmented generation (RAG).
 
@@ -80,7 +80,7 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
         <img src={CreateCluster} alt="Create a cluster"/>
       </div>
       <div class="card__body">
-        Click here to create a cluster
+        Click on this button to start cluster creation
       </div>
     </div>
   </div>
@@ -119,7 +119,6 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
 
 <SandBoxExpiry/> -->
 
-
 ## Step 2: Install a client library
 
 We recommend using a [client library](../client-libraries/index.md) to work with Weaviate.
@@ -146,7 +145,7 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
           <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
         </div>
         <div class="card__body">
-          The <code>REST Endpoint</code> is the URL to use.
+          Grab the <code>REST Endpoint</code> URL.
         </div>
       </div>
     </div>
@@ -158,7 +157,7 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
           <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
         </div>
         <div class="card__body">
-          We will use the <code>Admin</code> API key.
+          Grab the <code>Admin</code> API key.
         </div>
       </div>
     </div>
@@ -179,149 +178,163 @@ import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
 If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
 
-## Step 4: Add data
+## Step 4: Populate the database
 
-### Define a data collection
+Now, we can populate our database by first defining a collection then adding data.
 
-Next, we define a data collection (a "collection" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
+### Define a collection
 
-The following code:
-- Configures a collection object with:
-  - Name `Question`
-  - Integrations with OpenAI [embedding](../model-providers/openai/embeddings.md) and [generative AI](../model-providers/openai/generative.md) models
-- Then creates the collection.
-
-Run it to create the collection in your Weaviate instance.
-
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
-
-<CodeAutoschemaMinimumSchema />
-
-:::info Change the vectorizer or generator integrations
-If you prefer to use a different setup, see [this section](#can-i-use-different-integrations).
+:::tip What is a collection?
+A collection is a set of objects that share the same data structure, like a table in relational databases. A collection also includes additional configurations that define how the data objects are stored and indexed.
 :::
 
-Now you are ready to add objects to Weaviate.
+The following example creates a *collection* called `Question` with:
+  - OpenAI [embedding model integration](../model-providers/openai/embeddings.md) to create vectors during ingestion & queries.
+  - OpenAI [generative AI integrations](../model-providers/openai/generative.md) for retrieval augmented generation (RAG).
+
+import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
+
+<CreateCollection />
+
+Run this code to create the collection to which you can add data.
+
+:::info Do you prefer a different setup?
+
+Weaviate is very flexible. If you prefer a different model provider integration, or prefer to import your own vectors, please see one of the following guides:
+<br/>
+
+<div class="row">
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__header">
+          <h4>Prefer a different model provider?</h4>
+        </div>
+        <div class="card__body">
+          See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__header">
+          <h4>Do you have objects and vectors?</h4>
+        </div>
+        <div class="card__body">
+          If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+:::
 
 ### Add objects
 
-You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
+We can now ([batch import](../manage-data/import.mdx)) data to efficiently import data.
 
-The guide covers using the `vectorizer` defined for the collection to create a vector embedding for each object. You may have to add the API key for your vectorizer.
-
-import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
-
-<CodeAutoschemaImport />
-
-The above code:
+The following example:
 - Loads objects, and
-- Adds objects to the target collection (`Question`) one by one.
+- Adds objects to the target collection (`Question`) using a batch process.
 
-## Partial recap
+import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx'
 
-The following code puts the above steps together.
+<ImportObjects />
 
-If you have not been following along with the snippets, run the code block below. This will let you run queries in the next section.
+Run this code to add the demo data.
 
-<details>
-  <summary>End-to-end code</summary>
-
-:::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
+:::tip OpenAI API key in the header
+Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
-
-import CodeAutoschemaEndToEnd from '/_includes/code/quickstart/endtoend.mdx'
-
-<CodeAutoschemaEndToEnd />
-
-</details>
 
 ## Step 5: Queries
 
-Now, let's run some queries on your Weaviate instance. Weaviate powers many different types of searches. We will try a few here.
+Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
 ### Semantic search
 
-Let's start with a similarity search. A `nearText` search looks for objects in Weaviate whose vectors are most similar to the vector for the given input text.
+Let's start with a text similarity, or `nearText` search. A `nearText` search looks for objects in Weaviate based on its semantic (meaning) similarity to the input text.
 
-Run the following code to search for objects whose vectors are most similar to that of `biology`.
+The following example searches for 2 objects whose meaning is most similar to that of `biology`.
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
+import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.mdx'
 
-<CodeAutoschemaNeartext />
+<QueryNearText />
 
-You should see results like this:
+Run this code to perform the query. You should see entries for `DNA` and `Liver`.
 
-import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx'
+<details>
+  <summary>Example full response in JSON format</summary>
 
-<BiologyQuestionsJson />
+```json
+{
+    "data": {
+        "Get": {
+            "Question": [
+                {
+                    "answer": "DNA",
+                    "category": "SCIENCE",
+                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
+                },
+                {
+                    "answer": "Liver",
+                    "category": "SCIENCE",
+                    "question": "This organ removes excess glucose from the blood & stores it as glycogen"
+                }
+            ]
+        }
+    }
+}
+```
 
-The response includes a list of objects whose vectors are most similar to the word `biology`. The top 2 results are returned here as we have set a `limit` to `2`.
+</details>
 
-:::tip Why is this useful?
-Notice that even though the word `biology` does not appear anywhere, Weaviate returns biology-related entries.
+If you inspect the full response, you will see that the word `biology` does not appear anywhere.
 
-This example shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
+Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
+
+:::info Where did the vectors come from?
+Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+
+As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
 
-### Semantic search with a filter
+:::tip Additional search types
 
-You can add Boolean filters to searches. For example, the above search can be modified to only in objects that have a "category" value of "ANIMALS". Run the following code to see the results:
+Weaviate is capable of many other types of searches. See, for example, our how-to guides on [similarity searches](../search/similarity.md), [keyword searches](../search/bm25.md), [hybrid searches](../search/hybrid.md), and [filtered searches](../search/filters.md).
 
-import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart/neartext.where.mdx'
-
-<CodeAutoschemaNeartextWithWhere />
-
-You should see results like this:
-
-import BiologyQuestionsWhereJson from '/_includes/code/quickstart/response.biology.where.questions.mdx'
-
-<BiologyQuestionsWhereJson />
-
-The results are limited to objects from the `ANIMALS` category.
-
-:::tip Why is this useful?
-Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
 :::
 
-### Retrieval augmented generation (single prompt)
+### Retrieval augmented generation
 
-Next, let's try a retrieval augmented generation (RAG). RAG, also called generative search, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
+Next, let's try a retrieval augmented generation (RAG). RAG, also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
-To see what happens when an LLM uses query results to perform a task that is based on our prompt, run the code below.
+RAG work by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
 
-Note that the code uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
+The following example combines the same search (for `biology`) with a prompt to generate a tweet.
 
-import CodeAutoschemaGenerative from '/_includes/code/quickstart/generativesearch.single.mdx'
+import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
 
-<CodeAutoschemaGenerative />
+<QueryRAG />
 
-You should see results similar to this:
+Run this code to perform the query. Here is one possible response (your response will likely be different).
 
-import BiologyGenerativeSearchJson from '/_includes/code/quickstart/response.biology.generativesearch.single.mdx'
-
-<BiologyGenerativeSearchJson />
-
-We see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
-
-### Retrieval augmented generation (grouped task)
-
-The next example uses a `grouped task` prompt instead to combine all search results and send them to the LLM with a prompt.
-
-To ask the LLM to write a tweet about these search results, run the following code.
-
-import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart/generativesearch.grouped.mdx'
-
-<CodeAutoschemaGenerativeGrouped />
-
-The first returned object will include the generated text. Here's one that we got:
-
-import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart/response.biology.generativesearch.grouped.mdx'
-
-<BiologyGenerativeSearchGroupedJson />
-
-:::tip Why is this useful?
-RAG sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
+:::warning
+TODO - update the RAG response
 :::
+
+```text
+🧬 In 1953, Watson & Crick 🧪 built a model of the molecular structure of DNA, the gene-carrying substance! 🧬
+
+🐦🔍 2000 news: The Gunnison sage grouse isn't just another northern sage grouse, but a new species of its own! 🆕🐔 #ScienceFacts
+```
+
+The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `Liver` in the [semantic search](#semantic-search) section.
+
+The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
 <hr/>
 
@@ -332,7 +345,6 @@ Well done! You have:
 - Populated it with data objects using an inference API
 - Performed searches, including:
     - Semantic search
-    - Semantic search with a filter
     - Retrieval augmented generation
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
