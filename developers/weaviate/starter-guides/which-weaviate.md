@@ -82,7 +82,7 @@ Keep in mind two other factors, which are cost, and their footprint.
 For production deployments, consider one of these hosting models:
 
 - [Weaviate Cloud (WCD)](/developers/wcs)
-- [Self-managed Kubernetes](developers/weaviate/installation/kubernetes)
+- [Self-managed Kubernetes](/developers/weaviate/installation/kubernetes)
 - [Hybrid SaaS](/developers/wcs#bring-your-own-cloud)
 
 All of these options are scalable. Kubernetes and Hybrid SaaS offer the most configuration flexibility.
