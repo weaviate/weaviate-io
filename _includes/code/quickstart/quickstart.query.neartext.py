@@ -1,7 +1,7 @@
 # NearText
 import weaviate
 from weaviate.classes.init import Auth
-import os
+import os, json
 
 # Best practice: store your credentials in environment variables
 wcd_url = os.environ["WCD_URL"]
@@ -27,7 +27,7 @@ response = questions.query.near_text(
 # highlight-end
 
 for obj in response.objects:
-    print(obj.properties)
+    print(json.dumps(obj.properties, indent=2))
 # NearText  # END ShortNearText
 
 client.close()  # Free up resources

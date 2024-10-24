@@ -17,10 +17,9 @@ import TabItem from '@theme/TabItem';
 
 Welcome! Here, you will get hands-on experience with Weaviate. You will:
 
-1. Create a Weaviate database.
+1. Set up Weaviate.
 1. Populate the database.
-1. Perform a semantic search.
-1. Use retrieval augmented generation (RAG).
+1. Perform a semantic search and retrieval augmented generation (RAG).
 
 :::
 
@@ -36,7 +35,9 @@ The Weaviate Sandbox is free, but the OpenAI API key usage may incur a (small) c
 We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
 :::
 
-## Step 1: Create a Weaviate database
+## Step 1: Set up Weaviate
+
+### 1.1 Create a Weaviate database
 
 Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox instance.
 
@@ -60,8 +61,6 @@ Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox 
   </div>
 </div>
 <br/> -->
-
-### Create a Sandbox Cluster
 
 import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
 import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
@@ -119,7 +118,7 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
 
 <SandBoxExpiry/> -->
 
-## Step 2: Install a client library
+### 1.2 Install a client library
 
 We recommend using a [client library](../client-libraries/index.md) to work with Weaviate.
 
@@ -129,7 +128,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-## Step 3: Connect to Weaviate
+### 1.3: Connect to Weaviate
 
 Now you can connect to your Weaviate instance. Get the instance **URL** and the **Administrator API Key** from the WCD console as shown below.
 
@@ -166,8 +165,6 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
 
 <br/>
 
-### Client connection code
-
 Once you have the **URL** and **API key**, you can connect to the Sandbox instance, and work with Weaviate.
 
 The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
@@ -178,11 +175,11 @@ import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
 If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
 
-## Step 4: Populate the database
+## Step 2: Populate the database
 
 Now, we can populate our database by first defining a collection then adding data.
 
-### Define a collection
+### 2.1 Define a collection
 
 :::tip What is a collection?
 A collection is a set of objects that share the same data structure, like a table in relational databases. A collection also includes additional configurations that define how the data objects are stored and indexed.
@@ -232,7 +229,7 @@ Weaviate is very flexible. If you prefer a different model provider integration,
 
 :::
 
-### Add objects
+### 2.2 Add objects
 
 We can now ([batch import](../manage-data/import.mdx)) data to efficiently import data.
 
@@ -250,11 +247,11 @@ Run this code to add the demo data.
 Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
 
-## Step 5: Queries
+## Step 3: Queries
 
 Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
-### Semantic search
+### 3.1 Semantic search
 
 Let's start with a text similarity, or `nearText` search. A `nearText` search looks for objects in Weaviate based on its semantic (meaning) similarity to the input text.
 
@@ -264,29 +261,23 @@ import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.
 
 <QueryNearText />
 
-Run this code to perform the query. You should see entries for `DNA` and `Liver`.
+Run this code to perform the query. Our query found entries for `DNA` and `species`.
 
 <details>
   <summary>Example full response in JSON format</summary>
 
 ```json
 {
-    "data": {
-        "Get": {
-            "Question": [
-                {
-                    "answer": "DNA",
-                    "category": "SCIENCE",
-                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
-                },
-                {
-                    "answer": "Liver",
-                    "category": "SCIENCE",
-                    "question": "This organ removes excess glucose from the blood & stores it as glycogen"
-                }
-            ]
-        }
-    }
+  {
+    "answer": "DNA",
+    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance",
+    "category": "SCIENCE"
+  },
+  {
+    "answer": "species",
+    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification",
+    "category": "SCIENCE"
+  }
 }
 ```
 
@@ -308,7 +299,7 @@ Weaviate is capable of many other types of searches. See, for example, our how-t
 
 :::
 
-### Retrieval augmented generation
+### 3.2 Retrieval augmented generation
 
 Next, let's try a retrieval augmented generation (RAG). RAG, also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
@@ -322,17 +313,13 @@ import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
 
 Run this code to perform the query. Here is one possible response (your response will likely be different).
 
-:::warning
-TODO - update the RAG response
-:::
-
 ```text
-🧬 In 1953, Watson & Crick 🧪 built a model of the molecular structure of DNA, the gene-carrying substance! 🧬
+🧬 In 1953 Watson & Crick built a model of the molecular structure of DNA, the gene-carrying substance! 🧬🔬
 
-🐦🔍 2000 news: The Gunnison sage grouse isn't just another northern sage grouse, but a new species of its own! 🆕🐔 #ScienceFacts
+🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
 ```
 
-The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `Liver` in the [semantic search](#semantic-search) section.
+The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
 
 The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
@@ -341,13 +328,13 @@ The power of RAG comes from the ability to transform your own data. Weaviate hel
 ## Recap
 
 Well done! You have:
-- Created your own cloud-based vector database with Weaviate
-- Populated it with data objects using an inference API
+- Created a Serverless Weaviate sandbox instance on Weaviate Cloud
+- Defined a collection and added data
 - Performed searches, including:
     - Semantic search
     - Retrieval augmented generation
 
-Where next is up to you. We include a few links below - or you can check out the sidebar.
+Where to go next is up to you. We include some suggested steps and resources below.
 
 <hr/>
 
