@@ -14,9 +14,7 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 # highlight-end
 
-try:
-    print(client.is_ready())  # Should print: `True`
+print(client.is_ready())  # Should print: `True`
 
-finally:
-    client.close()  # Close client gracefully
+client.close()  # Close client gracefully
 # END InstantiationExample

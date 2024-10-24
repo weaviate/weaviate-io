@@ -179,7 +179,9 @@ import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
 If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
 
-## Step 4: Define a data collection
+## Step 4: Add data
+
+### Define a data collection
 
 Next, we define a data collection (a "collection" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
 
@@ -201,7 +203,7 @@ If you prefer to use a different setup, see [this section](#can-i-use-different-
 
 Now you are ready to add objects to Weaviate.
 
-## Step 5: Add objects
+### Add objects
 
 You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
 
@@ -233,7 +235,7 @@ import CodeAutoschemaEndToEnd from '/_includes/code/quickstart/endtoend.mdx'
 
 </details>
 
-## Step 6: Queries
+## Step 5: Queries
 
 Now, let's run some queries on your Weaviate instance. Weaviate powers many different types of searches. We will try a few here.
 
@@ -530,7 +532,7 @@ Where you should be able to confirm that you have imported all `10` objects.
 
 To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
 
-Make sure the vectorizer is configured [like this](#step-4-define-a-data-collection).
+Make sure the vectorizer is configured [like this](#define-a-data-collection).
 
 If the search still doesn't work, [contact us](#questions-and-feedback)!
 
