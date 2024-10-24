@@ -83,15 +83,14 @@ public class App {
 <br/>
 
 ```bash
-echo '{
-  "query": "<QUERY>"
-}' | curl \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
-    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
-    -d @- \
-    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+# Replace WEAVIATE_INSTANCE_URL with your instance URL
+# Replace WEAVIATE_API_KEY with your instance API key
+
+curl -w "\nResponse code: %{http_code}\n" \
+  -H "Authorization: Bearer WEAVIATE_API_KEY" \
+  https://WEAVIATE_INSTANCE_URL/v1/.well-known/ready
+
+# You should see "Response code: 200" if the instance is ready
 ```
 
 </TabItem>
