@@ -809,8 +809,8 @@ const siteRedirects = {
     {
         to: '/developers/contributor-guide/',
         from: [
-            '/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest#tag/meta',
-            '/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest'
+            "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest#tag/meta",
+            "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest"
            
         ],
     },
@@ -824,7 +824,7 @@ const siteRedirects = {
     },
     {
         to: "/developers/weaviate/config-refs/nodes",
-        from: "developers/weaviate/release-notes/developers/weaviate/config-refs/nodes"
+        from: "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes"
      },
 
      {
