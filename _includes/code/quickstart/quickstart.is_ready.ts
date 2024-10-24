@@ -9,5 +9,5 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 )
 
 var clientReadiness = await client.isReady();
-console.log(clientReadiness);
+console.log(clientReadiness);  // Should return `true`
 // END InstantiationExample
