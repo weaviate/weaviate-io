@@ -21,9 +21,11 @@ func main() {
 		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
+		// highlight-start
 		Headers: map[string]string{
 			"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),
 		},
+		// highlight-end
 	}
 
 	client, err := weaviate.NewClient(cfg)
