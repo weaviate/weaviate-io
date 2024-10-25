@@ -1,5 +1,5 @@
 ---
-title: Generative search
+title: Retrieval Augmented Generation (RAG)
 sidebar_position: 70
 image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
@@ -14,7 +14,8 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-generative_test.go';
 
-`Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
+"Retrieval Augmented Generation" (RAG), also called generative search, is a multi-stage process.
+
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
 
 <details>
@@ -22,7 +23,7 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
     Additional information
   </summary>
 
-### Configure generative search
+### Configure RAG
 
 1. Configure Weaviate to enable a [generative model integration](../model-providers/index.md).
  2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
