@@ -27,9 +27,9 @@ In this quickstart guide, you will:
 
 ### Prerequisites
 
-This tutorial uses a [Weaviate Cloud](https://console.weaviate.cloud) Sandbox instance, and an [OpenAI](https://platform.openai.com/) API key.
+This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and an [OpenAI](https://platform.openai.com/) API key.
 
-The Weaviate Sandbox is free, but the OpenAI usage may incur a (small) cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
+The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
 
 :::note For Python users
 We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
@@ -421,55 +421,6 @@ We provide answers to some common questions, or potential issues below.
 
 ### Questions
 
-#### Can I use a different deployment method?
-
-import ConnectToWeaviateDocker from '/_includes/code/quickstart.autoschema.connect.docker.mdx'
-
-<details>
-  <summary>See answer</summary>
-
-<p>
-
-Yes, you can use any method listed on our [installation options](../installation/index.md) sections.
-
-</p><br/>
-
-Using Docker Compose may be a convenient option for many. To do so:
-1. Save this `Docker Compose` file as `docker-compose.yml`,
-```yaml
----
-services:
-  weaviate:
-    command:
-    - --host
-    - 0.0.0.0
-    - --port
-    - '8080'
-    - --scheme
-    - http
-    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
-    ports:
-    - 8080:8080
-    - 50051:50051
-    restart: on-failure:0
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai,generative-openai'
-      CLUSTER_HOSTNAME: 'node1'
-...
-```
-2. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
-3. Connect to Weaviate at `http://localhost:8080`.
-
-If you are using this `Docker Compose` file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
-
-<ConnectToWeaviateDocker />
-
-</details>
-
 #### Can I use different integrations?
 
 <details>
@@ -483,28 +434,6 @@ If you do want to change the embeddings, or the generative AI integrations, you 
 - Make sure to use the right API key(s) (if necessary) for your integration.
 
 See the [model providers integration](../model-providers/index.md) section for more information.
-
-</details>
-
-#### Is a `vectorizer` setting mandatory?
-
-<details>
-  <summary>See answer</summary>
-
-- No. You always have the option of providing vector embeddings yourself.
-- Setting a `vectorizer` gives Weaviate the option of creating vector embeddings for you.
-    - If you do not wish to, you can set this to `none`.
-
-</details>
-
-#### What is a sandbox, exactly?
-
-<details>
-  <summary>Note: Sandbox expiry & options</summary>
-
-import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
-
-<SandBoxExpiry/>
 
 </details>
 
