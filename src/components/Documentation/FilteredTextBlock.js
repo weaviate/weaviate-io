@@ -17,7 +17,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
     case 'goraw':
       format = input => input
         // replace remaining tabs with 2 spaces
-        .replace(/\t/g, "  ")
+        .replace(/\t/g, "    ")
       break;
     case 'gonew':
         format = input => input

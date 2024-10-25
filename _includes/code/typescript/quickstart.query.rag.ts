@@ -17,7 +17,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 )
 
 // highlight-start
-const questions = client.collections.get('JeopardyQuestion');
+const questions = client.collections.get('Question');
 
 const result = await questions.generate.nearText(
   'biology',
@@ -30,9 +30,7 @@ const result = await questions.generate.nearText(
 )
 // highlight-end
 
-result.objects.forEach(item => {
-  console.log(JSON.stringify(item.properties, null, 2))
-})
+console.log(result.generated)
 
 client.close()  // Close the client connection
 // END RAG

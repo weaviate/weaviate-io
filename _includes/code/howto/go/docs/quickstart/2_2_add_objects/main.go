@@ -1,7 +1,7 @@
 // Import
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
-// WCS_API_KEY  		your Weaviate instance API key
+// WCD_API_KEY  		your Weaviate instance API key
 // OPENAI_API_KEY   	your OpenAI API key
 
 package main
@@ -22,7 +22,7 @@ func main() {
 	cfg := weaviate.Config{
 		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: os.Getenv("WCS_API_KEY")},
+		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
 		Headers: map[string]string{
 			"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),
 		},

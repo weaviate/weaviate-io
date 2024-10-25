@@ -1,7 +1,7 @@
 // START CreateCollection
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
-// WCS_API_KEY  		your Weaviate instance API key
+// WCD_API_KEY  		your Weaviate instance API key
 // OPENAI_API_KEY   	your OpenAI API key
 
 package main

@@ -1,7 +1,7 @@
 // START InstantiationExample
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
-// WCS_API_KEY  		your Weaviate instance API key
+// WCD_API_KEY  		your Weaviate instance API key
 
 package main
 

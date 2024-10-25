@@ -17,7 +17,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 )
 
 // highlight-start
-const questions = client.collections.get('JeopardyQuestion');
+const questions = client.collections.get('Question');
 
 const result = await questions.query.nearText('biology', {
   limit: 2,
