@@ -14,6 +14,11 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
       // remove leading indent of 4 spaces
       format = input => input.replace(/^    /, '');
       break
+    case 'goraw':
+      format = input => input
+        // replace remaining tabs with 2 spaces
+        .replace(/\t/g, "  ")
+      break;
     case 'gonew':
         format = input => input
           // replace remaining tabs with 2 spaces
@@ -48,7 +53,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
     .map(format)
     .join('\n');
 
-    let language2 =  (language === 'gonew') ? 'go' : language;
+    let language2 = (language === 'gonew' | language === 'goraw') ? 'go' : language;
 
 
   return (

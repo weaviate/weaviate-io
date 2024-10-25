@@ -1,16 +1,16 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/quickstart.import_objects.py';
-import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/quickstart.is_ready.ts';
-import GoConnectCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go';
+import PyCode from '!!raw-loader!/_includes/code/python/quickstart.import_objects.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.is_ready.ts';
+import GoCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go';
 
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
   <FilteredTextBlock
-    text={EndToEndPyCode}
+    text={PyCode}
     startMarker="# Import"
     endMarker="# END Import"
     language="py"
@@ -22,18 +22,18 @@ import GoConnectCode from '!!raw-loader!/_includes/code/quickstart/go-connect.go
 <TabItem value="js" label="JS/TS">
 
 <FilteredTextBlock
-  text={EndToEndTSCode}
-  startMarker="// InstantiationExample"
-  endMarker="// END InstantiationExample"
+  text={TSCode}
+  startMarker="// Import"
+  endMarker="// END Import"
   language="ts"
-  title="quickstart_check_readiness.ts"
+  title="quickstart_import.ts"
 />
 
 </TabItem>
 
 <TabItem value="go" label="Go">
 <FilteredTextBlock
-  text={GoConnectCode}
+  text={GoCode}
   startMarker="// START InstantiationExample"
   endMarker="// END InstantiationExample"
   language="java"
