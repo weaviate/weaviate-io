@@ -262,3 +262,82 @@
     display: none;
   }
 }
+
+.ctaContainer {
+  max-width: 76.5rem;
+  width: 100%;
+  margin: 60px 0px 0px 0px;
+  height: 12.25rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: url('/img/site/learn-cta-bg.png');
+  background-size: cover;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1100px) {
+    height: auto;
+    background-position-x: center;
+  }
+
+  span {
+    color: #61bb73;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.6875rem */
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: #f4f9fd;
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 1.95rem */
+  }
+
+  p {
+    color: #f4f9fd;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }
+}
+
+.innerCta {
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #130c49;
+    width: 10.625rem;
+    height: 2.8125rem;
+    color: #fff;
+    text-align: center;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  p {
+    width: 60%;
+
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

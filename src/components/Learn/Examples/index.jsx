@@ -117,6 +117,20 @@ export default function Examples() {
             </div>
           </div>
         </div>
+
+        <div className={styles.ctaContainer}>
+          <span>Guides</span>
+          <h2>Build AI-Native Applications with Javascript</h2>
+          <div className={styles.innerCta}>
+            <p>
+              A learning resources hub for builders of all levels. Dive into the
+              world of AI-native applications with Weaviate and JavaScript.
+            </p>
+            <Link to="/javascript" className={styles.button}>
+              Learn More
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -44,7 +44,7 @@
 .typeBox {
   max-width: 38.25rem;
   width: 100%;
-  height: 11.125rem;
+  height: 12.125rem;
   border-radius: 0.625rem;
   background: #fff;
   padding: 20px;
@@ -63,7 +63,7 @@
 .big {
   max-width: 37.25rem;
   width: 100%;
-  height: 22.9375rem;
+  height: 24.9375rem;
 
   @media screen and (max-width: 1100px) {
     width: 100%;
@@ -135,7 +135,7 @@
 }
 
 .large {
-  height: 270px;
+  height: 310px;
   justify-content: space-between;
 
   @media screen and (max-width: 1100px) {
