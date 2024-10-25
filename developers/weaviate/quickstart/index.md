@@ -310,7 +310,7 @@ Weaviate used the OpenAI API key to generate a vector embedding for each object 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
 
-:::info More search types available
+:::tip More search types available
 
 Weaviate is capable of many types of searches. See, for example, our how-to guides on [similarity searches](../search/similarity.md), [keyword searches](../search/bm25.md), [hybrid searches](../search/hybrid.md), and [filtered searches](../search/filters.md).
 
