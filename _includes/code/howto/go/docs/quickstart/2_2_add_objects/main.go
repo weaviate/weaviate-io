@@ -1,8 +1,8 @@
 // Import
 // Set these environment variables
-// WEAVIATE_URL      your Weaviate instance URL, without https prefix
-// WEAVIATE_API_KEY  your Weaviate instance API key
-// OPENAI_API_KEY    your OpenAI API key
+// WCD_HOSTNAME			your Weaviate instance hostname
+// WCS_API_KEY  		your Weaviate instance API key
+// OPENAI_API_KEY   	your OpenAI API key
 
 package main
 
@@ -20,9 +20,9 @@ import (
 
 func main() {
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WEAVIATE_URL"),
+		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
+		AuthConfig: auth.ApiKey{Value: os.Getenv("WCS_API_KEY")},
 		Headers: map[string]string{
 			"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),
 		},
@@ -32,6 +32,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	// Retrieve the data
 	data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
 	if err != nil {
@@ -45,6 +46,7 @@ func main() {
 		panic(err)
 	}
 
+	// highlight-start
 	// convert items into a slice of models.Object
 	objects := make([]*models.Object, len(items))
 	for i := range items {
@@ -68,6 +70,7 @@ func main() {
 			panic(res.Result.Errors.Error)
 		}
 	}
+	// highlight-end
 }
 
 // END Import

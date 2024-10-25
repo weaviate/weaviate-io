@@ -81,8 +81,8 @@ public class App {
 
 ```bash
 # Best practice: store your credentials in environment variables
-export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
-export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
 
 curl -w "\nResponse code: %{http_code}\n" \
   -H "Authorization: Bearer $WCD_API_KEY" \

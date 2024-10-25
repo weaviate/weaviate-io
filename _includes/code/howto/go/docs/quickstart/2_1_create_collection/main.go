@@ -2,6 +2,7 @@
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
 // WCS_API_KEY  		your Weaviate instance API key
+// OPENAI_API_KEY   	your OpenAI API key
 
 package main
 
@@ -27,7 +28,8 @@ func main() {
 		fmt.Println(err)
 	}
 
-	// Check the connection
+	// highlight-start
+	// Define the collection
 	classObj := &models.Class{
 		Class:      "Question",
 		Vectorizer: "text2vec-openai",
@@ -37,11 +39,12 @@ func main() {
 		},
 	}
 
-	// add the schema
+	// add the collection
 	err = client.Schema().ClassCreator().WithClass(classObj).Do(context.Background())
 	if err != nil {
 		panic(err)
 	}
+	// highlight-end
 }
 
 // END CreateCollection

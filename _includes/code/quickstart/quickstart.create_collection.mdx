@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/quickstart.create_collection.py';
 import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.create_collection.ts';
-import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_create_collection/main.go';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_1_create_collection/main.go';
 
 
 <Tabs groupId="languages">
@@ -37,7 +37,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_crea
   startMarker="// START CreateCollection"
   endMarker="// END CreateCollection"
   language="goraw"
-  title="quickstart/2_create_collection/main.go"
+  title="quickstart/2_1_create_collection/main.go"
 />
 </TabItem>
 {/* <TabItem value="java" label="Java">
@@ -81,8 +81,8 @@ public class App {
 
 ```bash
 # Best practice: store your credentials in environment variables
-export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
-export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
 
 curl -X POST \
 -H "Content-Type: application/json" \

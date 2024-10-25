@@ -37,6 +37,10 @@ We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/b
 
 <hr/>
 
+:::tip Try it yourself
+The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+:::
+
 ## Step 1: Set up Weaviate
 
 ### 1.1 Create a Weaviate database
