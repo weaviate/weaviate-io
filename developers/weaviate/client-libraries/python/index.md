@@ -473,11 +473,6 @@ The `data` submodule contains all object-level CUD operations, including:
 
 See some examples below. Note that each function will return varying types of objects.
 
-:::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may
-send multiple requests as batches.
-:::
-
 <Tabs groupId="languages">
 <TabItem value="insert" label="Insert">
 
@@ -520,6 +515,10 @@ send multiple requests as batches.
 
 </TabItem>
 </Tabs>
+
+:::info `insert_many` sends one request
+`insert_many` sends one request for the entire function call. For requests with a large number of objects, [consider using `batch` imports](#batch-imports).
+:::
 
 #### `insert_many` with DataObjects
 
