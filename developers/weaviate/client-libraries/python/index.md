@@ -463,8 +463,9 @@ The `data` submodule contains all object-level CUD operations, including:
 
 - `insert` for creating objects.
     - This function takes the object properties as a dictionary.
-- `insert_many` for batch creating multiple objects.
+- `insert_many` for adding multiple objects with one request.
     - This function takes the object properties as a dictionary or as a `DataObject` instance.
+    - Note: For larger numbers of objects, consider using [batch imports](#batch-imports).
 - `update` for updating objects (for `PATCH` operations).
 - `replace` for replacing objects (for `PUT` operations).
 - `delete_by_id` for deleting objects by ID.
