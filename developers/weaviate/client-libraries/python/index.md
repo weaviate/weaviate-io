@@ -463,8 +463,9 @@ The `data` submodule contains all object-level CUD operations, including:
 
 - `insert` for creating objects.
     - This function takes the object properties as a dictionary.
-- `insert_many` for batch creating multiple objects.
+- `insert_many` for adding multiple objects with one request.
     - This function takes the object properties as a dictionary or as a `DataObject` instance.
+    - Note: For larger numbers of objects, consider using [batch imports](#batch-imports).
 - `update` for updating objects (for `PATCH` operations).
 - `replace` for replacing objects (for `PUT` operations).
 - `delete_by_id` for deleting objects by ID.
@@ -472,11 +473,6 @@ The `data` submodule contains all object-level CUD operations, including:
 - `reference_xxx` for reference operations, including `reference_add`, `reference_add_many`, `reference_update` and `reference_delete`.
 
 See some examples below. Note that each function will return varying types of objects.
-
-:::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may
-send multiple requests as batches.
-:::
 
 <Tabs groupId="languages">
 <TabItem value="insert" label="Insert">
@@ -520,6 +516,10 @@ send multiple requests as batches.
 
 </TabItem>
 </Tabs>
+
+:::info `insert_many` sends one request
+`insert_many` sends one request for the entire function call. For requests with a large number of objects, [consider using `batch` imports](#batch-imports).
+:::
 
 #### `insert_many` with DataObjects
 
