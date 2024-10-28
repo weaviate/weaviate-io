@@ -11,7 +11,6 @@ import (
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
-
 // ===============================
 // ===== meta count EXAMPLES =====
 // ===============================
@@ -42,7 +41,7 @@ func TestMetaCount(t *testing.T) {
 	assert.Contains(t, response.Data["Aggregate"], "JeopardyQuestion")
 	assert.Len(t, response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{}), 1)
 	assert.Contains(t, response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0], "meta")
-	
+
 	meta := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["meta"].(map[string]interface{})
 	assert.Equal(t, float64(216930), meta["count"]) //or 10,000 if you are using the smaller dataset
 }
@@ -101,7 +100,7 @@ func TestIntProp(t *testing.T) {
 			Fields: []graphql.Field{
 				{Name: "count"},
 				{Name: "sum"},
-			// highlight-end
+				// highlight-end
 			},
 		}).
 		Do(ctx)
@@ -112,7 +111,7 @@ func TestIntProp(t *testing.T) {
 	t.Logf("%s", jsonResponse)
 
 	points := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["points"].(map[string]interface{})
-	assert.Equal(t, float64(216930), points["count"]) //or 10,000 if you are using the smaller dataset
+	assert.Equal(t, float64(216930), points["count"])  //or 10,000 if you are using the smaller dataset
 	assert.Equal(t, float64(141871083), points["sum"]) // or 6324100 if you are using the smaller dataset
 }
 
@@ -209,7 +208,7 @@ func TestNearTextWithDistance(t *testing.T) {
 			WithConcepts([]string{"animals in space"}).
 			// highlight-start
 			WithDistance(0.19)).
-			// highlight-end
+		// highlight-end
 		WithFields(graphql.Field{
 			Name: "points",
 			Fields: []graphql.Field{
@@ -218,6 +217,40 @@ func TestNearTextWithDistance(t *testing.T) {
 		}).
 		Do(ctx)
 	// END nearTextWithDistance
+
+	require.NoError(t, err)
+	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
+	t.Logf("%s", jsonResponse)
+
+	points := response.Data["Aggregate"].(map[string]interface{})["JeopardyQuestion"].([]interface{})[0].(map[string]interface{})["points"].(map[string]interface{})
+	assert.Greater(t, points["sum"].(float64), float64(0))
+}
+
+// =========================================
+// ===== Hybrid EXAMPLES =====
+// =========================================
+
+func TestHybridAggregate(t *testing.T) {
+	client := setupClient()
+	ctx := context.Background()
+
+	// HybridExample
+	// Go client support coming soon
+	// END HybridExample
+	response, err := client.GraphQL().Aggregate().
+		WithClassName("JeopardyQuestion").
+		WithNearText(client.GraphQL().NearTextArgBuilder().
+			WithConcepts([]string{"animals in space"})).
+		// highlight-start
+		WithObjectLimit(10).
+		// highlight-end
+		WithFields(graphql.Field{
+			Name: "points",
+			Fields: []graphql.Field{
+				{Name: "sum"},
+			},
+		}).
+		Do(ctx)
 
 	require.NoError(t, err)
 	jsonResponse, _ := json.MarshalIndent(response, "", "  ")
@@ -236,8 +269,8 @@ func TestWhereFilter(t *testing.T) {
 	ctx := context.Background()
 
 	// START whereFilter
-  // Add this line to imports: "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
-  
+	// Add this line to imports: "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+
 	response, err := client.GraphQL().Aggregate().
 		WithClassName("JeopardyQuestion").
 		// highlight-start
