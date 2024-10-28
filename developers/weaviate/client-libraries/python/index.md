@@ -1208,9 +1208,14 @@ The Weaviate API reference pages for [search](../../api/graphql/index.md) and [R
 
 Go to the [GitHub releases page](https://github.com/weaviate/weaviate-python-client/releases) to see the history of the Python client library releases.
 
+<details>
+  <summary>Click here for a table of Weaviate and corresponding client versions</summary>
+
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 <MatrixIntro />
+
+</details>
 
 ## Questions and feedback
 

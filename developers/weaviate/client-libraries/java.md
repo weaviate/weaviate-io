@@ -425,10 +425,14 @@ client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 
 Go to the [GitHub releases page](https://github.com/weaviate/java-client/releases) to see the history of the Java client library releases.
 
+<details>
+  <summary>Click here for a table of Weaviate and corresponding client versions</summary>
+
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 <MatrixIntro />
 
+</details>
 
 ## Questions and feedback
 
