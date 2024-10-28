@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function BlogItem(props) {
   const { details } = props;
   return (
-    <Link to={details.link}>
+    <Link to={details.link} className={styles.latestLink}>
       <div className={styles.latestBox}>
         <div
           className={styles.insideBox}
