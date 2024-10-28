@@ -2,21 +2,21 @@
 title: Astronomer
 sidebar_position: 1
 ---
-
+[Astronomer’s Astro](https://www.astronomer.io/) is a fully managed platform built on top of Apache Airflow. It simplifies the management of Airflow at scale and data ingestion into Weaviate.
 
 
 ## Astronomer and Weaviate
-Weaviate is a supported [connector](https://sycamore.readthedocs.io/en/stable/sycamore/connectors/weaviate.html) in Aryn.
+The [Weaviate Airflow provider](https://www.astronomer.io/docs/learn/airflow-weaviate) offers modules to easily integrate Weaviate with Airflow.
 
-
+Create and run a DAG to ingest data into Weaviate.
 
 ## Our Resources 
 The resources are broken into two categories: 
 1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
 
-2. [**Read and Listen**](#read-and-listen): Develop your conceptual understanding of these technologies.
-
 ### Hands on Learning
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
+| Orchestrate Weaviate operations with Apache Airflow | Use Airflow to ingest movie descriptions into Weaviate and query the collection. | [Tutorial](https://www.astronomer.io/docs/learn/airflow-weaviate) |
+ 
