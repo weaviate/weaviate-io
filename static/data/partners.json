@@ -62,7 +62,7 @@
   {
     "name": "Airbyte",
     "image": "/img/site/airbyte_logo.svg",
-    "link": "#",
+    "link": "/developers/integrations/data-platforms/airbyte",
     "description": "An open-source data integration engine.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
@@ -82,7 +82,7 @@
   {
     "name": "Astronomer",
     "image": "/img/site/astronomer_logo.svg",
-    "link": "#",
+    "link": "/developers/integrations/data-platforms/astronomer",
     "description": "Managed Apache Airflow for data ingestion into Weaviate.",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "External",
