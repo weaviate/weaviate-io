@@ -1,283 +1,417 @@
 ---
-title: Quickstart Tutorial
+title: Quickstart
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
+hide_table_of_contents: true
 ---
 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
+<span class="badge badge--secondary">Expected time: 30 minutes</span> <span class="badge badge--secondary">Prerequisites: None</span>
+<br/><br/>
 
-Welcome to the Quickstart guide for Weaviate, an open-source vector database. This tutorial is intended to be a hands-on introduction to Weaviate.
+:::info What you will learn
 
-This Quickstart takes about 20 minutes to complete. It introduces some common tasks:
-- Build a Weaviate vector database.
-- Make a *semantic search* query.
-- Add a *filter* to your query.
-- Use *generative searches* and a large language model (LLM) to transform your search results.
+In this quickstart guide, you will:
 
-#### Object vectors
+1. Set up Weaviate. (10 minutes)
+1. Populate the database. (10 minutes)
+1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
 
-Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate.
-
-With Weaviate, you have options to:
-- Have **Weaviate create vectors** for you, or
-- Specify **custom vectors**.
-
-This tutorial demonstrates having Weaviate create vectors with a vectorizer. For a tutorial on using custom vectors, see [this tutorial](../starter-guides/custom-vectors.mdx).
-
-#### Source data
-
-We will use a (tiny) dataset of quizzes.
-
-<details>
-  <summary>See the dataset</summary>
-
-The data comes from a TV quiz show ("Jeopardy!")
-
-|    | Category   | Question                                                                                                          | Answer                  |
-|---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------|
-|  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   |
-|  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                |
-|  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       |
-|  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                |
-|  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler |
-|  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 |
-|  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    |
-|  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     |
-|  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          |
-|  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           |
-
-</details>
-
-:::tip For Python users
-Try it directly on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) ([or go to the file](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)).
 :::
 
-## Step 1: Create a Weaviate database
+<!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
+### Prerequisites
 
-- Go to the [WCD quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance.
-- Get the **API key** and **URL** from the `Details` tab in WCD.
-- Come back here to continue this Quickstart.
+This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and an [OpenAI](https://platform.openai.com/) API key.
 
-:::info Alternative Weaviate instances
-If you prefer to use a different Weaviate instance, see [Can I use a different deployment method](#can-i-use-a-different-deployment-method).
+The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
+
+:::note For Python users
+We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
 :::
 
-## Step 2: Install a client library
+<hr/>
 
-Install the Weaviate [client library](../client-libraries/index.md) for your preferred programming language.
+:::tip Try it yourself
+The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+:::
 
-To install the library, run the installation code for your language:
+## Step 1: Set up Weaviate
+
+### 1.1 Create a Weaviate database
+
+Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox instance.
+
+<!-- ### Create a WCD account -->
+
+<!-- import WCDRegister from '/developers/weaviate/quickstart/img/wcd_register.png';
+
+<div class="row">
+  <div class="col col--4">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDRegister} alt="Sign up with WCD"/>
+      </div>
+      <div class="card__body">
+        <ol>
+          <li>Go the <a href="https://console.weaviate.cloud">WCD homepage</a>.</li>
+          <li>Click "Register here".</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<br/> -->
+
+import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
+import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li><a href="https://console.weaviate.cloud">Log onto WCD</a>.</li>
+      <li>Click on <code>Clusters</code> on the sidebar.</li>
+      <li>In the following pane, click <code>Create cluster</code>.</li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateCluster} alt="Create a cluster"/>
+      </div>
+      <div class="card__body">
+        Click on this button to start cluster creation
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+
+<div class="row">
+  <div class="col col--4">
+    <ol start="4">
+      <li>Give your cluster a name.</li>
+      <li>Set your preferred cloud region.</li>
+      <li>Click "Create".</li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateSandbox} alt="Create a Sandbox Cluster"/>
+      </div>
+      <div class="card__body">
+        Populate these fields and create a sandbox.
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
+
+:::note
+- Cluster provisioning typically takes 1-3 minutes.
+- When the cluster is ready, WCD displays a check mark (`✔️`) next to the cluster name.
+- Note that WCD adds a random suffix to sandbox cluster names to ensure uniqueness.
+:::
+
+<!-- import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/> -->
+
+### 1.2 Install a client library
+
+We recommend using a [client library](../client-libraries/index.md) to work with Weaviate. Follow the instructions below to install one of the official client libraries, available in [Python](../client-libraries/python/index.md), [JavaScript/TypeScript](../client-libraries/typescript/index.mdx), [Go](../client-libraries/go.md), and [Java](../client-libraries/java.md).
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
-:::info Install client libraries
-
 <CodeClientInstall />
 
+### 1.3: Connect to Weaviate
+
+Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
+
+import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
+
+import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
+
+<div class="row">
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
+        </div>
+        <div class="card__body">
+          Grab the <code>REST Endpoint</code> URL.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
+        </div>
+        <div class="card__body">
+          Grab the <code>Admin</code> API key.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
+
+:::info REST vs gRPC endpoints
+Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
 :::
 
-## Step 3: Connect to Weaviate
+Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
 
-To connect to your Weaviate instance, you need the instance [connection details](#connection-details) and [a client](#client-connection-code) to connect with.
+The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
 
-### Connection details
+import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
 
-Gather the following information:
+<ConnectIsReady />
 
-- The Weaviate **URL** (get it from WCD `Details` tab)
+If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
 
-import WCDDetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
+<hr/>
 
-<img src={WCDDetailsButton} width="75%" alt="Compare URLs"/>
+## Step 2: Populate the database
 
-- The Weaviate **API key** (Get it from the instance `Details`)
-- An OpenAI **inference API key** ([Sign up at OpenAI](https://platform.openai.com/signup))
+Now, we can populate our database by first defining a collection then adding data.
 
-### Client connection code
+### 2.1 Define a collection
 
-This sample connection code creates a `client` object. You can re-use the client object to connect to your Weaviate instance as you work through this tutorial.
-
-Copy the code to a file called `quickstart`. Add the appropriate extension for your programming language, and run the file to connect to Weaviate.
-
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
-
-<ConnectToWeaviateWithKey />
-
-## Step 4: Define a data collection
-
-Next, we define a data collection (a "collection" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
-
-The following code:
-- Configures a collection object with:
-  - Name `Question`
-  - Integrations with OpenAI [embedding](../model-providers/openai/embeddings.md) and [generative AI](../model-providers/openai/generative.md) models
-- Then creates the collection.
-
-Run it to create the collection in your Weaviate instance.
-
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
-
-<CodeAutoschemaMinimumSchema />
-
-:::info Change the vectorizer or generator integrations
-If you prefer to use a different setup, see [this section](#can-i-use-different-integrations).
+:::info What is a collection?
+A collection is a set of objects that share the same data structure, like a table in relational databases or a collection in NoSQL databases. A collection also includes additional configurations that define how the data objects are stored and indexed.
 :::
 
-Now you are ready to add objects to Weaviate.
+The following example creates a *collection* called `Question` with:
+  - OpenAI [embedding model integration](../model-providers/openai/embeddings.md) to create vectors during ingestion & queries.
+  - OpenAI [generative AI integrations](../model-providers/openai/generative.md) for retrieval augmented generation (RAG).
 
-## Step 5: Add objects
+import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
-You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
+<CreateCollection />
 
-The guide covers using the `vectorizer` defined for the collection to create a vector embedding for each object. You may have to add the API key for your vectorizer.
-
-import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
-
-<CodeAutoschemaImport />
-
-The above code:
-- Loads objects, and
-- Adds objects to the target collection (`Question`) one by one.
-
-## Partial recap
-
-The following code puts the above steps together.
-
-If you have not been following along with the snippets, run the code block below. This will let you run queries in the next section.
+Run this code to create the collection to which you can add data.
 
 <details>
-  <summary>End-to-end code</summary>
+  <summary>Do you prefer a different setup?</summary>
 
-:::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
-:::
+Weaviate is very flexible. If you prefer a different model provider integration, or prefer to import your own vectors, see one of the following guides:
+<br/>
 
-import CodeAutoschemaEndToEnd from '/_includes/code/quickstart/endtoend.mdx'
-
-<CodeAutoschemaEndToEnd />
+<div class="row">
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__header">
+          <h4>Prefer a different model provider?</h4>
+        </div>
+        <div class="card__body">
+          See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__header">
+          <h4>Want to specify object vectors?</h4>
+        </div>
+        <div class="card__body">
+          If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </details>
 
-## Step 6: Queries
+### 2.2 Add objects
 
-Now, let's run some queries on your Weaviate instance. Weaviate powers many different types of searches. We will try a few here.
+We can now add data to our collection.
 
-### Semantic search
+The following example:
+- Loads objects, and
+- Adds objects to the target collection (`Question`) using a batch process.
 
-Let's start with a similarity search. A `nearText` search looks for objects in Weaviate whose vectors are most similar to the vector for the given input text.
-
-Run the following code to search for objects whose vectors are most similar to that of `biology`.
-
-import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
-
-<CodeAutoschemaNeartext />
-
-You should see results like this:
-
-import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx'
-
-<BiologyQuestionsJson />
-
-The response includes a list of objects whose vectors are most similar to the word `biology`. The top 2 results are returned here as we have set a `limit` to `2`.
-
-:::tip Why is this useful?
-Notice that even though the word `biology` does not appear anywhere, Weaviate returns biology-related entries.
-
-This example shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
+:::tip Batch imports
+([Batch imports](../manage-data/import.mdx)) are the most efficient way to add large amounts of data, as it sends multiple objects in a single request. See the [How-to: Batch import](../manage-data/import.mdx) guide for more information.
 :::
 
-### Semantic search with a filter
+import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx'
 
-You can add Boolean filters to searches. For example, the above search can be modified to only in objects that have a "category" value of "ANIMALS". Run the following code to see the results:
+<ImportObjects />
 
-import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart/neartext.where.mdx'
+Run this code to add the demo data.
 
-<CodeAutoschemaNeartextWithWhere />
-
-You should see results like this:
-
-import BiologyQuestionsWhereJson from '/_includes/code/quickstart/response.biology.where.questions.mdx'
-
-<BiologyQuestionsWhereJson />
-
-The results are limited to objects from the `ANIMALS` category.
-
-:::tip Why is this useful?
-Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
+:::info OpenAI API key in the header
+Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
 
-### Generative search (single prompt)
+<hr/>
 
-Next, let's try a generative search. A generative search, also called retrieval augmented generation, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
+## Step 3: Queries
 
-To see what happens when an LLM uses query results to perform a task that is based on our prompt, run the code below.
+Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
-Note that the code uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
+### 3.1 Semantic search
 
-import CodeAutoschemaGenerative from '/_includes/code/quickstart/generativesearch.single.mdx'
+Semantic search finds results based on meaning. This is called `nearText` in Weaviate.
 
-<CodeAutoschemaGenerative />
+The following example searches for 2 objects whose meaning is most similar to that of `biology`.
 
-You should see results similar to this:
+import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.mdx'
 
-import BiologyGenerativeSearchJson from '/_includes/code/quickstart/response.biology.generativesearch.single.mdx'
+<QueryNearText />
 
-<BiologyGenerativeSearchJson />
+Run this code to perform the query. Our query found entries for `DNA` and `species`.
 
-We see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
+<details>
+  <summary>Example full response in JSON format</summary>
 
-### Generative search (grouped task)
+```json
+{
+  {
+    "answer": "DNA",
+    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance",
+    "category": "SCIENCE"
+  },
+  {
+    "answer": "species",
+    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification",
+    "category": "SCIENCE"
+  }
+}
+```
 
-The next example uses a `grouped task` prompt instead to combine all search results and send them to the LLM with a prompt.
+</details>
 
-To ask the LLM to write a tweet about these search results, run the following code.
+If you inspect the full response, you will see that the word `biology` does not appear anywhere.
 
-import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart/generativesearch.grouped.mdx'
+Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
 
-<CodeAutoschemaGenerativeGrouped />
+:::info Where did the vectors come from?
+Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
-The first returned object will include the generated text. Here's one that we got:
-
-import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart/response.biology.generativesearch.grouped.mdx'
-
-<BiologyGenerativeSearchGroupedJson />
-
-:::tip Why is this useful?
-Generative search sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
+As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
+
+:::tip More search types available
+
+Weaviate is capable of many types of searches. See, for example, our how-to guides on [similarity searches](../search/similarity.md), [keyword searches](../search/bm25.md), [hybrid searches](../search/hybrid.md), and [filtered searches](../search/filters.md).
+
+:::
+
+### 3.2 Retrieval augmented generation
+
+Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
+
+RAG work by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+
+The following example combines the same search (for `biology`) with a prompt to generate a tweet.
+
+import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
+
+<QueryRAG />
+
+Run this code to perform the query. Here is one possible response (your response will likely be different).
+
+```text
+🧬 In 1953 Watson & Crick built a model of the molecular structure of DNA, the gene-carrying substance! 🧬🔬
+
+🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
+```
+
+The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
+
+The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
 <hr/>
 
 ## Recap
 
-Well done! You have:
-- Created your own cloud-based vector database with Weaviate
-- Populated it with data objects using an inference API
-- Performed searches, including:
-    - Semantic search
-    - Semantic search with a filter
-    - Generative search
+In this quickstart guide, you:
 
-Where next is up to you. We include a few links below - or you can check out the sidebar.
+- Created a Serverless Weaviate sandbox instance on Weaviate Cloud.
+- Defined a collection and added data.
+- Performed queries, including:
+    - Semantic search, and
+    - Retrieval augmented generation.
+
+Where to go next is up to you. We include some suggested steps and resources below.
 
 <hr/>
 
 ## Next
 
-You can do much more with Weaviate. We suggest trying one of these:
+Try these additional resources to learn more about Weaviate:
 
-- Examples from our [search how-to](../search/index.md) guides for [keyword](../search/bm25.md), [similarity](../search/similarity.md), [hybrid](../search/hybrid.md), [generative](../search/generative.md), and [filtered](../search/filters.md) search.
-- Learning [how to manage data](../manage-data/index.md), like [reading](../manage-data/read.mdx), [batch importing](../manage-data/import.mdx), [updating](../manage-data/update.mdx), [deleting](../manage-data/delete.mdx) objects or [bulk exporting](../manage-data/read-all-objects.mdx) data.
-
-For more holistic learning, try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx). We have built free courses for you to learn about Weaviate and the world of vector search.
-
-You can also try a larger, [1,000 row](https://raw.githubusercontent.com/databyjp/wv_demo_uploader/main/weaviate_datasets/data/jeopardy_1k.json) version of the Jeopardy! dataset, or [this tiny set of 50 wine reviews](https://raw.githubusercontent.com/databyjp/wv_demo_uploader/main/weaviate_datasets/data/winemag_tiny.csv).
+<div class="container margin-top--xs padding-top--xs">
+  <div class="row">
+    <div class="col col--6 margin-bottom--md">
+      <div class="card">
+        <div class="card__header">
+          <h4>More on search</h4>
+        </div>
+        <div class="card__body">
+          <p>
+            See <a href="../search">how to perform searches</a>, such as <a href="../search/bm25">keyword</a>, <a href="../search/similarity">similarity</a>, <a href="../search/hybrid">hybrid</a>, <a href="../search/image">image</a>, <a href="../search/filters">filtered</a> and <a href="../search/rerank">reranked</a> searches.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col col--6 margin-bottom--md">
+      <div class="card">
+        <div class="card__header">
+          <h4>Manage data</h4>
+        </div>
+        <div class="card__body">
+          <p>
+            See <a href="../manage-data">how to manage data</a>, such as <a href="../manage-data/collections">manage collections</a>, <a href="../manage-data/create">create objects</a>, <a href="../manage-data/import">batch import data</a> and <a href="../manage-data/multi-tenancy">use multi-tenancy</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col col--6 margin-bottom--md">
+      <div class="card">
+        <div class="card__header">
+          <h4>RAG</h4>
+        </div>
+        <div class="card__body">
+          <p>
+            Check out the <a href="../starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="../../academy/py/standalone/chunking">chunking</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col col--6 margin-bottom--md">
+      <div class="card">
+        <div class="card__header">
+          <h4>Workshops and office hours</h4>
+        </div>
+        <div class="card__body">
+          <p>
+          We hold in-person and online <a href="/community/events">workshops, office hours and events</a> for different experience levels. Join us!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <hr/>
 
@@ -286,56 +420,6 @@ You can also try a larger, [1,000 row](https://raw.githubusercontent.com/databyj
 We provide answers to some common questions, or potential issues below.
 
 ### Questions
-
-#### Can I use a different deployment method?
-
-import ConnectToWeaviateDocker from '/_includes/code/quickstart.autoschema.connect.docker.mdx'
-
-<details>
-  <summary>See answer</summary>
-
-<p>
-
-Yes, you can use any method listed on our [installation options](../installation/index.md) sections.
-
-</p><br/>
-
-Using Docker Compose may be a convenient option for many. To do so:
-1. Save this `Docker Compose` file as `docker-compose.yml`,
-```yaml
----
-services:
-  weaviate:
-    command:
-    - --host
-    - 0.0.0.0
-    - --port
-    - '8080'
-    - --scheme
-    - http
-    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
-    ports:
-    - 8080:8080
-    - 50051:50051
-    restart: on-failure:0
-    environment:
-      OPENAI_APIKEY: $OPENAI_APIKEY
-      QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-openai,generative-openai'
-      CLUSTER_HOSTNAME: 'node1'
-...
-```
-2. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
-3. Connect to Weaviate at `http://localhost:8080`.
-
-If you are using this `Docker Compose` file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
-
-<ConnectToWeaviateDocker />
-
-</details>
 
 #### Can I use different integrations?
 
@@ -349,29 +433,7 @@ If you do want to change the embeddings, or the generative AI integrations, you 
 - Modify your collection definition to use your preferred integration, and
 - Make sure to use the right API key(s) (if necessary) for your integration.
 
-Please see the [model providers integration](../model-providers/index.md) section for more information.
-
-</details>
-
-#### Is a `vectorizer` setting mandatory?
-
-<details>
-  <summary>See answer</summary>
-
-- No. You always have the option of providing vector embeddings yourself.
-- Setting a `vectorizer` gives Weaviate the option of creating vector embeddings for you.
-    - If you do not wish to, you can set this to `none`.
-
-</details>
-
-#### What is a sandbox, exactly?
-
-<details>
-  <summary>Note: Sandbox expiry & options</summary>
-
-import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
-
-<SandBoxExpiry/>
+See the [model providers integration](../model-providers/index.md) section for more information.
 
 </details>
 
@@ -397,7 +459,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 If you are not sure whether the collection has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint.
 
-Replace WEAVIATE_INSTANCE_URL with your instance URL.:
+Replace WEAVIATE_INSTANCE_URL with your instance's REST Endpoint URL.:
 
 ```
 https://WEAVIATE_INSTANCE_URL/v1/schema
@@ -432,7 +494,7 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 
 To confirm successful data import, check the [`objects`](/developers/weaviate/api/rest#tag/objects) endpoint to verify that all objects are imported.
 
-Replace WEAVIATE_INSTANCE_URL with your instance URL:
+Replace WEAVIATE_INSTANCE_URL with your instance REST Endpoint URL:
 
 ```
 https://WEAVIATE_INSTANCE_URL/v1/objects
@@ -461,7 +523,7 @@ Where you should be able to confirm that you have imported all `10` objects.
 
 To perform text-based (`nearText`) similarity searches, you need to have a vectorizer enabled, and configured in your collection.
 
-Make sure the vectorizer is configured [like this](#step-4-define-a-data-collection).
+Make sure the vectorizer is configured [like this](#define-a-data-collection).
 
 If the search still doesn't work, [contact us](#questions-and-feedback)!
 

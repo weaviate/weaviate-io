@@ -114,7 +114,7 @@ services:
 
 ## Generative model integrations
 
-The [generative model integrations](../model-providers/index.md) enable [generative search](../search/generative.md) functions.
+The [generative model integrations](../model-providers/index.md) enable [retrieval augmented generation](../search/generative.md) functions.
 
 ### Enable a generative module
 

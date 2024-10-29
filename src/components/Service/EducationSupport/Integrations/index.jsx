@@ -9,7 +9,7 @@ export default function Integrations() {
     <div className={styles.integrationsSection}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Courses & Training</h2>
+          <h2>Vector Database Courses & Training</h2>
           <p>
             We've built these courses to help you build amazing things with
             Weaviate, faster.

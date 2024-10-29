@@ -12,9 +12,9 @@ export default function ServiceHeader() {
           <div className={styles.headerBox}>
             <p>
               Weaviate hosts and manages our database within your existing cloud
-              environment, leveraging your cloud's native services. Our solution
-              integrates seamlessly with AWS, GCP, and Azure, ensuring optimized
-              performance and security.
+              environment, leveraging your cloud's native services. Our BYOC
+              vector database solution integrates seamlessly with AWS, GCP, and
+              Azure, ensuring optimized performance and security.
             </p>
           </div>
           <div className={styles.buttons}>

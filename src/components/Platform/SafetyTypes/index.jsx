@@ -6,7 +6,7 @@ export default function SafetyTypes() {
   return (
     <div className="container">
       <div className={styles.title}>
-        <h2>Feature Overview</h2>
+        <h2>Open Source Vector Database Features</h2>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>
