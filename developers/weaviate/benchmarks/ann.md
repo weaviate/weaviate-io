@@ -8,6 +8,9 @@ image: og/docs/benchmarks.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
 # ANN Benchmark
 
 This vector database benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
@@ -97,7 +100,13 @@ These are the results for each dataset:
 
 #### QPS vs Recall for SIFT1M
 
-![SIFT1M Benchmark results](./img/sift-128-euclidean.png)
+<ThemedImage
+  alt="SIFT1M Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/sift-128-euclidean-light.svg'),
+    dark: useBaseUrl('/img/benchmark/sift-128-euclidean-dark.svg'),
+  }}
+/>
 
 import AnnSift128 from '/_includes/ann-sift-128-euclidean.mdx';
 
@@ -120,9 +129,15 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 </TabItem>
 <TabItem value="10" label="DBPedia OpenAI">
 
-#### QPS vs Recall for DBPedia OpenAI ada002
+#### QPS vs Recall for DBPedia OpenAI
 
-![DBPedia OpenAI ada002 Benchmark results](./img/dbpedia-openai-1000k-angular.png)
+<ThemedImage
+  alt="DBPedia OpenAI Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-light.svg'),
+    dark: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-dark.svg'),
+  }}
+/>
 
 import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 
@@ -142,7 +157,13 @@ import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 
 #### QPS vs Recall for MSMARCO Snowflake
 
-![MSMARCO Snowflake Benchmark results](./img/snowflake-msmarco-arctic-embed-m-v1.png)
+<ThemedImage
+  alt="MSMARCO Snowflake Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/snowflake-msmarco-arctic-embed-m-v1-light.svg'),
+    dark: useBaseUrl('/img/benchmark/snowflake-msmarco-arctic-embed-m-v1-dark.svg'),
+  }}
+/>
 
 import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1.5-angular.mdx';
 
@@ -155,14 +176,21 @@ import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 256 | 64 | 48 | 97.43% | 7016 | 2.26ms | 4.01ms |
+| 384 | 32 | 48 | 97.36% | 7363 | 2.15ms | 3.69ms |
 
 </TabItem>
 <TabItem value="1000" label="Sphere DPR">
 
 #### QPS vs Recall for Sphere DPR
 
-![Sphere DPR Benchmark results](./img/sphere-10M-meta-dpr.png)
+<ThemedImage
+  alt="Sphere DPR Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/sphere-10M-meta-dpr-light.svg'),
+    dark: useBaseUrl('/img/benchmark/sphere-10M-meta-dpr-dark.svg'),
+  }}
+/>
+
 
 import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
 
@@ -176,7 +204,7 @@ import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 384 | 64 | 64 | 96.23% | 3725 | 4.23ms | 7.10ms |
+| 384 | 32 | 96 | 96.06% | 3523 | 4.49ms | 7.73ms |
 
 </TabItem>
 </Tabs>
