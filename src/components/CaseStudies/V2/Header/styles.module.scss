@@ -1,0 +1,273 @@
+:root {
+  --darkColor: #130c49;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 0px;
+  }
+
+  span {
+    color: var(--darkColor);
+    font-family: var(--paraFont);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  .headSpan {
+    color: var(--darkColor);
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+  }
+
+  h1 {
+    color: var(--darkColor);
+    font-family: var(--headerFont);
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 2.4375rem */
+    margin-bottom: 1rem;
+    width: 70%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+
+    p {
+      color: #ffffff;
+      width: 80%;
+      @media screen and (max-width: 1000px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.right {
+  @media screen and (max-width: 970px) {
+    display: none;
+  }
+  .image {
+    background: url('/img/site/case-study-header-image-01.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36.6875rem;
+    height: 26.6875rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    background-position: right;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 1200px) {
+      width: 30.6875rem;
+      height: 26.6875rem;
+    }
+
+    @media screen and (max-width: 1100px) {
+      width: 26.6875rem;
+      height: 26.6875rem;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      min-width: 29rem;
+      height: 26.6875rem;
+      background-position: unset;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: #130c49;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 10.625rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}
+
+.headerSecurity {
+  background: #130c49;
+  background-image: url('/img/site/case-study-bg-image-01.png');
+  background-size: cover;
+}
+
+.topText {
+  color: #130c49;
+  text-align: center;
+  font-family: var(--headerFont);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin: 10px 0px;
+}
+.bottomBar {
+  background: #130c49;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.logoWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 40px;
+  animation: slide 20s linear infinite;
+}
+
+.logo {
+  background-image: url('/img/site/stackoverflow-cs-variant.svg');
+  background-size: cover;
+  background-position: center;
+  width: 4.05294rem;
+  height: 1.2745rem;
+  flex-shrink: 0;
+}
+
+.logo1 {
+  background-image: url('/img/site/instabase-cs-variant.svg');
+  width: 7.00806rem;
+  height: 0.73581rem;
+}
+
+.logo2 {
+  background-image: url('/img/site/redhat-cs-variant.svg');
+  width: 5.41038rem;
+  height: 1.25881rem;
+}
+
+.logo3 {
+  background-image: url('/img/site/mutiny-cs-variant.svg');
+  width: 2.70644rem;
+  height: 1.30169rem;
+}
+
+.logo4 {
+  background-image: url('/img/site/shippo-cs-variant.svg');
+  width: 4.04431rem;
+  height: 1.02769rem;
+}
+
+.logo5 {
+  background-image: url('/img/site/redbull-cs-variant.svg');
+  width: 6.5175rem;
+  height: 1.03213rem;
+}
+
+.logo6 {
+  background-image: url('/img/site/writesonic-cs-variant.svg');
+  width: 5.296rem;
+  height: 1.33944rem;
+}
+
+.logo7 {
+  background-image: url('/img/site/netapp-cs-variant.svg');
+  width: 5.27531rem;
+  height: 0.927rem;
+}
+
+@media (max-width: 950px) {
+  .bottomBar {
+    justify-content: unset;
+  }
+
+  .logoWrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bottomBar::before,
+  .bottomBar::after {
+    content: '';
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(to right, #130c49, transparent);
+  }
+
+  .bottomBar::after {
+    right: 0;
+    transform: rotate(180deg);
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
