@@ -157,7 +157,7 @@ These modules are aliased under-the-hood in Weaviate, so your existing codebase 
 
 ### PQ training set sampling
 
-[Product quantization (PQ)](/developers/weaviate/concepts/vector-quantization.md#product-quantization) is a technique used to compress vectors for efficient storage and retrieval.
+[Product quantization (PQ)](/developers/weaviate/concepts/vector-quantization#product-quantization) is a technique used to compress vectors for efficient storage and retrieval.
 
 PQ requires calculation of centroids using a training set. From `1.27`, if you have ingested more objects than the training set size, Weaviate will now sample the training set from the ingested objects. This should make it more likely that the training set is representative of the data.
 
