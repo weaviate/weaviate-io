@@ -142,6 +142,32 @@ assert response.properties["points"].sum_ > 0
 # End test
 
 
+
+# =========================================
+# ===== hybrid EXAMPLES =====
+# =========================================
+
+# HybridExample
+from weaviate.classes.query import Metrics
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.aggregate.hybrid(
+    query="animals in space",
+    # highlight-start
+    object_limit=10,
+    # highlight-end
+    return_metrics=Metrics("points").number(sum_=True),
+)
+
+print(response.properties["points"].sum_)
+# END HybridExample
+
+
+# Tests
+assert response.properties["points"].sum_ > 0
+# End test
+
+
 # ============================
 # ===== nearTextWithDistance EXAMPLES =====
 # ============================
