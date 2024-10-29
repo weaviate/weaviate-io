@@ -169,6 +169,21 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 300
 // End test
 
 
+// =========================================
+// ===== Hybrid EXAMPLES =====
+// =========================================
+
+// HybridExample
+// TS client support coming soon
+// END HybridExample
+
+// Test
+assert('JeopardyQuestion' in result.data.Aggregate);
+assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
+assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 4600 } });
+// End test
+
+
 // =================================
 // ===== where filter EXAMPLES =====
 // =================================
