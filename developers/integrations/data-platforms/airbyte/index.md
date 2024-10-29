@@ -11,7 +11,7 @@ Weaviate is a supported [destination connector](https://airbyte.com/connectors/w
 
 ## Our Resources 
 The resources are broken into two categories: 
-1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
+[**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
 
 ### Hands on Learning
 
