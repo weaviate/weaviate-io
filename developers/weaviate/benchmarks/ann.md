@@ -84,10 +84,10 @@ This section contains datasets modeled after the [ANN Benchmarks](https://github
 
 | **Dataset** | **Number of Objects** | **Vector Dimensions** | **[Distance metric](https://weaviate.io/blog/distance-metrics-in-vector-search)** | **Use case** |
 | --- | --- | --- | --- | --- |
-| [SIFT1M](http://ann-benchmarks.com/sift-128-euclidean.hdf5) | 1 M | 128 | l2-squared | This dataset reflects a common use case with a small number of objects. |
-| [OpenAI-Ada002-DBPedia](https://storage.googleapis.com/ann-datasets/ann-benchmarks/dbpedia-openai-1000k-angular.hdf5) | 1 M | 1536 | cosine |  |
-| [Snowflake-MTEB](https://storage.googleapis.com/ann-datasets/custom/snowflake-msmarco-arctic-embed-m-v1.5-angular.hdf5) | 8.8 M | 768 | l2-squared |  |
-| [Sphere-DPR](https://storage.googleapis.com/ann-datasets/custom/sphere-10M-meta-dpr.hdf5) | 10 M | 768 | dot |  |
+| [SIFT1M](http://corpus-texmex.irisa.fr/) | 1 M | 128 | l2-squared | SIFT is a common ANN test dataset generated from image data |
+| [DBPedia OpenAI](https://huggingface.co/datasets/mteb/dbpedia) | 1 M | 1536 | cosine | DBPedia dataset from MTEB embedded with OpenAI's ada002 model |
+| [MSMARCO Snowflake](https://huggingface.co/datasets/Snowflake/mteb-retrieval-snowflake-arctic-embed-m-v1.5) | 8.8 M | 768 | l2-squared | MSMARCO dataset embedded with Snowflake's Arctic Embed M v1.5 model |
+| [Sphere DPR](https://weaviate.io/blog/sphere-dataset-in-weaviate) | 10 M | 768 | dot | Meta's Sphere dataset (10M sample)  |
 
 #### Benchmark Datasets
 These are the results for each dataset:
@@ -118,11 +118,11 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 
 
 </TabItem>
-<TabItem value="10" label="OpenAI-Ada002-DBPedia">
+<TabItem value="10" label="DBPedia OpenAI">
 
-#### QPS vs Recall for OpenAI-Ada002-DBPedia
+#### QPS vs Recall for DBPedia OpenAI ada002
 
-![OpenAI-Ada002-DBPedia Benchmark results](./img/dbpedia-openai-1000k-angular.png)
+![DBPedia OpenAI ada002 Benchmark results](./img/dbpedia-openai-1000k-angular.png)
 
 import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 
@@ -130,7 +130,7 @@ import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 
 <AnnReadResultsTable/>
 
-#### Recommended configuration for OpenAI-Ada002-DBPedia
+#### Recommended configuration for DBPedia OpenAI ada002
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
@@ -138,11 +138,11 @@ import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
 | 256 | 16 | 96 | 97.24% | 5639 | 2.80ms | 4.43ms |
 
 </TabItem>
-<TabItem value="100" label="Snowflake-MTEB">
+<TabItem value="100" label="MSMARCO Snowflake">
 
-#### QPS vs Recall for Snowflake-MTEB
+#### QPS vs Recall for MSMARCO Snowflake
 
-![Snowflake-MTEB Benchmark results](./img/snowflake-msmarco-arctic-embed-m-v1.png)
+![MSMARCO Snowflake Benchmark results](./img/snowflake-msmarco-arctic-embed-m-v1.png)
 
 import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1.5-angular.mdx';
 
@@ -150,7 +150,7 @@ import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1
 
 <AnnReadResultsTable/>
 
-#### Recommended configuration for Snowflake-MTEB
+#### Recommended configuration for MSMARCO Snowflake
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
@@ -158,11 +158,11 @@ import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1
 | 256 | 64 | 48 | 97.43% | 7016 | 2.26ms | 4.01ms |
 
 </TabItem>
-<TabItem value="1000" label="Sphere-DPR">
+<TabItem value="1000" label="Sphere DPR">
 
-#### QPS vs Recall for Sphere-DPR
+#### QPS vs Recall for Sphere DPR
 
-![Sphere-DPR Benchmark results](./img/sphere-10M-meta-dpr.png)
+![Sphere DPR Benchmark results](./img/sphere-10M-meta-dpr.png)
 
 import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
 
@@ -171,7 +171,7 @@ import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
 <AnnReadResultsTable/>
 
 
-#### Recommended configuration for Sphere-DPR
+#### Recommended configuration for Sphere DPR
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
