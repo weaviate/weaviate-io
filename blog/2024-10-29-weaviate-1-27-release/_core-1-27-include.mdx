@@ -54,6 +54,10 @@ This implementation is [Weaviate's own version](/developers/weaviate/concepts/fi
 
 ACORN can be enabled as the filter strategy by setting `filterStrategy` for the relevant HNSW vector index [in the collection configuration](/developers/weaviate/manage-data/collections#set-vector-index-parameters).
 
+:::note Note: Filter strategy parameter not yet supported by all clients
+At the time of writing, the `filterStrategy` parameter is not yet supported by all Weaviate clients. It will be added to all clients shortly.
+:::
+
 According to our internal tests, the ACORN algorithm generally improves the filtered vector search performances, with the most significant improvements in negatively correlated filtered searches.
 
 Note that there may be a small cost in recall, but our testing has found this to be minimal if not negligible.
@@ -65,10 +69,16 @@ We think that ACORN will benefit most users. But, we especially encourage you to
 :::
 
 :::note Tell us about your experience ACORN
-We would love to hear from you about your experiences with ACORN. Please drop by to [our forum](https://forum.weaviate.io/) and tell us about it!
+We would love to hear from you about your experiences with ACORN. Please drop by to [our forum](https://forum.weaviate.io/t/acorn-feedback-mega-thread/7240) and tell us about it!
 :::
 
 ## Multi-Target Vector Search Enhancement
+
+In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query.
+
+These new options provide even more flexibility for comprehensive searches through your data with Weaviate.
+
+Take a look at the [multi-target vector search page](/developers/weaviate/search/multi-vector) for more examples.
 
 :::info What is a multi-target vector search?
 
@@ -83,15 +93,21 @@ In one search!
 
 :::
 
-In Weaviate `1.27`, multi-target vector search has been improved further to allow searching the [same vector field multiple times](/developers/weaviate/search/multi-vector#specify-query-vectors) in one query.
-
-These new options provide even more flexibility for comprehensive searches through your data with Weaviate.
-
-Take a look at the [multi-target vector search page](/developers/weaviate/search/multi-vector) for more examples.
-
 ## Jina V3 embedding support
 
 Weaviate's [Jina AI embedding integration](/developers/weaviate/model-providers/jinaai/embeddings) now supports Jina AI's new V3 embeddings.
+
+### How to use the v3 embedding model
+
+From your perspective, all you have to set is the model name, to `jina-embeddings-v3` [here](/developers/weaviate/model-providers/jinaai/embeddings#configure-the-vectorizer).
+
+With the v3 model, you can optionally specify the `dimensions` parameter in the collection configuration with the Jina AI model integration. This will set Weaviate's Jina AI model integration to obtain vectors of the correct length. You can balance your search quality needs here with resource usage.
+
+Note you can combine Weaviate's [quantization techniques](/developers/weaviate/starter-guides/managing-resources/compression) with this to further manage resource usage.
+
+See the [Jina AI model integration page](/developers/weaviate/model-providers/jinaai/embeddings) for information on how to use this model.
+
+You can find more information about the model on [JinaAI's website](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/).
 
 :::info About Jina AI's v3 embedding model
 
@@ -106,18 +122,6 @@ Weaviate automatically implements this for convenience, embedding objects as `pa
 Furthermore, the v3 model produces Matryoshka-style embeddings, This means that the generated embeddings can be truncated to suit the required precision.
 
 :::
-
-### How to use the v3 embedding model
-
-From your perspective, all you have to set is the model name, to `jina-embeddings-v3` [here](/developers/weaviate/model-providers/jinaai/embeddings#configure-the-vectorizer).
-
-With the v3 model, you can optionally specify the `dimensions` parameter in the collection configuration with the Jina AI model integration. This will set Weaviate's Jina AI model integration to obtain vectors of the correct length. You can balance your search quality needs here with resource usage.
-
-Note you can combine Weaviate's [quantization techniques](/developers/weaviate/starter-guides/managing-resources/compression) with this to further manage resource usage.
-
-See the [Jina AI model integration page](/developers/weaviate/model-providers/jinaai/embeddings) for information on how to use this model.
-
-You can find more information about the model on [JinaAI's website](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/).
 
 ## Cancel backups
 
