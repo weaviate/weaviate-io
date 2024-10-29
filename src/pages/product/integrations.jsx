@@ -20,7 +20,6 @@ export default function PartnersPage() {
       >
         <Header />
         <CardFilter />
-        <CTA />
         <ContactForm />
       </Layout>
       <ThemeSwitch />
