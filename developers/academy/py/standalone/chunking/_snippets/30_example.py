@@ -434,7 +434,7 @@ In this section, we'll cover some of these remote-management skills.
 
 
 # ===================================
-# ======= GENERATIVE SEARCH =========
+# ======= Retreval augmented generation =========
 # ===================================
 
 # START generative_search
@@ -447,7 +447,7 @@ n_chunks_by_strat['para_chunks'] = 8
 n_chunks_by_strat['fixed_size_100'] = 2
 n_chunks_by_strat['para_chunks_min_25'] = 2
 
-# Perform generative search
+# Perform Retreval augmented generation
 # highlight-start
 search_string = "history of git"  # Or "available git remote commands"
 # highlight-end

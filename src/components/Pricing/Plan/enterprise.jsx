@@ -7,12 +7,24 @@ export default function PricingEnterprise() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
+    if (window.location.pathname === '/pricing') {
+      window.history.pushState(null, null, '/pricing/enterprise');
+    }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (window.location.pathname === '/pricing/enterprise') {
+      window.history.replaceState(null, null, '/pricing');
+    }
   };
+
+  useEffect(() => {
+    if (window.location.pathname === '/pricing/enterprise') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
@@ -22,7 +34,6 @@ export default function PricingEnterprise() {
     };
 
     document.addEventListener('keydown', handleEscapeKey);
-
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
@@ -56,17 +67,9 @@ export default function PricingEnterprise() {
             complexities of self-management.
           </p>
           <ul>
-            <li>
-              <span>Dedicated resources for customer isolation</span>
-            </li>
-            <li>
-              <span>Built for high-performance at large scale</span>
-            </li>
-            <li>
-              <span>
-                Optimize resource consumption with flexible storage tiers
-              </span>
-            </li>
+            <li>Dedicated resources for customer isolation</li>
+            <li>Built for high-performance at large scale</li>
+            <li>Optimize resource consumption with flexible storage tiers</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing
@@ -78,7 +81,7 @@ export default function PricingEnterprise() {
         style={{ display: isModalOpen ? 'flex' : 'none' }}
       >
         <div className={styles.modalContents}>
-          <span className={styles.closeEnterprise} onClick={closeModal}>
+          <span className={styles.close} onClick={closeModal}>
             &times;
           </span>
 

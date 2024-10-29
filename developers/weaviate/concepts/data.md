@@ -220,14 +220,14 @@ Multi-tenancy is especially useful when you want to store data for multiple cust
 Deleting a tenant deletes the associated shard. As a result, deleting a tenant also deletes all of its objects.
 :::
 
-### Tenant status
+### Tenant states
 
 :::info Multi-tenancy availability
 - Tenant activity status setting added in `v1.21`
 - `OFFLOADED` status added in `v1.26`
 :::
 
-Tenants can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
+Tenants have an activity status (also called a tenant state) that reflects their availability and storage location. A tenant can be `ACTIVE`, `INACTIVE`, `OFFLOADED`, `OFFLOADING`, or `ONLOADING`.
 
 - `ACTIVE` tenants are loaded and available for read and write operations.
 - In all other states, the tenant is not available for read or write access. Access attempts return an error message.
@@ -248,6 +248,14 @@ For more details on managing tenants, see [Multi-tenancy operations](../manage-d
 
 :::info Tenant status renamed in `v1.26`
 In `v1.26`, the `HOT` status was renamed to `ACTIVE` and the `COLD` status was renamed to `INACTIVE`.
+:::
+
+:::info Tenant state propagation
+A tenant state change may take some time to propagate across a cluster, especially a multi-node cluster.
+
+<br/>
+
+For example, data may not be immediately available after reactivating an offloaded tenant. Similarly, data may not be immediately unavailable after offloading a tenant. This is because the [tenant states are eventually consistent](../concepts/replication-architecture/consistency.md#tenant-states-and-data-objects), and the change must be propagated to all nodes in the cluster.
 :::
 
 #### Offloaded tenants

@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import Calculator from '../Calculator';
-import SlaPlan from '../SLAS';
-import { keysIn } from 'lodash';
 import CalculatorContainer from '../CalculatorContainer';
+
 export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (e) => {
+  const openModal = () => {
+    if (window.location.pathname === '/pricing') {
+      window.history.pushState(null, null, '/pricing/serverless');
+    }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (window.location.pathname === '/pricing/serverless') {
+      window.history.replaceState(null, null, '/pricing');
+    }
   };
+
+  useEffect(() => {
+    if (window.location.pathname === '/pricing/serverless') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
@@ -24,7 +34,6 @@ export default function PricingStandard() {
     };
 
     document.addEventListener('keydown', handleEscapeKey);
-
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
@@ -58,15 +67,9 @@ export default function PricingStandard() {
             pay-as-you-go pricing.
           </p>
           <ul>
-            <li>
-              <span>Serverless SaaS deployment</span>
-            </li>
-            <li>
-              <span>Get started with a free trial in minutes</span>
-            </li>
-            <li>
-              <span>Various SLA tiers to meet your needs</span>
-            </li>
+            <li>Serverless SaaS deployment</li>
+            <li>Get started with a free trial in minutes</li>
+            <li>Various SLA tiers to meet your needs</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing

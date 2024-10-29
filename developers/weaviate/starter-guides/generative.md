@@ -1,5 +1,5 @@
 ---
-title: Generative search (RAG)
+title: Retrieval augmented generation (RAG)
 sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
@@ -20,15 +20,15 @@ import TSCodeLocalLegacy from '!!raw-loader!/_includes/code/starter-guides/gener
 
 :::info Related pages
 - [Which Weaviate is right for me?](./which-weaviate.md)
-- [How-to: Generative search](../search/generative.md)
+- [How-to: Retrieval augmented generation](../search/generative.md)
 :::
 
-This pages introduces you to generative search with Weaviate. It covers:
+This pages introduces you to retrieval augmented generation (RAG) using Weaviate. It covers:
 
-- What generative search, or RAG, is.
-- How to configure Weaviate for generative search.
-- How to perform generative searches.
-- Importing data with generative search in mind.
+- What RAG is.
+- How to configure Weaviate for RAG.
+- How to perform RAG.
+- Importing data with RAG in mind.
 
 ### Prerequisites
 
@@ -36,35 +36,35 @@ This guide assumes some familiarity with Weaviate, but it is not required. If yo
 
 ## Background
 
-### What is generative search?
+### What is retrieval augmented generation?
 
-Generative search is a powerful technique that retrieves relevant data to provide to large language models (LLMs) as context, along with the task prompt. It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
+Retrieval augmented generation is a powerful technique that retrieves relevant data to provide to large language models (LLMs) as context, along with the task prompt. It is also called RAG, generative search, or in-context learning in some cases.
 
-### Why generative search?
+### Why use RAG?
 
 LLM are incredibly powerful, but can suffer from two important limitations. These limitation are that:
 - They can confidently produce incorrect, or outdated, information (also called 'hallucination'); and
 - They might simply not be trained on the information you need.
 
-Generative search remedies this problem with a two-step process.
+RAG remedies this problem with a two-step process.
 
 The first step is to retrieve relevant data through a query. Then, in the second step, the LLM is prompted with a combination of the retrieve data with a user-provided query.
 
 This provides in-context learning for the LLM, which causes it to use the relevant and up-to-date data rather than rely on recall from its training, or even worse, hallucinated outputs.
 
-### Weaviate and generative search
+### Weaviate and retrieval augmented generation
 
-Weaviate incorporates key functionalities to make generative search easier and faster.
+Weaviate incorporates key functionalities to make RAG easier and faster.
 
 For one, Weaviate's search capabilities make it easier to find relevant information. You can use any of similarity, keyword and hybrid searches, along with filtering capabilities to find the information you need.
 
-Additionally, Weaviate has integrated generative search capabilities, so that the retrieval and generation steps are combined into a single query. This means that you can use Weaviate's search capabilities to retrieve the data you need, and then in the same query, prompt the LLM with the same data.
+Additionally, Weaviate has integrated RAG capabilities, so that the retrieval and generation steps are combined into a single query. This means that you can use Weaviate's search capabilities to retrieve the data you need, and then in the same query, prompt the LLM with the same data.
 
-This makes it easier, faster and more efficient to implement generative search workflows in your application.
+This makes it easier, faster and more efficient to implement RAG workflows in your application.
 
-## Examples of generative search
+## Examples of RAG
 
-Let's begin by viewing examples of generative search in action. We will then explore how to configure Weaviate for generative search.
+Let's begin by viewing examples of RAG in action. We will then explore how to configure Weaviate for RAG.
 
 We have run this demo with an OpenAI language model and a cloud instance of Weaviate. But you can run it with any [deployment method](./which-weaviate.md) and with any generative AI [model integration](../model-providers/index.md).
 
@@ -179,7 +179,7 @@ This should return a set of results like the following (truncated for brevity):
 
 ### Transform result sets
 
-We can transform this result set into new text using generative search with just a minor modification of the code. First, let's use a `grouped task` prompt to summarize this information.
+We can transform this result set into new text using RAG with just a minor modification of the code. First, let's use a `grouped task` prompt to summarize this information.
 
 Run the following code snippet, and inspect the results:
 
@@ -230,7 +230,7 @@ Here is our generated text:
 - This book was written using Git version 2, but most commands should work in older versions as well.
 ```
 
-In a `grouped task` generative search, Weaviate:
+In a `grouped task` RAG query, Weaviate:
 - Retrieves the three most similar passages to the meaning of `history of git`.
 - Then prompts the LLM with a combination of:
     - Text from all of the search results, and
@@ -238,7 +238,7 @@ In a `grouped task` generative search, Weaviate:
 
 Note that the user-provided prompt did not contain any information about the subject matter. But because Weaviate retrieve the relevant data about the history of git, it was able to summarize the information relating to this subject matter using verifiable data.
 
-That's how easy it is to use generative search in Weaviate.
+That's how easy it is to perform RAG queries in Weaviate.
 
 :::note Your results may vary
 There will be variability in the actual text that has been generated. This due to the randomness in LLMs' behaviors, and variability across models. This is perfectly normal.
@@ -310,17 +310,17 @@ Here, Weaviate has:
 - For each result, prompted the LLM with:
     - The user-provided prompt, replacing `{country}`, `{title}`, and `{review_body}` with the corresponding text.
 
-In both examples, you saw Weaviate return new text that is original, but grounded in the retrieved data. This is what makes generative search powerful, by combining the best of data retrieval and language generation.
+In both examples, you saw Weaviate return new text that is original, but grounded in the retrieved data. This is what makes RAG powerful, by combining the best of data retrieval and language generation.
 
-## Generative search, end-to-end
+## RAG, end-to-end
 
-Now, let's go through an end-to-end example for using Weaviate for generative search.
+Now, let's go through an end-to-end example for using Weaviate for RAG.
 
 ### Your own Weaviate instance
 
 For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCD instance.
 
-### Configure generative search
+### Configure Weaviate for RAG
 
 :::caution Generative module cannot be changed
 Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
@@ -329,11 +329,11 @@ Currently, a generative module cannot be changed in the Weaviate collection defi
 If you would like us to prioritize this issue, upvote it on [GitHub](https://github.com/weaviate/weaviate/issues/3364).
 :::
 
-To use generative search, the appropriate `generative-xxx` module must be:
+To use RAG, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
 - Specified in the collection definition.
 
-Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM and Gemini models.
+Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-google` for Google models.
 
 If you are using WCD, you will not need to do anything to enable modules.
 
@@ -390,7 +390,7 @@ For configurable deployments, you can specify enabled modules. For example, in a
 services:
   weaviate:
     environment:
-      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-palm,generative-cohere,generative-openai,generative-palm'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-google,generative-cohere,generative-openai,generative-googles'
 ```
 
 Check the specific documentation for your deployment method ([Docker](../installation/docker-compose.md), [Kubernetes](../installation/kubernetes.md), [Embedded Weaviate](../installation/embedded.md)) for more information on how to configure it.
@@ -438,7 +438,7 @@ See the [documentation](../model-providers/index.md) for various model provider 
 
 ### Populate database
 
-Adding data to Weaviate for generative search is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
+Adding data to Weaviate for RAG is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
 
 You can read further discussions in the [Best practices & tips](#best-practices--tips) section. Here, we will use a chunk length of 150 words and a 25-word overlap. We will also include the title of the book, the chapter it is from, and the chunk number. This will allow us to search through the chunks, as well as filter it.
 
@@ -485,7 +485,7 @@ This will download the text from the chapter, and return a list/array of strings
 
 #### Create collection definitions
 
-We can now create a collection definition for the chunks. To use generative search, your desired generative module must be specified at the collection level as shown below.
+We can now create a collection definition for the chunks. To use RAG, your desired generative module must be specified at the collection level as shown below.
 
 The below collection definition for the `GitBookChunk` collection specifies `text2vec-openai` as the vectorizer and `generative-openai` as the generative module. Note that the `generative-openai` parameter can have an empty dictionary/object as its value, which will use the default parameters.
 
@@ -710,7 +710,7 @@ Did you know? 🤔 Git thinks of its data as snapshots, not just changes to file
 
 #### Pairing with search
 
-Generative search in Weaviate is a two-step process under the hood, involving retrieval of objects and then generation of text. This means that you can use the full power of Weaviate's search capabilities to retrieve the objects you want to use for generation.
+RAG in Weaviate is a two-step process under the hood, involving retrieval of objects and then generation of text. This means that you can use the full power of Weaviate's search capabilities to retrieve the objects you want to use for generation.
 
 In this example, we search the chapter for passages that relate to the states of git before generating a tweet as before.
 
@@ -813,7 +813,7 @@ As you can see, Weaviate allows you to use the full power of search to retrieve 
 
 In the context of language processing, "chunking" refers to the process of splitting texts into smaller pieces of texts, i.e. "chunks".
 
-For generative search, chunking affects both the information retrieval and the amount of contextual information provided.
+For RAG, chunking affects both the information retrieval and the amount of contextual information provided.
 
 While there is no one-size-fits all chunking strategy that we can recommend, we can provide some general guidelines. Chunking by semantic markers, or text length may both be viable strategies.
 
@@ -853,7 +853,7 @@ Our own [Connor Shorten's podcast](https://weaviate.io/podcast) is a great resou
 
 ## Wrap-up
 
-We've explored the dynamic capabilities of generative search in Weaviate, showcasing how it enhances large language models through retrieval-augmented generation.
+We've explored the dynamic capabilities of RAG in Weaviate, showcasing how it enhances large language models through retrieval-augmented generation.
 
 To learn more about specific search capabilities, check out the [How-to: search guide](../search/index.md). And to learn more about individual modules, check out the [Modules section](../modules/index.md).
 

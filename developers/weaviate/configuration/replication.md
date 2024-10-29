@@ -17,28 +17,17 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 Replication is disabled by default. It can be enabled per collection in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset.
 
-To enable replication, set the replication factor:
+To enable replication, you can set one or both of the following:
+- `REPLICATION_MINIMUM_FACTOR` environment variable for the entire Weaviate instance, or
+- `replicationFactor` parameter for a collection.
 
-```yaml
-{
-  "class": "ExampleClass",
-  "properties": [
-    {
-      "name": "exampleProperty",
-      "dataType": [
-        "text"
-      ]
-    }
-  ],
-  # highlight-start
-  "replicationConfig": {
-    "factor": 3   # Integer, default 1. How many copies of this class will be stored.
-  }
-  # highlight-end
-}
-```
+### Weaviate-wide minimum replication factor
 
-The client code looks like this:
+The `REPLICATION_MINIMUM_FACTOR` environment variable sets the minimum replication factor for all collections in the Weaviate instance.
+
+If you set the [replication factor for a collection](#replication-factor-for-a-collection), the collection's replication factor overrides the minimum replication factor.
+
+### Replication factor for a collection
 
 import SchemaReplication from '/_includes/code/schema.things.create.replication.mdx';
 
@@ -52,9 +41,9 @@ The example data schema has a [write consistency](../concepts/replication-archit
 
 ## Data consistency
 
-import RepairIntro from '/_includes/configuration/consistency-repair-intro.mdx';
+When Weaviate detects inconsistent data across nodes, it attempts to repair the out of sync data.
 
-<RepairIntro />
+Starting in v1.26, Weaviate adds [async replication](../concepts/replication-architecture/consistency.md#async-replication) to proactively detect inconsistencies. In earlier versions, Weaviate uses a [repair-on-read](../concepts/replication-architecture/consistency.md#repair-on-read) strategy to repair inconsistencies at read time.
 
 Repair-on-read is automatic. To activate async replication, set `asyncEnabled` to true in the `replicationConfig` section of your collection definition.
 

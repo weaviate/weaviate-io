@@ -87,6 +87,11 @@ marion:
   title: Community Manager
   url: https://www.linkedin.com/in/marionnehring/
   image_url: /img/people/icon/marion.jpg
+mary:
+  name: Mary Newhauser
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/mary-newhauser-02273551/
+  image_url: /img/people/icon/mary.png
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
@@ -195,3 +200,9 @@ akanksha:
   title: Product Management Intern
   url: https://www.linkedin.com/in/akankshasharmaiitg/
   image_url: /img/people/icon/akanksha.jpg
+deepti:
+  name: Deepti Naidu
+  title: Partner Solution Engineer
+  url: https://www.linkedin.com/in/deeptinaidu/
+  image_url: /img/people/icon/deepti.png
+

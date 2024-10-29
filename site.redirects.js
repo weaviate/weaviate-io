@@ -71,7 +71,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/concepts/prefiltering',
+            to: '/developers/weaviate/concepts/filtering',
             from: '/developers/weaviate/config-refs/schema/range-index',
         },
         {
@@ -216,6 +216,11 @@ const siteRedirects = {
          from: '/developers/weaviate/starter-guides/connect',
         },
 
+        // 2024.10 Rename "prefiltering" to "filtering"
+        {
+            to: '/developers/weaviate/concepts/filtering',
+            from: '/developers/weaviate/concepts/prefiltering',
+        },
 
         // Remove BPR page
         {
@@ -666,6 +671,8 @@ const siteRedirects = {
             from: '/developers/weaviate/api/rest_legacy/modules',
         },
 
+
+
      // Products to Pricing redirects
 
         {
@@ -797,6 +804,61 @@ const siteRedirects = {
     to: "/learn/knowledgecards",
     from: "/learn/knowledgecards/knowledgeheader"
  },
+// Broken Links Redirects
+{
+    to: '/developers/contributor-guide/',
+    from: "/developers/contributor-guide/weaviate-modules/developers/weaviate/api/rest",
+},
+
+{
+    to: '/developers/weaviate/release-notes',
+    from: [
+        '/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes',
+        '/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest',
+    ],
+},
+{
+    to: "/developers/weaviate/config-refs/nodes",
+    from: "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes",
+},
+
+{
+    to: "/blog/",
+    from: [
+        "/blog/developers/weaviate/api/rest",
+        "/blog/developers/weaviate/config-refs/nodes",
+    ],
+},
+{
+    to: "/developers/weaviate/connections",
+    from: "/developers/connections",
+},
+{
+    to: "/developers/weaviate/client-libraries/typescript/typescript-v3",
+    from: "/developers/weaviate/client-libraries/typescript/developers/weaviate/client-libraries/typescript/typescript-v3",
+},
+{
+    to: "/developers/weaviate/modules",
+    from: "/developers/weaviate/modules/developers/weaviate/api/rest",
+},
+{
+    to: "/developers/weaviate/release-notes",
+    from: [
+        "/developers/weaviate/release-notes/developers/weaviate/config-refs/nodes",
+        "/developers/weaviate/release-notes/older-releases/developers/weaviate/api/rest",
+        "/developers/weaviate/release-notes/older-releases/developers/weaviate/config-refs/nodes",
+    ],
+},
+{
+    to: "/developers/weaviate/starter-guides",
+    from: [
+        "/developers/weaviate/starter-guides/developers/weaviate/installation/kubernetes",
+        "/developers/weaviate/starter-guides/developers/weaviate/manage-data/collections",
+    ],
+},
+
+   
+
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

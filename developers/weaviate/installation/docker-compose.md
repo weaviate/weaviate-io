@@ -361,6 +361,22 @@ Alternatively you can run docker compose entirely detached with `docker compose 
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 
+## Troubleshooting
+
+### Set `CLUSTER_HOSTNAME` if it may change over time
+
+In some systems, the cluster hostname may change over time. This is known to create issues with a single-node Weaviate deployment. To avoid this, set the `CLUSTER_HOSTNAME` environment variable in the `values.yaml` file to the cluster hostname.
+
+```yaml
+---
+services:
+  weaviate:
+    # ...
+    environment:
+      CLUSTER_HOSTNAME: 'node1'
+...
+```
+
 ## Related pages
 
 - If you are new to Docker, see [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).

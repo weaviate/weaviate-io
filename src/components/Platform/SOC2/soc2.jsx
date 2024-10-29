@@ -11,13 +11,14 @@ export default function Soc2(props) {
       <div className={styles.soc2Container}>
         <div className="container">
           <div className={styles.box}>
-            <h2>
+            <h2>The open source vector database developers love</h2>
+            <p>
               Weaviate is an open-source vector database that simplifies the
               development of AI applications. Built-in vector and hybrid search,
               easy-to-connect machine learning models, and a focus on data
               privacy enable developers of all levels to build, iterate, and
               scale AI capabilities faster.
-            </h2>
+            </p>
           </div>
 
           <div className={`${styles.twoRow} ${styles.reverseBox} `}>
@@ -50,8 +51,8 @@ export default function Soc2(props) {
               <h2>Get the best of vector and keyword search</h2>
               <p>
                 Improve semantic understanding and accuracy to deliver better
-                insights. Leverage both vector search and BM25 keyword search
-                without any extra overhead.
+                insights. Leverage both vector search and BM25 keyword search -
+                to create hybrid search - without any extra overhead.
               </p>
               <Link to="/developers/weaviate/search/hybrid">Learn more</Link>
             </div>
