@@ -22,14 +22,16 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.resources-grid, .projects-grid {
+.resources-grid,
+.projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
 
-.resource-item, .project-card {
+.resource-item,
+.project-card {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -46,25 +48,80 @@ h1 {
   }
 }
 
-.tabs {
+.reactTabs {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+  column-gap: 80px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.tab {
-  background-color: transparent;
-  border: none;
-  color: $muted-text-color;
-  cursor: pointer;
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
+.tabList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 0;
 
-  &.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 0.25rem;
-    color: $text-color;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    margin: 40px 0px;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
   }
+
+  .tabs {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    display: block;
+    margin: 30px 0px;
+    background: none;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      margin: 0 10px;
+      display: inline-block;
+      font-size: 1.2rem;
+    }
+
+    &--selected {
+      background-color: none !important;
+      color: white;
+      border-bottom: none;
+      text-decoration: underline !important;
+    }
+
+    &:focus {
+      text-decoration: underline;
+      background: none;
+    }
+  }
+}
+
+.selectedTab {
+  text-decoration: underline;
 }
 
 .project-card {
@@ -105,8 +162,29 @@ h1 {
 }
 
 .header {
-  margin-bottom: 40px;
+  margin-top: 40px;
+
+  h2 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 2rem;
+  }
 }
+
 .info {
   flex: 1;
   h3,
@@ -117,21 +195,20 @@ h1 {
 
 .latestModule {
   display: flex;
-  gap: 38px;
-  justify-content: center;
+  gap: 20px;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
+
+  padding: 23px 0px;
 
   @media screen and (max-width: 1050px) {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-x: scroll;
-    flex-direction: row;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 21px;
-    scroll-padding: 20%;
-    padding: 5px 10px 20px;
+  }
+}
+
+.latestLink {
+  @media screen and (max-width: 500px) {
+    width: 100%;
   }
 }
 
@@ -142,45 +219,43 @@ h1 {
   width: 20.0625rem;
   height: 21rem;
   flex-shrink: 0;
-  scroll-snap-align: center;
+  transition: all 0.5s ease-in-out;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 
   .insideBox {
     border-radius: 0.9375rem 0.9375rem 0rem 0rem;
     background: #1b1464;
-
     height: 11rem;
     background-image: url('/img/site/insight_image_01.png');
     background-position: center;
-  }
-
-  .blogImageDistance {
-    background-image: url('/img/site/distance-metrics-blog.png');
-    background-size: 110%;
-  }
-  .blogImageVector {
-    background-image: url('/img/site/vector-databases-blog.png');
-    background-size: 110%;
-  }
-  .blogImageHealth {
-    background-image: url('/img/site/health-search-blog.png');
-    background-size: 110%;
-  }
-  .blogWorkshop {
-    background-image: url('/img/site/Zain-workshop.jpg');
-    background-size: 117%;
   }
 
   .textBox {
     padding: 18px 17px 26px;
 
     h3 {
-      color: #130c49;
-      font-weight: 300;
+      h2 {
+        color: #130c49;
+        font-family: 'Plus Jakarta Sans';
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        margin-bottom: 0.5rem;
+      }
     }
 
     p {
       color: #130c49;
-      height: 66px;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      margin-bottom: 2rem;
     }
   }
 }
