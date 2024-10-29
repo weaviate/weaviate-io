@@ -29,7 +29,7 @@ Then, we will also discuss strategies to improve the quality of search results, 
 
 ### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
 
-- A Typescript environment with `weaviate-client` installed.
+- A Node.js environment with `weaviate-client` installed.
 - Familiarity with Weaviate's search capabilities.
 - Intermediate coding proficiency (e.g. Javascript).
 

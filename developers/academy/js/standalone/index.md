@@ -13,4 +13,4 @@ This section hosts short, standalone units that you can read independently of an
 
 ## <i class="fa-solid fa-book-open-reader"></i> Units
 
-<CourseUnits courseData={courseData} courseName="standalone" />
+<CourseUnits courseData={courseData} courseName="standalone_js" />

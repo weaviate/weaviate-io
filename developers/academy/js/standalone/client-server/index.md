@@ -1,42 +1,25 @@
 ---
-title: The client-server architecture
-sidebar_position: 10
+title: Building client-server Applications
 ---
 
-## <i class="fa-solid fa-chalkboard-user"></i> Unit overview
-
-<!-- import ReactPlayer from 'react-player/lazy'
-
-<ReactPlayer url='https://youtu.be/FU7l5pr2FmU' controls='true'/>
-<br/> -->
-
-<!-- :::warning TODO
-Intro video here
-::: -->
-
-<!-- Provide context for this course, in addition to the concrete learning goals and outcomes. Why would someone want to do this unit? -->
-
-Why do we need this!
-
-### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
-
-- A Typescript environment with `weaviate-client` installed.
-- Familiarity with Weaviate's search capabilities.
-- Intermediate coding proficiency (e.g. Javascript).
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 
-## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
-import LearningGoalsExp from '/src/components/Academy/learningGoalsExp.mdx';
+It is recommended that you employ the client-server architecture as you build applications using the [weaviate-client](https://www.npmjs.com/package/weaviate-client).
 
-<LearningGoalsExp />
+We will get into why this is and detail various paths you could follow as you build applications in Javascript 
 
-import LearningGoals from '/src/components/Academy/learningGoals.jsx';
 
-<LearningGoals unitName="which_search"/>
 
-## Questions and feedback
+We will go over..
+- What the client-server architecture is
+- Why we opt for the client-server approach
+- How to build client-server applications with..
+    - Fullstack frameworks and,
+    - Backend web frameworks.
 
-import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsFeedback/>
