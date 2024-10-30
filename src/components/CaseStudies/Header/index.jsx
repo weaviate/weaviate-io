@@ -12,7 +12,7 @@ export default function StudyHeader() {
             <span>Case Study</span>
             <h1>
               How Morningstar built a trustworthy, AI-driven financial data
-              platform with Weaviate
+              platform
             </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>

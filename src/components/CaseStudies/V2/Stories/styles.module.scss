@@ -83,15 +83,10 @@
     h3 {
       color: #f7f9fd;
       font-family: 'Plus Jakarta Sans';
-      font-size: 2.25rem;
+      font-size: 2rem;
       font-style: normal;
       font-weight: 700;
       line-height: 140%; /* 3.15rem */
-      width: 85%;
-
-      @media screen and (max-width: 900px) {
-        width: 100%;
-      }
     }
 
     p {
@@ -114,7 +109,7 @@
   background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 0%,
-      rgba(47, 47, 169, 0.1) 100%
+      rgba(47, 47, 169, 0.8) 100%
     ),
     url('/img/site/neople-background-image.png');
   background-size: contain;
@@ -137,24 +132,19 @@
       background: url('/img/site/neople-cs.svg');
       background-size: contain;
       background-repeat: no-repeat;
-      width: 9.02219rem;
-      height: 2.875rem;
+
+      width: 6rem;
+      height: 4rem;
       flex-shrink: 0;
-      margin: 30px 0px;
     }
 
     h3 {
-      color: #130c49;
+      color: #f7f9fd;
       font-family: 'Plus Jakarta Sans';
-      font-size: 1.75rem;
+      font-size: 2rem;
       font-style: normal;
       font-weight: 700;
-      line-height: 130%; /* 2.275rem */
-      width: 85%;
-
-      @media screen and (max-width: 900px) {
-        width: 100%;
-      }
+      line-height: 140%; /* 3.15rem */
     }
   }
 }
@@ -199,7 +189,7 @@
     h3 {
       color: #f7f9fd;
       font-family: 'Plus Jakarta Sans';
-      font-size: 2.25rem;
+      font-size: 2rem;
       font-style: normal;
       font-weight: 700;
       line-height: 140%; /* 3.15rem */

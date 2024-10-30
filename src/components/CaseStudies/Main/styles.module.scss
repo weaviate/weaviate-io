@@ -1,3 +1,11 @@
+:root {
+  --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: ##f7f9fd;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
 .container {
   padding: 3rem;
 
@@ -21,7 +29,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 140%; /* 2.8rem */
-    width: 55%;
+    width: 50%;
 
     @media screen and (max-width: 900px) {
       width: 100%;
@@ -200,6 +208,63 @@
       font-style: normal;
       font-weight: 700;
       line-height: 140%; /* 3.15rem */
+    }
+  }
+}
+
+.bentoSmall {
+  width: 20.875rem;
+  height: 19.9375rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+
+    .bentoLogo {
+      background: url('/img/site/astronomer-logo-cs.svg');
+      width: 14.125rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      background-repeat: no-repeat;
+      background-position-y: center;
+    }
+    .logo02 {
+      background: url('/img/site/preverity-logo-cs.svg');
+      width: 15.19538rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+    }
+
+    .logo03 {
+      background: url('/img/site/humach-logo-cs.svg');
+      width: 14.43744rem;
+      height: 2.31306rem;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      color: var(--darkColor);
+      font-family: var(--headerFont);
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%;
     }
   }
 }
@@ -392,7 +457,8 @@
     width: 23rem;
   }
   .bento05,
-  .bento06 {
+  .bento06,
+  .bentoSmall {
     width: 100%;
     height: auto;
   }

@@ -58,14 +58,14 @@ export default function Main() {
               <span>about the company</span>
               <div className={styles.bentoLogo}></div>
               <p>
-                <Link to="">Morningstar</Link>, Inc. is a leading global
-                provider of independent investment insights. Morningstar offers
-                an extensive line of products and services for individual
-                investors, financial advisors, asset managers and owners,
-                retirement plan providers and sponsors, and institutional
-                investors in the debt and private capital markets. Morningstar
-                provides data and research insights on a wide range of
-                investment offerings, including managed investment products,
+                <Link to="https://www.morningstar.com/">Morningstar</Link>, Inc.
+                is a leading global provider of independent investment insights.
+                Morningstar offers an extensive line of products and services
+                for individual investors, financial advisors, asset managers and
+                owners, retirement plan providers and sponsors, and
+                institutional investors in the debt and private capital markets.
+                Morningstar provides data and research insights on a wide range
+                of investment offerings, including managed investment products,
                 publicly listed companies, private capital markets, debt
                 securities, and real-time global market data. 
               </p>
@@ -120,25 +120,24 @@ export default function Main() {
             <div className={styles.tagHolder}>
               <div className={styles.CsIcon}></div>
               <p className={styles.CsText}>
-                <strong>Ease-of-use:</strong> Weaviate’s open-source database
-                was quick and easy for Morningstar to spin up locally in a
-                Docker container and start experimenting.
+                <strong>Data privacy and security:</strong> Flexible deployment
+                options and multi-tenant architecture allowed for strict data
+                privacy and security compliance.
               </p>
             </div>
             <div className={styles.tagHolder}>
               <div className={styles.CsIcon}></div>
               <p className={styles.CsText}>
-                <strong>Ease-of-use:</strong> Weaviate’s open-source database
-                was quick and easy for Morningstar to spin up locally in a
-                Docker container and start experimenting.
+                <strong>Flexibility and scalability:</strong> Weaviate supported
+                a variety of use cases–from search engines to tailored AI
+                applications–and was able to handle large and diverse data sets.
               </p>
             </div>
             <div className={styles.tagHolder}>
               <div className={styles.CsIcon}></div>
               <p className={styles.CsText}>
-                <strong>Ease-of-use:</strong> Weaviate’s open-source database
-                was quick and easy for Morningstar to spin up locally in a
-                Docker container and start experimenting.
+                <strong>Support:</strong> Weaviate offered great support from
+                local development all the way to production.
               </p>
             </div>
           </div>
@@ -185,6 +184,18 @@ export default function Main() {
                 <h3>
                   We’d love to give you a live demo of what Weaviate can do
                 </h3>
+                <iframe
+                  className={styles.embed}
+                  src="https://embeds.beehiiv.com/15b21ebd-decd-433b-ada8-2d405e345f2e?slim=true"
+                  data-test-id="beehiiv-embed"
+                  height="52"
+                  frameborder="0"
+                  scrolling="no"
+                ></iframe>
+                <div className={styles.subscribe}>
+                  <input type="checkbox" id="newsletter" />
+                  <label>Sign me up for the weekly newsletter</label>
+                </div>
               </div>
             </div>
             <div className={styles.buttonContainer}></div>

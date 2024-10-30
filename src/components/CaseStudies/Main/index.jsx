@@ -9,7 +9,7 @@ export default function Main() {
       <div className="container">
         <div className={styles.box}>
           <h2>
-            Thousands of companies rely on Weaviate to power their businesses
+            Innovative companies of all sizes power AI experiences with Weaviate
           </h2>
         </div>
 
@@ -42,7 +42,7 @@ export default function Main() {
           <div className={styles.bento03}>
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
-              <h3>Building an AI-Powered Shopping Copilot with Weaviate</h3>
+              <h3>Building an AI-Powered Shopping Copilot</h3>
             </div>
             <div className={styles.buttons}>
               <Link
@@ -54,10 +54,7 @@ export default function Main() {
           <div className={styles.bento04}>
             <div className={styles.bentoText}>
               <div className={styles.bentoImage}></div>
-              <h3>
-                Using Weaviate to Build the Foundation for AI-First App
-                Development
-              </h3>
+              <h3>Building Foundations for AI-First App Development</h3>
             </div>
             <div className={styles.buttons}>
               <Link
@@ -66,6 +63,25 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+          <div className={styles.bentoSmall}>
+            <div className={styles.bentoText}>
+              <div className={styles.bentoLogo}></div>
+              <h3>Ask Astro: An open source LLM Application</h3>
+            </div>
+          </div>
+          <div className={styles.bentoSmall}>
+            <div className={styles.bentoText}>
+              <div className={`${styles.bentoLogo} ${styles.logo02}`}></div>
+              <h3>Transforming Risk Management with Generative AI</h3>
+            </div>
+          </div>
+          <div className={styles.bentoSmall}>
+            <div className={styles.bentoText}>
+              <div className={`${styles.bentoLogo} ${styles.logo03}`}></div>
+              <h3>Solving Operational Challenges with Weaviate</h3>
+            </div>
+          </div>
+
           <div className={styles.bento05}>
             <div className={styles.bentoText}>
               <div className={styles.bentoImage}></div>
