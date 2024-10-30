@@ -19,13 +19,13 @@ export default function Recipes() {
               className={styles.buttonLight}
               to="https://github.com/weaviate/recipes-ts"
             >
-              Get them on Github
+              Get them on GitHub
             </Link>
             <Link
               className={styles.buttonDark}
-              to="https://replit.com/@malgamves/Weaviate-Typescript-Quickstart#index.ts"
+              to="https://stackblitz.com/~/github.com/weaviate/recipes-ts"
             >
-              Get them on Replit
+              Get them on Stackblitz
             </Link>
           </div>
         </div>

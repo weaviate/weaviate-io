@@ -18,17 +18,17 @@ export default function Steps() {
     <div className={styles.bgCol}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Resources</h2>
+          <h2>Learn</h2>
           <p>
             {' '}
-            Use cases specific, step-by-step resources to help you build
-            AI-Native Applications in Javascript
+            Use case specific, step-by-step resources to help you build
+            AI-Native Applications in Javascript.
           </p>
         </div>
         <Tabs>
           <TabList>
             <Tab>Site Search</Tab>
-            <Tab>Chatbots </Tab>
+            <Tab>Chatbots</Tab>
             <Tab>eCommerce</Tab>
             <Tab>Automation</Tab>
           </TabList>
@@ -136,7 +136,7 @@ export default function Steps() {
               <div className={styles.buttons}>
                 <Link
                   className={styles.buttonOutline}
-                  to="https://replit.com/@malgamves/Weaviate-Typescript-Quickstart#index.ts"
+                  to="https://stackblitz.com/~/github.com/weaviate/recipes-ts"
                 >
                   find out
                 </Link>

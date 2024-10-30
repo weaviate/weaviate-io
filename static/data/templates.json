@@ -31,30 +31,68 @@
       "date": "June 23, 2023"
     }
   ],
-  "javascript": [
+  "react": [
+    {
+      "link": "https://github.com/weaviate-tutorials/next-vector-search",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/next-vector-search",
+      "tagline": "Vector Search and RAG template application in React with Next.js.",
+      "name": "Next.js Vector Search",
+      "stack": "Next"
+    },
+    {
+      "link": "https://github.com/weaviate/quote-finder",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate/quote-finder",
+      "tagline": "Hybrid Search template application in React with Next.js",
+      "name": "Next.js Hybrid Search",
+      "stack": "Next"
+    },
+    {
+      "link": "https://github.com/weaviate-tutorials/next-multimodal-search-demo",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/next-multimodal-search-demo",
+      "tagline": "Multimodal Search template application in React with Next.js",
+      "name": "Next.js Multimodal Search",
+      "stack": "Next"
+    }
+
+  ],
+  "vue": [
     {
       "link": "https://github.com/weaviate-tutorials/nuxt-vector-search",
-      "type": "Weaviate Starter Nuxt",
       "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/nuxt-vector-search",
-      "tagline": "Vector Search and RAG in Nuxt",
-      "name": "Weaviate Starter Nuxt",
+      "tagline": "Vector Search and RAG in Vue with Nuxt.js",
+      "name": "Nuxt.js Vector Search",
       "stack": "Nuxt"
     },
     {
-      "link": "https://github.com/weaviate-tutorials/flick-picker",
-      "type": "FlickPicker",
-      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/flick-picker",
-      "tagline": "Multimodal Search and RAG in Next",
-      "name": "Weaviate Starter Next",
-      "stack": "Next"
+      "link": "https://github.com/weaviate-tutorials/nuxt-ecommerce-rag",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/nuxt-ecommerce-rag",
+      "tagline": "eCommerce Search and RAG in Vue with Nuxt.js",
+      "name": "Nuxt.js eCommerce Search",
+      "stack": "Nuxt"
     },
     {
-      "link": "https://github.com/weaviate-tutorials/next-vector-search",
-      "type": "Weaviate Starter Next",
-      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/next-vector-search",
-      "tagline": "Vector Search and RAG in Nuxt",
-      "name": "Weaviate Starter Next",
-      "stack": "Next"
+      "link": "https://github.com/weaviate-tutorials/nuxt-multimodal-search",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/nuxt-multimodal-search",
+      "tagline": "Multimodal Search in Vue with Nuxt.js",
+      "name": "Nuxt.js Multimodal Search",
+      "stack": "Nuxt"
+    }
+
+  ],
+  "others": [
+    {
+      "link": "https://github.com/weaviate-tutorials/angular-search",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/angular-search",
+      "tagline": "Vector Search and RAG in Angular",
+      "name": "Angular Vector Search",
+      "stack": "Nuxt"
+    },
+    {
+      "link": "https://github.com/weaviate-tutorials/quickstart-typescript",
+      "backgroundImage": "https://opengraph.githubassets.com/b4a0c46fab0a6d4f8f2601528a4f0e91ff4effe7d84746ca1879db67698c2304/weaviate-tutorials/quickstart-typescript",
+      "tagline": "Data Import and Vector Search in Typescript",
+      "name": "Typescript Import and Search",
+      "stack": "Typescript"
     }
 
   ],

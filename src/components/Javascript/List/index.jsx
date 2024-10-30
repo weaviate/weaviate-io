@@ -47,7 +47,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Get guided courses on various topics.
             </p>
-            <Link to="/developers/academy">Learn More</Link>
+            <Link to="/developers/academy/js">Learn More</Link>
           </div>
         </div>
       </div>

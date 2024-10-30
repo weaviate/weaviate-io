@@ -12,7 +12,10 @@ import posts from '/data/templates.json';
 import TabCard from './tabCard';
 
 const ProjectTabs = () => {
-  const option2Data = posts.javascript;
+  const reactData = posts.react;
+  const vueData = posts.vue;
+  const otherData = posts.others;
+
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleTabSelect = (index) => {
@@ -42,15 +45,7 @@ const ProjectTabs = () => {
                 }`}
                 onClick={() => handleTabSelect(0)}
               >
-                Vue
-              </Tab>
-              <Tab
-                className={`${styles.tabs} ${
-                  activeTabIndex === 1 ? styles.selectedTab : ''
-                }`}
-                onClick={() => handleTabSelect(1)}
-              >
-                Express
+                React
               </Tab>
               <Tab
                 className={`${styles.tabs} ${
@@ -58,7 +53,7 @@ const ProjectTabs = () => {
                 }`}
                 onClick={() => handleTabSelect(2)}
               >
-                React
+                Vue
               </Tab>
               <Tab
                 className={`${styles.tabs} ${
@@ -66,35 +61,35 @@ const ProjectTabs = () => {
                 }`}
                 onClick={() => handleTabSelect(3)}
               >
-                Angular
+                Others
               </Tab>
             </TabList>
 
             <TabPanel>
               <div className={styles.latestModule}>
-                {option2Data.map((post) => {
+                {reactData.map((post) => {
                   return <TabCard key={post.tagline} details={post} />;
                 })}
               </div>
             </TabPanel>
 
             <TabPanel>
-              <div className="container">
-                <h3>Coming Soon</h3>
+            <div className={styles.latestModule}>
+                {vueData.map((post) => {
+                  return <TabCard key={post.tagline} details={post} />;
+                })}
               </div>
             </TabPanel>
 
             <TabPanel>
-              <div className="container">
-                <h3>Coming Soon</h3>
+            <div className={styles.latestModule}>
+                {otherData.map((post) => {
+                  return <TabCard key={post.tagline} details={post} />;
+                })}
               </div>
             </TabPanel>
 
-            <TabPanel>
-              <div className="container">
-                <h3>Coming Soon</h3>
-              </div>
-            </TabPanel>
+            
           </Tabs>
         </div>
       </section>

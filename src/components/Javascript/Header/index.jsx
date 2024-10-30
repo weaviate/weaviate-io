@@ -14,7 +14,7 @@ export default function Header() {
           <h2 className={styles.title}>
             Build AI-Native Applications with Javascript
           </h2>
-          <p>A learning resources hub for builders of all levels.</p>
+          <p>A hub for builders of all levels.</p>
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}

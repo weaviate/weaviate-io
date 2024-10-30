@@ -33,9 +33,9 @@ export default function Resources() {
   return (
     <div className="container">
       <div className={styles.resourcesContainer}>
-        <h2>Resources</h2>
+        <h2>Learn</h2>
         <p>
-          Use cases specific, step-by-step resources to help you build AI-Native
+          Use case specific, step-by-step resources to help you build AI-Native
           Applications in Javascript.
         </p>
 

@@ -16,7 +16,7 @@ export default function BlogItem(props) {
           }}
         ></div>
         <div className={styles.textBox}>
-          <h3>{details.type}</h3>
+          <h3>{details.name}</h3>
           <p>{details.tagline}</p>
         </div>
       </div>
