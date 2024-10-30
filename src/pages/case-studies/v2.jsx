@@ -4,6 +4,7 @@ import StudyHeader from '/src/components/CaseStudies/V2/Header';
 import ContactUsForm from '/src/components/ContactUsForm';
 import Main from '/src/components/CaseStudies/V2/Main';
 import Study from '/src/components/CaseStudies/V2/Study';
+import Stories from '/src/components/CaseStudies/V2/Stories';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Integrations from '/src/components/CaseStudies/V2/Integrations';
 
@@ -16,6 +17,7 @@ export default function CaseStudyPage() {
       >
         <StudyHeader />
         <Main />
+        <Stories />
       </Layout>
       <ThemeSwitch />
     </div>

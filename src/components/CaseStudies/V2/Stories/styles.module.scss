@@ -1,0 +1,382 @@
+.container {
+  padding: 3rem;
+
+  @media screen and (max-width: 1400px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    color: #130c49;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+    width: 55%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+.bentoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bento01,
+.bento02,
+.bento03,
+.bento04,
+.bento05,
+.bento06 {
+  flex-shrink: 1;
+}
+
+.bento01 {
+  width: 20.875rem;
+  height: 26.5235rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(47, 47, 169, 0.8) 100%
+    ),
+    url('/img/site/instabase-bg-image.png');
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/instabase-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12.3125rem;
+      height: 1.3125rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: #f7f9fd;
+      font-family: Inter;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%; /* 1.3125rem */
+    }
+  }
+}
+
+.bento02 {
+  width: 20.875rem;
+  height: 26.5235rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(47, 47, 169, 0.1) 100%
+    ),
+    url('/img/site/neople-background-image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/neople-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%; /* 2.275rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bento03 {
+  width: 20.875rem;
+  height: 26.5235rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+
+  background: linear-gradient(
+      180deg,
+      rgba(247, 249, 253, 0) 0%,
+      rgba(46, 40, 139, 0.8) 100%
+    ),
+    url('/img/site/moonsift-background-image.png');
+  background-size: contain;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/moonsift-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+  .bento01,
+  .bento04 {
+    width: 33rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 22rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 56rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .bento01,
+  .bento04 {
+    width: 30rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 20rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 960px) {
+  .bento01,
+  .bento04 {
+    width: 27rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 23rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 940px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02,
+  .bento03 {
+    width: 24rem;
+    height: 33.9375rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+@media (max-width: 795px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .bento01,
+  .bento02,
+  .bento03,
+  .bento04,
+  .bento05,
+  .bento06 {
+    width: 100%; /* Full width when stacked */
+  }
+}
+
+.buttons {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  right: 20px;
+
+  .arrowButton {
+    background: url('/img/site/ArrowButton.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrowButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: #130c49;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}

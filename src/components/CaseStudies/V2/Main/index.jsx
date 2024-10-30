@@ -5,7 +5,7 @@ import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
 export default function Main() {
   return (
-    <header className={styles.headerSecurity}>
+    <main className={styles.mainBody}>
       <div className="container">
         <div className={styles.box}>
           <div className={styles.firstColumn}>
@@ -55,96 +55,142 @@ export default function Main() {
         <div className={styles.bentoGrid}>
           <div className={styles.bento01}>
             <div className={styles.bentoText}>
+              <span>about the company</span>
               <div className={styles.bentoLogo}></div>
-              <h3>Turning Unstructured Data into Insights</h3>
-              <p>How Instabase delivers enterprise-ready AI with Weaviate</p>
-            </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/instabase"
-                className={styles.arrowButton}
-              ></Link>
+              <p>
+                <Link to="">Morningstar</Link>, Inc. is a leading global
+                provider of independent investment insights. Morningstar offers
+                an extensive line of products and services for individual
+                investors, financial advisors, asset managers and owners,
+                retirement plan providers and sponsors, and institutional
+                investors in the debt and private capital markets. Morningstar
+                provides data and research insights on a wide range of
+                investment offerings, including managed investment products,
+                publicly listed companies, private capital markets, debt
+                securities, and real-time global market data. 
+              </p>
             </div>
           </div>
           <div className={styles.bento02}>
             <div className={styles.bentoText}>
-              <div className={styles.bentoLogo}></div>
-              <h3>Transforming Customer Service with Generative AI</h3>
-            </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/neople"
-                className={styles.arrowButton}
-              ></Link>
+              <span>challenge</span>
+              <p>
+                Over the last 40 years, Morningstar amassed an extensive
+                collection of proprietary financial data. Morningstar has sought
+                to further empower investors that rely on its data by developing
+                an advanced research assistant AI application. According to
+                Benjamin Barrett, Morningstar’s Head of Technology, Research
+                Products, building a chatbot on that data “looks like magic, but
+                when you start peeling back the layers of the onion, you have to
+                ask, is it actually accurate? Is it pulling the latest,
+                greatest, most relevant data? Are our answers robust and
+                complete?”
+              </p>
+              <p>
+                As his engineering team worked with Morningstar’s Quantitative
+                Research team to build their Intelligence Engine Platform, they
+                had to ensure an incredibly high level of accuracy in order to
+                maintain their users’ trust. “We want to have one single source
+                of truth. Our whole mission is to empower investor success. And
+                the way to do that is to give them reliable, trustworthy
+                financial data.”
+              </p>
             </div>
           </div>
-          <div className={styles.bento03}>
-            <div className={styles.bentoText}>
-              <div className={styles.bentoLogo}></div>
-              <h3>Building an AI-Powered Shopping Copilot with Weaviate</h3>
-            </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/neople"
-                className={styles.arrowButton}
-              ></Link>
-            </div>
-          </div>
+          <div className={styles.bento03}></div>
           <div className={styles.bento04}>
             <div className={styles.bentoText}>
-              <div className={styles.bentoImage}></div>
-              <h3>
-                Using Weaviate to Build the Foundation for AI-First App
-                Development
-              </h3>
+              <span>why weaviate</span>
+              <p>
+                In early 2023, Morningstar saw early success in experiments with
+                LLMs and snippets of their own data. They quickly realized the
+                potential of using AI to harness decades of longform research
+                content and real-time data with RAG, and started their search
+                for the right vector database.
+              </p>
             </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/neople"
-                className={styles.arrowButton}
-              ></Link>
+            <div className={styles.tagHolder}>
+              <div className={styles.CsIcon}></div>
+              <p className={styles.CsText}>
+                <strong>Ease-of-use:</strong> Weaviate’s open-source database
+                was quick and easy for Morningstar to spin up locally in a
+                Docker container and start experimenting.
+              </p>
+            </div>
+            <div className={styles.tagHolder}>
+              <div className={styles.CsIcon}></div>
+              <p className={styles.CsText}>
+                <strong>Ease-of-use:</strong> Weaviate’s open-source database
+                was quick and easy for Morningstar to spin up locally in a
+                Docker container and start experimenting.
+              </p>
+            </div>
+            <div className={styles.tagHolder}>
+              <div className={styles.CsIcon}></div>
+              <p className={styles.CsText}>
+                <strong>Ease-of-use:</strong> Weaviate’s open-source database
+                was quick and easy for Morningstar to spin up locally in a
+                Docker container and start experimenting.
+              </p>
+            </div>
+            <div className={styles.tagHolder}>
+              <div className={styles.CsIcon}></div>
+              <p className={styles.CsText}>
+                <strong>Ease-of-use:</strong> Weaviate’s open-source database
+                was quick and easy for Morningstar to spin up locally in a
+                Docker container and start experimenting.
+              </p>
             </div>
           </div>
-          <div className={styles.bento05}>
+          <div className={styles.bentoColumn}>
+            <div className={styles.bento05}>
+              <div className={styles.bentoText}>
+                <span>results</span>
+                <p>
+                  With Weaviate, Morningstar was able to build their
+                  Intelligence Engine Platform, a product which solves a
+                  challenge facing today’s financial services firms: how to
+                  easily create and customize AI applications built on a
+                  foundation of trusted financial data and research. The
+                  Intelligence Engine also powers a variety of workflows, APIs,
+                  and chat interfaces across Morningstar’s own product ecosystem
+                  – including Mo, it’s investment research-assistant chatbot –
+                  for both internal and external users.
+                </p>
+              </div>
+            </div>
+            <div className={styles.bento06}>
+              <div className={styles.bentoText}>
+                <div className={styles.innerText}>
+                  <h3>We’re here to help!</h3>
+                  <p>
+                    Need support getting started with Weaviate? We’ve got your
+                    back.
+                  </p>
+                </div>
+              </div>
+              <div className={styles.buttonContainer}>
+                <Link
+                  to="https://console.weaviate.cloud"
+                  className={styles.buttonSmall}
+                >
+                  {'Get in touch >'}
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className={styles.bento07}>
             <div className={styles.bentoText}>
-              <div className={styles.bentoImage}></div>
               <div className={styles.innerText}>
                 <h3>
-                  “Through our Corpus API connected to Weaviate, users can build
-                  very powerful, low latency search engines in minutes with
-                  little to no code.”
+                  We’d love to give you a live demo of what Weaviate can do
                 </h3>
-                <p>Aisis Julian</p>
-                <span>Senior Software Engineer, Morningstar</span>
               </div>
             </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/morningstar"
-                className={styles.arrowButton}
-              ></Link>
-            </div>
-          </div>
-          <div className={styles.bento06}>
-            <div className={styles.bentoText}>
-              <div className={styles.innerText}>
-                <h3>Start building with Weaviate for free</h3>
-              </div>
-            </div>
-            <div className={styles.buttonContainer}>
-              <Link
-                to="https://console.weaviate.cloud"
-                className={styles.buttonDark}
-              >
-                Get Started
-              </Link>
-              <Link to="/#contact-us" className={styles.buttonLight}>
-                Talk to Sales
-              </Link>
-            </div>
+            <div className={styles.buttonContainer}></div>
           </div>
         </div>
       </div>
-    </header>
+    </main>
   );
 }

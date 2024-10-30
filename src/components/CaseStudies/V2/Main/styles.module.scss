@@ -1,9 +1,14 @@
 :root {
   --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: ##f7f9fd;
   --headerFont: 'Plus Jakarta Sans';
   --paraFont: 'Inter';
 }
 
+.mainBody {
+  background: #edf4f8;
+}
 .container {
   padding: 3rem;
 
@@ -79,7 +84,7 @@
   }
 
   span {
-    color: #8396b1;
+    color: var(--subColor);
     font-family: var(--paraFont);
     font-size: 1rem;
     font-style: normal;
@@ -138,15 +143,12 @@
 }
 
 .bento01 {
-  width: 37.1875rem;
-  height: 24.875rem;
+  width: 25.9375rem;
+  height: 37.125rem;
+  flex-shrink: 0;
   border-radius: 1.25rem;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(47, 47, 169, 0.8) 100%
-    ),
-    url('/img/site/instabase-bg-image.png');
+  border-radius: 1.25rem;
+  background: var(--darkColor);
   background-size: cover;
   background-position: center;
   transition: all 0.3s ease-in-out;
@@ -163,13 +165,34 @@
       margin: 0px 0px 20px;
     }
     .bentoLogo {
-      background: url('/img/site/instabase-cs.svg');
+      background: url('/img/site/Morningstar.svg');
       background-size: contain;
       background-repeat: no-repeat;
       width: 12.3125rem;
-      height: 1.3125rem;
+      height: 2.5625rem;
+
       flex-shrink: 0;
       margin: 30px 0px;
+    }
+
+    span {
+      color: var(--Color-12, #8396b1);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
     }
 
     h3 {
@@ -187,27 +210,24 @@
     }
 
     p {
-      color: #f7f9fd;
-      font-family: Inter;
-      font-size: 0.875rem;
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
       font-style: normal;
-      font-weight: 500;
-      line-height: 150%; /* 1.3125rem */
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
     }
   }
 }
 
 .bento02 {
-  width: 26.5625rem;
-  height: 24.875rem;
+  width: 37.8125rem;
+  height: 37.125rem;
+  flex-shrink: 0;
   border-radius: 1.25rem;
+
   background: #f7f9fd;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(47, 47, 169, 0.1) 100%
-    ),
-    url('/img/site/neople-background-image.png');
+
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: bottom;
@@ -221,6 +241,9 @@
 
   .bentoText {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     @media screen and (max-width: 900px) {
       margin: 0px 0px 20px;
     }
@@ -232,6 +255,35 @@
       height: 2.875rem;
       flex-shrink: 0;
       margin: 30px 0px;
+    }
+
+    span {
+      color: var(--Color-12, #8396b1);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%; /* 1.6rem */
     }
 
     h3 {
@@ -251,22 +303,21 @@
 }
 
 .bento03 {
-  width: 26.5625rem;
-  height: 33.9375rem;
+  width: 65rem;
+  height: 32.4375rem;
+  flex-shrink: 0;
   border-radius: 1.25rem;
 
-  background: linear-gradient(
-      180deg,
-      rgba(247, 249, 253, 0) 0%,
-      rgba(46, 40, 139, 0.8) 100%
-    ),
-    url('/img/site/moonsift-background-image.png');
-  background-size: contain;
-  background-position-y: bottom;
+  background: url('/img/site/case-study-main-01.png');
+  border-radius: 0.9375rem;
+
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  background-size: cover;
+
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
   position: relative;
-  padding: 40px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -298,20 +349,25 @@
 }
 
 .bento04 {
-  width: 37.1875rem;
-  height: 33.75rem;
+  width: 37.8125rem;
+  height: 44.875rem;
+  flex-shrink: 0;
   border-radius: 1.25rem;
-  background: #85e3bc;
+  background: #f7f9fd;
   background-size: cover;
   transition: all 0.3s ease-in-out;
   position: relative;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  gap: 40px;
 
   .bentoText {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
     @media screen and (max-width: 900px) {
       margin: 0px 0px 20px;
     }
@@ -329,20 +385,56 @@
       }
     }
 
-    h3 {
+    p {
       color: var(--darkColor);
-      font-family: var(--headerFont);
-      font-size: 2rem;
+      font-family: var(--paraFont);
+      font-size: 1rem;
       font-style: normal;
-      font-weight: 700;
-      line-height: 140%; /* 2.8rem */
+      font-weight: 400;
+      line-height: 160%; /* 1.6rem */
     }
+
+    span {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+  }
+
+  .tagHolder {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .CsIcon {
+    background: url('/img/site/case-study-main-icon-01.svg');
+    background-size: cover;
+    width: 2.30888rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    margin-top: 0px;
+  }
+
+  .CsText {
+    color: var(--darkColor);
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    width: 100%;
   }
 }
 
 .bento05 {
-  width: 64.875rem;
-  height: 22.6875rem;
+  width: 25.9375rem;
+  height: 29.625rem;
+  flex-shrink: 0;
   border-radius: 1.25rem;
   background: var(--darkColor);
   background-size: cover;
@@ -351,10 +443,64 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   .bentoText {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    p {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    span {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+  }
+}
+
+.bentoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bento06 {
+  width: 25.9375rem;
+  height: 14rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #85e3bc;
+  background-size: cover;
+  background-position-x: center;
+
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin-bottom: 20px;
     display: flex;
     gap: 30px;
 
@@ -362,51 +508,37 @@
       margin: 0px 0px 20px;
       flex-direction: column;
     }
-    .bentoImage {
-      background: url('/img/site/morningstar-header-image.png');
-      background-size: cover;
-      background-position-x: center;
-      width: 11.9375rem;
-      height: 15.6875rem;
-      border-radius: 1.25rem;
-      flex-shrink: 0;
-      margin: 0px 0px 20px 0px;
-    }
 
     h3 {
-      color: #f7f9fd;
+      color: var(--darkColor);
       font-family: var(--headerFont);
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-style: normal;
-      font-weight: 600;
-      line-height: 150%; /* 3rem */
+      font-weight: 700;
+      line-height: 160%; /* 2.4rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
     }
 
     p {
-      color: #61bd73;
-      font-family: Inter;
-      font-size: 1.5rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 157.33%; /* 2.35994rem */
-    }
-
-    span {
-      color: #61bd73;
-      font-family: Inter;
-      font-size: 1.25rem;
+      color: var(--darkColor);
+      font-family: var(--paraFont);
+      font-size: 0.875rem;
       font-style: normal;
       font-weight: 400;
-      line-height: 157.33%; /* 1.96663rem */
+      line-height: 140%; /* 1.225rem */
     }
   }
 }
 
-.bento06 {
+.bento07 {
   width: 65.625rem;
   height: 18.875rem;
   border-radius: 1.25rem;
-  background: url('/img/site/gradient-bg-cs.png');
+  background: url('/img/site/case-study-main-02.png');
   background-size: cover;
   background-position-x: center;
 
@@ -428,12 +560,12 @@
     }
 
     h3 {
-      color: var(--darkColor);
+      color: #61bd73;
       font-family: var(--headerFont);
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-style: normal;
-      font-weight: 700;
-      line-height: 140%; /* 3.5rem */
+      font-weight: 600;
+      line-height: 140%; /* 2.8rem */
       width: 70%;
 
       @media screen and (max-width: 900px) {
@@ -580,6 +712,25 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+
+  .buttonSmall {
+    width: 10.0625rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 3.125rem;
+    border: 1px solid #ecf4f8;
+    background: #ecf4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--darkColor);
+    text-align: center;
+    font-family: var(--paraFont);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.37663rem */
+  }
 
   .buttonDark {
     color: #f7f9fd;
