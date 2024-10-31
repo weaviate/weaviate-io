@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+	// highlight-start
 	cfg := weaviate.Config{
 		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
@@ -22,6 +23,7 @@ func main() {
 	}
 
 	client, err := weaviate.NewClient(cfg)
+	// highlight-end
 	if err != nil {
 		fmt.Println(err)
 	}

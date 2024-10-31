@@ -5,12 +5,14 @@ import weaviate, { WeaviateClient } from 'weaviate-client';
 const wcdUrl = process.env.WCD_URL as string;
 const wcdApiKey = process.env.WCD_API_KEY as string;
 
+// highlight-start
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   wcdUrl, // Replace with your Weaviate Cloud URL
   {
     authCredentials: new weaviate.ApiKey(wcdApiKey), // Replace with your Weaviate Cloud API key
   }
 );
+// highlight-end
 
 var clientReadiness = await client.isReady();
 console.log(clientReadiness); // Should return `true`

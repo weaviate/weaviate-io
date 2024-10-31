@@ -53,7 +53,18 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
     .map(format)
     .join('\n');
 
-    let language2 = (language === 'gonew' | language === 'goraw') ? 'go' : language;
+    let language2 = language;
+    switch (language2) {
+      case 'gonew':
+        language2 = 'go';
+        break;
+      case 'goraw':
+        language2 = 'go';
+        break;
+      case 'javaraw':
+        language2 = 'java';
+        break;
+    }
 
 
   return (
