@@ -34,13 +34,13 @@ public class CreateCollection {
     Map<String, Object> generativeOpenAISettings = new HashMap<>();
 
     Map<String, Object> moduleConfig = new HashMap<>();
-    moduleConfig.put("text2vec-ollama", text2vecOpenAISettings);
-    moduleConfig.put("generative-ollama", generativeOpenAISettings);
+    moduleConfig.put("text2vec-openai", text2vecOpenAISettings);
+    moduleConfig.put("generative-openai", generativeOpenAISettings);
 
     // Create the collection "Question"
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-ollama")
+      .vectorizer("text2vec-openai")
       .moduleConfig(moduleConfig)
       .build();
     // highlight-end
