@@ -4,6 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/python/quickstart.query.rag.py';
 import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.query.rag.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/3_2_rag/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/quickstart_local/RAG.java';
 
 
 <Tabs groupId="languages">
@@ -40,43 +41,17 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/3_2_ra
   title="quickstart/3_2_rag/main.go"
 />
 </TabItem>
-{/* <TabItem value="java" label="Java">
 
-```java
+<TabItem value="java" label="Java">
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START RAG"
+  endMarker="// END RAG"
+  language="javaraw"
+  title="quickstart/RAG.java"
+/>
+</TabItem>
 
-package io.weaviate;
-
-import java.util.ArrayList;
-import io.weaviate.client.Config;
-import io.weaviate.client.WeaviateClient;
-import io.weaviate.client.base.Result;
-import io.weaviate.client.v1.schema.model.DataType;
-import io.weaviate.client.v1.schema.model.Property;
-import io.weaviate.client.v1.schema.model.WeaviateClass;
-
-public class App {
-  public static void main(String[] args) {
-    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
-
-    WeaviateClient client = new WeaviateClient(config);
-
-    // we will create the class "Question" and the properties
-    WeaviateClass clazz = WeaviateClass.builder()
-      .className("Question")
-      .vectorizer("text2vec-openai")
-      .build();
-
-    // add the schema
-    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
-    }
-  }
-}
-```
-
-</TabItem> */}
 <TabItem value="curl" label="Curl">
 
 ```bash
