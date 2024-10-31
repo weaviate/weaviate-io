@@ -27,8 +27,8 @@ public class CreateCollection {
 
     // END CreateCollection
     client.schema().classDeleter().withClassName("Question").run();
-    // START CreateCollection
 
+    // START CreateCollection
     // highlight-start
     Map<String, Object> text2vecOpenAISettings = new HashMap<>();
     Map<String, Object> generativeOpenAISettings = new HashMap<>();

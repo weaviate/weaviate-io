@@ -17,8 +17,8 @@ public class CreateCollection {
 
     // END CreateCollection
     client.schema().classDeleter().withClassName("Question").run();
-    // START CreateCollection
 
+    // START CreateCollection
     // highlight-start
     Map<String, Object> text2vecOllamaSettings = new HashMap<>();
     text2vecOllamaSettings.put("apiEndpoint", "http://host.docker.internal:11434"); // Allow Weaviate from within a Docker container to contact your Ollama instance
