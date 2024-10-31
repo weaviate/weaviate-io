@@ -1,5 +1,4 @@
 package io.weaviate.docs.quickstart;
-import static org.assertj.core.api.Assertions.assertThat;
 
 // START InstantiationExample
 import io.weaviate.client.Config;
@@ -7,6 +6,10 @@ import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.base.Result;
 
+// END InstantiationExample
+import static org.assertj.core.api.Assertions.assertThat;
+
+// START InstantiationExample
 // Set these environment variables
 // WCD_HOSTNAME     Your Weaviate instance hostname
 // WCD_API_KEY      Your Weaviate instance API key

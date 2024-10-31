@@ -1,11 +1,14 @@
 package io.weaviate.docs.quickstart_local;
-import static org.assertj.core.api.Assertions.assertThat;
 
 // START InstantiationExample
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.base.Result;
 
+// END InstantiationExample
+import static org.assertj.core.api.Assertions.assertThat;
+
+// START InstantiationExample
 public class IsReady {
   public static void main(String[] args) {
     // highlight-start
