@@ -12,9 +12,9 @@ This page lists [developer release notes](https://github.com/weaviate/weaviate/r
 
 ### Weaviate core and client releases
 
-import MatrixIntro from '/_includes/clients/matrix-intro.md';
+import ReleaseHistory from '/_includes/release-history.md';
 
-<MatrixIntro />
+<ReleaseHistory />
 
 ## Weaviate Core
 
