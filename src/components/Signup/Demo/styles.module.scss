@@ -510,6 +510,19 @@
   }
 }
 
+.hs-custom-style
+  > div
+  > div:last-of-type
+  .hs-input:not([type='checkbox']):not([type='radio']),
+.hs-custom-style
+  fieldset
+  > div:last-of-type
+  .hs-input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100px;
+}
+
 .hsForm {
   color: #b5d2dc;
   background: #d9e7ecb0;
@@ -521,10 +534,10 @@
     background: #272361;
   }
 
-  input [type='textarea'] {
+  input[type='textarea'] {
     background: #272361;
     height: 40px;
-    max-height: 200px;
+    max-height: 200px !important;
   }
 
   ::marker {
