@@ -10,6 +10,7 @@ import io.weaviate.client.base.Result;
 // Set these environment variables
 // WCD_HOSTNAME     Your Weaviate instance hostname
 // WCD_API_KEY      Your Weaviate instance API key
+// OPENAI_API_KEY   Your OpenAI API key
 
 public class IsReady {
   public static void main(String[] args) throws Exception {
