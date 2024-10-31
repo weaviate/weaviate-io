@@ -5,8 +5,8 @@
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: 100vh;
-  overflow: hidden;
+  height: 110vh;
+
   display: flex;
 
   @media screen and (max-width: 1100px) {
@@ -161,10 +161,10 @@
   height: 35.12813rem;
   margin: auto;
   flex-shrink: 0;
-  background: #130c49;
 
   @media screen and (max-width: 1300px) {
-    width: auto;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -491,8 +491,8 @@
   }
 
   .signUpBox {
-    width: 30rem;
-    height: 34rem;
+    width: 100%;
+    height: auto;
   }
 
   .typeQuote .image {
@@ -507,5 +507,39 @@
     br {
       display: none;
     }
+  }
+}
+
+.hsForm {
+  color: #b5d2dc;
+  background: #d9e7ecb0;
+  padding: 20px;
+  border-radius: 1.25rem;
+
+  input[type='text'],
+  [type='email'] {
+    background: #272361;
+  }
+
+  input [type='textarea'] {
+    background: #272361;
+    height: 40px;
+    max-height: 200px;
+  }
+
+  ::marker {
+    display: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li,
+  span,
+  label {
+    list-style: none;
+    color: #b5d2dc;
+    font-size: 14px !important;
   }
 }

@@ -1,14 +1,32 @@
 import Link from '@docusaurus/Link';
 import React, { useEffect } from 'react';
 import styles from './styles.module.scss';
+import { css } from 'styled-components';
 
-export default function introduction() {
+export default function Introduction() {
+  useEffect(() => {
+    // Load the external HubSpot form script
+    const script = document.createElement('script');
+    script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.async = true;
+    script.onload = () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: '8738733',
+          formId: '62449f1d-d31f-44b3-b52d-9903f1ed448e',
+          target: '#hs-form',
+        });
+      }
+    };
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <div className={styles.demoContainer}>
       <div className={styles.demoSideA}>
         <h1>
-          Learn how to take your AI applications<br></br> to market faster with
-          Weaviate
+          Learn how to take your AI applications
+          <br /> to market faster with Weaviate
         </h1>
 
         <p>
@@ -86,9 +104,12 @@ export default function introduction() {
       <div className={styles.demoSideB}>
         <div className={styles.signUp}>
           <h2>
-            We’d love to give you a live<br></br> demo of what Weaviate can do
+            We’d love to give you a live
+            <br /> demo of what Weaviate can do
           </h2>
-          <div className={styles.signUpBox} />
+          <div className={styles.signUpBox}>
+            <div id="hs-form" className={styles.hsForm}></div>
+          </div>
         </div>
       </div>
     </div>
