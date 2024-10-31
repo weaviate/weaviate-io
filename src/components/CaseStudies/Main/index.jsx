@@ -95,12 +95,6 @@ export default function Main() {
                 <span>Senior Software Engineer, Morningstar</span>
               </div>
             </div>
-            <div className={styles.buttons}>
-              <Link
-                to="/case-studies/morningstar"
-                className={styles.arrowButton}
-              ></Link>
-            </div>
           </div>
           <div className={styles.bento06}>
             <div className={styles.bentoText}>

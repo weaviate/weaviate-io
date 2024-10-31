@@ -211,7 +211,6 @@
     }
   }
 }
-
 .bentoSmall {
   width: 20.875rem;
   height: 19.9375rem;
@@ -224,47 +223,54 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: center;
 
   .bentoText {
-    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    align-items: flex-start;
+    gap: 20px;
+    flex-grow: 1;
+  }
 
-    @media screen and (max-width: 900px) {
-      margin: 0px 0px 20px;
-    }
+  .bentoLogo {
+    width: 14.125rem;
+    height: 2.75rem;
+    background: url('/img/site/astronomer-logo-cs.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
 
-    .bentoLogo {
-      background: url('/img/site/astronomer-logo-cs.svg');
-      width: 14.125rem;
-      height: 2.75rem;
-      flex-shrink: 0;
-      background-repeat: no-repeat;
-      background-position-y: center;
-    }
-    .logo02 {
-      background: url('/img/site/preverity-logo-cs.svg');
-      width: 15.19538rem;
-      height: 2.75rem;
-      flex-shrink: 0;
-    }
+  .logo02 {
+    background: url('/img/site/preverity-logo-cs.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: -220%;
+  }
 
-    .logo03 {
-      background: url('/img/site/humach-logo-cs.svg');
-      width: 14.43744rem;
-      height: 2.31306rem;
-      flex-shrink: 0;
-    }
+  .logo03 {
+    background: url('/img/site/humach-logo-cs.svg');
+    background-repeat: no-repeat;
+  }
 
-    h3 {
-      color: var(--darkColor);
-      font-family: var(--headerFont);
-      font-size: 1.75rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 140%;
+  h3 {
+    color: var(--darkColor);
+    font-family: var(--headerFont);
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    .bentoText {
+      gap: 10px;
     }
   }
 }
@@ -307,7 +313,7 @@
       font-size: 2rem;
       font-style: normal;
       font-weight: 700;
-      line-height: 140%; /* 2.8rem */
+      line-height: 140%;
     }
   }
 }
@@ -415,7 +421,6 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 1300px) {
   .bento01,
   .bento04 {
@@ -431,7 +436,6 @@
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 1100px) {
   .bento01,
   .bento04 {
@@ -522,7 +526,7 @@
   .bento04,
   .bento05,
   .bento06 {
-    width: 100%; /* Full width when stacked */
+    width: 100%;
   }
 }
 

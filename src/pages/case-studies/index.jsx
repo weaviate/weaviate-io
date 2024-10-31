@@ -11,7 +11,7 @@ export default function CaseStudyPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Case Studies - Weaviate"
+        title="Case Studies"
         description="Read how companies are using Weaviate to build AI-powered applications."
       >
         <StudyHeader />
