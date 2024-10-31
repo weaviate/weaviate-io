@@ -7,7 +7,8 @@ export default function introduction() {
     <div className={styles.demoContainer}>
       <div className={styles.demoSideA}>
         <h1>
-          Learn how to take your AI applications to market faster with Weaviate
+          Learn how to take your AI applications<br></br> to market faster with
+          Weaviate
         </h1>
 
         <p>
@@ -84,7 +85,9 @@ export default function introduction() {
       </div>
       <div className={styles.demoSideB}>
         <div className={styles.signUp}>
-          <h2>We’d love to give you a live demo of what Weaviate can do</h2>
+          <h2>
+            We’d love to give you a live<br></br> demo of what Weaviate can do
+          </h2>
           <div className={styles.signUpBox} />
         </div>
       </div>

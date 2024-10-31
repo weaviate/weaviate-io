@@ -5,7 +5,7 @@
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: 120vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
 
@@ -62,7 +62,7 @@
     font-weight: 400;
     line-height: 160%; /* 1.6rem */
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 850px) {
       width: 100%;
     }
   }
@@ -79,9 +79,7 @@
 .demoSideB {
   flex: 1;
   flex-basis: 50%;
-  text-align: center;
   justify-content: center;
-
   background-image: url('/img/site/weaviate-bottom-right-bubble.png');
   background-color: #130c49;
   background-color: #130c49;
@@ -111,7 +109,6 @@
 
   h2 {
     color: #61bd73;
-    text-align: center;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.875rem;
     font-style: normal;
@@ -299,7 +296,7 @@
 
 .bottomBar {
   display: flex;
-
+  margin: -10px 0px;
   flex-direction: column;
 }
 
@@ -441,5 +438,74 @@
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.37663rem */
+  }
+}
+
+.demoSideA h1,
+.demoSideB h2 {
+  font-size: 1.5rem;
+}
+
+.demoSideA p,
+.demoSideB p,
+.typeQuote p,
+.typeQuote span {
+  font-size: 0.9rem;
+}
+
+.typeIcon .homeIcon,
+.typeIcon .ragIcon,
+.typeIcon .genIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.signUpBox {
+  width: 28rem;
+  height: 32rem;
+}
+
+.typeQuote .image {
+  width: 5rem;
+  height: 5rem; /* Smaller starting quote image size */
+}
+
+/* Increase Font and Image Size as Screen Size Decreases */
+
+@media screen and (max-width: 1100px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    font-size: 1.75rem;
+  }
+
+  .demoSideA p,
+  .demoSideB p {
+    font-size: 1rem;
+  }
+
+  .typeIcon .homeIcon,
+  .typeIcon .ragIcon,
+  .typeIcon .genIcon {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .signUpBox {
+    width: 30rem;
+    height: 34rem;
+  }
+
+  .typeQuote .image {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    br {
+      display: none;
+    }
   }
 }
