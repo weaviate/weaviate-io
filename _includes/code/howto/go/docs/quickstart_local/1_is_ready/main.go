@@ -9,12 +9,14 @@ import (
 )
 
 func main() {
+	// highlight-start
 	cfg := weaviate.Config{
 		Host:   "localhost:8080",
 		Scheme: "http",
 	}
 
 	client, err := weaviate.NewClient(cfg)
+	// highlight-end
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -29,11 +29,13 @@ public class Import {
     String apiKey = System.getenv("WCD_API_KEY");
     String OpenAIKey = System.getenv("OPENAI_API_KEY");
 
+    // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       put("X-OpenAI-Api-Key", OpenAIKey);
     } };
 
     Config config = new Config("https", host, headers);
+    // highlight-end
     WeaviateClient client = WeaviateAuthClient.apiKey(config, apiKey);
 
     // Get JSON data
@@ -41,6 +43,7 @@ public class Import {
     String jsonData = new BufferedReader(new InputStreamReader(((HttpURLConnection) url.openConnection()).getInputStream()))
       .lines().reduce("", String::concat);
 
+    // highlight-start
     // Create and execute batch
     ObjectsBatcher batcher = client.batch().objectsBatcher();
 
@@ -59,6 +62,7 @@ public class Import {
 
     // Flush
     batcher.run();
+    // highlight-end
   }
 }
 // END Import

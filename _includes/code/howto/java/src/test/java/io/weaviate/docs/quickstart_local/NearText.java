@@ -15,6 +15,8 @@ public class NearText {
     Config config = new Config("http", "localhost:8080");  // Replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
+
+    // highlight-start
     NearTextArgument nearText = NearTextArgument.builder()
       .concepts(new String[]{"biology"})
       .build();
@@ -35,12 +37,8 @@ public class NearText {
       .buildQuery();
 
     Result<GraphQLResponse> result = client.graphQL().raw().withQuery(query).run();
-
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-    } else {
-      System.out.println(result.getResult());
-    }
+    // highlight-end
+    System.out.println(result.getResult());
   }
 }
 // END NearText

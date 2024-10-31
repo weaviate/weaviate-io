@@ -25,6 +25,7 @@ public class Import {
     String jsonData = new BufferedReader(new InputStreamReader(((HttpURLConnection) url.openConnection()).getInputStream()))
       .lines().reduce("", String::concat);
 
+    // highlight-start
     // Create and execute batch
     ObjectsBatcher batcher = client.batch().objectsBatcher();
 
@@ -43,6 +44,7 @@ public class Import {
 
     // Flush
     batcher.run();
+    // highlight-end
   }
 }
 // END Import

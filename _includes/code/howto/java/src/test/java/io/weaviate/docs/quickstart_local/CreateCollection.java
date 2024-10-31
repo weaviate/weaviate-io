@@ -19,6 +19,7 @@ public class CreateCollection {
     client.schema().classDeleter().withClassName("Question").run();
     // START CreateCollection
 
+    // highlight-start
     Map<String, Object> text2vecOllamaSettings = new HashMap<>();
     text2vecOllamaSettings.put("apiEndpoint", "http://host.docker.internal:11434"); // Allow Weaviate from within a Docker container to contact your Ollama instance
     text2vecOllamaSettings.put("model", "nomic-embed-text"); // The model to use
@@ -37,16 +38,13 @@ public class CreateCollection {
       .vectorizer("text2vec-ollama")
       .moduleConfig(moduleConfig)
       .build();
+    // highlight-end
 
     // Review the response
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-    } else {
-      System.out.println(result);
-      Result<WeaviateClass> collectionDefinition = client.schema().classGetter().withClassName("Question").run();
-      System.out.println(collectionDefinition.getResult());
-    }
+    System.out.println(result);
+    Result<WeaviateClass> collectionDefinition = client.schema().classGetter().withClassName("Question").run();
+    System.out.println(collectionDefinition.getResult());
   }
 }
 // END CreateCollection
