@@ -27,7 +27,7 @@ In this quickstart guide, you will:
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
 :::tip
-This tutorial uses a local, Docker instance of Weaviate, and an Ollama model. If you prefer to use cloud-based resources, see the [QuickStart: cloud resources](./index.md) instead.
+This tutorial uses a local, Docker instance of Weaviate, and an Ollama model. If you prefer to use cloud-based resources, see the [QuickStart: with cloud resources](./index.md) instead.
 :::
 
 ### Prerequisites

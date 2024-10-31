@@ -1,12 +1,12 @@
 ---
-title: Quickstart (cloud resources)
+title: Quickstart (with cloud resources)
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
-# Quickstart: cloud resources
+# Quickstart: with cloud resources
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
