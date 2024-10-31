@@ -1,12 +1,12 @@
 ---
-title: With local models
+title: Locally hosted
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
-# Quickstart: with local models
+# Quickstart: locally hosted
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -26,9 +26,11 @@ In this quickstart guide, you will:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-### Prerequisites
+:::tip
+This tutorial uses a local, Docker instance of Weaviate, and an Ollama model. If you prefer to use cloud-based resources, see the [QuickStart: cloud resources](./index.md) instead.
+:::
 
-This tutorial uses a local, Docker instance of Weaviate, and an Ollama model.
+### Prerequisites
 
 Before we get started, install [Docker](https://docs.docker.com/get-started/get-docker/) and [Ollama](https://ollama.com/download) on your machine.
 
@@ -39,11 +41,11 @@ ollama pull nomic-embed-text
 ollama pull llama3.2
 ```
 
-<hr/>
-
 :::info System requirements
 As we will be running Weaviate and language models locally, we recommend that you use a modern computer with at least 8GB or RAM, preferably 16GB or more.
 :::
+
+<hr/>
 
 :::tip Try it yourself
 The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
@@ -88,8 +90,8 @@ volumes:
 
 Run the following command to start a Weaviate instance using Docker:
 
-```
-docker-compose up
+```bash
+docker-compose up -d
 ```
 
 ### 1.2 Install a client library
@@ -176,15 +178,11 @@ The following example:
 ([Batch imports](../manage-data/import.mdx)) are the most efficient way to add large amounts of data, as it sends multiple objects in a single request. See the [How-to: Batch import](../manage-data/import.mdx) guide for more information.
 :::
 
-import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx'
+import ImportObjects from '/_includes/code/quickstart/local.quickstart.import_objects.mdx'
 
 <ImportObjects />
 
 Run this code to add the demo data.
-
-:::info OpenAI API key in the header
-Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
-:::
 
 <hr/>
 
@@ -198,7 +196,7 @@ Semantic search finds results based on meaning. This is called `nearText` in Wea
 
 The following example searches for 2 objects whose meaning is most similar to that of `biology`.
 
-import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.mdx'
+import QueryNearText from '/_includes/code/quickstart/local.quickstart.query.neartext.mdx'
 
 <QueryNearText />
 
@@ -229,7 +227,7 @@ If you inspect the full response, you will see that the word `biology` does not 
 Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
 
 :::info Where did the vectors come from?
-Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the locally hosted Ollama model to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -248,7 +246,7 @@ RAG work by prompting a large language model (LLM) with a combination of a *user
 
 The following example combines the same search (for `biology`) with a prompt to generate a tweet.
 
-import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
+import QueryRAG from '/_includes/code/quickstart/local.quickstart.query.rag.mdx'
 
 <QueryRAG />
 

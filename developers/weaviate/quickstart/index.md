@@ -1,11 +1,12 @@
 ---
-title: Quickstart (Cloud)
+title: Quickstart (cloud resources)
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
+# Quickstart: cloud resources
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -25,9 +26,13 @@ In this quickstart guide, you will:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
+:::tip
+This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and the [OpenAI](https://platform.openai.com/) API. If you prefer to use locally hosted resources, see [QuickStart: locally hosted](./local.md).
+:::
+
 ### Prerequisites
 
-This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and an [OpenAI](https://platform.openai.com/) API key.
+You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [OpenAI](https://platform.openai.com/).
 
 The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
 

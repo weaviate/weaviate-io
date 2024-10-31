@@ -1,0 +1,106 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/python/local.quickstart.query.neartext.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/local.quickstart.query.neartext.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart_local/3_1_neartext/main.go';
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# NearText"
+    endMarker="# END NearText"
+    language="py"
+    title="quickstart_neartext_query.py"
+  />
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS">
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// NearText"
+  endMarker="// END NearText"
+  language="ts"
+  title="quickstart_neartext_query.ts"
+/>
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoCode}
+  startMarker="// NearText"
+  endMarker="// END NearText"
+  language="goraw"
+  title="quickstart/3_1_neartext/main.go"
+/>
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Question (
+        limit: 2
+        nearText: {
+          concepts: [\"biology\"],
+        }
+      ) {
+        question
+        answer
+        category
+      }
+    }
+  }"
+}' | tr -d "\n" | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+</Tabs>

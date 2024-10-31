@@ -5,6 +5,7 @@ from weaviate.classes.config import Configure
 client = weaviate.connect_to_local()
 
 # END CreateCollection
+
 # NOT SHOWN TO THE USER - DELETE EXISTING COLLECTION
 client.collections.delete("Question")
 
