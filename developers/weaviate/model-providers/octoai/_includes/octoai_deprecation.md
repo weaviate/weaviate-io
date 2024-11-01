@@ -2,36 +2,49 @@
 
 ### OctoAI integrations are deprecated
 
-OctoAI announced that they are winding down the commercial availability of its services by **31 October 2024**.
+<!-- They have been removed from the Weaviate codebase from `v1.25.22`, `v1.26.8` and `v1.27.1`. -->
+
+OctoAI announced that they are winding down the commercial availability of its services by **31 October 2024**. Accordingly, the Weaviate OctoAI integrations are deprecated. Do not use these integrations for new projects.
 <br/>
 
-Accordingly, the Weaviate OctoAI integrations are deprecated. They have been removed from the Weaviate codebase from `v1.25.22`, `v1.26.8` and `v1.27.1`.
+If you have a collection that is using an OctoAI integration, consider your options depending on whether you are using OctoAI's embedding models ([your options](#for-collections-with-octoai-embedding-integrations)) or generative models ([your options](#for-collections-with-octoai-generative-ai-integrations)).
+
+#### For collections with OctoAI embedding integrations
+
+OctoAI provided `thenlper/gte-large` as the embedding model. This model is also available through the [Hugging Face API](../../huggingface/embeddings.md).
+<!-- , and through the [locally hosted Transformers](../../transformers/embeddings.md) integration. -->
 <br/>
 
-If you have a collection that is using an OctoAI integration, you should migrate to a new collection with [another model provider](../../index.md).
+After the shutdown date, this model will no longer be available through OctoAI. If you are using this integration, you have the following options:
 <br/>
 
-First, select a model provider integration that you want to migrate to.
+**Option 1: Use the existing collection, and provide your own vectors**
 <br/>
 
-#### Suitable model providers: Embedding models
+You can continue to use the existing collection, provided that you rely on some other method to generate the required embeddings yourself for any new data, and for queries. If you are unfamiliar with the "bring your own vectors" approach, [refer to this starter guide](../../../starter-guides/custom-vectors.mdx).
+<br/>
 
-While migrating your data, you can choose to re-use the existing embeddings or choose a new model.
+**Option 2: Migrate to a new collection with another model provider**
+
+Alternatively, you can migrate your data to a new collection ([read how](#how-to-migrate)). At this point, you can re-use the existing embeddings or choose a new model.
 <br/>
 
 - **Re-using the existing embeddings** will save on time and inference costs.
 - **Choosing a new model** will allow you to explore new models and potentially improve the performance of your application.
 
-If you would like to re-use the existing embeddings, you must select a model provider that offers the same embedding model.
-<br/>
-
-OctoAI provided `thenlper/gte-large` as the embedding model. This model is also available through the [Hugging Face API](../../huggingface/embeddings.md), and through the [locally hosted Transformers](../../transformers/embeddings.md) integration.
+If you would like to re-use the existing embeddings, you must select a model provider (e.g. [Hugging Face API](../../huggingface/embeddings.md)) that offers the same embedding model.
 <br/>
 
 You can also select a new model with any embedding model provider. This will require you to re-generate the embeddings for your data, as the existing embeddings will not be compatible with the new model.
 <br/>
 
-#### Suitable model providers: Generative AI models
+#### For collections with OctoAI generative AI integrations
+
+If you are only using the generative AI integration, you do not need to migrate your data to a new collection.
+<br/>
+
+In the near future, you will be able to re-configure the generative AI integration to use a different model provider. At that point, you can continue to use the existing collection with a new model provider.
+<br/>
 
 You can select any model provider that offers generative AI models.
 <br/>
