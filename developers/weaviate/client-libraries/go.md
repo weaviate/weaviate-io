@@ -416,9 +416,9 @@ Go to the [GitHub releases page](https://github.com/weaviate/weaviate-go-client/
 <details>
   <summary>Click here for a table of Weaviate and corresponding client versions</summary>
 
-import MatrixIntro from '/_includes/clients/matrix-intro.md';
+import ReleaseHistory from '/_includes/release-history.md';
 
-<MatrixIntro />
+<ReleaseHistory />
 
 </details>
 
