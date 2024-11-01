@@ -25,7 +25,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 3. **_November 2024_ - Document: Weaviate End of Life Policy**
    1. New Document: Weaviate End Of Life Policy
-   2. New section to Document:: Weaviate Support Terms
+   2. New section to Document: Weaviate Support Terms
       1. New Paragraph: "End of Life Policy"
 
 
