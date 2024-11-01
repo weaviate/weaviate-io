@@ -521,14 +521,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Rich Lapham",
-    "title": "Recruiter",
-    "photo": "rich-lapham.jpg",
-    "linkedin": "richlapham",
-    "twitter": "laphamr66",
-    "team": "people-and-culture"
-  },
-  {
     "name": "Roberto Esposito",
     "title": "Research Engineer",
     "photo": "roberto-esposito.jpg",
@@ -629,6 +621,12 @@
     "photo": "tommy.jpg",
     "linkedin": "tbs181194",
     "team": "database"
+  },
+  {
+    "name": "Tuana Celik",
+    "title": "Developer Relations Engineer",
+    "photo": "Tuana.jpg",
+    "team": "developer-relations"
   },
   {
     "name": "Victoria Slocum",
