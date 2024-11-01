@@ -1025,16 +1025,16 @@ export const unitData = {
   },
   picking_models: {
     title: "Using Machine Learning Models",
-    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    body: "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/js/standalone/gen-ai-models",
     badgeType: "mixed",
     learningGoals: [
-      "What chunking is",
+      "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
     ],
     learningOutcomes: [
-      "Describe chunking at a high level",
-      "Explain the impact of chunking in vector search and retrieval augmented generation",
+      "The difference between Embedding and Generative models",
+      "When and how to use those models integrated with Weaviate",
     ],
     owner: "daniel",
     reviewer: "daniel"
