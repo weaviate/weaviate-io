@@ -7,6 +7,8 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
+<div className="support-page">
+
 
 ### **Weaviate Support Offerings**
 
@@ -21,14 +23,17 @@ Weaviate provides a ticketing system operated by the Weaviate technical team tha
 ### **Support Tickets**
 
 Incidents and questions should be reported through the user interface as documented on our website. Tickets should include:
-<br></br>
+  <br></br>
 
 - Description of the issue and steps to reproduce
 - Error message
 - Screenshot of the console
 - Copy or screenshot of log files
+<br></br>
+
 
 Customer will work with Weaviate support personnel during the investigation of Support Tickets as reasonably needed and in a timely manner. Weaviate does not require and Customer shall not provide access to any personally identifiable information for purposes of the Agreement.
+
 <br></br>
 
 ### **Slack Community**
@@ -50,7 +55,7 @@ Weaviate’s online documentation includes technical and user documentation, API
 | Severity 3 (Medium) | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 Business days | 1 Business day | 8 hours (24/7) |
 | Severity 4 (Low) | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 Business days | 2 Business days | 1 Business day |
 
-*Note: All (24/7) cases must be followed up via phone. Business hours are defined based on the current timezone of the contracting entity of Weaviate, starting at 9am and ending at 5pm. Public holidays are excluded.*
+ - *Note: All (24/7) cases must be followed up via phone. Business hours are defined based on the current timezone of the contracting entity of Weaviate, starting at 9am and ending at 5pm. Public holidays are excluded.*
 <br></br>
 
 ### **Support Channels**
@@ -66,5 +71,15 @@ Weaviate shall categorize Support Tickets based on Customer’s characterization
 
 ### **Scope of Service Inquiries**
 
-- **Support Requests:** Incidents or problems encountered in the operation of the current Weaviate Product necessitating immediate attention to maintain or restore the expected service levels.
-- **Service Requests:** Inquiries from the Customer seeking additional services, new clusters, or modifications that extend beyond the existing scope of the Weaviate Product. These are categorized as non-urgent and project-based, requiring a separate assessment and planning process. The response and implementation timeline for these requests will be mutually determined, subject to resource availability, project complexity, and the terms set forth in the applicable Order Form.
+ - **Support Requests:** Incidents or problems encountered in the operation of the current Weaviate Product necessitating immediate attention to maintain or restore the expected service levels.
+
+ - **Service Requests:** Inquiries from the Customer seeking additional services, new clusters, or modifications that extend beyond the existing scope of the Weaviate Product. These are categorized as non-urgent and project-based, requiring a separate assessment and planning process. The response and implementation timeline for these requests will be mutually determined, subject to resource availability, project complexity, and the terms set forth in the applicable Order Form.
+
+<br></br>
+
+### **End Of Life Policy**
+
+Our Support is aligned with our End of Life Policy, ensuring service and updates are provided for the most recent versions of the Weaviate Offering. Upon a version reaching end-of-life status, support will be discontinued as defined at [https://weaviate.io/weaviate-eol-policy](/weaviate-eol-policy).
+
+
+</div>
