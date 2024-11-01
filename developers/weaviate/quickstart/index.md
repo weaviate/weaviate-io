@@ -1,11 +1,12 @@
 ---
-title: Quickstart
+title: Quickstart (with cloud resources)
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
+# Quickstart: with cloud resources
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -25,9 +26,13 @@ In this quickstart guide, you will:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
+:::tip
+This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and the [OpenAI](https://platform.openai.com/) API. If you prefer to use locally hosted resources, see [QuickStart: locally hosted](./local.md).
+:::
+
 ### Prerequisites
 
-This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and an [OpenAI](https://platform.openai.com/) API key.
+You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [OpenAI](https://platform.openai.com/).
 
 The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
 
@@ -205,34 +210,36 @@ import CreateCollection from '/_includes/code/quickstart/quickstart.create_colle
 
 Run this code to create the collection to which you can add data.
 
+:::info What models are being used?
+You can optionally specify the model in the collection definition. As we did not specify models in the collection definition above, these integrations will use the Weaviate-defined default models.
+<br/>
+
+See the [model providers integration](../model-providers/index.md) section for more information.
+:::
+
 <details>
   <summary>Do you prefer a different setup?</summary>
 
 Weaviate is very flexible. If you prefer a different model provider integration, or prefer to import your own vectors, see one of the following guides:
-<br/>
 
 <div class="row">
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__header">
-          <h4>Prefer a different model provider?</h4>
-        </div>
-        <div class="card__body">
-          See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
-        </div>
+  <div class="col col--6 margin-top--xs padding-top--xs">
+    <div class="card">
+      <div class="card__header">
+        <h4>Prefer a different model provider?</h4>
+      </div>
+      <div class="card__body">
+        See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
       </div>
     </div>
   </div>
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__header">
-          <h4>Want to specify object vectors?</h4>
-        </div>
-        <div class="card__body">
-          If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
-        </div>
+  <div class="col col--6 margin-top--xs padding-top--xs">
+    <div class="card">
+      <div class="card__header">
+        <h4>Want to specify object vectors?</h4>
+      </div>
+      <div class="card__body">
+        If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/python/quickstart.create_collection.py';
 import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.create_collection.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_1_create_collection/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/quickstart/CreateCollection.java';
 
 
 <Tabs groupId="languages">
@@ -40,43 +41,18 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_1_cr
   title="quickstart/2_1_create_collection/main.go"
 />
 </TabItem>
-{/* <TabItem value="java" label="Java">
 
-```java
+<TabItem value="java" label="Java">
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START CreateCollection"
+  endMarker="// END CreateCollection"
+  language="javaraw"
+  title="quickstart/CreateCollection.java"
+/>
 
-package io.weaviate;
+</TabItem>
 
-import java.util.ArrayList;
-import io.weaviate.client.Config;
-import io.weaviate.client.WeaviateClient;
-import io.weaviate.client.base.Result;
-import io.weaviate.client.v1.schema.model.DataType;
-import io.weaviate.client.v1.schema.model.Property;
-import io.weaviate.client.v1.schema.model.WeaviateClass;
-
-public class App {
-  public static void main(String[] args) {
-    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
-
-    WeaviateClient client = new WeaviateClient(config);
-
-    // we will create the class "Question" and the properties
-    WeaviateClass clazz = WeaviateClass.builder()
-      .className("Question")
-      .vectorizer("text2vec-openai")
-      .build();
-
-    // add the schema
-    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-    if (result.hasErrors()) {
-      System.out.println(result.getError());
-      return;
-    }
-  }
-}
-```
-
-</TabItem> */}
 <TabItem value="curl" label="Curl">
 
 ```bash

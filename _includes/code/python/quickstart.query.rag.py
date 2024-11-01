@@ -8,7 +8,6 @@ wcd_url = os.environ["WCD_URL"]
 wcd_api_key = os.environ["WCD_API_KEY"]
 openai_api_key = os.environ["OPENAI_APIKEY"]
 
-# RAG  # ShortRAG
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,                                    # Replace with your Weaviate Cloud URL
     auth_credentials=Auth.api_key(wcd_api_key),             # Replace with your Weaviate Cloud key
@@ -28,7 +27,6 @@ response = questions.generate.near_text(
 # highlight-end
 
 print(response.generated)  # Inspect the generated text
-# RAG  # END ShortRAG
 
 client.close()  # Free up resources
 # END RAG

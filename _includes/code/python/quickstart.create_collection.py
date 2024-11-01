@@ -14,6 +14,7 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 # END CreateCollection
+
 # NOT SHOWN TO THE USER - DELETE EXISTING COLLECTION
 client.collections.delete("Question")
 
