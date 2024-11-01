@@ -5,6 +5,7 @@ title: Understanding Embedding models
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!./_snippets/10_embedding.ts';
 
 
 ### <i class="fa-solid fa-chalkboard"></i> What are embedding models
@@ -12,43 +13,113 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 Embedding models are machine learning models trained to represent information as an array of numbers, frequently referred to as vector embeddings. Vectors or vector embeddings are numeric representations of data that represent certain properties or features. This representation can be used to efficiently search through objects in a vector space. 
 
 
-Embeddings are the worker horses behind modern search and Retrieval-Augmented Generation (RAG) applications. 
+<!-- Add graphics -->
 
 
-### <i class="fa-solid fa-chalkboard"></i> Types of embedding models
+### <i class="fa-solid fa-chalkboard"></i> When to use embedding models
 
-- Text 
-    dsfe
-
-- Multimodal 
-    adada
-
-- Beyond 
-    sadawd
-
-### <i class="fa-solid fa-chalkboard"></i> Storing models in Weaviate
-
-Weaviate is configured to support many different vectorizer models and vectorizer service providers. You can even bring your own vectors, for example if you already have a vectorization pipeline available, or if none of the publicly available models are suitable for you.
+Embeddings are the worker horses behind modern search and Retrieval-Augmented Generation (RAG) applications. They are great for..
+ 
+- **Search:** Results of searches are ranked by the distance from an input query vector. 
+- **Classification:** Items are classified by what category their vector representation is closest to.
+- **Recommendations:** Items with similar vector representations are recommended to users.
 
 
-### <i class="fa-solid fa-chalkboard"></i> Using embeddings
+### <i class="fa-solid fa-chalkboard"></i> Applications of embedding models
+
+Embedding models, like most machine learning models are typically limited to one or more modalities. 
+
+We use modality to describe the type of input or output that a machine learning model can process or interact with to run. Typically, embedding modals fall into two buckets, uni-modal or multimodal. 
+
+<!-- Add graphics on multimodal inputs and encoding -->
+
+
+- Uni-modal Embeddings 
+
+Uni-modal embeddings represents a single modality in a multidimensional vector space. Examples of these are text to vector models by cohere or image to vector models
+
+<!-- Add graphics on multimodal inputs and encoding -->
+
+
+- Multimodal Embeddings
+Multimodal embeddings represent multiple modalities in a multidimensional space. Allowing cross modal retrieval and clustering.  CLIP is a popular multimodal model that can create embeddings of text, audio and video data.
+
+<!-- Add graphics on multimodal inputs and encoding -->
+
+
+
+
+### <i class="fa-solid fa-chalkboard"></i> Using embedding models in Weaviate
+
+Weaviate takes most of the complexity of generating and managing embeddings away! Weaviate is configured to support many different vectorizer models and vectorizer service providers. It also gives you the option of providing your own vectors.
 
 In Weaviate, vector embeddings power hybrid and semantic search. 
 
-Read about [search](https://weaviate.io/developers/weaviate/concepts/search)
+Lets walk through what its like to use embeddings in Weaviate. 
+
+## Connect to a Weaviate instance
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Connect"
+      endMarker="// END Connect"
+      language="js"
+    />
+  </TabItem>
+
+Initialize your connection with Weaviate and add relevant env vars
+
+## Defining a collection with vectorizer code 
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collection"
+      endMarker="// END Collection"
+      language="js"
+    />
+  </TabItem>
+
+When creating a collection in Weaviate, we define what embedding model we want to use. In this example we use a uni-modal text to vector model by cohere to embed our data. We also have `sourceProperties`
+
+We have the option of picking what properties in our data we can create models from. 
+
+We can also set multiple vectorizers, see [named vectors]
 
 
-## code Defining a collection with vectorizer code 
+## Importing data 
 
-## code Defining a collection with multiple vectorizer code 
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Importing"
+      endMarker="// END Importing"
+      language="js"
+    />
+  </TabItem>
 
-## code importing data 
+Once our collection is created, we import data. Our data is vectorized at import time and we can make semantic search queries on it.
+
+
 
 ## making a search with vectors in responses
 
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Search"
+      endMarker="// END Search"
+      language="js"
+    />
+  </TabItem>
 
-> you can define multiple models to embed data 
+
+Here we make a query and set `showVectors` as true so we can see the objects' vectors in our response. Read more about [search here](https://weaviate.io/developers/weaviate/concepts/search)
 
 
 
-[You can read this article on embeddings](https://weaviate.io/blog/how-to-choose-an-embedding-model)
+Various embedding models differ when it comes to performance and ability, [you can read this article on embeddings](https://weaviate.io/blog/how-to-choose-an-embedding-model) so you have an idea of what to think about as you about picking one. 
+
+
+

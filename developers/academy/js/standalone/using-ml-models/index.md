@@ -8,10 +8,13 @@ sidebar_position: 10
 
 Weaviate lets you interact with two types of machine learning models - generative models and embedding models.
 
-This serves to help you understand, on a basic level the functioning and utility of both models.
+This serves to help you understand, on a basic level the functioning and utility of both types of models.
+We will explore scenarios each model type thrives in and look at what things to consider when picking sub groups of models.  
 
-- **Understanding Embedding Models**
-- **Understanding Generative Models**
+Then, we will also discuss the role of each of these models in building AI-Native applications ranging from chatbots, and RAG Apps to Agentic systems. 
+
+- **[Embedding Models](./10_embedding.mdx)**
+- **[Generative Models](./20_generative.mdx)**
 
 
 

@@ -5,47 +5,122 @@ title: Understanding Generative models
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!./_snippets/20_generative.ts';
 
-
-## <i class="fa-solid fa-square-chevron-right"></i> Overview
-
-These different search types are offered because they each have different characteristics, and therefore different strengths.
-
-Let's explore the relative strengths of each search type.
-
-## <i class="fa-solid fa-square-chevron-right"></i> What are generative models
 
 ### <i class="fa-solid fa-chalkboard"></i> What are generative models
 
-Generative AI refers to deep-learning models that can take raw data — say, all of Wikipedia or the collected works of Rembrandt — and “learn” to generate statistically probable outputs when prompted. At a high level, generative models encode a simplified representation of their training data and draw from it to create a new work that’s similar, but not identical, to the original data.
+Generative models are machine learning models that when prompted, can generate original data guided by instructions in the prompt i.e. text, images, and other forms.  This original data is derived from data it was trained on but does not mimic it like for like.  
 
-Generative AI refers to deep-learning models that can generate high-quality text, images, and other content based on the data they were trained on.
+<!-- Add graphics -->
 
-### <i class="fa-solid fa-chalkboard"></i> Types of embedding models
+Generative Models encompass so many types of models, we will specifically focus on large language models (LLMs).
 
-- Text 
-- Multimodal 
-- Beyond 
+### <i class="fa-solid fa-chalkboard"></i> When to use generative models
 
-### <i class="fa-solid fa-chalkboard"></i> Storing models in Weaviate
+Generative models are stars in the limelight of retrieval augmented generation (RAG) and agentic workflows. They are great for... 
 
-Weaviate is configured to support many different vectorizer models and vectorizer service providers. You can even bring your own vectors, for example if you already have a vectorization pipeline available, or if none of the publicly available models are suitable for you.
+- **Translation:** Models can perform zero-shot translate text from one language to another with extremely high accuracy.
+- **Code Generation:** Models can take high-level instructions and turn them into functional custom code.
+- **Image Generation:** Models can consistently generate high quality images from text instructions in a prompt.
 
-
-### <i class="fa-solid fa-chalkboard"></i> Using Generative Models in Weaviate
-
-In Weaviate, generative models power our generative search. 
-
-Read about [generative search](https://weaviate.io/developers/weaviate/concepts/search)
+### <i class="fa-solid fa-chalkboard"></i> Applications of generative models
 
 
-Defining a collection code 
+Large Language Models (LLMs), like Anthropics Claudes series of models, or Google's Gemini are specialized types of generative models focused on text data.  These models, like most machine learning models are typically limited to one or more modalities. 
 
-> you can define multiple models to embed data 
+We use modality to describe the type of input or output that a machine learning model can process or interact with to run. Typically, generative modals fall into two buckets, uni-modal or multimodal. 
 
-
-### <i class="fa-solid fa-chalkboard"></i> RAG in Weaviate 
+<!-- Add graphics on multimodal inputs and encoding -->
 
 
 
-[You can read this article on embeddings](https://weaviate.io/blog/how-to-choose-an-embedding-model)
+- Uni-modal generation 
+
+In the context on LLMs, uni-modal generation defines a models ability to generate content and receive instructions in a single modality, this modality is usually text.
+
+<!-- Add graphics on multimodal inputs and encoding -->
+
+
+- Multimodal Generation
+In the context on LLMs, multimodal generation defines a models ability to generate and receive instructions in multiple modalities. This can range from text input to generation or even image input to audio generation. 
+
+<!-- Add graphics on multimodal inputs and encoding -->
+
+
+### <i class="fa-solid fa-chalkboard"></i> Using generative models in Weaviate
+
+Weaviate is configured to support many generative models and generative model providers. You can even plug in your own generative model too depending on where in the weaviate workflow you need generative capabilities. 
+
+
+In Weaviate, generative models power our generative search. Lets walk through what its like to use generative models in Weaviate. 
+
+## Connect to a Weaviate instance
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Connect"
+      endMarker="// END Connect"
+      language="js"
+    />
+  </TabItem>
+
+Initialize your connection with Weaviate and add relevant environment variables 
+
+## Defining a collection with vectorizer code 
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collection"
+      endMarker="// END Collection"
+      language="js"
+    />
+  </TabItem>
+
+When creating a collection in Weaviate, we define what generative model we want to use. In this example we use a text generation model by Cohere to generate new data. 
+
+## Importing data 
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Importing"
+      endMarker="// END Importing"
+      language="js"
+    />
+  </TabItem>
+
+Once our collection is created, we import data. Our data is vectorized at import time and we can make semantic search queries on it. We can then use the results of these searches as context for our interactions with large language models.
+
+## Making a single prompt generative search
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SingleGenerative"
+      endMarker="// END SingleGenerative"
+      language="js"
+    />
+  </TabItem>
+
+Here we use a `singlePrompt` to make `n` requests to the langauge model where `n` is the number of responses we get from our search. We use `limit` to strictly define the number of responses we get. We can place responses from each response into our prompt with this format `{ answer }` i.e we want the answer property from our search response to be translated in french. 
+
+## Making a grouped task generative search
+
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GroupedGenerative"
+      endMarker="// END GroupedGenerative"
+      language="js"
+    />
+  </TabItem>
+
+Here we use the `groupedTask` prompt format to group all the response from our search and send them alongside our prompt as context for what ever we are requesting. You can see with `groupedProperties` we only pass the answer property from all the results we get as context to the large language model, giving us control of what information will inform the models output.
+
+
+
+Various generative models differ when it comes to performance and ability, [you can take a look at our integrations page](https://weaviate.io/developers/weaviate/model-providers) to have a better idea of what options you can use. 
