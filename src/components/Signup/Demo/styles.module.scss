@@ -5,7 +5,7 @@
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: 110vh;
+  height: 105vh;
 
   display: flex;
 
@@ -114,6 +114,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 2.625rem */
+    margin: 0;
   }
 
   p {
@@ -555,4 +556,11 @@
     color: #b5d2dc;
     font-size: 14px !important;
   }
+}
+
+.formWrapper {
+  max-height: 670px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
 }

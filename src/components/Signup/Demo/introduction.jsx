@@ -108,7 +108,9 @@ export default function Introduction() {
             <br /> demo of what Weaviate can do
           </h2>
           <div className={styles.signUpBox}>
-            <div id="hs-form" className={styles.hsForm}></div>
+            <div className={styles.formWrapper}>
+              <div id="hs-form" className={styles.hsForm}></div>
+            </div>
           </div>
         </div>
       </div>
