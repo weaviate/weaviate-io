@@ -4,8 +4,10 @@ title: Weaviate Support Terms
 ---
 
 import { MetaSEO } from '/src/theme/MetaSEO';
-import servicesCSS from '/src/css/services.scss';
+
 <MetaSEO img="og/service/_title.jpg" />
+
+<div className="support-page">
 
 
 ### **Weaviate Support Offerings**
@@ -78,3 +80,6 @@ Weaviate shall categorize Support Tickets based on Customer’s characterization
 ### **End Of Life Policy**
 
 Our Support is aligned with our End of Life Policy, ensuring service and updates are provided for the most recent versions of the Weaviate Offering. Upon a version reaching end-of-life status, support will be discontinued as defined at https://weaviate.io/weaviate-eol-policy.
+
+
+</div>

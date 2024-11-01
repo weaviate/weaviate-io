@@ -4,9 +4,11 @@ title: END OF LIFE POLICY FOR WEAVIATE OFFERING
 ---
 
 import { MetaSEO } from '/src/theme/MetaSEO';
-import servicesCSS from '/src/css/services.scss';
+
 
 <MetaSEO img="og/service/_title.jpg" />
+
+<div className="support-page">
 
 ### **End of Life Policy for Weaviate Offering**
 
@@ -101,3 +103,6 @@ The following terms, when used in this Agreement, will have the following meanin
 - **Support**: The level of support purchased by Customer as described in this Weaviate Support Policy.
 - **Update**: A Major Version, Minor Version, or Maintenance Version of the Offering made available by Weaviate.
 - **Weaviate Offerings**: The Product, the Weaviate Technical Services, and all Updates which Weaviate makes available.
+
+
+</div>
