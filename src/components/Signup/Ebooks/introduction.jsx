@@ -24,13 +24,19 @@ export default function Introduction() {
   return (
     <div className={styles.demoContainer}>
       <div className={styles.demoSideA}>
-        <h1 classname={styles.headerTag}>
-          Our open-source vector database gives AI builders the tools needed to
-          move fast—without compromising data privacy, performance, or costs.
+        <h1>
+          Learn how to take your AI applications
+          <br /> to market faster with Weaviate
         </h1>
 
         <p>
-          <strong>Book a 30-min demo with our team to see how to:</strong>
+          See how Weaviate’s AI-native vector database gives AI builders the
+          tools needed to move fast—without compromising data privacy,
+          performance, or costs.
+        </p>
+
+        <p>
+          <strong>Sign up for a 1:1 call with our team to see how to:</strong>
         </p>
 
         <div className={styles.typeContainer}>
@@ -97,7 +103,10 @@ export default function Introduction() {
       </div>
       <div className={styles.demoSideB}>
         <div className={styles.signUp}>
-          <h2>Ready to accelerate AI development?</h2>
+          <h2>
+            We’d love to give you a live
+            <br /> demo of what Weaviate can do
+          </h2>
           <div className={styles.signUpBox}>
             <div className={styles.formWrapper}>
               <div id="hs-form" className={styles.hsForm}></div>

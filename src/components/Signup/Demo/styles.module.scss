@@ -5,7 +5,7 @@
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: 105vh;
+  height: 110vh;
 
   display: flex;
 
@@ -538,6 +538,8 @@
   background: #d9e7ecb0;
   padding: 20px;
   border-radius: 1.25rem;
+  font-family: Inter;
+  font-size: 13px;
 
   input[type='text'],
   [type='email'] {
@@ -568,7 +570,7 @@
 }
 
 .formWrapper {
-  max-height: 670px;
+  max-height: 700px;
   overflow-y: auto;
   width: 100%;
   padding: 10px;
