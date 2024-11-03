@@ -16,7 +16,10 @@ export default function signUpPage() {
           name="description"
           content="Practical tips for indexing, hybrid search, and seamless integration with AI models."
         />
-        <meta property="og:title" content="Request a Demo" />
+        <meta
+          property="og:title"
+          content="Ebook: Choosing the Right Database For AI"
+        />
         <meta
           property="og:description"
           content="Practical tips for indexing, hybrid search, and seamless integration with AI models."
