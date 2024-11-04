@@ -304,6 +304,10 @@
   display: flex;
   margin: -20px 0px;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    margin: -20px -15px;
+  }
 }
 
 .innerBar {
@@ -333,6 +337,10 @@
 
   @media screen and (max-width: 1300px) {
     margin: 0px 1px;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 3rem;
   }
 }
 
@@ -371,6 +379,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .instabaseLogo {
@@ -378,6 +390,10 @@
   background-position: center;
   width: 6.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .stackLogo {
@@ -385,6 +401,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .factsetLogo {
@@ -392,6 +412,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .typeQuote {
@@ -425,6 +449,7 @@
     height: 5.9375rem;
     flex-shrink: 0;
     background: url('/img/site/quote-image-demo.png');
+    background-size: cover;
   }
 
   p {
