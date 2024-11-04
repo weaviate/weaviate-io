@@ -25,7 +25,7 @@ This enables an enhanced developed experience, such as the ability to:
 | [FriendliAI](./friendliai/index.md) | - | [Text](./friendliai/generative.md) | - |
 | [Google](./google/index.md) | [Text](./google/embeddings.md), [Multimodal](./google/embeddings-multimodal.md) | [Text](./google/generative.md) | - |
 | [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md) | - | - |
-| [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | - |
+| [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | [Reranker](./jinaai/reranker.md) |
 | [Mistral](./mistral/index.md) | [Text](./mistral/embeddings.md) | [Text](./mistral/generative.md) | - |
 | [OctoAI (Deprecated)](./octoai/index.md) | [Text](./octoai/embeddings.md) | [Text](./octoai/generative.md) | - |
 | [OpenAI](./openai/index.md) | [Text](./openai/embeddings.md) | [Text](./openai/generative.md) | - |
