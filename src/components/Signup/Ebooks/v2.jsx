@@ -32,7 +32,7 @@ export default function Introduction() {
 
         <ul>
           This guide covers:
-          <li>A comparison of AI-native and traditional vector databases.</li>
+          <li>A comparison of AI-native and traditional databases.</li>
           <li>
             Key considerations for powering scalable, cost-effective AI
             applications.{' '}

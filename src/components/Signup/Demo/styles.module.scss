@@ -13,6 +13,10 @@
     flex-direction: column;
     overflow: auto;
   }
+
+  @media screen and (max-width: 900px) {
+    height: 120vh;
+  }
 }
 
 .demoSideA {
@@ -105,6 +109,7 @@
   @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
+    padding: 2rem;
   }
 
   h2 {
@@ -299,6 +304,10 @@
   display: flex;
   margin: -20px 0px;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    margin: -20px -15px;
+  }
 }
 
 .innerBar {
@@ -328,6 +337,10 @@
 
   @media screen and (max-width: 1300px) {
     margin: 0px 1px;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 3rem;
   }
 }
 
@@ -366,6 +379,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .instabaseLogo {
@@ -373,6 +390,10 @@
   background-position: center;
   width: 6.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .stackLogo {
@@ -380,6 +401,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .factsetLogo {
@@ -387,6 +412,10 @@
   background-position: center;
   width: 4.48106rem;
   height: 2.03581rem;
+
+  @media screen and (max-width: 800px) {
+    width: 4rem;
+  }
 }
 
 .typeQuote {
@@ -420,6 +449,7 @@
     height: 5.9375rem;
     flex-shrink: 0;
     background: url('/img/site/quote-image-demo.png');
+    background-size: cover;
   }
 
   p {
@@ -470,17 +500,10 @@
   height: 1.75rem;
 }
 
-.signUpBox {
-  width: 28rem;
-  height: 32rem;
-}
-
 .typeQuote .image {
   width: 5rem;
-  height: 5rem; /* Smaller starting quote image size */
+  height: 5rem;
 }
-
-/* Increase Font and Image Size as Screen Size Decreases */
 
 @media screen and (max-width: 1100px) {
   .demoSideA h1,
@@ -574,4 +597,8 @@
   overflow-y: auto;
   width: 100%;
   padding: 10px;
+
+  @media screen and (max-width: 800px) {
+    max-height: 800px;
+  }
 }
