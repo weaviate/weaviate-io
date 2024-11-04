@@ -358,6 +358,44 @@ client.schema.delete_class(class_name)
 
 
 # ===============================================
+# ===== UPDATE THE COLLECTION WITH THE RERANKER MODULE =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "reranker-jinaai": {}  # set your reranker module
+    }
+    # highlight-end
+}
+
+# START UpdateReranker
+class_obj = {
+    # highlight-start
+    "moduleConfig": {
+        "reranker-jinaai": {}  # Update your reranker module
+    }
+    # highlight-end
+}
+
+client.schema.update_config("Article", class_obj)
+# END UpdateReranker
+
+# Test
+result = client.schema.get(class_name)
+assert "reranker-cohere" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
@@ -417,6 +455,46 @@ assert "generative-openai" in result["moduleConfig"].keys()
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+
+# ===============================================
+# ===== UPDATE THE COLLECTION WITH THE GENERATIVE MODULE =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "generative-openai": {}  # set your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+
+# START UpdateGenerative
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "moduleConfig": {
+        "generative-cohere": {}  # Update your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END UpdateGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-cohere" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
 
 # =======================
 # ===== REPLICATION =====
