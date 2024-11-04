@@ -90,6 +90,10 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure collection
 
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
 [Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an AWS generative model:
 
 ### Bedrock

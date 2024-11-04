@@ -79,6 +79,10 @@ Provide the Dataricks token to Weaviate using one of the following methods:
 
 ## Configure collection
 
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
 [Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-model-integration) to use a Databricks generative AI endpoint as follows:
 
 <Tabs groupId="languages">
