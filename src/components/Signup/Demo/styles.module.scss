@@ -470,17 +470,10 @@
   height: 1.75rem;
 }
 
-.signUpBox {
-  width: 28rem;
-  height: 32rem;
-}
-
 .typeQuote .image {
   width: 5rem;
-  height: 5rem; /* Smaller starting quote image size */
+  height: 5rem;
 }
-
-/* Increase Font and Image Size as Screen Size Decreases */
 
 @media screen and (max-width: 1100px) {
   .demoSideA h1,
