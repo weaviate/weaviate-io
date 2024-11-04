@@ -78,6 +78,10 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the reranker
 
+import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
+
+<MutableRerankerConfig />
+
 Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 
 <Tabs groupId="languages">

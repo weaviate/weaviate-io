@@ -322,12 +322,9 @@ For this example, you will need access to a Weaviate instance that you can write
 
 ### Configure Weaviate for RAG
 
-:::caution Generative module cannot be changed
-Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
-<br/>
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
 
-If you would like us to prioritize this issue, upvote it on [GitHub](https://github.com/weaviate/weaviate/issues/3364).
-:::
+<MutableGenerativeConfig />
 
 To use RAG, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and

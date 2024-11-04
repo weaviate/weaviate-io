@@ -274,7 +274,7 @@ Retrieval augmented generation (RAG), also called generative search, combines se
 
 Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
 
-As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-module), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
+As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-model-integration), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
   <summary>RAG: Example</summary>
