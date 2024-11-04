@@ -608,9 +608,13 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
   </TabItem>
 </Tabs>
 
-## Specify a reranker
+## Specify a reranker model integration
 
-Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retrieved results](../search/rerank.md).
+Configure a [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
+
+:::info Related pages
+- [Available reranker model integrations](../model-providers/index.md)
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -650,16 +654,56 @@ Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retr
   </TabItem>
 </Tabs>
 
-## Specify a generative module
+## Update the reranker model integration
 
-Specify a `generative` module for a collection (for RAG).
+:::info Available from `v1.26.8` and `v1.27.1`
+The `reranker` and `generative` configurations are mutable from `v1.26.8` and `v1.27.1`.
+:::
 
-<details>
-  <summary>Additional information</summary>
+Update the [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateReranker"
+      endMarker="# END UpdateReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+
+```py
+# Coming soon
+```
+    
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```js
+// Coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+
+```js
+// Coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## Specify a generative model integration
+
+Specify a `generative` model integration for a collection (for RAG).
+
+:::info Related pages
 - [Available generative model integrations](../model-providers/index.md)
-
-</details>
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -738,6 +782,49 @@ Specify a generative `model name`.
       endMarker="// END SetGenModel"
       language="ts"
     />
+  </TabItem>
+</Tabs>
+
+## Update the generative model integration
+
+:::info Available from `v1.26.8` and `v1.27.1`
+The `reranker` and `generative` configurations are mutable from `v1.26.8` and `v1.27.1`.
+:::
+
+Update a [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateReranker"
+      endMarker="# END UpdateReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+
+```py
+# Coming soon
+```
+    
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```js
+// Coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+
+```js
+// Coming soon
+```
+
   </TabItem>
 </Tabs>
 

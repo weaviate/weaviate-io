@@ -79,7 +79,7 @@ As this integration connects to a local Ollama container, no additional credenti
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an Ollama generative model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an Ollama generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

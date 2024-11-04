@@ -119,7 +119,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Google generative AI model as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use a Google generative AI model as follows:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 
