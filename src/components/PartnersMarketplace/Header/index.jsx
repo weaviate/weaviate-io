@@ -8,7 +8,7 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Partner integrations</h1>
+          <h1>Partner Ecosystem</h1>
           <div className={styles.headerBox}>
             <p>
               Find new ways to extend your applications and infrastructure with

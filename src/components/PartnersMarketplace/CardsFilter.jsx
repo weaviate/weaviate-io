@@ -14,11 +14,9 @@ function CardsFilter() {
 
   const handleFilterChange = (filters) => setSelectedFilters(filters);
 
-  // Filtering logic
   useEffect(() => {
     let updatedPartners = partners;
 
-    // Filter by search query (applies to name and description)
     if (searchQuery) {
       updatedPartners = updatedPartners.filter(
         (partner) =>
@@ -27,16 +25,13 @@ function CardsFilter() {
       );
     }
 
-    // Filter by selected filters (applies to tags, maintainedBy, programmingLanguage, weaviateFeatures)
     if (selectedFilters.length > 0) {
       updatedPartners = updatedPartners.filter((partner) => {
-        // Ensure these fields exist, if not, use empty strings or arrays
         const tags = partner.tags || [];
         const maintainedBy = partner.maintainedBy || '';
         const programmingLanguage = partner.programmingLanguage || '';
         const weaviateFeatures = partner.weaviateFeatures || '';
 
-        // Check if the selected filters are included in any of the fields
         return selectedFilters.every(
           (filter) =>
             tags.includes(filter) ||
@@ -72,7 +67,7 @@ function CardsFilter() {
               image={partner.image}
               link={partner.link}
               description={partner.description}
-              tags={partner.tags} // Updated tags array
+              tags={partner.tags}
             />
           ))}
         </div>
