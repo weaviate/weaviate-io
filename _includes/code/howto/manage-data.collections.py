@@ -284,7 +284,7 @@ client.collections.create(
     "Article",
     vectorizer_config=Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    reranker_config=Configure.Reranker.cohere()
+    reranker_config=Configure.Reranker.voyageai()
     # highlight-end
 )
 
@@ -295,7 +295,7 @@ collection = client.collections.get("Article")
 
 collection.config.update(
     # highlight-start
-    reranker_config=Reconfigure.Reranker.jinaai()  # Update the reranker module
+    reranker_config=Reconfigure.Reranker.cohere()  # Update the reranker module
     # highlight-end
 )
 # END UpdateReranker
@@ -303,7 +303,7 @@ collection.config.update(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.reranker_config.reranker == "reranker-jinaai"
+assert config.reranker_config.reranker == "reranker-cohere"
 
 # Delete the collection to recreate it
 client.collections.delete("Article")

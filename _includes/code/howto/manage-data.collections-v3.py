@@ -370,7 +370,7 @@ class_obj = {
     "vectorizer": "text2vec-openai",  # set your vectorizer module
     # highlight-start
     "moduleConfig": {
-        "reranker-jinaai": {}  # set your reranker module
+        "reranker-voyageai": {}  # set your reranker module
     }
     # highlight-end
 }
@@ -379,7 +379,7 @@ class_obj = {
 class_obj = {
     # highlight-start
     "moduleConfig": {
-        "reranker-jinaai": {}  # Update your reranker module
+        "reranker-cohere": {}  # Update your reranker module
     }
     # highlight-end
 }
