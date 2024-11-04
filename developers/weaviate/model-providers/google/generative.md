@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'generative', 'rag']
 ---
 
-# Google AI Generative AI with Weaviate
+# Google Generative AI with Weaviate
 
 
 import Tabs from '@theme/Tabs';
@@ -18,9 +18,9 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
+[Configure a Weaviate collection](#configure-collection) to use a Google generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google API key.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google AI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google generative model to generate outputs.
 
 ![RAG integration illustration](../_includes/integration_google_rag.png)
 
@@ -32,7 +32,11 @@ At the time of writing (November 2023), AI Studio is not available in all region
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI generative AI integration (`generative-palm`) module.
+Your Weaviate instance must be configured with the Google generative AI integration (`generative-google`) module.
+
+:::info Module name change
+`generative-google` was called `generative-palm` in Weaviate versions prior to `v1.27`.
+:::
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -115,9 +119,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Google generative AI model as follows:
+
 Note that the required parameters differ between Vertex AI and AI Studio.
 
-Configure Weaviate to use Google AI generative AI model:
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 
@@ -167,9 +173,30 @@ Vertex AI users must provide the Google Cloud project ID in the collection confi
 
 </Tabs>
 
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
+### Generative parameters
 
-<ConfigAfterGen/>
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeGoogle"
+      endMarker="# END FullGenerativeGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeGoogle"
+      endMarker="// END FullGenerativeGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Retrieval augmented generation
 
@@ -239,31 +266,6 @@ In other words, when you have `n` search results, the generative model generates
 
 ## References
 
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeGoogle"
-      endMarker="# END FullGenerativeGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeGoogle"
-      endMarker="// END FullGenerativeGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
 ### Available models
 
 Vertex AI:
@@ -288,7 +290,7 @@ AI Studio:
 
 ### Other integrations
 
-- [Google AI embedding models + Weaviate](./embeddings.md).
+- [Google embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 

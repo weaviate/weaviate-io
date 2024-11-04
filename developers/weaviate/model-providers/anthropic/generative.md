@@ -78,7 +78,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-Configure Weaviate to use the Anthropic generative model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an Anthropic generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -100,10 +100,6 @@ Configure Weaviate to use the Anthropic generative model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterGen from '/developers/weaviate/model-providers/_includes/more-info-generative.mdx';
-
-<ConfigAfterGen/>
 
 ### Select a model
 
@@ -129,6 +125,35 @@ You can specify one of the [available models](#available-models) for Weaviate to
   </TabItem>
 
 </Tabs>
+
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeAnthropic"
+      endMarker="# END FullGenerativeAnthropic"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeAnthropic"
+      endMarker="// END FullGenerativeAnthropic"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [Anthropic API documentation](https://www.anthropic.com/docs).
 
 ## Retrieval augmented generation
 
@@ -197,33 +222,6 @@ In other words, when you have `n` search results, the generative model generates
 </Tabs>
 
 ## References
-
-### Generative parameters
-
-Configure the following generative parameters to customize the model behavior.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullGenerativeAnthropic"
-      endMarker="# END FullGenerativeAnthropic"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullGenerativeAnthropic"
-      endMarker="// END FullGenerativeAnthropic"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [Anthropic API documentation](https://www.anthropic.com/docs).
 
 #### Maximum output tokens
 

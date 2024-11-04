@@ -366,7 +366,8 @@ client.collections.create(
         Configure.NamedVectors.text2vec_jinaai(
             name="title_vector",
             source_properties=["title"],
-            model="jina-embeddings-v2-small-en"
+            model="jina-embeddings-v3-small-en",
+            dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
     # highlight-end
@@ -573,7 +574,7 @@ client.collections.create(
             # If using older model family e.g. `ada`
             model="ada",
             model_version="002",
-            type="text"
+            type_="text"
         )
     ],
     # highlight-end
@@ -609,6 +610,30 @@ client.collections.create(
 
 # clean up
 client.collections.delete("DemoCollection")
+
+# START FullVectorizerKubeAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            model="text-embedding-ada-002",
+            base_url="http://kubeai/openai",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerKubeAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 
 # START BasicVectorizerAzureOpenAI
 from weaviate.classes.config import Configure

@@ -65,6 +65,7 @@ services:
   weaviate:
     # Other Weaviate configuration
     environment:
+      ENABLE_MODULES: text2vec-transformers # Enable this module
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080  # Set the inference API endpoint
   t2v-transformers:  # Set the name of the inference container
     image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
@@ -134,7 +135,7 @@ As this integration runs a local container with the Transformers model, no addit
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use the Transformer inference container:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use the Transformer inference container:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -161,7 +162,54 @@ Set the vectorizer to configure Weaviate to use the Transformer inference contai
 To chose a model, select the [container image](#configure-the-integration) that hosts it.
 :::
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Transformers-specific options.
+
+#### Inference URL parameters
+
+Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
+
+If no parameters are specified, the default inference URL from the Weaviate configuration is used.
+
+Specify `inferenceUrl` for a single inference container.
+
+Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) model.
+
+#### Additional parameters
+
+- `poolingStrategy` – the pooling strategy to use when the input exceeds the model's context window.
+  - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerTransformers"
+      endMarker="# END FullVectorizerTransformers"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerTransformers"
+      endMarker="// END FullVectorizerTransformers"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -260,46 +308,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Transformers-specific options.
-
-#### Inference URL parameters
-
-Optionally, if your stack includes multiple inference containers, specify the inference container(s) to use with a collection.
-
-If no parameters are specified, the default inference URL from the Weaviate configuration is used.
-
-Specify `inferenceUrl` for a single inference container.
-
-Specify `passageInferenceUrl` and `queryInferenceUrl` if using a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) model.
-
-#### Additional parameters
-
-- `poolingStrategy` – the pooling strategy to use when the input exceeds the model's context window.
-  - Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerTransformers"
-      endMarker="# END FullVectorizerTransformers"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerTransformers"
-      endMarker="// END FullVectorizerTransformers"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

@@ -1,5 +1,5 @@
 ---
-title: Collection schema
+title: Collection definition
 sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
@@ -7,7 +7,7 @@ image: og/docs/configuration.jpg
 
 ## Introduction
 
-A collection schema describes how to store and index a set of data objects in Weaviate. This page discuses the collection schema, collection parameters and collection configuration.
+A collection definition describes how to store and index a set of data objects in Weaviate. This page discuses the collection definition, collection parameters and collection configuration.
 
 import Terminology from '/_includes/collection-class-terminology.md';
 
@@ -131,7 +131,7 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-### Multiple vectors
+### Multiple vectors (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -311,7 +311,7 @@ Using these features requires more resources. The additional inverted indexes mu
 
 ### `vectorizer`
 
-The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](../../modules/index.md) for available vectorizer modules.
+The vectorizer (`"vectorizer": "..."`) can be specified per collection in the definition. Check the [modules page](../../modules/index.md) for available vectorizer modules.
 
 You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../manage-data/import.mdx#specify-a-vector)), or if you want to create a collection without any vectors.
 
@@ -364,7 +364,7 @@ These parameters are explained below:
 
 <RaftRFChangeWarning/>
 
-[Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
+[Replication](../../configuration/replication.md) configurations can be set using the definition, through the `replicationConfig` parameter.
 
 The `factor` parameter sets the number of copies of to be stored for objects in this collection.
 
@@ -579,9 +579,18 @@ import InvertedIndexTypesSummary from '/_includes/inverted-index-types-summary.m
 
 ## Configure semantic indexing
 
-import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+Weaviate can generate vector embeddings for objects using [model provider integrations](/developers/weaviate/model-providers/).
 
-<VectorizationBehavior/>
+For instance, text embedding integrations (e.g. `text2vec-cohere` for Cohere, or `text2vec-ollama` for Ollama) can generate vectors from text objects. Weaviate follows the collection configuration and a set of predetermined rules to vectorize objects.
+
+Unless specified otherwise in the collection definition, the default behavior is to:
+
+- Only vectorize properties that use the `text` or `text[]` data type (unless [skip](/developers/weaviate/manage-data/collections#property-level-module-settings)ped)
+- Sort properties in alphabetical (a-z) order before concatenating values
+- If `vectorizePropertyName` is `true` (`false` by default) prepend the property name to each property value
+- Join the (prepended) property values with spaces
+- Prepend the class name (unless `vectorizeClassName` is `false`)
+- Convert the produced string to lowercase
 
 For example, this data object,
 

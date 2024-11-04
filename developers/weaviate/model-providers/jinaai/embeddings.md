@@ -76,11 +76,9 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
-
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Jina AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Jina AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -128,7 +126,43 @@ You can specify one of the [available models](#available-models) for the vectori
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Jina AI-specific options.
+
+Note that `dimensions` is only used for the `jina-embeddings-v3` model.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerJinaAI"
+      endMarker="# END FullVectorizerJinaAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerJinaAI"
+      endMarker="// END FullVectorizerJinaAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -228,33 +262,11 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
-
-The following examples show how to configure Jina AI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerJinaAI"
-      endMarker="# END FullVectorizerJinaAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerJinaAI"
-      endMarker="// END FullVectorizerJinaAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
 ### Available models
 
+- `jina-embeddings-v3` (Added in Weaviate `v1.26.5` and `v1.27`)
+    - When using this model, Weaviate will automatically use the appropriate `task` type, applying `retrieval.passage` for embedding entries and `retrieval.query` for queries.
+    - By default, Weaviate uses `1024` dimensions
 - `jina-embeddings-v2-base-en` (Default)
 - `jina-embeddings-v2-small-en`
 

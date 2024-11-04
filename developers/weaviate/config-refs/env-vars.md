@@ -19,6 +19,8 @@ All other values are interpreted as `false`.
 | --- | --- | --- | --- |
 | `ASYNC_INDEXING` | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
 | `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
+| `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the
+default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
 | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | `DISABLE_LAZY_LOAD_SHARDS` | New in v1.23. When `false`, enable lazy shard loading to improve mean time to recovery in multi-tenant deployments. | `string` | `false` |
 | `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
@@ -30,12 +32,15 @@ All other values are interpreted as `false`.
 | `ENABLE_TOKENIZER_KAGOME_KR` | Enable the [`Kagome` tokenizer for Korean](../config-refs/schema/index.md#kagome_kr-tokenization-method) for use (Experimental as of `v1.25.7`) | `boolean` | `true` |
 | `GODEBUG` | Controls debugging variables within the runtime. [See official Go docs](https://pkg.go.dev/runtime). | `string - comma-separated list of name=val pairs` | `gctrace=1` |
 | `GOMAXPROCS` | Set the maximum number of threads that can be executing simultaneously. If this value is set, it be respected by `LIMIT_RESOURCES`. | `string - number` | `NUMBER_OF_CPU_CORES` |
-| `GOMEMLIMIT` | Set the memory limit for the Go runtime. This should match your available memory, such as 10-20% of your total memory for Weaviate. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the garbage collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI units` | `4096MiB` |
+| `GOMEMLIMIT` | Set the memory limit for the Go runtime. A suggested value is between 90-80% of your total memory for Weaviate. The Go runtime tries to make sure that long-lived and temporary memory allocations do not exceed this value by making the garbage collector more aggressive as the memory usage approaches the limit. [Learn more about GOMEMLIMIT](/blog/gomemlimit-a-game-changer-for-high-memory-applications). | `string - memory limit in SI units` | `4096MiB` |
 | `GO_PROFILING_DISABLE` | If `true`, disables Go profiling. Default: `false`. | `boolean` | `false` |
 | `GO_PROFILING_PORT` | Sets the port for the Go profiler. Default: `6060` | `integer` | `6060` |
+| `GRPC_MAX_MESSAGE_SIZE` | Maximum gRPC message size in bytes. (Added in `v1.27.1`) Default: 10MB | `string - number` | `2000000000` |
 | `LIMIT_RESOURCES` | If `true`, Weaviate will automatically attempt to auto-detect and limit the amount of resources (memory & threads) it uses to (0.8 * total memory) and (number of cores-1). It will override any `GOMEMLIMIT` values, however it will respect `GOMAXPROCS` values. | `boolean` | `false` |
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>Default: Outputs log data to json. e.g.: `{"action":"startup","level":"debug","msg":"finished initializing modules","time":"2023-04-12T05:07:43Z"}` <br/>`text`: Outputs log data to a string. e.g. `time="2023-04-12T04:54:23Z" level=debug msg="finished initializing modules" action=startup` | `string` |  |
 | `LOG_LEVEL` | Sets the Weaviate logging level. Default: `info`<br/><br/>`panic`: Panic entries only. (new in `v1.24`) <br/>`fatal`: Fatal entries only. (new in `v1.24`)  <br/> `error`: Error entries only. (new in `v1.24`) <br/>`warning`: Warning entries only. (new in `v1.24`) <br/>`info`: General operational entries. <br/> `debug`: Very verbose logging. <br/>`trace`: Even finer-grained informational events than `debug`. | `string` | |
+| `MEMORY_READONLY_PERCENTAGE` | If memory usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. (Default: `80`) | `string - number` | `75` |
+| `MEMORY_WARNING_PERCENTAGE` | If memory usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. (Default: `0` - i.e. no limit) | `string - number` | `85` |
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
 | `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate` <br/> Starting in v1.24, defaults to `./data`|
@@ -44,11 +49,12 @@ All other values are interpreted as `false`.
 | `PERSISTENCE_LSM_MAX_SEGMENT_SIZE` | Maximum size of a segment in the [LSM store](../concepts/storage.md#object-and-inverted-index-store). Set this to limit disk usage spikes during compaction to ~2x the segment size. Default: no limit | `string` | `4GiB` (IEC units), `4GB` (SI units), `4000000000` (bytes) |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate collects [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `boolean` | `false` |
 | `PROMETHEUS_MONITORING_GROUP` | If set, Weaviate groups metrics for the same class across all shards. | `boolean` | `true` |
+| `QUERY_CROSS_REFERENCE_DEPTH_LIMIT` | Sets the maximum depth of cross-references to be resolved in a query. Defaults to 5. <br/>Added in `v1.24.25`, `v1.25.18`, `v1.26.5`. | `string - number` | `3` |
 | `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | `QUERY_SLOW_LOG_ENABLED` | Log slow queries for debugging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `boolean` | `False` |
 | `QUERY_SLOW_LOG_THRESHOLD` | Set a threshold time for slow query logging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `string` | `2s` <br/> Values are times: `3h`, `2s`, `100ms` |
-| `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
+| `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/filtering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
 | `TOMBSTONE_DELETION_CONCURRENCY` | The maximum number of cores to use for tombstone deletion. Set this to limit the number of cores used for cleanup. Default: Half of the available cores. (New in `v1.24.0`) | `string - int` | `4` |
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
@@ -62,6 +68,7 @@ All other values are interpreted as `false`.
 | `CLIP_INFERENCE_API` | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | `IMAGE_INFERENCE_API` | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
+| `LOWERCASE_VECTORIZATION_INPUT` | If `true`, Weaviate lowercases all input text before vectorization. <br/>Added in `v1.27` (default: `false`) <br/>For `text2vec-contextionary`, set this to `true` | `boolean` | `true` |
 | `OFFLOAD_S3_BUCKET` | The S3 bucket to use for offloading (default: `weaviate-offload`) | `string` | `my-custom-offload-bucket` |
 | `OFFLOAD_S3_BUCKET_AUTO_CREATE` | Whether to automatically create the S3 bucket for offloading if it does not exist (default: `false`) | `boolean` | `true` |
 | `OFFLOAD_S3_CONCURRENCY` | The maximum number of parts that will be uploaded/downloaded in parallel during offloading operations (default: `25`) | `string - number` | `10` |
@@ -93,7 +100,7 @@ All other values are interpreted as `false`.
 | --- | --- | --- | --- |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
-| `CLUSTER_HOSTNAME` | Hostname of a node | `string` | `node1` |
+| `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
 | `CLUSTER_JOIN` | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
 | `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | If `true`, vector cache prefill is synchronous when a node starts. The node reports ready to serve when the cache is hot. Defaults to `false`. Added in 1.24.20 and 1.25.5. | `boolean` | `false` |
 | `RAFT_ENABLE_FQDN_RESOLVER` | If `true`, use DNS lookup instead of memberlist lookup for Raft. Added in `v1.25.15`. ([Read more](../concepts/cluster.md#fqdn-for-node-discovery)) | `boolean` | `true` |
@@ -103,6 +110,14 @@ All other values are interpreted as `false`.
 | `RAFT_GRPC_MESSAGE_MAX_SIZE` | The maximum internal raft gRPC message size in bytes. Defaults to 1073741824 | `string - number` | `1073741824` |
 | `RAFT_JOIN` | Manually set Raft voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of Raft voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
+| `REPLICATION_MINIMUM_FACTOR` | The minimum replication factor for all collections in the cluster. | `string - number` | `3` |
+
+<!-- Docs notes:
+Undocumented environment variables - for internal use only:
+MAINTENANCE_NODES
+ASYNC_BRUTE_FORCE_SEARCH_LIMIT
+RAFT_FORCE_ONE_NODE_RECOVERY
+-->
 
 ## Questions and feedback
 

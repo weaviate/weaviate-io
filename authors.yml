@@ -87,6 +87,11 @@ marion:
   title: Community Manager
   url: https://www.linkedin.com/in/marionnehring/
   image_url: /img/people/icon/marion.jpg
+mary:
+  name: Mary Newhauser
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/mary-newhauser-02273551/
+  image_url: /img/people/icon/mary.png
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
@@ -185,6 +190,11 @@ randy:
   title: Senior iOS Developer
   url: https://www.linkedin.com/in/randy-fong-1530545/
   image_url: /img/people/icon/randy.jpeg
+aman:
+  name: Aman Sharma
+  title: CTO @Lamatic.ai
+  url: https://www.linkedin.com/in/amanintech
+  image_url: /img/people/icon/aman.jpeg
 charles-pierse:
   name: Charles Pierse
   title: Head of Weaviate Labs
@@ -195,3 +205,8 @@ akanksha:
   title: Product Management Intern
   url: https://www.linkedin.com/in/akankshasharmaiitg/
   image_url: /img/people/icon/akanksha.jpg
+deepti:
+  name: Deepti Naidu
+  title: Partner Solution Engineer
+  url: https://www.linkedin.com/in/deeptinaidu/
+  image_url: /img/people/icon/deepti.png

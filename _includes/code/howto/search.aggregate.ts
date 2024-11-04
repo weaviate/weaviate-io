@@ -4,13 +4,13 @@ import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL,
+  process.env.WCD_URL as string,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // MetaCount TS // TextProp TS // IntProp TS // groupBy TS // nearTextWithLimit TS // nearTextWithDistance TS // whereFilter TS
@@ -94,7 +94,7 @@ console.log(JSON.stringify(result.properties, null, 2));
 // ============================
 {
 // groupBy TS
-     
+
 const result = await jeopardy.aggregate.groupBy.overAll({
   // highlight-start
   groupBy: { property: 'round' }
@@ -120,7 +120,7 @@ console.log(JSON.stringify(result, null, 2));
 // =========================================
 {
 // nearTextWithLimit TS
-     
+
 const result = await jeopardy.aggregate.nearText('animals in space', {
   // highlight-start
   objectLimit: 10,
@@ -143,7 +143,7 @@ console.log(result.properties['points'].sum);
 // ============================
 {
 // nearTextWithDistance TS
-     
+
 const result = await jeopardy.aggregate.nearText(['animals in space'],{
   // highlight-start
   distance: 0.19,
@@ -161,12 +161,27 @@ console.log(result.properties['points'].sum);
 // End test
 }
 
+// =========================================
+// ===== Hybrid EXAMPLES =====
+// =========================================
+{
+  // HybridExample
+  // TS client support coming soon
+  // END HybridExample
+
+  // Test
+  // assert('JeopardyQuestion' in result.data.Aggregate);
+  // assert.equal(result.data.Aggregate.JeopardyQuestion.length, 1);
+  // assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 4600 } });
+  // End test
+  }
+
 // =================================
 // ===== where filter EXAMPLES =====
 // =================================
 {
 // whereFilter TS
-     
+
 const result = await jeopardy.aggregate.overAll({
   // highlight-start
   filters: jeopardy.filter.byProperty('round').equal('Final Jeopardy!')

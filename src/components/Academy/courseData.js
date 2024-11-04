@@ -196,7 +196,7 @@ export const courseData = {
       "Set up a Weaviate instance and configure collections for multi-tenancy",
       "Create, manage, and remove tenants in a multi-tenant collection",
       "Perform data operations and queries specific to individual tenants",
-      "Implement efficient resource management using tenant activity states",
+      "Implement efficient resource management using tenant activity statuses",
       "Utilize advanced features like auto-tenant creation, activation, and offloading",
       "Apply multi-tenancy concepts to real-world scenarios for improved scalability and data isolation"
     ],

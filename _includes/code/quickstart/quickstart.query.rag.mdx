@@ -1,0 +1,100 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/python/quickstart.query.rag.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.query.rag.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/3_2_rag/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/quickstart/RAG.java';
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# RAG"
+    endMarker="# END RAG"
+    language="py"
+    title="quickstart_rag.py"
+  />
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS">
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// RAG"
+  endMarker="// END RAG"
+  language="ts"
+  title="quickstart_rag.ts"
+/>
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoCode}
+  startMarker="// RAG"
+  endMarker="// END RAG"
+  language="goraw"
+  title="quickstart/3_2_rag/main.go"
+/>
+</TabItem>
+
+<TabItem value="java" label="Java">
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START RAG"
+  endMarker="// END RAG"
+  language="javaraw"
+  title="quickstart/RAG.java"
+/>
+</TabItem>
+
+<TabItem value="curl" label="Curl">
+
+```bash
+# Best practice: store your credentials in environment variables
+# export WCD_URL="YOUR_INSTANCE_URL"    # Your Weaviate instance URL
+# export WCD_API_KEY="YOUR_API_KEY"     # Your Weaviate instance API key
+# export OPENAI_API_KEY="YOUR_API_KEY"  # Your OpenAI API key
+
+echo '{
+  "query": "{
+    Get {
+      Question (
+        limit: 2
+        nearText: {
+          concepts: [\"biology\"],
+        }
+      ) {
+        question
+        answer
+        category
+        _additional {
+          generate(
+            groupedResult: {
+              task: \"\"\"
+                Write a tweet with emojis about these facts.
+              \"\"\"
+            }
+          ) {
+            groupedResult
+            error
+          }
+        }
+      }
+    }
+  }"
+}' | tr -d "\n" | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $WCD_API_KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    $WCD_URL/v1/graphql
+```
+
+</TabItem>
+</Tabs>

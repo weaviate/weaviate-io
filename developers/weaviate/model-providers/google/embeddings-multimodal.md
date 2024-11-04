@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
 
-# Google AI Multimodal Embeddings with Weaviate
+# Google Multimodal Embeddings with Weaviate
 
 
 import Tabs from '@theme/Tabs';
@@ -22,7 +22,7 @@ Weaviate's integration with [Google Vertex AI](https://cloud.google.com/vertex-a
 Multimodal embeddings are currently not available to Google AI Studio users.
 :::
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
 
@@ -32,7 +32,11 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`multi2vec-palm`) module.
+Your Weaviate instance must be configured with the Google vectorizer integration (`multi2vec-google`) module.
+
+:::info Module name change
+`multi2vec-google` was called `multi2vec-palm` in Weaviate versions prior to `v1.27`.
+:::
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -111,7 +115,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -138,7 +142,45 @@ You can [specify](#vectorizer-parameters) one of the [available models](#availab
 
 <!-- The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified. -->
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Google-specific options.
+
+- `location` (Required): e.g. `"us-central1"`
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
+- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
+- `modelId` (Optional): e.g. `multimodalembedding@001`
+- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerGoogle"
+      endMarker="# END FullMMVectorizerGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerGoogle"
+      endMarker="// END FullMMVectorizerGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -172,7 +214,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google model.
 
 ![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
 
@@ -267,37 +309,6 @@ The query below returns the `n` most similar objects to the input image from the
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-The following examples show how to configure Google AI-specific options.
-
-- `location` (Required): e.g. `"us-central1"`
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `multimodalembedding@001`
-- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerGoogle"
-      endMarker="# END FullMMVectorizerGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerGoogle"
-      endMarker="// END FullMMVectorizerGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

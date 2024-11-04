@@ -1,12 +1,15 @@
 ---
-title: Text Embeddings
+title: Text Embeddings (Deprecated)
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai', 'embeddings']
 ---
 
-# OctoAI Embeddings with Weaviate
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
 
+<OctoAIDeprecationNote/>
+
+# OctoAI Embeddings with Weaviate
 
 :::info Added in `v1.25.0`
 :::
@@ -81,7 +84,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an OctoAI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an OctoAI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -103,10 +106,6 @@ Set the vectorizer to configure Weaviate to use an OctoAI embedding model:
   </TabItem>
 
 </Tabs>
-
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
-
-<ConfigAfterEmb/>
 
 ### Select a model
 
@@ -133,7 +132,47 @@ You can specify one of the [available models](#available-models) for the vectori
 
 </Tabs>
 
-The [default model](#available-models) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+- `model`: Model name, default - `"thenlper/gte-large"`.
+- `vectorize_collection_name`: If the Collection name should be vectorized, default - `True`.
+- `base_url`: The URL to use (e.g. a proxy) instead of the default OctoAI URL - `"https://text.octoai.run"`.
+
+The following examples show how to configure OctoAI-specific options.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerOctoAI"
+      endMarker="# END FullVectorizerOctoAI"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerOctoAI"
+      endMarker="// END FullVectorizerOctoAI"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/getting-started).
 
 ## Data import
 
@@ -232,39 +271,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 </Tabs>
 
 ## References
-
-### Vectorizer parameters
-
-- `model`: Model name, default - `"thenlper/gte-large"`.
-- `vectorize_collection_name`: If the Collection name should be vectorized, default - `True`.
-- `base_url`: The URL to use (e.g. a proxy) instead of the default OctoAI URL - `"https://text.octoai.run"`.
-
-#### Example configuration
-
-The following examples show how to configure OctoAI-specific options.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerOctoAI"
-      endMarker="# END FullVectorizerOctoAI"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerOctoAI"
-      endMarker="// END FullVectorizerOctoAI"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-For further details on model parameters, see the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/getting-started).
 
 ### Available models
 

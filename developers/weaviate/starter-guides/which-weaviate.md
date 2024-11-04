@@ -44,7 +44,7 @@ If you are evaluating Weaviate, we recommend using one of these instance types t
 - [Weaviate Cloud (WCD)](/developers/wcs) sandbox
 - [Embedded Weaviate](/developers/weaviate/installation/embedded)
 
-Use an inference-API based text vectorizer with your instance, for example, `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`.
+Use an inference-API based text vectorizer with your instance, for example, `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-google`.
 
 The [Quickstart guide](/developers/weaviate/quickstart) uses a WCD sandbox and an API based vectorizer to run the examples.
 
@@ -82,7 +82,7 @@ Keep in mind two other factors, which are cost, and their footprint.
 For production deployments, consider one of these hosting models:
 
 - [Weaviate Cloud (WCD)](/developers/wcs)
-- [Self-managed Kubernetes](developers/weaviate/installation/kubernetes)
+- [Self-managed Kubernetes](/developers/weaviate/installation/kubernetes)
 - [Hybrid SaaS](/developers/wcs#bring-your-own-cloud)
 
 All of these options are scalable. Kubernetes and Hybrid SaaS offer the most configuration flexibility.

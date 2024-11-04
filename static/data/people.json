@@ -4,7 +4,7 @@
     "title": "QA Engineer",
     "photo": "aarthi.jpeg",
     "linkedin": "aarthiiyer",
-    "team": "delivery"
+    "team": "wcd"
   },
   {
     "name": "Abdel Rodriquez",
@@ -21,6 +21,12 @@
     "linkedin": "itsajchan",
     "twitter": "itsajchan",
     "team": "developer-growth"
+  },
+  {
+    "name": "Ajit Mistry",
+    "title": "ML Engineering Intern ",
+    "photo": "ajit.png",
+    "team": "applied-research"
   },
   {
     "name": "Alea Abed",
@@ -76,6 +82,12 @@
     "team": "applied-research"
   },
   {
+    "name": "Augustas Skaburskas",
+    "title": "Full Stack Engineer",
+    "photo": "augustas.jpg",
+    "team": "weaviate-labs"
+  },
+  {
     "name": "Benjamin Sabrin",
     "title": "Head of Sales",
     "photo": "benjamin.jpg",
@@ -105,7 +117,7 @@
     "title": "Platform Engineer",
     "photo": "cari.jpeg",
     "linkedin": "cari-liebenberg-1b40b0a6",
-    "team": "wcd"
+    "team": "delivery"
   },
   {
     "name": "Chad Tindel",
@@ -160,13 +172,6 @@
     "team": "developer-relations"
   },
   {
-    "name": "Daniel McGee",
-    "title": "Full Stack Engineer",
-    "photo": "Daniel-McGee.jpg",
-    "linkedin": "danieltmcgee",
-    "team": "developer-growth"
-  },
-  {
     "name": "Daniel Williams",
     "title": "Machine Learning Engineer",
     "photo": "daniel-williams.jpg",
@@ -174,18 +179,19 @@
     "team": "developer-growth"
   },
   {
-    "name": "David Cuthbert",
-    "title": "Technical Documentation Writer",
-    "photo": "dave.jpg",
-    "linkedin": "davecuthbert",
-    "team": "developer-relations"
-  },
-  {
     "name": "David Street",
     "title": "Full Stack Engineer",
     "photo": "david.png",
     "linkedin": "david-street-552b7563",
     "team": "wcd"
+  },
+  {
+    "name": "Darwin Corn (they/them)",
+    "title": "Client-Focused SRE",
+    "photo": "darwin.jpg",
+    "linkedin": "darwincorn",
+    "twitter": "ndc@pnw.zone",
+    "team": "delivery"
   },
   {
     "name": "Deepti Naidu",
@@ -200,6 +206,12 @@
     "photo": "dirk.png",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
+    "team": "database"
+  },
+  {
+    "name": "Dmytro Solovei",
+    "title": "Software Engineer",
+    "photo": "dmytro.jpg",
     "team": "database"
   },
   {
@@ -231,7 +243,7 @@
     "photo": "eric.png",
     "linkedin": "iamcaleberic",
     "twitter": "iamcaleberic",
-    "team": "wcd"
+    "team": "delivery"
   },
   {
     "name": "Erika Cardenas",
@@ -273,6 +285,12 @@
     "linkedin": "hinashah1",
     "twitter": "hinashah98",
     "team": "partnerships"
+  },
+  {
+    "name": "Ian Gregson",
+    "title": "Full Stack Engineer",
+    "photo": "ian.jpeg",
+    "team": "wcd"
   },
   {
     "name": "Ieva Urbaite",
@@ -342,7 +360,7 @@
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpeg",
-    "team": "delivery"
+    "team": "database"
   },
   {
     "name": "Joseph Green",
@@ -436,7 +454,7 @@
     "photo": "mike.jpg",
     "linkedin": "mikewyer",
     "twitter": "BigBeardyGeek",
-    "team": "wcd"
+    "team": "delivery"
   },
   {
     "name": "Mohamed Badawi",
@@ -457,6 +475,13 @@
     "title": "Distributed Systems Engineer",
     "photo": "nate-wilkinson.jpg",
     "team": "database"
+  },
+  {
+    "name": "Nenad Malić",
+    "title": "Product Marketing Manager",
+    "photo": "nenad.jpg",
+    "team": "marketing",
+    "linkedin": "nenadmalic"
   },
   {
     "name": "Nick Olivetti",
@@ -496,14 +521,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Rich Lapham",
-    "title": "Recruiter",
-    "photo": "rich-lapham.jpg",
-    "linkedin": "richlapham",
-    "twitter": "laphamr66",
-    "team": "people-and-culture"
-  },
-  {
     "name": "Roberto Esposito",
     "title": "Research Engineer",
     "photo": "roberto-esposito.jpg",
@@ -516,7 +533,7 @@
     "title": "QA Engineer",
     "photo": "Rodrigo-Lopez.jpg",
     "linkedin": "rodrigo-antonio-lópez-manrique-a3778a93",
-    "team": "delivery"
+    "team": "applied-research"
   },
   {
     "name": "Scott Alexander",
@@ -581,7 +598,7 @@
     "photo": "stefan.png",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",
-    "team": "delivery"
+    "team": "applied-research"
   },
   {
     "name": "Svitlana Smolianova",
@@ -596,7 +613,7 @@
     "title": "Platform Engineer",
     "photo": "thomas.jpg",
     "linkedin": "thomas-maurice-80846b61",
-    "team": "wcd"
+    "team": "delivery"
   },
   {
     "name": "Thomas Smith",
@@ -604,6 +621,14 @@
     "photo": "tommy.jpg",
     "linkedin": "tbs181194",
     "team": "database"
+  },
+  {
+    "name": "Tuana Celik",
+    "title": "Developer Relations Engineer",
+    "photo": "Tuana.jpg",
+    "team": "developer-relations",
+    "linkedin": "tuanacelik",
+    "twitter": "tuanacelik"
   },
   {
     "name": "Victoria Slocum",
@@ -620,13 +645,6 @@
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
-  },
-  {
-    "name": "Zain Hasan",
-    "title": "Senior Developer Advocate",
-    "photo": "zain.png",
-    "linkedin": "zainhas",
-    "team": "developer-relations"
   },
   {
     "name": "Chrétien Minke",

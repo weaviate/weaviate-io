@@ -1,3 +1,3 @@
 :::info Dynamic index requires `ASYNC_INDEXING`
-To use the `dynamic` vector index type, your Weaviate instance must have the `ASYNC_INDEXING` [environment variable](/developers/weaviate/config-refs/env-vars#general) enabled. This can be done by setting the `ASYNC_INDEXING` environment variable to `true`. For Weaviate Cloud users, this can be enabled through the Weaviate Cloud dashboard.
+Dynamic indexes require asynchronous indexing. To enable asynchronous indexing in a self-hosted Weaviate instance, set the `ASYNC_INDEXING` [environment variable](/developers/weaviate/config-refs/env-vars#general) to `true`. If your instance is hosted in Weaviate Cloud, use the  Weaviate Cloud console to enable asynchronous indexing.
 :::

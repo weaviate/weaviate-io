@@ -13,13 +13,11 @@ High availability of a database means that the database is designed to operate c
 
 This is solved by replication, where redundant nodes can handle requests when other nodes fail.
 
-Weaviate considers schema operations critical, so it has a strongly consistent schema.
+Weaviate considers cluster metadata operations critical, so it treats them differently than it does data operations.
 
-From Weaviate `v1.25`, Weaviate uses the Raft consensus algorithm for schema replication. This is a leader-based consensus algorithm, where a leader node is responsible for schema changes. Use of Raft ensures that schema changes are consistent across the cluster, even in the event of (a minority of) node failures.
+From Weaviate `v1.25`, Weaviate uses the Raft consensus algorithm for cluster metadata replication. This is a leader-based consensus algorithm, where a leader node is responsible for cluster metadata changes. Use of Raft ensures that cluster metadata changes are consistent across the cluster, even in the event of (a minority of) node failures.
 
-Prior to Weaviate `v1.25`, Weaviate used a leaderless design with two-phase commit for schema operations. This required all nodes for a schema operation, which meant that one or more nodes are down, schema operations were temporarily not possible. Additionally, only one schema operation could be processed at a time.
-
-In both cases, schema operations are consistent across the cluster, and the schema is always available.
+Prior to Weaviate `v1.25`, Weaviate used a leaderless design with two-phase commit for cluster metadata operations. This required all nodes for a cluster metadata operation such as a collection definition update, or a tenant state update. This meant that one or more nodes being down temporarily prevented cluster metadata operations. Additionally, only one cluster metadata operation could be processed at a time.
 
 Regarding data operations, read or write queries may still be available in a distributed database structure even when a node goes down, so single points of failure are eliminated. Users' queries will be automatically (unnoticeably) redirected to an available replica node.
 

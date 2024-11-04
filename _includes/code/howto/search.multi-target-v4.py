@@ -129,6 +129,71 @@ for o in response.objects:
 # END MultiTargetNearVector
 
 
+# ================================================
+# ===== NearVectorWithMultipleVectorsPerTarget =====
+# ================================================
+
+some_result = collection.query.fetch_objects(limit=3, include_vector=True)
+
+v1 = some_result.objects[0].vector["jeopardy_questions_vector"]
+v2 = some_result.objects[1].vector["jeopardy_answers_vector"]
+v3 = some_result.objects[2].vector["jeopardy_answers_vector"]
+
+# START MultiTargetMultipleNearVectorsV1
+from weaviate.classes.query import MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_vector(
+    # highlight-start
+    # Specify the query vectors for each target vector
+    near_vector={
+        "jeopardy_questions_vector": v1,
+        "jeopardy_answers_vector": [v2, v3]
+    },
+    # highlight-end
+    limit=2,
+    # Specify the target vectors as a list
+    target_vector=[
+        "jeopardy_questions_vector",
+        "jeopardy_answers_vector",
+    ],
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    return_metadata=MetadataQuery(distance=True)
+# END MultiTargetMultipleNearVectorsV1
+
+# START MultiTargetMultipleNearVectorsV2
+from weaviate.classes.query import MetadataQuery
+
+collection = client.collections.get("JeopardyTiny")
+
+response = collection.query.near_vector(
+    # highlight-start
+    # Specify the query vectors for each target vector
+    near_vector={
+        "jeopardy_questions_vector": v1,
+        "jeopardy_answers_vector": [v2, v3]
+    },
+    # highlight-end
+    limit=2,
+    # Specify the target vectors and weights
+    target_vector=TargetVectors.manual_weights({
+        "jeopardy_questions_vector": 10,
+        "jeopardy_answers_vector": [30, 30],  # Matches the order of the vectors above
+    }),
+    return_metadata=MetadataQuery(distance=True)
+)
+
+for o in response.objects:
+    print(o.properties)
+    return_metadata=MetadataQuery(distance=True)
+# END MultiTargetMultipleNearVectorsV2
+
+
 # ========================
 # ===== Simple join strategy =====
 # ========================

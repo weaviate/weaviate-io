@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
 
-# Google AI Text Embeddings with Weaviate
+# Google Text Embeddings with Weaviate
 
 
 import Tabs from '@theme/Tabs';
@@ -18,7 +18,7 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -32,7 +32,11 @@ At the time of writing (November 2023), AI Studio is not available in all region
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
+Your Weaviate instance must be configured with the Google vectorizer integration (`text2vec-google`) module.
+
+:::info Module name change
+`text2vec-google` was called `text2vec-palm` in Weaviate versions prior to `v1.27`.
+:::
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -113,9 +117,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google embedding model:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
+
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 ### Vertex AI
 
@@ -165,9 +171,44 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
 
 </Tabs>
 
-import ConfigAfterEmb from '/developers/weaviate/model-providers/_includes/more-info-embeddings.mdx';
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
-<ConfigAfterEmb/>
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The following examples show how to configure Google-specific options.
+
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
+- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
+<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerGoogle"
+      endMarker="# END FullVectorizerGoogle"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerGoogle"
+      endMarker="// END FullVectorizerGoogle"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -201,7 +242,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google model.
 
 ![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
 
@@ -267,36 +308,6 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## References
 
-### Vectorizer parameters
-
-The following examples show how to configure Google AI-specific options.
-
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
-<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerGoogle"
-      endMarker="# END FullVectorizerGoogle"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerGoogle"
-      endMarker="// END FullVectorizerGoogle"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
 ### Available models
 
 Vertex AI:
@@ -317,7 +328,7 @@ AI Studio:
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Google generative models + Weaviate](./generative.md).
 
 ### Code examples
 

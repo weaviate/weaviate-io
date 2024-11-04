@@ -129,7 +129,7 @@ As this integration runs a local container with the ImageBind model, no addition
 
 ## Configure the vectorizer
 
-Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an ImageBind embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -154,7 +154,39 @@ Set the vectorizer to configure Weaviate to use an ImageBind embedding model:
 
 There is only one ImageBind model available.
 
-For more information on configuring a vectorizer, see [Specify a vectorizer](/developers/weaviate/manage-data/collections#specify-a-vectorizer).
+import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
+
+<details>
+  <summary>Vectorization behavior</summary>
+
+<VectorizationBehavior/>
+
+</details>
+
+### Vectorizer parameters
+
+The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullMMVectorizerBind"
+      endMarker="# END FullMMVectorizerBind"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullMMVectorizerBind"
+      endMarker="// END FullMMVectorizerBind"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -285,31 +317,6 @@ The query below returns the `n` most similar objects to the input image from the
 You can perform similar searches for other media types such as audio, video, thermal, IMU, and depth, by using an equivalent search query for the respective media type.
 
 ## References
-
-### Vectorizer parameters
-
-The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullMMVectorizerBind"
-      endMarker="# END FullMMVectorizerBind"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullMMVectorizerBind"
-      endMarker="// END FullMMVectorizerBind"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 
