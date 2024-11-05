@@ -19,10 +19,10 @@ import weaviate
 import weaviate.classes as wvc
 import os
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
-# EndToEndExample  # InstantiationExample
+# EndToEndExample
 import requests
 import json
-# END EndToEndExample  # END InstantiationExample
+# END EndToEndExample
 
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
@@ -55,7 +55,7 @@ client.collections.delete("Question")
 
 # DockerInstantiationExample # EndToEndExample  # InstantiationExample  # NearTextExample
 try:
-    pass # Replace with your code. Close client gracefully in the finally block.
+    pass  # Work with the client. Close client gracefully in the finally block.
 # END DockerInstantiationExample  # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
     # EndToEndExample

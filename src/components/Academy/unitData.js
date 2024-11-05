@@ -487,10 +487,10 @@ export const unitData = {
     "buttonURL": "/developers/academy/py/multitenancy/manage_tenants",
     "badgeType": "practical",
     "learningGoals": [
-      "Understand tenant activity states and their implications, and learn how to manage tenant states for optimal resource usage"
+      "Understand tenant activity statuses and their implications, and learn how to manage tenant states for optimal resource usage"
     ],
     "learningOutcomes": [
-      "Describe the different tenant activity states (ACTIVE, INACTIVE, OFFLOADED)",
+      "Describe the different tenant activity statuses (ACTIVE, INACTIVE, OFFLOADED)",
       "Update tenant states individually and in bulk",
       "Implement tenant offloading to cold storage",
       "Utilize auto-activation for efficient resource management",

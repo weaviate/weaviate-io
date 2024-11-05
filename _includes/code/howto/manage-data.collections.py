@@ -171,18 +171,17 @@ assert config.vector_index_type.name == "HNSW"
 client.collections.delete("Article")
 
 # START SetVectorIndexParams
-from weaviate.classes.config import Configure, Property, DataType
+from weaviate.classes.config import Configure, Property, DataType, VectorDistances, VectorFilterStrategy
 
 client.collections.create(
     "Article",
     # Additional configuration not shown
     # highlight-start
-    vector_index_config=Configure.VectorIndex.flat(
-        quantizer=Configure.VectorIndex.Quantizer.bq(
-            rescore_limit=200,
-            cache=True
-        ),
-        vector_cache_max_objects=100000
+    vector_index_config=Configure.VectorIndex.hnsw(
+        quantizer=Configure.VectorIndex.Quantizer.bq(),
+        ef_construction=300,
+        distance_metric=VectorDistances.COSINE,
+        filter_strategy=VectorFilterStrategy.SWEEPING  # or ACORN (Available from Weaviate v1.27.0)
     ),
     # highlight-end
 )
@@ -191,7 +190,8 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.vector_index_type.name == "FLAT"
+assert config.vector_index_config.filter_strategy.name == "SWEEPING"
+assert config.vector_index_type.name == "HNSW"
 
 
 # ===================================================================
@@ -653,7 +653,7 @@ for _ in range(5):
 
 
 # START UpdateCollection
-from weaviate.classes.config import Reconfigure
+from weaviate.classes.config import Reconfigure, VectorFilterStrategy
 
 articles = client.collections.get("Article")
 
@@ -661,6 +661,9 @@ articles = client.collections.get("Article")
 articles.config.update(
     inverted_index_config=Reconfigure.inverted_index(
         bm25_k1=1.5
+    ),
+    vector_index_config=Reconfigure.VectorIndex.hnsw(
+        filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
     )
 )
 # END UpdateCollection
@@ -675,9 +678,14 @@ assert new_config.inverted_index_config.bm25.k1 == 1.5
 # ===== DELETE A COLLECTION =====
 # ================================
 
+collection_name = "Article"
+
 # START DeleteCollection
-# delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
-client.collections.delete("Article")  # Replace with your collection name
+# collection_name can be a string ("Article") or a list of strings (["Article", "Category"])
+client.collections.delete(collection_name)  # THIS WILL DELETE THE SPECIFIED COLLECTION(S) AND THEIR OBJECTS
+
+# Note: you can also delete all collections in the Weaviate instance with:
+# client.collections.delete_all()
 # END DeleteCollection
 
 # ========================================

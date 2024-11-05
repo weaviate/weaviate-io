@@ -65,6 +65,7 @@ services:
   weaviate:
     # Other Weaviate configuration
     environment:
+      ENABLE_MODULES: text2vec-transformers # Enable this module
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080  # Set the inference API endpoint
   t2v-transformers:  # Set the name of the inference container
     image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1

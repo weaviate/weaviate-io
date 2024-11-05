@@ -366,7 +366,8 @@ client.collections.create(
         Configure.NamedVectors.text2vec_jinaai(
             name="title_vector",
             source_properties=["title"],
-            model="jina-embeddings-v2-small-en"
+            model="jina-embeddings-v3-small-en",
+            dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
     # highlight-end
@@ -573,7 +574,7 @@ client.collections.create(
             # If using older model family e.g. `ada`
             model="ada",
             model_version="002",
-            type="text"
+            type_="text"
         )
     ],
     # highlight-end

@@ -141,6 +141,8 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 The following examples show how to configure Jina AI-specific options.
 
+Note that `dimensions` is only used for the `jina-embeddings-v3` model.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
@@ -262,6 +264,9 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
+- `jina-embeddings-v3` (Added in Weaviate `v1.26.5` and `v1.27`)
+    - When using this model, Weaviate will automatically use the appropriate `task` type, applying `retrieval.passage` for embedding entries and `retrieval.query` for queries.
+    - By default, Weaviate uses `1024` dimensions
 - `jina-embeddings-v2-base-en` (Default)
 - `jina-embeddings-v2-small-en`
 

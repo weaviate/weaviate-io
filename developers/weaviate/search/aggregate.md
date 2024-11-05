@@ -371,21 +371,21 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
     />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START nearTextWithLimit"
-      endMarker="// END nearTextWithLimit"
-      language="gonew"
-    />
-  </TabItem>
-
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// nearTextWithLimit TS"
       endMarker="// END nearTextWithLimit TS"
       language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START nearTextWithLimit"
+      endMarker="// END nearTextWithLimit"
+      language="gonew"
     />
   </TabItem>
 
@@ -412,7 +412,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
   />
 </details>
 
-## Set a similarity `distance`
+### Set a similarity `distance`
 
 You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
 
@@ -486,6 +486,79 @@ Use `distance` to specify how similar the objects should be.
     text={PyCodeV3}
     startMarker="# nearTextWithDistance Expected Results"
     endMarker="# END nearTextWithDistance Expected Results"
+    language="json"
+  />
+</details>
+
+## Aggregate with a `hybrid search`
+
+You can use `Aggregate` with a [hybrid search](./hybrid.md) operator.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# HybridExample"
+      endMarker="# END HybridExample"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# HybridExample"
+      endMarker="# END HybridExample"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// HybridExample"
+      endMarker="// END HybridExample"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// nearTextWithLimit TS"
+      endMarker="// END nearTextWithLimit TS"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START nearTextWithLimit"
+      endMarker="// END nearTextWithLimit"
+      language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GraphQLHybridExample"
+      endMarker="# END GraphQLHybridExample"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+  The output is like this:
+
+  <FilteredTextBlock
+    text={PyCodeV3}
+    startMarker="# ResultsHybridExample"
+    endMarker="# END ResultsHybridExample"
     language="json"
   />
 </details>

@@ -1,12 +1,15 @@
 ---
-title: Text Embeddings
+title: Text Embeddings (Deprecated)
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai', 'embeddings']
 ---
 
-# OctoAI Embeddings with Weaviate
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
 
+<OctoAIDeprecationNote/>
+
+# OctoAI Embeddings with Weaviate
 
 :::info Added in `v1.25.0`
 :::

@@ -26,6 +26,7 @@ For more information related to one of the documents below, please reach out to 
   - [Weaviate Data Processing Agreement](/dpa)
   - [Weaviate Data Subprocessors](/subprocessors)
   - [Weaviate Support Terms](/weaviate-support-terms)
+  - [Weaviate End of Life Policy](/weaviate-eol-policy)
   - [Weaviate Privacy Policy](/privacy)
   - [Update to Terms & Policies](/service/updates-to-terms-and-policies)
   

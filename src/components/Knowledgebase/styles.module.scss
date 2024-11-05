@@ -557,6 +557,18 @@
   }
 }
 
+.knowledgeCard.et {
+  .cardHeader {
+    background: #130c49;
+  }
+}
+
+.knowledgeCard.ct {
+  .cardHeader {
+    background: #6bbd4c;
+  }
+}
+
 .initialAnimation {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -893,6 +905,18 @@
 .modalContents.search {
   .cardHeader {
     background: #059053;
+  }
+}
+
+.modalContents.et {
+  .cardHeader {
+    background: #130c49;
+  }
+}
+
+.modalContents.ct {
+  .cardHeader {
+    background: #6bbd4c;
   }
 }
 

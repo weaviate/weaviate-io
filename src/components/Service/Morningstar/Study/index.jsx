@@ -93,7 +93,7 @@ export default function Study() {
             <p>
               The Morningstar Intelligence Engine has allowed hundreds of
               applications to be created in house that are powering internal use
-              cases and external workloads across our diverse portfolio of
+              cases and external workloads across their diverse portfolio of
               products.
             </p>
             <h2>Financial Research</h2>

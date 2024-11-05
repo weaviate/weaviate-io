@@ -54,7 +54,15 @@ PQ has a training stage where it creates a codebook. We recommend using 10,000 t
 
 When the training step is triggered, a background job converts the index to the compressed index. While the conversion is running, the index is read-only. Shard status returns to `READY` when the conversion finishes.
 
+Weaviate uses a maximum of `trainingLimit` objects (per shard) for training, even if there are more objects available.
+
 After the PQ conversion completes, query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
+
+:::info Which objects are used for training?
+- (`v1.27` and later) If the collection has more objects than the training limit, Weaviate randomly selects objects from the collection to train the codebook.
+    - (`v1.26` and earlier) Weaviate uses the first `trainingLimit` objects in the collection to train the codebook.
+- If the collection has fewer objects than the training limit, Weaviate uses all objects in the collection to train the codebook.
+:::
 
 ### Encoders
 
@@ -99,7 +107,9 @@ When SQ is enabled, Weaviate boosts recall by over-fetching compressed results. 
 
 Weaviate over-fetches results and then re-scores them when you use SQ or BQ. This is because the distance calculation on the compressed vectors is not as accurate as the same calculation on the original vector embedding.
 
-When you run a query, Weaviate compares the `rescore limit` and the query limit. The query retieves compressed objects until the object count reaches whichever limit is greater. Then, Weaviate fetches the original, uncompressed vector embeddings that correspond to the compressed vectors. The uncompressed vectors are used to recalculate the query distance scores.
+When you run a query, Weaviate compares the query limit against a configurable `rescoreLimit` parameter.
+
+The query retrieves compressed objects until the object count reaches whichever limit is greater. Then, Weaviate fetches the original, uncompressed vector embeddings that correspond to the compressed vectors. The uncompressed vectors are used to recalculate the query distance scores.
 
 For example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate fetches 200 objects. After rescoring, the query returns top 10 objects. This process offsets the loss in search quality (recall) that is caused by compression.
 

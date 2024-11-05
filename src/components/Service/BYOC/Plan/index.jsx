@@ -15,8 +15,8 @@ export default function ServicePlan() {
             <div className={styles.leftContent}>
               <span>Architecture</span>
               <p>
-                Our BYOC architecture capitalizes on managed Kubernetes,
-                ensuring scalability and resilience.
+                Our BYOC vector database architecture capitalizes on managed
+                Kubernetes, ensuring scalability and resilience.
               </p>
               <span>Shared responsibility</span>
               <p>

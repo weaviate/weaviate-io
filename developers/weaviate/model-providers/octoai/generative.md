@@ -1,9 +1,13 @@
 ---
-title: Generative AI
+title: Generative AI (Deprecated)
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai', 'generative', 'rag']
 ---
+
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
+
+<OctoAIDeprecationNote/>
 
 # OctoAI Generative AI with Weaviate
 

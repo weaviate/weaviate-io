@@ -899,20 +899,18 @@ The batching algorithm in our client is not thread-safe. Keep this in mind to he
 
 If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
 
-## Client releases
+## Releases
 
-import MatrixIntro from '/_includes/clients/matrix-intro.md';
+Go to the [GitHub releases page](https://github.com/weaviate/weaviate-python-client/releases) to see the history of the Python client library releases.
 
-<MatrixIntro />
+<details>
+  <summary>Click here for a table of Weaviate and corresponding client versions</summary>
 
-## Change logs
+import ReleaseHistory from '/_includes/release-history.md';
 
-For more detailed information on client updates, check the change logs. The logs
-are hosted here:
+<ReleaseHistory />
 
-- [GitHub](https://github.com/weaviate/weaviate-python-client/releases)
-- [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
-
+</details>
 
 ## Questions and feedback
 

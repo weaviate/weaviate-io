@@ -15,6 +15,14 @@ Multi-tenant collections enable you to efficiently manage isolated subsets of da
 
 A tenant status management strategy can help you to balance cost and performance. Here's why. An active tenant with an HNSW index uses *hot* resources, which are the most expensive. At the other end of the spectrum, an offloaded tenant uses *cold* resources, which are the least expensive.
 
+:::info Tenant state propagation
+A tenant state change may take some time to propagate across a cluster, especially a multi-node cluster.
+
+<br/>
+
+For example, data may not be immediately available after reactivating an offloaded tenant. Similarly, data may not be immediately unavailable after offloading a tenant. This is because the [tenant states are eventually consistent](../../concepts/replication-architecture/consistency.md#tenant-states-and-data-objects), and the change must be propagated to all nodes in the cluster.
+:::
+
 ### Tenant states and resource usage
 
 *Hot* tenants can be deactivated to *warm* storage to reduce memory usage, and any tenant can be offloaded to *cold* storage to reduce memory and disk usage. Conversely, any tenant can be reactivated when needed.
