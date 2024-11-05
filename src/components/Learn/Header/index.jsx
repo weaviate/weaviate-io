@@ -10,7 +10,7 @@ export default function Header() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <h1>Weaviate Learning Centre</h1>
+            <h1>Weaviate Learning Center</h1>
             <p>A learning resources hub for builders of all levels.</p>
           </div>
         </div>

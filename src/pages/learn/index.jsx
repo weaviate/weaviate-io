@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Weaviate Learning Centre"
+        title="Weaviate Learning Center"
         description="Training courses, resources, and support options for builders of all levels. We’re with you on your AI journey."
       >
         <MetaSEO img="og/content/learning-centre.jpg" />
