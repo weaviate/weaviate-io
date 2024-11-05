@@ -394,11 +394,12 @@ An ongoing backup can be cancelled at any time. The backup process will be stopp
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-    ```ts
-    // Coming soon
-    ```
-
+    <FilteredTextBlock
+      text={TSCodeStatus}
+      startMarker="// START CancelBackup"
+      endMarker="// END CancelBackup"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 

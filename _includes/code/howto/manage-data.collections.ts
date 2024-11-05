@@ -8,12 +8,14 @@ import assert from 'assert';
 import weaviate, { WeaviateClient, vectorIndex } from 'weaviate-client';
 import { vectorizer, reranker, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL,
- {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
-   headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const openaiKey = process.env.OPENAI_API_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateKey),
+  headers: {
+     'X-OpenAI-Api-Key': openaiKey,  // Replace with your inference API key
    }
  }
 )

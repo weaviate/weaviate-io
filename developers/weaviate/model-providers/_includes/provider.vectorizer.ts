@@ -211,7 +211,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       projectId: '<google-cloud-project-id>',
@@ -238,7 +238,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       // (Optional) To manually set the model ID
@@ -264,7 +264,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       projectId: '<google-cloud-project-id>', // Required for Vertex AI
@@ -294,7 +294,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.multi2VecPalm({
+    weaviate.configure.vectorizer.multi2VecGoogle({
       name: 'title_vector',
       location: '<google-cloud-location>',
       projectId: '<google-cloud-project-id>',
@@ -339,7 +339,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.multi2VecPalm({
+    weaviate.configure.vectorizer.multi2VecGoogle({
       name: 'title_vector',
       projectId: '<google-cloud-project-id>',
       modelId: '<google-model-id>',
