@@ -23,21 +23,26 @@ export default function Examples() {
                 <p>End-to-end code examples for builders.</p>
                 <ul>
                   <li>
-                    Python: Integrations (DSPy, Llamalndex, ...), Reranking,
-                    Search, Multi-tenancy, ...
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/recipes"
+                    >
+                      Python recipes
+                    </Link>:{' '}
+                    Integrations (DSPy, Llamalndex, etc.), Reranking,
+                    Search, Multi-tenancy, and more
                   </li>
                   <li>
-                    JavaScript: Integrations (Llamalndex, ...), Reranking,
-                    Search, Multi-tenancy, ...
+                  <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/recipes-ts"
+                    >
+                      JS/TS recipes
+                    </Link>:{' '}
+                    Integrations (LangChain, etc.), Reranking,
+                    Search, Multi-tenancy, and more
                   </li>
                 </ul>
-
-                <Link
-                  to="https://github.com/weaviate/recipes"
-                  className={styles.button}
-                >
-                  Weaviate recipes on GitHub
-                </Link>
               </div>
             </div>
             <div className={styles.typeBox}>
@@ -75,10 +80,15 @@ export default function Examples() {
                     </Link>{' '}
                     A Movie Search Engine
                   </li>
+                  <li>
+                    <Link
+                      className={styles.external}
+                      to="/community/demos"
+                    >
+                      See more demos here
+                    </Link>
+                  </li>
                 </ul>
-                <Link to="/community/demos" className={styles.button}>
-                  Learn More
-                </Link>
               </div>
             </div>
           </div>
@@ -90,24 +100,55 @@ export default function Examples() {
             </div>
             <div className={`${styles.typeText} ${styles.large}`}>
               <p>We are proudly open source! Here are our key repositories</p>
-              <div className={styles.intergrations}>
+              <div className={styles.integrations}>
                 <ul>
                   <li>
-                    <strong>weaviate:</strong> The "core" database & web server
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/weaviate"
+                    >
+                      weaviate:
+                    </Link>{' '}
+                    The "core" database & web server
                   </li>
                   <li>
-                    <strong>weaviate-python-client:</strong> Python SDK
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/weaviate-python-client"
+                    >
+                      weaviate-python-client:
+                    </Link>{' '}
+                    Python client library
                   </li>
                   <li>
-                    <strong>typescript-client:</strong> TS/JS SDK
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/typescript-client"
+                    >
+                      typescript-client:
+                    </Link>{' '}
+                    TS/JS client library
                   </li>
                 </ul>
+
                 <ul>
                   <li>
-                    <strong>weaviate-go-client:</strong> Go(lang) SDK
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/weaviate-go-client"
+                    >
+                      weaviate-go-client:
+                    </Link>{' '}
+                    Golang client library
                   </li>
                   <li>
-                    <strong>java-client:</strong> Java SDK
+                    <Link
+                      className={styles.external}
+                      to="https://github.com/weaviate/java-client"
+                    >
+                      java-client:
+                    </Link>{' '}
+                    Java client library
                   </li>
                 </ul>
               </div>
