@@ -14,132 +14,87 @@ export default function Documentation() {
         </div>
         <div className={styles.boxContainer}>
           <div className={styles.typeContainer}>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={styles.homeIcon}></div>
-                <h2>Docs: Integration guides</h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>How Weaviate integrates with various Al model providers</p>
-                <div className={styles.integrations}>
-                  <p>AWS</p>
-                  <p>Cohere</p>
-                  <p>Google</p>
-                  <p>Hugging Face</p>
-                  <p>OpenAl</p>
-                  <p>Mistral</p>
-                  <p>Anyscale</p>
-                  <p>VoyageAl</p>
+          <Link to="/developers/weaviate/model-providers">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={styles.homeIcon}></div>
+                  <h2>Model provider integrations</h2>
                 </div>
-                <Link
-                  to="/developers/weaviate/model-providers"
-                  className={styles.button}
-                >
-                  Model provider integrations pages
-                </Link>
+                <div className={styles.typeText}>
+                  <p><small>With AWS, Cohere, Google, Hugging Face, OpenAI & more</small></p>
+                </div>
               </div>
-            </div>
-            <div className={`${styles.typeBox} ${styles.tall}`}>
-              <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.starter}`}></div>
-                <h2>Docs: Concepts</h2>
+            </Link>
+            <Link to="/developers/weaviate/configuration">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
+                  <h2>How-to: Configure</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>Configure Weaviate to suit your specific needs</small></p>
+                </div>
               </div>
-              <div className={styles.typeText}>
-                <p>
-                  In-depth explanations of key features and ideas that power
-                  Weaviate.
-                </p>
-                <ul>
-                  <li>
-                    <strong>Data structures</strong> explained for collections
-                    and tenants Vector indexing helps perform fast and effective
-                    searches
-                  </li>
-                  <li>
-                    <strong>Vector indexing</strong> helps perform fast and
-                    effective searches
-                  </li>
-
-                  <li>
-                    <strong>Compression</strong> reduces resource usage with
-                    minimal loss of search quality
-                  </li>
-                </ul>
-
-                <Link
-                  to="/developers/weaviate/concepts"
-                  className={styles.button}
-                >
-                  All concepts
-                </Link>
+            </Link>               
+            <Link to="/developers/weaviate/search">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
+                  <h2>How-to: Search</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>Perform the right queries to find the data you want</small></p>
+                </div>
               </div>
-            </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={`${styles.homeIcon} ${styles.howtos}`}></div>
-                <h2>Docs: How-Tos</h2>
+            </Link>          
+            <Link to="/developers/weaviate/manage-data">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
+                  <h2>How-to: Manage data</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>Manage collections & data</small></p>
+                </div>
               </div>
-              <div className={styles.typeText}>
-                <p>Concise snippets to help you perform specific tasks.</p>
-                <ul>
-                  <li>
-                    <strong>Install:</strong> with Docker, Kubernetes, ...
-                  </li>
-                  <li>
-                    {' '}
-                    <strong>Connect:</strong> to Weaviate
-                  </li>
-                  <li>
-                    {' '}
-                    <strong>Manage data:</strong> Manage collections & data
-                  </li>
-                  <li>
-                    {' '}
-                    <strong>Search:</strong> find the data you want
-                  </li>
-                  <li>
-                    {' '}
-                    <strong>Configure:</strong> Weaviate and its features
-                  </li>
-                </ul>
-
-                <Link
-                  to="developers/weaviate/installation"
-                  className={styles.button}
-                >
-                  Learn More
-                </Link>
+            </Link>          
+            <Link to="/developers/weaviate/concepts">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div className={`${styles.homeIcon} ${styles.starter}`}></div>
+                  <h2>Docs: Concepts</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>Key features and ideas explained</small></p>
+                </div>
               </div>
-            </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div
-                  className={`${styles.homeIcon} ${styles.references}`}
-                ></div>
-                <h2>Docs: References</h2>
+            </Link>                    
+            <Link to="/developers/weaviate/api">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div
+                    className={`${styles.homeIcon} ${styles.references}`}
+                  ></div>
+                  <h2>Docs: API References</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>REST, GraphQL and gRPC API details</small></p>
+                </div>
               </div>
-              <div className={styles.typeText}>
-                <p>Detailed feature and API information.</p>
-                <ul>
-                  <li>
-                    <strong>API references:</strong> REST, GraphQL, gRPC
-                  </li>
-                  <li>
-                    {' '}
-                    <strong>Configuration:</strong> Collection definitions, data
-                    types, environment variables, ...
-                  </li>
-                  <li>
-                    <strong>Client libraries:</strong> Python, TypeScript /
-                    JavaScript, Go, Java
-                  </li>
-                </ul>
-
-                <Link to="/developers/weaviate/api" className={styles.button}>
-                  Learn More
-                </Link>
+            </Link>
+            <Link to="/developers/weaviate/client-libraries">
+              <div className={styles.typeBox}>
+                <div className={styles.typeIcon}>
+                  <div
+                    className={`${styles.homeIcon} ${styles.references}`}
+                  ></div>
+                  <h2>Docs: Client libraries</h2>
+                </div>
+                <div className={styles.typeText}>
+                  <p><small>Client-specific information (Python, TS/JS, Go, Java)</small></p>
+                </div>
               </div>
-            </div>
+            </Link>            
           </div>
         </div>
       </div>
