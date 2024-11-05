@@ -14,6 +14,13 @@ function CardsFilter() {
 
   const handleFilterChange = (filters) => setSelectedFilters(filters);
 
+  // Function to remove a specific filter when the label is clicked
+  const removeFilter = (filterToRemove) => {
+    setSelectedFilters(
+      selectedFilters.filter((filter) => filter !== filterToRemove)
+    );
+  };
+
   useEffect(() => {
     let updatedPartners = partners;
 
@@ -59,6 +66,20 @@ function CardsFilter() {
           onChange={handleSearch}
           className={styles.searchInput}
         />
+
+        {/* Display selected filter labels */}
+        <div className={styles.selectedFilters}>
+          {selectedFilters.map((filter) => (
+            <span
+              key={filter}
+              className={styles.filterLabel}
+              onClick={() => removeFilter(filter)}
+            >
+              {filter} ✕
+            </span>
+          ))}
+        </div>
+
         <div className={styles.cardsContainer}>
           {filteredPartners.map((partner) => (
             <Card

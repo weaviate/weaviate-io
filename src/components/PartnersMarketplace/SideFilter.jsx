@@ -16,7 +16,7 @@ const availableFilters = [
   },
   {
     label: 'Additional',
-    values: ['Module', 'Integration'],
+    values: ['Module', 'Integration', 'Popular'],
   },
 ];
 

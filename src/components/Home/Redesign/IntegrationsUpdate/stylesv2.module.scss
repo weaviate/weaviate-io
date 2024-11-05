@@ -77,8 +77,9 @@
   }
 
   .logoImage {
-    max-width: 73px;
+    max-width: 110px;
     height: auto;
+    max-height: 43px;
   }
 
   .logoBg {
@@ -105,6 +106,7 @@
     flex-wrap: wrap;
     padding-bottom: 4rem;
     justify-content: center;
+    padding: 0rem 2rem 4rem;
     //animation: scrollSide 40s linear infinite;
 
     @keyframes scrollSide {
