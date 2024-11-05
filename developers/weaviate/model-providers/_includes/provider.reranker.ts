@@ -42,7 +42,14 @@ await client.collections.create({
 // END RerankerCohereCustomModel
 
 // START RerankerVoyageAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.voyageAI({
+    model: 'rerank-lite-1',
+  }),
+  // highlight-end
+});
 // END RerankerVoyageAI
 
 // START RerankerQueryExample

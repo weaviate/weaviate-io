@@ -309,7 +309,15 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeGoogleStudio
-// Coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.palm({
+    modelId: 'gemini-pro'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicGenerativeGoogleStudio
 
 // Clean up

@@ -34,7 +34,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiBasic
 
@@ -68,7 +68,7 @@ result = await jeopardy.query.nearVector({
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetNearVector
 
@@ -89,7 +89,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetWithSimpleJoin
 
@@ -113,7 +113,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetManualWeights
 
@@ -137,7 +137,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetRelativeScore
 
