@@ -120,7 +120,7 @@ export default function GetStarted() {
                 to="/developers/weaviate/starter-guides"
                 className={styles.button}
               >
-                More starter guides
+                More <strong>starter guides</strong>
               </Link>
             </div>
           </div>

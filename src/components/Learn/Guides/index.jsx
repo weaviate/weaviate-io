@@ -24,43 +24,80 @@ export default function Guides() {
 
               <div className={styles.featuredList}>
                 <ul>
-                  <strong>Featured</strong>
+                  <strong>Featured units</strong>
                   <li>
-                    <strong>PY_101T</strong>: Work with text data
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/starter_text_data"
+                    >
+                      <strong>PY_101T</strong>: Work with text data
+                    </Link>                 
                   </li>
                   <li>
-                    <strong>PY_101V</strong>: Work with your own vectors
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/starter_custom_vectors"
+                    >
+                      <strong>PY_101V</strong>: Work with your own vectors
+                    </Link>                      
                   </li>
                   <li>
-                    <strong>PY_101M</strong>: Work with multimodal data
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/starter_multimodal_data"
+                    >
+                      <strong>PY_101M</strong>: Work with multimodal data
+                    </Link>                      
                   </li>
                   <li>
-                    <strong>PY_250</strong>: Vector compression
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/compression"
+                    >
+                      <strong>PY_250</strong>: Vector compression
+                    </Link>                                       
                   </li>
                   <li>
-                    <strong>PY_280</strong>: Multi-tenancy
-                  </li>
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/multitenancy"
+                    >
+                      <strong>PY_280</strong>: Multi-tenancy
+                    </Link>                                       
+                  </li>                  
                 </ul>
 
                 <ul>
-                  <strong>Latest</strong>
+                  <strong>Short units / theory</strong>
                   <li>
-                    <strong>D_200</strong>: Run Weaviate on Kubernetes
-                  </li>
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/standalone/which_search"
+                    >
+                      Which search is right for me?
+                    </Link>                                       
+                  </li>     
                   <li>
-                    <strong>PY_220</strong>: Named vectors
-                  </li>
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/py/standalone/chunking"
+                    >
+                      Chunking long texts
+                    </Link>                                       
+                  </li>                                    
                   <li>
-                    <strong>PY_250</strong>: Vector compression
-                  </li>
-                  <li>
-                    <strong>PY_920</strong>: Chunking long texts
-                  </li>
+                    <Link 
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/academy/deployment/k8s"
+                    >
+                      Run Weaviate on Kubernetes
+                    </Link>                                       
+                  </li> 
                 </ul>
               </div>
 
               <Link to="/developers/academy" className={styles.button}>
-                Weaviate Academy
+                Go to <strong>Weaviate Academy</strong>
               </Link>
             </div>
           </div>
@@ -126,7 +163,7 @@ export default function Guides() {
                 </ul>
 
                 <Link to="/community/events" className={styles.button}>
-                  More workshops & webinars
+                  More <strong>workshops & webinars</strong>
                 </Link>
               </div>
             </div>
