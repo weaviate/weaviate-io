@@ -61,7 +61,6 @@ p {
 
   h1 {
     color: #130c49;
-    text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
     font-style: normal;
@@ -148,6 +147,16 @@ p {
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0px 10px;
+  }
 }
 
 .headerSecurity {
