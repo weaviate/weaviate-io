@@ -6,6 +6,11 @@
     flex-direction: column;
     gap: 0rem;
   }
+
+  @media (min-width: 1600px) {
+    max-width: 1515px;
+    margin: auto;
+  }
 }
 
 .sideFilter {
