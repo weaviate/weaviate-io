@@ -113,8 +113,7 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
-                  // Last updated to 1.26.4
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_spec_updates/temp_display/openapi-specs/schema.json',
                 },
                 hideModels: true,
                 // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
