@@ -50,33 +50,48 @@
     padding: 0rem 1rem;
   }
 }
-
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   gap: 1rem;
+  justify-content: flex-start;
 }
 
 .card {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 1rem;
-  width: 300px;
   background-color: #ffffff;
+  flex-grow: 1;
+  max-width: 372px;
+  min-width: 282px;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  @media screen and (max-width: 1500px) {
+    max-width: 320px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    max-width: 300px;
+  }
+
+  @media screen and (max-width: 1300px) {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    min-width: 100%;
+  }
 
   p {
     font-size: 1rem;
     height: 200px;
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1300px) {
       height: auto;
     }
-  }
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-    height: auto;
   }
 }
 
@@ -95,7 +110,7 @@
   align-items: flex-start;
   height: 350px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1300px) {
     height: auto;
   }
 }
@@ -114,16 +129,12 @@
 }
 
 .searchInput {
-  width: 81%;
+  width: 100%;
   margin: 1rem 0rem;
   padding: 0.5rem;
 
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-
-  @media screen and (max-width: 1400px) {
-    width: 100%;
-  }
 }
 
 .cardLink {

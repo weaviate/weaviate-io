@@ -14,7 +14,6 @@ function CardsFilter() {
 
   const handleFilterChange = (filters) => setSelectedFilters(filters);
 
-  // Function to remove a specific filter when the label is clicked
   const removeFilter = (filterToRemove) => {
     setSelectedFilters(
       selectedFilters.filter((filter) => filter !== filterToRemove)
@@ -61,13 +60,12 @@ function CardsFilter() {
       <div className={styles.mainContent}>
         <input
           type="text"
-          placeholder="Search Partners and Integrations"
+          placeholder="Search Integration Ecosystem"
           value={searchQuery}
           onChange={handleSearch}
           className={styles.searchInput}
         />
 
-        {/* Display selected filter labels */}
         <div className={styles.selectedFilters}>
           {selectedFilters.map((filter) => (
             <span

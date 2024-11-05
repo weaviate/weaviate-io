@@ -15,7 +15,7 @@ export default function PartnersPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Product | Modules and Intergrations"
+        title="Integration Ecosystem"
         description="Find new ways to extend your applications and infrastructure with our partner integrations."
       >
         <Header />
