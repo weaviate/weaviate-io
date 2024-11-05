@@ -760,19 +760,19 @@ const config = {
                                 to: 'https://weaviate.io/slack',
                             },
                             {
-                                label: 'Twitter',
-                                to: 'https://twiiter.com/weaviate_io',
+                                label: 'X',
+                                to: 'https://x.com/weaviate_io',
                             },
                             {
                                 label: 'Instagram',
                                 to: 'https://instagram.com/weaviate.io',
                             },
                             {
-                                label: 'Youtube',
-                                to: 'https://youtube.com/weaviate_io',
+                                label: 'YouTube',
+                                to: 'https://youtube.com/@Weaviate',
                             },
                             {
-                                label: 'Linkedin',
+                                label: 'LinkedIn',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
                             {

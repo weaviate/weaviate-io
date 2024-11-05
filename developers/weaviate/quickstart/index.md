@@ -376,7 +376,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../search">how to perform searches</a>, such as <a href="../search/bm25">keyword</a>, <a href="../search/similarity">similarity</a>, <a href="../search/hybrid">hybrid</a>, <a href="../search/image">image</a>, <a href="../search/filters">filtered</a> and <a href="../search/rerank">reranked</a> searches.
+            See <a href="./search">how to perform searches</a>, such as <a href="./search/bm25">keyword</a>, <a href="./search/similarity">similarity</a>, <a href="./search/hybrid">hybrid</a>, <a href="./search/image">image</a>, <a href="./search/filters">filtered</a> and <a href="./search/rerank">reranked</a> searches.
           </p>
         </div>
       </div>
@@ -388,7 +388,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../manage-data">how to manage data</a>, such as <a href="../manage-data/collections">manage collections</a>, <a href="../manage-data/create">create objects</a>, <a href="../manage-data/import">batch import data</a> and <a href="../manage-data/multi-tenancy">use multi-tenancy</a>.
+            See <a href="./manage-data">how to manage data</a>, such as <a href="./manage-data/collections">manage collections</a>, <a href="./manage-data/create">create objects</a>, <a href="./manage-data/import">batch import data</a> and <a href="./manage-data/multi-tenancy">use multi-tenancy</a>.
           </p>
         </div>
       </div>
@@ -400,7 +400,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            Check out the <a href="../starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="../../academy/py/standalone/chunking">chunking</a>.
+            Check out the <a href="./starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="../academy">Weaviate Academy</a> unit on <a href="../academy/py/standalone/chunking">chunking</a>.
           </p>
         </div>
       </div>
