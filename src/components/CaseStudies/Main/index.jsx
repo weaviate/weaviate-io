@@ -46,7 +46,7 @@ export default function Main() {
             </div>
             <div className={styles.buttons}>
               <Link
-                to="/case-studies/neople"
+                to="/blog/moonsift-story"
                 className={styles.arrowButton}
               ></Link>
             </div>
@@ -58,29 +58,38 @@ export default function Main() {
             </div>
             <div className={styles.buttons}>
               <Link
-                to="/case-studies/neople"
+                to="/blog/unbody-weaviate"
                 className={styles.arrowButton}
               ></Link>
             </div>
           </div>
-          <div className={styles.bentoSmall}>
+          <Link
+            to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
+            className={styles.bentoSmall}
+          >
             <div className={styles.bentoText}>
               <div className={styles.bentoLogo}></div>
               <h3>Ask Astro: An open source LLM Application</h3>
             </div>
-          </div>
-          <div className={styles.bentoSmall}>
+          </Link>
+          <Link
+            to="https://innovativesol.com/success-stories/preverity/"
+            className={styles.bentoSmall}
+          >
             <div className={styles.bentoText}>
               <div className={`${styles.bentoLogo} ${styles.logo02}`}></div>
               <h3>Transforming Risk Management with Generative AI</h3>
             </div>
-          </div>
-          <div className={styles.bentoSmall}>
+          </Link>
+          <Link
+            to="https://innovativesol.com/success-stories/humach/"
+            className={styles.bentoSmall}
+          >
             <div className={styles.bentoText}>
               <div className={`${styles.bentoLogo} ${styles.logo03}`}></div>
               <h3>Solving Operational Challenges with Weaviate</h3>
             </div>
-          </div>
+          </Link>
 
           <div className={styles.bento05}>
             <div className={styles.bentoText}>

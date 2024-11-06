@@ -35,6 +35,7 @@ export default function StudyHeader() {
       </div>
       <div className={styles.bottomBar}>
         <div className={styles.logoWrapper}>
+          {/* First set of logos */}
           <div className={styles.logo}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
           <div className={`${styles.logo} ${styles.logo2}`}></div>
@@ -43,6 +44,30 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo5}`}></div>
           <div className={`${styles.logo} ${styles.logo6}`}></div>
           <div className={`${styles.logo} ${styles.logo7}`}></div>
+          <div className={`${styles.logo} ${styles.logo8}`}></div>
+          <div className={`${styles.logo} ${styles.logo9}`}></div>
+          <div className={`${styles.logo} ${styles.logo10}`}></div>
+          <div className={`${styles.logo} ${styles.logo11}`}></div>
+          <div className={`${styles.logo} ${styles.logo12}`}></div>
+          <div className={`${styles.logo} ${styles.logo13}`}></div>
+          <div className={`${styles.logo} ${styles.logo14}`}></div>
+
+          {/* Duplicate set of logos for continuous looping */}
+          <div className={styles.logo}></div>
+          <div className={`${styles.logo} ${styles.logo1}`}></div>
+          <div className={`${styles.logo} ${styles.logo2}`}></div>
+          <div className={`${styles.logo} ${styles.logo3}`}></div>
+          <div className={`${styles.logo} ${styles.logo4}`}></div>
+          <div className={`${styles.logo} ${styles.logo5}`}></div>
+          <div className={`${styles.logo} ${styles.logo6}`}></div>
+          <div className={`${styles.logo} ${styles.logo7}`}></div>
+          <div className={`${styles.logo} ${styles.logo8}`}></div>
+          <div className={`${styles.logo} ${styles.logo9}`}></div>
+          <div className={`${styles.logo} ${styles.logo10}`}></div>
+          <div className={`${styles.logo} ${styles.logo11}`}></div>
+          <div className={`${styles.logo} ${styles.logo12}`}></div>
+          <div className={`${styles.logo} ${styles.logo13}`}></div>
+          <div className={`${styles.logo} ${styles.logo14}`}></div>
         </div>
       </div>
     </header>
