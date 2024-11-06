@@ -1,5 +1,6 @@
 ---
 title: "220 Named vectors"
+description: "Understand the use of named vectors in Weaviate for enhanced query relevance in Python."
 sidebar_position: 220
 ---
 
