@@ -41,7 +41,32 @@ If a multi-tenant collection is configured with a dynamic index type, some tenan
 
 We suggest following the following guidelines for selecting a tenant state:
 
-![Tenant state selection rule of thumb flowchart](./img/tenant_state_selection.png)
+```mermaid
+flowchart LR
+    %% Define nodes and connections
+    subgraph tenantData ["Tenant Data Availability"]
+        direction LR
+        needNow{"Does the tenant data\nneed to be\navailable now?"}
+        howQuick{"When it is needed,\nhow quickly does it\nneed to be available?"}
+
+        needNow -->|Yes| active["Active"]
+        needNow -->|No| howQuick
+        howQuick -->|Quickly| inactive["Inactive"]
+        howQuick -->|"Latency is acceptable"| offloaded["Offloaded"]
+    end
+
+    %% Style nodes
+    style needNow fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style howQuick fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Terminal nodes
+    style active fill:#ffffff,stroke:#61BD73,color:#130C49
+    style inactive fill:#ffffff,stroke:#61BD73,color:#130C49
+    style offloaded fill:#ffffff,stroke:#61BD73,color:#130C49
+
+    %% Style subgraph
+    style tenantData fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+```
 
 If you are unsure which tenants can be made inactive or offloaded, consider a strategy of deactivating tenants that have not been accessed for a certain period of time. And offloading tenants that have not been accessed for a longer period of time.
 
