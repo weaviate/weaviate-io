@@ -96,7 +96,36 @@ The choice of vector index type can have a significant impact on performance and
 
 The choice of index type depends on the number of objects and the desired performance. As a rule of thumb, use the following guidelines for a multi-tenant collection:
 
-![Index type selection rule of thumb flowchart](./img/vector_index_selection.png)
+```mermaid
+flowchart LR
+    %% Define nodes and connections
+    subgraph vectorIndex ["Vector Index Selection"]
+        direction LR
+        multiTenant{"Is multi-tenancy\nenabled?"}
+        objCount{"Does the collection have\nmore than 100k objects?"}
+        stayUnder{"Is the collection likely to stay\nat under 100k objects?"}
+
+        multiTenant -->|No| objCount
+        multiTenant -->|Yes| useDynamic["Use Dynamic"]
+        objCount -->|Yes| useHNSW["Use HNSW"]
+        objCount -->|No| stayUnder
+        stayUnder -->|Yes| useFlat["Use Flat"]
+        stayUnder -->|"No/Unsure"| useDynamic["Use Dynamic"]
+    end
+
+    %% Style nodes
+    style multiTenant fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style objCount fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style stayUnder fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Terminal nodes
+    style useHNSW fill:#ffffff,stroke:#61BD73,color:#130C49
+    style useFlat fill:#ffffff,stroke:#61BD73,color:#130C49
+    style useDynamic fill:#ffffff,stroke:#61BD73,color:#130C49
+
+    %% Style subgraph
+    style vectorIndex fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
 
 If you are unsure which index type to use, the dynamic index type is a good starting point, as it automatically transitions from a flat to an HNSW index based on the number of objects.
 
@@ -119,7 +148,41 @@ Weaviate supports the following vector compression methods:
 
 As a starting point, use the following guidelines for selecting a compression method:
 
-![Vector compression selection rule of thumb flowchart](./img/vector_compression_selection.png)
+```mermaid
+flowchart LR
+    %% Define nodes and connections
+    subgraph compression ["Compression Strategy"]
+        direction LR
+        startIndexType{"What is your\nvector index type?"}
+        sample{"Do you have a\nrepresentative sample\nof your final dataset?"}
+        tunable{"Do you want\ntunable\ncompression?"}
+        bqcompat{"Is your vectorizer\nmodel compatible\nwith BQ?"}
+
+        startIndexType -->|HNSW| sample
+        startIndexType -->|Flat| bqcompat
+        sample -->|Yes| tunable
+        tunable -->|Yes| usePQ["Use PQ"]
+        tunable -->|No| useSQ["Use SQ"]
+        sample -->|No| useBQ["Use BQ"]
+        bqcompat -->|Yes| useBQ["Use BQ"]
+        bqcompat -->|No| noCompress["Do not use\ncompression"]
+    end
+
+    %% Style nodes
+    style startIndexType fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style sample fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style tunable fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style bqcompat fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Terminal nodes
+    style usePQ fill:#ffffff,stroke:#61BD73,color:#130C49
+    style useSQ fill:#ffffff,stroke:#61BD73,color:#130C49
+    style useBQ fill:#ffffff,stroke:#61BD73,color:#130C49
+    style noCompress fill:#ffffff,stroke:#61BD73,color:#130C49
+
+    %% Style subgraph
+    style compression fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
 
 If you are unsure which index type to use, scalar quantization is a good starting point, provided that you have a representative sample of your likely final dataset.
 
@@ -140,7 +203,32 @@ Weaviate supports the following tenant states:
 
 *Hot* tenants can be deactivated to *warm* storage to reduce memory usage, and any tenant can be offloaded to *cold* storage to reduce memory and disk usage. Conversely, any tenant can be reactivated when needed.
 
-![Tenant state selection rule of thumb flowchart](./img/tenant_state_selection.png)
+```mermaid
+flowchart LR
+    %% Define nodes and connections
+    subgraph tenantData ["Tenant Data Availability"]
+        direction LR
+        needNow{"Does the tenant data\nneed to be\navailable now?"}
+        howQuick{"When it is needed,\nhow quickly does it\nneed to be available?"}
+
+        needNow -->|Yes| active["Active"]
+        needNow -->|No| howQuick
+        howQuick -->|Quickly| inactive["Inactive"]
+        howQuick -->|"Latency is acceptable"| offloaded["Offloaded"]
+    end
+
+    %% Style nodes
+    style needNow fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style howQuick fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Terminal nodes
+    style active fill:#ffffff,stroke:#61BD73,color:#130C49
+    style inactive fill:#ffffff,stroke:#61BD73,color:#130C49
+    style offloaded fill:#ffffff,stroke:#61BD73,color:#130C49
+
+    %% Style subgraph
+    style tenantData fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+```
 
 Consider a strategy of deactivating tenants that are not frequently accessed, and offloading tenants that are rarely accessed.
 

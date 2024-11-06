@@ -168,7 +168,8 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.data}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/academy/py/starter_text_data/">Work with text data
+                <a href="/developers/academy/py/starter_text_data/">
+                  Work with text data
                 </a>
               </span>
 
@@ -179,18 +180,19 @@ const DocHomePage = () => {
                 Just{' '}
                 <a href="/developers/academy/py/starter_text_data/text_collections/">
                   populate Weaviate
-                </a>
-                {' '}with your text data and start using powerful{' '}
+                </a>{' '}
+                with your text data and start using powerful{' '}
                 <a href="/developers/academy/py/starter_text_data/text_searches/">
-                vector, keyword and hybrid search capabilities
-                </a>.
+                  vector, keyword and hybrid search capabilities
+                </a>
+                .
               </p>
               <p>
                 And use our integrations to{' '}
                 <a href="/developers/academy/py/starter_text_data/text_rag/">
                   build generative ai tools
-                </a>
-                {' '}with your data.
+                </a>{' '}
+                with your data.
               </p>
             </div>
           </div>
@@ -203,25 +205,24 @@ const DocHomePage = () => {
                 </a>
               </span>
 
-              <p>
-                Do you prefer to work with your own vectors? No problem.
-              </p>
+              <p>Do you prefer to work with your own vectors? No problem.</p>
               <p>
                 You can{' '}
                 <a href="/developers/academy/py/starter_custom_vectors/object_collections/">
                   add your own vectors to Weaviate
-                </a>
-                {' '}and still benefit from{' '}
+                </a>{' '}
+                and still benefit from{' '}
                 <a href="/developers/academy/py/starter_custom_vectors/object_searches/">
-                all of its indexing and search capabilities.
-                </a>.
+                  all of its indexing and search capabilities.
+                </a>
+                .
               </p>
               <p>
                 Our integrations to{' '}
                 <a href="/developers/academy/py/starter_custom_vectors/object_rag/">
                   build generative ai tools
-                </a>
-                {' '}work just as well with your data and vectors.
+                </a>{' '}
+                work just as well with your data and vectors.
               </p>
             </div>
           </div>
@@ -234,25 +235,24 @@ const DocHomePage = () => {
                 </a>
               </span>
 
-              <p>
-                For many, data comes in multiple forms beyond text.
-              </p>
+              <p>For many, data comes in multiple forms beyond text.</p>
               <p>
                 Weaviate's multimodal modules{' '}
                 <a href="/developers/academy/py/starter_multimodal_data/mm_collections/">
                   can import text, audio and video and more
-                </a>
-                {' '}as well as{' '}
+                </a>{' '}
+                as well as{' '}
                 <a href="/developers/academy/py/starter_multimodal_data/mm_searches/">
                   perform multimodal searches
-                </a>.
+                </a>
+                .
               </p>
               <p>
                 Use these modules to{' '}
                 <a href="/developers/academy/py/starter_multimodal_data/mm_rag/">
                   build generative ai tools
-                </a>
-                {' '}from your entire dataset.
+                </a>{' '}
+                from your entire dataset.
               </p>
             </div>
           </div>
@@ -271,7 +271,9 @@ const DocHomePage = () => {
               objects and vectors.
             </p>
             <div className={styles.wtLearn}>
-              <a href="/developers/weaviate#what-is-weaviate">Learn more</a>
+              <a href="/developers/weaviate/introduction#what-is-weaviate">
+                Learn more
+              </a>
             </div>
           </div>
           <div className={styles.whatnextBox}>
