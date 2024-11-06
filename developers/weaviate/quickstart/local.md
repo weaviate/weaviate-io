@@ -60,9 +60,9 @@ flowchart LR
     style C2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
     %% Style subgraphs with brand colors
-    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px
-    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px
-    style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
 ```
 
 :::
@@ -296,8 +296,8 @@ flowchart LR
     style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
     %% Style subgraphs with brand colors
-    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px
-    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
 ```
 
 :::info Where did the vectors come from?
@@ -357,17 +357,17 @@ flowchart LR
     style Prompt fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style VS3 fill:#ffffff,stroke:#B9C8DF
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style G1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style G2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style R2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
     %% Style subgraphs with brand colors
-    style sg0 fill:#ffffff,stroke:#130C49,stroke-width:2px
-    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px
-    style sg2 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px
-    style sg3 fill:#ffffff,stroke:#130C49,stroke-width:2px
+    style sg0 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
 ```
 
 The following example combines the same search (for `biology`) with a prompt to generate a tweet.
