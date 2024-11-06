@@ -22,6 +22,48 @@ In this quickstart guide, you will:
 1. Populate the database. (10 minutes)
 1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
 
+```mermaid
+flowchart LR
+    %% Define nodes with white backgrounds and darker borders
+    A1["Create Weaviate\nSandbox"] --> A2["Install client\nlibrary"]
+    A2 --> A3["Connect to\nWeaviate"]
+    A3 --> B1["Define collection\n(with an inference API)"]
+    B1 --> B2["Batch import\nobjects"]
+    B2 --> C1["Semantic search\n(nearText)"]
+    C1 --> C2["RAG\n(Generate)"]
+
+    %% Group nodes in subgraphs with brand colors
+    subgraph sg1 ["1. Setup"]
+        A1
+        A2
+        A3
+    end
+
+    subgraph sg2 ["2. Populate"]
+        B1
+        B2
+    end
+
+    subgraph sg3 ["3. Query"]
+        C1
+        C2
+    end
+
+    %% Style nodes with white background and darker borders
+    style A1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style C2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
 :::
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
@@ -311,6 +353,37 @@ If you inspect the full response, you will see that the word `biology` does not 
 
 Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
 
+Here is a diagram showing the workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    Query["🔍 Search:\n'biology'"]
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Results"]
+        R1["Most similar\ndocuments"]
+    end
+
+    Query --> VS1
+    VS3 --> R1
+
+    %% Style nodes with white background and darker borders
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
+
 :::info Where did the vectors come from?
 Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
@@ -327,7 +400,59 @@ Weaviate is capable of many types of searches. See, for example, our how-to guid
 
 Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
-RAG work by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+RAG works by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+
+This diagram shows the RAG workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    subgraph sg0 ["Weaviate Query"]
+        direction TB
+        Search["🔍 Search: \n'biology'"]
+        Prompt["✍️ Prompt: \n'Write a\ntweet...'"]
+    end
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Generation"]
+        direction LR
+        G1["Send\n(results + prompt)\nto LLM"]
+        G1 --> G2["Generate\nresponse"]
+    end
+
+    subgraph sg3 ["Results"]
+        direction TB
+        R1["Most similar\ndocuments"]
+        R2["Generated\ncontent"]
+    end
+
+    Search --> VS1
+    VS3 --> R1
+    Prompt --> G1
+    VS3 --> G1
+    G2 --> R2
+
+    %% Style nodes with white background and darker borders
+    style Search fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Prompt fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg0 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
 
 The following example combines the same search (for `biology`) with a prompt to generate a tweet.
 
@@ -376,7 +501,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../search">how to perform searches</a>, such as <a href="../search/bm25">keyword</a>, <a href="../search/similarity">similarity</a>, <a href="../search/hybrid">hybrid</a>, <a href="../search/image">image</a>, <a href="../search/filters">filtered</a> and <a href="../search/rerank">reranked</a> searches.
+            See <a href="./search">how to perform searches</a>, such as <a href="./search/bm25">keyword</a>, <a href="./search/similarity">similarity</a>, <a href="./search/hybrid">hybrid</a>, <a href="./search/image">image</a>, <a href="./search/filters">filtered</a> and <a href="./search/rerank">reranked</a> searches.
           </p>
         </div>
       </div>
@@ -388,7 +513,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../manage-data">how to manage data</a>, such as <a href="../manage-data/collections">manage collections</a>, <a href="../manage-data/create">create objects</a>, <a href="../manage-data/import">batch import data</a> and <a href="../manage-data/multi-tenancy">use multi-tenancy</a>.
+            See <a href="./manage-data">how to manage data</a>, such as <a href="./manage-data/collections">manage collections</a>, <a href="./manage-data/create">create objects</a>, <a href="./manage-data/import">batch import data</a> and <a href="./manage-data/multi-tenancy">use multi-tenancy</a>.
           </p>
         </div>
       </div>
@@ -400,7 +525,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            Check out the <a href="../starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="../../academy/py/standalone/chunking">chunking</a>.
+            Check out the <a href="./starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="../academy">Weaviate Academy</a> unit on <a href="../academy/py/standalone/chunking">chunking</a>.
           </p>
         </div>
       </div>
