@@ -68,6 +68,7 @@ const result = await client.collections.create({
 {
 // START enable autoMT
 // Coming soon
+
 // collection.config.update(
 //   multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True)
 // )

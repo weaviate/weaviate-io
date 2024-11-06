@@ -693,6 +693,14 @@ import { reconfigure } from 'weaviate-client';
 articles.config.update({
   invertedIndex: reconfigure.invertedIndex({
     bm25k1: 1.5
+  }),
+    vectorizers: weaviate.reconfigure.vectorizer.update({
+      vectorIndexConfig: weaviate.reconfigure.vectorIndex.hnsw({
+        quantizer: weaviate.reconfigure.vectorIndex.quantizer.pq(),
+        ef: 4,
+        filterStrategy: 'sweeping',
+      }),
+   
   })
 })
 // highlight-end
