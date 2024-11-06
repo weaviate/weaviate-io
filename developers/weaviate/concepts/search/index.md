@@ -13,13 +13,88 @@ The following sections provide a conceptual overview of search in Weaviate, incl
 
 ## Search process
 
-The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+The following table and figure illustrate the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
 | Step | Description | Optional |
 |------|-------------|----------|
 | 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
 | 2. [Reranking](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
 | 3. [Retrieval augmented generation](#retrieval-augmented-generation-rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+
+<center>
+
+```mermaid
+%%{init: {
+  'flowchart': {
+    'nodeSpacing': 50,
+    'rankSpacing': 50,
+    'padding': 20
+  },
+  'themeVariables': {
+    'labelBackground': '#ffffff',
+    'subGraphTitleMargin': 0
+  }
+} }%%
+flowchart TD
+    %% Styles
+    classDef input fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef filter fill:#fff3e0,stroke:#ff6f00,stroke-width:2px
+    classDef search fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef optional fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef output fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef subgraphTitle fill:#ffffff,stroke:none
+
+    Query[/"Search Query"/]:::input
+
+    subgraph retrieval["1. Retrieval"]
+        direction TB
+        Filter[" Pre-filtering"]:::filter
+
+        subgraph search["Search Types"]
+            direction LR
+            Key["Keyword Search\n(BM25F)"]:::search
+            Vec["Vector Search\n(Embeddings)"]:::search
+            Hyb["Hybrid Search\n(Combined)"]:::search
+        end
+    end
+
+    subgraph optional["Optional Steps"]
+        direction LR
+        Rerank["2. Reranking\n(Complex Model)"]:::optional
+        RAG["3. RAG\n(Generative AI)"]:::optional
+    end
+
+    Results[/"Final Results"/]:::output
+
+    %% Connections
+    Query --> Filter
+    Filter --> Key
+    Filter --> Vec
+    Filter --> Hyb
+
+    Key --> Rerank
+    Vec --> Rerank
+    Hyb --> Rerank
+
+    Key --> RAG
+    Vec --> RAG
+    Hyb --> RAG
+
+    Rerank --> Results
+    RAG --> Results
+
+    Key --> Results
+    Vec --> Results
+    Hyb --> Results
+
+    %% Styling for subgraphs with z-index control
+    style retrieval fill:#fff,stroke:#666,stroke-width:2px
+    style search fill:#fff,stroke:#666,stroke-width:1px
+    style optional fill:#fff,stroke:#666,stroke-width:2px
+    linkStyle default stroke:#666,stroke-width:1px,stroke-opacity:0.5
+```
+
+</center>
 
 Here is a brief overview of each step:
 
