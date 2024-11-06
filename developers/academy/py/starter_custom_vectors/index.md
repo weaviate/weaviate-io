@@ -1,5 +1,6 @@
 ---
 title: "101V Work with: Your own vectors"
+description: Start using custom vectors in Weaviate for tailored data search in Python.
 sidebar_position: 101
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "101M Work with: Multimodal data"
+description: Learn to handle multimodal data in Weaviate for diverse data integrations.
 sidebar_position: 102
 ---
 

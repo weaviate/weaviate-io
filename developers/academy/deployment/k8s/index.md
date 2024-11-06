@@ -1,7 +1,11 @@
 ---
 title: "Run Weaviate on Kubernetes"
+description: "Learn how to deploy Weaviate with Kubernetes, covering setup, management, and scalability tips."
 sidebar_position: 100
 ---
+
+
+
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';
 import CourseUnits from '/src/components/Academy/courseUnits.jsx';

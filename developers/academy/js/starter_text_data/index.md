@@ -1,5 +1,6 @@
 ---
 title: "101T Work with: Text data in JavaScript"
+description: "Get started with text data in Weaviate for robust search and data organization in JavaScript."
 sidebar_position: 101
 ---
 
