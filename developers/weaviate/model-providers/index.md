@@ -74,31 +74,29 @@ This is done by providing the source data to the integration provider, which the
 
 flowchart LR
     %% Style definitions
-    classDef systemBox fill:#f7fafc,stroke:#3182ce,stroke-width:2px,color:#2d3748
-    classDef weaviateBox fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
-    classDef providerBox fill:#f7fafc,stroke:#48bb78,stroke-width:2px,color:#2d3748
+    classDef systemBox fill:#f7fafc,stroke:#3182ce,stroke-width:2px,color:#2d3748,padding:10px
+    classDef weaviateBox fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748,padding:10px
+    classDef providerBox fill:#f7fafc,stroke:#48bb78,stroke-width:2px,color:#2d3748,padding:10px
     classDef component fill:white,stroke:#718096,stroke-width:1.5px,color:#2d3748,rx:6
 
-    %% User System
+    %% Model Provider section (leftmost)
+    subgraph provider["Model Provider"]
+        inference["🤖 Inference API /\nLocal Model"]
+    end
+
+    %% Weaviate section (middle)
+    subgraph weaviate["Weaviate"]
+        vectorizer["🔌 Model Provider Integration"]
+        core["⚡️ Data & Vector store"]
+    end
+
+    %% User System (bottom)
     subgraph user["User System"]
-        direction TB
         data["📄 Data Objects"]
     end
 
-    %% Weaviate
-    subgraph weaviate["Weaviate"]
-        direction TB
-        core["⚡️ Data & Vector store"]
-        vectorizer["🔌 Model Provider Integration"]
-    end
-
-    %% Model Provider
-    subgraph provider["Model Provider"]
-        inference["🤖 Inference API /\n Local Model"]
-    end
-
-    %% Connections with numbered steps
-    user -->|"1. Insert objects"| weaviate
+    %% Connections
+    data -->|"1. Insert objects"| core
     core -->|"2. Request vector"| vectorizer
     vectorizer -->|"3. Request vector"| inference
     inference -->|"4. Return vector"| vectorizer
