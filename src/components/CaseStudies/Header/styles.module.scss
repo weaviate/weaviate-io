@@ -95,6 +95,11 @@
   display: flex;
   gap: 20px;
 
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .buttonDark {
     color: #f7f9fd;
     text-align: center;

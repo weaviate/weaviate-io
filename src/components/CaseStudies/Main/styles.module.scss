@@ -190,6 +190,17 @@
   flex-direction: column;
   justify-content: space-around;
 
+  @media screen and (max-width: 900px) {
+    background-size: cover;
+    background-position-y: top;
+  }
+
+  @media screen and (max-width: 700px) {
+    background-size: contain;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+  }
+
   .bentoText {
     margin: 0;
     @media screen and (max-width: 900px) {
@@ -215,6 +226,7 @@
     }
   }
 }
+
 .bentoSmall {
   width: 20.875rem;
   height: 19.9375rem;
