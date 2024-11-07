@@ -73,38 +73,38 @@ This is done by providing the source data to the integration provider, which the
 
 flowchart TB
 
-    classDef bigHeader font-weight:bold
-    classDef container padding:40px
-    classDef node padding:15px
+    classDef bigHeader font-weight:bold,padding-bottom:20px
+    classDef container padding:48px
+    classDef node padding:20px
     linkStyle default stroke:#B9C8DF,stroke-width:2
 
     %% Define data node
-    subgraph user["🧑🏻‍💻 User"]
+    subgraph user["👤 User System"]
         direction TB
-        data["🗂️ Data objects"]
+        data["📄 Data objects"]
     end
 
     %% Define Weaviate section
     subgraph weaviate ["Weaviate"]
         direction LR
-        core["Weaviate\ncore"]
-        vectorizer_module["Model provider integration\n(e.g., Cohere, Ollama)"]
+        core["⚡️ Weaviate core"]
+        vectorizer_module["🔌 Model provider integration&nbsp&nbsp\n(e.g., Cohere, Ollama)"]
 
         %% Internal connections
-        core --> vectorizer_module
-        vectorizer_module --> core
+        core --> |"2. Request\nvector"| vectorizer_module
+        vectorizer_module --> |"5. Vector"| core
     end
 
     %% Define Vectorizer section
-    subgraph vectorizer_section ["Model provider"]
+    subgraph vectorizer_section ["Model Provider"]
         direction LR
-        inference["Inference API (e.g. Cohere)\nor\nLocal model (e.g. Ollama)"]
+        inference["🤖 Inference API (e.g., Cohere)&nbsp&nbsp\nor\nLocal model (e.g., Ollama)"]
     end
 
-    %% Define connections between sections with shorter labels
-    user --> |"Insert object(s)"| core
-    vectorizer_module --> |"Request\nobject vector"| inference
-    inference --> |"Vector"| vectorizer_module
+    %% Define connections between sections with numbered steps
+    user --> |"1. Insert object(s)"| core
+    vectorizer_module --> |"3. Request\nvector"| inference
+    inference --> |"4. Vector"| vectorizer_module
 
     %% Style nodes
     style data fill:#ffffff,stroke:#B9C8DF,color:#130C49
@@ -112,10 +112,10 @@ flowchart TB
     style vectorizer_module fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style inference fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
-    %% Style subgraphs
-    style user fill:#ffffff,stroke:#7AD6EB,color:#130C49,stroke-width:2px,stroke-dasharray: 5 5
-    style weaviate fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
-    style vectorizer_section fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49,stroke-dasharray: 5 5
+    %% Style subgraphs with subtle backgrounds
+    style user fill:#F8FBFF,stroke:#7AD6EB,color:#130C49,stroke-width:2px,stroke-dasharray: 5 5
+    style weaviate fill:#F8FBFF,stroke:#130C49,stroke-width:2px,color:#130C49
+    style vectorizer_section fill:#F8FBFF,stroke:#61BD73,stroke-width:2px,color:#130C49,stroke-dasharray: 5 5
 
     %% Apply custom classes to nodes
     class user bigHeader
