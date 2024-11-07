@@ -108,6 +108,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 150%; /* 1.3125rem */
+
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
     }
   }
 }
