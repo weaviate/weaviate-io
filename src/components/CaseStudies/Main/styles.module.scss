@@ -321,6 +321,10 @@
       @media screen and (max-width: 900px) {
         height: 13.25rem;
       }
+
+      @media screen and (max-width: 500px) {
+        height: 9.25rem;
+      }
     }
 
     h3 {
@@ -365,6 +369,10 @@
       border-radius: 1.25rem;
       flex-shrink: 0;
       margin: 0px 0px 20px 0px;
+
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
     }
 
     h3 {
@@ -374,6 +382,10 @@
       font-style: normal;
       font-weight: 600;
       line-height: 150%; /* 3rem */
+
+      @media screen and (max-width: 900px) {
+        font-size: 1.5rem;
+      }
     }
 
     p {
@@ -432,6 +444,7 @@
 
       @media screen and (max-width: 900px) {
         width: 100%;
+        font-size: 1.5rem;
       }
     }
   }
@@ -543,6 +556,27 @@
   .bento05,
   .bento06 {
     width: 100%;
+  }
+
+  .bento01 {
+    height: 25.875rem;
+  }
+
+  .bento02 {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(47, 47, 169, 0.1) 100%
+      ),
+      url('/img/site/neople-background-image-alpha.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: right;
+  }
+
+  .bento04 {
+    height: 30.75rem;
   }
 }
 
