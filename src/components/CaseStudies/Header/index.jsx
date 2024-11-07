@@ -35,7 +35,6 @@ export default function StudyHeader() {
       </div>
       <div className={styles.bottomBar}>
         <div className={styles.logoWrapper}>
-          {/* First set of logos */}
           <div className={styles.logo}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
           <div className={`${styles.logo} ${styles.logo2}`}></div>
@@ -52,7 +51,6 @@ export default function StudyHeader() {
           <div className={`${styles.logo} ${styles.logo13}`}></div>
           <div className={`${styles.logo} ${styles.logo14}`}></div>
 
-          {/* Duplicate set of logos for continuous looping */}
           <div className={styles.logo}></div>
           <div className={`${styles.logo} ${styles.logo1}`}></div>
           <div className={`${styles.logo} ${styles.logo2}`}></div>
