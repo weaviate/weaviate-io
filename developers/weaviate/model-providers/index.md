@@ -63,66 +63,52 @@ This is done by providing the source data to the integration provider, which the
 %%{init: {
   'theme': 'base',
   'themeVariables': {
-    'lineColor': '#B9C8DF',
-    'textColor': '#130C49',
-    'labelBackground': '#ffffff',
-    'labelTextColor': '#130C49',
-    'edgeLabelBackground': '#ffffff'
+    'primaryColor': '#4a5568',
+    'primaryTextColor': '#2d3748',
+    'primaryBorderColor': '#718096',
+    'lineColor': '#718096',
+    'secondaryColor': '#f7fafc',
+    'tertiaryColor': '#edf2f7'
   }
 }}%%
 
-flowchart TB
+flowchart LR
+    %% Style definitions
+    classDef systemBox fill:#f7fafc,stroke:#3182ce,stroke-width:2px,color:#2d3748
+    classDef weaviateBox fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
+    classDef providerBox fill:#f7fafc,stroke:#48bb78,stroke-width:2px,color:#2d3748
+    classDef component fill:white,stroke:#718096,stroke-width:1.5px,color:#2d3748,rx:6
 
-    classDef bigHeader font-weight:bold,padding-bottom:20px
-    classDef container padding:48px
-    classDef node padding:20px
-    linkStyle default stroke:#B9C8DF,stroke-width:2
-
-    %% Define data node
-    subgraph user["👤 User System"]
+    %% User System
+    subgraph user["User System"]
         direction TB
-        data["📄 Data objects"]
+        data["📄 Data Objects"]
     end
 
-    %% Define Weaviate section
-    subgraph weaviate ["Weaviate"]
-        direction LR
-        core["⚡️ Weaviate core"]
-        vectorizer_module["🔌 Model provider integration&nbsp&nbsp\n(e.g., Cohere, Ollama)"]
-
-        %% Internal connections
-        core --> |"2. Request\nvector"| vectorizer_module
-        vectorizer_module --> |"5. Vector"| core
+    %% Weaviate
+    subgraph weaviate["Weaviate"]
+        direction TB
+        core["⚡️ Data & Vector store"]
+        vectorizer["🔌 Model Provider Integration"]
     end
 
-    %% Define Vectorizer section
-    subgraph vectorizer_section ["Model Provider"]
-        direction LR
-        inference["🤖 Inference API (e.g., Cohere)&nbsp&nbsp\nor\nLocal model (e.g., Ollama)"]
+    %% Model Provider
+    subgraph provider["Model Provider"]
+        inference["🤖 Inference API /\n Local Model"]
     end
 
-    %% Define connections between sections with numbered steps
-    user --> |"1. Insert object(s)"| core
-    vectorizer_module --> |"3. Request\nvector"| inference
-    inference --> |"4. Vector"| vectorizer_module
+    %% Connections with numbered steps
+    user -->|"1. Insert objects"| weaviate
+    core -->|"2. Request vector"| vectorizer
+    vectorizer -->|"3. Request vector"| inference
+    inference -->|"4. Return vector"| vectorizer
+    vectorizer -->|"5. Return vector"| core
 
-    %% Style nodes
-    style data fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style core fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style vectorizer_module fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style inference fill:#ffffff,stroke:#B9C8DF,color:#130C49
-
-    %% Style subgraphs with subtle backgrounds
-    style user fill:#F8FBFF,stroke:#7AD6EB,color:#130C49,stroke-width:2px,stroke-dasharray: 5 5
-    style weaviate fill:#F8FBFF,stroke:#130C49,stroke-width:2px,color:#130C49
-    style vectorizer_section fill:#F8FBFF,stroke:#61BD73,stroke-width:2px,color:#130C49,stroke-dasharray: 5 5
-
-    %% Apply custom classes to nodes
-    class user bigHeader
-    class weaviate bigHeader
-    class vectorizer_section bigHeader
-    class user,weaviate,vectorizer_section container
-    class data,core,vectorizer_module,inference node
+    %% Apply styles
+    class user systemBox
+    class weaviate weaviateBox
+    class provider providerBox
+    class data,core,vectorizer,inference component
 ```
 
 Weaviate generates embeddings for objects as follows:
