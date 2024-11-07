@@ -86,21 +86,21 @@ flowchart LR
 
     %% Weaviate section (middle)
     subgraph weaviate["Weaviate"]
-        vectorizer["🔌 Model Provider Integration"]
-        core["⚡️ Data & Vector store"]
+        vectorizer["🔌 Model Provider\nIntegration"]
+        core["⚡️ Data & vector store"]
     end
 
     %% User System (bottom)
     subgraph user["User System"]
-        data["📄 Data Objects"]
+        data["📄 Data"]
     end
 
     %% Connections
     data -->|"1. Insert objects"| core
     core -->|"2. Request vector"| vectorizer
     vectorizer -->|"3. Request vector"| inference
-    inference -->|"4. Return vector"| vectorizer
-    vectorizer -->|"5. Return vector"| core
+    inference -->|"4. Vector"| vectorizer
+    vectorizer -->|"5. Vector"| core
 
     %% Apply styles
     class user systemBox
