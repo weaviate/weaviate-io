@@ -1,12 +1,14 @@
 ---
 title: Reranker
 sidebar_position: 70
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'reranking']
+image: og/docs/integrations/provider_integrations_jinaai.jpg
+# tags: ['model providers', 'jinaai', 'reranking']
 ---
 
-# Cohere Reranker Models with Weaviate
+# Jina AI Reranker Models with Weaviate
 
+:::info Added in `v1.26.1`
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -16,19 +18,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.reranker.py';
 import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
-Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-the-reranker) to use a Cohere reranker model, and Weaviate will use the specified model and your Cohere API key to rerank search results.
+[Configure a Weaviate collection](#configure-the-reranker) to use a Jina AI reranker model, and Weaviate will use the specified model and your Jina AI API key to rerank search results.
 
 This two-step process involves Weaviate first performing a search and then reranking the results using the specified model.
 
-![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
+![Reranker integration illustration](../_includes/integration_jinaai_reranker.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Cohere reranker integration (`reranker-cohere`) module.
+Your Weaviate instance must be configured with the JinaAI reranker integration (`reranker-jinaai`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -47,11 +49,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+You must provide a valid JinaAI API key to Weaviate for this integration. Go to [Jina AI](https://jina.ai/embeddings/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `COHERE_APIKEY` environment variable that is available to Weaviate.
+- Set the `JINAAI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -59,8 +61,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START CohereInstantiation"
-      endMarker="# END CohereInstantiation"
+      startMarker="# START JinaAIInstantiation"
+      endMarker="# END JinaAIInstantiation"
       language="py"
     />
   </TabItem>
@@ -68,8 +70,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START CohereInstantiation"
-      endMarker="// END CohereInstantiation"
+      startMarker="// START JinaAIInstantiation"
+      endMarker="// END JinaAIInstantiation"
       language="ts"
     />
   </TabItem>
@@ -82,14 +84,14 @@ import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
 
 <MutableRerankerConfig />
 
-Configure a Weaviate collection to use a Cohere reranker model as follows:
+Configure a Weaviate collection to use a Jina AI reranker model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START RerankerCohereBasic"
-      endMarker="# END RerankerCohereBasic"
+      startMarker="# START RerankerJinaAIBasic"
+      endMarker="# END RerankerJinaAIBasic"
       language="py"
     />
   </TabItem>
@@ -97,8 +99,8 @@ Configure a Weaviate collection to use a Cohere reranker model as follows:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START RerankerCohereBasic"
-      endMarker="// END RerankerCohereBasic"
+      startMarker="// START RerankerJinaAIBasic"
+      endMarker="// END RerankerJinaAIBasic"
       language="ts"
     />
   </TabItem>
@@ -113,8 +115,8 @@ You can specify one of the [available models](#available-models) for Weaviate to
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START RerankerCohereCustomModel"
-      endMarker="# END RerankerCohereCustomModel"
+      startMarker="# START RerankerJinaAICustomModel"
+      endMarker="# END RerankerJinaAICustomModel"
       language="py"
     />
   </TabItem>
@@ -122,8 +124,8 @@ You can specify one of the [available models](#available-models) for Weaviate to
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START RerankerCohereCustomModel"
-      endMarker="// END RerankerCohereCustomModel"
+      startMarker="// START RerankerJinaAICustomModel"
+      endMarker="// END RerankerJinaAICustomModel"
       language="ts"
     />
   </TabItem>
@@ -134,13 +136,13 @@ The [default model](#available-models) is used if no model is specified.
 
 ## Reranking query
 
-Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Cohere model.
+Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Jina AI model.
 
 More specifically, Weaviate performs an initial search, then reranks the results using the specified model.
 
 Any search in Weaviate can be combined with a reranker to perform reranking operations.
 
-![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
+![Reranker integration illustration](../_includes/integration_jinaai_reranker.png)
 
 <Tabs groupId="languages">
 
@@ -168,25 +170,17 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
-- `rerank-english-v3.0`
-- `rerank-multilingual-v3.0 (default)`
-- `rerank-english-v2.0`
-- `rerank-multilingual-v2.0`
-
-You can also select a fine-tuned reranker model_id, such as:
-
-- `500df123-afr3-...`
-
-See [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
-
-For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+- `jina-reranker-v2-base-multilingual` (default)
+- `jina-reranker-v1-base-en`
+- `jina-reranker-v1-turbo-en`
+- `jina-reranker-v1-tiny-en`
+- `jina-colbert-v1-en`
 
 ## Further resources
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md).
-- [Cohere generative models + Weaviate](./generative.md).
+- [Jina AI embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -197,7 +191,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- Cohere [Rerank API documentation](https://docs.cohere.com/reference/rerank)
+- Jina AI [Reranker documentation](https://jina.ai/reranker/)
 
 ## Questions and feedback
 

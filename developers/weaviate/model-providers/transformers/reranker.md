@@ -132,6 +132,10 @@ As this integration runs a local container with the transformers model, no addit
 
 ## Configure the reranker
 
+import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
+
+<MutableRerankerConfig />
+
 Configure a Weaviate collection to use a Transformer reranker model as follows:
 
 <Tabs groupId="languages">
