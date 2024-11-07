@@ -59,6 +59,72 @@ When a model provider integration for embeddings is enabled, Weaviate automatica
 
 This is done by providing the source data to the integration provider, which then returns the embeddings to Weaviate. The embeddings are then stored in the Weaviate database.
 
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'lineColor': '#B9C8DF',
+    'textColor': '#130C49',
+    'labelBackground': '#ffffff',
+    'labelTextColor': '#130C49',
+    'edgeLabelBackground': '#ffffff'
+  }
+}}%%
+
+flowchart TB
+
+    classDef bigHeader font-weight:bold
+    classDef container padding:40px
+    classDef node padding:15px
+    linkStyle default stroke:#B9C8DF,stroke-width:2
+
+    %% Define data node
+    subgraph user["🧑🏻‍💻 User"]
+        direction TB
+        data["🗂️ Data objects"]
+    end
+
+    %% Define Weaviate section
+    subgraph weaviate ["Weaviate"]
+        direction LR
+        core["Weaviate\ncore"]
+        vectorizer_module["Model provider integration\n(e.g., Cohere, Ollama)"]
+
+        %% Internal connections
+        core --> vectorizer_module
+        vectorizer_module --> core
+    end
+
+    %% Define Vectorizer section
+    subgraph vectorizer_section ["Model provider"]
+        direction LR
+        inference["Inference API (e.g. Cohere)\nor\nLocal model (e.g. Ollama)"]
+    end
+
+    %% Define connections between sections with shorter labels
+    user --> |"Insert object(s)"| core
+    vectorizer_module --> |"Request\nobject vector"| inference
+    inference --> |"Vector"| vectorizer_module
+
+    %% Style nodes
+    style data fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style core fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style vectorizer_module fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style inference fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs
+    style user fill:#ffffff,stroke:#7AD6EB,color:#130C49,stroke-width:2px,stroke-dasharray: 5 5
+    style weaviate fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style vectorizer_section fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49,stroke-dasharray: 5 5
+
+    %% Apply custom classes to nodes
+    class user bigHeader
+    class weaviate bigHeader
+    class vectorizer_section bigHeader
+    class user,weaviate,vectorizer_section container
+    class data,core,vectorizer_module,inference node
+```
+
 Weaviate generates embeddings for objects as follows:
 
 - Selects properties with `text` or `text[]` data types unless they are configured to be skipped
