@@ -766,6 +766,33 @@ For details on the configuration parameters, see the following:
 
 </details>
 
+### Object deletion conflict resolution
+
+:::info Added in `v1.27`
+:::
+
+You can optionally set a [deletion strategy](../concepts/replication-architecture/consistency.md#deletion-strategy) in multi-node clusters in case of conflicts.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeletionStrategy"
+      endMarker="# END DeletionStrategy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+  ```js
+  // Code example coming soon
+  ```
+
+  </TabItem>
+
+</Tabs>
+
 ## Sharding settings
 
 Configure sharding per collection.

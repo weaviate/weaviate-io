@@ -5,6 +5,10 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 Weaviate instances can be replicated. Replication can improve read throughput, improve availability, and enable zero-downtime upgrades.
 
 For more details on how replication is designed and built in Weaviate, see [Replication Architecture](../concepts/replication-architecture/index.md).
@@ -50,6 +54,35 @@ Repair-on-read is automatic. To activate async replication, set `asyncEnabled` t
 import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/replication-consistency.mdx';
 
 <ReplicationConfigWithAsyncRepair />
+
+### Deletion strategy
+
+import ManageDataPyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import ManageDataTSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+
+:::info Added in `v1.27`
+:::
+
+You can optionally set a [deletion strategy](../concepts/replication-architecture/consistency.md#deletion-strategy) in multi-node clusters in case of conflicts.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={ManageDataPyCode}
+      startMarker="# START DeletionStrategy"
+      endMarker="# END DeletionStrategy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+  ```js
+  // Code example coming soon
+  ```
+
+  </TabItem>
+</Tabs>
 
 ## How to use: Queries
 
