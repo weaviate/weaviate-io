@@ -188,6 +188,38 @@ const config = {
                     tagName: 'script',
                     innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
                 },
+                // Retention
+    {
+        tagName: 'script',
+        innerHTML: `(function () {
+            var reb2b = window.reb2b = window.reb2b || [];
+            if (reb2b.invoked) return;
+            reb2b.invoked = true;
+            reb2b.methods = ["identify", "collect"];
+            reb2b.factory = function (method) {
+              return function () {
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(method);
+                reb2b.push(args);
+                return reb2b;
+              };
+            };
+            for (var i = 0; i < reb2b.methods.length; i++) {
+              var key = reb2b.methods[i];
+              reb2b[key] = reb2b.factory(key);
+            }
+            reb2b.load = function (key) {
+              var script = document.createElement("script");
+              script.type = "text/javascript";
+              script.async = true;
+              script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/5NRP9HG1YMO1.js.gz";
+              var first = document.getElementsByTagName("script")[0];
+              first.parentNode.insertBefore(script, first);
+            };
+            reb2b.SNIPPET_VERSION = "1.0.1";
+            reb2b.load("5NRP9HG1YMO1");
+          })();`,
+      },
 
                     ],
                 };
