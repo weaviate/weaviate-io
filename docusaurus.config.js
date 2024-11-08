@@ -480,7 +480,7 @@ const config = {
                     {
                         type: 'search',
                         position: 'right',
-                        className: 'hiddenSearch',
+                        
                     },
                 ],
             },
