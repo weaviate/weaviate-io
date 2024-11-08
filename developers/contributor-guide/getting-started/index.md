@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+description: Getting Started with Contributing to Weaviate
 sidebar_position: 0
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']

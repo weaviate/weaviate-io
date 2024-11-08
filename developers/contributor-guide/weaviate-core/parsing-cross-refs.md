@@ -1,5 +1,6 @@
 ---
 title: Parsing Objects & Resolving References
+description: Guide to parsing cross-references in Weaviate core for data linking.
 sidebar_position: 5
 image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']

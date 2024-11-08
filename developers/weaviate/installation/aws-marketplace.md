@@ -1,5 +1,6 @@
 ---
 title: AWS Marketplace
+description: Install Weaviate through the AWS Marketplace for quick cloud deployment.
 sidebar_position: 10
 image: og/docs/installation.jpg
 # tags: ['installation', 'AWS Marketplace']

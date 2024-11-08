@@ -1,5 +1,6 @@
 ---
 title: Data types
+description: Data Types in Weaviate Schema
 sidebar_position: 20
 image: og/docs/configuration.jpg
 # tags: ['Data types']

@@ -1,5 +1,6 @@
 ---
 title: Improving Documentation
+description: Improving Documentation for Weaviate
 sidebar_position: 4
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']

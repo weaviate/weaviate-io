@@ -1,5 +1,6 @@
 ---
 title: Commit Guidelines
+description: Commit Guidelines for Contributing to Weaviate
 sidebar_position: 7
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']
