@@ -1,5 +1,6 @@
 ---
 title: Named Entity Recognition
+description: Integrate NER Transformers in Weaviate to identify and categorize entities in text.
 sidebar_position: 60
 image: og/docs/modules/ner-transformers.jpg
 # tags: ['ner-transformers', 'transformers', 'token classification']

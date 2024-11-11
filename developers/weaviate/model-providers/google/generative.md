@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: Google Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'generative', 'rag']

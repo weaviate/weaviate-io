@@ -1,5 +1,6 @@
 ---
 title: Load data into Weaviate with Spark
+description: Discover Spark connector integration with Weaviate for large data processing.
 sidebar_position: 80
 image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']

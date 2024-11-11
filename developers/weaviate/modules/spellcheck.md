@@ -1,5 +1,6 @@
 ---
 title: Spell Check
+description: Integrate spellcheck in Weaviate to improve text data quality and search accuracy.
 sidebar_position: 70
 image: og/docs/modules/text-spellcheck.jpg
 # tags: ['modules', 'other modules', 'spellcheck']

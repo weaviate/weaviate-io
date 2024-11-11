@@ -57,7 +57,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Playbook',
-                blogDescription: 'Learn How we run Weaviate as a Company',
+                blogDescription: 'Learn how we run Weaviate as a Company',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
@@ -75,7 +75,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Paper Reviews',
-                blogDescription: '<todo>',
+                blogDescription: 'Papers',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Paper Reviews',
@@ -238,6 +238,7 @@ const config = {
                 },
                 blog: {
                     blogTitle: 'Blog',
+                    blogDescription: 'Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:

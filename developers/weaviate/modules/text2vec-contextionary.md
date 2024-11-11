@@ -1,5 +1,6 @@
 ---
 title: "Contextionary Vectorizer"
+description: Use Text2Vec Contextionary in Weaviate for improved context-based text vectorization.
 sidebar_position: 10
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']

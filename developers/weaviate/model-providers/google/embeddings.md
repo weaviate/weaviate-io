@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: "Weaviate's integration with Google AI Studio and Google Vertex AI APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']

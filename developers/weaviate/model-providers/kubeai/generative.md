@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: Set up generative models with KubeAI in Weaviate for creative data outputs.
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_kubeai.jpg
 # tags: ['model providers', 'openai', 'generative', 'rag']
