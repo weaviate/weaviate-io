@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: OpenAI Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai', 'generative', 'rag']

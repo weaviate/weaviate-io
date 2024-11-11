@@ -1,5 +1,6 @@
 ---
 title: Tutorials
+description: Explore Weaviate tutorials for practical guidance on data management and queries.
 sidebar_position: 0
 image: og/docs/tutorials.jpg
 # tags: ['how to', 'schema']

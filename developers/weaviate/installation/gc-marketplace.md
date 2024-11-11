@@ -1,5 +1,6 @@
 ---
 title: Google Cloud Marketplace
+description: Set up Weaviate using Google Cloud Marketplace for simplified deployment.
 sidebar_position: 15
 image: og/docs/installation.jpg
 tags: ['installation', 'Google Cloud Marketplace']

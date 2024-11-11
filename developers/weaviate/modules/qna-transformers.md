@@ -1,5 +1,6 @@
 ---
 title: Question Answering - transformers
+description: Add QnA Transformers to Weaviate for accurate question answering and insights.
 sidebar_position: 40
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']

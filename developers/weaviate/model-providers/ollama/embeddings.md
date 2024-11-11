@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: Ollama Embedding Provider
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_ollama.jpg
 # tags: ['model providers', 'ollama', 'embeddings']

@@ -1,5 +1,6 @@
 ---
 title: Python
+description: Utilize the Python client library to access Weaviate and streamline data processes.
 sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']

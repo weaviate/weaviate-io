@@ -1,5 +1,6 @@
 ---
 title: Managing resources (Hot, Warm, Cold)
+description: Learn to manage resources effectively in Weaviate for optimized performance.
 sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['basics']

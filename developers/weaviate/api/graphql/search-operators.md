@@ -1,5 +1,6 @@
 ---
 title: Search operators
+description: Leverage search operators in Weaviate's GraphQL API for targeted data retrieval.
 sidebar_position: 20
 image: og/docs/api.jpg
 # tags: ['graphql', 'search operators']

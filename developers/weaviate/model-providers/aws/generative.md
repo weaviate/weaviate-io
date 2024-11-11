@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: AWS Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws', 'generative', 'rag']

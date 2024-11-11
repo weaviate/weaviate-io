@@ -1,5 +1,6 @@
 ---
 title: Multimodal Embeddings (custom)
+description: Transformers Custom Image Multimodal Embeddings
 sidebar_position: 35
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'embeddings', 'clip']

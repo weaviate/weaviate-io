@@ -1,5 +1,6 @@
 ---
 title: OpenAI + Weaviate
+description: "OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database."
 sidebar_position: 10
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai']

@@ -1,5 +1,6 @@
 ---
 title: Wikipedia with custom vectors
+description: Learn to use Wikipedia with Weaviate for enriched data sources and insights.
 sidebar_position: 50
 image: og/docs/tutorials.jpg  # TODO
 # tags: ['import']

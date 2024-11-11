@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: "Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral', 'generative', 'rag']

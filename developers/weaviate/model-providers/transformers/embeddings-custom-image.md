@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings (custom)
+description: Transformers Custom Image Embeddings
 sidebar_position: 25
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'embeddings', 'transformers']

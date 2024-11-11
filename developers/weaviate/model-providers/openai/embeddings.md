@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: OpenAI Embedding Model Provider
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai', 'embeddings']

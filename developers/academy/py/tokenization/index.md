@@ -1,5 +1,6 @@
 ---
 title: "275 (Keyword) Tokenization"
+description: Dive into tokenization in Weaviate to enhance text search accuracy.
 sidebar_position: 275
 ---
 
