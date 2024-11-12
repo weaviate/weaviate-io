@@ -159,7 +159,7 @@ export default function Examples() {
           </div>
         </div>
 
-        <div className={styles.ctaContainer}>
+        {/* <div className={styles.ctaContainer}>
           <span>Guides</span>
           <h2>Build AI-Native Applications with Javascript</h2>
           <div className={styles.innerCta}>
@@ -171,7 +171,7 @@ export default function Examples() {
               Learn More
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
