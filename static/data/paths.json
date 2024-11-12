@@ -21,6 +21,23 @@
       "description": "Learn how to build production ready full-stack AI-Native Web Apps."
     }
   ],
+  "siteSearchTemp": [
+    {
+      "link": "blog/what-is-a-vector-database",
+      "title": "A Gentle Introduction to Vector Databases",
+      "description": "Vector databases explained by their core concepts of vector embeddings, vector search, and vector indexing."
+    },
+    {
+      "link": "blog/vector-embeddings-explained",
+      "title": "Vector Embeddings Explained",
+      "description": "Get an intuitive understanding of what vector embeddings are, how they're generated, and how they're used in semantic search."
+    },  
+    {
+      "link": "developers/academy/js/starter_text_data",
+      "title": "Semantic Search for Text Data",
+      "description": "Learn how to work with text data using Weaviate and semantic search to power your text-based search applications."
+    }
+  ],
   "chatbots": [
     {
       "link": "developers/academy/js/starter_text_data",

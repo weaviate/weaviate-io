@@ -7,7 +7,7 @@ import Link from '@docusaurus/Link';
 import paths from '/data/paths.json';
 
 export default function Resources() {
-  const resourcesSite = paths.siteSearch;
+  const resourcesSite = paths.siteSearchTemp;
   const resourcesEcommerce = paths.ecommerce;
   const resourcesAutomation = paths.automation;
   const resourcesChatbots = paths.chatbots;
@@ -53,7 +53,8 @@ export default function Resources() {
             >
               Site Search
             </Tab>
-            <Tab
+            {/* coming soon, to be uncommented when other modules are done */}
+            {/* <Tab
               className={`${styles.tabs} ${
                 activeTabIndex === 1 ? styles.selectedTab : ''
               }`}
@@ -76,7 +77,7 @@ export default function Resources() {
               onClick={() => handleTabSelect(3)}
             >
               Automation
-            </Tab>
+            </Tab> */}
           </TabList>
 
           <TabPanel>
