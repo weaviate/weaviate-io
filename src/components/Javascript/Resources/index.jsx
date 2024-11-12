@@ -7,7 +7,7 @@ import Link from '@docusaurus/Link';
 import paths from '/data/paths.json';
 
 export default function Resources() {
-  const resourcesSite = paths.siteSearch;
+  const resourcesSite = paths.siteSearchTemp;
   const resourcesEcommerce = paths.ecommerce;
   const resourcesAutomation = paths.automation;
   const resourcesChatbots = paths.chatbots;
