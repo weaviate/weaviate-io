@@ -13,13 +13,66 @@ The following sections provide a conceptual overview of search in Weaviate, incl
 
 ## Search process
 
-The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+The following table and figure illustrate the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
 | Step | Description | Optional |
 |------|-------------|----------|
 | 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
-| 2. [Reranking](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
+| 2. [Rerank](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
 | 3. [Retrieval augmented generation](#retrieval-augmented-generation-rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+
+<center>
+
+```mermaid
+flowchart LR
+    %% Node definitions
+    Query[/"🔍 Query"/]
+    Filter["Filter"]
+    Key["Keyword Search\n(BM25F)"]
+    Vec["Vector Search\n(Embeddings)"]
+    Hyb["Hybrid Search\n(Combined)"]
+    Rerank["Rerank\n(Optional)"]
+    RAG["RAG\n(Optional)"]
+    Results[/"📊 Results"/]
+
+    %% Main flow grouping
+    subgraph retrieval ["Retrieval"]
+        direction LR
+        Filter
+        search
+    end
+
+    subgraph search ["Search"]
+        direction LR
+        Key
+        Vec
+        Hyb
+    end
+
+    %% Connections
+    Query --> retrieval
+    Filter --> search
+    retrieval --> Results
+    retrieval --> Rerank
+    Rerank --> RAG
+    RAG --> Results
+
+    %% Node styles
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Filter fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Key fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Vec fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Hyb fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Rerank fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style RAG fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Results fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Subgraph styles
+    style retrieval fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style search fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
+</center>
 
 Here is a brief overview of each step:
 
@@ -274,7 +327,7 @@ Retrieval augmented generation (RAG), also called generative search, combines se
 
 Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
 
-As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-module), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
+As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-model-integration), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
   <summary>RAG: Example</summary>

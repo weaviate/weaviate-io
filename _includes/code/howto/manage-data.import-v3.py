@@ -172,7 +172,7 @@ import pandas as pd
 
 # Settings for displaying the import progress
 counter = 0
-interval = 20  # print progress every this many records; should be bigger than the batch_size
+interval = 200  # print progress every this many records; should be bigger than the batch_size
 
 def add_object(obj) -> None:
     global counter

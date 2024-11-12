@@ -272,6 +272,10 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## Further resources
 
+### Other integrations
+
+- [Jina AI reranker models + Weaviate](./reranker.md).
+
 ### Code examples
 
 Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. See the following model-agnostic examples:

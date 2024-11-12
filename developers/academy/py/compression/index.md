@@ -1,5 +1,6 @@
 ---
 title: "250 Vector compression"
+description: "Discover compression techniques in Weaviate for optimal data storage and retrieval in Python."
 sidebar_position: 250
 ---
 

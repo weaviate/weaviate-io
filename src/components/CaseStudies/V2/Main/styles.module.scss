@@ -1,0 +1,829 @@
+:root {
+  --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: ##f7f9fd;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
+.mainBody {
+  background: #edf4f8;
+}
+.container {
+  padding: 3rem;
+
+  @media screen and (max-width: 1400px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  justify-content: flex-start;
+  margin: auto;
+  width: 65rem;
+  height: 26.25rem;
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  transform: translateY(-100px);
+  flex-shrink: 0;
+  padding: 40px;
+  gap: 30px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+    transform: translateY(0px);
+  }
+
+  .firstColumn {
+    flex: 1 210px;
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .secondColumn {
+    flex: 1;
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media screen and (max-width: 900px) {
+      gap: 20px;
+    }
+  }
+
+  h2 {
+    color: var(--darkColor);
+    font-family: var(--headerFont);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  p {
+    color: var(--darkColor);
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 1.6rem */
+    width: 90%;
+  }
+
+  span {
+    color: var(--subColor);
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+    text-transform: uppercase;
+  }
+
+  .tagHolder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h3 {
+    color: var(--darkColor);
+    font-family: var(--headerFont);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    margin: 0;
+  }
+  .CsIcon {
+    background: url('/img/site/case-study-main-icon-01.svg');
+    background-size: contain;
+    width: 2.30888rem;
+    height: 2.3125rem;
+  }
+
+  .CsText {
+    color: var(--darkColor);
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.225rem */
+    width: 100%;
+  }
+}
+
+.bentoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bento01,
+.bento02,
+.bento03,
+.bento04,
+.bento05,
+.bento06 {
+  flex-shrink: 1;
+}
+
+.bento01 {
+  width: 25.9375rem;
+  height: 37.125rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  border-radius: 1.25rem;
+  background: var(--darkColor);
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/Morningstar.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 12.3125rem;
+      height: 2.5625rem;
+
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    span {
+      color: var(--Color-12, #8396b1);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: var(--headerFont);
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
+    }
+  }
+}
+
+.bento02 {
+  width: 37.8125rem;
+  height: 37.125rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+
+  background: #f7f9fd;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/neople-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    span {
+      color: var(--Color-12, #8396b1);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+
+    a {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%; /* 1.6rem */
+    }
+
+    h3 {
+      color: var(--darkColor);
+      font-family: var(--headerFont);
+      font-size: 1.75rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 130%; /* 2.275rem */
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bento03 {
+  width: 65rem;
+  height: 32.4375rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+
+  background: url('/img/site/case-study-main-01.png');
+  border-radius: 0.9375rem;
+
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  background-size: cover;
+
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/moonsift-cs.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9.02219rem;
+      height: 2.875rem;
+      flex-shrink: 0;
+      margin: 30px 0px;
+    }
+
+    h3 {
+      color: #f7f9fd;
+      font-family: var(--headerFont);
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.15rem */
+    }
+  }
+}
+
+.bento04 {
+  width: 37.8125rem;
+  height: 44.875rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #f7f9fd;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoImage {
+      background: url('/img/site/unbody-header-image.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 18.25rem;
+      flex-shrink: 0;
+      margin: 0px 0px 20px 0px;
+
+      @media screen and (max-width: 900px) {
+        height: 13.25rem;
+      }
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%; /* 1.6rem */
+    }
+
+    span {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+  }
+
+  .tagHolder {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .CsIcon {
+    background: url('/img/site/case-study-main-icon-01.svg');
+    background-size: cover;
+    width: 2.30888rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+    margin-top: 0px;
+  }
+
+  .CsText {
+    color: var(--darkColor);
+    font-family: var(--paraFont);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    width: 100%;
+  }
+}
+
+.bento05 {
+  width: 25.9375rem;
+  height: 29.625rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: var(--darkColor);
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    p {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    span {
+      color: var(--subColor);
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.4rem */
+      text-transform: uppercase;
+    }
+  }
+}
+
+.bentoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bento06 {
+  width: 25.9375rem;
+  height: 14rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #85e3bc;
+  background-size: cover;
+  background-position-x: center;
+
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    h3 {
+      color: var(--darkColor);
+      font-family: var(--headerFont);
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%; /* 2.4rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: var(--paraFont);
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.225rem */
+    }
+  }
+}
+
+.bento07 {
+  width: 65.625rem;
+  height: 18.875rem;
+  border-radius: 1.25rem;
+  background: url('/img/site/case-study-main-02.png');
+  background-size: cover;
+  background-position-x: center;
+
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    .innerText {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .subscribe {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0px;
+        align-items: center;
+
+        input[type='checkbox'] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #333;
+          border-radius: 50%;
+          background-color: var(--darkColor);
+          cursor: pointer;
+          position: relative;
+
+          &:checked {
+            background-color: #b9c8de;
+          }
+
+          &:checked::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    span,
+    label {
+      color: #b9c8de;
+      font-family: var(--paraFont);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
+    }
+
+    h3 {
+      color: #61bd73;
+      font-family: var(--headerFont);
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 140%; /* 2.8rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+  .bento01,
+  .bento04 {
+    width: 33rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 22rem;
+  }
+  .box,
+  .bento05,
+  .bento06 {
+    width: 56rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .bento01,
+  .bento04 {
+    width: 30rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 20rem;
+  }
+  .box,
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 960px) {
+  .bento01,
+  .bento04 {
+    width: 27rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 23rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 940px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02,
+  .bento03 {
+    width: 24rem;
+    height: 33.9375rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+@media (max-width: 795px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .bento01,
+  .bento02,
+  .bento03,
+  .bento04,
+  .bento05,
+  .bento06 {
+    width: 100%; /* Full width when stacked */
+  }
+}
+
+.buttons {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  right: 20px;
+
+  .arrowButton {
+    background: url('/img/site/ArrowButton.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrowButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .buttonSmall {
+    width: 10.0625rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 3.125rem;
+    border: 1px solid #ecf4f8;
+    background: #ecf4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--darkColor);
+    text-align: center;
+    font-family: var(--paraFont);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.37663rem */
+  }
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: var(--darkColor);
+  }
+
+  .buttonLight {
+    color: var(--darkColor);
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid var(--darkColor);
+    background: #f7f9fd;
+  }
+}
+
+iframe {
+  margin: 0;
+  border-radius: 0px !important;
+  background-color: transparent;
+  width: 450px;
+}
