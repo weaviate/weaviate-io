@@ -92,7 +92,7 @@ response = collection.query.near_text(
 
 for o in response.objects:
     print(o.properties)
-    return_metadata=MetadataQuery(distance=True)
+    print(o.metadata.distance)
 # END MultiBasic
 
 
@@ -125,7 +125,7 @@ response = collection.query.near_vector(
 
 for o in response.objects:
     print(o.properties)
-    return_metadata=MetadataQuery(distance=True)
+    print(o.metadata.distance)
 # END MultiTargetNearVector
 
 
@@ -163,7 +163,7 @@ response = collection.query.near_vector(
 
 for o in response.objects:
     print(o.properties)
-    return_metadata=MetadataQuery(distance=True)
+    print(o.metadata.distance)
 # END MultiTargetMultipleNearVectorsV1
 
 # START MultiTargetMultipleNearVectorsV2
@@ -190,7 +190,7 @@ response = collection.query.near_vector(
 
 for o in response.objects:
     print(o.properties)
-    return_metadata=MetadataQuery(distance=True)
+    print(o.metadata.distance)
 # END MultiTargetMultipleNearVectorsV2
 
 
