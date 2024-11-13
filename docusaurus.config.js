@@ -113,6 +113,7 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
+                    // Last updated: 2024-11-13
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_202411/openapi-specs/schema.json',
                 },
                 hideModels: true,
