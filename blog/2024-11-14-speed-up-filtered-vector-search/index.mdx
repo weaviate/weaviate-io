@@ -146,7 +146,7 @@ With this decision, you only need to enable ACORN in your Weaviate instance and 
 
 The second important difference is in how we explore the graph while querying. Weaviate’s ACORN implementation does not always use the two hop expansion. Instead, it conditionally evaluates whether to do so.
 
-If the first hop passes the filter, then the algorithm traverses the graph normally since the second hop will be explored anyways as the search progresses. We only use the two hop expansion if the connecting node does not pass the filter. This means that when is not a uniform distribution of the filtered nodes in the graph, our algorithm will operate as a regular HNSW in areas in areas where a dense amount of nodes pass the filter and as a pure ACORN where a sparse amount of nodes pass the filter.
+If the first hop passes the filter, then the algorithm traverses the graph normally since the second hop will be explored anyways as the search progresses. We only use the two hop expansion if the connecting node does not pass the filter. This means that when is not a uniform distribution of the filtered nodes in the graph, our algorithm will operate as a regular HNSW in areas where a dense amount of nodes pass the filter and as a pure ACORN where a sparse amount of nodes pass the filter.
 
 The third difference is in the selection of the entry point at the layer zero of the graph. It is a known challenge that a high query latency can be seen both with regular HNSW but also with ACORN when querying with a low correlation between the filter and the query vector.
 
