@@ -124,6 +124,8 @@ The resulting graph is much larger without pruning. Once we filter our graph, ho
 
 The crucial difference is how the neighborhood is expanded in ACORN to keep connectivity of the graph high. The main risk with filtering connections is that you could prune good paths as an intervening vector fails to pass the filter. As an example, consider the following:
 
+![An illustration of a graph vector index](./img/graph-example.png)
+
 Assume we are searching for the top two closest neighbors of the blue query vector in this graph.
 
 The green dots illustrate vectors whose objects pass the filter, and the gray those that do not. Ideally, the search algorithm could follow the graph from an entry point to the target region. Assuming starting from the red entry point, the graph would traverse to the vector labeled A, then to the vector labeled B as the distances reduce in that direction. From here, the algorithm should be able to find vector E through C and F through D. The problem is that if C and D are disconnected and thus not evaluated, then the search algorithm cannot find E and F. On the other hand, if considering C and D means we need to calculate the distance between the query vector and those vectors, going back to the above challenge of high resource usage.
@@ -156,39 +158,60 @@ The outcome is that the search will suffer in speed or quality. It will either r
 
 Either way, this is not a great outcome.
 
-## Some practical results
+## Internal test results - ACORN vs pre-ACORN
 
 We next show some experiments using random uniform filters but also using high or low correlation between the filters and the queries. You could easily test your own data in Weaviate by [switching the filtering method in the collection definition to sweeping or acorn](/developers/weaviate/manage-data/collections#set-vector-index-parameters). The [benchmark tool](https://github.com/weaviate/weaviate-benchmarking) has been updated to easily test your data with the flags -–filter to signal that we are doing a filtered test and –filterStrategy which accepts acorn as a valid strategy to indicate that we want to activate the new logic during querying.
 
-### Random uniform filters
-
-We will initiate our experiments using a uniform distribution for the filter with 20% selectivity. This might be the less interesting case since we do not expect this scenario too often in real applications but it will set a baseline for our experiments. The image below shows such results.
-
-From this comparison, we could infer there is still no significant difference between the curves - but let’s keep going.
-
-:::caution FIGURE GOES HERE
-:::
-
 ### High correlation between filters and queries
 
-Next, we have built a collection out of the [Beir dataset](https://paperswithcode.com/dataset/beir). We have merged different domain objects into a single dataset and used the source of the data as the filter. In this case, we expect a high correlation between filters and queries. Queries come from the same data source and data from the same data source is strongly connected to each other.
-This is a case where our regular HNSW algorithm performs roughly as well, or slightly better than our ACORN implementation. Results are shown in the image below. For high recall settings we can see that ACORN performs similar to the regular HNSW logic.
+Here, we have built a collection out of the [Beir dataset](https://paperswithcode.com/dataset/beir). We have merged different domain objects into a single dataset and used the source of the data as the filter. In this case, we expect a high correlation between filters and queries. Queries come from the same data source and data from the same data source is strongly connected to each other.
 
-:::caution FIGURE GOES HERE
-:::
+Each figure shows test results for a different selectivity rate, between 50% and 20%. The selectivity rate is the percentage of objects that pass the filter. The higher the selectivity rate, the more objects pass the filter and the easier it is to find the target region in the search space.
+
+The `acorn` line represents the new ACORN implementation, while the `sweeping` line represents the old implementation. The y-axis shows the throughput in queries per second (QPS), while the x-axis shows the search quality (recall). The search quality is controlled by setting the `ef` parameter in the vector index configuration. The higher the `ef`, the better the search quality, but the slower the search.
+
+If we take a look at these figures, a very interesting pattern emerges. The `sweeping` implementation performs quite well at high selectivity rates, but the performance begins to drop as the selectivity rate decreases.
+
+**50% selectivity**
+
+![ACORN vs pre-ACORN, 50% selectivity](./img/beir-cohere-500k-filtered-dot-0.5-dark.png#gh-dark-mode-only)
+![ACORN vs pre-ACORN, 50% selectivity](./img/beir-cohere-500k-filtered-dot-0.5-light.png#gh-light-mode-only)
+
+**40% selectivity**
+
+![ACORN vs pre-ACORN, 40% selectivity](./img/beir-cohere-500k-filtered-dot-0.4-dark.png#gh-dark-mode-only)
+![ACORN vs pre-ACORN, 40% selectivity](./img/beir-cohere-500k-filtered-dot-0.4-light.png#gh-light-mode-only)
+
+**30% selectivity**
+
+![ACORN vs pre-ACORN, 30% selectivity](./img/beir-cohere-500k-filtered-dot-0.3-dark.png#gh-dark-mode-only)
+![ACORN vs pre-ACORN, 30% selectivity](./img/beir-cohere-500k-filtered-dot-0.3-light.png#gh-light-mode-only)
+
+**20% selectivity**
+
+![ACORN vs pre-ACORN, 20% selectivity](./img/beir-cohere-500k-filtered-dot-0.2-dark.png#gh-dark-mode-only)
+![ACORN vs pre-ACORN, 20% selectivity](./img/beir-cohere-500k-filtered-dot-0.2-light.png#gh-light-mode-only)
+
+When we look at the differences between graphs of the 50% and 20% selectivity rates, we can see that the relative positions between the two implementations are somewhat reversed. At 50% selectivity, the `sweeping` implementation performs better than the `acorn` implementation. However, at 20% selectivity, the `acorn` implementation is much faster than the `sweeping` implementation.
+
+For low selectivity rates (at 20%), it is worth noting that the query throughput (QPS) of the `sweeping` implementation can be half the throughput of the `acorn` implementation at the same recall level. Here, we start to see benefits of the ACORN algorithm's ability to maintain graph connectivity and traverse the graph more efficiently.
+
+Next, let's look at the results when the correlation between filters and queries is low.
 
 ### Low correlation between filters and queries
 
-This is where the ACORN implementation really begins to shine. In this example, we have a dataset shifting queries to different data sources. This means that queries would target different data sources and thus we should expect a low correlation between the filters and queries. The results are shown in the image below.
+This is where the ACORN implementation shows its value. In this example, we have a dataset shifting queries to different data sources. This means that queries would target different data sources and thus we should expect a low correlation between the filters and queries. The results are shown in the image below.
 
-:::caution FIGURE GOES HERE
-:::
+![ACORN vs pre-ACORN, low correlation](./img/beir-cohere-dot-filtered-negative-light.png#gh-dark-mode-only)
+![ACORN vs pre-ACORN, low correlation](./img/beir-cohere-dot-filtered-negative-light.png#gh-light-mode-only)
 
 Under these settings, we can observe that Weaviate’s ACORN implementation significantly (an order of magnitude, in fact) outperforms the “vanilla” HNSW algorithm. The difference here is such that the previous throughput (QPS) would have been a significant potential bottleneck, whereas our ACORN algorithm performs comparably to the previous scenario. The explanation for this disparity is that the old logic ends up performing nearly a brute force over the full data while the new logic can find the target region in a better performant way.
 
 You could imagine it makes little sense to have such a low correlation between filters and queries but in practice, this is actually not that unusual.
 
-As a result, this is really where the new ACORN algorithm pays off. By preventing occurrences of such bottlenecks, it is able to ensure that a vector/hybrid search system does not get bogged down when these “unusual” queries in fact become quite common as we have seen happen in the wild.
+As a result, this could have been a source of a potential bottleneck in the system. But not any more - the new ACORN algorithm performs admirably in this scenario, and the performance does not get bogged down by these "unusual" (but actually quite common) queries.
+
+By preventing occurrences of such bottlenecks, Weaviate with the new ACORN search strategy is able to ensure that a vector/hybrid search system does not get bogged down when these “unusual” queries in fact become quite common as we have seen happen in the wild.
 
 It goes without saying, we are very excited about introducing this algorithm and improving the overall robustness of the system as a result.
 
