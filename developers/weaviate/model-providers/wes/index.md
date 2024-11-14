@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-Weaviate Embedding Service offers models for vectorization. Weaviate Embedding Service allows a Weaviate Cloud instance to directly obtain vector embeddings without using a separate model provider.
+Weaviate Embedding Service (WES) offers vectorizer models for natural language processing. Weaviate Cloud seamlessly integrates with WES, allowing users to leverage WES' models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -31,19 +31,11 @@ In turn, they simplify the process of building AI-driven applications to speed u
 
 ## Get started
 
-You must have a valid Cohere API key to Weaviate for these integrations. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+You must provide a valid Weaviate Cloud API key to Weaviate for these integrations. Go to [Weaviate Cloud](https://console.weaviate.cloud/) to sign up and obtain an API key.
 
-Then, go to the relevant integration page to learn how to configure Weaviate with the Cohere models and start using them in your applications.
+Then, go to the relevant integration page to learn how to configure Weaviate with the WES models and start using them in your applications.
 
 - [Text Embeddings](./embeddings.md)
-- [Generative AI](./generative.md)
-- [Reranker](./reranker.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 
