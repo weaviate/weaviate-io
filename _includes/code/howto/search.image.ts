@@ -91,7 +91,7 @@ console.log(JSON.stringify(result.objects, null, 2));
   // highlight-start
   const url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
   const response = await fetch(url);
-  const blob = await response.blob();
+  const blob = await response.buffer();
   // highlight-end
   
   // highlight-start

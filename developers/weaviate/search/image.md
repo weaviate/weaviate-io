@@ -234,46 +234,6 @@ You can create a base64 representation of an online image, and use it as input f
 
 </Tabs>
 
-## By the Blob representation
-
-You can search by the [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) representation of an image, with either local images or online images.
-
-<Tabs groupId="languages">
-
-  <TabItem value="js" label="JS/TS Client v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START search with Blob"
-      endMarker="// END search with Blob"
-      language="ts"
-    />
-  </TabItem>
-
-   <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START search with Blob"
-      endMarker="// END search with Blob"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-
-<details>
-  <summary>Example response</summary>
-
-  <FilteredTextBlock
-    text={PyCode}
-    startMarker="# START Expected blob results"
-    endMarker="# END Expected blob results"
-    language="json"
-  />
-
-</details>
-
-
 ## Combination with other operators
 
 A `Near Image` search can be combined with any other operators (like filter, limit, etc.), just as other similarity search operators.
