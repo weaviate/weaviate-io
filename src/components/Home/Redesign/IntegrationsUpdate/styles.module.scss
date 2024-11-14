@@ -86,6 +86,15 @@
     align-items: center;
     scroll-snap-align: center;
     margin: 0 10px;
+
+    @media screen and (max-width: 500px) {
+      width: 12.375rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 8.375rem;
+      height: 4.9375rem;
+    }
   }
 
   .inside {
