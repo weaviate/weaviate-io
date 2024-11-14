@@ -165,28 +165,9 @@ console.log(result.properties['points']);
 // ===== Hybrid EXAMPLES =====
 // =========================================
 {
-  // HybridExample
-//   from weaviate.classes.query import Metrics
-
-// jeopardy = client.collections.get("JeopardyQuestion")
-// response = jeopardy.aggregate.hybrid(
-//     query="animals in space",
-//     object_limit=10,
-//     return_metrics=Metrics("points").number(sum_=True),
-// )
-
-// print(response.properties["points"].sum_)
-  // TS client support coming soon
-  const result = await jeopardy.aggregate.hybrid(['animals in space'],{
-    // highlight-start
-    distance: 0.19,
-    // highlight-end
-    returnMetrics: jeopardy.metrics.aggregate('points').number(["sum"])
-  })
-  
-  console.log(result.properties['points']);
-
-  // END HybridExample
+// HybridExample
+// TS client support coming soon
+// END HybridExample
 
   // Test
   // assert('JeopardyQuestion' in result.data.Aggregate);

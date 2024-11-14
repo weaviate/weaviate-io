@@ -696,9 +696,9 @@ await articles.config.update({
   invertedIndex: reconfigure.invertedIndex({
     bm25k1: 1.5 // Change the k1 parameter from 1.2
   }),
-    vectorizers: weaviate.reconfigure.vectorizer.update({
-      vectorIndexConfig: weaviate.reconfigure.vectorIndex.hnsw({
-        quantizer: weaviate.reconfigure.vectorIndex.quantizer.pq(),
+    vectorizers: reconfigure.vectorizer.update({
+      vectorIndexConfig: reconfigure.vectorIndex.hnsw({
+        quantizer: reconfigure.vectorIndex.quantizer.pq(),
         ef: 4,
         filterStrategy: 'acorn',  // Available from Weaviate v1.27.0
       }),

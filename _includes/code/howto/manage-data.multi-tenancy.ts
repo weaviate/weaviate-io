@@ -3,6 +3,14 @@
 import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
+/*
+// START UpdateAutoMT
+import { reconfigure } from 'weaviate-client';
+
+// END UpdateAutoMT
+*/
+
+
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL as string,
  {
@@ -66,18 +74,16 @@ const result = await client.collections.create({
 // ==========================
 
 {
-// START enable autoMT
-// Coming soon
-
-// collection.config.update(
-//   multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True)
-// )
+// START UpdateAutoMT
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 await multiCollection.config.update({
-  
-  
-})
-// END enable autoMT
+  multiTenancy: weaviate.reconfigure.multiTenancy({
+    autoTenantActivation: true,
+    autoTenantCreation: true,
+  }),
+});
+// END UpdateAutoMT
 }
 
 // ================================
@@ -126,8 +132,8 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // ===== Get tenants from a collection by name =====
 // =======================================
 {
-// START GetTenantsByName
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+// START GetTenantsByName 
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const tenants = await multiCollection.tenants.getByNames(['tenantA', 'tenantB'])
@@ -142,7 +148,7 @@ console.log(tenants)
 
 {
 // START GetOneTenant
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const tenant = await multiCollection.tenants.getByName('tenantA')
@@ -277,7 +283,7 @@ await multiTenantA.data.insert({
 // =====================
 {
 // START Search
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
