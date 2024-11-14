@@ -6,7 +6,6 @@ import JoinCommunity from '../JoinCommunityUpdate';
 import partners from '/data/partners.json';
 
 export default function HomepageIntegrations() {
-  // Filter the featured partners
   const featuredPartners = partners.filter((partner) => partner.featured);
 
   return (
