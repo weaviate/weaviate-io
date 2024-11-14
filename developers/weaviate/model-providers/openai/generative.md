@@ -241,6 +241,8 @@ In other words, when you have `n` search results, the generative model generates
 * [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 * [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 * [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4o](https://platform.openai.com/docs/models#gpt-4o)
+* [gpt-4o-mini](https://platform.openai.com/docs/models#gpt-4o-mini) (Added in v1.26.7)
 
 <details>
   <summary>Older models</summary>
