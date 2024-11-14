@@ -211,7 +211,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       projectId: '<google-cloud-project-id>',
@@ -238,7 +238,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       // (Optional) To manually set the model ID
@@ -264,7 +264,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecPalm({
+    weaviate.configure.vectorizer.text2VecGoogle({
       name: 'title_vector',
       sourceProperties: ['title'],
       projectId: '<google-cloud-project-id>', // Required for Vertex AI
@@ -294,7 +294,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.multi2VecPalm({
+    weaviate.configure.vectorizer.multi2VecGoogle({
       name: 'title_vector',
       location: '<google-cloud-location>',
       projectId: '<google-cloud-project-id>',
@@ -339,7 +339,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.multi2VecPalm({
+    weaviate.configure.vectorizer.multi2VecGoogle({
       name: 'title_vector',
       projectId: '<google-cloud-project-id>',
       modelId: '<google-model-id>',
@@ -502,35 +502,126 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicVectorizerMistral
-// TS support & code example coming soon
-// END BasicVectorizerMistral
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecMistral({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});// END BasicVectorizerMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullVectorizerMistral
-// TS support & code example coming soon
-// END FullVectorizerMistral
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecMistral({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        model: 'mistral-embed'
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});// END FullVectorizerMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START BasicVectorizerOctoAI
-// Code example coming soon
-// END BasicVectorizerOctoAI
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOctoAI({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+}); // END BasicVectorizerOctoAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START VectorizerOctoAICustomModel
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOctoAI({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        model: "thenlper/gte-large",
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+}); 
 // END VectorizerOctoAICustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullVectorizerOctoAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecOctoAI({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        // model: "thenlper/gte-large",
+        // vectorizeCollectionName: true,
+        // baseURL: "https://text.octoai.run",
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});  
 // END FullVectorizerOctoAI
 
 // Clean up

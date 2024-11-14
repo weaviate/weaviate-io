@@ -61,7 +61,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js" label="JS/TS Client v3">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
 
   <FilteredTextBlock
     text={TSCode}
@@ -74,7 +74,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js2" label="JS/TS Client v2">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
 
   <FilteredTextBlock
     text={TSCodeLegacy}
@@ -191,6 +191,7 @@ You can search by a base64 representation of an image:
 
 </details>
 
+
 ## Create a base64 representation of an online image.
 
 You can create a base64 representation of an online image, and use it as input for similarity search [as shown above](#by-the-base64-representation).
@@ -232,7 +233,6 @@ You can create a base64 representation of an online image, and use it as input f
   </TabItem>
 
 </Tabs>
-
 
 ## Combination with other operators
 

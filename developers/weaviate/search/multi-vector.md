@@ -138,12 +138,14 @@ The target vectors can be specified as an array as shown here.
   language="python"
 />
 </TabItem>
+
 <TabItem value="ts" label="JS/TS Client v3">
-
-```ts
-// Coming soon
-```
-
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiTargetMultipleNearVectorsV1"
+  endMarker="// END MultiTargetMultipleNearVectorsV1"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -160,12 +162,14 @@ If you want to provide weights for each target vector you can do it as shown her
   language="python"
 />
 </TabItem>
+
 <TabItem value="ts" label="JS/TS Client v3">
-
-```ts
-// Coming soon
-```
-
+<FilteredTextBlock
+  text={TSCodeV3}
+  startMarker="// START MultiTargetMultipleNearVectorsV2"
+  endMarker="// END MultiTargetMultipleNearVectorsV2"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 

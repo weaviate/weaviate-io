@@ -16,11 +16,11 @@ const WCD_API_KEY=process.env["WCD_API_KEY"];
 const OPENAI_API_KEY=process.env["OPENAI_API_KEY"];
 
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  WCD_URL,
+  WCD_URL as string,
  {
-   authCredentials: new weaviate.ApiKey(WCD_API_KEY),
+   authCredentials: new weaviate.ApiKey(WCD_API_KEY as string),
    headers: {
-     'X-OpenAI-Api-Key': OPENAI_API_KEY,
+     'X-OpenAI-Api-Key': OPENAI_API_KEY as string,
    }
  }
 )

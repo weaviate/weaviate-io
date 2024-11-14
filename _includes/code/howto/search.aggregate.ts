@@ -148,10 +148,10 @@ const result = await jeopardy.aggregate.nearText(['animals in space'],{
   // highlight-start
   distance: 0.19,
   // highlight-end
-  returnMetrics: jeopardy.metrics.aggregate('points').number(['sum'])
+  returnMetrics: jeopardy.metrics.aggregate('points').number(["sum"])
 })
 
-console.log(result.properties['points'].sum);
+console.log(result.properties['points']);
 // END nearTextWithDistance TS
 
 // Test
@@ -165,9 +165,9 @@ console.log(result.properties['points'].sum);
 // ===== Hybrid EXAMPLES =====
 // =========================================
 {
-  // HybridExample
-  // TS client support coming soon
-  // END HybridExample
+// HybridExample
+// TS client support coming soon
+// END HybridExample
 
   // Test
   // assert('JeopardyQuestion' in result.data.Aggregate);
