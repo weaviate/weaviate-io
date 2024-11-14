@@ -23,6 +23,14 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
 const collectionName = 'Article'
 let result
 
+
+/*
+// START UpdateCollection
+import { reconfigure } from 'weaviate-client';
+
+// END UpdateCollection
+*/
+
 // START UpdateCollection // START ReadOneCollection // START ModifyParam
 let articles = client.collections.get('Article')
 // END UpdateCollection // END ReadOneCollection // END ModifyParam
@@ -681,24 +689,18 @@ console.log(JSON.stringify(allCollections, null, 2));
 articles = client.collections.get('Article')
 
 
-/*
 // START UpdateCollection
-import { reconfigure } from 'weaviate-client';
 
-// END UpdateCollection
-*/
-
-// START UpdateCollection
 // highlight-start
-articles.config.update({
+await articles.config.update({
   invertedIndex: reconfigure.invertedIndex({
-    bm25k1: 1.5
+    bm25k1: 1.5 // Change the k1 parameter from 1.2
   }),
     vectorizers: weaviate.reconfigure.vectorizer.update({
       vectorIndexConfig: weaviate.reconfigure.vectorIndex.hnsw({
         quantizer: weaviate.reconfigure.vectorIndex.quantizer.pq(),
         ef: 4,
-        filterStrategy: 'sweeping',
+        filterStrategy: 'acorn',  // Available from Weaviate v1.27.0
       }),
    
   })
