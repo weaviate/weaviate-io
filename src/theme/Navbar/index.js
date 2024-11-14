@@ -1,56 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import OriginalNavbar from '@theme-original/Navbar';
-
-
+import { useColorMode } from '@docusaurus/theme-common';
 
 export default function Navbar(props) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { colorMode } = useColorMode(); 
 
   useEffect(() => {
-   
     const logoElement = document.querySelector('.navbar__logo');
 
     if (logoElement) {
-     
-
-     
+      
       const handleRightClick = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         if (showTooltip) {
-          // If tooltip is already showing, trigger the download
-          console.log("Tooltip is visible, triggering download");
+        
+         
+
+        
+          const logoUrl = colorMode === 'dark'
+            ? '/img/site/weaviate-logo-horizontal-light-1.svg'
+            : '/img/site/weaviate-logo-horizontal-dark-1.svg';
+
+         
           const link = document.createElement('a');
-          link.href = '/img/site/weaviate-logo-horizontal-light-1.svg';
+          link.href = logoUrl;
           link.download = 'weaviate-logo.svg';
           link.click();
           setShowTooltip(false); 
         } else {
+       
          
-          console.log("Right-click detected, showing tooltip");
           setShowTooltip(true);
         }
       };
 
-      
-      const handleLeftClick = () => {
-        if (showTooltip) {
-          console.log("Left-click detected, hiding tooltip");
+  
+      const handleClickOutside = (e) => {
+        if (showTooltip && !logoElement.contains(e.target)) {
+          
           setShowTooltip(false);
         }
       };
 
-     
-      logoElement.addEventListener('contextmenu', handleRightClick);
-      logoElement.addEventListener('click', handleLeftClick);
-
       
+      logoElement.addEventListener('contextmenu', handleRightClick);
+      document.addEventListener('mousedown', handleClickOutside);
+
+     
       return () => {
         logoElement.removeEventListener('contextmenu', handleRightClick);
-        logoElement.removeEventListener('click', handleLeftClick);
+        document.removeEventListener('mousedown', handleClickOutside);
       };
     }
-  }, [showTooltip]);
+  }, [showTooltip, colorMode]);
 
   return (
     <div style={{ position: 'relative' }}>
