@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-Weaviate Embedding Service (WES) offers vectorizer models for natural language processing. Weaviate Cloud seamlessly integrates with WES, allowing users to leverage WES' models directly within the Weaviate database.
+Weaviate Embedding Service (WES) offers vectorizer models to Weaviate Cloud users, allowing users to leverage WES' models directly from within the Weaviate Cloud database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 

@@ -593,7 +593,7 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-}); 
+});
 // END VectorizerOctoAICustomModel
 
 // Clean up
@@ -621,7 +621,7 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-});  
+});
 // END FullVectorizerOctoAI
 
 // Clean up
@@ -899,6 +899,84 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullVectorizerVoyageAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerWeaviate
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerWeaviate
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerWeaviateCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'snowflake-arctic-embed',
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END VectorizerWeaviateCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerWeaviate
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        // // Further options
+        // model: 'snowflake-arctic-embed',
+        // dimensions: 512
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerWeaviate
 
 // Clean up
 await client.collections.delete('DemoCollection');
