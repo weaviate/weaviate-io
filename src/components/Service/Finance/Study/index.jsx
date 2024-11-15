@@ -37,10 +37,9 @@ export default function Study() {
               company needed to move quickly to maintain the best-in-class
               service they provide their customers.
             </p>
-
             <h2>Why Weaviate</h2>
             <p>
-              Early in his research, the LSE  learned that his company’s
+              Early in his research, the LSE learned that his company’s
               engineers weren’t just looking for a database to support basic
               search features – they wanted to build chatbots, integrate
               multiple data sources and large language models (LLMs), have
@@ -51,17 +50,19 @@ export default function Study() {
               vector database on premises or in their own AWS cloud environment.
               Many vector databases could meet multiple requirements, but only
               Weaviate could meet them all.{' '}
-              <strong>
-                “Experimenting is one thing, but when you’re building long-term,
-                client-facing enterprise applications, you want the right vector
-                database with the right level of support. Weaviate was that
-                database for us,”
-              </strong>{' '}
-              said the LSE.
+            </p>
+            <p className={styles.quote}>
+              “Experimenting is one thing, but when you’re building long-term,
+              client-facing enterprise applications, you want the right vector
+              database with the right level of support. Weaviate was that
+              database for us,”
             </p>
             <p>
-              <strong>Weaviate’s solution</strong>
+              Lead System Engineer from a top US financial data analytics
+              company
             </p>
+
+            <h2>Solution</h2>
             <p>
               The company chose Weaviate because it fulfilled four primary
               requirements:
@@ -114,7 +115,7 @@ export default function Study() {
             <h2>Unlocking AI for non-technical roles</h2>
             <p>
               “Every employee can now upload files and ask questions about them
-              in ou rinternal chat tool. Anyone, even if they're not an engineer
+              in our internal chat tool. Anyone, even if they're not an engineer
               and know nothing about coding, is able to use really good RAG.”
               said a VP, Principal Software Engineer who developed a data
               platform built on Weaviate.
@@ -123,13 +124,16 @@ export default function Study() {
           <div className={styles.bottomSection}>
             <div className={styles.logo}></div>
 
-            <p>
+            <p className={styles.quote}>
               “Teams started flocking to it. I thought I would need to convince
               them to move from Pinecone, ChromaDB or Postgres. But as internal
               expertise grew, people just started adopting Weaviate for its
               features, performance, and ease of use.”
             </p>
-            <span>Lead System Engineer</span>
+            <p>
+              Lead System Engineer from a top US financial data analytics
+              company
+            </p>
           </div>
         </div>
       </div>

@@ -139,18 +139,26 @@
       margin: 20px 0px;
       color: #130c49;
       font-family: Inter;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-style: normal;
-      font-weight: 600;
-      line-height: 157.33%; /* 1.96663rem */
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
     }
     span {
       color: #130c49;
       font-family: Inter;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-style: normal;
       font-weight: 400;
       line-height: 157.33%;
+    }
+    .quote {
+      color: #130c49;
+      font-family: Inter;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 157.33%; /* 1.76994rem */
     }
   }
 }
