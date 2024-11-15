@@ -263,7 +263,7 @@ const config = {
           "data-search-mode-enabled": "true",
           "data-modal-open-by-default": "false",
           "data-modal-disclaimer": "This is a custom LLM for Weaviate with access to all [developer docs](https://weaviate.io/developers/weaviate), [WCS Cloud docs](https://weaviate.io/developers/wcs), [academy lessons](https://weaviate.io/developers/academy), [contributor guides](https://weaviate.io/developers/contributor-guide), the last year of open [GitHub issues](https://github.com/weaviate/weaviate) and recently resolved [forum questions](https://forum.weaviate.io/).",
-          "data-modal-example-questions": "How do I run Weaviate?,What are the characteristics of modules?,Are cloud services pre-configured?,How do I create an object with Vector?",
+          "data-modal-example-questions": "How do I run Weaviate?,What model providers work with Weaviate?,How do I perform a hybrid search?,How do I create objects with vectors?",
           "data-modal-footer": "Powered by [weaviate](https://weaviate.io/) and [kapa.ai](https://www.kapa.ai/)",
           async: true,
         },
