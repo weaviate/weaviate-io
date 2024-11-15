@@ -88,6 +88,12 @@
       list-style-type: none;
       padding-left: 1.5rem; /* adjust this value if needed */
       margin: 10px 0px;
+      margin: 10px 0px;
+
+      display: flex;
+      align-content: space-around;
+      flex-direction: column;
+      justify-content: space-around;
 
       @media screen and (max-width: 960px) {
         padding: 0px;
