@@ -6,7 +6,7 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'wes', 'weaviate embedding service']
 ---
 
-# Cohere Embeddings with Weaviate
+# Weaviate Embedding Service
 
 
 import Tabs from '@theme/Tabs';
