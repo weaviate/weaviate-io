@@ -1,8 +1,8 @@
 ---
 title: Weaviate Embedding Service
 sidebar_position: 10
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere']
+image: og/docs/integrations/provider_integrations_wes.jpg
+# tags: ['model providers', 'weaviate', 'wes', 'weaviate embedding service']
 ---
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
@@ -15,7 +15,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ### Embedding models for semantic search
 
-![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
+![Embedding integration illustration](../_includes/integration_wes_embedding.png)
 
 Weaviate Embedding Service's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
 

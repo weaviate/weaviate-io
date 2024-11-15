@@ -2,8 +2,8 @@
 title: Text Embeddings
 description: "Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'embeddings']
+image: og/docs/integrations/provider_integrations_wes.jpg
+# tags: ['model providers', 'weaviate', 'wes', 'weaviate embedding service']
 ---
 
 # Cohere Embeddings with Weaviate
@@ -23,7 +23,7 @@ Weaviate's integration with Cohere's APIs allows you to access their models' cap
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
+![Embedding integration illustration](../_includes/integration_wes_embedding.png)
 
 ## Requirements
 
@@ -199,7 +199,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Cohere model.
 
-![Embedding integration at search illustration](../_includes/integration_cohere_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_wes_embedding_search.png)
 
 ### Vector (near text) search
 
