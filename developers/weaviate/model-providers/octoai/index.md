@@ -1,11 +1,15 @@
 ---
-title: OctoAI + Weaviate
+title: OctoAI + Weaviate (Deprecated)
 sidebar_position: 10
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai']
 ---
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
+
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
+
+<OctoAIDeprecationNote/>
 
 :::info Added in `v1.25.0`
 :::
@@ -50,12 +54,6 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 
 - [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 

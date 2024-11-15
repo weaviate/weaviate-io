@@ -1,5 +1,6 @@
 ---
 title: Reranker
+description: Cohere Reranker Model Provider
 sidebar_position: 70
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'reranking']
@@ -77,6 +78,10 @@ Provide the API key to Weaviate using one of the following methods:
 </Tabs>
 
 ## Configure the reranker
+
+import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
+
+<MutableRerankerConfig />
 
 Configure a Weaviate collection to use a Cohere reranker model as follows:
 

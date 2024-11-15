@@ -30,6 +30,21 @@ For more information on vector indexes, see the [Vector Indexing](./vector-index
 
 ## Inverted indexes
 
+<details>
+  <summary>Performance improvements added in Oct 2024</summary>
+
+In Weaviate versions `v1.24.26`, `v1.25.20`, `v1.26.6` and `v1.27.0`, we introduced performance improvements and bugfixes for the BM25F scoring algorithm.
+<br/>
+
+- The BM25 segment merging algorithm was made faster.
+- Improved WAND algorithm to remove exhausted terms from score computation and only do a full sort when necessary.
+- Solved a bug in BM25F multi-prop search that could lead to not summing all the query term score for all segments.
+- The BM25 scores are now calculated concurrently for multiple segments.
+
+As always, we recommend upgrading to the latest version of Weaviate to benefit from improvements such as these.
+
+</details>
+
 ### Configure the inverted index
 
 There are three inverted index types in Weaviate:

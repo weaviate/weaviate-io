@@ -1,5 +1,6 @@
 ---
 title: Short units
+description: "Set up Weaviate in standalone mode for streamlined local or small-scale applications."
 sidebar_position: 900
 ---
 

@@ -49,7 +49,7 @@ export default function MeetTheTeam() {
               className={selectedTeam === 'wcd' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('wcd')}
             >
-              #Cloud Services
+              #Weaviate Cloud Console
             </Link>
             <Link
               className={
@@ -100,7 +100,7 @@ export default function MeetTheTeam() {
               className={selectedTeam === 'delivery' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('delivery')}
             >
-              #Delivery
+              #Weaviate Cloud Platform & SRE
             </Link>
             <Link
               className={selectedTeam === 'finance' ? styles.linkActive : ''}

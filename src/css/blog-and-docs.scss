@@ -88,7 +88,6 @@ html {
 }
 
 // Set Fonts
-.plugin-\@scalar\/docusaurus,
 .docs-doc-page {
   font-family: var(--site-font-base-family);
   font-size: 15px;
@@ -107,16 +106,16 @@ html {
   }
 
   h2 {
-    padding-top: 0.9em;
-    padding-bottom: 0.25em;
+    padding-top: 1.3em;
+    padding-bottom: 0.55em;
   }
   h3 {
-    padding-top: 0.55em;
-    padding-bottom: 0.2em;
+    padding-top: 1.05em;
+    padding-bottom: 0.4em;
   }
   h4 {
-    padding-top: 0.2em;
-    padding-bottom: 0.15em;
+    padding-top: 0.95em;
+    padding-bottom: 0.3em;
   }
 
   h2 {
@@ -128,7 +127,7 @@ html {
   }
 
   h4 {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   h5 {
@@ -165,6 +164,8 @@ a.navbar__item.navbar__link[href='/developers/weaviate/api/rest'] {
 .plugin-\@scalar\/docusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
+  font-size: 15px;
+  color: var(--docs-base-color);
 
   .sidebar-heading {
     line-height: 1.05;

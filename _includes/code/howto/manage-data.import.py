@@ -344,10 +344,10 @@ import ijson
 
 # Settings for displaying the import progress
 counter = 0
-interval = 100  # print progress every this many records; should be bigger than the batch_size
+interval = 200  # print progress every this many records; should be bigger than the batch_size
 
 print("JSON streaming, to avoid running out of memory on large files...")
-with client.batch.fixed_size(batch_size=200) as batch:
+with client.batch.fixed_size(batch_size=100) as batch:
     with open("jeopardy_1k.json", "rb") as f:
         objects = ijson.items(f, "item")
         for obj in objects:
@@ -393,7 +393,7 @@ import pandas as pd
 
 # Settings for displaying the import progress
 counter = 0
-interval = 100  # print progress every this many records; should be bigger than the batch_size
+interval = 200  # print progress every this many records; should be bigger than the batch_size
 
 def add_object(obj) -> None:
     global counter
@@ -402,7 +402,7 @@ def add_object(obj) -> None:
         "answer": obj["Answer"],
     }
 
-    with client.batch.fixed_size(batch_size=200) as batch:
+    with client.batch.fixed_size(batch_size=100) as batch:
         batch.add_object(
             collection="JeopardyQuestion",
             properties=properties,

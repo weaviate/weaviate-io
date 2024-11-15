@@ -1,0 +1,118 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/python/quickstart.import_objects.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/quickstart.import_objects.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/quickstart/2_2_add_objects/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/quickstart/Import.java';
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# Import"
+    endMarker="# END Import"
+    language="py"
+    title="quickstart_import.py"
+  />
+
+</TabItem>
+
+<TabItem value="js" label="JS/TS">
+
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// Import"
+  endMarker="// END Import"
+  language="ts"
+  title="quickstart_import.ts"
+/>
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+<FilteredTextBlock
+  text={GoCode}
+  startMarker="// Import"
+  endMarker="// END Import"
+  language="goraw"
+  title="quickstart/2_2_import/main.go"
+/>
+</TabItem>
+
+<TabItem value="java" label="Java">
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START Import"
+  endMarker="// END Import"
+  language="javaraw"
+  title="quickstart/Import.java"
+/>
+</TabItem>
+
+<TabItem value="curl" label="Curl">
+
+:::note
+- Download the `jeopardy_tiny.json` file from [here](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json) before running the following script.
+- This assumes you have `jq` installed.
+:::
+
+```bash
+# Best practice: store your credentials in environment variables
+# export WCD_URL="YOUR_INSTANCE_URL"  # Your Weaviate instance URL
+# export WCD_API_KEY="YOUR_API_KEY"   # Your Weaviate instance API key
+# export OPENAI_API_KEY="YOUR_API_KEY"   # Your OpenAI API key
+
+# Set batch size
+BATCH_ENDPOINT="$WCD_URL/v1/batch/objects"
+BATCH_SIZE=100
+
+# Read the JSON file and loop through its entries
+lines_processed=0
+batch_data="{\"objects\": ["
+
+cat jeopardy_tiny.json | jq -c '.[]' | while read line; do
+  # Concatenate lines
+  line=$(echo "$line" | jq "{class: \"Question\", properties: {answer: .Answer, question: .Question, category: .Category}}")
+  if [ $lines_processed -eq 0 ]; then
+    batch_data+=$line
+  else
+    batch_data+=",$line"
+  fi
+
+  lines_processed=$((lines_processed + 1))
+
+  # If the batch is full, send it to the API using curl
+  if [ $lines_processed -eq $BATCH_SIZE ]; then
+    batch_data+="]}"
+
+    curl -X POST "$BATCH_ENDPOINT" \
+         -H "Content-Type: application/json" \
+         -H "Authorization: Bearer $WCD_API_KEY" \
+         -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+         -d "$batch_data"
+    echo "" # Print a newline for better output formatting
+
+    # Reset the batch data and counter
+    lines_processed=0
+    batch_data="{\"objects\": ["
+  fi
+done
+
+# Send the remaining data (if any) to the API using curl
+if [ $lines_processed -ne 0 ]; then
+  batch_data+="]}"
+
+  curl -X POST "$BATCH_ENDPOINT" \
+       -H "Content-Type: application/json" \
+       -H "Authorization: Bearer $WCD_API_KEY" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+       -d "$batch_data"
+  echo "" # Print a newline for better output formatting
+fi
+```
+
+</TabItem>
+</Tabs>

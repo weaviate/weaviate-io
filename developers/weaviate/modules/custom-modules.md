@@ -1,5 +1,6 @@
 ---
 title: Custom modules
+description: Explore custom modules in Weaviate for personalized data management features.
 sidebar_position: 90
 image: og/docs/modules/custom-modules.jpg
 # tags: ['modules', 'other modules', 'custom modules']

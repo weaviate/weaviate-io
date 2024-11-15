@@ -1,5 +1,6 @@
 ---
 title: (v3) Zero to MVP
+description: Build a Weaviate MVP from scratch, covering setup, data queries, and schema.
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

@@ -57,6 +57,15 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>
+              Benchmarking AI Databases: How to test and optimize for your use
+              case
+            </p>
+            <Link to="https://events.weaviate.io/benchmarking-webinar">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

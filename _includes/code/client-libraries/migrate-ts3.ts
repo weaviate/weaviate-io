@@ -1,5 +1,5 @@
 // CompleteScript // Imports
-import weaviate from 'weaviate-client';
+import weaviate, { WeaviateClient} from 'weaviate-client';
 import 'dotenv/config';
 // END CompleteScript // END Imports
 
@@ -11,15 +11,16 @@ async function main() {
   
 // CompleteScript // CreateClient  
   // connect to your Weaviate instance on WCD
-  const client = await weaviate.connectToWeaviateCloud(
-    process.env.WEAVIATE_URL || '',
-    {
-      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
-      headers: {
-        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
-      }
+  const weaviateURL = process.env.WEAVIATE_URL as string
+  const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+  const openaiKey = process.env.OPENAI_API_KEY as string
+  
+  const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+    authCredentials: new weaviate.ApiKey(weaviateKey),
+    headers: {
+      'X-OpenAI-Api-Key': openaiKey,  
     }
-  )
+  })
 // END CompleteScript // END CreateClient
 
 // CompleteScript // CreateCollection

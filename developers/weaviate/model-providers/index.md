@@ -25,9 +25,9 @@ This enables an enhanced developed experience, such as the ability to:
 | [FriendliAI](./friendliai/index.md) | - | [Text](./friendliai/generative.md) | - |
 | [Google](./google/index.md) | [Text](./google/embeddings.md), [Multimodal](./google/embeddings-multimodal.md) | [Text](./google/generative.md) | - |
 | [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md) | - | - |
-| [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | - |
+| [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | [Reranker](./jinaai/reranker.md) |
 | [Mistral](./mistral/index.md) | [Text](./mistral/embeddings.md) | [Text](./mistral/generative.md) | - |
-| [OctoAI](./octoai/index.md) | [Text](./octoai/embeddings.md) | [Text](./octoai/generative.md) | - |
+| [OctoAI (Deprecated)](./octoai/index.md) | [Text](./octoai/embeddings.md) | [Text](./octoai/generative.md) | - |
 | [OpenAI](./openai/index.md) | [Text](./openai/embeddings.md) | [Text](./openai/generative.md) | - |
 | [Azure OpenAI](./openai-azure/index.md) | [Text](./openai-azure/embeddings.md) | [Text](./openai-azure/generative.md) | - |
 | [Voyage AI](./voyageai/index.md) | [Text](./voyageai/embeddings.md) | - | [Reranker](./voyageai/reranker.md) |
@@ -59,6 +59,56 @@ When a model provider integration for embeddings is enabled, Weaviate automatica
 
 This is done by providing the source data to the integration provider, which then returns the embeddings to Weaviate. The embeddings are then stored in the Weaviate database.
 
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#4a5568',
+    'primaryTextColor': '#2d3748',
+    'primaryBorderColor': '#718096',
+    'lineColor': '#718096',
+    'secondaryColor': '#f7fafc',
+    'tertiaryColor': '#edf2f7'
+  }
+}}%%
+
+flowchart LR
+    %% Style definitions
+    classDef systemBox fill:#f7fafc,stroke:#3182ce,stroke-width:2px,color:#2d3748,padding:10px
+    classDef weaviateBox fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748,padding:10px
+    classDef providerBox fill:#f7fafc,stroke:#48bb78,stroke-width:2px,color:#2d3748,padding:10px
+    classDef component fill:white,stroke:#718096,stroke-width:1.5px,color:#2d3748,rx:6
+
+    %% Model Provider section (leftmost)
+    subgraph provider["Model Provider"]
+        inference["🤖 Inference API /\nLocal Model"]
+    end
+
+    %% Weaviate section (middle)
+    subgraph weaviate["Weaviate"]
+        vectorizer["🔌 Model Provider\nIntegration"]
+        core["⚡️ Data & vector store"]
+    end
+
+    %% User System (bottom)
+    subgraph user["User System"]
+        data["📄 Data"]
+    end
+
+    %% Connections
+    data -->|"1. Insert objects"| core
+    core -->|"2. Request vector"| vectorizer
+    vectorizer -->|"3. Request vector"| inference
+    inference -->|"4. Vector"| vectorizer
+    vectorizer -->|"5. Vector"| core
+
+    %% Apply styles
+    class user systemBox
+    class weaviate weaviateBox
+    class provider providerBox
+    class data,core,vectorizer,inference component
+```
+
 Weaviate generates embeddings for objects as follows:
 
 - Selects properties with `text` or `text[]` data types unless they are configured to be skipped
@@ -71,12 +121,6 @@ For Weaviate versions before `v1.27`, the string created above is lowercased bef
 If you prefer the text to be lowercased, you can do so by setting the `LOWERCASE_VECTORIZATION_INPUT` environment variable.
 The text is always lowercased for the `text2vec-contextionary` integration.
 :::
-
-## Further resources
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 

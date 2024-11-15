@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: Use Mistral embeddings with Weaviate for high-quality vector search results.
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral', 'embeddings']

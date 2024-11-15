@@ -1,5 +1,6 @@
 ---
 title: Weaviate Enterprise Agreement
+description: Weaviate Enterprise Agreement (US)
 # image: og/service/_title.jpg
 ---
 

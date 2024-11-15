@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: "Weaviate's integration with Voyage AI's APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'embeddings']
@@ -266,7 +267,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 - voyage-3 (default)
 - voyage-3-lite
-- voyage-large-2 (default up to `v1.24.24`, `v1.25.17`, `v1.26.4`)
+- voyage-large-2 (default for <= `v1.24.24`, `v1.25.17`, `v1.26.4`)
 - voyage-code-2
 - voyage-2
 - voyage-law-2

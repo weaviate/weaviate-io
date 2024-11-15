@@ -13,6 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.image-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-image_test.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/ImageSearchTest.java';
 
 `Image` search uses an **image as a search input** to perform vector similarity search.
 
@@ -60,7 +61,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js" label="JS/TS Client v3">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
 
   <FilteredTextBlock
     text={TSCode}
@@ -73,7 +74,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js2" label="JS/TS Client v2">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
 
   <FilteredTextBlock
     text={TSCodeLegacy}
@@ -90,6 +91,15 @@ If your query image is stored in a file, you can use the client library to searc
       startMarker="// START ImageFileSearch"
       endMarker="// END ImageFileSearch"
       language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ImageFileSearch"
+      endMarker="// END ImageFileSearch"
+      language="java"
     />
   </TabItem>
 
@@ -157,6 +167,15 @@ You can search by a base64 representation of an image:
       language="gonew"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -171,6 +190,7 @@ You can search by a base64 representation of an image:
   />
 
 </details>
+
 
 ## Create a base64 representation of an online image.
 
@@ -203,8 +223,16 @@ You can create a base64 representation of an online image, and use it as input f
     />
   </TabItem>
 
-</Tabs>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START helper base64 functions"
+      endMarker="// END helper base64 functions"
+      language="java"
+    />
+  </TabItem>
 
+</Tabs>
 
 ## Combination with other operators
 

@@ -41,8 +41,35 @@ await client.collections.create({
 });
 // END RerankerCohereCustomModel
 
+// START RerankerJinaAIBasic
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.jinaai(),
+  // highlight-end
+});
+// END RerankerJinaAIBasic
+
+// START RerankerJinaAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.jinaai({
+    model: 'jina-reranker-v2-base-multilingual',
+  }),
+  // highlight-end
+});
+// END RerankerJinaAICustomModel
+
 // START RerankerVoyageAI
-// Code example coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  reranker: weaviate.configure.reranker.voyageAI({
+    model: 'rerank-lite-1',
+  }),
+  // highlight-end
+});
 // END RerankerVoyageAI
 
 // START RerankerQueryExample

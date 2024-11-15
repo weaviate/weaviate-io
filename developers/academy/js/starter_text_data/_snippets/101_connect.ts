@@ -87,13 +87,13 @@ const outputString =
       documentationHref: 'https://platform.openai.com/docs/api-reference/completions',
       name: 'Generative Search - OpenAI'
     },
-    'generative-palm': {
+    'generative-google': {
       documentationHref: 'https://cloud.google.com/vertex-ai/docs/generative-ai/chat/test-chat-prompts',
-      name: 'Generative Search - Google PaLM'
+      name: 'Generative Search - Google'
     },
-    'multi2vec-palm': {
+    'multi2vec-google': {
       documentationHref: 'https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings',
-      name: 'Google PaLM Multimodal Module'
+      name: 'Google Multimodal Module'
     },
     'qna-openai': {
       documentationHref: 'https://platform.openai.com/docs/api-reference/completions',
@@ -128,9 +128,9 @@ const outputString =
       documentationHref: 'https://platform.openai.com/docs/guides/embeddings/what-are-embeddings',
       name: 'OpenAI Module'
     },
-    'text2vec-palm': {
+    'text2vec-google': {
       documentationHref: 'https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings',
-      name: 'Google PaLM Module'
+      name: 'Google Module'
     },
     'text2vec-voyageai': {
       documentationHref: 'https://docs.voyageai.com/docs/embeddings',
