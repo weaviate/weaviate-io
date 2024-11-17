@@ -66,6 +66,10 @@
   flex-direction: column;
   gap: 60px;
 
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
   .topSection {
     width: 28.625rem;
     height: 30rem;
@@ -123,6 +127,10 @@
       height: 18.5rem;
       margin: auto;
       border-radius: 0.9375rem;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
     }
 
     h2 {
