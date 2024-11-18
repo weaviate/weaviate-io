@@ -33,7 +33,8 @@ If you are migrating from the `v3` client to the `v4`, see this [dedicated guide
 The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
 
 ```bash
-pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+# For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+pip install -U weaviate-client
 ```
 
 ### Requirements
