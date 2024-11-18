@@ -1,41 +1,97 @@
 ---
-title: Picking ML Models
+title: Using ML Models
 sidebar_position: 10
 ---
 
-## <i class="fa-solid fa-chalkboard-user"></i> Unit overview
+# Understanding ML Models in Weaviate
 
+## <i class="fa-solid fa-chalkboard-user"></i> Overview
 
-Weaviate lets you interact with two types of machine learning models - generative models and embedding models.
+Weaviate leverages two fundamental types of machine learning models to power AI-native applications:
 
-This serves to help you understand, on a basic level the functioning and utility of both types of models.
-We will explore scenarios where each model type thrives in and look at what things to consider when picking sub groups of models.  
+1. **Embedding Models** - Transform data into high-dimensional vector representations
+2. **Generative Models** - Create new content based on input prompts and context
 
-Then, we will also discuss the role of each of these models in building AI-Native applications ranging from chatbots, and RAG Apps to Agentic systems. 
+This guide will help you understand how these models work together in Weaviate and how to choose the right models for your use case. We'll explore practical applications ranging from semantic search to complex AI agents.
+
+## <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
+
+Before diving in, make sure you have:
+
+- A Node.js environment with `weaviate-client` installed
+- Basic understanding of Weaviate's search functionality
+- Intermediate JavaScript programming skills
+- Familiarity with vector databases and embeddings (recommended)
+
+## <i class="fa-solid fa-bullseye"></i> Learning Objectives
+
+By the end of this unit, you will be able to:
+
+1. **Differentiate Model Types**
+   - Compare embedding models vs generative models
+   - Identify the strengths and limitations of each model type
+   - Understand how models complement each other in AI applications
+
+2. **Select Appropriate Models**
+   - Evaluate model characteristics (speed, accuracy, cost)
+   - Choose models based on specific use case requirements
+   - Consider deployment constraints and tradeoffs
+
+3. **Build AI Applications**
+   - Implement basic RAG (Retrieval-Augmented Generation) systems
+   - Create semantic search functionality
+   - Design conversational AI interfaces
+   - Develop autonomous AI agents
+
+## <i class="fa-solid fa-book"></i> Detailed Guides
+
+Dive deeper into each model type:
 
 - **[Embedding Models](./10_embedding.mdx)**
+  - Vector representations
+  - Distance metrics
+  - Model selection criteria
+  - Optimization techniques
+
 - **[Generative Models](./20_generative.mdx)**
+  - Text generation capabilities
+  - Prompt engineering
+  - Context windows
+  - Output control
 
+## <i class="fa-solid fa-laptop-code"></i> Common Use Cases
 
+Learn how to combine models for popular applications:
 
-### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
+1. **Semantic Search**
+   - Using embeddings for similarity search
+   - Ranking and relevance scoring
+   - Hybrid search approaches
 
-- A Node environment with `weaviate-client` installed.
-- Familiarity with Weaviate's search capabilities.
-- Intermediate coding proficiency (e.g. Javascript)
+2. **Question Answering**
+   - RAG architecture
+   - Context retrieval
+   - Answer generation
 
-## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
+3. **Chatbots**
+   - Conversation flow
+   - Memory management
+   - Response generation
 
-import LearningGoalsExp from '/src/components/Academy/learningGoalsExp.mdx';
+4. **AI Agents**
+   - Task planning
+   - Tool use
+   - Decision making
 
-<LearningGoalsExp />
+## Questions and Feedback
 
-import LearningGoals from '/src/components/Academy/learningGoals.jsx';
-
-<LearningGoals unitName="picking_models"/>
-
-## Questions and feedback
-
-import DocsFeedback from '/_includes/docs-feedback.mdx';
+We value your input! Help us improve this documentation:
 
 <DocsFeedback/>
+
+---
+
+**Next Steps:**
+- Explore the [Embedding Models](./10_embedding.mdx) guide
+- Learn about [Generative Models](./20_generative.mdx)
+- Check out our [Example Applications](./examples)
