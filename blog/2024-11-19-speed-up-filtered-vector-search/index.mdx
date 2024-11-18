@@ -2,14 +2,15 @@
 title: How we speed up filtered vector search with ACORN
 slug: speed-up-filtered-vector-search
 authors: [abdel, john, jp]
-date: 2024-11-14
+date: 2024-11-19
 tags: ['concepts', 'engineering', 'research']
-image: ./img/hero.png
+image: ./img/hero-light.png
 description: 'Learn about the challenges of filtered vector search and how Weaviate tackles them with ACORN.'
 ---
-![How we speed up filtered vector search with ACORN](./img/hero.png)
+![How we speed up filtered vector search with ACORN](./img/hero.png#gh-dark-mode-only)
+![How we speed up filtered vector search with ACORN](./img/hero-light.png#gh-light-mode-only)
 
-Vector embeddings have revolutionized how we think about search, especially across large datasets. Weaviate’s vector and hybrid search capabilities power recommendation engines, content management systems, or e-commerce sites.
+Vector embeddings have revolutionized how we think about search, especially across large datasets. Weaviate’s vector and hybrid search capabilities power recommendation engines, content management systems, and e-commerce sites.
 
 A “search”, however, is a complex animal. It is rare that a search query is as simple as “find items most similar to `comfortable dress shoes`. A query in the wild often requires that the resulting objects also meet certain criteria - like, `deliverable to my location`, `tan in color`, and `under $200`. In other words, they require traditional “filters” along with a “search”.
 
@@ -99,17 +100,17 @@ Up until the introduction of ACORN, Weaviate combined both solutions. As explain
 
 This means that we explore the graph unfiltered but before we add candidates to the result set, we check whether each object passes the filter or not. In this way, we can dynamically identify the point where we need to stop our filtered search. We call this filter strategy `sweeping` and it is an effective approach, with some caveats.
 
-As mentioned before, traversing of the graph is performed without taking the filter into consideration. The drawback of this is that, especially with low correlation, it is possibly to have situations where a significant percentage of objects do not pass the filter and so will never make it to the final result set. This causes unnecessary distance calculations which negatively impacts query performance.
+As mentioned before, traversing of the graph is performed without taking the filter into consideration. The drawback of this is that, especially with low correlation, it is possible to have situations where a significant percentage of objects do not pass the filter and so will never make it to the final result set. This causes unnecessary distance calculations which negatively impacts query performance.
 
 Can we just ignore those vectors for objects that will not pass the filter during the traversal of the graph? As it turns out - no, as we then risk disconnecting the graph, which breaks the connectivity needed for the HNSW search algorithm to greedily search through neighboring nodes. Disconnecting portions of the graph can dramatically reduce the result quality, as measured in recall.
 
-This is especially true when the filter is very selective. As we discussed before, if we look for cheap diamond rings using a partly disconnected graph, it is possible that there is no path at all from the entry point in the graph for our query vector to the region of the search space where the results should be.
+This is especially true when looking for cheap diamond rings with a very selective filter. Using a partly disconnected graph, it is possible that there is no path at all from the entry point in the graph for our query vector to the region of the search space where the results should be.
 
 As a result, the search performance (i.e. speed/throughput) can degrade even though HNSW is generally very fast. Given sufficiently large graphs, and restrictive enough filters with low correlation to the query vector, the search performance may start to be problematically slow.
 
 There exist some solutions that attempt to solve this problem. One example is the [Filtered DiskANN algorithm](https://harsha-simhadri.org/pubs/Filtered-DiskANN23.pdf). This solution aims to keep the graph connected for a predefined set of filters by adding some connections that would normally not exist in the graph. Although clever, it requires anticipating the filters and associated connections in advance, which may not even be possible sometimes. Imagine, again, the case where you have price involved. It would be impossible to anticipate all possible filters around it.
 
-Another alternative is [ACORN](https://arxiv.org/abs/2403.04871). We found ACORN much more appealing because it is filter agnostic so doesn't require knowledge of what filters will be performed at index time.
+Another alternative is [ACORN](https://arxiv.org/abs/2403.04871). We found ACORN much more appealing because it is filter-agnostic so doesn't require knowledge of what filters will be performed at index time.
 
 After learning about it, and [discussing](https://youtu.be/PxJ7FpbopKY) the topic with one of the authors of the paper, we decided this would be a good addition to Weaviate. We discuss the solution in detail next.
 
@@ -117,7 +118,7 @@ After learning about it, and [discussing](https://youtu.be/PxJ7FpbopKY) the topi
 
 The original ACORN paper builds upon HNSW and provides two variants ACORN-1 and ACORN-γ. Our explanation will focus on ACORN-1 here which is the basis for Weaviate's implementation.
 
-The very first difference of ACORN from the normal HNSW algorithm is the elimination of normal triangle pruning. While the max connections parameter limits the graph size, ACORN avoids pruning to avoid disconnecting the graph for some filters. The graph requires compression given that the traversing approach is different, which we will get cover after explaining the traversal mechanism.
+The very first difference of ACORN from the normal HNSW algorithm is the elimination of normal triangle pruning. While the max connections parameter limits the graph size, ACORN avoids pruning to avoid disconnecting the graph for some filters. The graph requires compression given the different traversal approach, which we will cover after explaining the mechanism.
 
 The resulting graph is much larger without pruning. Once we filter our graph, however, to only consider connections where out-neighbors pass the filter criteria, the effective graph size will be manageable.
 
@@ -125,13 +126,13 @@ The crucial difference is in how the neighborhood is expanded in ACORN to keep c
 
 ![An illustration of a graph vector index](./img/graph-example.png)
 
-Lets assume we are searching for the top two closest neighbors of the blue query vector in this graph.
+Let's assume we are searching for the top two closest neighbors of the blue query vector in this graph.
 
 The green dots illustrate vectors whose objects pass the filter, and the gray those that do not. Ideally, the search algorithm could follow the graph from an entry point to the target region. Starting from the red entry point, the graph would traverse to the vector labeled A, then to the vector labeled B as the distances reduce in that direction. From here, the algorithm should be able to find vector E through C and F through D. The problem is that if C and D are disconnected and thus not evaluated, then the search algorithm cannot find E and F. On the other hand, if considering C and D means we need to calculate the distance between the query vector and those vectors, going back to the above challenge of high resource usage.
 
 So, how does ACORN solve this issue? It cleverly uses a two-hop based expansion of the neighborhood, evaluating nodes that are two hops away rather than one. This means that E and F become out-neighbors of B, as they are two hops away. This speeds up traversal of a graph as you can imagine, and help to ameliorate challenges of low correlation between the filter and the query vector.
 
-Now let’s discuss how this strategy enables compression. Notice that  vector A now has out-neighbors B and C, but C is also an out-neighbor of B. As a result there is no need to explicitly add C to the out-neighbors of A, as the B to C connection can be used to find C from A. We compress the connections of A by removing C from the list of A’s out-neighbors and only keep it on B.
+Now let’s discuss how this strategy enables compression. Notice that vector A now has out-neighbors B and C, but C is also an out-neighbor of B. As a result there is no need to explicitly add C to the out-neighbors of A, as the B to C connection can be used to find C from A. We compress the connections of A by removing C from the list of A’s out-neighbors and only keep it on B.
 
 ACORN is a fascinating algorithm. If you would like to read more about it, we encourage you to refer to the [original paper](https://arxiv.org/abs/2403.04871).  Our implementation of ACORN involved a few customizations - let’s touch on that before we wrap up.
 
@@ -139,13 +140,13 @@ ACORN is a fascinating algorithm. If you would like to read more about it, we en
 
 The Weaviate implementation of ACORN differs from that of the paper in a few ways.
 
-The first important change is during building the graph. While it is true that a different pruning logic helps keep the graph connected, we decided not to modify the indexing from “vanilla” HNSW. 
+The first important change is during building the graph. While it is true that a different pruning logic helps keep the graph connected, we decided not to modify the indexing from “vanilla” HNSW.
 
 We did this mainly to limit resource overhead from unpruned nodes, and found the impact to recall acceptable. This came with the added benefit that for existing users of Weaviate, ACORN can be enabled without any requirement to reindex existing data.
 
-The second important difference is how we explore the graph while querying. Weaviate’s ACORN implementation does not always use the two hop expansion. Instead, it conditionally evaluates whether to do so.
+The second important difference is how we explore the graph while querying. Weaviate's ACORN implementation conditionally evaluates whether to use the two-hop expansion.
 
-If the first hop passes the filter, then the algorithm traverses the graph normally since the second hop will be explored anyway as the search progresses. We only use the two hop expansion if the connecting node does not pass the filter. This means that when there is not a uniform distribution of the filtered nodes in the graph, our algorithm will operate as a regular HNSW in areas where a dense amount of nodes pass the filter and as ACORN where a sparse amount of nodes pass the filter.
+If the first hop passes the filter, then the algorithm traverses the graph normally since the second hop will be explored anyway as the search progresses. We only use the two-hop expansion if the connecting node does not pass the filter. This means that when there is not a uniform distribution of the filtered nodes in the graph, our algorithm will operate as a regular HNSW in areas where a dense amount of nodes pass the filter and as ACORN where a sparse amount of nodes pass the filter.
 
 The third difference is how we seed additional entry points at layer zero of the graph to better deal with the problem of queries having low correlation to the filter.
 
@@ -157,7 +158,7 @@ The search will eventually find some low priced jewelry, but it can require the 
 
 ## Internal test results - ACORN vs pre-ACORN
 
-We next show some experiments using for filtered vector search and differing correlation between the filters and the queries. You can easily test ACORN with your own data in Weaviate by [switching the filtering strategy in the collection definition to sweeping or acorn](/developers/weaviate/manage-data/collections#set-vector-index-parameters). The [benchmark tool](https://github.com/weaviate/weaviate-benchmarking) has been updated to easily test your data with the flags `-–filter` to signal that we are doing a filtered test, prefiltering disabled with `--flatSearchCutoff` set to zero, and `-–filterStrategy` which accepts acorn as a valid strategy to indicate that we want to activate the new logic during querying. 
+We next show some experiments using for filtered vector search and differing correlation between the filters and the queries. You can easily test ACORN with your own data in Weaviate by [switching the filtering strategy in the collection definition to sweeping or acorn](/developers/weaviate/manage-data/collections#set-vector-index-parameters). The [benchmark tool](https://github.com/weaviate/weaviate-benchmarking) has been updated to easily test your data with the flags `-–filter` to signal that we are doing a filtered test, pre-filtering disabled with `--flatSearchCutoff` set to zero, and `-–filterStrategy` which accepts acorn as a valid strategy to indicate that we want to activate the new logic during querying.
 
 ### Low correlation between filters and queries
 
@@ -199,14 +200,14 @@ Next, let's look at the results when the correlation between filters and queries
 
 This is where the ACORN implementation really shows its value. In this example, we increased the number of datasets and kept low correlated filtering. This means that queries would target different datasets and thus we should expect a low correlation between the filters and queries. The results are shown in the image below.
 
-![ACORN vs SWEEPING, low correlation](./img/beir-cohere-dot-filtered-negative-light.png#gh-dark-mode-only)
+![ACORN vs SWEEPING, low correlation](./img/beir-cohere-dot-filtered-negative-dark.png#gh-dark-mode-only)
 ![ACORN vs SWEEPING, low correlation](./img/beir-cohere-dot-filtered-negative-light.png#gh-light-mode-only)
 
 Under these settings, we can observe that Weaviate’s ACORN implementation significantly outperforms (an order of magnitude, in fact) the original sweeping algorithm. The difference here is such that the previous throughput (QPS) would have been a significant potential bottleneck, whereas our ACORN algorithm performs comparably to the previous scenario. The explanation for this disparity is that the old logic ends up performing nearly a brute force over the full graph while ACORN can find the target region much faster.
 
 You could imagine it makes little sense to have such a low correlation between filters and queries but in practice, this is actually not that unusual and just depends on the semantics of the filter.
 
-By preventing occurrences of such bottlenecks, Weaviate with the new ACORN search strategy is able to ensure that a vector/hybrid search system does not get bogged down when these “unusual” but sometimes quite common / real life queries.
+By preventing occurrences of such bottlenecks, Weaviate with the new ACORN search strategy is able to ensure that vector and hybrid search systems do not get bogged down when these “unusual” but sometimes quite common / real-world queries.
 
 ### High correlation between filter and queries
 
@@ -223,7 +224,7 @@ To address these variations we are exploring a dynamic filter strategy. Currentl
 
 Vector search with filtering is a common requirement in real-world applications, but achieving both high performance and accuracy can be challenging. This is especially so when filters and queries have low correlation. ACORN provides an elegant solution to this problem by maintaining graph connectivity through two-hop expansion, without requiring any special indexing or predefined filter configurations.
 
-ACORN prevents a very interesting approach to improving filtered vector search on HNSW. Especially around low selectivity filters, the new search strategy is able to ensure that a vector/hybrid search system performs well regardless of the filter.
+ACORN presents a very interesting approach to improving filtered vector search on HNSW. Especially around low selectivity filters, the new search strategy is able to ensure that a vector/hybrid search system performs well regardless of the filter.
 
 Our implementation in Weaviate builds on ACORN's strengths while adding practical optimizations:
 
