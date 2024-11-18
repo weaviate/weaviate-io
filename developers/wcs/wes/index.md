@@ -138,6 +138,7 @@ Preview limits
 
 :::caution TODO
 - Should we have a security section?
+- e.g. data privacy, access control (i.e. no access from outside of Weaviate Cloud)
 :::
 
 ### Administration
@@ -146,3 +147,14 @@ Preview limits
 - User management? (How does this interact with WCD users/projects)
 - API Key Management
 :::
+
+## Support
+
+:::caution TODO
+- How to get help
+- Troubleshooting
+:::
+
+## Additional Resources
+
+- [Model provider integrations: WES embeddings](/developers/weaviate/model-providers/wes/embeddings.md)
