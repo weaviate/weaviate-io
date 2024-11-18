@@ -117,7 +117,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
-<!-- ### Vectorizer parameters
+### Vectorizer parameters
 
 The following examples show how to configure WES-specific options.
 
@@ -142,7 +142,7 @@ The following examples show how to configure WES-specific options.
 
 </Tabs>
 
-For further details on model parameters, see the [WES Reference documentation](../../../wcs/wed/index.md). -->
+For further details on model parameters, see the [WES Reference documentation](/developers/wcs/wes/index.md).
 
 ## Data import
 
@@ -255,9 +255,9 @@ Once the integrations are configured at the collection, the data management and 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
-<!-- ### External resources
+### External resources
 
-- Weaviate Embedding Service [Documentation](../../../wcs/wed/index.md) -->
+- Weaviate Embedding Service [Documentation](/developers/wcs/wes/index.md)
 
 ## Questions and feedback
 
