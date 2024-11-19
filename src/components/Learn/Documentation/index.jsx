@@ -14,62 +14,87 @@ export default function Documentation() {
         </div>
         <div className={styles.boxContainer}>
           <div className={styles.typeContainer}>
-          <Link to="/developers/weaviate/model-providers">
+            <Link
+              className={styles.linkBox}
+              to="/developers/weaviate/model-providers"
+            >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={styles.homeIcon}></div>
                   <h2>Model provider integrations</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>With AWS, Cohere, Google, Hugging Face, OpenAI & more</small></p>
+                  <p>
+                    <small>
+                      With AWS, Cohere, Google, Hugging Face, OpenAI & more
+                    </small>
+                  </p>
                 </div>
               </div>
             </Link>
-            <Link to="/developers/weaviate/configuration">
+            <Link
+              className={styles.linkBox}
+              to="/developers/weaviate/configuration"
+            >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.blog}`}></div>
                   <h2>How-to: Configure</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>Configure Weaviate to suit your specific needs</small></p>
+                  <p>
+                    <small>
+                      Configure Weaviate to suit your specific needs
+                    </small>
+                  </p>
                 </div>
               </div>
-            </Link>               
-            <Link to="/developers/weaviate/search">
+            </Link>
+            <Link className={styles.linkBox} to="/developers/weaviate/search">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.blog}`}></div>
                   <h2>How-to: Search</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>Perform the right queries to find the data you want</small></p>
+                  <p>
+                    <small>
+                      Perform the right queries to find the data you want
+                    </small>
+                  </p>
                 </div>
               </div>
-            </Link>          
-            <Link to="/developers/weaviate/manage-data">
+            </Link>
+            <Link
+              className={styles.linkBox}
+              to="/developers/weaviate/manage-data"
+            >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.blog}`}></div>
                   <h2>How-to: Manage data</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>Manage collections & data</small></p>
+                  <p>
+                    <small>Manage collections & data</small>
+                  </p>
                 </div>
               </div>
-            </Link>          
-            <Link to="/developers/weaviate/concepts">
+            </Link>
+            <Link className={styles.linkBox} to="/developers/weaviate/concepts">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div className={`${styles.homeIcon} ${styles.starter}`}></div>
                   <h2>Docs: Concepts</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>Key features and ideas explained</small></p>
+                  <p>
+                    <small>Key features and ideas explained</small>
+                  </p>
                 </div>
               </div>
-            </Link>                    
-            <Link to="/developers/weaviate/api">
+            </Link>
+            <Link className={styles.linkBox} to="/developers/weaviate/api">
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div
@@ -78,11 +103,16 @@ export default function Documentation() {
                   <h2>Docs: API References</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>REST, GraphQL and gRPC API details</small></p>
+                  <p>
+                    <small>REST, GraphQL and gRPC API details</small>
+                  </p>
                 </div>
               </div>
             </Link>
-            <Link to="/developers/weaviate/client-libraries">
+            <Link
+              className={styles.linkBox}
+              to="/developers/weaviate/client-libraries"
+            >
               <div className={styles.typeBox}>
                 <div className={styles.typeIcon}>
                   <div
@@ -91,10 +121,14 @@ export default function Documentation() {
                   <h2>Docs: Client libraries</h2>
                 </div>
                 <div className={styles.typeText}>
-                  <p><small>Client-specific information (Python, TS/JS, Go, Java)</small></p>
+                  <p>
+                    <small>
+                      Client-specific information (Python, TS/JS, Go, Java)
+                    </small>
+                  </p>
                 </div>
               </div>
-            </Link>            
+            </Link>
           </div>
         </div>
       </div>
