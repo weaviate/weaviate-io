@@ -14,25 +14,21 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 The following subprocessors are authorized by the Data Controller to process Personal Data:
 
-- **Google Cloud Platform (GCP)**  
-  Purpose: Cloud hosting services.  
-  Location: EU-west4  
-  Website: [https://cloud.google.com/](https://cloud.google.com/)
 
-- **Slack**  
-  Purpose: Communication and collaboration platform.  
-  Location: USA  
-  Website: [https://slack.com/](https://slack.com/)
-
-- **HubSpot**  
-  Purpose: Customer support and relationship management.  
-  Location: USA  
-  Website: [https://www.hubspot.com/](https://www.hubspot.com/)
-
-- **Google Workspace (formerly G Suite)**  
-  Purpose: Email and collaboration tools.  
-  Location: Global  
-  Website: [https://workspace.google.com/](https://workspace.google.com/)
-
+| Category | Subprocessor Name | Subprocessing Activities | Website |
+|-----------|----------|--------------|-------------------|
+| Infrastructure | Amazon Web Services | Infrastructure and hosting provider | https://aws.amazon.com |
+| Infrastructure | Microsoft Azure | Infrastructure and hosting provider | https://azure.microsoft.com |
+| Infrastructure | Google Cloud Platform | Infrastructure and hosting provider | https://cloud.google.com |
+| Infrastructure | Grafana Cloud | Observability and system monitoring | https://grafana.com |
+| Infrastructure | Github | Code repository and CI/CD | https://github.com |
+| Infrastructure | MongoDB | Data storage for billing and provisioning | https://mongodb.com |
+| Communications | Google Workspace | Productivity and communications services | https://workspace.google.com |
+| Communications | Twilio | Email communications, alerts and marketing | https://www.twilio.com |
+| Communications | Hubspot | CRM for marketing | https://www.hubspot.com |
+| Support | Pylon | Customer support ticketing system | https://usepylon.com |
+| Support | Slack | Internal communications tool | https://slack.com |
+| Support | Stripe | Payment services provider | https://stripe.com |
+| Support | Sphere | Billing and tax automation | https://getsphere.com |
 
 The Data Controller acknowledges and agrees that the list of subprocessors may be updated from time to time by the Data Processor in accordance with the terms of the Principal Agreement.
