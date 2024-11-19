@@ -35,14 +35,14 @@ export default function GetStarted() {
                   </li>
                   <li>
                     <Link
-                        className={`${styles.external} ${styles.bold}`}
-                        to="/developers/weaviate/quickstart/local"
-                      >
-                        Quickstart: local
+                      className={`${styles.external} ${styles.bold}`}
+                      to="/developers/weaviate/quickstart/local"
+                    >
+                      Quickstart: local
                     </Link>{' '}
                     (Docker & Ollama)
                   </li>
-                </ul>                        
+                </ul>
               </div>
             </div>
             <div className={styles.typeBox}>
@@ -51,10 +51,13 @@ export default function GetStarted() {
                 <h2>Live Online Workshops</h2>
               </div>
               <div className={styles.typeText}>
-                <p>Instructor-led, live workshops for varying experience levels (60 minutes).</p>
+                <p>
+                  Instructor-led, live workshops for varying experience levels
+                  (60 minutes).
+                </p>
                 <ul>
-                  <li>                
-                    <Link 
+                  <li>
+                    <Link
                       className={`${styles.external} ${styles.bold}`}
                       to="/community/events"
                     >
@@ -74,48 +77,48 @@ export default function GetStarted() {
             </div>
             <div className={`${styles.typeText} ${styles.large}`}>
               <p>Guides for key topics.</p>
-                <ul>
-                  <li>
-                    <Link
-                      className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/connections"
-                    >
-                      Connect to Weaviate
-                    </Link>
-                  </li>    
-                  <li>
-                    <Link
-                      className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/starter-guides/generative"
-                    >
-                      Generative search (RAG)
-                    </Link>{' '}
-                  </li>      
-                  <li>
-                    <Link
-                      className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/starter-guides/which-weaviate"
-                    >
-                      Which Weaviate is right for me?
-                    </Link>{' '}
-                  </li>                     
-                  <li>
-                    <Link
-                      className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/starter-guides/schema"
-                    >
-                      Collection definitions & data schema
-                    </Link>{' '}
-                  </li>   
-                  <li>
-                    <Link
-                      className={`${styles.external} ${styles.bold}`}
-                      to="/developers/weaviate/starter-guides/managing-resources"
-                    >
-                      Managing resources (hot, warm & cold)
-                    </Link>{' '}
-                  </li>                                                                                         
-                </ul>          
+              <ul>
+                <li>
+                  <Link
+                    className={`${styles.external} ${styles.bold}`}
+                    to="/developers/weaviate/connections"
+                  >
+                    Connect to Weaviate
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${styles.external} ${styles.bold}`}
+                    to="/developers/weaviate/starter-guides/generative"
+                  >
+                    Generative search (RAG)
+                  </Link>{' '}
+                </li>
+                <li>
+                  <Link
+                    className={`${styles.external} ${styles.bold}`}
+                    to="/developers/weaviate/starter-guides/which-weaviate"
+                  >
+                    Which Weaviate is right for me?
+                  </Link>{' '}
+                </li>
+                <li>
+                  <Link
+                    className={`${styles.external} ${styles.bold}`}
+                    to="/developers/weaviate/starter-guides/schema"
+                  >
+                    Collection definitions & data schema
+                  </Link>{' '}
+                </li>
+                <li>
+                  <Link
+                    className={`${styles.external} ${styles.bold}`}
+                    to="/developers/weaviate/starter-guides/managing-resources"
+                  >
+                    Managing resources (hot, warm & cold)
+                  </Link>{' '}
+                </li>
+              </ul>
               <Link
                 to="/developers/weaviate/starter-guides"
                 className={styles.button}
