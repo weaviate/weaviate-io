@@ -22,11 +22,9 @@ Vector search works by converting data and queries into [vector embeddings](http
 
 ![Vector Search](./img/vector-search.png)
 
-At the time of entry/import (or any significant changes to data objects), every data object, and the query, are converted into numerical vector representations using [embedding models](https://weaviate.io/blog/how-to-choose-an-embedding-model).   
-Every data object in a dataset gets a vector, and this is compared to the query vector at search time.
+At the time of entry/import (or any significant changes to data objects), every data object, and the query, are converted into numerical vector representations using [embedding models](https://weaviate.io/blog/how-to-choose-an-embedding-model). Every data object in a dataset gets a vector, and this is compared to the query vector at search time.
 
-In a nutshell, vector embeddings are an array of numbers, which can be used as coordinates in a high-dimensional space. Although it is hard to imagine coordinates in more than 3-dimensional space (x, y, z), we can still use the vectors to compute the distance between vectors, which can be used to indicate similarity between objects.  
-There are many different [distance metrics](https://weaviate.io/blog/distance-metrics-in-vector-search), like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance). 
+In a nutshell, vector embeddings are an array of numbers, which can be used as coordinates in a high-dimensional space. Although it is hard to imagine coordinates in more than 3-dimensional space (x, y, z), we can still use the vectors to compute the distance between vectors, which can be used to indicate similarity between objects. There are many different [distance metrics](https://weaviate.io/blog/distance-metrics-in-vector-search), like [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) and [Euclidean distance (L2 distance)](https://en.wikipedia.org/wiki/Euclidean_distance). 
 
 Whenever we run a query (like: "What is the tallest building in Berlin?"), a vector search system will convert it to a "query" vector. The task of a vector database is to identify and retrieve a list of vectors that are closest to the vector of your query, using a distance metric and a search algorithm.
 
@@ -136,8 +134,7 @@ If we query for articles related to: "urban planning in Europe", the vector data
 
 Finding the correct answer in a gigantic repository of unstructured data is not the most impressive part of [vector databases](https://weaviate.io/blog/what-is-a-vector-database) (I mean, it is very impressive), but it is the 🚀 speed at which it all happens. To find the most relevant answer to our semantic search query, it only takes milliseconds in a dataset containing 28 million paragraphs. This is super important when dealing with massive amounts of data, like in recommendation engines or large document datasets. 
 
-The inevitable question that follows up this explanation is always:  
-Why is this so incredibly fast?
+The inevitable question that follows up this explanation is always: Why is this so incredibly fast?
 
 ### Approximate nearest neighbors (ANN)
 
@@ -168,7 +165,7 @@ Examples of ANN methods are:
 *[Tree-based ANN search]*
 
 Which algorithm works best depends on your project. Performance can be measured in terms of latency, throughput (queries per second), build time, and accuracy (recall). These four components often have a tradeoff, so it depends on the use case which method works best.  
-So, while ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. And it can do this in a fraction of the time\!
+So, while ANN is not some magic method that will always find the true k nearest neighbors in a dataset, it can find a pretty good approximation of the true k neighbors. And it can do this in a fraction of the time!
 
 ### HNSW in Weaviate
 
@@ -198,7 +195,7 @@ kNN, or [k-nearest neighbors (kNN) algorithm](https://en.wikipedia.org/wiki/K-ne
 
 Comparing a query vector with 10, 100, or 1000 data vectors in just two dimensions is an easy job. But of course, in the real world, we are more likely to deal with millions (like in the Wikipedia dataset) or even billions of data items. In addition, the number of dimensions that most embedding models use in semantic search goes up to hundreds or thousands of dimensions\!
 
-The *brute force* of a kNN search is computationally very expensive \- and depending on the size of your database, a single query could take anything from several seconds to even hours (yikes 😅). If you compare a vector with 300 dimensions with 10M vectors, the search system would need to do 300 x 10M \= 3B computations\! The number of required calculations increases linearly with the number of data points (O(n)).
+The *brute force* of a kNN search is computationally very expensive \- and depending on the size of your database, a single query could take anything from several seconds to even hours (yikes 😅). If you compare a vector with 300 dimensions with 10M vectors, the search system would need to do 300 x 10M = 3B computations\! The number of required calculations increases linearly with the number of data points (O(n)).
 
 In summary, kNN search doesn't scale well, and it is hard to imagine using it with a large dataset in production.
 
