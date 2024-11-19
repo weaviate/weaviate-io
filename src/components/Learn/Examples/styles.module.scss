@@ -55,6 +55,11 @@
   flex-direction: column;
 
   @media screen and (max-width: 1440px) {
+    max-width: 31.6rem;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1140px) {
     max-width: 100%;
     height: auto;
   }
@@ -63,7 +68,7 @@
 .big {
   max-width: 76.25rem;
   width: 100%;
-  height: 18.9375rem;
+  min-height: 18.9375rem;
 
   @media screen and (max-width: 1440px) {
     height: auto;
@@ -116,7 +121,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 230px;
 
   @media screen and (max-width: 600px) {
     height: auto;
@@ -124,8 +128,7 @@
 
   ul {
     line-height: 200%;
-    height: 150px;
-    margin: 0;
+    margin: 10px 0px;
 
     @media screen and (max-width: 600px) {
       height: auto;

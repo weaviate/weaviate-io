@@ -44,31 +44,31 @@
 .typeBox {
   max-width: 38.25rem;
   width: 100%;
-  height: 12.125rem;
+  min-height: 12.125rem; /* Change height to min-height */
   border-radius: 0.625rem;
   background: #fff;
   padding: 20px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   @media screen and (max-width: 1100px) {
     width: 100%;
     max-width: 100%;
-    height: auto;
+    min-height: auto;
   }
 }
 
 .big {
   max-width: 37.25rem;
   width: 100%;
-  height: 24.9375rem;
+  min-height: 24.9375rem; /* Adjust as above */
 
   @media screen and (max-width: 1100px) {
     width: 100%;
     max-width: 100%;
-    height: auto;
+    min-height: auto;
   }
 }
 
@@ -113,8 +113,9 @@
 .typeText {
   display: flex;
   flex-direction: column;
-
+  flex-grow: 1; /* Allow the text container to grow */
   gap: 30px;
+  overflow-wrap: break-word; /* Prevent overflow */
 
   p {
     color: #130c49;
@@ -141,11 +142,10 @@
 
   .bold {
     font-weight: 700;
-  }  
+  }
 }
 
 .large {
-  height: 310px;
   justify-content: space-between;
 
   @media screen and (max-width: 1100px) {

@@ -87,6 +87,12 @@
   flex-wrap: wrap;
   flex: 1;
   gap: 30px;
+
+  @media screen and (max-width: 600px) {
+    .linkBox {
+      width: 100%;
+    }
+  }
 }
 
 .typeBox {
