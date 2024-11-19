@@ -240,6 +240,10 @@ For example:
 
 </details>
 
+:::info Read more
+See the [vector search](./vector-search.md) page for more details on how vector search works in Weaviate.
+:::
+
 #### Hybrid Search
 
 Combines vector and keyword search to leverage the strengths of both approaches. Both searches are carried out and the results are combined using the selected [hybrid fusion method](#hybrid-fusion-method) and the given [alpha](#alpha-hybrid-search) value.
@@ -360,6 +364,69 @@ The search results consist of `{"description": "black bear"}` and `{"description
 ```
 </details>
 
+## Search scores and metrics
+
+Weaviate uses a variety of metrics to rank search results of a given query. The following metrics are used in Weaviate:
+
+- [Vector distance](#vector-similarity): A vector distance measure between the query and the object.
+- [BM25F score](#bm25f-score): A keyword search score calculated using the BM25F algorithm.
+- [Hybrid score](#hybrid-score): A combined score from vector and keyword searches.
+
+
+### BM25F score
+
+
+### Hybrid score
+
+
+
+
+
+
+
+
+## Search scores and metrics
+
+Weaviate uses various metrics to score and rank search results based on their relevance to a query:
+
+### vector distance
+
+### BM25F score
+
+The BM25F score measures keyword relevance using term frequency and inverse document frequency:
+
+- **Term Frequency (TF)**
+  - How often query terms appear in the object
+  - Diminishing returns for repeated terms
+  - Normalized by field length
+
+- **Inverse Document Frequency (IDF)**
+  - How rare/common query terms are across all objects
+  - Rare terms score higher than common ones
+  - Logarithmically scaled
+
+The final BM25F score combines these factors using tunable parameters:
+- k1: Controls term frequency saturation (default: 1.2)
+- b: Controls field length normalization (default: 0.75)
+
+### Hybrid score
+
+The hybrid score combines vector distance and BM25F scores through fusion methods:
+
+**Relative Score Fusion (Default)**
+1. Normalizes both scores to 0-1 range
+2. Combines using alpha weight:
+   - `hybrid_score = alpha * vector_score + (1 - alpha) * bm25_score`
+3. Preserves relative differences between scores
+
+**Ranked Fusion**
+1. Assigns rank-based scores (N for top result)
+2. Combines using alpha weight:
+   - `hybrid_score = alpha * vector_rank + (1 - alpha) * bm25_rank`
+3. Only considers result ordering, not score magnitudes
+
+
+
 ## Glossary
 
 #### Vector embeddings
@@ -380,7 +447,7 @@ There are two algorithms available: `relativeScoreFusion` (default from `1.24`) 
 
 With `rankedFusion`, each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches.
 
-With `relativeScoreFusion`, each object is scored by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
+With `relativeScoreFusion`, each object is scored by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector distance and normalized BM25 score.
 
 #### Alpha (hybrid search)
 
