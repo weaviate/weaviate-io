@@ -29,7 +29,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the CLIP vectorizer integration (`multi2vec-clip`) module.
+Your Weaviate instance must be configured with the CLIP multimodal vectorizer integration (`multi2vec-clip`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>

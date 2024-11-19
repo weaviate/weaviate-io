@@ -28,7 +28,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the ImageBind vectorizer integration (`multi2vec-bind`) module.
+Your Weaviate instance must be configured with the ImageBind multimodal vectorizer integration (`multi2vec-bind`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>

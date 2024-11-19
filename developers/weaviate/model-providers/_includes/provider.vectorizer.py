@@ -399,6 +399,68 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicMMVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START MMVectorizerJinaCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            model="jina-clip-v2",
+        )
+    ],
+    # highlight-end
+)
+# END MMVectorizerJinaCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="jina-clip-v2"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerMistral
 from weaviate.classes.config import Configure
 

@@ -1,12 +1,14 @@
 ---
 title: Multimodal Embeddings
 sidebar_position: 25
-image: og/docs/integrations/provider_integrations_google.jpg
-# tags: ['model providers', 'google', 'embeddings']
+image: og/docs/integrations/provider_integrations_jinaai.jpg
+# tags: ['model providers', 'jinaai', 'embeddings']
 ---
 
-# Google Multimodal Embeddings with Weaviate
+# Jina AI Multimodal Embeddings with Weaviate
 
+:::info Added in `1.25.26`, `1.26.11` and `v1.27.4`
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -16,27 +18,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-:::note AI Studio not available
-Multimodal embeddings are currently not available to Google AI Studio users.
-:::
-
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
 
-![Embedding integration illustration](../_includes/integration_google_embedding.png)
+![Embedding integration illustration](../_includes/integration_jinaai_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google multimodal vectorizer integration (`multi2vec-google`) module.
-
-:::info Module name change
-`multi2vec-google` was called `multi2vec-palm` in Weaviate versions prior to `v1.27`.
-:::
+Your Weaviate instance must be configured with the Jina AI multimodal vectorizer integration (`multi2vec-jinaai`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -55,49 +49,20 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide valid API credentials to Weaviate for the appropriate integration.
+You must provide a valid Jina AI API key to Weaviate for this integration. Go to [Jina AI](https://jina.ai/embeddings/) to sign up and obtain an API key.
 
-#### Vertex AI
+Provide the API key to Weaviate using one of the following methods:
 
-This is called an `access token` in Google Cloud.
-
-##### Automatic token generation
-
-import UseGoogleAuthInstructions from './_includes/use_google_auth_instructions.mdx';
-
-<UseGoogleAuthInstructions/>
-
-##### Manual token retrieval
-
-If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
-
-```shell
-gcloud auth print-access-token
-```
-
-#### Token expiry for Vertex AI users
-
-import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
-
-<GCPTokenExpiryNotes/>
-
-#### Provide the API key
-
-Provide the API key to Weaviate at runtime, as shown in the examples below.
-
-<!-- Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users. -->
-
-import ApiKeyNote from '../_includes/google-api-key-note.md';
-
-<ApiKeyNote />
+- Set the `JINAAI_APIKEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START GoogleVertexInstantiation"
-      endMarker="# END GoogleVertexInstantiation"
+      startMarker="# START JinaAIInstantiation"
+      endMarker="# END JinaAIInstantiation"
       language="py"
     />
   </TabItem>
@@ -105,8 +70,8 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START GoogleVertexInstantiation"
-      endMarker="// END GoogleVertexInstantiation"
+      startMarker="// START JinaAIInstantiation"
+      endMarker="// END JinaAIInstantiation"
       language="ts"
     />
   </TabItem>
@@ -115,14 +80,14 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Jina AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerGoogleVertex"
-      endMarker="# END BasicMMVectorizerGoogleVertex"
+      startMarker="# START BasicVectorizerJinaAI"
+      endMarker="# END BasicVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -130,17 +95,40 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerGoogleVertex"
-      endMarker="// END BasicMMVectorizerGoogleVertex"
+      startMarker="// START BasicVectorizerJinaAI"
+      endMarker="// END BasicVectorizerJinaAI"
       language="ts"
-    />API v
+    />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. Currently, `multimodalembedding@001` is the only available model.
+### Select a model
 
-<!-- The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified. -->
+You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration example.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerJinaCustomModel"
+      endMarker="# END VectorizerJinaCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorizerJinaCustomModel"
+      endMarker="// END VectorizerJinaCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
@@ -153,20 +141,16 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Google-specific options.
+The following examples show how to configure Jina AI-specific options.
 
-- `location` (Required): e.g. `"us-central1"`
-- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
-- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `multimodalembedding@001`
-- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
+Note that `dimensions` is only used for the `jina-embeddings-v3` model.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullMMVectorizerGoogle"
-      endMarker="# END FullMMVectorizerGoogle"
+      startMarker="# START FullVectorizerJinaAI"
+      endMarker="# END FullVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -174,8 +158,8 @@ The following examples show how to configure Google-specific options.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullMMVectorizerGoogle"
-      endMarker="// END FullMMVectorizerGoogle"
+      startMarker="// START FullVectorizerJinaAI"
+      endMarker="// END FullVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
@@ -184,15 +168,15 @@ The following examples show how to configure Google-specific options.
 
 ## Data import
 
-After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
+After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START MMBatchImportExample"
-      endMarker="# END MMBatchImportExample"
+      startMarker="# START BatchImportExample"
+      endMarker="# END BatchImportExample"
       language="py"
     />
   </TabItem>
@@ -200,8 +184,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START MMBatchImportExample"
-      endMarker="// END MMBatchImportExample"
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
       language="ts"
     />
   </TabItem>
@@ -214,9 +198,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Jina AI model.
 
-![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_jinaai_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -278,47 +262,21 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 </Tabs>
 
-### Vector (near media) search
-
-When you perform a media search such as a [near image search](../../search/similarity.md#search-with-image), Weaviate converts the query into an embedding using the specified model and returns the most similar objects from the database.
-
-To perform a near media search such as near image search, convert the media query into a base64 string and pass it to the search query.
-
-The query below returns the `n` most similar objects to the input image from the database, set by `limit`.
-
-<Tabs groupId="languages">
-
- <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START NearImageExample"
-      endMarker="# END NearImageExample"
-      language="py"
-    />
-  </TabItem>
-
- <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START NearImageExample"
-      endMarker="// END NearImageExample"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
 ## References
 
 ### Available models
 
-- `multimodalembedding@001` (default)
+- `jina-embeddings-v3` (Added in Weaviate `v1.26.5` and `v1.27`)
+    - When using this model, Weaviate will automatically use the appropriate `task` type, applying `retrieval.passage` for embedding entries and `retrieval.query` for queries.
+    - By default, Weaviate uses `1024` dimensions
+- `jina-embeddings-v2-base-en` (Default)
+- `jina-embeddings-v2-small-en`
 
 ## Further resources
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Jina AI reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
@@ -329,8 +287,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- [Google Vertex AI](https://cloud.google.com/vertex-ai)
-- [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=)
+- Jina AI [Embeddings API documentation](https://jina.ai/embeddings/)
 
 ## Questions and feedback
 
