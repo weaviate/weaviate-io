@@ -318,7 +318,8 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Google text embedding models + Weaviate](./embeddings.md)
+- [Google AI generative models + Weaviate](./generative.md)
 
 ### Code examples
 

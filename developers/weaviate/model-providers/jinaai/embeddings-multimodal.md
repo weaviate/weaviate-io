@@ -86,8 +86,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerJinaAI"
-      endMarker="# END BasicVectorizerJinaAI"
+      startMarker="# START BasicMMVectorizerJinaAI"
+      endMarker="# END BasicMMVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -95,8 +95,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerJinaAI"
-      endMarker="// END BasicVectorizerJinaAI"
+      startMarker="// START BasicMMVectorizerJinaAI"
+      endMarker="// END BasicMMVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
@@ -143,14 +143,12 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 The following examples show how to configure Jina AI-specific options.
 
-Note that `dimensions` is only used for the `jina-embeddings-v3` model.
-
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerJinaAI"
-      endMarker="# END FullVectorizerJinaAI"
+      startMarker="# START FullMMVectorizerJinaAI"
+      endMarker="# END FullMMVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -158,8 +156,8 @@ Note that `dimensions` is only used for the `jina-embeddings-v3` model.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerJinaAI"
-      endMarker="// END FullVectorizerJinaAI"
+      startMarker="// START FullMMVectorizerJinaAI"
+      endMarker="// END FullMMVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
@@ -175,8 +173,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BatchImportExample"
-      endMarker="# END BatchImportExample"
+      startMarker="# START MMBatchImportExample"
+      endMarker="# END MMBatchImportExample"
       language="py"
     />
   </TabItem>
@@ -184,8 +182,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BatchImportExample"
-      endMarker="// END BatchImportExample"
+      startMarker="// START MMBatchImportExample"
+      endMarker="// END MMBatchImportExample"
       language="ts"
     />
   </TabItem>
@@ -262,20 +260,47 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 </Tabs>
 
+### Vector (near media) search
+
+When you perform a media search such as a [near image search](../../search/similarity.md#search-with-image), Weaviate converts the query into an embedding using the specified model and returns the most similar objects from the database.
+
+To perform a near media search such as near image search, convert the media query into a base64 string and pass it to the search query.
+
+The query below returns the `n` most similar objects to the input image from the database, set by `limit`.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearImageExample"
+      endMarker="# END NearImageExample"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START NearImageExample"
+      endMarker="// END NearImageExample"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## References
 
 ### Available models
 
-- `jina-embeddings-v3` (Added in Weaviate `v1.26.5` and `v1.27`)
-    - When using this model, Weaviate will automatically use the appropriate `task` type, applying `retrieval.passage` for embedding entries and `retrieval.query` for queries.
-    - By default, Weaviate uses `1024` dimensions
-- `jina-embeddings-v2-base-en` (Default)
-- `jina-embeddings-v2-small-en`
+- `jina-clip-v2`
 
 ## Further resources
 
 ### Other integrations
 
+- [Jina AI text embedding models + Weaviate](./embeddings.md).
 - [Jina AI reranker models + Weaviate](./reranker.md).
 
 ### Code examples

@@ -366,7 +366,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_jinaai(
             name="title_vector",
             source_properties=["title"],
-            model="jina-embeddings-v3-small-en",
+            model="jina-embeddings-v3",
             dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
@@ -388,7 +388,8 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             # Further options
-            # model="jina-embeddings-v2-base-en"
+            # model="jina-embeddings-v3",
+            # dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
     # highlight-end
@@ -405,10 +406,20 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
     vectorizer_config=[
         Configure.NamedVectors.multi2vec_jinaai(
             name="title_vector",
-            source_properties=["title"]
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
         )
     ],
     # highlight-end
@@ -425,10 +436,20 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
     vectorizer_config=[
         Configure.NamedVectors.multi2vec_jinaai(
             name="title_vector",
-            source_properties=["title"],
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
             model="jina-clip-v2",
         )
     ],
@@ -445,10 +466,20 @@ from weaviate.classes.config import Configure
 client.collections.create(
     "DemoCollection",
     # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
     vectorizer_config=[
         Configure.NamedVectors.multi2vec_jinaai(
             name="title_vector",
-            source_properties=["title"],
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
             # Further options
             # model="jina-clip-v2"
         )
@@ -1122,7 +1153,6 @@ with collection.batch.dynamic() as batch:
         poster_b64 = url_to_base64(src_obj["poster_path"])
         weaviate_obj = {
             "title": src_obj["title"],
-            "description": src_obj["description"],
             "poster": poster_b64  # Add the image in base64 encoding
         }
 

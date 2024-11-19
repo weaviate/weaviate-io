@@ -501,6 +501,27 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicMMVectorizerJinaAI
+// TS client support coming soon
+// END BasicMMVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START MMVectorizerJinaCustomModel
+// TS client support coming soon
+// END MMVectorizerJinaCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullMMVectorizerJinaAI
+// TS client support coming soon
+// END FullMMVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerMistral
 await client.collections.create({
   name: 'DemoCollection',
@@ -593,7 +614,7 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-}); 
+});
 // END VectorizerOctoAICustomModel
 
 // Clean up
@@ -621,7 +642,7 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-});  
+});
 // END FullVectorizerOctoAI
 
 // Clean up
