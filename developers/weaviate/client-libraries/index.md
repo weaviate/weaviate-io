@@ -1,5 +1,6 @@
 ---
 title: Reference - Client Libraries
+description: Explore Weaviate client libraries to integrate Weaviate into your tech stack.
 sidebar_position: 0
 image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']

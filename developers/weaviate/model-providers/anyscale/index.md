@@ -37,12 +37,6 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 
 - [Generative AI](./generative.md)
 
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
-
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

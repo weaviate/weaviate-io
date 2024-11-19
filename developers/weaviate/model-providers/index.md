@@ -122,12 +122,6 @@ If you prefer the text to be lowercased, you can do so by setting the `LOWERCASE
 The text is always lowercased for the `text2vec-contextionary` integration.
 :::
 
-## Further resources
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
-
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

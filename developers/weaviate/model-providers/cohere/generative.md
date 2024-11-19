@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: Cohere Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'generative', 'rag']

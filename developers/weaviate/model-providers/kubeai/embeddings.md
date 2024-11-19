@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: Implement KubeAI embeddings in Weaviate to enrich data with contextual vectors.
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_kubeai.jpg
 # tags: ['model providers', 'openai', 'embeddings']

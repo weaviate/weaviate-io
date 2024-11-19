@@ -1,5 +1,6 @@
 ---
 title: Schema (collection definitions)
+description: Begin with schema setup in Weaviate to structure your data effectively.
 sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['basics']

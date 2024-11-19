@@ -1,5 +1,6 @@
 ---
 title: Reranker
+description: VoyageAI Reranker Model Provider
 sidebar_position: 70
 image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'reranking']

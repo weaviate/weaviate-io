@@ -1,5 +1,6 @@
 ---
 title: Summarization
+description: Summarize data efficiently using the SUM Transformers module in Weaviate.
 sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']

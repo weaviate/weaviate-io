@@ -1,5 +1,6 @@
 ---
 title: Queries in detail
+description: Learn effective query techniques in Weaviate to retrieve accurate results.
 sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['basics']

@@ -62,13 +62,14 @@
   @media screen and (max-width: 950px) {
     display: flex;
     flex-grow: 1;
-    overflow-x: hidden;
-    column-gap: 20px;
+
+    gap: 20px;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     min-width: 330px;
+    margin-bottom: 20px;
   }
 
   @keyframes scrollSideCustomers {
@@ -152,6 +153,10 @@
   @media screen and (max-width: 950px) {
     height: 26rem;
   }
+
+  @media screen and (max-width: 500px) {
+    height: 32rem;
+  }
 }
 
 .innerBar {
@@ -189,6 +194,9 @@
 
   @media screen and (max-width: 950px) {
     margin-bottom: 33px;
+  }
+  @media screen and (max-width: 600px) {
+    margin-bottom: 0;
   }
 }
 
@@ -260,7 +268,7 @@
   background-position: center;
 
   width: 8rem;
-  height: 6rem;
+  height: 5rem;
 }
 .redbull {
   background-image: url('/img/site/redbull-hp-logo.svg');

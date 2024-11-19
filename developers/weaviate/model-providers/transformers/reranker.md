@@ -1,5 +1,6 @@
 ---
 title: Reranker
+description: Enhance search results with the transformers reranker module in Weaviate.
 sidebar_position: 80
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'transformers', 'reranking']

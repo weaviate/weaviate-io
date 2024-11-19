@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: OpenAI-Azure Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_openai_azure.jpg
 # tags: ['model providers', 'azure', 'openai', 'generative', 'rag']

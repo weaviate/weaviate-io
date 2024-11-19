@@ -9,12 +9,14 @@
 // WEAVIATE_URL      your WCD instance URL
 // WEAVIATE_API_KEY  your WCD instance API key
 
+
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WEAVIATE_URL,
-  {
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+    authCredentials: new weaviate.ApiKey(weaviateKey),
   }
 )
 // END APIKeyWCD
@@ -30,10 +32,11 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WEAVIATE_URL,
-  {
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateKey),
     timeout: { init: 30, query: 60, insert: 120 } // Values in seconds
   }
 )
@@ -63,8 +66,10 @@ console.log(client)
 
 import weaviate from 'weaviate-client'
 
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+
 const client = await weaviate.connectToLocal(
-   {  authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),}
+   {  authCredentials: new weaviate.ApiKey(weaviateKey),}
 )
 
 console.log(client)
@@ -80,10 +85,12 @@ console.log(client)
 
 import weaviate from 'weaviate-client'
 
+const cohereKey = process.env.COHERE_API_KEY as string
+
 const client = await weaviate.connectToLocal(
   {
     headers: {
-     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
+     'X-Cohere-Api-Key':  cohereKey,
     }
   }
 )
@@ -120,12 +127,14 @@ console.log(client)
 
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WEAVIATE_URL,
-  {
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const cohereKey = process.env.COHERE_API_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateKey),
     headers: {
-     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
+     'X-Cohere-Api-Key': cohereKey,
    }
   }
 )
@@ -142,6 +151,7 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
 // WEAVIATE_API_KEY   your Weaviate instance API key
 
 import weaviate, { WeaviateClient } from 'weaviate-client';
+
 
 const client = await weaviate.connectToCustom(
  {

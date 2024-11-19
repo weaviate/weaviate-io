@@ -1,5 +1,6 @@
 ---
 title: Ref2Vec Centroid Vectorizer
+description: Enhance vector search with Ref2Vec Centroid for stronger data representations.
 sidebar_position: 25
 image: og/docs/modules/ref2vec-centroid.jpg
 # tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
