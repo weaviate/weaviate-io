@@ -21,7 +21,7 @@ Weaviate's integration with the Hugging Face Transformers library allows you to 
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use the CLIP integration, and [configure the Weaviate instance](#weaviate-configuration) with a model image, and Weaviate will generate embeddings for various operations using the specified model in the CLIP inference container. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_transformers_embedding.png)
 

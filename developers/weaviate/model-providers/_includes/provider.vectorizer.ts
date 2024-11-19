@@ -173,6 +173,27 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicMMVectorizerCohere
+// TS client support coming soon
+// END BasicMMVectorizerCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START MMVectorizerCohereCustomModel
+// TS client support coming soon
+// END MMVectorizerCohereCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullMMVectorizerCohere
+// TS client support coming soon
+// END FullMMVectorizerCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerDatabricks
 const databricksVectorizerEndpoint = process.env.DATABRICKS_VECTORIZER_ENDPOINT || '';  // If saved as an environment variable
 

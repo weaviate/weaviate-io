@@ -22,7 +22,7 @@ Weaviate's integration with Jina AI's APIs allows you to access their models' ca
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use an Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_jinaai_embedding.png)
 
@@ -111,8 +111,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START VectorizerJinaCustomModel"
-      endMarker="# END VectorizerJinaCustomModel"
+      startMarker="# START MMVectorizerJinaCustomModel"
+      endMarker="# END MMVectorizerJinaCustomModel"
       language="py"
     />
   </TabItem>
@@ -120,8 +120,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START VectorizerJinaCustomModel"
-      endMarker="// END VectorizerJinaCustomModel"
+      startMarker="// START MMVectorizerJinaCustomModel"
+      endMarker="// END MMVectorizerJinaCustomModel"
       language="ts"
     />
   </TabItem>
