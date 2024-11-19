@@ -113,6 +113,7 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
+                    // Last updated: 2024-11-13
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_202411/openapi-specs/schema.json',
                 },
                 hideModels: true,
@@ -315,7 +316,8 @@ const config = {
                 // hideOnScroll: true,
                 logo: {
                     alt: 'Weaviate',
-                    src: '/img/site/weaviate-nav-logo-light.svg',
+                    src: '/img/site/weaviate-logo-horizontal-light-1.svg',
+                   srcDark: '/img/site/weaviate-logo-horizontal-dark-1.svg',
                 },
                 items: [
                     {
@@ -685,31 +687,6 @@ const config = {
                             {
                                 label: 'Slack',
                                 to: 'https://weaviate.io/slack',
-                            },
-                            {
-                                label: 'Meetups',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
-                            {
-                                label: 'Amsterdam',
-                                to: 'https://www.meetup.com/weaviate-amsterdam',
-                            },
-                            {
-                                label: 'Boston',
-                                to: 'https://www.meetup.com/weaviate-boston',
-                            },
-                            {
-                                label: 'New York',
-                                to: 'https://www.meetup.com/weaviate-NYC',
-                            },
-                            {
-                                label: 'San Francisco',
-                                to: 'https://www.meetup.com/weaviate-san-francisco',
-                            },
-                            {
-                                label: 'Toronto',
-                                to: 'https://www.meetup.com/weaviate-toronto',
                             },
                         ],
                     },

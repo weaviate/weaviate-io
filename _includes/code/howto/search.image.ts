@@ -7,6 +7,7 @@
 
 
 import assert from 'assert';
+let result
 
 // =================================================
 // ===== Helper functions to convert to base64 =====
@@ -81,6 +82,32 @@ console.log(JSON.stringify(result.objects, null, 2));
 // Tests
 // assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
 }
+
+{
+  // START search with Blob
+  // Perform query
+  const myCollection = client.collections.get('Dog');
+  
+  // highlight-start
+  const url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
+  const response = await fetch(url);
+  const blob = await response.buffer();
+  // highlight-end
+  
+  // highlight-start
+  const result = await myCollection.query.nearImage(blob, {
+  // highlight-end
+    returnProperties: ['breed'],
+    limit: 1,
+    // targetVector: 'vector_name' // required when using multiple named vectors
+  })
+  
+  console.log(JSON.stringify(result.objects, null, 2));
+  // END search with Blob
+  
+  // Tests
+  // assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
+  }
 
 // ====================================
 // ===== Search by image filename =====

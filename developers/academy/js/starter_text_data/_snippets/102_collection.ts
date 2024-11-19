@@ -67,13 +67,14 @@ await client.collections.create({
 client.close()
 // END CreateMovieCollection
 
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const openaiKey = process.env.OPENAI_API_KEY as string
 
-client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,
-  {
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+client = await weaviate.connectToWeaviateCloud(weaviateURL,{
+    authCredentials: new weaviate.ApiKey(weaviateKey),
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
+      'X-OpenAI-Api-Key': openaiKey,  // Replace with your inference API key
     }
   } 
 )

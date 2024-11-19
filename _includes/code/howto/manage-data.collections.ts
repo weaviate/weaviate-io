@@ -8,18 +8,28 @@ import assert from 'assert';
 import weaviate, { WeaviateClient, vectorIndex } from 'weaviate-client';
 import { vectorizer, reranker, generative, dataType, tokenization, configure, reconfigure, vectorDistances } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL,
- {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
-   headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const openaiKey = process.env.OPENAI_API_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateKey),
+  headers: {
+     'X-OpenAI-Api-Key': openaiKey,  // Replace with your inference API key
    }
  }
 )
 
 const collectionName = 'Article'
 let result
+
+
+/*
+// START UpdateCollection
+import { reconfigure } from 'weaviate-client';
+
+// END UpdateCollection
+*/
 
 // START UpdateCollection // START ReadOneCollection // START ModifyParam
 let articles = client.collections.get('Article')
@@ -679,18 +689,20 @@ console.log(JSON.stringify(allCollections, null, 2));
 articles = client.collections.get('Article')
 
 
-/*
 // START UpdateCollection
-import { reconfigure } from 'weaviate-client';
 
-// END UpdateCollection
-*/
-
-// START UpdateCollection
 // highlight-start
-articles.config.update({
+await articles.config.update({
   invertedIndex: reconfigure.invertedIndex({
-    bm25k1: 1.5
+    bm25k1: 1.5 // Change the k1 parameter from 1.2
+  }),
+    vectorizers: reconfigure.vectorizer.update({
+      vectorIndexConfig: reconfigure.vectorIndex.hnsw({
+        quantizer: reconfigure.vectorIndex.quantizer.pq(),
+        ef: 4,
+        filterStrategy: 'acorn',  // Available from Weaviate v1.27.0
+      }),
+   
   })
 })
 // highlight-end

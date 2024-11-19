@@ -3,12 +3,20 @@
 import assert from 'assert';
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
+/*
+// START UpdateAutoMT
+import { reconfigure } from 'weaviate-client';
+
+// END UpdateAutoMT
+*/
+
+
 const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL,
+  process.env.WCD_URL as string,
  {
-   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY),
+   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
    headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY,  // Replace with your inference API key
+     'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
    }
  }
 )
@@ -66,9 +74,16 @@ const result = await client.collections.create({
 // ==========================
 
 {
-// START enable autoMT
-// Coming soon
-// END enable autoMT
+// START UpdateAutoMT
+const multiCollection = client.collections.get('MultiTenancyCollection');
+
+await multiCollection.config.update({
+  multiTenancy: weaviate.reconfigure.multiTenancy({
+    autoTenantActivation: true,
+    autoTenantCreation: true,
+  }),
+});
+// END UpdateAutoMT
 }
 
 // ================================
@@ -117,8 +132,8 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // ===== Get tenants from a collection by name =====
 // =======================================
 {
-// START GetTenantsByName
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+// START GetTenantsByName 
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const tenants = await multiCollection.tenants.getByNames(['tenantA', 'tenantB'])
@@ -133,7 +148,7 @@ console.log(tenants)
 
 {
 // START GetOneTenant
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const tenant = await multiCollection.tenants.getByName('tenantA')
@@ -268,7 +283,7 @@ await multiTenantA.data.insert({
 // =====================
 {
 // START Search
-const multiCollection =  client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('tenantA')
