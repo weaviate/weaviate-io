@@ -372,60 +372,11 @@ Weaviate uses a variety of metrics to rank search results of a given query. The 
 - [BM25F score](#bm25f-score): A keyword search score calculated using the BM25F algorithm.
 - [Hybrid score](#hybrid-score): A combined score from vector and keyword searches.
 
+:::caution
 
-### BM25F score
+TODO - finish this section
 
-
-### Hybrid score
-
-
-
-
-
-
-
-
-## Search scores and metrics
-
-Weaviate uses various metrics to score and rank search results based on their relevance to a query:
-
-### vector distance
-
-### BM25F score
-
-The BM25F score measures keyword relevance using term frequency and inverse document frequency:
-
-- **Term Frequency (TF)**
-  - How often query terms appear in the object
-  - Diminishing returns for repeated terms
-  - Normalized by field length
-
-- **Inverse Document Frequency (IDF)**
-  - How rare/common query terms are across all objects
-  - Rare terms score higher than common ones
-  - Logarithmically scaled
-
-The final BM25F score combines these factors using tunable parameters:
-- k1: Controls term frequency saturation (default: 1.2)
-- b: Controls field length normalization (default: 0.75)
-
-### Hybrid score
-
-The hybrid score combines vector distance and BM25F scores through fusion methods:
-
-**Relative Score Fusion (Default)**
-1. Normalizes both scores to 0-1 range
-2. Combines using alpha weight:
-   - `hybrid_score = alpha * vector_score + (1 - alpha) * bm25_score`
-3. Preserves relative differences between scores
-
-**Ranked Fusion**
-1. Assigns rank-based scores (N for top result)
-2. Combines using alpha weight:
-   - `hybrid_score = alpha * vector_rank + (1 - alpha) * bm25_rank`
-3. Only considers result ordering, not score magnitudes
-
-
+:::
 
 ## Glossary
 
