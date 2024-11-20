@@ -154,16 +154,15 @@ export default function Study() {
             <p>
               Vector databases are becoming core to the AI tech stack because
               they can handle a very large amount of unstructured data in an
-              efficient way. Weaviate is an AI-native vector database available
-              on the AWS marketplace that can scale to handle billions of
-              vectors and millions of tenants. Customers and community members
-              use Weaviate to power large-scale search and generative AI
-              applications like chatbots and agents. Weaviate’s extensible
-              architecture offers easy pluggability with the AI ecosystem,
-              empowering developers of all levels to build and iterate faster.
-              And flexible deployment options let teams abstract the burden of
-              hosting and managing their database, while still meeting
-              enterprise requirements for security and compliance.
+              efficient way. Weaviate is an AI-native vector database that can
+              scale to handle billions of vectors and millions of tenants.
+              Customers and community members use Weaviate to power large-scale
+              search and generative AI applications like chatbots and agents.
+              Weaviate’s extensible architecture offers easy pluggability with
+              the AI ecosystem, empowering developers of all levels to build and
+              iterate faster. And flexible deployment options let teams abstract
+              the burden of hosting and managing their database, while still
+              meeting enterprise requirements for security and compliance.
             </p>
           </div>
         </div>
