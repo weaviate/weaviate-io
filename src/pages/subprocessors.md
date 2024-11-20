@@ -1,14 +1,20 @@
 ---
 title: Weaviate List of Subprocessors
+hide_table_of_contents: true
 # image: og/service/_title.jpg
 ---
 
 import { MetaSEO } from '/src/theme/MetaSEO';
+import Header from '/src/components/Subprocessors/Header';
 
 <MetaSEO img="og/service/_title.jpg" />
 
+<Header/>
+<br></br>
 
-### **List of Subprocessors**
+
+
+<div className ="subprocessors">
 
 **Last Updated: May, 2024**
 
@@ -32,3 +38,5 @@ The following subprocessors are authorized by the Data Controller to process Per
 | Support | Sphere | Billing and tax automation | https://getsphere.com |
 
 The Data Controller acknowledges and agrees that the list of subprocessors may be updated from time to time by the Data Processor in accordance with the terms of the Principal Agreement.
+
+</div>
