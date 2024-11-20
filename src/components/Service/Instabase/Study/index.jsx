@@ -149,19 +149,7 @@ export default function Study() {
               insurance companies, transportation, retail, and public sector
               organizations.
             </p>
-            <h2>Why AWS</h2>
-            <p>
-              In 2017, the engineers at Instabase made the choice to build
-              entirely on Kubernetes. They have several microservices that run
-              on top of that and are deeply integrated with the{' '}
-              <Link to="https://aws.amazon.com/solutions/case-studies/instabase-ec2-case-study/">
-                AWS ecosystem
-              </Link>
-              , making use of products including AWS EC2, ECS, EKS, ELB, S3,
-              ElastiCache, CDN, and Shield. AWS allows Instabase to build a
-              highly-available, secure, scalable, and performant platform to
-              support even their largest customers.
-            </p>
+
             <h2>About Weaviate</h2>
             <p>
               Vector databases are becoming core to the AI tech stack because
