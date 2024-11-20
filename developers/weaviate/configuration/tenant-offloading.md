@@ -90,6 +90,28 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 | `AWS_SECRET_ACCESS_KEY` | The secret AWS access key for the desired account. |
 | `AWS_REGION` | (Optional) The AWS Region. If not provided, the module will try to parse `AWS_DEFAULT_REGION`. |
 
+## Querier service
+
+:::caution Experimental feature
+Available starting in `v1.28`. This is an experimental feature. Use with caution.
+:::
+
+Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+
+To use the Querier service, ...???
+
+### Querier service & search speeds
+
+Note that the Querier service performs searches directly on the offloaded data in the cloud (e.g. S3 bucket). As a result, search speeds will be slower than when the data is loaded onto the Weaviate instance.
+
+The search speed will depend on the size of the tenant, your cloud storage tier throughput, and the network speed.
+
+For searches that require low latency or high throughput, consider loading the tenant back onto the Weaviate instance.
+
+:::caution TODO
+@loicreyreaud I think this page could be the main place for showing how to configure the Querier service.
+:::
+
 ## Related pages
 - [Configure: Modules](./modules.md)
 - [How-to: Manage tenant states](../manage-data/tenant-states.mdx)

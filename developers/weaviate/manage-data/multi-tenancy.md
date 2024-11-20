@@ -569,6 +569,19 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
   </TabItem>
 </Tabs>
 
+## Query offloaded tenants
+
+:::caution Experimental feature
+Available starting in `v1.28`. This is an experimental feature. Use with caution.
+:::
+
+Offloaded tenants can be queried directly from the cloud using Weaviate's *Querier* service.
+
+:::caution TODO
+@loicreyreaud I think example code examples could go here
+Is it an experimental feature? We can remove this label obviously.
+:::
+
 ## Cross-references
 
 A cross-reference can be added from a multi-tenancy collection object to:

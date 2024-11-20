@@ -90,6 +90,22 @@ You can configure a collection to automatically activate (inactive and offloaded
 This can provide a balance between resource usage and performance. <br/>
 (See [How-to: Auto-activate tenants](../../manage-data/tenant-states.mdx#automatically-activate-tenants) for instructions and code examples.)
 
+### Query offloaded tenants
+
+:::caution Experimental feature
+Available starting in `v1.28`. This is an experimental feature. Use with caution.
+:::
+
+Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+
+This feature is useful for occasional queries on offloaded tenants that aren't frequently accessed, or require low latency / high throughput.
+
+See [How-to: Configure | Tenant Offloading](../../configuration/tenant-offloading.md#querier-module) for details of how to configure the Querier service, and [How-to: Manage Data | Multi-tenancy page](../../manage-data/multi-tenancy.md#query-offloaded-tenants) for query examples.
+
+:::caution TODO
+@loicreyreaud this page is just to let people know about the feature.
+:::
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

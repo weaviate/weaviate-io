@@ -271,6 +271,22 @@ Offloading tenants requires the relevant `offload-<storage>` module to be [enabl
 
 When a tenant is offloaded, the entire tenant shard is moved to cloud storage. This is useful for long-term storage of tenants that are not frequently accessed. Offloaded tenants are not available for read or write operations until they are loaded back into the cluster.
 
+### Querier service
+
+:::caution Experimental feature
+Available starting in `v1.28`. This is an experimental feature. Use with caution.
+:::
+
+Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+
+The Querier service is a separate service that runs alongside Weaviate, for example as a separate container in a Kubernetes pod. The Querier service queries the offloaded tenant data in cloud storage and returns the results to the Weaviate instance.
+
+... more details on how the Querier service works ...
+
+:::caution TODO
+@loicreyreaud this is a "concepts" page, so might be good for explaining how the Querier service works.
+:::
+
 ### Backups
 
 :::caution Backups do not include inactive or offloaded tenants
