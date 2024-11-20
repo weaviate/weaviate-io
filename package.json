@@ -29,6 +29,7 @@
     "@react-google-maps/api": "^2.19.3",
     "@scalar/docusaurus": "^0.2.49",
     "@types/gtag.js": "^0.0.18",
+    "ag-grid-react": "^32.3.3",
     "clipboard": "^2.0.11",
     "clsx": "^1.2.1",
     "csv-parser": "^3.0.0",

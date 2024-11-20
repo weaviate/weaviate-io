@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
 
+import BenchmarkGrid from '@site/src/components/Documentation/BenchmarkGrid';
+
 # ANN Benchmark
 
 This vector database benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
@@ -108,9 +110,14 @@ These are the results for each dataset:
   }}
 />
 
-import AnnSift128 from '/_includes/ann-sift-128-euclidean.mdx';
-
-<AnnSift128/>
+<Tabs groupId="limits">
+    <TabItem value="10" label="Limit 10">
+        <BenchmarkGrid datasetLabel="sift128Euclidean_10" />
+    </TabItem>
+    <TabItem value="100" label="Limit 100">
+        <BenchmarkGrid datasetLabel="sift128Euclidean_100" />
+    </TabItem>
+</Tabs>
 
 import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
 
@@ -139,9 +146,14 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
   }}
 />
 
-import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
-
-<AnnDBPedia/>
+<Tabs groupId="limits">
+    <TabItem value="10" label="Limit 10">
+        <BenchmarkGrid datasetLabel="dbpediaOpenai_10" />
+    </TabItem>
+    <TabItem value="100" label="Limit 100">
+        <BenchmarkGrid datasetLabel="dbpediaOpenai_100" />
+    </TabItem>
+</Tabs>
 
 <AnnReadResultsTable/>
 
@@ -165,9 +177,14 @@ import AnnDBPedia from '/_includes/ann-dbpedia-openai-1000k-angular.mdx';
   }}
 />
 
-import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1.5-angular.mdx';
-
-<AnnSnowflakeMTEB/>
+<Tabs groupId="limits">
+    <TabItem value="10" label="Limit 10">
+        <BenchmarkGrid datasetLabel="msmarcoSnowflake_10" />
+    </TabItem>
+    <TabItem value="100" label="Limit 100">
+        <BenchmarkGrid datasetLabel="msmarcoSnowflake_100" />
+    </TabItem>
+</Tabs>
 
 <AnnReadResultsTable/>
 
@@ -192,9 +209,14 @@ import AnnSnowflakeMTEB from '/_includes/ann-snowflake-msmarco-arctic-embed-m-v1
 />
 
 
-import AnnSphereDPR from '/_includes/ann-sphere-10M-meta-dpr.mdx';
-
-<AnnSphereDPR/>
+<Tabs groupId="limits">
+    <TabItem value="10" label="Limit 10">
+        <BenchmarkGrid datasetLabel="sphereDpr_10" />
+    </TabItem>
+    <TabItem value="100" label="Limit 100">
+        <BenchmarkGrid datasetLabel="sphereDpr_100" />
+    </TabItem>
+</Tabs>
 
 <AnnReadResultsTable/>
 
