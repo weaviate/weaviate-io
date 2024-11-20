@@ -1,6 +1,6 @@
 [
   {
-    "stars": 41,
+    "stars": 54,
     "title": "BookRecs",
     "description": "Book Recommendation System",
     "demoLink": "https://bookrecs.weaviate.io/",
@@ -9,7 +9,7 @@
     "githubLink": "https://github.com/weaviate/BookRecs/"
   },
   {
-    "stars": 4900,
+    "stars": 6300,
     "title": "Verba",
     "description": "The Golden RAGtriever",
     "demoLink": "https://verba.weaviate.io",
@@ -19,7 +19,7 @@
     "githubLink": "https://github.com/weaviate/Verba"
   },
   {
-    "stars": 69,
+    "stars": 79,
     "title": "Awesome-moviate",
     "description": "A Movie Search Engine",
     "demoLink": "https://awesome-moviate.weaviate.io/",
@@ -28,7 +28,7 @@
     "githubLink": "https://github.com/weaviate-tutorials/awesome-moviate"
   },
   {
-    "stars": 153,
+    "stars": 163,
     "title": "Heathsearch",
     "description": "Generative AI in Healthcare",
     "demoLink": "https://healthsearch.weaviate.io/",
@@ -37,7 +37,16 @@
     "githubLink": "https://github.com/weaviate/healthsearch-demo"
   },
   {
-    "stars": 44,
+    "stars": 12,
+    "title": "Wealingo",
+    "description": "A personalized language-learning app",
+    "demoLink": "http://wealingo.weaviate.io/",
+    "details": "A language-learning app built using Weaviate’s vector database and Confluent Cloud, a fully managed streaming data service based on Apache Kafka. See how real-time data and vector embeddings enable personalized learning by continuously adapting to user performance.",
+    "blogLink": "https://weaviate.io/blog/wealingo-demo",
+    "githubLink": "https://github.com/weaviate/wealingo-demo"
+  },
+  {
+    "stars": 46,
     "title": "Generator9000",
     "description": "Generate Synthetic Multimodal Data",
     "demoLink": "https://gen9000.co",
@@ -46,7 +55,7 @@
     "githubLink": "https://github.com/weaviate/generator9000"
   },
   {
-    "stars": 45,
+    "stars": 52,
     "title": "Magic Chat",
     "description": "The Generative Gathering",
     "demoLink": "https://weaviate-magic-chat.streamlit.app/",
@@ -54,7 +63,7 @@
     "githubLink": "https://github.com/weaviate/st-weaviate-connection/tree/main"
   },
   {
-    "stars": 8,
+    "stars": 9,
     "title": "QuoteFinder",
     "description": "Find a Quote to Support Any Argument",
     "demoLink": "https://quotefinder.weaviate.io/",
