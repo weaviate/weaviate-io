@@ -576,7 +576,8 @@ client.collections.create(
                 Multi2VecField(name="title", weight=0.1)
             ],
             # Further options
-            # model="jina-clip-v2"
+            # model="jina-clip-v2",
+            # dimensions=512,  # Only applicable for some models (e.g. `jina-clip-v2`)
         )
     ],
     # highlight-end
