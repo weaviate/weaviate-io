@@ -27,6 +27,11 @@ Weaviate's Backup feature is designed to work natively with cloud technology. Mo
 * Zero downtime & minimal impact for your users when backups are running
 * Easy Migration to new environments
 
+:::caution Warning on restoring backups from older versions:
+If you’re restoring a backup from an older version of Weaviate (pre v1.23.13), please **update to version 1.23.13** or higher.
+Versions prior to 1.23.13 restores the schema, however encouters a bug while restoring the backup of your data.
+:::
+
 :::note
 _Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`_.
 :::
@@ -409,6 +414,11 @@ This operation is particularly useful if you have started a backup by accident, 
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
 
 Note that a restore fails if any of the collections already exist on this instance.
+
+:::caution Warning on restoring backups from older versions:
+If you’re restoring a backup from an older version of Weaviate (pre v1.23.13), please **update to version 1.23.13** or higher.
+Versions prior to 1.23.13 restores the schema, however encouters a bug while restoring the backup of your data.
+:::
 
 #### Method and URL
 
