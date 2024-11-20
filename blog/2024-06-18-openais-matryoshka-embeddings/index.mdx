@@ -34,6 +34,8 @@ Retrieval performance over representation size for Matryoshka embeddings. (This 
 
 The magic behind how MRL is carried out is all in the loss function which is optimized when training these models! If previously the loss function was **L**, for MRL we break down the loss function into the sum of the losses on individual vector dimension ranges: `Loss_Total =  L(upto 8d) + L(upto 16d) + L(upto 32d) + ... + L(upto 2048d)`. With this new nested loss function there is an incentive for the model to capture information in each sub-section of the vector.
 
+![Matryoshka representation learning formula](./img/Matryoshka_formula.png)
+
 After modifying the loss you get these truncatable vectors for free wihtout any additional costs - this works on almost all loss functions and pre-existing models can be finetuned to output MRL vectors! This means that MRL is very easy to adopt and apply to pretrained models.
 
 ## Detailed Analysis of Matryoshka Embeddings
