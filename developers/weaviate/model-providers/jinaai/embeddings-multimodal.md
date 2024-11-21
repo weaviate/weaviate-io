@@ -1,117 +1,68 @@
 ---
 title: Multimodal Embeddings
-sidebar_position: 30
-image: og/docs/integrations/provider_integrations_imagebind.jpg
-# tags: ['model providers', 'imagebind', 'embeddings']
+sidebar_position: 25
+image: og/docs/integrations/provider_integrations_jinaai.jpg
+# tags: ['model providers', 'jinaai', 'embeddings']
 ---
 
-# Locally Hosted ImageBind Embeddings + Weaviate
+# Jina AI Multimodal Embeddings with Weaviate
 
+:::info Added in `1.25.26`, `1.26.11` and `v1.27.4`
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyConnect from '!!raw-loader!../_includes/provider.connect.local.py';
-import TSConnect from '!!raw-loader!../_includes/provider.connect.local.ts';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with the Meta ImageBind library allows you to access its capabilities directly from Weaviate. The ImageBind model supports multiple modalities (text, image, audio, video, thermal, IMU and depth).
+Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use the ImageBind integration, and [configure the Weaviate instance](#weaviate-configuration) with a model image, and Weaviate will generate embeddings for various operations using the specified model in the ImageBind inference container. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
-![Embedding integration illustration](../_includes/integration_imagebind_embedding.png)
+![Embedding integration illustration](../_includes/integration_jinaai_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the ImageBind multimodal vectorizer integration (`multi2vec-bind`) module.
+Your Weaviate instance must be configured with the Jina AI multimodal vectorizer integration (`multi2vec-jinaai`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is not available for Weaviate Cloud (WCD) serverless instances, as it requires spinning up a container with the ImageBind model.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless instances.
 
 </details>
 
-#### Enable the integration module
+<details>
+  <summary>For self-hosted users</summary>
 
 - Check the [cluster metadata](../../config-refs/meta.md) to verify if the module is enabled.
 - Follow the [how-to configure modules](../../configuration/modules.md) guide to enable the module in Weaviate.
 
-#### Configure the integration
+</details>
 
-To use this integration, you must configure the container image of the ImageBind model, and the inference endpoint of the containerized model.
+### API credentials
 
-The following example shows how to configure the ImageBind integration in Weaviate:
+You must provide a valid Jina AI API key to Weaviate for this integration. Go to [Jina AI](https://jina.ai/embeddings/) to sign up and obtain an API key.
 
-<Tabs groupId="languages">
-<TabItem value="docker" label="Docker">
+Provide the API key to Weaviate using one of the following methods:
 
-#### Docker Option 1: Use a pre-configured `docker-compose.yml` file
-
-Follow the instructions on the [Weaviate Docker installation configurator](../../installation/docker-compose.md#configurator) to download a pre-configured `docker-compose.yml` file with a selected model
-<br/>
-
-#### Docker Option 2: Add the configuration manually
-
-Alternatively, add the configuration to the `docker-compose.yml` file manually as in the example below.
-
-```yaml
-services:
-  weaviate:
-    # Other Weaviate configuration
-    environment:
-      BIND_INFERENCE_API: http://multi2vec-bind:8080  # Set the inference API endpoint
-  multi2vec-bind:  # Set the name of the inference container
-    mem_limit: 12g
-    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
-    environment:
-      ENABLE_CUDA: 0  # Set to 1 to enable
-```
-
-- `BIND_INFERENCE_API` environment variable sets the inference API endpoint
-- `multi2vec-bind` is the name of the inference container
-- `image` is the container image
-- `ENABLE_CUDA` environment variable enables GPU usage
-
-</TabItem>
-<TabItem value="k8s" label="Kubernetes">
-
-Configure the ImageBind integration in Weaviate by adding or updating the `multi2vec-bind` module in the `modules` section of the Weaviate Helm chart values file. For example, modify the `values.yaml` file as follows:
-
-```yaml
-modules:
-
-  multi2vec-bind:
-
-    enabled: true
-    tag: imagebind
-    repo: semitechnologies/multi2vec-bind
-    registry: cr.weaviate.io
-    envconfig:
-      enable_cuda: true
-```
-
-See the [Weaviate Helm chart](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml) for an example of the `values.yaml` file including more configuration options.
-
-</TabItem>
-</Tabs>
-
-### Credentials
-
-As this integration runs a local container with the ImageBind model, no additional credentials (e.g. API key) are required. Connect to Weaviate as usual, such as in the examples below.
+- Set the `JINAAI_APIKEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START BasicInstantiation"
-      endMarker="# END BasicInstantiation"
+      startMarker="# START JinaAIInstantiation"
+      endMarker="# END JinaAIInstantiation"
       language="py"
     />
   </TabItem>
@@ -119,8 +70,8 @@ As this integration runs a local container with the ImageBind model, no addition
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START BasicInstantiation"
-      endMarker="// END BasicInstantiation"
+      startMarker="// START JinaAIInstantiation"
+      endMarker="// END JinaAIInstantiation"
       language="ts"
     />
   </TabItem>
@@ -129,14 +80,14 @@ As this integration runs a local container with the ImageBind model, no addition
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use an ImageBind embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Jina AI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerBind"
-      endMarker="# END BasicMMVectorizerBind"
+      startMarker="# START BasicMMVectorizerJinaAI"
+      endMarker="# END BasicMMVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -144,15 +95,40 @@ As this integration runs a local container with the ImageBind model, no addition
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerBind"
-      endMarker="// END BasicMMVectorizerBind"
+      startMarker="// START BasicMMVectorizerJinaAI"
+      endMarker="// END BasicMMVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-There is only one ImageBind model available.
+### Select a model
+
+You can specify one of the [available models](#available-models) for the vectorizer to use, as shown in the following configuration example.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MMVectorizerJinaCustomModel"
+      endMarker="# END MMVectorizerJinaCustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START MMVectorizerJinaCustomModel"
+      endMarker="// END MMVectorizerJinaCustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
@@ -165,14 +141,14 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The ImageBind vectorizer supports multiple modalities (text, image, audio, video, thermal, IMU and depth). One or more of these can be specified in the vectorizer configuration as shown.
+The following examples show how to configure Jina AI-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullMMVectorizerBind"
-      endMarker="# END FullMMVectorizerBind"
+      startMarker="# START FullMMVectorizerJinaAI"
+      endMarker="# END FullMMVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -180,17 +156,23 @@ The ImageBind vectorizer supports multiple modalities (text, image, audio, video
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullMMVectorizerBind"
-      endMarker="// END FullMMVectorizerBind"
+      startMarker="// START FullMMVectorizerJinaAI"
+      endMarker="// END FullMMVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
+### Vectorizer parameters
+
+- `model`: The model name.
+- `dimensions`: The number of dimensions for the model.
+  - Note that [not all models](#available-models) support this parameter.
+
 ## Data import
 
-After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
+After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
 
@@ -220,9 +202,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified ImageBind model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Jina AI model.
 
-![Embedding integration at search illustration](../_includes/integration_imagebind_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_jinaai_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -314,15 +296,22 @@ The query below returns the `n` most similar objects to the input image from the
 
 </Tabs>
 
-You can perform similar searches for other media types such as audio, video, thermal, IMU, and depth, by using an equivalent search query for the respective media type.
-
 ## References
 
 ### Available models
 
-There is only one ImageBind model available.
+- `jina-clip-v2`
+    - This model is a multilingual, multimodal model using [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147).
+    - It will accept a `dimensions` parameter, which can be any integer between (and including) 64 and 1024. The default value is 1024.
+- `jina-clip-v1`
+    - This model will always return a 768-dimensional embedding.
 
 ## Further resources
+
+### Other integrations
+
+- [Jina AI text embedding models + Weaviate](./embeddings.md).
+- [Jina AI reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
@@ -331,15 +320,9 @@ Once the integrations are configured at the collection, the data management and 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
-### Model licenses
-
-Review the license for the model on the [ImageBind page](https://github.com/facebookresearch/ImageBind).
-
-It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
-
 ### External resources
 
-- [ImageBind GitHub page](https://github.com/facebookresearch/ImageBind)
+- Jina AI [Embeddings API documentation](https://jina.ai/embeddings/)
 
 ## Questions and feedback
 

@@ -246,7 +246,8 @@ In other words, when you have `n` search results, the generative model generates
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md).
+- [Cohere text embedding models + Weaviate](./embeddings.md).
+- [Cohere multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 - [Cohere reranker models + Weaviate](./reranker.md).
 
 ### Code examples
