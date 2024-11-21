@@ -291,9 +291,13 @@ const siteRedirects = {
             to: '/blog/weaviate-1-15-release',
             from: '/blog/2022/09/Weaviate-release-1-15',
         },
+
         {
-            to: '/blog/why-is-vector-search-so-fast',
-            from: '/blog/2022/09/Why-is-Vector-Search-so-fast',
+            to: '/blog/vector-search-explained',
+            from: [
+                '/blog/why-is-vector-search-so-fast',
+                '/blog/2022/09/Why-is-Vector-Search-so-fast',
+            ],
         },
         {
             to: '/blog/distance-metrics-in-vector-search',
