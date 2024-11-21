@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_jinaai.jpg
 
 # Jina AI Multimodal Embeddings with Weaviate
 
-:::info Added in `1.25.26`, `1.26.11` and `v1.27.4`
+:::info Added in `1.25.26`, `1.26.11` and `v1.27.5`
 :::
 
 import Tabs from '@theme/Tabs';
