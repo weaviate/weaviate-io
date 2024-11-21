@@ -17,11 +17,6 @@ import BenchmarkGrid from '@site/src/components/Documentation/BenchmarkGrid';
 
 This vector database benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
 
-:::note
-This is not a comparative benchmark that runs Weaviate against competing vector database solutions. <br/><br/>
-To discuss trade-offs with other solutions, [contact sales](https://weaviate.io/pricing#contact-sales).
-:::
-
 To make the most of this vector database benchmark, you can look at it from different perspectives:
 
 - **The overall performance** – Review the [benchmark results](#benchmark-results) to draw conclusions about what to expect from Weaviate in a production setting.
@@ -98,7 +93,38 @@ This section contains datasets modeled after the [ANN Benchmarks](https://github
 These are the results for each dataset:
 
 <Tabs groupId="datasets">
-<TabItem value="1" label="SIFT1M">
+<TabItem value="1" label="DBPedia OpenAI">
+
+#### QPS vs Recall for DBPedia OpenAI
+
+<ThemedImage
+  alt="DBPedia OpenAI Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-light.svg'),
+    dark: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-dark.svg'),
+  }}
+/>
+
+<Tabs groupId="limits">
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="dbpediaOpenai_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="dbpediaOpenai_100" />
+  </TabItem>
+</Tabs>
+
+<AnnReadResultsTable/>
+
+#### Recommended configuration for DBPedia OpenAI ada002
+<RecommendedConfig/>
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 256 | 16 | 96 | 97.24% | 5639 | 2.80ms | 4.43ms |
+
+</TabItem>
+<TabItem value="2" label="SIFT1M">
 
 #### QPS vs Recall for SIFT1M
 
@@ -111,12 +137,12 @@ These are the results for each dataset:
 />
 
 <Tabs groupId="limits">
-    <TabItem value="10" label="Limit 10">
-        <BenchmarkGrid datasetLabel="sift128Euclidean_10" />
-    </TabItem>
-    <TabItem value="100" label="Limit 100">
-        <BenchmarkGrid datasetLabel="sift128Euclidean_100" />
-    </TabItem>
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="sift128_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="sift128_100" />
+  </TabItem>
 </Tabs>
 
 import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
@@ -134,38 +160,7 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 
 
 </TabItem>
-<TabItem value="10" label="DBPedia OpenAI">
-
-#### QPS vs Recall for DBPedia OpenAI
-
-<ThemedImage
-  alt="DBPedia OpenAI Benchmark results"
-  sources={{
-    light: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-light.svg'),
-    dark: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-dark.svg'),
-  }}
-/>
-
-<Tabs groupId="limits">
-    <TabItem value="10" label="Limit 10">
-        <BenchmarkGrid datasetLabel="dbpediaOpenai_10" />
-    </TabItem>
-    <TabItem value="100" label="Limit 100">
-        <BenchmarkGrid datasetLabel="dbpediaOpenai_100" />
-    </TabItem>
-</Tabs>
-
-<AnnReadResultsTable/>
-
-#### Recommended configuration for DBPedia OpenAI ada002
-<RecommendedConfig/>
-
-| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 256 | 16 | 96 | 97.24% | 5639 | 2.80ms | 4.43ms |
-
-</TabItem>
-<TabItem value="100" label="MSMARCO Snowflake">
+<TabItem value="3" label="MSMARCO Snowflake">
 
 #### QPS vs Recall for MSMARCO Snowflake
 
@@ -178,12 +173,12 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 />
 
 <Tabs groupId="limits">
-    <TabItem value="10" label="Limit 10">
-        <BenchmarkGrid datasetLabel="msmarcoSnowflake_10" />
-    </TabItem>
-    <TabItem value="100" label="Limit 100">
-        <BenchmarkGrid datasetLabel="msmarcoSnowflake_100" />
-    </TabItem>
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="msmarcoSnowflake_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="msmarcoSnowflake_100" />
+  </TabItem>
 </Tabs>
 
 <AnnReadResultsTable/>
@@ -196,7 +191,7 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 | 384 | 32 | 48 | 97.36% | 7363 | 2.15ms | 3.69ms |
 
 </TabItem>
-<TabItem value="1000" label="Sphere DPR">
+<TabItem value="4" label="Sphere DPR">
 
 #### QPS vs Recall for Sphere DPR
 
@@ -208,14 +203,13 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
   }}
 />
 
-
 <Tabs groupId="limits">
-    <TabItem value="10" label="Limit 10">
-        <BenchmarkGrid datasetLabel="sphereDpr_10" />
-    </TabItem>
-    <TabItem value="100" label="Limit 100">
-        <BenchmarkGrid datasetLabel="sphereDpr_100" />
-    </TabItem>
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="sphereDpr_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="sphereDpr_100" />
+  </TabItem>
 </Tabs>
 
 <AnnReadResultsTable/>
@@ -230,9 +224,6 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 
 </TabItem>
 </Tabs>
-
-
-
 
 
 ## Benchmark Setup

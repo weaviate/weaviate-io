@@ -1,5 +1,5 @@
 export const benchmarkData = {
-    "sift128Euclidean_10": [
+    "sift128_10": [
         { "efConstruction": 128, "maxConnections": 16, "ef": 24, "recall": 85.81, "qps": 18347, "meanLatency": 0.86, "p99Latency": 1.49, "importTime": 55 },
         { "efConstruction": 256, "maxConnections": 16, "ef": 16, "recall": 80.32, "qps": 18142, "meanLatency": 0.87, "p99Latency": 1.53, "importTime": 91 },
         { "efConstruction": 384, "maxConnections": 16, "ef": 24, "recall": 86.94, "qps": 17633, "meanLatency": 0.89, "p99Latency": 1.61, "importTime": 129 },
@@ -61,7 +61,7 @@ export const benchmarkData = {
         { "efConstruction": 256, "maxConnections": 32, "ef": 512, "recall": 99.94, "qps": 3526, "meanLatency": 4.49, "p99Latency": 6.81, "importTime": 106 },
         { "efConstruction": 384, "maxConnections": 32, "ef": 512, "recall": 99.95, "qps": 3289, "meanLatency": 4.81, "p99Latency": 8.04, "importTime": 162 }, 
     ],
-    "sift128Euclidean_100": [
+    "sift128_100": [
         { "efConstruction": 128, "maxConnections": 16, "ef": 64, "recall": 91.80, "qps": 5512, "meanLatency": 2.86, "p99Latency": 8.30, "importTime": 55 },
         { "efConstruction": 128, "maxConnections": 16, "ef": 48, "recall": 91.80, "qps": 5454, "meanLatency": 2.88, "p99Latency": 9.03, "importTime": 55 },
         { "efConstruction": 256, "maxConnections": 16, "ef": 96, "recall": 92.50, "qps": 5447, "meanLatency": 2.89, "p99Latency": 8.66, "importTime": 91 },
