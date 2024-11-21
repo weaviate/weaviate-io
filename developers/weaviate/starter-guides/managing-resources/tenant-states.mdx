@@ -92,19 +92,28 @@ This can provide a balance between resource usage and performance. <br/>
 
 ### Query offloaded tenants
 
-:::caution Experimental feature
-Available starting in `v1.28`. This is an experimental feature. Use with caution.
+You can query offloaded tenants in 2 fashions.
+1. Query offloaded tenants via a weaviate cluster.
+2. Query offloaded tenants via the querier service (New in 1.28 only).
+
+#### Using the querier service
+
+:::caution Limited search support
+Currently the search feature set is limited. The querier currently supports:
+- Reading objects by id
+- Vector search
 :::
 
-Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+Using the querier service is particulary useful in multi tenants read heavy use cases where the load can be varrying.
+It allows cost saving by:
+- Right sizing a core weaviate cluster for metadata and data write.
+- Reducing storage cost by moving the data source of truth from disk to S3.
+- Reducing compute cost allocated to the read path by allowing scaling up/down the querier service.
 
-This feature is useful for occasional queries on offloaded tenants that aren't frequently accessed, or require low latency / high throughput.
+If your multi-tenant application has very large tenants or is requires very low latency, we would advise against
+offloading tenants as in these cases the round trips to S3 storage can induce high latency.
 
 See [How-to: Configure | Tenant Offloading](../../configuration/tenant-offloading.md#querier-module) for details of how to configure the Querier service, and [How-to: Manage Data | Multi-tenancy page](../../manage-data/multi-tenancy.md#query-offloaded-tenants) for query examples.
-
-:::caution TODO
-@loicreyreaud this page is just to let people know about the feature.
-:::
 
 ## Questions and feedback
 

@@ -96,21 +96,50 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 Available starting in `v1.28`. This is an experimental feature. Use with caution.
 :::
 
-Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the
+Weaviate instance.
 
-To use the Querier service, ...???
+The querier service is currently supported in our helm chart deployment. To enable it you'll need the following
+* Tenant offloading configured and an S3 bucket ready to receive the data
+* Permissions for weaviate to read/write to that S3 bucket
+
+Once this is available, you can set the following values in the helm chart to enable the deployment of the querier
+service. Note that you'll need client change bellow to use it, so there's no impact deploying the querier service on the
+core weaviate cluster.
+
+```yaml
+experimental:
+    querier:
+        enabled: true
+        replicas: 3
+        env:
+            - name: AWS_ACCESS_KEY
+              value: 'aws_access_key'
+            - name: AWS_SECRET_KEY
+              value: 'aws_secret_key'
+            - name: OFFLOAD_S3_ENDPOINT
+              value: 'http://S3_endpoint:1234'
+```
+
+These values will configure a new k8s service in which the configured replicas will register themselves. This service
+listen for grpc request on port 7071.
+
+In order to send search requests to the querier, you need to change your client code to call this service in particular.
+We recommend instantiating a second client in your code and to use it for search requests. For example in python v4
+client
+
+```python
+<TODO python example with two clients>
+```
 
 ### Querier service & search speeds
 
-Note that the Querier service performs searches directly on the offloaded data in the cloud (e.g. S3 bucket). As a result, search speeds will be slower than when the data is loaded onto the Weaviate instance.
+Note that the Querier service performs searches directly on the offloaded data in the cloud (e.g. S3 bucket). As a
+result, search speeds will be slower than when the data is loaded onto the Weaviate instance.
 
 The search speed will depend on the size of the tenant, your cloud storage tier throughput, and the network speed.
 
 For searches that require low latency or high throughput, consider loading the tenant back onto the Weaviate instance.
-
-:::caution TODO
-@loicreyreaud I think this page could be the main place for showing how to configure the Querier service.
-:::
 
 ## Related pages
 - [Configure: Modules](./modules.md)

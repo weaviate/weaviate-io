@@ -277,15 +277,47 @@ When a tenant is offloaded, the entire tenant shard is moved to cloud storage. T
 Available starting in `v1.28`. This is an experimental feature. Use with caution.
 :::
 
-Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the Weaviate instance.
+Offloaded tenant data can be queried using the *Querier* service without loading the tenant back directly onto the
+Weaviate instance. The Querier service is a separate service that runs alongside Weaviate, for example as a separate
+container in a Kubernetes pod. The Querier service queries the offloaded tenant data in cloud storage and returns the
+results to the Weaviate instance.
 
-The Querier service is a separate service that runs alongside Weaviate, for example as a separate container in a Kubernetes pod. The Querier service queries the offloaded tenant data in cloud storage and returns the results to the Weaviate instance.
+The main advantage of using the querier service is in multi tenants read heavy use cases where the load can be varrying.
+It permits sizing the core weaviate instance for write and metadata only while the reads are handled via the querier
+service, which can scale up and down as necessary. It can also help reduce storage costs, as data is stored on S3 and no
+longer kept on the core weaviate disks. However keep in mind that the querier node will still have to send requests to
+S3 to download data and serve it. If you have a write heavy workload this means the querier service will have to send
+many requests to S3 and it might cost you more than handling the reads in weaviate core and storing data on disks.
 
-... more details on how the Querier service works ...
+#### Querier cache management
 
-:::caution TODO
-@loicreyreaud this is a "concepts" page, so might be good for explaining how the Querier service works.
-:::
+The querier service directly contacts S3 when a requests for an offloaded tenant comes in and data is not present
+locally. When the querier downloads data from S3 it's cached on the local disk and managed internally with a least
+recently used cache. For more details on how an LRU cache works in practice, see [this
+page](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU).
+
+The cache needs to be refreshed when the tenant is update on weaviate core and offloaded again. When a request comes in
+and the querier has a local cache available for that tenant, it will first call weaviate core to verify if the tenant
+was updated and if it was the querier will update it's cached version of that tenant with S3.
+
+Because the querier node queries weaviate core with strong consistency, data from a tenant that was just offloaded
+should be immediately available via the querier.
+
+#### Querier load balancing
+
+A weaviate deployment can have any number of querier nodes running, and these nodes can handle requests for any
+offloaded tenant. Currently our only load balancing strategy is to use a service in front that distributes the requests
+to the querier node. Our helm chart supports having a separate kubernetes service that will round robin the requests.
+
+In practice this means that subsequent requests for the same tenant can hit any different querier node that might have a
+cache miss and have to load the data from S3.
+
+On the opposite side this avoid having "hot spots" where one querier node is struggling to handle the load for one
+tenant, and instead the amount of querier node can be increased if the load is too much for the current deployment.
+
+If you are not deploying with kubernetes and our helm chart you have to provide you own load balancing software in front
+of the querier node(s). For testing locally where you might be using docker compose, you can deploy only a single
+querier node and directly query it.
 
 ### Backups
 
