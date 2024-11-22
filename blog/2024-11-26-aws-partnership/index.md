@@ -20,11 +20,11 @@ Establishing our partnerships on a solid foundation required us to invest upfron
 
 ## Building on Solid Ground
 
-The Weaviate core database runs natively on Amazon Kubernetes Service (AKS), providing enterprise-grade scalability and deployment flexibility. By leveraging Kubernetes, we can cater to our customers' needs, whether they require a serverless, multi-tenant solution managed by us or an enterprise-grade, single-tenant option. In the latter case, customers can use our managed services or deploy the same software directly within their environment, receiving enterprise support from Weaviate.
+The Weaviate core database runs natively on Amazon Elastic Kubernetes Service (EKS), providing enterprise-grade scalability and deployment flexibility. By leveraging Kubernetes, we can cater to our customers' needs, whether they require a serverless, multi-tenant solution managed by us or an enterprise-grade, single-tenant option. In the latter case, customers can use our managed services or deploy the same software directly within their environment, receiving enterprise support from Weaviate.
 
 We have expanded our technical integration portfolio to include native support for both Amazon SageMaker, aimed at data engineers building applications from the ground up, and Amazon Bedrock, which caters to data scientists who prefer a straightforward, no-fuss approach to deploying generative AI applications with their chosen foundation models. This expansion continues our commitment to supporting all user personas we target.
 
-Most of the Generative AI buzz is over GPUs and model training, but many production applications run fine on commodity hardware. With cost performance becoming a bigger and bigger issue for production-scale deployments, we are seeing a trend toward AWS Graviton-based deployments. Today, a handful of customers happily run their Knowledge Bases and Q\&A apps running fully on gravitation SKUs. 
+Most of the Generative AI buzz is over GPUs and model training, but many production applications run fine on commodity hardware. With cost performance becoming a bigger and bigger issue for production-scale deployments, we are seeing a trend toward AWS Graviton-based deployments. Today, a handful of customers happily run their Knowledge Bases and Q&A apps running fully on gravitation SKUs. 
 
 ## Co-Marketing Success
 
