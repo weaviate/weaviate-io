@@ -180,7 +180,8 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Other integrations
 
-- [Jina AI embedding models + Weaviate](./embeddings.md).
+- [Jina AI text embedding models + Weaviate](./embeddings.md)
+- [Jina AI multimodal embedding models + Weaviate](./embeddings-multimodal.md)
 
 ### Code examples
 

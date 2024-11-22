@@ -288,8 +288,9 @@ The following models are available, but deprecated:
 
 ### Other integrations
 
-- [Cohere generative models + Weaviate](./generative.md).
-- [Cohere reranker models + Weaviate](./reranker.md).
+- [Cohere multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
+- [Cohere generative models + Weaviate](./generative.md)
+- [Cohere reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 

@@ -1,0 +1,95 @@
+---
+title: Using backend web frameworks
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!./_snippets/20_backend.js';
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Building backend web frameworks
+
+This approach involves having two separate tools. One to build you server application; ideally a backend framework and another to build your client application. For this example, we will be using [Express.js](https://expressjs.com/en/starter/hello-world.html)
+
+### <i class="fa-solid fa-chalkboard"></i> Building a server
+
+#### 1. Initialize a Node.js application
+
+To build a server, we will use Express as an example.
+
+In a new directory, run 
+```bash 
+npm init
+```
+#### 2. Install relevant project dependencies including the weaviate-client
+
+```bash
+npm install express dotenv weaviate
+```
+
+#### 2. Create your project credentials including..
+- Your Weaviate cluster URL and API key
+- Your Cohere API key
+
+and add them to your `.env` file.
+
+
+ <TabItem value="js" label=".env">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START .env"
+      endMarker="// END .env"
+      language="js"
+    />
+  </TabItem>
+
+ok.. 
+
+#### 2. Initialize Weaviate 
+Paste the following in `config/weaviate.js` 
+
+ <TabItem value="js" label="weaviate.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START weaviate.js"
+      endMarker="// END weaviate.js"
+      language="js"
+    />
+  </TabItem>
+
+Ok..
+
+#### 2. Create your server
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START app.js"
+      endMarker="// END app.js"
+      language="js"
+    />
+  </TabItem>
+
+ok.. 
+
+
+#### 5. Run your server with 
+In your terminal type 
+```bash
+node app.js
+```
+
+Your server should be running on `localhost:3000`
+
+
+
+### <i class="fa-solid fa-chalkboard"></i> Adding a client application
+
+With our server built, we can now make a call from a client application. We'll can create a basic client application with HTML and Javascript.
+
+
+
+Alternatively, in [Hoppscotch](https://hoppscotch.io/), 
+
+<!-- ADD stuff -->
