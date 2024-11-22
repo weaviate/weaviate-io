@@ -8,14 +8,14 @@ image: og/docs/benchmarks.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+import BenchmarkGrid from '@site/src/components/Documentation/BenchmarkGrid';
+
 # ANN Benchmark
 
 This vector database benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
-
-:::note
-This is not a comparative benchmark that runs Weaviate against competing vector database solutions. <br/><br/>
-To discuss trade-offs with other solutions, [contact sales](https://weaviate.io/pricing#contact-sales).
-:::
 
 To make the most of this vector database benchmark, you can look at it from different perspectives:
 
@@ -48,11 +48,11 @@ Add a note about how many runs there were. Or, if there's only one run because o
 
 For each set of parameters, we've run 10,000 requests, and we measured the following metrics:
 
-- The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the ground truths specified in each dataset.
+- The **Recall@10** and **Recall@100** - by comparing Weaviate's results to the ground truths specified in each dataset.
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
   achieve with each configuration.
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests.
-- **P99 Latency** - 99% of all requests (9,900 out of 10,000) have a latency that is lower than or equal to this number – this shows how fast
+- **P99 Latency** - 99% of all requests (9,900 out of 10,000) have a latency that is lower than or equal to this number
 - **Import time** - Since varying build parameters has an effect on import time, the import time is also included.
 
 By request, we mean:
@@ -84,24 +84,66 @@ This section contains datasets modeled after the [ANN Benchmarks](https://github
 
 | **Dataset** | **Number of Objects** | **Vector Dimensions** | **[Distance metric](https://weaviate.io/blog/distance-metrics-in-vector-search)** | **Use case** |
 | --- | --- | --- | --- | --- |
-| [SIFT1M](http://corpus-texmex.irisa.fr/) | 1 M | 128 | Euclidean | This dataset reflects a common use case with a small number of objects. |
-| [Glove-25](https://nlp.stanford.edu/projects/glove/) | 1.28 M | 25 | Cosine | Because of the smaller vectors, Weaviate can achieve the highest throughput on this dataset. |
-| [Deep Image 96](https://sites.skoltech.ru/compvision/noimi/) | 10 M | 96 | Cosine | This dataset gives a good indication of expected speed and throughput when datasets grow. It is about 10 times larger than SIFT1M, but the throughput is only slightly lower. |
-| [GIST 960](http://corpus-texmex.irisa.fr/) | 1 M | 960 | Euclidean | This dataset highlights the cost of high-dimensional vector comparisons. It has the lowest throughput of the sample datasets. Use this one if you run high-dimensional loads. |
+| [SIFT1M](http://corpus-texmex.irisa.fr/) | 1 M | 128 | l2-squared | SIFT is a common ANN test dataset generated from image data |
+| [DBPedia OpenAI](https://huggingface.co/datasets/mteb/dbpedia) | 1 M | 1536 | cosine | DBPedia dataset from MTEB embedded with OpenAI's ada002 model |
+| [MSMARCO Snowflake](https://huggingface.co/datasets/Snowflake/mteb-retrieval-snowflake-arctic-embed-m-v1.5) | 8.8 M | 768 | l2-squared | MSMARCO dataset embedded with Snowflake's Arctic Embed M v1.5 model |
+| [Sphere DPR](https://weaviate.io/blog/sphere-dataset-in-weaviate) | 10 M | 768 | dot | Meta's Sphere dataset (10M sample)  |
 
 #### Benchmark Datasets
 These are the results for each dataset:
 
 <Tabs groupId="datasets">
-<TabItem value="1" label="SIFT1M">
+<TabItem value="1" label="DBPedia OpenAI">
+
+#### QPS vs Recall for DBPedia OpenAI
+
+<ThemedImage
+  alt="DBPedia OpenAI Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-light.svg'),
+    dark: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-dark.svg'),
+  }}
+/>
+
+<Tabs groupId="limits">
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="dbpediaOpenai_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="dbpediaOpenai_100" />
+  </TabItem>
+</Tabs>
+
+<AnnReadResultsTable/>
+
+#### Recommended configuration for DBPedia OpenAI ada002
+<RecommendedConfig/>
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 256 | 16 | 96 | 97.24% | 5639 | 2.80ms | 4.43ms |
+
+</TabItem>
+<TabItem value="2" label="SIFT1M">
 
 #### QPS vs Recall for SIFT1M
 
-![SIFT1M Benchmark results](./img/benchmark_sift_128.png)
+<ThemedImage
+  alt="SIFT1M Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/sift-128-euclidean-light.svg'),
+    dark: useBaseUrl('/img/benchmark/sift-128-euclidean-dark.svg'),
+  }}
+/>
 
-import AnnSift128 from '/_includes/ann-sift-128.mdx';
-
-<AnnSift128/>
+<Tabs groupId="limits">
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="sift128_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="sift128_100" />
+  </TabItem>
+</Tabs>
 
 import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
 
@@ -114,75 +156,74 @@ import RecommendedConfig from '/_includes/ann-recommended-config.mdx';
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 128 | 32 | 64 | 98.83% | 8905 | 3.31ms | 4.49ms |
+| 256 | 32 | 64 | 98.35% | 10940 | 1.44ms | 3.13ms |
 
 
 </TabItem>
-<TabItem value="10" label="Glove-25">
+<TabItem value="3" label="MSMARCO Snowflake">
 
-#### QPS vs Recall for Glove-25
+#### QPS vs Recall for MSMARCO Snowflake
 
-![Glove25 Benchmark results](./img/benchmark_glove_25.png)
+<ThemedImage
+  alt="MSMARCO Snowflake Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/snowflake-msmarco-arctic-embed-m-v1-light.svg'),
+    dark: useBaseUrl('/img/benchmark/snowflake-msmarco-arctic-embed-m-v1-dark.svg'),
+  }}
+/>
 
-import AnnGlove25 from '/_includes/ann-glove-25.mdx';
-
-<AnnGlove25/>
+<Tabs groupId="limits">
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="msmarcoSnowflake_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="msmarcoSnowflake_100" />
+  </TabItem>
+</Tabs>
 
 <AnnReadResultsTable/>
 
-#### Recommended configuration for Glove-25
+#### Recommended configuration for MSMARCO Snowflake
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 64 | 16 | 64 | 95.56% | 15003 | 1.93ms | 2.94ms |
+| 384 | 32 | 48 | 97.36% | 7363 | 2.15ms | 3.69ms |
 
 </TabItem>
-<TabItem value="100" label="Deep Image 96">
+<TabItem value="4" label="Sphere DPR">
 
-#### QPS vs Recall for Deep Image 96
+#### QPS vs Recall for Sphere DPR
 
-![Deep Image 96 Benchmark results](./img/benchmark_deepimage_96.png)
+<ThemedImage
+  alt="Sphere DPR Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/sphere-10M-meta-dpr-light.svg'),
+    dark: useBaseUrl('/img/benchmark/sphere-10M-meta-dpr-dark.svg'),
+  }}
+/>
 
-import AnnDeep96 from '/_includes/ann-deep-96.mdx';
-
-<AnnDeep96/>
-
-<AnnReadResultsTable/>
-
-#### Recommended configuration for Deep Image 96
-<RecommendedConfig/>
-
-| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 128 | 32 | 64 | 96.43% | 6112 | 4.7ms | 15.87ms |
-
-</TabItem>
-<TabItem value="1000" label="GIST 960">
-
-#### QPS vs Recall for GIST 960
-
-![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
-
-import AnnGist960 from '/_includes/ann-gist-960.mdx';
-
-<AnnGist960/>
+<Tabs groupId="limits">
+  <TabItem value="10" label="Limit 10">
+    <BenchmarkGrid datasetLabel="sphereDpr_10" />
+  </TabItem>
+  <TabItem value="100" label="Limit 100">
+    <BenchmarkGrid datasetLabel="sphereDpr_100" />
+  </TabItem>
+</Tabs>
 
 <AnnReadResultsTable/>
 
 
-#### Recommended configuration for GIST 960
+#### Recommended configuration for Sphere DPR
 <RecommendedConfig/>
 
 | `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 512 | 32 | 128 | 94.14% | 1935 | 15.05ms | 19.86ms |
+| 384 | 32 | 96 | 96.06% | 3523 | 4.49ms | 7.73ms |
 
 </TabItem>
 </Tabs>
-
-
-
 
 
 ## Benchmark Setup
@@ -195,12 +236,11 @@ This benchmark is [open source](https://github.com/weaviate/weaviate-benchmarkin
 
 ![Setup with Weaviate and benchmark machine](/img/docs/weaviate_benchmark_setup.png)
 
-This benchmark test uses two GCP instances within the same VPC:
+This benchmark test uses one GCP instances to run both Weaviate and the Benchmark scripts:
 
-* **Benchmark** – a `c2-standard-30` instance with 30 vCPU cores and 120 GB memory – to host Weaviate.
-* **Script** – a smaller instance with 8 vCPU – to run benchmarking scripts.
+* a `n4-highmem-16` instance with 16 vCPU cores and 128 GB memory.
 
-:::info Here's why we chose the `c2-standard-30`:
+:::info Here's why we chose the `n4-highmem-16`:
 
 * It is large enough to show that Weaviate is a highly concurrent [vector search engine](https://weaviate.io/blog/what-is-a-vector-database).
 * It scales well while running thousands of searches across multiple threads.
@@ -222,10 +262,10 @@ We modeled our dataset selection after
 queries are used to test speed, throughput, and recall. The provided ground
 truths are used to calculate the recall.
 
-We use Weaviate's Python client to import data.
+We use Weaviate's Golang client to import data.
 We use Go to measure the concurrent (multi-threaded) queries.
- Each language has its own performance characteristics.
- You may get different results if you use a different language to send your queries.
+Each language has its own performance characteristics.
+You may get different results if you use a different language to send your queries.
 
 For maximum throughput, we recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 [Java](/developers/weaviate/client-libraries/java.md) client libraries.
