@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import PricingHeader from '../components/Pricing/Header';
-import PricingPlan from '../components/Pricing/Plan';
+import PricingPlan from '../components/Pricing/V2/Plan';
 import PricingCalculator from '../components/Pricing/Calculator';
 import PricingFAQ from '../components/Pricing/FAQ';
 import ContactUsForm from '../components/Contact/contactForm';
