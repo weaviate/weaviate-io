@@ -27,9 +27,9 @@ Weaviate's Backup feature is designed to work natively with cloud technology. Mo
 * Zero downtime & minimal impact for your users when backups are running
 * Easy Migration to new environments
 
-:::caution Warning on restoring backups from older versions:
-If you’re restoring a backup from an older version of Weaviate (pre v1.23.13), please **update to version 1.23.13** or higher.
-Versions prior to 1.23.13 restores the schema, however encouters a bug while restoring the backup of your data.
+:::caution Restoring backups from `v1.23.12` and older
+If you are running Weaviate `v1.23.12` or older, first **[update Weaviate](../more-resources/migration/index.md) to version 1.23.13** or higher before restoring a backup.
+Versions prior to `v1.23.13` had a bug that could lead to data not being stored correctly from a backup of your data.
 :::
 
 :::note
@@ -415,9 +415,9 @@ You can restore any backup to any machine as long as the name and number of node
 
 Note that a restore fails if any of the collections already exist on this instance.
 
-:::caution Warning on restoring backups from older versions:
-If you’re restoring a backup from an older version of Weaviate (pre v1.23.13), please **update to version 1.23.13** or higher.
-Versions prior to 1.23.13 restores the schema, however encouters a bug while restoring the backup of your data.
+:::caution Restoring backups from `v1.23.12` and older
+If you are running Weaviate `v1.23.12` or older, first **[update Weaviate](../more-resources/migration/index.md) to version 1.23.13** or higher before restoring a backup.
+Versions prior to `v1.23.13` had a bug that could lead to data not being stored correctly from a backup of your data.
 :::
 
 #### Method and URL
