@@ -31,24 +31,16 @@ export default function PricingBusinessCritical() {
 
   return (
     <>
-      <div className={styles.box}>
+      <div className={`${styles.box} ${styles.byocPlan}`}>
         <div className={styles.title}>
-          <div className={`${styles.pricingIcon} ${styles.byoc}`}></div>
-          <h3>Bring Your Own Cloud</h3>
-        </div>
-        <div className={styles.price}>
-          <p>
-            Choose a fully-managed solution or 24/7 support within your VPC.
-          </p>
-          <div className={styles.bottomPrice}>
-            <span></span>
-            <p></p>
+          <div>
+            <h3>Bring Your Own Cloud</h3>
+            <span>
+              Choose a fully-managed solution or 24/7 support within your VPC.
+            </span>
           </div>
-          <Link className={styles.buttonTryOutline} to="#contact-sales">
-            Contact Sales
-          </Link>
+          <div className={styles.totalBox}></div>
         </div>
-
         <hr></hr>
         <div className={styles.features}>
           <p>For running workflows within your Virtual Private Cloud (VPC).</p>
@@ -65,8 +57,8 @@ export default function PricingBusinessCritical() {
               </span>
             </li>
           </ul>
-          <Link className={styles.buttonView} to="/deployment/byoc">
-            Learn More
+          <Link className={styles.buttonTryOutline} to="#contact-sales">
+            Contact Sales
           </Link>
         </div>
       </div>

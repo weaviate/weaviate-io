@@ -28,7 +28,6 @@ export default function PricingPlan() {
           <Marketplace />
           <PricingSandBox />
         </div>
-        <PriceList />
       </div>
     </div>
   );

@@ -41,25 +41,17 @@ export default function PricingEnterprise() {
 
   return (
     <>
-      <div className={styles.box}>
+      <div className={`${styles.box} ${styles.enterprisePlan}`}>
         <div className={styles.title}>
-          <div className={`${styles.pricingIcon} ${styles.enterprise}`}></div>
-          <h3>Enterprise Cloud</h3>
-        </div>
-        <div className={styles.price}>
-          <p>
-            We manage everything for you in a dedicated instance in Weaviate
-            Cloud.
-          </p>
-          <div className={styles.bottomPrice}>
-            <span>from $2.64 / AIU</span>
-            <p>AIU = AI Unit</p>
+          <div>
+            <h3>Enterprise Cloud</h3>
+            <span>
+              We manage everything for you in a dedicated instance in Weaviate
+              Cloud.
+            </span>
           </div>
-          <Link className={styles.buttonTryOutline} to="#contact-sales">
-            Contact Sales
-          </Link>
+          <div className={styles.totalBox}></div>
         </div>
-
         <hr></hr>
         <div className={styles.features}>
           <p>

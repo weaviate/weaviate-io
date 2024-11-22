@@ -203,15 +203,14 @@
 
 .box:hover {
   //transform: translateY(-30px);
-  border-radius: 0.9375rem;
-  outline: 1px solid #130c49;
+
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 }
 
 .standardPlan {
-  width: 25.9375rem;
-  height: 33.0625rem;
+  width: 30.9375rem;
+  height: 40rem;
   flex-shrink: 0;
   flex: none;
 
@@ -221,6 +220,61 @@
     flex-grow: 1;
     gap: 30px;
     overflow-wrap: break-word;
+    justify-content: space-around;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 10px 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+}
+
+.byocPlan {
+  width: 30.9375rem;
+  height: 40rem;
+  flex-shrink: 0;
+  flex: none;
+
+  hr {
+    margin-top: 60px;
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 30px;
+    overflow-wrap: break-word;
+    justify-content: space-around;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 10px 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+}
+
+.enterprisePlan {
+  width: 43rem;
+  height: 40rem;
+  flex-shrink: 0;
+  flex: none;
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 30px;
+    overflow-wrap: break-word;
+    justify-content: space-around;
 
     ul {
       list-style-type: none;
@@ -279,16 +333,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 30px;
+  margin: 0px 0px 20px 0px;
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
-    margin: 0px 0px 20px 0px;
   }
 }
 
 .planContainer {
   margin: auto;
-  top: -130px;
+  //top: -100px;
   position: relative;
 
   @media screen and (max-width: 860px) {

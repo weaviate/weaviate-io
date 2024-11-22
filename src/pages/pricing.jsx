@@ -7,7 +7,7 @@ import PricingFAQ from '../components/Pricing/FAQ';
 import ContactUsForm from '../components/Contact/contactForm';
 import HybridBusinessCritical from '../components/Pricing/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import Soc2 from '../components/Pricing/SOC2/soc2';
+import Soc2 from '../components/Pricing/V2/SOC2/soc2';
 import CustomScriptLoader from '../components/scriptSwitch/index.jsx';
 import PricingTable from '../components/Pricing/Table/index.jsx';
 import CalculatorContainer from '../components/Pricing/CalculatorContainer/index.jsx';
