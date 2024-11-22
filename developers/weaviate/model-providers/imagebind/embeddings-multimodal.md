@@ -20,7 +20,7 @@ Weaviate's integration with the Meta ImageBind library allows you to access its 
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use the ImageBind integration, and [configure the Weaviate instance](#weaviate-configuration) with a model image, and Weaviate will generate embeddings for various operations using the specified model in the ImageBind inference container. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_imagebind_embedding.png)
 
@@ -28,7 +28,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the ImageBind vectorizer integration (`multi2vec-bind`) module.
+Your Weaviate instance must be configured with the ImageBind multimodal vectorizer integration (`multi2vec-bind`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>

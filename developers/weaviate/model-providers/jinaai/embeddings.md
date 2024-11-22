@@ -274,7 +274,8 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Other integrations
 
-- [Jina AI reranker models + Weaviate](./reranker.md).
+- [Jina AI multimodal embedding models + Weaviate](./embeddings-multimodal.md)
+- [Jina AI reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 
