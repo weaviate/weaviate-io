@@ -17,24 +17,28 @@ This migration guide assumes that you have:
 
 ## Migration overview
 
-Weaviate `1.25` introduces [Raft](https://raft.github.io/) as the consensus algorithm for its database schema, in order to improve its fault tolerance. This change requires a migration of the entire schema.
+Weaviate `1.25` introduces [Raft](https://raft.github.io/) as the consensus algorithm for its cluster metadata, in order to improve its fault tolerance. This change requires a migration of the entire metadata.
+
+:::tip cluster metadata and schema
+The cluster metadata was previously referred to as the `schema`. We now use the term `metadata`, and use `schema` to refer to the data model of the Weaviate instance, such as classes, properties, etc.
+:::
 
 As a result, to migrate from a pre-`1.25` version of Weaviate to `1.25` on kubernetes, you must follow these steps:
 
 - Delete the deployed [`StatefulSet`](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - Update the helm chart to version `17.0.0` or higher
 - Re-deploy Weaviate
-- Wait for schema migration to complete
+- Wait for cluster metadata migration to complete
 
 For more details, refer to the [upgrade instructions](#upgrade-instructions) below.
 
-To downgrade from `1.25` to a pre-`1.25` version, you must perform a `POST` request to the `v1/cluster/schema-v1` endpoint to downgrade the schema. Then, you must similarly delete the deployed `StatefulSet` and downgrade Weaviate to the desired version.
+To downgrade from `1.25` to a pre-`1.25` version, you must perform a `POST` request to the `v1/cluster/schema-v1` endpoint to downgrade the metadata. Then, you must similarly delete the deployed `StatefulSet` and downgrade Weaviate to the desired version.
 
 For more details, refer to the [downgrade instructions](#downgrade-instructions) below.
 
 :::caution Cluster downtime
 
-This upgrade requires a schema migration. The cluster requires some downtime for the migration. The length of the downtime depends on the size of the database.
+This upgrade requires a cluster metadata migration. The cluster requires some downtime for the migration. The length of the downtime depends on the size of the database.
 <br/>
 
 We suggest performing this upgrade at a least disruptive time, or even provisioning a secondary cluster while the main cluster is being restarted.
@@ -156,11 +160,11 @@ If the number of objects under `statistics` matches the number of replicas you h
 
 ## Downgrade instructions
 
-If you need to downgrade from `1.25` to a pre-`1.25` version, you must perform a `POST` request to the `v1/cluster/schema-v1` (a payload is not required) to downgrade the schema.
+If you need to downgrade from `1.25` to a pre-`1.25` version, you must perform a `POST` request to the `v1/cluster/schema-v1` (a payload is not required) to downgrade the cluster metadata.
 
-### 1. Downgrade schema
+### 1. Downgrade cluster metadata
 
-Perform the following request to downgrade the schema. This will prepare the cluster for a downgrade to a pre-`1.25` version. (Remember to replace `localhost:8080` with the correct URL & port.)
+Perform the following request to downgrade the cluster metadata. This will prepare the cluster for a downgrade to a pre-`1.25` version. (Remember to replace `localhost:8080` with the correct URL & port.)
 
 ```bash
 curl -X POST -s -o /dev/null -w "%{http_code}" localhost:8080/v1/cluster/schema-v1
@@ -170,7 +174,7 @@ This should return a `200` status code.
 
 ### 2. Delete StatefulSet
 
-After downgrading the schema, delete the existing StatefulSet. This will delete all the pods in the namespace.
+After downgrading the cluster metadata, delete the existing StatefulSet. This will delete all the pods in the namespace.
 
 ```bash
 kubectl delete sts weaviate -n weaviate
