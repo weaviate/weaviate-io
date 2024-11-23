@@ -61,8 +61,6 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js" label="JS/TS Client v3">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
-
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START ImageFileSearch"
@@ -109,7 +107,7 @@ If your query image is stored in a file, you can use the client library to searc
   <summary>Example response</summary>
 
   <FilteredTextBlock
-    text={PyCode}
+    text={TSCode}
     startMarker="# START Expected base64 results"
     endMarker="# END Expected base64 results"
     language="json"
