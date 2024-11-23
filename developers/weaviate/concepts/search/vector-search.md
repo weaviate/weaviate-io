@@ -7,25 +7,24 @@ image: og/docs/concepts.jpg
 
 ## Overview
 
-Vector search is a similarity-based search using vector embeddings. A vector search compares vector embeddings of the query against embeddings of the stored objects to find the closest matches, before returning the top `n` results.
+Vector search is a similarity-based search using vector embeddings, or vectors.
 
-In Weaviate, you can perform vector searches in multiple ways. You can search for similar objects based on [a text input](../../search/similarity.md#search-with-text), [a vector input](../../search/similarity.md#search-with-a-vector), or [an exist object](../../search/similarity.md#search-with-an-existing-object). You can even search for similar objects with other modalities such as [with images](../../search/image.md).
-
-A vector search will retrieve the most similar objects to the query, as determined by:
-
-- The [distance metric](#distance-metrics) used to calculate the similarity between vectors.
-- Any applicable [limit or threshold](#limit-vector-search-results).
-- Any [filtering](../filtering.md) specified.
-
-<!-- TODO: Link to Weaviate Academy -->
+A vector search compares [vectors of the stored objects](#object-vectors) against the [query vector(s)](#query-vectors) to find the closest matches, before returning the top `n` results.
 
 :::tip An introduction to vector search
 New to vector search? Check out our blog, ["Vector Search Explained"](/blog/vector-search-explained) for an introduction to vector search concepts and use cases.
 :::
 
-## Vector embeddings and Weaviate
+## Object vectors
 
-The model used to generate vectors is called a vectorizer model, or an embedding model. A user can use Weaviate's [vectorizer model provider integrations](#model-provider-integration) to generate vectors for objects, or can [provide vectors directly](#bring-your-own-vector).
+For vector search, each object must have representative vector embeddings.
+
+The model used to generate vectors is called a vectorizer model, or an embedding model.
+
+A user can populate Weaviate with objects and their vectors in one of two ways:
+
+- Use Weaviate's [vectorizer model provider integrations](#model-provider-integration) to generate vectors
+- [Provide vectors directly](#bring-your-own-vector) to Weaviate
 
 ### Model provider integration
 
@@ -97,10 +96,10 @@ flowchart LR
 
 This integration abstracts the vector generation process from the user, allowing the user to focus on building applications and performing searches without worrying about the vector generation process.
 
-Once it is set, the vectorizer cannot be changed for a collection. This is to ensure that the vectors are generated consistently and that the search results are meaningful. If you need to change the vectorizer, you will need to create a new collection with the desired vectorizer, and [migrate the data to the new collection](../../manage-data/migrate.mdx).
+:::info Vectorizer configuration is immutable
 
-:::info Named vectors and vectorizer models
-Where [named vectors](../data.md#multiple-vectors-named-vectors) are used, each named vector can have its own vectorizer model.
+Once it is set, the vectorizer cannot be changed for a collection. This ensures that the vectors are generated consistently and stay compatible. If you need to change the vectorizer, you must create a new collection with the desired vectorizer, and [migrate the data to the new collection](../../manage-data/migrate.mdx).
+
 :::
 
 #### Manual vectors when vectorizer is configured
@@ -167,9 +166,20 @@ In this workflow, the user has the flexibility to use any vectorizer model and p
 
 If using your own model, we recommend explicitly setting the vectorizer as `none` in the vectorizer configuration, such that you do not accidentally generate incompatible vectors with Weaviate.
 
-## Vector search in Weaviate
+### Multiple object vectors
 
-In Weaviate, you can perform vector searches using:
+:::info Added in `v1.24`
+:::
+
+A collections can be configured to allow each object to be represented my multiple vectors.
+
+Each such vector works as its distinct vector space that is independent of each other, referred to as a "named vector".
+
+A named vector can be configured with a [vectorizer model integration](#model-provider-integration), and may be provided using the ["bring your own vector"](#bring-your-own-vector) integration.
+
+## Query vectors
+
+In Weaviate, you can specify the query vector using:
 
 - A query vector (called `nearVector`),
 - A query object (called `nearObject`),
@@ -193,6 +203,27 @@ In a `nearText` query, the user provides an input text to Weaviate. Weaviate use
 As a result, a `nearText` query is only available for collections where a vectorizer model is configured.
 
 A `nearImage` or `nearVideo` query works similarly to a `nearText` query, but with an image or video input instead of text.
+
+## Multi-target vector search
+
+:::info Added in `v1.26`
+:::
+
+In a multi-target vector search, Weaviate searches multiple target vector spaces (i.e. multiple named vectors) concurrently.
+
+The individual sets of search results are combined to produce a single set of search results.
+
+A multi-target vector search involves multiple, concurrent, single-target vector searches. These searches will produce multiple sets of results, each with a vector distance score.
+
+These distances are combined using a ["join strategy"](#available-join-strategies).
+
+<details>
+  <summary>How Weaviate combines search results</summary>
+
+- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
+- If an object does not contain vectors for any selected target vector, Weaviate ignores that object and does not include it in the search results.
+
+</details>
 
 ## Vector index and search
 
