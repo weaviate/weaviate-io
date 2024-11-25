@@ -48,7 +48,7 @@ Understanding that customers have varying needs and preferences, whether in depl
 
 ## Join us at re:Invent
 
-As we prepare for AWS re:Invent in Las Vegas from December 2nd to December 5th, we can't wait to talk to you in person and hear about your generative AI journeys. We invite you to visit us at re:invent to learn more about how Weaviate and AWS work together to deliver the next generation AI-native stack.
+As we prepare for AWS re:Invent in Las Vegas from December 2nd to December 5th, we can't wait to talk to you in person and hear about your generative AI journeys. We invite you to [visit us at re:invent](https://events.weaviate.io/aws-reinvent-2024) to learn more about how Weaviate and AWS work together to deliver the next generation AI-native stack.
 
 We'll demonstrate our latest integrations, share customer success stories, and provide insights into our roadmap for 2024. If you're attending re:Invent, we'd love to connect and discuss how Weaviate and AWS can help accelerate your AI initiatives.
 
