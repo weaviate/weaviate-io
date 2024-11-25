@@ -61,5 +61,7 @@ What you can expect to see when you visit our booth, **#1506**:
 * Limited edition stickers & hats  
 * Weaviate's friendly experts
 
+We'll share a few demos showing the power of Weaviate and our features. We're expanding [Wealingo](https://github.com/weaviate/wealingo-demo) to include features like multi-tenancy, Generative Feedback Loops (GFLs), and more.
+
 We will have daily prizes given to the lucky winners of our raffle. You can also book a meeting with us in our private meeting space to learn all about Weaviate, our integration with AWS, and more. [Book your slot today](https://calendly.com/events-weaviate/weaviate-aws-reinvent), space is limited.
 
