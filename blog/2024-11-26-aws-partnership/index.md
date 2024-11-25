@@ -61,11 +61,5 @@ What you can expect to see when you visit our booth, **#1506**:
 * Limited edition stickers & hats  
 * Weaviate's friendly experts
 
-We will have daily prizes given to the lucky winners of our raffle. Visit our booth to get a ticket that is valid for the full week (and learn how to earn extra entries to double your chances of winning)\! The prizes you can win:
-
-* 2 keychron keyboards (Monday)  
-* 2 OLED Switches (1 Tuesday, 1 Wednesday)  
-* OLED Steam Deck (Thursday)
-
-You can book a meeting with us in our private meeting space to learn all about Weaviate, our integration with AWS, and more. [Book your slot today](https://calendly.com/events-weaviate/weaviate-aws-reinvent), space is limited.
+We will have daily prizes given to the lucky winners of our raffle. You can also book a meeting with us in our private meeting space to learn all about Weaviate, our integration with AWS, and more. [Book your slot today](https://calendly.com/events-weaviate/weaviate-aws-reinvent), space is limited.
 
