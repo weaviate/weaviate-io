@@ -1,0 +1,453 @@
+:root {
+  --darkColor: #130c49;
+  --subColor: #8396b1;
+  --lightColor: #f7f9fd;
+  --headerFont: 'Plus Jakarta Sans';
+  --paraFont: 'Inter';
+}
+
+.container {
+  padding: 3rem;
+
+  @media screen and (max-width: 1400px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    color: #130c49;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.8rem */
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  p {
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+.bentoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bento01,
+.bento02,
+.bento03,
+.bento04,
+.bento05,
+.bento06 {
+  flex-shrink: 1;
+}
+
+.bento01,
+.bento02 {
+  width: 31.875rem;
+  height: 25.625rem;
+  filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
+  border-radius: 1.25rem;
+
+  background: var(--lightColor);
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+
+    .bentoTitle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bentoLogo {
+      background: url('/img/site/start-up-benefits-icon.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 2.30938rem;
+      height: 2.3125rem;
+      flex-shrink: 0;
+      flex-shrink: 0;
+      margin: 30px 0px;
+      margin-top: 16px;
+    }
+
+    .requirement {
+      background: url('/img/site/start-up-requirement-icon.svg');
+    }
+
+    h3 {
+      color: var(--darkColor);
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: Inter;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.875rem */
+
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+    }
+
+    li {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.bento03 {
+  width: 65rem;
+  height: 68.5625rem;
+  filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
+  border-radius: 1.25rem;
+  background: var(--lightColor);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @media screen and (max-width: 900px) {
+    background-size: cover;
+    background-position-y: top;
+  }
+
+  @media screen and (max-width: 700px) {
+    background-size: contain;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .bentoText {
+    margin: 0;
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+    }
+    .bentoLogo {
+      background: url('/img/site/start-up-benefits-icon.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 2.30938rem;
+      height: 2.3125rem;
+      flex-shrink: 0;
+      flex-shrink: 0;
+      margin: 30px 0px;
+      margin-top: 16px;
+    }
+
+    .requirement {
+      background: url('/img/site/start-up-requirement-icon.svg');
+    }
+
+    h3 {
+      color: var(--darkColor);
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      width: 85%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: var(--darkColor);
+      font-family: Inter;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.875rem */
+
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.finance {
+  background: url('/img/site/header-bg.svg') #130c49;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 900px) {
+    br {
+      display: none;
+    }
+  }
+}
+
+.bento06 {
+  width: 65.625rem;
+  height: 18.875rem;
+  border-radius: 1.25rem;
+  background: url('/img/site/gradient-bg-dark.png');
+  background-size: cover;
+  background-position-x: center;
+
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .bentoText {
+    margin: 0;
+    display: flex;
+    gap: 30px;
+
+    @media screen and (max-width: 900px) {
+      margin: 0px 0px 20px;
+      flex-direction: column;
+    }
+
+    h3 {
+      color: var(--lightColor);
+      font-family: 'Plus Jakarta Sans';
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 3.5rem */
+      width: 70%;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .bento01,
+  .bento04 {
+    width: 33rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 22rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 56rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .bento01,
+  .bento04 {
+    width: 30rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 20rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 960px) {
+  .bento01,
+  .bento04 {
+    width: 27rem;
+  }
+  .bento02,
+  .bento03 {
+    width: 23rem;
+  }
+  .bento05,
+  .bento06,
+  .bentoSmall {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 940px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02,
+  .bento03 {
+    width: 24rem;
+    height: 33.9375rem;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+@media (max-width: 795px) {
+  .bento01,
+  .bento04 {
+    width: 100%;
+  }
+  .bento02 {
+    width: 100%;
+    height: 24.875rem;
+  }
+  .bento03 {
+    width: 100%;
+  }
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .bento01,
+  .bento02,
+  .bento03,
+  .bento04,
+  .bento05,
+  .bento06 {
+    width: 100%;
+  }
+
+  .bento01 {
+    height: 25.875rem;
+  }
+
+  .bento04 {
+    height: 30.75rem;
+  }
+}
+
+.buttons {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  right: 20px;
+
+  .arrowButton {
+    background: url('/img/site/ArrowButton.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrowButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .buttonDark {
+    border-radius: 0.3125rem;
+    border: 1px solid var(--lightColor, #130c49);
+    color: #ffffff;
+    background: #332e75;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}
