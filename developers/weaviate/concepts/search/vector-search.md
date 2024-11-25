@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 ## Overview
 
-Vector search is a similarity-based search using vector embeddings, or vectors.
+Vector search is a similarity-based search using vector embeddings, or vectors. Vector search also referred to as "semantic search" due to its ability to find semantically similar objects.
 
 A vector search compares [vectors of the stored objects](#object-vectors) against the [query vector(s)](#query-vectors) to find the closest matches, before returning the top `n` results.
 
@@ -209,21 +209,23 @@ A `nearImage` or `nearVideo` query works similarly to a `nearText` query, but wi
 :::info Added in `v1.26`
 :::
 
-In a multi-target vector search, Weaviate searches multiple target vector spaces (i.e. multiple named vectors) concurrently.
+In a multi-target vector search, Weaviate performs multiple, concurrent, single-target vector searches.
 
-The individual sets of search results are combined to produce a single set of search results.
+These searches will produce multiple sets of results, each with a vector distance score.
 
-A multi-target vector search involves multiple, concurrent, single-target vector searches. These searches will produce multiple sets of results, each with a vector distance score.
+Weaviat combines these result sets, using a ["join strategy"](#available-join-strategies) to produce final scores for each result.
 
-These distances are combined using a ["join strategy"](#available-join-strategies).
+If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
 
-<details>
-  <summary>How Weaviate combines search results</summary>
+If an object does not contain vectors for any selected target vector, Weaviate ignores that object and does not include it in the search results.
 
-- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
-- If an object does not contain vectors for any selected target vector, Weaviate ignores that object and does not include it in the search results.
+### Available join strategies.
 
-</details>
+- **minimum** (*default*) Use the minimum of all vector distances.
+- **sum** Use the sum of the vector distances.
+- **average** Use the average of the vector distances.
+- **manual weights** Use the sum of weighted distances, where the weight is provided for each target vector.
+- **relative score** Use the sum of weighted normalized distances, where the weight is provided for each target vector.
 
 ## Vector index and search
 
