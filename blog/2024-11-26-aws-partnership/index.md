@@ -40,7 +40,7 @@ We have focused on telling a compelling "better together" story with AWS from th
 
 We have also achieved significant program milestones, such as AWS Generative AI Competency certification, and we are a top-tier participant in the ISV Accelerate program. This success could not have happened without the contributions from teams throughout Weaviate, especially the outstanding work of our partner marketing team.
 
-## Meeting Customers Where They Are
+## Meeting Customers where they are
 
 We have focused on close collaboration with AWS sellers from the beginning, opening up new joint opportunities. Tapping into cloud commitment drawdown through private offers has been a significant accelerator.
 
