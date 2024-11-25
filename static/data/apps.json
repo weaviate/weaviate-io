@@ -2,7 +2,7 @@
   {
     "id": "query",
     "name": "Query",
-    "category": "Cloud Tools",
+    "category": "Tools and Operations",
     "description": "Work interactively with Weaviate Cloud clusters using GraphQL.",
     "image": "apps-query-icon.svg",
     "overviewImage1": "query-screenshot-01.png",
@@ -20,7 +20,7 @@
   {
     "id": "collections",
     "name": "Collections",
-    "category": "Cloud Tools",
+    "category": "Tools and Operations",
     "description": "Create and manage collections through a graphical user interface (GUI).",
     "image": "apps-collections-icon.svg",
     "overviewImage1": "collections-screenshot-01.png",
@@ -38,7 +38,7 @@
   {
     "id": "explorer",
     "name": "Explorer",
-    "category": "Cloud Tools",
+    "category": "Tools and Operations",
     "description": "Search and validate object data, without writing any code.",
     "image": "apps-explorer-icon.svg",
     "overviewImage1": "explorer-screenshot-01.png",
@@ -89,6 +89,24 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "",
+    "released": "no"
+  },
+  {
+    "id": "embeddings",
+    "name": "Embeddings",
+    "category": "Tools and Operations",
+    "description": "Build personalized, multi-modal recommendations with simple interface.",
+    "image": "apps-embeddings-icon.svg",
+    "overviewImage1": "recommender-screenshot-01.png",
+    "overviewImage2": "recommender-screenshot-02.png",
+    "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "rating": 4.5,
+    "price": "Free",
+    "version": "7.3.0",
+    "updated": "January 28, 2023",
+    "size": "2.09MB",
+    "languages": ["English", "Spanish", "French", "German"],
+    "url": "/workbench/embeddings",
     "released": "no"
   }
 ]

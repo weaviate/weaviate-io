@@ -1053,16 +1053,7 @@
   width: 36.875rem;
   height: 20rem;
   flex-shrink: 0;
-  background: linear-gradient(
-    216deg,
-    rgba(0, 183, 226, 0.3) 0.75%,
-    rgba(1, 185, 215, 0.3) 4.69%,
-    rgba(12, 199, 150, 0.3) 29.31%,
-    rgba(20, 211, 99, 0.3) 51.97%,
-    rgba(26, 219, 62, 0.3) 71.67%,
-    rgba(30, 224, 40, 0.3) 88.42%,
-    rgba(32, 226, 32, 0.3) 98.27%
-  );
+  background: url('/img/site/workbench-overview-bg.png') no-repeat center center;
   display: flex;
   justify-content: center;
   align-items: center;

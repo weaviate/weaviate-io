@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
-  'Cloud Tools':
+  'Tools and Operations':
     'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
   'AI-Native Apps': 'Simplify the development of end-to-end AI solutions.',
 };
@@ -78,12 +78,14 @@ export default function AppFilter() {
                   All Categories
                 </li>
                 <li
-                  onClick={() => handleCategoryChange('Cloud Tools')}
+                  onClick={() => handleCategoryChange('Tools and Operations')}
                   className={
-                    selectedCategory === 'Cloud Tools' ? styles.active : ''
+                    selectedCategory === 'Tools and Operations'
+                      ? styles.active
+                      : ''
                   }
                 >
-                  Cloud Tools
+                  Tools and Operations
                 </li>
                 <li
                   onClick={() => handleCategoryChange('AI-Native Apps')}
