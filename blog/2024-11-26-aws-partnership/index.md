@@ -67,5 +67,5 @@ We will have daily prizes given to the lucky winners of our raffle. Visit our bo
 * 2 OLED Switches (1 Tuesday, 1 Wednesday)  
 * OLED Steam Deck (Thursday)
 
-You can book a meeting with us in our private meeting space to learn all about Weaviate, our integration with AWS, and more. Book your slot today, space is limited.
+You can book a meeting with us in our private meeting space to learn all about Weaviate, our integration with AWS, and more. [Book your slot today](https://calendly.com/events-weaviate/weaviate-aws-reinvent), space is limited.
 
