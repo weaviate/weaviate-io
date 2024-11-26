@@ -26,6 +26,12 @@ export default function PricingHeader() {
             >
               Try Free
             </Link>
+            <Link
+              className={styles.buttonOutline}
+              to="http://events.weaviate.io/pricing-download"
+            >
+              Download the full pricing list
+            </Link>
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ export default function PricingStandard() {
           <h3>Serverless Cloud</h3>
         </div>
         <div className={styles.price}>
-          <p>We manage everything for you in the Weaviate Cloud.</p>
+          <p>Serverless SaaS deployment in Weaviate Cloud.</p>
           <div className={styles.bottomPrice}>
             <span>Starting at $25 /mo</span>
             <p>per 1M vector dimensions stored/month</p>
@@ -67,9 +67,9 @@ export default function PricingStandard() {
             pay-as-you-go pricing.
           </p>
           <ul>
-            <li>Serverless SaaS deployment</li>
             <li>Get started with a free trial in minutes</li>
             <li>Various SLA tiers to meet your needs</li>
+            <li>Weaviate Embeddings available starting at $0.04/M tokens</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing
