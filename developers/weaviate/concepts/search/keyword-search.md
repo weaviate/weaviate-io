@@ -130,7 +130,7 @@ For example, when searching an e-commerce catalog, you could boost the title pro
 
 ## Combining with Vector Search
 
-Keyword search can be combined with vector search in Weaviate to create hybrid search solutions. This allows you to leverage both:
+Keyword search can be combined with vector search in Weaviate to perform a hybrid search. This allows you to leverage both:
 - Exact matching capabilities of keyword search
 - Semantic understanding of vector search
 
