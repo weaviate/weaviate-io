@@ -16,10 +16,10 @@ import TabItem from '@theme/TabItem';
 
 :::info What you will learn
 
-In this quickstart guide, you will:
+This quickstart shows you how to combine Weaviate Cloud and Cohere to:
 
-1. Set up Weaviate. (10 minutes)
-1. Populate the database. (10 minutes)
+1. Set up a Weaviate instance. (10 minutes)
+1. Add and vectorize your data. (10 minutes)
 1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
 
 ```mermaid
@@ -64,29 +64,22 @@ flowchart LR
     style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
 ```
 
+Notes:
+
+- The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+<!-- - Python users can try [our Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) locally or on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb). -->
+- If you prefer to use locally hosted resources, see [Quickstart: locally hosted](./local.md).
 :::
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-:::tip
-This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and the [OpenAI](https://platform.openai.com/) API. If you prefer to use locally hosted resources, see [QuickStart: locally hosted](./local.md).
-:::
-
 ### Prerequisites
 
-You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [OpenAI](https://platform.openai.com/).
+You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/).
 
-The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
-
-:::note For Python users
-We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
-:::
+If you have another, preferred [model provider](../model-providers/index.md), you can use that instead of Cohere.
 
 <hr/>
-
-:::tip Try it yourself
-The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
-:::
 
 ## Step 1: Set up Weaviate
 
@@ -243,8 +236,8 @@ A collection is a set of objects that share the same data structure, like a tabl
 :::
 
 The following example creates a *collection* called `Question` with:
-  - OpenAI [embedding model integration](../model-providers/openai/embeddings.md) to create vectors during ingestion & queries.
-  - OpenAI [generative AI integrations](../model-providers/openai/generative.md) for retrieval augmented generation (RAG).
+  - Cohere [embedding model integration](../model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
+  - Cohere [generative AI integrations](../model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
 import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
@@ -307,8 +300,8 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 
 Run this code to add the demo data.
 
-:::info OpenAI API key in the header
-Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
 
 <hr/>
@@ -385,7 +378,7 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
-Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -558,7 +551,7 @@ We provide answers to some common questions, or potential issues below.
 <details>
   <summary>See answer</summary>
 
-In this example, we use the `OpenAI` inference API. But you can use others.
+In this example, we use the `Cohere` inference API. But you can use others.
 
 If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
 - Ensure that the Weaviate module is available in the Weaviate instance you are using,
@@ -605,7 +598,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-openai"
+            "vectorizer": "text2vec-cohere"
         }
     ]
 }
