@@ -1,12 +1,12 @@
 ---
-title: Quickstart (with Weaviate Embeddings)
+title: With Weaviate Embeddings
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
-# Quickstart: with cloud resources
+# Quickstart: with Weaviate Embeddings
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -16,9 +16,9 @@ import TabItem from '@theme/TabItem';
 
 :::info Before you begin
 
-In this quickstart guide, you will:
+In this quickstart guide, you will use *Weaviate Cloud*, *Weaviate Embeddings* and *OpenAI* to:
 
-1. Set up a Weaviate Cloud instance. (10 minutes)
+1. Set up Weaviate. (10 minutes)
 1. Populate the database. (10 minutes)
 1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
 
@@ -64,7 +64,9 @@ flowchart LR
     style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
 ```
 
-**Further notes:**
+<br/>
+
+Notes:
 
 - The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
 - Python users can try [our Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) locally or on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
