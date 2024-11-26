@@ -67,8 +67,7 @@
   height: 25.625rem;
   filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
   border-radius: 1.25rem;
-
-  background: var(--lightColor);
+  background: #f7f9fd;
   background-size: cover;
   background-position: center;
   transition: all 0.3s ease-in-out;
@@ -144,30 +143,25 @@
   height: 68.5625rem;
   filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
   border-radius: 1.25rem;
-  background: var(--lightColor);
+  background: #f7f9fd;
   transition: all 0.3s ease-in-out;
   position: relative;
   padding: 40px;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 
-  @media screen and (max-width: 900px) {
+  .bentoImage {
+    background: url('/img/site/start-up-form-test.png');
     background-size: cover;
-    background-position-y: top;
-  }
-
-  @media screen and (max-width: 700px) {
-    background-size: contain;
-    background-position-y: bottom;
     background-repeat: no-repeat;
+    width: 80%;
+    height: 920px;
+    margin: auto;
   }
-
   .bentoText {
-    margin: 0;
-    @media screen and (max-width: 900px) {
-      margin: 0px 0px 20px;
-    }
+    text-align: center;
+
     .bentoLogo {
       background: url('/img/site/start-up-benefits-icon.svg');
       background-size: contain;
@@ -180,10 +174,6 @@
       margin-top: 16px;
     }
 
-    .requirement {
-      background: url('/img/site/start-up-requirement-icon.svg');
-    }
-
     h3 {
       color: var(--darkColor);
       font-family: 'Plus Jakarta Sans';
@@ -191,11 +181,6 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      width: 85%;
-
-      @media screen and (max-width: 900px) {
-        width: 100%;
-      }
     }
 
     p {
@@ -205,10 +190,6 @@
       font-style: normal;
       font-weight: 400;
       line-height: 150%; /* 1.875rem */
-
-      @media screen and (max-width: 1200px) {
-        width: 80%;
-      }
     }
   }
 }
@@ -253,7 +234,7 @@
     }
 
     h3 {
-      color: var(--lightColor);
+      color: #f7f9fd;
       font-family: 'Plus Jakarta Sans';
       font-size: 2.5rem;
       font-style: normal;
@@ -414,7 +395,7 @@
 
   .buttonDark {
     border-radius: 0.3125rem;
-    border: 1px solid var(--lightColor, #130c49);
+    border: 1px solid #f7f9fd;
     color: #ffffff;
     background: #332e75;
     text-align: center;

@@ -49,7 +49,11 @@ export default function Main() {
             </div>
           </div>
           <div className={styles.bento03}>
-            <div className={styles.bentoText}></div>
+            <div className={styles.bentoText}>
+              <h3>Interested in joining?</h3>
+              <p>Submit your information and we'll get in touch.</p>
+            </div>
+            <div className={styles.bentoImage} />
           </div>
           <div className={styles.bento06}>
             <div className={styles.bentoText}>
