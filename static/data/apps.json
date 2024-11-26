@@ -2,7 +2,7 @@
   {
     "id": "query",
     "name": "Query",
-    "category": "Tools and Operations",
+    "category": "Cloud Tools",
     "description": "Work interactively with Weaviate Cloud clusters using GraphQL.",
     "image": "apps-query-icon.svg",
     "overviewImage1": "query-screenshot-01.png",
@@ -20,7 +20,7 @@
   {
     "id": "collections",
     "name": "Collections",
-    "category": "Tools and Operations",
+    "category": "Cloud Tools",
     "description": "Create and manage collections through a graphical user interface (GUI).",
     "image": "apps-collections-icon.svg",
     "overviewImage1": "collections-screenshot-01.png",
@@ -38,7 +38,7 @@
   {
     "id": "explorer",
     "name": "Explorer",
-    "category": "Tools and Operations",
+    "category": "Cloud Tools",
     "description": "Search and validate object data, without writing any code.",
     "image": "apps-explorer-icon.svg",
     "overviewImage1": "explorer-screenshot-01.png",
@@ -57,7 +57,7 @@
   {
     "id": "recommender",
     "name": "Recommender Service",
-    "category": "AI-Native Apps",
+    "category": "AI-Native Services",
     "description": "Build personalized, multi-modal recommendations with a simple interface.",
     "image": "apps-recommender-icon.svg",
     "overviewImage1": "recommender-screenshot-01.png",
@@ -76,7 +76,7 @@
   {
     "id": "gfl",
     "name": "Generative Feedback Loops",
-    "category": "AI-Native Apps",
+    "category": "AI-Native Services",
     "description": "Automate mundane tasks and improve the quality of your data.",
     "image": "apps-gfl-icon.svg",
     "overviewImage1": "app-screenshot-01.png",
@@ -94,11 +94,11 @@
   {
     "id": "embeddings",
     "name": "Embeddings",
-    "category": "Tools and Operations",
-    "description": "Build personalized, multi-modal recommendations with simple interface.",
+    "category": "AI-Native Services",
+    "description": "Say goodbye to rate limits and the hassle of managing multiple embedding providers.",
     "image": "apps-embeddings-icon.svg",
-    "overviewImage1": "recommender-screenshot-01.png",
-    "overviewImage2": "recommender-screenshot-02.png",
+    "overviewImage1": "embeddings-screenshot-01.png",
+    "overviewImage2": "embeddings-screenshot-02.png",
     "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "rating": 4.5,
     "price": "Free",
@@ -107,6 +107,7 @@
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/embeddings",
-    "released": "no"
+    "released": "no",
+    "earlyAccess": "yes"
   }
 ]

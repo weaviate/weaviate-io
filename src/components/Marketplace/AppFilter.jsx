@@ -6,9 +6,9 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
-  'Tools and Operations':
+  'Cloud Tools':
     'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
-  'AI-Native Apps': 'Simplify the development of end-to-end AI solutions.',
+  'AI-Native Services': 'Simplify the development of end-to-end AI solutions.',
 };
 
 export default function AppFilter() {
@@ -78,22 +78,22 @@ export default function AppFilter() {
                   All Categories
                 </li>
                 <li
-                  onClick={() => handleCategoryChange('Tools and Operations')}
+                  onClick={() => handleCategoryChange('Cloud Tools')}
                   className={
-                    selectedCategory === 'Tools and Operations'
+                    selectedCategory === 'Cloud Tools' ? styles.active : ''
+                  }
+                >
+                  Cloud Tools
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('AI-Native Services')}
+                  className={
+                    selectedCategory === 'AI-Native Services'
                       ? styles.active
                       : ''
                   }
                 >
-                  Tools and Operations
-                </li>
-                <li
-                  onClick={() => handleCategoryChange('AI-Native Apps')}
-                  className={
-                    selectedCategory === 'AI-Native Apps' ? styles.active : ''
-                  }
-                >
-                  AI-Native Apps
+                  AI-Native Services
                 </li>
               </ul>
             </>

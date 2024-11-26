@@ -1189,7 +1189,6 @@
 
   p {
     color: #130c4980;
-
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -1210,11 +1209,15 @@
 
   ul {
     color: #130c4980;
-
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 1.5rem */
+    width: 600px;
+
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+    }
   }
 }
 

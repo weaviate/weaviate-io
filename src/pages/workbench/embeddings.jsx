@@ -41,11 +41,15 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   {app.released === 'no' ? (
-                    <div className={styles.comingSoon}>Coming Soon</div>
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Preview Access
+                      </button>
+                    </Link>
                   ) : (
                     <Link to="https://console.weaviate.cloud/">
                       <button className={styles.installButton}>
-                        Open in Weaviate Cloud
+                        Open in Weaviate Cloud Request Preview Access
                       </button>
                     </Link>
                   )}
@@ -70,50 +74,48 @@ export default function QueryPage() {
                 <div className={styles.tabBottomContent}>
                   <div>
                     <h3>Overview</h3>
-
                     <p>
-                      Our Recommender service simplifies the development of
-                      recommendation systems for a variety of use cases. It
-                      offers a fully managed, low-code interface that enables
-                      real-time recommendations that adapt dynamically to user
-                      events. Additionally, it offers users configurable
-                      endpoints for custom item-to-item, item-to-user, and
-                      user-to-user recommendation scenarios. Teams with limited
-                      machine-learning expertise can build highly personalised,
-                      scalable recommenders for AI-driven customer experiences.
+                      Weaviate Embeddings is a service in Weaviate Cloud that
+                      simplifies the creation and management of vector
+                      embeddings. With Weaviate Embeddings, developers can
+                      access to various embedding models without needing to send
+                      data to an external provider.
                     </p>
                     <ul>
                       <li>
-                        Simple client interface for managing and creating custom
-                        recommendations
+                        <strong>Fast, flexible development:</strong> Simply
+                        operations with one less API and vendor to manage.
+                        Choose between class-leading OSS and proprietary models.
                       </li>
                       <li>
-                        Multi-modal representations of item-level data objects.
+                        <strong>Freedom from rate limits:</strong> Bring models
+                        closer to your data to reduce latency. Enable limitless
+                        embeddings per second without artificial constraints.
                       </li>
                       <li>
-                        Personalized user recommendation and search based on
-                        past events and interactions
-                      </li>
-                      <li>
-                        Configurable endpoints for different recommendation
-                        scenarios
+                        <strong>GPU-powered and cost-efficient:</strong>
+                        Maximize performance while managing costs with simple,
+                        pay-as-you-go pricing.
                       </li>
                     </ul>
-                    <strong>Private Beta</strong>
+                    <strong>Details and Pricing</strong>
                     <p>
-                      We’re actively looking for customers to join our private
-                      beta. If you’re interested, please let us know.{' '}
+                      Weaviate Embeddings is now available in Preview with the{' '}
+                      <strong>Snowflake arctic-embed-v-1.15 text</strong>{' '}
+                      embedding model.
+                    </p>
+                    <p>
+                      When generally available, pricing will start at $0.04 per
+                      million tokens.
                     </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availabilty: <strong>Private beta</strong>
-                    </p>
-                    <p>
+                      Availabilty:{' '}
                       <Link to="https://events.weaviate.io/early-access">
-                        Request beta access
+                        <strong>Preview</strong>
                       </Link>
                     </p>
                   </div>
