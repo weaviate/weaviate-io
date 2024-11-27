@@ -4,14 +4,13 @@ sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 
-[IBM](https://www.ibm.com/us-en) offers a variety of solutions for building generative AI applications and other applications.
+[IBM](https://www.ibm.com/us-en) offers a variety of solutions for building generative AI applications and other use cases.
 
 ## IBM and Weaviate
 [Docling](https://github.com/DS4SD/docling) is an open-source project built by the IBM Deep Search team. It enables developers to parse and export documents and ingest it into a Weaviate collection.
 
 ## Our Resources 
-The resources are broken into two categories: 
-1. [**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
+[**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
 
 
 ### Hands on Learning
