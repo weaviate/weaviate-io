@@ -39,7 +39,7 @@ export default function QueryPage() {
                 <img src={'/img/site/' + app.image} alt={app.name} />
                 <div>
                   <h1>{app.name}</h1>
-                  <p>{app.description}</p>
+                  <p>{app.longDescription}</p>
                   {app.released === 'no' ? (
                     <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
@@ -93,7 +93,7 @@ export default function QueryPage() {
                         embeddings per second without artificial constraints.
                       </li>
                       <li>
-                        <strong>GPU-powered and cost-efficient:</strong>
+                        <strong>GPU-powered and cost-efficient:</strong>{' '}
                         Maximize performance while managing costs with simple,
                         pay-as-you-go pricing.
                       </li>
@@ -101,7 +101,7 @@ export default function QueryPage() {
                     <strong>Details and Pricing</strong>
                     <p>
                       Weaviate Embeddings is now available in Preview with the{' '}
-                      <strong>Snowflake arctic-embed-v-1.15 text</strong>{' '}
+                      <strong>Snowflake arctic-embed-m-v1.15 text</strong>{' '}
                       embedding model.
                     </p>
                     <p>
