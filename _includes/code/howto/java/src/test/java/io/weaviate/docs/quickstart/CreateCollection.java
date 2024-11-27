@@ -14,7 +14,6 @@ import java.util.Map;
 // Set these environment variables
 // WCD_HOSTNAME     Your Weaviate instance hostname
 // WCD_API_KEY      Your Weaviate instance API key
-// OPENAI_API_KEY   Your OpenAI API key
 
 public class CreateCollection {
   public static void main(String[] args) throws Exception {
@@ -30,17 +29,17 @@ public class CreateCollection {
 
     // START CreateCollection
     // highlight-start
-    Map<String, Object> text2vecOpenAISettings = new HashMap<>();
-    Map<String, Object> generativeOpenAISettings = new HashMap<>();
+    Map<String, Object> text2vecCohereSettings = new HashMap<>();
+    Map<String, Object> generativeCohereSettings = new HashMap<>();
 
     Map<String, Object> moduleConfig = new HashMap<>();
-    moduleConfig.put("text2vec-openai", text2vecOpenAISettings);
-    moduleConfig.put("generative-openai", generativeOpenAISettings);
+    moduleConfig.put("text2vec-cohere", CohereSettings);
+    moduleConfig.put("generative-cohere", generativeCohereSettings);
 
     // Create the collection "Question"
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-openai")
+      .vectorizer("text2vec-cohere")
       .moduleConfig(moduleConfig)
       .build();
     // highlight-end
