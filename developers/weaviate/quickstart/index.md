@@ -75,7 +75,7 @@ Notes:
 
 ### Prerequisites
 
-You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/).
+You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/). We will use free tiers (Weaviate Sandbox and Cohere trial API key) of both services.
 
 If you have another, preferred [model provider](../model-providers/index.md), you can use that instead of Cohere.
 
