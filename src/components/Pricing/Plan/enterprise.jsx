@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import EnterpriseContainer from '../EnterpriseContainer';
 
 export default function PricingEnterprise() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null); // Ref for the modal content
 
   const openModal = () => {
     if (window.location.pathname === '/pricing') {
@@ -19,6 +20,23 @@ export default function PricingEnterprise() {
       window.history.replaceState(null, null, '/pricing');
     }
   };
+
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isModalOpen]);
 
   useEffect(() => {
     if (window.location.pathname === '/pricing/enterprise') {
@@ -79,12 +97,12 @@ export default function PricingEnterprise() {
       <div
         className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
         style={{ display: isModalOpen ? 'flex' : 'none' }}
+        onClick={handleOutsideClick}
       >
-        <div className={styles.modalContents}>
+        <div className={styles.modalContents} ref={modalRef}>
           <span className={styles.close} onClick={closeModal}>
             &times;
           </span>
-
           <EnterpriseContainer closeModal={closeModal} />
         </div>
       </div>

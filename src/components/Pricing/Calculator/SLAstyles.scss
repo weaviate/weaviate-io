@@ -609,7 +609,7 @@
   }
 }
 
-.info {
+.infoSection {
   border-radius: 0.625rem;
 
   width: 25.9375rem;
@@ -628,6 +628,7 @@
   @media screen and (max-width: 668px) {
     height: auto;
     width: 90%;
+    padding: 2rem;
   }
 
   h2 {

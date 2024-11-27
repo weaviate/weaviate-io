@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import CalculatorContainer from '../CalculatorContainer';
 
 export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
 
   const openModal = () => {
     if (window.location.pathname === '/pricing') {
@@ -19,6 +20,23 @@ export default function PricingStandard() {
       window.history.replaceState(null, null, '/pricing');
     }
   };
+
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isModalOpen]);
 
   useEffect(() => {
     if (window.location.pathname === '/pricing/serverless') {
@@ -60,7 +78,7 @@ export default function PricingStandard() {
           </Link>
         </div>
 
-        <hr></hr>
+        <hr />
         <div className={styles.features}>
           <p>
             For building and prototyping with seamless scaling and flexible
@@ -79,12 +97,12 @@ export default function PricingStandard() {
       <div
         className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
         style={{ display: isModalOpen ? 'flex' : 'none' }}
+        onClick={handleOutsideClick}
       >
-        <div className={styles.modalContents}>
+        <div className={styles.modalContents} ref={modalRef}>
           <span className={styles.close} onClick={closeModal}>
             &times;
           </span>
-
           <CalculatorContainer />
         </div>
       </div>
