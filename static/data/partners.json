@@ -405,5 +405,16 @@
     "programmingLanguage": "Python",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "IBM",
+    "image": "/img/site/IBM_logo.svg.png",
+    "link": "/developers/integrations/data-platforms/ibm",
+    "description": "IBM offers a variety of solutions for building generative AI applications",
+    "tags": ["Data Platforms", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
