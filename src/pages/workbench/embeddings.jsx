@@ -47,7 +47,7 @@ export default function QueryPage() {
                       </button>
                     </Link>
                   ) : (
-                    <Link to="https://events.weaviate.io/early-access">
+                    <Link to="https://events.weaviate.io/embeddings-preview">
                       <button className={styles.installButton}>
                         Request Preview Access
                       </button>
@@ -114,7 +114,7 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availabilty:{' '}
-                      <Link to="https://events.weaviate.io/early-access">
+                      <Link to="https://events.weaviate.io/embeddings-preview">
                         <strong>Preview</strong>
                       </Link>
                     </p>
