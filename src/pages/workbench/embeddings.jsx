@@ -7,7 +7,7 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.id === 'embeddings');
+  const app = appData.find((app) => app.name === 'Embeddings');
 
   if (!app) return <div>App not found</div>;
 
@@ -41,15 +41,15 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.longDescription}</p>
                   {app.released === 'no' ? (
-                    <Link to="https://events.weaviate.io/early-access">
+                    <Link to="https://console.weaviate.cloud/">
                       <button className={styles.installButton}>
-                        Request Preview Access
+                        Open in Weaviate Cloud
                       </button>
                     </Link>
                   ) : (
-                    <Link to="https://console.weaviate.cloud/">
+                    <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
-                        Open in Weaviate Cloud Request Preview Access
+                        Request Preview Access
                       </button>
                     </Link>
                   )}

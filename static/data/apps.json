@@ -1,6 +1,6 @@
 [
   {
-    "id": "query",
+    "id": "4",
     "name": "Query",
     "category": "Cloud Tools",
     "description": "Work interactively with Weaviate Cloud clusters using GraphQL.",
@@ -18,7 +18,7 @@
     "released": "yes"
   },
   {
-    "id": "collections",
+    "id": "5",
     "name": "Collections",
     "category": "Cloud Tools",
     "description": "Create and manage collections through a graphical user interface (GUI).",
@@ -36,7 +36,7 @@
     "released": "yes"
   },
   {
-    "id": "explorer",
+    "id": "6",
     "name": "Explorer",
     "category": "Cloud Tools",
     "description": "Search and validate object data, without writing any code.",
@@ -54,7 +54,7 @@
     "released": "no"
   },
   {
-    "id": "recommender",
+    "id": "2",
     "name": "Recommender Service",
     "category": "AI-Native Services",
     "description": "Build personalized, multi-modal recommendations with a simple interface.",
@@ -69,11 +69,10 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/recommender",
-    "released": "no",
-    "earlyAccess": "yes"
+    "released": "yes"
   },
   {
-    "id": "gfl",
+    "id": "3",
     "name": "Generative Feedback Loops",
     "category": "AI-Native Services",
     "description": "Automate mundane tasks and improve the quality of your data.",
@@ -91,7 +90,7 @@
     "released": "no"
   },
   {
-    "id": "embeddings",
+    "id": "1",
     "name": "Embeddings",
     "category": "AI-Native Services",
     "description": "Access open-source and commercial models within Weaviate Cloud.",
@@ -106,7 +105,6 @@
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/embeddings",
-    "released": "no",
-    "earlyAccess": "yes"
+    "released": "yes"
   }
 ]

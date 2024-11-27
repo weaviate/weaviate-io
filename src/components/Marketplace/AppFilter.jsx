@@ -16,10 +16,6 @@ export default function AppFilter() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(appData);
-  }, []);
-
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -28,13 +24,20 @@ export default function AppFilter() {
     setSelectedCategory(category);
   };
 
-  const filteredApps = appData.filter((app) => {
-    return (
-      (selectedCategory === 'All' || app.category === selectedCategory) &&
-      (app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.description.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
-  });
+  // Add sorting logic here
+  const sortedApps = (apps) => {
+    return apps.sort((a, b) => a.id - b.id); // Sort by numeric `id`
+  };
+
+  const filteredApps = sortedApps(
+    appData.filter((app) => {
+      return (
+        (selectedCategory === 'All' || app.category === selectedCategory) &&
+        (app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.description.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    })
+  );
 
   const renderCardsByCategory = (category) => {
     const appsInCategory = filteredApps.filter(
