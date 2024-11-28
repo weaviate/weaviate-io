@@ -1100,7 +1100,8 @@ await client.collections.create({
         sourceProperties: ['title'],
         // // Further options
         // model: 'snowflake-arctic-embed',
-        // dimensions: 512
+        // dimensions: 512,
+        // baseUrl: '<custom_weaviate_embeddings_url>',
       },
     ),
   ],
