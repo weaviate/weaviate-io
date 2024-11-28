@@ -17,7 +17,7 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
-import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage/main.go';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
