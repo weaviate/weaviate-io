@@ -57,13 +57,8 @@ export default function QueryPage() {
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
                     <img
-                      className={styles.smallScreen}
+                      className={`${styles.smallScreen} ${styles.embeddings}`}
                       src={'/img/site/' + app.overviewImage1}
-                      alt={app.name}
-                    />
-                    <img
-                      className={styles.smallScreen}
-                      src={'/img/site/' + app.overviewImage2}
                       alt={app.name}
                     />
                   </div>
@@ -101,7 +96,9 @@ export default function QueryPage() {
                     <strong>Details and Pricing</strong>
                     <p>
                       Weaviate Embeddings is now available in Preview with the{' '}
-                      <strong>Snowflake arctic-embed-m-v1.15 text</strong>{' '}
+                      <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
+                        <strong>Snowflake arctic-embed-m-v1.15 text</strong>
+                      </Link>{' '}
                       embedding model.
                     </p>
                     <p>

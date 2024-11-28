@@ -1081,7 +1081,7 @@
 
 @media (max-width: 768px) {
   .overviewImage {
-    width: 22rem;
+    width: 100%;
     height: 14rem;
   }
 
@@ -1115,10 +1115,21 @@
     height: 10rem;
     margin-right: 1px;
   }
+}
+
+.overviewImage .embeddings {
+  width: 25.91263rem;
+  height: 15.49019rem;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 1025px) {
+    width: 100%;
+    height: 10rem;
+  }
 
   @media screen and (max-width: 500px) {
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    height: 11rem;
   }
 }
 
