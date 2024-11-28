@@ -109,7 +109,7 @@ Weaviate Embeddings is a part of Weaviate Cloud, and available for Weaviate Clou
 
 The following models are available for use with Weaviate Embeddings:
 
-- `arctic-embed-m-v1.5`
+- `arctic-embed-m-v1.5` (default)
     - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
     - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
     - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
