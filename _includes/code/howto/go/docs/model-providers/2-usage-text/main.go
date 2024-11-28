@@ -7,10 +7,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"os"
 
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/fault"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 	"github.com/weaviate/weaviate/entities/models"
 )
@@ -28,11 +30,23 @@ func main() {
 		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
+		Headers: map[string]string{
+			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
+		},
+		// highlight-end
 	}
 
 	client, err := weaviate.NewClient(cfg)
 	if err != nil {
 		fmt.Println(err)
+	}
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
 	}
 
 	// START BasicVectorizerCohere
@@ -58,6 +72,14 @@ func main() {
 	// highlight-end
 	// END BasicVectorizerCohere
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
 	// START VectorizerCohereCustomModel
 	// highlight-start
 	// Define the collection
@@ -82,6 +104,14 @@ func main() {
 	}
 	// highlight-end
 	// END VectorizerCohereCustomModel
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
 
 	// START FullVectorizerCohere
 	// highlight-start
@@ -153,7 +183,8 @@ func main() {
 	}
 	for _, res := range batchRes {
 		if res.Result.Errors != nil {
-			panic(res.Result.Errors.Error)
+			fmt.Printf("Error details: %+v\n", res.Result.Errors.Error)
+			panic(res.Result.Errors)
 		}
 	}
 	// highlight-end
