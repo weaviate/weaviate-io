@@ -210,9 +210,9 @@ Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud in
 
 </Tabs>
 
-## Configure the vectorizer with optional parameters
+## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Weaviate Embeddings model:
+[Configure a Weaviate index](/developers/weaviate/manage-data/collections#specify-a-vectorizer) as follows to use a Weaviate Embeddings model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
