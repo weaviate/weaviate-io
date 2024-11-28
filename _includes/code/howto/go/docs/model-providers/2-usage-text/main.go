@@ -231,7 +231,12 @@ func main() {
 	}
 	for _, res := range batchRes {
 		if res.Result.Errors != nil {
-			panic(res.Result.Errors.Error)
+			for _, err := range res.Result.Errors.Error {
+				if err != nil {
+					fmt.Printf("Error details: %v\n", *err)
+					panic(err.Message)
+				}
+			}
 		}
 	}
 	// highlight-end
