@@ -10,7 +10,7 @@ image: og/docs/integrations/provider_integrations_databricks.jpg
 :::info Added in `v1.26.3`
 :::
 
-Databricks offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Databricks' Foundation Model APIs, allowing users to leverage Databricks' models directly within the Weaviate database.
+Databricks offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Databricks' Foundation Model APIs, allowing users to leverage Databricks' models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -32,7 +32,7 @@ Databricks' embedding models transform text data into high-dimensional vector re
 
 Databrick' generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate' efficient storage and fast retrieval capabilities with Databrick' generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly from the Weaviate database. This combines Weaviate' efficient storage and fast retrieval capabilities with Databrick' generative AI models to generate personalized and context-aware responses.
 
 [Databricks generative AI integration page](./generative.md)
 

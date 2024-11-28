@@ -1,9 +1,9 @@
-// START WESInstantiation
+// START WeaviateInstantiation
 import weaviate from 'weaviate-client'
 
-// END WESInstantiation
+// END WeaviateInstantiation
 
-// START WESInstantiation
+// START WeaviateInstantiation
 const client = await weaviate.connectToWeaviateCloud(
   'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
@@ -14,5 +14,5 @@ const client = await weaviate.connectToWeaviateCloud(
 // Work with Weaviate
 
 client.close()
-// END WESInstantiation
+// END WeaviateInstantiation
 

@@ -1,24 +1,24 @@
 ---
 title: Text Embeddings
-description: "Weaviate Embedding Service's models can be accessed directly from a Weaviate Cloud instance."
+description: "Weaviate Embeddings' models can be accessed directly from a Weaviate Cloud instance."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_wes.jpg
-# tags: ['model providers', 'weaviate', 'wes', 'weaviate embedding service']
+# tags: ['model providers', 'weaviate', 'wes', 'weaviate embeddings']
 ---
 
-# Weaviate Embedding Service
+# Weaviate Embeddings
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyConnect from '!!raw-loader!../_includes/provider.connect.wes.py';
-import TSConnect from '!!raw-loader!../_includes/provider.connect.wes.ts';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.weaviate.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.weaviate.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate Embedding Service's (WES) models can be accessed directly from a Weaviate Cloud instance.
+Weaviate Embeddings' models can be accessed directly from a Weaviate Cloud instance.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a WES embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Weaviate API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Weaviate Embeddings model, and Weaviate will generate embeddings for various operations using the specified model and your Weaviate API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -28,19 +28,19 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 
 ### Weaviate configuration
 
-The WES vectorizer is only available for use by Weaviate Cloud instances. At this time, WES is not available for self-hosted users.
+The Weaviate Embeddings vectorizer is only available for use by Weaviate Cloud instances. At this time, Weaviate Embeddings is not available for self-hosted users.
 
 ### API credentials
 
-WES is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for WES.
+Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for Weaviate Embeddings.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START WESInstantiation"
-      endMarker="# END WESInstantiation"
+      startMarker="# START WeaviateInstantiation"
+      endMarker="# END WeaviateInstantiation"
       language="py"
     />
   </TabItem>
@@ -48,8 +48,8 @@ WES is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be u
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START WESInstantiation"
-      endMarker="// END WESInstantiation"
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
       language="ts"
     />
   </TabItem>
@@ -58,7 +58,7 @@ WES is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be u
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a WES embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Weaviate Embeddings model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -73,8 +73,8 @@ WES is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be u
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerCohere"
-      endMarker="// END BasicVectorizerCohere"
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
       language="ts"
     />
   </TabItem>
@@ -98,8 +98,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START VectorizerCohereCustomModel"
-      endMarker="// END VectorizerCohereCustomModel"
+      startMarker="// START VectorizerWeaviateCustomModel"
+      endMarker="// END VectorizerWeaviateCustomModel"
       language="ts"
     />
   </TabItem>
@@ -119,7 +119,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure WES-specific options.
+The following examples show how to configure Weaviate Embeddings-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -134,15 +134,15 @@ The following examples show how to configure WES-specific options.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerCohere"
-      endMarker="// END FullVectorizerCohere"
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, see the [WES Reference documentation](/developers/wcs/wes/index.md).
+For further details on model parameters, see the [Weaviate Embeddings Reference documentation](/developers/wcs/embeddings).
 
 ## Data import
 
@@ -257,7 +257,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- Weaviate Embedding Service [Documentation](/developers/wcs/wes/index.md)
+- Weaviate Embeddings [Documentation](/developers/wcs/embeddings)
 
 ## Questions and feedback
 

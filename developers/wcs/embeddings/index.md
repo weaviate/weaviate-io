@@ -1,19 +1,19 @@
 ---
-title: Weaviate Embedding Service
+title: Weaviate Embeddings
 sidebar_position: 200
 image: og/wcs/user_guides.jpg
 ---
 
 ## Overview
 
-:::info WES is in technical preview
-Weaviate Embedding Service (WES) is in technical preview. This means that the service is still in development and may have limited functionality.
+:::info Weaviate Embeddings is in technical preview
+Weaviate Embeddings is in technical preview. This means that the service is still in development and may have limited functionality.
 <br/>
 
 During the technical preview, you can use WES for free. However, the service may be subject to change, and we may introduce pricing in the future.
 :::
 
-Weaviate Embedding Service (WES) provides secure, scalable embedding generation as a fully managed service.
+Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service.
 
 WES integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
 
@@ -87,7 +87,7 @@ flowchart LR
 WES offers a fully managed service for embedding generation that is integrated with Weaviate Cloud instances.
 
 - **Single authentication**: Your Weaviate Cloud credentials are used to authorize your Weaviate Cloud instance's access to WES.
-- **Unified billing**: WES is integrated with Weaviate Cloud, so you can manage your billing and usage in one place.
+- **Unified billing**: Weaviate Embeddings is integrated with Weaviate Cloud, so you can manage your billing and usage in one place.
 - **Model selection**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
 
 ### Availability
@@ -102,7 +102,7 @@ WES offers a fully managed service for embedding generation that is integrated w
 - Prerequisites
   - Weaviate Cloud Account
   - Required Permissions
-- Enabling Weaviate Embedding Service
+- Enabling Weaviate Embeddings
   - Will this be enabled by default?
 - Service Configuration
   - Embedding Models

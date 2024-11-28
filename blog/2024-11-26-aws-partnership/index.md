@@ -20,22 +20,22 @@ Establishing our partnerships on a solid foundation required us to invest upfron
 
 ## Building on Solid Ground
 
-The Weaviate core database runs natively on Amazon Elastic Kubernetes Service (EKS), providing enterprise-grade scalability and deployment flexibility. By leveraging Kubernetes, we can cater to our customers' needs, whether they require a serverless, multi-tenant solution managed by us or an enterprise-grade, single-tenant option. In the latter case, customers can use our managed services or deploy the same software directly within their environment, receiving enterprise support from Weaviate.
+The Weaviate core database runs natively on Amazon Elastic Kubernetes Service (EKS), providing enterprise-grade scalability and deployment flexibility. By leveraging Kubernetes, we can cater to our customers' needs, whether they require a serverless, multi-tenant solution managed by us or an enterprise-grade, single-tenant option. In the latter case, customers can use our managed services or deploy the same software directly from their environment, receiving enterprise support from Weaviate.
 
 We have expanded our technical integration portfolio to include native support for both Amazon SageMaker, aimed at data engineers building applications from the ground up, and Amazon Bedrock, which caters to data scientists who prefer a straightforward, no-fuss approach to deploying generative AI applications with their chosen foundation models. This expansion continues our commitment to supporting all user personas we target.
 
-Most of the Generative AI buzz is over GPUs and model training, but many production applications run fine on commodity hardware. With cost performance becoming a bigger and bigger issue for production-scale deployments, we are seeing a trend toward AWS Graviton-based deployments. Today, a handful of customers happily run their Knowledge Bases and Q&A apps running fully on gravitation SKUs. 
+Most of the Generative AI buzz is over GPUs and model training, but many production applications run fine on commodity hardware. With cost performance becoming a bigger and bigger issue for production-scale deployments, we are seeing a trend toward AWS Graviton-based deployments. Today, a handful of customers happily run their Knowledge Bases and Q&A apps running fully on gravitation SKUs.
 
 ## Co-Marketing Success
 
 We have focused on telling a compelling "better together" story with AWS from the beginning. Our account and partner marketing teams at AWS have provided exceptional support for early-stage startups like ours. Additionally, with the executive sponsorship at the AWS leadership level, we receive the necessary support to grow our early go-to-market strategy. So far, our co-marketing efforts have produced impressive results over the past year:
 
-* Conducted four successful joint roadshows in San Francisco, Chicago, Seattle, and London.  
-* Secured over 20+ customer wins with Morningstar, Instabase, Cisco, Bunq, and others  
-* Established joint marketing campaigns, case studies, and webinars, generating significant results.  
-* Utilized Marketing Development Funds (MDF) effectively, with a strategic focus on AWS MDF funds.  
-* Implemented digital marketing initiatives, including co-branded content creation.  
-* Developed success stories, case studies, and solution briefs.  
+* Conducted four successful joint roadshows in San Francisco, Chicago, Seattle, and London.
+* Secured over 20+ customer wins with Morningstar, Instabase, Cisco, Bunq, and others
+* Established joint marketing campaigns, case studies, and webinars, generating significant results.
+* Utilized Marketing Development Funds (MDF) effectively, with a strategic focus on AWS MDF funds.
+* Implemented digital marketing initiatives, including co-branded content creation.
+* Developed success stories, case studies, and solution briefs.
 * Participated at re:Invent 2023 and in the partner showcase events like spotlight.
 
 We have also achieved significant program milestones, such as AWS Generative AI Competency certification, and we are a top-tier participant in the ISV Accelerate program. This success could not have happened without the contributions from teams throughout Weaviate, especially the outstanding work of our partner marketing team.
@@ -56,9 +56,9 @@ The past eighteen months have been transformative for our partnership with AWS, 
 
 What you can expect to see when you visit our booth, **#1506**:
 
-* A few demos showcasing hybrid search, Generative Feedback Loops (GFL), and Retrieval Augmented Generation (RAG)  
-* Our new Weaviate comic book \- “The Vector Vault”  
-* Limited edition stickers & hats  
+* A few demos showcasing hybrid search, Generative Feedback Loops (GFL), and Retrieval Augmented Generation (RAG)
+* Our new Weaviate comic book \- “The Vector Vault”
+* Limited edition stickers & hats
 * Weaviate's friendly experts
 
 We'll share a few demos showing the power of Weaviate and our features. We're expanding [Wealingo](https://github.com/weaviate/wealingo-demo) to include features like multi-tenancy, Generative Feedback Loops (GFLs), and more.

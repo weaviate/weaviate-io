@@ -983,12 +983,13 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     vectorizer_config=[
-        Configure.NamedVectors.text2vec_voyageai(
+        Configure.NamedVectors.text2vec_weaviate(
             name="title_vector",
             source_properties=["title"],
             # Further options
             # model="snowflake-arctic-embed",
             # dimensions=512
+            # base_url="<custom_weaviate_embeddings_url>",
         )
     ],
     # highlight-end
