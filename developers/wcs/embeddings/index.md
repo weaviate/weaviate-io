@@ -176,11 +176,72 @@ To use Weaviate Embeddings, log into the Weaviate Cloud console, and enable the 
 
 Once the service is enabled, you can use Weaviate Embeddings to generate embeddings for your data and queries.
 
-Refer to the [Model Provider Integrations page](/developers/weaviate/model-providers/weaviate-embeddings/embeddings) for code examples, on:
-- [How to configure a vectorizer](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#configure-the-vectorizer)
-- [Import data](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#data-import)
-- [Perform searches](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#searches)
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.py';
+import TSConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.ts';
+import PyCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.py';
+import TSCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.ts';
+
+### Connect to Weaviate
+
+Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for Weaviate Embeddings.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyConnect}
+      startMarker="# START WeaviateInstantiation"
+      endMarker="# END WeaviateInstantiation"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Configure the vectorizer with optional parameters
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Weaviate Embeddings model:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicVectorizerWeaviate"
+      endMarker="# END BasicVectorizerWeaviate"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+Once your collection is configured, you can start using Weaviate Embeddings to generate embeddings for your data and queries.
+
+Refer to the [Model Provider Integrations page](/developers/weaviate/model-providers/weaviate/embeddings) for further examples, on:
+- [How to use custom parameters](/developers/weaviate/model-providers/weaviate/embeddings#vectorizer-parameters)
+- [Import data](/developers/weaviate/model-providers/weaviate/embeddings#data-import)
+- [Perform searches](/developers/weaviate/model-providers/weaviate/embeddings#searches)
 
 ## Additional Resources
 
-- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate-embeddings/embeddings)
+- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
