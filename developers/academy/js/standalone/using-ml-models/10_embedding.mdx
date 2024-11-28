@@ -1,11 +1,12 @@
 ---
-title: Understanding Embedding models
+title: Using Embedding models
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import TSCode from '!!raw-loader!./_snippets/10_embedding.ts';
+import EmbeddingModelImage from '/developers/academy/js/standalone/using-ml-models/_img/embedding-models.png';
 
 
 ### <i class="fa-solid fa-chalkboard"></i> What are embedding models
@@ -13,7 +14,24 @@ import TSCode from '!!raw-loader!./_snippets/10_embedding.ts';
 Embedding models are machine learning models trained to represent information as an array of numbers, frequently referred to as vector embeddings. Vectors or vector embeddings are numeric representations of data that represent certain properties or features. This representation can be used to efficiently search through objects in a vector space. 
 
 
-<!-- Add graphics -->
+  ### <i class="fa-solid fa-chalkboard"></i> Vector representations
+**Vector Representations**
+Vector representations are the fundamental output of embedding models. They translate complex data (text, images, etc.) into fixed-length arrays of numbers that capture semantic meaning.
+Structure of Vector Embeddings
+
+- Dimensionality: Typically ranges from 384 to 1536 dimensions, depending on the model
+- Components: Each dimension represents learned features from the training data
+- Format: Floating point numbers, usually normalized to a specific range
+
+  ### <i class="fa-solid fa-chalkboard"></i> Distance metrics
+
+  Distance metrics quantify the similarity between vector embeddings. Choice of metric impacts search quality and performance.
+
+- Cosine: Best for text and semantic similarity
+- Euclidean: Better for spatial or geometric data
+- Dot Product: Efficient when vectors are normalized
+
+<img src={EmbeddingModelImage} alt="Image alt" width="90%"/>
 
 
 ### <i class="fa-solid fa-chalkboard"></i> When to use embedding models
@@ -45,7 +63,6 @@ Uni-modal embeddings represents a single modality in a multidimensional vector s
 Multimodal embeddings represent multiple modalities in a multidimensional space. Allowing cross modal retrieval and clustering.  CLIP is a popular multimodal model that can create embeddings of text, audio and video data.
 
 <!-- Add graphics on multimodal inputs and encoding -->
-
 
 
 
@@ -122,4 +139,5 @@ Here we make a query and set `showVectors` as true so we can see the objects' ve
 Various embedding models differ when it comes to performance and ability, [you can read this article on embeddings](https://weaviate.io/blog/how-to-choose-an-embedding-model) so you have an idea of what to think about as you about picking one. 
 
 
+- **[Embedding Models](./10_embedding.mdx)**
 
