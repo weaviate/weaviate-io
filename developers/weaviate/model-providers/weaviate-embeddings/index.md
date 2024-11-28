@@ -6,7 +6,7 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 ---
 
 :::info Access to Weaviate Embeddings during technical preview
-Weaviate Embeddings is currently in free technical preview.
+Weaviate Embeddings is currently in free technical preview for Weaviate Cloud Serverless users.
 
 To try out Weaviate Embeddings at this time, please [contact us](/embeddings) to request access.
 :::

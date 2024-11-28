@@ -99,19 +99,16 @@ Weaviate Embeddings is a part of Weaviate Cloud, and available for Weaviate Clou
 
 ## Get Started
 
-:::caution TODO
-- Prerequisites
-  - Weaviate Cloud Account
-  - Required Permissions
-- Enabling Weaviate Embeddings
-  - Will this be enabled by default?
-- Service Configuration
-  - Embedding Models
-  - API Keys and Authentication
-- Usage instructions
-  - Snippets for collection config; import & search (or link to model provider doc)
-  - QuickStart?
-:::
+To use Weaviate Embeddings, log into the Weaviate Cloud console, and enable the Weaviate Embeddings service for your organization.
+
+![Embedding integration illustration](../img/enable_weaviate_embeddings.png)
+
+Once the service is enabled, you can use Weaviate Embeddings to generate embeddings for your data and queries.
+
+Refer to the [Model Provider Integrations page](/developers/weaviate/model-providers/weaviate-embeddings/embeddings) for code examples, on:
+- [How to configure a vectorizer](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#configure-the-vectorizer)
+- [Import data](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#data-import)
+- [Perform searches](/developers/weaviate/model-providers/weaviate-embeddings/embeddings#searches)
 
 ## Service Details
 
