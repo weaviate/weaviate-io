@@ -7,12 +7,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/weaviate/weaviate-go-client/v4/weaviate"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/fault"
 	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 	"github.com/weaviate/weaviate/entities/models"
 )
@@ -33,20 +31,11 @@ func main() {
 		Headers: map[string]string{
 			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
 		},
-		// highlight-end
 	}
 
 	client, err := weaviate.NewClient(cfg)
 	if err != nil {
 		fmt.Println(err)
-	}
-
-	// Clean slate: Delete the collection
-	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
-		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
-		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
-			panic(err)
-		}
 	}
 
 	// START BasicVectorizerCohere
@@ -72,14 +61,6 @@ func main() {
 	// highlight-end
 	// END BasicVectorizerCohere
 
-	// Clean slate: Delete the collection
-	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
-		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
-		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
-			panic(err)
-		}
-	}
-
 	// START VectorizerCohereCustomModel
 	// highlight-start
 	// Define the collection
@@ -104,14 +85,6 @@ func main() {
 	}
 	// highlight-end
 	// END VectorizerCohereCustomModel
-
-	// Clean slate: Delete the collection
-	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
-		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
-		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
-			panic(err)
-		}
-	}
 
 	// START FullVectorizerCohere
 	// highlight-start
@@ -139,6 +112,81 @@ func main() {
 	}
 	// highlight-end
 	// END FullVectorizerCohere
+
+	// START BasicVectorizerWeaviate
+	// highlight-start
+	// Define the collection
+	basicWeaviateVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				VectorIndexType: "hnsw",
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicWeaviateVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerWeaviate
+
+	// START VectorizerWeaviateCustomModel
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				VectorIndexType: "hnsw",
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model": "arctic-embed-m-v1.5",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerWeaviateCustomModel
+
+	// START FullVectorizerWeaviate
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				VectorIndexType: "hnsw",
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model":      "arctic-embed-m-v1.5",
+						"dimensions": 256, // Or 756
+						"base_url":   "<custom_weaviate_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerWeaviate
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
