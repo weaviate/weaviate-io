@@ -114,7 +114,7 @@ The following models are available for use with Weaviate Embeddings:
     - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
     - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
     - Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
-    - Allowable `dimensions`: 768 (default), 512, 256, 128
+    - Allowable `dimensions`: 768 (default), 256
 
 Additional models will be added in the future.
 
