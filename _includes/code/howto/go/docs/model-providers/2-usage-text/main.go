@@ -192,11 +192,11 @@ func main() {
 	var sourceObjects = []map[string]string{
 		// Objects not shown
 		// END BatchImportExample
-		{"title": "The Shawshank Redemption", "description": ""},
-		{"title": "The Godfather", "description": ""},
-		{"title": "The Dark Knight", "description": ""},
-		{"title": "Jingle All the Way", "description": ""},
-		{"title": "A Christmas Carol", "description": ""},
+		{"title": "The Shawshank Redemption", "description": "Prison drama about hope"},
+		{"title": "The Godfather", "description": "Mafia family epic"},
+		{"title": "The Dark Knight", "description": "Batman vs Joker thriller"},
+		{"title": "Jingle All the Way", "description": "Holiday shopping adventure"},
+		{"title": "A Christmas Carol", "description": "Ghost story of redemption"},
 		// START BatchImportExample
 	}
 

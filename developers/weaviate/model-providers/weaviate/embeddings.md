@@ -19,8 +19,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.weaviate.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.weaviate.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect-weaviate-embeddings/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate Embeddings' models can be accessed directly from a Weaviate Cloud instance.
 
@@ -60,6 +62,15 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -85,6 +96,15 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Select a model
@@ -107,6 +127,15 @@ You can specify one of the [available models](#available-models) for the vectori
       startMarker="// START VectorizerWeaviateCustomModel"
       endMarker="// END VectorizerWeaviateCustomModel"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START VectorizerWeaviateCustomModel"
+      endMarker="// END VectorizerWeaviateCustomModel"
+      language="goraw"
     />
   </TabItem>
 
@@ -146,6 +175,15 @@ The following examples show how to configure Weaviate Embeddings-specific option
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 - `model`: The name of the model to use for embedding generation.
@@ -158,7 +196,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BatchImportExample"
@@ -167,12 +205,21 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS API v3">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -196,7 +243,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START NearTextExample"
@@ -205,12 +252,21 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS API v3">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START NearTextExample"
       endMarker="// END NearTextExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -243,6 +299,15 @@ The query below returns the `n` best scoring objects from the database, set by `
       startMarker="// START HybridExample"
       endMarker="// END HybridExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
     />
   </TabItem>
 

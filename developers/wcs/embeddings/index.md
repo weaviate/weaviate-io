@@ -181,8 +181,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.py';
 import TSConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect-weaviate-embeddings/main.go';
 import PyCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 ### Connect to Weaviate
 
@@ -208,6 +210,15 @@ Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud in
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -230,6 +241,15 @@ Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud in
       startMarker="// START BasicVectorizerWeaviate"
       endMarker="// END BasicVectorizerWeaviate"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
+      language="goraw"
     />
   </TabItem>
 
