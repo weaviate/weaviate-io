@@ -965,7 +965,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_weaviate(
             name="title_vector",
             source_properties=["title"],
-            model="snowflake-arctic-embed"
+            model="arctic-embed-m-v1.5"
         )
     ],
     # highlight-end
@@ -987,8 +987,8 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             # Further options
-            # model="snowflake-arctic-embed",
-            # dimensions=512
+            # model="arctic-embed-m-v1.5",
+            # dimensions=256
             # base_url="<custom_weaviate_embeddings_url>",
         )
     ],

@@ -5,6 +5,12 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'weaviate embeddings']
 ---
 
+:::info Access to Weaviate Embeddings during technical preview
+Weaviate Embeddings is currently in free technical preview.
+
+To try out Weaviate Embeddings at this time, please [contact us](/embeddings) to request access.
+:::
+
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
 [Weaviate Embeddings](/developers/wcs/embeddings) offers vectorizer models to Weaviate Cloud users, allowing users to leverage Weaviate Embeddings' models directly from a Weaviate Cloud database instance.

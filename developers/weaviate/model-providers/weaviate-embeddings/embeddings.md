@@ -6,6 +6,12 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'wes', 'weaviate embeddings']
 ---
 
+:::info Access to Weaviate Embeddings during technical preview
+Weaviate Embeddings is currently in free technical preview.
+
+To try out Weaviate Embeddings at this time, please [contact us](/embeddings) to request access.
+:::
+
 # Weaviate Embeddings
 
 import Tabs from '@theme/Tabs';
@@ -142,7 +148,9 @@ The following examples show how to configure Weaviate Embeddings-specific option
 
 </Tabs>
 
-For further details on model parameters, see the [Weaviate Embeddings Reference documentation](/developers/wcs/embeddings).
+- `model`: The name of the model to use for embedding generation.
+- `dimensions`: The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
+- `base_url`: The base URL for the Weaviate Embeddings service. (Not required in most cases.)
 
 ## Data import
 
@@ -244,7 +252,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
-- `snowflake-arctic-embed` (Default)
+- `arctic-embed-m-v1.5` (Default) ([model data card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5))
 
 ## Further resources
 

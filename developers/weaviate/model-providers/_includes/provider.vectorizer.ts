@@ -1073,7 +1073,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecWeaviate({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'snowflake-arctic-embed',
+      model: 'arctic-embed-m-v1.5',
     }),
   ],
   // highlight-end
@@ -1099,8 +1099,8 @@ await client.collections.create({
         name: 'title_vector',
         sourceProperties: ['title'],
         // // Further options
-        // model: 'snowflake-arctic-embed',
-        // dimensions: 512,
+        // model: 'arctic-embed-m-v1.5',
+        // dimensions: 256,
         // baseUrl: '<custom_weaviate_embeddings_url>',
       },
     ),

@@ -10,12 +10,15 @@ image: og/wcs/user_guides.jpg
 Weaviate Embeddings is in technical preview. This means that the service is still in development and may have limited functionality.
 <br/>
 
-During the technical preview, you can use WES for free. However, the service may be subject to change, and we may introduce pricing in the future.
+During the technical preview, you can use Weaviate Embeddings for free. However, the service may be subject to change.
+<br/>
+
+To try out Weaviate Embeddings at this time, please [contact us](/embeddings) to request access.
 :::
 
 Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service.
 
-WES integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
+Weaviate Embeddings integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
 
 ```mermaid
 %%{init: {
@@ -46,15 +49,15 @@ flowchart LR
     classDef edgeLabel fill:white,stroke:#e2e8f0,stroke-width:1px,color:#4a5568
 
     %% Weaviate Cloud container
-    subgraph cloud["☁️ Weaviate Cloud\n "]
-        %% WES section
-        subgraph provider["WES"]
+    subgraph cloud["☁️ Weaviate Cloud"]
+        %% Weaviate Embeddings section
+        subgraph provider["Weaviate\nEmbeddings"]
             inference["🤖 Inference\nAPI"]
         end
 
         %% Weaviate section
-        subgraph weaviate["Weaviate"]
-            vectorizer["🔌 WES\nIntegration"]
+        subgraph weaviate["Weaviate Cloud instance"]
+            vectorizer["🔌 Weaviate Embeddings\nIntegration"]
             core["💾 Data &\nvector store"]
         end
     end
@@ -84,19 +87,17 @@ flowchart LR
 
 ### Key Features
 
-WES offers a fully managed service for embedding generation that is integrated with Weaviate Cloud instances.
+Weaviate Embeddings offers a fully managed service for embedding generation that is integrated with Weaviate Cloud instances.
 
-- **Single authentication**: Your Weaviate Cloud credentials are used to authorize your Weaviate Cloud instance's access to WES.
+- **Single authentication**: Your Weaviate Cloud credentials are used to authorize your Weaviate Cloud instance's access to Weaviate Embeddings.
 - **Unified billing**: Weaviate Embeddings is integrated with Weaviate Cloud, so you can manage your billing and usage in one place.
 - **Model selection**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
 
 ### Availability
 
-:::caution TODO
-- Who can use this service
-:::
+Weaviate Embeddings is a part of Weaviate Cloud, and available for Weaviate Cloud instances. It is currently not available for open-source Weaviate users.
 
-## Getting Started
+## Get Started
 
 :::caution TODO
 - Prerequisites
@@ -116,45 +117,61 @@ WES offers a fully managed service for embedding generation that is integrated w
 
 ### Models
 
-:::caution TODO
-At this time, the following models are available for use with WES:
+At this time, the following models are available for use with Weaviate Embeddings:
 
-- `snowflake-arctic-embed` (xx, yy parameters)
+- `arctic-embed-m-v1.5`
+    - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
+    - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
+    - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
+    - Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
+    - Allowable `dimensions`: 768 (full length), 512, 256, 128
+
+Additional models will be added in the future.
+
+:::info Input truncation
+Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
 :::
+
+### Parameters
+
+- `model`: The name of the model to use for embedding generation.
+- `dimensions`: The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
+- `base_url`: The base URL for the Weaviate Embeddings service. (Not required in most cases.)
 
 ### Rate Limits
 
-:::caution TODO
-- Should we say anything during the technical preview?
-:::
+Weaviate Embeddings does not impose rate limits on requests.
 
 ### Pricing and Billing
 
-:::caution TODO
-Preview limits
-:::
+During the technical preview, Weaviate Embeddings is free to use.
 
-### Security
+Pricing and billing details will be provided in the future.
 
-:::caution TODO
-- Should we have a security section?
-- e.g. data privacy, access control (i.e. no access from outside of Weaviate Cloud)
-:::
+### Data Privacy
+
+Weaviate Embeddings is a stateless service that does not store any data.
+
+The data provided to Weaviate Embeddings is used solely for the purpose of generating embeddings.
+
+We do not store or use your data for any other purpose, including training or model improvement.
+
+#### Service and Data Location
+
+At this time, Weaviate Embeddings makes use of infrastructure located in the United States. Note that by using Weaviate Embeddings, you are agreeing to have your data transferred to the United States for processing.
+
+We may expand the service to other regions in the future.
 
 ### Administration
 
-:::caution TODO
-- User management? (How does this interact with WCD users/projects)
-- API Key Management
-:::
+Weaviate Embeddings can be enabled from the Weaviate Cloud console, at the organization level.
 
-## Support
+![Embedding integration illustration](../img/enable_weaviate_embeddings.png)
 
-:::caution TODO
-- How to get help
-- Troubleshooting
-:::
+Once enabled, all clusters within the organization can access Weaviate Embeddings.
+
+Authorization is handled using the API key that you use to access your Weaviate Cloud instance.
 
 ## Additional Resources
 
-- [Model provider integrations: WES embeddings](/developers/weaviate/model-providers/wes/embeddings.md)
+- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate-embeddings/embeddings)
