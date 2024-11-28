@@ -252,7 +252,18 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
-- `arctic-embed-m-v1.5` (Default) ([model data card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5))
+- `arctic-embed-m-v1.5` (default)
+    - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
+    - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
+    - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
+    - Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
+    - Allowable `dimensions`: 768 (default), 256
+
+Additional models will be added in the future.
+
+:::info Input truncation
+Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
+:::
 
 ## Further resources
 
@@ -263,7 +274,7 @@ Once the integrations are configured at the collection, the data management and 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
-### External resources
+### Further resources
 
 - Weaviate Embeddings [Documentation](/developers/wcs/embeddings)
 
