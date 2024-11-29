@@ -33,7 +33,7 @@ public class CreateCollection {
     Map<String, Object> generativeCohereSettings = new HashMap<>();
 
     Map<String, Object> moduleConfig = new HashMap<>();
-    moduleConfig.put("text2vec-cohere", CohereSettings);
+    moduleConfig.put("text2vec-cohere", text2vecCohereSettings);
     moduleConfig.put("generative-cohere", generativeCohereSettings);
 
     // Create the collection "Question"
