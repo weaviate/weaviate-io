@@ -11,16 +11,10 @@ export default function signUpPage() {
   return (
     <>
       <Head>
-        <title>Get Started For Free</title>
-        <meta
-          name="description"
-          content="All the power of our open-source vector database, without the burden of self-hosting."
-        />
-        <meta property="og:title" content="Get Started For Free" />
-        <meta
-          property="og:description"
-          content="All the power of our open-source vector database, without the burden of self-hosting."
-        />
+        <title>Weaviate Secret AI Party</title>
+        <meta name="description" content="Weaviate Secret AI Party." />
+        <meta property="og:title" content="Weaviate Secret AI Party" />
+        <meta property="og:description" content="Weaviate Secret AI Party" />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div className="custom-page noBG">
