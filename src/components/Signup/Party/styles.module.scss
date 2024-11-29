@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .demoContainer {
+  display: flex;
   margin: auto;
   background: #131144;
 
@@ -18,6 +19,7 @@
 
   @media screen and (max-width: 780px) {
     height: auto;
+    flex-direction: column-reverse;
   }
 }
 
@@ -119,20 +121,12 @@
   justify-content: space-evenly;
   width: 100%;
 
-  @media screen and (max-width: 1100px) {
-    width: 70%;
-  }
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-  }
-
   .smallText {
     font-size: 1rem;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 2.5rem;
     color: #fff;
     font-family: 'Press Start 2P', cursive;
   }
@@ -148,18 +142,25 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 700px;
+    width: 90%;
+    height: 100vh;
+
+    @media screen and (max-width: 780px) {
+      width: 100%;
+    }
   }
 }
 
 .contentSideB {
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 1rem;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
+    padding: 3rem;
   }
 
   h1 {
@@ -263,11 +264,6 @@
   height: 1.75rem;
 }
 
-.signUpBox {
-  width: 28rem;
-  height: 32rem;
-}
-
 .typeQuote .image {
   width: 5rem;
   height: 5rem; /* Smaller starting quote image size */
@@ -342,14 +338,18 @@
 
 .hsForm {
   span,
-  p {
+  p,
+  ::placeholder {
     font-family: 'Press Start 2P';
   }
   input {
-    border: 1px solid #2fc514;
+    border: 2px solid #2fc514;
     width: 100%;
-    height: 30px;
+    background: none;
+    height: 50px;
     margin: 10px 0px;
+    font-family: 'Press Start 2P';
+    color: #fff;
   }
 
   input[type='submit'] {
@@ -357,11 +357,16 @@
     border: 1px solid #2fc514;
     background: #2fc514;
     font-family: 'Press Start 2P';
+    color: #130c49;
   }
 
   label {
     font-family: 'Press Start 2P';
     color: #fff;
     font-size: 10px;
+  }
+
+  ul {
+    padding: 0;
   }
 }

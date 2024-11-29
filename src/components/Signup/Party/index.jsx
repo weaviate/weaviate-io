@@ -23,20 +23,16 @@ export default function Introduction() {
 
   return (
     <div className={styles.demoContainer}>
-      <div className={styles.contentContainer}>
-        <div className={styles.content}>
-          <div className={styles.contentSideA}>
-            <div className={styles.contentImage} />
-          </div>
-          <div className={styles.contentSideB}>
-            <div className={styles.signUp}>
-              <div className={styles.signUpBox}>
-                <h1>Weaviate</h1>
-                <h3>AI Builder Secret Party</h3>
-                <div className={styles.formWrapper}>
-                  <div id="hs-form" className={styles.hsForm}></div>
-                </div>
-              </div>
+      <div className={styles.contentSideA}>
+        <div className={styles.contentImage} />
+      </div>
+      <div className={styles.contentSideB}>
+        <div className={styles.signUp}>
+          <div className={styles.signUpBox}>
+            <h1>Weaviate</h1>
+            <h3>AI Builder Secret Party</h3>
+            <div className={styles.formWrapper}>
+              <div id="hs-form" className={styles.hsForm}></div>
             </div>
           </div>
         </div>
