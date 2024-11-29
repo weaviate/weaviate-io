@@ -58,7 +58,9 @@ func main() {
 			"title_vector": {
 				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{},
+					"text2vec-cohere": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+					},
 				},
 			},
 		},
@@ -90,7 +92,8 @@ func main() {
 				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						"model": "embed-multilingual-v3.0",
+						"sourceProperties": []string{"title"},
+						"model":            "embed-multilingual-v3.0",
 					},
 				},
 			},
@@ -123,9 +126,10 @@ func main() {
 				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
-						// "model":    "embed-multilingual-v3.0",
-						// "truncate": "END", // "NONE", "START" or "END"
-						// "base_url": "<custom_cohere_url>",
+						"sourceProperties": []string{"title"},
+						// "model":            "embed-multilingual-v3.0",
+						// "truncate":         "END", // "NONE", "START" or "END"
+						// "base_url":         "<custom_cohere_url>",
 					},
 				},
 			},

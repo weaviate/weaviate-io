@@ -15,9 +15,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
+import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/Connect.java';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageText.java';
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -86,6 +88,15 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaConnect}
+      startMarker="// START CohereInstantiation"
+      endMarker="// END CohereInstantiation"
+      language="javaraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -120,6 +131,15 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START BasicVectorizerCohere"
+      endMarker="// END BasicVectorizerCohere"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Select a model
@@ -151,6 +171,15 @@ You can specify one of the [available models](#available-models) for the vectori
       startMarker="// START VectorizerCohereCustomModel"
       endMarker="// END VectorizerCohereCustomModel"
       language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START VectorizerCohereCustomModel"
+      endMarker="// END VectorizerCohereCustomModel"
+      language="java"
     />
   </TabItem>
 
@@ -199,6 +228,15 @@ The following examples show how to configure Cohere-specific options.
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FullVectorizerCohere"
+      endMarker="// END FullVectorizerCohere"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/embed).
@@ -233,6 +271,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="java"
     />
   </TabItem>
 
@@ -283,6 +330,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -324,6 +380,14 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## References
