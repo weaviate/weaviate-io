@@ -27,37 +27,22 @@ export default function Introduction() {
         <div className={styles.contentContainer}>
           <div className={styles.demoTitle}>
             <div className={styles.demoLogo}></div>
-            <span>FREE GUIDE</span>
-            <h1 classname={styles.headerTag}>
-              Getting Started With Vector Databases
-            </h1>
+            <span></span>
+            <h1 classname={styles.headerTag}>Weaviate AI Secret Party</h1>
           </div>
           <div className={styles.content}>
+            <div className={styles.contentSideA}>
+              <div className={styles.contentImage} />
+            </div>
             <div className={styles.contentSideB}>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
-                  <h3>Grab your copy today</h3>
+                  <h3>Request a ticket</h3>
                   <div className={styles.formWrapper}>
                     <div id="hs-form" className={styles.hsForm}></div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.contentSideA}>
-              <h3>
-                Stay ahead on the future of AI-native software development
-              </h3>
-              <p>
-                Vector databases are quickly emerging as a key component of the
-                AI-native tech stack, enabling fundamental use cases like
-                semantic search, recommendation engines, and retrieval augmented
-                generation (RAG).{' '}
-              </p>
-
-              <p>
-                This Refcard provides an overview of vector databases, including
-                basic concepts, use cases, and examples.
-              </p>
             </div>
           </div>
         </div>

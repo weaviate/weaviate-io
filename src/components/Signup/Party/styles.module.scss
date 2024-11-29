@@ -159,6 +159,15 @@
     color: #fff;
     font-family: 'Plus Jakarta Sans';
   }
+
+  .contentImage {
+    background: url('/img/site/weaviate-secret-party.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 700px;
+  }
 }
 
 .contentSideB {
