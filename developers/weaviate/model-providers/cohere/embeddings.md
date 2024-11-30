@@ -19,7 +19,8 @@ import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/i
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
-import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageText.java';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageCohereTextEmbeddings.java';
+import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -276,7 +277,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
   <TabItem value="java" label="Java">
     <FilteredTextBlock
-      text={JavaCode}
+      text={JavaImportQueries}
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="java"
@@ -332,7 +333,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
   <TabItem value="java" label="Java">
     <FilteredTextBlock
-      text={JavaCode}
+      text={JavaImportQueries}
       startMarker="// START NearTextExample"
       endMarker="// END NearTextExample"
       language="java"
@@ -382,7 +383,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
   <TabItem value="java" label="Java">
     <FilteredTextBlock
-      text={JavaCode}
+      text={JavaImportQueries}
       startMarker="// START HybridExample"
       endMarker="// END HybridExample"
       language="java"
