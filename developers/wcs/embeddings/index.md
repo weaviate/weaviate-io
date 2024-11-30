@@ -88,7 +88,7 @@ Weaviate Embeddings is in technical preview. This means that the service is stil
 During the technical preview, you can use Weaviate Embeddings for free. However, the service may be subject to change.
 <br/>
 
-To try out Weaviate Embeddings, please [contact us](/embeddings) to request access.
+To try out Weaviate Embeddings, please [contact us](https://events.weaviate.io/embeddings-preview) to request access.
 :::
 
 ### Key Features
