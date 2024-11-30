@@ -182,9 +182,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.py';
 import TSConnect from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.connect.weaviate.ts';
 import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect-weaviate-embeddings/main.go';
+import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ConnectWeaviateEmbeddings.java';
 import PyCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!/developers/weaviate/model-providers/_includes/provider.vectorizer.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddings.java';
 
 ### Connect to Weaviate
 
@@ -219,6 +221,15 @@ Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud in
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaConnect}
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
+      language="javaraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -250,6 +261,15 @@ Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud in
       startMarker="// START BasicVectorizerWeaviate"
       endMarker="// END BasicVectorizerWeaviate"
       language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
+      language="java"
     />
   </TabItem>
 

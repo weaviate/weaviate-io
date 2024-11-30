@@ -20,9 +20,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyConnect from '!!raw-loader!../_includes/provider.connect.weaviate.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.weaviate.ts';
 import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect-weaviate-embeddings/main.go';
+import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ConnectWeaviateEmbeddings.java';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddings.java';
+import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 Weaviate Embeddings' models can be accessed directly from a Weaviate Cloud instance.
 
@@ -71,6 +74,15 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaConnect}
+      startMarker="// START WeaviateInstantiation"
+      endMarker="// END WeaviateInstantiation"
+      language="javaraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -105,6 +117,15 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START BasicVectorizerWeaviate"
+      endMarker="// END BasicVectorizerWeaviate"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Select a model
@@ -136,6 +157,15 @@ You can specify one of the [available models](#available-models) for the vectori
       startMarker="// START VectorizerWeaviateCustomModel"
       endMarker="// END VectorizerWeaviateCustomModel"
       language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START VectorizerWeaviateCustomModel"
+      endMarker="// END VectorizerWeaviateCustomModel"
+      language="java"
     />
   </TabItem>
 
@@ -184,6 +214,15 @@ The following examples show how to configure Weaviate Embeddings-specific option
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 - `model`: The name of the model to use for embedding generation.
@@ -220,6 +259,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="java"
     />
   </TabItem>
 
@@ -270,6 +318,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -311,6 +368,14 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## References
