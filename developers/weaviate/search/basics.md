@@ -8,12 +8,37 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+export const PyCodeInfo = {
+  content: PyCode,
+  path: '/_includes/code/howto/search.basics.py',
+};
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
+export const PyCodeV3Info = {
+  content: PyCodeV3,
+  path: '/_includes/code/howto/search.basics-v3.py',
+};
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+export const TSCodeInfo = {
+  content: TSCode,
+  path: '/_includes/code/howto/search.basics.ts',
+};
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.basics-v2.ts';
+export const TSCodeLegacyInfo = {
+  content: TSCodeLegacy,
+  path: '/_includes/code/howto/search.basics-v2.ts',
+};
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-basic_test.go';
+export const GoCodeInfo = {
+  content: GoCode,
+  path: '/_includes/code/howto/go/docs/mainpkg/search-basic_test.go',
+};
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/BasicSearchTest.java';
+export const JavaCodeInfo = {
+  content: JavaCode,
+  path: '/_includes/code/howto/java/src/test/java/io/weaviate/docs/search/BasicSearchTest.java',
+};
 
 With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
 
@@ -25,19 +50,21 @@ You can get objects without specifying any parameters. This returns objects in a
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# BasicGetPython"
-      endMarker="# END BasicGetPython"
-      language="py"
-    />
-  </TabItem>
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={PyCodeInfo.content}
+    path={PyCodeInfo.path}
+    startMarker="# BasicGetPython"
+    endMarker="# END BasicGetPython"
+    language="py"
+  />
+</TabItem>
 
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# BasicGetPython"
   endMarker="# END BasicGetPython"
   language="py"
@@ -47,7 +74,8 @@ You can get objects without specifying any parameters. This returns objects in a
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
@@ -58,7 +86,8 @@ You can get objects without specifying any parameters. This returns objects in a
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
@@ -67,27 +96,30 @@ You can get objects without specifying any parameters. This returns objects in a
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START BasicGet"
-    endMarker="// END BasicGet"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START BasicGet"
+  endMarker="// END BasicGet"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START BasicGet"
-    endMarker="// END BasicGet"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START BasicGet"
+  endMarker="// END BasicGet"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# BasicGetGraphQL"
   endMarker="# END BasicGetGraphQL"
   language="graphql"
@@ -124,7 +156,8 @@ Use `limit` to set a fixed maximum number of objects to return.
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
   language="py"
@@ -134,7 +167,8 @@ Use `limit` to set a fixed maximum number of objects to return.
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
   language="py"
@@ -144,7 +178,8 @@ Use `limit` to set a fixed maximum number of objects to return.
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
@@ -155,7 +190,8 @@ Use `limit` to set a fixed maximum number of objects to return.
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
@@ -163,27 +199,30 @@ Use `limit` to set a fixed maximum number of objects to return.
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetWithLimit"
-    endMarker="// END GetWithLimit"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetWithLimit"
+  endMarker="// END GetWithLimit"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetWithLimit"
-    endMarker="// END GetWithLimit"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetWithLimit"
+  endMarker="// END GetWithLimit"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithLimitGraphQL"
   endMarker="# END GetWithLimitGraphQL"
   language="graphql"
@@ -213,7 +252,8 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
   language="py"
@@ -223,7 +263,8 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
   language="py"
@@ -233,7 +274,8 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
@@ -244,7 +286,8 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
@@ -252,27 +295,30 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetWithOffset"
-    endMarker="// END GetWithOffset"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetWithOffset"
+  endMarker="// END GetWithOffset"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetWithOffset"
-    endMarker="// END GetWithOffset"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetWithOffset"
+  endMarker="// END GetWithOffset"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithLimitOffsetGraphQL"
   endMarker="# END GetWithLimitOffsetGraphQL"
   language="graphql"
@@ -305,7 +351,8 @@ You can specify which object properties to return.
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
   language="py"
@@ -316,7 +363,8 @@ You can specify which object properties to return.
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
   language="py"
@@ -326,7 +374,8 @@ You can specify which object properties to return.
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
@@ -337,7 +386,8 @@ You can specify which object properties to return.
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
   language="js"
@@ -346,27 +396,30 @@ You can specify which object properties to return.
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetProperties"
-    endMarker="// END GetProperties"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetProperties"
+  endMarker="// END GetProperties"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetProperties"
-    endMarker="// END GetProperties"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetProperties"
+  endMarker="// END GetProperties"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetPropertiesGraphQL"
   endMarker="# END GetPropertiesGraphQL"
   language="graphql"
@@ -396,7 +449,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
   language="py"
@@ -405,7 +459,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 
 <TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
   language="py"
@@ -415,7 +470,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
@@ -426,7 +482,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
@@ -436,7 +493,8 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 
 <TabItem value="go" label="Go">
   <FilteredTextBlock
-    text={GoCode}
+    text={GoCodeInfo.content}
+    path={GoCodeInfo.path}
     startMarker="// START GetObjectVector"
     endMarker="// END GetObjectVector"
     language="go"
@@ -444,18 +502,20 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetObjectVector"
-    endMarker="// END GetObjectVector"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetObjectVector"
+  endMarker="// END GetObjectVector"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetObjectVectorGraphQL"
   endMarker="# END GetObjectVectorGraphQL"
   language="graphql"
@@ -486,7 +546,8 @@ You can retrieve the object `id` (uuid).
 <TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
   language="py"
@@ -496,7 +557,8 @@ You can retrieve the object `id` (uuid).
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
   language="py"
@@ -506,7 +568,8 @@ You can retrieve the object `id` (uuid).
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
@@ -517,7 +580,8 @@ You can retrieve the object `id` (uuid).
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
@@ -526,27 +590,30 @@ You can retrieve the object `id` (uuid).
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetObjectId"
-    endMarker="// END GetObjectId"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetObjectId"
+  endMarker="// END GetObjectId"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetObjectId"
-    endMarker="// END GetObjectId"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetObjectId"
+  endMarker="// END GetObjectId"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetObjectIdGraphQL"
   endMarker="# END GetObjectIdGraphQL"
   language="graphql"
@@ -580,7 +647,8 @@ To retrieve properties from cross-referenced objects, specify:
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
   language="py"
@@ -590,7 +658,8 @@ To retrieve properties from cross-referenced objects, specify:
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
   language="py"
@@ -600,7 +669,8 @@ To retrieve properties from cross-referenced objects, specify:
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"
@@ -611,7 +681,8 @@ To retrieve properties from cross-referenced objects, specify:
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"
@@ -620,18 +691,20 @@ To retrieve properties from cross-referenced objects, specify:
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetWithCrossRefs"
-    endMarker="// END GetWithCrossRefs"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetWithCrossRefs"
+  endMarker="// END GetWithCrossRefs"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithCrossRefsGraphQL"
   endMarker="# END GetWithCrossRefsGraphQL"
   language="graphql"
@@ -661,7 +734,8 @@ You can specify metadata fields to be returned.
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# GetWithMetadataPython"
   endMarker="# END GetWithMetadataPython"
   language="py"
@@ -671,7 +745,8 @@ You can specify metadata fields to be returned.
 <TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithMetadataPython"
   endMarker="# END GetWithMetadataPython"
   language="py"
@@ -681,7 +756,8 @@ You can specify metadata fields to be returned.
 <TabItem value="js" label="JS/TS Client v3">
 
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// GetWithMetadataJS"
   endMarker="// END GetWithMetadataJS"
   language="js"
@@ -692,7 +768,8 @@ You can specify metadata fields to be returned.
 <TabItem value="js2" label="JS/TS Client v2">
 
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// GetWithMetadataJS"
   endMarker="// END GetWithMetadataJS"
   language="js"
@@ -701,27 +778,30 @@ You can specify metadata fields to be returned.
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START GetWithMetadata"
-    endMarker="// END GetWithMetadata"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START GetWithMetadata"
+  endMarker="// END GetWithMetadata"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START GetWithMetadata"
-    endMarker="// END GetWithMetadata"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START GetWithMetadata"
+  endMarker="// END GetWithMetadata"
+  language="java"
+/>
 </TabItem>
 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# GetWithMetadataGraphQL"
   endMarker="# END GetWithMetadataGraphQL"
   language="graphql"
@@ -740,7 +820,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeInfo.content}
+  path={PyCodeInfo.path}
   startMarker="# MultiTenancy"
   endMarker="# END MultiTenancy"
   language="py"
@@ -749,7 +830,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 
 <TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
-  text={PyCodeV3}
+  text={PyCodeV3Info.content}
+  path={PyCodeV3Info.path}
   startMarker="# MultiTenancy"
   endMarker="# END MultiTenancy"
   language="py"
@@ -758,7 +840,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 
 <TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
-  text={TSCode}
+  text={TSCodeInfo.content}
+  path={TSCodeInfo.path}
   startMarker="// MultiTenancy"
   endMarker="// END MultiTenancy"
   language="js"
@@ -767,7 +850,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 
 <TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
-  text={TSCodeLegacy}
+  text={TSCodeLegacyInfo.content}
+  path={TSCodeLegacyInfo.path}
   startMarker="// MultiTenancy"
   endMarker="// END MultiTenancy"
   language="js"
@@ -775,21 +859,23 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 </TabItem>
 
 <TabItem value="go" label="Go">
-  <FilteredTextBlock
-    text={GoCode}
-    startMarker="// START MultiTenancy"
-    endMarker="// END MultiTenancy"
-    language="go"
-  />
+<FilteredTextBlock
+  text={GoCodeInfo.content}
+  path={GoCodeInfo.path}
+  startMarker="// START MultiTenancy"
+  endMarker="// END MultiTenancy"
+  language="go"
+/>
 </TabItem>
 
 <TabItem value="java" label="Java">
-  <FilteredTextBlock
-    text={JavaCode}
-    startMarker="// START MultiTenancy"
-    endMarker="// END MultiTenancy"
-    language="java"
-  />
+<FilteredTextBlock
+  text={JavaCodeInfo.content}
+  path={JavaCodeInfo.path}
+  startMarker="// START MultiTenancy"
+  endMarker="// END MultiTenancy"
+  language="java"
+/>
 </TabItem>
 
 
