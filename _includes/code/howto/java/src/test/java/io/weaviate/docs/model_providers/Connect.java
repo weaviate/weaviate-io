@@ -28,6 +28,7 @@ public class Connect {
 
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
+      // END-ANY
       // START CohereInstantiation
       put("X-Cohere-Api-Key", cohereKey);
       // END CohereInstantiation
