@@ -42,8 +42,8 @@ public class Connect {
     // check the result
     Result<Boolean> result = client.misc().readyChecker().run();
     System.out.println(result.getResult());
-
     // END-ANY
+
     assertThat(result.getResult()).isTrue();
     // START-ANY
   }
