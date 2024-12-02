@@ -674,7 +674,7 @@ func main() {
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
 						"sourceProperties": []string{"title"},
 						"model":            "text-embedding-3-large",
 						"dimensions":       1024, // Optional (e.g. 1024, 512, 256)
@@ -708,7 +708,7 @@ func main() {
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
 						"sourceProperties": []string{"title"},
 						"model":            "ada",
 						"model_version":    "002",
@@ -743,7 +743,7 @@ func main() {
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
 						"sourceProperties": []string{"title"},
 						"model":            "text-embedding-3-large",
 						"dimensions":       1024,   // Parameter only applicable for `v3` model family and newer
