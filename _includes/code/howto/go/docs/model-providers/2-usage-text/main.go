@@ -288,17 +288,25 @@ func main() {
 		}
 	}
 
-	// START VectorizerCohereCustomModel
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerGoogleVertex
 	// highlight-start
 	// Define the collection
-	cohereVectorizerWithModelDef := &models.Class{
+	basicGoogleVertexVectorizerDef := &models.Class{
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{
-						"sourceProperties": []string{"title"},
-						"model":            "embed-multilingual-v3.0",
+					"text2vec-google": map[string]interface{}{
+						"project_id": "<google-cloud-project-id>",
+						"model_id":   "textembedding-gecko@latest", // (Optional) To manually set the model ID
 					},
 				},
 			},
@@ -306,12 +314,12 @@ func main() {
 	}
 
 	// add the collection
-	err = client.Schema().ClassCreator().WithClass(cohereVectorizerWithModelDef).Do(ctx)
+	err = client.Schema().ClassCreator().WithClass(basicGoogleVertexVectorizerDef).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// highlight-end
-	// END VectorizerCohereCustomModel
+	// END BasicVectorizerGoogleVertex
 
 	// Clean slate: Delete the collection
 	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
@@ -321,19 +329,17 @@ func main() {
 		}
 	}
 
-	// START FullVectorizerCohere
+	// START BasicVectorizerGoogleStudio
 	// highlight-start
 	// Define the collection
-	cohereVectorizerFullDef := &models.Class{
+	basicGoogleStudioVectorizerDef := &models.Class{
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
-					"text2vec-cohere": map[string]interface{}{
+					"text2vec-google": map[string]interface{}{
 						"sourceProperties": []string{"title"},
-						// "model":            "embed-multilingual-v3.0",
-						// "truncate":         "END", // "NONE", "START" or "END"
-						// "base_url":         "<custom_cohere_url>",
+						"model_id":         "text-embedding-004", // (Optional) To manually set the model ID
 					},
 				},
 			},
@@ -341,12 +347,47 @@ func main() {
 	}
 
 	// add the collection
-	err = client.Schema().ClassCreator().WithClass(cohereVectorizerFullDef).Do(ctx)
+	err = client.Schema().ClassCreator().WithClass(basicGoogleStudioVectorizerDef).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// highlight-end
-	// END FullVectorizerCohere
+	// END BasicVectorizerGoogleStudio
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerGoogle
+	// highlight-start
+	// Define the collection
+	googleVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-aws": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"project_id":       "<google-cloud-project-id>",  // Required for Vertex AU
+						"model_id":         "textembedding-gecko@latest", // (Optional) To manually set the model ID
+						"api_endpoint":     "<google-api-endpoint>",      // (Optional) To manually set the API endpoint
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(googleVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerGoogle
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{

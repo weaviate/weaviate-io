@@ -33,6 +33,10 @@ func main() {
 			// START DatabricksInstantiation
 			"X-Databricks-Token": os.Getenv("DATABRICKS_TOKEN"),
 			// END DatabricksInstantiation
+			// START GoogleInstantiation
+			"X-Google-Vertex-Key": os.Getenv("VERTEX_APIKEY"),
+			"X-Google-Studio-Key": os.Getenv("STUDIO_APIKEY"),
+			// END GoogleInstantiation
 			// START-ANY
 		},
 		// highlight-end
