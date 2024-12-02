@@ -46,6 +46,9 @@ func main() {
 			// START MistralInstantiation
 			"X-Mistral-Api-Key": os.Getenv("MISTRAL_APIKEY"),
 			// END MistralInstantiation
+			// START OpenAIInstantiation
+			"X-OpenAI-Api-Key": os.Getenv("OPENAI_APIKEY"),
+			// END OpenAIInstantiation
 			// START-ANY
 		},
 		// highlight-end

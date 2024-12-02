@@ -626,6 +626,144 @@ func main() {
 	// highlight-end
 	// END FullVectorizerMistral
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerOpenAI
+	// highlight-start
+	// Define the collection
+	basicOpenAIVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicOpenAIVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerOpenAI
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START VectorizerOpenAICustomModelV3
+	// highlight-start
+	// Define the collection
+	openAIVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-cohere": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "text-embedding-3-large",
+						"dimensions":       1024, // Optional (e.g. 1024, 512, 256)
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(openAIVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerOpenAICustomModelV3
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START VectorizerOpenAICustomModelLegacy
+	// highlight-start
+	// Define the collection
+	openAIVectorizerWithLegacyModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-cohere": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "ada",
+						"model_version":    "002",
+						"type":             "text",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(openAIVectorizerWithLegacyModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerOpenAICustomModelLegacy
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerOpenAI
+	// highlight-start
+	// Define the collection
+	openAIVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-cohere": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "text-embedding-3-large",
+						"dimensions":       1024,   // Parameter only applicable for `v3` model family and newer
+						"model_version":    "002",  // Parameter only applicable for `ada` model family and older
+						"type":             "text", // Parameter only applicable for `ada` model family and older
+						"base_url":         "<custom_openai_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(openAIVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerOpenAI
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown
