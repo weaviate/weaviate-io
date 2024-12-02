@@ -52,6 +52,9 @@ func main() {
 			// START AzureOpenAIInstantiation
 			"X-Azure-Api-Key": os.Getenv("AZURE_APIKEY"),
 			// END AzureOpenAIInstantiation
+			// START VoyageAIInstantiation
+			"X-VoyageAI-Api-Key": os.Getenv("VOYAGEAI_APIKEY"),
+			// END VoyageAIInstantiation
 			// START-ANY
 		},
 		// highlight-end

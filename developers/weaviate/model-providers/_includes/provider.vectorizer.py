@@ -899,7 +899,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_voyageai(
             name="title_vector",
             source_properties=["title"],
-            model="voyage-code-2"
+            model="voyage-3-lite"
         )
     ],
     # highlight-end

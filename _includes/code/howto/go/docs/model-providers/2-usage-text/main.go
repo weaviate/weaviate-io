@@ -833,6 +833,106 @@ func main() {
 	// highlight-end
 	// END FullVectorizerAzureOpenAI
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerVoyageAI
+	// highlight-start
+	// Define the collection
+	basicVoyageVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-voyageai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicVoyageVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerVoyageAI
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START VectorizerVoyageAICustomModel
+	// highlight-start
+	// Define the collection
+	voyageVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-voyageai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "voyage-3-lite",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(voyageVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerVoyageAICustomModel
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerVoyageAI
+	// highlight-start
+	// Define the collection
+	voyageVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-voyageai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						// "model":            "voyage-3-lite",
+						// "base_url":         "<custom-voyageai-url>",
+						// "truncate":         true,
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(voyageVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerVoyageAI
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown
@@ -904,7 +1004,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%v", nearTextResponse)
-	// highlight-end
 	// END NearTextExample
 
 	// START HybridExample

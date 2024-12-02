@@ -994,7 +994,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecVoyageAI({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'voyage-code-2',
+      model: 'voyage-3-lite',
     }),
   ],
   // highlight-end
