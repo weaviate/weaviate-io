@@ -574,7 +574,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecJina({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'jina-embeddings-v2-small-en'
+      model: 'jina-embeddings-v3'
     }),
   ],
   // highlight-end
@@ -599,7 +599,7 @@ await client.collections.create({
       name: 'title_vector',
       sourceProperties: ['title'],
       // model: 'jina-embeddings-v3-small-en'
-      // dimensions: 512,  // e.g. 1024, 256, 64  // Support for this parameter is coming soon
+      // dimensions: 512,  // e.g. 1024, 256, 64  Support for this parameter is coming soon (Only applicable for some models)
     },
     ),
   ],
@@ -994,7 +994,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecVoyageAI({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'voyage-code-2',
+      model: 'voyage-3-lite',
     }),
   ],
   // highlight-end
