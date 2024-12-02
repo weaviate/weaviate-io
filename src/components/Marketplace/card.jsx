@@ -21,7 +21,7 @@ export default function AppCard({ app }) {
             ) : app.privateBeta ? (
               <div className={styles.comingSoon}>Private Beta</div>
             ) : (
-              <div className={styles.comingSoon}>Coming Soon</div>
+              <div className={styles.tba}>Coming Soon</div>
             )}
             {app.url && <Link to={app.url}>Learn More</Link>}
           </>
