@@ -155,7 +155,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 2rem 1rem 1rem;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
@@ -173,6 +173,11 @@
 
     @media screen and (max-width: 1200px) {
       width: 100%;
+    }
+
+    @media screen and (max-width: 780px) {
+      font-size: 2rem;
+      word-wrap: normal;
     }
   }
 
