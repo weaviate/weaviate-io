@@ -1,6 +1,6 @@
 // START-ANY
 // Set these environment variables
-// WCD_HOSTNAME			your Weaviate instance hostname
+// WCD_HOSTNAME			your Weaviate instance hostname, excluding the scheme (https://)
 // WCD_API_KEY  		your Weaviate instance API key
 // <PROVIDER>_APIKEY   	your model provider API key
 
@@ -26,6 +26,10 @@ func main() {
 			// START CohereInstantiation
 			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
 			// END CohereInstantiation
+			// START AWSInstantiation
+			"X-AWS-Access-Key": os.Getenv("AWS_ACCESS_KEY"),
+			"X-AWS-Secret-Key": os.Getenv("AWS_SECRET_KEY"),
+			// END AWSInstantiation
 			// START-ANY
 		},
 		// highlight-end

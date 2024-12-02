@@ -56,7 +56,6 @@ func main() {
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
-				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
 						"sourceProperties": []string{"title"},
@@ -89,7 +88,6 @@ func main() {
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
-				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
 						"sourceProperties": []string{"title"},
@@ -123,7 +121,6 @@ func main() {
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
-				VectorIndexType: "hnsw",
 				Vectorizer: map[string]interface{}{
 					"text2vec-cohere": map[string]interface{}{
 						"sourceProperties": []string{"title"},
@@ -143,6 +140,112 @@ func main() {
 	}
 	// highlight-end
 	// END FullVectorizerCohere
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerAWSBedrock
+	// highlight-start
+	// Define the collection
+	basicAWSBedrockVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-aws": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"region":           "us-east-1",
+						"service":          "bedrock",
+						"model":            "cohere.embed-multilingual-v3",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicAWSBedrockVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerAWSBedrock
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerAWSSagemaker
+	// highlight-start
+	// Define the collection
+	basicAWSSagemakerVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-aws": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"region":           "us-east-1",
+						"service":          "sagemaker",
+						"endpoint":         "<custom_sagemaker_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicAWSSagemakerVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerAWSSagemaker
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerAWS
+	// highlight-start
+	// Define the collection
+	awsVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-aws": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"region":           "us-east-1",
+						"service":          "bedrock",                      // "bedrock" or "sagemaker"
+						"model":            "cohere.embed-multilingual-v3", // If using `bedrock`, this is required
+						// "endpoint":         "<custom_sagemaker_url>",       // If using `sagemaker`, this is required
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(awsVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerAWS
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
