@@ -37,6 +37,15 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 
 ## Requirements
 
+To use Weaviate Embeddings, you need:
+
+- A Weaviate Cloud instance running at least Weaviate `1.27.6`
+- To have [enabled "Weaviate Embeddings"](/developers/wcs/embeddings/index.md#administration) in your Weaviate Cloud organisation
+- A Weaviate client library that supports Weaviate Embeddings:
+    - Python client version `4.9.5` or higher
+    - JavaScript/TypeScript client version `3.2.5` or higher
+    - Go/Java clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+
 ### Weaviate configuration
 
 The Weaviate Embeddings vectorizer is only available for use by Weaviate Cloud instances. At this time, Weaviate Embeddings is not available for self-hosted users.

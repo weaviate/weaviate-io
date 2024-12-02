@@ -168,6 +168,14 @@ Authentication is managed through your existing Weaviate Cloud API key.
 
 To use Weaviate Embeddings, you need a Weaviate Cloud account, and a Weaviate Cloud Serverless instance. If you do not have an account, you can sign up for free at the [Weaviate Cloud console](https://console.weaviate.cloud/).
 
+To use Weaviate Embeddings, you need:
+
+- A Weaviate Cloud instance running at least Weaviate `1.27.6`
+- A Weaviate client library that supports Weaviate Embeddings:
+    - Python client version `4.9.5` or higher
+    - JavaScript/TypeScript client version `3.2.5` or higher
+    - Go/Java clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+
 ### Usage
 
 To use Weaviate Embeddings, log into the Weaviate Cloud console, and enable the Weaviate Embeddings service for your organization.
