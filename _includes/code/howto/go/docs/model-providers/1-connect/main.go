@@ -49,6 +49,9 @@ func main() {
 			// START OpenAIInstantiation
 			"X-OpenAI-Api-Key": os.Getenv("OPENAI_APIKEY"),
 			// END OpenAIInstantiation
+			// START AzureOpenAIInstantiation
+			"X-Azure-Api-Key": os.Getenv("AZURE_APIKEY"),
+			// END AzureOpenAIInstantiation
 			// START-ANY
 		},
 		// highlight-end

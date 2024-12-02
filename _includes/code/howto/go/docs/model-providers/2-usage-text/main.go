@@ -764,6 +764,75 @@ func main() {
 	// highlight-end
 	// END FullVectorizerOpenAI
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerAzureOpenAI
+	// highlight-start
+	// Define the collection
+	basicAzureVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"resourceName":     "<azure-resource-name>",
+						"deploymentID":     "<azure-deployment-id>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicAzureVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerAzureOpenAI
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerAzureOpenAI
+	// highlight-start
+	// Define the collection
+	azureVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-openai": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"resourceName":     "<azure-resource-name>",
+						"deploymentID":     "<azure-deployment-id>",
+						// "baseURL":          "<custom-azure-url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(azureVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerAzureOpenAI
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown
