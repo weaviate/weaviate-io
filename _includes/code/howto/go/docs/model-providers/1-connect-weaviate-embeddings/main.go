@@ -16,9 +16,13 @@ import (
 
 func main() {
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WCD_HOSTNAME"),
+		Host:       os.Getenv("WCD_W_EMB_HOSTNAME"),
 		Scheme:     "https",
-		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
+		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_W_EMB_API_KEY")},
+		Headers: map[string]string{
+			"X-Weaviate-Api-Key":     os.Getenv("WCD_W_EMB_API_KEY"),
+			"X-Weaviate-Cluster-Url": fmt.Sprintf("https://%s", os.Getenv("WCD_W_EMB_HOSTNAME")),
+		},
 	}
 
 	client, err := weaviate.NewClient(cfg)

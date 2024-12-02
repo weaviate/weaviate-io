@@ -17,11 +17,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ConnectWeaviateEmbeddings {
   public static void main(String[] args) throws Exception {
 
-    String host = System.getenv("WCD_HOSTNAME");
-    String apiKey = System.getenv("WCD_API_KEY");
+    String host = System.getenv("WCD_W_EMB_HOSTNAME");
+    String apiKey = System.getenv("WCD_W_EMB_API_KEY");
 
     // highlight-start
-    Config config = new Config("https", host);
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("X-Weaviate-Api-Key", apiKey);
+      put("X-Weaviate-Cluster-Url", "https://" + System.getenv("WCD_W_EMB_HOSTNAME"));
+    } };
+
+    // highlight-start
+    Config config = new Config("https", host, headers);
     // highlight-end
     WeaviateClient client = WeaviateAuthClient.apiKey(config, apiKey);
 
