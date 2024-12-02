@@ -389,6 +389,80 @@ func main() {
 	// highlight-end
 	// END FullVectorizerGoogle
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerHuggingFace
+	// highlight-start
+	// Define the collection
+	basicHuggingfaceVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-huggingface": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "sentence-transformers/all-MiniLM-L6-v2",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicHuggingfaceVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerHuggingFace
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerHuggingFace
+	// highlight-start
+	// Define the collection
+	fullHuggingfaceVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-huggingface": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						//  Note: Use only one of (`model`), (`passage_model` and `query_model`), or (`endpoint_url`)
+						"model": "sentence-transformers/all-MiniLM-L6-v2",
+						// "passage_model":  "sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",      // Required if using `query_model`
+						// "query_model":    "sentence-transformers/facebook-dpr-question_encoder-single-nq-base", // Required if using `passage_model`
+						// "endpoint_url":   "<custom_huggingface_url>",
+						// // Optional parameters
+						// "wait_for_model": true,
+						// "use_cache":      true,
+						// "use_gpu":        true,
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(fullHuggingfaceVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerHuggingFace
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown

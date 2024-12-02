@@ -37,6 +37,9 @@ func main() {
 			"X-Google-Vertex-Key": os.Getenv("VERTEX_APIKEY"),
 			"X-Google-Studio-Key": os.Getenv("STUDIO_APIKEY"),
 			// END GoogleInstantiation
+			// START HuggingFaceInstantiation
+			"X-HuggingFace-Api-Key": os.Getenv("HUGGINGFACE_APIKEY"),
+			// END HuggingFaceInstantiation
 			// START-ANY
 		},
 		// highlight-end
