@@ -437,6 +437,15 @@
       color: #130c49;
     }
   }
+
+  .longPrice {
+    height: 50px;
+    max-width: 240px;
+    width: 100%;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .standard,
