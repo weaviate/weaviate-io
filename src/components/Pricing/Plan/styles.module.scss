@@ -654,7 +654,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 75.9375rem;
-  max-width: 90%; /* Adjust to fit smaller screens */
+  max-width: 90%;
   height: auto;
   max-height: 95vh;
   border-radius: 1.5rem;
@@ -663,13 +663,16 @@
 }
 
 .close {
-  position: absolute;
+  position: sticky;
   top: 20px;
-  right: 20px;
+  float: right;
+  right: 0;
   font-size: 1.5rem;
   color: #130c49;
   cursor: pointer;
   z-index: 10;
+  text-align: right;
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -682,6 +685,7 @@
   .close {
     top: 10px;
     right: 10px;
+    position: absolute;
   }
 }
 
