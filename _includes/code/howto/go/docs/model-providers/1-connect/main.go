@@ -40,6 +40,9 @@ func main() {
 			// START HuggingFaceInstantiation
 			"X-HuggingFace-Api-Key": os.Getenv("HUGGINGFACE_APIKEY"),
 			// END HuggingFaceInstantiation
+			// START JinaAIInstantiation
+			"X-JinaAI-Api-Key": os.Getenv("JINAAI_APIKEY"),
+			// END JinaAIInstantiation
 			// START-ANY
 		},
 		// highlight-end
