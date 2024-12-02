@@ -14,8 +14,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -114,6 +116,15 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START GoogleInstantiation"
+      endMarker="// END GoogleInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -147,6 +158,15 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerGoogleVertex"
+      endMarker="// END BasicVectorizerGoogleVertex"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### AI Studio
@@ -167,6 +187,15 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
       startMarker="// START BasicVectorizerGoogleStudio"
       endMarker="// END BasicVectorizerGoogleStudio"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerGoogleStudio"
+      endMarker="// END BasicVectorizerGoogleStudio"
+      language="goraw"
     />
   </TabItem>
 
@@ -209,6 +238,15 @@ The following examples show how to configure Google-specific options.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerGoogle"
+      endMarker="// END FullVectorizerGoogle"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Data import
@@ -232,6 +270,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -273,6 +320,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -302,6 +358,15 @@ The query below returns the `n` best scoring objects from the database, set by `
       startMarker="// START HybridExample"
       endMarker="// END HybridExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
     />
   </TabItem>
 
