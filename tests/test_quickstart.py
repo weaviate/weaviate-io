@@ -7,7 +7,17 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/quickstart/endtoend.py",
+        # "./_includes/code/quickstart/endtoend.py",
+        "_includes/code/python/quickstart.is_ready.py",
+        "_includes/code/python/quickstart.create_collection.py",
+        "_includes/code/python/quickstart.import_objects.py",
+        "_includes/code/python/quickstart.query.neartext.py",
+        "_includes/code/python/quickstart.query.rag.py",
+        "_includes/code/python/local.quickstart.is_ready.py",
+        "_includes/code/python/local.quickstart.create_collection.py",
+        "_includes/code/python/local.quickstart.import_objects.py",
+        "_includes/code/python/local.quickstart.query.neartext.py",
+        "_includes/code/python/local.quickstart.query.rag.py",
     ],
 )
 def test_pyv4(empty_weaviates, script_loc):
@@ -31,7 +41,17 @@ def test_pyv3(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/quickstart/endtoend.ts",
+        # "./_includes/code/quickstart/endtoend.ts",
+        "_includes/code/typescript/quickstart.is_ready.ts",
+        "_includes/code/typescript/quickstart.create_collection.ts",
+        "_includes/code/typescript/quickstart.import_objects.ts",
+        "_includes/code/typescript/quickstart.query.neartext.ts",
+        "_includes/code/typescript/quickstart.query.rag.ts",
+        "_includes/code/typescript/local.quickstart.is_ready.ts",
+        "_includes/code/typescript/local.quickstart.create_collection.ts",
+        "_includes/code/typescript/local.quickstart.import_objects.ts",
+        "_includes/code/typescript/local.quickstart.query.neartext.ts",
+        "_includes/code/typescript/local.quickstart.query.rag.ts"
     ],
 )
 def test_ts(empty_weaviates, script_loc):
