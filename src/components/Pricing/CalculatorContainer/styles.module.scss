@@ -359,7 +359,7 @@
   @media screen and (max-width: 668px) {
     width: 100%;
     margin: 20px auto;
-    height: 25.4rem;
+    height: auto;
 
     display: flex;
     padding: 2rem;
@@ -456,6 +456,7 @@
   @media screen and (max-width: 668px) {
     width: 140px;
   }
+
   h2 {
     color: #130c49;
     font-size: 1rem;
@@ -495,7 +496,7 @@
     }
 
     @media screen and (max-width: 668px) {
-      margin: 0px 0px 20px 0px;
+      margin: 0px 0px 50px 0px;
     }
   }
 
@@ -514,6 +515,10 @@
   width: 21px;
   margin: 17px auto;
   height: 15px;
+
+  @media screen and (max-width: 668px) {
+    margin: 0px 0px 0px 0px;
+  }
 }
 
 .lines {
