@@ -43,6 +43,9 @@ func main() {
 			// START JinaAIInstantiation
 			"X-JinaAI-Api-Key": os.Getenv("JINAAI_APIKEY"),
 			// END JinaAIInstantiation
+			// START MistralInstantiation
+			"X-Mistral-Api-Key": os.Getenv("MISTRAL_APIKEY"),
+			// END MistralInstantiation
 			// START-ANY
 		},
 		// highlight-end

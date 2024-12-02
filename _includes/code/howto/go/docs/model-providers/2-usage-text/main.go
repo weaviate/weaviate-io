@@ -33,7 +33,6 @@ func main() {
 		Headers: map[string]string{
 			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
 		},
-		// highlight-end
 	}
 
 	client, err := weaviate.NewClient(cfg)
@@ -562,6 +561,71 @@ func main() {
 	// highlight-end
 	// END FullVectorizerJinaAI
 
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START BasicVectorizerMistral
+	// highlight-start
+	// Define the collection
+	basicMistralVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-mistral": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicMistralVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerMistral
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START FullVectorizerMistral
+	// highlight-start
+	// Define the collection
+	mistralVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-mistral": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "mistral-embed",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(mistralVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerMistral
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown
@@ -617,6 +681,7 @@ func main() {
 	// END BatchImportExample
 
 	// START NearTextExample
+	// highlight-start
 	nearTextResponse, err := client.GraphQL().Get().
 		WithClassName("DemoCollection").
 		WithFields(
@@ -632,9 +697,11 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%v", nearTextResponse)
+	// highlight-end
 	// END NearTextExample
 
 	// START HybridExample
+	// highlight-start
 	hybridResponse, err := client.GraphQL().Get().
 		WithClassName("DemoCollection").
 		WithFields(
