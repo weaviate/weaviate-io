@@ -6,7 +6,7 @@ description: Creating Multimodal Data Collections
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
 
 Weaviate stores data in "collections". A collection is a set of objects that share the same data structure. In our movie database, we might have a collection of movies, a collection of actors, and a collection of reviews.
 
@@ -17,10 +17,10 @@ Here we will create a collection of movies.
 This example creates a collection for the movie data:
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# CreateMovieCollection"
-  endMarker="# END CreateMovieCollection"
-  language="py"
+  text={TSCode}
+  startMarker="// CreateMovieCollection"
+  endMarker="// END CreateMovieCollection"
+  language="ts"
 />
 
 Each collection definition must have a name. Then, you can define additional parameters like we've done in this example.
@@ -48,10 +48,10 @@ In this code example, we specify the `multi2vec-clip` module. This module uses t
 You can specify any number of text and image properties to be used for vectorization, and weight them differently. The weights are used to determine the relative importance of each property in the vector embedding generation process. In this example, we vectorize the `poster` property (an image) with a 90% weight and the `title` property (a string) with a 10% weight.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# Define & configure the vectorizer module"
-  endMarker="# Define the generative module"
-  language="py"
+  text={TSCode}
+  startMarker="// Define & configure the vectorizer module"
+  endMarker="// Define the generative module"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Generative configuration
@@ -61,10 +61,10 @@ If you wish to use your collection with a generative model (e.g. a large languag
 In this code example, we specify the `openai` module (`generative-openai` is the full name) with default options.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# Define the generative module"
-  endMarker="# END generativeDefinition"
-  language="py"
+  text={TSCode}
+  startMarker="// Define the generative module"
+  endMarker="// END generativeDefinition"
+  language="ts"
 />
 
 import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
@@ -78,10 +78,10 @@ The code example makes use of classes such as `Property`, `DataType` and `Config
 For convenience, we import the submodule as `wc` and use classes from it.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# SubmoduleImport"
-  endMarker="# END SubmoduleImport"
-  language="py"
+  text={TSCode}
+  startMarker="// SubmoduleImport"
+  endMarker="// END SubmoduleImport"
+  language="ts"
 />
 
 ## Questions and feedback

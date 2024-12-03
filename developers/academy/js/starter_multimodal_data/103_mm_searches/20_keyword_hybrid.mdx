@@ -6,7 +6,7 @@ description: Hybrid Keyword Searches in Multimodal Collections
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+import TSCode from '!!raw-loader!../_snippets/103_searches.ts';
 
 You can also perform keyword (BM25) searches to find items based on their keyword similarity, or hybrid searches that combine BM25 and semantic/vector searches.
 
@@ -17,9 +17,9 @@ You can also perform keyword (BM25) searches to find items based on their keywor
 This example finds entries in "MovieMM" with the highest keyword search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# MetadataBM25Search"
-  endMarker="# END MetadataBM25Search"
+  text={TSCode}
+  startMarker="// MetadataBM25Search"
+  endMarker="// END MetadataBM25Search"
   language="py"
 />
 
@@ -61,10 +61,10 @@ BM25 score: 1.529
 This example finds entries in "MovieMM" with the highest hybrid search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# MetadataHybridSearch"
-  endMarker="# END MetadataHybridSearch"
-  language="py"
+  text={TSCode}
+  startMarker="// MetadataHybridSearch"
+  endMarker="// END MetadataHybridSearch"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Explain the code

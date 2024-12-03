@@ -1,146 +1,199 @@
-# CreateMovieCollection
-import weaviate
+import { promises as fs } from 'fs';
+import { join } from 'path';
+import AdmZip from 'adm-zip';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-# CreateMovieCollection  # SubmoduleImport
-import weaviate.classes.config as wc
+// CreateMovieCollection // SubmoduleImport // BatchImportData
+import weaviate from "weaviate-client";
+// END BatchImportData // END CreateMovieCollection // END SubmoduleImport
+// CreateMovieCollection // SubmoduleImport
+import { WeaviateClient, configure, vectorizer, toBase64FromMedia } from "weaviate-client";
+// END CreateMovieCollection  // END SubmoduleImport
 
-# CreateMovieCollection  # END SubmoduleImport
 
-# END CreateMovieCollection
-client = weaviate.connect_to_local(
-    port=8280,
-    grpc_port=50251
+// BatchImportData
+import { generateUuid5 } from "weaviate-client";
+
+// END BatchImportData
+
+// BatchImportData
+let client: WeaviateClient;
+// CreateMovieCollection  // END BatchImportData
+
+// END CreateMovieCollection
+
+client = await weaviate.connectToWeaviateCloud(process.env.WCD_URL as string,{
+    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+  } 
+)
+// CreateMovieCollection
+// Instantiate your client (not shown). e.g.:
+// const requestHeaders = {'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,}
+// client = weaviate.connectToWeaviateCloud(..., headers: requestHeaders) or
+// client = weaviate.connectToLocal(..., headers: requestHeaders)
+
+// END CreateMovieCollection
+
+const requestHeaders = {'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,}
+
+
+client = await weaviate.connectToWeaviateCloud(
+  process.env.WCD_URL as string,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+    headers: requestHeaders
+  } 
 )
 
-# CreateMovieCollection
-# Instantiate your client (not shown). e.g.:
-# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
-# client = weaviate.connect_to_local(headers=headers)
+// END CreateMovieCollection
 
-# END CreateMovieCollection
+// Actual instantiation
 
-# Actual instantiation
+client.collections.delete("Movie")
 
-client.collections.delete("MovieMM")
-
-# CreateMovieCollection
-client.collections.create(
-    name="MovieMM",  # The name of the collection ('MM' for multimodal)
-    properties=[
-        wc.Property(name="title", data_type=wc.DataType.TEXT),
-        wc.Property(name="overview", data_type=wc.DataType.TEXT),
-        wc.Property(name="vote_average", data_type=wc.DataType.NUMBER),
-        wc.Property(name="genre_ids", data_type=wc.DataType.INT_ARRAY),
-        wc.Property(name="release_date", data_type=wc.DataType.DATE),
-        wc.Property(name="tmdb_id", data_type=wc.DataType.INT),
-        wc.Property(name="poster", data_type=wc.DataType.BLOB),
+// CreateMovieCollection
+await client.collections.create({
+    name: "Movie",
+    properties: [
+        { name: "title", dataType: configure.dataType.TEXT},
+        { name: "overview", dataType: configure.dataType.TEXT},
+        { name: "vote_average", dataType: configure.dataType.NUMBER},
+        { name: "genre_ids", dataType: configure.dataType.INT_ARRAY},
+        { name: "release_date", dataType: configure.dataType.DATE},
+        { name: "tmdb_id", dataType: configure.dataType.INT},
     ],
-    # Define & configure the vectorizer module
-    vectorizer_config=wc.Configure.Vectorizer.multi2vec_clip(
-        image_fields=[wc.Multi2VecField(name="poster", weight=0.9)],    # 90% of the vector is from the poster
-        text_fields=[wc.Multi2VecField(name="title", weight=0.1)],      # 10% of the vector is from the title
-    ),
-    # Define the generative module
-    generative_config=wc.Configure.Generative.openai()
-    # END generativeDefinition  # CreateMovieCollection
-)
+    // Define the vectorizer module
+    vectorizers: vectorizer.text2VecOpenAI(),
+    // Define the generative module
+    generative: configure.generative.openAI(),
+    // END generativeDefinition  // CreateMovieCollection
+  })
 
 client.close()
-# END CreateMovieCollection
+// END CreateMovieCollection
 
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const openaiKey = process.env.OPENAI_API_KEY as string
 
-# BatchImportData
-import weaviate
-import pandas as pd
-import requests
-from datetime import datetime, timezone
-import json
-from weaviate.util import generate_uuid5
-from tqdm import tqdm
-import os
-import zipfile
-from pathlib import Path
-import base64
-
-# END BatchImportData
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-client = weaviate.connect_to_local(
-    port=8280,
-    grpc_port=50251,
-    headers=headers
+client = await weaviate.connectToWeaviateCloud(weaviateURL,{
+    authCredentials: new weaviate.ApiKey(weaviateKey),
+    headers: {
+      'X-OpenAI-Api-Key': openaiKey,  // Replace with your inference API key
+    }
+  } 
 )
 
-# BatchImportData
-# Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_local()
 
-# END BatchImportData
+// Get current file's directory when using ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-# BatchImportData
-data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json"
-resp = requests.get(data_url)
-df = pd.DataFrame(resp.json())
 
-# Create a directory for the images
-img_dir = Path("scratch/imgs")
-img_dir.mkdir(parents=True, exist_ok=True)
+// BatchImportData
 
-# Download images
-posters_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_posters.zip"
-posters_path = img_dir / "movies_data_1990_2024_posters.zip"
-posters_path.write_bytes(requests.get(posters_url).content)
+// Instantiate your client (not shown). e.g.:
+// client = weaviate.connectToWeaviateCloud(...) or
+// client = weaviate.connectToLocal(...)
 
-# Unzip the images
-with zipfile.ZipFile(posters_path, 'r') as zip_ref:
-    zip_ref.extractall(img_dir)
+// END BatchImportData
 
-# Get the collection
-movies = client.collections.get("MovieMM")
+// BatchImportData
+const dataUrl = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json"
+const response = await fetch(dataUrl)
+const data = await response.json()
 
-# END BatchImportData
 
-df = df[:50]  # Limit to 50 for testing purposes
-
-# BatchImportData
-# Enter context manager
-with movies.batch.fixed_size(50) as batch:
-    # Loop through the data
-    for i, movie in tqdm(df.iterrows()):
-        # Convert data types
-        # Convert a JSON date to `datetime` and add time zone information
-        release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d").replace(
-            tzinfo=timezone.utc
-        )
-        # Convert a JSON array to a list of integers
-        genre_ids = json.loads(movie["genre_ids"])
-        # Convert image to base64
-        img_path = (img_dir / f"{movie['id']}_poster.jpg")
-        with open(img_path, "rb") as file:
-            poster_b64 = base64.b64encode(file.read()).decode("utf-8")
-
-        # Build the object payload
-        movie_obj = {
-            "title": movie["title"],
-            "overview": movie["overview"],
-            "vote_average": movie["vote_average"],
-            "genre_ids": genre_ids,
-            "release_date": release_date,
-            "tmdb_id": movie["id"],
-            "poster": poster_b64,
+// Download images
+const postersUrl = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_posters.zip";
+        const postersPath = join(imgDir, "movies_data_1990_2024_posters.zip");
+        
+        const response = await fetch(postersUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        const arrayBuffer = await response.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
 
-        # Add object to batch queue
-        batch.add_object(
-            properties=movie_obj,
-            uuid=generate_uuid5(movie["id"])
-            # references=reference_obj  # You can add references here
-        )
-        # Batcher automatically sends batches
+        // Write the zip file
+        await fs.writeFile(postersPath, buffer);
 
-# Check for failed objects
-if len(movies.batch.failed_objects) > 0:
-    print(f"Failed to import {len(movies.batch.failed_objects)} objects")
-    for failed in movies.batch.failed_objects:
-        print(f"e.g. Failed to import object with error: {failed.message}")
+        // Unzip the files
+        const zip = new AdmZip(postersPath);
+        zip.extractAllTo(imgDir, true);
+
+// Get the collection
+const movies = client.collections.get("Movie")
+
+// Set a counter and initialize Weaviate Object
+let itemsToInsert: Object[] = []
+let counter = 0;
+
+// Iterate through data
+for (const key of Object.keys(data['title'])) {
+    counter++;
+    if(counter % 1000 == 0)
+        console.log(`Import: ${counter}`)
+    // END Iterate through data // END BatchImportData
+    // BatchImportData
+
+    let genreIds: []
+
+    // Format genre_ids and release_date
+    const parsedArray = JSON.parse(data['genre_ids'][key]);
+    genreIds = parsedArray.map(item => parseInt(item, 10));
+    let releaseDate = new Date(data['release_date'][key])
+    const imgPath = `${__dirname}"/"${data['id'][key]}"_poster.jpg"`
+    const posterBase64 = await toBase64FromMedia(imgPath)
+
+    // Build the object payload
+    let movieObject = {
+        title: data['title'][key],
+        overview: data['overview'][key],
+        vote_average: data['vote_average'][key],
+        genre_ids: genreIds,
+        release_date: releaseDate,
+        tmdb_id: data['id'][key],
+        poster: posterBase64
+    }
+    // Insert
+    let objectToInsert = {
+        properties: movieObject,
+        uuid: generateUuid5(data['title'][key])
+    }
+
+    // Add object to batching array
+    itemsToInsert.push(objectToInsert)
+
+    if(itemsToInsert.length == 2000) {
+        // Batch insert 2000 items and clear batch array
+        const response = await movies.data.insertMany(itemsToInsert)
+        itemsToInsert = []
+        if(response.hasErrors) {
+            throw new Error("Something went wrong in import!")
+        }
+    }
+    // END BatchImportData // END Insert
+    // BatchImportData // Iterate through data
+    // ... other operations
+}
+// END Iterate through data // END BatchImportData
+// BatchImportData
+// insert the remaining objects
+if(itemsToInsert.length > 0) {
+  // Batch insert any remaining items
+  const response = await movies.data.insertMany(itemsToInsert)
+  console.log("Done Importing")
+
+  // END BatchImportData
+  // Handle Errors // BatchImportData
+  if(response.hasErrors) {
+      throw new Error("Something went wrong in import!")
+  }
+  // END BatchImportData // END Handle Errors
+  // BatchImportData
+}
 
 client.close()
+// END BatchImportData

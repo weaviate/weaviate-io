@@ -6,7 +6,7 @@ description: Multimodal Search Methodology
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+import TSCode from '!!raw-loader!../_snippets/103_searches.ts';
 
 With Weaviate, you can perform semantic searches to find similar items based on their meaning. This is done by comparing the vector embeddings of the items in the database.
 
@@ -26,10 +26,10 @@ This example finds entries in "MovieMM" based on their similarity to [this image
 </details>
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# MetadataMultimodalSearch"
-  endMarker="# END MetadataMultimodalSearch"
-  language="py"
+  text={TSCode}
+  startMarker="// MetadataMultimodalSearch"
+  endMarker="// END MetadataMultimodalSearch"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Explain the code
@@ -91,10 +91,10 @@ Each returned object will:
 This example finds entries in "MovieMM" based on their similarity to the query "red", and prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# MetadataSemanticSearch"
-  endMarker="# END MetadataSemanticSearch"
-  language="py"
+  text={TSCode}
+  startMarker="// MetadataSemanticSearch"
+  endMarker="// END MetadataSemanticSearch"
+  language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Explain the code

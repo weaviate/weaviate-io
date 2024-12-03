@@ -6,7 +6,7 @@ description: Setting up Multimodal RAG
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
 
 ### <i class="fa-solid fa-chalkboard"></i> Motivation
 
@@ -17,10 +17,10 @@ Retrieval augmented generation (RAG) is a way to combine the best of both worlds
 When we created a collection, we specified the `generative_module` parameter as shown here.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# Define the generative module"
-  endMarker="# END generativeDefinition"
-  language="py"
+  text={TSCode}
+  startMarker="// Define the generative module"
+  endMarker="// END generativeDefinition"
+  language="ts"
 />
 
 This selects a generative module that will be used to generate outputs based on the retrieved objects. In this case, we're using the `openai` module, and the `GPT` family of large language models.

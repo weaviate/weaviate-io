@@ -1,89 +1,94 @@
-# START-ANY
-import os
-import weaviate
-import os
+// START-ANY
+import 'dotenv/config'
+import weaviate, { WeaviateClient } from "weaviate-client";
+let client: WeaviateClient;
 
-# END-ANY
+// END-ANY
 
-headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-client = weaviate.connect_to_local(
-    port=8280,
-    grpc_port=50251,
-    headers=headers
+client = await weaviate.connectToWeaviateCloud(
+  process.env.WCD_URL as string,
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+    headers: {
+      'X-Cohere-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
+    }
+  }
 )
 
-# START-ANY
-# Instantiate your client (not shown). e.g.:
-# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
-# client = weaviate.connect_to_local(headers=headers)
+// START-ANY
+// Instantiate your client (not shown). e.g.:
+// headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+// client = weaviate.connect_to_local(headers=headers)
 
 
-def url_to_base64(url):
-    import requests
-    import base64
+async function urlToBase64(imageUrl: string) {
+  const response = await fetch(imageUrl);
+  const content = await response.buffer();
+  return content.toString('base64');
+}
 
-    image_response = requests.get(url)
-    content = image_response.content
-    return base64.b64encode(content).decode("utf-8")
+// END-ANY
 
+// SinglePromptGeneration
+// Get the collection
+const movies = client.collections.get("MovieMM")
 
-# END-ANY
+// Perform query
+const srcImgPath = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
+const queryB64 = await urlToBase64(srcImgPath)
 
-# SinglePromptGeneration
-# Get the collection
-movies = client.collections.get("MovieMM")
-
-# Perform query
-src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
-query_b64 = url_to_base64(src_img_path)
-
-response = movies.generate.near_image(
-    near_image=query_b64,
-    limit=5,
-    # highlight-start
-    single_prompt="Translate this into French: {title}"
-    # highlight-end
+const response = await movies.generate.nearMedia(queryB64, "image",
+  {
+    // highlight-start
+    singlePrompt: "Translate this into French: {title}"
+    // highlight-end
+  }, {
+  limit: 5
+},
 )
 
-# Inspect the response
-for o in response.objects:
-    # highlight-start
-    print(o.properties["title"])  # Print the title
-    # highlight-end
-    print(o.generated)  # Print the generated text (the title, in French)
+// Inspect the response
+// Inspect the response
+for (let item of response.objects) {
+  console.log(`${item.properties.title} - ${item.generated}`)
+}
+// END SinglePromptGeneration
 
 client.close()
-# END SinglePromptGeneration
+// END SinglePromptGeneration
 
 
-print("\n\n")
-
-client.connect()
+console.log("\n\n")
 
 
-# GroupedTaskGeneration
-# Get the collection
-movies = client.collections.get("MovieMM")
+// GroupedTaskGeneration
+// Get the collection
+const movies = client.collections.get("MovieMM")
 
-# Perform query
-src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
-query_b64 = url_to_base64(src_img_path)
+// Perform query
+const srcImgPath = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
+const queryB64 = await urlToBase64(srcImgPath)
 
-response = movies.generate.near_image(
-    near_image=query_b64,
-    limit=5,
-    # highlight-start
-    grouped_task="What do these movies have in common?",
-    grouped_properties=["title", "overview"]  # Optional parameter; for reducing prompt length
-    # highlight-end
+const response = await movies.generate.nearMedia(queryB64,"image",
+    
+{
+    // highlight-start
+    groupedTask: "What do these movies have in common?",
+    groupedProperties: ["title", "overview"]  // Optional parameter; for reducing prompt length
+    // highlight-end
+},
+    {
+      limit: 5}
 )
 
-# Inspect the response
-for o in response.objects:
-    print(o.properties["title"])  # Print the title
-# highlight-start
-print(response.generated)  # Print the generated text (the commonalities between them)
-# highlight-end
+// Inspect the response
+for (let item of response.objects) {
+  console.log('Title: ', item.properties.title) // Print the title
+}
+
+// highlight-start
+console.log(response.generated) // Print the generated text (the commonalities between them)
+// highlight-end
 
 client.close()
-# END GroupedTaskGeneration
+// END GroupedTaskGeneration

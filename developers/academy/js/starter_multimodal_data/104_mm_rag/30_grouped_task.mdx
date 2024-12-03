@@ -6,7 +6,7 @@ description: Grouped Task for Multimodal RAG
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_snippets/104_rag.py';
+import TSCode from '!!raw-loader!../_snippets/104_rag.ts';
 
 A 'grouped task' generation wil perform RAG queries on the set of retrieved objects. This is useful when you want to transform the set of objects as a whole, with one prompt.
 
@@ -17,10 +17,10 @@ This example finds entries in "MovieMM" based on their similarity to [this image
 Each of the results are then printed out to the console.
 
 <FilteredTextBlock
-  text={PyCode}
-  startMarker="# GroupedTaskGeneration"
-  endMarker="# END GroupedTaskGeneration"
-  language="py"
+  text={TSCode}
+  startMarker="// GroupedTaskGeneration"
+  endMarker="// END GroupedTaskGeneration"
+  language="ts"
 />
 
 ## <i class="fa-solid fa-chalkboard"></i> Explain the code
