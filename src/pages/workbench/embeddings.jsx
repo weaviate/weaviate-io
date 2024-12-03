@@ -97,9 +97,9 @@ export default function QueryPage() {
                     <p>
                       Weaviate Embeddings is now available in Preview with the{' '}
                       <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
-                        <strong>Snowflake arctic-embed-m-v1.15 text</strong>
+                        <strong>Snowflake arctic-embed-m-v1.5</strong>
                       </Link>{' '}
-                      embedding model.
+                      text embedding model.
                     </p>
                     <p>
                       When generally available, pricing will start at $0.04 per
