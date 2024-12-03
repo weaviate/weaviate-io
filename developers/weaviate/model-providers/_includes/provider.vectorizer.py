@@ -934,6 +934,71 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerWeaviate
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerWeaviateCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            model="arctic-embed-m-v1.5"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerWeaviateCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="arctic-embed-m-v1.5",
+            # dimensions=256
+            # base_url="<custom_weaviate_embeddings_url>",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerWeaviate
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerTransformers
 from weaviate.classes.config import Configure
 

@@ -33,7 +33,9 @@ export default function CalculatorContainer() {
           <div className={styles.productPlan}>
             <div className={styles.plans}>
               <h2>SLA Tiers</h2>
-              <p>Price per 1M vector dimensions stored per month</p>
+              <p className={styles.longPrice}>
+                Price per 1M vector dimensions stored per month
+              </p>
               <p>Phone Escalation</p>
               <p>
                 <span>Response time:</span> Severity 1

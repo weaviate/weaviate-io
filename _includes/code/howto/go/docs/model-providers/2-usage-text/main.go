@@ -178,14 +178,6 @@ func main() {
 	// highlight-end
 	// END BasicVectorizerCohere
 
-	// Clean slate: Delete the collection
-	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
-		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
-		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
-			panic(err)
-		}
-	}
-
 	// START VectorizerCohereCustomModel
 	// highlight-start
 	// Define the collection
@@ -210,14 +202,6 @@ func main() {
 	}
 	// highlight-end
 	// END VectorizerCohereCustomModel
-
-	// Clean slate: Delete the collection
-	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
-		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
-		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
-			panic(err)
-		}
-	}
 
 	// START FullVectorizerCohere
 	// highlight-start
@@ -933,15 +917,87 @@ func main() {
 	// highlight-end
 	// END FullVectorizerVoyageAI
 
+	// START BasicVectorizerWeaviate
+	// highlight-start
+	// Define the collection
+	basicWeaviateVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicWeaviateVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerWeaviate
+
+	// START VectorizerWeaviateCustomModel
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model": "arctic-embed-m-v1.5",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerWeaviateCustomModel
+
+	// START FullVectorizerWeaviate
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model":      "arctic-embed-m-v1.5",
+						"dimensions": 256, // Or 756
+						"base_url":   "<custom_weaviate_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerWeaviate
+
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
 		// Objects not shown
 		// END BatchImportExample
-		{"title": "The Shawshank Redemption", "description": ""},
-		{"title": "The Godfather", "description": ""},
-		{"title": "The Dark Knight", "description": ""},
-		{"title": "Jingle All the Way", "description": ""},
-		{"title": "A Christmas Carol", "description": ""},
+		{"title": "The Shawshank Redemption", "description": "Prison drama about hope"},
+		{"title": "The Godfather", "description": "Mafia family epic"},
+		{"title": "The Dark Knight", "description": "Batman vs Joker thriller"},
+		{"title": "Jingle All the Way", "description": "Holiday shopping adventure"},
+		{"title": "A Christmas Carol", "description": "Ghost story of redemption"},
 		// START BatchImportExample
 	}
 

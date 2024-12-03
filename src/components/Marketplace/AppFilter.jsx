@@ -8,17 +8,13 @@ const categoryDescriptions = {
   All: 'Browse all available apps.',
   'Cloud Tools':
     'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
-  'AI-Native Apps': 'Simplify the development of end-to-end AI solutions.',
+  'AI-Native Services': 'Simplify the development of end-to-end AI solutions.',
 };
 
 export default function AppFilter() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const location = useLocation();
-
-  useEffect(() => {
-    console.log(appData);
-  }, []);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -28,13 +24,20 @@ export default function AppFilter() {
     setSelectedCategory(category);
   };
 
-  const filteredApps = appData.filter((app) => {
-    return (
-      (selectedCategory === 'All' || app.category === selectedCategory) &&
-      (app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.description.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
-  });
+  // Add sorting logic here
+  const sortedApps = (apps) => {
+    return apps.sort((a, b) => a.id - b.id); // Sort by numeric `id`
+  };
+
+  const filteredApps = sortedApps(
+    appData.filter((app) => {
+      return (
+        (selectedCategory === 'All' || app.category === selectedCategory) &&
+        (app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.description.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    })
+  );
 
   const renderCardsByCategory = (category) => {
     const appsInCategory = filteredApps.filter(
@@ -86,12 +89,14 @@ export default function AppFilter() {
                   Cloud Tools
                 </li>
                 <li
-                  onClick={() => handleCategoryChange('AI-Native Apps')}
+                  onClick={() => handleCategoryChange('AI-Native Services')}
                   className={
-                    selectedCategory === 'AI-Native Apps' ? styles.active : ''
+                    selectedCategory === 'AI-Native Services'
+                      ? styles.active
+                      : ''
                   }
                 >
-                  AI-Native Apps
+                  AI-Native Services
                 </li>
               </ul>
             </>
