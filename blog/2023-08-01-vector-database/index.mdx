@@ -22,7 +22,7 @@ If you have just recently heard the term “vector database” for the first tim
 
 The excitement around vector databases - sometimes referred to as AI databases - is closely related to the release of ChatGPT. Since late 2022, the public has started to understand the capabilities of state-of-the-art large language models (LLMs), while developers have realized that vector databases can enhance these models further.
 
-This article will explain some of their core concepts, such as [vector embeddings](/blog/vector-embeddings-explained) and [vector search](/blog/why-is-vector-search-so-fast). Then, we will dive into the technical details of using distance metrics in vector search and how vector indexes enable efficient retrieval. Once we have a fundamental understanding, we will discuss use cases and the current tool landscape.
+This article will explain some of their core concepts, such as [vector embeddings](/blog/vector-embeddings-explained) and [vector search](/blog/vector-search-explained). Then, we will dive into the technical details of using distance metrics in vector search and how vector indexes enable efficient retrieval. Once we have a fundamental understanding, we will discuss use cases and the current tool landscape.
 
 ## What is a Vector Database?
 A vector database indexes, stores, and provides access to structured or unstructured data (e.g., text or images) alongside its vector embeddings, which are the data's numerical representation. It allows users to find and retrieve similar objects quickly at scale in production.
@@ -63,7 +63,7 @@ For now, let’s consider a simpler example with numerical representations of wo
 ![vector embeddings](img/vector-embeddings.jpg)
 
 ### Vector Search
-Vector embeddings allow us to find and retrieve similar objects by searching for objects that are close to each other in the vector space. This concept is called [vector search](/blog/2022-09-13-why-is-vector-search-so-fast/), similarity search, or semantic search.
+Vector embeddings allow us to find and retrieve similar objects by searching for objects that are close to each other in the vector space. This concept is called [vector search](/blog/vector-search-explained), similarity search, or semantic search.
 
 Similarly to how we can find similar vectors for the word "Dog", we can find similar vectors to a search query. For example, to find words similar to the word “Kitten”, we can generate a vector embedding for this query term - also called a query vector - and retrieve all its nearest neighbors, such as the word “Cat”, as illustrated below.
 
@@ -103,7 +103,7 @@ The above example roughly describes the Hierarchical Navigable Small World (HNSW
 
 Note that indexing enables fast retrieval at query time, but it can take a lot of time to build the index initially.
 
-Further reading: [Why Is Vector Search So Fast](/blog/why-is-vector-search-so-fast)
+Further reading: [Why Is Vector Search So Fast](/blog/vector-search-explained)
 
 ## Vector Database Architecture
 
@@ -114,14 +114,14 @@ Below you can see an example of the [Weaviate vector database architecture](/dev
 
 Users can create any number of indices and each index can contain any number of shards. Shards can be dsitributed and/or replicated across nodes in the cluster. A shard always contains object, inverted, and vector storage. Vector storage is not affected by LSM segmentation.
 
-## Vector Database Use Cases 
+## Vector Database Use Cases
 A wide variety of applications use the search capabilities of vector databases. They range from classical ML use cases, such as natural language processing (NLP), computer vision, and recommender systems, to providing long-term memory to LLMs in modern applications.
 
 The **most popular use case of vector databases is naturally for search**. Because a vector search can help find similar objects, it is predestined for applications where you might want to find similar products, movies, books, songs, etc. That’s why they are also **used in recommendation systems** as a restated search task.
 
-With the rise of LLMs, **many modern Generative AI applications use vector databases as an external knowledge source**. You might have already come across the term that they provide LLMs with long-term memory. LLMs are stateless, which means that they immediately forget what you have just discussed if you don’t store this information in, e.g., a vector database and thus provide them with a state. This enables LLMs to hold an actual conversation. Also, you can store additional information in them as part of a[retrieval-augmented generation (RAG)](/blog/2024-10-15-introduction-to-rag/) pipeline to reduce hallucinations.
+With the rise of LLMs, **many modern Generative AI applications use vector databases as an external knowledge source**. You might have already come across the term that they provide LLMs with long-term memory. LLMs are stateless, which means that they immediately forget what you have just discussed if you don’t store this information in, e.g., a vector database and thus provide them with a state. This enables LLMs to hold an actual conversation. Also, you can store additional information in them as part of a[retrieval-augmented generation (RAG)](/blog/introduction-to-rag) pipeline to reduce hallucinations.
 
-Here is an example [demo](https://github.com/weaviate/healthsearch-demo) called [HealthSearch](https://weaviate.io/blog/healthsearch-demo) of a [Weaviate](http://weaviate.io/) vector database in action together with an LLM showcasing the potential of leveraging user-written reviews and queries to retrieve supplement products based on specific health effects. 
+Here is an example [demo](https://github.com/weaviate/healthsearch-demo) called [HealthSearch](https://weaviate.io/blog/healthsearch-demo) of a [Weaviate](http://weaviate.io/) vector database in action together with an LLM showcasing the potential of leveraging user-written reviews and queries to retrieve supplement products based on specific health effects.
 
 ![example-use-case-llm-vector-database](img/image8.png)
 

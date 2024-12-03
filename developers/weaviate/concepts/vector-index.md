@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
+Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/vector-search-explained) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
 
@@ -41,7 +41,7 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 ![Supermarket map visualization as analogy for vector indexing](./img/supermarket.svg "Supermarket map visualization")
 
 :::tip
-You might be also interested in our blog post [Why is vector search to fast?](https://weaviate.io/blog/why-is-vector-search-so-fast).
+You might be also interested in our blog post [Vector search explained](https://weaviate.io/blog/vector-search-explained).
 :::
 
 ## Hierarchical Navigable Small World (HNSW) index
