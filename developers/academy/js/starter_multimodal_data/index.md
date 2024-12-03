@@ -16,9 +16,9 @@ You will get hands-on experience on how to store and index text and image data t
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 
-<LearningGoals courseName="starter_multimodal"/>
+<LearningGoals courseName="starter_multimodal_typescript"/>
 
 ## <i class="fa-solid fa-book-open-reader"></i> Units
 
-<CourseUnits courseData={courseData} courseName="starter_multimodal" />
+<CourseUnits courseData={courseData} courseName="starter_multimodal_typescript" />
 

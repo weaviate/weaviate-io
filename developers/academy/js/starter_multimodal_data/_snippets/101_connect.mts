@@ -7,10 +7,9 @@ let client: WeaviateClient;
 // WCDInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
-  } 
-)
+  process.env.WCD_URL as string, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+})
 
 // END WCDInstantiation
 
@@ -19,13 +18,12 @@ client.close()
 // WCDAPIKeyInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
-    }
-  } 
-)
+  process.env.WCD_URL as string, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+  headers: {
+    'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
+  }
+})
 // END WCDAPIKeyInstantiation
 
 client.close()
@@ -42,14 +40,15 @@ client.close()
 client = await weaviate.connectToLocal({
   host: '...',
   headers: {
-  'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
-}})
+    'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
+  }
+})
 // END DockerAPIKeyInstantiation
 
 // PollLiveness
 if (await client.isLive()) {
   // This will raise an exception if the client is not live
-} 
+}
 // END PollLiveness
 
 
@@ -58,7 +57,7 @@ console.log(await client.getMeta())
 // END GetMeta
 
 
-const outputString = 
+const outputString =
 // OutputGetMeta
 {
   hostname: 'http://[::]:8080',
@@ -150,16 +149,16 @@ client = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
+      'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 // TryFinallyCloseDemo
 
 // Instantiate your client (not shown). e.g.:
-// client = weaviate.connect_to_weaviate_cloud(...) or
-// client = weaviate.connect_to_local(...)
+// client = weaviate.connectToWeaviateCloud(...) or
+// client = weaviate.connectToLocal(...)
 
 try {
   // Work with the client here 

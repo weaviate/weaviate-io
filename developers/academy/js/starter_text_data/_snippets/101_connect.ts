@@ -158,8 +158,8 @@ client = await weaviate.connectToWeaviateCloud(
 // TryFinallyCloseDemo
 
 // Instantiate your client (not shown). e.g.:
-// client = weaviate.connect_to_weaviate_cloud(...) or
-// client = weaviate.connect_to_local(...)
+// client = weaviate.connectToWeaviateCloud(...) or
+// client = weaviate.connectToLocal(...)
 
 try {
   // Work with the client here 

@@ -6,7 +6,7 @@ description: Setting up Multimodal RAG
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
+import TSCode from '!!raw-loader!../_snippets/102_collection.mts';
 
 ### <i class="fa-solid fa-chalkboard"></i> Motivation
 
@@ -25,7 +25,7 @@ When we created a collection, we specified the `generative` parameter as shown h
 
 This selects a generative module that will be used to generate outputs based on the retrieved objects. In this case, we're using the `cohere` module, and the `command` family of large language models.
 
-As we did before with the vectorizer module, you will require an API key from the provider of the generative module. In this case, you will need an API key from OpenAI.
+As we did before with the vectorizer module, you will require an API key from the provider of the generative module. In this case, you will need an API key from Cohere.
 
 ### <i class="fa-solid fa-code"></i> RAG queries
 

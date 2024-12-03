@@ -197,11 +197,41 @@ export const unitData = {
       "Connect to the Weaviate instance using the Python client."
     ]
   },
+  "docker_mm_basics_ts": {
+    title: "Weaviate for multimodal data",
+    body: "Create a Weaviate instance for multimodal data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance with a multimodal module."
+    ],
+    learningOutcomes: [
+      "Create a Weaviate instance with a multimodal module using Docker.",
+      "Install the latest Weaviate TypeScript client.",
+      "Connect to the Weaviate instance using the Typescript client."
+    ]
+  },
   "mm_collections": {
     title: "Populate the database",
     body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_multimodal_data/mm_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import multimodal data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "mm_collections_ts": {
+    title: "Populate the database",
+    body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import multimodal data using batch imports."
@@ -226,11 +256,40 @@ export const unitData = {
       "Perform searches through multimodal data in different ways.",
     ]
   },
+  "mm_searches_ts": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform multimodal searches."
+    ],
+    learningOutcomes: [
+      "Describe how multimodal search works at a high level.",
+      "Perform searches through multimodal data in different ways.",
+    ]
+  },
   "mm_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_multimodal_data/mm_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+  "mm_rag_ts": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."

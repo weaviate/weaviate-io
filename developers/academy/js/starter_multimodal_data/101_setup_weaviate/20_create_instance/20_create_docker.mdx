@@ -1,17 +1,18 @@
 ---
-title: Create a local Docker instance
+title: "Option 2: A local Docker instance"
+description: "Set up Weaviate with Docker for a quick and customizable local deployment."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import TSCode from '!!raw-loader!../_snippets/101_connect.ts';
+import TSCode from '!!raw-loader!../../_snippets/101_connect.mts';
 
-:::note Can I use a cloud instance?
-Generating multimodal vectors is currently only possible with local models, and as a result this course uses a local, Docker instance of Weaviate. If you are generating vectors outside of Weaviate, you can use a cloud instance. See the [Work with: your own vectors](../../starter_custom_vectors/index.md) course for more information.
+:::note Have you already created a Weaviate instance?
+If you have [created a cloud instance](./10_create_wcs.mdx) of Weaviate, you can skip this page and continue with [Communicate with Weaviate](../30_communicate.mdx).
 :::
 
-Here, you will create a Weaviate instance and a multi-modal vectorizer container using Docker.
+Here, you will create a Weaviate instance using Docker.
 
 ### <i class="fa-solid fa-chalkboard"></i> Download and run the docker-compose file
 
@@ -21,8 +22,9 @@ Create a new directory and navigate to it in your terminal. Then, create a new f
 
 ```yaml
 ---
+version: '3.4'
 services:
-  weaviate:
+  weaviate_anon:
     command:
     - --host
     - 0.0.0.0
@@ -34,21 +36,17 @@ services:
     ports:
     - 8080:8080
     - 50051:50051
-    volumes:
-    - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
     environment:
       COHERE_APIKEY: $COHERE_APIKEY
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'multi2vec-cohere'
-      ENABLE_MODULES: 'multi2vec-cohere,generative-cohere'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'text2vec-cohere,multi2vec-cohere,generative-cohere'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node1'
-volumes:
-  weaviate_data:
 ...
-
 ```
 
 ### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
@@ -56,7 +54,7 @@ volumes:
 Run the following command to start Weaviate:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 ### <i class="fa-solid fa-chalkboard"></i> Your Weaviate instance details
@@ -65,7 +63,7 @@ Once the instance is created, you can access it at `http://localhost:8080`.
 
 ### <i class="fa-solid fa-code"></i> Connect to your Weaviate instance
 
-To connect to the Weaviate instance, use the `connect_to_local` function.
+To connect to the Weaviate instance, use the `connectToLocal()` function.
 
 <FilteredTextBlock
   text={TSCode}
@@ -78,7 +76,7 @@ To connect to the Weaviate instance, use the `connect_to_local` function.
 
 Some Weaviate modules can use inference APIs for vectorizing data or large language model integration. You can provide the API keys for these services to Weaviate at instantiation.
 
-This course uses Cohere (for retrieval augmented generation), so you can provide the Cohere API key to Weaviate through `headers={"X-Cohere-Api-Key": <YOUR_KEY>}` as shown below:
+This course uses Cohere, so you can provide the Cohere API key to Weaviate through `headers: {"X-Cohere-Api-Key": <YOUR_KEY>}` as shown below:
 
 <FilteredTextBlock
   text={TSCode}

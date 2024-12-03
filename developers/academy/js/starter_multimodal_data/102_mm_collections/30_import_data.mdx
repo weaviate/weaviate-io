@@ -6,7 +6,7 @@ description: Importing Data into Multimodal Data Collections
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import TSCode from '!!raw-loader!../_snippets/102_collection.ts';
+import TSCode from '!!raw-loader!../_snippets/102_collection.mts';
 
 ## <i class="fa-solid fa-code"></i> Code
 
@@ -33,70 +33,68 @@ The code:
 
 ### <i class="fa-solid fa-chalkboard"></i> Preparation
 
-We use the requests library to load the data from the source, in this case a JSON file containing text data and a Zip file containing posters. The text data is then converted to a Pandas DataFrame for easier manipulation and the images are extracted from the Zip file.
+We use the native Node.js `fetch()` to load the data from the source, in this case a JSON file containing text data and a Zip file containing posters. The text data is then converted to a JSON object for easier manipulation and the images are extracted from the Zip file.
 
 Then, we create a collection object (with `client.collections.get`) so we can interact with the collection.
 
-### <i class="fa-solid fa-chalkboard"></i> Batch context manager
+### <i class="fa-solid fa-chalkboard"></i> Iterating over data
 
-The `batch` object is a context manager that allows you to add objects to the batcher. This is useful when you have a large amount of data to import, as it abstracts away the complexity of managing the batch size and when to send the batch.
+The `for` loop is used in conjunction with `Object.keys()` to iterate through the elements in our JSON file. While iterating we increment the counter variable that lets us bulk insert objects in batches.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// Enter context manager"
-  endMarker="// Loop through the data"
+  startMarker="// Iterate through data"
+  endMarker="// END Iterate through data"
   language="ts"
 />
 
-This example uses the `.dynamic()` method to create a dynamic batcher, which automatically determines and updates the batch size during the import process. There are also other batcher types, like `.fixed_size()` for specifying the number of objects per batch, and `.rate_limit()` for specifying the number of objects per minute.
+> We use `MAX_ITEMS` to limit the number of objects we import to our collection. Trail keys for the Cohere Embed 3 model [restrict](https://docs.cohere.com/v2/docs/rate-limits) you to 5 images per minute. 
 
-### <i class="fa-solid fa-chalkboard"></i> Add data to the batcher
+### <i class="fa-solid fa-chalkboard"></i> Add data to the Object
 
-#### Convert data types
+#### Convert data types and build the Object
 
-The data is converted from a string to the correct data types for Weaviate. For example, the `release_date` is converted to a datetime object, and the `genre_ids` are converted to a list of integers.
+The data is converted from a string to the correct data types for Weaviate. For example, the `release_date` is converted to a `Date` object, and the `genre_ids` are converted to a list of integers.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// Convert data types"
-  endMarker="// Convert image to base64"
+  startMarker="// Format genre_ids and release_date"
+  endMarker="// Convert poster to base64"
   language="ts"
 />
 
-To save the image data as a `BLOB` (binary large object) data type, we convert the image to base64.
+To save the image data as a `BLOB` (binary large object) data type, we convert the image to base64 using the helpful `toBase64FromMedia` utility that comes with the Weaviate client.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// Convert image to base64"
-  endMarker="// Build the object payload"
+  startMarker="// Convert poster to base64"
+  endMarker="// Insert"
   language="ts"
 />
 
-#### Add objects to the batcher
+After converting data to the correct format, we build the object by its properties preparing it to be inserted into Weaviate.
 
-Then we loop through the data and add each object to the batcher. The `batch.add_object` method is used to add the object to the batcher, and the batcher will send the batch according to the specified batcher type.
+#### Bulk insert data
+
+Then we create on object that includes the uuid generated with `generateUuid5` from Weaviate and the object containing properties we previously define, we push this object to `itemsToInsert` for them to be bulk inserted with `insertMany()` once the batch is ready.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// Build the object payload"
-  endMarker="// Batcher automatically sends batches"
+  startMarker="// Insert"
+  endMarker="// END Insert"
   language="ts"
 />
 
 ### <i class="fa-solid fa-chalkboard"></i> Error handling
 
-Because a batch includes multiple objects, it's possible that some objects will fail to import. The batcher saves these errors.
-
-You can print out the errors to see what went wrong, and then decide how to handle them, such as by raising an exception. In this example, we simply print out the errors.
+If you have any errors in your bulk insertion, you want to know something went wrong. That way you can decide how to handle them, such as by raising an exception. In this example, we simply print out that there was an error with the import.
 
 <FilteredTextBlock
   text={TSCode}
-  startMarker="// Check for failed objects"
-  endMarker="finally"
+  startMarker="// Handle Errors"
+  endMarker="// END Handle Errors"
   language="ts"
 />
-
-Note that the list of errors is cleared when a new context manager is entered, so you must handle the errors before initializing a new batcher.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Where do the vectors come from?
 
