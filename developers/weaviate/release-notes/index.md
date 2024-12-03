@@ -28,7 +28,3 @@ Refer to the GitHub release notes for the corresponding client library for more 
 - [TypeScript/JavaScript](https://github.com/weaviate/typescript-client/releases)
 - [Go](https://github.com/weaviate/weaviate-go-client/releases)
 - [Java](https://github.com/weaviate/java-client/releases)
-
-#### Note: TypeScript client change
-
-The [TypeScript client](https://github.com/weaviate/typescript-client) replaced the [JavaScript client](https://github.com/weaviate/weaviate-javascript-client) on 2023-03-17.
