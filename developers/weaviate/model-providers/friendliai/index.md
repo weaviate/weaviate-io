@@ -22,7 +22,7 @@ FriendliAI integration empowers developers to build sophisticated AI-driven appl
 
 FriendliAI's generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform Retrieval Augmented Generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with FriendliAI's generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform Retrieval Augmented Generation (RAG) directly from the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with FriendliAI's generative AI models to generate personalized and context-aware responses.
 
 Visit [FriendliAI generative AI integration page](./generative.md) for more information on our integrations with FriendliAI.
 

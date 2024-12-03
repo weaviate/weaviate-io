@@ -462,7 +462,6 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             model="jina-embeddings-v3",
-            dimensions=512,  # e.g. 1024, 256, 64
         )
     ],
     # highlight-end
@@ -484,7 +483,7 @@ client.collections.create(
             source_properties=["title"],
             # Further options
             # model="jina-embeddings-v3",
-            # dimensions=512,  # e.g. 1024, 256, 64
+            # dimensions=512,  # e.g. 1024, 256, 64  (only applicable for some models)
         )
     ],
     # highlight-end
@@ -900,7 +899,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_voyageai(
             name="title_vector",
             source_properties=["title"],
-            model="voyage-code-2"
+            model="voyage-3-lite"
         )
     ],
     # highlight-end
@@ -931,6 +930,71 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerVoyageAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerWeaviate
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerWeaviateCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            model="arctic-embed-m-v1.5"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerWeaviateCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="arctic-embed-m-v1.5",
+            # dimensions=256
+            # base_url="<custom_weaviate_embeddings_url>",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerWeaviate
 
 # clean up
 client.collections.delete("DemoCollection")

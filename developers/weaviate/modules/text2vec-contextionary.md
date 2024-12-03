@@ -80,7 +80,6 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       # highlight-start
       ENABLE_MODULES: 'text2vec-contextionary'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
   # highlight-start

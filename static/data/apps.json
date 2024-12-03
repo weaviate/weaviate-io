@@ -1,6 +1,6 @@
 [
   {
-    "id": "query",
+    "id": "4",
     "name": "Query",
     "category": "Cloud Tools",
     "description": "Work interactively with Weaviate Cloud clusters using GraphQL.",
@@ -18,7 +18,7 @@
     "released": "yes"
   },
   {
-    "id": "collections",
+    "id": "5",
     "name": "Collections",
     "category": "Cloud Tools",
     "description": "Create and manage collections through a graphical user interface (GUI).",
@@ -36,7 +36,7 @@
     "released": "yes"
   },
   {
-    "id": "explorer",
+    "id": "6",
     "name": "Explorer",
     "category": "Cloud Tools",
     "description": "Search and validate object data, without writing any code.",
@@ -51,13 +51,12 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/explorer",
-    "released": "no",
-    "earlyAccess": "yes"
+    "released": "no"
   },
   {
-    "id": "recommender",
+    "id": "2",
     "name": "Recommender Service",
-    "category": "AI-Native Apps",
+    "category": "AI-Native Services",
     "description": "Build personalized, multi-modal recommendations with a simple interface.",
     "image": "apps-recommender-icon.svg",
     "overviewImage1": "recommender-screenshot-01.png",
@@ -70,13 +69,12 @@
     "size": "11.09MB",
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/workbench/recommender",
-    "released": "no",
-    "privateBeta": "yes"
+    "released": "yes"
   },
   {
-    "id": "gfl",
+    "id": "3",
     "name": "Generative Feedback Loops",
-    "category": "AI-Native Apps",
+    "category": "AI-Native Services",
     "description": "Automate mundane tasks and improve the quality of your data.",
     "image": "apps-gfl-icon.svg",
     "overviewImage1": "app-screenshot-01.png",
@@ -90,5 +88,22 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "",
     "released": "no"
+  },
+  {
+    "id": "1",
+    "name": "Embeddings",
+    "category": "AI-Native Services",
+    "description": "Generate embeddings within Weaviate Cloud, without needing to connect to a third-party provider.",
+    "image": "embeddings-icon.svg",
+    "overviewImage1": "weaviate-embedding-image.svg",
+    "longDescription": "Say goodbye to rate limits and the hassle of managing multiple embedding providers.",
+    "rating": 4.5,
+    "price": "Free",
+    "version": "7.3.0",
+    "updated": "January 28, 2023",
+    "size": "2.09MB",
+    "languages": ["English", "Spanish", "French", "German"],
+    "url": "/workbench/embeddings",
+    "released": "yes"
   }
 ]

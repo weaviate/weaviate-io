@@ -574,7 +574,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecJina({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'jina-embeddings-v2-small-en'
+      model: 'jina-embeddings-v3'
     }),
   ],
   // highlight-end
@@ -599,7 +599,7 @@ await client.collections.create({
       name: 'title_vector',
       sourceProperties: ['title'],
       // model: 'jina-embeddings-v3-small-en'
-      // dimensions: 512,  // e.g. 1024, 256, 64  // Support for this parameter is coming soon
+      // dimensions: 512,  // e.g. 1024, 256, 64  Support for this parameter is coming soon (Only applicable for some models)
     },
     ),
   ],
@@ -994,7 +994,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecVoyageAI({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'voyage-code-2',
+      model: 'voyage-3-lite',
     }),
   ],
   // highlight-end
@@ -1030,6 +1030,85 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullVectorizerVoyageAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerWeaviate
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerWeaviate
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerWeaviateCustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+      name: 'title_vector',
+      sourceProperties: ['title'],
+      model: 'arctic-embed-m-v1.5',
+    }),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END VectorizerWeaviateCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerWeaviate
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        // // Further options
+        // model: 'arctic-embed-m-v1.5',
+        // dimensions: 256,
+        // baseUrl: '<custom_weaviate_embeddings_url>',
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerWeaviate
 
 // Clean up
 await client.collections.delete('DemoCollection');
