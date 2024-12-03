@@ -655,7 +655,7 @@
   border: 1px solid #888;
   width: 75.9375rem;
   max-width: 90%;
-  height: auto;
+  height: 80vh;
   max-height: 95vh;
   border-radius: 1.5rem;
   background: #f5f5f5;
@@ -680,6 +680,7 @@
     width: 95%;
     margin: 90px auto 0px auto;
     border-radius: 0.5rem;
+    height: auto;
   }
 
   .close {
