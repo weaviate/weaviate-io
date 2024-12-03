@@ -38,7 +38,7 @@ The results are based on similarity of the vector embeddings between the query a
 
 The `limit` parameter here sets the maximum number of results to return.
 
-The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
+The `returnMetadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
 
 Note that the results are very similar to the tone of the query image, as the top results are all space-themed movies.
 
@@ -80,7 +80,7 @@ The returned object is an instance of a custom class. Its `objects` attribute is
 Each returned object will:
 - Include all properties and its UUID by default except those with blob data types.
     - Since the `poster` property is a blob, it is not included by default.
-    - To include the `poster` property, you must specify it and the other properties to fetch in the `return_properties` parameter.
+    - To include the `poster` property, you must specify it and the other properties to fetch in the `returnProperties` parameter.
 - Not include any other information (e.g. references, metadata, vectors.) by default.
 
 
