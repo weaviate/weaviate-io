@@ -14,8 +14,13 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
+import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/Connect.java';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageCohereTextEmbeddings.java';
+import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -57,7 +62,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START CohereInstantiation"
@@ -66,12 +71,30 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="js" label="JS/TS API v3">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START CohereInstantiation"
       endMarker="// END CohereInstantiation"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START CohereInstantiation"
+      endMarker="// END CohereInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaConnect}
+      startMarker="// START CohereInstantiation"
+      endMarker="// END CohereInstantiation"
+      language="javaraw"
     />
   </TabItem>
 
@@ -100,6 +123,24 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerCohere"
+      endMarker="// END BasicVectorizerCohere"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START BasicVectorizerCohere"
+      endMarker="// END BasicVectorizerCohere"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Select a model
@@ -122,6 +163,24 @@ You can specify one of the [available models](#available-models) for the vectori
       startMarker="// START VectorizerCohereCustomModel"
       endMarker="// END VectorizerCohereCustomModel"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START VectorizerCohereCustomModel"
+      endMarker="// END VectorizerCohereCustomModel"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START VectorizerCohereCustomModel"
+      endMarker="// END VectorizerCohereCustomModel"
+      language="java"
     />
   </TabItem>
 
@@ -161,6 +220,24 @@ The following examples show how to configure Cohere-specific options.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerCohere"
+      endMarker="// END FullVectorizerCohere"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FullVectorizerCohere"
+      endMarker="// END FullVectorizerCohere"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/embed).
@@ -186,6 +263,24 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="java"
     />
   </TabItem>
 
@@ -227,6 +322,24 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="java"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -259,6 +372,23 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaImportQueries}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="java"
+    />
+  </TabItem>
 </Tabs>
 
 ## References
@@ -288,8 +418,9 @@ The following models are available, but deprecated:
 
 ### Other integrations
 
-- [Cohere generative models + Weaviate](./generative.md).
-- [Cohere reranker models + Weaviate](./reranker.md).
+- [Cohere multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
+- [Cohere generative models + Weaviate](./generative.md)
+- [Cohere reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 

@@ -2,7 +2,7 @@
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
 // WCD_API_KEY  		your Weaviate instance API key
-// OPENAI_API_KEY   	your OpenAI API key
+// COHERE_APIKEY   		your Cohere API key
 
 package main
 
@@ -32,10 +32,10 @@ func main() {
 	// Define the collection
 	classObj := &models.Class{
 		Class:      "Question",
-		Vectorizer: "text2vec-openai",
+		Vectorizer: "text2vec-cohere",
 		ModuleConfig: map[string]interface{}{
-			"text2vec-openai":   map[string]interface{}{},
-			"generative-openai": map[string]interface{}{},
+			"text2vec-cohere":   map[string]interface{}{},
+			"generative-cohere": map[string]interface{}{},
 		},
 	}
 

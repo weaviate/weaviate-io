@@ -7,7 +7,7 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.id === 'query');
+  const app = appData.find((app) => app.name === 'Query');
 
   if (!app) return <div>App not found</div>;
 

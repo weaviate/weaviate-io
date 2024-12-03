@@ -1,6 +1,6 @@
 ---
 title: OpenAI + Weaviate
-description: "OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database."
+description: "OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly from the Weaviate database."
 sidebar_position: 10
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai']
@@ -12,7 +12,7 @@ image: og/docs/integrations/provider_integrations_openai.jpg
 For Azure OpenAI integration docs, see [this page instead](../openai-azure/index.md).
 :::
 
-OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database.
+OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -34,7 +34,7 @@ OpenAI's embedding models transform text data into high-dimensional vector repre
 
 OpenAI's generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with OpenAI's generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly from the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with OpenAI's generative AI models to generate personalized and context-aware responses.
 
 [OpenAI generative AI integration page](./generative.md)
 

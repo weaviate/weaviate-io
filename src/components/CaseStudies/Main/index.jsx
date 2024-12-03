@@ -63,6 +63,23 @@ export default function Main() {
               ></Link>
             </div>
           </div>
+          <div className={`${styles.bento05} ${styles.finance}`}>
+            <div className={styles.bentoText}>
+              <div className={styles.innerText}>
+                <span>CASE STUDY</span>
+                <h3>
+                  How a Leading Financial Data Company<br></br> Commercialized
+                  AI in Under a Year
+                </h3>
+              </div>
+              <div className={styles.buttons}>
+                <Link
+                  to="case-studies/finance"
+                  className={styles.arrowButton}
+                ></Link>
+              </div>
+            </div>
+          </div>
           <Link
             to="https://www.astronomer.io/blog/ask-astro-open-source-llm-application-apache-airflow/"
             className={styles.bentoSmall}

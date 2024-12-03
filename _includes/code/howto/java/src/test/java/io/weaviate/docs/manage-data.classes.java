@@ -171,7 +171,7 @@ class ManageDataClassesTest {
     Map<String, Object> text2vecCohere = new HashMap<>();
     Map<String, Object> text2vecCohereSettings = new HashMap<>();
     text2vecCohereSettings.put("properties", new String[]{ "body" });
-    text2vecCohere.put("text2vec_cohere", text2vecCohereSettings);
+    text2vecCohere.put("text2vec-cohere", text2vecCohereSettings);
 
     //Define the vector configurations
     Map<String, WeaviateClass.VectorConfig> vectorConfig = new HashMap<>();

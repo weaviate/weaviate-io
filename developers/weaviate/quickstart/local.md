@@ -16,12 +16,11 @@ import TabItem from '@theme/TabItem';
 
 :::info What you will learn
 
-In this quickstart guide, you will:
+This quickstart shows you how to combine open-source Weaviate and Ollama to:
 
-1. Set up Weaviate. (10 minutes)
-1. Populate the database. (10 minutes)
+1. Set up a Weaviate instance. (10 minutes)
+1. Add and vectorize your data. (10 minutes)
 1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
-
 
 ```mermaid
 flowchart LR
@@ -65,13 +64,14 @@ flowchart LR
     style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
 ```
 
+Notes:
+
+- The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+<!-- - Python users can try [our Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) locally or on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb). -->
+- If you prefer to use cloud-based resources, see [Quickstart: with cloud resources](./local.md).
 :::
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
-
-:::tip
-This tutorial uses a local, Docker instance of Weaviate, and an Ollama model. If you prefer to use cloud-based resources, see the [QuickStart: with cloud resources](./index.md) instead.
-:::
 
 ### Prerequisites
 
@@ -84,15 +84,9 @@ ollama pull nomic-embed-text
 ollama pull llama3.2
 ```
 
-:::info System requirements
-As we will be running Weaviate and language models locally, we recommend that you use a modern computer with at least 8GB or RAM, preferably 16GB or more.
-:::
+We will be running Weaviate and language models locally. We recommend that you use a modern computer with at least 8GB or RAM, preferably 16GB or more.
 
 <hr/>
-
-:::tip Try it yourself
-The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
-:::
 
 ## Step 1: Set up Weaviate
 
@@ -122,7 +116,6 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
       ENABLE_API_BASED_MODULES: 'true'
       ENABLE_MODULES: 'text2vec-ollama,generative-ollama'
       CLUSTER_HOSTNAME: 'node1'

@@ -327,6 +327,20 @@ export const courseData = {
       "chunking"
     ]
   },
+  "standalone_js": {
+    title: "Standalone units (JS/TS)",
+    courseId: "0",
+    body: "Bite-sized, standalone units that can be reviewed by themselves.",
+    buttonType: "Notify",
+    badgeType: "course",
+    isCourse: false,
+    units: [
+      "which_search",
+      "client_server",
+      "picking_models",
+      "want_stack"
+    ]
+  },
   "zero_to_mvp": {
     title: "Zero to MVP: The basics",
     courseId: "P3_1",

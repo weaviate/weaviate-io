@@ -1,0 +1,332 @@
+.bgCol {
+  background: #ecf4f8;
+}
+
+.header {
+  width: 70%;
+  margin: 30px 0px;
+
+  p {
+    color: #130c49;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 750px) {
+    br {
+      display: none;
+    }
+  }
+}
+
+.boxContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 17px;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 1100px) {
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+  }
+}
+
+.typeContainer {
+  display: flex;
+  gap: 22px;
+
+  @media screen and (max-width: 1100px) {
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+  }
+}
+
+.typeBox {
+  max-width: 39.25rem;
+  width: 100%;
+  min-height: 17.7rem;
+  border-radius: 0.625rem;
+  background: #fff;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 1440px) {
+    height: auto;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.big {
+  max-width: 76.25rem;
+  width: 100%;
+  min-height: 20.9375rem;
+
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.typeIcon {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-direction: row;
+
+  .homeIcon {
+    background-image: url('/img/site/learn-courses-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 2.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+  }
+
+  .docs {
+    background-image: url('/img/site/learn-academy-icon.svg');
+  }
+
+  .workshops {
+    background-image: url('/img/site/learn-videos-icon.svg');
+  }
+
+  h2 {
+    color: #130c49;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 175.9%;
+  }
+}
+
+.ragIcon {
+  background-image: url('/img/site/homepage-rag-icon.svg');
+}
+.genIcon {
+  background-image: url('/img/site/homepage-gen-icon.svg');
+}
+
+.typeText {
+  display: flex;
+  flex-direction: column;
+  width: 560px;
+  gap: 12px;
+
+  flex-grow: 1; /* Allow the text container to grow */
+  overflow-wrap: break-word; /* Prevent overflow */
+
+  p {
+    color: #130c49;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  a {
+    color: #61bd73;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+    text-decoration-line: underline;
+  }
+
+  @media screen and (max-width: 1440px) {
+    width: unset;
+  }
+  .external {
+    color: #130c49;
+    font-weight: 400;
+    text-decoration-line: underline;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.large {
+  align-items: flex-start;
+  width: unset;
+}
+
+.featuredList {
+  display: flex;
+  justify-content: flex-start;
+  gap: 270px;
+  align-items: center;
+
+  @media screen and (max-width: 1100px) {
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.serviceBox {
+  max-width: 76.6875rem;
+  height: 33.75rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #130c49;
+  margin: 36px auto;
+  display: flex;
+
+  gap: 32px;
+}
+
+.serviceText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 74px;
+
+  @media screen and (max-width: 800px) {
+    padding: 25px;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 3rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 2rem;
+    }
+  }
+
+  span {
+    color: #61bb73;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.875rem */
+    text-transform: uppercase;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 2.25rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .buttonGradient,
+  .buttonGradient:hover {
+    border-radius: 0.375rem;
+    background: #61bd73;
+    color: #130c49;
+  }
+}
+
+.serviceIcon {
+  background-image: url('/img/site/neople-logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 10rem;
+  height: 10rem;
+}
+
+.serviceImage {
+  background-image: url('/img/site/case-study-background.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 73.125rem;
+  height: 39.8125rem;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.ctaContainer {
+  max-width: 76.5rem;
+  width: 100%;
+  margin: 60px 0px 0px 0px;
+  height: 12.25rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: url('/img/site/learn-cta-bg.png');
+  background-size: cover;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1100px) {
+    height: auto;
+    background-position-x: center;
+  }
+
+  span {
+    color: #61bb73;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.6875rem */
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: #f4f9fd;
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 1.95rem */
+  }
+
+  p {
+    color: #f4f9fd;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }
+}
+
+.innerCta {
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #130c49;
+    width: 10.625rem;
+    height: 2.8125rem;
+    color: #fff;
+    text-align: center;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

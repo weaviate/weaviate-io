@@ -295,7 +295,8 @@ AI Studio:
 
 ### Other integrations
 
-- [Google embedding models + Weaviate](./embeddings.md).
+- [Google text embedding models + Weaviate](./embeddings.md).
+- [Google multimodal embedding models + Weaviate](./embeddings-multimodal.md).
 
 ### Code examples
 

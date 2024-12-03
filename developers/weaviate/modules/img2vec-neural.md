@@ -68,7 +68,6 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       # highlight-start
       ENABLE_MODULES: 'img2vec-neural'
-      DEFAULT_VECTORIZER_MODULE: 'img2vec-neural'
       IMAGE_INFERENCE_API: "http://i2v-neural:8080"
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'

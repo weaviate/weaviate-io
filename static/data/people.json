@@ -166,6 +166,13 @@
     "team": "weaviate-labs"
   },
   {
+    "name": "Damien Gasparina",
+    "title": "Enterprise Solution Engineer",
+    "photo": "Damien.jpg",
+    "linkedin": "gasparinadamien",
+    "team": "sales"
+  },
+  {
     "name": "Daniel Phiri",
     "title": "Developer Advocate",
     "photo": "daniel.png",
@@ -477,12 +484,6 @@
     "linkedin": "nenadmalic"
   },
   {
-    "name": "Nick Olivetti",
-    "title": "Enterprise Account Executive",
-    "photo": "nick.png",
-    "team": "sales"
-  },
-  {
     "name": "Parker Duckworth",
     "title": "Head of Database",
     "photo": "parker.png",
@@ -527,6 +528,13 @@
     "photo": "Rodrigo-Lopez.jpg",
     "linkedin": "rodrigo-antonio-lópez-manrique-a3778a93",
     "team": "applied-research"
+  },
+  {
+    "name": "Ryan Colbert",
+    "title": "Enterprise Account Executive",
+    "photo": "ryan.jpg",
+    "linkedin": "ryantcolbert",
+    "team": "sales"
   },
   {
     "name": "Scott Alexander",

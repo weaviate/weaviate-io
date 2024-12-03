@@ -5414,6 +5414,26 @@ adm-zip@^0.5.10:
   resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.13.tgz#e2fbd87d0bb75603ccfdcb03a57a57c4831d9758"
   integrity sha512-4U51tTl9J8UVEcuKGr6zRzY95tWoAa9l+ureGBNmsfleszjZblm5NyEEL/ZQxkhi86co5mZhSvL2T7gkZ6feYQ==
 
+ag-charts-types@10.3.3:
+  version "10.3.3"
+  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.3.3.tgz#042c747f1247af827c29ccfdd0890d7b9adcaae9"
+  integrity sha512-8rmyquaTkwfP4Lzei/W/cbkq9wwEl8+grIo3z97mtxrMIXh9sHJK1oJipd/u08MmBZrca5Jjtn5F1+UNPu/4fQ==
+
+ag-grid-community@32.3.3:
+  version "32.3.3"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-32.3.3.tgz#d0c2c15b342b49a3bb5dddfdad9d0332b08f1505"
+  integrity sha512-KhSJ3B6mwRFA4cLjNjOZkDndJBh8o83794ZHl4Q7xP9MJf43oCN9qoZ8pyBanohgpVfLcP0scYYCr9xIlzjdiA==
+  dependencies:
+    ag-charts-types "10.3.3"
+
+ag-grid-react@^32.3.3:
+  version "32.3.3"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-32.3.3.tgz#320be8fcef248fcd9d07b442263f00b2b6a815a3"
+  integrity sha512-0u6oYoSHf7P2eRgK8FtnXix+bW8hcbiGXhYhg+UpYJHNlKug+spNqjGSzX43f70AZ2QpOBLsL7Bz2FPsadv3HA==
+  dependencies:
+    ag-grid-community "32.3.3"
+    prop-types "^15.8.1"
+
 agent-base@6:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
@@ -13439,10 +13459,10 @@ nice-grpc-common@^2.0.2:
   dependencies:
     ts-error "^1.0.6"
 
-nice-grpc@^2.1.9:
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.9.tgz#5c4b26e7051eebd31b5f54ce1348524ab151ee2d"
-  integrity sha512-shJlg1t4Wn3qTVE31gxofbTrgCX/p4tS1xRnk4bNskCYKvXNEUpJQZpjModsVk1aau69YZDViyC18K9nC7QHYA==
+nice-grpc@^2.1.10:
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.10.tgz#64355848951a143fc2a2d40d1d6b0f49f47567bb"
+  integrity sha512-Nujs/4wWJvE5OSxWPp3M5H+zHJAgsWMo38bMNfKQP1VDeCChp7MiKTkhJBV5JZvrBIkPhYQCLIbfvVqEoSuTuA==
   dependencies:
     "@grpc/grpc-js" "^1.10.8"
     abort-controller-x "^0.4.0"
@@ -14953,7 +14973,7 @@ prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.0, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -18379,15 +18399,15 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.2.1.tgz#87ebdd5e52b9b9ca1d85c816e716cbcdb5a0a704"
-  integrity sha512-EZSz6ABTuwyXZwyj/13Enrq9a5QbStgcpdVROOQKbZoZ4kxC0yIilxyFxk27SafdTFgVWhcEbVPyBBg0ukNYyA==
+weaviate-client@^3.2.3:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.2.4.tgz#9ba1b4016e9eec45a4f8c677e352f4e33423abc4"
+  integrity sha512-Y6KnrPQqUDK1hf15aH4/ib3FJwCXbUE8yGGtK8Pq8REbjgHCGXs+2cDr0XbihTbe75yXmBZ5UIgbIusgabgieQ==
   dependencies:
     graphql "^16.9.0"
     graphql-request "^6.1.0"
     long "^5.2.3"
-    nice-grpc "^2.1.9"
+    nice-grpc "^2.1.10"
     nice-grpc-client-middleware-retry "^3.1.9"
     uuid "^9.0.1"
 
