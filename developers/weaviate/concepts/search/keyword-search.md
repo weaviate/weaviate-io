@@ -9,18 +9,34 @@ image: og/docs/concepts.jpg
 
 Keyword search is an exact matching-based search using "tokens", or strings of characters.
 
-A keyword search determines the best matches based on the matches of exact tokens contained in the query against those of the stored objects.
+It uses the BM25F algorithm, which is a ranking function that evaluates how relevant a document is based on how frequently your search terms appear in it, while accounting for document length and term frequency.
+
+A keyword search determines the best matches based on the matches of exact tokens contained in the query against those of the stored objects. As a result, a keyword search is a good choice when exact matches (e.g. exact domain-specific language, precise categories or tags) are important. For example:
+
+- Searching for documents containing specific technical terms
+- Identifying articles by precise keywords or tags
+
+This differs from vector search, which finds semantically similar content even when the exact words don't match. You might use keyword search when precision is more important than finding related concepts.
 
 ## Keyword search in Weaviate
 
-In Weaviate, a keyword search will return the objects best matching the query, as measured by the [BM25 algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) and its resulting "score".
+In Weaviate, a keyword search will return the objects best matching the query, as measured by [BM25F](https://en.wikipedia.org/wiki/Okapi_BM25) "score".
+
+:::info BM25F vs BM25
+The "F" in BM25F stands for "field", indicating that it is a field-specific version of BM25. This allows for different weights for different fields, or properties, of the objects.
+<br/>
+
+In Weaviate, they are used interchangeably, as the BM25F algorithm is used to calculate the scores for keyword searches. Here we will refer to it generally as BM25.
+:::
+
+A BM25 score is calculated based on the frequency of the query tokens in the object properties, as well as the length of the object properties and the query.
 
 When an input string such as `"A red Nike shoe"` is provided as the query, Weaviate will:
 
-1. [Tokenize](#tokenization) the input (e.g. to `["a", "red", "nike", "show"]`)
-2. Remove any [stopwords](#stopwords) (e.g. remove `a`, to produce `["red", "nike", "show"]`)
-3. Determine the BM25F scores against [selected properties](#selected-properties) of the database objects, based on the [BM25 parameters](#bm25-parameters) and any [property boosting](#property-boosting).
-4. Return the objects with the highest BM25F scores as the search results
+1. [Tokenize](#tokenization) the input (e.g. to `["a", "red", "nike", "shoe"]`)
+2. Remove any [stopwords](#stopwords) (e.g. remove `a`, to produce `["red", "nike", "shoe"]`)
+3. Determine the BM25 scores against [selected properties](#selected-properties) of the database objects, based on the [BM25 parameters](#bm25-parameters) and any [property boosting](#property-boosting).
+4. Return the objects with the highest BM25 scores as the search results
 
 ### Tokenization
 
@@ -48,7 +64,7 @@ See the [reference page](../../config-refs/schema/index.md#stopwords-stopword-li
 
 ### BM25 Parameters
 
-BM25F is a scoring function used to rank documents based on the query terms appearing in them. It has two main parameters that control its behavior:
+BM25 is a scoring function used to rank documents based on the query terms appearing in them. It has two main parameters that control its behavior:
 
 - `k1` (default: 1.2): Controls term frequency saturation. Higher values mean that multiple occurrences of a term continue to increase the score more
 - `b` (default: 0.75): Controls document length normalization. Values closer to 1 mean more normalization for document length
@@ -82,7 +98,7 @@ flowchart LR
     %% Main flow
     query["🔍 Query Text"] --> tokenize["⚡ Tokenization"]
     tokenize --> stopwords["🚫 Stopword\nRemoval"]
-    stopwords --> scoring["📊 BM25F\nScoring"]
+    stopwords --> scoring["📊 BM25\nScoring"]
 
     %% Parameters section
     subgraph params["Parameter Configuration"]
@@ -118,7 +134,7 @@ By default, all `text` properties are included in a BM25 calculation. There are 
 
 ### Property Boosting
 
-Property boosting allows a query apply different weights to different properties when calculating the final BM25F score.
+Property boosting allows a query apply different weights to different properties when calculating the final BM25 score.
 
 This is useful when certain properties are more important for search than others.
 
@@ -141,16 +157,18 @@ See [Hybrid Search](../hybrid.md) for more information.
 Here are some key considerations when using keyword search:
 
 1. **Tokenization Choice**
-   - Choose based on your data and search requirements
+   - Choose based on your data and search requirements. For example, use `word` tokenization for natural language text, but consider `field` for URLs or email addresses that need exact matching as a whole.
+   - For multilingual content, consider specialized tokenizers like `GSE` for Chinese/Japanese or `kagome_kr` for Korean
    - Consider special characters and case sensitivity needs
-   - If exact, ordered matches are important (e.g. URLs), consider using `field`
+   - Test your tokenization choice with subsets of your data and queries to ensure it handles special characters and case sensitivity as expected. You could perform these experiments with vectorization disabled to save resources/costs, as the two processes are independent.
 
-2. **Parameter Tuning**
-   - Start with default `k1` and `b` values
-   - Adjust based on your specific use case
+2. **Performance Optimization**
+   - Index only the properties you need for search
+   - Consider combining keyword search with vector search (i.e. perform a [hybrid search](./hybrid-search.md)) as a starting point, especially where you cannot anticipate users' behavior
 
-3. **Property Boosting**
-   - Consider the relative importance of different properties
+3. **Query Optimization**
+   - Consider boosting properties that are more important for search (e.g. title, category) over others (e.g. description)
+   - Only modify `k1` and `b` values if you have a good reason to do so, as the defaults are generally well-suited for most use cases
 
 ## Questions and feedback
 
