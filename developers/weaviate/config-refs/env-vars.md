@@ -76,6 +76,13 @@ default hostname has changed and a single node cluster believes there are suppos
 | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | `USE_GOOGLE_AUTH` | Automatically look for Google Cloud credentials, and generate Vertex AI access tokens for Weaviate to use as needed ([read more](../model-providers/google/index.md)). (default: `false`) | `boolean` | `true` |
 | `USE_SENTENCE_TRANSFORMERS_VECTORIZER` | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `boolean` | `true` |
+| `CLIP_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `multi2vec-clip` module to start up before starting (default: `true`).  | `boolean` | `true` |
+| `NER_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `ner-transformers` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
+| `QNA_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `qna-transformers` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
+| `RERANKER_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `reranker-transformers` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
+| `SUM_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `sum-transformers` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
+| `GPT4ALL_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `text2vec-gpt4all` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
+| `TRANSFORMERS_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `text2vec-transformers` module to start up before starting (default: `true`). (Available from v1.28.0) | `boolean` | `true` |
 
 ## Authentication and authorization
 
