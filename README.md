@@ -185,7 +185,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
       text={TSCode}
       startMarker="// ValidateObject START"
       endMarker="// ValidateObject END"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 </Tabs>
