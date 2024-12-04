@@ -68,6 +68,10 @@ Provide the API key to Weaviate using one of the following methods:
       startMarker="# START CohereInstantiation"
       endMarker="# END CohereInstantiation"
       language="py"
+      docRefs={[
+        "connect_to_weaviate_cloud",
+        "auth.Auth.api_key"
+      ]}
     />
   </TabItem>
 
