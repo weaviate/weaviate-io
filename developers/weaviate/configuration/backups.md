@@ -246,7 +246,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
       text={PyCodeV3}
       startMarker="# START CreateBackup"
       endMarker="# END CreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -335,7 +335,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -467,7 +467,7 @@ The request takes a json object with the following properties:
       text={PyCodeV3}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -553,7 +553,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

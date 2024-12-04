@@ -53,7 +53,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
         text={PyCodeV3}
         startMarker="# START EnableBQ"
         endMarker="# END EnableBQ"
-        language="py"
+        language="pyv3"
       />
   </TabItem>
 
@@ -124,7 +124,7 @@ For example:
         text={PyCodeV3}
         startMarker="# START BQWithOptions"
         endMarker="# END BQWithOptions"
-        language="py"
+        language="pyv3"
       />
   </TabItem>
 

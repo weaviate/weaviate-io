@@ -718,7 +718,7 @@ Optionally, use `offset` to paginate the results.
       text={PyCodeV3}
       startMarker="# START limit Python"
       endMarker="# END limit Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -778,7 +778,7 @@ To limit results to groups with similar distances from the query, use the [`auto
       text={PyCodeV3}
       startMarker="# START autocut Python"
       endMarker="# END autocut Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

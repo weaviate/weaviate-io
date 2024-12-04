@@ -193,7 +193,7 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
       text={ManageDataCodeV3}
       startMarker="# ReadObject START"
       endMarker="# ReadObject END"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 </Tabs>

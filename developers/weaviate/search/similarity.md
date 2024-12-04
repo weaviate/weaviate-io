@@ -126,7 +126,7 @@ This example uses a base64 representation of an image.
       text={ImgSrchPyCodeV3}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -572,7 +572,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       text={PyCodeV3}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

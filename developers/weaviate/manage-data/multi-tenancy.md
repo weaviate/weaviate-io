@@ -51,7 +51,7 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       text={PyCodeV3}
       startMarker="# START EnableMultiTenancy"
       endMarker="# END EnableMultiTenancy"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -197,7 +197,7 @@ Tenant status is available from Weaviate `1.21` onwards.
       text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
       endMarker="# END AddTenantsToClass"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -259,7 +259,7 @@ This example lists the tenants in the `MultiTenancyCollection` collection:
       text={PyCodeV3}
       startMarker="# START ListTenants"
       endMarker="# END ListTenants"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -378,7 +378,7 @@ Deleting a tenant deletes all associated objects.
       text={PyCodeV3}
       startMarker="# START RemoveTenants"
       endMarker="# END RemoveTenants"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -468,7 +468,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
       text={PyCodeV3}
       startMarker="# START CreateMtObject"
       endMarker="# END CreateMtObject"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -528,7 +528,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
       text={PyCodeV3}
       startMarker="# START Search"
       endMarker="# END Search"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -592,7 +592,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
       text={PyCodeV3}
       startMarker="# START AddCrossRef"
       endMarker="# END AddCrossRef"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

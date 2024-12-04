@@ -56,7 +56,7 @@ Return the number  of objects matched by the query.
       text={PyCodeV3}
       startMarker="# MetaCount Python"
       endMarker="# END MetaCount Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -129,7 +129,7 @@ This example counts occurrence frequencies in the `question` property:
       text={PyCodeV3}
       startMarker="# TextProp Python"
       endMarker="# END TextProp Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -202,7 +202,7 @@ This  example sums the `points` property.
       text={PyCodeV3}
       startMarker="# IntProp Python"
       endMarker="# END IntProp Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -277,7 +277,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={PyCodeV3}
       startMarker="# groupBy Python"
       endMarker="# END groupBy Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -358,7 +358,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       text={PyCodeV3}
       startMarker="# nearTextWithLimit Python"
       endMarker="# END nearTextWithLimit Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -436,7 +436,7 @@ Use `distance` to specify how similar the objects should be.
       text={PyCodeV3}
       startMarker="# nearTextWithDistance Python"
       endMarker="# END nearTextWithDistance Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -509,7 +509,7 @@ You can use `Aggregate` with a [hybrid search](./hybrid.md) operator.
       text={PyCodeV3}
       startMarker="# HybridExample"
       endMarker="# END HybridExample"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -582,7 +582,7 @@ For more specific results, use a `filter` to narrow your search.
       text={PyCodeV3}
       startMarker="# whereFilter Python"
       endMarker="# END whereFilter Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
