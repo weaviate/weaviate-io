@@ -388,7 +388,11 @@ The vector index type can be set for each collection at creation time, between `
 
 ## Set vector index parameters
 
-Various vector index parameters are configurable at collection creation time, including [compression](../configuration/compression/index.md).
+Various vector index parameters are configurable at collection creation time, including [compression](../configuration/compression/index.md) and [filter strategy](../concepts/filtering.md#filter-strategy).
+
+:::info Filter strategy parameter
+Was added in `v1.27`
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -604,9 +608,13 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
   </TabItem>
 </Tabs>
 
-## Specify a reranker
+## Specify a reranker model integration
 
-Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retrieved results](../search/rerank.md).
+Configure a [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
+
+:::info Related pages
+- [Available reranker model integrations](../model-providers/index.md)
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -646,16 +654,58 @@ Configure a [`reranker`](../concepts/search/index.md#rerank) for [reranking retr
   </TabItem>
 </Tabs>
 
-## Specify a generative module
+## Update the reranker model integration
 
-Specify a `generative` module for a collection (for RAG).
+:::info Available from `v1.25.23`, `v1.26.8` and `v1.27.1`
+The `reranker` and `generative` configurations are mutable from `v1.25.23`, `v1.26.8` and `v1.27.1`.
+:::
 
-<details>
-  <summary>Additional information</summary>
+Update the [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateReranker"
+      endMarker="# END UpdateReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START UpdateReranker"
+      endMarker="# END UpdateReranker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```js
+// Coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START UpdateReranker"
+      endMarker="// END UpdateReranker"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Specify a generative model integration
+
+Specify a `generative` model integration for a collection (for RAG).
+
+:::info Related pages
 - [Available generative model integrations](../model-providers/index.md)
-
-</details>
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -732,6 +782,51 @@ Specify a generative `model name`.
       text={TSCodeLegacy}
       startMarker="// START SetGenModel"
       endMarker="// END SetGenModel"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Update the generative model integration
+
+:::info Available from `v1.25.23`, `v1.26.8` and `v1.27.1`
+The `reranker` and `generative` configurations are mutable from `v1.25.23`, `v1.26.8` and `v1.27.1`.
+:::
+
+Update a [`reranker`](../concepts/search/index.md#rerank) model integration for [reranking retrieved results](../search/rerank.md).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateGenerative"
+      endMarker="# END UpdateGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START UpdateGenerative"
+      endMarker="# END UpdateGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```js
+// Coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START UpdateGenerative"
+      endMarker="// END UpdateGenerative"
       language="ts"
     />
   </TabItem>
@@ -995,7 +1090,7 @@ This configuration for nested objects defines the following:
 <details>
   <summary>Sample configuration: Generative search</summary>
 
-This configuration for [generative search](../search/generative.md) defines the following:
+This configuration for [retrieval augmented generation](../search/generative.md) defines the following:
 
 - The collection name (`Article`)
 - The default vectorizer module (`text2vec-openai`)
@@ -1179,11 +1274,12 @@ You can update a collection definition to change the [mutable collection setting
   </TabItem>
 
   <TabItem value="js2" label="JS/TS Client v2">
-
-```ts
-// This feature is under development
-```
-
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START UpdateCollection"
+      endMarker="// END UpdateCollection"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">

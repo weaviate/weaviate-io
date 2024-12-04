@@ -158,6 +158,7 @@ class_obj = {
             "cache": True,  # Enable use of vector cache. Default: False
         },
         "vectorCacheMaxObjects": 100000,  # Cache size if `cache` enabled. Default: 1000000000000
+        "filterStrategy": "sweeping"  # or "acorn" (Available from Weaviate v1.27.0)
     }
     # highlight-end
 }
@@ -357,6 +358,44 @@ client.schema.delete_class(class_name)
 
 
 # ===============================================
+# ===== UPDATE THE COLLECTION WITH THE RERANKER MODULE =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "reranker-voyageai": {}  # set your reranker module
+    }
+    # highlight-end
+}
+
+# START UpdateReranker
+class_obj = {
+    # highlight-start
+    "moduleConfig": {
+        "reranker-cohere": {}  # Update your reranker module
+    }
+    # highlight-end
+}
+
+client.schema.update_config("Article", class_obj)
+# END UpdateReranker
+
+# Test
+result = client.schema.get(class_name)
+assert "reranker-cohere" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
@@ -416,6 +455,46 @@ assert "generative-openai" in result["moduleConfig"].keys()
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+
+# ===============================================
+# ===== UPDATE THE COLLECTION WITH THE GENERATIVE MODULE =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+class_obj = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "generative-openai": {}  # set your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+
+# START UpdateGenerative
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "moduleConfig": {
+        "generative-cohere": {}  # Update your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END UpdateGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-cohere" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
 
 # =======================
 # ===== REPLICATION =====
@@ -609,7 +688,6 @@ assert class_name in class_names
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
-# START UpdateCollection
 # Define and create a class
 original_class_obj = {
     "class": class_name,
@@ -621,7 +699,6 @@ original_class_obj = {
 }
 
 client.schema.create_class(original_class_obj)
-# END UpdateCollection
 
 
 # Create an object to make sure it remains mutable
@@ -632,18 +709,20 @@ for _ in range(5):
 old_class_response = client.schema.get(class_name)
 
 # START UpdateCollection
-
-# Update the class definition
-changed_class_obj = {
+# Update the collection definition
+collection_def_changes = {
     "class": class_name,
     "invertedIndexConfig": {
         "bm25": {
             "k1": 1.5  # Change the k1 parameter from 1.2
         }
+    },
+    "vectorIndexConfig": {
+        "filterStrategy": "acorn"  #  Available from Weaviate v1.27.0
     }
 }
 
-client.schema.update_config("Article", changed_class_obj)
+client.schema.update_config("Article", collection_def_changes)
 # END UpdateCollection
 
 changed_class_response = client.schema.get(class_name)

@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: OpenAI Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai', 'generative', 'rag']
@@ -48,6 +49,8 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 </details>
 
+<!-- Docs note: the `OPENAI_ORGANIZATION` environment variable is not documented, as it is not the recommended way to provide the OpenAI organization parameter. -->
+
 ### API credentials
 
 You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
@@ -81,7 +84,11 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an OpenAI generative AI model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an OpenAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -234,6 +241,8 @@ In other words, when you have `n` search results, the generative model generates
 * [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 * [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 * [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4o](https://platform.openai.com/docs/models#gpt-4o)
+* [gpt-4o-mini](https://platform.openai.com/docs/models#gpt-4o-mini) (Added in v1.26.7)
 
 <details>
   <summary>Older models</summary>

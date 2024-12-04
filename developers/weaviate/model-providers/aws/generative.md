@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: AWS Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws', 'generative', 'rag']
@@ -90,7 +91,11 @@ To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an AWS generative model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an AWS generative model:
 
 ### Bedrock
 

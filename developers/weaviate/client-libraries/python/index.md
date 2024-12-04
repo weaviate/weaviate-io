@@ -1,5 +1,6 @@
 ---
 title: Python
+description: Utilize the Python client library to access Weaviate and streamline data processes.
 sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']
@@ -15,6 +16,10 @@ import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.impo
 
 This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
+:::info Inline documentation
+For the inline documentation (also known as docstrings) of the Python client, see the [Read the Docs](https://weaviate-python-client.readthedocs.io/en/latest/) page.
+:::
+
 ### Asynchronous usage
 
 The Python client library provides a synchronous API by default through the `WeaviateClient` class, which is covered on this page. An asynchronous API is also available through the `WeaviateAsyncClient` class (from `weaviate-client` `v4.7.0` and up). See the [async client API page](./async.md) for further details.
@@ -28,7 +33,8 @@ If you are migrating from the `v3` client to the `v4`, see this [dedicated guide
 The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
 
 ```bash
-pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+# For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+pip install -U weaviate-client
 ```
 
 ### Requirements
@@ -208,7 +214,7 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
   language="py"
 />
 
-:::tip Timeouts on `generate` (RAG) queries
+:::tip Timeouts on `generate` queries
 
 If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). <br/><br/>The `generate` submodule uses a large language model to generate text. The submodule is dependent on the speed of the language model and any API that serves the language model. <br/><br/>Increase the timeout values to allow the client to wait longer for the language model to respond.
 :::
@@ -463,8 +469,9 @@ The `data` submodule contains all object-level CUD operations, including:
 
 - `insert` for creating objects.
     - This function takes the object properties as a dictionary.
-- `insert_many` for batch creating multiple objects.
+- `insert_many` for adding multiple objects with one request.
     - This function takes the object properties as a dictionary or as a `DataObject` instance.
+    - Note: For larger numbers of objects, consider using [batch imports](#batch-imports).
 - `update` for updating objects (for `PATCH` operations).
 - `replace` for replacing objects (for `PUT` operations).
 - `delete_by_id` for deleting objects by ID.
@@ -472,11 +479,6 @@ The `data` submodule contains all object-level CUD operations, including:
 - `reference_xxx` for reference operations, including `reference_add`, `reference_add_many`, `reference_update` and `reference_delete`.
 
 See some examples below. Note that each function will return varying types of objects.
-
-:::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may
-send multiple requests as batches.
-:::
 
 <Tabs groupId="languages">
 <TabItem value="insert" label="Insert">
@@ -520,6 +522,10 @@ send multiple requests as batches.
 
 </TabItem>
 </Tabs>
+
+:::info `insert_many` sends one request
+`insert_many` sends one request for the entire function call. For requests with a large number of objects, [consider using `batch` imports](#batch-imports).
+:::
 
 #### `insert_many` with DataObjects
 
@@ -637,7 +643,7 @@ The results are organized by both their individual objects as well as the group.
 
 ### `generate`
 
-The RAG / generative search functionality is a two-step process involving a search followed by prompting a large language model. Therefore, function names are shared across the `query` and `generate` submodules, with additional parameters available in the `generate` submodule.
+The `generate` methods perform [retrieval augmented generation (RAG)](../../starter-guides/generative.md). This is a two-step process involving a search followed by prompting a large language model. Therefore, function names are shared across the `query` and `generate` submodules, with additional parameters available in the `generate` submodule.
 
 <Tabs groupId="languages">
 <TabItem value="generate" label="Generate">
@@ -1202,121 +1208,16 @@ The Weaviate API reference pages for [search](../../api/graphql/index.md) and [R
 
 ## Releases
 
-For links to the Python Client releases, expand this section.
+Go to the [GitHub releases page](https://github.com/weaviate/weaviate-python-client/releases) to see the history of the Python client library releases.
 
 <details>
-  <summary>Python Client</summary>
+  <summary>Click here for a table of Weaviate and corresponding client versions</summary>
 
-| Client Version | Release Date |
-| :- | :- |
-| [4.8.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.8.1) | 2024-09-16 |
-| [4.8.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.8.0) | 2024-09-10 |
-| [4.7.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.1) | 2024-07-25 |
-| [4.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.7.0) | 2024-07-24 |
-| [4.6.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.7) | 2024-07-19 |
-| [4.6.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.6) | 2024-07-02 |
-| [4.6.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.5) | 2024-06-19 |
-| [4.6.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.4) | 2024-06-19 |
-| [4.6.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.3) | 2024-05-21 |
-| [4.6.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.2) | 2024-05-21 |
-| [4.6.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.1) | 2024-05-17 |
-| [4.6.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.0) | 2024-05-10 |
-| [4.5.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.7) | 2024-05-03 |
-| [4.5.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.6) | 2024-04-23 |
-| [4.5.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5) | 2024-04-03 |
-| [4.5.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.4) | 2024-03-15 |
-| [4.5.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.3) | 2024-03-14 |
-| [4.5.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.2) | 2024-03-11 |
-| [4.5.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.1) | 2024-03-04 |
-| [4.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.0) | 2024-02-27 |
-| [4.4.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.4) | 2024-02-09 |
-| [4.4.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.3) | 2024-02-09 |
-| [4.4.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.2) | 2024-02-09 |
-| [4.4.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.1) | 2024-02-05 |
-| [4.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.0) | 2024-01-31 |
-| [3.26.7](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.6) | 2024-08-15 |
-| [3.26.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.6) | 2024-07-24 |
-| [3.26.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.5) | 2024-07-02 |
-| [3.26.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.4) | 2024-07-02 |
-| [3.26.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.3) | 2024-06-30 |
-| [3.26.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.2) | 2024-01-22 |
-| [3.26.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.1) | 2024-01-15 |
-| [3.26.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.0) | 2023-12-20 |
-| [3.25.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.3) | 2023-11-07 |
-| [3.25.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.2) | 2023-10-31 |
-| [3.25.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.1) | 2023-10-27 |
-| [3.25.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.0) | 2023-10-27 |
-| [3.24.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.2) | 2023-10-04 |
-| [3.24.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.1) | 2023-09-11 |
-| [3.24.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.0) | 2023-09-11 |
-| [3.23.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.2) | 2023-08-29 |
-| [3.23.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.1) | 2023-08-25 |
-| [3.23.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.0) | 2023-08-22 |
-| [3.22.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.1) | 2023-07-10 |
-| [3.22.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.0) | 2023-07-06 |
-| [3.21.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.21.0) | 2023-06-18 |
-| [3.20.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.1) | 2023-06-14 |
-| [3.20.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.0) | 2023-06-12 |
-| [3.19.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.2) | 2023-05-25 |
-| [3.19.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.1) | 2023-05-18 |
-| [3.19.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0) | 2023-05-18 |
-| [3.18.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0) | 2023-05-09 |
-| [3.17.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.1) | 2023-05-08 |
-| [3.17.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.0) | 2023-05-04 |
-| [3.16.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.2) | 2023-04-26 |
-| [3.16.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.1) | 2023-04-24 |
-| [3.16.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.0) | 2023-04-24 |
-| [3.15.6](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.6) | 2023-04-15 |
-| [3.15.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.5) | 2023-04-09 |
-| [3.15.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.4) | 2023-04-08 |
-| [3.15.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.3) | 2023-03-23 |
-| [3.15.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.2) | 2023-03-15 |
-| [3.15.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.1) | 2023-03-13 |
-| [3.15.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.0) | 2023-03-12 |
-| [3.14.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.14.0) | 2023-03-07 |
-| [3.13.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.13.0) | 2023-03-02 |
-| [3.12.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.12.0) | 2023-02-24 |
-| [3.11.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.11.0) | 2023-01-20 |
-| [3.10.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.10.0) | 2022-12-21 |
-| [3.9.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.9.0) | 2022-11-09 |
-| [3.8.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.8.0) | 2022-09-07 |
-| [3.7.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.7.0) | 2022-07-29 |
-| [3.6.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.6.0) | 2022-07-06 |
-| [3.5.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.1) | 2022-05-18 |
-| [3.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.0) | 2022-05-08 |
-| [3.4.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.2) | 2022-04-12 |
-| [3.4.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.1) | 2022-04-06 |
-| [3.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.0) | 2022-04-04 |
-| [3.2.5](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.5) | 2021-10-26 |
-| [3.2.4](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.4) | 2021-10-26 |
-| [3.2.3](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.3) | 2021-10-13 |
-| [3.2.2](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.2) | 2021-09-27 |
-| [3.2.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.1) | 2021-09-02 |
-| [3.2.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.0) | 2021-09-02 |
-| [3.1.1](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.1) | 2021-08-24 |
-| [3.1.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.0) | 2021-08-17 |
-| [3.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v3.0.0) | 2021-08-17 |
-| [2.5.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.5.0) | 2021-06-03 |
-| [2.4.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.4.0) | 2021-04-23 |
-| [2.3.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.3.0) | 2021-03-26 |
-| [2.2.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.2.0) | 2021-02-17 |
-| [2.1.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.1.0) | 2021-02-08 |
-| [2.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.0.0) | 2021-01-11 |
+import ReleaseHistory from '/_includes/release-history.md';
+
+<ReleaseHistory />
 
 </details>
-
-import MatrixIntro from '/_includes/clients/matrix-intro.md';
-
-<MatrixIntro />
-
-## Change logs
-
-For more detailed information on client updates, check the change logs. The logs
-are hosted here:
-
-- [GitHub](https://github.com/weaviate/weaviate-python-client/releases)
-- [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
-
 
 ## Questions and feedback
 

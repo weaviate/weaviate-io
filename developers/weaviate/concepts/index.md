@@ -1,5 +1,6 @@
 ---
 title: Concepts
+description: Concepts in Weaviate
 sidebar_position: 0
 image: og/docs/concepts.jpg
 # tags: ['getting started']
@@ -68,7 +69,7 @@ You can learn more about the individual components in this figure by following t
   * Speeding up specific processes
   * Preventing bottlenecks
 
-**[Filtered vector search](./prefiltering.md)**
+**[Filtered vector search](./filtering.md)**
   * Combine vector search with filters
   * Learn how combining an HNSW with an inverted index leads to high-recall, high-speed filtered queries
 

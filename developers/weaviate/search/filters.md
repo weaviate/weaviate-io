@@ -122,8 +122,8 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 
   <FilteredTextBlock
     text={PyCode}
-    startMarker="# MultipleFiltersAllOfPython"
-    endMarker="# END MultipleFiltersAllOfPython"
+    startMarker="# MultipleFiltersAnyOfPython"
+    endMarker="# END MultipleFiltersAnyOfPython"
     language="python"
   />
 
@@ -517,7 +517,7 @@ The output is like this:
 
 ## `ContainsAny` and `ContainsAll` with batch delete
 
-If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#use-containsany--containsall).
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall).
 
 ## Filter text on partial matches
 

@@ -1,20 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
-import Calculator from '../Calculator';
-import SlaPlan from '../SLAS';
-import { keysIn } from 'lodash';
 import CalculatorContainer from '../CalculatorContainer';
+
 export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
 
-  const openModal = (e) => {
+  const openModal = () => {
+    if (window.location.pathname === '/pricing') {
+      window.history.pushState(null, null, '/pricing/serverless');
+    }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (window.location.pathname === '/pricing/serverless') {
+      window.history.replaceState(null, null, '/pricing');
+    }
   };
+
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (window.location.pathname === '/pricing/serverless') {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
@@ -24,7 +52,6 @@ export default function PricingStandard() {
     };
 
     document.addEventListener('keydown', handleEscapeKey);
-
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
@@ -38,7 +65,7 @@ export default function PricingStandard() {
           <h3>Serverless Cloud</h3>
         </div>
         <div className={styles.price}>
-          <p>We manage everything for you in the Weaviate Cloud.</p>
+          <p>Serverless SaaS deployment in Weaviate Cloud.</p>
           <div className={styles.bottomPrice}>
             <span>Starting at $25 /mo</span>
             <p>per 1M vector dimensions stored/month</p>
@@ -51,22 +78,16 @@ export default function PricingStandard() {
           </Link>
         </div>
 
-        <hr></hr>
+        <hr />
         <div className={styles.features}>
           <p>
             For building and prototyping with seamless scaling and flexible
             pay-as-you-go pricing.
           </p>
           <ul>
-            <li>
-              <span>Serverless SaaS deployment</span>
-            </li>
-            <li>
-              <span>Get started with a free trial in minutes</span>
-            </li>
-            <li>
-              <span>Various SLA tiers to meet your needs</span>
-            </li>
+            <li>Get started with a free trial in minutes</li>
+            <li>Various SLA tiers to meet your needs</li>
+            <li>Weaviate Embeddings available starting at $0.04/M tokens</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing
@@ -76,12 +97,12 @@ export default function PricingStandard() {
       <div
         className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
         style={{ display: isModalOpen ? 'flex' : 'none' }}
+        onClick={handleOutsideClick}
       >
-        <div className={styles.modalContents}>
+        <div className={styles.modalContents} ref={modalRef}>
           <span className={styles.close} onClick={closeModal}>
             &times;
           </span>
-
           <CalculatorContainer />
         </div>
       </div>

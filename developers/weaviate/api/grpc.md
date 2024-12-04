@@ -1,5 +1,6 @@
 ---
 title: gRPC
+description: Integrate gRPC API with Weaviate for efficient data access.
 sidebar_position: 5
 image: og/docs/api.jpg
 # tags: ['schema']

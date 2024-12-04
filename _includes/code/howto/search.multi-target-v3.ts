@@ -34,7 +34,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiBasic
 
@@ -49,6 +49,8 @@ var resp = await jeopardy.query.fetchObjects({
 
 var v1 = resp.objects[0].vectors.jeopardy_questions_vector;
 var v2 = resp.objects[0].vectors.jeopardy_answers_vector;
+var v3 = resp.objects[1].vectors.jeopardy_answers_vector;
+
 
 // START MultiTargetNearVector
 jeopardy = client.collections.get('JeopardyTiny');
@@ -68,7 +70,7 @@ result = await jeopardy.query.nearVector({
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetNearVector
 
@@ -89,7 +91,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetWithSimpleJoin
 
@@ -113,7 +115,7 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetManualWeights
 
@@ -137,8 +139,56 @@ result = await jeopardy.query.nearText('a wild animal', {
 
 result.objects.forEach((item) => {
   console.log(JSON.stringify(item.properties, null, 2));
-  console.log(JSON.stringify(item.metadata.distance, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
 });
 // END MultiTargetRelativeScore
+
+
+// START MultiTargetMultipleNearVectorsV1
+jeopardy = client.collections.get('JeopardyTiny');
+
+result = await jeopardy.query.nearVector({
+  // highlight-start
+  // Specify the query vectors for each target vector. where v1, v2.. are vectors
+  'jeopardy_questions_vector': v1,
+  'jeopardy_answers_vector': [v2, v3]
+  // highlight-end
+}, {
+  limit: 2,
+  // Specify the target vectors as a list
+  targetVector: ['jeopardy_questions_vector', 'jeopardy_answers_vector'],
+  returnMetadata: ['distance'],
+});
+
+result.objects.forEach((item) => {
+  console.log(JSON.stringify(item.properties, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
+});
+// END MultiTargetMultipleNearVectorsV1
+
+// START MultiTargetMultipleNearVectorsV2
+jeopardy = client.collections.get('JeopardyTiny');
+
+result = await jeopardy.query.nearVector({
+  // highlight-start
+  'jeopardy_questions_vector': v1,
+  'jeopardy_answers_vector': [v2, v3]
+}, {
+  limit: 2,
+  // Specify the target vectors as a list
+  targetVector: jeopardy.multiTargetVector.manualWeights({
+    "jeopardy_questions_vector": 10,
+    "jeopardy_answers_vector": [30, 30], // Matches the order of the vectors above
+  }),
+  // highlight-end
+  returnMetadata: ['distance'],
+});
+
+result.objects.forEach((item) => {
+  console.log(JSON.stringify(item.properties, null, 2));
+  console.log(JSON.stringify(item.metadata?.distance, null, 2));
+});
+// END MultiTargetMultipleNearVectorsV2
+
 
 client.close();

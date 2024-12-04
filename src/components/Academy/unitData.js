@@ -1006,5 +1006,75 @@ export const unitData = {
     ],
     owner: "jp",
     reviewer: "jp"
+  },
+  client_server: {
+    title: "Building client-server Applications",
+    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/client-server",
+    badgeType: "practical",
+    learningGoals: [
+      "What chunking is",
+    ],
+    learningOutcomes: [
+      "Describe chunking at a high level",
+      "Explain the impact of chunking in vector search and retrieval augmented generation",
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  picking_models: {
+    title: "Using Machine Learning Models",
+    body: "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/gen-ai-models",
+    badgeType: "mixed",
+    learningGoals: [
+      "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
+    ],
+    learningOutcomes: [
+      "The difference between Embedding and Generative models",
+      "When and how to use those models integrated with Weaviate",
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  want_stack: {
+    title: "Understanding the WANT stack?",
+    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/want-stack",
+    badgeType: "practical",
+    learningGoals: [
+      "What chunking is",
+    ],
+    learningOutcomes: [
+      "Describe chunking at a high level",
+      "Explain the impact of chunking in vector search and retrieval augmented generation",
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  which_search_js: {
+    title: "Which search is right for me?",
+    body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
+    buttonType: "Click here",
+    badgeType: "mixed",
+    buttonURL: "/developers/academy/js/standalone/which-search",
+    learningGoals: [
+      "Impact of search type on search quality.",
+      "Impact of search type on search performance.",
+      "How the dataset and chunking affect search",
+      "Key considerations for selecting a search type.",
+      "Strategies to apply to improve search quality.",
+    ],
+    learningOutcomes: [
+      "Broadly recite pros and cons of each search type (vector, keyword and hybrid).",
+      "Suggest a suitable search type given a description of the dataset and aim.",
+      "Suggest alternative or additional search strategies to improve search quality.",
+      "Outline broad methods to evaluate search quality."
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
   }
 };

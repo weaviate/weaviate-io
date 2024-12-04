@@ -1,5 +1,5 @@
 ---
-title: OctoAI + Weaviate
+title: OctoAI + Weaviate (Deprecated)
 sidebar_position: 10
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai']
@@ -7,10 +7,14 @@ image: og/docs/integrations/provider_integrations_octoai.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
+
+<OctoAIDeprecationNote/>
+
 :::info Added in `v1.25.0`
 :::
 
-OctoAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OctoAI's APIs, allowing users to leverage OctoAI's models directly within the Weaviate database.
+OctoAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OctoAI's APIs, allowing users to leverage OctoAI's models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -32,7 +36,7 @@ OctoAI's embedding models transform text data into high-dimensional vector repre
 
 OctoAI's generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with OctoAI's generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly from the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with OctoAI's generative AI models to generate personalized and context-aware responses.
 
 [OctoAI generative AI integration page](./generative.md)
 
@@ -50,12 +54,6 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 
 - [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 

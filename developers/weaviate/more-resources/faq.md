@@ -526,7 +526,6 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 >       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
 >       PERSISTENCE_DATA_PATH: './data'
 >       ENABLE_MODULES: 'text2vec-contextionary'
->       DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
 >       AUTOSCHEMA_ENABLED: 'false'
 >   contextionary:
 >     environment:

@@ -4,6 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/install/embedded-v3.py';
 import TsCodeV2 from '!!raw-loader!/_includes/code/install/embedded-v2.ts';
+import TsCodeV2CustomModules from '!!raw-loader!/_includes/code/install/embedded-v2-custommodules.ts';
 
 <Tabs groupId="languages">
     <TabItem value="py" label="Python Client v4">
@@ -24,7 +25,7 @@ import TsCodeV2 from '!!raw-loader!/_includes/code/install/embedded-v2.ts';
     </TabItem>
     <TabItem value="js" label="JS/TS Client v2">
         <FilteredTextBlock
-          text={TsCodeV2}
+          text={TsCodeV2CustomModules}
           startMarker="// START CustomModules"
           endMarker="// END CustomModules"
           language="js"

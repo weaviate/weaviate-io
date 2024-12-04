@@ -27,6 +27,11 @@ Weaviate's Backup feature is designed to work natively with cloud technology. Mo
 * Zero downtime & minimal impact for your users when backups are running
 * Easy Migration to new environments
 
+:::caution Restoring backups from `v1.23.12` and older
+If you are running Weaviate `v1.23.12` or older, first **[update Weaviate](../more-resources/migration/index.md) to version 1.23.13** or higher before restoring a backup.
+Versions prior to `v1.23.13` had a bug that could lead to data not being stored correctly from a backup of your data.
+:::
+
 :::note
 _Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`_.
 :::
@@ -380,11 +385,40 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
   </TabItem>
 </Tabs>
 
+### Cancel Backup
+
+An ongoing backup can be cancelled at any time. The backup process will be stopped, and the backup will be marked as `CANCELLED`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CancelBackup"
+      endMarker="# END CancelBackup"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeStatus}
+      startMarker="// START CancelBackup"
+      endMarker="// END CancelBackup"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+This operation is particularly useful if you have started a backup by accident, or if you would like to stop a backup that is taking too long.
 
 ### Restore Backup
 You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
 
 Note that a restore fails if any of the collections already exist on this instance.
+
+:::caution Restoring backups from `v1.23.12` and older
+If you are running Weaviate `v1.23.12` or older, first **[update Weaviate](../more-resources/migration/index.md) to version 1.23.13** or higher before restoring a backup.
+Versions prior to `v1.23.13` had a bug that could lead to data not being stored correctly from a backup of your data.
+:::
 
 #### Method and URL
 

@@ -1,5 +1,6 @@
 ---
 title: "280 Multi-tenancy (MT)"
+description: "Implement multitenancy in Weaviate for isolated data environments in Python applications."
 sidebar_position: 280
 ---
 

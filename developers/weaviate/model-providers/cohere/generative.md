@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: Cohere Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'generative', 'rag']
@@ -78,7 +79,11 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Cohere generative AI model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use a Cohere generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -241,7 +246,8 @@ In other words, when you have `n` search results, the generative model generates
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md).
+- [Cohere text embedding models + Weaviate](./embeddings.md).
+- [Cohere multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 - [Cohere reranker models + Weaviate](./reranker.md).
 
 ### Code examples

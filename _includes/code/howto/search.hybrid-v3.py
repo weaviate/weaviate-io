@@ -10,10 +10,10 @@ import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
+    os.getenv("WCD_DEMO_URL"),  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.auth.AuthApiKey(os.getenv("WCD_DEMO_RO_KEY")),  # If authentication is on. Replace with your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace with your OPENAI API key
     }
 )
 
@@ -907,10 +907,10 @@ gql_query = """
              nearText: {
                 concepts: [ "large animal" ]
              }
-             maxVectorDistance: 0.5
-           # highlight-end
            }
-           alpha: 0.75,
+           maxVectorDistance: 0.5
+           # highlight-end
+           alpha: 0.75
            query: "California"
          }
        )

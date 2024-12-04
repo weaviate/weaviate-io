@@ -13,13 +13,66 @@ The following sections provide a conceptual overview of search in Weaviate, incl
 
 ## Search process
 
-The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+The following table and figure illustrate the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
 | Step | Description | Optional |
 |------|-------------|----------|
-| 1. [Retrieval](#retrieval) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
-| 2. [Reranking](#reranking) | Reorder results using a different (e.g. more complex) model | Optional |
-| 3. [Generative](#generative-search--rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+| 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
+| 2. [Rerank](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
+| 3. [Retrieval augmented generation](#retrieval-augmented-generation-rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+
+<center>
+
+```mermaid
+flowchart LR
+    %% Node definitions
+    Query[/"🔍 Query"/]
+    Filter["Filter"]
+    Key["Keyword Search\n(BM25F)"]
+    Vec["Vector Search\n(Embeddings)"]
+    Hyb["Hybrid Search\n(Combined)"]
+    Rerank["Rerank\n(Optional)"]
+    RAG["RAG\n(Optional)"]
+    Results[/"📊 Results"/]
+
+    %% Main flow grouping
+    subgraph retrieval ["Retrieval"]
+        direction LR
+        Filter
+        search
+    end
+
+    subgraph search ["Search"]
+        direction LR
+        Key
+        Vec
+        Hyb
+    end
+
+    %% Connections
+    Query --> retrieval
+    Filter --> search
+    retrieval --> Results
+    retrieval --> Rerank
+    Rerank --> RAG
+    RAG --> Results
+
+    %% Node styles
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Filter fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Key fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Vec fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Hyb fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Rerank fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style RAG fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Results fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Subgraph styles
+    style retrieval fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style search fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
+</center>
 
 Here is a brief overview of each step:
 
@@ -40,7 +93,7 @@ Filters reduce the number of objects based on specific criteria. This can includ
 Effective filtering can significantly improve search relevance. This is due to filters' ability to precisely reduce the result set based on exact criteria.
 
 :::info How do filters interact with searches?
-Weaivate applies [pre-filtering](../prefiltering.md), where filters are performed before searches.
+Weaivate applies [pre-filtering](../filtering.md), where filters are performed before searches.
 <br/>
 
 This ensures that search results overlap with the filter criteria to make sure that the right objects are retrieved.
@@ -264,22 +317,22 @@ Reranking is useful when you want to improve the quality of search results by ap
 For example, searches in legal, medical, or scientific literature may require a more nuanced understanding of the text. Reranking can help to ensure that the most relevant results are surfaced.
 </details>
 
-### Generative search / RAG
+### Retrieval augmented generation (RAG)
 
 :::info In one sentence
-<i class="fa-solid fa-robot"></i> Generative search combines search with a generative AI model to produce new content based on the search results.
+<i class="fa-solid fa-robot"></i> Retrieval Augmented Generation combines search with a generative AI model to produce new content based on the search results.
 :::
 
-Generative search, also called retrieval augmented generation or RAG, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
+Retrieval augmented generation (RAG), also called generative search, combines search with a generative AI model to produce new content based on the search results. It is a powerful technique that can leverage the generative capabilities of AI models and the search capabilities of Weaviate.
 
 Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
 
-As a result, generative searches in Weaviate are [easy to set up](../../manage-data/collections.mdx#specify-a-generative-module), and can be conveniently executed as [an integrated, single query](../../search/generative.md#grouped-task-search).
+As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-model-integration), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
-  <summary>Generative Search: Example</summary>
+  <summary>RAG: Example</summary>
 
-In a dataset such as `animal_objs` below, you could combine generative search with any other search method to find relevant objects and then transform it.
+In a dataset such as `animal_objs` below, you could combine retrieval augmented generation with any other search method to find relevant objects and then transform it.
 <br/>
 
 ```json
@@ -293,7 +346,7 @@ In a dataset such as `animal_objs` below, you could combine generative search wi
 ]
 ```
 
-Take an example of a keyword search for `"black"`, and a generative search request `"What do these animal descriptions have in common?"`.
+Take an example of a keyword search for `"black"`, and a RAG request `"What do these animal descriptions have in common?"`.
 <br/>
 
 The search results consist of `{"description": "black bear"}` and `{"description": "small domestic black cat"}` as you saw before. Then, the generative model would produce an output based on our query. In one example, it produced:

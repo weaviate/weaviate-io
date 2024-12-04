@@ -12,12 +12,11 @@
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   transition: all 0.3s ease-in-out;
-
-  /* Set a minimum height to accommodate content */
   min-height: 300px;
+  justify-content: space-between;
 
   @media screen and (max-width: 860px) {
-    height: auto; /* Let height adjust based on content */
+    height: auto;
   }
 
   .price {
@@ -76,12 +75,16 @@
     }
   }
   .features {
-    height: 266px;
+    width: 100%;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     @media screen and (max-width: 1160px) {
+      height: 400px;
+    }
+    @media screen and (max-width: 800px) {
       height: auto;
     }
 
@@ -89,6 +92,12 @@
       list-style-type: none;
       padding-left: 1.5rem; /* adjust this value if needed */
       margin: 10px 0px;
+      margin: 10px 0px;
+
+      display: flex;
+      align-content: space-around;
+      flex-direction: column;
+      justify-content: space-around;
 
       @media screen and (max-width: 960px) {
         padding: 0px;
@@ -237,6 +246,7 @@
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
+    margin: 0px 0px 20px 0px;
   }
 }
 
@@ -309,12 +319,28 @@
   }
 
   .buttonView {
-    color: #00a88b;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 157.33%; /* 1.57331rem */
-    text-decoration-line: underline;
+    width: 100%;
+    height: 2.625rem;
+    flex-shrink: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: all 1s ease-out;
+
+    margin: 0;
+    cursor: pointer;
+
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+  .buttonView:hover {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    color: #130c49;
+    background: #ffffff;
+    font-weight: 400;
   }
 
   .enterpriseButton {
@@ -622,35 +648,45 @@
   display: flex;
   opacity: 1;
 }
-
 .modalContents {
+  position: relative;
   margin: 7% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 75.9375rem;
-  height: 40.5rem;
-  max-width: 75.9375rem;
+  max-width: 90%;
+  height: 80vh;
+  max-height: 95vh;
   border-radius: 1.5rem;
   background: #f5f5f5;
-  overflow-y: scroll;
-
-  @media screen and (max-width: 1060px) {
-    width: 100%;
-    height: 100%;
-  }
+  overflow-y: auto;
 }
 
 .close {
-  position: absolute;
-  top: 102px;
-  right: 172px;
-  font-size: 3rem;
+  position: sticky;
+  top: 20px;
+  float: right;
+  right: 0;
+  font-size: 1.5rem;
   color: #130c49;
   cursor: pointer;
+  z-index: 10;
+  text-align: right;
+  margin-right: 20px;
+}
 
-  @media screen and (max-width: 860px) {
-    top: 55px;
-    right: 11px;
+@media screen and (max-width: 768px) {
+  .modalContents {
+    width: 95%;
+    margin: 90px auto 0px auto;
+    border-radius: 0.5rem;
+    height: auto;
+  }
+
+  .close {
+    top: 10px;
+    right: 10px;
+    position: absolute;
   }
 }
 
@@ -888,8 +924,12 @@
     font-weight: 400;
     line-height: 140%; /* 1.575rem */
   }
+  @media screen and (max-width: 1000px) {
+    margin-top: 1rem;
+  }
 
   @media screen and (max-width: 800px) {
+    margin-top: 1rem;
     .supportbox,
     .title,
     .features li {

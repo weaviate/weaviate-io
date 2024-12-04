@@ -1,11 +1,12 @@
 ---
 title: Text Embeddings
+description: "Weaviate's integration with Google AI Studio and Google Vertex AI APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
 
-# Google AI Text Embeddings with Weaviate
+# Google Text Embeddings with Weaviate
 
 
 import Tabs from '@theme/Tabs';
@@ -13,12 +14,14 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -32,7 +35,11 @@ At the time of writing (November 2023), AI Studio is not available in all region
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
+Your Weaviate instance must be configured with the Google vectorizer integration (`text2vec-google`) module.
+
+:::info Module name change
+`text2vec-google` was called `text2vec-palm` in Weaviate versions prior to `v1.27`.
+:::
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -109,11 +116,20 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START GoogleInstantiation"
+      endMarker="// END GoogleInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google embedding model:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 
@@ -142,6 +158,15 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerGoogleVertex"
+      endMarker="// END BasicVectorizerGoogleVertex"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### AI Studio
@@ -165,6 +190,15 @@ Vertex AI users must provide the Google Cloud project ID in the vectorizer confi
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerGoogleStudio"
+      endMarker="// END BasicVectorizerGoogleStudio"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
@@ -178,7 +212,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Google AI-specific options.
+The following examples show how to configure Google-specific options.
 
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
@@ -201,6 +235,15 @@ The following examples show how to configure Google AI-specific options.
       startMarker="// START FullVectorizerGoogle"
       endMarker="// END FullVectorizerGoogle"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerGoogle"
+      endMarker="// END FullVectorizerGoogle"
+      language="goraw"
     />
   </TabItem>
 
@@ -230,6 +273,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 :::tip Re-use existing vectors
@@ -238,7 +290,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google model.
 
 ![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
 
@@ -265,6 +317,15 @@ The query below returns the `n` most similar objects from the database, set by `
       startMarker="// START NearTextExample"
       endMarker="// END NearTextExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -300,6 +361,15 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## References
@@ -324,7 +394,7 @@ AI Studio:
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Google generative models + Weaviate](./generative.md).
 
 ### Code examples
 

@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: "Weaviate's integration with the Hugging Face Transformers library allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'embeddings', 'transformers']
@@ -65,6 +66,7 @@ services:
   weaviate:
     # Other Weaviate configuration
     environment:
+      ENABLE_MODULES: text2vec-transformers # Enable this module
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080  # Set the inference API endpoint
   t2v-transformers:  # Set the name of the inference container
     image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1

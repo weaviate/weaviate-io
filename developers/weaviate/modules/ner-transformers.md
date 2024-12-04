@@ -1,5 +1,6 @@
 ---
 title: Named Entity Recognition
+description: Integrate NER Transformers in Weaviate to identify and categorize entities in text.
 sidebar_position: 60
 image: og/docs/modules/ner-transformers.jpg
 # tags: ['ner-transformers', 'transformers', 'token classification']
@@ -47,7 +48,6 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: 'text2vec-contextionary,ner-transformers'
       CLUSTER_HOSTNAME: 'node1'
   contextionary:

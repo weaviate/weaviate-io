@@ -8,7 +8,7 @@ export default function availability() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Available on</h2>
+          <h2>Vector database integrations</h2>
         </div>
         <div className={styles.techContainer}>
           <div className={styles.techList}>

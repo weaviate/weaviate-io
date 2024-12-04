@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: "Weaviate's integration with AWS's SageMaker and Bedrock APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_aws.jpg
 # tags: ['model providers', 'aws', 'embeddings']
@@ -13,8 +14,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -74,6 +77,15 @@ Provide the API credentials to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START AWSInstantiation"
+      endMarker="// END AWSInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### AWS model access
@@ -117,6 +129,15 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerAWSBedrock"
+      endMarker="// END BasicVectorizerAWSBedrock"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### SageMaker
@@ -139,6 +160,15 @@ For SageMaker, you must provide the endpoint address in the vectorizer configura
       startMarker="// START BasicVectorizerAWSSagemaker"
       endMarker="// END BasicVectorizerAWSSagemaker"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerAWSSagemaker"
+      endMarker="// END BasicVectorizerAWSSagemaker"
+      language="goraw"
     />
   </TabItem>
 
@@ -181,6 +211,15 @@ The AWS region setting is required for all AWS integrations.
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerAWS"
+      endMarker="// END FullVectorizerAWS"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Data import
@@ -204,6 +243,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -245,6 +293,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -274,6 +331,15 @@ The query below returns the `n` best scoring objects from the database, set by `
       startMarker="// START HybridExample"
       endMarker="// END HybridExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
     />
   </TabItem>
 

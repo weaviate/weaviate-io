@@ -1,5 +1,6 @@
 ---
 title: "101T Work with: Text data"
+description: Get started with text data in Weaviate for robust search and analytics.
 sidebar_position: 100
 ---
 

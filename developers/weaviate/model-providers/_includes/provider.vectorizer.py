@@ -148,6 +148,101 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicMMVectorizerCohere
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_cohere(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START MMVectorizerCohereCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="title_vector",
+            model="embed-multilingual-v3.0",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END MMVectorizerCohereCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerCohere
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # Further options
+            # model="embed-multilingual-v3.0",
+            # truncate="END",  # "NONE", "START" or "END"
+            # base_url="<custom_cohere_url>"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerGoogleVertex
 from weaviate.classes.config import Configure
 
@@ -366,7 +461,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_jinaai(
             name="title_vector",
             source_properties=["title"],
-            model="jina-embeddings-v2-small-en"
+            model="jina-embeddings-v3",
         )
     ],
     # highlight-end
@@ -387,13 +482,107 @@ client.collections.create(
             name="title_vector",
             source_properties=["title"],
             # Further options
-            # model="jina-embeddings-v2-base-en"
+            # model="jina-embeddings-v3",
+            # dimensions=512,  # e.g. 1024, 256, 64  (only applicable for some models)
         )
     ],
     # highlight-end
     # Additional parameters not shown
 )
 # END FullVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicMMVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START MMVectorizerJinaCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            model="jina-clip-v2",
+        )
+    ],
+    # highlight-end
+)
+# END MMVectorizerJinaCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_jinaai(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # Further options
+            # model="jina-clip-v2",
+            # dimensions=512,  # Only applicable for some models (e.g. `jina-clip-v2`)
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerJinaAI
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -573,7 +762,7 @@ client.collections.create(
             # If using older model family e.g. `ada`
             model="ada",
             model_version="002",
-            type="text"
+            type_="text"
         )
     ],
     # highlight-end
@@ -710,7 +899,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_voyageai(
             name="title_vector",
             source_properties=["title"],
-            model="voyage-code-2"
+            model="voyage-3-lite"
         )
     ],
     # highlight-end
@@ -741,6 +930,71 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerVoyageAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerWeaviate
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerWeaviateCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            model="arctic-embed-m-v1.5"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerWeaviateCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerWeaviate
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="arctic-embed-m-v1.5",
+            # dimensions=256
+            # base_url="<custom_weaviate_embeddings_url>",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerWeaviate
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -1059,7 +1313,6 @@ with collection.batch.dynamic() as batch:
         poster_b64 = url_to_base64(src_obj["poster_path"])
         weaviate_obj = {
             "title": src_obj["title"],
-            "description": src_obj["description"],
             "poster": poster_b64  # Add the image in base64 encoding
         }
 

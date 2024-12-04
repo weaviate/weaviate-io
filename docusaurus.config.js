@@ -57,7 +57,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Playbook',
-                blogDescription: 'Learn How we run Weaviate as a Company',
+                blogDescription: 'Learn how we run Weaviate as a Company',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Playbook',
@@ -75,7 +75,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Paper Reviews',
-                blogDescription: '<todo>',
+                blogDescription: 'Papers',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Paper Reviews',
@@ -113,8 +113,8 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
-                  // Last updated to 1.26.4
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
+                    // Last updated: 2024-11-13
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_202411/openapi-specs/schema.json',
                 },
                 hideModels: true,
                 // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
@@ -189,6 +189,38 @@ const config = {
                     tagName: 'script',
                     innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
                 },
+                // Retention
+    {
+        tagName: 'script',
+        innerHTML: `(function () {
+            var reb2b = window.reb2b = window.reb2b || [];
+            if (reb2b.invoked) return;
+            reb2b.invoked = true;
+            reb2b.methods = ["identify", "collect"];
+            reb2b.factory = function (method) {
+              return function () {
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(method);
+                reb2b.push(args);
+                return reb2b;
+              };
+            };
+            for (var i = 0; i < reb2b.methods.length; i++) {
+              var key = reb2b.methods[i];
+              reb2b[key] = reb2b.factory(key);
+            }
+            reb2b.load = function (key) {
+              var script = document.createElement("script");
+              script.type = "text/javascript";
+              script.async = true;
+              script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/5NRP9HG1YMO1.js.gz";
+              var first = document.getElementsByTagName("script")[0];
+              first.parentNode.insertBefore(script, first);
+            };
+            reb2b.SNIPPET_VERSION = "1.0.1";
+            reb2b.load("5NRP9HG1YMO1");
+          })();`,
+      },
 
                     ],
                 };
@@ -239,6 +271,7 @@ const config = {
                 },
                 blog: {
                     blogTitle: 'Blog',
+                    blogDescription: 'Blog',
                     showReadingTime: true,
                     authorsMapPath: '../authors.yml',
                     editUrl:
@@ -265,13 +298,13 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-            /**  announcementBar: {
-               id: 'announcement-bar-sept-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/ai-in-prod-sea">AI [in Prod] Seattle – Sept 19th</a> | Request a ticket to join expert tech talks and hands-on generative AI training!`,
+             announcementBar: {
+               id: 'announcement-bar-november-2024',
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/aws-reinvent-2024">Big things are happening at AWS re:Invent - Dec 2-5</a> | Meet with our team to jumpstart your 2025 initiatives (and score limited edition swag)!`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            }, **/
+            }, 
             docs: {
                 sidebar: {
                     hideable: true,
@@ -283,7 +316,8 @@ const config = {
                 // hideOnScroll: true,
                 logo: {
                     alt: 'Weaviate',
-                    src: '/img/site/weaviate-nav-logo-light.svg',
+                    src: '/img/site/weaviate-logo-horizontal-light-1.svg',
+                   srcDark: '/img/site/weaviate-logo-horizontal-dark-1.svg',
                 },
                 items: [
                     {
@@ -293,7 +327,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/workbench">Workbench</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/workbench">Workbench</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -305,7 +339,7 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
+                            value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Use Cases</li><li><a class="dropdown__link" href="/rag">RAG</a></li><li><a class="dropdown__link" href="/hybrid-search">Hybrid Search</a></li><li><a class="dropdown__link" href="/gen-feedback-loops">Generative Feedback Loops</a></li><li><a class="dropdown__link" href="/cost-performance-optimization">Cost-Performance Optimization</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Examples</li><li><a class="dropdown__link" href="/case-studies">Case Studies</a></li><li><a class="dropdown__link" href="/community/demos">Demos</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Use Cases</li><li class="menu__list-item"><a class="menu__link" href="/rag">RAG</a></li><li class="menu__list-item"><a class="menu__link" href="/hybrid-search">Hybrid Search</a></li><li class="menu__list-item"><a class="menu__link" href="/gen-feedback-loops">Generative Feedback Loops </a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Infrastructure Optimization</a></li><li class="dropDownLabel mobDrop">Examples</li><li class="menu__list-item"><a class="menu__link" href="/case-studies">Case Studies</a></li><li class="menu__list-item"><a class="menu__link" href="/community/demos">Demos</a></li></ul>',
                             className: 'dropDownContainer2',
                         },
 
@@ -347,7 +381,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="/developers/integrations">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><a class="menu__link" href="/developers/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Build</li><li><a class="dropdown__link" href="/developers/weaviate">Documentation</a></li><li><a class="dropdown__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li><a class="dropdown__link" href="/developers/integrations">Integrations Docs</a></li><li><a class="dropdown__link" href="https://github.com/weaviate/weaviate">GitHub</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Learn</li><li><a class="dropdown__link" href="/learn">Learning Center</a></li><li><a class="dropdown__link" href="/blog">Blog</a></li><li><a class="dropdown__link" href="/developers/academy">Academy</a></li><li><a class="dropdown__link" href="/community/events">Workshops</a></li><li><a class="dropdown__link" href="/community/build-with-weaviate">Showcases</a></li><li><a class="dropdown__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li><a class="dropdown__link" href="/papers">Paper Reviews</a></li><li><a class="dropdown__link" href="/podcast">Podcasts</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Engage</li><li><a class="dropdown__link" href="/community/events">Events & Webinars</a></li><li><a class="dropdown__link" href="/community">Weaviate Hero Program</a></li><li><a class="dropdown__link" href="https://forum.weaviate.io/">Forum</a></li><li><a class="dropdown__link" href="https://weaviate.io/slack">Slack</a></li></ul></div><ul class="menu__list mobileNav"><li class="menu__list-item"><li class="dropDownLabel mobDrop">Build</li><a class="menu__link" href="/developers/weaviate">Documentation</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Weaviate Cloud Docs</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/wcs">Integrations Docs</a></li><li class="menu__list-item"><a class="menu__link" href="https://github.com/weaviate/weaviate">GitHub</a></li><li class="dropDownLabel mobDrop">Learn</li><li class="menu__list-item"><a class="menu__link" href="/learn">Learning Center</a></li><li class="menu__list-item"><a class="menu__link" href="/blog">Blog</a></li><li class="menu__list-item"><a class="menu__link" href="/developers/academy">Academy</a></li><li class="menu__list-item"><a class="menu__link" href="/community/events">Workshops</a></li></li><li class="menu__list-item"><li class="menu__list-item"><a class="menu__link" href="/community/build-with-weaviate">Showcases</a></li><li class="menu__list-item"><a class="menu__link" href="/learn/knowledgecards">Knowledge Cards</a></li><li class="menu__list-item"><a class="menu__link" href="/papers">Paper Reviews</a></li><li class="menu__list-item"><a class="menu__link" href="/podcast">Podcasts</a></li><li class="dropDownLabel mobDrop">Engage</li><li class="menu__list-item"><a class="menu__link" href="/community/events">Events & Webinars</a></li><li class="menu__list-item"><a class="menu__link" href="/community">Weaviate Hero Program</a></li><li class="menu__list-item"><a class="menu__link" href="https://forum.weaviate.io/">Forum</a></li><li class="menu__list-item"><a class="menu__link" href="https://weaviate.io/slack">Slack</a></li></ul>',
                                 className: 'dropDownContainer2',
                             },
                          /*    {
@@ -373,6 +407,11 @@ const config = {
                                 docId: 'academy/index',
                                 sidebarid: 'academySidebar',
                                 type: 'doc',
+                            },
+                            {
+                                label: 'Learning Center',
+                                to: '/learn',
+
                             },
                             {
                                 label: 'Blog',
@@ -588,6 +627,10 @@ const config = {
                         title: 'Learn',
                         items: [
                             {
+                                label: 'Learning Center',
+                                to: '/learn',
+                            },
+                            {
                                 label: 'Blog',
                                 to: '/blog',
                             },
@@ -653,31 +696,6 @@ const config = {
                             {
                                 label: 'Slack',
                                 to: 'https://weaviate.io/slack',
-                            },
-                            {
-                                label: 'Meetups',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
-                            {
-                                label: 'Amsterdam',
-                                to: 'https://www.meetup.com/weaviate-amsterdam',
-                            },
-                            {
-                                label: 'Boston',
-                                to: 'https://www.meetup.com/weaviate-boston',
-                            },
-                            {
-                                label: 'New York',
-                                to: 'https://www.meetup.com/weaviate-NYC',
-                            },
-                            {
-                                label: 'San Francisco',
-                                to: 'https://www.meetup.com/weaviate-san-francisco',
-                            },
-                            {
-                                label: 'Toronto',
-                                to: 'https://www.meetup.com/weaviate-toronto',
                             },
                         ],
                     },
@@ -752,19 +770,19 @@ const config = {
                                 to: 'https://weaviate.io/slack',
                             },
                             {
-                                label: 'Twitter',
-                                to: 'https://twiiter.com/weaviate_io',
+                                label: 'X',
+                                to: 'https://x.com/weaviate_io',
                             },
                             {
                                 label: 'Instagram',
                                 to: 'https://instagram.com/weaviate.io',
                             },
                             {
-                                label: 'Youtube',
-                                to: 'https://youtube.com/weaviate_io',
+                                label: 'YouTube',
+                                to: 'https://youtube.com/@Weaviate',
                             },
                             {
-                                label: 'Linkedin',
+                                label: 'LinkedIn',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
                             {
@@ -823,6 +841,12 @@ const config = {
                 },
             },
         }),
+
+    markdown: {
+        mermaid: true,
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+
 };
 
 module.exports = config;

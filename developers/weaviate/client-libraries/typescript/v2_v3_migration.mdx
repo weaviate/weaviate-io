@@ -94,13 +94,27 @@ You can also use a custom configuration to instantiate the client directly:
 
 The v3 client introduces a new way to work with your data. Here are some of the important changes:
 
-- [Collection object replaces client object](#work-with-collections)
-- [Builder pattern is removed](#builder-pattern-is-removed)
-- [Batch Inserts](#batch-inserts)
-- [Close clients explicitly](#client-close-method)
-- [Data filtering](#filter-data)
-- [Namespace for generative models](#generate-namespace)
-- [Update return object](#return-object)
+- [Install](#install)
+- [Instantiate a client](#instantiate-a-client)
+- [Changes in v3](#changes-in-v3)
+  - [Work with collections](#work-with-collections)
+  - [Builder Pattern is removed](#builder-pattern-is-removed)
+  - [Batch Inserts](#batch-inserts)
+  - [Client Close Method](#client-close-method)
+  - [Filter data](#filter-data)
+  - [Generate Namespace](#generate-namespace)
+  - [Return object](#return-object)
+- [Code comparison](#code-comparison)
+  - [Imports](#imports)
+  - [Connect to Weaviate Cloud](#connect-to-weaviate-cloud)
+  - [Create a collection](#create-a-collection)
+  - [Batch insert](#batch-insert)
+  - [Query your data](#query-your-data)
+  - [Delete a collection](#delete-a-collection)
+  - [Sample scripts](#sample-scripts)
+- [How to migrate your code](#how-to-migrate-your-code)
+- [Client change logs](#client-change-logs)
+- [Questions and feedback](#questions-and-feedback)
 
 ### Work with collections
 
@@ -421,7 +435,7 @@ For more code examples, see the following:
 To update v2 client code to v3, follow these steps:
 
 1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client).
-1. Edit your v2 code to [import](./developers/weaviate/client-libraries/typescript/typescript-v3#import-the-client) the v3 client package.
+1. Edit your v2 code to [import](/developers/weaviate/client-libraries/typescript/typescript-v3#import-the-client) the v3 client package.
 1. Edit your v2 [client instantiation](/developers/weaviate/client-libraries/typescript/typescript-v3#connect-to-weaviate) code.
 1. Edit your code to reflect the [collection first](/developers/weaviate/client-libraries/typescript/typescript-v3#design-philosophy) client orientation.
 

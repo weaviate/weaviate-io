@@ -13,55 +13,59 @@ import BlogPostItems from '@theme/BlogPostItems';
 import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-
-
 function BlogListPageMetadata(props) {
-  const {metadata} = props;
+  const { metadata } = props;
   const {
-    siteConfig: {title: siteTitle},
+    siteConfig: { title: siteTitle },
   } = useDocusaurusContext();
-  const {blogDescription, blogTitle, permalink} = metadata;
+  const { blogDescription, blogTitle, permalink, page } = metadata;
   const isBlogOnlyMode = permalink === '/';
   const title = isBlogOnlyMode ? siteTitle : blogTitle;
-  const ogimg = `og/content/${metadata.blogTitle.toLowerCase()}.jpg`
+  const ogimg = `og/content/${metadata.blogTitle.toLowerCase()}.jpg`;
+
+  
+  const description =
+    page > 1
+      ? `${blogDescription} - Page ${page}`
+      : blogDescription;
+
   return (
     <>
       <MetaSEO img={ogimg} />
-      <PageMetadata title={title} description={blogDescription} />
+      <PageMetadata title={title} description={description} />
       <SearchMetadata tag="blog_posts_list" />
-
     </>
   );
 }
+
 function BlogListPageContent(props) {
-  const {metadata, items, sidebar} = props;
+  const { metadata, items, sidebar } = props;
   return (
     <BlogLayout sidebar={sidebar}>
-      <h1 className='page-title'>Weaviate <span className='highlight'>{metadata.blogTitle}</span></h1>
+      <h1 className="page-title">
+        Weaviate <span className="highlight">{metadata.blogTitle}</span>
+      </h1>
 
-      {metadata.permalink == '/blog' &&
-        <FeaturedBlogTags/>
-      }
+      {metadata.permalink === '/blog' && <FeaturedBlogTags />}
 
       <BlogPostItems items={items} />
       <BlogListPaginator metadata={metadata} />
     </BlogLayout>
   );
 }
+
 export default function BlogListPage(props) {
   return (
-    <div >
-    <HtmlClassNameProvider
-      className={clsx(
-        ThemeClassNames.wrapper.blogPages,
-        ThemeClassNames.page.blogListPage,
-      )}>
-
-      <BlogListPageMetadata {...props} />
-      <BlogListPageContent {...props} />
-    </HtmlClassNameProvider>
-    
-
+    <div>
+      <HtmlClassNameProvider
+        className={clsx(
+          ThemeClassNames.wrapper.blogPages,
+          ThemeClassNames.page.blogListPage,
+        )}
+      >
+        <BlogListPageMetadata {...props} />
+        <BlogListPageContent {...props} />
+      </HtmlClassNameProvider>
     </div>
   );
 }

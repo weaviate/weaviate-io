@@ -1,5 +1,6 @@
 ---
 title: Reranker
+description: Enhance search results with the transformers reranker module in Weaviate.
 sidebar_position: 80
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'transformers', 'reranking']
@@ -131,6 +132,10 @@ As this integration runs a local container with the transformers model, no addit
 </Tabs>
 
 ## Configure the reranker
+
+import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
+
+<MutableRerankerConfig />
 
 Configure a Weaviate collection to use a Transformer reranker model as follows:
 
