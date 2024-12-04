@@ -32,8 +32,9 @@ To go from `v3` to `v4`, you must
     pip install -U weaviate-client
     ```
 
-2. Upgrade Weaviate to a compatible version
-    - Weaviate `1.23.7` is required for `v4.4.1`. Generally, we recommend you use the latest versions of Weaviate and the client.
+2. Upgrade Weaviate to a compatible version. Each minor Python client version is closely tied to a minor Weaviate version.
+    - For example, Weaviate `v1.27.x` were developed together with `v4.9.x` of the Python client.
+    - Generally, we recommend you use the latest versions of Weaviate and the client. You can find the version compatibility matrix in the [release notes](../../release-notes/index.md#weaviate-core-and-client-releases)
 
 3. Make sure a port for gRPC is open to Weaviate.
     - The default port is 50051.
