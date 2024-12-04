@@ -7,6 +7,16 @@ const GITHUB_CONFIG = {
     branch: 'main',
 };
 
+const DOCS_CONFIG = {
+  baseUrls: {
+      py: 'https://weaviate-python-client.readthedocs.io/en/stable/weaviate.html',
+      pyv3: undefined,
+      ts: undefined,
+      java: undefined,
+      go: undefined,
+  }
+};
+
 const FilteredTextBlock = ({
     text,
     startMarker,
@@ -91,6 +101,9 @@ const FilteredTextBlock = ({
         ? `${GITHUB_CONFIG.baseUrl}/blob/${GITHUB_CONFIG.branch}/${path}`
         : null;
 
+    // Get docs URL if available for this language
+    const docsUrl = DOCS_CONFIG.baseUrls[language2];
+
     return (
         <div>
             <CodeBlock className={`language-${language2}`} title={title}>
@@ -112,6 +125,20 @@ const FilteredTextBlock = ({
                     </a>
                 </div>
             )}
+                {docsUrl && (
+                    <a
+                        href={docsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="badge badge--secondary inline-flex items-center"
+                        title="View API documentation"
+                    >
+                        <svg height="16" width="16" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" style={{ verticalAlign: 'middle' }}>
+                            <path d="M6.5 2h11c.7 0 1.3.6 1.3 1.3v17.4c0 .7-.6 1.3-1.3 1.3h-11c-.7 0-1.3-.6-1.3-1.3V3.3C5.2 2.6 5.8 2 6.5 2zm1 2v16h9V4h-9zm2 3h5v1h-5V7zm0 3h5v1h-5v-1zm0 3h3v1h-3v-1z"/>
+                        </svg>
+                        <span style={{ verticalAlign: 'middle' }}>&nbsp;&nbsp;API docs</span>
+                    </a>
+                )}
         </div>
     );
 };
