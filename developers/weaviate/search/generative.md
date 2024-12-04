@@ -51,7 +51,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 

@@ -37,7 +37,7 @@ Combine the results of a vector search and a keyword search. The search uses a s
   text={PyCodeV3}
   startMarker="# HybridBasicPython"
   endMarker="# END HybridBasicPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -113,7 +113,7 @@ A hybrid search on a collection that has [named vectors](../config-refs/schema/m
       text={PyCodeV3}
       startMarker="# NamedVectorHybridPython"
       endMarker="# END NamedVectorHybridPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -175,7 +175,7 @@ To see the object rankings, set the `explain score` field in your query. The sea
   text={PyCodeV3}
   startMarker="# HybridWithScorePython"
   endMarker="# END HybridWithScorePython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -252,7 +252,7 @@ Hybrid search results can favor the keyword component or the vector component. T
   text={PyCodeV3}
   startMarker="# HybridWithAlphaPython"
   endMarker="# END HybridWithAlphaPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -329,7 +329,7 @@ The output is like this:
   text={PyCodeV3}
   startMarker="# HybridWithFusionTypePython"
   endMarker="# END HybridWithFusionTypePython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -415,7 +415,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
   text={PyCodeV3}
   startMarker="# HybridWithPropertiesPython"
   endMarker="# END HybridWithPropertiesPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -489,7 +489,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
   text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingPython"
   endMarker="# END HybridWithPropertyWeightingPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -563,7 +563,7 @@ The vector component of hybrid search can use a query string or a query vector. 
   text={PyCodeV3}
   startMarker="# HybridWithVectorPython"
   endMarker="# END HybridWithVectorPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -640,7 +640,7 @@ You can specify [vector similarity search](/developers/weaviate/search/similarit
       text={PyCodeV3}
       startMarker="# VectorSimilarityGraphQL"
       endMarker="# END VectorSimilarityGraphQL"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -852,7 +852,7 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
   text={PyCodeV3}
   startMarker="# HybridWithFilterPython"
   endMarker="# END HybridWithFilterPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 

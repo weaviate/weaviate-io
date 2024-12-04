@@ -246,7 +246,7 @@ import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.si
       text={SearchSimilarityCodeV3}
       startMarker="# GetNearTextPython"
       endMarker="# END GetNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 </Tabs>
