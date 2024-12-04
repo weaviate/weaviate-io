@@ -380,7 +380,14 @@ Weaviate uses a variety of metrics to rank search results of a given query. The 
 - BM25F score: A keyword search score calculated using the BM25F algorithm.
 - Hybrid score: A combined score from vector and keyword searches.
 
-For more details, see the respective pages for [vector search](./vector-search.md), [keyword search](./keyword-search.md), and [hybrid search](./hybrid-search.md).
+## Further resources
+
+For more details, see the respective pages for:
+- [Concepts: Vector search](./vector-search.md)
+- [Concepts: Keyword search](./keyword-search.md)
+- [Concepts: Hybrid search](./hybrid-search.md).
+
+For code snippets on how to use these search types, see the [How-to: search](../search/index.md) page.
 
 ## Questions and feedback
 
