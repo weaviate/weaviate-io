@@ -9,7 +9,9 @@ image: og/docs/concepts.jpg
 
 Keyword search is an exact matching-based search using "tokens", or strings of characters.
 
-It uses the BM25F algorithm, which is a ranking function that evaluates how relevant a document is based on how frequently your search terms appear in it, while accounting for document length and term frequency.
+It uses the BM25 algorithm, which ranks matching documents according to their relevance to a given search query. At a high level, the BM25 algorithm uses the count of query terms in the document (term frequency) against the overall frequency of the term in the dataset (inverse document frequency) to calculate a relevance score.
+
+More specifically, Weaviate uses the BM25F algorithm, which extends BM25 to support using multiple fields in the search index.
 
 A keyword search determines the best matches based on the matches of exact tokens contained in the query against those of the stored objects. As a result, a keyword search is a good choice when exact matches (e.g. exact domain-specific language, precise categories or tags) are important. For example:
 
