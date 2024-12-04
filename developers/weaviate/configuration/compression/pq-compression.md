@@ -135,7 +135,7 @@ Follow these steps to manually enable PQ.
        text={PyCode}
        startMarker="# START InitialSchema"
        endMarker="# END InitialSchema"
-       language="pyv3"
+       language="py"
      />
   </TabItem>
 
@@ -209,7 +209,7 @@ To enable PQ, update your collection definition as shown below. For additional c
        text={PyCode}
        startMarker="# START UpdateSchema"
        endMarker="# END UpdateSchema"
-       language="pyv3"
+       language="py"
      />
   </TabItem>
 
@@ -314,7 +314,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       text={PyCode}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 

@@ -182,7 +182,7 @@ To rerank the results of a keyword search, configure the object properties to so
       text={PyCode}
       startMarker="# START bm25Rerank Python"
       endMarker="# END bm25Rerank Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 

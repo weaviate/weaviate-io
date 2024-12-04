@@ -115,7 +115,7 @@ For example:
         text={PyCode}
         startMarker="# START BQWithOptions"
         endMarker="# END BQWithOptions"
-        language="pyv3"
+        language="py"
       />
   </TabItem>
 

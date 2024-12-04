@@ -322,7 +322,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={PyCode}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">
@@ -390,7 +390,7 @@ An ongoing backup can be cancelled at any time. The backup process will be stopp
       text={PyCode}
       startMarker="# START CancelBackup"
       endMarker="# END CancelBackup"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -449,7 +449,7 @@ The request takes a json object with the following properties:
       text={PyCode}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">
@@ -535,7 +535,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={PyCode}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">

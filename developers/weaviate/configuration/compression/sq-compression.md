@@ -69,7 +69,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
         text={PyCode}
         startMarker="# START SQWithOptions"
         endMarker="# END SQWithOptions"
-        language="pyv3"
+        language="py"
       />
   </TabItem>
 

@@ -433,7 +433,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
       text={PyCode}
       startMarker="# START MultiplePropSorting Python"
       endMarker="# END MultiplePropSorting Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -509,7 +509,7 @@ To sort with metadata, add an underscore to the property name.
       text={PyCode}
       startMarker="# START AdditionalPropSorting Python"
       endMarker="# END AdditionalPropSorting Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 

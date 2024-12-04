@@ -120,7 +120,7 @@ This example counts occurrence frequencies in the `question` property:
       text={PyCode}
       startMarker="# TextProp Python"
       endMarker="# END TextProp Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -193,7 +193,7 @@ This  example sums the `points` property.
       text={PyCode}
       startMarker="# IntProp Python"
       endMarker="# END IntProp Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -268,7 +268,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={PyCode}
       startMarker="# groupBy Python"
       endMarker="# END groupBy Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -349,7 +349,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       text={PyCode}
       startMarker="# nearTextWithLimit Python"
       endMarker="# END nearTextWithLimit Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -427,7 +427,7 @@ Use `distance` to specify how similar the objects should be.
       text={PyCode}
       startMarker="# nearTextWithDistance Python"
       endMarker="# END nearTextWithDistance Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -500,7 +500,7 @@ You can use `Aggregate` with a [hybrid search](./hybrid.md) operator.
       text={PyCode}
       startMarker="# HybridExample"
       endMarker="# END HybridExample"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -573,7 +573,7 @@ For more specific results, use a `filter` to narrow your search.
       text={PyCode}
       startMarker="# whereFilter Python"
       endMarker="# END whereFilter Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 

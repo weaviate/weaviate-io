@@ -680,7 +680,7 @@ Define criteria to group search results.
       text={PyCode}
       startMarker="# START HybridGroupByPy4"
       endMarker="# END HybridGroupByPy4"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 </Tabs>
@@ -769,7 +769,7 @@ To limit results to groups with similar distances from the query, use the [`auto
       text={PyCode}
       startMarker="# START autocut Python"
       endMarker="# END autocut Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 

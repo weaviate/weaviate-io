@@ -563,7 +563,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       text={PyCode}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
