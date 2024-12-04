@@ -165,7 +165,6 @@ The alpha value determines the weight of the vector search results in the final 
 - [How-to: Hybrid search](../../search/hybrid.md)
 - [API References: Hybrid search](/developers/weaviate/api/graphql/search-operators#hybrid)
 - [Blog: A deep dive into Weaviate's fusion algorithms](/blog/hybrid-search-fusion-algorithms)
-```
 
 ## Questions and feedback
 
