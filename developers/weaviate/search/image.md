@@ -153,7 +153,7 @@ You can search by a base64 representation of an image:
       text={TSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

@@ -12,6 +12,7 @@ const DOCS_CONFIG = {
       py: 'https://weaviate-python-client.readthedocs.io/en/stable/weaviate.html',
       pyv3: 'https://weaviate-python-client.readthedocs.io/en/v3.26.2/weaviate.html',
       ts: 'https://weaviate.github.io/typescript-client',
+      tsv2: undefined,
       java: undefined,
       go: 'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v4/weaviate',
       gonew: 'https://pkg.go.dev/github.com/weaviate/weaviate-go-client/v4/weaviate',

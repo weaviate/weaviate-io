@@ -129,7 +129,7 @@ A hybrid search on a collection that has [named vectors](../config-refs/schema/m
       text={TSCodeLegacy}
       startMarker="// NamedVectorHybrid"
       endMarker="// END NamedVectorHybrid"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
   <TabItem value="graphql" label="GraphQL">
@@ -347,7 +347,7 @@ The output is like this:
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFusionType"
   endMarker="// END searchHybridWithFusionType"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 
@@ -736,7 +736,7 @@ Optionally, use `offset` to paginate the results.
       text={TSCodeLegacy}
       startMarker="// START limit"
       endMarker="// END limit"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -796,7 +796,7 @@ To limit results to groups with similar distances from the query, use the [`auto
       text={TSCodeLegacy}
       startMarker="// START autocut"
       endMarker="// END autocut"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

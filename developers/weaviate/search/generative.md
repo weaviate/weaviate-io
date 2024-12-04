@@ -69,7 +69,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -273,7 +273,7 @@ Define object `properties` to use in the prompt. This limits the information in 
       text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

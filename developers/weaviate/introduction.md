@@ -94,7 +94,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.class
       text={TSCodeLegacy}
       startMarker="// START ReadAllCollections"
       endMarker="// END ReadAllCollections"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
