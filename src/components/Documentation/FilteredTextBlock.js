@@ -22,7 +22,7 @@ const DOC_SYSTEMS = {
     },
     ts: {
         baseUrl: 'https://weaviate.github.io/typescript-client',
-        constructUrl: (baseUrl, ref) => `${baseUrl}#${ref}`,
+        constructUrl: (baseUrl, ref) => `${baseUrl}/${ref}`,
         icon: '/img/site/logo-ts.svg',
     },
     go: {
