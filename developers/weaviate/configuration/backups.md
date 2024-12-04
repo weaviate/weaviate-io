@@ -264,7 +264,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
       text={TSCodeLegacy}
       startMarker="// START CreateBackup"
       endMarker="// END CreateBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -353,7 +353,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={TSCodeLegacy}
       startMarker="// START StatusCreateBackup"
       endMarker="// END StatusCreateBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -485,7 +485,7 @@ The request takes a json object with the following properties:
       text={TSCodeLegacy}
       startMarker="// START RestoreBackup"
       endMarker="// END RestoreBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -571,7 +571,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={TSCodeLegacy}
       startMarker="// START StatusRestoreBackup"
       endMarker="// END StatusRestoreBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

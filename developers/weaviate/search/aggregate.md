@@ -74,7 +74,7 @@ Return the number  of objects matched by the query.
       text={TSCodeLegacy}
       startMarker="// MetaCount TS"
       endMarker="// END MetaCount TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -147,7 +147,7 @@ This example counts occurrence frequencies in the `question` property:
       text={TSCodeLegacy}
       startMarker="// TextProp TS"
       endMarker="// END TextProp TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -220,7 +220,7 @@ This  example sums the `points` property.
       text={TSCodeLegacy}
       startMarker="// IntProp TS"
       endMarker="// END IntProp TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -295,7 +295,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={TSCodeLegacy}
       startMarker="// groupBy TS"
       endMarker="// END groupBy TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -376,7 +376,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       text={TSCodeLegacy}
       startMarker="// nearTextWithLimit TS"
       endMarker="// END nearTextWithLimit TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -454,7 +454,7 @@ Use `distance` to specify how similar the objects should be.
       text={TSCodeLegacy}
       startMarker="// nearTextWithDistance TS"
       endMarker="// END nearTextWithDistance TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -527,7 +527,7 @@ You can use `Aggregate` with a [hybrid search](./hybrid.md) operator.
       text={TSCodeLegacy}
       startMarker="// nearTextWithLimit TS"
       endMarker="// END nearTextWithLimit TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -600,7 +600,7 @@ For more specific results, use a `filter` to narrow your search.
       text={TSCodeLegacy}
       startMarker="// whereFilter TS"
       endMarker="// END whereFilter TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 

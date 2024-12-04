@@ -188,7 +188,7 @@ Sample client code:
       text={AutocutTSCode}
       startMarker="// START Autocut"
       endMarker="// END Autocut"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -350,7 +350,7 @@ The sort function takes either an object, or an array of objects, that describe 
       text={TSCode}
       startMarker="// START Sorting"
       endMarker="// END Sorting"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -451,7 +451,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
       text={TSCode}
       startMarker="// START MultiplePropSorting"
       endMarker="// END MultiplePropSorting"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -527,7 +527,7 @@ To sort with metadata, add an underscore to the property name.
       text={TSCode}
       startMarker="// START AdditionalPropSorting"
       endMarker="// END AdditionalPropSorting"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

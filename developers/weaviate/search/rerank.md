@@ -75,7 +75,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -135,7 +135,7 @@ To rerank the results of a vector search, configure the object properties to sor
       text={TSCodeLegacy}
       startMarker="// START RerankNearText"
       endMarker="// END RerankNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -209,7 +209,7 @@ To rerank the results of a keyword search, configure the object properties to so
       text={TSCodeLegacy}
       startMarker="// START bm25Rerank"
       endMarker="// END bm25Rerank"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

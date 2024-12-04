@@ -71,7 +71,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
         text={TSCodeLegacy}
         startMarker="// START EnableBQ"
         endMarker="// END EnableBQ"
-        language="ts"
+        language="tsv2"
       />
   </TabItem>
 
@@ -142,7 +142,7 @@ For example:
         text={TSCodeLegacy}
         startMarker="// START BQWithOptions"
         endMarker="// END BQWithOptions"
-        language="ts"
+        language="tsv2"
       />
   </TabItem>
 

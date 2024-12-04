@@ -55,7 +55,7 @@ Add a `filter` to your query, to limit the result set.
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
       endMarker="// END searchSingleFilter"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -168,7 +168,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersAnd"
       endMarker="// END searchMultipleFiltersAnd"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -242,7 +242,7 @@ You can group and nest filters.
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersNested"
       endMarker="// END searchMultipleFiltersNested"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -330,7 +330,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
       text={JavaScriptCodeLegacy}
       startMarker="// searchFilterNearText"
       endMarker="// END searchFilterNearText"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -404,7 +404,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAnyFilter"
       endMarker="// END ContainsAnyFilter"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -478,7 +478,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAllFilter"
       endMarker="// END ContainsAllFilter"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -556,7 +556,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
       text={JavaScriptCodeLegacy}
       startMarker="// searchLikeFilter"
       endMarker="// END searchLikeFilter"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -642,7 +642,7 @@ To filter on properties from a cross-referenced object, add the collection name 
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
       endMarker="// END searchSingleFilter"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -716,7 +716,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       text={JavaScriptCode}
       startMarker="// FilterbyGeolocation"
       endMarker="// END FilterbyGeolocation"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -808,7 +808,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       text={JavaScriptCodeLegacy}
       startMarker="// filterById"
       endMarker="// END filterById"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -924,7 +924,7 @@ This filter requires the [property length](../config-refs/schema/index.md#indexp
       text={JavaScriptCodeLegacy}
       startMarker="// FilterByPropertyLength"
       endMarker="// END FilterByPropertyLength"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
