@@ -51,7 +51,7 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       text={PyCodeV3}
       startMarker="# START EnableMultiTenancy"
       endMarker="# END EnableMultiTenancy"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -67,7 +67,7 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
       text={TSCodeLegacy}
       startMarker="// START EnableMultiTenancy"
       endMarker="// END EnableMultiTenancy"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
   <TabItem value="java" label="Java">
@@ -197,7 +197,7 @@ Tenant status is available from Weaviate `1.21` onwards.
       text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
       endMarker="# END AddTenantsToClass"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -215,7 +215,7 @@ Tenant status is available from Weaviate `1.21` onwards.
       text={TSCodeLegacy}
       startMarker="// START AddTenantsToClass"
       endMarker="// END AddTenantsToClass"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -259,7 +259,7 @@ This example lists the tenants in the `MultiTenancyCollection` collection:
       text={PyCodeV3}
       startMarker="# START ListTenants"
       endMarker="# END ListTenants"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -277,7 +277,7 @@ This example lists the tenants in the `MultiTenancyCollection` collection:
       text={TSCodeLegacy}
       startMarker="// START ListTenants"
       endMarker="// END ListTenants"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -378,7 +378,7 @@ Deleting a tenant deletes all associated objects.
       text={PyCodeV3}
       startMarker="# START RemoveTenants"
       endMarker="# END RemoveTenants"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -396,7 +396,7 @@ Deleting a tenant deletes all associated objects.
       text={TSCodeLegacy}
       startMarker="// START RemoveTenants"
       endMarker="// END RemoveTenants"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -468,7 +468,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
       text={PyCodeV3}
       startMarker="# START CreateMtObject"
       endMarker="# END CreateMtObject"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -486,7 +486,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
       text={TSCodeLegacy}
       startMarker="// START CreateMtObject"
       endMarker="// END CreateMtObject"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -528,7 +528,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
       text={PyCodeV3}
       startMarker="# START Search"
       endMarker="# END Search"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -546,7 +546,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
       text={TSCodeLegacy}
       startMarker="// START Search"
       endMarker="// END Search"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -592,7 +592,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
       text={PyCodeV3}
       startMarker="# START AddCrossRef"
       endMarker="# END AddCrossRef"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -610,7 +610,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
       text={TSCodeLegacy}
       startMarker="// START AddCrossRef"
       endMarker="// END AddCrossRef"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

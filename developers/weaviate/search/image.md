@@ -55,7 +55,7 @@ If your query image is stored in a file, you can use the client library to searc
       text={PyCodeV3}
       startMarker="# START ImageFileSearch"
       endMarker="# END ImageFileSearch"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -135,7 +135,7 @@ You can search by a base64 representation of an image:
       text={PyCodeV3}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -153,7 +153,7 @@ You can search by a base64 representation of an image:
       text={TSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
