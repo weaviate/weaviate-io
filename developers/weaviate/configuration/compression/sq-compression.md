@@ -44,7 +44,7 @@ To enable SQ, set `vector_index_config`.
         text={PyCodeV3}
         startMarker="# START EnableSQ"
         endMarker="# END EnableSQ"
-        language="py"
+        language="pyv3"
       />
   </TabItem>
 </Tabs>
@@ -69,7 +69,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
         text={PyCode}
         startMarker="# START SQWithOptions"
         endMarker="# END SQWithOptions"
-        language="py"
+        language="pyv3"
       />
   </TabItem>
 
@@ -78,7 +78,7 @@ To tune SQ, set these `vectorIndexConfig` parameters.
         text={PyCodeV3}
         startMarker="# START SQWithOptions"
         endMarker="# END SQWithOptions"
-        language="py"
+        language="pyv3"
       />
   </TabItem>
 </Tabs>

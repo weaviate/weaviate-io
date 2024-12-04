@@ -37,7 +37,7 @@ Add a `filter` to your query, to limit the result set.
       text={PyCodeV3}
       startMarker="# SingleFilterPython"
       endMarker="# END SingleFilterPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -143,7 +143,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
       text={PyCodeV3}
       startMarker="# MultipleFiltersAndPython"
       endMarker="# END MultipleFiltersAndPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -224,7 +224,7 @@ You can group and nest filters.
       text={PyCodeV3}
       startMarker="# MultipleFiltersNestedPython"
       endMarker="# END MultipleFiltersNestedPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -312,7 +312,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
       text={PyCodeV3}
       startMarker="# SingleFilterNearTextPython"
       endMarker="# END SingleFilterNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -386,7 +386,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
       text={PyCodeV3}
       startMarker="# ContainsAnyFilter"
       endMarker="# END ContainsAnyFilter"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -460,7 +460,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
       text={PyCodeV3}
       startMarker="# ContainsAllFilter"
       endMarker="# END ContainsAllFilter"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -538,7 +538,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
       text={PyCodeV3}
       startMarker="# LikeFilterPython"
       endMarker="# END LikeFilterPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -624,7 +624,7 @@ To filter on properties from a cross-referenced object, add the collection name 
       text={PyCodeV3}
       startMarker="# CrossReferencePython"
       endMarker="# END CrossReferencePython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -699,7 +699,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       text={PyCodeV3}
       startMarker="# START FilterbyGeolocation"
       endMarker="# END FilterbyGeolocation"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -792,7 +792,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       text={PyCodeV3}
       startMarker="# START FilterById"
       endMarker="# END FilterById"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -849,7 +849,7 @@ This filter requires the [property timestamp](../config-refs/schema/index.md#ind
       text={PyCodeV3}
       startMarker="# START FilterByTimestamp"
       endMarker="# END FilterByTimestamp"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -907,7 +907,7 @@ This filter requires the [property length](../config-refs/schema/index.md#indexp
       text={PyCodeV3}
       startMarker="# START FilterByPropertyLength"
       endMarker="# END FilterByPropertyLength"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -965,7 +965,7 @@ This filter requires the [property null state](../config-refs/schema/index.md#in
       text={PyCodeV3}
       startMarker="# START FilterByPropertyNullState"
       endMarker="# END FilterByPropertyNullState"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">

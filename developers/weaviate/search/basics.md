@@ -160,7 +160,7 @@ Use `limit` to set a fixed maximum number of objects to return.
   path={PyCodeInfo.path}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -256,7 +256,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   path={PyCodeInfo.path}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -355,7 +355,7 @@ You can specify which object properties to return.
   path={PyCodeInfo.path}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -453,7 +453,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
   path={PyCodeInfo.path}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -550,7 +550,7 @@ You can retrieve the object `id` (uuid).
   path={PyCodeInfo.path}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -651,7 +651,7 @@ To retrieve properties from cross-referenced objects, specify:
   path={PyCodeInfo.path}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 
@@ -738,7 +738,7 @@ You can specify metadata fields to be returned.
   path={PyCodeInfo.path}
   startMarker="# GetWithMetadataPython"
   endMarker="# END GetWithMetadataPython"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 

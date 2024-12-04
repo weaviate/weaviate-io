@@ -71,7 +71,7 @@ To configure PQ in a collection, use the [PQ parameters](./pq-compression.md#pq-
        text={PyCodeV3}
        startMarker="# START CollectionWithAutoPQ"
        endMarker="# END CollectionWithAutoPQ"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -135,7 +135,7 @@ Follow these steps to manually enable PQ.
        text={PyCode}
        startMarker="# START InitialSchema"
        endMarker="# END InitialSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -144,7 +144,7 @@ Follow these steps to manually enable PQ.
        text={PyCodeV3}
        startMarker="# START InitialSchema"
        endMarker="# END InitialSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -209,7 +209,7 @@ To enable PQ, update your collection definition as shown below. For additional c
        text={PyCode}
        startMarker="# START UpdateSchema"
        endMarker="# END UpdateSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -218,7 +218,7 @@ To enable PQ, update your collection definition as shown below. For additional c
        text={PyCodeV3}
        startMarker="# START UpdateSchema"
        endMarker="# END UpdateSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -314,7 +314,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       text={PyCode}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -323,7 +323,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       text={PyCodeV3}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

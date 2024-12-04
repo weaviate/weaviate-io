@@ -117,7 +117,7 @@ To rerank the results of a vector search, configure the object properties to sor
       text={PyCodeV3}
       startMarker="# START nearTextRerank Python"
       endMarker="# END nearTextRerank Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -182,7 +182,7 @@ To rerank the results of a keyword search, configure the object properties to so
       text={PyCode}
       startMarker="# START bm25Rerank Python"
       endMarker="# END bm25Rerank Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -191,7 +191,7 @@ To rerank the results of a keyword search, configure the object properties to so
       text={PyCodeV3}
       startMarker="# START bm25Rerank Python"
       endMarker="# END bm25Rerank Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

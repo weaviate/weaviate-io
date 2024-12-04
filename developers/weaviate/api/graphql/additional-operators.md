@@ -341,7 +341,7 @@ The sort function takes either an object, or an array of objects, that describe 
       text={PyCodeV3}
       startMarker="# START Sorting Python"
       endMarker="# END Sorting Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -433,7 +433,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
       text={PyCode}
       startMarker="# START MultiplePropSorting Python"
       endMarker="# END MultiplePropSorting Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -442,7 +442,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
       text={PyCodeV3}
       startMarker="# START MultiplePropSorting Python"
       endMarker="# END MultiplePropSorting Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -509,7 +509,7 @@ To sort with metadata, add an underscore to the property name.
       text={PyCode}
       startMarker="# START AdditionalPropSorting Python"
       endMarker="# END AdditionalPropSorting Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -518,7 +518,7 @@ To sort with metadata, add an underscore to the property name.
       text={PyCodeV3}
       startMarker="# START AdditionalPropSorting Python"
       endMarker="# END AdditionalPropSorting Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 

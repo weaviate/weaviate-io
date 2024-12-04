@@ -241,7 +241,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
       text={PyCodeV3}
       startMarker="# START CreateBackup"
       endMarker="# END CreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -322,7 +322,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={PyCode}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">
@@ -330,7 +330,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -390,7 +390,7 @@ An ongoing backup can be cancelled at any time. The backup process will be stopp
       text={PyCode}
       startMarker="# START CancelBackup"
       endMarker="# END CancelBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -449,7 +449,7 @@ The request takes a json object with the following properties:
       text={PyCode}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">
@@ -457,7 +457,7 @@ The request takes a json object with the following properties:
       text={PyCodeV3}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -535,7 +535,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={PyCode}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="pyv3" label="Python Client v3">
@@ -543,7 +543,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
