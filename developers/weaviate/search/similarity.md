@@ -117,7 +117,7 @@ This example uses a base64 representation of an image.
       text={ImgSrchPyCode}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="pyv3"
+      language="py"
     />
   </TabItem>
 
@@ -126,7 +126,7 @@ This example uses a base64 representation of an image.
       text={ImgSrchPyCodeV3}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
