@@ -83,6 +83,12 @@ With `relativeScoreFusion` (default from `v1.24`), each object is scored by *nor
 
 With `rankedFusion` (default for `v1.23` and lower), each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches.
 
+Generally, `relativeScoreFusion` might be a a good choice, which is why it is the default.
+
+The main reason is that `relativeScoreFusion` retains more information from the original searches than `rankedFusion`, which only retains the rankings. More generally we believe that the nuances captured in the vector and keyword search metrics are more likely to be reflected in rankings produced by `relativeScoreFusion`.
+
+We include a concrete example of the two fusion strategies below.
+
 ### Fusion Example
 
 Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
