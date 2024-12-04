@@ -172,6 +172,11 @@ Here are some key considerations when using keyword search:
    - Consider boosting properties that are more important for search (e.g. title, category) over others (e.g. description)
    - Only modify `k1` and `b` values if you have a good reason to do so, as the defaults are generally well-suited for most use cases
 
+### Further resources
+
+- [How-to: Search](../../search/index.md)
+- [How-to: Keyword search](../../search/bm25.md)
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';

@@ -280,6 +280,11 @@ Generally, start with a `limit` to a maximum number of results to provide to the
 
 This will cause the search to return up to the specified (`limit`) number of results, but only if they are above the specified (`threshold`) similarity score.
 
+### Further resources
+
+- [How-to: Search](../../search/index.md)
+- [How-to: Vector similarity search](../../search/similarity.md)
+
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
