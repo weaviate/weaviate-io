@@ -18,7 +18,7 @@ This article gives a comprehensive overview of commonly used evaluation metrics 
 
 To explain how each of the following metrics is calculated, this article uses a minimal example dataset of eight pastries - to stay in line with the bagel example our colleagues used in their recent [discussion on how to choose and evaluate an embedding model](https://youtu.be/lpdN3aw-yTg?si=CHzV9zS_L2-rdUel) - as shown below.
 
-![example dataset](./img/example.jpeg)
+![example dataset](./img/example.jpg)
 
 We will use the [`pytrec_eval` Python package](https://github.com/cvangysel/pytrec_eval) to showcase how you can evaluate your retrieval or recommendation pipelines in your code. Check out the code in the [related GitHub repository](https://github.com/weaviate/recipes/blob/main/weaviate-features/evaluation/evaluation_metrics_information_retrieval.ipynb).
 
@@ -50,7 +50,7 @@ $$
 =\frac{\text{Number of relevant items in K}}{\text{Total number of items in K}}
 $$
 
-![precision.jpeg](./img/precision.jpeg)
+![precision.jpg](./img/precision.jpg)
 
 With `pytrec_eval` you can evaluate your search results as follows:
 
@@ -95,7 +95,7 @@ $$
 =\frac{\text{Number of relevant items in K}}{\text{Total number of relevant items}}
 $$
 
-![recall.jpeg](./img/recall.jpeg)
+![recall.jpg](./img/recall.jpg)
 
 With `pytrec_eval` you can evaluate your search results as follows:
 
@@ -126,7 +126,7 @@ $$
 \text{RR} = \frac{1}{\text{Rank of the first relevant item}}
 $$
 
-![mrr.jpeg](./img/mrr.jpeg)
+![mrr.jpg](./img/mrr.jpg)
 
 Note that the MRR metric is not available in the `pytrec_eval` package as of this writing.
 
@@ -144,7 +144,7 @@ $$
 \text{AP@K} = \frac{1}{N}\sum_{k=1}^{K}\text{Precision(k)}\times \text{rel(k)}
 $$
 
-![map.jpeg](./img/map.jpeg)
+![map.jpg](./img/map.jpg)
 
 This is also the default metric used in the [Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) for the **Reranking** category.
 
@@ -197,7 +197,7 @@ $$
 \text{DCG@K} = \sum_{k=1}^K\frac{\text{rel}_i}{\log_2(i+1)}
 $$
 
-![ndcg.jpeg](./img/ndcg.jpeg)
+![ndcg.jpg](./img/ndcg.jpg)
 
 This is the default metric used in the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) for the **Retrieval** category.
 
