@@ -145,9 +145,13 @@ Available starting in `v1.22`. This is an experimental feature. Use with caution
 
 This feature relates to the vector index, specifically only to the HNSW index.
 
-Asynchronous indexing can be enabled by opting. This can be done by setting the `ASYNC_INDEXING` environment variable to `true`, or toggling the `Enable async indexing` switch in the Weaviate Cloud Console.
+Asynchronous indexing can be enabled by opting in as follows:
+- Open-source users can do this by setting the `ASYNC_INDEXING` environment variable to `true`.
+- Weaviate Cloud users can do this by toggling the `Enable async indexing` switch in the Weaviate Cloud Console.
 
-When asynchronous indexing is enabled, all vector indexing operations are performed by going through a queue. This applies to not only batch imports, but also to single object imports, deletions, and updates.
+With synchronous indexing, the vector index is updated in lockstep with the object store. Updating an HNSW index can be an expensive operation, especially as the size of the index grows. As a result, the indexing operation can be the bottleneck in the system, slowing down the time for user requests to be completed.
+
+When asynchronous indexing is enabled, all vector indexing operations go through a queue. This applies to not only batch imports, but also to single object imports, deletions, and updates.
 
 This means that the object store can be updated quickly to finish performing user requests while the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
 
