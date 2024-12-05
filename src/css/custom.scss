@@ -560,13 +560,10 @@ button.close {
   }
 
   .navbar {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
+    background: var(--site-background);
     box-shadow: none;
+    border-bottom: solid var(--ifm-toc-border-color);
+    border-width: 1px;
   }
 
   .navbar__logo {
@@ -577,6 +574,10 @@ button.close {
     background-image: url('/img/site/weaviate-logo-horizontal-light-1.svg');
     background-size: contain;
     background-repeat: no-repeat;
+  }
+
+  .blogContainer {
+    background-color: #0c1428;
   }
 
   .footer--dark {
