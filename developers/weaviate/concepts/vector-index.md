@@ -143,14 +143,28 @@ Cleanup is an async process runs that rebuilds the HNSW graph after deletes and 
 Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
-Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+This feature relates to the vector index, specifically only to the HNSW index.
 
-Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+Asynchronous indexing can be enabled by opting in as follows:
+- Open-source users can do this by setting the `ASYNC_INDEXING` environment variable to `true`.
+- Weaviate Cloud users can do this by toggling the `Enable async indexing` switch in the Weaviate Cloud Console.
 
-While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
+With synchronous indexing, the vector index is updated in lockstep with the object store. Updating an HNSW index can be an expensive operation, especially as the size of the index grows. As a result, the indexing operation can be the bottleneck in the system, slowing down the time for user requests to be completed.
 
-:::tip
-You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw).
+When asynchronous indexing is enabled, all vector indexing operations go through a queue. This applies to not only batch imports, but also to single object imports, deletions, and updates.
+
+This means that the object store can be updated quickly to finish performing user requests while the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+
+This means that there will be a short delay between object creation and the object being available for vector search using the HNSW index. The number of objects in the queue can be monitored per node [as shown here](../config-refs/nodes.md).
+
+:::info Changes in `v1.28`
+In Weaviate `v1.22` to `v1.27`, the async indexing feature only affected batch import operations, using an in-memory queue.
+<br/>
+
+Starting in `v1.28`, the async indexing feature has been expanded to include single object imports, deletions, and updates. Additionally, the in-memory queue has been replaced with a persistent, on-disk queue. This change allows for more robust handling of indexing operations, and improves performance though reduction of lock contention and memory usage.
+<br/>
+
+The use of an on-disk queue may result in a slight increase in disk usage, however this is expected to be a small percentage of the total disk usage.
 :::
 
 ## Flat index
