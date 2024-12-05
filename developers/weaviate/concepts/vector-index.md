@@ -143,14 +143,24 @@ Cleanup is an async process runs that rebuilds the HNSW graph after deletes and 
 Available starting in `v1.22`. This is an experimental feature. Use with caution.
 :::
 
-Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+This feature relates to the vector index, specifically only to the HNSW index.
 
-Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+Asynchronous indexing can be enabled by opting. This can be done by setting the `ASYNC_INDEXING` environment variable to `true`, or toggling the `Enable async indexing` switch in the Weaviate Cloud Console.
 
-While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
+When asynchronous indexing is enabled, all vector indexing operations are performed by going through a queue. This applies to not only batch imports, but also to single object imports, deletions, and updates.
 
-:::tip
-You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw).
+This means that the object store can be updated quickly to finish performing user requests while the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+
+This means that there will be a short delay between object creation and the object being available for vector search using the HNSW index. The number of objects in the queue can be monitored per node [as shown here](../config-refs/nodes.md).
+
+:::info Changes in `v1.28`
+In Weaviate `v1.22` to `v1.27`, the async indexing feature only affected batch import operations, using an in-memory queue. Starting in `v1.28`, the async indexing feature has been expanded to include single object imports, deletions, and updates.
+<br/>
+
+The in-memory queue has been replaced with a persistent queue, which is stored on disk. This change allows for more robust handling of indexing operations, and improves performance though reduction of lock contention and memory usage.
+<br/>
+
+The use of an on-disk queue may result in a slight increase in disk usage, however this is expected to be a small percentage of the total disk usage.
 :::
 
 ## Flat index
