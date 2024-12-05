@@ -40,7 +40,7 @@ You can get objects without specifying any parameters. This returns objects in a
   text={PyCodeV3}
   startMarker="# BasicGetPython"
   endMarker="# END BasicGetPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -61,7 +61,7 @@ You can get objects without specifying any parameters. This returns objects in a
   text={TSCodeLegacy}
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -137,7 +137,7 @@ Use `limit` to set a fixed maximum number of objects to return.
   text={PyCodeV3}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -158,7 +158,7 @@ Use `limit` to set a fixed maximum number of objects to return.
   text={TSCodeLegacy}
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -226,7 +226,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   text={PyCodeV3}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -247,7 +247,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   text={TSCodeLegacy}
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -319,7 +319,7 @@ You can specify which object properties to return.
   text={PyCodeV3}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -340,7 +340,7 @@ You can specify which object properties to return.
   text={TSCodeLegacy}
   startMarker="// GetPropertiesJS"
   endMarker="// END GetPropertiesJS"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -408,7 +408,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
   text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -429,7 +429,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
   text={TSCodeLegacy}
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -499,7 +499,7 @@ You can retrieve the object `id` (uuid).
   text={PyCodeV3}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -520,7 +520,7 @@ You can retrieve the object `id` (uuid).
   text={TSCodeLegacy}
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -593,7 +593,7 @@ To retrieve properties from cross-referenced objects, specify:
   text={PyCodeV3}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -614,7 +614,7 @@ To retrieve properties from cross-referenced objects, specify:
   text={TSCodeLegacy}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -674,7 +674,7 @@ You can specify metadata fields to be returned.
   text={PyCodeV3}
   startMarker="# GetWithMetadataPython"
   endMarker="# END GetWithMetadataPython"
-  language="py"
+  language="pyv3"
 />
 
 </TabItem>
@@ -695,7 +695,7 @@ You can specify metadata fields to be returned.
   text={TSCodeLegacy}
   startMarker="// GetWithMetadataJS"
   endMarker="// END GetWithMetadataJS"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -752,7 +752,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
   text={PyCodeV3}
   startMarker="# MultiTenancy"
   endMarker="# END MultiTenancy"
-  language="py"
+  language="pyv3"
  />
 </TabItem>
 
@@ -770,7 +770,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
   text={TSCodeLegacy}
   startMarker="// MultiTenancy"
   endMarker="// END MultiTenancy"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 

@@ -51,7 +51,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -69,7 +69,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -104,7 +104,7 @@ The properties you use in the prompt do not have to be among the properties you 
       text={PyCodeV3}
       startMarker="# SingleGenerativePropertiesPython"
       endMarker="# END SingleGenerativePropertiesPython"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -122,7 +122,7 @@ The properties you use in the prompt do not have to be among the properties you 
       text={TSCodeLegacy}
       startMarker="// SingleGenerativeProperties TS"
       endMarker="// END SingleGenerativeProperties TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -178,7 +178,7 @@ Grouped task search returns one response that includes all of the query results.
       text={PyCodeV3}
       startMarker="# GroupedGenerativePython"
       endMarker="# END GroupedGenerativePython"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -196,7 +196,7 @@ Grouped task search returns one response that includes all of the query results.
       text={TSCodeLegacy}
       startMarker="// GroupedGenerative TS"
       endMarker="// END GroupedGenerative TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -255,7 +255,7 @@ Define object `properties` to use in the prompt. This limits the information in 
       text={PyCodeV3}
       startMarker="# GroupedGenerativeProperties Python"
       endMarker="# END GroupedGenerativeProperties Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -273,7 +273,7 @@ Define object `properties` to use in the prompt. This limits the information in 
       text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

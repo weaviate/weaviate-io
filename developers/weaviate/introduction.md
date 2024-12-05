@@ -76,7 +76,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.class
       text={PyCodeV3}
       startMarker="# START ReadAllCollections"
       endMarker="# END ReadAllCollections"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -94,7 +94,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.class
       text={TSCodeLegacy}
       startMarker="// START ReadAllCollections"
       endMarker="// END ReadAllCollections"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
