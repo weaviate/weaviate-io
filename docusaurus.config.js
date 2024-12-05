@@ -299,8 +299,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-november-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/aws-reinvent-2024">Big things are happening at AWS re:Invent - Dec 2-5</a> | Meet with our team to jumpstart your 2025 initiatives (and score limited edition swag)!`,
+               id: 'announcement-bar-decemeber-2024',
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://lu.ma/pypegbgz">What's New - Weaviate 1.28</a> | ​Join us for a hands on session and learn about the most recent features and updates and how to use them.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
