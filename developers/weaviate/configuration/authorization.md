@@ -5,6 +5,10 @@ image: og/docs/configuration.jpg
 # tags: ['authorization']
 ---
 
+:::info Authentication and authorization
+Authentication and authorization are closely related concepts, and sometimes abbreviated as `AuthN` and `AuthZ`. Authentication (`AuthN`) is the process of verifying the identity of a user, while authorization (`AuthZ`) is the process of determining what permissions the user has.
+:::
+
 The authorization plugin allows Weaviate to provide differentiated access to users based on their [authentication](./authentication.md) status. Along with allowing or disallowing anonymous access, Weaviate can differentiate between a user who is in the admin list, or on the read-only list.
 
 ## Admin list
