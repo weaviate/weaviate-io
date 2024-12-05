@@ -95,7 +95,7 @@ $$
 =\frac{\text{Number of relevant items in K}}{\text{Total number of relevant items}}
 $$
 
-![recall.jpg](./img/recall.jpg)
+![recall](./img/recall.jpg)
 
 With `pytrec_eval` you can evaluate your search results as follows:
 
@@ -126,7 +126,7 @@ $$
 \text{RR} = \frac{1}{\text{Rank of the first relevant item}}
 $$
 
-![mrr.jpg](./img/mrr.jpg)
+![mrr](./img/mrr.jpg)
 
 Note that the MRR metric is not available in the `pytrec_eval` package as of this writing.
 
@@ -144,7 +144,7 @@ $$
 \text{AP@K} = \frac{1}{N}\sum_{k=1}^{K}\text{Precision(k)}\times \text{rel(k)}
 $$
 
-![map.jpg](./img/map.jpg)
+![map](./img/map.jpg)
 
 This is also the default metric used in the [Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) for the **Reranking** category.
 
@@ -197,7 +197,7 @@ $$
 \text{DCG@K} = \sum_{k=1}^K\frac{\text{rel}_i}{\log_2(i+1)}
 $$
 
-![ndcg.jpg](./img/ndcg.jpg)
+![ndcg](./img/ndcg.jpg)
 
 This is the default metric used in the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) for the **Retrieval** category.
 
