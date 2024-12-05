@@ -154,10 +154,10 @@ This means that the object store can be updated quickly to finish performing use
 This means that there will be a short delay between object creation and the object being available for vector search using the HNSW index. The number of objects in the queue can be monitored per node [as shown here](../config-refs/nodes.md).
 
 :::info Changes in `v1.28`
-In Weaviate `v1.22` to `v1.27`, the async indexing feature only affected batch import operations, using an in-memory queue. Starting in `v1.28`, the async indexing feature has been expanded to include single object imports, deletions, and updates.
+In Weaviate `v1.22` to `v1.27`, the async indexing feature only affected batch import operations, using an in-memory queue.
 <br/>
 
-The in-memory queue has been replaced with a persistent queue, which is stored on disk. This change allows for more robust handling of indexing operations, and improves performance though reduction of lock contention and memory usage.
+Starting in `v1.28`, the async indexing feature has been expanded to include single object imports, deletions, and updates. Additionally, the in-memory queue has been replaced with a persistent, on-disk queue. This change allows for more robust handling of indexing operations, and improves performance though reduction of lock contention and memory usage.
 <br/>
 
 The use of an on-disk queue may result in a slight increase in disk usage, however this is expected to be a small percentage of the total disk usage.
