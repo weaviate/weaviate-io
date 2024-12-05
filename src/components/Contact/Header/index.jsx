@@ -7,13 +7,13 @@ export default function ContactHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <br></br>
           <h1>Contact</h1>
 
           <div className={styles.headerBox}>
             <p className="text-center">
-              We are here to help you with any questions you might have. Please
-              contact us via the form below or join our communities.
+              We are here to help you with any questions you might have.
+              <br></br>Please contact us via the form below or join our
+              communities.
             </p>
           </div>
           <div className={styles.buttons}>

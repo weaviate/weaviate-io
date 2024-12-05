@@ -63,11 +63,6 @@ p {
   }
 
   .headerBox {
-    width: 50%;
-    @media screen and (max-width: 900px) {
-      width: 100%;
-    }
-
     p {
       color: #130c49;
     }
