@@ -1,9 +1,26 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
 export default function Main() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//js.hsforms.net/forms/embed/v2.js';
+    document.body.appendChild(script);
+
+    script.addEventListener('load', () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: '8738733',
+          formId: '3ef588fa-66a6-497a-a5e1-00fe098cbade',
+          target: '#startupForm',
+        });
+      }
+    });
+  }, []);
+
   return (
     <header className={styles.headerSecurity}>
       <div className="container">
@@ -53,7 +70,7 @@ export default function Main() {
               <h3>Interested in joining?</h3>
               <p>Submit your information and we'll get in touch.</p>
             </div>
-            <div className={styles.bentoImage} />
+            <div id="startupForm"></div>
           </div>
           <div className={styles.bento06}>
             <div className={styles.bentoText}>
