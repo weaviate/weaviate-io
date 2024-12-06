@@ -14,49 +14,57 @@ Weaviate provides differentiated access through [authorization](./authorization.
 The following diagram illustrates the flow of a user request through the authentication and authorization process:
 
 ```mermaid
-flowchart LR
-    %% Define main nodes
-    Request["Client\nRequest"]
-    AuthCheck{"AuthN\nEnabled?"}
-    AccessCheck{"Check\nAuthZ"}
-    Access["✅ Access\nGranted"]
-    Denied["❌ Access\nDenied"]
+flowchart TB
+    User(["Authenticated User"]) --> AuthScheme{"Authorization\nScheme?"}
 
-    %% Define authentication method nodes
-    subgraph auth ["AuthN"]
-        direction LR
-        API["API Key"]
-        OIDC["OIDC"]
-        AuthResult{"Success?"}
+    subgraph rbac ["RBAC Authorization"]
+        direction TB
+        AdminRole["Admin Role"]
+        ViewerRole["Viewer Role"]
+        CustomRole["Custom Roles"]
+
+        Perms1["Full Access\nAll Operations"]
+        Perms2["Read-only\nAccess"]
+        Perms3["Custom\nPermissions"]
+
+        AdminRole --> Perms1
+        ViewerRole --> Perms2
+        CustomRole --> Perms3
     end
 
-    %% Define connections
-    Request --> AuthCheck
-    AuthCheck -->|"No"| AccessCheck
-    AuthCheck -->|"Yes"| auth
-    API --> AuthResult
-    OIDC --> AuthResult
-    AuthResult -->|"Yes"| AccessCheck
-    AuthResult -->|"No"| Denied
+    subgraph adminlist ["Admin List Authorization"]
+        direction TB
+        AdminUser["Admin Users"]
+        ReadOnly["Read-only Users"]
+        AnonUser["Anonymous Users\n(Optional)"]
 
-    AccessCheck -->|"Pass"| Access
-    AccessCheck -->|"Fail"| Denied
+        AllPerms["Full Access\nAll Operations"]
+        ReadPerms["Read-only\nAccess"]
+
+        AdminUser --> AllPerms
+        ReadOnly --> ReadPerms
+        AnonUser -.->|"If enabled"| AllPerms
+        AnonUser -.->|"If enabled"| ReadPerms
+    end
+
+    subgraph undiffer ["Undifferentiated Access"]
+        AllAccess["Full Access\nAll Operations"]
+    end
+
+    AuthScheme -->|"RBAC"| rbac
+    AuthScheme -->|"Admin List"| adminlist
+    AuthScheme -->|"Undifferentiated"| undiffer
 
     %% Style nodes
-    style Request fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style AuthCheck fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style AccessCheck fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style Access fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style Denied fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style API fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style OIDC fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style AuthResult fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style User fill:#f9f9f9,stroke:#666
+    style AuthScheme fill:#f5f5f5,stroke:#666
+    style AnonUser fill:#f9f9f9,stroke:#666,stroke-dasharray: 5 5
 
-    %% Style subgraph
-    style auth fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    %% Style subgraphs
+    style rbac fill:#e6f3ff,stroke:#4a90e2
+    style adminlist fill:#e6ffe6,stroke:#2ea44f
+    style undiffer fill:#fff0e6,stroke:#ff9933
 ```
-
-For example, a user logging in with the API key `jane-secret` may be granted administrator permissions, while another user logging in with the API key `ian-secret` may be granted read-only permissions.
 
 ## Available authorization schemes
 
@@ -66,7 +74,7 @@ The following authorization schemes are available in Weaviate:
 - [Admin list](#admin-list)
 - [Undifferentiated access](#undifferentiated-access)
 
-Additionally, [anonymous users](#anonymous-users) can be granted permissions in Weaviate using either the RBAC or Admin list authorization schemes.
+In the Admin list authorization scheme, [anonymous users](#anonymous-users) can be granted permissions.
 
 The way to configure authorization differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
 
@@ -249,11 +257,11 @@ authorization:
     - viewer-user
 ```
 
-## Anonymous users
+### Anonymous users
 
-Anonymous users are identified as `anonymous` in Weaviate. To confer permissions to anonymous users, you can use the `anonymous` keyword in the configuration.
+Anonymous users are identified as `anonymous` in Weaviate. In the Admin list authorization scheme, you can apply permissions to anonymous users. The RBAC authorization scheme is not compatible with anonymous users.
 
-For example, to allow anonymous read-only access with the Admin list authorization scheme, add the following line to the respective configuration:
+To confer permissions to anonymous users in the Admin list scheme, you can use the `anonymous` keyword in the configuration as shown below.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
