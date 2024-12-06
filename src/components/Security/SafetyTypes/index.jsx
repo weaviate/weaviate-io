@@ -14,10 +14,16 @@ export default function SafetyTypes() {
             running Weaviate as a Serverless, Weaviate Enterprise Cloud, or
             Bring Your Own Cloud solution– our top priority is keeping your data
             safe and available. Read more about our SLAs{' '}
-            <Link to="/service">here</Link>. 
-          </p>
-          <p>
-            Read our PDF <Link to="/img/site/Security-Checklist.pdf">here</Link>
+            <Link to="/service">here</Link>. You can also read our Security
+            Checklist for Self-Managed Weaviate Deployments{' '}
+            <Link
+              to="/img/site/Security-Checklist.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
+            </Link>
+            .
           </p>
         </div>
         <div className={styles.box}>
