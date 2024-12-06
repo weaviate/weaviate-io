@@ -31,12 +31,19 @@ const DOC_SYSTEMS = {
         constructUrl: (baseUrl, ref) => `${baseUrl}#${ref}`,
         icon: '/img/site/logo-go.svg',
     },
+    java: {
+        baseUrl:
+            'https://javadoc.io/doc/io.weaviate/client/latest/',
+        constructUrl: (baseUrl, ref) => `${baseUrl}#${ref}`,
+        icon: '/img/site/logo-java.svg',
+    },
 };
 
 DOC_SYSTEMS.python = DOC_SYSTEMS.py;
 DOC_SYSTEMS.js = DOC_SYSTEMS.ts;
 DOC_SYSTEMS.gonew = DOC_SYSTEMS.go;
 DOC_SYSTEMS.goraw = DOC_SYSTEMS.go;
+DOC_SYSTEMS.javaraw = DOC_SYSTEMS.java;
 
 // Custom styles for badges
 const badgeStyles = {
