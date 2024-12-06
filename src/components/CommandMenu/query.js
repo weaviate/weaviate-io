@@ -10,7 +10,8 @@ export const runQuery = async (searchTerm, limit=10) => {
             PageChunk(
                 hybrid: {
                     query: \"${parsedSearchTerm}\"
-                    alpha: 0.4
+                    properties: ["content", "pageTitle"]
+                    alpha: 0.6
                 }
                 limit: ${limit}
             )
