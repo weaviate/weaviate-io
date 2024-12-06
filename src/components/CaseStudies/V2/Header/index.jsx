@@ -28,7 +28,7 @@ export default function StudyHeader() {
                 >
                   Download PDF
                 </Link>
-                <Link to="/#contact-us" className={styles.buttonLight}>
+                <Link to="/contact" className={styles.buttonLight}>
                   Contact sales
                 </Link>
               </div>

@@ -22,7 +22,7 @@ export default function StudyHeader() {
                 >
                   Read the story
                 </Link>
-                <Link to="/#contact-us" className={styles.buttonLight}>
+                <Link to="/contact" className={styles.buttonLight}>
                   Contact sales
                 </Link>
               </div>
