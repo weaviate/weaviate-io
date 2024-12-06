@@ -5,8 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
 
-## Overview
-
 :::info Authentication and authorization
 Authentication and authorization are closely related concepts, and sometimes abbreviated as `AuthN` and `AuthZ`. Authentication (`AuthN`) is the process of verifying the identity of a user, while authorization (`AuthZ`) is the process of determining what permissions the user has.
 :::
@@ -66,11 +64,15 @@ In summary, Weaviate allows the following authentication methods:
 
 Note that API key and OIDC authentication can be both enabled at the same time.
 
+The way to configure authentication differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
+
+:::info What about Weaviate Cloud (WCD)?
+For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC and API key access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with API keys](/developers/wcs/platform/manage-api-keys).
+:::
+
 ## API Key Authentication
 
 API key authentication is a simple and effective way to authenticate users. Each user is assigned a unique API key, which is used to authenticate the user.
-
-The way to configure API key authentication differs by your deployment method, depending on whether you are using [Docker Compose](#api-keys-docker) or [Kubernetes](#api-keys-kubernetes).
 
 Note that you can either:
 - Set one user for all API keys, or
@@ -78,13 +80,9 @@ Note that you can either:
 
 Make sure all listed users are also configured in the authorization settings.
 
-:::info What about Weaviate Cloud (WCD)?
-For Weaviate Cloud (WCD) instances, API key authentication is pre-configured. [See this page](/developers/wcs/platform/manage-api-keys) for more information on configuring API keys in WCD.
-:::
-
 ### API keys: Docker
 
-API key authentication can be enabled by environment variables. Therefore, you can set these in the Docker Compose configuration file (`docker-compose.yml`), such as in the following example:
+API key authentication can be configured using environment variables. In Docker Compose, set them in the configuration file (`docker-compose.yml`) such as in the following example:
 
 ```yaml
 services:
@@ -98,11 +96,11 @@ services:
       # Enables API key authentication.
       AUTHENTICATION_APIKEY_ENABLED: 'true'
 
-      # List one or more keys, separated by commas. Each key corresponds to a specific user identity below.
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'readOnly-plainText-API-Key,admin-plainText-API-Key'
+      # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key'
 
       # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
-      AUTHENTICATION_APIKEY_USERS: 'api-key-user-readOnly,api-key-user-admin'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user'
 ```
 
 This configuration:
@@ -122,18 +120,20 @@ authentication:
   anonymous_access:
     # Disable anonymous access.
     enabled: false
+
   apikey:
+    # Enables API key authentication.
     enabled: true
 
-    # Configure one or more API keys
+    # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
     allowed_keys:
-      - readOnly-plainText-API-Key
-      - admin-plainText-API-Key
+      - admin-key
+      - viewer-key
 
-    # Configure corresponding users for the API keys
+    # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
     users:
-      - api-key-user-readOnly
-      - api-key-user-admin
+      - admin-user
+      - viewer-user
 ```
 
 This configuration:
@@ -473,7 +473,7 @@ curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_
 
 ## Further resources
 
-- [Configuration: Authorization](authorization.md)
+- [Configuration: Authorization](./authorization.md)
 - [References: Environment variables / Authentication and Authorization](../config-refs/env-vars.md#authentication-and-authorization)
 
 ## Questions and feedback
