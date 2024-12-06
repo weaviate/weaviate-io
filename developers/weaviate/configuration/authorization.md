@@ -70,6 +70,13 @@ Additionally, [anonymous users](#anonymous-users) can be granted permissions in 
 
 The way to configure authorization differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
 
+:::info What about Weaviate Cloud (WCD)?
+For Weaviate Cloud (WCD) instances, authorization is pre-configured with Admin list access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with admin or read-only API keys](/developers/wcs/platform/manage-api-keys).
+<br/>
+
+RBAC access will be available in WCD in a future release.
+:::
+
 ## Role-Based Access Control (RBAC)
 
 :::info Added in `v1.28` as a preview feature

@@ -66,6 +66,10 @@ Note that API key and OIDC authentication can be both enabled at the same time.
 
 The way to configure authentication differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
 
+:::info What about Weaviate Cloud (WCD)?
+For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC and API key access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with API keys](/developers/wcs/platform/manage-api-keys).
+:::
+
 ## API Key Authentication
 
 API key authentication is a simple and effective way to authenticate users. Each user is assigned a unique API key, which is used to authenticate the user.
@@ -75,10 +79,6 @@ Note that you can either:
 - Define one user per API key (the number of users must match the number of API keys)
 
 Make sure all listed users are also configured in the authorization settings.
-
-:::info What about Weaviate Cloud (WCD)?
-For Weaviate Cloud (WCD) instances, API key authentication is pre-configured. [See this page](/developers/wcs/platform/manage-api-keys) for more information on configuring API keys in WCD.
-:::
 
 ### API keys: Docker
 
