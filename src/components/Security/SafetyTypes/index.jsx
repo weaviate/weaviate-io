@@ -9,12 +9,21 @@ export default function SafetyTypes() {
         <div className={styles.title}>
           <h2>We keep your data safe (and available)</h2>
           <p>
-            Weaviate Cloud was built to offload the burden of managing
-            a vector database and give development teams peace of mind. Whether
-            you’re running Weaviate as a Serverless, Weaviate Enterprise Cloud, or
+            Weaviate Cloud was built to offload the burden of managing a vector
+            database and give development teams peace of mind. Whether you’re
+            running Weaviate as a Serverless, Weaviate Enterprise Cloud, or
             Bring Your Own Cloud solution– our top priority is keeping your data
             safe and available. Read more about our SLAs{' '}
-            <Link to="/service">here</Link>. 
+            <Link to="/service">here</Link>. You can also read our Security
+            Checklist for Self-Managed Weaviate Deployments{' '}
+            <Link
+              to="/img/site/Security-Checklist.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
+            </Link>
+            .
           </p>
         </div>
         <div className={styles.box}>
