@@ -12,6 +12,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import PythonV3Code from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 
 ![Weaviate Python Client v4 Release](./img/hero.png)
@@ -180,7 +181,7 @@ Direct instantiation with full control over the parameters is also possible, too
     </TabItem>
     <TabItem value="v3" label="V3 API">
         <FilteredTextBlock
-            text={PythonCode}
+            text={PythonV3Code}
             startMarker="# InstantiationV3API"
             endMarker="# END InstantiationV3API"
             language="py"

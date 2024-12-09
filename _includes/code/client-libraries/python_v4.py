@@ -1,18 +1,11 @@
+import weaviate
+
 # START WVCImportExample
 import weaviate.classes as wvc
 # END WVCImportExample
 
 import weaviate_datasets as wd
 import os
-
-# InstantiationV3API
-import weaviate
-
-client = weaviate.Client(
-    url="http://localhost:8080",
-)
-# END InstantiationV3API
-
 
 # TryFinallyExample
 import weaviate

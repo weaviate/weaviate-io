@@ -1,5 +1,13 @@
 # THIS FILE HASN'T BEEN TESTED TO RUN END-TO-END
 
+# InstantiationV3API
+import weaviate
+
+client = weaviate.Client(
+    url="http://localhost:8080",
+)
+# END InstantiationV3API
+
 #####################
 ### Cloud connect ###
 #####################
