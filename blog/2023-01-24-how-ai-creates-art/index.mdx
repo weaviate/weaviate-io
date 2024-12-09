@@ -45,7 +45,7 @@ The question then becomes how diffusion models can learn (or even approximate) t
 ![noising gif](./img/noise.gif)
 *[Source](https://yang-song.net/blog/2021/score/)*
 
-![noising images](./img/noisingimage.png)
+![noising images](./img/noisingimage.jpg)
 *[Source](https://huggingface.co/blog/annotated-diffusion)*
 
 This “noising” process, shown in the images above allows us to take training set images and add known quantities of noise to it until it becomes completely random noise. This process takes images from a state of having high probability of being found in the training set to having a low probability of existing in the training set.
@@ -55,7 +55,7 @@ Once the “noising” step is completed, then we can use these clean and noisy 
 ![denoising gif](./img/denoise.gif)
 *[Source](https://yang-song.net/blog/2021/score/)*
 
-![denoising images](./img/denoisingimage.png)
+![denoising images](./img/denoisingimage.jpg)
 *[Source](https://huggingface.co/blog/annotated-diffusion)*
 
 Now if we take this trained diffusion model and just give it a random static image and run the de-noising process it will transform the static image into an image that resembles images in the training set!
