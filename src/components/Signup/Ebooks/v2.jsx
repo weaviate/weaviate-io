@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link';
 import React, { useEffect } from 'react';
-import styles from './styles.module.scss';
+import styles from './V2/styles.module.scss';
 import { css } from 'styled-components';
 
 export default function Introduction() {
@@ -47,7 +47,7 @@ export default function Introduction() {
         <div className={styles.signUp}>
           <div className={styles.signUpBox}>
             <div className={styles.formWrapper}>
-              <div id="hs-form" className={styles.hsForm}></div>
+              <div id="hs-form" className={styles.ebookForm}></div>
             </div>
           </div>
         </div>
