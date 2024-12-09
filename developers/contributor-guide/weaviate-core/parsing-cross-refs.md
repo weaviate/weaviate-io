@@ -6,8 +6,6 @@ image: og/contributor-guide/weaviate-core.jpg
 # tags: ['contributor-guide']
 ---
 
-## Overview
-
 Objects are parsed twice:
 
 * First, closest to disk, immediately after reading-in the byte blob, all

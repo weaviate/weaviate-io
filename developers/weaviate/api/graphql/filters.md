@@ -11,8 +11,6 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Overview
-
 Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../../manage-data/delete.mdx#delete-multiple-objects). The operator used for filtering is also called a `where` filter.
 
 A filter may consist of one or more conditions, which are combined using the `And` or `Or` operators. Each condition consists of a property path, an operator, and a value.
