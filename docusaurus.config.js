@@ -299,8 +299,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-november-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://events.weaviate.io/aws-reinvent-2024">Big things are happening at AWS re:Invent - Dec 2-5</a> | Meet with our team to jumpstart your 2025 initiatives (and score limited edition swag)!`,
+               id: 'announcement-bar-decemeber-2024',
+                content:`<a target="_blank" rel="noopener noreferrer" href="https://webinars.techstronglearning.com/simplify-building-ai-native-embedding-models-and-vector-databases?utm_campaign=2024.12.12-Weaviate_Webinar_DO&utm_source=Weaviate&utm_medium=marketing_social">Webinar | Simplify Building AI-Native: Embedding Models and Vector Databases</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -464,7 +464,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/#contact-us">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">About</li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/#contact-us">Contact Us</a></li><li class="dropDownLabel mobDrop">Partners</li><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Partners</li><li><a class="dropdown__link" href="/partners">Overview</a></li><li><a class="dropdown__link" href="/partners/aws">AWS</a></li><li><a class="dropdown__link" href="/partners/gcp">Google</a></li><li><a class="dropdown__link" href="/partners/snowflake">Snowflake</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >About</li><li><a class="dropdown__link" href="/company/about-us">Company</a></li><li><a class="dropdown__link" href="/company/careers">Careers</a></li><li><a class="dropdown__link" href="/company/remote">Remote</a></li><li><a class="dropdown__link" href="/company/playbook">Playbook</a></li><li><a class="dropdown__link" href="/company/investors">Investors</a></li><li><a class="dropdown__link" href="/contact">Contact Us</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">About</li><li class="menu__list-item"><a class="menu__link" href="/company/about-us">Company</a></li><li class="menu__list-item"><a class="menu__link" href="/company/careers">Careers</a></li><li class="menu__list-item"><a class="menu__link" href="/company/remote">Remote</a></li><li class="menu__list-item"><a class="menu__link" href="/company/playbook">Playbook</a></li><li class="menu__list-item"><a class="menu__link" href="/company/investors">Investors</a></li><li class="menu__list-item"><a class="menu__link" href="/contact">Contact Us</a></li><li class="dropDownLabel mobDrop">Partners</li><li class="menu__list-item"><a class="menu__link" href="/partners">Overview</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/aws">AWS</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/gcp">Google</a></li><li class="menu__list-item"><a class="menu__link" href="/partners/snowflake">Snowflake</a></li><li class="menu__list-item"></ul>',
                                className: 'dropDownContainer2',
                             },
                         ],
@@ -495,7 +495,7 @@ const config = {
                             },
                             {
                                 label: 'Contact us',
-                                href: '/#contact-us',
+                                href: '/contact',
                             },
                         ], */
                     },
@@ -725,7 +725,7 @@ const config = {
                             },
                             {
                                 label: 'Contact Us',
-                                to: '/#contact-us',
+                                to: '/contact',
                             },
                             {
                                 label: 'Partners',

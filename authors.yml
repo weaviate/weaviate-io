@@ -10,12 +10,12 @@ alea:
 alvin:
   name: Alvin Richards
   title: Head of Product
-  image_url: /img/people/icon/alvin.jpeg
+  image_url: /img/people/icon/alvin.jpg
 ara:
   name: Ara Gonzalez
   title: People Operations Manager
   url: https://linkedin.com/in/aranzazugonzalez
-  image_url: /img/people/icon/ara.png
+  image_url: /img/people/icon/ara.jpg
 bob:
   name: Bob van Luijt
   title: CEO
@@ -25,7 +25,7 @@ byron:
   name: Byron Voorbach
   title: Head of Customer Success
   url: https://github.com/byronvoorbach
-  image_url: /img/people/icon/byron.png
+  image_url: /img/people/icon/byron.jpg
 connor:
   name: Connor Shorten
   title: Product Researcher
@@ -65,12 +65,12 @@ ieva:
   name: Ieva Urbaite
   title: Marketing
   url: https://www.linkedin.com/in/ievaurbaite/
-  image_url: /img/people/icon/ieva.png
+  image_url: /img/people/icon/ieva.jpg
 jessie:
   name: Jessie de Groot
   title: Head of People and Culture
   url: https://linkedin.com/in/jessiedegroot/
-  image_url: /img/people/icon/jessie.png
+  image_url: /img/people/icon/jessie.jpg
 jp:
   name: Joon-Pil (JP) Hwang
   title: Educator
@@ -95,7 +95,7 @@ mary:
   name: Mary Newhauser
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
-  image_url: /img/people/icon/mary.png
+  image_url: /img/people/icon/mary.jpg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
@@ -115,7 +115,7 @@ svitlana:
   name: Svitlana Smolianova
   title: Head of Design
   url: https://linkedin.com/in/svitlana-sm
-  image_url: /img/people/icon/svitlana.png
+  image_url: /img/people/icon/svitlana.jpg
 zain:
   name: Zain Hasan
   title: Developer Advocate
@@ -125,12 +125,12 @@ john:
   name: John Trengrove
   title: Head of Applied Research
   url: https://github.com/trengrj
-  image_url: /img/people/icon/john.png
+  image_url: /img/people/icon/john.jpg
 shukri:
   name: Mohd Shukri Hasan
   title: Integration Solution Engineer
   url: https://github.com/hsm207
-  image_url: /img/people/icon/shukri.jpeg
+  image_url: /img/people/icon/shukri.jpg
 tommy:
   name: Tommy Smith
   title: Polyglot Engineer
@@ -140,12 +140,12 @@ jerry:
   name: Jerry Liu
   title: Co-Founder/CEO LlamaIndex
   url: https://github.com/jerryjliu
-  image_url: /img/people/icon/jerry.png
+  image_url: /img/people/icon/jerry.jpg
 sam:
   name: Sam Stoelinga
   title: Contributor to Substratus.AI
   url: https://github.com/samos123
-  image_url: /img/people/icon/sam.png
+  image_url: /img/people/icon/sam.jpg
 femke:
   name: Femke Plantinga
   title: Content Manager
@@ -163,12 +163,12 @@ victoria:
   name: Victoria Slocum
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/victorialslocum/
-  image_url: /img/people/icon/victoria.png
+  image_url: /img/people/icon/victoria.jpg
 adam:
   name: Adam Chan
   title: Developer Growth Engineer
   url: https://www.linkedin.com/in/itsajchan/
-  image_url: /img/people/icon/adam.png
+  image_url: /img/people/icon/adam.jpg
 asdine:
   name: Asdine El Hrychy
   title: Software Engineer
@@ -178,12 +178,12 @@ ajit:
   name: Ajit Mistry
   title: Developer Growth Intern
   url: https://github.com/ajit283
-  image_url: /img/people/icon/ajit.png
+  image_url: /img/people/icon/ajit.jpg
 amir:
   name: Amir Houieh
   title: Founder & CEO of Unbody
   url: https://www.unbody.io/
-  image_url: /img/people/icon/amir.jpeg
+  image_url: /img/people/icon/amir.jpg
 hossein:
   name: Hossein Mehrabi
   title: Founder & CTO of Unbody
@@ -193,17 +193,17 @@ charles:
   name: Charles Frye
   title: AI Engineer
   url: https://twitter.com/charles_irl
-  image_url: /img/people/icon/charles-modal.png
+  image_url: /img/people/icon/charles-modal.jpg
 randy:
   name: Randy Fong
   title: Senior iOS Developer
   url: https://www.linkedin.com/in/randy-fong-1530545/
-  image_url: /img/people/icon/randy.jpeg
+  image_url: /img/people/icon/randy.jpg
 aman:
   name: Aman Sharma
   title: CTO @Lamatic.ai
   url: https://www.linkedin.com/in/amanintech
-  image_url: /img/people/icon/aman.jpeg
+  image_url: /img/people/icon/aman.jpg
 charles-pierse:
   name: Charles Pierse
   title: Head of Weaviate Labs
@@ -218,14 +218,14 @@ deepti:
   name: Deepti Naidu
   title: Partner Solution Engineer
   url: https://www.linkedin.com/in/deeptinaidu/
-  image_url: /img/people/icon/deepti.png
+  image_url: /img/people/icon/deepti.jpg
 tony:
   name: Tony Le
   title: Business Development Director
   url: https://www.linkedin.com/in/tony-l-35a305b/
-  image_url: /img/people/icon/tony.png
+  image_url: /img/people/icon/tony.jpg
 jobi:
   name: Jobi George
   title: Head of Partnerships
   url: https://www.linkedin.com/in/jobigeorge/
-  image_url: /img/people/icon/jobi.jpeg
+  image_url: /img/people/icon/jobi.jpg
