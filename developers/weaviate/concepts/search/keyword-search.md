@@ -152,7 +152,7 @@ Keyword search can be combined with vector search in Weaviate to perform a hybri
 - Exact matching capabilities of keyword search
 - Semantic understanding of vector search
 
-See [Hybrid Search](../hybrid.md) for more information.
+See [Hybrid Search](./hybrid-search.md) for more information.
 
 ## Notes and Best Practices
 
