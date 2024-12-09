@@ -92,6 +92,8 @@ client.collections.delete(["Article", "Publication"])
 # ===== Cancel ongoing backup =====
 # ==============================================
 
+# Note - this will fail in automated tests as the backup is already completed
+"""
 # START CancelBackup
 result = client.backup.cancel(
     backup_id="my-very-first-backup",
@@ -100,5 +102,6 @@ result = client.backup.cancel(
 
 print(result)
 # END CancelBackup
+"""
 
 client.close()
