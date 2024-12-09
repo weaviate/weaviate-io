@@ -8,8 +8,6 @@ image: og/docs/installation.jpg
 
 import ReactPlayer from 'react-player/lazy'
 
-## Overview
-
 <!-- NOTE: To show this page on the sidebar, remove the `sidebar_class_name: hidden` line above. -->
 
 You can use [AWS Marketplace](https://aws.amazon.com/marketplace) to directly launch a Weaviate cluster.

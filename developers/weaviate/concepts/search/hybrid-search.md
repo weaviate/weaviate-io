@@ -5,8 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['concepts', 'search', 'hybrid search', 'vector search', 'keyword search', 'bm25']
 ---
 
-## Overview
-
 Hybrid search combines [vector search](./vector-search.md) and [keyword search (BM25)](./keyword-search.md) to leverage the strengths of both approaches. This takes into account results' semantic similarity (vector search) and exact keyword relevance (BM25), providing more comprehensive search results.
 
 A hybrid search runs both search types in parallel and combines their scores to produce a final ranking of results. This makes it versatile and robust, suitable for a wide range of search use cases.

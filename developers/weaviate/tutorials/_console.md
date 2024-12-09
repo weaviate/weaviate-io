@@ -5,9 +5,6 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
 ---
 
-
-## Overview
-
 Here you can learn how to use the Weaviate console.
 
 The Weaviate console allows you to connect to Weaviate instances that are running on the [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) (our SaaS solution), on your own cluster, on your local machine, or all the public demo datasets. Note that the console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.

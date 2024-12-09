@@ -6,8 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 
-## Overview
-
 Weaviate provides flexible resource management features that help you to balance search speeds; search accuracy and recall; and system resource costs.
 
 This guide provides an overview of these topics to help you make allocate resources effectively:

@@ -14,7 +14,12 @@ Weaviate currently offers two vector quantization techniques:
 - [Scalar quantization (SQ)](#scalar-quantization)
 
 ## What is quantization?
+
 In general, quantization techniques reduce the memory footprint by representing numbers with lower precision numbers, like rounding a number to the nearest integer. In neural networks, quantization reduces the values of the weights or activations of the model stored as a 32-bit floating-point number (4 bytes) to a lower precision number, such as an 8-bit integer (1 byte).
+
+### What is vector quantization?
+
+Vector quantization is a technique that reduces the memory footprint of vector embeddings. Vector embeddings have been typically represented as 32-bit floating-point numbers. Vector quantization techniques reduce the size of the vector embeddings by representing them as smaller numbers, such as 8-bit integers or binary numbers. Some quantization techniques also reduce the number of dimensions in the vector embeddings.
 
 ## Product quantization
 

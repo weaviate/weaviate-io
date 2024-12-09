@@ -6,9 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 
-
-## Overview
-
 In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/index.md) to show you different query types, filters and metrics that can be used.
 
 By the end of this section, you will have performed vector and scalar searches separately as well as in combination to retrieve individual objects and aggregations.

@@ -5,7 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-Vector indexes facilitate efficient, vector-first data storage and retrieval.
+[Vector indexes](../../concepts/vector-index.md) facilitate efficient, vector-first data storage and retrieval.
 
 ## HNSW indexes
 

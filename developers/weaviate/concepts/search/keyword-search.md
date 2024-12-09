@@ -5,8 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['concepts', 'search', 'keyword search', 'bm25', 'keyword']
 ---
 
-## Overview
-
 Keyword search is an exact matching-based search using "tokens", or strings of characters.
 
 It uses the BM25 algorithm, which ranks matching documents according to their relevance to a given search query. At a high level, the BM25 algorithm uses the count of query terms in the document (term frequency) against the overall frequency of the term in the dataset (inverse document frequency) to calculate a relevance score.

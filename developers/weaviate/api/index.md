@@ -16,8 +16,6 @@ image: og/docs/api.jpg
 - [Concepts: Interface](../concepts/interface.md)
 :::
 
-## Overview
-
 This section includes references for the RESTful and GraphQL APIs. RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 
 ### References - Search

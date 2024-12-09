@@ -4,8 +4,6 @@ sidebar_position: 200
 image: og/wcs/user_guides.jpg
 ---
 
-## Overview
-
 Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service.
 
 Weaviate Embeddings integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.

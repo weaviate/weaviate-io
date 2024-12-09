@@ -6,10 +6,6 @@ image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
 
-
-
-## Overview
-
 The `text2vec-contextionary` module enables Weaviate to obtain vectors locally using a lightweight model.
 
 Key notes:

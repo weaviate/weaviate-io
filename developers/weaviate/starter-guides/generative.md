@@ -16,9 +16,6 @@ import TSCodeEduDemoLegacy from '!!raw-loader!/_includes/code/starter-guides/gen
 import TSCodeLocal from '!!raw-loader!/_includes/code/starter-guides/generative_local.ts';
 import TSCodeLocalLegacy from '!!raw-loader!/_includes/code/starter-guides/generative_local-v2.ts';
 
-
-## Overview
-
 :::info Related pages
 - [Which Weaviate is right for me?](./which-weaviate.md)
 - [How-to: Retrieval augmented generation](../search/generative.md)

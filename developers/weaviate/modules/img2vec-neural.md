@@ -9,9 +9,6 @@ image: og/docs/modules/img2vec-neural.jpg
 For new projects, we recommend using the [Transformers multi-modal integration](../model-providers/transformers/embeddings-multimodal.md) module instead of `img2vec-neural`. This uses CLIP models, which uses a more modern model architecture than `resnet` models used in `img2vec-neural`. CLIP models are also multi-modal, meaning they can handle both images and text and therefore applicable to a wider range of use cases.
 :::
 
-
-## Overview
-
 The `img2vec-neural` module enables Weaviate to obtain vectors locally images using a [`resnet50`](https://arxiv.org/abs/1512.03385) model.
 
 `img2vec-neural` encapsulates the model in a Docker container, which allows independent scaling on GPU-enabled hardware while keeping Weaviate on CPU-only hardware, as Weaviate is CPU-optimized.
