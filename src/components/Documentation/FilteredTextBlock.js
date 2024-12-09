@@ -10,14 +10,14 @@ const GITHUB_CONFIG = {
 const DOC_SYSTEMS = {
     py: {
         baseUrl:
-            'https://weaviate-python-client.readthedocs.io/en/stable/weaviate.html',
-        constructUrl: (baseUrl, ref) => `${baseUrl}#weaviate.${ref}`,
+            'https://weaviate-python-client.readthedocs.io/en/stable',
+        constructUrl: (baseUrl, ref) => `${baseUrl}/${ref}`,
         icon: '/img/site/logo-py.svg',
     },
     pyv3: {
         baseUrl:
-            'https://weaviate-python-client.readthedocs.io/en/v3.26.2/weaviate.html',
-        constructUrl: (baseUrl, ref) => `${baseUrl}#weaviate.${ref}`,
+            'https://weaviate-python-client.readthedocs.io/en/v3.26.2',
+        constructUrl: (baseUrl, ref) => `${baseUrl}/${ref}`,
         icon: '/img/site/logo-py.svg',
     },
     ts: {
