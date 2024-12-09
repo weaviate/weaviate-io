@@ -42,7 +42,7 @@ These users' permissions can be modified through Weaviate by those with the appr
 Permissions in Weaviate define what actions users can perform on specific resources. Each permission consists of:
 
 - A resource type (e.g., collections, objects)
-- Access levels (read, write, update, delete)
+- Access levels (read, write, update, delete, manage)
 - Optional resource-specific constraints
 
 ### Available permissions
@@ -136,21 +136,274 @@ This example confers viewer permissions to a user for collections starting with 
 
 </Tabs>
 
+import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
+
 ## Role management
+To manage roles, first we must connect to the client with an API key that has access to do so, such as an admin API key.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AdminClient"
+      endMarker="# END AdminClient"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Create a role
+To create a role, we provide the `role_name` and a list of permissions.
+For example, below we are creating a role called "devrel". 
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START CreateRole"
+      endMarker="# END CreateRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Add permissions to a role
+There are two ways to add permissions to a role:
+1. You can add them while creating the role.
+2. You can add them later, with `add_permissions()`
+
+**Scenario 1: Create new role with Permissions**
+
+Let's change the example above by providing a list of permissions to the "devrel" role while creating it. In this example, we're allowing "devrel" to reaad all collections starting with the word "Test_". But we are also additionaly allowing them to delete and create the collection "Test_DevRel".
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddRoleAtCreate"
+      endMarker="# END AddRoleAtCreate"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+**Scenario 2: Grant additional data permissions**
+
+Next, let's grant additional permissions to the "devrel". In this example, we're now giving the role "devrel" to read data in all collections that start with "Test_" but they can additionally create new data in "Test_DevRel" too.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddRoles"
+      endMarker="# END AddRols"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+**Scenario 3: Grant permission for role management**
+
+In some situations, we may have to provide some users with access to manage a certain group of roles. 
+For example, we may create a new role calle "devrel-admin" who could have the permission to manage the role "devrel", but only read any other role starting with `devrel-".
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ManageRoles"
+      endMarker="# END ManageRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+**Scenario 3: Grant permission for Cluster and Node Inspection**
+
+Finally, let's add some extra permissions around inspecting the Cluster and Nodes to the "devrel-admin". In this case, we would like them to be able to insepct the Nodes for "Test_DevRel", and to be able to inspect the configuration of the cluster.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ClusterAndNodePermissions"
+      endMarker="# END ClusterAndNodePermissions"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Assign a role to a user
+When connected to weaviate as an admin, we can assign one or more roles to a given user. For example, let's assign the "devrel" role to "jane-doe"
 
-### Get the current user's roles
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AssignRole"
+      endMarker="# END AssignRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### List a user's roles and permissions
+There are two ways you can get a user's roles and permissions:
+1. You can get the roles `of_current_user`, which lists the roles and permissions of the current client.
+2. You can list the roles and permissions `by_user`, if you have access to read that users roles and permissions.
+
+For example, the `admin_client` below is first listing its own roles, then, of the user "jane-doe" specicifically.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListUserRoles"
+      endMarker="# END ListUserRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Check if a role exists
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START CheckRoleExists"
+      endMarker="# END CheckRoleExists"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Inspect a role
-
-### List a user's roles
 
 ### List all roles
 
