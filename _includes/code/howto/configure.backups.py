@@ -93,15 +93,32 @@ client.collections.delete(["Article", "Publication"])
 # ==============================================
 
 # Note - this will fail in automated tests as the backup is already completed
-"""
+
+# Create the collections, whether they exist or not
+client.collections.delete(["Article", "Publication"])
+articles = client.collections.create(name="Article")
+publications = client.collections.create(name="Publication")
+
+articles.data.insert(properties={"title": "Dummy"})
+publications.data.insert(properties={"title": "Dummy"})
+
+# Start a backup to cancel
+result = client.backup.create(
+    backup_id="some-unwanted-backup",
+    backend="filesystem",
+    include_collections=["Article", "Publication"],
+    wait_for_completion=False,
+)
+
+print(result)
+
 # START CancelBackup
 result = client.backup.cancel(
-    backup_id="my-very-first-backup",
+    backup_id="some-unwanted-backup",
     backend="filesystem",
 )
 
 print(result)
 # END CancelBackup
-"""
 
 client.close()
