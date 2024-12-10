@@ -42,7 +42,7 @@ These users' permissions can be modified through Weaviate by those with the appr
 Permissions in Weaviate define what actions users can perform on specific resources. Each permission consists of:
 
 - A resource type (e.g., collections, objects)
-- Access levels (read, write, update, delete)
+- Access levels (read, write, update, delete, manage)
 - Optional resource-specific constraints
 
 ### Available permissions
@@ -136,28 +136,403 @@ This example confers viewer permissions to a user for collections starting with 
 
 </Tabs>
 
+import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
+
 ## Role management
+To manage roles, the authenticated user must have appropriate `role` resource permissions.
+The example below that the admin key is associated with an admin user. For more information check out the [Authentication](./authentication.md) and [Authorization](./authorization.md) docs.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AdminClient"
+      endMarker="# END AdminClient"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Create a role
+To create a role, we provide the `role_name` and a list of permissions.
+For example, below we are creating a role called "devrel". 
 
-### Add permissions to a role
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START CreateRole"
+      endMarker="# END CreateRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Create new role with Permissions
+
+This creates a "devrel" role with permissions to:
+- Reaad all collections starting with the word "Test_".
+- Delete or create the collection "Test_DevRel"
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddRoleAtCreate"
+      endMarker="# END AddRoleAtCreate"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Grant additional permissions
+
+This adds to the "devrel" role permissions to:
+- Read data in all collections that start with "Test_".
+- Create new data in "Test_DevRel".
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddRoles"
+      endMarker="# END AddRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Remove permissions from a role
+
+The example below, removes the permissions to:
+- Read the data from collections that start with "Test-"
+- Create and delete collections called "Test_DevRel" 
+
+from the "devrel" role.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START RemovePermissions"
+      endMarker="# END RemovePermissions"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+If the permission is the last one available for a given role, this will delete the role.
 
 ### Assign a role to a user
+The example below assigns the "devrel" role to "jane-doe".
 
-### Get the current user's roles
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AssignRole"
+      endMarker="# END AssignRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Gete the current user's roles and permissions
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListCurrentUserRoles"
+      endMarker="# END ListCurrentUserRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Gete a user's roles and permissions
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListUserRoles"
+      endMarker="# END ListUserRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Check if a role exists
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START CheckRoleExists"
+      endMarker="# END CheckRoleExists"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### Inspect a role
 
-### List a user's roles
+<Tabs groupId="languages">
 
-### List all roles
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START InspectRole"
+      endMarker="# END InspectRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### List all Roles
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListAllRoles"
+      endMarker="# END ListAllRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### List users with a role
 
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AssignedUsers"
+      endMarker="# END AssignedUsers"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
 ### Delete a role
 
-### Revoke a role from a user
+<Tabs groupId="languages">
 
-### Remove a permission from a role
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START DeleteRole"
+      endMarker="# END DeleteRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Revoke a role from a user
+You can revoke one or more roles from a specific user. Below, we are revoking "role-1" and "role-2" from the user "jane-doe".
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START RevokeRoles"
+      endMarker="# END RevokeRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
