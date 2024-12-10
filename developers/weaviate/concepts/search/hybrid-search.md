@@ -164,7 +164,21 @@ The alpha value determines the weight of the vector search results in the final 
 - `alpha > 0.5`: More weight to vector search
 - `alpha < 0.5`: More weight to keyword search
 
-### Further resources
+## Search Thresholds
+
+Hybrid search supports a maximum vector distance threshold through the `max vector distance` parameter.
+
+This threshold applies only to the vector search component of the hybrid search, allowing you to filter out results that are too dissimilar in vector space, regardless of their keyword search scores.
+
+For example, consider a maximum vector distance of `0.3`. This means objects with a vector distance higher than `0.3` will be excluded from the hybrid search results, even if they have high keyword search scores.
+
+This can be useful when you want to ensure semantic similarity meets a minimum standard while still taking advantage of keyword matching.
+
+There is no equivalent threshold parameter for the keyword (BM25) component of hybrid search or the final combined scores.
+
+This is because BM25 scores are not normalized or bounded like vector distances, making a universal threshold less meaningful.
+
+## Further resources
 
 - [How-to: Search](../../search/index.md)
 - [How-to: Hybrid search](../../search/hybrid.md)
