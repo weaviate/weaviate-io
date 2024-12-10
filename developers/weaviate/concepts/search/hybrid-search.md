@@ -178,7 +178,7 @@ There is no equivalent threshold parameter for the keyword (BM25) component of h
 
 This is because BM25 scores are not normalized or bounded like vector distances, making a universal threshold less meaningful.
 
-### Further resources
+## Further resources
 
 - [How-to: Search](../../search/index.md)
 - [How-to: Hybrid search](../../search/hybrid.md)
