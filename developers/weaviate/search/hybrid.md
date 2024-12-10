@@ -623,14 +623,14 @@ The output is like this:
 :::info Added in `v1.25`
 :::
 
-You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`. An equvalent `distance` [threshold for vector search](./similarity.md#set-a-similarity-threshold) can be specified with the `max vector distance` parameter.
+You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`. An equivalent `distance` [threshold for vector search](./similarity.md#set-a-similarity-threshold) can be specified with the `max vector distance` parameter.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START VectorSimilarityPython"
-      endMarker="# END VectorSimilarityPython"
+      startMarker="# START VectorParametersPython"
+      endMarker="# END VectorParametersPython"
       language="python"
     />
   </TabItem>
@@ -666,6 +666,32 @@ The output is like this:
 />
 
 </details>
+
+## Hybrid search thresholds
+
+:::info Added in `v1.25`
+:::
+
+The only available search threshold is `max vector distance`, which will set the maximum allowable distance for the vector search component.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorSimilarityPython"
+      endMarker="# END VectorSimilarityPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
 
 ## Group results
 
