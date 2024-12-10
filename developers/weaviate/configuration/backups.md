@@ -143,7 +143,9 @@ To use any provider:
 1. Enable the module
     - Add the module name to the `ENABLE_MODULES` environment variable
     - On Weaviate Cloud instances, a relevant default module is enabled
-2. Configure the required environment variables
+2. Configure the required modules
+    - Option 1: Set the necessary environment variables
+    - Option 2 (Kubernetes): Configure the [Helm chart values](#kubernetes-configuration)
 
 Note multiple providers can be enabled simultaneously
 
@@ -657,6 +659,14 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
     />
   </TabItem>
 </Tabs>
+
+## Kubernetes configuration
+
+When running Weaviate on Kubernetes, you can configure the backup provider using Helm chart values.
+
+These values are available under the `backups` key in the `values.yaml` file. Refer to the inline documentation in the `values.yaml` file for more information.
+
+<!-- TODO - update this page with proper Helm docs. -->
 
 ## Technical Considerations
 
