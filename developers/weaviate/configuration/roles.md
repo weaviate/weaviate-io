@@ -139,7 +139,8 @@ This example confers viewer permissions to a user for collections starting with 
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 
 ## Role management
-To manage roles, first we must connect to the client with an API key that has access to do so, such as an admin API key.
+To manage roles, the authenticated user must have appropriate `role` resource permissions.
+The example below that the admin key is associated with an admin user. For more information check out the [Authentication](./authentication.md) and [Authorization](./authorization.md) docs.
 
 <Tabs groupId="languages">
 
@@ -257,69 +258,13 @@ This adds to the "devrel" role permissions to:
 
 </Tabs>
 
-<!-- **Scenario 3: Grant permission for role management**
-
-In some situations, we may have to provide some users with access to manage a certain group of roles. 
-For example, we may create a new role called "devrel-admin" who could have the permission to manage the role "devrel", but only read any other role starting with `devrel-".
-
-<Tabs groupId="languages">
-
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={RolePyCode}
-      startMarker="# START ManageRoles"
-      endMarker="# END ManageRoles"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    TBD
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    TBD
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    TBD
-  </TabItem>
-
-</Tabs>
-
-**Scenario 3: Grant permission for Cluster and Node Inspection**
-
-Finally, let's add some extra permissions around inspecting the Cluster and Nodes to the "devrel-admin". In this case, we would like them to be able to insepct the Nodes for "Test_DevRel", and to be able to inspect the configuration of the cluster.
-
-<Tabs groupId="languages">
-
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={RolePyCode}
-      startMarker="# START ClusterAndNodePermissions"
-      endMarker="# END ClusterAndNodePermissions"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-    TBD
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    TBD
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    TBD
-  </TabItem>
-
-</Tabs> -->
-
 ### Remove permissions from a role
-You can provide a list of `Permissions` and a role name to the `remove_permissions` mehtod, to remove the permissions from that role. If the permissions you've provided do not exist in the first place, it will be ignored. If the permission is the last one available for a given role, this will delete the role.
 
-In the example below, we are removing the permissions to read the data from collections that start with "Test-" and the permission to create and delete collections called "Test_DevRel" from the "devrel" role.
+The example below, removes the permissions to:
+- Read the data from collections that start with "Test-"
+- Create and delete collections called "Test_DevRel" 
+
+from the "devrel" role.
 
 <Tabs groupId="languages">
 
@@ -346,8 +291,10 @@ In the example below, we are removing the permissions to read the data from coll
 
 </Tabs>
 
+If the permission is the last one available for a given role, this will delete the role.
+
 ### Assign a role to a user
-When connected to weaviate as an admin, we can assign one or more roles to a given user. For example, let's assign the "devrel" role to "jane-doe"
+The example below assigns the "devrel" role to "jane-doe".
 
 <Tabs groupId="languages">
 

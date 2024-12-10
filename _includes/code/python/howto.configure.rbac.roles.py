@@ -85,7 +85,9 @@ print(admin_client.roles.of_current_user())
 # END ListCurrentUserRoles
 
 # START ListUserRoles
-admin_client.roles.roles.by_user(user="jane-doe")
+user_roles = admin_client.roles.roles.by_user(user="jane-doe")
+for role in user_roles:
+    print(role)
 # END ListUserRoles
 
 # START CheckRoleExists
@@ -93,15 +95,21 @@ admin_client.roles.exists(role_name="role-name")
 # END CheckRoleExists
 
 # START InspectRole
-admin_client.roles.by_name(role_name="role-name")
+print(admin_client.roles.by_name(role_name="role-name"))
 # END InspectRole
 
 # START AssignedUsers
-admin_client.roles.assigned_users(role_name="role-name")
+assigned_users = admin_client.roles.assigned_users(role_name="role-name")
+
+for user in assigned_users:
+    print(user)
 # END AssignedUsers
 
 # START ListAllRoles
-admin_client.roles.list_all()
+all_roles = admin_client.roles.list_all()
+
+for role_name, role in all_roles.items():
+    print(role_name, role)
 # END ListAllRoles
 
 
@@ -129,4 +137,5 @@ permissions = [
 
 admin_client.roles.remove_permissions(
     role_name="devrel", permissions=permissions
-)# END RemovePermissions
+)
+# END RemovePermissions
