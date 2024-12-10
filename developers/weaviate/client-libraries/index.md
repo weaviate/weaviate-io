@@ -6,9 +6,6 @@ image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
 ---
 
-
-## Overview
-
 You can interact with Weaviate by using the GraphQL or RESTful API directly, or with one of the available client libraries.
 
 Currently, Weaviate supports:

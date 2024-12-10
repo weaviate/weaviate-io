@@ -11,8 +11,6 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Overview
-
 Various 'additional properties', also called 'metadata', can be retrieved in queries.
 
 ### Available additional properties

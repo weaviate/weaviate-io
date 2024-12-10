@@ -102,7 +102,7 @@ export default function introduction() {
             </Link>
             <span>
               Have questions about pricing? <br></br>
-              <Link to="/#contact-us">Contact us</Link>
+              <Link to="/contact">Contact us</Link>
             </span>
           </div>
         </div>

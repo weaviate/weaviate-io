@@ -135,7 +135,7 @@ export default function Main() {
               >
                 Get Started
               </Link>
-              <Link to="/#contact-us" className={styles.buttonLight}>
+              <Link to="/contact" className={styles.buttonLight}>
                 Talk to Sales
               </Link>
             </div>

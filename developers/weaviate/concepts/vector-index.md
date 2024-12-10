@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/vector-search-explained) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
+What is vector indexing? It's a key component of vector databases that helps to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/vector-search-explained) with only a minimal tradeoff in search accuracy ([HNSW index](#hierarchical-navigable-small-world-hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indexes).
 
@@ -20,9 +20,13 @@ Available starting in `v1.25`. This is an experimental feature. Use with caution
 
 This page explains what vector indexes are, and what purpose they serve in the Weaviate vector database.
 
+:::info What is a vector index?
+In vector databases, a vector index is a data structure that organizes vector embeddings to enable efficient similarity search. Indexing vector databases properly is crucial for performance, and different index types serve different purposes - from the simple flat index to more sophisticated approaches like HNSW.
+:::
+
 ## Why do you need vector indexing?
 
-[Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) are a great way to represent meaning. Vectors embeddings are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The number of elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
+[Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) are a great way to represent meaning. Understanding how to index a vector is crucial for working with vector databases effectively. Vectors embeddings are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The number of elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
 
 Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure semantic similarity between data objects. When you run a [similarity search](https://weaviate.io/developers/weaviate/search/similarity), a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
 
@@ -43,6 +47,8 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 :::tip
 You might be also interested in our blog post [Vector search explained](https://weaviate.io/blog/vector-search-explained).
 :::
+
+Let's explore how to index a vector using different approaches supported by Weaviate. The first method is the HNSW index.
 
 ## Hierarchical Navigable Small World (HNSW) index
 
@@ -172,7 +178,7 @@ The use of an on-disk queue may result in a slight increase in disk usage, howev
 :::info Added in `v1.23`
 :::
 
-The **flat index** is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
+The **flat index** is one of the fundamental ways to implement vector indexing in databases. As the name suggests, it's a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
 
 As the name suggests, the flat index is a single layer of disk-backed data objects and thus a very small memory footprint. The flat index is a good choice for small collections, such as for multi-tenancy use cases.
 

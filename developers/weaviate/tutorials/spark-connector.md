@@ -6,9 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']
 ---
 
-
-## Overview
-
 This tutorial is designed to show you an example of how to use the [Spark Connector](https://github.com/weaviate/spark-connector) to import data into Weaviate from Spark.
 
 By the end of this tutorial, you'll be able to see how to you can import your data into [Apache Spark](https://spark.apache.org/) and then use the Spark Connector to write your data to Weaviate.

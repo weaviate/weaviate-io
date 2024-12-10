@@ -11,9 +11,6 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-
-## Overview
-
 This page covers the search operators that can be used in queries, such as vector search operators (`nearText`, `nearVector`, `nearObject`, etc), keyword search operator (`bm25`), hybrid search operator (`hybrid`).
 
 Only one search operator can be added to queries on the collection level.
