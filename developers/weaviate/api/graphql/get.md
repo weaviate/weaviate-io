@@ -12,8 +12,6 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Overview
-
 This page covers object-level query functions. They are collectively referred to as `Get` queries within.
 
 

@@ -6,9 +6,6 @@ image: og/docs/installation.jpg
 tags: ['installation', 'Google Cloud Marketplace']
 ---
 
-
-## Overview
-
 You can use [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) to directly launch a Weaviate cluster.
 
 :::info Prerequisites

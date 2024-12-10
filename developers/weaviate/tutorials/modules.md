@@ -6,9 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
 
-
-## Overview
-
 In this guide, you will get an introduction to the role that modules play in Weaviate.
 
 As their name suggest, Weaviate modules are options components to enhance Weaviate's functionality, such as to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.

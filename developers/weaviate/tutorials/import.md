@@ -5,9 +5,8 @@ sidebar_position: 30
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
-import { DownloadButton } from '/src/theme/Buttons';
 
-## Overview
+import { DownloadButton } from '/src/theme/Buttons';
 
 In this section, we will explore data import, including details of the batch import process. We will discuss points such as how vectors are imported, what a batch import is, how to manage errors, and some advice on optimization.
 

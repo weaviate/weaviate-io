@@ -74,7 +74,7 @@ nodes = parser.get_nodes_from_documents(blogs)
 
 Here, we use the SimpleDirectoryReader to load in all documents from a given directory. We then use our `SimpleNodeParser` to chunk up the source documents into Node objects (text chunks).
 
-The next step is to 1) define a `WeaviateVectorStore`, and 2) build a vector index over this vector store using LlamaIndex.
+The next step is to 1) define a `WeaviateVectorStore`, and 2) build a [vector index](/developers/weaviate/concepts/vector-index) over this vector store using LlamaIndex.
 
 ```python
 from llama_index.vector_stores import WeaviateVectorStore
