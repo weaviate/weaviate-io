@@ -302,10 +302,10 @@ assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # End test
 
 # =========================================
-# ===== Hybrid with vector similarity =====
+# ===== Hybrid with vector parameters =====
 # =========================================
 
-# START VectorSimilarityPython
+# START VectorParametersPython
 from weaviate.classes.query import HybridVector, Move, HybridFusion
 
 jeopardy = client.collections.get("JeopardyQuestion")
@@ -317,6 +317,27 @@ response = jeopardy.query.hybrid(
         query="large animal",
         move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
     ),
+    # highlight-end
+    alpha=0.75,
+    limit=5,
+)
+# END VectorParametersPython
+
+assert len(response.objects) <= 5
+assert len(response.objects) > 0
+
+# =========================================
+# ===== Hybrid with vector similarity threshold =====
+# =========================================
+
+# START VectorSimilarityPython
+from weaviate.classes.query import HybridVector, Move, HybridFusion
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    query="California",
+    # highlight-start
+    max_vector_distance=0.4,  # Maximum threshold for the vector search component
     # highlight-end
     alpha=0.75,
     limit=5,
