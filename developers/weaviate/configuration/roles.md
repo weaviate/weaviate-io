@@ -239,7 +239,7 @@ Next, let's grant additional permissions to the "devrel". In this example, we're
     <FilteredTextBlock
       text={RolePyCode}
       startMarker="# START AddRoles"
-      endMarker="# END AddRols"
+      endMarker="# END AddRoles"
       language="py"
     />
   </TabItem>
@@ -468,7 +468,7 @@ For example, the `admin_client` below is first listing its own roles, then, of t
     <FilteredTextBlock
       text={RolePyCode}
       startMarker="# START ListAllRoles"
-      endMarker="# END ListAllRolesd"
+      endMarker="# END ListAllRoles"
       language="py"
     />
   </TabItem>

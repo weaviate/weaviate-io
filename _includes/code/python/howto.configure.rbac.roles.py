@@ -1,9 +1,5 @@
 import weaviate
 
-# START-ANY
-from weaviate.classes.rbac import Permissions
-# END-ANY
-
 # START AdminClient 
 from weaviate.classes.init import Auth
 
@@ -12,6 +8,7 @@ admin_client = weaviate.connect_to_local(auth_credentials=Auth.api_key("admin-ke
 # END AdminClient
 
 # START CreateRole
+from weaviate.classes.rbac import Permissions
 
 admin_client.roles.create(
     role_name="devrel", permissions=<LIST-OF-PERMISSIONS>
@@ -19,6 +16,7 @@ admin_client.roles.create(
 # END CreateRole
 
 # START AddRoleAtCreate
+from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
@@ -41,6 +39,8 @@ admin_client.roles.create(
 # END AddRoleAtCreate
 
 # START AddRoles
+from weaviate.classes.rbac import Permissions
+
 permissions = [
     Permissions.data(collection="Test_DevRel", read=True, create=True),
     Permissions.data(collection="Test_*", read=True, create=False)
@@ -50,6 +50,8 @@ admin_client.roles.add_permissions(permissions=permissions, role_name="devrel")
 # END AddRoles
 
 # START ManageRoles
+from weaviate.classes.rbac import Permissions
+
 permissions = [
     Permissions.roles(role_names="devrel", read=True, manage=True),
     Permissions.roles(role_names="devrel-*", read=True, manage=False)
@@ -59,6 +61,8 @@ admin_client.roles.create(role_name="devrel-admin", permissions=permissions)
 # END ManageRoles
 
 # START ClusterAndNodePermissions
+from weaviate.classes.rbac import Permissions
+
 permissions = [
     Permissions.cluster(read=True),
     Permissions.nodes(collection="Test_DevRel", verbosity="verbose", read=True)
@@ -73,44 +77,38 @@ admin_client.roles.assign_to_user(role_names="devrel", user="jane-doe")
 # END AssignRole
 
 # START ListUserRoles
-
 admin_client.roles.of_current_user()
 admin_client.roles.roles.by_user(user="jane-doe")
 # END ListUserRoles
 
 # START CheckRoleExists
-
 admin_client.roles.exists(role_name="role-name")
 # END CheckRoleExists
 
 # START InspectRole
-
 admin_client.roles.by_name(role_name="role-name")
 # END InspectRole
 
 # START AssignedUsers
-
 admin_client.roles.assigned_users(role_name="role-name")
 # END AssignedUsers
 
 # START ListAllRoles
-
 admin_client.roles.list_all()
 # END ListAllRoles
 
 
 # START DeleteRole
-
 admin_client.roles.delete(role_name="role-name")
 # END DeleteRole
 
-# START RevoveRoles
-
+# START RevokeRoles
 admin_client.roles.revoke_from_user(role_names=["role-1", "role-2"], user="jane-doe")
-# END RevoveRoles
+# END RevokeRoles
 
 
 # START RemovePermissions
+from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
