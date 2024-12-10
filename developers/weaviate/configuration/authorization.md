@@ -102,9 +102,21 @@ They are assigned to users based on the Weaviate configuration file. Once a user
 
 For more information on roles and permissions, see [this page](./roles.md).
 
-:::caution At least one admin user required
+:::tip At least one admin user required
 When using RBAC, you must specify at least one user with the build-in admin role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
 :::
+
+### Discussions: RBAC and performance
+
+RBAC is a powerful feature that allows you to define fine-grained access control policies. However, it can also have an impact on performance as each operation must be checked against the user's permissions.
+
+The exact performance impact will depend on your set up and use case. In our internal testing, the most significant performance impact was seen for object creation operations.
+
+We did not observe additional performance penalities for using custom roles over the built-in roles.
+
+Here are some tips to optimize performance when using RBAC:
+- Monitor object creation performance
+- Use a high availability (i.e. 3+ nodes) setup to distribute the load
 
 ### RBAC: Docker
 
