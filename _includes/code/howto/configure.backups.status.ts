@@ -24,3 +24,12 @@ let restoreStatus = await client.backup.getRestoreStatus({
 console.log(restoreStatus);
 // END StatusRestoreBackup
 
+
+// START CancelBackup
+let cancelStatus = await client.backup.cancel({
+  backupId: 'my-very-first-backup',
+  backend: 'filesystem'
+})
+
+console.log(cancelStatus);
+// END CancelBackup

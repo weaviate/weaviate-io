@@ -5,9 +5,6 @@ image: og/docs/tutorials.jpg
 # tags: ['how to', 'schema']
 ---
 
-
-## Overview
-
 This tutorial is designed to show you an example of how to create a schema in Weaviate.
 
 By the end of this tutorial, you should have a good idea of how to create a schema. You will begin to see why it is important, and where to find the relevant information required for schema definition.

@@ -1,5 +1,6 @@
 ---
 title: Object-level queries (Get)
+description: Fetch data from Weaviate with GraphQL's get queries for efficient retrieval.
 sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
@@ -10,8 +11,6 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
-
-## Overview
 
 This page covers object-level query functions. They are collectively referred to as `Get` queries within.
 

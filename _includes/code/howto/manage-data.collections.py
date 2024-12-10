@@ -273,6 +273,43 @@ client.collections.delete("Article")
 
 
 # ===============================================
+# ===== UPDATE A COLLECTION'S RERANKER MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    reranker_config=Configure.Reranker.voyageai()
+    # highlight-end
+)
+
+# START UpdateReranker
+from weaviate.classes.config import Reconfigure
+
+collection = client.collections.get("Article")
+
+collection.config.update(
+    # highlight-start
+    reranker_config=Reconfigure.Reranker.cohere()  # Update the reranker module
+    # highlight-end
+)
+# END UpdateReranker
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.reranker_config.reranker == "reranker-cohere"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
@@ -322,6 +359,43 @@ client.collections.create(
 collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.generative_config.generative == "generative-openai"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
+# ===== UPDATE A COLLECTION'S GENERATIVE MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    generative_config=Configure.Generative.openai()
+    # highlight-end
+)
+
+# START UpdateGenerative
+from weaviate.classes.config import Reconfigure
+
+collection = client.collections.get("Article")
+
+collection.config.update(
+    # highlight-start
+    generative_config=Reconfigure.Generative.cohere()  # Update the generative module
+    # highlight-end
+)
+# END UpdateGenerative
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.generative_config.generative == "generative-cohere"
 
 # Delete the collection to recreate it
 client.collections.delete("Article")

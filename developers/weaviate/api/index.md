@@ -1,5 +1,6 @@
 ---
 title: Reference - API
+description: Weaviate API Documentation
 sidebar_position: 0
 image: og/docs/api.jpg
 # tags: ['schema']
@@ -14,8 +15,6 @@ image: og/docs/api.jpg
 :::info Related pages
 - [Concepts: Interface](../concepts/interface.md)
 :::
-
-## Overview
 
 This section includes references for the RESTful and GraphQL APIs. RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 

@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: "Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral', 'generative', 'rag']
@@ -78,7 +79,11 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Mistral generative model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use a Mistral generative model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

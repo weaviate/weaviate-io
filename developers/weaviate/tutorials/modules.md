@@ -1,12 +1,10 @@
 ---
 title: Modules - an introduction
+description: Learn about Weaviate modules and enhance your data solutions with specialized features.
 sidebar_position: 90
 image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
-
-
-## Overview
 
 In this guide, you will get an introduction to the role that modules play in Weaviate.
 

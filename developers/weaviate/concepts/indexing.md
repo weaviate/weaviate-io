@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 Weaviate supports several types of indexes.
 
-1. **Vector indexes** - a vector index (e.g. HNSW or flat) is used to serve all vector-search queries.
+1. **[Vector indexes](./vector-index.md)** - a vector index (e.g. HNSW or flat) is used to serve all vector-search queries.
 1. **Inverted indexes** - inverted indexes enable BM25 queries, or speed up filtering.
 
 You can configure indexes in Weaviate per collection.

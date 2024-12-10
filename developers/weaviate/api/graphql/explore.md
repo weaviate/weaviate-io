@@ -14,8 +14,6 @@ As a result, `Explore` is not available on [Weaviate Cloud (WCD)](https://consol
 
 :::
 
-## Overview
-
 Use `Explore` to perform vector searches across multiple collections. Note that `Explore` is currently not available in the gRPC API.
 
 ### Requirements

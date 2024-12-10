@@ -1,5 +1,6 @@
 ---
 title: Hello, Weaviate
+description: Explore Weaviate theory, from data structure basics to advanced concepts.
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

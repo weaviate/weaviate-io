@@ -56,7 +56,7 @@ Return the number  of objects matched by the query.
       text={PyCodeV3}
       startMarker="# MetaCount Python"
       endMarker="# END MetaCount Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -74,7 +74,7 @@ Return the number  of objects matched by the query.
       text={TSCodeLegacy}
       startMarker="// MetaCount TS"
       endMarker="// END MetaCount TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -129,7 +129,7 @@ This example counts occurrence frequencies in the `question` property:
       text={PyCodeV3}
       startMarker="# TextProp Python"
       endMarker="# END TextProp Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -147,7 +147,7 @@ This example counts occurrence frequencies in the `question` property:
       text={TSCodeLegacy}
       startMarker="// TextProp TS"
       endMarker="// END TextProp TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -202,7 +202,7 @@ This  example sums the `points` property.
       text={PyCodeV3}
       startMarker="# IntProp Python"
       endMarker="# END IntProp Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -220,7 +220,7 @@ This  example sums the `points` property.
       text={TSCodeLegacy}
       startMarker="// IntProp TS"
       endMarker="// END IntProp TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -277,7 +277,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={PyCodeV3}
       startMarker="# groupBy Python"
       endMarker="# END groupBy Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -295,7 +295,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
       text={TSCodeLegacy}
       startMarker="// groupBy TS"
       endMarker="// END groupBy TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -358,7 +358,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
       text={PyCodeV3}
       startMarker="# nearTextWithLimit Python"
       endMarker="# END nearTextWithLimit Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -371,21 +371,21 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
     />
   </TabItem>
 
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// nearTextWithLimit TS"
+      endMarker="// END nearTextWithLimit TS"
+      language="tsv2"
+    />
+  </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
       startMarker="// START nearTextWithLimit"
       endMarker="// END nearTextWithLimit"
       language="gonew"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS Client v2">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// nearTextWithLimit TS"
-      endMarker="// END nearTextWithLimit TS"
-      language="js"
     />
   </TabItem>
 
@@ -412,7 +412,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
   />
 </details>
 
-## Set a similarity `distance`
+### Set a similarity `distance`
 
 You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
 
@@ -436,7 +436,7 @@ Use `distance` to specify how similar the objects should be.
       text={PyCodeV3}
       startMarker="# nearTextWithDistance Python"
       endMarker="# END nearTextWithDistance Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -454,7 +454,7 @@ Use `distance` to specify how similar the objects should be.
       text={TSCodeLegacy}
       startMarker="// nearTextWithDistance TS"
       endMarker="// END nearTextWithDistance TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -490,6 +490,79 @@ Use `distance` to specify how similar the objects should be.
   />
 </details>
 
+## Aggregate with a `hybrid search`
+
+You can use `Aggregate` with a [hybrid search](./hybrid.md) operator.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# HybridExample"
+      endMarker="# END HybridExample"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# HybridExample"
+      endMarker="# END HybridExample"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// HybridExample"
+      endMarker="// END HybridExample"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// nearTextWithLimit TS"
+      endMarker="// END nearTextWithLimit TS"
+      language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START nearTextWithLimit"
+      endMarker="// END nearTextWithLimit"
+      language="gonew"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GraphQLHybridExample"
+      endMarker="# END GraphQLHybridExample"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+  The output is like this:
+
+  <FilteredTextBlock
+    text={PyCodeV3}
+    startMarker="# ResultsHybridExample"
+    endMarker="# END ResultsHybridExample"
+    language="json"
+  />
+</details>
+
 ## Filter results
 
 For more specific results, use a `filter` to narrow your search.
@@ -509,7 +582,7 @@ For more specific results, use a `filter` to narrow your search.
       text={PyCodeV3}
       startMarker="# whereFilter Python"
       endMarker="# END whereFilter Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -527,7 +600,7 @@ For more specific results, use a `filter` to narrow your search.
       text={TSCodeLegacy}
       startMarker="// whereFilter TS"
       endMarker="// END whereFilter TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 

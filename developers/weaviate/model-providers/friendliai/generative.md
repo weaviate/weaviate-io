@@ -81,7 +81,11 @@ Provide the Friendli token to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a FriendliAI generative AI model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use a FriendliAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

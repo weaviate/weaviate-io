@@ -13,8 +13,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with Hugging Face's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -74,6 +76,14 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START HuggingFaceInstantiation"
+      endMarker="// END HuggingFaceInstantiation"
+      language="goraw"
+    />
+  </TabItem>
 </Tabs>
 
 ## Configure the vectorizer
@@ -99,6 +109,14 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerHuggingFace"
+      endMarker="// END BasicVectorizerHuggingFace"
+      language="goraw"
+    />
+  </TabItem>
 </Tabs>
 
 You must specify one of the [available models](#available-models) for the vectorizer to use.
@@ -116,6 +134,36 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 The following examples show how to configure Hugging Face-specific options.
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullVectorizerHuggingFace"
+      endMarker="# END FullVectorizerHuggingFace"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerHuggingFace"
+      endMarker="// END FullVectorizerHuggingFace"
+      language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerHuggingFace"
+      endMarker="// END FullVectorizerHuggingFace"
+      language="goraw"
+    />
+  </TabItem>
+
+</Tabs>
+
 #### Model selection parameters
 
 Only select one of the following parameters to specify the model:
@@ -129,6 +177,12 @@ The `passageModel` and `queryModel` parameters are used together to specify a [D
 
 The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
 :::
+
+#### Additional parameters
+
+- `options.waitForModel`: If the model is not ready, wait for it rather than returning a `503` error.
+- `options.useGPU`: Use a GPU for inference if your [account plan](https://huggingface.co/inference-api#pricing) supports it.
+- `options.useCache`: Use a cached result if available. (For non-deterministic models to prevent the caching mechanism from being used.)
 
 ## Data import
 
@@ -154,6 +208,14 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
+    />
+  </TabItem>
 </Tabs>
 
 :::tip Re-use existing vectors
@@ -192,6 +254,14 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
 </Tabs>
 
 ### Hybrid search
@@ -224,36 +294,17 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
+    />
+  </TabItem>
 </Tabs>
 
 ## References
-
-#### Other Parameters
-
-- `options.waitForModel`: If the model is not ready, wait for it rather than returning a `503` error.
-- `options.useGPU`: Use a GPU for inference if your [account plan](https://huggingface.co/inference-api#pricing) supports it.
-- `options.useCache`: Use a cached result if available. (For non-deterministic models to prevent the caching mechanism from being used.)
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerHuggingFace"
-      endMarker="# END FullVectorizerHuggingFace"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerHuggingFace"
-      endMarker="// END FullVectorizerHuggingFace"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
 
 ### Available models
 

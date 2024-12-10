@@ -1,9 +1,13 @@
 ---
-title: Generative AI
+title: Generative AI (Deprecated)
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_octoai.jpg
 # tags: ['model providers', 'octoai', 'generative', 'rag']
 ---
+
+import OctoAIDeprecationNote from './_includes/octoai_deprecation.md';
+
+<OctoAIDeprecationNote/>
 
 # OctoAI Generative AI with Weaviate
 
@@ -81,7 +85,11 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use an OctoAI generative AI model:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an OctoAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

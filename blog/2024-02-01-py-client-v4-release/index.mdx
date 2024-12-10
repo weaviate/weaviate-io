@@ -12,6 +12,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import PythonV3Code from '!!raw-loader!/_includes/code/connections/connect-python-v3.py';
 import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 
 ![Weaviate Python Client v4 Release](./img/hero.png)
@@ -106,7 +107,7 @@ Here is an example that really captures the difference between the `v4` and `v3`
       text={CollectionsV3}
       startMarker="# START CreateCollectionWithProperties"
       endMarker="# END CreateCollectionWithProperties"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 </Tabs>
@@ -180,7 +181,7 @@ Direct instantiation with full control over the parameters is also possible, too
     </TabItem>
     <TabItem value="v3" label="V3 API">
         <FilteredTextBlock
-            text={PythonCode}
+            text={PythonV3Code}
             startMarker="# InstantiationV3API"
             endMarker="# END InstantiationV3API"
             language="py"
@@ -272,6 +273,10 @@ The `v4` client introduces additional error handling operations. You can now mon
 ### Insertion methods
 
 There's also single insertion methods, of course. And to that, we've added a `insert_many` method which is a convenience method for inserting a list of objects.
+
+:::info Update: `insert_many` vs `batch`
+`insert_many` sends one request for the entire function call. For requests with a large number of objects, [consider using `batch` imports](/developers/weaviate/client-libraries/python#batch-imports).
+:::
 
 <Tabs groupId="languages">
     <TabItem value="batching" label="Batch">

@@ -60,6 +60,38 @@ client.collections.create(
 # Clean up
 client.collections.delete("DemoCollection")
 
+# START RerankerJinaAIBasic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.jinaai()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END RerankerJinaAIBasic
+
+# Clean up
+client.collections.delete("DemoCollection")
+
+# START RerankerJinaAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.jinaai(
+        model="jina-reranker-v2-base-multilingual"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END RerankerJinaAICustomModel
+
+# Clean up
+client.collections.delete("DemoCollection")
+
 # START RerankerVoyageAI
 client.collections.create(
     "DemoCollection",

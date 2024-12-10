@@ -1,11 +1,12 @@
 ---
-title: Quickstart
+title: Quickstart (with cloud resources)
 sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 hide_table_of_contents: true
 ---
 
+# Quickstart: with cloud resources
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -15,31 +16,70 @@ import TabItem from '@theme/TabItem';
 
 :::info What you will learn
 
-In this quickstart guide, you will:
+This quickstart shows you how to combine Weaviate Cloud and Cohere to:
 
-1. Set up Weaviate. (10 minutes)
-1. Populate the database. (10 minutes)
+1. Set up a Weaviate instance. (10 minutes)
+1. Add and vectorize your data. (10 minutes)
 1. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
 
+```mermaid
+flowchart LR
+    %% Define nodes with white backgrounds and darker borders
+    A1["Create Weaviate\nSandbox"] --> A2["Install client\nlibrary"]
+    A2 --> A3["Connect to\nWeaviate"]
+    A3 --> B1["Define collection\n(with an inference API)"]
+    B1 --> B2["Batch import\nobjects"]
+    B2 --> C1["Semantic search\n(nearText)"]
+    C1 --> C2["RAG\n(Generate)"]
+
+    %% Group nodes in subgraphs with brand colors
+    subgraph sg1 ["1. Setup"]
+        A1
+        A2
+        A3
+    end
+
+    subgraph sg2 ["2. Populate"]
+        B1
+        B2
+    end
+
+    subgraph sg3 ["3. Query"]
+        C1
+        C2
+    end
+
+    %% Style nodes with white background and darker borders
+    style A1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style C2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
+Notes:
+
+- The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+<!-- - Python users can try [our Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) locally or on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb). -->
+- If you prefer to use locally hosted resources, see [Quickstart: locally hosted](./local.md).
 :::
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
 ### Prerequisites
 
-This tutorial uses a Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud), and an [OpenAI](https://platform.openai.com/) API key.
+You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/). We will use free tiers (Weaviate Sandbox and Cohere trial API key) of both services.
 
-The Weaviate Sandbox is free, but the OpenAI usage may incur a small cost (e.g. < 10c US). If you have another, preferred [model provider](../model-providers/index.md), you can use that instead.
-
-:::note For Python users
-We have ([a Jupyter notebook](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)) available, or you can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb).
-:::
+If you have another, preferred [model provider](../model-providers/index.md), you can use that instead of Cohere.
 
 <hr/>
-
-:::tip Try it yourself
-The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
-:::
 
 ## Step 1: Set up Weaviate
 
@@ -196,8 +236,8 @@ A collection is a set of objects that share the same data structure, like a tabl
 :::
 
 The following example creates a *collection* called `Question` with:
-  - OpenAI [embedding model integration](../model-providers/openai/embeddings.md) to create vectors during ingestion & queries.
-  - OpenAI [generative AI integrations](../model-providers/openai/generative.md) for retrieval augmented generation (RAG).
+  - Cohere [embedding model integration](../model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
+  - Cohere [generative AI integrations](../model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
 import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
@@ -205,34 +245,36 @@ import CreateCollection from '/_includes/code/quickstart/quickstart.create_colle
 
 Run this code to create the collection to which you can add data.
 
+:::info What models are being used?
+You can optionally specify the model in the collection definition. As we did not specify models in the collection definition above, these integrations will use the Weaviate-defined default models.
+<br/>
+
+See the [model providers integration](../model-providers/index.md) section for more information.
+:::
+
 <details>
   <summary>Do you prefer a different setup?</summary>
 
 Weaviate is very flexible. If you prefer a different model provider integration, or prefer to import your own vectors, see one of the following guides:
-<br/>
 
 <div class="row">
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__header">
-          <h4>Prefer a different model provider?</h4>
-        </div>
-        <div class="card__body">
-          See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
-        </div>
+  <div class="col col--6 margin-top--xs padding-top--xs">
+    <div class="card">
+      <div class="card__header">
+        <h4>Prefer a different model provider?</h4>
+      </div>
+      <div class="card__body">
+        See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
       </div>
     </div>
   </div>
-  <div class="col col--6">
-    <div class="card-demo">
-      <div class="card">
-        <div class="card__header">
-          <h4>Want to specify object vectors?</h4>
-        </div>
-        <div class="card__body">
-          If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
-        </div>
+  <div class="col col--6 margin-top--xs padding-top--xs">
+    <div class="card">
+      <div class="card__header">
+        <h4>Want to specify object vectors?</h4>
+      </div>
+      <div class="card__body">
+        If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
       </div>
     </div>
   </div>
@@ -258,8 +300,8 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 
 Run this code to add the demo data.
 
-:::info OpenAI API key in the header
-Note that this code includes an additional header for the OpenAI API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
 
 <hr/>
@@ -304,8 +346,39 @@ If you inspect the full response, you will see that the word `biology` does not 
 
 Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
 
+Here is a diagram showing the workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    Query["🔍 Search:\n'biology'"]
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Results"]
+        R1["Most similar\ndocuments"]
+    end
+
+    Query --> VS1
+    VS3 --> R1
+
+    %% Style nodes with white background and darker borders
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
+
 :::info Where did the vectors come from?
-Weaviate used the OpenAI API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -320,7 +393,59 @@ Weaviate is capable of many types of searches. See, for example, our how-to guid
 
 Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
-RAG work by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+RAG works by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+
+This diagram shows the RAG workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    subgraph sg0 ["Weaviate Query"]
+        direction TB
+        Search["🔍 Search: \n'biology'"]
+        Prompt["✍️ Prompt: \n'Write a\ntweet...'"]
+    end
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Generation"]
+        direction LR
+        G1["Send\n(results + prompt)\nto LLM"]
+        G1 --> G2["Generate\nresponse"]
+    end
+
+    subgraph sg3 ["Results"]
+        direction TB
+        R1["Most similar\ndocuments"]
+        R2["Generated\ncontent"]
+    end
+
+    Search --> VS1
+    VS3 --> R1
+    Prompt --> G1
+    VS3 --> G1
+    G2 --> R2
+
+    %% Style nodes with white background and darker borders
+    style Search fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Prompt fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg0 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
 
 The following example combines the same search (for `biology`) with a prompt to generate a tweet.
 
@@ -369,7 +494,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../search">how to perform searches</a>, such as <a href="../search/bm25">keyword</a>, <a href="../search/similarity">similarity</a>, <a href="../search/hybrid">hybrid</a>, <a href="../search/image">image</a>, <a href="../search/filters">filtered</a> and <a href="../search/rerank">reranked</a> searches.
+            See <a href="/developers/weaviate/search">how to perform searches</a>, such as <a href="/developers/weaviate/search/bm25">keyword</a>, <a href="/developers/weaviate/search/similarity">similarity</a>, <a href="/developers/weaviate/search/hybrid">hybrid</a>, <a href="/developers/weaviate/search/image">image</a>, <a href="/developers/weaviate/search/filters">filtered</a> and <a href="/developers/weaviate/search/rerank">reranked</a> searches.
           </p>
         </div>
       </div>
@@ -381,7 +506,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="../manage-data">how to manage data</a>, such as <a href="../manage-data/collections">manage collections</a>, <a href="../manage-data/create">create objects</a>, <a href="../manage-data/import">batch import data</a> and <a href="../manage-data/multi-tenancy">use multi-tenancy</a>.
+            See <a href="/developers/weaviate/manage-data">how to manage data</a>, such as <a href="/developers/weaviate/manage-data/collections">manage collections</a>, <a href="/developers/weaviate/manage-data/create">create objects</a>, <a href="/developers/weaviate/manage-data/import">batch import data</a> and <a href="/developers/weaviate/manage-data/multi-tenancy">use multi-tenancy</a>.
           </p>
         </div>
       </div>
@@ -393,7 +518,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            Check out the <a href="../starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="../../academy/py/standalone/chunking">chunking</a>.
+            Check out the <a href="/developers/weaviate/starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="/developers/academy/py/standalone/chunking">chunking</a>.
           </p>
         </div>
       </div>
@@ -426,7 +551,7 @@ We provide answers to some common questions, or potential issues below.
 <details>
   <summary>See answer</summary>
 
-In this example, we use the `OpenAI` inference API. But you can use others.
+In this example, we use the `Cohere` inference API. But you can use others.
 
 If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
 - Ensure that the Weaviate module is available in the Weaviate instance you are using,
@@ -473,7 +598,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-openai"
+            "vectorizer": "text2vec-cohere"
         }
     ]
 }

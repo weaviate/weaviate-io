@@ -5,7 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-Vector indexes facilitate efficient, vector-first data storage and retrieval.
+[Vector indexes](../../concepts/vector-index.md) facilitate efficient, vector-first data storage and retrieval.
 
 ## HNSW indexes
 
@@ -237,8 +237,7 @@ services:
       QUERY_MAXIMUM_RESULTS: 10000
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-google,generative-cohere,generative-openai,generative-google'
+      ENABLE_API_BASED_MODULES: 'true'
       CLUSTER_HOSTNAME: 'node1'
       AUTOSCHEMA_ENABLED: 'false'
       ASYNC_INDEXING: 'true'

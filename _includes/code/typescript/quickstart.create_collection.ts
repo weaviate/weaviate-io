@@ -20,8 +20,8 @@ await client.collections.delete('Question');
 // highlight-start
 await client.collections.create({
   name: 'Question',
-  vectorizers: vectorizer.text2VecOpenAI(),
-  generative: generative.openAI(),
+  vectorizers: vectorizer.text2VecCohere(),
+  generative: generative.cohere(),
 });
 // highlight-end
 

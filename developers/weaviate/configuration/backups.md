@@ -20,42 +20,154 @@ import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
 
 Weaviate's Backup feature is designed to work natively with cloud technology. Most notably, it allows:
 
-* Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS, or Azure
+* Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS, or Azure Storage
 * Backup and Restore between different storage providers
-* Single-command backup and restore from the REST API
+* Single-command backup and restore
 * Choice of backing up an entire instance, or selected collections only
-* Zero downtime & minimal impact for your users when backups are running
-* Easy Migration to new environments
+* Easy migration to new environments
 
-:::note
-_Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`_.
+:::caution Important backup considerations
+
+- **Version Requirements**: If you are running Weaviate `v1.23.12` or older, you must [update](../more-resources/migration/index.md) to `v1.23.13` or higher before restoring a backup to prevent data corruption.
+- **[Multi-tenancy](../concepts/data.md#multi-tenancy) limitations**: Backups will only include `active` tenants. `Inactive` or `offloaded` tenants in multi-tenant collections will not be included. Be sure to [activate](../manage-data/multi-tenancy.md#activate-tenant) any required tenants before creating a backup.
 :::
 
-:::caution Backups do not include inactive or offloaded tenants
-Backups of [multi-tenant collections](../concepts/data.md#multi-tenancy) will only include `active` tenants, and not `inactive` or `offloaded` tenants. [Activate tenants](../manage-data/multi-tenancy.md#activate-tenant) before creating a backup to ensure all data is included.
-:::
+## Backup Quickstart
+
+Get started with Weaviate backups in minutes using the local filesystem, which is a great option for development and testing.
+
+### 1. Configure Weaviate
+
+Add these environment variables to your Weaviate configuration (e.g. Docker or Kubernetes configuration file):
+
+```yaml
+# Enable the filesystem backup module
+ENABLE_MODULES=backup-filesystem
+
+# Set backup location (e.g. within a Docker container or on a Kubernetes pod)
+BACKUP_FILESYSTEM_PATH=/var/lib/weaviate/backups
+```
+
+### 2. Start a backup
+
+Restart Weaviate to apply the new configuration. Then, you are ready to start a backup:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="pyv3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCodeBackup}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="tsv2"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="bash"
+    />
+  </TabItem>
+</Tabs>
+
+That's all there is to getting started with backups in Weaviate. The backup will be stored in the specified location on the local filesystem.
+
+You can also:
+- [Restore the backup](#restore-backup) to a Weaviate instance
+- [Check the status](#asynchronous-status-checking) of the backup (if you did not wait for completion)
+- [Cancel the backup](#cancel-backup) if needed
+
+Note that local backups are not suitable for production environments. For production, use a cloud provider like S3, GCS, or Azure Storage.
+
+The following sections provide more details on how to configure and use backups in Weaviate.
 
 ## Configuration
 
-In order to perform backups, a backup provider module must be activated. Multiple backup providers can be active at the same time. Currently `backup-s3`, `backup-gcs`, `backup-azure`, and `backup-filesystem` modules are available for S3, GCS, Azure or filesystem backups respectively.
+Weaviate supports four backup storage options:
 
-As it is built on Weaviate's [module system](/developers/weaviate/configuration/modules.md), additional providers can be added in the future.
+| Provider | Module Name | Best For | Multi-Node Support |
+|----------|------------|-----------|-------------------|
+| AWS S3 | `backup-s3` | Production deployments, AWS environments | Yes |
+| Google Cloud Storage | `backup-gcs` | Production deployments, GCP environments | Yes |
+| Azure Storage | `backup-azure` | Production deployments, Azure environments | Yes |
+| Local Filesystem | `backup-filesystem` | Development, testing, single-node setups | No |
 
-All service-discovery and authentication-related configuration is set using
-environment variables.
+To use any provider:
+1. Enable the module
+    - Add the module name to the `ENABLE_MODULES` environment variable
+    - On Weaviate Cloud instances, a relevant default module is enabled
+2. Configure the required modules
+    - Option 1: Set the necessary environment variables
+    - Option 2 (Kubernetes): Configure the [Helm chart values](#kubernetes-configuration)
+
+Note multiple providers can be enabled simultaneously
 
 ### S3 (AWS or S3-compatible)
 
-Use the `backup-s3` module to enable backing up to and restoring from any S3-compatible blob storage. This includes AWS S3, and MinIO.
+- Works with AWS S3 and S3-compatible services (e.g., MinIO)
+- Supports multi-node deployments
+- Recommended for production use
 
-To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
+To configure `backup-s3`, you need to enable the module and provide the necessary configuration.
+
+#### Enable module
+
+Add `backup-s3` to the `ENABLE_MODULES` environment variable. For example, to enable the S3 module along with the `text2vec-cohere` module, set:
 
 ```
-ENABLE_MODULES=backup-s3,text2vec-transformers
+ENABLE_MODULES=backup-s3,text2vec-cohere
 ```
 
 #### S3 Configuration (vendor-agnostic)
-In addition to enabling the module, you need to configure it using environment variables. This configuration applies to any S3-compatible backend.
+
+This configuration applies to any S3-compatible backend.
 
 | Environment variable | Required | Description |
 | --- | --- | --- |
@@ -66,7 +178,7 @@ In addition to enabling the module, you need to configure it using environment v
 
 #### S3 Configuration (AWS-specific)
 
-You must provide Weaviate with AWS authentication details. You can choose between access-key or ARN-based authentication:
+For AWS, provide Weaviate with authentication details. You can choose between access-key or ARN-based authentication:
 
 #### Option 1: With IAM and ARN roles
 
@@ -83,15 +195,19 @@ The backup module will first try to authenticate itself using AWS IAM. If the au
 
 ### GCS (Google Cloud Storage)
 
-Use the `backup-gcs` module to enable backing up to and restoring from any Google Cloud Storage bucket.
+- Works with Google Cloud Storage
+- Supports multi-node deployments
+- Recommended for production use
 
-To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
+To configure `backup-gcs`, you need to enable the module and provide the necessary configuration.
+
+#### Enable module
+
+Add `backup-gcs` to the `ENABLE_MODULES` environment variable. For example, to enable the S3 module along with the `text2vec-cohere` module, set:
 
 ```
-ENABLE_MODULES=backup-gcs,text2vec-transformers
+ENABLE_MODULES=backup-gcs,text2vec-cohere
 ```
-
-In addition to enabling the module, you need to configure it using environment variables. There are bucket-related variables, as well as credential-related variables.
 
 #### GCS bucket-related variables
 
@@ -116,12 +232,18 @@ This makes it easy to use the same module in different setups. For example, you 
 
 ### Azure Storage
 
-Use the `backup-azure` module to enable backing up to and restoring from any Microsoft Azure Storage container.
+- Works with Microsoft Azure Storage
+- Supports multi-node deployments
+- Recommended for production use
 
-To enable the module, add its name to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
+To configure `backup-azure`, you need to enable the module and provide the necessary configuration.
+
+#### Enable module
+
+Add `backup-azure` to the `ENABLE_MODULES` environment variable. For example, to enable the Azure module along with the `text2vec-cohere` module, set:
 
 ```
-ENABLE_MODULES=backup-azure,text2vec-transformers
+ENABLE_MODULES=backup-azure,text2vec-cohere
 ```
 
 In addition to enabling the module, you need to configure it using environment variables. There are container-related variables, as well as credential-related variables.
@@ -157,19 +279,21 @@ At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` mus
 
 ### Filesystem
 
-:::caution `backup-filesystem` - limitations
-`backup-filesystem` is only compatible with single-node backups. Use `backup-gcs` or `backup-s3` if support for multi-node backups is needed.
+- Works with Google Cloud Storage
+- Supports single-node deployments only
+- Not recommended for production use
 
-The filesystem provider is not intended for production use, as its availability is directly tied to the node on which it operates.
-:::
+To configure `backup-filesystem`, you need to enable the module and provide the necessary configuration.
 
-Instead of backing up to a remote backend, you can also back up to the local filesystem. This may be helpful during development, for example to be able to quickly exchange setups, or to save a state from accidental future changes.
+#### Enable module
 
-To allow backups to the local filesystem, add `backup-filesystem` to the `ENABLE_MODULES` environment variable. Modules are comma-separated. To enable the module along with the `text2vec-transformers` module for example, set:
+Add `backup-filesystem` to the `ENABLE_MODULES` environment variable. For example, to enable the S3 module along with the `text2vec-cohere` module, set:
 
 ```
-ENABLE_MODULES=backup-filesystem,text2vec-transformers
+ENABLE_MODULES=backup-filesystem,text2vec-cohere
 ```
+
+#### Backup Configuration
 
 In addition to enabling the module, you need to configure it using environment variables:
 
@@ -179,53 +303,28 @@ In addition to enabling the module, you need to configure it using environment v
 
 ### Other Backup Backends
 
-Weaviate uses its [module system](/developers/weaviate/configuration/modules.md) to decouple the backup orchestration from the remote backup storage backends. It is easy to add new providers and use them with the existing backup API. If you are missing your desired backup module, you can open a feature request or contribute it yourself. For either option, join our Slack community to have a quick chat with us on how to get started.
-
+If you are missing your desired backup module, you can open a feature request on the [Weaviate GitHub repository](https://github.com/weaviate/weaviate/issues). We are also open to community contributions for new backup modules.
 
 ## API
 
+For REST API documentation, see the [Backups section](https://weaviate.io/developers/weaviate/api/rest#tag/backups).
+
 ### Create Backup
 
-Once the modules are enabled and the configuration is provided, you can start a backup on any running instance with a single HTTP request.
+Once the modules are enabled and the configuration is provided, you can start a backup on any running instance with a single request.
 
-#### Method and URL
+You can choose to include or exclude specific collections in the backup. If you do not specify any collections, all collections are included by default.
 
-```js
-POST /v1/backups/{backend}
-```
+The `include` and `exclude` options are mutually exclusive. You can set none or exactly one of those.
 
-#### Parameters
+##### Available `config` object properties
 
-##### URL Parameters
-
-| Name | Type | Required | Description |
-| ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, `azure`, or `filesystem`. |
-
-##### Request Body
-
-The request takes a JSON object with the following properties:
-
-| Name | Type | Required | Description |
-| ---- | ---- | ---- | ---- |
-| `id` | string (lowercase letters, numbers, underscore, minus) | yes | The id of the backup. This string must be provided on all future requests, such as status checking or restoration. |
-| `include` | list of strings | no | An optional list of collection names to be included in the backup. If not set, all collections are included. |
-| `exclude` | list of strings | no | An optional list of collection names to be excluded from the backup. If not set, no collections are excluded. |
-| `config`  | object          | no | An optional object to configure the backup.  If not set, it will assign defaults from config table.|
-
-:::note
-You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.
-:::
-
-##### Config object properties
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
 | `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
 | `chunkSize`       | number | no | `128MB` | An optional integer represents the desired size for chunks. Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB.|
-| `compressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. `DefaultCompression`, `BestSpeed`, `BestCompression`|
-:::note
-Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.
-:::
+| `compressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. (`DefaultCompression`, `BestSpeed`, `BestCompression`) Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default. |
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
@@ -241,7 +340,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
       text={PyCodeV3}
       startMarker="# START CreateBackup"
       endMarker="# END CreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -259,7 +358,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
       text={TSCodeLegacy}
       startMarker="// START CreateBackup"
       endMarker="// END CreateBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -330,7 +429,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -348,7 +447,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       text={TSCodeLegacy}
       startMarker="// START StatusCreateBackup"
       endMarker="// END StatusCreateBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -394,50 +493,32 @@ An ongoing backup can be cancelled at any time. The backup process will be stopp
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-    ```ts
-    // Coming soon
-    ```
-
+    <FilteredTextBlock
+      text={TSCodeStatus}
+      startMarker="// START CancelBackup"
+      endMarker="// END CancelBackup"
+      language="ts"
+    />
   </TabItem>
 </Tabs>
 
 This operation is particularly useful if you have started a backup by accident, or if you would like to stop a backup that is taking too long.
 
 ### Restore Backup
-You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single HTTP request.
+
+You can restore any backup to any machine as long as the name and number of nodes between source and target are identical. The backup does not need to be created on the same instance. Once a backup backend is configured, you can restore a backup with a single request.
+
+As with backup creation, the `include` and `exclude` options are mutually exclusive. You can set none or exactly one of those. In a restore operation, `include` and `exclude` are relative to the collections contained in the backup. The restore process is not aware of collections that existed on the source machine if they were not part of the backup.
 
 Note that a restore fails if any of the collections already exist on this instance.
 
-#### Method and URL
+:::caution Restoring backups from `v1.23.12` and older
+If you are running Weaviate `v1.23.12` or older, first **[update Weaviate](../more-resources/migration/index.md) to version 1.23.13** or higher before restoring a backup.
+Versions prior to `v1.23.13` had a bug that could lead to data not being stored correctly from a backup of your data.
+:::
 
-```js
-POST /v1/backups/{backend}/{backup_id}/restore
-```
+##### Available `config` object properties
 
-#### Parameters
-
-##### URL Parameters
-
-| Name | Type | Required | Description |
-| ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
-| `backup_id` | string | yes | The user-provided backup identifier that was used when sending the request to create the backup. |
-
-##### Request Body
-The request takes a json object with the following properties:
-
-| Name | Type | Required | Description |
-| ---- | ---- | ---- | ---- |
-| `include` | list of strings | no | An optional list of collection names to be included in the backup. If not set, all collections are included. |
-| `exclude` | list of strings | no | An optional list of collection names to be excluded from the backup. If not set, no collections are excluded. |
-| `config`  | object          | no | An optional object to configure the restore.  If not set, it will assign defaults from config table.|
-
-*Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
-
-*Note 2: `include` and `exclude` are relative to the collections contained in the backup. The restore process does not know which collections existed on the source machine if they were not part of the backup.*
-
-##### Config object properties
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
 | `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
@@ -456,7 +537,7 @@ The request takes a json object with the following properties:
       text={PyCodeV3}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -474,7 +555,7 @@ The request takes a json object with the following properties:
       text={TSCodeLegacy}
       startMarker="// START RestoreBackup"
       endMarker="// END RestoreBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -513,19 +594,6 @@ All client implementations have a "wait for completion" option which will poll t
 
 If you set the "wait for completion" option to false, you can also check the status yourself using the Backup Restore Status API.
 
-```js
-GET /v1/backups/{backend}/{backup_id}/restore
-```
-
-#### Parameters
-
-##### URL Parameters
-
-| Name | Type | Required | Description |
-| ---- | ---- | ---- | ---- |
-| `backend` | string | yes | The name of the backup provider module without the `backup-` prefix, for example `s3`, `gcs`, or `filesystem`. |
-| `backup_id` | string | yes | The user-provided backup identifier that was used when sending the requests to create and restore the backup. |
-
 The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
@@ -542,7 +610,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -560,7 +628,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       text={TSCodeLegacy}
       startMarker="// START StatusRestoreBackup"
       endMarker="// END StatusRestoreBackup"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -592,6 +660,13 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
   </TabItem>
 </Tabs>
 
+## Kubernetes configuration
+
+When running Weaviate on Kubernetes, you can configure the backup provider using Helm chart values.
+
+These values are available under the `backups` key in the `values.yaml` file. Refer to the inline documentation in the `values.yaml` file for more information.
+
+<!-- TODO - update this page with proper Helm docs. -->
 
 ## Technical Considerations
 
@@ -599,7 +674,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
 
 The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
-Weaviate uses a custom [LSM Store](../concepts/storage.md#object-and-inverted-index-store) for it's object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
+Weaviate uses a custom [LSM Store](../concepts/storage.md#object-and-inverted-index-store) for its object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
 
 1. Anytime a memtable is flushed. This creates a new segment. Existing segments are not changed.
 2. Any write into the memtable is also written into a Write-Ahead-Log (WAL). The WAL is only needed for disaster-recovery. Once a segment has been orderly flushed, the WAL can be discarded.
@@ -628,6 +703,12 @@ If you would like your application to wait for the background backup process to 
 The flexibility around backup providers opens up new use cases. Besides using the backup & restore feature for disaster recovery, you can also use it for duplicating environments or migrating between clusters.
 
 For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
+
+## Troubleshooting and notes
+
+- Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`.
+- In some cases, backups can take a long time, or get "stuck", causing Weaviate to be unresponsive. If this happens, you can [cancel the backup](#cancel-backup) and try again.
+- If a backup module is misconfigured, such as having an invalid backup path, it can cause Weaviate to not start. Review the system logs for any errors.
 
 ## Related pages
 - [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)

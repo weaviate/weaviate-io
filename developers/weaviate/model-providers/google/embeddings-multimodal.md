@@ -5,7 +5,7 @@ image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
 
-# Google AI Multimodal Embeddings with Weaviate
+# Google Multimodal Embeddings with Weaviate
 
 
 import Tabs from '@theme/Tabs';
@@ -22,9 +22,9 @@ Weaviate's integration with [Google Vertex AI](https://cloud.google.com/vertex-a
 Multimodal embeddings are currently not available to Google AI Studio users.
 :::
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Google embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_google_embedding.png)
 
@@ -32,7 +32,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`multi2vec-google`) module.
+Your Weaviate instance must be configured with the Google multimodal vectorizer integration (`multi2vec-google`) module.
 
 :::info Module name change
 `multi2vec-google` was called `multi2vec-palm` in Weaviate versions prior to `v1.27`.
@@ -115,7 +115,7 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Google embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -153,7 +153,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Google AI-specific options.
+The following examples show how to configure Google-specific options.
 
 - `location` (Required): e.g. `"us-central1"`
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
@@ -214,7 +214,7 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google model.
 
 ![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
 
@@ -318,7 +318,8 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Other integrations
 
-- [Google AI generative models + Weaviate](./generative.md).
+- [Google text embedding models + Weaviate](./embeddings.md)
+- [Google AI generative models + Weaviate](./generative.md)
 
 ### Code examples
 

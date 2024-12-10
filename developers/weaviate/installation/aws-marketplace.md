@@ -1,13 +1,12 @@
 ---
 title: AWS Marketplace
+description: Install Weaviate through the AWS Marketplace for quick cloud deployment.
 sidebar_position: 10
 image: og/docs/installation.jpg
 # tags: ['installation', 'AWS Marketplace']
 ---
 
 import ReactPlayer from 'react-player/lazy'
-
-## Overview
 
 <!-- NOTE: To show this page on the sidebar, remove the `sidebar_class_name: hidden` line above. -->
 

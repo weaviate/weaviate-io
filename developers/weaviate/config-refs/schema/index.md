@@ -1,5 +1,6 @@
 ---
 title: Collection definition
+description: Schema Configuration in Weaviate
 sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']

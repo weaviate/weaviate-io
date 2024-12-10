@@ -529,7 +529,7 @@ button.close {
     img {
       display: none;
     }
-    background-image: url('/img/site/weaviate-nav-logo-light.svg');
+    background-image: url('/img/site/weaviate-logo-horizontal-dark-1.svg');
   }
 }
 
@@ -560,20 +560,24 @@ button.close {
   }
 
   .navbar {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 1) 4%,
-      rgba(17, 11, 62, 1) 50%,
-      rgba(25, 16, 92, 1) 96%
-    );
+    background: var(--site-background);
     box-shadow: none;
+    border-bottom: solid var(--ifm-toc-border-color);
+    border-width: 1px;
   }
 
   .navbar__logo {
     img {
       display: none;
     }
-    background-image: url('/img/site/weaviate-nav-logo-dark.svg');
+
+    background-image: url('/img/site/weaviate-logo-horizontal-light-1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .blogContainer {
+    background-color: #0c1428;
   }
 
   .footer--dark {
@@ -752,13 +756,13 @@ Dropdown style removed.
 
 .custom-page .footer__links:before {
   content: '';
-  background-image: url('/img/site/weaviate-nav-logo-dark.svg');
+  background-image: url('/img/site/weaviate-logo-horizontal-light-1.svg');
 
   background-size: contain;
   background-repeat: no-repeat;
-  width: 11rem;
-  height: 11rem;
-  margin: -21px 0px 0px 0px;
+  height: 2rem;
+  margin: -1px 0 0;
+  width: 8rem;
 }
 
 .content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module {
@@ -1025,4 +1029,8 @@ ul.dropdown__menu {
 
 .loadingIcon {
   margin: auto;
+}
+
+.support-page li {
+  font-size: 1.2rem;
 }

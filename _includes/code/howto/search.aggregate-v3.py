@@ -439,6 +439,72 @@ expected_response = (
 )
 
 
+# =========================================
+# ===== nearTextWithLimit EXAMPLES =====
+# =========================================
+
+# HybridExample
+response = (
+    client.query
+    .aggregate("JeopardyQuestion")
+    .with_hybrid({
+        "query": "animals in space"
+    })
+    # highlight-start
+    .with_object_limit(10)
+    # highlight-end
+    .with_fields("points { sum }")
+    .do()
+)
+print(json.dumps(response, indent=2))
+# END HybridExample
+
+
+gql_query = """
+# GraphQLHybridExample
+{
+  Aggregate {
+    JeopardyQuestion(
+      hybrid: {
+        query: "animals in space"
+      }
+      # highlight-start
+      objectLimit: 10
+      # highlight-end
+    ) {
+      points {
+        sum
+      }
+    }
+  }
+}
+# END GraphQLHybridExample
+"""
+gqlresponse = client.query.raw(gql_query)
+
+# Test results
+assert gqlresponse == response
+# END Test results
+
+expected_response = (
+# ResultsHybridExample
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "points": {
+            "sum": 6700
+          }
+        }
+      ]
+    }
+  }
+}
+# END ResultsHybridExample
+)
+
+
 # =================================
 # ===== where filter EXAMPLES =====
 # =================================

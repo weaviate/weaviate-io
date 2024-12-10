@@ -14,6 +14,7 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 # END CreateCollection
+
 # NOT SHOWN TO THE USER - DELETE EXISTING COLLECTION
 client.collections.delete("Question")
 
@@ -21,8 +22,8 @@ client.collections.delete("Question")
 # highlight-start
 questions = client.collections.create(
     name="Question",
-    vectorizer_config=Configure.Vectorizer.text2vec_openai(),   # Configure the OpenAI embedding integration
-    generative_config=Configure.Generative.openai()             # Configure the OpenAI generative AI integration
+    vectorizer_config=Configure.Vectorizer.text2vec_cohere(),   # Configure the Cohere embedding integration
+    generative_config=Configure.Generative.cohere()             # Configure the Cohere generative AI integration
 )
 # highlight-end
 # CreateCollection

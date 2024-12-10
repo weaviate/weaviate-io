@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_ollama.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-The Ollama library allows you to easily run a wide range of models on your own device. Weaviate seamlessly integrates with the Ollama library, allowing users to leverage compatible models directly within the Weaviate database.
+The Ollama library allows you to easily run a wide range of models on your own device. Weaviate seamlessly integrates with the Ollama library, allowing users to leverage compatible models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -31,7 +31,7 @@ Ollama's embedding models transform text data into high-dimensional vector repre
 
 Ollama's generative AI models can generate human-like text based on given prompts and contexts.
 
-[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with Ollama's generative AI models to generate personalized and context-aware responses.
+[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly from the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with Ollama's generative AI models to generate personalized and context-aware responses.
 
 [Ollama generative AI integration page](./generative.md)
 
@@ -49,12 +49,6 @@ Go to the relevant integration page to learn how to configure Weaviate with the 
 
 - [Text Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 
