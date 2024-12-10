@@ -1,6 +1,5 @@
-import weaviate
-
 # START AdminClient
+import weaviate
 from weaviate.classes.init import Auth
 
 # Connect to Weaviate as Admin
@@ -10,6 +9,10 @@ admin_client = weaviate.connect_to_local(auth_credentials=Auth.api_key("admin-ke
 permissions_to_add = [
    Permissions.data(collection="Testing_*", read=True, create=True)
 ]
+
+# START CreateRole
+admin_client.roles.create(role_name="devrel")
+# END CreateRole
 
 # START AddRoleAtCreate
 from weaviate.classes.rbac import Permissions

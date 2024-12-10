@@ -205,9 +205,48 @@ For more information see the [Authentication](./authentication.md) and [Authoriz
 
 </Tabs>
 
-### Create new role
+### Create an empty role
 
-A new role must have at least one permission assigned to it.
+This example creates a role called "devrel" without any permissions assigned to it.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START CreateRole"
+      endMarker="# END CreateRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Create new role with permissions
 
 This example creates a role called "devrel" with permissions to:
 
@@ -253,7 +292,7 @@ This example creates a role called "devrel" with permissions to:
 
 ### Grant additional permissions
 
-Additional permissions can be granted to a role at any time.
+Additional permissions can be granted to a role at any time. The role must already exist.
 
 This example grants additional permissions to the "devrel" role to:
 
@@ -299,7 +338,7 @@ This example grants additional permissions to the "devrel" role to:
 
 ### Remove permissions from a role
 
-Permissions can be removed from a role at any time.
+Permissions can be removed from a role at any time. Removing all permissions from a role will not delete the role itself.
 
 This example removes from the "devrel" role permissions to:
 
@@ -342,10 +381,6 @@ This example removes from the "devrel" role permissions to:
   </TabItem>
 
 </Tabs>
-
-:::caution Empty roles are automatically deleted
-When removing permissions from a role, Weaviate will automatically delete the role if it has no permissions left.
-:::
 
 ### Assign a role to a user
 
