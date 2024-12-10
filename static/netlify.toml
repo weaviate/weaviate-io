@@ -21,9 +21,74 @@ from = "/developers/weaviate/quickstart/*"
 to   = "/developers/weaviate/tutorials/:splat"
 
 [[redirects]]
-from = "/developers/weaviate/current/quickstart"
+from = "/developers/weaviate/current/quickstart/*"
 to   = "/developers/weaviate/quickstart/:splat"
 
 [[redirects]]
-from = "/weaviate/current/getting-started"
-to   = "/weaviate/quickstart/:splat"
+from = "/developers/weaviate/current/getting-started/*"
+to   = "/developers/weaviate/quickstart/:splat"
+
+###==================== REST API ====================
+
+[[redirects]]
+from = "/developers/weaviate/api/rest/modules/*"
+to   = "/developers/weaviate/model-providers"
+
+[[redirects]]
+from = "/developers/weaviate/api/rest_legacy/modules/*"
+to   = "/developers/weaviate/model-providers"
+
+[[redirects]]
+from = "/developers/weaviate/api/rest_legacy/*"
+to   = "/developers/weaviate/api/rest"
+
+[[redirects]]
+from = "/developers/weaviate/current/restful-api-references/*"
+to   = "/developers/weaviate/api/rest/"
+
+###==================== GRAPHQL API ====================
+
+[[redirects]]
+from = "/developers/weaviate/current/graphql-references/*"
+to   = "/developers/weaviate/api/graphql/:splat"
+
+
+###==================== CURRENT paths ====================
+
+[[redirects]]
+from = "//developers/weaviate/current/roadmap/*"
+to   = "/developers/weaviate/roadmap"
+
+[[redirects]]
+from = "//developers/weaviate/current/roadmap/*"
+to   = "/developers/weaviate/roadmap"
+
+[[redirects]]
+from = "/developers/weaviate/current/tutorials/write-great-bug-reports*"
+to   = "/developers/weaviate/more-resources/write-great-bug-reports"
+
+# present here:
+# https://news.ycombinator.com/item?id=32412803
+# test: https://weaviate.io/developers/weaviate/current/tutorials/semantic-search-through-wikipedia.html
+[[redirects]]
+from = "/developers/weaviate/current/tutorials/semantic-search-through-wikipedia"
+to   = "/developers/weaviate/tutorials/wikipedia"
+
+
+
+###==================== CATCH REMAINING CURRENT redirects ====================
+
+#[[redirects]]
+#from = "/developers/weaviate/current/*"
+#to   = "/developers/weaviate
+#status = 200
+
+
+###==================== CONTRIBUTOR GUIDE ====================
+[[redirects]]
+from = "/developers/contributor-guide/current/weaviate-module-system/*
+to   = "/developers/contributor-guide/weaviate-modules/:splat
+
+[[redirects]]
+from = "/developers/contributor-guide/current/*
+to   = "/developers/contributor-guide/:splat
