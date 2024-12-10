@@ -195,14 +195,11 @@ For example, below we are creating a role called "devrel".
 
 </Tabs>
 
-### Add permissions to a role
-There are two ways to add permissions to a role:
-1. You can add them while creating the role.
-2. You can add them later, with `add_permissions()`
+### Create new role with Permissions
 
-**Scenario 1: Create new role with Permissions**
-
-Let's change the example above by providing a list of permissions to the "devrel" role while creating it. In this example, we're allowing "devrel" to reaad all collections starting with the word "Test_". But we are also additionaly allowing them to delete and create the collection "Test_DevRel".
+This creates a "devrel" role with permissions to:
+- Reaad all collections starting with the word "Test_".
+- Delete or create the collection "Test_DevRel"
 
 <Tabs groupId="languages">
 
@@ -229,9 +226,11 @@ Let's change the example above by providing a list of permissions to the "devrel
 
 </Tabs>
 
-**Scenario 2: Grant additional data permissions**
+### Grant additional permissions
 
-Next, let's grant additional permissions to the "devrel". In this example, we're now giving the role "devrel" to read data in all collections that start with "Test_" but they can additionally create new data in "Test_DevRel" too.
+This adds to the "devrel" role permissions to:
+- Read data in all collections that start with "Test_".
+- Create new data in "Test_DevRel".
 
 <Tabs groupId="languages">
 
@@ -258,10 +257,10 @@ Next, let's grant additional permissions to the "devrel". In this example, we're
 
 </Tabs>
 
-**Scenario 3: Grant permission for role management**
+<!-- **Scenario 3: Grant permission for role management**
 
 In some situations, we may have to provide some users with access to manage a certain group of roles. 
-For example, we may create a new role calle "devrel-admin" who could have the permission to manage the role "devrel", but only read any other role starting with `devrel-".
+For example, we may create a new role called "devrel-admin" who could have the permission to manage the role "devrel", but only read any other role starting with `devrel-".
 
 <Tabs groupId="languages">
 
@@ -315,7 +314,7 @@ Finally, let's add some extra permissions around inspecting the Cluster and Node
     TBD
   </TabItem>
 
-</Tabs>
+</Tabs> -->
 
 ### Remove permissions from a role
 You can provide a list of `Permissions` and a role name to the `remove_permissions` mehtod, to remove the permissions from that role. If the permissions you've provided do not exist in the first place, it will be ignored. If the permission is the last one available for a given role, this will delete the role.
@@ -375,12 +374,34 @@ When connected to weaviate as an admin, we can assign one or more roles to a giv
 
 </Tabs>
 
-### List a user's roles and permissions
-There are two ways you can get a user's roles and permissions:
-1. You can get the roles `of_current_user`, which lists the roles and permissions of the current client.
-2. You can list the roles and permissions `by_user`, if you have access to read that users roles and permissions.
+### Gete the current user's roles and permissions
 
-For example, the `admin_client` below is first listing its own roles, then, of the user "jane-doe" specicifically.
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListCurrentUserRoles"
+      endMarker="# END ListCurrentUserRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Gete a user's roles and permissions
 
 <Tabs groupId="languages">
 

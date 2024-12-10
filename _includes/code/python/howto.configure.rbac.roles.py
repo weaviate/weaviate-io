@@ -7,11 +7,15 @@ from weaviate.classes.init import Auth
 admin_client = weaviate.connect_to_local(auth_credentials=Auth.api_key("admin-key"))
 # END AdminClient
 
+permissions_to_add = [
+   Permissions.data(collection="Testing_*", read=True, create=True)
+]
+
 # START CreateRole
 from weaviate.classes.rbac import Permissions
 
 admin_client.roles.create(
-    role_name="devrel", permissions=<LIST-OF-PERMISSIONS>
+    role_name="devrel", permissions=permissions_to_add
 )
 # END CreateRole
 
@@ -76,8 +80,11 @@ admin_client.roles.add_permissions(permissions=permissions, role_name="devrel-ad
 admin_client.roles.assign_to_user(role_names="devrel", user="jane-doe")
 # END AssignRole
 
-# START ListUserRoles
-admin_client.roles.of_current_user()
+# START ListCurrentUserRoles
+print(admin_client.roles.of_current_user())
+# END ListUserRoles
+
+# START ListCurrentUserRoles
 admin_client.roles.roles.by_user(user="jane-doe")
 # END ListUserRoles
 
