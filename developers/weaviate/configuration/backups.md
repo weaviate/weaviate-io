@@ -698,6 +698,7 @@ For example, consider the following situation: You would like to do a load test 
 
 - Single node backup is available starting in Weaviate `v1.15`. Multi-node backups is available starting in `v1.16`.
 - In some cases, backups can take a long time, or get "stuck", causing Weaviate to be unresponsive. If this happens, you can [cancel the backup](#cancel-backup) and try again.
+- If a backup module is misconfigured, such as having an invalid backup path, it can cause Weaviate to not start. Review the system logs for any errors.
 
 ## Related pages
 - [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)
