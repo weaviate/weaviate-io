@@ -86,6 +86,7 @@ print(admin_client.roles.of_current_user())
 
 # START ListUserRoles
 user_roles = admin_client.roles.roles.by_user(user="jane-doe")
+
 for role in user_roles:
     print(role)
 # END ListUserRoles
