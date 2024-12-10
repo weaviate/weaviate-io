@@ -339,6 +339,7 @@ Weaviate can be configured to provide undifferentiated access, by disabling auth
 ## Further resources
 
 - [Configuration: Authentication](./authentication.md)
+- [Configuration: RBAC Roles](./roles.md)
 - [References: Environment variables / Authentication and Authorization](../config-refs/env-vars.md#authentication-and-authorization)
 
 ## Questions and feedback

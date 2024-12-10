@@ -1,6 +1,6 @@
 import weaviate
 
-# START AdminClient 
+# START AdminClient
 from weaviate.classes.init import Auth
 
 # Connect to Weaviate as Admin
@@ -11,28 +11,20 @@ permissions_to_add = [
    Permissions.data(collection="Testing_*", read=True, create=True)
 ]
 
-# START CreateRole
-from weaviate.classes.rbac import Permissions
-
-admin_client.roles.create(
-    role_name="devrel", permissions=permissions_to_add
-)
-# END CreateRole
-
 # START AddRoleAtCreate
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-      collection="Test_*", 
-      read_config=True, 
-      create_collection=False, 
+      collection="Test_*",
+      read_config=True,
+      create_collection=False,
       delete_collection=False,
   ),
     Permissions.collections(
-      collection="Test_DevRel", 
-      read_config=True, 
-      create_collection=True, 
+      collection="Test_DevRel",
+      read_config=True,
+      create_collection=True,
       delete_collection=True,
   ),
 ]
@@ -92,7 +84,7 @@ for role in user_roles:
 # END ListUserRoles
 
 # START CheckRoleExists
-admin_client.roles.exists(role_name="role-name")
+print(admin_client.roles.exists(role_name="role-name"))  # Returns True or False
 # END CheckRoleExists
 
 # START InspectRole
@@ -128,9 +120,9 @@ from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-      collection="Test_DevRel", 
-      read_config=True, 
-      create_collection=True, 
+      collection="Test_DevRel",
+      read_config=True,
+      create_collection=True,
       delete_collection=True,
   ),
   Permissions.data(collection="Test_*", read=True, create=False)

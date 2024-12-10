@@ -37,6 +37,10 @@ Any authenticated user that is not assigned a predefined role has no roles or pe
 
 These users' permissions can be modified through Weaviate by those with the appropriate permissions. This allows for the creation of custom roles, which can be assigned to users as needed.
 
+### Managing roles
+
+Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
+
 ## Permissions
 
 Permissions in Weaviate define what actions users can perform on specific resources. Each permission consists of:
@@ -51,18 +55,16 @@ Permissions can be defined for the following resources:
 
 1. **Role Management**
     - Read roles
-    - Manage roles (confers all permissions)
+    - Manage roles
 
 1. **Collections** (collection definitions only, data object permissions are separate)
     - Create, read, update, and delete collection definitions
-    - Manage collections (confers all permissions)
 
 1. **Data Objects**
     - Read, write, update, and delete objects
-    - Manage collections (confers all permissions)
 
 1. **Backup**
-    - Manage backups (confers all permissions)
+    - Manage backups
 
 1. **Cluster Data Access**
     - Read cluster metadata
@@ -74,13 +76,11 @@ Permissions can be defined for the following resources:
 Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
 :::
 
-## Define permissions
+## Example permission sets
 
-Some example permission definitions are shown below:
+### Administrative permissions
 
-### Administrative permissions example
-
-This example confers administrative permissions to a user for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
+This confers administrative permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
 
 <Tabs groupId="languages">
 
@@ -94,22 +94,34 @@ This example confers administrative permissions to a user for collections starti
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-### Viewer permissions example
+### Viewer permissions
 
-This example confers viewer permissions to a user for collections starting with `TargetCollection_`.
+This confers viewer permissions for collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
 
@@ -123,15 +135,27 @@ This example confers viewer permissions to a user for collections starting with 
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -139,8 +163,10 @@ This example confers viewer permissions to a user for collections starting with 
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 
 ## Role management
-To manage roles, the authenticated user must have appropriate `role` resource permissions.
-The example below that the admin key is associated with an admin user. For more information check out the [Authentication](./authentication.md) and [Authorization](./authorization.md) docs.
+
+Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
+
+For more information see the [Authentication](./authentication.md) and [Authorization](./authorization.md) pages.
 
 <Tabs groupId="languages">
 
@@ -154,52 +180,38 @@ The example below that the admin key is associated with an admin user. For more 
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-### Create a role
-To create a role, we provide the `role_name` and a list of permissions.
-For example, below we are creating a role called "devrel". 
+### Create new role
 
-<Tabs groupId="languages">
+A new role must have at least one permission assigned to it.
 
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={RolePyCode}
-      startMarker="# START CreateRole"
-      endMarker="# END CreateRole"
-      language="py"
-    />
-  </TabItem>
+This example creates a role called "devrel" with permissions to:
 
-  <TabItem value="js" label="JS/TS Client v3">
-    TBD
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    TBD
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    TBD
-  </TabItem>
-
-</Tabs>
-
-### Create new role with Permissions
-
-This creates a "devrel" role with permissions to:
-- Reaad all collections starting with the word "Test_".
+- Read all collections starting with "Test_".
 - Delete or create the collection "Test_DevRel"
 
 <Tabs groupId="languages">
@@ -214,22 +226,37 @@ This creates a "devrel" role with permissions to:
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Grant additional permissions
 
-This adds to the "devrel" role permissions to:
+Additional permissions can be granted to a role at any time.
+
+This example grants additional permissions to the "devrel" role to:
+
 - Read data in all collections that start with "Test_".
 - Create new data in "Test_DevRel".
 
@@ -245,26 +272,39 @@ This adds to the "devrel" role permissions to:
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Remove permissions from a role
 
-The example below, removes the permissions to:
-- Read the data from collections that start with "Test-"
-- Create and delete collections called "Test_DevRel" 
+Permissions can be removed from a role at any time.
 
-from the "devrel" role.
+This example removes from the "devrel" role permissions to:
+
+- Read the data from collections that start with "Test_"
+- Create and delete collections called "Test_DevRel"
 
 <Tabs groupId="languages">
 
@@ -278,23 +318,40 @@ from the "devrel" role.
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-If the permission is the last one available for a given role, this will delete the role.
+:::caution Empty roles are automatically deleted
+When removing permissions from a role, Weaviate will automatically delete the role if it has no permissions left.
+:::
 
 ### Assign a role to a user
-The example below assigns the "devrel" role to "jane-doe".
+
+A custom user can have any number of roles assigned to them (including none).
+
+This example assigns the "devrel" role to "jane-doe".
 
 <Tabs groupId="languages">
 
@@ -308,20 +365,34 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-### Gete the current user's roles and permissions
+### Get the current user's roles and permissions
+
+Retrieve the role and permission information for the currently authenticated user.
 
 <Tabs groupId="languages">
 
@@ -335,20 +406,34 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-### Gete a user's roles and permissions
+### Get a user's roles and permissions
+
+Retrieve the role and permission information for any user.
 
 <Tabs groupId="languages">
 
@@ -362,20 +447,33 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Check if a role exists
+
 <Tabs groupId="languages">
 
   <TabItem value="py" label="Python Client v4">
@@ -388,20 +486,34 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Inspect a role
+
+View the permissions assigned to a role.
 
 <Tabs groupId="languages">
 
@@ -415,20 +527,34 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
-### List all Roles
+### List all roles
+
+View all roles in the system and their permissions.
 
 <Tabs groupId="languages">
 
@@ -442,15 +568,27 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
@@ -469,20 +607,34 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Delete a role
+
+Deleting a role will remove it from the system, and revoke all permissions associated with it.
 
 <Tabs groupId="languages">
 
@@ -496,21 +648,36 @@ The example below assigns the "devrel" role to "jane-doe".
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
 
 ### Revoke a role from a user
-You can revoke one or more roles from a specific user. Below, we are revoking "role-1" and "role-2" from the user "jane-doe".
+
+You can revoke one or more roles from a specific user.
+
+This examples revokes "role-1" and "role-2" from the user "jane-doe".
 
 <Tabs groupId="languages">
 
@@ -524,15 +691,38 @@ You can revoke one or more roles from a specific user. Below, we are revoking "r
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-    TBD
+
+```ts
+// TS support coming soon
+```
+
   </TabItem>
 
   <TabItem value="go" label="Go">
-    TBD
+
+```go
+// Go support coming soon
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
-    TBD
+
+```java
+// Java support coming soon
+```
+
   </TabItem>
 
 </Tabs>
+
+## Further resources
+
+- [Configuration: Authentication](./authentication.md)
+- [Configuration: Authorization and RBAC](./authorization.md)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
