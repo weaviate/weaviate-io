@@ -82,9 +82,9 @@ admin_client.roles.assign_to_user(role_names="devrel", user="jane-doe")
 
 # START ListCurrentUserRoles
 print(admin_client.roles.of_current_user())
-# END ListUserRoles
+# END ListCurrentUserRoles
 
-# START ListCurrentUserRoles
+# START ListUserRoles
 admin_client.roles.roles.by_user(user="jane-doe")
 # END ListUserRoles
 
