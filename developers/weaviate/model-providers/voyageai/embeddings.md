@@ -362,6 +362,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Other integrations
 
+- [Voyage AI multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 - [Voyage AI reranker models + Weaviate](./embeddings.md).
 
 ### Code examples

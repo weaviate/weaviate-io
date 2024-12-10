@@ -1034,6 +1034,116 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicMMVectorizerVoyageAI
+await client.collections.create({
+  name: "DemoCollection",
+  // highlight-start
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+    {
+      name: 'poster',
+      dataType: weaviate.configure.dataType.BLOB,
+    },
+  ],
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecVoyageAI({
+      name: "title_vector",
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }]
+    })],
+    // highlight-end
+    // Additional parameters not shown
+})
+// END BasicMMVectorizerVoyageAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START MMVectorizerVoyageAICustomModel
+await client.collections.create({
+  name: "DemoCollection",
+  // highlight-start
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+    {
+      name: 'poster',
+      dataType: weaviate.configure.dataType.BLOB,
+    },
+  ],
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecVoyageAI({
+      name: "title_vector",
+      model: "voyage-multimodal-3",
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }]
+    })],
+    // highlight-end
+    // Additional parameters not shown
+})
+// END MMVectorizerVoyageAICustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullMMVectorizerVoyageAI
+await client.collections.create({
+  name: "DemoCollection",
+  // highlight-start
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+    },
+    {
+      name: 'poster',
+      dataType: weaviate.configure.dataType.BLOB,
+    },
+  ],
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecVoyageAI({
+      name: "title_vector",
+      // Define the fields to be used for the vectorization - using imageFields, textFields
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+      // Further options
+      // model: "voyage-multimodal-3",
+      // truncate: "true",  // "false"
+      // baseURL: "<custom_voyageai_url>"
+    })],
+    // highlight-end
+    // Additional parameters not shown
+})
+// END FullMMVectorizerVoyageAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerWeaviate
 await client.collections.create({
   name: 'DemoCollection',
