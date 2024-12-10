@@ -306,7 +306,7 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Other integrations
 
-- [Cohere text embeddings models + Weaviate](./embeddings.md).
+- [Cohere text embedding models + Weaviate](./embeddings.md).
 - [Cohere generative models + Weaviate](./generative.md).
 - [Cohere reranker models + Weaviate](./reranker.md).
 

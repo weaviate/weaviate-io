@@ -6,11 +6,6 @@ image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'embeddings']
 ---
 
-# VoyageAI Multimodal Embeddings with Weaviate
-
-:::info Added in `1.25.25`, `1.26.9` and `v1.27.2`
-:::
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -19,13 +14,18 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
+# VoyageAI Multimodal Embeddings with Weaviate
+
+:::info Added in `1.27.8`
+:::
+
 Weaviate's integration with VoyageAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use a VoyageAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your VoyageAI API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
+This integration supports CLIP-like, single-modality inputs from text or images, into a multimodal embedding space.
 
-Important to note that the integration only supports CLIP-like multimodality. For more advanced usage with interleaved text & images, please use the [Bring your own vectors](../../starter-guides/custom-vectors.mdx) setup.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_voyageai_embedding.png)
 
@@ -305,7 +305,7 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Other integrations
 
-- [VoyageAI text embeddings models + Weaviate](./embeddings.md).
+- [VoyageAI text embedding models + Weaviate](./embeddings.md).
 - [VoyageAI reranker models + Weaviate](./reranker.md).
 
 ### Code examples
