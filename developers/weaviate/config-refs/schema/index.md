@@ -548,7 +548,7 @@ The `gse` tokenizer is not loaded by default to save resources. To use it, set t
 ### `kagome_ja` tokenization method
 
 :::caution Experimental feature
-Available starting in `v1.27.1`. This is an experimental feature. Use with caution.
+Available starting in `v1.28.0`. This is an experimental feature. Use with caution.
 :::
 
 For Japanese text, `kagome_ja` tokenization method is also available. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Japanese [MeCab IPA](https://github.com/ikawaha/kagome-dict/) dictionary to split the property text.
