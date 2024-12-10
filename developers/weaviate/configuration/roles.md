@@ -317,6 +317,36 @@ Finally, let's add some extra permissions around inspecting the Cluster and Node
 
 </Tabs>
 
+### Remove permissions from a role
+You can provide a list of `Permissions` and a role name to the `remove_permissions` mehtod, to remove the permissions from that role. If the permissions you've provided do not exist in the first place, it will be ignored. If the permission is the last one available for a given role, this will delete the role.
+
+In the example below, we are removing the permissions to read the data from collections that start with "Test-" and the permission to create and delete collections called "Test_DevRel" from the "devrel" role.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START RemovePermissions"
+      endMarker="# END RemovePermissions"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
 ### Assign a role to a user
 When connected to weaviate as an admin, we can assign one or more roles to a given user. For example, let's assign the "devrel" role to "jane-doe"
 
@@ -405,12 +435,136 @@ For example, the `admin_client` below is first listing its own roles, then, of t
 
 ### Inspect a role
 
-### List all roles
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START InspectRole"
+      endMarker="# END InspectRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### List all Roles
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START ListAllRoles"
+      endMarker="# END ListAllRolesd"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
 
 ### List users with a role
 
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AssignedUsers"
+      endMarker="# END AssignedUsers"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
 ### Delete a role
 
-### Revoke a role from a user
+<Tabs groupId="languages">
 
-### Remove a permission from a role
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START DeleteRole"
+      endMarker="# END DeleteRole"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>
+
+### Revoke a role from a user
+You can revoke one or more roles from a specific user. Below, we are revoking "role-1" and "role-2" from the user "jane-doe".
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START RevokeRoles"
+      endMarker="# END RevokeRoles"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    TBD
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    TBD
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    TBD
+  </TabItem>
+
+</Tabs>

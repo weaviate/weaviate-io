@@ -80,5 +80,48 @@ admin_client.roles.roles.by_user(user="jane-doe")
 
 # START CheckRoleExists
 
-admin_client.roles.exists(role_name="devrel")
+admin_client.roles.exists(role_name="role-name")
 # END CheckRoleExists
+
+# START InspectRole
+
+admin_client.roles.by_name(role_name="role-name")
+# END InspectRole
+
+# START AssignedUsers
+
+admin_client.roles.assigned_users(role_name="role-name")
+# END AssignedUsers
+
+# START ListAllRoles
+
+admin_client.roles.list_all()
+# END ListAllRoles
+
+
+# START DeleteRole
+
+admin_client.roles.delete(role_name="role-name")
+# END DeleteRole
+
+# START RevoveRoles
+
+admin_client.roles.revoke_from_user(role_names=["role-1", "role-2"], user="jane-doe")
+# END RevoveRoles
+
+
+# START RemovePermissions
+
+permissions = [
+    Permissions.collections(
+      collection="Test_DevRel", 
+      read_config=True, 
+      create_collection=True, 
+      delete_collection=True,
+  ),
+  Permissions.data(collection="Test_*", read=True, create=False)
+]
+
+admin_client.roles.remove_permissions(
+    role_name="devrel", permissions=permissions
+)# END RemovePermissions
