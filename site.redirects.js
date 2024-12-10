@@ -109,48 +109,49 @@ const siteRedirects = {
         },
         
         // Quickstart redirects
-        {
-            to: '/developers/weaviate/starter-guides/schema',
-            from: '/developers/weaviate/quickstart/schema',
-        },
-        {
-            to: '/developers/weaviate/tutorials/import',
-            from: '/developers/weaviate/quickstart/import',
-        },
-        {
-            to: '/developers/weaviate/tutorials/query',
-            from: '/developers/weaviate/quickstart/query',
-        },
-        {
-            to: '/developers/weaviate/tutorials/modules',
-            from: '/developers/weaviate/quickstart/modules',
-        },
-        {
-            to: '/developers/wcs/tools/query-tool',
-            from: '/developers/weaviate/quickstart/console',
-        },
+        // {
+        //     to: '/developers/weaviate/starter-guides/schema',
+        //     from: '/developers/weaviate/quickstart/schema',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/import',
+        //     from: '/developers/weaviate/quickstart/import',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/query',
+        //     from: '/developers/weaviate/quickstart/query',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/modules',
+        //     from: '/developers/weaviate/quickstart/modules',
+        // },
+        // {
+        //     to: '/developers/wcs/tools/query-tool',
+        //     from: '/developers/weaviate/quickstart/console',
+        // },
         
         // Old Quickstart redirects
-        {
-            to: '/developers/weaviate/starter-guides/schema',
-            from: '/developers/weaviate/current/quickstart/schema',
-        },
-        {
-            to: '/developers/weaviate/tutorials/import',
-            from: '/developers/weaviate/current/quickstart/import',
-        },
-        {
-            to: '/developers/weaviate/tutorials/query',
-            from: '/developers/weaviate/current/quickstart/query',
-        },
-        {
-            to: '/developers/weaviate/tutorials/modules',
-            from: '/developers/weaviate/current/quickstart/modules',
-        },
-        {
-            to: '/developers/wcs/tools/query-tool',
-            from: '/developers/weaviate/current/quickstart/console',
-        },
+        /// ###???
+        // {
+        //     to: '/developers/weaviate/starter-guides/schema',
+        //     from: '/developers/weaviate/current/quickstart/schema',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/import',
+        //     from: '/developers/weaviate/current/quickstart/import',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/query',
+        //     from: '/developers/weaviate/current/quickstart/query',
+        // },
+        // {
+        //     to: '/developers/weaviate/tutorials/modules',
+        //     from: '/developers/weaviate/current/quickstart/modules',
+        // },
+        // {
+        //     to: '/developers/wcs/tools/query-tool',
+        //     from: '/developers/weaviate/current/quickstart/console',
+        // },
         
         // WCD redirects
         {
@@ -553,10 +554,10 @@ const siteRedirects = {
         
         
         // moved Quickstart installation to Quickstart
-        {
-            to: '/developers/weaviate/quickstart',
-            from: '/developers/weaviate/quickstart/installation',
-        },
+        // {
+        //     to: '/developers/weaviate/quickstart',
+        //     from: '/developers/weaviate/quickstart/installation',
+        // },
         
         {
             to: '/developers/wcs/tools/query-tool',
@@ -823,14 +824,14 @@ const siteRedirects = {
                 ),
             ];
         }
-        if (existingPath.includes('/weaviate/quickstart')) {
-            return [
-                existingPath.replace(
-                    '/weaviate/quickstart',
-                    '/weaviate/current/getting-started'
-                ),
-            ];
-        }
+        // if (existingPath.includes('/weaviate/quickstart')) {
+        //     return [
+        //         existingPath.replace(
+        //             '/weaviate/quickstart',
+        //             '/weaviate/current/getting-started'
+        //         ),
+        //     ];
+        // }
         
         // Any remaining weaviate docs redirects
         if (existingPath.includes('/developers/weaviate')) {
@@ -843,22 +844,22 @@ const siteRedirects = {
         }
         
         // Contributor Guide redirects
-        if (existingPath.includes('/contributor-guide/weaviate-modules')) {
-            return [
-                existingPath.replace(
-                    '/developers/contributor-guide/weaviate-modules',
-                    '/developers/contributor-guide/current/weaviate-module-system'
-                ),
-            ];
-        }
-        if (existingPath.includes('/contributor-guide')) {
-            return [
-                existingPath.replace(
-                    '/developers/contributor-guide',
-                    '/developers/contributor-guide/current'
-                ),
-            ];
-        }
+        // if (existingPath.includes('/contributor-guide/weaviate-modules')) {
+        //     return [
+        //         existingPath.replace(
+        //             '/developers/contributor-guide/weaviate-modules',
+        //             '/developers/contributor-guide/current/weaviate-module-system'
+        //         ),
+        //     ];
+        // }
+        // if (existingPath.includes('/contributor-guide')) {
+        //     return [
+        //         existingPath.replace(
+        //             '/developers/contributor-guide',
+        //             '/developers/contributor-guide/current'
+        //         ),
+        //     ];
+        // }
         
         return undefined; // Return a falsy value: no redirect created
     },

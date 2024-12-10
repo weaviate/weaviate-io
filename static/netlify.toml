@@ -1,0 +1,29 @@
+###==================== QUICKSTART ====================
+
+[[redirects]]
+from = "/developers/weaviate/quickstart/installation"
+to   = "/developers/weaviate/quickstart"
+
+[[redirects]]
+from = "/developers/weaviate/quickstart/schema"
+to   = "/developers/weaviate/starter-guides/schema"
+
+[[redirects]]
+from = "/developers/weaviate/quickstart/console"
+to   = "/developers/wcs/tools/query-tool"
+
+# redirects for:
+# from: '/developers/weaviate/quickstart/import',
+# from: '/developers/weaviate/quickstart/query',
+# from: '/developers/weaviate/quickstart/modules',
+[[redirects]]
+from = "/developers/weaviate/quickstart/*"
+to   = "/developers/weaviate/tutorials/:splat"
+
+[[redirects]]
+from = "/developers/weaviate/current/quickstart"
+to   = "/developers/weaviate/quickstart/:splat"
+
+[[redirects]]
+from = "/weaviate/current/getting-started"
+to   = "/weaviate/quickstart/:splat"
