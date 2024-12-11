@@ -706,8 +706,14 @@
   }
 }
 
+@media (max-height: 600px) {
+  .flex.w-full.h-\[450px\].items-start.justify-center.p-4 {
+    transform: translateY(50%);
+  }
+}
+
 @supports (-moz-appearance: none) {
-  .command-palette {
-    max-height: calc(100vh - var(--safe-area-inset-bottom, 0px) - 50px);
+  .command-palette .modal-content {
+    max-height: calc(100vh - 50px);
   }
 }
