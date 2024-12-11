@@ -32,7 +32,6 @@ Refer to the client library examples below, or [the REST API documentation](../a
 Weaviate comes with a set of predefined roles. These roles are:
 
 - `admin`: The admin role has full access to all resources in Weaviate.
-- `editor`: The editor role is able to read, write, update, and delete resources in Weaviate. They are not able to manage roles.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
 `admin` and `viewer` roles can be assigned through the Weaviate configuration file. Once a role is assigned to a user through the configuration file, it cannot be modified. The user also cannot be assigned additional roles through the Weaviate API.
@@ -404,7 +403,7 @@ This example removes from the "devrel" role permissions to:
 
 ### Assign a role to a user
 
-A custom user can have any number of roles assigned to them (including none). The role can be a predefined role or a custom role.
+A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
 This example assigns the custom "devrel" role to "jane-doe".
 
