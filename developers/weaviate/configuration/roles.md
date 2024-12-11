@@ -34,7 +34,7 @@ Weaviate comes with a set of predefined roles. These roles are:
 - `admin`: The admin role has full access to all resources in Weaviate.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
-`admin` and `viewer` roles can be assigned through the Weaviate configuration file. Once a role is assigned to a user through the configuration file, it cannot be modified. The user also cannot be assigned additional roles through the Weaviate API.
+`admin` and `viewer` roles can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
 All roles can also be assigned through the Weaviate API, including the predefined roles. The predefined roles cannot be modified, but they can be assigned or revoked from users.
 
