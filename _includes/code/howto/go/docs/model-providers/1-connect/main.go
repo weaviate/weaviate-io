@@ -34,8 +34,8 @@ func main() {
 			"X-Databricks-Token": os.Getenv("DATABRICKS_TOKEN"),
 			// END DatabricksInstantiation
 			// START GoogleInstantiation
-			"X-Google-Vertex-Key": os.Getenv("VERTEX_APIKEY"),
-			"X-Google-Studio-Key": os.Getenv("STUDIO_APIKEY"),
+			"X-Goog-Vertex-Key": os.Getenv("VERTEX_APIKEY"),
+			"X-Goog-Studio-Key": os.Getenv("STUDIO_APIKEY"),
 			// END GoogleInstantiation
 			// START HuggingFaceInstantiation
 			"X-HuggingFace-Api-Key": os.Getenv("HUGGINGFACE_APIKEY"),
