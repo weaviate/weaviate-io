@@ -1,6 +1,5 @@
 ---
 title: Authorization & RBAC
-title: Authorization & RBAC
 sidebar_position: 35
 image: og/docs/configuration.jpg
 # tags: ['authorization']
