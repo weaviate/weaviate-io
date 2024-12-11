@@ -404,9 +404,9 @@ This example removes from the "devrel" role permissions to:
 
 ### Assign a role to a user
 
-A custom user can have any number of roles assigned to them (including none).
+A custom user can have any number of roles assigned to them (including none). The role can be a predefined role or a custom role.
 
-This example assigns the "devrel" role to "jane-doe".
+This example assigns the custom "devrel" role to "jane-doe".
 
 <Tabs groupId="languages">
 
