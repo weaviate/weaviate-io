@@ -707,11 +707,11 @@
 }
 
 @media (max-height: 600px) {
-  .command-palette {
+ 
     .flex.w-full.h-\[450px\].items-start.justify-center.p-4 {
       transform: translateY(50%);
     }
-  }
+  
 }
 
 @supports (-moz-appearance: none) {
