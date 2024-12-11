@@ -87,8 +87,11 @@ RBAC access will be available in WCD in a future release.
 
 ## Role-Based Access Control (RBAC)
 
-:::info Added in `v1.28` as a preview feature
-Role-Based Access Control (RBAC) is in technical preview in Weaviate `v1.28`. This feature is still under development and may change in future versions.
+:::caution RBAC technical preview
+Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+<br/>
+
+We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
 :::
 
 Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to define [roles](./roles.md) and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.

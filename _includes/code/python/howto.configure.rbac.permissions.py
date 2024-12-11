@@ -15,37 +15,46 @@ def reset_user(user: str):
         admin_client.roles.revoke(role_names=k, user=user)  # revoke all roles
 
 # =================================================================
-# =============== EXAMPLE: ADMIN PERMISSIONS
+# =============== EXAMPLE: READ + WRITE PERMISSIONS
 # =================================================================
 
 # Clean slate
 reset_user("other-user")
-admin_client.roles.delete("admin_role_target_collections")  # delete if exists
+admin_client.roles.delete("rw_role_target_collections")  # delete if exists
 
-# START AdminPermissionDefinition
-# Define permissions (example confers administrative rights to collections starting with "TargetCollection_")
+# START ReadWritePermissionDefinition
+# Define permissions (example confers read+write rights to collections starting with "TargetCollection_")
 admin_permissions = [
     Permissions.collections(
         collection="TargetCollection_*",
-        manage_collection=True,
+        create_collection=True,
+        read_config=True,
+        update_config=True,
+        delete_collection=True,
     ),
-    Permissions.data(collection="TargetCollection_*", manage=True),
+    Permissions.data(
+        collection="TargetCollection_*",
+        create=True,
+        read=True,
+        update=True,
+        delete=True
+    ),
     Permissions.backup(collection="TargetCollection_*", manage=True),
     Permissions.nodes(collection="TargetCollection_*", read=True),
     Permissions.cluster(read=True),
 ]
 
 # Create a new role and assign it to a user
-admin_client.roles.create(role_name="admin_role_target_collections", permissions=admin_permissions)
-admin_client.roles.assign(role_names="admin_role_target_collections", user="other-user")
-# END AdminPermissionDefinition
+admin_client.roles.create(role_name="rw_role_target_collections", permissions=admin_permissions)
+admin_client.roles.assign(role_names="rw_role_target_collections", user="other-user")
+# END ReadWritePermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
 user_permissions = admin_client.roles.by_user("other-user")
 
-assert "admin_role_target_collections" in user_permissions.keys()
-assert user_permissions["admin_role_target_collections"].collections_permissions[0].collection == "TargetCollection_*"
-assert user_permissions["admin_role_target_collections"].name == "admin_role_target_collections"
+assert "rw_role_target_collections" in user_permissions.keys()
+assert user_permissions["rw_role_target_collections"].collections_permissions[0].collection == "TargetCollection_*"
+assert user_permissions["rw_role_target_collections"].name == "rw_role_target_collections"
 
 # =================================================================
 # =============== EXAMPLE: VIEWER PERMISSIONS
@@ -73,7 +82,7 @@ admin_client.roles.assign(role_names="viewer_role_target_collections", user="oth
 # ===== TEST ===== basic checks to see if the role was created
 user_permissions = admin_client.roles.by_user("other-user")
 
-assert "admin_role_target_collections" in user_permissions.keys()
+assert "viewer_role_target_collections" in user_permissions.keys()
 assert user_permissions["viewer_role_target_collections"].collections_permissions[0].collection == "TargetCollection_*"
 assert user_permissions["viewer_role_target_collections"].name == "viewer_role_target_collections"
 

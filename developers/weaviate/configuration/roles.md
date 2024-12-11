@@ -10,13 +10,20 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 
+:::caution RBAC technical preview
+Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+<br/>
+
+We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
+:::
+
 Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the [authenticated](./authentication.md) user identity.
 
 If role-based access control (RBAC) is enabled, access can be further restricted based the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
-Roles and permissions can be managed through Weaviate, directly through the REST API or through the client libraries.
+Roles and permissions can be managed through Weaviate API (e.g. via REST API directly, or through a client library).
 
-Refer to the client library examples below, or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles.
+Refer to the client library examples below, or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
 
 ## Roles
 
@@ -25,9 +32,12 @@ Refer to the client library examples below, or [the REST API documentation](../a
 Weaviate comes with a set of predefined roles. These roles are:
 
 - `admin`: The admin role has full access to all resources in Weaviate.
+- `editor`: The editor role is able to read, write, update, and delete resources in Weaviate. They are not able to manage roles.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
-They are assigned to users based on the Weaviate configuration file. Once a user is assigned a predefined role, their permissions are set accordingly. These roles cannot be modified, and these users cannot have additional roles assigned to them.
+`admin` and `viewer` roles can be assigned through the Weaviate configuration file. Once a role is assigned to a user through the configuration file, it cannot be modified. The user also cannot be assigned additional roles through the Weaviate API.
+
+All roles can also be assigned through the Weaviate API, including the predefined roles. The predefined roles cannot be modified, but they can be assigned or revoked from users.
 
 Refer to the [authorization](./authorization.md) page for more information on how to assign predefined roles to users.
 
@@ -76,19 +86,29 @@ Permissions can be defined for the following resources:
 Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
 :::
 
+### Permission behavior
+
+When defining permissions, setting a permission to `False` indicates that the permission is *not set*, rather than explicitly denying access. This means that if a user has multiple roles, and one role grants a permission while another sets it to `False`, the user will still have that permission through the role that grants it.
+
+For example, if a user has two roles:
+- Role A sets `read` to `False` for Collection X
+- Role B sets `read` to `True` for Collection X
+
+The user will have read access to Collection X because Role B grants the permission, while Role A's `False` value simply indicates no permission is set rather than blocking access.
+
 ## Example permission sets
 
-### Administrative permissions
+### Read and write permissions
 
-This confers administrative permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
+This confers read and write permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
 
 <Tabs groupId="languages">
 
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START AdminPermissionDefinition"
-      endMarker="# END AdminPermissionDefinition"
+      startMarker="# START ReadWritePermissionDefinition"
+      endMarker="# END ReadWritePermissionDefinition"
       language="py"
     />
   </TabItem>
@@ -669,7 +689,7 @@ View all roles in the system and their permissions.
 
 ### Delete a role
 
-Deleting a role will remove it from the system, and revoke all permissions associated with it.
+Deleting a role will remove it from the system, and revoke the associated permissions from all users had this role.
 
 <Tabs groupId="languages">
 
