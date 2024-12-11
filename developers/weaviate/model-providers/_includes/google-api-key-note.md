@@ -1,9 +1,9 @@
 <details>
   <summary>API key headers</summary>
 
-Starting from `v1.25.1` and `v1.24.14`, there are separate headers `X-Google-Vertex-Api-Key` and `X-Google-Studio-Api-Key` for Vertex AI users and AI Studio respectively.
+From `v1.27.7`, `v1.26.12` and `v1.25.27`, `X-Goog-Vertex-Api-Key` and `X-Goog-Studio-Api-Key` headers are supported for Vertex AI users and AI Studio respectively. We recommend these headers for highest compatibility.
 <br/>
 
-Prior to Weaviate `v1.25.1` or `v1.24.14`, there was one header for both Vertex AI users and AI Studio, specified with either `X-Google-Api-Key` or `X-PaLM-Api-Key`. We recommend using the new headers for clarity and future compatibility.
+Consider `X-Google-Vertex-Api-Key`, `X-Google-Studio-Api-Key`, `X-Google-Api-Key` and `X-PaLM-Api-Key` deprecated.
 
 </details>
