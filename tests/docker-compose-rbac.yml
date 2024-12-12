@@ -1,6 +1,6 @@
 ---
 services:
-  weaviate_anon:
+  weaviate_rbac:
     command:
     - --host
     - 0.0.0.0
