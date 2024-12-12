@@ -17,7 +17,7 @@ All other values are interpreted as `false`.
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `ASYNC_INDEXING` | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
+| `ASYNC_INDEXING` | (Experimental, added in `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
 | `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
 | `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the
 default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
