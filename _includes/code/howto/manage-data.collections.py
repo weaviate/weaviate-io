@@ -565,6 +565,41 @@ config = collection.config.get()
 
 client.close()
 
+# ==============================================
+# ===== ALL REPLICATION SETTINGS
+# ==============================================
+
+# Connect to a setting with 3 replicas
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# Clean slate
+client.collections.delete("Article")
+
+# START AllReplicationSettings
+from weaviate.classes.config import Configure, ReplicationDeletionStrategy
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+        async_enabled=True,  # Enable asynchronous repair
+        deletion_strategy=ReplicationDeletionStrategy.TIME_BASED_RESOLUTION,  # Added in v1.28; Set the deletion conflict resolution strategy
+    )
+    # highlight-end
+)
+# END AllReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.replication_config.async_enabled == True
+assert config.replication_config.deletion_strategy == ReplicationDeletionStrategy.TIME_BASED_RESOLUTION
+
+client.close()
+
 # ====================
 # ===== SHARDING =====
 # ====================

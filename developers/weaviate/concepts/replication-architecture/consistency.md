@@ -151,9 +151,61 @@ For speed, data operations on a tenant occur independently of any tenant activit
 
 ## Repairs
 
-When Weaviate detects inconsistent data across replicas, it attempts to repair the out of sync data.
+In distributed systems like Weaviate, object replicas can become inconsistent due to any number of reasons - network issues, node failures, or timing conflicts. When Weaviate detects inconsistent data across replicas, it attempts to repair the out of sync data.
 
-Starting in v1.26, Weaviate adds [async replication](#async-replication) to proactively detect inconsistencies. In earlier versions, Weaviate uses a [repair-on-read](#repair-on-read) strategy to repair inconsistencies at read time.
+Weaviate uses [async replication](#async-replication), [deletion resolution](#deletion-resolution-strategies) and [repair-on-read](#repair-on-read) strategies to maintain consistency across replicas.
+
+### Async replication
+
+:::info Added in `v1.26`
+:::
+
+Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+
+Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
+
+Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
+
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
+
+### Deletion resolution strategies
+
+:::info Added in `v1.28`
+:::
+
+When an object is present on some replicas but not others, this can be because a creation has not yet been propagated to all replicas, or because a deletion has not yet been propagated to all replicas. It is important to distinguish between these two cases.
+
+Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, you can set one of the following deletion resolution strategies:
+
+- `NoAutomatedResolution`
+- `DeleteOnConflict`
+- `TimeBasedResolution`
+
+#### `NoAutomatedResolution`
+
+This is the default setting, and the only setting available in Weaviate versions prior to `v1.28`. In this mode, Weaviate does not treat deletion conflicts as a special case. If an object is present on some replicas but not others, Weaviate may potentially restore the object on the replicas where it is missing.
+
+#### `DeleteOnConflict`
+
+A deletion conflict in `deleteOnConflict` is always resolved by deleting the object on all replicas.
+
+To do so, Weaviate updates an object as a deleted object on a replica upon receiving a deletion request, rather than removing all traces of the object.
+
+#### `TimeBasedResolution`
+
+A deletion conflict in `timeBasedResolution` is resolved based on the timestamp of the deletion request, in comparison to any subsequent updates to the object such as a creation or an update.
+
+If the deletion request has a timestamp that is later than the timestamp of any subsequent updates, the object is deleted on all replicas. If the deletion request has a timestamp that is earlier than the timestamp of any subsequent updates, the later updates are applied to all replicas.
+
+For example:
+- If an object is deleted at timestamp 100 and then recreated at timestamp 90, the recreation wins
+- If an object is deleted at timestamp 100 and then recreated at timestamp 110, the deletion wins
+
+#### Choosing a strategy
+
+- Use `NoAutomatedResolution` when you want maximum control and handle conflicts manually
+- Use `DeleteOnConflict` when you want to ensure deletions are always honored
+- Use `TimeBasedResolution` when you want the most recent operation to take precedence
 
 ### Repair-on-read
 
@@ -177,19 +229,6 @@ The read repair process also depends on the read and write consistency levels us
 | `ALL` | - | This situation should not occur. The write should have failed. |
 
 Repairs only happen on read, so they do not create a lot of background overhead. While nodes are in an inconsistent state, read operations with consistency level of `ONE` may return stale data.
-
-### Async replication
-
-:::info Added in `v1.26`
-:::
-
-Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
-
-Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
-
-Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
-
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)

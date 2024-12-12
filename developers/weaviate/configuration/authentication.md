@@ -5,34 +5,84 @@ image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
 
-Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
+:::info Authentication and authorization
+Authentication and authorization are closely related concepts, and sometimes abbreviated as `AuthN` and `AuthZ`. Authentication (`AuthN`) is the process of verifying the identity of a user, while authorization (`AuthZ`) is the process of determining what permissions the user has.
+:::
 
-When authentication is disabled, all anonymous requests will be granted access.
+Weaviate controls access through user authentication via API keys or OpenID Connect (OIDC), with an option for anonymous access. Users can then be assigned different [authorization](./authorization.md) levels, as shown in the diagram below.
 
-In this documentation, we cover all scenarios for your convenience:
-- [Configuring Weaviate and the client for API key use](#api-key)
-- [Configuring Weaviate and the client for OIDC](#oidc---a-systems-perspective)
-- [Configuring Weaviate for anonymous access](#anonymous-access)
+```mermaid
+flowchart LR
+    %% Define main nodes
+    Request["Client\nRequest"]
+    AuthCheck{"AuthN\nEnabled?"}
+    AccessCheck{"Check\nAuthZ"}
+    Access["✅ Access\nGranted"]
+    Denied["❌ Access\nDenied"]
+
+    %% Define authentication method nodes
+    subgraph auth ["AuthN"]
+        direction LR
+        API["API Key"]
+        OIDC["OIDC"]
+        AuthResult{"Success?"}
+    end
+
+    %% Define connections
+    Request --> AuthCheck
+    AuthCheck -->|"No"| AccessCheck
+    AuthCheck -->|"Yes"| auth
+    API --> AuthResult
+    OIDC --> AuthResult
+    AuthResult -->|"Yes"| AccessCheck
+    AuthResult -->|"No"| Denied
+
+    AccessCheck -->|"Pass"| Access
+    AccessCheck -->|"Fail"| Denied
+
+    %% Style nodes
+    style Request fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style AuthCheck fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style AccessCheck fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Access fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Denied fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style API fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style OIDC fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style AuthResult fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraph
+    style auth fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
+
+For example, a user logging in with the API key `jane-secret` may be granted administrator permissions, while another user logging in with the API key `ian-secret` may be granted read-only permissions.
+
+In summary, Weaviate allows the following authentication methods:
+
+- API key
+- OpenID Connect (OIDC)
+- Anonymous access (no authentication, strongly discouraged except for development or evaluation)
 
 Note that API key and OIDC authentication can be both enabled at the same time.
 
-:::tip We recommend starting with the API key
-For most use cases, the API key option offers a balance between security and ease of use. Give it a try first, unless you have specific requirements that necessitate a different approach.
+The way to configure authentication differs by your deployment method, depending on whether you are running Weaviate in Docker or Kubernetes. Below, we provide examples for both.
+
+:::info What about Weaviate Cloud (WCD)?
+For Weaviate Cloud (WCD) instances, authentication is pre-configured with OIDC and API key access. You can [authenticate against Weaviate](../connections/connect-cloud.mdx) with your WCD credentials using OIDC, or [with API keys](/developers/wcs/platform/manage-api-keys).
 :::
 
-:::info Using Kubernetes?
-See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
-:::
+## API Key Authentication
 
-## WCD authentication
+API key authentication is a simple and effective way to authenticate users. Each user is assigned a unique API key, which is used to authenticate the user.
 
-[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/connect.mdx).
+Note that you can either:
+- Set one user for all API keys, or
+- Define one user per API key (the number of users must match the number of API keys)
 
-## API key
+Make sure all listed users are also configured in the authorization settings.
 
-To configure Weaviate for API key-based authentication, add the following environment variables to your configuration file.
+### API keys: Docker
 
-An example `docker-compose.yml` file looks like this:
+API key authentication can be configured using environment variables. In Docker Compose, set them in the configuration file (`docker-compose.yml`) such as in the following example:
 
 ```yaml
 services:
@@ -40,82 +90,73 @@ services:
     ...
     environment:
       ...
+      # Disable anonymous access.
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+
       # Enables API key authentication.
       AUTHENTICATION_APIKEY_ENABLED: 'true'
 
-      # List one or more keys, separated by commas. Each key corresponds to a specific user identity below.
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'jane-secret-key,ian-secret-key'
+      # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key'
 
       # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
-      AUTHENTICATION_APIKEY_USERS: 'jane@doe.com,ian-smith'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user'
 ```
 
-The example associates API keys and users.
+This configuration:
+- Disables anonymous access
+- Enables API key authentication
+- Defines plaintext API keys in `AUTHENTICATION_APIKEY_ALLOWED_KEYS`
+- Associates users with the API keys in `AUTHENTICATION_APIKEY_USERS`
 
-| API key | User|
-| :- | :- |
-| `jane-secret-key` | `jane@doe.com` |
-| `ian-secret-key` | `ian-smith` |
+These users can now be assigned permissions based on the authorization settings.
 
-:::info `n` APIKEY_ALLOWED_KEYS vs `n` APIKEY_USERS
-There are two options for configuring the number of keys and users:
-- Option 1: There is exactly one user specified and any number of keys (all keys will end up using the same user).
-- Option 2: The lengths match, then key `n` will map to user `n`.
-:::
+### API keys: Kubernetes
 
-These users' permissions will be determined by the [authorization](./authorization.md) settings. Below is one such example configuration.
+For Kubernetes deployments using Helm, API key authentication can be configured in the `values.yaml` file under the `authentication` section. Here's an example configuration:
 
 ```yaml
-services:
-  weaviate:
-    ...
-    environment:
-      ...
-      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
-      AUTHORIZATION_ADMINLIST_USERS: 'jane@doe.com,john@doe.com'
-      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
+authentication:
+  anonymous_access:
+    # Disable anonymous access.
+    enabled: false
+
+  apikey:
+    # Enables API key authentication.
+    enabled: true
+
+    # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
+    allowed_keys:
+      - admin-key
+      - viewer-key
+
+    # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
+    users:
+      - admin-user
+      - viewer-user
 ```
 
-The example associates permissions with users.
+This configuration:
+- Disables anonymous access
+- Enables API key authentication
+- Defines plaintext API keys in `allowed_keys`
+- Associates users with the API keys in `users`
 
-| User| User type | Permission |
-| :- | :- | :- |
-| `jane-secret-key` | Admin | Read, write |
-| `john@doe.com` | Admin | Read, write |
-| `ian-smith` | Read Only | Read |
-| `roberta@doe.com` | Read Only | Read |
-
-In the example, `jane-secret-key` is an `admin` key, and `ian-secret-key` is a `read-only` key.
-
-:::note What about the other identities?
-You might notice that the authorization list includes `john@doe.com` and `roberta@doe.com`. Weaviate supports a combination of API key and OIDC-based authentication. Thus, the additional users might be OIDC users.
+:::warning Environment Variables Take Precedence
+If you configure API keys using environment variables, those settings will take precedence over the values in `values.yaml`. To use the Helm values configuration, ensure you have not set the corresponding environment variables.
 :::
 
-### API key: Client-side usage
+For enhanced security in production environments, you can store API keys in Kubernetes secrets and reference them using environment variables instead of storing them as plaintext in the Helm values.
 
-import APIKeyUsage from '/_includes/clients/api-token-usage.mdx';
+## OIDC Authentication
 
-<APIKeyUsage />
+OIDC authentication requires the resource (Weaviate) to validate tokens issued by an identity provider. The identity provider authenticates the user and issues tokens, which are then validated by Weaviate.
 
-The cURL command looks like this:
+In an example setup, a Weaviate instance acts as the resource, Weaviate Cloud (WCD) acts as the identity provider, and the Weaviate client acts on behalf of the user.
 
-```bash
-curl https://${WEAVIATE_INSTANCE_URL}/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
-```
+Any "OpenID Connect" compatible token issuer that implements OpenID Connect Discovery is compatible with Weaviate.
 
-import ClientLibraryUsage from '/_includes/clients/client-library-usage.mdx';
-
-<ClientLibraryUsage />
-
-## OIDC
-
-OIDC authentication involves three parties.
-
-1. A **user** who wants to access a resource.
-1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCD) that authenticates the user and issues tokens.
-1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
-
-For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud (WCD) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
+This document discusses how to configure Weaviate as the resource.
 
 <details>
   <summary>
@@ -133,38 +174,11 @@ correct, all contents of the token are trusted, which authenticates the user bas
 
 </details>
 
-## OIDC: Server-side
+### OIDC: Docker
 
-Any "OpenID Connect" compatible token issuer that implements OpenID Connect Discovery is compatible with Weaviate.
+To configure Weaviate for OIDC-based authentication, add the following environment variables to your configuration file.
 
-### Configure Weaviate as the resource
-
-Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
-
-- For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
-    - Make sure you have a WCD account (you can [sign up here](https://console.weaviate.cloud/)).
-    - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
-      - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
-      - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
-      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCD account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
-      - `email` as the username claim (in `AUTHENTICATION_OIDC_USERNAME_CLAIM`).
-
-- If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
-- As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
-
-:::info
-By default, Weaviate validates that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
-:::
-
-### Set configuration options
-
-To use OpenID Connect (OIDC), the **respective environment variables** must be correctly configured in the configuration yaml for Weaviate.
-
-:::info
-As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
-:::
-
-The OIDC-related Docker Compose environment variables are shown below. For configuration details, see the inline-yaml comments:
+An example `docker-compose.yml` file looks like this:
 
 ```yaml
 services:
@@ -209,17 +223,120 @@ services:
       AUTHENTICATION_OIDC_SCOPES: ''
 ```
 
-#### Get the Weaviate OpenID endpoint
+:::info OIDC and Azure
+As of November 2022, we were aware of some differences in Microsoft Azure's OIDC implementation compared to others. If you are using Azure and experiencing difficulties, [this external blog post](https://xsreality.medium.com/making-azure-ad-oidc-compliant-5734b70c43ff) may be useful.
+:::
 
-If you have OIDC authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
+### OIDC: Kubernetes
 
-```bash
-curl ${WEAVIATE_INSTANCE_URL}/v1/.well-known/openid-configuration
+For Kubernetes deployments using Helm, OIDC authentication can be configured in the `values.yaml` file under the `authentication` section. Here's an example configuration:
+
+```yaml
+authentication:
+  anonymous_access:
+    # Disable anonymous access.
+    enabled: false
+  oidc:
+    # enabled (optional - defaults to false) turns OIDC auth on. All other fields in
+    # this section will only be validated if enabled is set to true.
+    enabled: true
+
+    # issuer (required) tells weaviate how to discover the token issuer. This
+    # endpoint must implement the OpenID Connect Discovery spec, so that weaviate
+    # can retrieve the issuer's public key.
+    #
+    # The example URL below uses the path structure commonly found with keycloak
+    # where an example realm 'my-weaviate-usecase' was created. The exact
+    # path structure depends on the token issuer. See the token issuer's documentation
+    # about which endpoint implements OIDC Discovery.
+    issuer: 'http://my-token-issuer/auth/realms/my-weaviate-usecase'
+
+    # client_id (required unless skip_client_id_check is set to true) tells
+    # Weaviate to check for a particular OAuth 2.0 client_id in the audience claim.
+    # This is to prevent that a token which was signed by the correct issuer
+    # but never intended to be used with Weaviate can be used for authentication.
+    #
+    # For more information on what clients are in OAuth 2.0, see
+    # https://tools.ietf.org/html/rfc6749#section-1.1
+    client_id: 'my-weaviate-client'
+
+    # username_claim (required) tells Weaviate which claim in the token to use for extracting
+    # the username. The username will be passed to the authorization plugin.
+    username_claim: 'email'
+
+    # skip_client_id_check (optional, defaults to false) skips the client_id
+    # validation in the audience claim as outlined in the section above.
+    # Not recommended to set this option as it reduces security, only set this
+    # if your token issuer is unable to provide a correct audience claim
+    skip_client_id_check: 'false'
+
+    # scope (optional) these will be used by clients as default scopes for authentication
+    scopes: ''
+
+    # groups_claim: ''
 ```
 
-Edit ${WEAVIATE_INSTANCE_URL} to provide your instance URL.
+### Note: Configuring the OIDC token issuer
 
-## OIDC: Client-side
+Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
+
+- For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
+    - Make sure you have a WCD account (you can [sign up here](https://console.weaviate.cloud/)).
+    - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
+      - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
+      - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
+      - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCD account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
+      - `email` as the username claim (in `AUTHENTICATION_OIDC_USERNAME_CLAIM`).
+
+- If you need a more customizable setup you can use commercial OIDC providers like [Okta](https://www.okta.com/).
+- As another alternative, you can run your own OIDC token issuer server, which may be the most complex but also configurable solution. Popular open-source solutions include Java-based [Keycloak](https://www.keycloak.org/) and Golang-based [dex](https://github.com/dexidp/dex).
+
+:::info
+By default, Weaviate validates that the token includes a specified client id in the audience claim. If your token issuer does not support this feature, you can turn it off as outlined in the configuration section below.
+:::
+
+## Anonymous Access
+
+Weaviate can be configured to accept anonymous requests. This is strongly discouraged except for development or evaluation purposes.
+
+Users that send requests without explicit authentication are authenticated as `user: anonymous`.
+
+You can use the authorization plugin to specify which permissions to apply to this `anonymous` user. If anonymous access is disabled altogether, any request without an allowed authentication scheme returns `401 Unauthorized`.
+
+### Anonymous access: Docker
+
+To enable anonymous access in Docker Compose, add the following environment variable to your configuration file:
+
+```yaml
+services:
+  weaviate:
+    ...
+    environment:
+      ...
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+```
+
+### Anonymous access: Kubernetes
+
+To enable anonymous access in Kubernetes, add the following configuration to your `values.yaml` file:
+
+```yaml
+authentication:
+  anonymous_access:
+    enabled: true
+```
+
+## Client-side Usage
+
+### API key
+
+import APIKeyUsage from '/_includes/clients/api-token-usage.mdx';
+
+<APIKeyUsage />
+
+We recommend using a client library to authenticate against Weaviate. See [How-to: Connect](../connections/index.mdx) pages for more information.
+
+### OIDC
 
 The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
 
@@ -238,9 +355,6 @@ If Weaviate core is configured to use the `client credentials grant` flow or the
 import OIDCExamples from '/_includes/code/connections/oidc-connect.mdx';
 
 <OIDCExamples/>
-
-
-<ClientLibraryUsage />
 
 ### Get and pass tokens manually
 
@@ -357,31 +471,10 @@ For example, the cURL command looks like this:
 curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
 ```
 
-<ClientLibraryUsage />
+## Further resources
 
-## Anonymous access
-By default, Weaviate is configured to accept requests without any authentication headers or parameters. Users that send requests without explicit authentication are authenticated as `user: anonymous`.
-
-You can use the authorization plugin to specify which
-permissions to apply to anonymous users. If anonymous access is disabled altogether,
-any request without an allowed authentication scheme returns `401 Unauthorized`.
-
-### Configuration
-Anonymous access can be enabled or disabled in the configuration yaml using the environment variable shown below:
-
-```yaml
-services:
-  weaviate:
-    ...
-    environment:
-      ...
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-```
-
-### How to use
-
-Send REST requests to Weaviate without any additional authentication headers or parameters.
-
+- [Configuration: Authorization and RBAC](./authorization.md)
+- [References: Environment variables / Authentication and Authorization](../config-refs/env-vars.md#authentication-and-authorization)
 
 ## Questions and feedback
 
