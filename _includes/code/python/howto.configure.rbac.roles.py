@@ -3,7 +3,14 @@ import weaviate
 from weaviate.classes.init import Auth
 
 # Connect to Weaviate as Admin
-admin_client = weaviate.connect_to_local(auth_credentials=Auth.api_key("admin-key"))
+admin_client = weaviate.connect_to_local(
+    # END AdminClient
+    # Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
+    port=8580,
+    grpc_port=50551,
+    # START AdminClient
+    auth_credentials=Auth.api_key("admin-key")
+)
 # END AdminClient
 
 permissions_to_add = [
