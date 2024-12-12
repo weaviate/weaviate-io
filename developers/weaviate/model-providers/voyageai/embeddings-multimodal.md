@@ -1,15 +1,10 @@
 ---
 title: Multimodal Embeddings
-description: "Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate."
+description: "Weaviate's integration with VoyageAI's APIs allows you to access their models' capabilities directly from Weaviate."
 sidebar_position: 25
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'embeddings']
+image: og/docs/integrations/provider_integrations_voyageai.jpg
+# tags: ['model providers', 'voyageai', 'embeddings']
 ---
-
-# Cohere Multimodal Embeddings with Weaviate
-
-:::info Added in `1.25.25`, `1.26.9` and `v1.27.2`
-:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,19 +14,26 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
+# VoyageAI Multimodal Embeddings with Weaviate
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Cohere embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Cohere API key. This feature is called the *vectorizer*.
+:::info Added in `v1.25.28`, `v1.26.12`, `1.27.8`
+:::
+
+Weaviate's integration with VoyageAI's APIs allows you to access their models' capabilities directly from Weaviate.
+
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a VoyageAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your VoyageAI API key. This feature is called the *vectorizer*.
+
+Note this integration does not support Voyage AI's "interleaving" input mode. For this type of usage, import your own vectors with objects as [shown in this guide](../../starter-guides/custom-vectors.mdx).
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
-![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
+![Embedding integration illustration](../_includes/integration_voyageai_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Cohere vectorizer integration (`multi2vec-cohere`) module.
+Your Weaviate instance must be configured with the VoyageAI vectorizer integration (`multi2vec-voyageai`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -50,11 +52,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+You must provide a valid VoyageAI API key to Weaviate for this integration. Go to [VoyageAI](https://voyageai.com/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `COHERE_APIKEY` environment variable that is available to Weaviate.
+- Set the `VOYAGEAI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -62,8 +64,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START CohereInstantiation"
-      endMarker="# END CohereInstantiation"
+      startMarker="# START VoyageAIInstantiation"
+      endMarker="# END VoyageAIInstantiation"
       language="py"
     />
   </TabItem>
@@ -71,8 +73,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START CohereInstantiation"
-      endMarker="// END CohereInstantiation"
+      startMarker="// START VoyageAIInstantiation"
+      endMarker="// END VoyageAIInstantiation"
       language="ts"
     />
   </TabItem>
@@ -81,14 +83,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Cohere embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a VoyageAI embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerCohere"
-      endMarker="# END BasicMMVectorizerCohere"
+      startMarker="# START BasicMMVectorizerVoyageAI"
+      endMarker="# END BasicMMVectorizerVoyageAI"
       language="py"
     />
   </TabItem>
@@ -96,8 +98,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerCohere"
-      endMarker="// END BasicMMVectorizerCohere"
+      startMarker="// START BasicMMVectorizerVoyageAI"
+      endMarker="// END BasicMMVectorizerVoyageAI"
       language="ts"
     />
   </TabItem>
@@ -112,8 +114,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START MMVectorizerCohereCustomModel"
-      endMarker="# END MMVectorizerCohereCustomModel"
+      startMarker="# START MMVectorizerVoyageAICustomModel"
+      endMarker="# END MMVectorizerVoyageAICustomModel"
       language="py"
     />
   </TabItem>
@@ -121,8 +123,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START MMVectorizerCohereCustomModel"
-      endMarker="// END MMVectorizerCohereCustomModel"
+      startMarker="// START MMVectorizerVoyageAICustomModel"
+      endMarker="// END MMVectorizerVoyageAICustomModel"
       language="ts"
     />
   </TabItem>
@@ -142,14 +144,14 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Cohere-specific options.
+The following examples show how to configure VoyageAI-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullMMVectorizerCohere"
-      endMarker="# END FullMMVectorizerCohere"
+      startMarker="# START FullMMVectorizerVoyageAI"
+      endMarker="# END FullMMVectorizerVoyageAI"
       language="py"
     />
   </TabItem>
@@ -157,15 +159,15 @@ The following examples show how to configure Cohere-specific options.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullMMVectorizerCohere"
-      endMarker="// END FullMMVectorizerCohere"
+      startMarker="// START FullMMVectorizerVoyageAI"
+      endMarker="// END FullMMVectorizerVoyageAI"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/embed).
+For further details on model parameters, see the [VoyageAI API documentation](https://docs.voyageai.com/reference/multimodal-embeddings-api).
 
 ## Data import
 
@@ -199,9 +201,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Cohere model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified VoyageAI model.
 
-![Embedding integration at search illustration](../_includes/integration_cohere_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_voyageai_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -297,18 +299,14 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Available models
 
-- `embed-multilingual-v3.0` (Default)
-- `embed-multilingual-light-v3.0`
-- `embed-english-v3.0`
-- `embed-english-light-v3.0`
+- `voyage-multimodal-3` (Default)
 
 ## Further resources
 
 ### Other integrations
 
-- [Cohere text embedding models + Weaviate](./embeddings.md).
-- [Cohere generative models + Weaviate](./generative.md).
-- [Cohere reranker models + Weaviate](./reranker.md).
+- [VoyageAI text embedding models + Weaviate](./embeddings.md).
+- [VoyageAI reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
@@ -319,7 +317,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- Cohere [Embed API documentation](https://docs.cohere.com/reference/embed)
+- VoyageAI [Multimodal Embed API documentation](https://docs.voyageai.com/reference/multimodal-embeddings-api)
 
 ## Questions and feedback
 
