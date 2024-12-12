@@ -79,9 +79,7 @@ export default function introduction() {
               <div className={`${styles.innerBar} ${styles.secondLine}`}>
                 <div className={styles.logoSection}>
                   <div className={`${styles.customerLogo} ${styles.redbull}`} />
-                  <div
-                    className={`${styles.customerLogo} ${styles.writesonic}`}
-                  />
+
                   <div
                     className={`${styles.customerLogo} ${styles.netappLogo}`}
                   />
