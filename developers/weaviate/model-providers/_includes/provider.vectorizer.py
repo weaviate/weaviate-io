@@ -1017,7 +1017,8 @@ client.collections.create(
             ],
             # Further options
             # model="voyage-multimodal-3",
-            # truncate="true",  # "false"
+            # truncation="true",  # or "false",
+            # output_encoding="base64", # or "null"
             # base_url="<custom_voyageai_url>"
         )
     ],

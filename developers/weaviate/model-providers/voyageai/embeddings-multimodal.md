@@ -16,14 +16,14 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 # VoyageAI Multimodal Embeddings with Weaviate
 
-:::info Added in `1.27.8`
+:::info Added in `v1.25.28`, `v1.26.12`, `1.27.8`
 :::
 
 Weaviate's integration with VoyageAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use a VoyageAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your VoyageAI API key. This feature is called the *vectorizer*.
 
-This integration supports CLIP-like, single-modality inputs from text or images, into a multimodal embedding space.
+Note this integration does not support Voyage AI's "interleaving" input mode. For this type of usage, import your own vectors with objects as [shown in this guide](../../starter-guides/custom-vectors.mdx).
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 

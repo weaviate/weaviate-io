@@ -1035,6 +1035,8 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicMMVectorizerVoyageAI
+// TS client support coming soon
+// END BasicMMVectorizerVoyageAI
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1064,12 +1066,13 @@ await client.collections.create({
     // highlight-end
     // Additional parameters not shown
 })
-// END BasicMMVectorizerVoyageAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START MMVectorizerVoyageAICustomModel
+// TS client support coming soon
+// END MMVectorizerVoyageAICustomModel
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1100,12 +1103,13 @@ await client.collections.create({
     // highlight-end
     // Additional parameters not shown
 })
-// END MMVectorizerVoyageAICustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullMMVectorizerVoyageAI
+// TS client support coming soon
+// END FullMMVectorizerVoyageAI
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1133,13 +1137,13 @@ await client.collections.create({
       }],
       // Further options
       // model: "voyage-multimodal-3",
-      // truncate: "true",  // "false"
+      // truncation: "true",  // or "false"
+      // outputEncoding: "base64"  // or "null"
       // baseURL: "<custom_voyageai_url>"
     })],
     // highlight-end
     // Additional parameters not shown
 })
-// END FullMMVectorizerVoyageAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
