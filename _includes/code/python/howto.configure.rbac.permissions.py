@@ -6,13 +6,18 @@ from weaviate.classes.rbac import Permissions
 # END-ANY
 from weaviate.classes.init import Auth
 
-admin_client = weaviate.connect_to_local(auth_credentials=Auth.api_key("admin-key"))
+admin_client = weaviate.connect_to_local(
+    # Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
+    port=8580,
+    grpc_port=50551,
+    auth_credentials=Auth.api_key("admin-key")
+)
 
 def reset_user(user: str):
     # Clean slate
     current_roles = admin_client.roles.by_user(user)  # check if user exists
     for k in current_roles.keys():
-        admin_client.roles.revoke(role_names=k, user=user)  # revoke all roles
+        admin_client.roles.revoke_from_user(role_names=k, user=user)  # revoke all roles
 
 # =================================================================
 # =============== EXAMPLE: READ + WRITE PERMISSIONS
@@ -46,7 +51,7 @@ admin_permissions = [
 
 # Create a new role and assign it to a user
 admin_client.roles.create(role_name="rw_role_target_collections", permissions=admin_permissions)
-admin_client.roles.assign(role_names="rw_role_target_collections", user="other-user")
+admin_client.roles.assign_to_user(role_names="rw_role_target_collections", user="other-user")
 # END ReadWritePermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
@@ -76,7 +81,7 @@ viewer_permissions = [
 
 # Create a new role and assign it to a user
 admin_client.roles.create(role_name="viewer_role_target_collections", permissions=viewer_permissions)
-admin_client.roles.assign(role_names="viewer_role_target_collections", user="other-user")
+admin_client.roles.assign_to_user(role_names="viewer_role_target_collections", user="other-user")
 # END ViewerPermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
