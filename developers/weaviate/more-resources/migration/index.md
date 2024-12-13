@@ -18,6 +18,12 @@ When upgrading Weaviate, we recommend that you:
 
 This approach of upgrading one minor version at a time helps to minimize the risk of issues during the upgrade process, by mirroring our testing and release process. Upgrading to the latest patch version of each minor release ensures that you have the latest bugfixes and improvements.
 
+### Version-specific migration guides
+
+- When upgrading to version `1.25.x` from `1.24.x` (or lower), you must perform a [Raft migration](#raft-migration-v1250).
+- When upgrading to version `1.26.x` or higher (from the preceding version), ensure that the cluster metadata is synchronized.
+    - To do so, poll the `/cluster/statistics` endpoint, and check that the correct number of nodes are reporting statistics, and the `synchronized` flag is showing `true`, before proceeding with the upgrade.
+
 :::tip Scenario: upgrading from `v1.25.10` to `v1.27`
 
 Between `v1.25` and `v1.27`, there are two minor versions, `v1.26` and `v1.27`. So:
@@ -31,8 +37,6 @@ Between `v1.25` and `v1.27`, there are two minor versions, `v1.26` and `v1.27`. 
 1. Upgrade to the latest patch version of `v1.27`.
 
 :::
-
-## Version-specific migration guides
 
 ### Raft Migration (v1.25.0+)
 
