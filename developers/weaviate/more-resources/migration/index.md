@@ -23,6 +23,7 @@ This approach of upgrading one minor version at a time helps to minimize the ris
 - When upgrading to version `1.25.x` from `1.24.x` (or lower), you must perform a [Raft migration](#raft-migration-v1250).
 - When upgrading to version `1.26.x` or higher (from the preceding version), ensure that the cluster metadata is synchronized.
     - To do so, poll the `/cluster/statistics` endpoint, and check that the correct number of nodes are reporting statistics, and the `synchronized` flag is showing `true`, before proceeding with the upgrade.
+    - For an example implementation, see the [`wait_for_raft_sync` function here](https://github.com/weaviate/weaviate-local-k8s/blob/main/utilities/helpers.sh).
 
 :::tip Scenario: upgrading from `v1.25.10` to `v1.27`
 
