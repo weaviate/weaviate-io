@@ -298,13 +298,13 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             image: 'og/default.jpg',
-             announcementBar: {
+         /**     announcementBar: {
                id: 'announcement-bar-decemeber-2024',
                 content:`<a target="_blank" rel="noopener noreferrer" href="https://webinars.techstronglearning.com/simplify-building-ai-native-embedding-models-and-vector-databases?utm_campaign=2024.12.12-Weaviate_Webinar_DO&utm_source=Weaviate&utm_medium=marketing_social">Webinar | Simplify Building AI-Native: Embedding Models and Vector Databases</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            }, 
+            },  */
             docs: {
                 sidebar: {
                     hideable: true,
