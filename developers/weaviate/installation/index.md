@@ -7,6 +7,8 @@ image: og/docs/installation.jpg
 
 Weaviate is available as a hosted service, [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCD.
 
+If you are upgrading from a previous version of Weaviate, see the [Migration Guide](../more-resources/migration/index.md) for any changes that may affect your installation.
+
 ## Installation methods
 
 To install and configure Weaviate, see the following:

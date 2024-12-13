@@ -9,6 +9,7 @@ This page lists [developer release notes](https://github.com/weaviate/weaviate/r
 
 - To see the GitHub release notes for a particular version, click on the version number.
 - For expanded blog posts on recent minor releases, follow the links in the table of contents at the left of this page.
+- For more information on upgrading Weaviate, see the [Migration Guide](../more-resources/migration/index.md).
 
 ### Weaviate core and client releases
 
