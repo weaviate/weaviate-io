@@ -1,1 +1,0 @@
-A static JPG image introducing the topic of the Weaviate OSS hardening guide
