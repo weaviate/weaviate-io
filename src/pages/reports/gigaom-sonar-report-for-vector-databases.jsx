@@ -11,15 +11,18 @@ export default function signUpPage() {
   return (
     <>
       <Head>
-        <title>Get Started For Free</title>
+        <title>Analyst Report - GigaOm Sonar Report for Vector Databases</title>
         <meta
           name="description"
-          content="All the power of our open-source vector database, without the burden of self-hosting."
+          content="The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market"
         />
-        <meta property="og:title" content="Get Started For Free" />
+        <meta
+          property="og:title"
+          content="Analyst Report - GigaOm Sonar Report for Vector Databases"
+        />
         <meta
           property="og:description"
-          content="All the power of our open-source vector database, without the burden of self-hosting."
+          content="The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market"
         />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
