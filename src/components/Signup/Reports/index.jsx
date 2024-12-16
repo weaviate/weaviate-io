@@ -27,38 +27,57 @@ export default function Introduction() {
         <div className={styles.contentContainer}>
           <div className={styles.demoTitle}>
             <div className={styles.demoLogo}></div>
-            <span>FREE GUIDE</span>
+            <span>ANALYST REPORT</span>
             <h1 classname={styles.headerTag}>
-              Getting Started With Vector Databases
+              GigaOm Sonar Report for Vector Databases
             </h1>
+            <span className={styles.subTitle}>
+              Weaviate named a Leader and Fast-Mover{' '}
+            </span>
           </div>
           <div className={styles.content}>
+            <div className={styles.contentSideA}>
+              <div className={styles.reportImage}></div>
+            </div>
             <div className={styles.contentSideB}>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
-                  <h3>Grab your copy today</h3>
                   <div className={styles.formWrapper}>
                     <div id="hs-form" className={styles.ebookForm}></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className={styles.contentSideA}>
-              <h3>
-                Stay ahead on the future of AI-native software development
-              </h3>
-              <p>
-                Vector databases are quickly emerging as a key component of the
-                AI-native tech stack, enabling fundamental use cases like
-                semantic search, recommendation engines, and retrieval augmented
-                generation (RAG).{' '}
-              </p>
+          </div>
+          <div className={styles.contentBottom}>
+            <span>
+              “[Weaviate] is in the Leader circle because of cost-saving
+              techniques that include storage tiering, its use of language
+              models for summarization and NLQ, and a modular approach to
+              accessing models for embedding content and ranking search
+              results.”
+            </span>
+            <span className={styles.quote}>
+              Gigaom Sonar Report for Vector Databases by Andrew Brust and
+              Jelani Harper, December 11. 2024
+            </span>
+            <h3>About the report</h3>
+            <p>
+              The GigaOm Sonar Report for Vector Databases provides a thorough
+              examination of the rapidly evolving vector database market. In its
+              second edition, the report equips IT decision-makers with detailed
+              insights into vendor offerings and evaluation criteria, including:
+            </p>
 
-              <p>
-                This Refcard provides an overview of vector databases, including
-                basic concepts, use cases, and examples.
-              </p>
-            </div>
+            <ul>
+              <li>Cost-Saving Constructs</li>
+              <li>Indexing Utility</li>
+              <li>Multimodality</li>
+              <li>Use of Language Models</li>
+              <li>Embedding Flexibility</li>
+              <li>Search Versatility</li>
+              <li>Real-Time Applicability</li>
+            </ul>
           </div>
         </div>
       </div>

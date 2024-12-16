@@ -7,7 +7,6 @@
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
-  height: 105vh;
 
   @media screen and (max-width: 900px) {
     background-size: cover;
@@ -21,7 +20,7 @@
 .demoTitle {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
 
   img {
     margin-bottom: 10px;
@@ -30,7 +29,7 @@
   h1 {
     color: #ffffff;
     font-family: 'Plus Jakarta Sans';
-    font-size: 3rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: 140%; /* 4.2rem */
@@ -49,11 +48,13 @@
     line-height: 160%; /* 2rem */
   }
 
+  .subTitle {
+    font-style: italic;
+  }
   p {
-    margin-bottom: 20px;
-
     width: 85%;
-    color: #130c49;
+    color: #ffffff;
+    font-style: italic;
     font-family: Inter;
     font-size: 1rem;
     font-style: normal;
@@ -96,8 +97,8 @@
 .contentSideA {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   width: 100%;
+  align-items: center;
 
   @media screen and (max-width: 1100px) {
     width: 70%;
@@ -117,15 +118,50 @@
   }
 
   p {
-    font-size: 18px;
+    font-size: 15px;
     color: #fff;
     font-family: 'Plus Jakarta Sans';
+  }
+
+  span {
+    color: #ffffff;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .reportImage {
+    background: url('/img/site/giga-report.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25rem;
+    width: 100%;
+    margin: 20px auto;
+
+    @media screen and (max-width: 900px) {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 24rem;
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    @media screen and (max-width: 700px) {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 24rem;
+      width: 100%;
+      margin: 20px auto;
+    }
   }
 }
 
 .contentSideB {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
@@ -197,6 +233,57 @@
   }
 }
 
+.contentBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+
+  @media screen and (max-width: 1100px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  p {
+    font-size: 15px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+  }
+
+  span {
+    color: #ffffff;
+    font-style: italic;
+    font-size: 1.3rem;
+  }
+  .quote {
+    font-size: 13px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+  }
+
+  ul,
+  li {
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
+}
+
 .investorButton {
   margin-top: 25px;
 }
@@ -221,7 +308,7 @@
 
 .signUpBox {
   width: 28rem;
-  height: 32rem;
+  height: auto;
 }
 
 .typeQuote .image {
