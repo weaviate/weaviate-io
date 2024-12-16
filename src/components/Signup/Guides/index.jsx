@@ -38,7 +38,7 @@ export default function Introduction() {
                 <div className={styles.signUpBox}>
                   <h3>Grab your copy today</h3>
                   <div className={styles.formWrapper}>
-                    <div id="hs-form" className={styles.hsForm}></div>
+                    <div id="hs-form" className={styles.ebookForm}></div>
                   </div>
                 </div>
               </div>
