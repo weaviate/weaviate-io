@@ -1,9 +1,6 @@
 .demoContainer {
   margin: auto;
-
   background: #131144;
-
-  background-image: url('/img/site/bg-dark-1.png');
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
@@ -26,46 +23,6 @@
     margin-bottom: 10px;
   }
 
-  h1 {
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%; /* 4.2rem */
-
-    @media screen and (max-width: 1200px) {
-      width: 100%;
-    }
-  }
-
-  span {
-    color: #ddebf2;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; /* 2rem */
-  }
-
-  .subTitle {
-    font-style: italic;
-  }
-  p {
-    width: 85%;
-    color: #ffffff;
-    font-style: italic;
-    font-family: Inter;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; /* 1.6rem */
-
-    @media screen and (max-width: 850px) {
-      width: 100%;
-    }
-  }
-
   .demoLogo {
     width: 10.43744rem;
     height: 1.43244rem;
@@ -76,7 +33,7 @@
 }
 
 .contentContainer {
-  max-width: 960px;
+  max-width: 1060px;
   margin: auto;
   padding: 2rem;
   display: flex;
@@ -131,19 +88,19 @@
 
   .reportImage {
     background: url('/img/site/giga-report.jpg');
-    background-size: cover;
+
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 25rem;
+    height: 34rem;
     width: 100%;
-    margin: 20px auto;
 
     @media screen and (max-width: 900px) {
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      height: 24rem;
-      width: 90%;
+      height: 44rem;
+      width: 100%;
       margin: 20px auto;
     }
 
@@ -160,17 +117,22 @@
 
 .contentSideB {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: column;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
   }
 
-  h3 {
-    font-size: 24px;
-    color: #fff;
+  h1 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 3.5rem */
   }
 
   p {
@@ -203,13 +165,23 @@
   }
 
   span {
-    color: rgba(255, 255, 255, 0.6);
-    text-align: center;
+    color: #ecf4f8;
     font-family: Inter;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 1.3125rem */
+    line-height: 140%;
+    text-transform: uppercase;
+  }
+
+  .subTitle {
+    color: #ecf4f8;
+    font-family: 'Plus Jakarta Sans';
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 2.1rem */
   }
 }
 
@@ -235,16 +207,16 @@
 
 .contentBottom {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  gap: 35px;
   width: 100%;
+  flex-direction: row-reverse;
+  max-width: 1060px;
+  margin: 30px auto;
+  padding: 2rem;
 
-  @media screen and (max-width: 1100px) {
-    width: 70%;
-  }
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
+  @media screen and (max-width: 850px) {
+    flex-direction: column-reverse;
+    gap: 20px;
   }
 
   .smallText {
@@ -252,35 +224,68 @@
   }
 
   h3 {
-    font-size: 2rem;
-    color: #fff;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 
   p {
-    font-size: 15px;
-    color: #fff;
-    font-family: 'Plus Jakarta Sans';
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 2rem */
   }
 
   span {
-    color: #ffffff;
-    font-style: italic;
-    font-size: 1.3rem;
-  }
-  .quote {
-    font-size: 13px;
-    color: #fff;
+    color: #130c49;
     font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+
+  .quoteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 1.25rem;
+    background: #f7f9fd;
+    max-width: 25.6875rem;
+    width: 100%;
+
+    height: 30rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
+    padding: 2rem;
+
+    @media screen and (max-width: 1100px) {
+      max-width: 100%;
+    }
+  }
+
+  .quote {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
   }
 
   ul,
   li {
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 1.1rem;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+    font-weight: 500;
+    line-height: 160%; /* 2rem */
   }
 }
 
@@ -386,14 +391,13 @@
 .ebookForm {
   color: #b5d2dc;
   background: #130c49;
-  padding: 20px;
-  border-radius: 1rem;
+  padding: 20px 0px;
 
   input[type='text'],
-  [type='email'] {
+  input[type='email'] {
     display: flex;
     color: #b5d2dc;
-    width: 100%;
+    width: 100% !important;
     height: 2.93694rem;
     justify-content: center;
     align-items: center;
@@ -422,7 +426,8 @@
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.3125rem;
-    background: #fff;
+
+    background: #61bd73;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
       0px 0px 1px 0px rgba(0, 0, 0, 0.25);
     color: #130c49;
@@ -450,14 +455,15 @@
     font-size: 14px !important;
     text-align: left;
     font-style: normal;
-    margin: 20px 0px;
+    text-transform: capitalize;
     font-family: Inter;
 
     p {
+      margin-left: 24px;
       font-style: normal;
       color: #6e84a3;
       font-family: Inter;
-      font-size: 0.88106rem;
+      font-size: 0.75rem;
       font-style: normal;
       font-weight: 400;
       line-height: 157.33%; /* 1.38619rem */
@@ -469,5 +475,4 @@
   max-height: 670px;
   overflow-y: auto;
   width: 100%;
-  padding: 10px;
 }
