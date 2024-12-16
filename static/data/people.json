@@ -128,6 +128,13 @@
     "team": "sales"
   },
   {
+    "name": "Chara Tzimi",
+    "title": "People Operations Specialist",
+    "photo": "Chara.jpg",
+    "linkedin": "chara-tzimi",
+    "team": "people-and-culture"
+  },
+  {
     "name": "Charles Harr",
     "title": "Software Engineer",
     "photo": "charles.jpg",
@@ -512,6 +519,13 @@
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
     "team": "developer-growth"
+  },
+  {
+    "name": "Pietro Antonacci",
+    "title": "Client-Focused SRE",
+    "photo": "Pietro.jpg",
+    "linkedin": "pietro-antonacci",
+    "team": "delivery"
   },
   {
     "name": "Roberto Esposito",
