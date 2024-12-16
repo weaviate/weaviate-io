@@ -5,10 +5,10 @@ description: "Moving your Weaviate OSS instance into production? Check out our h
 authors: [spiros]
 date: 2024-12-17
 tags: [security, infosec]
-image: ./img/hardened.jpg
+image: ./img/harden.jpg
 ---
 
-![Secure Weaviate](./img/hardened.jpg)  
+![Secure Weaviate](./img/harden.jpg)  
   
 At Weaviate, we take the protection of your data seriously. Our information security measures continuously evolve and adapt to threats we see out there in the wilds of the internet. 
 An area we are seeing more and more within our community is successful Weaviate projects that have been put into production using our [Open Source product](https://github.com/weaviate/weaviate). With Weaviate Open Source you’re in control of your data, the Weaviate environment and the infrastructure it’s hosted on. In fact, we’ve built Weaviate with a range of [modules](https://weaviate.io/developers/weaviate/configuration/modules) that can make your transition from hackathon to startup to customer-ready easy and safe. 
