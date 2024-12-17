@@ -33,7 +33,8 @@ Your Weaviate instance must be configured with the ZhipuAI generative AI integra
 - Follow the [how-to configure modules](../../configuration/modules.md) guide to enable the module in Weaviate.
 
 </details>
- 
+
+
 ### API credentials
 
 You must provide a valid ZhipuAI API key to Weaviate for this integration. Go to  [apikey](https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys) to sign up and obtain an API key.
@@ -62,7 +63,7 @@ import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
 
 <MutableGenerativeConfig />
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an ZhipuAI generative AI model:
+[Configure a Weaviate index](#available-models) as follows to use an ZhipuAI generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
