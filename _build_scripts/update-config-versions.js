@@ -8,8 +8,8 @@ const getRepoVersion = async (repoName) => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'authorization': (process.env.GH_API_TOKEN) ?
-                        `Bearer ${process.env.GH_API_TOKEN}` : ''
+                    // 'authorization': (process.env.GH_API_TOKEN) ?
+                    //     `Bearer ${process.env.GH_API_TOKEN}` : ''
                 }
             }
         );
