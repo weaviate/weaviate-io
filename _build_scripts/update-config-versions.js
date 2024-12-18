@@ -1,30 +1,52 @@
 const fetch = require('node-fetch');
 
 const getRepoVersion = async (repoName) => {
-    const response = await fetch( // fetch all release versions
-        `https://api.github.com/repos/weaviate/${repoName}/releases`,
-        {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': // Use the github token if available
-                    (process.env.GH_API_TOKEN) ?
-                        `Bearer ${ process.env.GH_API_TOKEN }` : ''
+    try {
+        const response = await fetch(
+            `https://api.github.com/repos/weaviate/${repoName}/releases`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'authorization': (process.env.GH_API_TOKEN) ?
+                    //     `Bearer ${process.env.GH_API_TOKEN}` : ''
+                }
             }
+        );
+
+        // First check if the response was ok
+        if (!response.ok) {
+            throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
         }
-    );
 
-    const releases = await response.json();
-    const highestVersion = releases
-        .filter(item => !item.prerelease) // remove pre-release items
-        .map(item => item.tag_name)       // keep only the tag_name
-        .sort()                           // sort items alphabetically – ascending
-        .pop()                            // the last item contains the highest version (what we need)
-        .replace('v', '')                 // remove the v from the name "v1.26.1" => "1.26.1"
+        const releases = await response.json();
 
-    console.log(`${repoName} ${highestVersion}`)
+        // Check if releases is actually an array
+        if (!Array.isArray(releases)) {
+            // Debug log to see what we're getting
+            console.log(`Raw response for ${repoName}:`, JSON.stringify(releases).slice(0, 200));
+            console.error(`Unexpected response format for ${repoName}:`, releases);
+            throw new Error(`Expected array of releases but got ${typeof releases}`);
+        }
 
-    return highestVersion;
+        if (releases.length === 0) {
+            throw new Error(`No releases found for ${repoName}`);
+        }
+
+        const highestVersion = releases
+            .filter(item => !item.prerelease)
+            .map(item => item.tag_name)
+            .sort()
+            .pop()
+            .replace('v', '');
+
+        console.log(`${repoName} ${highestVersion}`);
+        return highestVersion;
+    } catch (error) {
+        console.error(`Error fetching version for ${repoName}:`, error);
+        // Maybe return a default version or rethrow depending on your needs
+        throw error;
+    }
 }
 
 // Build time versions replace values set in versions-config.json
