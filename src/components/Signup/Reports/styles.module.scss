@@ -469,12 +469,6 @@
       line-height: 157.33%; /* 1.38619rem */
     }
   }
-
-  fieldset {
-    @media screen and (max-width: 900px) {
-      max-width: 100%;
-    }
-  }
 }
 
 .formWrapper {
