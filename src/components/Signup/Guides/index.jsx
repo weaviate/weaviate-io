@@ -38,7 +38,7 @@ export default function Introduction() {
                 <div className={styles.signUpBox}>
                   <h3>Grab your copy today</h3>
                   <div className={styles.formWrapper}>
-                    <div id="hs-form" className={styles.hsForm}></div>
+                    <div id="hs-form" className={styles.ebookForm}></div>
                   </div>
                 </div>
               </div>
@@ -66,16 +66,24 @@ export default function Introduction() {
         <span>Weaviate, 2024</span>
         <div className={styles.footerLinks}>
           <div className={styles.footerIcon}>
-            <i className="fab fa-linkedin"></i>
+            <Link to="https://x.com/weaviate_io">
+              <i className="fab fa-linkedin"></i>
+            </Link>
           </div>
           <div className={styles.footerIcon}>
-            <i className="fab fa-instagram"></i>
+            <Link to="https://instagram.com/weaviate.io">
+              <i className="fab fa-instagram"></i>
+            </Link>
           </div>
           <div className={styles.footerIcon}>
-            <i className="fab fa-twitter"></i>
+            <Link to="https://www.linkedin.com/company/weaviate-io">
+              <i className="fab fa-twitter"></i>
+            </Link>
           </div>
           <div className={styles.footerIcon}>
-            <i className="fab fa-youtube"></i>
+            <Link to="https://youtube.com/@Weaviate">
+              <i className="fab fa-youtube"></i>
+            </Link>
           </div>
         </div>
       </div>
