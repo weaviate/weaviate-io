@@ -2,14 +2,15 @@ const fetch = require('node-fetch');
 
 const getRepoVersion = async (repoName) => {
     try {
-        const response = await fetch(
+        const response = await fetch( // fetch all release versions
             `https://api.github.com/repos/weaviate/${repoName}/releases`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'authorization': (process.env.GH_API_TOKEN) ?
-                    //     `Bearer ${process.env.GH_API_TOKEN}` : ''
+                    'authorization': // Use the github token if available
+                        (process.env.GH_API_TOKEN) ?
+                            `Bearer ${ process.env.GH_API_TOKEN }` : ''
                 }
             }
         );
@@ -34,11 +35,11 @@ const getRepoVersion = async (repoName) => {
         }
 
         const highestVersion = releases
-            .filter(item => !item.prerelease)
-            .map(item => item.tag_name)
-            .sort()
-            .pop()
-            .replace('v', '');
+            .filter(item => !item.prerelease) // remove pre-release items
+            .map(item => item.tag_name)       // keep only the tag_name
+            .sort()                           // sort items alphabetically – ascending
+            .pop()                            // the last item contains the highest version (what we need)
+            .replace('v', '')                 // remove the v from the name "v1.26.1" => "1.26.1"
 
         console.log(`${repoName} ${highestVersion}`);
         return highestVersion;
