@@ -95,6 +95,14 @@ For example, if a user has two roles:
 
 The user will have read access to Collection X because Role B grants the permission, while Role A's `False` value simply indicates no permission is set rather than blocking access.
 
+:::info Permissions and `aggregate` queries
+
+In `v1.28`, aggregate queries require the user to have the `read_config` permission on all collections (i.e. with a `"*"` collection name filter).
+<br/>
+
+This is due to the implementation of the `aggregate` queries under-the-hood, which uses GraphQL rather than gRPC. This will be improved in future versions of Weaviate.
+:::
+
 ## Example permission sets
 
 ### Read and write permissions

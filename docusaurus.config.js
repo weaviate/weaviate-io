@@ -114,7 +114,7 @@ const config = {
               configuration: {
                 spec: {
                     // Last updated: 2024-11-13
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_202411/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
                 hideModels: true,
                 // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
