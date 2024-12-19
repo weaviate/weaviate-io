@@ -24,7 +24,7 @@ export default function signUpPage() {
           property="og:description"
           content="The GigaOm Sonar Report for Vector Databases provides a thorough examination of the rapidly evolving vector database market"
         />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, follow" />
       </Head>
       <div className="custom-page noBG">
         <Introduction />
