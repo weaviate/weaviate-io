@@ -67,7 +67,7 @@ export default function PricingEnterprise() {
         <div className={styles.price}>
           <p>
             We manage everything for you in a dedicated instance in Weaviate
-            Cloud.
+            Cloud (Enterprise Vector Database).
           </p>
           <div className={styles.bottomPrice}>
             <span>from $2.64 / AIU</span>

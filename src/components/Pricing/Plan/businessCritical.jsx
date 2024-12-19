@@ -38,7 +38,8 @@ export default function PricingBusinessCritical() {
         </div>
         <div className={styles.price}>
           <p>
-            Choose a fully-managed solution or 24/7 support within your VPC.
+            Choose a fully-managed solution or 24/7 support within your VPC
+            (BYOC Vector Database).
           </p>
           <div className={styles.bottomPrice}>
             <span></span>
