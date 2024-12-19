@@ -12,7 +12,8 @@ export default function PricingSandBox() {
         </div>
         <p>
           With an enterprise subscription, customers have access to a variety of
-          support and training options to accelerate adoption and success.
+          support and vector database training options to accelerate adoption
+          and success.
         </p>
         <Link className={styles.supportURL} to="deployment/enablement">
           Learn More
