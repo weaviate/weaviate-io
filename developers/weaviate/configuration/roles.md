@@ -103,6 +103,12 @@ In `v1.28`, aggregate queries require the user to have the `read_config` permiss
 This is due to the implementation of the `aggregate` queries under-the-hood, which uses GraphQL rather than gRPC. This will be improved in future versions of Weaviate.
 :::
 
+#### Wildcards in permissions
+
+Many permissions require a collection name filter, to specify which collections the permission applies to.
+
+In thi case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
+
 ## Example permission sets
 
 ### Read and write permissions
