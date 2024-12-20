@@ -6,11 +6,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import TSCode from '!!raw-loader!./_snippets/20_backend.js';
+import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/client-server/_img/backend.png';
 
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Building backend web frameworks
 
 This approach involves having two separate tools. One to build you server application; ideally a backend framework and another to build your client application. For this example, we will be using [Express.js](https://expressjs.com/en/starter/hello-world.html)
+
+<img src={WeaviateTypescriptImgUrl} alt="Image alt" width="100%"/>
+
 
 ### <i class="fa-solid fa-chalkboard"></i> Building a server
 
@@ -44,8 +48,6 @@ and add them to your `.env` file.
     />
   </TabItem>
 
-ok.. 
-
 #### 2. Initialize Weaviate 
 Paste the following in `config/weaviate.js` 
 
@@ -58,7 +60,6 @@ Paste the following in `config/weaviate.js`
     />
   </TabItem>
 
-Ok..
 
 #### 2. Create your server
 
@@ -71,7 +72,6 @@ Ok..
     />
   </TabItem>
 
-ok.. 
 
 
 #### 5. Run your server with 

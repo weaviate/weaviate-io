@@ -9,17 +9,35 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
-It is recommended that you employ the client-server architecture as you build applications using the [weaviate-client](https://www.npmjs.com/package/weaviate-client).
+When building web applications in Javascript with Weaviate using the [weaviate-client](https://www.npmjs.com/package/weaviate-client), it is recommended that you employ the client-server architecture.
 
-We will get into why this is and detail various paths you could follow as you build applications in Javascript 
+This may vary depending what tools you are using to build your web application. 
 
+Fullstack frameworks like Next.js have support for server side development and API creation to communicate with Weaviate. This would happen via REST calls or for Next.js specifically, Server functions. This approach means coupling your client and server applications.
 
-
-We will go over..
-- What the client-server architecture is
-- Why we opt for the client-server approach
-- How to build client-server applications with..
-    - Fullstack frameworks and,
-    - Backend web frameworks.
+Backend web frameworks like Express let you create an API to communicate with Weaviate. This API can be consumed via REST calls from your client application. This approach means completely decoupling your client and server applications.
 
 
+### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
+
+- A Node.js environment with `weaviate-client` installed.
+- Familiarity with Weaviate's search capabilities.
+- Intermediate coding proficiency (e.g. Javascript).
+
+## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
+
+import LearningGoalsExp from '/src/components/Academy/learningGoalsExp.mdx';
+
+<LearningGoalsExp />
+
+
+
+import LearningGoals from '/src/components/Academy/learningGoals.jsx';
+
+<LearningGoals unitName="client_server"/>
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

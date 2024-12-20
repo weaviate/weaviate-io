@@ -18,41 +18,33 @@ We will look at how to use the search enabled by the two types of embedding mode
 
 This guide will also explore practical applications ranging from semantic search to complex AI agents.
 
-## <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
 
-Before diving in, make sure you have:
+
+**Next Steps:**
+- Explore the [Embedding Models](./10_embedding.mdx) guide
+- Learn about [Generative Models](./20_generative.mdx)
+- Check out our [Example Applications](./examples)
+
+
+### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites
 
 - A Node.js environment with `weaviate-client` installed
 - Basic understanding of Weaviate's search functionality
 - Intermediate JavaScript programming skills
 - You must have completed the [quickstart](../../../../../developers/weaviate/quickstart)
 
-## <i class="fa-solid fa-bullseye"></i> Learning Objectives
+## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 
-By the end of this unit, you will be able to:
+import LearningGoalsExp from '/src/components/Academy/learningGoalsExp.mdx';
 
-Learning Goals:
+<LearningGoalsExp />
 
-- the core functionalities of embedding and generative models
-- Distinguish between text and multimodal embedding types
-- Configuring embedding and generative models in Weaviate
-- Making semantic and generative searches
+import LearningGoals from '/src/components/Academy/learningGoals.jsx';
 
-Learning Outcomes:
+<LearningGoals unitName="using_ml_models"/>
 
-- Create vector embeddings of both text and multimodal data
-- Run semantic and generative searches
-- configure supported embedding and generative models in Weaviate
+## Questions and feedback
 
-## Questions and Feedback
-
-We value your input! Help us improve this documentation:
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-
----
-
-**Next Steps:**
-- Explore the [Embedding Models](./10_embedding.mdx) guide
-- Learn about [Generative Models](./20_generative.mdx)
-- Check out our [Example Applications](./examples)

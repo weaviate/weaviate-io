@@ -1008,33 +1008,40 @@ export const unitData = {
     reviewer: "jp"
   },
   client_server: {
-    title: "Building client-server Applications",
-    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    title: "Building client-server applications",
+    body: "Learn how to build fullstack applications with the Weaviate Typescript client that use the client-server approach with modern web tools.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/js/standalone/client-server",
     badgeType: "practical",
     learningGoals: [
-      "What chunking is",
+      "What the client-server approach is and why we use it.",
+      "Using fullstack web frameworks to building client-server applications with Weaviate.",
+      "Using backend web frameworks to building client-server applications with Weaviate."
     ],
     learningOutcomes: [
-      "Describe chunking at a high level",
-      "Explain the impact of chunking in vector search and retrieval augmented generation",
+      "Use the Weaviate Typescript client to build Web applications.",
+      "Explain where in your stack Weaviate can be used.",
+      "Understand what type of web framework you need to work with Weaviate."
     ],
     owner: "daniel",
     reviewer: "daniel"
   },
-  picking_models: {
+  using_ml_models: {
     title: "Using Machine Learning Models",
-    body: "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
+    body: "Understand the fundamental concepts of generative and embedding models, their configuration and application in Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/js/standalone/gen-ai-models",
+    buttonURL: "/developers/academy/js/standalone/using-ml-models",
     badgeType: "mixed",
     learningGoals: [
-      "Understand the fundamental concepts of generative and embedding models, their applications, and their role in building AI-Native applications.",
+      "A high level understanding of embedding and generative models",
+"Distinguish between text and multimodal embedding types",
+"Configuring embedding and generative models in Weaviate",
+"Making semantic and generative searches",
     ],
     learningOutcomes: [
-      "The difference between Embedding and Generative models",
-      "When and how to use those models integrated with Weaviate",
+      "Differentiate between embedding and generative models",
+      "Configure and customize text and multimodal embedding models in Weaviate",
+      "Configure and customize supported generative models in Weaviate"
     ],
     owner: "daniel",
     reviewer: "daniel"
