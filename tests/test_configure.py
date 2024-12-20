@@ -9,6 +9,7 @@ import utils
     [
         "./_includes/code/howto/configure.backups.py",
         "./_includes/code/python/howto.configure.rbac.permissions.py",
+        "./_includes/code/python/howto.configure.rbac.roles.py",
     ],
 )
 def test_pyv4(empty_weaviates, script_loc):
