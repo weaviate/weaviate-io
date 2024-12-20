@@ -15,12 +15,9 @@ admin_client = weaviate.connect_to_local(
 )
 # END AdminClient
 
-jane_client = weaviate.connect_to_local(port=8580,
-                                        grpc_port=50551,
-                                        auth_credentials=Auth.api_key("jane-key"))
-# permissions_to_add = [
-#    Permissions.data(collection="Testing_*", read=True, create=True)
-# ]
+jane_client = weaviate.connect_to_local(
+    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("jane-key")
+)
 
 # # START CreateRole
 # admin_client.roles.create(role_name="devrel")
@@ -152,3 +149,4 @@ admin_client.roles.delete(role_name="devrel")
 # END DeleteRole
 
 admin_client.close()
+jane_client.close()
