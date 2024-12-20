@@ -238,7 +238,7 @@ For more information see the [Authentication](./authentication.md) and [Authoriz
 
 </Tabs>
 
-### Create an empty role
+<!-- ### Create an empty role
 
 This example creates a role called "devrel" without any permissions assigned to it.
 
@@ -277,7 +277,7 @@ This example creates a role called "devrel" without any permissions assigned to 
 
   </TabItem>
 
-</Tabs>
+</Tabs> -->
 
 ### Create new role with permissions
 
