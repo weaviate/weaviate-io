@@ -22,7 +22,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       ASYNC_INDEXING: 'true'
-      ENABLE_MODULES: 'multi2vec-bind,text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_MODULES: 'multi2vec-bind,text2vec-ollama,generative-ollama,backup-filesystem'
       ENABLE_API_BASED_MODULES: 'true'
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-bind:
