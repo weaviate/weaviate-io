@@ -1,4 +1,5 @@
 import weaviate
+from weaviate import WeaviateClient
 
 # START-ANY
 from weaviate.classes.rbac import Permissions
@@ -13,18 +14,18 @@ admin_client = weaviate.connect_to_local(
     auth_credentials=Auth.api_key("admin-key")
 )
 
-def reset_user(user: str):
+def reset_user(user: str, client: WeaviateClient):
     # Clean slate
-    current_roles = admin_client.roles.by_user(user)  # check if user exists
+    current_roles = client.roles.by_user(user)  # check if user exists
     for k in current_roles.keys():
-        admin_client.roles.revoke_from_user(role_names=k, user=user)  # revoke all roles
+        client.roles.revoke_from_user(role_names=k, user=user)  # revoke all roles
 
 # =================================================================
 # =============== EXAMPLE: READ + WRITE PERMISSIONS
 # =================================================================
 
 # Clean slate
-reset_user("other-user")
+reset_user("other-user", client=admin_client)
 admin_client.roles.delete("rw_role_target_collections")  # delete if exists
 
 # START ReadWritePermissionDefinition
@@ -66,7 +67,7 @@ assert user_permissions["rw_role_target_collections"].name == "rw_role_target_co
 # =================================================================
 
 # Clean slate
-reset_user("other-user")
+reset_user("other-user", client=admin_client)
 admin_client.roles.delete("viewer_role_target_collections")  # delete if exists
 
 # START ViewerPermissionDefinition
