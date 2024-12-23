@@ -14,16 +14,10 @@ Weaviate leverages two fundamental types of machine learning models to power AI-
 
 This guide will help you understand how these models can be set up in Weaviate, briefly covering the functioning of these models on a high level as well. 
 
-We will look at how to use the search enabled by the two types of embedding models supported in Weaviate; Text embeddings and Multimodal embeddings. 
+We will look at how to use the search enabled by the two types of embedding models supported in Weaviate; **Text embeddings** and **Multimodal embeddings**. 
 
-This guide will also explore practical applications ranging from semantic search to complex AI agents.
+This guide will also explore practical applications ranging from semantic search to agentic RAG applications.
 
-
-
-**Next Steps:**
-- Explore the [Embedding Models](./10_embedding.mdx) guide
-- Learn about [Generative Models](./20_generative.mdx)
-- Check out our [Example Applications](./examples)
 
 
 ### <i class="fa-solid fa-clipboard-list-check"></i> Prerequisites

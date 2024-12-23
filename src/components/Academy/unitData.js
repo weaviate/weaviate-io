@@ -1033,15 +1033,15 @@ export const unitData = {
     buttonURL: "/developers/academy/js/standalone/using-ml-models",
     badgeType: "mixed",
     learningGoals: [
-      "A high level understanding of embedding and generative models",
-"Distinguish between text and multimodal embedding types",
-"Configuring embedding and generative models in Weaviate",
-"Making semantic and generative searches",
+      "A high level understanding of embedding and generative models.",
+"Distinguish between text and multimodal embedding types.",
+"Configuring embedding and generative models in Weaviate.",
+"Making semantic and generative searches.",
     ],
     learningOutcomes: [
-      "Differentiate between embedding and generative models",
-      "Configure and customize text and multimodal embedding models in Weaviate",
-      "Configure and customize supported generative models in Weaviate"
+      "Differentiate between embedding and generative models.",
+      "Configure and customize text and multimodal embedding models in Weaviate.",
+      "Configure and customize supported generative models in Weaviate."
     ],
     owner: "daniel",
     reviewer: "daniel"
