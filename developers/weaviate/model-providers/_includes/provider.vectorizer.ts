@@ -612,21 +612,112 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicMMVectorizerJinaAI
-// TS client support coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecJinaAI({
+      name: 'title_vector',
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }]
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END BasicMMVectorizerJinaAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START MMVectorizerJinaCustomModel
-// TS client support coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecJinaAI({
+      name: 'title_vector',
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+      model: "jina-clip-v2"
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END MMVectorizerJinaCustomModel
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullMMVectorizerJinaAI
-// TS client support coming soon
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+    {
+      name: 'poster',
+      dataType: 'blob' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.multi2VecJinaAI({
+      name: 'title_vector',
+      imageFields: [{
+        name: "poster",
+        weight: 0.9
+      }],
+      textFields: [{
+        name: "title",
+        weight: 0.1
+      }],
+      // Further options
+      // model:"jina-clip-v2",
+        
+    },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
 // END FullMMVectorizerJinaAI
 
 // Clean up
@@ -650,7 +741,8 @@ await client.collections.create({
   ],
   // highlight-end
   // Additional parameters not shown
-});// END BasicVectorizerMistral
+});
+// END BasicVectorizerMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -1035,8 +1127,6 @@ await client.collections.create({
 await client.collections.delete('DemoCollection');
 
 // START BasicMMVectorizerVoyageAI
-// TS client support coming soon
-// END BasicMMVectorizerVoyageAI
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1065,14 +1155,13 @@ await client.collections.create({
     })],
     // highlight-end
     // Additional parameters not shown
-})
+})// END BasicMMVectorizerVoyageAI
+
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START MMVectorizerVoyageAICustomModel
-// TS client support coming soon
-// END MMVectorizerVoyageAICustomModel
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1089,7 +1178,6 @@ await client.collections.create({
   vectorizers: [
     weaviate.configure.vectorizer.multi2VecVoyageAI({
       name: "title_vector",
-      model: "voyage-multimodal-3",
       // Define the fields to be used for the vectorization - using imageFields, textFields
       imageFields: [{
         name: "poster",
@@ -1098,18 +1186,18 @@ await client.collections.create({
       textFields: [{
         name: "title",
         weight: 0.1
-      }]
+      }],
+      model: "voyage-multimodal-3",
     })],
     // highlight-end
     // Additional parameters not shown
-})
+})// END MMVectorizerVoyageAICustomModel
+
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
 // START FullMMVectorizerVoyageAI
-// TS client support coming soon
-// END FullMMVectorizerVoyageAI
 await client.collections.create({
   name: "DemoCollection",
   // highlight-start
@@ -1143,7 +1231,8 @@ await client.collections.create({
     })],
     // highlight-end
     // Additional parameters not shown
-})
+})// END FullMMVectorizerVoyageAI
+
 
 // Clean up
 await client.collections.delete('DemoCollection');
