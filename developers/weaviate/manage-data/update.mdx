@@ -36,7 +36,7 @@ Weaviate allows partial or complete object updates.
 
 ## Update object properties
 
-This operation replaces the existing properties. Provide the collection name, the object id, and the properties to update.
+This operation replaces the entire value of the specified properties only, leaving the unspecified properties. Provide the collection name, the object id, and the properties to update.
 
 If you update the value of a *previously vectorized* property, Weaviate re-vectorizes the object automatically. This also reindexes the updated object.
 
