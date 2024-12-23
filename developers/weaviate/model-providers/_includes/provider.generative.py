@@ -483,6 +483,19 @@ client.collections.create(
 )
 # END BasicGenerativeOpenAI
 
+# START BasicGenerativeZhipuAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.zhipuai()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeZhipuAI
+
+
 # clean up
 client.collections.delete("DemoCollection")
 
@@ -499,6 +512,20 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END GenerativeOpenAICustomModel
+
+# START GenerativeZhipuAICustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.zhipuai(
+        model="glm-4"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END GenerativeZhipuAICustomModel
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -523,6 +550,25 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeOpenAI
+
+# START FullGenerativeZhipuAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.zhipuai(
+        # # These parameters are optional
+        # model="glm-4",
+        # max_tokens=500,
+        # temperature=0.7,
+        # top_p=0.7,
+        # base_url="<custom_zhipu_url>"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeZhipuAI
 
 # clean up
 client.collections.delete("DemoCollection")
