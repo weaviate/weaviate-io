@@ -21,7 +21,7 @@ client = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL as string, {
   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
   headers: {
-    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
+    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,  // Replace with your inference API key
   }
 })
 // END WCDAPIKeyInstantiation
@@ -149,7 +149,7 @@ client = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
-      'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
+      'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,  // Replace with your inference API key
     }
   }
 )

@@ -10,7 +10,7 @@ client = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
-      'X-Cohere-Api-Key': process.env.COHERE_API_KEY as string,  // Replace with your inference API key
+      'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,  // Replace with your inference API key
     }
   }
 )
@@ -18,7 +18,7 @@ client = await weaviate.connectToWeaviateCloud(
 // START-ANY
 
 // Instantiate your client (not shown). e.g.:
-// const requestHeaders = {'X-Cohere-Api-Key': process.env.COHERE_API_KEY as string,}
+// const requestHeaders = {'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,}
 // client = weaviate.connectToWeaviateCloud(..., headers: requestHeaders) or
 // client = weaviate.connectToLocal(..., headers: requestHeaders)
 
