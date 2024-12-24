@@ -48,7 +48,7 @@ client = await weaviate.connectToLocal({
 
 // PollLiveness
 if (await client.isLive()) {
-  // This will raise an exception if the client is not live
+  // Run operations with the client if it is live
 } 
 // END PollLiveness
 

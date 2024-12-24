@@ -38,9 +38,8 @@ The results are based on similarity of the vector embeddings between the query a
 
 The `limit` parameter here sets the maximum number of results to return.
 
-The `returnMetadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
+The `returnMetadata` parameter takes an array of strings to set metadata to return in the search results. The current query returns the vector distance to the query.
 
-Note that the results are very similar to the tone of the query image, as the top results are all space-themed movies.
 
 <details>
   <summary>Example results</summary>
@@ -102,8 +101,6 @@ This example finds entries in "Movie" based on their similarity to the query "re
 The results are based on similarity of the vector embeddings between the query and the database object. In this case, the vectorizer module generates an embedding of the input text.
 
 The remaining parameters are the same as in the previous example.
-
-Note that the results actually include movies with red color themes in its poster. This is because the CLIP vectorizer encodes the color information of the image in the vectors.
 
 <details>
   <summary>Example results</summary>

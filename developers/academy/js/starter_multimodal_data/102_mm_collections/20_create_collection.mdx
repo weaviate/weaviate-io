@@ -43,7 +43,7 @@ Weaviate can automatically [infer the schema](/developers/weaviate/config-refs/s
 
 If you do not specify the vector yourself, Weaviate will use a specified vectorizer to generate vector embeddings from your data.
 
-In this code example, we specify the `multi2vec-cohere` module. This module uses the Cohere Multimodal Embed 3 model to generate vector embeddings from the text and image data.
+In this code example, we specify the `multi2vec-voyageai` module. This module uses the **voyage-multimodal-3** model to generate vector embeddings from the text and image data.
 
 You can specify any number of text and image properties to be used for vectorization, and weight them differently. The weights are used to determine the relative importance of each property in the vector embedding generation process. In this example, we vectorize the `poster` property (an image) with a 90% weight and the `title` property (a string) with a 10% weight.
 
@@ -71,9 +71,9 @@ import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
 
 <MutableGenerativeConfig />
 
-### <i class="fa-solid fa-code"></i> Javascript classes
+### <i class="fa-solid fa-code"></i> TypeScript named imports 
 
-The code example makes use of methods such as `property`, `dataType` and `configure`. They are defined in the `weaviate.configure` object and are used to define the collection.
+The code example makes use of named imports such as `vectorizer` and `configure`. They are defined in the `weaviate` module and are used during the collection definition.
 
 <FilteredTextBlock
   text={TSCode}

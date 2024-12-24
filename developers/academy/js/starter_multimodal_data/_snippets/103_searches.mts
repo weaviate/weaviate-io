@@ -43,7 +43,7 @@ const queryB64 = await urlToBase64(srcImgPath)
 response = await movies.query.nearImage(queryB64, {
     limit: 5,
     returnMetadata: ['distance'],
-    returnProperties: ["title", "tmdb_id", "release_date"]
+    returnProperties: ["title", "tmdb_id", "release_date", "poster"]
   },
 )
 

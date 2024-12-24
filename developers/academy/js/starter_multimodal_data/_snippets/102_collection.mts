@@ -26,8 +26,9 @@ let client: WeaviateClient;
 
 const wcdURL = process.env.WCD_URL as string;
 const wcdApikey = process.env.WCD_API_KEY as string;
-const openaiApiKey = process.env.OPENAI_API_KEY as string;
 const cohereApiKey = process.env.COHERE_API_KEY as string;
+const voyageApiKey = process.env.VOYAGEAI_API_KEY as string;
+
 
 
 // client = await weaviate.connectToWeaviateCloud(wcdURL, {
@@ -36,13 +37,15 @@ const cohereApiKey = process.env.COHERE_API_KEY as string;
 // )
 // CreateMovieCollection
 // Instantiate your client (not shown). e.g.:
-// const requestHeaders = {'X-Cohere-Api-Key': process.env.COHERE_API_KEY as string,}
+// const requestHeaders = {'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,}
 // client = weaviate.connectToWeaviateCloud(..., headers: requestHeaders) or
 // client = weaviate.connectToLocal(..., headers: requestHeaders)
 
 // END CreateMovieCollection
 
-const requestHeaders = { 'X-Cohere-Api-Key': cohereApiKey, }
+const requestHeaders = {  'X-VoyageAI-Api-Key': voyageApiKey, 
+                          'X-Cohere-Api-Key': cohereApiKey
+                        }
 
 
 client = await weaviate.connectToWeaviateCloud(wcdURL, {
@@ -69,7 +72,7 @@ await client.collections.create({
     { name: "poster", dataType: configure.dataType.BLOB }
   ],
   // Define the vectorizer module
-  vectorizers: vectorizer.multi2VecCohere({
+  vectorizers: vectorizer.multi2VecVoyageAI({
     imageFields: [{ name: "poster", weight: 0.9 }],
     textFields: [{ name: "title", weight: 0.1 }]
   }),
@@ -84,19 +87,15 @@ client.close()
 const weaviateURL = process.env.WCD_URL as string
 const weaviateKey = process.env.WCD_API_KEY as string
 const cohereKey = process.env.COHERE_API_KEY as string
+const voyageaiKey = process.env.VOYAGEAI_API_KEY as string
 
 client = await weaviate.connectToWeaviateCloud(weaviateURL, {
   authCredentials: new weaviate.ApiKey(weaviateKey),
   headers: {
+    'X-VoyageAI-Api-Key': voyageaiKey, // Replace with your inference API key
     'X-Cohere-Api-Key': cohereKey,  // Replace with your inference API key
   }
 })
-
-// Get current file's directory when using ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const imgDir = join(__dirname, "images");
-
 
 // BatchImportData
 
@@ -110,6 +109,12 @@ const imgDir = join(__dirname, "images");
 const dataUrl = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json"
 const textResponse = await fetch(dataUrl)
 const data = await textResponse.json()
+
+// Get current file's directory 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const imgDir = join(__dirname, "images");
+
 
 // Create directory if it doesn't exist
 await fs.mkdir(imgDir, { recursive: true });
@@ -138,18 +143,12 @@ const movies = client.collections.get("Movie")
 // Set a counter and initialize Weaviate Object
 let itemsToInsert: Object[] = []
 let counter = 0;
-const MAX_ITEMS = 10;
 
 // Iterate through data
 for (const key of Object.keys(data['title'])) {
-  // Check if we've reached the maximum items
-  if (counter >= MAX_ITEMS) {
-    console.log(`Reached maximum items limit of ${MAX_ITEMS}`);
-    break;
-  }
-
+  
   counter++;
-  if (counter % 1000 == 0)
+  if (counter % 20 == 0)
     console.log(`Import: ${counter}`)
   // END Iterate through data // END BatchImportData
   // BatchImportData
@@ -184,7 +183,7 @@ for (const key of Object.keys(data['title'])) {
   // Add object to batching array
   itemsToInsert.push(objectToInsert)
 
-  if (itemsToInsert.length == 1000 || counter == MAX_ITEMS) {
+  if (itemsToInsert.length == 20) {
     try {
       const response = await movies.data.insertMany(itemsToInsert);
       // END Insert

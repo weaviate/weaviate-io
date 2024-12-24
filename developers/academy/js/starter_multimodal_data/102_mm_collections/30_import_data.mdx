@@ -22,11 +22,10 @@ This example imports the movie data into our collection.
 The code:
 - Loads the source text and image data
 - Gets the collection
-- Enters a context manager with a batcher (`batch`) object
 - Loops through the data and:
     - Finds corresponding image to the text
     - Converts the image to base64
-    - Adds objects to the batcher
+    - Bulk inserts objects in batches of 20
 - Prints out any import errors
 
 ## <i class="fa-solid fa-chalkboard"></i> Explain the code
@@ -48,7 +47,6 @@ The `for` loop is used in conjunction with `Object.keys()` to iterate through th
   language="ts"
 />
 
-> We use `MAX_ITEMS` to limit the number of objects we import to our collection. Trail keys for the Cohere Embed 3 model [restrict](https://docs.cohere.com/v2/docs/rate-limits) you to 5 images per minute. 
 
 ### <i class="fa-solid fa-chalkboard"></i> Add data to the Object
 
@@ -98,7 +96,7 @@ If you have any errors in your bulk insertion, you want to know something went w
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Where do the vectors come from?
 
-When the batcher sends the queue to Weaviate, the objects are added to the collection. In our case, the movie collection.
+When   sends the items to Weaviate, the objects are added to the collection. In our case, the movie collection.
 
 Recall that the collection has a vectorizer module, and we do not specify vectors here. So Weaviate uses the specified vectorizer to generate vector embeddings from the data.
 

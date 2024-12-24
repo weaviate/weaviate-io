@@ -39,11 +39,12 @@ services:
     restart: on-failure:0
     environment:
       COHERE_APIKEY: $COHERE_APIKEY
+      VOYAGEAI_APIKEY: $VOYAGEAI_APIKEY
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-cohere,multi2vec-cohere,generative-cohere'
+      ENABLE_MODULES: 'text2vec-cohere,multi2vec-voyageai,generative-cohere'
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -76,7 +77,7 @@ To connect to the Weaviate instance, use the `connectToLocal()` function.
 
 Some Weaviate modules can use inference APIs for vectorizing data or large language model integration. You can provide the API keys for these services to Weaviate at instantiation.
 
-This course uses Cohere, so you can provide the Cohere API key to Weaviate through `headers: {"X-Cohere-Api-Key": <YOUR_KEY>}` as shown below:
+This course uses Cohere, so you can provide the Cohere API key to Weaviate through `headers: {"X-VoyageAI-Api-Key": <YOUR_KEY>}` as shown below:
 
 <FilteredTextBlock
   text={TSCode}

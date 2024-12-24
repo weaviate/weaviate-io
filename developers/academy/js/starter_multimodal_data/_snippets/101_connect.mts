@@ -21,7 +21,7 @@ client = await weaviate.connectToWeaviateCloud(
   process.env.WCD_URL as string, {
   authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
   headers: {
-    'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
+    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
   }
 })
 // END WCDAPIKeyInstantiation
@@ -40,14 +40,14 @@ client.close()
 client = await weaviate.connectToLocal({
   host: '...',
   headers: {
-    'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
+    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
   }
 })
 // END DockerAPIKeyInstantiation
 
 // PollLiveness
 if (await client.isLive()) {
-  // This will raise an exception if the client is not live
+  // Run operations with the client if it is live
 }
 // END PollLiveness
 
@@ -149,7 +149,7 @@ client = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
-      'X-Cohere-Api-Key': process.env.COHERE_APIKEY as string,  // Replace with your inference API key
+      'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
     }
   }
 )
@@ -161,8 +161,8 @@ client = await weaviate.connectToWeaviateCloud(
 // client = weaviate.connectToLocal(...)
 
 try {
-  // Work with the client here 
-  if (await client.isLive()) {
+  if (await client.isLive()) {   
+    // Work with the client here 
     // ...
   }
 } finally { // This will always be executed, even if an exception is raised
