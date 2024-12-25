@@ -20,7 +20,7 @@ Semantic searches (as well as question answering) are essentially searches by si
 How can computers mimic our understanding of language, and similarities of words or paragraphs? To tackle this problem, semantic search uses at its core a data structure called vector embedding (or simply, vector or embedding), which is an array of numbers. Here's how the semantic search above works, step by step:
 
 1. The [vector database](https://weaviate.io/blog/vector-library-vs-vector-database) computes a vector embedding for each data object as it is inserted or updated into the database, using a given model.
-2. The embeddings are placed into an index, so that the database can [quickly](https://weaviate.io/blog/why-is-vector-search-so-fast) perform searches.
+2. The embeddings are placed into an index, so that the database can [quickly](https://weaviate.io/blog/vector-search-explained) perform searches.
 3. For each query,
     *  a vector embedding is computed using the same model that was used for the data objects.
     * using a special algorithm, the database finds the [closest](https://weaviate.io/blog/distance-metrics-in-vector-search) vectors to the given vector computed for the query.
@@ -80,7 +80,7 @@ If we look at each of the 5 elements of the vectors, we can see quickly that cat
 But where do these numbers come from? That’s where the real magic is, and where advances in modern deep learning have made a huge impact.
 
 ## How to create vector embeddings?
-The magic of vector search resides primarily in how the embeddings are generated for each entity and the query, and secondarily in how to efficiently search within very large datasets (see our “[Why is Vector Search so Fast](https://weaviate.io/blog/why-is-vector-search-so-fast)” article for the latter).
+The magic of vector search resides primarily in how the embeddings are generated for each entity and the query, and secondarily in how to efficiently search within very large datasets (see our “[Why is Vector Search so Fast](https://weaviate.io/blog/vector-search-explained)” article for the latter).
 As we mentioned, vector embeddings can be generated for various media types such as text, images, audio and others. For text, vectorization techniques have evolved tremendously over the last decade, from the venerable [word2vec (2013)](https://en.wikipedia.org/wiki/Word2vec), to the state-of-the-art transformer models era, spurred by the release of [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)) in [2018](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html).
 
 ### Word-level dense vector models (word2vec, GloVe, etc.)​
@@ -103,7 +103,7 @@ Some of the potential downsides include:
 Despite these downsides, transformer models have been wildly successful. Countless text vectorizer models have proliferated over the recent past. Plus, many more vectorizer models exist for other data types such as audio, video and images, to name a few. Some models, such as [CLIP](https://openai.com/blog/clip/), are capable of vectorizing multiple data types (images and text in this case) into one vector space, so that an image can be searched by its content using only text.
 
 ## Vector embedding visualization
-Below we can see what vector embeddings of data objects in a vector space could look like. The image shows each object embedded as a 3-dimensional vectors for ease of understanding, realistically a vector can be anywhere from ~100 to 4000 dimensions.  
+Below we can see what vector embeddings of data objects in a vector space could look like. The image shows each object embedded as a 3-dimensional vectors for ease of understanding, realistically a vector can be anywhere from ~100 to 4000 dimensions.
 
 In the following image, you can see the vectors for the words “Wolf” and “Dog” are close to each other because dogs are direct descendants of wolves. Close to the dog, you can see the word “Cat,” which is similar to the word “Dog” because both are animals that are also common pets. But further away, on the right-hand side, you can see words that represent fruit, such as “Apple” or “Banana”, which are close to each other but further away from the animal terms.
 
@@ -125,7 +125,7 @@ Vector embeddings capture the semantic relationship between data objects in nume
 Now that you have a good understanding of what vector embeddings are and how vector embeddings are created, you might also be interested in the following articles:
 * [What is a vector database?](https://weaviate.io/blog/what-is-a-vector-database)
 * [Distance metrics for nearest neighbor search](https://weaviate.io/blog/distance-metrics-in-vector-search)
-* [Why is vector search so fast?](https://weaviate.io/blog/why-is-vector-search-so-fast)
+* [Why is vector search so fast?](https://weaviate.io/blog/vector-search-explained)
 
 **Last Updated On**: August 27th, 2024
 

@@ -1,13 +1,10 @@
 ---
 title: "Contextionary Vectorizer"
+description: Use Text2Vec Contextionary in Weaviate for improved context-based text vectorization.
 sidebar_position: 10
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
-
-
-
-## Overview
 
 The `text2vec-contextionary` module enables Weaviate to obtain vectors locally using a lightweight model.
 
@@ -79,7 +76,6 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       # highlight-start
       ENABLE_MODULES: 'text2vec-contextionary'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
   # highlight-start

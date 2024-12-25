@@ -1,5 +1,6 @@
 ---
 title: Manage relationships with cross-references
+description: Learn to use cross-references in Weaviate for connected data insights.
 sidebar_position: 40
 image: og/docs/tutorials.jpg
 # tags: ['tutorial']
@@ -18,8 +19,6 @@ import SearchBasicsTSCode from '!!raw-loader!/_includes/code/howto/search.basics
 
 import FilterPythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import FilterJavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
-
-## Overview
 
 In this tutorial, you will learn how to use cross-references to manage relationships between objects, and to use them to enhance your queries.
 
@@ -111,7 +110,7 @@ An example syntax is shown below:
     text={XRefCrudTSCode}
     startMarker="// START OneWay"
     endMarker="// END OneWay"
-    language="ts"
+    language="tsv2"
   />
 
   </TabItem>
@@ -167,7 +166,7 @@ Take a look at the snippet below in which we retrieve objects from the `Jeopardy
   text={SearchBasicsTSCode}
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
-  language="js"
+  language="tsv2"
 />
 
 </TabItem>
@@ -205,7 +204,7 @@ Take a look at the snippet below, This query looks through the `JeopardyQuestion
   text={FilterJavaScriptCode}
   startMarker="// searchSingleFilter"
   endMarker="// END searchSingleFilter"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 <TabItem value="graphql" label="GraphQL">

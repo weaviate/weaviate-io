@@ -1,5 +1,6 @@
 ---
 title: Question Answering - transformers
+description: Add QnA Transformers to Weaviate for accurate question answering and insights.
 sidebar_position: 40
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
@@ -50,7 +51,6 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-transformers'
       ENABLE_MODULES: 'text2vec-transformers,qna-transformers'
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:

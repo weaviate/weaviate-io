@@ -1,5 +1,6 @@
 ---
 title: Spell Check
+description: Integrate spellcheck in Weaviate to improve text data quality and search accuracy.
 sidebar_position: 70
 image: og/docs/modules/text-spellcheck.jpg
 # tags: ['modules', 'other modules', 'spellcheck']
@@ -45,7 +46,6 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: 'text2vec-contextionary,text-spellcheck'
       CLUSTER_HOSTNAME: 'node1'
   contextionary:

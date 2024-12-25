@@ -1,0 +1,399 @@
+.demoContainer {
+  margin: auto;
+
+  background: #131144;
+
+  background-image: url('/img/site/ebook-bg-00.png');
+  background-size: cover;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  height: 100vh;
+
+  display: flex;
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+    overflow: auto;
+    background-position-x: center;
+  }
+
+  @media screen and (max-width: 780px) {
+    background-size: cover;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-position-x: left;
+  }
+}
+
+.demoSideA {
+  flex: 1;
+  flex-basis: 50%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 1200px) {
+    flex-basis: 55%;
+    padding: 3rem;
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-basis: 100%;
+  }
+
+  img {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 4.2rem */
+
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
+  }
+
+  span {
+    color: #ddebf2;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 2rem */
+  }
+
+  p {
+    margin-bottom: 20px;
+
+    width: 85%;
+    color: #130c49;
+    font-family: 'Inter';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 1.6rem */
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+    }
+  }
+
+  .demoLogo {
+    width: 10.43744rem;
+    height: 1.43244rem;
+    flex-shrink: 0;
+    background-image: url('/img/site/weaviate-logo-light-alpha.svg');
+    background-size: cover;
+  }
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  ul {
+    color: #ddebf2;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 2.4rem */
+    padding: 0;
+    list-style-position: outside;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    padding-left: 10px;
+  }
+  li {
+    padding-left: 10px;
+    color: #ddebf2;
+    font-family: 'Inter';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 160%; /* 2rem */
+
+    @media screen and (max-width: 1100px) {
+      width: 74%;
+    }
+
+    @media screen and (max-width: 1060px) {
+      width: 60%;
+    }
+
+    @media screen and (max-width: 780px) {
+      width: 100%;
+    }
+  }
+}
+
+.demoSideB {
+  flex: 1;
+  flex-basis: 50%;
+  justify-content: center;
+
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 1200px) {
+    flex-basis: 45%;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-basis: 100%;
+  }
+
+  @media screen and (max-width: 1280px) {
+    background-size: 70%;
+  }
+
+  @media screen and (max-width: 780px) {
+    background-image: url('/img/site/ebook-bg-small.png');
+    background-size: contain;
+    background-position-x: right;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem;
+  }
+
+  h2 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 2.625rem */
+    margin: 0;
+  }
+
+  p {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.3125rem */
+  }
+}
+
+.signUpBox {
+  margin: auto;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+  }
+}
+
+.investorButton {
+  margin-top: 25px;
+}
+
+.demoSideB h2 {
+  font-size: 1.5rem;
+}
+
+.demoSideA p,
+.demoSideB p,
+.typeQuote p,
+.typeQuote span {
+  font-size: 0.9rem;
+}
+
+.typeIcon .homeIcon,
+.typeIcon .ragIcon,
+.typeIcon .genIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.signUpBox {
+  width: 28rem;
+  height: auto;
+}
+
+.typeQuote .image {
+  width: 5rem;
+  height: 5rem; /* Smaller starting quote image size */
+}
+
+/* Increase Font and Image Size as Screen Size Decreases */
+
+@media screen and (max-width: 1100px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    font-size: 1.75rem;
+  }
+
+  .demoSideA p,
+  .demoSideB p {
+    font-size: 1rem;
+  }
+
+  .typeIcon .homeIcon,
+  .typeIcon .ragIcon,
+  .typeIcon .genIcon {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .signUpBox {
+    width: 100%;
+    height: auto;
+  }
+
+  .typeQuote .image {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    br {
+      display: none;
+    }
+  }
+}
+
+.ebookForm {
+  color: #b5d2dc;
+  background: #130c49;
+  padding: 20px;
+  border-radius: 1rem;
+
+  input[type='text'],
+  [type='email'] {
+    display: flex;
+    color: #b5d2dc;
+    width: 100%;
+    height: 2.93694rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+    background: #272361;
+    border-radius: 0.5rem;
+    border-style: none;
+  }
+
+  input[type='textarea'] {
+    background: #272361;
+    height: 40px;
+    max-height: 200px !important;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  input[type='submit'] {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.3125rem;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  ::marker {
+    display: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li,
+  span,
+  label {
+    list-style: none;
+    color: #b5d2dc;
+    font-size: 14px !important;
+    text-align: left;
+    font-style: normal;
+    margin: 20px 0px;
+    font-family: Inter;
+
+    p {
+      font-style: normal;
+      color: #6e84a3;
+      font-family: Inter;
+      font-size: 0.88106rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%; /* 1.38619rem */
+    }
+  }
+}
+
+.formWrapper {
+  max-height: 670px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+}

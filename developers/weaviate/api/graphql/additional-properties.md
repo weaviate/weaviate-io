@@ -1,5 +1,6 @@
 ---
 title: Additional properties (metadata)
+description: Use additional properties in Weaviate's GraphQL API for enriched query results.
 sidebar_position: 45
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'metadata']
@@ -9,8 +10,6 @@ image: og/docs/api.jpg
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
-
-## Overview
 
 Various 'additional properties', also called 'metadata', can be retrieved in queries.
 

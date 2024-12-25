@@ -38,7 +38,8 @@ export default function PricingBusinessCritical() {
         </div>
         <div className={styles.price}>
           <p>
-            Choose a fully-managed solution or 24/7 support within your VPC.
+            Choose a fully-managed solution or 24/7 support within your VPC
+            (BYOC Vector Database).
           </p>
           <div className={styles.bottomPrice}>
             <span></span>
@@ -51,19 +52,18 @@ export default function PricingBusinessCritical() {
 
         <hr></hr>
         <div className={styles.features}>
-          <p>
-            For building and prototyping with seamless scaling and flexible
-            pay-as-you-go pricing.
-          </p>
+          <p>For running workflows within your Virtual Private Cloud (VPC).</p>
           <ul>
             <li>
-              <span>Serverless SaaS deployment</span>
+              <span>Customer-managed VPC</span>
             </li>
             <li>
-              <span>Get started with a free trial in minutes</span>
+              <span>Weaviate-managed control plane</span>
             </li>
             <li>
-              <span>Various SLA tiers to meet your needs</span>
+              <span>
+                Weaviate agent for monitoring, support, and troubleshooting
+              </span>
             </li>
           </ul>
           <Link className={styles.buttonView} to="/deployment/byoc">

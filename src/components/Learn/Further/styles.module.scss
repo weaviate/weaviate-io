@@ -1,0 +1,179 @@
+.bgCol {
+  background: #ecf4f8;
+}
+
+.header {
+  width: 70%;
+  margin: 30px 0px;
+
+  p {
+    color: #130c49;
+
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+    width: 70%;
+
+    @media screen and (max-width: 1050px) {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 750px) {
+    br {
+      display: none;
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 110px;
+
+  @media screen and (max-width: 950px) {
+    margin: none;
+    gap: 0px;
+  }
+
+  @media screen and (max-width: 1050px) {
+    grid-template-columns: 1fr;
+    margin: 0px 10px;
+  }
+}
+
+.boxContainer {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+
+  @media screen and (max-width: 1100px) {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+}
+
+.typeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 1440px) {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
+
+.typeBox {
+  max-width: 15.8rem;
+  width: 100%;
+  height: 11.5625rem;
+  border-radius: 0.625rem;
+  background: #fff;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 540px) {
+    max-width: 100%;
+    margin: 10px 0px;
+    height: auto;
+  }
+}
+
+.big {
+  max-width: 76.25rem;
+  width: 100%;
+  height: 22.9375rem;
+}
+
+.typeIcon {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-direction: row;
+
+  .homeIcon {
+    background-image: url('/img/site/learn-forum-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 2.3125rem;
+    height: 2.3125rem;
+    flex-shrink: 0;
+  }
+
+  .papers {
+    background-image: url('/img/site/learn-paper-icon.svg');
+  }
+
+  .podcast {
+    background-image: url('/img/site/learn-podcast-icon.svg');
+  }
+
+  .blog {
+    background-image: url('/img/site/learn-blog-icon.svg');
+  }
+
+  h2 {
+    color: #130c49;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 175.9%;
+  }
+}
+
+.ragIcon {
+  background-image: url('/img/site/homepage-rag-icon.svg');
+}
+.genIcon {
+  background-image: url('/img/site/homepage-gen-icon.svg');
+}
+
+.typeText {
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+  width: 100%;
+  gap: 12px;
+
+  ul {
+    line-height: 240%;
+  }
+
+  p {
+    color: #130c49;
+
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  a {
+    color: #61bd73;
+
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+    text-decoration-line: underline;
+  }
+}
+
+.integrations {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  flex-wrap: wrap;
+}
+
+.large {
+  height: 270px;
+  justify-content: space-between;
+}

@@ -20,8 +20,8 @@ import weaviate
 client  = weaviate.Client(
   url = "https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
   additional_headers={
-      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
-      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+      "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
   }
 )
 
@@ -96,8 +96,8 @@ func main() {
     Host:    "WEAVIATE_INSTANCE_URL",
     Scheme:  "https",
     Headers: map[string]string{
-      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
-      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+      "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
     },
   }
   client, err := weaviate.NewClient(cfg)
@@ -152,8 +152,8 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
-      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
+      put("X-Goog-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Goog-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
     Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -263,8 +263,8 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-    -H "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
-    -H "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
+    -H "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
+    -H "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
     -d @- \
     https://${WEAVIATE_INSTANCE_URL}/v1/graphql
 ```

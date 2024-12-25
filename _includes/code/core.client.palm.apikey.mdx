@@ -11,8 +11,8 @@ client = weaviate.Client(
   url = "https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
   # highlight-start
   additional_headers = {
-    "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  # Replace with your API key
-    "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  # Replace with your API key
+    "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  # Replace with your API key
+    "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  # Replace with your API key
   }
   # highlight-end
 )
@@ -30,8 +30,8 @@ const client = weaviate.client({
   // highlight-start
   // Replace with your API key
   headers: {
-    'X-Google-Vertex-Api-Key': 'YOUR-VERTEX-API-KEY',  // Replace with your API key
-    'X-Google-Studio-Api-Key': 'YOUR-AI-STUDIO-API-KEY',  // Replace with your API key
+    'X-Goog-Vertex-Api-Key': 'YOUR-VERTEX-API-KEY',  // Replace with your API key
+    'X-Goog-Studio-Api-Key': 'YOUR-AI-STUDIO-API-KEY',  // Replace with your API key
   },
   // highlight-end
 });
@@ -57,8 +57,8 @@ func main() {
         // highlight-start
         // Replace with your API key
         Headers: map[string]string{
-          "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  // Replace with your API key
-          "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // Replace with your API key
+          "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",  // Replace with your API key
+          "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // Replace with your API key
         }
         // highlight-end
     }
@@ -85,8 +85,8 @@ public class App {
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       // Replace with your API key
-      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
-      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
+      put("X-Goog-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Goog-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
     // highlight-end
 

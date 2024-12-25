@@ -12,11 +12,7 @@ first.
 ### Node.js Installation
 
 Use the [nvm](https://github.com/nvm-sh/nvm) package manager to install Node.js.
-The `nvm` project page provides an installation script.
-
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-```
+The `nvm` project page provides an [installation script](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating).
 
 After you install `nvm`, use `nvm` to install Node.js.
 
@@ -24,13 +20,11 @@ After you install `nvm`, use `nvm` to install Node.js.
 nvm install
 ```
 
-By default, `nvm` installs the most recent version of Node.js. Install Node.js
-19.9.0 as well. Version 19.9.0 is more compatible with the current
-`weaviate.io` project dependencies.
+By default, `nvm` installs the most recent version of Node.js. Also install the version of Node.js that is specified in `.github/workflows/pull_requests.yaml`. At the time of writing it is version 20.
 
 ```
-nvm install 19.9.0
-nvm use 19.9.0
+nvm install 20
+nvm use 20
 ```
 
 ### yarn Installation
@@ -105,7 +99,7 @@ the other project dependencies.
 Switch to the project directory, then use yarn to update the dependencies.
 
 ```
-cd weaviate.io
+cd weaviate-io
 yarn install
 ```
 
@@ -116,23 +110,10 @@ You may see some warnings during the installation.
 When the installation completes, start the `yarn` server to test your build.
 
 ```
-yarn start &
+yarn start
 ```
 
-`yarn` builds the project as a static web site and starts a server to host it.
-`yarn` also opens a browser window connected to http://localhost:3000/ where
-you can see your changes.
-
-Most changes are reflected live without having to restart the server.
-
-If you run ``yarn start`` in the foreground (without the "&"), you have to open
-a second terminal to continue working on the command line. When you open a
-second terminal, be sure to set the correct Node.js version before running
-additional `yarn` commands.
-
-```
-nvm use node 19.9.0
-```
+This will build the site and start a local server, then open http://localhost:3000/ showing the local build. If you close the terminal, the server will stop. Or press `Ctrl+C`/`Cmd+C` to stop the server.
 
 ### Build the Web Site
 
@@ -178,7 +159,7 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 Code examples in the documentation are in one of two formats:
 
-#### New format
+#### Extracted from scripts
 
 In many files, you will see a format similar to:
 
@@ -204,7 +185,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
       text={TSCode}
       startMarker="// ValidateObject START"
       endMarker="// ValidateObject END"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 </Tabs>
@@ -216,7 +197,7 @@ Here, the `FilteredTextBlock` component loads lines between the `startMarker` an
 
 For more information about tests, please see [README-tests.md](./README-tests.md).
 
-#### Legacy format
+#### Pure text
 
 In some code examples, the code will be written directly inside the `TabItem` component, as shown below.
 

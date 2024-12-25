@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_gpt4all.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-The GPT4All library allows you to easily run a wide range of models on your own device. Weaviate seamlessly integrates with the GPT4All library, allowing users to leverage compatible models directly within the Weaviate database.
+The GPT4All library allows you to easily run a wide range of models on your own device. Weaviate seamlessly integrates with the GPT4All library, allowing users to leverage compatible models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -38,12 +38,6 @@ A locally hosted Weaviate instance is required for these integrations so that yo
 Go to the relevant integration page to learn how to configure Weaviate with the GPT4All models and start using them in your applications.
 
 - [Text Embeddings](./embeddings.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 

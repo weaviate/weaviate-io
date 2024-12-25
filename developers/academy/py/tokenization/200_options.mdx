@@ -131,7 +131,9 @@ Weaviate provides `gse` and `trigram` (from `v1.24`) and `kagome_kr` (from `v1.2
 
 `gse` implements the "Jieba" algorithm, which is a popular Chinese text segmentation algorithm. `trigram` splits text into all possible trigrams, which can be useful for languages like Japanese.
 
-`kagome_kr` uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split the property text. This is useful for Korean text.
+`kagome_ja` uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Japanese [MeCab IPA](https://github.com/ikawaha/kagome-dict/) dictionary to split Japanese property text.
+
+`kagome_kr` uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Korean MeCab ([mecab-ko-dic](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)) dictionary to split Korean property text.
 
 ## Questions and feedback
 

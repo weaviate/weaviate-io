@@ -14,24 +14,18 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/mainpkg/search-generative_test.go';
 
-"Retrieval Augmented Generation" (RAG), also called generative search, is a multi-stage process.
+Retrieval Augmented Generation (RAG) combines information retrieval with generative AI models.
 
-First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
+In Weaviate, a RAG query consists of two parts: *a search query*, and a *prompt for the model*. Weaviate first performs the search, then passes both the search results and your prompt to a generative AI model before returning the generated response.
 
 <details>
   <summary>
-    Additional information
+    How to configure RAG
   </summary>
 
-### Configure RAG
+To use RAG, a collection must be configured to use a [generative model integration](../model-providers/index.md).
 
-1. Configure Weaviate to enable a [generative model integration](../model-providers/index.md).
- 2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
- 3. Query your database to retrieve one or more objects.
- 4. Use the query results to generate a new result.
-
-    - [`single prompt`](#single-prompt)
-    - [`grouped task`](#grouped-task)
+See the relevant model provider documentation for more details.
 
 </details>
 
@@ -57,7 +51,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -75,7 +69,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -110,7 +104,7 @@ The properties you use in the prompt do not have to be among the properties you 
       text={PyCodeV3}
       startMarker="# SingleGenerativePropertiesPython"
       endMarker="# END SingleGenerativePropertiesPython"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -128,7 +122,7 @@ The properties you use in the prompt do not have to be among the properties you 
       text={TSCodeLegacy}
       startMarker="// SingleGenerativeProperties TS"
       endMarker="// END SingleGenerativeProperties TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -184,7 +178,7 @@ Grouped task search returns one response that includes all of the query results.
       text={PyCodeV3}
       startMarker="# GroupedGenerativePython"
       endMarker="# END GroupedGenerativePython"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -202,7 +196,7 @@ Grouped task search returns one response that includes all of the query results.
       text={TSCodeLegacy}
       startMarker="// GroupedGenerative TS"
       endMarker="// END GroupedGenerative TS"
-      language="js"
+      language="tsv2"
     />
   </TabItem>
 
@@ -261,7 +255,7 @@ Define object `properties` to use in the prompt. This limits the information in 
       text={PyCodeV3}
       startMarker="# GroupedGenerativeProperties Python"
       endMarker="# END GroupedGenerativeProperties Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -279,7 +273,7 @@ Define object `properties` to use in the prompt. This limits the information in 
       text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

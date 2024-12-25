@@ -13,8 +13,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -74,6 +76,15 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START JinaAIInstantiation"
+      endMarker="// END JinaAIInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -96,6 +107,15 @@ Provide the API key to Weaviate using one of the following methods:
       startMarker="// START BasicVectorizerJinaAI"
       endMarker="// END BasicVectorizerJinaAI"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerJinaAI"
+      endMarker="// END BasicVectorizerJinaAI"
+      language="goraw"
     />
   </TabItem>
 
@@ -124,6 +144,15 @@ You can specify one of the [available models](#available-models) for the vectori
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START VectorizerJinaCustomModel"
+      endMarker="// END VectorizerJinaCustomModel"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
@@ -141,7 +170,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 The following examples show how to configure Jina AI-specific options.
 
-Note that `dimensions` is only used for the `jina-embeddings-v3` model.
+Note that `dimensions` is not applicable for the `jina-embeddings-v2` models.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -159,6 +188,15 @@ Note that `dimensions` is only used for the `jina-embeddings-v3` model.
       startMarker="// START FullVectorizerJinaAI"
       endMarker="// END FullVectorizerJinaAI"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerJinaAI"
+      endMarker="// END FullVectorizerJinaAI"
+      language="goraw"
     />
   </TabItem>
 
@@ -185,6 +223,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -226,6 +273,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -258,6 +314,15 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## References
@@ -270,7 +335,14 @@ The query below returns the `n` best scoring objects from the database, set by `
 - `jina-embeddings-v2-base-en` (Default)
 - `jina-embeddings-v2-small-en`
 
+Note that `dimensions` is not applicable for the `jina-embeddings-v2` models.
+
 ## Further resources
+
+### Other integrations
+
+- [Jina AI multimodal embedding models + Weaviate](./embeddings-multimodal.md)
+- [Jina AI reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 

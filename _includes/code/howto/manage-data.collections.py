@@ -273,6 +273,43 @@ client.collections.delete("Article")
 
 
 # ===============================================
+# ===== UPDATE A COLLECTION'S RERANKER MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    reranker_config=Configure.Reranker.voyageai()
+    # highlight-end
+)
+
+# START UpdateReranker
+from weaviate.classes.config import Reconfigure
+
+collection = client.collections.get("Article")
+
+collection.config.update(
+    # highlight-start
+    reranker_config=Reconfigure.Reranker.cohere()  # Update the reranker module
+    # highlight-end
+)
+# END UpdateReranker
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.reranker_config.reranker == "reranker-cohere"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
@@ -322,6 +359,43 @@ client.collections.create(
 collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.generative_config.generative == "generative-openai"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# ===============================================
+# ===== UPDATE A COLLECTION'S GENERATIVE MODULE =====
+# ===============================================
+
+client.collections.delete("Article")
+
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "Article",
+    vectorizer_config=Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    generative_config=Configure.Generative.openai()
+    # highlight-end
+)
+
+# START UpdateGenerative
+from weaviate.classes.config import Reconfigure
+
+collection = client.collections.get("Article")
+
+collection.config.update(
+    # highlight-start
+    generative_config=Reconfigure.Generative.cohere()  # Update the generative module
+    # highlight-end
+)
+# END UpdateGenerative
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.generative_config.generative == "generative-cohere"
 
 # Delete the collection to recreate it
 client.collections.delete("Article")
@@ -488,6 +562,41 @@ client.collections.create(
 collection = client.collections.get("Article")
 config = collection.config.get()
 # assert config.replication_config.factor == 3   #ASYNC NEEDS TEST
+
+client.close()
+
+# ==============================================
+# ===== ALL REPLICATION SETTINGS
+# ==============================================
+
+# Connect to a setting with 3 replicas
+client = weaviate.connect_to_local(
+    port=8180  # Port for demo setup with 3 replicas
+)
+
+# Clean slate
+client.collections.delete("Article")
+
+# START AllReplicationSettings
+from weaviate.classes.config import Configure, ReplicationDeletionStrategy
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=Configure.replication(
+        factor=3,
+        async_enabled=True,  # Enable asynchronous repair
+        deletion_strategy=ReplicationDeletionStrategy.TIME_BASED_RESOLUTION,  # Added in v1.28; Set the deletion conflict resolution strategy
+    )
+    # highlight-end
+)
+# END AllReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.replication_config.async_enabled == True
+assert config.replication_config.deletion_strategy == ReplicationDeletionStrategy.TIME_BASED_RESOLUTION
 
 client.close()
 

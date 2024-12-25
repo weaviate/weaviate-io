@@ -15,10 +15,10 @@ const client = weaviate.client({
   },
 });
 
-// START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
+// START BasicCreateCollection  // START ReadOneCollection  
 const className = 'Article';
 
-// END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
+// END BasicCreateCollection  // END ReadOneCollection  
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -483,6 +483,35 @@ await client.schema.classDeleter().withClassName(className).do();
 
 
 // ===============================================
+// ===== UPDATE THE COLLECTION WITH THE RERANKER MODULE =====
+// ===============================================
+
+const initCollectionWithReranker = {
+  class: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+  ],
+  vectorizer: 'text2vec-openai', // this could be any vectorizer
+  // highlight-start
+  moduleConfig: {
+    'reranker-cohere': {}, // set your reranker module
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema.classCreator().withClass(initCollectionWithReranker).do();
+
+// START UpdateReranker
+// Collection definition updates are not available in the v2 API. 
+// Consider upgrading to the v3 API, or deleting and recreating the collection.
+// END UpdateReranker
+
+
+// ===============================================
 // ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 // ===============================================
 
@@ -545,6 +574,34 @@ Object.keys(result['moduleConfig']).includes('generative-openai');
 
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();
+
+// ===============================================
+// ===== UPDATE THE COLLECTION WITH THE GENERATIVE MODULE =====
+// ===============================================
+
+const initCollectionWithGenerative = {
+  class: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+  ],
+  vectorizer: 'text2vec-openai', // this could be any vectorizer
+  // highlight-start
+  moduleConfig: {
+    'generative-openai': {}, // set your generative module
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema.classCreator().withClass(initCollectionWithGenerative).do();
+
+// START UpdateGenerative
+// Collection definition updates are not available in the v2 API. 
+// Consider upgrading to the v3 API, or deleting and recreating the collection.
+// END UpdateGenerative
 
 // =======================
 // ===== REPLICATION =====
@@ -694,26 +751,6 @@ try {
 }
 
 // START UpdateCollection
-// Define and create a class
-const originalClassObj = {
-  class: className,
-  vectorIndexConfig: {
-    distance: 'cosine', // Note the distance metric
-  },
-};
-
-// Add the class to the schema
-let originalClassResponse = await client.schema
-  .classCreator()
-  .withClass(originalClassObj)
-  .do();
-
-const UpdateCollectionObj = {
-  class: className,
-  vectorIndexConfig: {
-    distance: 'dot', // Note the distance metric
-  },
-};
-
-// Update the class definition
-// Not yet available in TS
+// Collection definition updates are not available in the v2 API. 
+// Consider upgrading to the v3 API, or deleting and recreating the collection.
+// END UpdateCollection

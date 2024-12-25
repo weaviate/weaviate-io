@@ -1,5 +1,6 @@
 ---
 title: Collection definition
+description: Schema Configuration in Weaviate
 sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
@@ -545,6 +546,25 @@ The `gse` tokenizer is not loaded by default to save resources. To use it, set t
 - `"素早い茶色の狐が怠けた犬を飛び越えた"`: `["素早", "素早い", "早い", "茶色", "の", "狐", "が", "怠け", "けた", "犬", "を", "飛び", "飛び越え", "越え", "た", "素早い茶色の狐が怠けた犬を飛び越えた"]`
 - `"すばやいちゃいろのきつねがなまけたいぬをとびこえた"`: `["すばや", "すばやい", "やい", "いち", "ちゃ", "ちゃい", "ちゃいろ", "いろ", "のき", "きつ", "きつね", "つね", "ねが", "がな", "なま", "なまけ", "まけ", "けた", "けたい", "たい", "いぬ", "を", "とび", "とびこえ", "こえ", "た", "すばやいちゃいろのきつねがなまけたいぬをとびこえた"]`
 
+### `kagome_ja` tokenization method
+
+:::caution Experimental feature
+Available starting in `v1.28.0`. This is an experimental feature. Use with caution.
+:::
+
+For Japanese text, `kagome_ja` tokenization method is also available. This uses the [`Kagome` tokenizer](https://github.com/ikawaha/kagome?tab=readme-ov-file) with a Japanese [MeCab IPA](https://github.com/ikawaha/kagome-dict/) dictionary to split the property text.
+
+The `kagome_ja` tokenizer is not loaded by default to save resources. To use it, set the environment variable `ENABLE_TOKENIZER_KAGOME_JA` to `true` on the Weaviate instance.
+
+`kagome_ja` tokenization examples:
+
+- `"春の夜の夢はうつつよりもかなしき 夏の夜の夢はうつつに似たり 秋の夜の夢はうつつを超え 冬の夜の夢は心に響く 山のあなたに小さな村が見える 川の音が静かに耳に届く 風が木々を通り抜ける音 星空の下、すべてが平和である"`:
+  - [`"春", "の", "夜", "の", "夢", "は", "うつつ", "より", "も", "かなしき", "\n\t", "夏", "の", "夜", "の", "夢", "は", "うつつ", "に", "似", "たり", "\n\t", "秋", "の", "夜", "の", "夢", "は", "うつつ", "を", "超え", "\n\t", "冬", "の", "夜", "の", "夢", "は", "心", "に", "響く", "\n\n\t", "山", "の", "あなた", "に", "小さな", "村", "が", "見える", "\n\t", "川", "の", "音", "が", "静か", "に", "耳", "に", "届く", "\n\t", "風", "が", "木々", "を", "通り抜ける", "音", "\n\t", "星空", "の", "下", "、", "すべて", "が", "平和", "で", "ある"`]
+- `"素早い茶色の狐が怠けた犬を飛び越えた"`:
+  - `["素早い", "茶色", "の", "狐", "が", "怠け", "た", "犬", "を", "飛び越え", "た"]`
+- `"すばやいちゃいろのきつねがなまけたいぬをとびこえた"`:
+  - `["すばやい", "ちゃ", "いろ", "の", "きつね", "が", "なまけ", "た", "いぬ", "を", "とびこえ", "た"]`
+
 ### `kagome_kr` tokenization method
 
 :::caution Experimental feature
@@ -557,9 +577,12 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
 
 `kagome_kr` tokenization examples:
 
-- `"아버지가방에들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
-- `"아버지가 방에 들어가신다"`: `["아버지", "가", "방", "에", "들어가", "신다"]`
-- `"결정하겠다"`: `["결정", "하", "겠", "다"]`
+- `"아버지가방에들어가신다"`:
+  - `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"아버지가 방에 들어가신다"`:
+  - `["아버지", "가", "방", "에", "들어가", "신다"]`
+- `"결정하겠다"`:
+  - `["결정", "하", "겠", "다"]`
 
 ### Inverted index types
 

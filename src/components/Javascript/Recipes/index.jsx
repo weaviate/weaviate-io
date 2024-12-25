@@ -23,7 +23,7 @@ export default function Recipes() {
             </Link>
             <Link
               className={styles.buttonDark}
-              to="https://stackblitz.com/~/github.com/weaviate/recipes-ts?view=editor"
+              to="https://stackblitz.com/~/github.com/weaviate/recipes-ts"
             >
               Get them on Stackblitz
             </Link>

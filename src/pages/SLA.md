@@ -64,9 +64,9 @@ Planned maintenance windows are periods during which the availability of the ser
 
 Weaviate employs different backup policies for each tier:
 
-- **Standard Tier:** Daily full backup stored in the same region for 7 days.
-- **Professional Tier:** Daily full backup stored in another region for 30 days.
-- **Business Critical Tier:** Daily full backup stored in another region for 30 days.
+- **Standard Tier:** Daily full backup, stored in the same region for 7 days.
+- **Professional Tier:** Daily full backup, stored in the same region for 14 days.
+- **Business Critical Tier:** Daily full backup, stored in the same region for 30 days.
 <br></br>
 
 ### **Monitoring**

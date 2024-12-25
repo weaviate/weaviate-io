@@ -2,7 +2,7 @@
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
 // WCD_API_KEY  		your Weaviate instance API key
-// OPENAI_API_KEY   	your OpenAI API key
+// COHERE_APIKEY   		your Cohere API key
 
 package main
 
@@ -23,7 +23,7 @@ func main() {
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
 		// highlight-start
 		Headers: map[string]string{
-			"X-OpenAI-Api-Key": os.Getenv("OPENAI_API_KEY"),
+			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
 		},
 		// highlight-end
 	}

@@ -1,5 +1,6 @@
 ---
 title: Reranker
+description: VoyageAI Reranker Model Provider
 sidebar_position: 70
 image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'reranking']
@@ -77,6 +78,10 @@ Provide the API key to Weaviate using one of the following methods:
 </Tabs>
 
 ## Configure the reranker
+
+import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
+
+<MutableRerankerConfig />
 
 Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 
@@ -165,6 +170,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 ### Other integrations
 
 - [Voyage AI embedding models + Weaviate](./embeddings.md).
+- [Voyage AI multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 
 ### Code examples
 

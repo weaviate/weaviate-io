@@ -1,5 +1,6 @@
 ---
 title: "230 Vector indexing"
+description: Implement vector indexing in Weaviate to speed up your search queries.
 sidebar_position: 230
 ---
 

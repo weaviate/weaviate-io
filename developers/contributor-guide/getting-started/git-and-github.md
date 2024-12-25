@@ -1,5 +1,6 @@
 ---
 title: Git and GitHub guide
+description: Git and GitHub Guide for Weaviate
 sidebar_position: 6
 image: og/contributor-guide/getting-started.jpg
 # tags: ['contributor-guide']

@@ -102,13 +102,12 @@
     background: #f5f5f5;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     width: 28.625rem;
-    height: 79.4375rem;
+    height: auto;
     flex-shrink: 0;
     padding: 30px;
 
     @media screen and (max-width: 900px) {
       width: 100%;
-      height: auto;
     }
 
     .logo {

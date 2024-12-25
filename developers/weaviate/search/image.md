@@ -55,13 +55,11 @@ If your query image is stored in a file, you can use the client library to searc
       text={PyCodeV3}
       startMarker="# START ImageFileSearch"
       endMarker="# END ImageFileSearch"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
   <TabItem value="js" label="JS/TS Client v3">
-
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 
   <FilteredTextBlock
     text={TSCode}
@@ -74,7 +72,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   <TabItem value="js2" label="JS/TS Client v2">
 
-  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DIY code below.
 
   <FilteredTextBlock
     text={TSCodeLegacy}
@@ -109,7 +107,7 @@ If your query image is stored in a file, you can use the client library to searc
   <summary>Example response</summary>
 
   <FilteredTextBlock
-    text={PyCode}
+    text={TSCode}
     startMarker="# START Expected base64 results"
     endMarker="# END Expected base64 results"
     language="json"
@@ -137,7 +135,7 @@ You can search by a base64 representation of an image:
       text={PyCodeV3}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -155,7 +153,7 @@ You can search by a base64 representation of an image:
       text={TSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -190,6 +188,7 @@ You can search by a base64 representation of an image:
   />
 
 </details>
+
 
 ## Create a base64 representation of an online image.
 
@@ -232,7 +231,6 @@ You can create a base64 representation of an online image, and use it as input f
   </TabItem>
 
 </Tabs>
-
 
 ## Combination with other operators
 

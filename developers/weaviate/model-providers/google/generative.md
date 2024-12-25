@@ -1,5 +1,6 @@
 ---
 title: Generative AI
+description: Google Generative Model Provider
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'generative', 'rag']
@@ -119,7 +120,11 @@ import ApiKeyNote from '../_includes/google-api-key-note.md';
 
 ## Configure collection
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-module) as follows to use a Google generative AI model as follows:
+import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
+
+<MutableGenerativeConfig />
+
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use a Google generative AI model as follows:
 
 Note that the required parameters differ between Vertex AI and AI Studio.
 
@@ -290,7 +295,8 @@ AI Studio:
 
 ### Other integrations
 
-- [Google embedding models + Weaviate](./embeddings.md).
+- [Google text embedding models + Weaviate](./embeddings.md).
+- [Google multimodal embedding models + Weaviate](./embeddings-multimodal.md).
 
 ### Code examples
 

@@ -1,11 +1,10 @@
 ---
 title: gRPC
+description: Integrate gRPC API with Weaviate for efficient data access.
 sidebar_position: 5
 image: og/docs/api.jpg
 # tags: ['schema']
 ---
-
-## Overview
 
 Starting with Weaviate `v1.19.0`, a gRPC interface has been progressively added to Weaviate. gRPC is a high-performance, open-source universal RPC framework that is contract-based and can be used in any environment. It is based on HTTP/2 and Protocol Buffers, and is therefore very fast and efficient.
 

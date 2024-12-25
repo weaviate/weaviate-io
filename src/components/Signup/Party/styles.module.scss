@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.demoContainer {
+  display: flex;
+  margin: auto;
+  background: #131144;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(128, 128, 255, 1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(128, 128, 255, 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  animation: gridScroll 10s linear infinite;
+
+  @media screen and (max-width: 780px) {
+    height: auto;
+    flex-direction: column-reverse;
+  }
+}
+
+@keyframes gridGlow {
+  0% {
+    background-color: #131144;
+    background-image: linear-gradient(
+        to right,
+        rgba(128, 128, 128, 0.8) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(128, 128, 128, 0.3) 1px, transparent 1px);
+  }
+  100% {
+    background-color: #0d1132;
+    background-image: linear-gradient(
+        to right,
+        rgba(128, 128, 255, 1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(128, 128, 255, 0.5) 1px, transparent 1px);
+  }
+}
+
+@keyframes gridScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -40px;
+  }
+}
+
+.demoTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  img {
+    margin-bottom: 10px;
+  }
+
+  span {
+    color: #ddebf2;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 2rem */
+  }
+
+  p {
+    margin-bottom: 20px;
+
+    width: 85%;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 1.6rem */
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+    }
+  }
+
+  .demoLogo {
+    width: 10.43744rem;
+    height: 1.43244rem;
+    flex-shrink: 0;
+    background-image: url('/img/site/weaviate-logo-light-alpha.svg');
+    background-size: cover;
+  }
+}
+
+.contentContainer {
+  max-width: 1260px;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
+
+.contentSideA {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  p {
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+  }
+
+  .contentImage {
+    background: url('/img/site/weaviate-secret-party.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 100vh;
+
+    @media screen and (max-width: 780px) {
+      width: 100%;
+    }
+  }
+}
+
+.contentSideB {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem 1rem 1rem;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+    padding: 3rem;
+  }
+
+  h1 {
+    color: #2fc514;
+    font-family: 'Press Start 2P';
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 4.2rem */
+
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 780px) {
+      font-size: 2rem;
+      word-wrap: normal;
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    color: #b9c8de;
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  p {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 18px;
+
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.3125rem */
+  }
+}
+
+.signUpBox {
+  margin: auto;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+  }
+}
+
+.investorButton {
+  margin-top: 25px;
+}
+
+.demoSideB h2 {
+  font-size: 1.5rem;
+}
+
+.demoSideA p,
+.demoSideB p,
+.typeQuote p,
+.typeQuote span {
+  font-size: 0.9rem;
+}
+
+.typeIcon .homeIcon,
+.typeIcon .ragIcon,
+.typeIcon .genIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.typeQuote .image {
+  width: 5rem;
+  height: 5rem; /* Smaller starting quote image size */
+}
+
+/* Increase Font and Image Size as Screen Size Decreases */
+
+@media screen and (max-width: 1100px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    font-size: 1.75rem;
+  }
+
+  .demoSideA p,
+  .demoSideB p {
+    font-size: 1rem;
+  }
+
+  .typeIcon .homeIcon,
+  .typeIcon .ragIcon,
+  .typeIcon .genIcon {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .signUpBox {
+    width: 100%;
+    height: auto;
+  }
+
+  .typeQuote .image {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    br {
+      display: none;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0px;
+
+  span {
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .footerLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .footerIcon {
+    background: #262262;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.hsForm {
+  span,
+  p,
+  ::placeholder {
+    font-family: 'Press Start 2P';
+  }
+  input {
+    border: 2px solid #2fc514;
+    width: 100%;
+    background: none;
+    height: 50px;
+    margin: 10px 0px;
+    font-family: 'Press Start 2P';
+    color: #fff;
+  }
+
+  input[type='submit'] {
+    margin: 10px 0px;
+    border: 1px solid #2fc514;
+    background: #2fc514;
+    font-family: 'Press Start 2P';
+    color: #130c49;
+  }
+
+  label {
+    font-family: 'Press Start 2P';
+    color: #fff;
+    font-size: 10px;
+  }
+
+  ul {
+    padding: 0;
+  }
+}

@@ -13,13 +13,66 @@ The following sections provide a conceptual overview of search in Weaviate, incl
 
 ## Search process
 
-The following table illustrates the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
+The following table and figure illustrate the search process in Weaviate. Around the core search process, there are several steps that can be taken to improve and manipulate the search results.
 
 | Step | Description | Optional |
 |------|-------------|----------|
 | 1. [Retrieval](#retrieval-filter) | <strong>[Filter](#retrieval-filter):</strong> Narrow result sets based on criteria<br/><strong>[Search](#retrieval-search):</strong> Find the most relevant entries, using one of [keyword](#keyword-search), [vector](#vector-search) or [hybrid](#hybrid-search) search types<br/> | Required |
-| 2. [Reranking](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
+| 2. [Rerank](#rerank) | Reorder results using a different (e.g. more complex) model | Optional |
 | 3. [Retrieval augmented generation](#retrieval-augmented-generation-rag) | Send retrieved data and a prompt to a generative AI model. Also called retrieval augmented generation, or RAG. | Optional |
+
+<center>
+
+```mermaid
+flowchart LR
+    %% Node definitions
+    Query[/"🔍 Query"/]
+    Filter["Filter"]
+    Key["Keyword Search\n(BM25F)"]
+    Vec["Vector Search\n(Embeddings)"]
+    Hyb["Hybrid Search\n(Combined)"]
+    Rerank["Rerank\n(Optional)"]
+    RAG["RAG\n(Optional)"]
+    Results[/"📊 Results"/]
+
+    %% Main flow grouping
+    subgraph retrieval ["Retrieval"]
+        direction LR
+        Filter
+        search
+    end
+
+    subgraph search ["Search"]
+        direction LR
+        Key
+        Vec
+        Hyb
+    end
+
+    %% Connections
+    Query --> retrieval
+    Filter --> search
+    retrieval --> Results
+    retrieval --> Rerank
+    Rerank --> RAG
+    RAG --> Results
+
+    %% Node styles
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Filter fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Key fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Vec fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Hyb fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Rerank fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style RAG fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Results fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Subgraph styles
+    style retrieval fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style search fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
+</center>
 
 Here is a brief overview of each step:
 
@@ -139,9 +192,13 @@ For example:
 
 </details>
 
+:::info Read more
+See the [keyword search](./keyword-search.md) page for more details on how keyword search works in Weaviate.
+:::
+
 #### Vector Search
 
-Similarity-based search using [vector embeddings](#vector-embeddings). This method compares vector representations of the query against those of the stored objects to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
+Similarity-based search using vector embeddings. This method compares vector representations of the query against those of the stored objects to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
 
 In Weaviate, you can perform vector searches in multiple ways. You can search for similar objects based on [a text input](../../search/similarity.md#search-with-text), [a vector input](../../search/similarity.md#search-with-a-vector), or [an exist object](../../search/similarity.md#search-with-an-existing-object). You can even search for similar objects with other modalities such as [with images](../../search/image.md).
 
@@ -187,9 +244,13 @@ For example:
 
 </details>
 
+:::info Read more
+See the [vector search](./vector-search.md) page for more details on how vector search works in Weaviate.
+:::
+
 #### Hybrid Search
 
-Combines vector and keyword search to leverage the strengths of both approaches. Both searches are carried out and the results are combined using the selected [hybrid fusion method](#hybrid-fusion-method) and the given [alpha](#alpha-hybrid-search) value.
+Combines vector and keyword search to leverage the strengths of both approaches. Both searches are carried out and the results are combined using the selected parameters, such as the hybrid fusion method and the alpha value.
 
 <details>
   <summary>Hybrid Search: Example</summary>
@@ -234,6 +295,10 @@ For example:
 
 </details>
 
+:::info Read more
+See the [hybrid search](./hybrid-search.md) page for more details on how hybrid search works in Weaviate.
+:::
+
 ### Retrieval: Unordered
 
 Queries can be formulated without any ranking mechanisms.
@@ -274,7 +339,7 @@ Retrieval augmented generation (RAG), also called generative search, combines se
 
 Weaviate integrates with many popular [generative model providers](../../model-providers/index.md) such as [AWS](../../model-providers/aws/generative.md), [Cohere](../../model-providers/cohere/generative.md), [Google](../../model-providers/google/generative.md), [OpenAI](../../model-providers/openai/generative.md) and [Ollama](../../model-providers/ollama/generative.md).
 
-As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-module), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
+As a result, Weaviate makes RAG easy to [set up](../../manage-data/collections.mdx#specify-a-generative-model-integration), and easy to [execute as an integrated, single query](../../search/generative.md#grouped-task-search).
 
 <details>
   <summary>RAG: Example</summary>
@@ -307,31 +372,22 @@ The search results consist of `{"description": "black bear"}` and `{"description
 ```
 </details>
 
-## Glossary
+## Search scores and metrics
 
-#### Vector embeddings
+Weaviate uses a variety of metrics to rank search results of a given query. The following metrics are used in Weaviate:
 
-A vector embedding captures semantic meaning of an object in a vector space. It consists of a set of numbers that represent the object's features. Vector embeddings are generated by a vectorizer model, which is a machine learning model that is trained for this purpose.
+- Vector distance: A vector distance measure between the query and the object.
+- BM25F score: A keyword search score calculated using the BM25F algorithm.
+- Hybrid score: A combined score from vector and keyword searches.
 
-#### BM25F algorithm
+## Further resources
 
-The BM25 algorithm ranks matching documents according to their relevance to a given search query. At a high level, the BM25 algorithm uses the count of query terms in the document (term frequency) against the overall frequency of the term in the dataset (inverse document frequency) to calculate a relevance score.
+For more details, see the respective pages for:
+- [Concepts: Vector search](./vector-search.md)
+- [Concepts: Keyword search](./keyword-search.md)
+- [Concepts: Hybrid search](./hybrid-search.md).
 
-The BM25F variant extends the BM25 algorithm to support multiple fields in the search index.
-
-#### Hybrid fusion method
-
-Weaviate uses a hybrid fusion method to combine the results of vector and keyword searches. The method determines how the results of the two searches are combined to produce the final search results.
-
-There are two algorithms available: `relativeScoreFusion` (default from `1.24`) and `rankedFusion` (default until `1.24`).
-
-With `rankedFusion`, each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches.
-
-With `relativeScoreFusion`, each object is scored by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
-
-#### Alpha (hybrid search)
-
-The alpha value determines the weight of the vector search results in the final hybrid search results. The alpha value ranges from 0 to 1, where 0 means only keyword search results are considered, and 1 means only vector search results are considered.
+For code snippets on how to use these search types, see the [How-to: search](../search/index.md) page.
 
 ## Questions and feedback
 

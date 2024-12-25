@@ -1,5 +1,6 @@
 ---
 title: Text Embeddings
+description: Use Mistral embeddings with Weaviate for high-quality vector search results.
 sidebar_position: 20
 image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral', 'embeddings']
@@ -12,8 +13,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -73,6 +76,15 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START MistralInstantiation"
+      endMarker="// END MistralInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
@@ -98,6 +110,15 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicVectorizerMistral"
+      endMarker="// END BasicVectorizerMistral"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Select a model
@@ -120,6 +141,15 @@ You can specify one of the [available models](#available-models) for the vectori
       startMarker="// START FullVectorizerMistral"
       endMarker="// END FullVectorizerMistral"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerMistral"
+      endMarker="// END FullVectorizerMistral"
+      language="goraw"
     />
   </TabItem>
 
@@ -157,6 +187,15 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       startMarker="// START BatchImportExample"
       endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -198,6 +237,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -227,6 +275,15 @@ The query below returns the `n` best scoring objects from the database, set by `
       startMarker="// START HybridExample"
       endMarker="// END HybridExample"
       language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
     />
   </TabItem>
 

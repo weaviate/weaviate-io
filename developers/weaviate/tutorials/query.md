@@ -1,12 +1,10 @@
 ---
 title: Queries in detail
+description: Learn effective query techniques in Weaviate to retrieve accurate results.
 sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
-
-
-## Overview
 
 In this section, we will explore different queries that you can perform with Weaviate. Here, we will expand on the `nearText` queries that you may have seen in the [Quickstart tutorial](../quickstart/index.md) to show you different query types, filters and metrics that can be used.
 

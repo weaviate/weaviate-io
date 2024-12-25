@@ -3,11 +3,14 @@
 import weaviate, { WeaviateClient } from 'weaviate-client'
 import { vectorizer } from 'weaviate-client';
 
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+const weaviateURL = process.env.WEAVIATE_URL as string
+const weaviateKey = process.env.WEAVIATE_ADMIN_KEY as string
+const openaiKey = process.env.OPENAI_API_KEY as string
+
+const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL, {
+  authCredentials: new weaviate.ApiKey(weaviateKey), 
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+      'X-OpenAI-Api-Key': openaiKey,  // Replace with your inference API key
     }
   }
 )

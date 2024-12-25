@@ -1,12 +1,10 @@
 ---
 title: Load data into Weaviate with Spark
+description: Discover Spark connector integration with Weaviate for large data processing.
 sidebar_position: 80
 image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']
 ---
-
-
-## Overview
 
 This tutorial is designed to show you an example of how to use the [Spark Connector](https://github.com/weaviate/spark-connector) to import data into Weaviate from Spark.
 
@@ -118,8 +116,7 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: ''
+      ENABLE_API_BASED_MODULES: 'true'
       CLUSTER_HOSTNAME: 'node1'
 volumes:
   weaviate_data:

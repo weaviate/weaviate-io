@@ -65,10 +65,10 @@ curl -X POST \
 -H "Authorization: Bearer $WCD_API_KEY" \
 -d '{
   "class": "Question",
-  "vectorizer": "text2vec-openai",
+  "vectorizer": "text2vec-cohere",
   "moduleConfig": {
-    "text2vec-openai": {},
-    "generative-openai": {}
+    "text2vec-cohere": {},
+    "generative-cohere": {}
   }
 }' \
 "$WCD_URL/v1/schema"

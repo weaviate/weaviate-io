@@ -1,5 +1,6 @@
 ---
 title: Summarization
+description: Summarize data efficiently using the SUM Transformers module in Weaviate.
 sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']
@@ -66,7 +67,6 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
       ENABLE_MODULES: 'text2vec-contextionary,sum-transformers'
       CLUSTER_HOSTNAME: 'node1'
   contextionary:

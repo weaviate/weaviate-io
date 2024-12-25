@@ -89,11 +89,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+
+  justify-content: flex-start;
 
   a {
-    height: 45px;
-    width: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,6 +112,13 @@
   }
 
   .buttonOutline {
+    width: 20.0625rem !important;
+    color: #130c49;
+    text-align: center;
+
+    font-weight: 600;
+
+    height: 1.375rem;
     border-radius: 0.3125rem;
     color: #130c49;
     background: #fff;
