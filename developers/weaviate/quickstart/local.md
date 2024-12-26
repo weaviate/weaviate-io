@@ -92,7 +92,7 @@ We will be running Weaviate and language models locally. We recommend that you u
 
 ### 1.1 Create a Weaviate database
 
-Save the following code to a file named `docker-compose.yml` in your project directory.
+Save the following code to a file named `compose.yaml` in your project directory.
 
 ```yaml
 ---
@@ -127,7 +127,7 @@ volumes:
 Run the following command to start a Weaviate instance using Docker:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 1.2 Install a client library
