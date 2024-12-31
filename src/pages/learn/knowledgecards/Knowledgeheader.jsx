@@ -6,9 +6,6 @@ import Head from '@docusaurus/Head';
 export default function KnowledgeHeader() {
   return (
     <>
-      <Head>
-        <meta name="robots" content="noindex, nofollow" />
-      </Head>
       <div className={styles.knowledgeHeader}>
         <div className="container">
           <div className={styles.boxGrid}>

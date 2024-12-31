@@ -24,9 +24,6 @@ const ShareOptions = ({ url }) => {
 
   return (
     <>
-      <Head>
-        <meta name="robots" content="noindex, nofollow" />
-      </Head>
       <div className={styles.shareContainer}>
         {!shareSuccess && !showShareOptions && (
           <button

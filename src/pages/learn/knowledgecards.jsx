@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
-
+import Head from '@docusaurus/Head';
 import KnowledgeHeader from '/src/components/Knowledgebase/Knowledgeheader';
 import KnowledgeBase from '/src/components/Knowledgebase/knowledgebase';
 import ThemeSwitch from '/src/components/ThemeSwitch';
@@ -14,6 +14,9 @@ export default function KnowledgeBasePage() {
   };
   return (
     <div className="custom-page noBG">
+      <Head>
+        <meta name="robots" content="index, follow" />
+      </Head>
       <Layout
         title="Weaviate Knowledge Cards"
         description="Unlock the power of vector search. Our guides will help you conquer vector embeddings and build better AI applications."
@@ -25,6 +28,7 @@ export default function KnowledgeBasePage() {
         />
         <KnowledgeBase searchQuery={searchQuery} />
       </Layout>
+
       <ThemeSwitch />
     </div>
   );
