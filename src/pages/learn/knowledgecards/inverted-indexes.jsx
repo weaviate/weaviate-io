@@ -67,6 +67,7 @@ const KnowledgeBasePage = () => {
             property="og:title"
             content="Inverted Indexes - Weaviate Knowledge Cards"
           />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta
             property="og:image"

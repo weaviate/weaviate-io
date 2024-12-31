@@ -67,6 +67,7 @@ const KnowledgeBasePage = () => {
             property="og:title"
             content="Document-Based Chunking - Weaviate Knowledge Cards"
           />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta
             property="og:image"
