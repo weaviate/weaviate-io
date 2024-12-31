@@ -1,7 +1,7 @@
 [
   {
     "name": "Aarthi Iyer",
-    "title": "QA Engineer",
+    "title": "Lead QA Engineer",
     "photo": "aarthi.jpg",
     "linkedin": "aarthiiyer",
     "team": "wcd"
@@ -23,21 +23,27 @@
     "team": "developer-growth"
   },
   {
+    "name": "Ajay Chavan",
+    "title": "Client-Focused SRE",
+    "photo": "Ajay.jpg",
+    "team": "applied-research"
+  },
+  {
     "name": "Ajit Mistry",
-    "title": "ML Engineering Intern ",
+    "title": "ML Engineering Intern",
     "photo": "ajit.jpg",
     "team": "applied-research"
   },
   {
     "name": "Alea Abed",
-    "title": "Head of Marketing",
+    "title": "VP of Marketing",
     "photo": "alea.jpg",
     "linkedin": "alea-abed",
     "team": "marketing"
   },
   {
     "name": "Alvin Richards",
-    "title": "Head of Product",
+    "title": "VP of Product",
     "photo": "Alvin.jpg",
     "linkedin": "alvinrichards",
     "twitter": "jonnyeight",
@@ -45,7 +51,7 @@
   },
   {
     "name": "André Duis",
-    "title": "Technical Executive",
+    "title": "VP of Platform Operations",
     "photo": "andre.jpg",
     "linkedin": "andre-duis",
     "team": "delivery"
@@ -89,7 +95,7 @@
   },
   {
     "name": "Benjamin Sabrin",
-    "title": "Head of Sales",
+    "title": "VP of Sales",
     "photo": "benjamin.jpg",
     "linkedin": "bsabrin",
     "team": "sales"
@@ -144,7 +150,7 @@
   },
   {
     "name": "Charles Pierse",
-    "title": "Head of Weaviate Labs",
+    "title": "Director of Innovation Labs",
     "photo": "charles-pierse.jpg",
     "linkedin": "charles-pierse",
     "twitter": "cdpierse",
@@ -244,10 +250,10 @@
   },
   {
     "name": "Emma O'Keefe",
-    "title": "Director of Customer Operations",
+    "title": "Director of Business Data Strategy & Enablement",
     "photo": "emma.jpg",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "sales"
+    "team": "finance"
   },
   {
     "name": "Edward Schmuhl",
@@ -294,7 +300,7 @@
   },
   {
     "name": "Griffin Foster",
-    "title": "Enterprise Account Executive",
+    "title": "Director of Sales - West",
     "photo": "griffin.jpg",
     "linkedin": "griffin-foster",
     "team": "sales"
@@ -330,7 +336,7 @@
   },
   {
     "name": "Jessie de Groot",
-    "title": "Head of People & Culture",
+    "title": "VP of People & Culture",
     "photo": "jessie.jpg",
     "linkedin": "jessiedegroot/",
     "twitter": "jessie_groot",
@@ -338,7 +344,7 @@
   },
   {
     "name": "Jobi George",
-    "title": "Head of Partnerships",
+    "title": "VP of Partnerships & Business Development",
     "photo": "jobi.jpg",
     "linkedin": "jobigeorge",
     "twitter": "jobig630",
@@ -346,7 +352,7 @@
   },
   {
     "name": "John Trengrove",
-    "title": "Head of Applied Research",
+    "title": "Director of Applied Research",
     "photo": "john.jpg",
     "linkedin": "trengrj",
     "twitter": "trengrj",
@@ -370,7 +376,7 @@
   },
   {
     "name": "Joseph Green",
-    "title": "Product Support Engineer",
+    "title": "Director of Support Engineering",
     "photo": "joseph-green.jpg",
     "team": "delivery",
     "linkedin": "joe-green-11381620a"
@@ -392,7 +398,7 @@
   },
   {
     "name": "Laura Stoye",
-    "title": "Executive Assistant",
+    "title": "Executive Operations Manager",
     "photo": "laura.jpg",
     "linkedin": "laurastoye",
     "team": "ceo-team"
@@ -491,7 +497,7 @@
   },
   {
     "name": "Parker Duckworth",
-    "title": "Head of Database",
+    "title": "Director of Database",
     "photo": "parker.jpg",
     "linkedin": "parkerduckworth",
     "github": "parkerduckworth",
@@ -499,14 +505,14 @@
   },
   {
     "name": "Patrick Das",
-    "title": "Head of Finance",
+    "title": "VP of Legal & Finance",
     "photo": "patrick.jpg",
     "linkedin": "patrickdas",
     "team": "finance"
   },
   {
     "name": "Paul de Grijp",
-    "title": "Head of Weaviate Cloud",
+    "title": "Director of Weaviate Cloud Console",
     "photo": "paul-de-grijp.jpg",
     "linkedin": "pauldegrijp",
     "twitter": "pauldegrijp",
@@ -514,7 +520,7 @@
   },
   {
     "name": "Philip Vollet",
-    "title": "Head of Developer Growth",
+    "title": "VP of Developer Growth",
     "photo": "philip.jpg",
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
@@ -563,7 +569,7 @@
   },
   {
     "name": "Sebastian Witalec",
-    "title": "Head of Developer Relations",
+    "title": "Director of Education & Developer Experience",
     "photo": "sebastian.jpg",
     "linkedin": "sebawita",
     "twitter": "sebawita",
@@ -595,7 +601,7 @@
   },
   {
     "name": "Spiros Andreou",
-    "title": "Security & Compliance Lead",
+    "title": "Director of Security & Compliance",
     "photo": "spiros.jpg",
     "team": "delivery"
   },
