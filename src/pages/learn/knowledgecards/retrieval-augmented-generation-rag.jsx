@@ -69,6 +69,7 @@ const KnowledgeBasePage = () => {
             property="og:title"
             content="Retrieval Augmented Generation (RAG) - Weaviate Knowledge Cards"
           />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta
             property="og:image"
