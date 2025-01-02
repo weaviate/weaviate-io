@@ -23,9 +23,9 @@ export default function Recipes() {
             </Link>
             <Link
               className={styles.buttonDark}
-              to="https://stackblitz.com/~/github.com/weaviate/recipes-ts"
+              to="https://replit.com/@malgamves/recipes-ts#readme.md"
             >
-              Get them on Stackblitz
+              Get them on Replit
             </Link>
           </div>
         </div>
