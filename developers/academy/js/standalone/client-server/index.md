@@ -9,7 +9,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
-When building web applications in Javascript with Weaviate using the [weaviate-client](https://www.npmjs.com/package/weaviate-client), it is recommended that you employ the client-server architecture.
+When building web applications in JavaScript with Weaviate using the [weaviate-client](https://www.npmjs.com/package/weaviate-client), it is recommended that you employ the client-server architecture.
 
 This may vary depending what tools you are using to build your web application. 
 
@@ -22,7 +22,7 @@ Backend web frameworks like Express let you create an API to communicate with We
 
 - A Node.js environment with `weaviate-client` installed.
 - Familiarity with Weaviate's search capabilities.
-- Intermediate coding proficiency (e.g. Javascript).
+- Intermediate coding proficiency (e.g. JavaScript).
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 

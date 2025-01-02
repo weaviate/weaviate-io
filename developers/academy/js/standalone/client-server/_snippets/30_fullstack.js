@@ -1,9 +1,7 @@
 // START weaviate.js
 
 import weaviate from 'weaviate-client'
-import dotenv from 'dotenv';
-
-dotenv.config();
+import 'dotenv/config';
 
 export const connectToDB = async () => {
   try {
@@ -30,7 +28,6 @@ COHERE_API_KEY=
 WEAVIATE_HOST_URL=
 WEAVIATE_ADMIN_KEY=
 WEAVIATE_READ_KEY=
-OPENAI_API_KEY=
 `
 // END .env
 

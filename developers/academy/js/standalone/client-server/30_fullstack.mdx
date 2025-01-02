@@ -1,38 +1,57 @@
 ---
-title: Using fullstack web frameworks
+title: Using Fullstack Web frameworks
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/client-server/_img/fullstack.png';
+import TSCode from '!!raw-loader!./_snippets/20_backend.js';
 
-This approach involves having a single tool to build both your server application and client application. In modern web development terms, such a tool is called a fullstack web frameworks. For this example, we will be using [Next.js](https://nextjs.org/)
+This approach involves having a single tool to build both your server application and client application. In modern web development terms, such a tool is called a fullstack web framework. For this example, we will be using [Next.js](https://nextjs.org/)
 
 <img src={WeaviateTypescriptImgUrl} alt="Image alt" width="100%"/>
 
-### <i class="fa-solid fa-chalkboard"></i> Using Next.js
+## <i class="fa-solid fa-chalkboard"></i> Building with Next.js
 
-#### 1. Create a Next.js application with the command below.
+### 1. Create a Next.js application
+
+To create a new application with Next.js, run the following command in your terminal. 
 
 ```bash
 create-next-app <project-name> –ts –app
 ```
-#### 2. Install relevant project dependencies including the Weaviate client with the command below. 
+### 2. Install project dependencies
+
+With our project initialized, install the `weaviate-client` to manage communication with our Weaviate database. 
 
 ```bash
 npm install weaviate-client 
 ```
 
-#### 2. Create your project credentials including..
-- Your Weaviate cluster URL and API key
-- Your Cohere API key
+### 3. Setup your Weaviate database
+We'll start by creating a free sandbox account on [Weaviate Cloud](https://console.weaviate.cloud/). Follow [this guide](https://weaviate.io/developers/wcs/connect) if you have trouble setting up a sandbox project. 
 
-... and add them to a `.env` file.
 
-#### 3. Initialize Weaviate 
+You will need your Weaviate cluster URL and API key. If you don't already have one, create a new Cohere [API key](https://dashboard.cohere.com/api-keys), we use Cohere as our [embedding model](../using-ml-models/10_embedding.mdx). When done, add all three to your `.env` file.
 
-Create a file in `utils/weaviate.ts` and paste the following code
+ <TabItem value="js" label=".env">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START .env"
+      endMarker="// END .env"
+      language="js"
+    />
+  </TabItem>
+
+#### 3.5 Add data to Weaviate
+
+Follow our recipe on [loading data](https://github.com/weaviate/recipes-ts/blob/main/similarity-search/cohere/load.ts) into Weaviate to import data to your Weaviate database. 
+
+### 4. Initialize Weaviate 
+
+Create a file in `utils/weaviate.ts` and paste the following code in it. The code helps us create a connection to our Weaviate instance hosted on Weaviate Cloud.
+
 
 ```ts
 import weaviate from "weaviate-client";
@@ -46,9 +65,11 @@ const client = await weaviate.connectToWeaviateCloud(process.env.WEAVIATE_HOST_U
 );
 ```
 
-#### 4. Create an action to run on the server
+### 4. Create a Search Server Action 
 
-Next in `./utils/action.ts`, paste the following code.
+Next, in `./utils/action.ts`, paste the following code. With this we can run semantic searches with `nearText()` by calling the function `vectorSearch()` in other parts of our application. 
+
+
 ```ts
 "use server";
 
@@ -67,8 +88,9 @@ export async function vectorSearch(searchTerm: string) {
   }
 ```
 
-#### 5. Fetch data from your server in your client application. 
-In the `./app` folder, paste the following code in `page.tsx`
+### 5. Fetch data from your server in your client application. 
+In the `./app` folder, paste the following code in `page.tsx`. We run a search on our client and display the results on the webpage. 
+
 ```tsx
 
 import { vectorSearch } from '@/utils/action.ts';
@@ -90,114 +112,24 @@ export default async function Home() {
 }
       
 ```
+#### 6. Run your Fullstack App 
 
-et voila. Find a fully working application here to try out and build from as you see you fit.
+In your terminal, run the following command to start your application.
 
-<!-- Add how to call next.js server actions from thunderclient -->
 
-### <i class="fa-solid fa-chalkboard"></i> Using Nuxt.js
-
-#### 1. Create a Nuxt.js application with the command below.
 ```bash
-npx nuxi@latest init <project-name>
-```
-#### 2. Install relevant project dependencies including the Weaviate client with the command below. 
-```bash
-npm install weaviate-client dotenv zod tsc
-```
-#### 2. Create your project credentials including..
-- Your Weaviate cluster URL and API key
-- Your Cohere API key
-
-Add your env vars to your `..env` file and follow the [Nuxt.js](https://nuxt.com/docs/guide/directory-structure/env) convention on environment variables.
-
-#### 3. Create a API route to server requests from the client
-
-In `server/api` create a file called `search.ts`
-
-```ts
-
-import weaviate, { WeaviateClient } from "weaviate-client"
-import { z } from 'zod'
-
-export default defineLazyEventHandler(async () => {
-  const config = useRuntimeConfig()
-
-const client: WeaviateClient = await weaviate.connectToWeaviateCloud(config.weaviateHostURL,{
-    authCredentials: new weaviate.ApiKey(config.weaviateReadKey),
-    headers: {
-      'X-Cohere-Api-Key': config.cohereApiKey,
- }
- }
-)
-
-const responseSchema = z.object({
-  query: z.string(),
-})
-
-async function vectorSearch(searchTerm:string) {
-  const myProductCollection = client.collections.get('TestProduct')
-
-const response = await myProductCollection.query.nearText(searchTerm, { limit : 10 })
-
-return response.objects
-
-
-}
-
-  return defineEventHandler<{query: { query: string } }>(async (event) => {
-  
-    const result = await getValidatedQuery(event, body => responseSchema.safeParse(body))
-    if (!result.success)
-      throw result.error.issues
-  
-    const searchTerm = result.data.query
-  
-    return await vectorSearch(searchTerm)
- })
-})
-
+npm run dev
 ```
 
-#### 4. Fetch data from your server in your client application. 
+Your application should be running on `localhost:3000`. 
 
-In `app.vue` paste the following code.
-
-```html
-<template>
-    <div>
-        {{ searchResult }}
-    </div>
-</template>
-
-<script setup>
-import { nextTick } from 'vue';
-
-const searchTerm = ref('water sports i can win a medal in')
-const searchResult = ref()
-
-let products = ref({});
-
-onMounted(async () => {
-    await nextTick();
-    searchResult.value = await $fetch(`/api/search?query=${searchTerm.value}`)
-});
-
-</script>
-
-```
-
-et voila.. Find a fully working application here to try out and build from as you see you fit.
-<!-- add how to call nuxt.js routes from clients -->
-
-### <i class="fa-solid fa-chalkboard"></i> Other frameworks
+## <i class="fa-solid fa-chalkboard"></i> Other frameworks
 
 
-Although only detailing these, you can build with Weaviate using the following fullstack frameworks.
+Although only detailing Next.js in guide, you can build with Weaviate using a number of fullstack frameworks including but not limited to [Nuxt](https://nuxt.com/), [Solid](https://www.solidjs.com/) and [Angular](https://angular.dev/)
 
-- Solid
-- Angular
+We have a list of [starter](https://github.com/topics/weaviate-starter) applications you can play around with as well. 
 
-To mention a few.
+
 
 
