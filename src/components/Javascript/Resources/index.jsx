@@ -36,7 +36,7 @@ export default function Resources() {
         <h2>Learn</h2>
         <p>
           Use case specific, step-by-step resources to help you build AI-Native
-          Applications in Javascript.
+          Applications in JavaScript.
         </p>
 
         <Tabs
