@@ -12,6 +12,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.migrate.data.v4.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.migrate.data.v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.migrate.data.ts';
+
 
 Follow these examples to migrate data manually when using a backup is not possible. They cover all permutations between:
 
@@ -61,6 +63,14 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="pyv3"
     />
   </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionCollectionToCollection"
+      endMarker="// END CreateCollectionCollectionToCollection"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 #### Step 2: Migrate the data
@@ -88,6 +98,14 @@ Migrate:
       startMarker="# START CollectionToCollection"
       endMarker="# END CollectionToCollection"
       language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CollectionToCollection"
+      endMarker="// END CollectionToCollection"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -115,6 +133,14 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="pyv3"
     />
   </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionCollectionToTenant"
+      endMarker="// END CreateCollectionCollectionToTenant"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 #### Step 2: Create the tenant(s)
@@ -136,6 +162,14 @@ Add tenants at the target instance before adding data objects.
       startMarker="# START CreateTenants"
       endMarker="# END CreateTenants"
       language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateTenants"
+      endMarker="// END CreateTenants"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -167,6 +201,14 @@ Migrate:
       language="pyv3"
     />
   </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CollectionToTenant"
+      endMarker="// END CollectionToTenant"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## Tenant → Collection
@@ -190,6 +232,14 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       startMarker="# START CreateCollectionTenantToCollection"
       endMarker="# END CreateCollectionTenantToCollection"
       language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionTenantToCollection"
+      endMarker="// END CreateCollectionTenantToCollection"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -221,6 +271,14 @@ Migrate:
       language="pyv3"
     />
   </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START TenantToCollection"
+      endMarker="// END TenantToCollection"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## Tenant → Tenant
@@ -246,6 +304,15 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
       language="pyv3"
     />
   </TabItem>
+
+<TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionTenantToTenant"
+      endMarker="// END CreateCollectionTenantToTenant"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 #### Step 2: Create the tenant(s)
@@ -267,6 +334,14 @@ Add tenants at the target instance before adding data objects.
       startMarker="# START CreateTenants"
       endMarker="# END CreateTenants"
       language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateTenants"
+      endMarker="// END CreateTenants"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -296,6 +371,14 @@ Migrate:
       startMarker="# START TenantToTenant"
       endMarker="# END TenantToTenant"
       language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START TenantToTenant"
+      endMarker="// END TenantToTenant"
+      language="ts"
     />
   </TabItem>
 </Tabs>
