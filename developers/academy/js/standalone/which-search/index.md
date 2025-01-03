@@ -31,7 +31,7 @@ Then, we will also discuss strategies to improve the quality of search results, 
 
 - A Node.js environment with `weaviate-client` installed.
 - Familiarity with Weaviate's search capabilities.
-- Intermediate coding proficiency (e.g. Javascript).
+- Intermediate coding proficiency (e.g. JavaScript).
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives
 

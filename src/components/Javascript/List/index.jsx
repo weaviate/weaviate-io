@@ -9,7 +9,7 @@ export default function List() {
         <h2>Whats next?</h2>
       </div>
       <div className={styles.box}>
-        <div className={styles.card}>
+        {/* coming soon <div className={styles.card}>
           <div className={styles.contentDiv}>
             <div className={`${styles.cardIcon} ${styles.icon01}`}></div>
             <h3 className={styles.cardTextColor}>Weaviate Stacks</h3>
@@ -19,7 +19,7 @@ export default function List() {
             </p>
             <Link to="/developers/weaviate/roadmap#backlog">Learn More</Link>
           </div>
-        </div>
+        </div> */}
         <div className={styles.card}>
           <div className={styles.contentDiv}>
             <div className={`${styles.cardIcon} ${styles.icon02}`}></div>
@@ -47,7 +47,7 @@ export default function List() {
             <p className={styles.textCardContent}>
               Get guided courses on various topics.
             </p>
-            <Link to="/developers/academy/js">Learn More</Link>
+            <Link to="/developers/academy">Learn More</Link>
           </div>
         </div>
       </div>

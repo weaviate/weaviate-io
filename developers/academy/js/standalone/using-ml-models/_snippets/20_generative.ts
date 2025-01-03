@@ -1,6 +1,5 @@
 // START Connect
 import weaviate, { WeaviateClient } from 'weaviate-client'
-import axios from 'axios';
 
 // END Connect
 
@@ -61,7 +60,8 @@ let jeopardyCollection = client.collections.get('JeopardyQuestion');
 
 // Download data to import into the "JeopardyQuestion" collection
 const url = 'https://raw.githubusercontent.com/weaviate/weaviate-examples/main/jeopardy_small_dataset/jeopardy_tiny.json'
-const jeopardyQuestions = await axios.get(url);
+const response = await fetch(url);
+const jeopardyQuestions = await response.json();
 
 // Bulk insert downloaded data into the "JeopardyQuestion" collection
 await jeopardyCollection.data.insertMany(jeopardyQuestions.data)

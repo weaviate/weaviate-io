@@ -22,7 +22,7 @@ export default function Steps() {
           <p>
             {' '}
             Use case specific, step-by-step resources to help you build
-            AI-Native Applications in Javascript.
+            AI-Native Applications in JavaScript.
           </p>
         </div>
         <Tabs>
