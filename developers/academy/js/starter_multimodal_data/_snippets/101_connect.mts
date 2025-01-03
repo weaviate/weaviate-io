@@ -1,16 +1,15 @@
-// WCDInstantiation // WCDAPIKeyInstantiation // DockerInstantiation // DockerAPIKeyInstantiation // TryFinallyCloseDemo
+// DockerInstantiation // WCDInstantiation // WCDAPIKeyInstantiation // DockerInstantiation // DockerAPIKeyInstantiation // TryFinallyCloseDemo
 import weaviate, { WeaviateClient } from "weaviate-client";
 let client: WeaviateClient;
-// END WCDInstantiation // END WCDAPIKeyInstantiation // END DockerInstantiation // END DockerAPIKeyInstantiation // END TryFinallyCloseDemo
+// END DockerInstantiation // END WCDInstantiation // END WCDAPIKeyInstantiation // END DockerInstantiation // END DockerAPIKeyInstantiation // END TryFinallyCloseDemo
 
 
 // WCDInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
-  } 
-)
+  process.env.WCD_URL as string, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+})
 
 // END WCDInstantiation
 
@@ -19,13 +18,12 @@ client.close()
 // WCDAPIKeyInstantiation
 
 client = await weaviate.connectToWeaviateCloud(
-  process.env.WCD_URL as string,{
-    authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
-    }
-  } 
-)
+  process.env.WCD_URL as string, {
+  authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
+  headers: {
+    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,  // Replace with your inference API key
+  }
+})
 // END WCDAPIKeyInstantiation
 
 client.close()
@@ -42,14 +40,15 @@ client.close()
 client = await weaviate.connectToLocal({
   host: '...',
   headers: {
-  'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
-}})
+    'X-VoyageAI-Api-Key': process.env.VOYAGEAI_APIKEY as string,  // Replace with your inference API key
+  }
+})
 // END DockerAPIKeyInstantiation
 
 // PollLiveness
 if (await client.isLive()) {
   // Run operations with the client if it is live
-} 
+}
 // END PollLiveness
 
 
@@ -58,7 +57,7 @@ console.log(await client.getMeta())
 // END GetMeta
 
 
-const outputString = 
+const outputString =
 // OutputGetMeta
 {
   hostname: 'http://[::]:8080',
@@ -150,9 +149,9 @@ client = await weaviate.connectToWeaviateCloud(
   {
     authCredentials: new weaviate.ApiKey(process.env.WCD_API_KEY as string),
     headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY as string,  // Replace with your inference API key
+      'X-VoyageAI-Api-Key': process.env.VOYAGEAI_API_KEY as string,  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 // TryFinallyCloseDemo
@@ -162,8 +161,8 @@ client = await weaviate.connectToWeaviateCloud(
 // client = weaviate.connectToLocal(...)
 
 try {
-  // Work with the client here 
-  if (await client.isLive()) {
+  if (await client.isLive()) {   
+    // Work with the client here 
     // ...
   }
 } finally { // This will always be executed, even if an exception is raised
