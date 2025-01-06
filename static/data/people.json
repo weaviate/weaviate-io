@@ -7,6 +7,12 @@
     "team": "wcd"
   },
   {
+    "name": "Aaron Trott",
+    "title": "Enterprise Account Executive",
+    "photo": "Aaron.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Abdel Rodriquez",
     "title": "Vector Index Researcher",
     "photo": "abdel.jpg",
@@ -26,7 +32,8 @@
     "name": "Ajay Chavan",
     "title": "Client-Focused SRE",
     "photo": "Ajay.jpg",
-    "team": "applied-research"
+    "team": "applied-research",
+    "linkedin": "ajaxchavan"
   },
   {
     "name": "Ajit Mistry",
@@ -108,6 +115,12 @@
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "ceo-team"
+  },
+  {
+    "name": "Brendan McNally",
+    "title": "Enterprise Account Executive",
+    "photo": "Brendan.jpg",
+    "team": "sales"
   },
   {
     "name": "Byron Voorbach",
@@ -319,6 +332,12 @@
     "team": "marketing"
   },
   {
+    "name": "Ivan Despot",
+    "title": "Technical Documentation Writer",
+    "photo": "Ivan.jpg",
+    "team": "developer-relations"
+  },
+  {
     "name": "JP Hwang",
     "title": "Technical Curriculum Developer",
     "photo": "jp.jpg",
@@ -520,7 +539,7 @@
   },
   {
     "name": "Philip Vollet",
-    "title": "VP of Developer Growth",
+    "title": "VP of Growth",
     "photo": "philip.jpg",
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
@@ -566,6 +585,12 @@
     "title": "Client-Focused SRE",
     "photo": "Sebastian-Farriol.jpg",
     "team": "delivery"
+  },
+  {
+    "name": "Sean Romberg",
+    "title": "Business Development Representative",
+    "photo": "Sean-Romberg.jpg",
+    "team": "sales"
   },
   {
     "name": "Sebastian Witalec",
