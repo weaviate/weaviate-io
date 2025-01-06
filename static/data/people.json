@@ -332,6 +332,12 @@
     "team": "marketing"
   },
   {
+    "name": "Ivan Despot",
+    "title": "Technical Documentation Writer",
+    "photo": "Ivan.jpg",
+    "team": "developer-relations"
+  },
+  {
     "name": "JP Hwang",
     "title": "Technical Curriculum Developer",
     "photo": "jp.jpg",
