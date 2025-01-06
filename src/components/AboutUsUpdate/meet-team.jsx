@@ -73,14 +73,7 @@ export default function MeetTheTeam() {
             >
               #Database
             </Link>
-            <Link
-              className={
-                selectedTeam === 'developer-growth' ? styles.linkActive : ''
-              }
-              onClick={() => handleTeamFilter('developer-growth')}
-            >
-              #Developer Growth
-            </Link>
+
             <Link
               className={
                 selectedTeam === 'developer-relations' ? styles.linkActive : ''
@@ -88,6 +81,14 @@ export default function MeetTheTeam() {
               onClick={() => handleTeamFilter('developer-relations')}
             >
               #Education & Developer Experience
+            </Link>
+            <Link
+              className={
+                selectedTeam === 'developer-growth' ? styles.linkActive : ''
+              }
+              onClick={() => handleTeamFilter('developer-growth')}
+            >
+              #Growth
             </Link>
           </div>
           <div className={styles.teamFilter}>
