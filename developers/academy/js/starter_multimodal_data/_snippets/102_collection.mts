@@ -74,7 +74,8 @@ await client.collections.create({
   // Define the vectorizer module
   vectorizers: vectorizer.multi2VecVoyageAI({
     imageFields: [{ name: "poster", weight: 0.9 }],
-    textFields: [{ name: "title", weight: 0.1 }]
+    textFields: [{ name: "title", weight: 0.1 }],
+    model: "voyage-multimodal-3"
   }),
   // Define the generative module
   generative: configure.generative.cohere(),
