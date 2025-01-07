@@ -1,8 +1,8 @@
 ---
 title: 'Building Agentic Workflows with Inngest'
 slug: inngest-ai-workflows
-description: "The Weaviate team was in London last month, where the presentations were packed with insights from the field, real-world use cases, and inspiration for what’s next in AI. From streamlining development to tackling challenges in nuclear energy, here’s a recap of the standout moments."
-authors: [daniel]
+description: "Automate your RAG pipelines and dive into Workflow Driven Agentic Applications that leverage Inngest and Weaviate."
+authors: [daniel, charly]
 date: 2025-01-07
 tags: []
 image: ./img/hero.png
@@ -13,11 +13,11 @@ image: ./img/hero.png
 ---
 AI workflows are the backbone of all AI applications, whether you are building RAG pipelines, agentic workflows, or AI agents. Since 2023, most AI applications have relied on static AI workflows like RAG pipelines. In 2024, the concept of agentic workflows—*workflows with dynamic steps planned by LLMs*—surfaced to cope with the limitations of static workflows, such as hallucination, a lack of relevancy, or flexibility.  
 
-It has been announced that 2025 will be the race for AI Agents, and having the right tools to build flexible and robust AI workflows will be crucial.  
-For this reason, we are happy to partner with [Inngest](https://www.inngest.com/?utm_source=weaviate&utm_content=article&utm_campaign=workflow-dinner-generator), a workflow engine already used by tens of thousands of developers and handling over 100 million daily runs.
+It has been announced that 2025 will be the race for AI Agents, and having the right tools to build flexible and robust AI workflows will be crucial. For this reason, we are happy to partner with [Inngest](https://www.inngest.com/?utm_source=weaviate&utm_content=article&utm_campaign=workflow-dinner-generator), a workflow engine already used by tens of thousands of developers and handling over 100 million daily runs.
 
 This article will show you how to use Inngest and Weaviate to build an agentic RAG pipeline that generates the perfect dinner menu based on tastes, allergies, and the number of attendees.  
-The finished demo is available on GitHub so that you can follow the steps locally.
+
+The finished demo is [available on GitHub](https://github.com/inngest/weaviate-agentic-workflow) so that you can follow the steps locally.
 
 ## Step 1: Setup our Dinner Generator Agentic Workflow architecture
 
@@ -39,12 +39,13 @@ Once those datasets are loaded into our Weaviate cluster, our workflow is trigge
 }
 ```
 
-Triggered by the above event, our Inngest aAgentic workflow goes through the following steps:
+Triggered by the above event, our Inngest agentic workflow goes through the following steps:
 
-![](./img/image1.png)
+
+![An Inngest Workflow](./img/image1.png)
 
 1. First, our workflow will retrieve some recipes from the `Thefoodprocessorcuisinetype` Weaviate collection.  
-2. Then, using OpenAI, it will try to see if the food preferences contain some allergies.  
+2. Then, using the OpenAI `gpt-4` model, it will try to see if the food preferences contain some allergies.  
    2.1 If some allergies are found, an extra step is dynamically performed to retrieve some ingredient alternatives from the `Thefoodprocessoringredientsalternatives` collection.  
 3. Then, an OpenAI call is performed to generate a menu (with some ingredient alternatives, if any)  
 4. Another weaviate collection query is performed against the `Thefoodprocessorwinetype` collection to find wines matching the generated menu.  
@@ -58,8 +59,8 @@ The following section shows how Inngest and Weaviate make building such agentic 
 ## Step 2: Quick and easy embedding with Weaviate vectorizer
 
 [Huggingface datasets are available as `.parquet` files](https://huggingface.co/Thefoodprocessor), primarily designed for Python scripts.  
-For this reason, our repository contains the translated`.json` files to facilitate processing in Node.js.  
-The `npm run load` script leverages Weaviate batching and vectorizer APIs to create new collections with a few lines of code:
+For this reason, [our repository](https://github.com/inngest/weaviate-agentic-workflow) contains the translated`.json` files to facilitate processing in Node.js.  
+The `npm run load` script leverages Weaviate [batching](https://weaviate.io/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts) and [vectorizer](https://weaviate.io/blog/typescript-client-stable-release#vectorizer-configuration) APIs to create new collections with a few lines of code:
 
 ```javascript
 async function processJsonFile(
@@ -138,7 +139,7 @@ With our Weaviate collections ready, let’s look at the agentic workflow implem
 
 ## Step 3: Combine Weaviate and Inngest DX to build our Agentic Workflow
 
-Inngest enables us to create AI workflows with a simple TypeScript API:
+Inngest enables us to create AI workflows with a simple TypeScript API while Weaviate enable us to quickly retrieve data from our vectorized collections:
 
 ```javascript
 import { openai } from "inngest";
@@ -186,7 +187,7 @@ export const generateMeal = inngest.createFunction(
 });
 ```
 
-*Please refer to the repository’s README for instructions on setting up Inngest.*  
+*Please refer to the [repository’s README for instructions on setting up Inngest](https://github.com/inngest/weaviate-agentic-workflow).*  
 An AI Workflow built with Inngest is composed of steps defined with `step.run()` or `step.ai.infer()`. With these two APIs, each step of our AI workflow will benefit from automatic retries, concurrency, and throttling control.  
 Our Weaviate query, wrapped in `step.run()` will benefit from the `concurrency` configured in the Inngest Function definition, preventing any overload on our cluster.
 
@@ -196,7 +197,7 @@ Using `step.ai.infer()` to perform LLM calls brings two significant improvements
 
 1. The LLM requests get highlighted in the Inngest DevServer (*your local version of Inngest*), enabling you to **inspect the token usage, the input and output of the LLM**, and **re-run the given step with a new prompt**.
 
-	*Here is our  `”Allergies analysis”` LLM step displayed in the Inngest Dev Server:*  
+	*Here is our  `”Allergies analysis”` LLM step displayed in the Inngest Dev Server:*   
 	![](./img/image2.png)
 
 2. The LLM requests are **offloaded to Inngest’s infrastructure**, making it easier to deploy workflows on **serverless platforms such as Vercel**.
@@ -256,7 +257,8 @@ export const generateMeal = inngest.createFunction(
 ```
 
 Starting our dinner generator workflow with food preferences including `”no nuts”` triggers the `"query-ingredients-alternatives"` Weaviate query step based on the detection of the `"Allergies analysis"` LLM step.  
-![](./img/image3.png)
+
+![Architectural Diagram](./img/image3.png)
 
 The following steps of our Dinner generator workflow leverage Weaviate’s `collection.query.nearText()` and Inngest’s `step.ai.infer()` APIs similarly generate the menu, get the relevant wine pairing, and generate the shopping list.  
 Let’s now see our Dinner generator in action.
@@ -266,14 +268,11 @@ Let’s now see our Dinner generator in action.
 The above code and setup instructions are available in our recipes repository and can be run locally using the Inngest Dev Server.  
 You’ll be able to generate multiple menu variations by trying different food preferences or cuisine types:
 
-*[weaviate-dinner-generator-video.mp4](https://drive.google.com/file/d/1_h2f7E1ufTsuxDgnQiaWO0E-T8Cg6M2K/view?usp=sharing)*
+![Weaviate Inngest Demo](./img/demo.gif)
 
-## 
-
-This article covered how Weaviate’s rich embedding and query APIs make indexing and querying large vectorized datasets easy and demonstrated how Inngest’s composable API enables writing robust and dynamic workflows with simple APIs.
+This article covered how Weaviate’s rich embedding and query APIs make indexing and querying large vectorized datasets easy. It also demonstrated how Inngest’s composable API enables writing robust and dynamic workflows with simple APIs.
 
 This demo only scratches the surface of how combining Weaviate and Inngest can enable. If you want to build Agentic workflows with more autonomy, such as AI Agents, you should look at [Weaviate Generative Search](https://weaviate.io/developers/weaviate/model-providers/openai#generative-ai-models-for-rag) and Inngest’s new [AgentKit library](https://agentkit.inngest.com/overview). Or, you can wait for our next article on AI Agents.  
-
 
 import WhatNext from '/_includes/what-next.mdx';
 
