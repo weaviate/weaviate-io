@@ -1,17 +1,18 @@
 import React from 'react';
 import { GraduationCap } from 'lucide-react';
 
+// Styles object for non-hover states
 const styles = {
   card: {
     display: 'block',
     width: '100%',
     margin: '0.75rem 0',
     padding: '1.25rem',
-    background: 'linear-gradient(to right, #0F172A, #1E293B)',  // Slate-based colors for a modern look
+    background: 'linear-gradient(to right, #0F172A, #1E293B)',
     borderRadius: '8px',
     textDecoration: 'none',
     transition: 'all 0.2s ease',
-    border: '1px solid rgba(148, 163, 184, 0.1)',  // Subtle border
+    border: '1px solid rgba(148, 163, 184, 0.1)',
   },
   cardContent: {
     display: 'flex',
@@ -22,7 +23,7 @@ const styles = {
     flex: '1',
   },
   title: {
-    color: '#F8FAFC',  // Slightly warmer white
+    color: '#F1F5F9',  // Brightened from #94A3B8
     fontSize: '1.125rem',
     fontWeight: '600',
     marginBottom: '0.5rem',
@@ -30,7 +31,7 @@ const styles = {
     lineHeight: '1.4',
   },
   description: {
-    color: '#94A3B8',  // Warmer gray
+    color: '#CBD5E1',  // Brightened from #94A3B8
     marginBottom: '0',
     marginTop: 0,
     lineHeight: '1.5',
@@ -45,7 +46,7 @@ const styles = {
   academyPill: {
     display: 'inline-flex',
     alignItems: 'center',
-    backgroundColor: 'rgba(34, 197, 94, 0.1)',  // Lighter green background
+    backgroundColor: 'rgba(34, 197, 94, 0.1)',
     border: '1px solid rgba(34, 197, 94, 0.3)',
     borderRadius: '999px',
     padding: '0.25rem 0.625rem',
@@ -56,14 +57,14 @@ const styles = {
     alignItems: 'center',
     gap: '0.375rem',
     fontSize: '0.75rem',
-    color: '#22C55E',  // Brighter green
+    color: '#22C55E',
     fontWeight: '500',
   },
   pill: {
     padding: '0.375rem 0.75rem',
     borderRadius: '6px',
-    backgroundColor: 'rgba(248, 250, 252, 0.05)',
-    color: '#E2E8F0',
+    backgroundColor: 'rgba(248, 250, 252, 0.08)',
+    color: '#F8FAFC',
     fontSize: '0.8125rem',
     textDecoration: 'none',
     transition: 'all 0.2s ease',
@@ -73,27 +74,43 @@ const styles = {
     gap: '0.375rem',
     width: '100%',
     boxSizing: 'border-box',
+    border: '1px solid rgba(59, 130, 246, 0.3)',
+  },
+  pillText: {
+    transition: 'all 0.2s ease',
+  },
+  arrow: {
+    opacity: 0.7,
+    transition: 'all 0.2s ease',
+    color: '#60A5FA',
   }
 };
 
-// Create a stylesheet for hover effects
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
+// CSS for hover states and animations
+const css = `
   .academy-card:hover {
     border-color: rgba(148, 163, 184, 0.2);
   }
 
   .language-pill {
     position: relative;
+    transition: all 0.2s ease;
   }
 
   .language-pill:hover {
-    background-color: rgba(248, 250, 252, 0.1);
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.5);
   }
 
-  .language-pill .arrow {
-    opacity: 0.6;
+  .pill-text {
+    color: #94A3B8;
+    font-weight: 400;
     transition: all 0.2s ease;
+  }
+
+  .language-pill:hover .pill-text {
+    color: #F8FAFC;
+    font-weight: 500;
   }
 
   .language-pill:hover .arrow {
@@ -101,7 +118,6 @@ styleSheet.textContent = `
     transform: translateX(2px);
   }
 `;
-document.head.appendChild(styleSheet);
 
 const AcademyLinkCard = ({
   title,
@@ -109,6 +125,18 @@ const AcademyLinkCard = ({
   languages = [],
   ctaText = "View"
 }) => {
+  // Add CSS to document head only once
+  React.useEffect(() => {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = css;
+    document.head.appendChild(styleSheet);
+
+    // Cleanup function to remove styles when component unmounts
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
   return (
     <div style={styles.card} className="academy-card">
       <div style={styles.academyPill} className="academy-pill">
@@ -134,8 +162,12 @@ const AcademyLinkCard = ({
               className="language-pill"
               style={styles.pill}
             >
-              <span>{lang.name}</span>
-              <span className="arrow">→</span>
+              <span style={styles.pillText} className="pill-text">
+                {lang.name}
+              </span>
+              <span style={styles.arrow} className="arrow">
+                →
+              </span>
             </a>
           ))}
         </div>
