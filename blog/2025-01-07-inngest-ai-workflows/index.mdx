@@ -42,7 +42,7 @@ Once those datasets are loaded into our Weaviate cluster, our workflow is trigge
 Triggered by the above event, our Inngest agentic workflow goes through the following steps:
 
 
-![An Inngest Workflow](./img/image1.png)
+![An Inngest Workflow](./img/image3.png)
 
 1. First, our workflow will retrieve some recipes from the `Thefoodprocessorcuisinetype` Weaviate collection.  
 2. Then, using the OpenAI `gpt-4` model, it will try to see if the food preferences contain some allergies.  
@@ -258,7 +258,7 @@ export const generateMeal = inngest.createFunction(
 
 Starting our dinner generator workflow with food preferences including `”no nuts”` triggers the `"query-ingredients-alternatives"` Weaviate query step based on the detection of the `"Allergies analysis"` LLM step.  
 
-![Architectural Diagram](./img/image3.png)
+![Architectural Diagram](./img/image1.png)
 
 The following steps of our Dinner generator workflow leverage Weaviate’s `collection.query.nearText()` and Inngest’s `step.ai.infer()` APIs similarly generate the menu, get the relevant wine pairing, and generate the shopping list.  
 Let’s now see our Dinner generator in action.
