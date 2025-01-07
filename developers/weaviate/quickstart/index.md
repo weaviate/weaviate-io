@@ -491,11 +491,11 @@ import AcademyLinkCard from '@site/src/components/Documentation/AcademyLinkCard'
   languages={[
     {
       name: "Python",
-      href: "/academy/courses/vectors/python"
+      href: "/developers/academy/py/starter_text_data"
     },
     {
       name: "JS/TS",
-      href: "/academy/courses/vectors/python"
+      href: "/developers/academy/js/starter_text_data"
     },
   ]}
 />
