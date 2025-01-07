@@ -6,9 +6,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import TSCode from '!!raw-loader!./_snippets/10_embedding.ts';
-import EmbeddingModelImage from '/developers/academy/js/standalone/using-ml-models/_img/embedding-models.png';
-import Unimodal from '/developers/academy/js/standalone/using-ml-models/_img/unimodal.png';
-import Multimodal from '/developers/academy/js/standalone/using-ml-models/_img/multimodal.png';
+import EmbeddingModelImage from '/developers/academy/js/standalone/using-ml-models/_img/embedding-models.jpg';
+import Unimodal from '/developers/academy/js/standalone/using-ml-models/_img/unimodal.jpg';
+import Multimodal from '/developers/academy/js/standalone/using-ml-models/_img/multimodal.jpg';
 
 
 ## <i class="fa-solid fa-chalkboard"></i> What are Embedding Models
@@ -99,7 +99,7 @@ When creating a collection in Weaviate, we define what embedding model we want t
     />
   </TabItem>
 
-Once our collection is created, we import data. This stores both our data objects and their corresponding vector representations. Now we can run semantic search queries.
+Once our collection is created, we import data. It is at import time where we interact with our embedding model. The Weaviate vectorizer sends objects to the embedding model we define during collection creation. At the end of this, we have both our data objects and their corresponding vector representations stored in our Vector Database. Now we can run semantic search queries.
 
 
 ### Step 4: Running a Semantic Search

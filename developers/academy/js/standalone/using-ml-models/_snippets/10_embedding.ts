@@ -1,5 +1,5 @@
 // START Connect
-import weaviate, { WeaviateClient } from 'weaviate-client'
+import weaviate, { WeaviateClient, configure } from 'weaviate-client'
 
 // END Connect
 import 'dotenv/config'
@@ -28,21 +28,9 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
 await client.collections.create({
   name: 'JeopardyQuestion',
   properties: [
-    {
-      name: 'Category',
-      dataType: 'text' as const,
-      description: 'Category of the question',
-    },
-    {
-      name: 'Question',
-      dataType: 'text' as const,
-      description: 'The question',
-    },
-    {
-      name: 'Answer',
-      dataType: 'text' as const,
-      description: 'The answer',
-    }
+    { name: 'Category', dataType: configure.dataType.TEXT },
+    { name: 'Question', dataType: configure.dataType.TEXT },
+    { name: 'Answer', dataType: configure.dataType.TEXT}
   ],
   // Define your Cohere vectorizer and generative model  
   vectorizers: weaviate.configure.vectorizer.text2VecCohere({

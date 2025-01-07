@@ -6,9 +6,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import TSCode from '!!raw-loader!./_snippets/20_generative.ts';
-import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/using-ml-models/_img/generative.png';
-import Unimodal from '/developers/academy/js/standalone/using-ml-models/_img/unimodal-gen.png';
-import Multimodal from '/developers/academy/js/standalone/using-ml-models/_img/multimodal-gen.png';
+import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/using-ml-models/_img/generative.jpg';
+import Unimodal from '/developers/academy/js/standalone/using-ml-models/_img/unimodal-gen.jpg';
+import Multimodal from '/developers/academy/js/standalone/using-ml-models/_img/multimodal-gen.jpg';
 
 
 ## <i class="fa-solid fa-chalkboard"></i> What are Generative Models
@@ -99,7 +99,7 @@ When creating a collection in Weaviate, we define what generative model we want 
     />
   </TabItem>
 
-Once our collection is created, we import data. This stores both our data objects and their corresponding vector representations. Now we can run semantic search queries and with a generative model defined, RAG!
+Once our collection is created, we import data. It is at import time where we interact with our embedding model. The Weaviate vectorizer sends objects to the embedding model we define during collection creation. At the end of this, we have both our data objects and their corresponding vector representations stored in our Vector Database. Now we can run semantic search queries and with a generative model defined, RAG!
 
 ## Step 4: Making a Single Task Generative Search
 
