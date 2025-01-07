@@ -103,9 +103,9 @@ headers = {
     "X-Friendli-Baseurl": "https://inference.friendli.ai/dedicated",
 # END FriendliDedicatedInstantiation
 # START GoogleInstantiation  # START GoogleVertexInstantiation
-    "X-Google-Vertex-Api-Key": vertex_key,
+    "X-Goog-Vertex-Api-Key": vertex_key,
 # START GoogleInstantiation  # END GoogleVertexInstantiation
-    "X-Google-Studio-Api-Key": studio_key,
+    "X-Goog-Studio-Api-Key": studio_key,
 # END GoogleInstantiation
 # START HuggingFaceInstantiation
     "X-HuggingFace-Api-Key": huggingface_key,

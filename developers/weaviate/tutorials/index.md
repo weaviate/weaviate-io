@@ -6,9 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['how to', 'schema']
 ---
 
-
-## Overview
-
 Tutorials aim to empower you to use Weaviate based on *your* particular needs.
 
 <!-- By the time you are done, you will have seen a number of examples and considerations in organizing and importing your data into Weaviate. You will have learnt everything from rules of thumb for selecting a vectorizer, all the way through to how to perform CRUD operations with Weaviate. -->

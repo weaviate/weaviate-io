@@ -65,7 +65,10 @@ export default function PricingStandard() {
           <h3>Serverless Cloud</h3>
         </div>
         <div className={styles.price}>
-          <p>Serverless SaaS deployment in Weaviate Cloud.</p>
+          <p>
+            Serverless SaaS deployment in Weaviate Cloud (Serverless Vector
+            Database).
+          </p>
           <div className={styles.bottomPrice}>
             <span>Starting at $25 /mo</span>
             <p>per 1M vector dimensions stored/month</p>

@@ -19,9 +19,10 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Voyage AI's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
 
-[Weaviate integrates with Voyage AI's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
+[Weaviate integrates with Voyage AI's embedding models](./embeddings.md) and [multimodal embedding models](./embeddings-multimodal.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
-[Voyage AI embedding integration page](./embeddings.md)
+- [Voyage AI embedding integration page](./embeddings.md)
+- [Voyage AI multimodal embedding integration page](./embeddings-multimodal.md)
 
 ### Reranker models
 
@@ -46,6 +47,8 @@ You must provide a valid Voyage AI API key to Weaviate for these integrations. G
 Then, go to the relevant integration page to learn how to configure Weaviate with the Voyage AI models and start using them in your applications.
 
 - [Text Embeddings](./embeddings.md)
+- [Multimodal Embeddings](./embeddings-multimodal.md)
+- [Rerankers](./reranker.md)
 
 ## Questions and feedback
 

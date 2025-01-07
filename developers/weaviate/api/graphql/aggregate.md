@@ -146,7 +146,7 @@ As such, this `Aggregate` query will retrieve the total object count in a class.
 
 ### groupBy argument
 
-You can use a groupBy argument to get meta information about groups of data objects.
+You can use a groupBy argument to get meta information about groups of data objects, from those matching a query. The groups can be based on a property of the data objects.
 
 import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 

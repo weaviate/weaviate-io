@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.27.5
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.0
     ports:
     - 8099:8080
     - 50052:50051
@@ -17,6 +17,7 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       ASYNC_INDEXING: 'true'
       ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
       ENABLE_API_BASED_MODULES: 'true'

@@ -167,7 +167,7 @@ for o in response.objects:
 # END MultiTargetMultipleNearVectorsV1
 
 # START MultiTargetMultipleNearVectorsV2
-from weaviate.classes.query import MetadataQuery
+from weaviate.classes.query import TargetVectors, MetadataQuery
 
 collection = client.collections.get("JeopardyTiny")
 

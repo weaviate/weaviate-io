@@ -69,6 +69,7 @@ const KnowledgeBasePage = () => {
             property="og:title"
             content="ANN - Approximate Nearest Neighbor - Weaviate Knowledge Cards"
           />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta
             property="og:image"

@@ -15,7 +15,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/search.multi-target.go';
 :::info Added in `v1.26`
 :::
 
-In a multi-target vector search, Weaviate searches multiple target vector spaces concurrently and combines the results. A multi-target vector search produce a single set of search results.
+In a multi-target vector search, Weaviate searches multiple target vector spaces concurrently. These results are combined using a ["join strategy"](#available-join-strategies) to produce a single set of search results.
 
 There are multiple ways to specify the target vectors and query vectors, such as:
 
@@ -27,23 +27,7 @@ There are multiple ways to specify the target vectors and query vectors, such as
 
 <!-- TODO: Move most of the description/prose to a new "vector.md" page under concepts/search. -->
 
-## Combining search results
-
-A multi-target vector search involves multiple, concurrent, single-target vector searches. These searches will produce multiple sets of results, each with a vector distance score.
-
-These distances are combined using a ["join strategy"](#available-join-strategies).
-
-<details>
-  <summary>How Weaviate combines search results</summary>
-
-- If an object is within the search limit or the distance threshold of any of the target vectors, it will be included in the search results.
-- If an object does not contain vectors for any selected target vector, Weaviate ignores that object and does not include it in the search results.
-
-</details>
-
 ### Available join strategies.
-
-These are the available join strategies:
 
 - **minimum** (*default*) Use the minimum of all vector distances.
 - **sum** Use the sum of the vector distances.
@@ -121,7 +105,7 @@ You can also specify the query vectors as an array of vectors. The array will be
 :::info Added in `v1.27`
 :::
 
-Additionally to the above, you can specify the same target vector multiple times with different query vectors. In other words, you can use multiple query vectors for the same target vector.
+You can also specify the same target vector multiple times with different query vectors. In other words, you can use multiple query vectors for the same target vector.
 
 The query vectors in this case are specified as an array of vectors. There are multiple ways to specify the target vectors in this case:
 

@@ -1,10 +1,16 @@
 [
   {
     "name": "Aarthi Iyer",
-    "title": "QA Engineer",
-    "photo": "aarthi.jpeg",
+    "title": "Lead QA Engineer",
+    "photo": "aarthi.jpg",
     "linkedin": "aarthiiyer",
     "team": "wcd"
+  },
+  {
+    "name": "Aaron Trott",
+    "title": "Enterprise Account Executive",
+    "photo": "Aaron.jpg",
+    "team": "sales"
   },
   {
     "name": "Abdel Rodriquez",
@@ -23,21 +29,28 @@
     "team": "developer-growth"
   },
   {
+    "name": "Ajay Chavan",
+    "title": "Client-Focused SRE",
+    "photo": "Ajay.jpg",
+    "team": "applied-research",
+    "linkedin": "ajaxchavan"
+  },
+  {
     "name": "Ajit Mistry",
-    "title": "ML Engineering Intern ",
-    "photo": "ajit.png",
+    "title": "ML Engineering Intern",
+    "photo": "ajit.jpg",
     "team": "applied-research"
   },
   {
     "name": "Alea Abed",
-    "title": "Head of Marketing",
-    "photo": "alea.png",
+    "title": "VP of Marketing",
+    "photo": "alea.jpg",
     "linkedin": "alea-abed",
     "team": "marketing"
   },
   {
     "name": "Alvin Richards",
-    "title": "Head of Product",
+    "title": "VP of Product",
     "photo": "Alvin.jpg",
     "linkedin": "alvinrichards",
     "twitter": "jonnyeight",
@@ -45,22 +58,22 @@
   },
   {
     "name": "André Duis",
-    "title": "Technical Executive",
-    "photo": "andre.png",
+    "title": "VP of Platform Operations",
+    "photo": "andre.jpg",
     "linkedin": "andre-duis",
     "team": "delivery"
   },
   {
     "name": "André Mourão",
     "title": "Software Engineer",
-    "photo": "andre-m.jpeg",
+    "photo": "andre-m.jpg",
     "linkedin": "andre-mourao",
     "team": "database"
   },
   {
     "name": "Andrzej Liszka",
     "title": "Core Engineer",
-    "photo": "andrzej.png",
+    "photo": "andrzej.jpg",
     "linkedin": "andrzej-liszka-897ab8234",
     "github": "aliszka",
     "team": "database"
@@ -89,7 +102,7 @@
   },
   {
     "name": "Benjamin Sabrin",
-    "title": "Head of Sales",
+    "title": "VP of Sales",
     "photo": "benjamin.jpg",
     "linkedin": "bsabrin",
     "team": "sales"
@@ -97,16 +110,22 @@
   {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
-    "photo": "bob.png",
+    "photo": "bob.jpg",
     "linkedin": "bobvanluijt",
     "twitter": "bobvanluijt",
     "github": "bobvanluijt",
     "team": "ceo-team"
   },
   {
+    "name": "Brendan McNally",
+    "title": "Enterprise Account Executive",
+    "photo": "Brendan.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Byron Voorbach",
     "title": "Field-CTO",
-    "photo": "byron.png",
+    "photo": "byron.jpg",
     "linkedin": "byronvoorbach",
     "twitter": "byronvoorbach",
     "github": "byronvoorbach",
@@ -115,7 +134,7 @@
   {
     "name": "Cari Liebenberg",
     "title": "Platform Engineer",
-    "photo": "cari.jpeg",
+    "photo": "cari.jpg",
     "linkedin": "cari-liebenberg-1b40b0a6",
     "team": "delivery"
   },
@@ -128,17 +147,24 @@
     "team": "sales"
   },
   {
+    "name": "Chara Tzimi",
+    "title": "People Operations Specialist",
+    "photo": "Chara.jpg",
+    "linkedin": "chara-tzimi",
+    "team": "people-and-culture"
+  },
+  {
     "name": "Charles Harr",
     "title": "Software Engineer",
-    "photo": "charles.png",
+    "photo": "charles.jpg",
     "linkedin": "ceharr",
     "github": "harrlight00",
     "team": "wcd"
   },
   {
     "name": "Charles Pierse",
-    "title": "Head of Weaviate Labs",
-    "photo": "charles-pierse.png",
+    "title": "Director of Innovation Labs",
+    "photo": "charles-pierse.jpg",
     "linkedin": "charles-pierse",
     "twitter": "cdpierse",
     "team": "weaviate-labs"
@@ -159,7 +185,7 @@
   {
     "name": "Connor Shorten",
     "title": "Research Scientist",
-    "photo": "connor.png",
+    "photo": "connor.jpg",
     "linkedin": "connor-shorten-34923a178/",
     "twitter": "cshorten30",
     "github": "CShorten",
@@ -175,7 +201,7 @@
   {
     "name": "Daniel Phiri",
     "title": "Developer Advocate",
-    "photo": "daniel.png",
+    "photo": "daniel.jpg",
     "team": "developer-relations"
   },
   {
@@ -186,9 +212,16 @@
     "team": "developer-growth"
   },
   {
+    "name": "Danielle Nugent",
+    "title": "Talent Acquisition Manager",
+    "photo": "Danielle.jpg",
+    "linkedin": "daniellesnugent",
+    "team": "people-and-culture"
+  },
+  {
     "name": "David Street",
     "title": "Full Stack Engineer",
-    "photo": "david.png",
+    "photo": "david.jpg",
     "linkedin": "david-street-552b7563",
     "team": "wcd"
   },
@@ -210,7 +243,7 @@
   {
     "name": "Dirk Kulawiak",
     "title": "UX Engineering Tech Lead",
-    "photo": "dirk.png",
+    "photo": "dirk.jpg",
     "linkedin": "dirk-kulawiak",
     "github": "dirkkul",
     "team": "database"
@@ -230,15 +263,15 @@
   },
   {
     "name": "Emma O'Keefe",
-    "title": "Director of Customer Operations",
-    "photo": "emma.png",
+    "title": "Director of Business Data Strategy & Enablement",
+    "photo": "emma.jpg",
     "linkedin": "emma-o-keefe-03777b80",
-    "team": "sales"
+    "team": "finance"
   },
   {
     "name": "Edward Schmuhl",
     "title": "Machine Learning Engineer",
-    "photo": "edward.png",
+    "photo": "edward.jpg",
     "linkedin": "edward-schmuhl-563161195",
     "twitter": "aestheticedwar1",
     "github": "thomashacker",
@@ -247,7 +280,7 @@
   {
     "name": "Eric Caleb",
     "title": "Senior Software Engineer",
-    "photo": "eric.png",
+    "photo": "eric.jpg",
     "linkedin": "iamcaleberic",
     "twitter": "iamcaleberic",
     "team": "delivery"
@@ -264,7 +297,7 @@
   {
     "name": "Etienne Dilocker",
     "title": "Co-founder and CTO",
-    "photo": "etienne.png",
+    "photo": "etienne.jpg",
     "linkedin": "etienne-dilocker-60727b175",
     "twitter": "etiennedi",
     "github": "etiennedi",
@@ -273,43 +306,41 @@
   {
     "name": "Femke Plantinga",
     "title": "Developer Growth Manager",
-    "photo": "femke.png",
+    "photo": "femke.jpg",
     "linkedin": "femke-plantinga-a60b9a172",
     "twitter": "femke_plantinga",
     "team": "developer-growth"
   },
   {
     "name": "Griffin Foster",
-    "title": "Enterprise Account Executive",
+    "title": "Director of Sales - West",
     "photo": "griffin.jpg",
     "linkedin": "griffin-foster",
     "team": "sales"
   },
   {
-    "name": "Hina Shah",
-    "title": "System Integrator Partner Manager",
-    "photo": "Hina.jpg",
-    "linkedin": "hinashah1",
-    "twitter": "hinashah98",
-    "team": "partnerships"
-  },
-  {
     "name": "Ian Gregson",
     "title": "Full Stack Engineer",
-    "photo": "ian.jpeg",
+    "photo": "ian.jpg",
     "team": "wcd"
   },
   {
     "name": "Ieva Urbaite",
     "title": "Corporate Marketing Lead",
-    "photo": "ieva.png",
+    "photo": "ieva.jpg",
     "linkedin": "ievaurbaite",
     "team": "marketing"
   },
   {
+    "name": "Ivan Despot",
+    "title": "Technical Documentation Writer",
+    "photo": "Ivan.jpg",
+    "team": "developer-relations"
+  },
+  {
     "name": "JP Hwang",
     "title": "Technical Curriculum Developer",
-    "photo": "jp.png",
+    "photo": "jp.jpg",
     "linkedin": "jphwang",
     "twitter": "_jphwang",
     "github": "databyjp",
@@ -318,30 +349,30 @@
   {
     "name": "Jeremy Price",
     "title": "Core Engineer",
-    "photo": "jeremy.png",
+    "photo": "jeremy.jpg",
     "github": "donomii",
     "team": "database"
   },
   {
     "name": "Jessie de Groot",
-    "title": "Head of People & Culture",
-    "photo": "jessie.png",
+    "title": "VP of People & Culture",
+    "photo": "jessie.jpg",
     "linkedin": "jessiedegroot/",
     "twitter": "jessie_groot",
     "team": "people-and-culture"
   },
   {
     "name": "Jobi George",
-    "title": "Head of Partnerships",
-    "photo": "jobi.png",
+    "title": "VP of Partnerships & Business Development",
+    "photo": "jobi.jpg",
     "linkedin": "jobigeorge",
     "twitter": "jobig630",
     "team": "partnerships"
   },
   {
     "name": "John Trengrove",
-    "title": "Head of Applied Research",
-    "photo": "john.png",
+    "title": "Director of Applied Research",
+    "photo": "john.jpg",
     "linkedin": "trengrj",
     "twitter": "trengrj",
     "github": "trengrj",
@@ -350,7 +381,7 @@
   {
     "name": "Jonathan Tuite",
     "title": "Sales Engineer",
-    "photo": "jonathan-tuite.jpeg",
+    "photo": "jonathan.jpg",
     "linkedin": "jontuite",
     "twitter": "pendragn00",
     "github": "tuitejc",
@@ -359,12 +390,12 @@
   {
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
-    "photo": "Jose-Luis-Franco.jpeg",
+    "photo": "Jose-Luis-Franco.jpg",
     "team": "database"
   },
   {
     "name": "Joseph Green",
-    "title": "Product Support Engineer",
+    "title": "Director of Support Engineering",
     "photo": "joseph-green.jpg",
     "team": "delivery",
     "linkedin": "joe-green-11381620a"
@@ -386,7 +417,7 @@
   },
   {
     "name": "Laura Stoye",
-    "title": "Executive Assistant",
+    "title": "Executive Operations Manager",
     "photo": "laura.jpg",
     "linkedin": "laurastoye",
     "team": "ceo-team"
@@ -401,14 +432,14 @@
   {
     "name": "Loic Reyreaud",
     "title": "Software Engineer",
-    "photo": "loic.png",
+    "photo": "loic.jpg",
     "linkedin": "loic-reyreaud",
     "team": "database"
   },
   {
     "name": "Marcin Antas",
     "title": "Core Engineer",
-    "photo": "marcin.png",
+    "photo": "marcin.jpg",
     "linkedin": "antasmarcin",
     "twitter": "antas_marcin",
     "github": "antas-marcin",
@@ -445,7 +476,7 @@
   {
     "name": "Mike Hoppe",
     "title": "Client-Focused SRE",
-    "photo": "Mike-Hoppe.jpeg",
+    "photo": "Mike-Hoppe.jpg",
     "team": "delivery"
   },
   {
@@ -459,13 +490,13 @@
   {
     "name": "Mohamed Badawi",
     "title": "Software Engineer",
-    "photo": "Mohamed-Badawi.jpeg",
+    "photo": "Mohamed-Badawi.jpg",
     "team": "database"
   },
   {
     "name": "Mohamed Shahin",
     "title": "Product Support Engineer",
-    "photo": "mohamed.jpeg",
+    "photo": "mohamed.jpg",
     "linkedin": "shahinmohamed",
     "twitter": "shah91n",
     "team": "delivery"
@@ -485,22 +516,22 @@
   },
   {
     "name": "Parker Duckworth",
-    "title": "Head of Database",
-    "photo": "parker.png",
+    "title": "Director of Database",
+    "photo": "parker.jpg",
     "linkedin": "parkerduckworth",
     "github": "parkerduckworth",
     "team": "database"
   },
   {
     "name": "Patrick Das",
-    "title": "Head of Finance",
+    "title": "VP of Legal & Finance",
     "photo": "patrick.jpg",
     "linkedin": "patrickdas",
     "team": "finance"
   },
   {
     "name": "Paul de Grijp",
-    "title": "Head of Weaviate Cloud",
+    "title": "Director of Weaviate Cloud Console",
     "photo": "paul-de-grijp.jpg",
     "linkedin": "pauldegrijp",
     "twitter": "pauldegrijp",
@@ -508,11 +539,18 @@
   },
   {
     "name": "Philip Vollet",
-    "title": "Head of Developer Growth",
-    "photo": "philip.png",
+    "title": "VP of Growth",
+    "photo": "philip.jpg",
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
     "team": "developer-growth"
+  },
+  {
+    "name": "Pietro Antonacci",
+    "title": "Client-Focused SRE",
+    "photo": "Pietro.jpg",
+    "linkedin": "pietro-antonacci",
+    "team": "delivery"
   },
   {
     "name": "Roberto Esposito",
@@ -549,9 +587,15 @@
     "team": "delivery"
   },
   {
+    "name": "Sean Romberg",
+    "title": "Business Development Representative",
+    "photo": "Sean-Romberg.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Sebastian Witalec",
-    "title": "Head of Developer Relations",
-    "photo": "sebastian.png",
+    "title": "Director of Education & Developer Experience",
+    "photo": "sebastian.jpg",
     "linkedin": "sebawita",
     "twitter": "sebawita",
     "github": "sebawita",
@@ -567,7 +611,7 @@
   {
     "name": "Shukri Hasan",
     "title": "Community Solution Engineer",
-    "photo": "shukri.png",
+    "photo": "shukri.jpg",
     "linkedin": "mohdshukrihasan",
     "twitter": "MohdShukriHasa1",
     "team": "partnerships"
@@ -582,7 +626,7 @@
   },
   {
     "name": "Spiros Andreou",
-    "title": "Security & Compliance Lead",
+    "title": "Director of Security & Compliance",
     "photo": "spiros.jpg",
     "team": "delivery"
   },
@@ -596,7 +640,7 @@
   {
     "name": "Stefan Bogdan",
     "title": "Solution Engineer",
-    "photo": "stefan.png",
+    "photo": "stefan.jpg",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",
     "team": "applied-research"
@@ -604,7 +648,7 @@
   {
     "name": "Svitlana Smolianova",
     "title": "Creative Director",
-    "photo": "svitlana.png",
+    "photo": "svitlana.jpg",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
     "team": "marketing"
@@ -642,7 +686,7 @@
   {
     "name": "Weronika Krajcarz",
     "title": "Frontend Engineer",
-    "photo": "wera.png",
+    "photo": "wera.jpg",
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
@@ -650,14 +694,14 @@
   {
     "name": "Chrétien Minke",
     "title": "Advisor",
-    "photo": "chretien.jpeg",
+    "photo": "chretien.jpg",
     "linkedin": "chretienminke",
     "team": "board-advisors"
   },
   {
     "name": "Erik Bernhardsson",
     "title": "Advisor",
-    "photo": "erik.jpeg",
+    "photo": "erik.jpg",
     "linkedin": "erikbern",
     "twitter": "bernhardsson",
     "team": "board-advisors"
@@ -665,27 +709,27 @@
   {
     "name": "Erin Price-Wright",
     "title": "Board Member",
-    "photo": "erin.jpeg",
+    "photo": "erin.jpg",
     "team": "board-advisors"
   },
   {
     "name": "Igor Taber",
     "title": "Board Member",
-    "photo": "igor.jpeg",
+    "photo": "igor.jpg",
     "linkedin": "itaber",
     "team": "board-advisors"
   },
   {
     "name": "James Alcorn",
     "title": "Board Member",
-    "photo": "james-alcorn.jpeg",
+    "photo": "james-alcorn.jpg",
     "linkedin": "james-alcorn-b04880ba",
     "team": "board-advisors"
   },
   {
     "name": "Marcus Eagan",
     "title": "Advisor",
-    "photo": "marcus.jpeg",
+    "photo": "marcus.jpg",
     "linkedin": "marcuseagan",
     "team": "board-advisors"
   },
@@ -699,7 +743,7 @@
   {
     "name": "Sam Ramji",
     "title": "Advisor",
-    "photo": "sam-ramji.jpeg",
+    "photo": "sam-ramji.jpg",
     "linkedin": "sramji",
     "twitter": "sramji",
     "team": "board-advisors"
@@ -707,21 +751,21 @@
   {
     "name": "Tal Shaked",
     "title": "Advisor",
-    "photo": "tal.jpeg",
+    "photo": "tal.jpg",
     "linkedin": "tshaked",
     "team": "board-advisors"
   },
   {
     "name": "Tony Florence",
     "title": "Board Member",
-    "photo": "tony-florence.jpeg",
+    "photo": "tony-florence.jpg",
     "linkedin": "toflorence",
     "team": "board-advisors"
   },
   {
     "name": "Zack Kass",
     "title": "Advisor",
-    "photo": "zack.jpeg",
+    "photo": "zack.jpg",
     "linkedin": "zackkass",
     "twitter": "iamthezack",
     "team": "board-advisors"
@@ -729,7 +773,7 @@
   {
     "name": "Jerónimo Irazábal",
     "title": "Software Engineer",
-    "photo": "Jeronimo.jpeg",
+    "photo": "Jeronimo.jpg",
     "linkedin": "jeronimoirazabal",
     "twitter": "jeroiraz",
     "github": "jeroiraz",
@@ -738,7 +782,7 @@
   {
     "name": "Tony Le",
     "title": "Business Development Director",
-    "photo": "tony.jpeg",
+    "photo": "tony.jpg",
     "team": "partnerships"
   }
 ]

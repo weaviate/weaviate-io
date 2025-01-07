@@ -64,6 +64,7 @@ const KnowledgeBasePage = () => {
           <title>{card.title} - Weaviate Knowledge Cards</title>
           {/* Open Graph */}
           <meta property="og:title" content="HNSW - Weaviate Knowledge Cards" />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta
             property="og:image"

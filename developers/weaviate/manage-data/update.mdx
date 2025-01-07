@@ -36,7 +36,7 @@ Weaviate allows partial or complete object updates.
 
 ## Update object properties
 
-To update a collection property, provide the collection name, the object id, and the properties to update.
+This operation replaces the entire value of the specified properties only, leaving the unspecified properties. Provide the collection name, the object id, and the properties to update.
 
 If you update the value of a *previously vectorized* property, Weaviate re-vectorizes the object automatically. This also reindexes the updated object.
 
@@ -56,7 +56,7 @@ However, if you add a *new* property to your collection definition, Weaviate onl
       text={PyCodeV3}
       startMarker="# UpdateProps START"
       endMarker="# UpdateProps END"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -72,7 +72,7 @@ However, if you add a *new* property to your collection definition, Weaviate onl
       text={TSCodeLegacy}
       startMarker="// UpdateProps START"
       endMarker="// UpdateProps END"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
   <TabItem value="java" label="Java">
@@ -111,7 +111,7 @@ The object vector can also be updated similarly to properties. For [named vector
       text={PyCodeV3}
       startMarker="# UpdateVector START"
       endMarker="# UpdateVector END"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -162,7 +162,7 @@ The entire object can be replaced by providing the collection name, id and the n
       text={PyCodeV3}
       startMarker="# Replace START"
       endMarker="# Replace END"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -180,7 +180,7 @@ The entire object can be replaced by providing the collection name, id and the n
       text={TSCodeLegacy}
       startMarker="// Replace START"
       endMarker="// Replace END"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -224,7 +224,7 @@ At object level, you can replace the object with a copy that has those propertie
       text={PyCodeV3}
       startMarker="# DelProps START"
       endMarker="# DelProps END"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -242,7 +242,7 @@ At object level, you can replace the object with a copy that has those propertie
       text={TSCodeLegacy}
       startMarker="// DelProps START"
       endMarker="// DelProps END"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

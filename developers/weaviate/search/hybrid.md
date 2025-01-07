@@ -37,7 +37,7 @@ Combine the results of a vector search and a keyword search. The search uses a s
   text={PyCodeV3}
   startMarker="# HybridBasicPython"
   endMarker="# END HybridBasicPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -55,7 +55,7 @@ Combine the results of a vector search and a keyword search. The search uses a s
   text={TSCodeLegacy}
   startMarker="// searchHybridBasic"
   endMarker="// END searchHybridBasic"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -113,7 +113,7 @@ A hybrid search on a collection that has [named vectors](../config-refs/schema/m
       text={PyCodeV3}
       startMarker="# NamedVectorHybridPython"
       endMarker="# END NamedVectorHybridPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -129,7 +129,7 @@ A hybrid search on a collection that has [named vectors](../config-refs/schema/m
       text={TSCodeLegacy}
       startMarker="// NamedVectorHybrid"
       endMarker="// END NamedVectorHybrid"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
   <TabItem value="graphql" label="GraphQL">
@@ -175,7 +175,7 @@ To see the object rankings, set the `explain score` field in your query. The sea
   text={PyCodeV3}
   startMarker="# HybridWithScorePython"
   endMarker="# END HybridWithScorePython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -193,7 +193,7 @@ To see the object rankings, set the `explain score` field in your query. The sea
   text={TSCodeLegacy}
   startMarker="// searchHybridWithScore"
   endMarker="// END searchHybridWithScore"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -252,7 +252,7 @@ Hybrid search results can favor the keyword component or the vector component. T
   text={PyCodeV3}
   startMarker="# HybridWithAlphaPython"
   endMarker="# END HybridWithAlphaPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -270,7 +270,7 @@ Hybrid search results can favor the keyword component or the vector component. T
   text={TSCodeLegacy}
   startMarker="// searchHybridWithAlpha"
   endMarker="// END searchHybridWithAlpha"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -329,7 +329,7 @@ The output is like this:
   text={PyCodeV3}
   startMarker="# HybridWithFusionTypePython"
   endMarker="# END HybridWithFusionTypePython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -347,7 +347,7 @@ The output is like this:
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFusionType"
   endMarker="// END searchHybridWithFusionType"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 
@@ -415,7 +415,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
   text={PyCodeV3}
   startMarker="# HybridWithPropertiesPython"
   endMarker="# END HybridWithPropertiesPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -433,7 +433,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
   text={TSCodeLegacy}
   startMarker="// searchHybridWithProperties"
   endMarker="// END searchHybridWithProperties"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -489,7 +489,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
   text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingPython"
   endMarker="# END HybridWithPropertyWeightingPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -507,7 +507,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
   text={TSCodeLegacy}
   startMarker="// searchHybridWithPropertyWeighting"
   endMarker="// END searchHybridWithPropertyWeighting"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -563,7 +563,7 @@ The vector component of hybrid search can use a query string or a query vector. 
   text={PyCodeV3}
   startMarker="# HybridWithVectorPython"
   endMarker="# END HybridWithVectorPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -581,7 +581,7 @@ The vector component of hybrid search can use a query string or a query vector. 
   text={TSCodeLegacy}
   startMarker="// searchHybridWithVector"
   endMarker="// END searchHybridWithVector"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 
@@ -623,14 +623,14 @@ The output is like this:
 :::info Added in `v1.25`
 :::
 
-You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`. An equvalent `distance` [threshold for vector search](./similarity.md#set-a-similarity-threshold) can be specified with the `max vector distance` parameter.
+You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`. An equivalent `distance` [threshold for vector search](./similarity.md#set-a-similarity-threshold) can be specified with the `max vector distance` parameter.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START VectorSimilarityPython"
-      endMarker="# END VectorSimilarityPython"
+      startMarker="# START VectorParametersPython"
+      endMarker="# END VectorParametersPython"
       language="python"
     />
   </TabItem>
@@ -640,7 +640,7 @@ You can specify [vector similarity search](/developers/weaviate/search/similarit
       text={PyCodeV3}
       startMarker="# VectorSimilarityGraphQL"
       endMarker="# END VectorSimilarityGraphQL"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
@@ -666,6 +666,32 @@ The output is like this:
 />
 
 </details>
+
+## Hybrid search thresholds
+
+:::info Added in `v1.25`
+:::
+
+The only available search threshold is `max vector distance`, which will set the maximum allowable distance for the vector search component.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorSimilarityPython"
+      endMarker="# END VectorSimilarityPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
 
 ## Group results
 
@@ -718,7 +744,7 @@ Optionally, use `offset` to paginate the results.
       text={PyCodeV3}
       startMarker="# START limit Python"
       endMarker="# END limit Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -736,7 +762,7 @@ Optionally, use `offset` to paginate the results.
       text={TSCodeLegacy}
       startMarker="// START limit"
       endMarker="// END limit"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -778,7 +804,7 @@ To limit results to groups with similar distances from the query, use the [`auto
       text={PyCodeV3}
       startMarker="# START autocut Python"
       endMarker="# END autocut Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -796,7 +822,7 @@ To limit results to groups with similar distances from the query, use the [`auto
       text={TSCodeLegacy}
       startMarker="// START autocut"
       endMarker="// END autocut"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -852,7 +878,7 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
   text={PyCodeV3}
   startMarker="# HybridWithFilterPython"
   endMarker="# END HybridWithFilterPython"
-  language="python"
+  language="pyv3"
 />
 </TabItem>
 
@@ -870,7 +896,7 @@ To narrow your search results, use a [`filter`](../api/graphql/filters.md).
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFilter"
   endMarker="// END searchHybridWithFilter"
-  language="js"
+  language="tsv2"
 />
 </TabItem>
 

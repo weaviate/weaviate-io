@@ -15,6 +15,7 @@ import BlogPostItems from '@theme/BlogPostItems';
 
 
 
+
 // import BlogPostItems from '../BlogPostItems';
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -50,13 +51,15 @@ function BlogTagsPostsPageMetadata({tag}) {
     <>
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_posts" />
+     
     </>
   );
 }
 function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
   const title = useBlogTagsPostsPageTitle(tag);
   return (
-    <BlogLayout sidebar={sidebar}>
+    
+    <BlogLayout sidebar={sidebar} >
       <header className="margin-bottom--xl">
         <h1>{title}</h1>
 
@@ -77,7 +80,8 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
 }
 export default function BlogTagsPostsPage(props) {
   return (
-    <div className="custom-page noBG">
+    <div className="blogContainer">
+      {/* className="custom-page noBG"*/}
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,

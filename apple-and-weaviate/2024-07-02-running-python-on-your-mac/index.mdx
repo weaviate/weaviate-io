@@ -9,8 +9,6 @@ image: ./img/python-on-mac-hero.png
 ---
 ![Many data science frameworks are written in Python. In this article we'll get set up to run Python on your Mac!](./img/python-on-mac-hero.png)
 
-## Overview
-
 Weaviate and other data science frameworks are making Python a powerful tool for data analysis on the Mac. Get ready to use them in your workflow.
 
 ![overview-python](./img/overview-python.png)
@@ -32,7 +30,7 @@ There are several ways to get Python up and running on your Mac:
 
 1. Official Python Installer: Download the latest version directly from the [Python website](https://www.python.org/downloads/). This is a straightforward approach.
 
-2. [Anaconda](https://anaconda.cloud/getting-started): This popular distribution includes Python along with a vast collection of scientific computing and data science packages. This method simplifies installation and is recommended. 
+2. [Anaconda](https://anaconda.cloud/getting-started): This popular distribution includes Python along with a vast collection of scientific computing and data science packages. This method simplifies installation and is recommended.
 
 3. Homebrew: This package manager allows you to install various software on your Mac, including Python. It offers flexibility for managing multiple Python versions.
 
@@ -54,8 +52,8 @@ Consider having a project01 directory that includes a volume calculator applicat
 
 Let's walk through setting up a virtual environment for your Python project, assuming you already have user installed version of Python in place. We'll use the project01 directory as an example:
 
-Navigate to the project directory: Open your terminal and use the cd command to switch to the directory containing your project files. For instance, if project01 is on your desktop, you might type... 
-    
+Navigate to the project directory: Open your terminal and use the cd command to switch to the directory containing your project files. For instance, if project01 is on your desktop, you might type...
+
     cd ~/Desktop/project01.
 
 **Create the virtual environment**:  Use the following command in your terminal, replacing the last venv parameter with your desired virtual environment name:
@@ -65,7 +63,7 @@ Navigate to the project directory: Open your terminal and use the cd command to 
 
 This creates a new directory named venv in your project directory. It contains all the necessary files for a separate Python environment.
 
-**Activate the virtual environment**:  Tell your terminal to use the newly created virtual environment. 
+**Activate the virtual environment**:  Tell your terminal to use the newly created virtual environment.
 
     source venv/bin/activate
 
@@ -91,15 +89,15 @@ These commands help you verify your Python setup:
 
 **Version of Python**:
 
-This will display the version of Python currently in use by your terminal. 
+This will display the version of Python currently in use by your terminal.
 
 On my Mac, it currently shows Python 3.11.7.
 
-        python --version 
+        python --version
 
 **Path to Python Executable**:
 
-This will show the location of the Python executable (via an alias) that your terminal is using. 
+This will show the location of the Python executable (via an alias) that your terminal is using.
 
         which python
 

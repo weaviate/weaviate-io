@@ -5,9 +5,6 @@ image: og/docs/tutorials.jpg
 # tags: ['how to', 'import']
 ---
 
-
-## Overview
-
 In this tutorial, you will learn how to import data into Weaviate using the batch import method.
 
 By the end of this tutorial, you should have a good idea of the steps involved in importing data, and when to use the batch import method.

@@ -5,11 +5,11 @@ image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
 
-:::info `v3` client is deprecated
+:::caution `v3` client is deprecated
 This document relates to the legacy `v3` client and API.
 <br/>
 
-Starting in December 2024, the `v4` [client installations](https://pypi.org/project/weaviate-client/) will no longer include the `v3` API (i.e. the `weaviate.Client` class). This will help us to provide the best developer experience for you, support for the latest features, and clearly separate the two.
+From `v4.10.0`, the [Weaviate Python client installations](https://pypi.org/project/weaviate-client/) no longer include the `v3` API (i.e. the `weaviate.Client` class). This separation helps us to provide the best developer experience for you and provide support for the latest Weaviate features.
 <br/>
 
 The `v3` client will continue to get critical security updates and bugfixes for the foreseeable future, but it will not support any new features.
