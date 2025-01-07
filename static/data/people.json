@@ -252,7 +252,9 @@
     "name": "Dmytro Solovei",
     "title": "Software Engineer",
     "photo": "dmytro.jpg",
-    "team": "database"
+    "team": "database",
+    "linkedin": "dyma-solovei-335344131",
+    "twitter": "dymasolovei"
   },
   {
     "name": "Duda Nogueira",
@@ -335,7 +337,9 @@
     "name": "Ivan Despot",
     "title": "Technical Documentation Writer",
     "photo": "Ivan.jpg",
-    "team": "developer-relations"
+    "team": "developer-relations",
+    "linkedin": "ivan-g-despot",
+    "twitter": "ivan_g_despot"
   },
   {
     "name": "JP Hwang",
