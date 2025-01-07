@@ -175,6 +175,28 @@ export const courseData = {
     ],
     note: "TS clients"
   },
+  "starter_multimodal_typescript": {
+    title: "Multimodal data with Weaviate",
+    courseId: "TS_101M",
+    body: "Project-based learning where you'll learn how to build with Weaviate and multi-modal data. Weaviate generates the vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "docker_mm_basics_ts", "mm_collections_ts", "mm_searches_ts", "mm_rag_ts"
+    ],
+    learningGoals: [
+      "How to create a Weaviate instance, add data to it to enable multi-modal searching, and use AI through retrieval augmented generation."
+    ],
+    learningOutcomes: [
+      "Create an instance of Weaviate with a multimodal vectorizer module",
+      "Produce, store and index multimodal data",
+      "Perform multimodal searches",
+      "Use AI (large language models) to augment and transform retrieved data",
+    ],
+    note: "TS clients; project-based"
+  },
   "multi-tenancy": {
     title: "Multi-tenancy",
     courseId: "PY_280",
