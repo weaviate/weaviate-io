@@ -2,13 +2,18 @@ import assert from 'assert'
 // START CreateCollectionCollectionToCollection  // START CreateCollectionTenantToCollection  // START CreateCollectionCollectionToTenant  // START CreateCollectionTenantToTenant
 import weaviate, { Collection, WeaviateClient, WeaviateField } from 'weaviate-client'
 
-let clientSrc: WeaviateClient
-let clientTgt: WeaviateClient
+let clientSrc: WeaviateClient;
+let clientTgt: WeaviateClient;
+let reviewsTgt;
+let reviewsSrc;
+let reviewsSrcTenantA;
+let reviewsMtTgt;
 
 // END CreateCollectionCollectionToCollection  // END CreateCollectionTenantToCollection  // END CreateCollectionCollectionToTenant  // END CreateCollectionTenantToTenant
 // # ===== Load demo dataset for testing =====
 // import weaviate_datasets as wd
 
+let aggResp;
 
 // START CreateCollectionCollectionToCollection  // START CreateCollectionTenantToCollection  // START CreateCollectionCollectionToTenant  // START CreateCollectionTenantToTenant
 clientSrc = await weaviate.connectToLocal({
@@ -52,7 +57,7 @@ function createCollection(clientIn: WeaviateClient, collectionName: string, enab
     // END CreateCollectionCollectionToCollection  // END CreateCollectionTenantToCollection  // END CreateCollectionCollectionToTenant  // END CreateCollectionTenantToTenant
     //  START CreateCollectionCollectionToCollection  // START CreateCollectionTenantToCollection  // START CreateCollectionCollectionToTenant  // START CreateCollectionTenantToTenant
 
-    let reviews = clientSrc.collections.create({
+    let reviews = clientIn.collections.create({
         name: collectionName,
         multiTenancy: {
             enabled: enableMt
@@ -103,14 +108,15 @@ function createCollection(clientIn: WeaviateClient, collectionName: string, enab
 
 
 // START CollectionToCollection  // START TenantToCollection  // START CollectionToTenant  // START TenantToTenant
-const mySrcCollection = client.collections.get("Jeopardy")
-const myTgtCollection = client.collections.get("JeopardyUpdated")
+const mySrcCollection = clientSrc.collections.get("Jeopardy")
+const myTgtCollection = clientTgt.collections.get("JeopardyUpdated")
 
 let maxItems = await mySrcCollection.length()
 let counter: number
 
 function migrateData(srcCollection: Collection, targetCollection: Collection) {
     let itemsToInsert = []
+    const promises = []
 
     for await (const item of srcCollection.iterator({ includeVector: true })) {
         // Check if we've reached the maximum items
@@ -133,215 +139,238 @@ function migrateData(srcCollection: Collection, targetCollection: Collection) {
         itemsToInsert.push(objectToInsert)
 
         if (itemsToInsert.length == 1000 || counter == maxItems) {
-            try {
-                const response = await targetCollection.data.insertMany(itemsToInsert);
 
-                if (response.hasErrors) {
-                    throw new Error("Error in batch import!");
-                }
-                // Insert
-                console.log(`Successfully imported batch of ${itemsToInsert.length} items`);
-                itemsToInsert = [];
-            } catch (error) {
-                console.error('Error importing batch:', error);
-            }
+            const promise = targetCollection.data.insertMany(itemsToInsert) // opportunity to talk about serialism and concurrency
+                .then((response) => {
+                    console.log(`Successfully imported batch of ${Object.keys(response.uuids).length} items`);
+                    if (response.hasErrors) {
+                        throw new Error("Error in batch import!");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error importing batch:', error);
+                })
+
+            promises.push(promise)
+
+            // Inserts
+            itemsToInsert = [];
+
         }
     }
+
+    await Promise.all(promises) // runs promises 
 }
 
-    // END CollectionToCollection // END TenantToCollection  // END CollectionToTenant  // END TenantToTenant
+// END CollectionToCollection // END TenantToCollection  // END CollectionToTenant  // END TenantToTenant
 
-    // Delete existing collection at target if any
-    clientTgt.collections.delete("WineReview")
-
-
-    // ============================================================
-    // TEST - CHECK CLASS DELETION
-    // ============================================================
-    // assert not client_tgt.collections.exists("WineReview")
+// Delete existing collection at target if any
+await clientTgt.collections.delete("WineReview")
 
 
-    // START CreateCollectionCollectionToCollection
-reviewsTgt = createCollection(clientTgt, "WineReview", true)
-    // END CreateCollectionCollectionToCollection
+// ============================================================
+// TEST - CHECK CLASS DELETION
+// ============================================================
+// assert not client_tgt.collections.exists("WineReview")
 
 
-    // # ============================================================
-    // # TEST - CHECK EMPTY CLASS CREATION
-    // # ============================================================
-    // assert client_tgt.collections.exists("WineReview")
-agg_resp = reviewsTgt.aggregate.overAll(total_count=True)
-    // assert agg_resp.total_count == 0
-
-    // START CollectionToCollection
-    let reviewsSrc = clientSrc.collections.get("WineReview")
-    let reviewsTgt = clientTgt.collections.get("WineReview")
-
-    clientSrc.backup.create
-
-    migrateData(reviewsSrc, reviewsTgt)
-    // END CollectionToCollection
+// START CreateCollectionCollectionToCollection
+reviewsTgt = await createCollection(clientTgt, "WineReview", true)
+// END CreateCollectionCollectionToCollection
 
 
-    // # ============================================================
-    // # TEST - CHECK DATA MIGRATION
-    // # ============================================================
-agg_resp = reviewsTgt.aggregate.overAll(total_count=True)
-    // assert agg_resp.total_count == DATASET_SIZE
+// # ============================================================
+// # TEST - CHECK EMPTY CLASS CREATION
+// # ============================================================
+// assert client_tgt.collections.exists("WineReview")
+aggResp = reviewsTgt.aggregate.overAll({
+    returnMetrics: reviewsTgt.metrics.aggregate('points').number(["count"])
+})
+// assert agg_resp.total_count == 0
 
-    // coll_list = [reviews_src, reviews_tgt]
-    // resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
-    // assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+// START CollectionToCollection
+reviewsSrc = clientSrc.collections.get("WineReview")
+reviewsTgt = clientTgt.collections.get("WineReview")
 
-    // Delete existing collection at target if any
-    clientTgt.collections.delete("WineReview")
+clientSrc.backup.create
 
-
-    // # ============================================================
-    // # TEST - CHECK CLASS DELETION
-    // # ============================================================
-    // assert not client_tgt.collections.exists("WineReview")
-
-
-    // START CreateCollectionTenantToCollection
-    let reviews_tgt = createCollection(clientTgt, "WineReview", false)
-    // END CreateCollectionTenantToCollection
+migrateData(reviewsSrc, reviewsTgt)
+// END CollectionToCollection
 
 
-    // ============================================================
-    // TEST - CHECK EMPTY CLASS CREATION
-    // ============================================================
-    // assert client_tgt.collections.exists("WineReview")
-    agg_resp = reviewsTgt.aggregate.overAll(total_count = True)
-    // assert agg_resp.total_count == 0
+// # ============================================================
+// # TEST - CHECK DATA MIGRATION
+// # ============================================================
+aggResp = reviewsTgt.aggregate.overAll({
+    returnMetrics: reviewsTgt.metrics.aggregate('points').number(["count"])
+})
+
+// assert agg_resp.total_count == DATASET_SIZE
+
+// coll_list = [reviews_src, reviews_tgt]
+// resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+// assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+
+// Delete existing collection at target if any
+clientTgt.collections.delete("WineReview")
 
 
-    // # START TenantToCollection
-    reviewsSrc = client_src.collections.get("WineReviewMT")
-    reviewsSrcTenantA = reviewsSrc.withTenant("tenantA")
-    reviewsTgt = clientTgt.collections.get("WineReview")
-
-    migrateData(reviewsSrcTenantA, reviewsTgt)
-    // END TenantToCollection
+// # ============================================================
+// # TEST - CHECK CLASS DELETION
+// # ============================================================
+// assert not client_tgt.collections.exists("WineReview")
 
 
-    // ============================================================
-    // TEST - CHECK DATA MIGRATION
-    // ============================================================
-    // agg_resp = reviews_tgt.aggregate.over_all(total_count=True)
-    // assert agg_resp.total_count == DATASET_SIZE
-
-    collList = [reviewsSrcTenantA, reviewsTgt]
-    resps = [r.query.near_text("Earthy but very drinkable", limit = 1) for r in collList]
-    // assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+// START CreateCollectionTenantToCollection
+let reviews_tgt = createCollection(clientTgt, "WineReview", false)
+// END CreateCollectionTenantToCollection
 
 
-    // # Delete existing collection at target if any
-    clientTgt.collections.delete("WineReviewMT")
+// ============================================================
+// TEST - CHECK EMPTY CLASS CREATION
+// ============================================================
+// assert client_tgt.collections.exists("WineReview")
+aggResp = reviewsTgt.aggregate.overAll({
+    returnMetrics: reviewsTgt.metrics.aggregate('points').number(["count"])
+})
+// assert agg_resp.total_count == 0
 
 
-    // ============================================================
-    // TEST - CHECK CLASS DELETION
-    // ============================================================
-    // assert not client_tgt.collections.exists("WineReviewMT")
+// # START TenantToCollection
+reviewsSrc = clientSrc.collections.get("WineReviewMT")
+reviewsSrcTenantA = reviewsSrc.withTenant("tenantA")
+reviewsTgt = clientTgt.collections.get("WineReview")
+
+migrateData(reviewsSrcTenantA, reviewsTgt)
+// END TenantToCollection
 
 
-    // START CreateCollectionCollectionToTenant
-    let reviewsMtTgt = createCollection(clientTgt, "WineReviewMT", true)
-    // END CreateCollectionCollectionToTenant
+// ============================================================
+// TEST - CHECK DATA MIGRATION
+// ============================================================
+// agg_resp = reviews_tgt.aggregate.over_all(total_count=True)
+// assert agg_resp.total_count == DATASET_SIZE
+
+let collList = [reviewsSrcTenantA, reviewsTgt]
+let resps = [r.query.near_text("Earthy but very drinkable",{ limit: 1}) for r in collList]
+// assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
 
-    // START CreateTenants
-    let tenantsTgt = [wvc.tenants.Tenant(name = "tenantA"), wvc.tenants.Tenant(name = "tenantB")]
-
-    let reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
-    let reviewsMtTgt.tenants.create(tenantsTgt)
-    // END CreateTenants
+// # Delete existing collection at target if any
+clientTgt.collections.delete("WineReviewMT")
 
 
-    // # ============================================================
-    // # TEST - CHECK EMPTY CLASS CREATION
-    // # ============================================================
-    // assert client_tgt.collections.exists("WineReviewMT")
-    // reviews_tgt_tenant_a = reviewsMtTgt.with_tenant(tenantsTgt[0].name)
-    // agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
-    // assert agg_resp.total_count == 0
+// ============================================================
+// TEST - CHECK CLASS DELETION
+// ============================================================
+// assert not client_tgt.collections.exists("WineReviewMT")
 
 
-    // START CollectionToTenant
-    let reviews_src = clientSrc.collections.get("WineReview")
-    let reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
-    let reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
-
-    migrateData(reviews_src, reviewsTgtTenantA)
-    // END CollectionToTenant
+// START CreateCollectionCollectionToTenant
+reviewsMtTgt = createCollection(clientTgt, "WineReviewMT", true)
+// END CreateCollectionCollectionToTenant
 
 
-    // ============================================================
-    // TEST - CHECK DATA MIGRATION
-    // ============================================================
-    let aggResp = reviewsTgtTenantA.aggregate.overAll()
-    // assert agg_resp.total_count == DATASET_SIZE
+// START CreateTenants
+let tenantsTgt = [
+    { name: 'tenantA'},
+    { name: 'tenantB'}
+  ]
 
-    // coll_list = [reviews_src, reviews_tgt_tenant_a]
-    // resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
-    // assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
-
-
-    // Delete existing collection at target if any
-    clientTgt.collections.delete("WineReviewMT")
+reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
+reviewsMtTgt.tenants.create(tenantsTgt)
+// END CreateTenants
 
 
-    // ============================================================
-    // TEST - CHECK CLASS DELETION
-    // ============================================================
-    // assert not client_tgt.collections.exists("WineReviewMT")
+// # ============================================================
+// # TEST - CHECK EMPTY CLASS CREATION
+// # ============================================================
+// assert client_tgt.collections.exists("WineReviewMT")
+// reviews_tgt_tenant_a = reviewsMtTgt.with_tenant(tenantsTgt[0].name)
+// agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
+// assert agg_resp.total_count == 0
 
 
-    // START CreateCollectionTenantToTenant
-    reviewsMtTgt = create_collection(client_tgt, "WineReviewMT", enable_mt = True)
-    // END CreateCollectionTenantToTenant
+// START CollectionToTenant
+reviewsSrc = clientSrc.collections.get("WineReview")
+reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
+let reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
+
+migrateData(reviewsSrc, reviewsTgtTenantA)
+// END CollectionToTenant
 
 
-    // // Re-create tenants
-    tenantsTgt = [wvc.tenants.Tenant(name = "tenantA"), wvc.tenants.Tenant(name = "tenantB")]
+// ============================================================
+// TEST - CHECK DATA MIGRATION
+// ============================================================
+aggResp = reviewsTgtTenantA.aggregate.overAll()
+// assert agg_resp.total_count == DATASET_SIZE
 
-    reviewsMtTgt = client_tgt.collections.get("WineReviewMT")
-    reviewsMtTgt.tenants.create(tenantsTgt)
-    // END Re-create tenants
-
-
-    // ============================================================
-    // TEST - CHECK EMPTY CLASS CREATION
-    // ============================================================
-    // assert client_tgt.collections.exists("WineReviewMT")
-    let reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
-    let aggResp = reviewsTgtTenantA.aggregate.overAll({ totalCount: true })
-    // assert agg_resp.total_count == 0
+// coll_list = [reviews_src, reviews_tgt_tenant_a]
+// resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+// assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
 
-    // START TenantToTenant
-    let reviewsMtSrc = clientSrc.collections.get("WineReviewMT")
-    let reviewsSrcTenantA = reviewsMtSrc.withTenant("tenantA")
-    let reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
-    let reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
-
-    migrateData(reviewsSrcTenantA, reviewsTgtTenantA)
-    // END TenantToTenant
+// Delete existing collection at target if any
+clientTgt.collections.delete("WineReviewMT")
 
 
-    // ============================================================
-    // TEST - CHECK DATA MIGRATION
-    // ============================================================
-    // agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
-    // assert agg_resp.total_count == DATASET_SIZE
+// ============================================================
+// TEST - CHECK CLASS DELETION
+// ============================================================
+// assert not client_tgt.collections.exists("WineReviewMT")
 
-    // coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
-    // resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
-    // assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
-    // START CollectionToCollection  // START TenantToCollection  // START CollectionToTenant  // START TenantToTenant
+// START CreateCollectionTenantToTenant
+reviewsMtTgt = createCollection(clientTgt, "WineReviewMT", true)
+// END CreateCollectionTenantToTenant
 
-    clientSrc.close()
-    clientTgt.close()
+
+// // Re-create tenants
+tenantsTgt = [
+    { name: 'tenantA'},
+    { name: 'tenantB'}
+  ]
+
+
+reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
+reviewsMtTgt.tenants.create(tenantsTgt)
+// END Re-create tenants
+
+
+// ============================================================
+// TEST - CHECK EMPTY CLASS CREATION
+// ============================================================
+// assert client_tgt.collections.exists("WineReviewMT")
+reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
+aggResp = reviewsTgtTenantA.aggregate.overAll({
+    returnMetrics: reviewsTgt.metrics.aggregate('points').number(["count"])
+})
+// assert agg_resp.total_count == 0
+
+
+// START TenantToTenant
+let reviewsMtSrc = clientSrc.collections.get("WineReviewMT")
+reviewsSrcTenantA = reviewsMtSrc.withTenant("tenantA")
+reviewsMtTgt = clientTgt.collections.get("WineReviewMT")
+reviewsTgtTenantA = reviewsMtTgt.withTenant(tenantsTgt[0].name)
+
+migrateData(reviewsSrcTenantA, reviewsTgtTenantA)
+// END TenantToTenant
+
+
+// ============================================================
+// TEST - CHECK DATA MIGRATION
+// ============================================================
+// agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
+// assert agg_resp.total_count == DATASET_SIZE
+
+// coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
+// resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+// assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+
+// START CollectionToCollection  // START TenantToCollection  // START CollectionToTenant  // START TenantToTenant
+
+clientSrc.close()
+clientTgt.close()
 // END CollectionToCollection  // END TenantToCollection  // END CollectionToTenant  // END TenantToTenant
