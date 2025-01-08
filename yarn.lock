@@ -5354,7 +5354,7 @@ abbrev@1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
-abort-controller-x@^0.4.0:
+abort-controller-x@^0.4.0, abort-controller-x@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/abort-controller-x/-/abort-controller-x-0.4.3.tgz#ff269788386fabd58a7b6eeaafcb6cf55c2958e0"
   integrity sha512-VtUwTNU8fpMwvWGn4xE93ywbogTYsuT+AUxAXOeelbXuQVIwNmC5YLeho9sH4vZ4ITW8414TTAOG1nW6uIVHCA==
@@ -12256,6 +12256,11 @@ lru-cache@^7.5.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
 
+lucide-react@^0.469.0:
+  version "0.469.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.469.0.tgz#f16936ca6521482fef754a7eabb310e6c68e1482"
+  integrity sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==
+
 lunr@^2.3.9:
   version "2.3.9"
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
@@ -18399,16 +18404,18 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.2.3:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.2.4.tgz#9ba1b4016e9eec45a4f8c677e352f4e33423abc4"
-  integrity sha512-Y6KnrPQqUDK1hf15aH4/ib3FJwCXbUE8yGGtK8Pq8REbjgHCGXs+2cDr0XbihTbe75yXmBZ5UIgbIusgabgieQ==
+weaviate-client@^3.3.0:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.3.1.tgz#3cea0fd4b7729ed224acb16c80d47f610cbea34e"
+  integrity sha512-o99NleKTk9WoPWaOMlI3GUR6cO+HbLc4ofUpCovdsge4KxPJizUkzz134vWVkOqJTqMPHGchALSrCwcx01aOTg==
   dependencies:
+    abort-controller-x "^0.4.3"
     graphql "^16.9.0"
     graphql-request "^6.1.0"
     long "^5.2.3"
     nice-grpc "^2.1.10"
     nice-grpc-client-middleware-retry "^3.1.9"
+    nice-grpc-common "^2.0.2"
     uuid "^9.0.1"
 
 weaviate-ts-client@^1.3.3:

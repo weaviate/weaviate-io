@@ -483,6 +483,23 @@ Where to go next is up to you. We include some suggested steps and resources bel
 
 ## Next
 
+import AcademyLinkCard from '@site/src/components/Documentation/AcademyLinkCard';
+
+<AcademyLinkCard
+  title="Working with Text Data"
+  description="An end-to-end course for working with text data."
+  languages={[
+    {
+      name: "Python",
+      href: "/developers/academy/py/starter_text_data"
+    },
+    {
+      name: "JS/TS",
+      href: "/developers/academy/js/starter_text_data"
+    },
+  ]}
+/>
+
 Try these additional resources to learn more about Weaviate:
 
 <div class="container margin-top--xs padding-top--xs">
