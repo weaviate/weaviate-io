@@ -344,7 +344,8 @@
 .tryNow {
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
-  background: #61bd73;
+  background: #130c49;
+  color: #ffffff;
   margin: 0 20px;
   width: 8rem;
   height: 2.625rem;
@@ -372,7 +373,7 @@
 }
 
 .custom-page .tryNow {
-  margin: 0px 70px 0px 0px;
+  margin: 0px 0px 0px 0px;
 
   align-items: center;
   display: flex;
@@ -384,6 +385,35 @@
   border-radius: 0.3125rem;
   background: #130c49;
   color: #ffffff;
+
+  @media screen and (max-width: 1160px) {
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 999px) {
+    display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff !important;
+    font-weight: 400;
+  }
+}
+
+.custom-page .loginButton {
+  margin: 0px 0px 0px 0px;
+
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 10.625rem;
+  height: 3.5rem;
+  border: 1px solid #130c49;
+  border-radius: 0.3125rem;
+  color: #130c49;
+  background: #ffffff;
 
   @media screen and (max-width: 1160px) {
     margin: 0px;
