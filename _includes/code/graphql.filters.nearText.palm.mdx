@@ -20,8 +20,8 @@ import weaviate
 client = weaviate.Client(
     url="http://localhost:8080",
     additional_headers={
-        "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
-        "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+        "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+        "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
     }
 )
 
@@ -100,8 +100,8 @@ func main() {
     Host:    "localhost:8080",
     Scheme:  "http",
     Headers: map[string]string{
-      "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
-      "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
+      "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY",
+      "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",
     },
   }
   client, err := weaviate.NewClient(cfg)
@@ -170,8 +170,8 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Google-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
-      put("X-Google-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
+      put("X-Goog-Vertex-Api-Key", "YOUR-VERTEX-API-KEY");
+      put("X-Goog-Studio-Api-Key", "YOUR-AI-STUDIO-API-KEY");
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -249,8 +249,8 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer learn-weaviate' \
-    -H "X-Google-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
-    -H "X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
+    -H "X-Goog-Vertex-Api-Key": "YOUR-VERTEX-API-KEY" \
+    -H "X-Goog-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY" \
     -d @- \
     https://edu-demo.weaviate.network/v1/graphql
 ```

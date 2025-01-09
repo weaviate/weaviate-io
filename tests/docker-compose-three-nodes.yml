@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.27.5
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.0
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -20,11 +20,8 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       ASYNC_INDEXING: 'true'
-      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem'
       ENABLE_API_BASED_MODULES: 'true'
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
-      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
@@ -39,7 +36,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.27.5
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.0
     restart: on-failure:0
     ports:
      - "8181:8080"
@@ -51,11 +48,8 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       ASYNC_INDEXING: 'true'
-      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem'
       ENABLE_API_BASED_MODULES: 'true'
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
-      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node2'
       CLUSTER_GOSSIP_BIND_PORT: '7102'
@@ -71,7 +65,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.27.5
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.0
     restart: on-failure:0
     ports:
      - "8182:8080"
@@ -83,11 +77,8 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       ASYNC_INDEXING: 'true'
-      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem,offload-s3'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem'
       ENABLE_API_BASED_MODULES: 'true'
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_KEY:-}
-      OFFLOAD_S3_BUCKET_AUTO_CREATE: 'true'
       BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
       CLUSTER_HOSTNAME: 'node3'
       CLUSTER_GOSSIP_BIND_PORT: '7104'

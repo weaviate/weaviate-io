@@ -1,0 +1,32 @@
+---
+services:
+  weaviate_rbac:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.0
+    ports:
+    - 8580:8080
+    - 50551:50051
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ASYNC_INDEXING: 'true'
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama,backup-filesystem'
+      ENABLE_API_BASED_MODULES: 'true'
+      BACKUP_FILESYSTEM_PATH: '/var/lib/weaviate/backups'
+      CLUSTER_HOSTNAME: 'node1'
+      # AuthN and AuthZ settings
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-user,jane-key'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user,jane-doe'
+      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_ADMIN_USERS: 'admin-user'
+      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
+...

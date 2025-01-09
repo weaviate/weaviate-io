@@ -114,7 +114,7 @@ const config = {
               configuration: {
                 spec: {
                     // Last updated: 2024-11-13
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_202411/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
                 hideModels: true,
                 // This feature currently broken - potentially fixed in: https://github.com/scalar/scalar/pull/1387
@@ -221,7 +221,17 @@ const config = {
             reb2b.load("5NRP9HG1YMO1");
           })();`,
       },
-
+       // Microsoft Clarity Script
+       {
+        tagName: 'script',
+        innerHTML: `
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "orzk1oie18");
+        `,
+      },
                     ],
                 };
             },
@@ -300,11 +310,11 @@ const config = {
             image: 'og/default.jpg',
              announcementBar: {
                id: 'announcement-bar-decemeber-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="https://webinars.techstronglearning.com/simplify-building-ai-native-embedding-models-and-vector-databases?utm_campaign=2024.12.12-Weaviate_Webinar_DO&utm_source=Weaviate&utm_medium=marketing_social">Webinar | Simplify Building AI-Native: Embedding Models and Vector Databases</a>`,
+                content:`<a target="_blank" rel="noopener noreferrer" href="/reports/gigaom-sonar-report-for-vector-databases">Ready to level up your AI tech stack? Read GigaOm's Sonar Report for Vector Databases</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
-            }, 
+            },  
             docs: {
                 sidebar: {
                     hideable: true,

@@ -67,6 +67,7 @@ const KnowledgeBasePage = () => {
             property="og:title"
             content="Multi-modal - Weaviate Knowledge Cards"
           />
+          <meta name="robots" content="index, follow" />
           <meta property="og:type" content="article" />
           <meta property="og:image" content={imageFullUrl} />
           <meta property="og:image:alt" content="Knowledge card image" />

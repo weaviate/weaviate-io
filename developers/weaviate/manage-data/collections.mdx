@@ -838,11 +838,74 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
-Configure replication per collection.
+Configure replication settings, such as [async replication](../concepts/replication-architecture/consistency.md#async-replication) and [deletion resolution strategy](../concepts/replication-architecture/consistency.md#deletion-resolution-strategies).
 
-import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/replication-consistency.mdx';
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AllReplicationSettings"
+      endMarker="# END AllReplicationSettings"
+      language="py"
+      docRefs={[
+        "weaviate.collections.classes.html#weaviate.collections.classes.config.Configure"
+      ]}
+    />
+  </TabItem>
 
-<ReplicationConfigWithAsyncRepair />
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START AsyncRepair"
+      endMarker="# END AsyncRepair"
+      language="pyv3"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AsyncRepair"
+      endMarker="// END AsyncRepair"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START AsyncRepair"
+      endMarker="// END AsyncRepair"
+      language="tsv2"
+    />
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+
+```bash
+curl \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "class": "Article",
+    "properties": [
+        {
+            "dataType": [
+                "string"
+            ],
+            "description": "Title of the article",
+            "name": "title"
+        }
+    ],
+    "replicationConfig": {
+      "factor": 3,
+      "asyncEnabled": true
+    }
+}' \
+http://localhost:8080/v1/schema
+```
+
+</TabItem>
+</Tabs>
 
 <details>
   <summary>

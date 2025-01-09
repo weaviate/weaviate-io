@@ -17,7 +17,7 @@ All other values are interpreted as `false`.
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `ASYNC_INDEXING` | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
+| `ASYNC_INDEXING` | (Experimental, added in `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
 | `AUTOSCHEMA_ENABLED` | Whether to infer the schema where necessary with the autoschema (default: `true`) | `boolean` | `true` |
 | `RAFT_ENABLE_ONE_NODE_RECOVERY` | Enable running the single node recovery routine on restart. This is useful if the
 default hostname has changed and a single node cluster believes there are supposed to be two nodes. | `boolean` | `false` |
@@ -29,6 +29,7 @@ default hostname has changed and a single node cluster believes there are suppos
 | `ENABLE_API_BASED_MODULES` | Enable all API-based modules. (Experimental as of `v1.26.0`) | `boolean` | `true` |
 | `ENABLE_MODULES` | Specify Weaviate modules to enable | `string - comma separated names` | `text2vec-openai,generative-openai` |
 | `ENABLE_TOKENIZER_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use | `boolean` | `true` |
+| `ENABLE_TOKENIZER_KAGOME_JA` | Enable the [`Kagome` tokenizer for Japanese](../config-refs/schema/index.md#kagome_ja-tokenization-method) for use (Experimental as of `v1.28.0`) | `boolean` | `true` |
 | `ENABLE_TOKENIZER_KAGOME_KR` | Enable the [`Kagome` tokenizer for Korean](../config-refs/schema/index.md#kagome_kr-tokenization-method) for use (Experimental as of `v1.25.7`) | `boolean` | `true` |
 | `GODEBUG` | Controls debugging variables within the runtime. [See official Go docs](https://pkg.go.dev/runtime). | `string - comma-separated list of name=val pairs` | `gctrace=1` |
 | `GOMAXPROCS` | Set the maximum number of threads that can be executing simultaneously. If this value is set, it be respected by `LIMIT_RESOURCES`. | `string - number` | `NUMBER_OF_CPU_CORES` |
@@ -59,6 +60,8 @@ default hostname has changed and a single node cluster believes there are suppos
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
 | `USE_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use. <br/> (The same as `ENABLE_TOKENIZER_GSE`. We recommend using `ENABLE_TOKENIZER_GSE` for consistency in naming with other optional tokenizers.) | `boolean` | `true` |
+| `USE_INVERTED_SEARCHABLE` | (Experimental) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is experimental and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Start with a fresh index.</li></ul> | `boolean` | `true` |
+| `USE_BLOCKMAX_WAND` | (Experimental) Use BlockMax WAND algorithm for BM25 and hybrid searches. Recommend enabling together with `USE_INVERTED_SEARCHABLE` to get the full performance benefits. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>BlockMax WAND scores on single and multiple property search may be different due to different IDF and property length normalization</li></ul> | `boolean` | `true` |
 
 ## Module-specific
 
@@ -76,6 +79,13 @@ default hostname has changed and a single node cluster believes there are suppos
 | `TRANSFORMERS_INFERENCE_API` | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | `USE_GOOGLE_AUTH` | Automatically look for Google Cloud credentials, and generate Vertex AI access tokens for Weaviate to use as needed ([read more](../model-providers/google/index.md)). (default: `false`) | `boolean` | `true` |
 | `USE_SENTENCE_TRANSFORMERS_VECTORIZER` | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `boolean` | `true` |
+| `CLIP_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `multi2vec-clip` module to start up before starting (default: `true`).  | `boolean` | `true` |
+| `NER_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `ner-transformers` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
+| `QNA_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `qna-transformers` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
+| `RERANKER_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `reranker-transformers` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
+| `SUM_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `sum-transformers` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
+| `GPT4ALL_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `text2vec-gpt4all` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
+| `TRANSFORMERS_WAIT_FOR_STARTUP` | If `true`, Weaviate waits for the `text2vec-transformers` module to start up before starting (default: `true`). (Available from `v1.25.27`, `v1.26.12`, `v1.27.7`) | `boolean` | `true` |
 
 ## Authentication and authorization
 

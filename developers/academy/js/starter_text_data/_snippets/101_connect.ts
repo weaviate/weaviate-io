@@ -48,7 +48,7 @@ client = await weaviate.connectToLocal({
 
 // PollLiveness
 if (await client.isLive()) {
-  // This will raise an exception if the client is not live
+  // Run operations with the client if it is live
 } 
 // END PollLiveness
 
@@ -158,8 +158,8 @@ client = await weaviate.connectToWeaviateCloud(
 // TryFinallyCloseDemo
 
 // Instantiate your client (not shown). e.g.:
-// client = weaviate.connect_to_weaviate_cloud(...) or
-// client = weaviate.connect_to_local(...)
+// client = weaviate.connectToWeaviateCloud(...) or
+// client = weaviate.connectToLocal(...)
 
 try {
   // Work with the client here 
