@@ -27,9 +27,9 @@ export default function Home() {
         <main>
           <Details />
           <Resources />
-          <BuildWith />
           <Recipes />
           <Tabs />
+          <BuildWith />
           <List />
         </main>
       </Layout>
