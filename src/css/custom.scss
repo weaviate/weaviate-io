@@ -357,18 +357,20 @@
   transition: background-color 1s ease-out, border-color 1s ease-out,
     color 1s ease-out;
 
+  &:hover {
+    color: #130c49;
+  }
+
   @media screen and (max-width: 1190px) {
     margin: 0px;
+    width: unset;
   }
 
   @media screen and (max-width: 1150px) {
-    display: none;
-  }
-
-  &:hover {
-    background: #130c49;
-    color: #fff;
-    font-weight: 400;
+    display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
   }
 }
 
@@ -380,24 +382,44 @@
   align-content: center;
   justify-content: center;
   width: 10.625rem;
-  height: 3.5rem;
-
+  height: 3.125rem;
+  transition: all 0.3s ease;
   border-radius: 0.3125rem;
   background: #130c49;
   color: #ffffff;
+  font-weight: 600;
+
+  &:hover {
+    color: #ffffff !important;
+  }
 
   @media screen and (max-width: 1160px) {
     margin: 0px;
+    width: unset;
   }
 
-  @media screen and (max-width: 999px) {
+  @media screen and (max-width: 996px) {
     display: none;
   }
 
-  &:hover {
-    background: #130c49;
-    color: #fff !important;
+  @media screen and (max-width: 990px) {
+    margin: 0px;
+    width: unset;
+    height: unset;
+    color: var(--ifm-menu-color);
+    flex: 1;
+    line-height: 1.25;
+    padding: var(--ifm-menu-link-padding-vertical)
+      var(--ifm-menu-link-padding-horizontal);
+    display: block;
+    border: unset;
+    background-color: unset;
     font-weight: 400;
+
+    &:hover {
+      background: var(--ifm-menu-color-background-hover);
+      color: var(--ifm-menu-color) !important;
+    }
   }
 }
 
@@ -409,24 +431,44 @@
   align-content: center;
   justify-content: center;
   width: 10.625rem;
-  height: 3.5rem;
-  border: 1px solid #130c49;
+  height: 3.125rem;
+
   border-radius: 0.3125rem;
   color: #130c49;
   background: #ffffff;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  &:hover {
+    color: #130c49;
+  }
 
   @media screen and (max-width: 1160px) {
     margin: 0px;
+    width: unset;
   }
 
   @media screen and (max-width: 999px) {
     display: none;
   }
 
-  &:hover {
-    background: #130c49;
-    color: #fff;
+  @media screen and (max-width: 990px) {
+    margin: 0px;
+    width: unset;
+    height: unset;
+    color: var(--ifm-menu-color);
+    flex: 1;
+    line-height: 1.25;
+    padding: var(--ifm-menu-link-padding-vertical)
+      var(--ifm-menu-link-padding-horizontal);
+    display: block;
+    border: unset;
+    background-color: unset;
     font-weight: 400;
+
+    &:hover {
+      background: var(--ifm-menu-color-background-hover);
+      color: var(--ifm-menu-color) !important;
+    }
   }
 }
 
