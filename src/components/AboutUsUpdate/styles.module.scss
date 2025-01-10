@@ -229,7 +229,7 @@ p {
     scroll-snap-type: x mandatory;
     white-space: nowrap;
 
-    @media screen and (max-width: 1260px) {
+    @media screen and (max-width: 1440px) {
       width: 100%;
     }
 
@@ -253,7 +253,7 @@ p {
     width: 65rem;
     height: 0.0625rem;
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1440px) {
       width: 100%;
     }
   }

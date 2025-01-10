@@ -15,9 +15,12 @@ export default function PartnersPage() {
   return (
     <div className="custom-page noBG">
       <Head>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="index, follow" />
       </Head>
-      <Layout>
+      <Layout
+        title="Partners"
+        description="Learn more about our partners and how we work together to provide the best solutions for our customers."
+      >
         <PartnersHeader />
         <StrategicPartners />
         <TechnologyPartners />
