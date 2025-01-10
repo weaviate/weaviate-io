@@ -12,7 +12,7 @@ export default function Header() {
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.title}>
-            Build AI-Native Applications with Javascript
+            Build AI-Native Applications with JavaScript
           </h2>
           <p>A hub for builders of all levels.</p>
           <div className={styles.buttons}>

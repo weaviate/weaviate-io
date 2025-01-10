@@ -337,8 +337,7 @@ export const courseData = {
     units: [
       "which_search",
       "client_server",
-      "picking_models",
-      "want_stack"
+      "using_ml_models",
     ]
   },
   "zero_to_mvp": {
