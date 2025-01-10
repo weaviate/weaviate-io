@@ -234,7 +234,7 @@ In a `grouped task` RAG query, Weaviate:
     - Text from all of the search results, and
     - The user-provided prompt, `Summarize the key information here in bullet points`.
 
-Note that the user-provided prompt did not contain any information about the subject matter. But because Weaviate retrieve the relevant data about the history of git, it was able to summarize the information relating to this subject matter using verifiable data.
+Note that the user-provided prompt did not contain any information about the subject matter. But because Weaviate retrieved the relevant data about the history of git, it was able to summarize the information relating to this subject matter using verifiable data.
 
 That's how easy it is to perform RAG queries in Weaviate.
 

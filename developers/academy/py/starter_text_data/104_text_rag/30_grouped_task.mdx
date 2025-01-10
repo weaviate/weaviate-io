@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!../_snippets/104_rag.py';
 
-A 'grouped task' generation wil perform RAG queries on the set of retrieved objects. This is useful when you want to transform the set of objects as a whole, with one prompt.
+A 'grouped task' generation will perform RAG queries on the set of retrieved objects. This is useful when you want to transform the set of objects as a whole, with one prompt.
 
 ### <i class="fa-solid fa-code"></i> Code
 
 This example finds entries in "Movie" whose vector best matches the query vector (for "dystopian future"). Then, instructs the large language model to find commonalities between them.
 
-Each of the results are then printed out to the console.
+Each of the results is then printed out to the console.
 
 <FilteredTextBlock
   text={PyCode}
