@@ -101,6 +101,13 @@
     "team": "weaviate-labs"
   },
   {
+    "name": "Austin Freels",
+    "title": "Director of Customer Success Engineering",
+    "photo": "Austin.jpg",
+    "linkedin": "austin-freels",
+    "team": "delivery"
+  },
+  {
     "name": "Benjamin Sabrin",
     "title": "VP of Sales",
     "photo": "benjamin.jpg",
@@ -280,6 +287,12 @@
     "team": "developer-growth"
   },
   {
+    "name": "Elisa Seay",
+    "title": "Enterprise Account Executive",
+    "photo": "Elisa-Seay.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Eric Caleb",
     "title": "Senior Software Engineer",
     "photo": "eric.jpg",
@@ -441,6 +454,12 @@
     "team": "database"
   },
   {
+    "name": "Madison Sanders",
+    "title": "Enterprise Account Executive",
+    "photo": "Madison.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Marcin Antas",
     "title": "Core Engineer",
     "photo": "marcin.jpg",
@@ -510,6 +529,13 @@
     "title": "Distributed Systems Engineer",
     "photo": "nate-wilkinson.jpg",
     "team": "database"
+  },
+  {
+    "name": "Nathaniel Ma",
+    "title": "Enterprise Account Executive",
+    "photo": "Nathaniel.jpg",
+    "linkedin": "manathaniel",
+    "team": "sales"
   },
   {
     "name": "Nenad Malić",
