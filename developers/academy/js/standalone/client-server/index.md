@@ -22,6 +22,7 @@ Backend web frameworks like Express let you create an API to communicate with We
 
 - A Node.js environment with `weaviate-client` installed.
 - Familiarity with Weaviate's search capabilities.
+- Some experience building Modern Web Applications with JavaScript.
 - Intermediate coding proficiency (e.g. JavaScript).
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Learning objectives

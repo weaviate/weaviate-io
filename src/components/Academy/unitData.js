@@ -1074,13 +1074,13 @@ export const unitData = {
     badgeType: "practical",
     learningGoals: [
       "What the client-server approach is and why we use it.",
-      "Using fullstack web frameworks to building client-server applications with Weaviate.",
-      "Using backend web frameworks to building client-server applications with Weaviate."
+      "Implementing Semantic search in Fullstack Web frameworks with Weaviate using the client-server approach.",
+      "Implementing Semantic search in Backend Web frameworks with Weaviate using the client-server approach.",
     ],
     learningOutcomes: [
-      "Use the Weaviate Typescript client to build Web applications.",
-      "Explain where in your stack Weaviate can be used.",
-      "Understand what type of web framework you need to work with Weaviate."
+      "Explain where in the client-server architecture of your Web Applications Weaviate can be used.",
+      "Integrate semantic search functionality into new or existing Backend and Fullstack Web Applications.",
+      "Initialize and use Weaviate in your Fullstack or Backend Web Frameworks."
     ],
     owner: "daniel",
     reviewer: "daniel"
@@ -1093,14 +1093,14 @@ export const unitData = {
     badgeType: "mixed",
     learningGoals: [
       "A high level understanding of embedding and generative models.",
-"Distinguish between text and multimodal embedding types.",
-"Configuring embedding and generative models in Weaviate.",
-"Making semantic and generative searches.",
+      "Distinguish between text and multimodal embedding types.",
+      "Configuring Weaviate to use embedding and generative models.",
+      "Making semantic and generative searches in Weaviate using JavaScript.",
     ],
     learningOutcomes: [
-      "Differentiate between embedding and generative models.",
-      "Configure and customize text and multimodal embedding models in Weaviate.",
-      "Configure and customize supported generative models in Weaviate."
+      "Differentiate between embedding and generative machine learning models.",
+      "Configure Weaviate to use text and multimodal embedding models for semantic search.",
+      "Configure Weaviate to use supported generative models for generative search."
     ],
     owner: "daniel",
     reviewer: "daniel"
