@@ -34,7 +34,7 @@ Weaviate's Backup feature is designed to work natively with cloud technology. Mo
 
 ## Backup Quickstart
 
-Get started with Weaviate backups in minutes using the local filesystem, which is a great option for development and testing.
+This quickstart demonstrates using backups in Weaviate using the local filesystem as a backup provider, which is suitable for development and testing environments.
 
 ### 1. Configure Weaviate
 
@@ -321,9 +321,10 @@ The `include` and `exclude` options are mutually exclusive. You can set none or 
 
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
-| `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
-| `chunkSize`       | number | no | `128MB` | An optional integer represents the desired size for chunks. Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB.|
-| `compressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. (`DefaultCompression`, `BestSpeed`, `BestCompression`) Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default. |
+| `CPUPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
+| `ChunkSize`       | number | no | `128MB` | An optional integer represents the desired size for chunks. Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB.|
+| `CompressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. (`DefaultCompression`, `BestSpeed`, `BestCompression`) Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default. |
+| `Path`            | string | no | `""` | An optional string to manually set the backup location. If not provided, the backup will be stored in the default location. Introduced in Weaviate `v1.27.2`. |
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -391,7 +392,7 @@ The `include` and `exclude` options are mutually exclusive. You can set none or 
 </Tabs>
 
 
-While you are waiting for a backup to complete, [Weaviate stays fully usable](#read--write-requests-while-a-backup-is-running).
+While you are waiting for a backup to complete, [Weaviate stays available](#read--write-requests-while-a-backup-is-running).
 
 
 #### Asynchronous Status Checking
@@ -522,6 +523,7 @@ Versions prior to `v1.23.13` had a bug that could lead to data not being stored 
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
 | `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
+| `Path`            | string | Required if created at a custom path | `""` | An optional string to manually set the backup location. If not provided, the backup will be restored from the default location. Introduced in Weaviate `v1.27.2`. |
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -672,7 +674,7 @@ These values are available under the `backups` key in the `values.yaml` file. Re
 
 ### Read & Write requests while a backup is running
 
-The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays fully usable during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
+The backup process is designed to be minimally invasive to a running setup. Even on very large setups, where terabytes of data need to be copied, Weaviate stays available during backup. It even accepts write requests while a backup process is running. This sections explains how backups work under the hood and why Weaviate can safely accept writes while a backup is copied.
 
 Weaviate uses a custom [LSM Store](../concepts/storage.md#object-and-inverted-index-store) for its object store and inverted index. LSM stores are a hybrid of immutable disk segments and an in-memory structure called a memtable that accepts all writes (including updates and deletes). Most of the time, files on disk are immutable, there are only three situations where files are changed:
 
@@ -686,7 +688,7 @@ Weaviate's Backup implementation makes use of the above properties in the follow
 2. Now that the memtables are flushed, there is a guarantee: All data that should be part of the backup is present in the existing disk segments. Any data that will be imported after the backup request ends up in new disk segments. The backup references a list of immutable files.
 3. To prevent a compaction process from changing the files on disk while they are being copied, compactions are temporarily paused until all files have been copied. They are automatically resumed right after.
 
-This way the backup process can guarantee that the files that are transferred to the remote backend are immutable (and thus safe to copy) even with new writes coming in. Even if it takes minutes or hours to backup a very large setup, Weaviate stays fully usable without any user impact while the backup process is running.
+This way the backup process can guarantee that the files that are transferred to the remote backend are immutable (and thus safe to copy) even with new writes coming in. Even if it takes minutes or hours to backup a very large setup, Weaviate stays available without any user impact while the backup process is running.
 
 It is not just safe - but even recommended - to create backups on live production instances while they are serving user requests.
 
