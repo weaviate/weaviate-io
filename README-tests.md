@@ -18,14 +18,14 @@ These tests are currently managed through [`pytest`](https://docs.pytest.org/), 
 
 To run the tests:
 
-- Install Python and Node.
+- Install Python and Node. (Rust and Cargo may be needed as well)
 - Install Docker (needed to spin up Weaviate)
 - Set up API keys for Cohere, Hugging Face and OpenAI (needed for vectorization) as environment variables under `COHERE_APIKEY`, `HUGGINGFACE_APIKEY` and `OPENAI_APIKEY` respectively.
 - Set up and activate the Python environment, and install the required libraries (`pytest`, `weaviate-client` and so on)
 - We recommend doing this by running from the shell:
 ```bash
 python -m venv .venv
-source .venv/bin/python
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 - Then run `pytest` from your environment. This will execute tests defined within the `tests` directory.
