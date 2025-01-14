@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="AI-Native Javascript"
-        description="Build AI-Native Applications with Javascript"
+        title="AI-Native JavaScript"
+        description="Build AI-Native Applications with JavaScript"
       >
         <MetaSEO img="og/website/home.jpg" />
         <Header />
