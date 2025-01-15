@@ -5,6 +5,9 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Weaviate supports deployment with Docker.
 
 You can [run Weaviate with default settings from a command line](#run-weaviate-with-default-settings), or [customize your configuration](#customize-your-weaviate-configuration) by creating your own `docker-compose.yml` file.
@@ -41,7 +44,10 @@ This starter Docker Compose file allows:
 
 ### Download and run
 
-Save the text below as `docker-compose.yml`:
+<Tabs queryString="docker-compose">
+  <TabItem value="anonymous" label="Anonymous access" default>
+
+Save the code below as `docker-compose.yml` to download and run Weaviate with anonymous access enabled:
 
 ```yaml
 ---
@@ -71,6 +77,55 @@ volumes:
   weaviate_data:
 ...
 ```
+
+:::caution
+Anonymous access is strongly discouraged except for development or evaluation purposes. 
+:::
+
+  </TabItem>
+  <TabItem value="auth" label="With authentication and authorization enabled">
+
+Save the code below as `docker-compose.yml` to download and run Weaviate with authentication (non-anonymous access) and authorization enabled:
+
+```yaml
+---
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_API_BASED_MODULES: 'true'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_ADMIN_USERS: 'admin-user'
+      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
+volumes:
+  weaviate_data:
+...
+```
+
+This setup defines the users `admin-user`, `viewer-user` and `other-user` which serve as [authentication](../configuration/authentication.md) credentials for connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` was granted read-only access using the **Role-based access control (RBAC)** method. A custom role can be assigned to the user `other-user` by following the [authorization and RBAC guide](../configuration/authorization.md). 
+
+  </TabItem>
+</Tabs>
 
 Edit the `docker-compose.yml` file to suit your needs. You can add or remove [environment variables](#environment-variables), change the port mappings, or add additional [model provider integrations](../model-providers/index.md), such as [Ollama](../model-providers/ollama/index.md), or [Hugging Face Transformers](../model-providers/transformers/index.md).
 
@@ -186,47 +241,6 @@ For more information on how to set up the environment with the
 page](/developers/weaviate/model-providers/transformers/embeddings.md).
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
-
-### Weaviate with authentication and authorization
-
-An example Docker Compose file for Weaviate with authentication (non-anonymous access) and authorization enabled is:
-
-```yaml
----
-services:
-  weaviate:
-    command:
-    - --host
-    - 0.0.0.0
-    - --port
-    - '8080'
-    - --scheme
-    - http
-    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
-    ports:
-    - 8080:8080
-    - 50051:50051
-    volumes:
-    - weaviate_data:/var/lib/weaviate
-    restart: on-failure:0
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      ENABLE_API_BASED_MODULES: 'true'
-      CLUSTER_HOSTNAME: 'node1'
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
-      AUTHORIZATION_ENABLE_RBAC: 'true'
-      AUTHORIZATION_ADMIN_USERS: 'admin-user'
-      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
-volumes:
-  weaviate_data:
-...
-```
-
-This setup defines the users `admin-user`, `viewer-user` and `other-user` which serve as [authentication](../configuration/authentication.md) credentials for connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` has read-only access. A custom role can be assigned to the user `other-user` by following the [authorization and RBAC guide](../configuration/authorization.md). 
 
 ### Unreleased versions
 
