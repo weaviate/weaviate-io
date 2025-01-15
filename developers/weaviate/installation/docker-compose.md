@@ -187,9 +187,9 @@ page](/developers/weaviate/model-providers/transformers/embeddings.md).
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
-### Weaviate with authentication enabled
+### Weaviate with authentication and authorization
 
-An example Docker Compose file for Weaviate with authentication enabled (non-anonymous access) is:
+An example Docker Compose file for Weaviate with authentication (non-anonymous access) and authorization enabled is:
 
 ```yaml
 ---
@@ -226,7 +226,7 @@ volumes:
 ...
 ```
 
-This setup defines the users `admin-user`, `viewer-user` and `other-user` that are used for [authentication](../configuration/authentication.md) when connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` only has read access. A custom role can be assigned to the user `other-user` by following the [authorization](../configuration/authorization.md) guide. 
+This setup defines the users `admin-user`, `viewer-user` and `other-user` which serve as [authentication](../configuration/authentication.md) credentials for connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` has read-only access. A custom role can be assigned to the user `other-user` by following the [authorization and RBAC guide](../configuration/authorization.md). 
 
 ### Unreleased versions
 
