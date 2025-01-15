@@ -187,6 +187,47 @@ page](/developers/weaviate/model-providers/transformers/embeddings.md).
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
+### Weaviate with authentication enabled
+
+An example Docker Compose file for Weaviate with authentication enabled (non-anonymous access) is:
+
+```yaml
+---
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_API_BASED_MODULES: 'true'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_ADMIN_USERS: 'admin-user'
+      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
+volumes:
+  weaviate_data:
+...
+```
+
+This setup defines the users `admin-user`, `viewer-user` and `other-user` that are used for [authentication](../configuration/authentication.md) when connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` only has read access. A custom role can be assigned to the user `other-user` by following the [authorization](../configuration/authorization.md) guide. 
+
 ### Unreleased versions
 
 import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
