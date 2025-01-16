@@ -13,7 +13,7 @@ image: ./img/hero.png
 
 Search is an integral part of our experience using the internet. Information consumption is fuelled by our ability to search, and do so efficiently. Search is more than just finding a needle in a haystack - it's about understanding user intent, context, and delivering relevant results instantly. The rise of AI and vector databases has transformed what's possible with search, making previously complex and inaccessible features like semantic understanding and generative responses accessible to developers.
 
-In this tutorial, we'll build a versatile search API using Hono.js that implements three powerful search paradigms: vector, hybrid, and generative search. You'll learn how these different search types work and when to use each one.
+In this tutorial, we'll build a versatile search API using Hono.js that implements three powerful search paradigms: Vector, Hybrid, and Generative search. You'll learn how these different search types work and when to use each one.
 
 ## Prerequisites
 
@@ -32,9 +32,9 @@ You might be asking, "Why Hono.js??"
 
 Hono is a fast, lightweight web framework that's changing how we build APIs. Here's what makes it special...
 
-It's built on [Web Standards](https://hono.dev/docs/concepts/web-standard) whihc doesn't just make it future proof but **runtime agnostic** too. This means it works everywhere JavaScript runs i.e. Deno, Bun, Node.js, and edge runtimes. This reliance on only Web standards makes it quicker than most run times because it has minimal overhead and ~ zero dependencies. 
+It's built on [Web Standards](https://hono.dev/docs/concepts/web-standard) which doesn't just make it future proof but **runtime agnostic** too. This means it works everywhere JavaScript runs i.e. Deno, Bun, Node.js, and edge runtimes. This reliance on only Web standards makes it quicker than most runtimes because it has minimal overhead and ~ zero dependencies. 
 
-With that, lets dive into search! 
+With that, let's dive into search! 
 
 ## Understanding Modern Search Types
 
@@ -59,11 +59,11 @@ Generative search is where Generative AI really shines. Instead of just finding 
 ![Generative Search Explained](./img/generative-search.png)
 
 
-With our newly garnered knowledge, lets build some APIs!
+With our new knowledge, let's build some APIs!
 
 ## Building Search APIs
 
-We're building an server application that exposes an API we can use to run the three searches we just learned about.
+We're building a server application that exposes an API we can use to run the three searches we just learned about.
 
 You can use the final [project repository](https://github.com/malgamves/weaviate-servers/tree/main/hono-server) as a reference should you need clarification as you go through the tutorial. 
 
@@ -75,7 +75,7 @@ Set up your Hono.js application with the following command.
 npm create hono@latest my-app
 ```
 You will be asked which template you would like to use. Select Node.js.
-After your application in initialized, you should have a nice new Hono.js application.
+After your application is initialized, you should have a nice new Hono.js application.
 
 ### Step 2: Root routes
 
@@ -107,7 +107,7 @@ This file sets up a simple Node.js server that you can interact with on `localho
 
 We'll start by creating a free sandbox account on [Weaviate Cloud](https://console.weaviate.cloud/). Follow [this guide](https://weaviate.io/developers/wcs/connect) if you have trouble setting up a sandbox project.
 
-You will need your Weaviate cluster URL and API key. If you don't already have one, create a new Cohere [API key](https://dashboard.cohere.com/api-keys), we use Cohere as our [embedding model](https://weaviate.io/developers/academy/js/standalone/using-ml-models/embedding). When done, add all three to your `.env` file.
+You will need your Weaviate cluster URL and API key. If you don't already have one, you'll also need to create a Cohere [API key](https://dashboard.cohere.com/api-keys), we use Cohere as our [embedding model](https://weaviate.io/developers/academy/js/standalone/using-ml-models/embedding). When done, add all three to your `.env` file.
 
 In your terminal, run the following commands to install the [weaviate-client](https://www.npmjs.com/package/weaviate-client) and dotenv packages.
 
@@ -253,7 +253,7 @@ app.get('/', async (c) => {
 export default app
 ```
 
-In Weaviate, we use `query.hybird()` to make hybrid searches. Our `searchTerm` is whatever query comes in as query parameter. 
+In Weaviate, we use `query.hybrid()` to make hybrid searches. Our `searchTerm` is whatever query comes in as query parameter. 
 
 #### Generative Search
 
@@ -341,13 +341,13 @@ You can use tools like [Thunder Client](https://www.thunderclient.com/), [Postma
 For this tutorial, we'll use curl. In your terminal run these commands.
 
 ```bash
-# Test vector search
+# Test Vector search
 curl "http://localhost:3000/search/vector?searchTerm=javascript"
 
-# Test hybrid search
+# Test Hybrid search
 curl "http://localhost:3000/search/hybrid?searchTerm=programming"
 
-# Test generative search
+# Test Generative search
 curl "http://localhost:3000/search/generate?searchTerm=AI&prompt=summarize"
 ```
 
