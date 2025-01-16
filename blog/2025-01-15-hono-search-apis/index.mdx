@@ -1,7 +1,7 @@
 ---
 title: 'Building Search APIs with Hono.js'
 slug: hono-search-apis
-description: "Master modern search capabilities by building a powerful API server with Hono.js. Learn how to implement semantic, hybrid, and generative search while maintaining performance and reliability."
+description: "Master modern search capabilities by building a powerful API server with Hono.js. Learn how to implement vector, hybrid, and generative search while maintaining performance and reliability."
 authors: [daniel]
 date: 2025-01-16
 tags: [how-to, search, JavaScript]
@@ -13,7 +13,7 @@ image: ./img/hero.png
 
 Search is an integral part of our experience using the internet. Information consumption is fuelled by our ability to search, and do so efficiently. Search is more than just finding a needle in a haystack - it's about understanding user intent, context, and delivering relevant results instantly. The rise of AI and vector databases has transformed what's possible with search, making previously complex and inaccessible features like semantic understanding and generative responses accessible to developers.
 
-In this tutorial, we'll build a versatile search API using Hono.js that implements three powerful search paradigms: semantic, hybrid, and generative search. You'll learn how these different search types work and when to use each one.
+In this tutorial, we'll build a versatile search API using Hono.js that implements three powerful search paradigms: vector, hybrid, and generative search. You'll learn how these different search types work and when to use each one.
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ Think of vectors as GPS coordinates for meaning - just like how two locations ca
 
 ### Hybrid Search
 
-Hybrid search gives you the best of both worlds - the precision of traditional keyword search with the understanding of semantic search. It's like having a smart assistant who checks both exact matches and related concepts.
+Hybrid search gives you the best of both worlds - the precision of traditional keyword search with the understanding of vector search. It's like having a smart assistant who checks both exact matches and related concepts.
 
 ![Hybrid Search Explained](./img/hybrid-search.png)
 
@@ -255,7 +255,7 @@ export default app
 
 In Weaviate, we use `query.hybird()` to make hybrid searches. Our `searchTerm` is whatever query comes in as query parameter. 
 
-### Generative Search
+#### Generative Search
 
 For our Generative search route, create a file called `generate.ts` and paste the following code in it.
 
@@ -334,7 +334,7 @@ This creates three routes that make it possible to run these three very powerful
 
 Start your server with `npm dev` and it's ready to test! 
 
-## Testing Your API
+## Step 7: Testing Your API
 
 You can use tools like [Thunder Client](https://www.thunderclient.com/), [Postman](https://www.postman.com/), or [curl](https://curl.se/) to test your endpoints.
 
@@ -342,7 +342,7 @@ For this tutorial, we'll use curl. In your terminal run these commands.
 
 ```bash
 # Test vector search
-curl "http://localhost:3000/search/semantic?searchTerm=javascript"
+curl "http://localhost:3000/search/vector?searchTerm=javascript"
 
 # Test hybrid search
 curl "http://localhost:3000/search/hybrid?searchTerm=programming"
