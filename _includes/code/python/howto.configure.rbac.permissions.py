@@ -25,7 +25,7 @@ def reset_user(user: str, client: WeaviateClient):
 # =================================================================
 
 # Clean slate
-reset_user("other-user", client=admin_client)
+reset_user("user-c", client=admin_client)
 admin_client.roles.delete("rw_role_target_collections")  # delete if exists
 
 # START ReadWritePermissionDefinition
@@ -52,11 +52,11 @@ admin_permissions = [
 
 # Create a new role and assign it to a user
 admin_client.roles.create(role_name="rw_role_target_collections", permissions=admin_permissions)
-admin_client.roles.assign_to_user(role_names="rw_role_target_collections", user="other-user")
+admin_client.roles.assign_to_user(role_names="rw_role_target_collections", user="user-c")
 # END ReadWritePermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
-user_permissions = admin_client.roles.by_user("other-user")
+user_permissions = admin_client.roles.by_user("user-c")
 
 assert "rw_role_target_collections" in user_permissions.keys()
 assert user_permissions["rw_role_target_collections"].collections_permissions[0].collection == "TargetCollection_*"
@@ -67,7 +67,7 @@ assert user_permissions["rw_role_target_collections"].name == "rw_role_target_co
 # =================================================================
 
 # Clean slate
-reset_user("other-user", client=admin_client)
+reset_user("user-c", client=admin_client)
 admin_client.roles.delete("viewer_role_target_collections")  # delete if exists
 
 # START ViewerPermissionDefinition
@@ -82,11 +82,11 @@ viewer_permissions = [
 
 # Create a new role and assign it to a user
 admin_client.roles.create(role_name="viewer_role_target_collections", permissions=viewer_permissions)
-admin_client.roles.assign_to_user(role_names="viewer_role_target_collections", user="other-user")
+admin_client.roles.assign_to_user(role_names="viewer_role_target_collections", user="user-c")
 # END ViewerPermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
-user_permissions = admin_client.roles.by_user("other-user")
+user_permissions = admin_client.roles.by_user("user-c")
 
 assert "viewer_role_target_collections" in user_permissions.keys()
 assert user_permissions["viewer_role_target_collections"].collections_permissions[0].collection == "TargetCollection_*"

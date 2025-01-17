@@ -135,8 +135,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,user-c'
 
       # Authorization configuration
       # Enable RBAC
@@ -154,9 +154,9 @@ This configuration:
 - Enables RBAC
 - Configures `user-a` as a user with built-in admin permissions
 - Configures `user-b` as a user with built-in viewer permissions
-- Configures `other-user` as a user with no built-in permissions
+- Configures `user-c` as a user with no built-in permissions
 
-The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
 
 ### RBAC: Kubernetes
 
@@ -172,11 +172,11 @@ authentication:
     allowed_keys:
       - user-a-key
       - user-b-key
-      - other-key
+      - user-c-key
     users:
       - user-a
       - user-b
-      - other-user
+      - user-c
 
 # Authorization configuration
 authorization:
@@ -197,9 +197,9 @@ This configuration:
 - Enables RBAC
 - Configures `user-a` as a user with built-in admin permissions
 - Configures `user-b` as a user with built-in viewer permissions
-- Configures `other-user` as a user with no built-in permissions
+- Configures `user-c` as a user with no built-in permissions
 
-The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
 
 ## Admin list
 
@@ -223,8 +223,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,user-c'
 
       # Authorization configuration
       # Enable admin list
@@ -243,7 +243,7 @@ This configuration:
 - Configures `user-a` as a user with built-in admin permissions
 - Configures `user-b` as a user with built-in viewer permissions
 
-Note that in this configuration, `other-user` has no permissions.
+Note that in this configuration, `user-c` has no permissions.
 
 ### Admin list: Kubernetes
 
@@ -259,11 +259,11 @@ authentication:
     allowed_keys:
       - user-a-key
       - user-b-key
-      - other-key
+      - user-c-key
     users:
       - user-a
       - user-b
-      - other-user
+      - user-c
 
 # Authorization configuration
 authorization:
