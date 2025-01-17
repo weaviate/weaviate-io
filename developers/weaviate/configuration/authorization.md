@@ -135,8 +135,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,user-a-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,user-a,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,other-user'
 
       # Authorization configuration
       # Enable RBAC
@@ -147,13 +147,13 @@ services:
       #
       # You MUST define at least one admin user
       AUTHORIZATION_ADMIN_USERS: 'user-a'
-      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
+      AUTHORIZATION_VIEWER_USERS: 'user-b'
 ```
 
 This configuration:
 - Enables RBAC
 - Configures `user-a` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
+- Configures `user-b` as a user with built-in viewer permissions
 - Configures `other-user` as a user with no built-in permissions
 
 The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
@@ -171,11 +171,11 @@ authentication:
     enabled: true
     allowed_keys:
       - user-a-key
-      - viewer-key
+      - user-b-key
       - other-key
     users:
       - user-a
-      - viewer-user
+      - user-b
       - other-user
 
 # Authorization configuration
@@ -190,13 +190,13 @@ authorization:
     admins:
     - user-a
     viewers:
-    - viewer-user
+    - user-b
 ```
 
 This configuration:
 - Enables RBAC
 - Configures `user-a` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
+- Configures `user-b` as a user with built-in viewer permissions
 - Configures `other-user` as a user with no built-in permissions
 
 The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
@@ -223,8 +223,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,user-a-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,user-a,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,other-user'
 
       # Authorization configuration
       # Enable admin list
@@ -235,13 +235,13 @@ services:
       #
       # You MUST define at least one admin user
       AUTHORIZATION_ADMINLIST_USERS: 'user-a'
-      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'viewer-user'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'user-b'
 ```
 
 This configuration:
 - Enables Admin list authorization
 - Configures `user-a` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
+- Configures `user-b` as a user with built-in viewer permissions
 
 Note that in this configuration, `other-user` has no permissions.
 
@@ -258,11 +258,11 @@ authentication:
     enabled: true
     allowed_keys:
       - user-a-key
-      - viewer-key
+      - user-b-key
       - other-key
     users:
       - user-a
-      - viewer-user
+      - user-b
       - other-user
 
 # Authorization configuration
@@ -278,7 +278,7 @@ authorization:
     users:
     - user-a
     read_only_users:
-    - viewer-user
+    - user-b
 ```
 
 ### Anonymous users
