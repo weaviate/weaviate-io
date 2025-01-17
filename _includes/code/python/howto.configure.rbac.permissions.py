@@ -11,7 +11,7 @@ admin_client = weaviate.connect_to_local(
     # Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
     port=8580,
     grpc_port=50551,
-    auth_credentials=Auth.api_key("admin-key")
+    auth_credentials=Auth.api_key("user-a-key")
 )
 
 def reset_user(user: str, client: WeaviateClient):

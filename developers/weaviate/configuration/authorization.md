@@ -135,8 +135,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,user-a-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,user-a,other-user'
 
       # Authorization configuration
       # Enable RBAC
@@ -146,13 +146,13 @@ services:
       # This assumes that the relevant user has been authenticated and identified
       #
       # You MUST define at least one admin user
-      AUTHORIZATION_ADMIN_USERS: 'admin-user'
+      AUTHORIZATION_ADMIN_USERS: 'user-a'
       AUTHORIZATION_VIEWER_USERS: 'viewer-user'
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `admin-user` as a user with built-in admin permissions
+- Configures `user-a` as a user with built-in admin permissions
 - Configures `viewer-user` as a user with built-in viewer permissions
 - Configures `other-user` as a user with no built-in permissions
 
@@ -170,11 +170,11 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
+      - user-a-key
       - viewer-key
       - other-key
     users:
-      - admin-user
+      - user-a
       - viewer-user
       - other-user
 
@@ -188,14 +188,14 @@ authorization:
     #
     # You MUST define at least one admin user
     admins:
-    - admin-user
+    - user-a
     viewers:
     - viewer-user
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `admin-user` as a user with built-in admin permissions
+- Configures `user-a` as a user with built-in admin permissions
 - Configures `viewer-user` as a user with built-in viewer permissions
 - Configures `other-user` as a user with no built-in permissions
 
@@ -223,8 +223,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,user-a-key,other-key'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,user-a,other-user'
 
       # Authorization configuration
       # Enable admin list
@@ -234,13 +234,13 @@ services:
       # This assumes that the relevant user has been authenticated and identified
       #
       # You MUST define at least one admin user
-      AUTHORIZATION_ADMINLIST_USERS: 'admin-user'
+      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'viewer-user'
 ```
 
 This configuration:
 - Enables Admin list authorization
-- Configures `admin-user` as a user with built-in admin permissions
+- Configures `user-a` as a user with built-in admin permissions
 - Configures `viewer-user` as a user with built-in viewer permissions
 
 Note that in this configuration, `other-user` has no permissions.
@@ -257,11 +257,11 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
+      - user-a-key
       - viewer-key
       - other-key
     users:
-      - admin-user
+      - user-a
       - viewer-user
       - other-user
 
@@ -276,7 +276,7 @@ authorization:
     #
     # You MUST define at least one admin user
     users:
-    - admin-user
+    - user-a
     read_only_users:
     - viewer-user
 ```
@@ -305,11 +305,11 @@ services:
 
       # Configure admin user API key
       AUTHORIZATION_ADMINLIST_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'admin-key'
-      AUTHENTICATION_APIKEY_USERS: 'admin-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a'
 
-      # Enable admin list and provide admin access to "admin-user" only
-      AUTHORIZATION_ADMINLIST_USERS: 'admin-user'
+      # Enable admin list and provide admin access to "user-a" only
+      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
       # Provide read-only access to anonymous users
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'anonymous'
 ```
@@ -329,17 +329,17 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
+      - user-a-key
     users:
-      - admin-user
+      - user-a
 
 authorization:
-  # Enable admin list and provide admin access to "admin-user" only
+  # Enable admin list and provide admin access to "user-a" only
   admin_list:
     # Enable admin list
     enabled: true
     users:
-    - admin-user
+    - user-a
     # Provide read-only access to anonymous users
     read_only_users:
     - anonymous

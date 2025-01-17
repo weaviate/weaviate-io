@@ -97,10 +97,10 @@ services:
       AUTHENTICATION_APIKEY_ENABLED: 'true'
 
       # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,user-a-key'
 
       # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user'
+      AUTHENTICATION_APIKEY_USERS: 'viewer-user,user-a'
 ```
 
 This configuration:
@@ -127,12 +127,12 @@ authentication:
 
     # List one or more keys in plaintext separated by commas. Each key corresponds to a specific user identity below.
     allowed_keys:
-      - admin-key
+      - user-a-key
       - viewer-key
 
     # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
     users:
-      - admin-user
+      - user-a
       - viewer-user
 ```
 

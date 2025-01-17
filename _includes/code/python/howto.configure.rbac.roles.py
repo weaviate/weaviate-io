@@ -11,7 +11,7 @@ admin_client = weaviate.connect_to_local(
     port=8580,
     grpc_port=50551,
     # START AdminClient
-    auth_credentials=Auth.api_key("admin-key")
+    auth_credentials=Auth.api_key("user-a-key")
 )
 # END AdminClient
 
