@@ -51,6 +51,19 @@ A clean (without fails) execution has two phases:
 
 </details>
 
+### Collection definition requests in queries
+
+:::info Added in `v1.28.3`
+:::
+
+Some queries require the collection definition. Prior to `v1.28.3`, every such query led to the local (requesting) node to fetch the collection definition from the leader node. This meant that the definition was strongly consistent, but it could lead to additional traffic and load.
+
+From `v1.28.3`, the `COLLECTION_RETRIEVAL_STRATEGY` [environment variable](../../config-refs/env-vars.md#multi-node-instances) can be set to `LeaderOnly`, `LocalOnly`, or `LeaderOnMismatch`.
+
+- `LeaderOnly` (default): Always requests the definition from the leader node. This is the most consistent behavior but can lead to higher intra-cluster traffic.
+- `LocalOnly`: Always use the local definition; leading to eventually consistent behavior while reducing intra-cluster traffic.
+- `LeaderOnMismatch`: Checks if the local definition is outdated, and requests the definition if necessary. Balances consistency and intra-cluster traffic.
+
 ## Data objects
 
 Weaviate uses two-phase commits for objects, adjusted for the consistency level. For example for a `QUORUM` write (see below), if there are 5 nodes, 3 requests will be sent out, each of them using a 2-phase commit under the hood.
