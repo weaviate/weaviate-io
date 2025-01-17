@@ -547,7 +547,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecJina({
+    weaviate.configure.vectorizer.text2VecJinaAI({
       name: 'title_vector',
       sourceProperties: ['title'],
     }),
@@ -571,7 +571,7 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecJina({
+    weaviate.configure.vectorizer.text2VecJinaAI({
       name: 'title_vector',
       sourceProperties: ['title'],
       model: 'jina-embeddings-v3'
@@ -595,9 +595,9 @@ await client.collections.create({
   ],
   // highlight-start
   vectorizers: [
-    weaviate.configure.vectorizer.text2VecJina({
+    weaviate.configure.vectorizer.text2VecJinaAI({
       name: 'title_vector',
-      sourceProperties: ['title'],
+      sourceProperties: ['title'],    
       // model: 'jina-embeddings-v3-small-en'
       // dimensions: 512,  // e.g. 1024, 256, 64  Support for this parameter is coming soon (Only applicable for some models)
     },
