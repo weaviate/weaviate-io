@@ -166,7 +166,14 @@ console.log(result.properties['points']);
 // =========================================
 {
 // HybridExample
-// TS client support coming soon
+const jeopardy = client.collections.get("JeopardyQuestion")
+
+const response = await jeopardy.aggregate.hybrid("animals in space", {
+    objectLimit: 10,
+    returnMetrics: jeopardy.metrics.aggregate("points").number(["sum"])
+})
+
+console.log("", response.properties['points'].sum)
 // END HybridExample
 
   // Test

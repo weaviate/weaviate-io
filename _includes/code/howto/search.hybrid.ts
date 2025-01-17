@@ -229,11 +229,11 @@ for (let object of result.objects) {
 // VectorSimilarity
 
 const result = await jeopardy.query.hybrid('California', {
+  maxVectorDistance: 0.4, // Maximum threshold for the vector search component
   vector: {
     query: 'large animal',
-    moveAway: { force: 0.5, concepts:['mamal', 'terrestrial'] }
+    moveAway: { force: 0.5, concepts:['mammal', 'terrestrial'] }
   },
-  // maxVectorDistance support coming soon
   alpha: 0.75,
   limit: 5,
   
