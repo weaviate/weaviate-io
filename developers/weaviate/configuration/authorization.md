@@ -136,7 +136,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,user-c'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
       # Enable RBAC
@@ -224,7 +224,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a,user-c'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
       # Enable admin list

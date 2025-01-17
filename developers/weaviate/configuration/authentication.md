@@ -100,7 +100,7 @@ services:
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key'
 
       # List one or more user identities, separated by commas. Each identity corresponds to a specific key above.
-      AUTHENTICATION_APIKEY_USERS: 'user-b,user-a'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
 ```
 
 This configuration:
