@@ -19,7 +19,7 @@ Enter Large Language Models (LLMs), a world changing technology that enables tra
 
 The internet cut out the newspaper, now content can be delivered directly to you. Now we are going a step further, modifying content itself based on your personal preferences! Not only are we able to bring content with a great UX to people, but now we can generate content, in real time, based on existing information in the database to create an ever better and more personalized experience!
 
-In this article, we are going to illustrate the concept of **Generative Feedback Loops with LLMs**. Retrieving information from the Weaviate Vector Database to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
+In this article, we are going to illustrate the concept of **Generative Feedback Loops with LLMs**. Retrieving information from the Weaviate [Vector Database](/blog/what-is-a-vector-database/) to prompt Weaviate’s generative module and then vectorizing and saving these generations **back** into the database! Now we can semantically search through the generated content, as well as add symbolic metadata about it.
 
 We will step into the shoes of AirBnB and implement a Generative Feedback Loop to process `Listing` objects. This shows how LLMs let us supercharge user experience by creating custom advertisements based on user preferences. We retrieve information about users from the DB, give that + information about the Listing to the LLM, and save the resulting custom advertisement back to the database.
 

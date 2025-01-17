@@ -16,9 +16,6 @@ import TSCodeEduDemoLegacy from '!!raw-loader!/_includes/code/starter-guides/gen
 import TSCodeLocal from '!!raw-loader!/_includes/code/starter-guides/generative_local.ts';
 import TSCodeLocalLegacy from '!!raw-loader!/_includes/code/starter-guides/generative_local-v2.ts';
 
-
-## Overview
-
 :::info Related pages
 - [Which Weaviate is right for me?](./which-weaviate.md)
 - [How-to: Retrieval augmented generation](../search/generative.md)
@@ -85,7 +82,7 @@ Connect to the instance like so, remembering to replace the API key for the LLM 
   text={PyCodeV3}
   startMarker="# Instantiation"
   endMarker="# END Instantiation"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -102,7 +99,7 @@ Connect to the instance like so, remembering to replace the API key for the LLM 
   text={TSCodeEduDemoLegacy}
   startMarker="// Instantiation"
   endMarker="// END Instantiation"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 
@@ -128,7 +125,7 @@ Before we can generate text, we need to retrieve relevant data. Let's retrieve t
   text={PyCodeV3}
   startMarker="# DataRetrieval"
   endMarker="# END DataRetrieval"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -144,7 +141,7 @@ Before we can generate text, we need to retrieve relevant data. Let's retrieve t
   text={TSCodeEduDemoLegacy}
   startMarker="// DataRetrieval"
   endMarker="// END DataRetrieval"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -198,7 +195,7 @@ Run the following code snippet, and inspect the results:
   text={PyCodeV3}
   startMarker="# TransformResultSets"
   endMarker="# END TransformResultSets"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -214,7 +211,7 @@ Run the following code snippet, and inspect the results:
   text={TSCodeEduDemoLegacy}
   startMarker="// TransformResultSets"
   endMarker="// END TransformResultSets"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -267,7 +264,7 @@ Note that in this query, we apply a `single prompt` parameter. This means that t
   text={PyCodeV3}
   startMarker="# TransformIndividualObjects"
   endMarker="# END TransformIndividualObjects"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -283,7 +280,7 @@ Note that in this query, we apply a `single prompt` parameter. This means that t
   text={TSCodeEduDemoLegacy}
   startMarker="// TransformIndividualObjects"
   endMarker="// END TransformIndividualObjects"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -354,7 +351,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   text={PyCodeV3}
   startMarker="# ListModules"
   endMarker="# END ListModules"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -370,7 +367,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   text={TSCodeEduDemoLegacy}
   startMarker="// ListModules"
   endMarker="// END ListModules"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -458,7 +455,7 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
   text={PyCodeV3}
   startMarker="# ChunkText"
   endMarker="# END ChunkText"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -474,7 +471,7 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
   text={TSCodeLocalLegacy}
   startMarker="// ChunkText"
   endMarker="// END ChunkText"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -501,7 +498,7 @@ The below collection definition for the `GitBookChunk` collection specifies `tex
   text={PyCodeV3}
   startMarker="# CreateClass"
   endMarker="# END CreateClass"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -517,7 +514,7 @@ The below collection definition for the `GitBookChunk` collection specifies `tex
   text={TSCodeLocalLegacy}
   startMarker="// CreateClass"
   endMarker="// END CreateClass"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -540,7 +537,7 @@ Now, we can import the data into Weaviate.
   text={PyCodeV3}
   startMarker="# ImportData"
   endMarker="# END ImportData"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -556,7 +553,7 @@ Now, we can import the data into Weaviate.
   text={TSCodeLocalLegacy}
   startMarker="// ImportData"
   endMarker="// END ImportData"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -577,7 +574,7 @@ Once this is done, you should have imported a collection of chunks from the chap
   text={PyCodeV3}
   startMarker="# CountObjects"
   endMarker="# END CountObjects"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -593,7 +590,7 @@ Once this is done, you should have imported a collection of chunks from the chap
   text={TSCodeLocalLegacy}
   startMarker="// CountObjects"
   endMarker="// END CountObjects"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -622,7 +619,7 @@ Single prompts tell Weaviate to generate text based on each retrieved object and
   text={PyCodeV3}
   startMarker="# SinglePrompt"
   endMarker="# END SinglePrompt"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -638,7 +635,7 @@ Single prompts tell Weaviate to generate text based on each retrieved object and
   text={TSCodeLocalLegacy}
   startMarker="// SinglePrompt"
   endMarker="// END SinglePrompt"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -677,7 +674,7 @@ In this example, we prompt the language model to write a trivia tweet based on t
   text={PyCodeV3}
   startMarker="# GroupedTask"
   endMarker="# END GroupedTask"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -693,7 +690,7 @@ In this example, we prompt the language model to write a trivia tweet based on t
   text={TSCodeLocalLegacy}
   startMarker="// GroupedTask"
   endMarker="// END GroupedTask"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -726,7 +723,7 @@ In this example, we search the chapter for passages that relate to the states of
   text={PyCodeV3}
   startMarker="# NearTextGroupedTask"
   endMarker="# END NearTextGroupedTask"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -742,7 +739,7 @@ In this example, we search the chapter for passages that relate to the states of
   text={TSCodeLocalLegacy}
   startMarker="// NearTextGroupedTask"
   endMarker="// END NearTextGroupedTask"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>
@@ -771,7 +768,7 @@ Now, simply by changing the search query, we can generate similar content about 
   text={PyCodeV3}
   startMarker="# SecondNearTextGroupedTask"
   endMarker="# END SecondNearTextGroupedTask"
-  language="py"
+  language="pyv3"
 />
 </TabItem>
 <TabItem value="js" label="JS/TS Client v3">
@@ -787,7 +784,7 @@ Now, simply by changing the search query, we can generate similar content about 
   text={TSCodeLocalLegacy}
   startMarker="// SecondNearTextGroupedTask"
   endMarker="// END SecondNearTextGroupedTask"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 </Tabs>

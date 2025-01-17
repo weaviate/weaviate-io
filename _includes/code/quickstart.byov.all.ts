@@ -15,34 +15,49 @@ const client: WeaviateClient = await weaviate.connectToWeaviateCloud(weaviateURL
   }
 )
 
-// Class definition object. Weaviate's autoschema feature will infer properties when importing.
+// Uncomment to delete all JeopardyQuestion objects if you see a "Name 'JeopardyQuestion' already used" error
+// await client.collections.deleteAll('JeopardyQuestion');
+
+// Collection definition object. Weaviate's autoschema feature will infer properties when importing.
 const newCollection = await client.collections.create({
-  name: 'Question',
+  name: 'JeopardyQuestion',
   vectorizers: vectorizer.none(),
 });
 
 console.log('We have a new collection!', newCollection['name']);
-// Uncomment to delete all Question objects if you see a "Name 'Question' already used" error
-// await client.collections.deleteAll('Question');
 
 // Import data from the remote URL
 type JeopardyItem = {
   Answer: string;
   Question: string;
   Category: string;
-  Vector: number[],
+  vector: number[],
 }
 
 async function getJsonData(): Promise<JeopardyItem[]> {
   const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json');
-  return file.json() as unknown as JeopardyItem[];
+  return await file.json();
 }
 
 async function importQuestionsWithVectors() {
   // Get the questions directly from the URL
   const data = await getJsonData();
   const jeopardyCollection = client.collections.get('JeopardyQuestion');
-  const res = await jeopardyCollection.data.insertMany(data)
+  let itemsToInsert = [];
+
+  for (const item of data) {
+    // Construct the object to add to insert with insertMany()
+    itemsToInsert.push({
+      properties: {
+        answer: item.Answer,
+        question: item.Question,
+        category: item.Category,
+      },
+      vectors: item.vector,
+    })
+  }
+
+  const res = await jeopardyCollection.data.insertMany(itemsToInsert)
   console.log(`Finished importing ${res.allResponses.length} objects.`);
 }
 
@@ -56,4 +71,4 @@ const result = await jeopardyCollection.query.nearVector(weaviateVector, {
   returnProperties: ['question', 'answer', 'category'],
 })
 
-console.log(result)
+console.log(result.objects)

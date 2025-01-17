@@ -12,8 +12,9 @@ export default function Details() {
           <h2>A database to support all of your AI initiatives</h2>
           <p>
             AI use cases have diverse needs for usage patterns, data privacy,
-            and performance. Weaviate’s flexible architecture adapts to various
-            use cases, supporting more development teams across the AI journey.
+            and performance. Weaviate’s AI infrastructure solutions create a
+            flexible database architecture that adapts to various use cases,
+            supporting more development teams across the AI journey.
           </p>
         </div>
         <div className={styles.topBoxContainer}>

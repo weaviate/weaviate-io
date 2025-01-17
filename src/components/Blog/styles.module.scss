@@ -12,3 +12,15 @@
     top: 100px;
   }
 }
+
+[data-theme='light'] {
+  .blogHome {
+    color: #525860;
+  }
+}
+
+[data-theme='dark'] {
+  .blogHome {
+    color: #ffffff;
+  }
+}

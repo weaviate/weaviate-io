@@ -6,9 +6,6 @@ image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 
-
-## Overview
-
 This tutorial will guide you through the process of defining a schema for your data, including commonly used settings and key considerations.
 
 :::info Prerequisites

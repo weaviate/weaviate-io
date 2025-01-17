@@ -197,11 +197,41 @@ export const unitData = {
       "Connect to the Weaviate instance using the Python client."
     ]
   },
+  "docker_mm_basics_ts": {
+    title: "Weaviate for multimodal data",
+    body: "Create a Weaviate instance for multimodal data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance with a multimodal module."
+    ],
+    learningOutcomes: [
+      "Create a Weaviate instance with a multimodal module using Docker.",
+      "Install the latest Weaviate TypeScript client.",
+      "Connect to the Weaviate instance using the Typescript client."
+    ]
+  },
   "mm_collections": {
     title: "Populate the database",
     body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_multimodal_data/mm_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import multimodal data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "mm_collections_ts": {
+    title: "Populate the database",
+    body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import multimodal data using batch imports."
@@ -226,11 +256,40 @@ export const unitData = {
       "Perform searches through multimodal data in different ways.",
     ]
   },
+  "mm_searches_ts": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform multimodal searches."
+    ],
+    learningOutcomes: [
+      "Describe how multimodal search works at a high level.",
+      "Perform searches through multimodal data in different ways.",
+    ]
+  },
   "mm_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/starter_multimodal_data/mm_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+  "mm_rag_ts": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/starter_multimodal_data/mm_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."
@@ -1006,5 +1065,82 @@ export const unitData = {
     ],
     owner: "jp",
     reviewer: "jp"
+  },
+  client_server: {
+    title: "Building client-server applications",
+    body: "Learn how to build fullstack applications with the Weaviate Typescript client that use the client-server approach with modern web tools.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/client-server",
+    badgeType: "practical",
+    learningGoals: [
+      "What the client-server approach is and why we use it.",
+      "Implementing Semantic search in Fullstack Web frameworks with Weaviate using the client-server approach.",
+      "Implementing Semantic search in Backend Web frameworks with Weaviate using the client-server approach.",
+    ],
+    learningOutcomes: [
+      "Explain where in the client-server architecture of your Web Applications Weaviate can be used.",
+      "Integrate semantic search functionality into new or existing Backend and Fullstack Web Applications.",
+      "Initialize and use Weaviate in your Fullstack or Backend Web Frameworks."
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  using_ml_models: {
+    title: "Using Machine Learning Models",
+    body: "Understand the fundamental concepts of generative and embedding models, their configuration and application in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/using-ml-models",
+    badgeType: "mixed",
+    learningGoals: [
+      "A high level understanding of embedding and generative models.",
+      "Distinguish between text and multimodal embedding types.",
+      "Configuring Weaviate to use embedding and generative models.",
+      "Making semantic and generative searches in Weaviate using JavaScript.",
+    ],
+    learningOutcomes: [
+      "Differentiate between embedding and generative machine learning models.",
+      "Configure Weaviate to use text and multimodal embedding models for semantic search.",
+      "Configure Weaviate to use supported generative models for generative search."
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  want_stack: {
+    title: "Understanding the WANT stack?",
+    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/js/standalone/want-stack",
+    badgeType: "practical",
+    learningGoals: [
+      "What chunking is",
+    ],
+    learningOutcomes: [
+      "Describe chunking at a high level",
+      "Explain the impact of chunking in vector search and retrieval augmented generation",
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
+  },
+  which_search_js: {
+    title: "Which search is right for me?",
+    body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
+    buttonType: "Click here",
+    badgeType: "mixed",
+    buttonURL: "/developers/academy/js/standalone/which-search",
+    learningGoals: [
+      "Impact of search type on search quality.",
+      "Impact of search type on search performance.",
+      "How the dataset and chunking affect search",
+      "Key considerations for selecting a search type.",
+      "Strategies to apply to improve search quality.",
+    ],
+    learningOutcomes: [
+      "Broadly recite pros and cons of each search type (vector, keyword and hybrid).",
+      "Suggest a suitable search type given a description of the dataset and aim.",
+      "Suggest alternative or additional search strategies to improve search quality.",
+      "Outline broad methods to evaluate search quality."
+    ],
+    owner: "daniel",
+    reviewer: "daniel"
   }
 };

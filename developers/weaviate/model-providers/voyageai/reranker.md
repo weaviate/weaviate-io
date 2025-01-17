@@ -170,6 +170,7 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 ### Other integrations
 
 - [Voyage AI embedding models + Weaviate](./embeddings.md).
+- [Voyage AI multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 
 ### Code examples
 

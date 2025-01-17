@@ -220,3 +220,18 @@ a.navbar__item.navbar__link[href='/developers/weaviate/api/rest'] {
   margin-right: auto;
   width: 30%;
 }
+
+.callout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #61bd73;
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0 2px;
+}

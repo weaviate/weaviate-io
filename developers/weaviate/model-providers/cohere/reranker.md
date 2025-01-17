@@ -186,7 +186,8 @@ For further details on model parameters, see the [Cohere API documentation](http
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md).
+- [Cohere text embedding models + Weaviate](./embeddings.md).
+- [Cohere multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 - [Cohere generative models + Weaviate](./generative.md).
 
 ### Code examples

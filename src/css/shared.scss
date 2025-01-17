@@ -17,11 +17,31 @@
 
 // fonticon links
 a {
-  .fab, .fas, .far {
+  .fab,
+  .fas,
+  .far {
     color: var(--site-link-font-color);
   }
 }
 
 .page-title {
   font-family: var(--site-font-fun-heading-family) !important;
+}
+
+.subprocessors {
+  color: #130c49;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 80%;
+  margin: auto;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+
+    table {
+      width: 100%;
+    }
+  }
 }

@@ -39,6 +39,23 @@ Named vector collections support hybrid search, but only for one vector at a tim
 
 [Keyword search](/developers/weaviate/search/bm25) syntax does not change if a collection has named vectors.
 
+### Query multiple named vectors
+
+:::info Added in `v1.26`
+:::
+
+Where multiple named vectors are defined in a collection, you can query them in a single search. This is useful for comparing the similarity of an object to multiple named vectors.
+
+This is called a "multi-target vector search".
+
+In a multi-target vector search, you can specify:
+
+- The target vectors to search
+- The query(ies) to compare to the target vectors
+- The weights to apply to each distance (raw, or normalized) for each target vector
+
+Read more in [How-to: Multi-target vector search](../../search/multi-vector.md).
+
 ## Related pages
 
 - [How-to: manage data](/developers/weaviate/manage-data/collections#define-multiple-named-vectors): Configure collections

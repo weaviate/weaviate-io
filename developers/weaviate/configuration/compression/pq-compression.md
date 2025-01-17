@@ -71,7 +71,7 @@ To configure PQ in a collection, use the [PQ parameters](./pq-compression.md#pq-
        text={PyCodeV3}
        startMarker="# START CollectionWithAutoPQ"
        endMarker="# END CollectionWithAutoPQ"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -89,7 +89,7 @@ To configure PQ in a collection, use the [PQ parameters](./pq-compression.md#pq-
        text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
        endMarker="// END CollectionWithAutoPQ"
-       language="ts"
+       language="tsv2"
      />
   </TabItem>
 
@@ -144,7 +144,7 @@ Follow these steps to manually enable PQ.
        text={PyCodeV3}
        startMarker="# START InitialSchema"
        endMarker="# END InitialSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -162,7 +162,7 @@ Follow these steps to manually enable PQ.
        text={TSCodeLegacy}
        startMarker="// START InitClassDef"
        endMarker="// END InitClassDef"
-       language="ts"
+       language="tsv2"
      />
   </TabItem>
 
@@ -218,7 +218,7 @@ To enable PQ, update your collection definition as shown below. For additional c
        text={PyCodeV3}
        startMarker="# START UpdateSchema"
        endMarker="# END UpdateSchema"
-       language="py"
+       language="pyv3"
      />
   </TabItem>
 
@@ -236,7 +236,7 @@ To enable PQ, update your collection definition as shown below. For additional c
        text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
        endMarker="// END UpdateSchema"
-       language="ts"
+       language="tsv2"
      />
   </TabItem>
 
@@ -323,7 +323,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       text={PyCodeV3}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -341,7 +341,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       text={TSCodeLegacy}
       startMarker="// START GetSchema"
       endMarker="// END GetSchema"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 

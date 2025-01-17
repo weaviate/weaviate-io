@@ -28,7 +28,10 @@ export default function ProductPage() {
 
   return (
     <div className="custom-page noBG">
-      <Layout title="Pricing" description="Pricing models">
+      <Layout
+        title="Vector Database Pricing"
+        description="Compare pricing options for our different levels of vector database services and solutions."
+      >
         <PricingHeader />
 
         {selectedType === 'serverless' ? (

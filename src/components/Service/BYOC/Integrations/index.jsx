@@ -18,7 +18,7 @@ export default function Integrations() {
             <h3>Run Weaviate within your VPC</h3>
             <p>
               Take advantage of all the best{' '}
-              <Link to="/blog/why-is-vector-search-so-fast">vector search</Link>{' '}
+              <Link to="/blog/vector-search-explained">vector search</Link>{' '}
               and RAG techniques while ensuring your data stays safe within your
               own cloud environment.
             </p>

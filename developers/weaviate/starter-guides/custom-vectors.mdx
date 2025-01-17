@@ -14,7 +14,7 @@ import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
 import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
-Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
+Weaviate is a vector database. [Vector databases](/blog/what-is-a-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
 
 When you import data, you can pass pre-existing vectors or generate new ones. "Bring your own vectors" means you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
 
@@ -138,7 +138,7 @@ At import time, Weaviate uses the vectors you provide even if the collection spe
 
 ## Import data and vectors
 
-For large datasets, batch import is more efficient than importing individual objects. This [batch import](/developers/weaviate/tutorials/import#batch-import-process) code imports the question objects and their vectors.
+For large datasets, batch import is more efficient than importing individual objects. This batch import code imports the question objects and their vectors.
 
 import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions-and-vectors.mdx'
 
@@ -190,7 +190,7 @@ This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector)
   text={ByovAllTsCodeLegacy}
   startMarker="// Query using nearVector"
   endMarker="END-OF-FILE"
-  language="ts"
+  language="tsv2"
 />
 </TabItem>
 <TabItem value="curl" label="Curl">

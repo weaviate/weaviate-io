@@ -7,7 +7,7 @@ image: og/docs/integrations/provider_integrations_transformers.jpg
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->
 
-Hugging Face's Transformers library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates with the Transformers library, allowing users to leverage compatible models directly within the Weaviate database.
+Hugging Face's Transformers library can be used with a wide range of models for natural language processing. Weaviate seamlessly integrates with the Transformers library, allowing users to leverage compatible models directly from the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 
@@ -41,12 +41,6 @@ Go to the relevant integration page to learn how to configure Weaviate with the 
 - [Text Embeddings (custom image)](./embeddings-custom-image.md)
 - [Multimodal Embeddings](./embeddings-multimodal.md)
 - [Multimodal Embeddings (custom image)](./embeddings-multimodal-custom-image.md)
-
-## Other third party integrations
-
-import IntegrationLinkBack from '/_includes/integrations/link-back.mdx';
-
-<IntegrationLinkBack/>
 
 ## Questions and feedback
 

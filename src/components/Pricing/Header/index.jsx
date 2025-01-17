@@ -8,7 +8,7 @@ export default function PricingHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <p className={styles.topText}>Pricing</p>
+          <p className={styles.topText}>Vector Database Pricing</p>
           <h1>
             All the power of the AI-native vector<br></br> database, without the
             overhead

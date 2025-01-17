@@ -408,6 +408,20 @@
   }
 }
 
+.finance {
+  background: url('/img/site/header-bg.svg') #130c49;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 900px) {
+    br {
+      display: none;
+    }
+  }
+}
+
 .bento06 {
   width: 65.625rem;
   height: 18.875rem;

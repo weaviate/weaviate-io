@@ -14,4 +14,5 @@ Learn about how Weaviate integrates with these solutions:
 * [Context Data](/developers/integrations/data-platforms/context-data/)
 * [Databricks](/developers/integrations/data-platforms/databricks/)
 * [Firecrawl](/developers/integrations/data-platforms/firecrawl/)
+* [IBM](/developers/integrations/data-platforms/ibm/)
 * [Unstructured](/developers/integrations/data-platforms/unstructured)

@@ -4,6 +4,7 @@ set -e
 # A map of the github contributors that connects to @Slack handles
 declare -A git_slack_map
 git_slack_map=(
+    ["Abdel Rodríguez"]="<@U03R5ELDHHB>"
     ["Andrzej Liszka"]="<@U036Y4GPB6W>"
     ["Bob van Luijt"]="<@U6P955HC4>"
     ["Charlie Harr"]="<@U044XTHRVFA>"
@@ -26,15 +27,19 @@ git_slack_map=(
     ["Marcin Antas"]="<@U01E5BJ3UV7>"
     ["m-newhauser"]="<@U07K9AJCG2F>"
     ["Mohamed Shahin"]="<@U05V4HPJ3M0>"
+    ["Nate Wilkinson"]="<@U06SCMA8ZB9>"
     ["Parker Duckworth"]="<@U034QPLGSCU>"
     ["Peter Schramm"]="<@U03MWHJQ7PX>"
     ["Philip Vollet"]="<@U0573N5V97A>"
     ["Sebastian Witalec"]="<@U03DENV56CR>"
     ["Shan-Weaviate"]="<@U05DKAH2ZL1>"
+    ["Spiros"]="<@U07G6HDV0HK>"
     ["Stefan Bogdan"]="<@U01DPKTVA93>"
     ["Svitlana"]="<@U03DQTXFDHS>"
     ["svitlana-sm"]="<@U03DQTXFDHS>"
     ["thomashacker"]="<@U056E1ZEM3L>"
+    ["TuanaCelik"]="<@U07TUMJ1SUS>"
+    ["Victoria Slocum"]="<@U05K0QFGRGV>"
     ["Wera"]="<@U043TKSEU5V>"
     ["Zain Hasan"]="<@U043TKSJQF9>"
     ["Mohamed Shahin"]="<@U05V4HPJ3M0>"

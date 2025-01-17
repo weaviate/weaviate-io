@@ -36,7 +36,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
       text={PyCodeV3}
       startMarker="# GetNearTextPython"
       endMarker="# END GetNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -54,7 +54,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
       text={TSCodeLegacy}
       startMarker="// GetNearText"
       endMarker="// END GetNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -126,7 +126,7 @@ This example uses a base64 representation of an image.
       text={ImgSrchPyCodeV3}
       startMarker="# START search with base64"
       endMarker="# END search with base64"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -144,7 +144,7 @@ This example uses a base64 representation of an image.
       text={ImgSrchTSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -180,7 +180,7 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
       text={PyCodeV3}
       startMarker="# GetNearObjectPython"
       endMarker="# END GetNearObjectPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -198,7 +198,7 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
       text={TSCode}
       startMarker="// GetNearObject"
       endMarker="// END GetNearObject"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -259,7 +259,7 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
       text={PyCodeV3}
       startMarker="# GetNearVectorPython"
       endMarker="# END GetNearVectorPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -277,7 +277,7 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
       text={TSCodeLegacy}
       startMarker="// GetNearVector"
       endMarker="// END GetNearVector"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -340,7 +340,7 @@ To search a collection that has [named vectors](../config-refs/schema/multi-vect
       text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -358,7 +358,7 @@ To search a collection that has [named vectors](../config-refs/schema/multi-vect
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -423,7 +423,7 @@ To set a similarity threshold between the search and target vectors, define a ma
       text={PyCodeV3}
       startMarker="# GetWithDistancePython"
       endMarker="# END GetWithDistancePython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -441,7 +441,7 @@ To set a similarity threshold between the search and target vectors, define a ma
       text={TSCodeLegacy}
       startMarker="// GetWithDistance"
       endMarker="// END GetWithDistance"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -503,7 +503,7 @@ Optionally, use `offset` to paginate the results.
       text={PyCodeV3}
       startMarker="# GetLimitOffsetPython"
       endMarker="# END GetLimitOffsetPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -521,7 +521,7 @@ Optionally, use `offset` to paginate the results.
       text={TSCodeLegacy}
       startMarker="// GetLimitOffset"
       endMarker="// END GetLimitOffset"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -572,7 +572,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       text={PyCodeV3}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
-      language="py"
+      language="pyv3"
     />
   </TabItem>
 
@@ -590,7 +590,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
       text={TSCodeLegacy}
       startMarker="// START Autocut"
       endMarker="// END Autocut"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -655,7 +655,7 @@ Use a property or a cross-reference to group results. To group returned objects,
       text={PyCodeV3}
       startMarker="# GetWithGroupbyPython"
       endMarker="# END GetWithGroupbyPython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -673,7 +673,7 @@ Use a property or a cross-reference to group results. To group returned objects,
       text={TSCodeLegacy}
       startMarker="// GetWithGroupBy"
       endMarker="// END GetWithGroupBy"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
@@ -738,7 +738,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
       text={PyCodeV3}
       startMarker="# GetWithWherePython"
       endMarker="# END GetWithWherePython"
-      language="python"
+      language="pyv3"
     />
   </TabItem>
 
@@ -756,7 +756,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
       text={TSCodeLegacy}
       startMarker="// GetWithFilter"
       endMarker="// END GetWithFilter"
-      language="ts"
+      language="tsv2"
     />
   </TabItem>
 
