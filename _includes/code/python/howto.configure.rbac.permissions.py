@@ -85,6 +85,36 @@ admin_client.roles.create(role_name="viewer_role_target_collections", permission
 admin_client.roles.assign_to_user(role_names="viewer_role_target_collections", user="user-c")
 # END ViewerPermissionDefinition
 
+# Clean slate - delete `tenant_manager` role if exists
+admin_client.roles.delete("tenant_manager")
+
+# START MTPermissionsExample
+permissions = [
+    Permissions.collections(
+        collection="TargetCollection_*",
+        create_collection=True,
+        read_config=True,
+        update_config=True,
+        delete_collection=True
+    ),
+    # Without the below permission, the user would not
+    # be able to create tenants in collections starting with "TargetCollection_"
+    Permissions.tenants(
+        collection="TargetCollection_*",
+        create=True,
+        read=True,
+        update=True,
+        delete=False
+    )
+]
+
+admin_client.roles.create(
+    role_name="tenant_manager", permissions=permissions
+)
+
+admin_client.roles.assign_to_user(role_names="tenant_manager", user="user-c")
+# END MTPermissionsExample
+
 # ===== TEST ===== basic checks to see if the role was created
 user_permissions = admin_client.roles.by_user("user-c")
 

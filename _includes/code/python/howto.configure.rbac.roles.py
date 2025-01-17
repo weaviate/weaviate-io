@@ -15,9 +15,12 @@ admin_client = weaviate.connect_to_local(
 )
 # END AdminClient
 
-jane_client = weaviate.connect_to_local(
-    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("jane-key")
+custom_user_client = weaviate.connect_to_local(
+    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-c-key")
 )
+
+admin_client.roles.delete("devrel")
+admin_client.roles.delete("devrel-admin")
 
 # # START CreateRole
 # admin_client.roles.create(role_name="devrel")
@@ -82,16 +85,16 @@ admin_client.roles.add_permissions(permissions=permissions, role_name="devrel-ad
 
 
 # START AssignRole
-admin_client.roles.assign_to_user(role_names="devrel", user="jane-doe")
+admin_client.roles.assign_to_user(role_names="devrel", user="user-c")
 # END AssignRole
-assert "devrel" in admin_client.roles.by_user(user="jane-doe")
+assert "devrel" in admin_client.roles.by_user(user="user-c")
 
 # START ListCurrentUserRoles
 print(admin_client.roles.of_current_user())
 # END ListCurrentUserRoles
 
 # START ListUserRoles
-user_roles = admin_client.roles.by_user(user="jane-doe")
+user_roles = admin_client.roles.by_user(user="user-c")
 
 for role in user_roles:
     print(role)
@@ -112,7 +115,7 @@ assigned_users = admin_client.roles.assigned_users(role_name="devrel")
 for user in assigned_users:
     print(user)
 # END AssignedUsers
-assert "jane-doe" in assigned_users
+assert "user-c" in assigned_users
 
 # START ListAllRoles
 all_roles = admin_client.roles.list_all()
@@ -140,13 +143,13 @@ admin_client.roles.remove_permissions(
 # END RemovePermissions
 
 # START RevokeRoles
-admin_client.roles.revoke_from_user(role_names=["devrel"], user="jane-doe")
+admin_client.roles.revoke_from_user(role_names=["devrel"], user="user-c")
 # END RevokeRoles
-assert "devrel" not in admin_client.roles.by_user(user="jane-doe")
+assert "devrel" not in admin_client.roles.by_user(user="user-c")
 
 # START DeleteRole
 admin_client.roles.delete(role_name="devrel")
 # END DeleteRole
 
 admin_client.close()
-jane_client.close()
+custom_user_client.close()

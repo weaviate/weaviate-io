@@ -135,7 +135,7 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
       AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
@@ -223,7 +223,7 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-b-key,user-a-key,user-c-key'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
       AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
