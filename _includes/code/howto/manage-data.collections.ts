@@ -25,10 +25,10 @@ let result
 
 
 /*
-// START UpdateCollection
+// START UpdateCollection // START UpdateReranker // START UpdateGenerative
 import { reconfigure } from 'weaviate-client';
 
-// END UpdateCollection
+// END UpdateCollection // END UpdateReranker // END UpdateGenerative
 */
 
 // START UpdateCollection // START ReadOneCollection // START ModifyParam
@@ -451,12 +451,12 @@ await client.collections.delete(collectionName)
 // ===============================================
 // ===== CREATE A COLLECTION WITH A RERANKER MODULE =====
 // ===============================================
-
+/*
 // START SetReranker
-// import { vectorizer, reranker } from 'weaviate-client';
+import { vectorizer, reranker } from 'weaviate-client';
 
 // END SetReranker
-
+/*
 // START SetReranker
 await client.collections.create({
   name: 'Article',
@@ -707,3 +707,67 @@ await articles.config.update({
 })
 // highlight-end
 // END UpdateCollection
+
+// ===============================================
+// ===== UPDATE A COLLECTION'S RERANKER MODULE =====
+// ===============================================
+
+client.collections.delete("Article")
+
+
+await client.collections.create({
+    name: "Article",
+    vectorizers: vectorizer.text2VecOpenAI(),
+    // highlight-start
+    reranker: configure.reranker.voyageAI()
+    // highlight-end
+})
+
+// START UpdateReranker
+const collection = client.collections.get('Article')
+
+await collection.config.update({
+    // highlight-start
+    reranker: reconfigure.reranker.cohere()  // Update the reranker module
+    // highlight-end
+})
+// END UpdateReranker
+
+// Test
+let config = await collection.config.get()
+assert.equal(config.reranker?.name,"reranker-cohere")
+
+// Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+// ===============================================
+// ===== UPDATE A COLLECTION'S GENERATIVE MODULE =====
+// ===============================================
+
+client.collections.delete("Article")
+
+client.collections.create({
+    name: "Article",
+    vectorizers: configure.vectorizer.text2VecOpenAI(),
+    // highlight-start
+    generative: configure.generative.openAI()
+    // highlight-end
+})
+
+// START UpdateGenerative
+const collection = client.collections.get("Article")
+
+await collection.config.update({
+    // highlight-start
+    generative: weaviate.reconfigure.generative.cohere()  // Update the generative module
+    // highlight-end
+})
+// END UpdateGenerative
+
+// Test
+let config = await collection.config.get()
+assert.equal(config.generative?.name, "generative-cohere")
+
+// Delete the collection to recreate it
+client.collections.delete('Article')
