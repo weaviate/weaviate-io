@@ -226,7 +226,9 @@ Collection level settings override default values and general configuration para
 :::info Added in `v1.24`
 :::
 
-You can define multiple named vectors per collection. This allows each object to be represented by multiple vectors, such as a `text` vector and an `image` vector, or a `title` vector and a `body` vector.
+You can define multiple [named vectors](../concepts/data.md#multiple-vectors-named-vectors) per collection. This allows each object to be represented by multiple vectors, each with its own vector index.
+
+As such, each named vector configuration can include its own vectorizer and vector index settings.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
