@@ -36,8 +36,8 @@ export default function Introduction() {
               <span>GUIDE</span>
               <h1 classname={styles.headerTag}>Advanced RAG Techniques</h1>
               <span className={styles.subTitle}>
-                A guide on different techniques to improve the performance of
-                your Retrieval-Augmented Generation applications.
+                A guide to help improve the performance of your
+                Retrieval-Augmented Generation applications.
               </span>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
