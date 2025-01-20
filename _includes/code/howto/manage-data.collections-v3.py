@@ -486,7 +486,7 @@ class_obj = {
     # highlight-end
 }
 
-client.schema.create_class(class_obj)
+client.schema.update_config("Article", class_obj)
 # END UpdateGenerative
 
 # Test
