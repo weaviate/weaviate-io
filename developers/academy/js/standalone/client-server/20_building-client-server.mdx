@@ -1,0 +1,133 @@
+---
+title: Using Backend Web frameworks
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCode from '!!raw-loader!./_snippets/20_backend.js';
+import ClientCode from '!!raw-loader!./_snippets/index.html';
+import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/client-server/_img/backend.jpg';
+
+
+
+This approach involves having two separate tools. One to build your server application; ideally a backend framework and another to build your client application. For this example, we will be using [Express.js](https://expressjs.com/en/starter/hello-world.html) to build a backend server, and [Thunder Client](https://www.thunderclient.com/) to act as a client and make API calls to our backend server.
+
+<img src={WeaviateTypescriptImgUrl} alt="Image alt" width="100%"/>
+
+
+## <i class="fa-solid fa-chalkboard"></i> Building a server
+
+The server will have a single route that accepts a `searchTerm` as a query parameter. 
+
+### 1. Initialize a Node.js application
+
+We will use Express to build our server, in a new directory, run the following command to initialize a new project with Node.js
+
+```bash 
+npm init
+```
+### 2. Install project dependencies
+
+With our project initialized, install `dotenv` to manage environment variables, `express` to build our server and the `weaviate-client` to manage communication with our Weaviate database. 
+
+```bash
+npm install express dotenv weaviate-client
+```
+
+
+### 3. Setup your Weaviate database
+
+We'll start by creating a free sandbox account on [Weaviate Cloud](https://console.weaviate.cloud/). Follow [this guide](https://weaviate.io/developers/wcs/connect) if you have trouble setting up a sandbox project. 
+
+
+You will need your Weaviate cluster URL and API key. If you don't already have one, create a new Cohere [API key](https://dashboard.cohere.com/api-keys), we use Cohere as our [embedding model](../using-ml-models/10_embedding.mdx). When done, add all three to your `.env` file.
+
+
+ <TabItem value="js" label=".env">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START .env"
+      endMarker="// END .env"
+      language="js"
+    />
+  </TabItem>
+
+#### 3.5 Add data to Weaviate
+
+Follow our recipe on [loading data](https://github.com/weaviate/recipes-ts/blob/main/similarity-search/cohere/load.ts) into Weaviate to import data to your Weaviate database. 
+
+### 4. Connecting to Weaviate 
+
+In `config/weaviate.js`, paste the following code. 
+
+ <TabItem value="js" label="weaviate.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START weaviate.js"
+      endMarker="// END weaviate.js"
+      language="js"
+    />
+  </TabItem>
+
+The code above helps us create a connection to our Weaviate instance hosted on Weaviate Cloud.
+
+### 5. Create a Search route
+
+In your project root, create a file called `app.js` and paste the following code in it. 
+
+ <TabItem value="js" label="app.js">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START app.js"
+      endMarker="// END app.js"
+      language="js"
+    />
+  </TabItem>
+
+With this we can run searches on the `/search` route. We use `nearText()` to run our semantic search. 
+
+#### 6. Run your server 
+In your terminal run the following command to start your server.
+
+```bash
+node app.js
+```
+
+Your server should be running on `localhost:3005`. 
+
+
+
+## <i class="fa-solid fa-chalkboard"></i> Building a client Application
+
+With our server built, we can now make a call from a client application. We'll create a basic client application with HTML and JavaScript.
+
+Alternatively, in [Thunder Client](https://www.thunderclient.com/), you can make a call to `http://localhost:3005/search?searchTerm=countries in asia` to query your server.
+
+
+### 1. Create a client application
+
+In your root folder, create a file called `index.html` and paste the following code in it.
+
+<TabItem value="html" label="index.html">
+    <FilteredTextBlock
+      text={ClientCode}
+      startMarker="<!-- client start -->"
+      endMarker="<!-- client stop -->"
+      language="html"
+    />
+  </TabItem>
+
+
+### 2. Run your client application 
+
+In your root folder, run the following in your terminal
+
+```bash
+npx http-server
+```
+
+
+This client application makes a call to the express server you built, displaying results. 
+
+

@@ -159,9 +159,9 @@ export default function Examples() {
           </div>
         </div>
 
-        {/* <div className={styles.ctaContainer}>
+        <div className={styles.ctaContainer}>
           <span>Guides</span>
-          <h2>Build AI-Native Applications with Javascript</h2>
+          <h2>Build AI-Native Applications with JavaScript</h2>
           <div className={styles.innerCta}>
             <p>
               A learning resources hub for builders of all levels. Dive into the
@@ -171,7 +171,7 @@ export default function Examples() {
               Learn More
             </Link>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

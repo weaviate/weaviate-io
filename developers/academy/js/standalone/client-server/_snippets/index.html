@@ -1,0 +1,83 @@
+<!-- client start -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weaviate Search Client</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #17bf36;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #loading {
+            display: none;
+            color: #666;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Semantic Search Results</h1>
+        <button onclick="fetchData()">Search</button>
+        <div id="loading">Loading...</div>
+        <div id="error" class="error"></div>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const resultsDiv = document.getElementById('results');
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            
+            loadingDiv.style.display = 'block';
+            errorDiv.textContent = '';
+            resultsDiv.innerHTML = '';
+
+            try {
+                const response = await fetch('http://localhost:3005/search?searchTerm=countries in asia');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data)
+                
+                data.slice(0, 10).forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h3>${post.properties.title}</h3>
+                        <p>${post.properties.text}</p>
+                    `;
+                    resultsDiv.appendChild(card);
+                });
+            } catch (error) {
+                errorDiv.textContent = `Error: ${error.message}`;
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- client stop -->

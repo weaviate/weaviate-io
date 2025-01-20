@@ -142,7 +142,7 @@ async function migrateData(collection_src: Collection, collection_tgt: Collectio
 
         let objectToInsert = {
             properties: item.properties,
-            vector: item.vectors.default,
+            vectors: item.vectors.default,
             uuid: item.uuid,
         }
 

@@ -168,10 +168,20 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.data}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/academy/py/starter_text_data/">
-                  Work with text data
+                <span>
+                  Work with text data 
+                </span>
+                <span>
+                <p>
+                  <a href="/developers/academy/py/starter_text_data/">
+                  Python
+                </a> / <a href="/developers/academy/js/starter_text_data/">
+                  JavaScript
                 </a>
+                </p>
               </span>
+              </span>
+              
 
               <p>
                 Just bring your text data to Weaviate and it will do the rest.
@@ -200,7 +210,7 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.custom}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/academy/py/starter_custom_vectors">
+                <a href="/developers/weaviate/starter-guides/custom-vectors">
                   Bring your own vectors
                 </a>
               </span>
@@ -230,10 +240,20 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.semantic}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/academy/py/starter_multimodal_data">
+                <span>
                   Multimodality
+                </span>
+                <span>
+                <p>
+                  <a href="/developers/academy/py/starter_multimodal_data">
+                  Python
+                </a> / <a href="/developers/academy/js/starter_multimodal_data">
+                  JavaScript
                 </a>
+                </p>
               </span>
+              </span>
+              
 
               <p>For many, data comes in multiple forms beyond text.</p>
               <p>

@@ -32,7 +32,7 @@
     "name": "Ajay Chavan",
     "title": "Client-Focused SRE",
     "photo": "Ajay.jpg",
-    "team": "applied-research",
+    "team": "delivery",
     "linkedin": "ajaxchavan"
   },
   {
@@ -226,6 +226,13 @@
     "team": "people-and-culture"
   },
   {
+    "name": "Danielle Washington",
+    "title": "Technical Documentation Writer",
+    "photo": "Danielle-Washington.jpg",
+    "linkedin": "dwashington-clouddani",
+    "team": "developer-relations"
+  },
+  {
     "name": "David Street",
     "title": "Full Stack Engineer",
     "photo": "david.jpg",
@@ -325,6 +332,13 @@
     "linkedin": "femke-plantinga-a60b9a172",
     "twitter": "femke_plantinga",
     "team": "developer-growth"
+  },
+  {
+    "name": "Giorgos Kampitakis",
+    "title": "Full Stack Engineer",
+    "photo": "Giorgos.jpg",
+    "linkedin": "gkampitakis",
+    "team": "wcd"
   },
   {
     "name": "Griffin Foster",
@@ -481,6 +495,13 @@
     "photo": "mariska.jpg",
     "linkedin": "mariska-tunc-538168103",
     "team": "finance"
+  },
+  {
+    "name": "Mary Ann Casugod",
+    "title": "Product Support Engineer",
+    "photo": "Mary-Ann.jpg",
+    "linkedin": "mary-ann-casugod-362a5",
+    "team": "delivery"
   },
   {
     "name": "Mary Newhauser",
