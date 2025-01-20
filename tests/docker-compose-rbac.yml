@@ -26,7 +26,7 @@ services:
       AUTHENTICATION_APIKEY_ENABLED: 'true'
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
       AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
-      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_RBAC_ENABLED: 'true'
       AUTHORIZATION_ADMIN_USERS: 'user-a'
       AUTHORIZATION_VIEWER_USERS: 'user-b'
 ...
