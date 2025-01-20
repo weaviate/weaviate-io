@@ -122,7 +122,11 @@ volumes:
 ...
 ```
 
-This setup defines the users `admin-user`, `viewer-user` and `other-user` which serve as [authentication](../configuration/authentication.md) credentials for connecting to your Weaviate instance. The user `admin-user` has been granted admin access rights while the `viewer-user` was granted read-only access using the **Role-based access control (RBAC)** method. A custom role can be assigned to the user `other-user` by following the [authorization and RBAC guide](../configuration/authorization.md). 
+This setup enables API-key based [authentication](../configuration/authentication.md) and role-based access control [authorization](../configuration/authorization.md).
+
+It defines the users `admin-user`, `viewer-user` and `other-user` and corresponding keys `admin-key`, `viewer-key` and `other-key` which serve as authentication credentials for connecting to your Weaviate instance.
+
+The user `admin-user` is granted admin access rights while the `viewer-user` is granted read-only access using the **Role-based access control (RBAC)** method. A custom role can be assigned to the user `other-user` by following the [authorization and RBAC guide](../configuration/authorization.md).
 
   </TabItem>
 </Tabs>
