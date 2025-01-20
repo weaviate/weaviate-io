@@ -140,7 +140,7 @@ services:
 
       # Authorization configuration
       # Enable RBAC
-      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_RBAC_ENABLED: 'true'
 
       # Provide pre-configured roles to users
       # This assumes that the relevant user has been authenticated and identified
