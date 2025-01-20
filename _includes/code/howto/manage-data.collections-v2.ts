@@ -15,10 +15,10 @@ const client = weaviate.client({
   },
 });
 
-// START BasicCreateCollection  // START ReadOneCollection  
+// START BasicCreateCollection  // START ReadOneCollection
 const className = 'Article';
 
-// END BasicCreateCollection  // END ReadOneCollection  
+// END BasicCreateCollection  // END ReadOneCollection
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -98,38 +98,39 @@ const classWithNamedVectors = {
   class: 'ArticleNV',
   // highlight-start
   vectorConfig: {
-    // Set a named vector
+    // Set a named vector with the "text2vec-cohere" vectorizer
     title: {
       vectorizer: {
         'text2vec-cohere': {
-          properties: ['title'], // Set the source property(ies)
+          properties: ['title'], // (Optional) Set the source property(ies)
         },
       },
+      vectorIndexType: 'hnsw',  // (Optional) Set the vector index type
+      vectorIndexConfig: {}     // (Optional) Set the vector index configuration
     },
-    // Set another named vector
-    body: {
-      vectorizer: {
-        'text2vec-openai': {
-          properties: ['body'], // Set the source property(ies)
-        },
-      },
-    },
+    // Set a named vector with the "text2vec-openai" vectorizer
     title_country: {
       vectorizer: {
         'text2vec-openai': {
-          properties: ['title','country'], // Set the source property(ies)
+          properties: ['title','country'],  // (Optional) Set the source property(ies)
         },
       },
+      vectorIndexType: 'hnsw',  // (Optional) Set the vector index type
+      vectorIndexConfig: {}     // (Optional) Set the vector index configuration
+    },
+    // Set a named vector for your own uploaded vectors
+    custom_vector: {
+      vectorizer: {
+        'none': {}
+      },
+      vectorIndexType: 'hnsw',  // (Optional) Set the vector index type
+      vectorIndexConfig: {}     // (Optional) Set the vector index configuration
     },
   },
   // highlight-end
   properties: [
     {
       name: 'title',
-      dataType: ['text'],
-    },
-    {
-      name: 'body',
       dataType: ['text'],
     },
     {
@@ -506,7 +507,7 @@ const initCollectionWithReranker = {
 result = await client.schema.classCreator().withClass(initCollectionWithReranker).do();
 
 // START UpdateReranker
-// Collection definition updates are not available in the v2 API. 
+// Collection definition updates are not available in the v2 API.
 // Consider upgrading to the v3 API, or deleting and recreating the collection.
 // END UpdateReranker
 
@@ -599,7 +600,7 @@ const initCollectionWithGenerative = {
 result = await client.schema.classCreator().withClass(initCollectionWithGenerative).do();
 
 // START UpdateGenerative
-// Collection definition updates are not available in the v2 API. 
+// Collection definition updates are not available in the v2 API.
 // Consider upgrading to the v3 API, or deleting and recreating the collection.
 // END UpdateGenerative
 
@@ -751,6 +752,6 @@ try {
 }
 
 // START UpdateCollection
-// Collection definition updates are not available in the v2 API. 
+// Collection definition updates are not available in the v2 API.
 // Consider upgrading to the v3 API, or deleting and recreating the collection.
 // END UpdateCollection
