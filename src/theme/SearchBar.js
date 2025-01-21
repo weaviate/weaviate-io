@@ -10,7 +10,7 @@ useEffect(() => {
       setIsApple(true);
   }
 }, [])
-return (
+return null /* (
   <>
     <CommandMenu open={open} setOpen={setOpen} />
     <div className='searchBox'>
@@ -27,5 +27,5 @@ return (
       </button>
     </div>
   </>
-);
+); */
 }
