@@ -49,7 +49,7 @@ export default function QueryPage() {
                   ) : (
                     <Link to="https://console.weaviate.cloud/">
                       <button className={styles.installButton}>
-                        Request Early Access
+                        Open in Weaviate Cloud
                       </button>
                     </Link>
                   )}
@@ -80,11 +80,11 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availabilty: <strong>Coming Soon</strong>
+                      Availability: <strong>Available Now</strong>
                     </p>
                     <p>
-                      <Link to="https://events.weaviate.io/early-access">
-                        Request early access
+                      <Link to="/developers/wcs/tools/explorer-tool">
+                        Read Docs
                       </Link>
                     </p>
                   </div>
