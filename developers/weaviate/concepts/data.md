@@ -13,6 +13,83 @@ Weaviate stores `data objects` in class-based collections. Data objects are repr
 
 Each collection contains objects of the same `class`. The objects are defined by a common `schema`.
 
+```mermaid
+flowchart LR
+
+    subgraph Collection["🗄️ Collection"]
+        direction LR
+        CollectionConfig["Collection Configuration <br/><br/>(e.g. data schema, <br/>embedding model integration, <br/>index configurations, <br/>replication config, etc.)"]
+    end
+
+    subgraph search ["Indexes"]
+        direction LR
+        Indexes["Indexes"]
+
+        subgraph vector ["Vector Search"]
+            direction TB
+            VectorIndex["Vector Index"]
+            IndexStructure["Index Structure"]
+            VectorCache["Vector Cache"]
+        end
+
+        subgraph text ["Filtering / Text Search"]
+            direction LR
+            InvertedIndex["Inverted Index"]
+            BM25Index["BM25 Index"]
+            FilterIndex["Filter Index"]
+        end
+    end
+
+    subgraph storage ["Data Storage"]
+        direction TB
+        ObjectStore["Object Store"]
+        ObjectData["Object Data / Metadata"]
+        VectorData["Vector Data"]
+    end
+
+    %% Connections
+    Collection --> Indexes
+    Collection --> ObjectStore
+
+    Indexes --> VectorIndex
+    Indexes --> InvertedIndex
+
+    VectorIndex --> IndexStructure
+    VectorIndex --> VectorCache
+
+    InvertedIndex --> BM25Index
+    InvertedIndex --> FilterIndex
+
+    ObjectStore --> ObjectData
+    ObjectStore --> VectorData
+
+    %% Style Collection node
+    style Collection fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+
+    %% Style Config components (purple color)
+    style CollectionConfig fill:#f5f5f5,stroke:#9575CD,color:#130C49
+
+    %% Style Memory components (warm color)
+    style Indexes fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style VectorIndex fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style InvertedIndex fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style VectorCache fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style IndexStructure fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style BM25Index fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style FilterIndex fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+
+    %% Style Disk components (cool color)
+    style ObjectStore fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+    style ObjectData fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+    style VectorData fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+
+    %% Style subgraphs
+    style search fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style vector fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style text fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style storage fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+```
+
 import InitialCaps from '/_includes/schemas/initial-capitalization.md'
 
 <InitialCaps />
@@ -205,6 +282,82 @@ For details on configuring your schema, see the [schema tutorial](../starter-gui
 :::
 
 To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant.
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#f5f5f5' }}}%%
+flowchart TB
+    subgraph MultiDB ["Multi-Tenant"]
+        direction LR
+        subgraph MTCollection["🗄️ Collection"]
+            direction LR
+            MTCollectionConfig["Collection Configuration <br/><br/>(e.g. data schema, <br/>embedding model integration, <br/>index configurations, <br/>replication config, etc.)"]
+        end
+
+        ShardA["Tenant A Shard"]
+        IndexA["Indexes"]
+        StoreA["Object Store"]
+
+        ShardB["Tenant B Shard"]
+        IndexB["Indexes"]
+        StoreB["Object Store"]
+
+        ShardC["Tenant C Shard"]
+        IndexC["Indexes"]
+        StoreC["Object Store"]
+
+        MTCollection --> ShardA
+        MTCollection --> ShardB
+        MTCollection --> ShardC
+
+        ShardA --> IndexA
+        ShardA --> StoreA
+
+        ShardB --> IndexB
+        ShardB --> StoreB
+
+        ShardC --> IndexC
+        ShardC --> StoreC
+    end
+
+    subgraph SingleDB ["Single Collection"]
+        direction LR
+        subgraph SingleCollection["🗄️ Collection"]
+            direction LR
+            SingleCollectionConfig["Collection Configuration <br/><br/>(e.g. data schema, <br/>embedding model integration, <br/>index configurations, <br/>replication config, etc.)"]
+        end
+
+        SingleIndexes["Indexes"]
+        SingleStore["Object Store"]
+
+        SingleCollection --> SingleIndexes
+        SingleCollection --> SingleStore
+    end
+
+    %% Style nodes - Single tenant
+    style SingleCollection fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+    style SingleIndexes fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style SingleStore fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+
+    %% Style nodes - Multi tenant
+    style MTCollection fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+    style ShardA fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+    style ShardB fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+    style ShardC fill:#ffffff,stroke:#130C49,color:#130C49,stroke-width:2px
+
+    %% Style tenant resources
+    style IndexA fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style IndexB fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style IndexC fill:#FFF3E0,stroke:#FFB74D,color:#130C49
+    style StoreA fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+    style StoreB fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+    style StoreC fill:#E3F2FD,stroke:#64B5F6,color:#130C49
+
+    %% Style subgraphs
+    style SingleDB fill:transparent,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style MultiDB fill:transparent,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style MTCollectionConfig fill:#f5f5f5,stroke:#130C49,color:#130C49,stroke-width:2px
+    style SingleCollectionConfig fill:#f5f5f5,stroke:#130C49,color:#130C49,stroke-width:2px
+```
 
 Sharding has several benefits:
 
