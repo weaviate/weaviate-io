@@ -137,7 +137,7 @@ async function migrateData(collection_src: Collection, collection_tgt: Collectio
         }
 
         counter++;
-        if (counter % 1000 == 0)
+        if (counter % 500 == 0)
             console.log(`Import: ${counter}`)
 
         let objectToInsert = {
@@ -149,26 +149,22 @@ async function migrateData(collection_src: Collection, collection_tgt: Collectio
         // Add object to batching array
         itemsToInsert.push(objectToInsert)
 
-        if (itemsToInsert.length == 1000 || counter == maxItems) {
+        if (itemsToInsert.length == 500 || counter == maxItems) {
+            try {
+                const response = await collection_tgt.data.insertMany(itemsToInsert);
 
-            const promise = collection_tgt.data.insertMany(itemsToInsert)
-                .then((response) => {
-                    console.log(`Successfully imported batch of ${Object.keys(response.uuids).length} items`);
-                    if (response.hasErrors) {
-                        throw new Error("Error in batch import!");
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error importing batch:', error);
-                })
-
-            promises.push(promise)
-            itemsToInsert = [];
-
+                if (response.hasErrors) {
+                    throw new Error("Error in batch import!");
+                }
+                
+                console.log(`Successfully imported batch of ${itemsToInsert.length} items`);
+                itemsToInsert = [];
+            } catch (error) {
+                console.error('Error importing batch:', error);
+            }
         }
     }
-    // Runs all promises 
-    await Promise.all(promises) 
+   
 }
 // END CollectionToCollection // END TenantToCollection  // END CollectionToTenant  // END TenantToTenant
 
