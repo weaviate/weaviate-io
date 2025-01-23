@@ -18,7 +18,7 @@ export default function Marketplace() {
                 Microsoft Azure
               </Link>
               <div className={`${styles.cellIcon} ${styles.awsIcon}`}></div>
-              <Link to="https://aws.amazon.com/marketplace/pp/prodview-27nbweprm7hha?sr=0-2&ref_=beagle&applicationId=AWSMPContessa">
+              <Link to="https://aws.amazon.com/marketplace/pp/prodview-ng2dfhb4yjoic?sr=0-3&ref_=beagle&applicationId=AWSMPContessa&utm_source=website&utm_medium=button&utm_campaign=AWSMarketplace">
                 Amazon Web Services
               </Link>
               <div className={`${styles.cellIcon} ${styles.googleIcon}`}></div>
