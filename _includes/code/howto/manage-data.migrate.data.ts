@@ -123,7 +123,7 @@ reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 // START CollectionToCollection  // START TenantToCollection  // START CollectionToTenant  // START TenantToTenant
 
 let maxItems = await reviews_src.length()
-let counter: number
+let counter: number = 0
 
 async function migrateData(collection_src: Collection, collection_tgt: Collection) {
     let itemsToInsert = []
