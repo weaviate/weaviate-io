@@ -128,6 +128,7 @@ const config = {
             name: 'inject-tag',
             injectHtmlTags() {
                 return {
+                   
                     headTags: [
                         // Add plausible
                         {
@@ -262,6 +263,8 @@ const config = {
    defaultLocale: 'en',
    locales: ['en','ja'],
     }, */
+
+   
 
     presets: [
         [
