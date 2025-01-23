@@ -22,7 +22,7 @@ export default function Marketplace() {
                 Amazon Web Services
               </Link>
               <div className={`${styles.cellIcon} ${styles.googleIcon}`}></div>
-              <Link to="https://cloud.google.com/customers/weaviate">
+              <Link to="https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?hl=en&project=clean-pen-427907-c5&invt=AbnoVg&utm_source=website&utm_medium=button&utm_campaign=GCPMarketplace&inv=1">
                 Google Cloud Platform
               </Link>
             </div>
