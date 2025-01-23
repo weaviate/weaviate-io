@@ -19,7 +19,7 @@ export default function PartnersHeader() {
               <div className={styles.buttons}>
                 <Link
                   className={styles.buttonGradient}
-                  to="https://console.cloud.google.com/marketplace/product/mp-container-public/weaviate-gcp-k8s"
+                  to="https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?hl=en&project=clean-pen-427907-c5&invt=AbnfrQ&utm_source=website&utm_medium=button&utm_campaign=GCPMarketplace"
                 >
                   Try on Google Cloud Marketplace
                 </Link>
