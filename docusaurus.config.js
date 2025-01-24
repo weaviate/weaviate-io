@@ -597,6 +597,10 @@ const config = {
                                 label: 'Terms & Policies',
                                 to: '/service',
                             },
+                            {
+                                label: 'Report a Vulnerability',
+                                to: '/security-report',
+                            },
 
                         ],
                     },
