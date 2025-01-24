@@ -798,36 +798,7 @@ const config = {
                                 label: 'LinkedIn',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
-                            {
-                                label: 'Meetups',
-                                to: '#',
-                                className: 'footer__title subtitle',
-                            },
-                            {
-                                label: 'Amsterdam',
-                                to: 'https://www.meetup.com/weaviate-amsterdam',
-
-                            },
-                            {
-                                label: 'Boston',
-                                to: 'https://www.meetup.com/weaviate-boston',
-
-                            },
-                            {
-                                label: 'New York',
-                                to: 'https://www.meetup.com/weaviate-NYC',
-
-                            },
-                            {
-                                label: 'San Francisco',
-                                to: 'https://www.meetup.com/weaviate-san-francisco',
-
-                            },
-                            {
-                                label: 'Toronto',
-                                to: 'https://www.meetup.com/weaviate-toronto',
-
-                            },
+                           
 
 
                         ],
