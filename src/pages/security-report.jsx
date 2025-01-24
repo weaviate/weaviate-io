@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import AboutUsHeader from '/src/components/Security-Report/header';
-import Vuln from '/src/components/Security/Vuln/Vuln';
+import Vuln from '/src/components/Security/Vuln/vuln';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function SecurityReportPage() {

@@ -2,16 +2,16 @@ import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 
-const socLight = 'dark';
+const VulnLight = 'dark';
 
-export default function Soc2(props) {
+export default function Vuln(props) {
   const { socLight } = props;
   return (
-    <div className={styles[socLight]}>
-      <div className={styles.soc2Container}>
+    <div className={styles[VulnLight]}>
+      <div className={styles.VulnContainer}>
         <div className="container">
           <div className={styles.box}>
-            <div className={styles.soc2Box}>
+            <div className={styles.VulnBox}>
               <h2>Report a Security Vulnerability</h2>
 
               <p>
