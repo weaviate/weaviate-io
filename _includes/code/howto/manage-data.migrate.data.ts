@@ -19,9 +19,6 @@ let agg_resp;
 // START CreateCollectionCollectionToCollection  // START CreateCollectionTenantToCollection  // START CreateCollectionCollectionToTenant  // START CreateCollectionTenantToTenant
 
 client_src = await weaviate.connectToLocal({
-    headers: {
-        "X-Cohere-Api-Key": process.env.COHERE_API_KEY as string
-    }
 })
 
 // END CreateCollectionCollectionToCollection  // END CreateCollectionTenantToCollection  // END CreateCollectionCollectionToTenant  // END CreateCollectionTenantToTenant
@@ -43,9 +40,6 @@ assert.equal(true, await client_src.isReady())
 client_tgt = await weaviate.connectToLocal({
     port: 8090,
     grpcPort: 50061,
-    headers: {
-        "X-Cohere-Api-Key": process.env.COHERE_API_KEY as string
-    }
 })
 
 // END CreateCollectionCollectionToCollection  // END CreateCollectionTenantToCollection // END CreateCollectionCollectionToTenant  // END CreateCollectionTenantToTenant
@@ -156,7 +150,7 @@ async function migrateData(collection_src: Collection, collection_tgt: Collectio
                 if (response.hasErrors) {
                     throw new Error("Error in batch import!");
                 }
-                
+
                 console.log(`Successfully imported batch of ${itemsToInsert.length} items`);
                 itemsToInsert = [];
             } catch (error) {
@@ -179,7 +173,7 @@ assert.equal(false, client_tgt.collections.exists("WineReview"))
 
 
 // START CreateCollectionCollectionToCollection
-reviews_tgt = await createCollection(client_tgt, "WineReview", true)
+reviews_tgt = await createCollection(client_tgt, "WineReview", false)
 // END CreateCollectionCollectionToCollection
 
 
