@@ -571,6 +571,10 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
 
 ## Cross-references
 
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
 A cross-reference can be added from a multi-tenancy collection object to:
 - A non-multi-tenancy collection object, or
 - An object belonging to the same tenant.
