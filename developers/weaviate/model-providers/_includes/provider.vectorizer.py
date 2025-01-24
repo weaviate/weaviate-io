@@ -708,9 +708,10 @@ client.collections.create(
 client.collections.delete("DemoCollection")
 
 # START BasicVectorizerDatabricks
+import os
 from weaviate.classes.config import Configure
 
-databricks_vectorizer_endpoint = "DATABRICKS_VECTORIZER_ENDPOINT"  # If saved as an environment variable
+databricks_vectorizer_endpoint = os.getenv("DATABRICKS_VECTORIZER_ENDPOINT")  # If saved as an environment variable
 
 client.collections.create(
     "DemoCollection",
@@ -1363,7 +1364,7 @@ client.collections.delete("DemoCollection")
 source_objects = [
     {"title": "The Shawshank Redemption", "description": "A wrongfully imprisoned man forms an inspiring friendship while finding hope and redemption in the darkest of places."},
     {"title": "The Godfather", "description": "A powerful mafia family struggles to balance loyalty, power, and betrayal in this iconic crime saga."},
-    {"title": "The Dark Knight","description": "Batman faces his greatest challenge as he battles the chaos unleashed by the Joker in Gotham City."},
+    {"title": "The Dark Knight", "description": "Batman faces his greatest challenge as he battles the chaos unleashed by the Joker in Gotham City."},
     {"title": "Jingle All the Way", "description": "A desperate father goes to hilarious lengths to secure the season's hottest toy for his son on Christmas Eve."},
     {"title": "A Christmas Carol", "description": "A miserly old man is transformed after being visited by three ghosts on Christmas Eve in this timeless tale of redemption."}
 ]
@@ -1371,7 +1372,6 @@ source_objects = [
 collection = client.collections.get("DemoCollection")
 
 with collection.batch.dynamic() as batch:
-    # source_objects is a list of objects being imported that contain the fields "title" and "description"
     for src_obj in source_objects:
         weaviate_obj = {
             "title": src_obj["title"],
