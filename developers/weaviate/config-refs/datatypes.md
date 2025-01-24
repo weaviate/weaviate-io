@@ -597,6 +597,10 @@ An object for this class may have a structure such as follows:
 
 ## `cross-reference`
 
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
 The `cross-reference` type allows a link to be created from one object to another. This is useful for creating relationships between collections, such as linking a `Person` collection to a `Company` collection.
 
 The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given collection (including zero).
