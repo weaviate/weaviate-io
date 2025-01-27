@@ -170,7 +170,7 @@ The Paul Krugman `Author` object adds a new property, `writesFor`, to capture th
 
 The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object.
 
-Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
+Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a `hasAuthors` property points back to the `Author` collection.
 
 ### Multiple vectors (named vectors)
 
