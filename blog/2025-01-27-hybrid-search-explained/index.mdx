@@ -48,7 +48,7 @@ Dense vectors represent information stored in a database; this includes text, im
 
 [Vector databases](/blog/what-is-a-vector-database), like [Weaviate](/developers/weaviate), store these embeddings and calculate the distance between the two vectors. [Distance metrics](/blog/distance-metrics-in-vector-search) show how similar or dissimilar two [vector embeddings](/blog/vector-embeddings-explained) are. The search query is converted to a vector, similar to the data vectors, and the distance value determines how close the vectors are.
 
-![hybrid search](img/image3.png)
+![hybrid search](img/hybrid-search.png)
 
 ## What is Hybrid Search?
 Hybrid search merges dense and sparse vectors together to deliver the best of both search methods. Generally speaking, dense vectors excel at understanding the context of the query, whereas sparse vectors excel at keyword matches. Consider the query, “How to catch an Alaskan Pollock”. The dense vector representation is able to disambiguate “catch” as meaning fishing rather than baseball or sickness. The sparse vector search will match the phrase “Alaskan Pollock” only. This example query shows where hybrid search combines the best of both sparse and dense vectors.
@@ -73,9 +73,9 @@ Let's look at an example of this. We have three documents labeled `A`, `B`, and 
 
 | BM25 Ranking | Dense Ranking | Results |
 | ----- | ----- | ----- |
-| A | B | A: 1/1 \+ 1/3 \= 1.3 |
-| B | C | B: 1/2 \+ 1/1 \= 1.5 |
-| C | A | C: 1/3 \+ 1/2 \= 0.83 |
+| A | B | A: 1/1 + 1/3 = 1.3 |
+| B | C | B: 1/2 + 1/1 = 1.5 |
+| C | A | C: 1/3 + 1/2 = 0.83 |
 
 The above table shows the ranked order of the BM25 and Dense search. To fuse the two lists together, we need to take the sum of the reciprocal ranks. Based on the results, the top document is `Document B` with a ranking of 1.5, then `Document A` at 1.3, and `Document C` at 0.83.
 
