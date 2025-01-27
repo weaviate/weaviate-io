@@ -48,7 +48,14 @@ with collection.batch.dynamic() as batch:
         batch.add_object(
             properties=data_row,
         )
-# highlight-end
+        # highlight-end
+        if batch.number_errors > 0:
+            print(f"Error found during batch import")
+
+failed_objects = collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 # END BasicBatchImportExample
 
 result = collection.aggregate.over_all(total_count=True)
@@ -168,6 +175,13 @@ with collection.batch.dynamic() as batch:
             uuid=obj_uuid
         )
 # highlight-end
+        if batch.number_errors > 0:
+            print(f"Error found during batch import")
+
+failed_objects = collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 # END BatchImportWithIDExample
 
 result = collection.aggregate.over_all(total_count=True)
@@ -195,6 +209,13 @@ with collection.batch.dynamic() as batch:
             vector=vectors[i]
         )
 # highlight-end
+        if batch.number_errors > 0:
+            print(f"Error found during batch import")
+
+failed_objects = collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 # END BatchImportWithVectorExample
 
 result = collection.aggregate.over_all(total_count=True)
@@ -252,6 +273,13 @@ with collection.batch.dynamic() as batch:
             }
         )
 # highlight-end
+        if batch.number_errors > 0:
+            print(f"Error found during batch import")
+
+failed_objects = collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 # END BatchImportWithNamedVectors
 
 response = collection.query.fetch_objects(include_vector=True)
@@ -304,7 +332,13 @@ with collection.batch.fixed_size(batch_size=100) as batch:
         from_uuid=from_uuid,
         to=target_uuid,
     )
+    if batch.number_errors > 0:
+            print(f"Error found during batch import")
 
+failed_references = collection.batch.failed_references
+if failed_references:
+    print(f"Number of failed imports: {len(failed_references)}")
+    print(f"First failed reference: {failed_references[0]}")
 # END BatchImportWithRefExample
 
 # Tests

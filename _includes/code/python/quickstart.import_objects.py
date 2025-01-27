@@ -32,6 +32,13 @@ with questions.batch.dynamic() as batch:
             "category": d["Category"],
         })
 # highlight-end
+        if batch.number_errors > 0:
+            print(f"Error found during batch import")
+
+failed_objects = questions.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 
 client.close()  # Free up resources
 # END Import
