@@ -48,7 +48,7 @@ with collection.batch.dynamic() as batch:
         batch.add_object(
             properties=data_row,
         )
-        # highlight-end
+# highlight-end
         if batch.number_errors > 0:
             print(f"Error found during batch import")
 
