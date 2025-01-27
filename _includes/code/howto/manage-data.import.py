@@ -49,8 +49,9 @@ with collection.batch.dynamic() as batch:
             properties=data_row,
         )
 # highlight-end
-        if batch.number_errors > 0:
-            print(f"Error found during batch import")
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
 
 failed_objects = collection.batch.failed_objects
 if failed_objects:
@@ -175,8 +176,9 @@ with collection.batch.dynamic() as batch:
             uuid=obj_uuid
         )
 # highlight-end
-        if batch.number_errors > 0:
-            print(f"Error found during batch import")
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
 
 failed_objects = collection.batch.failed_objects
 if failed_objects:
@@ -209,8 +211,9 @@ with collection.batch.dynamic() as batch:
             vector=vectors[i]
         )
 # highlight-end
-        if batch.number_errors > 0:
-            print(f"Error found during batch import")
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
 
 failed_objects = collection.batch.failed_objects
 if failed_objects:
@@ -273,8 +276,9 @@ with collection.batch.dynamic() as batch:
             }
         )
 # highlight-end
-        if batch.number_errors > 0:
-            print(f"Error found during batch import")
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
 
 failed_objects = collection.batch.failed_objects
 if failed_objects:
@@ -332,8 +336,6 @@ with collection.batch.fixed_size(batch_size=100) as batch:
         from_uuid=from_uuid,
         to=target_uuid,
     )
-    if batch.number_errors > 0:
-            print(f"Error found during batch import")
 
 failed_references = collection.batch.failed_references
 if failed_references:

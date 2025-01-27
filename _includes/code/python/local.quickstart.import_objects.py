@@ -20,8 +20,9 @@ with questions.batch.dynamic() as batch:
             "category": d["Category"],
         })
 # highlight-end
-        if batch.number_errors > 0:
-            print(f"Error found during batch import")
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
 
 failed_objects = questions.batch.failed_objects
 if failed_objects:

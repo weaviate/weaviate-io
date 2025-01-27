@@ -220,7 +220,7 @@ import ImportObjects from '/_includes/code/quickstart/local.quickstart.import_ob
 
 Run this code to add the demo data.
 
-During a batch import, any failed objects can be obtained through `batch.failed_objects`. Additionally, a running count of failed objects is maintained and can be accessed through `batch.number_errors` within the context manager. Find out more about error handling on the Python client [reference page](/developers/weaviate/client-libraries/python#error-handling).
+During a batch import, any failed objects can be obtained through `batch.failed_objects`. Additionally, a running count of failed objects is maintained and can be accessed through `batch.number_errors` within the context manager. This counter can be used to stop the import process in order to investigate the failed objects or references. Find out more about error handling on the Python client [reference page](/developers/weaviate/client-libraries/python#error-handling).
 
 <hr/>
 
