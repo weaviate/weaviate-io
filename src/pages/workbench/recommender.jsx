@@ -113,7 +113,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availabilty: <strong>Private beta</strong>
+                      Availability: <strong>Private beta</strong>
                     </p>
                     <p>
                       <Link to="https://events.weaviate.io/early-access">
