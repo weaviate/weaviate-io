@@ -190,6 +190,22 @@ const config = {
                     tagName: 'script',
                     innerHTML: `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_0c8211aa3107cd0bfa568f172689e16080c8/sdk.js"),(document.body || document.head).appendChild(n)}();`,
                 },
+                // Add G2 Attribution Tracking
+{
+    tagName: 'script',
+    innerHTML: `
+      (function (c, p, d, u, id, i) {
+        id = ''; // Optional Custom ID for user in your system
+        u = 'https://tracking-api.g2.com/attribution_tracking/conversions/' + c + '.js?p=' + encodeURI(p) + '&e=' + id;
+        i = document.createElement('script');
+        i.type = 'application/javascript';
+        i.async = true;
+        i.src = u;
+        d.getElementsByTagName('head')[0].appendChild(i);
+      }("1021522", document.location.href, document));
+    `,
+  },
+  
                 // Retention
     {
         tagName: 'script',
