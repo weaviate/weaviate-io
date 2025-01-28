@@ -1,6 +1,6 @@
 ---
 title: Multi-tenancy vs "One collection per tenant"
-label: Multi-tenancy performance
+sidebar_label: Multi-tenancy and performance
 sidebar_position: 7
 image: og/docs/more-resources.jpg
 # tags: ['performance']
@@ -11,6 +11,54 @@ When designing the data schema architecture of a vector database, you are faced 
 This guide aims to clarify these concepts and highlight the implications of each aproach, fucusing on the benefits and drawbacks:
 - **[Multi-tenancy in Vector Databases](#multi-tenancy-in-vector-databases)**
 - **["One collection per tenant" strategy](#one-collection-per-tenant-strategy)** 
+
+```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'fontSize': '14px',
+    'lineHeight': '1',
+    'nodeBorder': '1px',
+    'mainBkg': '#ffffff',
+    'clusterBkg': '#f8fafc'
+  }
+}}%%
+graph LR
+    %% Style definitions
+    classDef collection fill:#ffffff,stroke:#3182ce,stroke-width:1.5px,color:#2d3748,font-weight:bold
+    classDef tenant fill:#ffffff,stroke:#3182ce,stroke-width:1.5px,color:#2d3748,font-weight:bold
+    classDef title fontSize:18px,font-weight:bold
+    
+    subgraph multi-tenancy[Multi-tenancy]
+        subgraph Collection
+            collectionSchema["Properties: { title: String... } \nMetadata: { id: String... }"]
+            TA[Tenant A]
+            TB[Tenant B]
+            TC[Tenant C]
+            TD[Tenant D]
+        end
+    end
+
+    subgraph collections[One collection per tenant]
+        subgraph A[Collection A]
+            collectionSchemaA1["Properties: { title: String... } \nMetadata: { id: String... }"]
+        end
+        subgraph B[Collection B]
+            collectionSchemaB1["Properties: { title: String... } \nMetadata: { id: String... }"]
+        end
+        subgraph C[Collection C]
+            collectionSchemaC1["Properties: { title: String... } \nMetadata: { id: String... }"]
+        end
+        subgraph D[Collection D]
+            collectionSchemaD1["Properties: { title: String... } \nMetadata: { id: String... }"]
+        end
+    end
+
+    %% Apply styles
+    class TCA,TCB,TCC,TCD,Collection collection
+    class A,B,C,D,TA,TB,TC,TD tenant
+    class multi-tenancy,collections title
+```
 
 ## Multi-tenancy in Vector Databases
 
