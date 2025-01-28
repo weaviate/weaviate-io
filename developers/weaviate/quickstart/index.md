@@ -300,8 +300,6 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 
 Run this code to add the demo data.
 
-During a batch import, any failed objects can be obtained through `batch.failed_objects`. Additionally, a running count of failed objects is maintained and can be accessed through `batch.number_errors` within the context manager. This counter can be used to stop the import process in order to investigate the failed objects or references. Find out more about error handling on the Python client [reference page](/developers/weaviate/client-libraries/python#error-handling).
-
 :::info Cohere API key in the header
 Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
 :::
