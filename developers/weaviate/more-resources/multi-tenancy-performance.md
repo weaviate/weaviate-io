@@ -16,8 +16,9 @@ This guide aims to clarify these concepts and highlight the implications of each
 %%{init: {
   'theme': 'base',
   'themeVariables': {
+    'fontFamily': 'Inter, system-ui, sans-serif',
     'fontSize': '14px',
-    'lineHeight': '1',
+    'lineHeight': '1.4',
     'nodeBorder': '1px',
     'mainBkg': '#ffffff',
     'clusterBkg': '#f8fafc'
