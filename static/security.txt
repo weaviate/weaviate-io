@@ -1,0 +1,4 @@
+# If you would like to report a security issue, you may report it to us at HackerOne:
+Contact: https://hackerone.com/d1294485-7463-45e9-9597-c59d4417fa98/embedded_submissions/new
+Expires: 2026-01-30T12:00:00.000Z
+Acknowledgments: https://github.com/weaviate/security-hall-of-fame
