@@ -19,7 +19,9 @@ export default function Soc2(props) {
                 deployment options that can adapt to the needs of your business
                 as they evolve. We’re committed to offering the capabilities our
                 enterprise customers need to meet security and compliance
-                requirements. 
+                requirements.
+                <p> Access our trust portal to review our compliance
+                documentation and white papers describing our practices to keep your data safe{' '}<Link to="https://trust.weaviate.io"> here.</Link></p>
               </p>
             </div>
             <div className={styles.soc2Logos}>
