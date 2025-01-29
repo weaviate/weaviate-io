@@ -571,6 +571,10 @@ The output is like this:
 
 ## Retrieve cross-referenced properties
 
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
 To retrieve properties from cross-referenced objects, specify:
 
 - The cross-reference property

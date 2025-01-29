@@ -177,6 +177,10 @@ import SchemaWithPropertyOptions from '/_includes/code/tutorial.schema.propertie
 
 #### Cross-references
 
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
 This is also where you would specify cross-references, which are a special type of property that links to another collection.
 
 Cross-references can be very useful for creating relationships between objects. For example, you might have a `Movie` collection with a `withActor` cross-reference property that points to the `Actor` collection. This will allow you to retrieve relevant actors for each movie.

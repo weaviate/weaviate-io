@@ -686,10 +686,14 @@ The only available search threshold is `max vector distance`, which will set the
 
   <TabItem value="js" label="JS/TS Client v3">
 
-```ts
-// TS support coming soon
-```
-
+<TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START VectorSimilarityThreshold"
+      endMarker="// END VectorSimilarityThreshold"
+      language="ts"
+    />
+  </TabItem>
   </TabItem>
 </Tabs>
 
@@ -707,6 +711,15 @@ Define criteria to group search results.
       startMarker="# START HybridGroupByPy4"
       endMarker="# END HybridGroupByPy4"
       language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START HybridGroupBy"
+      endMarker="// END HybridGroupBy"
+      language="ts"
     />
   </TabItem>
 </Tabs>

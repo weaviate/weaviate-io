@@ -19,7 +19,7 @@ export default function HybridBusinessCritical() {
               <span className={styles.google} />
             </div>
             <p>Google Cloud Platform</p>
-            <Link to="https://console.cloud.google.com/marketplace/product/mp-container-public/weaviate-gcp-k8s">
+            <Link to="https://console.cloud.google.com/marketplace/product/weaviate-gcp-mktplace/weaviate?hl=en&project=clean-pen-427907-c5&invt=AbnfrQ&utm_source=website&utm_medium=button&utm_campaign=GCPMarketplace">
               {'Go to Marketplace >'}
             </Link>
           </div>

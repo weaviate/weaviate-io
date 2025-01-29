@@ -1,0 +1,7 @@
+:::caution Cross-references and query performance
+Queries involving cross-references can be slower than queries that do not involve cross-references, especially at scale such as for multiple objects or complex queries.
+
+At the first instance, we strongly encourage you to consider whether you can avoid using cross-references in your data schema. As a scalable AI-native database, Weaviate is well-placed to perform complex queries with vector, keyword and hybrid searches involving filters. You may benefit from rethinking your data schema to avoid cross-references where possible.
+
+For example, instead of creating separate "Author" and "Book" collections with cross-references, consider embedding author information directly in Book objects and using searches and filters to find books by author characteristics.
+:::
