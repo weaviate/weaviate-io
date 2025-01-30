@@ -2,6 +2,18 @@
 title: Weaviate Features & Resources
 ---
 
+## Installation & Deployment
+
+| Feature | Guide | Other |
+| ------- | ------ | -------- |
+| AWS Marketplace | [AWS Marketplace](/developers/weaviate/installation/aws-marketplace) | - |
+| Docker | [Docker](/developers/weaviate/installation/docker-compose) | [Quickstart - locally hosted](/developers/weaviate/quickstart/local) |
+| Kubernetes | [Kubernetes](/developers/weaviate/installation/kubernetes) | - |
+| Embedded Weaviate | [Embedded Weaviate](/developers/weaviate/installation/embedded) | - |
+| Google Cloud Marketplace | [Google Cloud Marketplace](/developers/weaviate/installation/gc-marketplace) | - |
+| Snowpark Container Services (SPCS) | [Snowpark Container Services (SPCS)](/developers/weaviate/installation/spcs-integration) | - |
+| Weaviate Cloud | [Weaviate Cloud](/developers/weaviate/installation/weaviate-cloud-services) | [Quickstart](/developers/weaviate/quickstart) |
+
 ## Search & Querying
 
 | Feature | How-to | Tutorial | Reference | Concepts | Other |
@@ -15,7 +27,7 @@ title: Weaviate Features & Resources
 | RAG | [Retrieval Augmented Generation (RAG)](/developers/weaviate/search/generative) | - | [Additional properties (metadata) - generate](developers/weaviate/api/graphql/additional-properties#generate) | - | [Starter Guides - Retrieval augmented generation (RAG)](/developers/weaviate/starter-guides/generative) |
 | Reranking | [Reranking](/developers/weaviate/search/rerank) | - | [Additional properties (metadata) - rerank](/developers/weaviate/api/graphql/additional-properties#rerank) | [Reranking](/developers/weaviate/concepts/reranking) | - |
 | Aggregate | [](/developers/weaviate/search/aggregate) | - | [Aggregate](/developers/weaviate/api/graphql/aggregate) | - | - |
-| Filters | [Filters](/developers/weaviate/search/filters) | - | [Conditional filters](/developers/weaviate/api/graphql/filters) | - | - |
+| Filters | [Filters](/developers/weaviate/search/filters) | - | [Conditional filters](/developers/weaviate/api/graphql/filters) | [Filtering](/developers/weaviate/concepts/filtering) | - |
 | Explore | - | - | [Explore](/developers/weaviate/api/graphql/explore) | - | - |
 | Distance metrics | - | - | [Distance metrics](/developers/weaviate/config-refs/distances) | - | - |
 
@@ -24,11 +36,14 @@ title: Weaviate Features & Resources
 | Feature | How-to | Tutorial | Reference | Concepts | Other |
 | ------- | ------ | -------- |---------- |--------- | ----- |
 | Backups | [Backups](/developers/weaviate/configuration/backups) | - | [backups](/developers/weaviate/api/rest#tag/backups) | - | [Blog - Tutorial - Backup and Restore in Weaviate](/blog/tutorial-backup-and-restore-in-weaviate) |
-| Cross-references | [Cross-references](/developers/weaviate/manage-data/cross-references) | - | - | [Cross-references](/developers/weaviate/concepts/data#cross-references) | - |
-| Multi-tenancy | [Multi-tenancy operations](/developers/weaviate/manage-data/multi-tenancy) | - | - | [Data strcture - Multi-tenancy](/developers/weaviate/concepts/data#multi-tenancy) | - |
-| Tenant states | [Manage tenant states & temperature](/developers/weaviate/manage-data/tenant-states)<br />[Tenant Offloading](/developers/weaviate/configuration/tenant-offloading) | - | - | - | [Starter Guides - Tenant states](/developers/weaviate/starter-guides/managing-resources/tenant-states) |
-| Replication | [Replication](/developers/weaviate/configuration/replication) | - | - | [Replication Architecture](/developers/weaviate/concepts/replication-architecture) | - |
+| Batch import | [Batch import](/developers/weaviate/manage-data/import) | [Imports in detail [OUTDATED]](/developers/weaviate/tutorials/import) | [RESTful API - batch](/developers/weaviate/api/rest#tag/batch) | - | - |
+| Cross-references | [Cross-references](/developers/weaviate/manage-data/cross-references) | [Manage relationships with cross-references](/developers/weaviate/tutorials/cross-references) | - | [Cross-references](/developers/weaviate/concepts/data#cross-references) | - |
 | Data types | - | - | [Data types](/developers/weaviate/config-refs/datatypes) | - | - |
+| Migration (upgrading Weaviate) | - | - | - | - | [Migration](/developers/weaviate/more-resources/migration) |
+| Migrate data | [Migrate data](/developers/weaviate/manage-data/migrate) | - | - | - | - |
+| Multi-tenancy | [Multi-tenancy operations](/developers/weaviate/manage-data/multi-tenancy) | - | - | [Data strcture - Multi-tenancy](/developers/weaviate/concepts/data#multi-tenancy) | - |
+| Replication | [Replication](/developers/weaviate/configuration/replication) | - | - | [Replication Architecture](/developers/weaviate/concepts/replication-architecture) | - |
+| Tenant states | [Manage tenant states & temperature](/developers/weaviate/manage-data/tenant-states)<br />[Tenant Offloading](/developers/weaviate/configuration/tenant-offloading) | - | - | - | [Starter Guides - Tenant states](/developers/weaviate/starter-guides/managing-resources/tenant-states) |
 
 ## Performance & Indexing
 
@@ -51,6 +66,8 @@ title: Weaviate Features & Resources
 
 | Feature | How-to | Tutorial | Reference | Concepts | Other |
 | ------- | ------ | -------- |---------- |--------- | ----- |
+| GraphQL API | - | - | [Search (GraphQL | gRPC) - GraphQL API](/developers/weaviate/api/graphql#graphql-api) | [Interface / GraphQL](/developers/weaviate/concepts/interface#graphql) | - |
 | RESTful API | - | - | [RESTful API](/developers/weaviate/api/rest) | - | - |
-| gRPC | - | - | [gRPC](/developers/weaviate/api/grpc) | - | - |
+| gRPC API | - | - | [gRPC](/developers/weaviate/api/grpc) | - | - |
 | Modules | [Modules](/developers/weaviate/configuration/modules) | - | [Modules](/developers/weaviate/modules) | [Modules](/developers/weaviate/concepts/modules) | - |
+| - | - | - | - | - | - |
