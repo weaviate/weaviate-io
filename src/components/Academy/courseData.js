@@ -358,7 +358,7 @@ export const courseData = {
       "Use Weaviate Cloud to create an instance of Weaviate",
       "Use appropriate query types and syntax to retrieve desired objects",
       "Outline what vector search is and how it works",
-      "Demonstrate how to efficiently populate an Weaviate instance with data",
+      "Demonstrate how to efficiently populate a Weaviate instance with data",
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
     ],
     note: "Python client (v3)"
