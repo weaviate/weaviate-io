@@ -329,6 +329,12 @@
     "team": "cto"
   },
   {
+    "name": "Faustas Butkus",
+    "title": "Software Engineer",
+    "photo": "Faustas.jpg",
+    "team": "database"
+  },
+  {
     "name": "Femke Plantinga",
     "title": "Developer Growth Manager",
     "photo": "femke.jpg",
@@ -370,6 +376,13 @@
     "team": "developer-relations",
     "linkedin": "ivan-g-despot",
     "twitter": "ivan_g_despot"
+  },
+  {
+    "name": "Jacob Heier",
+    "title": "Enterprise Account Executive",
+    "photo": "Jacob-Heier.jpg",
+    "linkedin": "jake-heier-0543034a",
+    "team": "sales"
   },
   {
     "name": "JP Hwang",
@@ -440,6 +453,12 @@
     "photo": "josh-goldstein.jpg",
     "team": "sales",
     "linkedin": "joshsgoldstein"
+  },
+  {
+    "name": "Kamil Tyborowski",
+    "title": "Software Engineer",
+    "photo": "Kamil.jpg",
+    "team": "developer-growth"
   },
   {
     "name": "Kaviraj Kanagaraj",
@@ -720,6 +739,13 @@
     "photo": "tommy.jpg",
     "linkedin": "tbs181194",
     "team": "database"
+  },
+  {
+    "name": "Tobias Christiani",
+    "title": "Research Engineer",
+    "photo": "Tobias.jpg",
+    "team": "applied-research",
+    "linkedin": "tobias-christiani-0055"
   },
   {
     "name": "Tuana Celik",
