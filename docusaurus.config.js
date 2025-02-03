@@ -605,6 +605,11 @@ const config = {
                                 label: 'Terms & Policies',
                                 to: '/service',
                             },
+                            {
+                                label: 'Cookie Settings',
+                                to: '#',
+                                id: 'cookie-settings',
+                            },
 
                         ],
                     },
