@@ -58,60 +58,8 @@ This cookie policy was last updated in **February 2024**. We may revise this pol
 
 <br></br>
 
-### **4. Cookie List**
 
-#### **Category: Necessary (25)**
-
-Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.
-
-| **Cookie Name**   | **Provider**    | **Type** | **Duration** | **Purpose** |
-|------------------|----------------|----------|-------------|-------------|
-| __cf_bm         | beehiiv.com     | HTTP     | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | g2.com          | HTTP     | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | hsadspixel.net  | HTTP     | 1 day       | Unclassified. |
-| __cf_bm         | hs-analytics.net| HTTP     | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | hs-banner.com   | HTTP     | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | hscollectedforms.net | HTTP | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | hubapi.com      | HTTP     | 1 day       | Distinguishes between humans and bots. |
-| __cf_bm         | hubspot.com     | HTTP     | 1 day       | Distinguishes between humans and bots. |
-| _cfuvid         | hubspot.com     | HTTP     | Session     | Cloudflare services. |
-| _px3            | beehiiv.com     | HTTP     | 1 day       | BotManager tracking. |
-| bcookie         | linkedin.com    | HTTP     | 1 year      | Detects spam and improves security. |
-| cf_clearance    | beehiiv.com     | HTTP     | 1 year      | Distinguishes between humans and bots. |
-| CookieConsent   | weaviate.io     | HTTP     | 1 year      | Stores user's cookie consent state. |
-| embed/v3/counters.gif | forms.hsforms.com | Pixel | Session | Implements forms on the website. |
-| rc::a           | gstatic.com     | HTML     | Persistent  | Distinguishes between humans and bots. |
-| rc::c           | gstatic.com     | HTML     | Session     | Distinguishes between humans and bots. |
-| test_cookie     | doubleclick.net | HTTP     | 1 day       | Checks if the browser supports cookies. |
-| XSRF-TOKEN      | emailpig.com    | HTTP     | Session     | Ensures visitor browsing security. |
-
-#### **Category: Preferences (1)**
-
-| **Cookie Name**   | **Provider**    | **Type** | **Duration** | **Purpose** |
-|------------------|----------------|----------|-------------|-------------|
-| lidc            | linkedin.com    | HTTP     | 1 day       | Registers which server-cluster is serving the visitor. |
-
-#### **Category: Statistics (11)**
-
-| **Cookie Name**   | **Provider**    | **Type** | **Duration** | **Purpose** |
-|------------------|----------------|----------|-------------|-------------|
-| __hssc          | weaviate.io     | HTTP     | 1 day       | Identifies if the cookie data needs to be updated. |
-| __hssrc         | weaviate.io     | HTTP     | Session     | Recognises visitor's browser on reentry. |
-| _hjSessionUser_# | weaviate.io    | HTTP     | 1 year      | Collects statistics on visitor behavior. |
-
-#### **Category: Marketing (34)**
-
-| **Cookie Name**   | **Provider**    | **Type** | **Duration** | **Purpose** |
-|------------------|----------------|----------|-------------|-------------|
-| VISITOR_INFO1_LIVE | youtube.com | HTTP | 180 days | Tracks YouTube user preferences. |
-| YSC            | youtube.com      | HTTP     | Session     | Tracks user’s interaction with embedded content. |
-| yt-remote-device-id | youtube.com | HTML | Persistent | Stores video player preferences. |
-
-_For a full list of cookies, please refer to our [detailed scan report](/reports/Cookie-Report-2025.pdf)._
-
-<br></br>
-
-### **Cookie Declaration**
+### **5. Cookie Declaration**
 
 import CookieDeclaration from '/src/components/CookieDeclaration';
 
