@@ -8,10 +8,17 @@ const CookieDeclaration = () => {
       'https://consent.cookiebot.com/4397b0f9-0b32-41f5-b24a-9370be245e85/cd.js';
     script.type = 'text/javascript';
     script.async = true;
-    document.body.appendChild(script);
+
+    // Append the script to the correct div
+    const targetDiv = document.getElementById('cookie-declaration-container');
+    if (targetDiv) {
+      targetDiv.appendChild(script);
+    } else {
+      document.body.appendChild(script); // Fallback if the div is missing
+    }
   }, []);
 
-  return null;
+  return <div id="cookie-declaration-container"></div>;
 };
 
 export default CookieDeclaration;
