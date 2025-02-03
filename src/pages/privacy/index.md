@@ -516,4 +516,12 @@ Necessary cookies help make a website usable by enabling basic functions like pa
 _For a full list of cookies, please refer to our [detailed scan report](/reports/Cookie-Report-2025.pdf)._
 
 <br></br>
+
+
+### **Cookie Declaration**
+
+import CookieDeclaration from '/src/components/CookieDeclaration';
+
+<CookieDeclaration />
+
 </div>
