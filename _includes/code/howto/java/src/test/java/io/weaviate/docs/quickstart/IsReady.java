@@ -8,6 +8,7 @@ import io.weaviate.client.base.Result;
 
 // END InstantiationExample
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 // START InstantiationExample
 // Set these environment variables
@@ -15,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 // WCD_API_KEY      Your Weaviate instance API key
 
 public class IsReady {
-  public static void main(String[] args) throws Exception {
+  @Test
+  public void isReadyTest() throws Exception {
     String host = System.getenv("WCD_HOSTNAME");
     String apiKey = System.getenv("WCD_API_KEY");
 

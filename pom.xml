@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+    <!-- Required modelVersion, groupId, artifactId, version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.weaviate</groupId>
+    <artifactId>weaviate-java-client</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+      <maven.compiler.source>16</maven.compiler.source>
+      <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+          <configuration>
+            <!-- Custom test class pattern -->
+            <includes>
+              <include>**/*.java</include>  <!-- Matches all classes ending with Test.java -->
+              <!-- You can add more patterns if needed -->
+            </includes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.weaviate</groupId>
+            <artifactId>client</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>

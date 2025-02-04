@@ -1,0 +1,8 @@
+services:
+  java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: java-test-container
+    working_dir: /app
+    command: mvn test -Dtest=IsReady
