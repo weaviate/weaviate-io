@@ -42,9 +42,8 @@
 }
 
 .typeBox {
-  max-width: 38.25rem;
   width: 100%;
-  min-height: 12.125rem; /* Change height to min-height */
+
   border-radius: 0.625rem;
   background: #fff;
   padding: 20px;
@@ -61,9 +60,7 @@
 }
 
 .big {
-  max-width: 37.25rem;
-  width: 100%;
-  min-height: 24.9375rem; /* Adjust as above */
+  width: 50%;
 
   @media screen and (max-width: 1100px) {
     width: 100%;

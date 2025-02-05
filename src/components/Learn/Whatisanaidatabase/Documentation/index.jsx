@@ -10,125 +10,59 @@ export default function Documentation() {
       <div className="container">
         <div className={styles.header}>
           <h2>AI Database Tools</h2>
-          <p>Information on AI Database Tools </p>
         </div>
         <div className={styles.boxContainer}>
           <div className={styles.typeContainer}>
-            <Link
-              className={styles.linkBox}
-              to="/developers/weaviate/model-providers"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={styles.homeIcon}></div>
-                  <h2>Model provider integrations</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      With AWS, Cohere, Google, Hugging Face, OpenAI & more
-                    </small>
-                  </p>
-                </div>
+            <div className={styles.typeBox}>
+              <div className={styles.typeIcon}>
+                <h2>AI-native: Purpose-built vector databases</h2>
               </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="/developers/weaviate/configuration"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Configure</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Configure Weaviate to suit your specific needs
-                    </small>
-                  </p>
-                </div>
+              <div className={styles.typeText}>
+                <p>
+                  AI-native vector databases are purpose-built to handle
+                  large-scale AI workloads efficiently. These databases offer
+                  high-performance indexing (e.g., HNSW),{' '}
+                  <Link to="https://weaviate.io/blog/hybrid-search-explained">
+                    hybrid search
+                  </Link>
+                  , and seamless integration with machine learning models,
+                  making them ideal for scalable and mission-critical AI
+                  applications.
+                </p>
               </div>
-            </Link>
-            <Link className={styles.linkBox} to="/developers/weaviate/search">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Search</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Perform the right queries to find the data you want
-                    </small>
-                  </p>
-                </div>
+            </div>
+
+            <div className={styles.typeBox}>
+              <div className={styles.typeIcon}>
+                <h2>AI-enabled: Search libraries</h2>
               </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="/developers/weaviate/manage-data"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>How-to: Manage data</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>Manage collections & data</small>
-                  </p>
-                </div>
+              <div className={styles.typeText}>
+                <p>
+                  On the other hand, search libraries like FAISS, Annoy, and
+                  ScaNN provide vector search capabilities but lack persistence,
+                  distributed infrastructure, and data management, often
+                  requiring significant engineering to scale.
+                </p>
               </div>
-            </Link>
-            <Link className={styles.linkBox} to="/developers/weaviate/concepts">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.starter}`}></div>
-                  <h2>Docs: Concepts</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>Key features and ideas explained</small>
-                  </p>
-                </div>
+            </div>
+
+            <div className={styles.typeBox}>
+              <div className={styles.typeIcon}>
+                <h2>
+                  AI-enabled: Traditional databases with vector extensions{' '}
+                </h2>
               </div>
-            </Link>
-            <Link className={styles.linkBox} to="/developers/weaviate/api">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div
-                    className={`${styles.homeIcon} ${styles.references}`}
-                  ></div>
-                  <h2>Docs: API References</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>REST, GraphQL and gRPC API details</small>
-                  </p>
-                </div>
+              <div className={styles.typeText}>
+                <p>
+                  Plugins and extensions for traditional databases allow
+                  organizations to add vector functionality to existing systems.
+                  While this integration of AI and databases can be convenient,
+                  they can face performance limitations at scale. In addition,
+                  some data warehouses provide AI-friendly analytics
+                  capabilities.
+                </p>
               </div>
-            </Link>
-            <Link
-              className={styles.linkBox}
-              to="/developers/weaviate/client-libraries"
-            >
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div
-                    className={`${styles.homeIcon} ${styles.references}`}
-                  ></div>
-                  <h2>Docs: Client libraries</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    <small>
-                      Client-specific information (Python, TS/JS, Go, Java)
-                    </small>
-                  </p>
-                </div>
-              </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

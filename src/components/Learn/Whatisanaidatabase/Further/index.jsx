@@ -9,61 +9,39 @@ export default function GoFurther() {
     <div className={styles.bgCol} id="go-further">
       <div className="container">
         <div className={styles.header}>
-          <h2>Go Further</h2>
-          <p>
-            There's much more to explore. Ask questions, learn about the latest
-            in AI & data science and dive into big topics from the experts.
-          </p>
+          <h2>Summary of AI Databases</h2>
         </div>
         <div className={styles.boxContainer}>
-          <div className={styles.typeContainer}>
-            <Link to="https://forum.weaviate.io/">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={styles.homeIcon}></div>
-                  <h2>Forum</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>Ask technical questions to the community & Weaviators</p>
-                </div>
-              </div>
-            </Link>
-            <Link to="/papers">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.papers}`}></div>
-                  <h2>Paper reviews</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>Digestible summaries of the latest in Al & data science</p>
-                </div>
-              </div>
-            </Link>
-            <Link to="/podcast">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.podcast}`}></div>
-                  <h2>Podcast</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>
-                    Connor & guests dive into big topics & ideas in Al & data
-                    science
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <Link to="/blog">
-              <div className={styles.typeBox}>
-                <div className={styles.typeIcon}>
-                  <div className={`${styles.homeIcon} ${styles.blog}`}></div>
-                  <h2>Blog</h2>
-                </div>
-                <div className={styles.typeText}>
-                  <p>More from the Weaviate team on what's going on</p>
-                </div>
-              </div>
-            </Link>
+          <div className={`${styles.typeBox} ${styles.big}`}>
+            <div className={`${styles.typeText} ${styles.large}`}>
+              <p>
+                <Link to="https://weaviate.io/blog/vector-embeddings-explained">
+                  Vector embeddings
+                </Link>{' '}
+                have become the core data type driving applications powered by
+                LLMs and machine learning algorithms. Traditional databases,
+                though evolving with vector extensions, are not optimized to
+                handle the complexity of modern AI workloads. This has led to
+                the rise of AI-native vector databases, such as Weaviate, which
+                provide purpose-built AI database solutions for large-scale
+                vector storage, efficient retrieval, and hybrid search
+                capabilities.
+              </p>
+              <p>
+                Selecting the right AI database ultimately depends on your
+                application’s scale, infrastructure, and performance needs. For
+                enterprises prioritizing scalability and reliability, AI-native
+                solutions like Weaviate provide a future-proof foundation to
+                support evolving AI workflows.
+              </p>
+              <p>
+                To learn more, read our ebook:{' '}
+                <Link to="https://weaviate.io/ebooks/choosing-the-right-database-for-ai">
+                  Choosing the Right Database for AI
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </div>

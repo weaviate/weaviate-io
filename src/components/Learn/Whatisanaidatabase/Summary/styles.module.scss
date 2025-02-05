@@ -25,10 +25,55 @@
   }
 }
 
+.box {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 40px;
+  flex: 1;
+
+  h1 {
+    color: #130c49;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  span {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: #130c49;
+
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 2.1rem */
+  }
+}
+
+.exampleBox {
+  border-radius: 0.93325rem;
+  border: 0.747px solid #0073b4;
+  background: #262262;
+  width: 26.50388rem;
+  height: 23.9375rem;
+  flex: 1;
+}
+
 .boxContainer {
   display: flex;
-  gap: 30px;
-  flex-direction: column;
+  justify-content: space-between;
 
   @media screen and (max-width: 1100px) {
     display: flex;
@@ -40,43 +85,55 @@
 .typeContainer {
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
   gap: 30px;
+
+  @media screen and (max-width: 600px) {
+    .linkBox {
+      width: 100%;
+    }
+  }
 }
 
 .typeBox {
   max-width: 37.25rem;
   width: 100%;
-  height: 19.5625rem;
+  height: auto;
   border-radius: 0.625rem;
   background: #fff;
   padding: 20px;
   flex-shrink: 0;
+
   display: flex;
   flex-direction: column;
 
   @media screen and (max-width: 1440px) {
-    max-width: 31.6rem;
+    max-width: 100%;
+    gap: 10px;
+    justify-content: unset;
     height: auto;
   }
 
-  @media screen and (max-width: 1140px) {
-    max-width: 100%;
+  @media screen and (max-width: 500px) {
+    justify-content: stretch;
+  }
+}
+
+.tall {
+  @media screen and (max-width: 600px) {
+    height: auto;
+  }
+
+  @media screen and (max-width: 450px) {
     height: auto;
   }
 }
 
 .big {
-  max-width: 76.25rem;
+  max-width: 37.25rem;
   width: 100%;
-  min-height: 18.9375rem;
-
-  @media screen and (max-width: 1440px) {
-    height: auto;
-  }
-
-  @media screen and (max-width: 600px) {
-    height: auto;
-  }
+  height: 22.9375rem;
+  flex: 1;
 }
 
 .typeIcon {
@@ -86,7 +143,7 @@
   flex-direction: row;
 
   .homeIcon {
-    background-image: url('/img/site/learn-recipes-icon.svg');
+    background-image: url('/img/site/learn-intergrate-icon.svg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 2.3125rem;
@@ -94,12 +151,16 @@
     flex-shrink: 0;
   }
 
-  .repos {
-    background-image: url('/img/site/learn-logo-icon.svg');
+  .starter {
+    background-image: url('/img/site/learn-starter-icon.svg');
   }
 
-  .demos {
-    background-image: url('/img/site/learn-play-icon.svg');
+  .howtos {
+    background-image: url('/img/site/learn-howto-icon.svg');
+  }
+
+  .references {
+    background-image: url('/img/site/learn-references-icon.svg');
   }
 
   h2 {
@@ -120,19 +181,13 @@
 .typeText {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
-  @media screen and (max-width: 600px) {
+  gap: 12px;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 1440px) {
+    gap: 6px;
     height: auto;
-  }
-
-  ul {
-    line-height: 200%;
-    margin: 10px 0px;
-
-    @media screen and (max-width: 600px) {
-      height: auto;
-    }
   }
 
   p {
@@ -145,17 +200,7 @@
   }
   a {
     color: #61bd73;
-    margin: 30px 0px 0px 0px;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 157.33%; /* 1.37663rem */
-    text-decoration-line: underline;
-  }
 
-  .external {
-    color: #130c49;
-    font-weight: 700;
     text-decoration-line: underline;
   }
 }
@@ -166,19 +211,14 @@
   height: 120px;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 1440px) {
-    flex-wrap: nowrap;
-    height: auto;
+  p {
+    font-weight: 900;
   }
 }
 
 .large {
-  height: 220px;
+  height: 270px;
   justify-content: space-between;
-
-  @media screen and (max-width: 1440px) {
-    height: auto;
-  }
 }
 
 .serviceBox {
@@ -263,84 +303,5 @@
 
   @media screen and (max-width: 800px) {
     display: none;
-  }
-}
-
-.ctaContainer {
-  max-width: 76.5rem;
-  width: 100%;
-  margin: 60px 0px 0px 0px;
-  height: 12.25rem;
-  flex-shrink: 0;
-  border-radius: 0.625rem;
-  background: url('/img/site/learn-cta-bg.png');
-  background-size: cover;
-  padding: 20px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media screen and (max-width: 1100px) {
-    height: auto;
-    background-position-x: center;
-  }
-
-  span {
-    color: #61bb73;
-    font-family: Inter;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 1.6875rem */
-    text-transform: uppercase;
-  }
-
-  h2 {
-    color: #f4f9fd;
-    font-size: 1.625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%; /* 1.95rem */
-  }
-
-  p {
-    color: #f4f9fd;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 1.5rem */
-  }
-}
-
-.innerCta {
-  display: flex;
-  justify-content: space-between;
-
-  .button {
-    border-radius: 0.3125rem;
-    background: #130c49;
-    width: 10.625rem;
-    height: 2.8125rem;
-    color: #fff;
-    text-align: center;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  p {
-    width: 60%;
-
-    @media screen and (max-width: 1100px) {
-      width: 100%;
-    }
-  }
-
-  @media screen and (max-width: 1100px) {
-    flex-direction: column;
-    gap: 30px;
   }
 }
