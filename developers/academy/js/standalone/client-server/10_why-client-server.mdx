@@ -1,0 +1,37 @@
+---
+title: What is the client-server application
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import WeaviateTypescriptImgUrl from '/developers/academy/js/standalone/client-server/_img/architecture.jpg';
+
+
+
+### <i class="fa-solid fa-chalkboard"></i> What is a client-server application
+
+A client-server application is one that runs on a client device while accessing information from a remote server.
+
+In the context of building applications with Weaviate, this means having a server as an intermediary to handle all interactions with your database as opposed to interacting with your database directly from your client application.
+
+<img src={WeaviateTypescriptImgUrl} alt="Image alt" width="100%"/>
+
+This section aims to guide you through how to do that as you build applications with the Weaviate Typescript v3 client: [weaviate-client](https://www.npmjs.com/package/weaviate-client).
+
+
+
+### <i class="fa-solid fa-chalkboard"></i> Using the weaviate-client in a client-server application 
+
+The v3 client uses gRPC to connect to your Weaviate instance. The client supports Node.js, server-based development. It does not support browser-based web client development.
+
+Install the client by following [these instructions](../../../../weaviate/client-libraries/typescript/typescript-v3.mdx/#install-the-package). A big benefit of using the new v3 client is the introduction of the gRPC protocol. A faster, more reliable platform to handle interactions with the database at scale. Unfortunately, gRPC does not support browser-based client development.
+
+Besides the requirements of running the [weaviate-client](../../../../weaviate/client-libraries/typescript/typescript-v3.mdx#node-support-only), the client-server architecture is reliably more secure than interactions directly from the client.
+
+Having a client-server approach means you can optimize your use of Weaviate by implementing load balancing, user and session management, middleware and various other optimizations. 
+
+In the next sections we'll look at how to build client-server applications with..
+- [Using backend web frameworks](./20_building-client-server.mdx)
+- [Using fullstack web frameworks](./30_fullstack.mdx)
+

@@ -12,11 +12,11 @@
     },
     {
       "link": "developers/academy/js/standalone/client-server",
-      "title": "The client-server architecture",
+      "title": "Building client-server Applications",
       "description": "Understand the client-server approach to building with Weaviate."
     },
     {
-      "link": "developers/academy/js/starter_web_applications",
+      "link": "blog/hybrid-search-for-web-developers",
       "title": "Building AI-Native Web Applications",
       "description": "Learn how to build production ready full-stack AI-Native Web Apps."
     }

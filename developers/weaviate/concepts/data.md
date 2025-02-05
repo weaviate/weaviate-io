@@ -125,7 +125,11 @@ In requests without any other ordering specified, Weaviate processes them in asc
 
 ### Cross-references
 
-If data objects are related, use [cross-references](/weaviate/manage-data/cross-references.mdx) to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
+If data objects are related, you can use [cross-references](/weaviate/manage-data/cross-references.mdx) to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
 
 To create a reference, use a property from one collection to specify the value of a related property in the other collection.
 
@@ -170,7 +174,7 @@ The Paul Krugman `Author` object adds a new property, `writesFor`, to capture th
 
 The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object.
 
-Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
+Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a `hasAuthors` property points back to the `Author` collection.
 
 ### Multiple vectors (named vectors)
 

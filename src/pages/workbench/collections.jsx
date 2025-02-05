@@ -80,7 +80,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availabilty: <strong>Available Now</strong>
+                      Availability: <strong>Available Now</strong>
                     </p>
                     <p>
                       <Link to="/developers/wcs/tools/collections-tool">

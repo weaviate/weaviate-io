@@ -32,7 +32,7 @@
     "name": "Ajay Chavan",
     "title": "Client-Focused SRE",
     "photo": "Ajay.jpg",
-    "team": "applied-research",
+    "team": "delivery",
     "linkedin": "ajaxchavan"
   },
   {
@@ -99,6 +99,13 @@
     "title": "Full Stack Engineer",
     "photo": "augustas.jpg",
     "team": "weaviate-labs"
+  },
+  {
+    "name": "Austin Freels",
+    "title": "Director of Customer Success Engineering",
+    "photo": "Austin.jpg",
+    "linkedin": "austin-freels",
+    "team": "delivery"
   },
   {
     "name": "Benjamin Sabrin",
@@ -202,7 +209,10 @@
     "name": "Daniel Phiri",
     "title": "Developer Advocate",
     "photo": "daniel.jpg",
-    "team": "developer-relations"
+    "team": "developer-relations",
+    "linkedin": "malgamves",
+    "twitter": "malgamves",
+    "github": "malgamves"
   },
   {
     "name": "Daniel Williams",
@@ -217,6 +227,13 @@
     "photo": "Danielle.jpg",
     "linkedin": "daniellesnugent",
     "team": "people-and-culture"
+  },
+  {
+    "name": "Danielle Washington",
+    "title": "Technical Documentation Writer",
+    "photo": "Danielle-Washington.jpg",
+    "linkedin": "dwashington-clouddani",
+    "team": "developer-relations"
   },
   {
     "name": "David Street",
@@ -280,6 +297,12 @@
     "team": "developer-growth"
   },
   {
+    "name": "Elisa Seay",
+    "title": "Enterprise Account Executive",
+    "photo": "Elisa-Seay.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Eric Caleb",
     "title": "Senior Software Engineer",
     "photo": "eric.jpg",
@@ -306,12 +329,25 @@
     "team": "cto"
   },
   {
+    "name": "Faustas Butkus",
+    "title": "Software Engineer",
+    "photo": "Faustas.jpg",
+    "team": "database"
+  },
+  {
     "name": "Femke Plantinga",
     "title": "Developer Growth Manager",
     "photo": "femke.jpg",
     "linkedin": "femke-plantinga-a60b9a172",
     "twitter": "femke_plantinga",
     "team": "developer-growth"
+  },
+  {
+    "name": "Giorgos Kampitakis",
+    "title": "Full Stack Engineer",
+    "photo": "Giorgos.jpg",
+    "linkedin": "gkampitakis",
+    "team": "wcd"
   },
   {
     "name": "Griffin Foster",
@@ -340,6 +376,13 @@
     "team": "developer-relations",
     "linkedin": "ivan-g-despot",
     "twitter": "ivan_g_despot"
+  },
+  {
+    "name": "Jacob Heier",
+    "title": "Enterprise Account Executive",
+    "photo": "Jacob-Heier.jpg",
+    "linkedin": "jake-heier-0543034a",
+    "team": "sales"
   },
   {
     "name": "JP Hwang",
@@ -412,6 +455,12 @@
     "linkedin": "joshsgoldstein"
   },
   {
+    "name": "Kamil Tyborowski",
+    "title": "Software Engineer",
+    "photo": "Kamil.jpg",
+    "team": "developer-growth"
+  },
+  {
     "name": "Kaviraj Kanagaraj",
     "title": "Senior Software Engineer",
     "photo": "Kaviraj.jpg",
@@ -441,6 +490,12 @@
     "team": "database"
   },
   {
+    "name": "Madison Sanders",
+    "title": "Enterprise Account Executive",
+    "photo": "Madison.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Marcin Antas",
     "title": "Core Engineer",
     "photo": "marcin.jpg",
@@ -462,6 +517,13 @@
     "photo": "mariska.jpg",
     "linkedin": "mariska-tunc-538168103",
     "team": "finance"
+  },
+  {
+    "name": "Mary Ann Casugod",
+    "title": "Product Support Engineer",
+    "photo": "Mary-Ann.jpg",
+    "linkedin": "mary-ann-casugod-362a5",
+    "team": "delivery"
   },
   {
     "name": "Mary Newhauser",
@@ -510,6 +572,13 @@
     "title": "Distributed Systems Engineer",
     "photo": "nate-wilkinson.jpg",
     "team": "database"
+  },
+  {
+    "name": "Nathaniel Ma",
+    "title": "Enterprise Account Executive",
+    "photo": "Nathaniel.jpg",
+    "linkedin": "manathaniel",
+    "team": "sales"
   },
   {
     "name": "Nenad Malić",
@@ -643,11 +712,11 @@
   },
   {
     "name": "Stefan Bogdan",
-    "title": "Solution Engineer",
+    "title": "Engineer",
     "photo": "stefan.jpg",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",
-    "team": "applied-research"
+    "team": "developer-relations"
   },
   {
     "name": "Svitlana Smolianova",
@@ -672,10 +741,17 @@
     "team": "database"
   },
   {
+    "name": "Tobias Christiani",
+    "title": "Research Engineer",
+    "photo": "Tobias.jpg",
+    "team": "applied-research",
+    "linkedin": "tobias-christiani-0055"
+  },
+  {
     "name": "Tuana Celik",
     "title": "Developer Relations Engineer",
     "photo": "Tuana.jpg",
-    "team": "developer-relations",
+    "team": "developer-growth",
     "linkedin": "tuanacelik",
     "twitter": "tuanacelik"
   },

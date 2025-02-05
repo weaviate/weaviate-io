@@ -69,6 +69,9 @@ Permissions can be defined for the following resources:
 1. **Collections** (collection definitions only, data object permissions are separate)
     - Create, read, update, and delete collection definitions
 
+1. **Tenants** ([available from `v1.28.3`](#collection-and-tenant-permissions))
+    - Create, read, update, and delete tenants
+
 1. **Data Objects**
     - Read, write, update, and delete objects
 
@@ -108,6 +111,18 @@ This is due to the implementation of the `aggregate` queries under-the-hood, whi
 Many permissions require a collection name filter, to specify which collections the permission applies to.
 
 In thi case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
+
+### Collection and tenant permissions
+
+:::caution Breaking change introduced in `v1.28.3`
+This change was introduced in `v1.28.3` during the technical preview phase. In `v1.28.0` - `v1.28.2`, a collection level permission would cascade to confer permissions the equivalent tenant-level operations. This behavior was changed in `v1.28.3` to require explicit tenant-level permissions for tenant operations, for operations such as creating a tenant, updating tenant status, and so on.
+:::
+
+A collection permission is independent of tenant permissions.
+
+To have permissions to operate on a tenant that belongs to a collection, the user must have the appropriate tenant-level permissions for that collection. Collection-level permissions, such as that to create collections, do not confer the equivalent tenant-level permissions, such as that to create tenants for that collection.
+
+For example, to create a tenant in a collection called "Test_Collection", the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called "Test_Collection".
 
 ## Example permission sets
 
@@ -163,6 +178,47 @@ This confers viewer permissions for collections starting with `TargetCollection_
       text={PyCode}
       startMarker="# START ViewerPermissionDefinition"
       endMarker="# END ViewerPermissionDefinition"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+
+</Tabs>
+
+### Example tenant permissions
+
+This confers permissions to manage collections starting with `TargetCollection_`, and to create, read, and update tenants in the same collection.
+
+<Tabs groupId="languages">
+
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MTPermissionsExample"
+      endMarker="# END MTPermissionsExample"
       language="py"
     />
   </TabItem>
@@ -419,7 +475,7 @@ This example removes from the "devrel" role permissions to:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom "devrel" role to "jane-doe".
+This example assigns the custom "devrel" role to "user-c".
 
 <Tabs groupId="languages">
 
@@ -745,7 +801,7 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 You can revoke one or more roles from a specific user.
 
-This examples revokes "role-1" and "role-2" from the user "jane-doe".
+This examples revokes "role-1" and "role-2" from the user "user-c".
 
 <Tabs groupId="languages">
 

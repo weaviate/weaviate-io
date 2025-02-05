@@ -14,7 +14,7 @@ export default function Header() {
             <h1>AI infrastructure tailored to your use case</h1>
             <p>
               From real-time results to data isolation and cost management,
-              optimize for what you need.
+              optimize your generative AI infrastructure for your unique needs.
             </p>
             <div className={styles.buttons}>
               <Link className={styles.buttonGradient} to="/pricing">

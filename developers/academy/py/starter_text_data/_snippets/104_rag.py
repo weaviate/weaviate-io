@@ -1,7 +1,6 @@
 # START-ANY
 import os
 import weaviate
-import os
 
 # END-ANY
 
