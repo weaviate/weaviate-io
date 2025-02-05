@@ -22,7 +22,7 @@ export default function Resources() {
             <Link to="#design">Design</Link>
           </ul>
           <ul>
-            <Link to="#go-further">Go further</Link>
+            <Link to="#go-further">Summary</Link>
           </ul>
         </div>
       </div>
