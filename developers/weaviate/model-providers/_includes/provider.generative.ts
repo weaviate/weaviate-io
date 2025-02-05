@@ -555,6 +555,34 @@ await client.collections.create({
 });
 // END BasicGenerativeOllama
 
+// START BasicGenerativeNVIDIA
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    apiEndpoint: 'https://integrate.api.nvidia.com/v1',  // Optional
+    model: 'meta/llama-3.2-3b-instruct',  // Default model, this is optional
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeNVIDIA
+
+// START FullGenerativeNVIDIA
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.nvidia({
+    apiEndpoint: 'https://integrate.api.nvidia.com/v1',
+    model: 'meta-llama-3.1-70b-instruct',
+    maxTokens: 1024, // optional
+    temperature: 0.7, // optional
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeNVIDIA
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
