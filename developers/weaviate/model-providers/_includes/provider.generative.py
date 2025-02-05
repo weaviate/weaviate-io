@@ -625,6 +625,33 @@ client.collections.create(
 )
 # END FullGenerativeOllama
 
+# START BasicGenerativeNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.nvidia()
+    # Additional parameters not shown
+)
+# END BasicGenerativeNVIDIA
+
+# START FullGenerativeNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.nvidia(
+        api_endpoint="https://integrate.api.nvidia.com/v1",  # optional
+        model="meta/llama-3.2-3b-instruct",  # Default model, this is optional
+        temperature=0.7, # optional
+        maxTokens=1024 # optional
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeNVIDIA
+
 source_objects = [
     {"title": "The Shawshank Redemption"},
     {"title": "The Godfather"},

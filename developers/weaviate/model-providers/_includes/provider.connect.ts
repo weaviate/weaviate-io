@@ -48,6 +48,9 @@ const azureApiKey = process.env.AZURE_APIKEY || '';  // Replace with your infere
 // START VoyageAIInstantiation
 const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your inference API key
 // END VoyageAIInstantiation
+// START NVIDIAInstantiation
+const nvidiaApiKey = process.env.NVIDIA_APIKEY || '';  // Replace with your inference API key
+// END NVIDIAInstantiation
 
 // START-ANY
 
@@ -107,6 +110,9 @@ const client = await weaviate.connectToWeaviateCloud(
       // START VoyageAIInstantiation
       'X-VoyageAI-Api-Key': voyageaiApiKey,
       // END VoyageAIInstantiation
+      // START NVIDIAInstantiation
+      'X-NVIDIA-Api-Key': nvidiaApiKey,
+      // END NVIDIAInstantiation
       // START-ANY
     }
     // highlight-end
