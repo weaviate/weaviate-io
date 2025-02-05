@@ -304,7 +304,7 @@
   gap: 0px;
   justify-content: flex-start;
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1200px) {
     gap: 0px;
   }
 }
@@ -361,8 +361,9 @@
     color: #130c49;
   }
 
-  @media screen and (max-width: 1190px) {
+  @media screen and (max-width: 1250px) {
     margin: 0px;
+    margin-right: 10px;
     width: unset;
   }
 
@@ -381,7 +382,7 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  width: 10.625rem;
+  width: 8rem;
   height: 3.125rem;
   transition: all 0.3s ease;
   border-radius: 0.3125rem;
@@ -393,7 +394,7 @@
     color: #ffffff !important;
   }
 
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 1300px) {
     margin: 0px;
     width: unset;
   }
@@ -430,7 +431,7 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  width: 10.625rem;
+  width: 8rem;
   height: 3.125rem;
 
   border-radius: 0.3125rem;
@@ -442,12 +443,12 @@
     color: #130c49;
   }
 
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 1300px) {
     margin: 0px;
     width: unset;
   }
 
-  @media screen and (max-width: 999px) {
+  @media screen and (max-width: 996px) {
     display: none;
   }
 
@@ -472,6 +473,37 @@
   }
 }
 
+.loginButton {
+  margin: 0px 0px 0px 0px;
+
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 8rem;
+  height: 2.625rem;
+
+  border-radius: 0.3125rem;
+  color: #130c49;
+  background: #ffffff;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 1250px) {
+    margin: 0px;
+    width: unset;
+  }
+
+  @media screen and (max-width: 1150px) {
+    display: block;
+    border: unset;
+    background-color: unset;
+    color: #2b3854;
+  }
+}
 [data-theme='light'] {
   .separator {
     background-color: #e0e0e0;
@@ -1105,4 +1137,16 @@ ul.dropdown__menu {
 
 .support-page li {
   font-size: 1.2rem;
+}
+
+.iconHide {
+  @media screen and (max-width: 980px) {
+    display: none !important;
+  }
+}
+
+a.navbar__item.navbar__link:hover {
+  i {
+    color: #00a142 !important;
+  }
 }
