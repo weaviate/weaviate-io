@@ -378,6 +378,12 @@
     border: unset;
     background-color: unset;
     color: #2b3854;
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+    color: #606770;
   }
 }
 
@@ -480,7 +486,7 @@
 }
 
 .loginButton {
-  margin: 0px 0px 0px 0px;
+  margin: 0px 10px 0px 0px;
 
   align-items: center;
   display: flex;
@@ -509,7 +515,20 @@
     background-color: unset;
     color: #2b3854;
   }
+
+  @media screen and (max-width: 996px) {
+    display: none;
+    color: #606770;
+  }
 }
+
+a.menu__link.tryNow,
+a.menu__link.loginButton {
+  @media screen and (max-width: 1150px) {
+    display: block;
+  }
+}
+
 [data-theme='light'] {
   .separator {
     background-color: #e0e0e0;
@@ -1154,5 +1173,19 @@ ul.dropdown__menu {
 a.navbar__item.navbar__link:hover {
   i {
     color: #00a142 !important;
+  }
+}
+
+[data-theme='dark'] {
+  a.navbar__item.navbar__link {
+    i {
+      color: #ffffff !important;
+    }
+  }
+
+  a.navbar__item.navbar__link:hover {
+    i {
+      color: #00a142 !important;
+    }
   }
 }
