@@ -1,7 +1,7 @@
 ---
 title: Schema (collection definitions)
 description: Begin with schema setup in Weaviate to structure your data effectively.
-sidebar_position: 20
+sidebar_position: 0
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
@@ -202,6 +202,12 @@ If you are not sure where to start, modules that integrate with popular API-base
 Starting from version `v1.20.0`, each collection can be configured as a multi-tenancy collection. This allows separation of data between tenants, typically end-users, at a much lower overhead than creating separate collections for each tenant.
 
 This is useful if you want to use Weaviate as a backend for a multi-tenant (e.g. SaaS) application, or if data isolation is required for any other reason.
+
+:::info How many collections is too many?
+
+To learn more about the performance benefits of multi-tenancy compared to separate collections for each tenant, visit [this guide](/developers/weaviate/starter-guides/managing-collections/multi-tenancy-performance).
+
+:::
 
 import SchemaWithMT from '/_includes/code/tutorial.schema.multi-tenancy.mdx';
 
