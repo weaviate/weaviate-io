@@ -1,0 +1,90 @@
+.container {
+  padding: 2rem;
+}
+
+.bgCol {
+  background: #130c49;
+}
+
+.header {
+  width: 70%;
+  margin: 30px 0px;
+
+  h2 {
+    color: #ffffff;
+  }
+
+  p {
+    color: #130c49;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
+}
+
+.boxContainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  p {
+    color: #ffffff;
+  }
+  ul {
+    color: #ffffff;
+    max-width: 210px;
+    width: 100%;
+    margin: 0;
+
+    @media screen and (max-width: 1400px) {
+      max-width: 180px;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      max-width: 160px;
+    }
+  }
+
+  a {
+    color: #ffffff;
+
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.84275rem */
+
+    margin-left: -13px;
+    transition: all 0.5s ease;
+  }
+
+  a:hover {
+    color: #61bd73;
+    text-decoration-line: underline;
+  }
+
+  @media screen and (max-width: 1300px) {
+    gap: 20px;
+  }
+  @media screen and (max-width: 1050px) {
+    display: flex;
+    gap: 10px;
+    flex-flow: wrap;
+    flex-direction: unset;
+    justify-content: flex-start;
+  }
+
+  @media screen and (max-width: 800px) {
+    gap: 6px;
+  }
+}
