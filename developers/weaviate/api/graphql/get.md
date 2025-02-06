@@ -164,6 +164,10 @@ import GraphQLGetMT from '/_includes/code/graphql.get.multitenancy.mdx';
 
 ## Cross-references
 
+import CrossReferencePerformanceNote from '/_includes/cross-reference-performance-note.mdx';
+
+<CrossReferencePerformanceNote />
+
 Weaviate supports cross-references between objects. Each cross-reference behaves like a property.
 
 You can retrieve cross-referenced properties with a `Get` query.

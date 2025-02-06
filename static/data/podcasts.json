@@ -1,5 +1,77 @@
 [
   {
+    "title": "Cartesia AI with Karan Goel - Weaviate Podcast #113",
+    "description": "Thank you so much for watching the 113th episode of the Weaviate Podcast with Karan Goel from Cartesia AI! Cartesia AI is leading the AI world in text-to-speech models!",
+    "youtube": "_J8D0TMz330",
+    "date": "25-01-28",
+    "cover_image": "/img/podcasts/podcast-113.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Vertex AI RAG Engine with Lewis Liu and Bob van Luijt - Weaviate Podcast #112",
+    "description": "Thank you so much for watching the 112th episode of the Weaviate Podcast! We dive into the release of the Vertex AI RAG Engine, its integration with Weaviate and thoughts on the future of connecting AI systems with knowledge sources!",
+    "youtube": "0HUCQkpQcPM",
+    "date": "25-01-10",
+    "cover_image": "/img/podcasts/podcast-112.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Morningstar Intelligence Engine with Aravind Kesiraju - Weaviate Podcast #111",
+    "description": "Thank you so much for watching the 111th episode of the Weaviate Podcast with Aravind Kesiraju! Aravind is a Principal Software Engineer at Morningstar where he has led the effort behind the Morningstar Intelligence Engine!",
+    "youtube": "TWPR_CmDSFM",
+    "date": "25-01-08",
+    "cover_image": "/img/podcasts/podcast-111.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Arctic Embed with Luke Merrick, Puxuan Yu, and Charles Pierse - Weaviate Podcast #110",
+    "description": "Welcome to the 110th episode of the Weaviate Podcast! Today we are diving into Snowflake’s Arctic Embedding model series and their newly released Arctic Embed 2.0 open-source model, additionally supporting multilingual text embeddings.",
+    "youtube": "Kjqv4uk3RCs",
+    "date": "24-12-18",
+    "cover_image": "/img/podcasts/podcast-110.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Agentic RAG with Erika Cardenas - Weaviate Podcast #109",
+    "description": "Thank you so much for watching the 109th episode of the Weaviate Podcast with Erika Cardenas! Erika, in collaboration with Leonie Monigatti, have recently published \"What is Agentic RAG\".",
+    "youtube": "Eh4uQq43jA4",
+    "date": "24-11-13",
+    "cover_image": "/img/podcasts/podcast-109.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Let Me Speak Freely? with Zhi Rui Tam - Weaviate Podcast #108",
+    "description": "Welcome to the 108th Weaviate Podcast with Zhi Rui Tam, the lead author of Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models!",
+    "youtube": "UsVIX9NJ_a4",
+    "date": "24-11-07",
+    "cover_image": "/img/podcasts/podcast-108.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "SWE-bench with John Yang and Carlos E. Jimenez - Weaviate Podcast #107",
+    "description": "Thank you so much for watching the 107th episode of the Weaviate Podcast! This one dives into SWE-bench, SWE-agent, and most recently SWE-bench Multimodal with John Yang from Stanford University and Carlos E. Jimenez from Princeton University!",
+    "youtube": "8rwHAR4fsFg",
+    "date": "24-10-30",
+    "cover_image": "/img/podcasts/podcast-107.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "AI in Education with Rose E. Wang - Weaviate Podcast #106",
+    "description": "Welcome to the 106th episode of the Weaviate Podcast featuring Rose E. Wang! Rose is a Ph.D. student at Stanford University where she has lead incredible research at the cutting-edge of AI applications in Education.",
+    "youtube": "rsOyclZZeho",
+    "date": "24-10-22",
+    "cover_image": "/img/podcasts/podcast-106.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Compound AI Systems with Philip Kiely - Weaviate Podcast #105",
+    "description": "Thanks so much for watching the 105th episode of the Weaviate Podcast with Philip Kiely! This one dives into all sorts of apsects related to Compound AI Systems!",
+    "youtube": "rzJ8hDx1Kic",
+    "date": "24-10-17",
+    "cover_image": "/img/podcasts/podcast-105.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "AI Agents That Matter with Sayash Kapoor and Benedikt Stroebl - Weaviate Podcast #104",
     "description": "Welcome to the 104th Weaviate Podcast with Sayash Kapoor and Benedikt Stroebl from Princeton Language and Intelligence! Sayash and Benedikt are co-first authors of \"AI Agents That Matter\".",
     "youtube": "gCP-W_BNzg4",

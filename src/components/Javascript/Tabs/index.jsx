@@ -27,9 +27,9 @@ const ProjectTabs = () => {
       <section className="featured-projects">
         <div className="container">
           <div className={styles.header}>
-            <h2>Templates</h2>
+            <h2>Example Apps</h2>
             <p>
-              Get template applications to speed up your development. Available
+              Find example applications to speed up your development. Available
               for every use case.
             </p>
           </div>

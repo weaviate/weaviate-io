@@ -96,23 +96,27 @@ client.collections.create(
     "ArticleNV",
     # highlight-start
     vectorizer_config=[
-        # Set a named vector
-        Configure.NamedVectors.text2vec_cohere(  # Use the "text2vec-cohere" vectorizer
-            name="title", source_properties=["title"]       # Set the source property(ies)
+        # Set a named vector with the "text2vec-cohere" vectorizer
+        Configure.NamedVectors.text2vec_cohere(
+            name="title",
+            source_properties=["title"],                        # (Optional) Set the source property(ies)
+            vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         ),
-        # Set another named vector
-        Configure.NamedVectors.text2vec_openai(  # Use the "text2vec-openai" vectorizer
-            name="body", source_properties=["body"]         # Set the source property(ies)
+        # Set another named vector with the "text2vec-openai" vectorizer
+        Configure.NamedVectors.text2vec_openai(
+            name="title_country",
+            source_properties=["title", "country"],             # (Optional) Set the source property(ies)
+            vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         ),
-        # Set another named vector
-        Configure.NamedVectors.text2vec_openai(  # Use the "text2vec-openai" vectorizer
-            name="title_country", source_properties=["title", "country"] # Set the source property(ies)
+        # Set a named vector for your own uploaded vectors
+        Configure.NamedVectors.none(
+            name="custom_vector",
+            vector_index_config=Configure.VectorIndex.hnsw()    # (Optional) Set vector index options
         )
     ],
     # highlight-end
     properties=[  # Define properties
         Property(name="title", data_type=DataType.TEXT),
-        Property(name="body", data_type=DataType.TEXT),
         Property(name="country", data_type=DataType.TEXT),
     ],
 )
@@ -121,12 +125,11 @@ client.collections.create(
 # Test
 collection = client.collections.get("ArticleNV")
 config = collection.config.get()
-# TODO: change test to also include "title_country" with ["title", "country"] properties
 
 assertion_dicts = {
     "title": ["title"],
-    "body": ["body"],
-    "title_country": ["title", "country"]
+    "title_country": ["title", "country"],
+    "custom_vector": None
 }
 for k, v in config.vector_config.items():
     assert v.vectorizer.source_properties == assertion_dicts[k]  # Test that the source properties are correctly set

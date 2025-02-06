@@ -16,6 +16,11 @@ ara:
   title: People Operations Manager
   url: https://linkedin.com/in/aranzazugonzalez
   image_url: /img/people/icon/ara.jpg
+ben:
+  name: Ben Sabrin
+  title: VP of Sales
+  url: https://www.linkedin.com/in/bsabrin/
+  image_url: /img/people/icon/ben.jpeg
 bob:
   name: Bob van Luijt
   title: CEO
@@ -244,3 +249,8 @@ charly:
   title: Developer Marketer at Inngest
   url: https://www.linkedin.com/in/charly-poly/
   image_url: /img/people/icon/charly.jpeg
+crispin:
+  name: Crispin Velez
+  title: Cloud Vertex AI Lead
+  url: https://www.linkedin.com/in/crispinvelez/
+  image_url: /img/people/icon/crispin.jpeg

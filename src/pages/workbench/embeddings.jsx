@@ -110,7 +110,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availabilty:{' '}
+                      Availability:{' '}
                       <Link to="https://events.weaviate.io/embeddings-preview">
                         <strong>Preview</strong>
                       </Link>

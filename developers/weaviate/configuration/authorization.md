@@ -135,28 +135,28 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
       # Enable RBAC
-      AUTHORIZATION_ENABLE_RBAC: 'true'
+      AUTHORIZATION_RBAC_ENABLED: 'true'
 
       # Provide pre-configured roles to users
       # This assumes that the relevant user has been authenticated and identified
       #
       # You MUST define at least one admin user
-      AUTHORIZATION_ADMIN_USERS: 'admin-user'
-      AUTHORIZATION_VIEWER_USERS: 'viewer-user'
+      AUTHORIZATION_ADMIN_USERS: 'user-a'
+      AUTHORIZATION_VIEWER_USERS: 'user-b'
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `admin-user` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
-- Configures `other-user` as a user with no built-in permissions
+- Configures `user-a` as a user with built-in admin permissions
+- Configures `user-b` as a user with built-in viewer permissions
+- Configures `user-c` as a user with no built-in permissions
 
-The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
 
 ### RBAC: Kubernetes
 
@@ -170,13 +170,13 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
-      - viewer-key
-      - other-key
+      - user-a-key
+      - user-b-key
+      - user-c-key
     users:
-      - admin-user
-      - viewer-user
-      - other-user
+      - user-a
+      - user-b
+      - user-c
 
 # Authorization configuration
 authorization:
@@ -188,18 +188,18 @@ authorization:
     #
     # You MUST define at least one admin user
     admins:
-    - admin-user
+    - user-a
     viewers:
-    - viewer-user
+    - user-b
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `admin-user` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
-- Configures `other-user` as a user with no built-in permissions
+- Configures `user-a` as a user with built-in admin permissions
+- Configures `user-b` as a user with built-in viewer permissions
+- Configures `user-c` as a user with no built-in permissions
 
-The `other-user` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
 
 ## Admin list
 
@@ -223,8 +223,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'viewer-key,admin-key,other-key'
-      AUTHENTICATION_APIKEY_USERS: 'viewer-user,admin-user,other-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
 
       # Authorization configuration
       # Enable admin list
@@ -234,16 +234,16 @@ services:
       # This assumes that the relevant user has been authenticated and identified
       #
       # You MUST define at least one admin user
-      AUTHORIZATION_ADMINLIST_USERS: 'admin-user'
-      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'viewer-user'
+      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
+      AUTHORIZATION_ADMINLIST_READONLY_USERS: 'user-b'
 ```
 
 This configuration:
 - Enables Admin list authorization
-- Configures `admin-user` as a user with built-in admin permissions
-- Configures `viewer-user` as a user with built-in viewer permissions
+- Configures `user-a` as a user with built-in admin permissions
+- Configures `user-b` as a user with built-in viewer permissions
 
-Note that in this configuration, `other-user` has no permissions.
+Note that in this configuration, `user-c` has no permissions.
 
 ### Admin list: Kubernetes
 
@@ -257,13 +257,13 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
-      - viewer-key
-      - other-key
+      - user-a-key
+      - user-b-key
+      - user-c-key
     users:
-      - admin-user
-      - viewer-user
-      - other-user
+      - user-a
+      - user-b
+      - user-c
 
 # Authorization configuration
 authorization:
@@ -276,9 +276,9 @@ authorization:
     #
     # You MUST define at least one admin user
     users:
-    - admin-user
+    - user-a
     read_only_users:
-    - viewer-user
+    - user-b
 ```
 
 ### Anonymous users
@@ -305,11 +305,11 @@ services:
 
       # Configure admin user API key
       AUTHORIZATION_ADMINLIST_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'admin-key'
-      AUTHENTICATION_APIKEY_USERS: 'admin-user'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a'
 
-      # Enable admin list and provide admin access to "admin-user" only
-      AUTHORIZATION_ADMINLIST_USERS: 'admin-user'
+      # Enable admin list and provide admin access to "user-a" only
+      AUTHORIZATION_ADMINLIST_USERS: 'user-a'
       # Provide read-only access to anonymous users
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'anonymous'
 ```
@@ -329,17 +329,17 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - admin-key
+      - user-a-key
     users:
-      - admin-user
+      - user-a
 
 authorization:
-  # Enable admin list and provide admin access to "admin-user" only
+  # Enable admin list and provide admin access to "user-a" only
   admin_list:
     # Enable admin list
     enabled: true
     users:
-    - admin-user
+    - user-a
     # Provide read-only access to anonymous users
     read_only_users:
     - anonymous

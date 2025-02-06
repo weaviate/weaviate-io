@@ -7,7 +7,7 @@ import Link from '@docusaurus/Link';
 import paths from '/data/paths.json';
 
 export default function Resources() {
-  const resourcesSite = paths.siteSearchTemp;
+  const resourcesSite = paths.siteSearch;
   const resourcesEcommerce = paths.ecommerce;
   const resourcesAutomation = paths.automation;
   const resourcesChatbots = paths.chatbots;
@@ -36,7 +36,7 @@ export default function Resources() {
         <h2>Learn</h2>
         <p>
           Use case specific, step-by-step resources to help you build AI-Native
-          Applications in Javascript.
+          Applications in JavaScript.
         </p>
 
         <Tabs

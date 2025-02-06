@@ -41,7 +41,7 @@ export default function Resources() {
               </div>
             </div>
           </Link>
-          <Link to="https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i?sr=0-1&ref_=beagle&applicationId=AWSMPContessa">
+          <Link to="https://aws.amazon.com/marketplace/pp/prodview-ng2dfhb4yjoic?sr=0-3&ref_=beagle&applicationId=AWSMPContessa&utm_source=website&utm_medium=button&utm_campaign=AWSMarketplace">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} ${styles.resource3}`}></div>
               <div className={styles.textBox}>

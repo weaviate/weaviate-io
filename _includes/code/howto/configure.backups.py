@@ -6,6 +6,7 @@
 
 # START CreateBackup  # START RestoreBackup  # START StatusCreateBackup  # START StatusRestoreBackup  # START CancelBackup
 import weaviate
+from weaviate.classes.backup import BackupLocation
 
 client = weaviate.connect_to_local()
 
@@ -25,6 +26,7 @@ result = client.backup.create(
     backend="filesystem",
     include_collections=["Article", "Publication"],
     wait_for_completion=True,
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Optional, requires Weaviate 1.27.2 / 1.28.0 or above and Python client 4.10.3 or above
 )
 
 print(result)
@@ -41,6 +43,7 @@ assert result.status == "SUCCESS"
 result = client.backup.get_create_status(
     backup_id="my-very-first-backup",
     backend="filesystem",
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Required if a non-default location was used at creation
 )
 
 print(result)
@@ -61,6 +64,7 @@ result = client.backup.restore(
     backend="filesystem",
     exclude_collections="Article",
     wait_for_completion=True,
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Required if a non-default location was used at creation
 )
 
 print(result)
@@ -77,6 +81,7 @@ assert result.status == "SUCCESS"
 result = client.backup.get_restore_status(
     backup_id="my-very-first-backup",
     backend="filesystem",
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Required if a non-default location was used at creation
 )
 
 print(result)
@@ -108,6 +113,7 @@ result = client.backup.create(
     backend="filesystem",
     include_collections=["Article", "Publication"],
     wait_for_completion=False,
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Optional
 )
 
 print(result)
@@ -116,6 +122,7 @@ print(result)
 result = client.backup.cancel(
     backup_id="some-unwanted-backup",
     backend="filesystem",
+    backup_location=BackupLocation.FileSystem(path="/tmp/weaviate-backups"),  # Required if a non-default location was used at creation
 )
 
 print(result)

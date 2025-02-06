@@ -89,6 +89,10 @@ default hostname has changed and a single node cluster believes there are suppos
 
 ## Authentication and authorization
 
+:::info Authentication & Authorization documentation
+For more information on authentication and authorization, see the [Authentication](../configuration/authentication.md) and [Authorization](../configuration/authorization.md) pages.
+:::
+
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true` <br/> Starting in v1.24, defaults to `true` |
@@ -100,9 +104,21 @@ default hostname has changed and a single node cluster believes there are suppos
 | `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
 | `AUTHENTICATION_OIDC_ISSUER` | OIDC Token Issuer | `string - URL` | `https://myissuer.com` |
 | `AUTHENTICATION_OIDC_USERNAME_CLAIM` | OIDC Username Claim | `string` | `email` |
-| `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList Authorization mode | `boolean` | `true` |
-| `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission| `string - comma-separated list` | `jane@example.com,john@example.com` |
-| `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission| `string - comma-separated list` | `alice@example.com,dave@example.com` |
+| `AUTHORIZATION_ADMINLIST_ENABLED` | Enable AdminList authorization scheme (mutually exclusive with `AUTHORIZATION_RBAC_ENABLED`) | `boolean` | `true` |
+| `AUTHORIZATION_ADMINLIST_USERS` | Users with admin permission when AdminList scheme used | `string - comma-separated list` | `jane@example.com,john@example.com` |
+| `AUTHORIZATION_ADMINLIST_READONLY_USERS` | Users with read-only permission when AdminList scheme used | `string - comma-separated list` | `alice@example.com,dave@example.com` |
+
+### RBAC Authorization
+
+:::caution RBAC technical preview
+Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+:::
+
+| Variable | Description | Type | Example Value |
+| --- | --- | --- | --- |
+| `AUTHORIZATION_RBAC_ENABLED` | Enable RBAC authorization scheme (mutually exclusive with `AUTHORIZATION_ADMINLIST_ENABLED`). Introduced in `v1.28.3`. Previously called `AUTHORIZATION_ENABLE_RBAC` | `boolean` | `true` |
+| `AUTHORIZATION_ADMIN_USERS` | Users with the built-in administrator role when RBAC scheme used. At least one admin user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
+| `AUTHORIZATION_VIEWER_USERS` | Users with the built-in viewer role when RBAC scheme used. | `string - comma-separated list` | `viewer-user,another-viewer-user` |
 
 ## Multi-node instances
 
