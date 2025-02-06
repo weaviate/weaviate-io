@@ -1046,4 +1046,8 @@ ul.dropdown__menu {
 .CybotCookiebotDialogBodyButton {
   width: 150px !important;
   border-radius: 0.3125rem !important;
+
+  @media screen and (max-width: 768px) {
+    width: 100% !important;
+  }
 }
