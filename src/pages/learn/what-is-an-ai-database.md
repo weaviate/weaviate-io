@@ -1,7 +1,7 @@
 ---
 title: What is an AI Database?
 description: Learn about AI databases, including AI database design, examples, and more.
-# image: og/service/contributor-license-agreement.jpg
+# image: og/content/learning-centre.jpg
 ---
 import { MetaSEO } from '/src/theme/MetaSEO';
 import Header from '/src/components/Learn/Whatisanaidatabase/HeaderVer2';
@@ -77,6 +77,8 @@ Using an open-source AI database provides flexibility, transparency, and cost-ef
 ## Summary of AI Databases 
 
 [Vector embeddings](https://weaviate.io/blog/vector-embeddings-explained) have become the core data type driving applications powered by LLMs and machine learning algorithms. Traditional databases, though evolving with vector extensions, are not optimized to handle the complexity of modern AI workloads. This has led to the rise of AI-native vector databases, such as Weaviate, which provide purpose-built AI database solutions for large-scale vector storage, efficient retrieval, and hybrid search capabilities.
+
+<br></br>
 
 Selecting the right AI database ultimately depends on your application’s scale, infrastructure, and performance needs. For enterprises prioritizing scalability and reliability, AI-native solutions like Weaviate provide a future-proof foundation to support evolving AI workflows.
 
