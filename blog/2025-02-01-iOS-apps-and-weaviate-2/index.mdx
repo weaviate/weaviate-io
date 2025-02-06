@@ -12,7 +12,7 @@ description: "A practical guide on using Weaviate Cloud Queries."
 
 ![Weaviate Cloud (WCD) Queries: A Practical Guide](./img/hero.png)
 
-# Overview
+## Overview
 
 Understanding the capabilities of Weaviate Cloud (WCD) queries and implementing them practically in your applications is not always obvious. This article aims to help you bridge that gap by providing detailed explanations of common and easily implemented query types, along with a live tool to demonstrate the results.
 
@@ -42,13 +42,15 @@ Without his collaboration and support these articles would not have been possibl
 
 <a id="query_app"></a>
 
-# Query Helper Application
+## Query Helper Application
 
 **Weaviate Cloud (WCD) Queries: A Practical Guide** 
 
 **Query Helper Application** 
 
-A MacOS application you can use to perform a live test of Weaviate Queries.
+An application you can use to perform a live test of Weaviate Queries.
+
+The MacOS app is signed by Apple and can be [downloaded here](https://github.com/weaviate/BookRecs).
 
 ![Mac Query App](img/wcs_summary_01_macApp.png)
 
@@ -101,7 +103,7 @@ Preset query templates are accessed through the Query Menu by selecting the butt
 
 <a id="query_examples"></a>
 
-# Query Prompt Examples
+## Query Prompt Examples
 
 **Weaviate Cloud (WCD) Queries: A Practical Guide** 
 
@@ -139,9 +141,9 @@ Depending on the type of query run, an OpenAI and/or Cohere API key may be requi
 
 - **Grouped Result:** Perform prompt on all records retrieved from another prompt. (+Open AI Key, Cohere Key)
 
-## Primary
+### Primary
 
-**Basic**
+** Basic **
 
 The basic building block for creating a query.
 
@@ -204,7 +206,7 @@ Example: Include ID, creation date, last update date.
 }
 ```
 
-## Reorder
+### Reorder
 
 **Move Away**
 
@@ -257,7 +259,7 @@ Example: The result is reranked to prioritize descriptions that discuss robots.
 ```
 
 
-## Aggregate
+### Aggregate
 
 **By Category**
 
@@ -298,7 +300,7 @@ Example: Show the count of all books in the database.
 }
 ```
 
-## Single Result
+### Single Result
 
 **Summary**
 
@@ -380,7 +382,7 @@ Translate data elements or results from different languages to different languag
 }
 ```
 
-## Grouped Result
+### Grouped Result
 
 **Grouped Result**
 
