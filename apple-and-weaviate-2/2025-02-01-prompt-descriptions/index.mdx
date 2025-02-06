@@ -52,7 +52,17 @@ The basic building block for creating a query.
 
 Example: Get the first 5 Books and list the title, number of pages and description.
 
-![Basic Prompt](./img/wcs_summary_prompt_01_basic.png)
+```
+{
+  Get {
+    Book(limit: 5) {
+      title
+      num_pages
+      description
+    }
+  }
+}
+```
 
 
 **Third Item**
@@ -61,7 +71,17 @@ Query starting from the third record.
 
 Example: Using the Basic Query as a starter, skip the first two books and start from the book that follows. Example: Starting from the 3rd book: list the title, number of pages and description of the next 5.
 
-![Third Item](./img/wcs_summary_prompt_02_thirdItem.png)
+```
+{
+  Get {
+    Book(limit: 5, offset: 2) {
+      title
+      num_pages
+      description
+    }
+  }
+}
+```
 
 
 **Meta Data**
@@ -70,7 +90,24 @@ Show information that extends beyond the initial domain data loaded. This is dat
 
 Example: Include ID, creation date, last update date.
 
-![Meta Data](./img/wcs_summary_prompt_03_metaData.png)
+```
+{
+  Get {
+    Book(limit: 5) {
+      title
+      _additional {
+        id
+        vector
+        certainty
+        score
+        distance
+        creationTimeUnix
+        lastUpdateTimeUnix
+      }
+    }
+  }
+}
+```
 
 Reorder
 
@@ -78,7 +115,25 @@ Reorder
 
 Allow users to prioritize similar concepts and deemphasize others. Example: Emphasize “war” themes and deemphasize “romance”.
 
-![Move Away](./img/wcs_summary_prompt_04_moveAway.png)
+```
+{
+  Get {
+    Book(
+      limit: 5
+      nearText: {
+        concepts: ["Mysteries set in Western Europe"]
+        distance: 0.6
+        moveAwayFrom: { concepts: ["romance"], force: 0.45 }
+        moveTo: { concepts: ["war"], force: 0.85 }
+      }
+    ) {
+      title
+      description
+      num_pages
+    }
+  }
+}
+```
 
 
 **Rerank**
@@ -87,7 +142,24 @@ Change the order in which data elements are displayed based on specific criteria
 
 Example: The result is reranked to prioritize descriptions that discuss robots.
 
-![Rerank](./img/wcs_summary_prompt_05_rerank.png)
+```
+{
+  Get {
+    Book(nearText: { concepts: "science fiction" }, limit: 10) {
+      title
+      description
+      num_pages
+      categories
+      _additional {
+        distance
+        rerank(property: "description", query: "robot") {
+          score
+        }
+      }
+    }
+  }
+}
+```
 
 
 Aggregate
@@ -98,8 +170,20 @@ Group counts based on specific attributes.
 
 Example: Show the number of books for each category.
 
-![By Category](./img/wcs_summary_prompt_06_byCategory.png)
-
+```
+{
+  Aggregate {
+    Book(groupBy: ["categories"]) {
+      meta {
+        count
+      }
+      groupedBy {
+        value
+      }
+    }
+  }
+}
+```
 
 **Grand Total**
 
@@ -107,9 +191,19 @@ Total count of the entire dataset.
 
 Example: Show the count of all books in the database.
 
-![Grand Total](./img/wcs_summary_prompt_07_grandTotal.png)
+```
+{
+  Aggregate {
+    Book {
+      meta {
+        count
+      }
+    }
+  }
+}
+```
 
-Single Result!
+Single Result
 
 **Summary**
 
@@ -117,7 +211,30 @@ Summary of a specific query.
 
 Example: Summarize in 10 words books with a mystery theme that occur in Western Europe.
 
-![Grand Total](./img/wcs_summary_prompt_08_summary.png)
+```
+{
+  Get {
+    Book(
+      nearText: { concepts: ["Search for mysteries set in WesternEurope"] }
+      limit: 5
+    ) {
+      title
+      description
+      _additional {
+        generate(
+          singleResult: {
+            prompt: "Describe the following as a short summary in 10 words:{description}"
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+
+```
 
 
 **Translate To**
@@ -126,15 +243,49 @@ Translate data elements or results into different languages.
 
 Example: Search for Mexican books and translate the title into Spanish.
 
-![Translate to](./img/wcs_summary_prompt_09_translateTo.png)
+```
+{
+  Get {
+    Book(nearText: { concepts: ["What books are Mexican"] }, limit: 5) {
+      title
+      description
+      _additional {
+        generate(
+          singleResult: { prompt: "Translate the following in Spanish:{title}" }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
 
 **Translate From/To**
 
 Translate data elements or results from different languages to different languages. Example: Ask a question in Spanish and translate the title into Spanish.
 
-![Translate from and to](./img/wcs_summary_prompt_10_translateFromTo.png)
+```
+{
+  Get {
+    Book(nearText: { concepts: ["Que libros son mexicanos"] }, limit: 5) {
+      title
+      description
+      _additional {
+        generate(
+          singleResult: { prompt: "Translate the following in Spanish:{title}" }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
 
-Grouped Result!
+Grouped Result
 
 **Grouped Result**
 
@@ -142,4 +293,24 @@ Perform prompt on all records retrieved from another prompt. Example: Search for
 
 Summarize what the leaders of the result have in common.
 
-![Grouped Result](./img/wcs_summary_prompt_11_groupedResult.png)
+```
+{
+  Get {
+    Book(nearText: { concepts: ["Governments of Europe"] }, limit: 5) {
+      title
+      description
+      _additional {
+        generate(
+          groupedResult: {
+            task: "What do these leaders have in common, if anything?"
+          }
+        ) {
+          groupedResult
+          error
+        }
+      }
+    }
+  }
+}
+```
+
