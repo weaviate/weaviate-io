@@ -205,9 +205,7 @@ Starting from version `v1.20.0`, each collection can be configured as a multi-te
 This is useful if you want to use Weaviate as a backend for a multi-tenant (e.g. SaaS) application, or if data isolation is required for any other reason.
 
 :::info How many collections is too many?
-
-To learn more about the performance benefits of multi-tenancy compared to separate collections for each tenant, visit [this guide](/developers/weaviate/starter-guides/managing-collections/multi-tenancy-performance).
-
+To learn more about the performance benefits of multi-tenancy compared to separate collections for each tenant, visit [this guide](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
 :::
 
 import SchemaWithMT from '/_includes/code/tutorial.schema.multi-tenancy.mdx';

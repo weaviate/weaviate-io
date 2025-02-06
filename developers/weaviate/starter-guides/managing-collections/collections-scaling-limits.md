@@ -1,11 +1,10 @@
 ---
 title: Do you have too many collections?
-sidebar_label: Too many collections?
+sidebar_label: Scaling limits with collections
 sidebar_position: 1
 image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
-
 
 Consider a scenario where you are developing a SaaS platform for product recommendations, allowing merchants to import and vectorize their product data. The users of this platform, let's call them merchants, require the ability to efficiently perform vector searches to generate personalized recommendations for users on their respective e-commerce platforms. 
 
