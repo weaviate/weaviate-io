@@ -51,6 +51,36 @@ import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/repl
 
 <ReplicationConfigWithAsyncRepair />
 
+### Configuring Async Replication
+
+:::info Added in `v1.29`
+Async replication support has been added in `v1.26`while the environment variables for configuring async replication (`ASYNC_*`) have been introduced in `v1.29`.
+:::
+
+Async Replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same shard. When a collection is partitioned into multiple shards, each shard is replicated across several nodes (as defined by the replication factor `REPLICATION_MINIMUM_FACTOR`). Async replication guarantees that all nodes holding the same shard remain in sync by periodically comparing and propagating data.
+
+#### 1. Periodic data comparison
+
+Each node runs a background process that periodically compares its locally stored data with other nodes holding the same shard. This comparison is triggered either:
+- At regular intervals (`ASYNC_REPLICATION_FREQUENCY`).
+- When a change in availability of a node is detected (`ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`).
+
+To efficiently detect differences, Weaviate uses a **hashtree**. Instead of checking entire datasets, it compares hash digests at multiple levels, narrowing down differences to specific objects. The size of this hashtree can be defined via `ASYNC_REPLICATION_HASHTREE_HEIGHT`.
+
+If a node is unresponsive, Weaviate applies a timeout (`ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`) to avoid delays in the replication process.
+
+#### 2. Data synchronization
+
+When differences are detected, the outdated or missing data is propagated to the affected nodes. This propagation process:
+- Sends data in batches of a custom size (`ASYNC_REPLICATION_BATCH_SIZE`).
+- Limits each propagation step object limit (`ASYNC_REPLICATION_PROPAGATION_LIMIT`).
+- Enforces a time-bound for updates (`ASYNC_REPLICATION_PROPAGATION_TIMEOUT`).
+- Uses a different comparison frequency right after completing synchronization on a node (`ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`).
+
+:::tip Replication settings
+You can find a complete list of the environment variables related to async replication on the page [Reference: Environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
+:::
+
 ## How to use: Queries
 
 When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
