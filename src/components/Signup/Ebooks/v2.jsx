@@ -56,10 +56,12 @@ export default function Introduction() {
         <div>
           <h3>About the guide</h3>
           <p>
-            Choosing the right database is crucial to the success of your AI
-            projects. This guide will help you understand the key differences
-            between AI-native and traditional databases, and provide practical
-            tips for powering scalable, cost-effective AI applications
+            Deciding which vector storage technology to use requires
+            understanding more about how LLMs and similar algorithms work as
+            well as what the different capabilities are of vector storage
+            technologies. This guide hopes to walk you through this decision as
+            well as inform you enough to choose the best technology for your
+            application.
           </p>
           <br></br>
           <ul>
