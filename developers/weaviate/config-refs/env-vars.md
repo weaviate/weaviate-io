@@ -124,6 +124,16 @@ Role-based access control (RBAC) is added `v1.28` as a **technical preview**. Th
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
+| `ASYNC_REPLICATION_DISABLED` | Disable async replication. Default: `false` | `boolean` | `false` |
+| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hashtree used for data comparison between nodes. Default: `16`, Min: `1`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_FREQUENCY` |  Frequency of periodic data comparison between nodes in seconds. Default: `5` | `string - number` | `60` |
+| `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
+| `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `1` | `string - number` | `20` |
+| `ASYNC_REPLICATION_LOGGING_FREQUENCY` | Frequency of how often the background process logs any events in seconds. Default: default `3` | `string - number` | `7` |
+| `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT` | Defines the time limit a node has to provide a comparison response in seconds. Default: `10` | `string - number` | `30` |
+| `ASYNC_REPLICATION_PROPAGATION_TIMEOUT` | Defines the time limit a node has to provide a propagation response in seconds. Default: `30` | `string - number` | `60` |
+| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | The maximum number of objects propagated per iteration. Default: `10000` | `string - number` | `5000` |
+| `ASYNC_REPLICATION_BATCH_SIZE` | The maximum size of the batch propagated. Default: `100` |`string - number`  | `200` |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
 | `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
