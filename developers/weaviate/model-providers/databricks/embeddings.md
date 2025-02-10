@@ -132,6 +132,18 @@ This will configure Weaviate to use the vectorizer served through the endpoint y
 
 For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#embedding-request).
 
+### Runtime parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Databricks-Token`: The Databricks API token.
+- `X-Databricks-Endpoint`: The endpoint to use for the Databricks model.
+- `X-Databricks-User-Agent`: The user agent to use for the Databricks model.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Data import
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using [the specified model](#vectorizer-parameters).
