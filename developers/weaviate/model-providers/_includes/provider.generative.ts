@@ -443,12 +443,12 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END GenerativeOpenAICustomModel
+// END BasicGenerativeOpenAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicGenerativeOpenAI
+// START GenerativeOpenAICustomModel
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
