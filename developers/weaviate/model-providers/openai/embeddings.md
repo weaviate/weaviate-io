@@ -262,7 +262,7 @@ For further details on model parameters, see the [OpenAI API documentation](http
 
 ### Runtime parameters
 
-You can provide the OpenAI API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 
 - `X-OpenAI-Api-Key`: The OpenAI API key.
 - `X-OpenAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default OpenAI URL.
