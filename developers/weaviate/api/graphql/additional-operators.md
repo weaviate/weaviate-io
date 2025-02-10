@@ -287,9 +287,11 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 Added in `v1.13.0`.
 :::
 
-You can sort results by any primitive property, such as `text`, `number`, or `int`. When query results, for example, `near<Media>` vector search results, have a natural order, sort functions override that order.
+You can sort results by any primitive property, such as `text`, `number`, or `int`. 
 
 ### Sorting considerations
+
+Sorting can be applied when fetching objects, but it's unavailable for the `near<Media>` vector search operators. 
 
 Weaviate's sorting implementation does not lead to massive memory spikes. Weaviate does not load all object properties into memory; only the property values being sorted are kept in memory.
 
