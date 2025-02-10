@@ -135,6 +135,18 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
+### Runtime parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Azure-Api-Key`: The Azure API key.
+- `X-Azure-Deployment-Id`: The Azure deployment ID.
+- `X-Azure-Resource-Name`: The Azure resource name.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
