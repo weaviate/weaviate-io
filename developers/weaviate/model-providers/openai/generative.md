@@ -165,6 +165,18 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
 
+### Runtime parameters
+
+You can provide the OpenAI API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-OpenAI-Api-Key`: The OpenAI API key.
+- `X-OpenAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default OpenAI URL.
+- `X-OpenAI-Organization`: The OpenAI organization ID.
+
+Any additional headers provided at runtime will override the configuration set in the vectorizer.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
