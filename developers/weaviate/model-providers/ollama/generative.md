@@ -44,7 +44,7 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 To use Ollama with Weaviate Cloud, make sure your Ollama server is running and accessible from the Weaviate Cloud instance. If you are running Ollama on your own machine, you may need to expose it to the internet. Carefully consider the security implications of exposing your Ollama server to the internet.
 <br/>
 
-For use cases such as this, you may want to consider using a self-hosted Weaviate instance, or another API-based integration method.
+For use cases such as this, consider using a self-hosted Weaviate instance, or another API-based integration method.
 
 </details>
 
