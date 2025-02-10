@@ -173,7 +173,7 @@ The following examples show how to configure Azure OpenAI-specific options.
 
 For further details on these parameters, see consult the [Azure OpenAI API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
 
-### Runtime parameters
+## Runtime parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

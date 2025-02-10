@@ -110,7 +110,7 @@ You can specify one of the [available models](#available-models) for the reranke
 
 The [default model](#available-models) is used if no model is specified.
 
-### Runtime parameters
+## Runtime parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

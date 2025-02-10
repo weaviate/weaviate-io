@@ -134,7 +134,7 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#chat-task).
 
-### Runtime parameters
+## Runtime parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

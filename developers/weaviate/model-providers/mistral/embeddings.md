@@ -166,7 +166,7 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 </details>
 
-### Runtime parameters
+## Runtime parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 
