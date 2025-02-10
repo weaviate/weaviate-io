@@ -159,6 +159,17 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Anthropic API documentation](https://www.anthropic.com/docs).
 
+## Runtime parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-Anthropic-Api-Key`: The Anthropic API key.
+- `X-Anthropic-Baseurl`: The base URL to use (e.g. a proxy) instead of the default Anthropic URL.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
