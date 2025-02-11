@@ -132,6 +132,14 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
+### Avoid creating too many collections
+
+Creating a separate collection for each tenant may seem like a straightforward approach to data isolation, but it can lead to scalability issues as the number of collections grows. Each collection requires its own schema, index, and storage, increasing memory usage, operational complexity, and query inefficiencies. 
+
+Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants with logical separation using metadata. This approach improves resource efficiency, query performance, and scalability while simplifying collection definition management.
+
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
+
 ### Multiple vectors (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
