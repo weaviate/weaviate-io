@@ -31,19 +31,21 @@ admin_client.roles.delete("rw_role_target_collections")  # delete if exists
 # START ReadWritePermissionDefinition
 # Define permissions (example confers read+write rights to collections starting with "TargetCollection_")
 admin_permissions = [
+    # Collection level permissions
     Permissions.collections(
         collection="TargetCollection_*",
-        create_collection=True,
-        read_config=True,
-        update_config=True,
-        delete_collection=True,
+        create_collection=True, # Allow creating new collections
+        read_config=True,       # Allow reading collection info/metadata
+        update_config=True,     # Allow updating collection configuration, i.e. update schema properties, when inserting data with new properties
+        delete_collection=True  # Allow deleting collections
     ),
+    # Collection data level permissions
     Permissions.data(
         collection="TargetCollection_*",
-        create=True,
-        read=True,
-        update=True,
-        delete=True
+        create=True,         # Allow data inserts
+        read=True,           # Allow query and fetch operations
+        update=True,         # Allow data updates
+        delete=False,        # Allow data deletes
     ),
     Permissions.backup(collection="TargetCollection_*", manage=True),
     Permissions.nodes(collection="TargetCollection_*", read=True),

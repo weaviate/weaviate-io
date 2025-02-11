@@ -90,7 +90,7 @@ admin_client.roles.assign_to_user(role_names="devrel", user="user-c")
 assert "devrel" in admin_client.roles.by_user(user="user-c")
 
 # START ListCurrentUserRoles
-print(admin_client.roles.of_current_user())
+print(admin_client.users.get_my_user())
 # END ListCurrentUserRoles
 
 # START ListUserRoles

@@ -31,12 +31,12 @@ Refer to the client library examples below, or [the REST API documentation](../a
 
 Weaviate comes with a set of predefined roles. These roles are:
 
-- `admin`: The admin role has full access to all resources in Weaviate.
+- `root`: The root role has full access to all resources in Weaviate.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
-`admin` and `viewer` roles can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
+The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
-All roles can also be assigned through the Weaviate API, including the predefined roles. The predefined roles cannot be modified, but they can be assigned or revoked from users.
+All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned or revoked from users.
 
 Refer to the [authorization](./authorization.md) page for more information on how to assign predefined roles to users.
 
@@ -337,7 +337,7 @@ This example creates a role called "devrel" without any permissions assigned to 
 
 ### Create new role with permissions
 
-This example creates a role called "devrel" with permissions to:
+This example creates a role called "docs-team" with permissions to:
 
 - Read all collections starting with "Test_".
 - Delete or create the collection "Test_DevRel"
