@@ -71,6 +71,10 @@ azure_key = os.getenv("AZURE_APIKEY")
 # Recommended: save sensitive data as environment variables
 voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # END VoyageAIInstantiation
+# START NVIDIAInstantiation
+# Recommended: save sensitive data as environment variables
+nvidia_key = os.getenv("NVIDIA_APIKEY")
+# END NVIDIAInstantiation
 
 
 # START-ANY
@@ -128,6 +132,9 @@ headers = {
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation
+# START NVIDIAInstantiation
+    "X-NVIDIA-Api-Key": nvidia_key,
+# END NVIDIAInstantiation
 
 # START-ANY
 }
