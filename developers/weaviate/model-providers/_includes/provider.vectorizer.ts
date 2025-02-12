@@ -597,7 +597,7 @@ await client.collections.create({
   vectorizers: [
     weaviate.configure.vectorizer.text2VecJinaAI({
       name: 'title_vector',
-      sourceProperties: ['title'],    
+      sourceProperties: ['title'],
       // model: 'jina-embeddings-v3-small-en'
       // dimensions: 512,  // e.g. 1024, 256, 64  Support for this parameter is coming soon (Only applicable for some models)
     },
@@ -711,7 +711,7 @@ await client.collections.create({
       }],
       // Further options
       // model:"jina-clip-v2",
-        
+
     },
     ),
   ],
@@ -719,6 +719,27 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullMMVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicColBERTVectorizerJinaAI
+// Coming soon
+// END BasicColBERTVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START ColBERTVectorizerJinaCustomModel
+// Coming soon
+// END ColBERTVectorizerJinaCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullColBERTVectorizerJinaAI
+// Coming soon
+// END FullColBERTVectorizerJinaAI
 
 // Clean up
 await client.collections.delete('DemoCollection');

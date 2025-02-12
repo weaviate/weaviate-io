@@ -13,11 +13,11 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with Voyage AI
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_voyageai_embedding.png)
 
-Voyage AI's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+Voyage AI's embedding models transform text data into high-dimensional vector representations, capturing meaning and context.
 
 [Weaviate integrates with Voyage AI's embedding models](./embeddings.md) and [multimodal embedding models](./embeddings-multimodal.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

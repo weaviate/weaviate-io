@@ -20,7 +20,7 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2
 
 Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
@@ -341,6 +341,7 @@ Note that `dimensions` is not applicable for the `jina-embeddings-v2` models.
 
 ### Other integrations
 
+- [Jina AI ColBERT embedding models + Weaviate](./embeddings-colbert.md).
 - [Jina AI multimodal embedding models + Weaviate](./embeddings-multimodal.md)
 - [Jina AI reranker models + Weaviate](./reranker.md)
 
