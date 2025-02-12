@@ -18,7 +18,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Anyscale's Endpoints APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Anyscale generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Anyscale API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Anyscale. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Anyscale API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Anyscale generative model to generate outputs.
 
