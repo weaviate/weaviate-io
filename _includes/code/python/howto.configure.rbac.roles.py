@@ -26,29 +26,163 @@ admin_client.roles.delete("devrel-admin")
 # admin_client.roles.create(role_name="devrel")
 # # END CreateRole
 
-# START AddRoleAtCreate
+# START AddManageRolesPermission
+""" UNDER CONSTRUCTION
+from weaviate.classes.rbac import Permissions, RoleScope
+
+permissions = [
+    Permissions.roles(
+        role="TargetRole_*",    # Applies to all roles starting with "TargetRole_"
+        read=True,              # Allow reading all roles
+        manage=RoleScope.MATCH  # Only allow assignment of current user's permissions to roles
+        # manage=RoleScope.ALL  # Allow assignment of any permissions to roles 
+    )
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+"""
+# END AddManageRolesPermission
+"""
+assert "devrel" in admin_client.roles.list_all().keys()
+
+admin_client.roles.delete("devrel")
+"""
+# START AddCollectionsPermission
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-      collection="Test_*",
+      collection="TargetCollection_*",
       read_config=True,
       create_collection=False,
       delete_collection=False,
-  ),
-    Permissions.collections(
-      collection="Test_DevRel",
-      read_config=True,
-      create_collection=True,
-      delete_collection=True,
   ),
 ]
 
 admin_client.roles.create(
     role_name="devrel", permissions=permissions
 )
-# END AddRoleAtCreate
-assert "devrel" in admin_client.roles.list_all().keys()
+# END AddCollectionsPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert any(permission.collection == "TargetCollection_*" for permission in permissions.collections_permissions)
+
+admin_client.roles.delete("devrel")
+
+# START AddTenantPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.collections(
+        collection="TargetCollection_*",
+        create_collection=True,
+        read_config=True,
+        update_config=True,
+        delete_collection=True
+    ),
+    # Without the below permission, the user would not
+    # be able to create tenants in collections starting with "TargetCollection_"
+    Permissions.tenants(
+        collection="TargetCollection_*",
+        create=True,
+        read=True,
+        update=True,
+        delete=False
+    )
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+# END AddTenantPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert any(permission.collection == "TargetCollection_*" for permission in permissions.collections_permissions)
+
+admin_client.roles.delete("devrel")
+
+# START AddDataObjectPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.data(
+      collection="TargetCollection_*",
+      read=True,
+      create=False,
+      update=False,
+      delete=False,
+  ),
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+# END AddDataObjectPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert any(permission.collection == "TargetCollection_*" for permission in permissions.data_permissions)
+
+admin_client.roles.delete("devrel")
+
+# START AddBackupPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.backup(collection="TargetCollection_*", manage=True),
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+# END AddBackupPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert any(permission.collection == "TargetCollection_*" for permission in permissions.backups_permissions)
+
+admin_client.roles.delete("devrel")
+
+# START AddClusterPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.cluster(read=True),
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+# END AddClusterPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert permissions.cluster_permissions
+
+admin_client.roles.delete("devrel")
+
+# START AddNodesPermission
+from weaviate.classes.rbac import Permissions
+
+permissions = [
+    Permissions.nodes(collection="TargetCollection_*", 
+                      verbosity="minimal", # or "verbose"
+                      read=True),
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
+# END AddNodesPermission
+permissions = admin_client.roles.get(role_name="devrel")
+assert permissions.nodes_permissions
+
+admin_client.roles.delete("devrel")
+
+permissions = [
+    Permissions.collections(
+      collection="Test_DevRel",
+      read_config=True,
+  ),
+]
+
+admin_client.roles.create(
+    role_name="devrel", permissions=permissions
+)
 
 # START AddRoles
 from weaviate.classes.rbac import Permissions
@@ -60,30 +194,6 @@ permissions = [
 
 admin_client.roles.add_permissions(permissions=permissions, role_name="devrel")
 # END AddRoles
-
-# START ManageRoles
-from weaviate.classes.rbac import Permissions
-
-permissions = [
-    Permissions.data(collection="Test_DevRel", read=True, create=True, update=True, delete=True),
-    #Permissions.roles(role="devrel", read=True, manage=True),
-    #Permissions.roles(role="devrel-*", read=True, manage=False)
-]
-
-admin_client.roles.create(role_name="devrel-admin", permissions=permissions)
-# END ManageRoles
-
-# START ClusterAndNodePermissions
-from weaviate.classes.rbac import Permissions
-
-permissions = [
-    Permissions.cluster(read=True),
-    Permissions.nodes(collection="Test_DevRel", verbosity="verbose", read=True)
-]
-
-admin_client.roles.add_permissions(permissions=permissions, role_name="devrel-admin")
-# END ClusterAndNodePermissions
-
 
 # START AssignRole
 admin_client.users.assign_roles(user_id="user-b", role_names=["devrel", "viewer"])
@@ -102,6 +212,7 @@ for role in user_roles:
     print(role)
 # END ListUserRoles
 assert any(permission.collection == "Test_DevRel" for permission in user_roles["devrel"].collections_permissions)
+assert any(permission.collection == "Test_DevRel" for permission in user_roles["devrel"].data_permissions)
 
 # START CheckRoleExists
 print(admin_client.roles.exists(role_name="devrel"))  # Returns True or False

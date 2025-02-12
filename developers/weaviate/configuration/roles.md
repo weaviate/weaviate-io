@@ -16,7 +16,7 @@ Role-based access control (RBAC) was added in Weaviate version `v1.29`.
 
 Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the [authenticated](./authentication.md) user identity.
 
-If role-based access control (RBAC) is enabled, access can be further restricted based the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
+If role-based access control (RBAC) is enabled, access can be further restricted based on the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
 Roles and permissions can be managed through Weaviate API (e.g. via REST API directly, or through a client library).
 
@@ -59,26 +59,26 @@ Permissions in Weaviate define what actions users can perform on specific resour
 
 Permissions can be defined for the following resources:
 
-1. **Role Management**
+1. [**Role Management**](#role-management)
     - Read roles
     - Manage roles
 
-1. **Collections** (collection definitions only, data object permissions are separate)
+1. [**Collections**](#role-management-collections) (collection definitions only, data object permissions are separate)
     - Create, read, update, and delete collection definitions
 
-1. **Tenants**
+1. [**Tenants**](#role-management-tenants)
     - Create, read, update, and delete tenants
 
-1. **Data Objects**
+1. [**Data Objects**](#role-management-data)
     - Read, write, update, and delete objects
 
-1. **Backup**
+1. [**Backup**](#role-management-backup)
     - Manage backups
 
-1. **Cluster Data Access**
+1. [**Cluster Data Access**](#role-management-clusters)
     - Read cluster metadata
 
-1. **Node Data Access**
+1. [**Node Data Access**](#role-management-nodes)
     - Read node metadata at a specified verbosity level
 
 :::caution Role Management Permissions
@@ -236,7 +236,7 @@ This confers permissions to manage collections starting with `TargetCollection_`
 
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 
-## Role management
+## RBAC role management
 
 Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
 
@@ -320,20 +320,19 @@ This example creates a role called "devrel" without any permissions assigned to 
 
 </Tabs> -->
 
-### Create new role with permissions
+### Create new roles with permissions
 
-This example creates a role called "docs-team" with permissions to:
+#### Create a role with `Role Management` permissions {#role-management}
 
-- Read all collections starting with "Test_".
-- Delete or create the collection "Test_DevRel"
+This example creates a role called "devrel" with permissions to:
+- Manage all roles starting with "TargetRole_".
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={RolePyCode}
-      startMarker="# START AddRoleAtCreate"
-      endMarker="# END AddRoleAtCreate"
+      startMarker="# START AddManageRolesPermission"
+      endMarker="# END AddManageRolesPermission"
       language="py"
     />
   </TabItem>
@@ -361,7 +360,246 @@ This example creates a role called "docs-team" with permissions to:
 ```
 
   </TabItem>
+</Tabs>
 
+#### Create a role with `Collections` permissions {#role-management-collections}
+
+This example creates a role called "devrel" with permissions to:
+- Read all collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddCollectionsPermission"
+      endMarker="# END AddCollectionsPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Tenant` permissions {#role-management-tenants}
+
+This example creates a role called "devrel" with permissions to:
+- Create tenants in collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddTenantPermission"
+      endMarker="# END AddTenantPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Data Objects` permissions {#role-management-data}
+
+This example creates a role called "devrel" with permissions to:
+- Read data from collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddDataObjectPermission"
+      endMarker="# END AddDataObjectPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Backup` permissions {#role-management-backups}
+
+This example creates a role called "devrel" with permissions to:
+- Manage backups for collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddBackupPermission"
+      endMarker="# END AddBackupPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Cluster Data Access` permissions {#role-management-clusters}
+
+This example creates a role called "devrel" with permissions to:
+- Read cluster metadata.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddClusterPermission"
+      endMarker="# END AddClusterPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Node Data Access` permissions {#role-management-nodes}
+
+This example creates a role called "devrel" with permissions to:
+- Read node metadata at the specified verbosity level for collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddNodesPermission"
+      endMarker="# END AddNodesPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
 </Tabs>
 
 ### Grant additional permissions
