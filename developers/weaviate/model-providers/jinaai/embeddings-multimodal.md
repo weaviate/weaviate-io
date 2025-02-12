@@ -20,7 +20,7 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
@@ -311,6 +311,7 @@ The query below returns the `n` most similar objects to the input image from the
 ### Other integrations
 
 - [Jina AI text embedding models + Weaviate](./embeddings.md).
+- [Jina AI ColBERT embedding models + Weaviate](./embeddings-colbert.md).
 - [Jina AI reranker models + Weaviate](./reranker.md).
 
 ### Code examples
