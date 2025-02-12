@@ -1,14 +1,14 @@
 ---
-title: Text Embeddings
+title: Multimodal Embeddings
 description: "Weaviate's integration with NVIDIA's APIs allows you to access their models' capabilities directly from Weaviate."
-sidebar_position: 20
+sidebar_position: 25
 image: og/docs/integrations/provider_integrations_nvidia.jpg
 # tags: ['model providers', 'nvidia', 'embeddings']
 ---
 
-# NVIDIA Embeddings with Weaviate
+# NVIDIA Multimodal Embeddings with Weaviate
 
-:::info Added in `v1.29.0`
+:::info Added in `1.29`
 :::
 
 import Tabs from '@theme/Tabs';
@@ -16,16 +16,14 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
-import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
-import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with NVIDIA's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an embedding model on NVIDIA, and Weaviate will generate embeddings for various operations using the specified model and your NVIDIA NIM API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a NVIDIA embedding model, and Weaviate will generate embeddings for various operations using the specified model and your NVIDIA NIM API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
 
 ![Embedding integration illustration](../_includes/integration_nvidia_embedding.png)
 
@@ -33,7 +31,7 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the NVIDIA vectorizer integration (`text2vec-nvidia`) module.
+Your Weaviate instance must be configured with the NVIDIA vectorizer integration (`multi2vec-nvidia`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -61,40 +59,24 @@ Provide the API key to Weaviate using one of the following methods:
 
 <Tabs groupId="languages">
 
-  <TabItem value="py" label="Python API v4">
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START NVIDIAInstantiation"
       endMarker="# END NVIDIAInstantiation"
       language="py"
-      docRefs={[
-        "weaviate.html#weaviate.connect_to_weaviate_cloud",
-        "weaviate.html#weaviate.auth.Auth",
-      ]}
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS API v3">
+ <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START NVIDIAInstantiation"
       endMarker="// END NVIDIAInstantiation"
       language="ts"
-      docRefs={[
-        "functions/connectToWeaviateCloud",
-        "classes/ApiKey",
-      ]}
     />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoConnect}
-      startMarker="// START NVIDIAInstantiation"
-      endMarker="// END NVIDIAInstantiation"
-      language="goraw"
-    />
-  </TabItem>
 </Tabs>
 
 ## Configure the vectorizer
@@ -105,8 +87,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerNVIDIA"
-      endMarker="# END BasicVectorizerNVIDIA"
+      startMarker="# START BasicMMVectorizerNVIDIA"
+      endMarker="# END BasicMMVectorizerNVIDIA"
       language="py"
     />
   </TabItem>
@@ -114,18 +96,9 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerNVIDIA"
-      endMarker="// END BasicVectorizerNVIDIA"
+      startMarker="// START BasicMMVectorizerNVIDIA"
+      endMarker="// END BasicMMVectorizerNVIDIA"
       language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START BasicVectorizerNVIDIA"
-      endMarker="// END BasicVectorizerNVIDIA"
-      language="goraw"
     />
   </TabItem>
 
@@ -139,8 +112,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START VectorizerNVIDIACustomModel"
-      endMarker="# END VectorizerNVIDIACustomModel"
+      startMarker="# START MMVectorizerNVIDIACustomModel"
+      endMarker="# END MMVectorizerNVIDIACustomModel"
       language="py"
     />
   </TabItem>
@@ -148,18 +121,9 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START VectorizerNVIDIACustomModel"
-      endMarker="// END VectorizerNVIDIACustomModel"
+      startMarker="// START MMVectorizerNVIDIACustomModel"
+      endMarker="// END MMVectorizerNVIDIACustomModel"
       language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START VectorizerNVIDIACustomModel"
-      endMarker="// END VectorizerNVIDIACustomModel"
-      language="goraw"
     />
   </TabItem>
 
@@ -184,8 +148,8 @@ The following examples show how to configure NVIDIA-specific options.
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerNVIDIA"
-      endMarker="# END FullVectorizerNVIDIA"
+      startMarker="# START FullMMVectorizerNVIDIA"
+      endMarker="# END FullMMVectorizerNVIDIA"
       language="py"
     />
   </TabItem>
@@ -193,20 +157,12 @@ The following examples show how to configure NVIDIA-specific options.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerNVIDIA"
-      endMarker="// END FullVectorizerNVIDIA"
+      startMarker="// START FullMMVectorizerNVIDIA"
+      endMarker="// END FullMMVectorizerNVIDIA"
       language="ts"
     />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START FullVectorizerNVIDIA"
-      endMarker="// END FullVectorizerNVIDIA"
-      language="goraw"
-    />
-  </TabItem>
 </Tabs>
 
 For further details on model parameters, see the [NVIDIA NIM API documentation](https://docs.api.nvidia.com/nim/reference/retrieval-apis).
@@ -220,8 +176,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BatchImportExample"
-      endMarker="# END BatchImportExample"
+      startMarker="# START MMBatchImportExample"
+      endMarker="# END MMBatchImportExample"
       language="py"
     />
   </TabItem>
@@ -229,18 +185,9 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BatchImportExample"
-      endMarker="// END BatchImportExample"
+      startMarker="// START MMBatchImportExample"
+      endMarker="// END MMBatchImportExample"
       language="ts"
-    />
-  </TabItem>
-
- <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START BatchImportExample"
-      endMarker="// END BatchImportExample"
-      language="goraw"
     />
   </TabItem>
 
@@ -282,15 +229,6 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START NearTextExample"
-      endMarker="// END NearTextExample"
-      language="goraw"
-    />
-  </TabItem>
-
 </Tabs>
 
 ### Hybrid search
@@ -323,31 +261,53 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
- <TabItem value="go" label="Go">
+</Tabs>
+
+### Vector (near media) search
+
+When you perform a media search such as a [near image search](../../search/similarity.md#search-with-image), Weaviate converts the query into an embedding using the specified model and returns the most similar objects from the database.
+
+To perform a near media search such as near image search, convert the media query into a base64 string and pass it to the search query.
+
+The query below returns the `n` most similar objects to the input image from the database, set by `limit`.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START HybridExample"
-      endMarker="// END HybridExample"
-      language="goraw"
+      text={PyCode}
+      startMarker="# START NearImageExample"
+      endMarker="# END NearImageExample"
+      language="py"
     />
   </TabItem>
+
+ <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START NearImageExample"
+      endMarker="// END NearImageExample"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## References
 
 ### Available models
 
-You can use any text embedding model [on NVIDIA NIM APIs](https://build.nvidia.com/models) with Weaviate.
+You can use any multimodal embedding model [on NVIDIA NIM APIs](https://build.nvidia.com/models) with Weaviate.
 
-The default model is `nvidia/nv-embed-v1`.
+The default model is `nvidia/nvclip`.
 
 ## Further resources
 
 ### Other integrations
 
-- [NVIDIA multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
-- [NVIDIA generative models + Weaviate](./generative.md)
-- [NVIDIA reranker models + Weaviate](./reranker.md)
+- [NVIDIA text embedding models + Weaviate](./embeddings.md).
+- [NVIDIA generative models + Weaviate](./generative.md).
+- [NVIDIA reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
