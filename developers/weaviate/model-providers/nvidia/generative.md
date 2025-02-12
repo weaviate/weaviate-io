@@ -7,6 +7,9 @@ image: og/docs/integrations/provider_integrations_nvidia.jpg
 
 # NVIDIA Generative AI with Weaviate
 
+:::info Added in `v1.29.0`
+:::
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
