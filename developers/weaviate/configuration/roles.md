@@ -105,15 +105,15 @@ In this case, `"*"` acts as a multi-character wildcard. As an example, setting a
 
 A collection permission is independent of tenant permissions.
 
-To have permissions to operate on a tenant that belongs to a collection, the user must have the appropriate tenant-level permissions for that collection. Collection-level permissions, such as that to create collections, do not confer the equivalent tenant-level permissions, such as that to create tenants for that collection.
+To have permissions to operate on a tenant that belongs to a collection, the user must have the appropriate tenant-level permissions for that collection. Collection-level permissions, such as that to create collections, do not grant the equivalent tenant-level permissions, such as that to create tenants for that collection.
 
-For example, to create a tenant in a collection called "Test_Collection", the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called "Test_Collection".
+For example, to create a tenant in a collection called `Test_Collection`, the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called `Test_Collection`.
 
 ## Example permission sets
 
 ### Read and write permissions
 
-This confers read and write permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
+This grants read and write permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
 
 <Tabs groupId="languages">
 
@@ -154,7 +154,7 @@ This confers read and write permissions for collections starting with `TargetCol
 
 ### Viewer permissions
 
-This confers viewer permissions for collections starting with `TargetCollection_`.
+This grants viewer permissions for collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
 
@@ -195,7 +195,7 @@ This confers viewer permissions for collections starting with `TargetCollection_
 
 ### Example tenant permissions
 
-This confers permissions to manage collections starting with `TargetCollection_`, and to create, read, and update tenants in the same collection.
+This grants permissions to manage collections starting with `TargetCollection_`, and to create, read, and update tenants in the same collection.
 
 <Tabs groupId="languages">
 
@@ -279,53 +279,12 @@ For more information see the [Authentication](./authentication.md) and [Authoriz
 
 </Tabs>
 
-<!-- ### Create an empty role
-
-This example creates a role called "devrel" without any permissions assigned to it.
-
-<Tabs groupId="languages">
-
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={RolePyCode}
-      startMarker="# START CreateRole"
-      endMarker="# END CreateRole"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-
-</Tabs> -->
-
 ### Create new roles with permissions
 
 #### Create a role with `Role Management` permissions {#role-management}
 
-This example creates a role called "devrel" with permissions to:
-- Manage all roles starting with "TargetRole_".
+This example creates a role called `devrel` with permissions to:
+- Manage all roles starting with `TargetRole_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -364,8 +323,8 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Collections` permissions {#role-management-collections}
 
-This example creates a role called "devrel" with permissions to:
-- Read all collections starting with "TargetCollection_".
+This example creates a role called `devrel` with permissions to:
+- Create, read, update and delete all collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -404,8 +363,8 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Tenant` permissions {#role-management-tenants}
 
-This example creates a role called "devrel" with permissions to:
-- Create tenants in collections starting with "TargetCollection_".
+This example creates a role called `devrel` with permissions to:
+- Create, read, update and delete tenants in collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -444,8 +403,8 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Data Objects` permissions {#role-management-data}
 
-This example creates a role called "devrel" with permissions to:
-- Read data from collections starting with "TargetCollection_".
+This example creates a role called `devrel` with permissions to:
+- Create, read, update and delete data from collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -484,8 +443,8 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Backup` permissions {#role-management-backups}
 
-This example creates a role called "devrel" with permissions to:
-- Manage backups for collections starting with "TargetCollection_".
+This example creates a role called `devrel` with permissions to:
+- Manage backups for collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -524,7 +483,7 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Cluster Data Access` permissions {#role-management-clusters}
 
-This example creates a role called "devrel" with permissions to:
+This example creates a role called `devrel` with permissions to:
 - Read cluster metadata.
 
 <Tabs groupId="languages">
@@ -564,8 +523,8 @@ This example creates a role called "devrel" with permissions to:
 
 #### Create a role with `Node Data Access` permissions {#role-management-nodes}
 
-This example creates a role called "devrel" with permissions to:
-- Read node metadata at the specified verbosity level for collections starting with "TargetCollection_".
+This example creates a role called `devrel` with permissions to:
+- Read node metadata at the specified verbosity level for collections starting with `TargetCollection_`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -606,10 +565,10 @@ This example creates a role called "devrel" with permissions to:
 
 Additional permissions can be granted to a role at any time. The role must already exist.
 
-This example grants additional permissions to the "devrel" role to:
+This example grants additional permissions to the `devrel` role to:
 
-- Read data in all collections that start with "Test_".
-- Create new data in "Test_DevRel".
+- Read data in all collections that start with `Test_`.
+- Create new data in `Test_DevRel`.
 
 <Tabs groupId="languages">
 
@@ -652,10 +611,10 @@ This example grants additional permissions to the "devrel" role to:
 
 Permissions can be removed from a role at any time. Removing all permissions from a role will not delete the role itself.
 
-This example removes from the "devrel" role permissions to:
+This example removes from the `devrel` role permissions to:
 
-- Read the data from collections that start with "Test_"
-- Create and delete collections called "Test_DevRel"
+- Read the data from collections that start with `Test_`
+- Create and delete collections called `Test_DevRel`
 
 <Tabs groupId="languages">
 
@@ -698,7 +657,7 @@ This example removes from the "devrel" role permissions to:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom "devrel" role and predefined "viewer" role to "user-b".
+This example assigns the custom `devrel` role and predefined `viewer` role to `user-b`.
 
 <Tabs groupId="languages">
 
@@ -942,6 +901,8 @@ View all roles in the system and their permissions.
 
 ### List users with a role
 
+List all users who have the role `devrel`. 
+
 <Tabs groupId="languages">
 
   <TabItem value="py" label="Python Client v4">
@@ -1024,7 +985,7 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 You can revoke one or more roles from a specific user.
 
-This example revokes the "devrel" role from the user "user-b".
+This example revokes the `devrel` role from the user `user-b`.
 
 <Tabs groupId="languages">
 
