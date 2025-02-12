@@ -588,6 +588,69 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicColBERTVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicColBERTVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START ColBERTVectorizerJinaCustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            model="jina-colbert-v2",
+        )
+    ],
+    # highlight-end
+)
+# END ColBERTVectorizerJinaCustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullColBERTVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="jina-colbert-v2",
+            # dimensions=64,  # e.g. 128, 64 (only applicable for some models)
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullColBERTVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerMistral
 from weaviate.classes.config import Configure
 

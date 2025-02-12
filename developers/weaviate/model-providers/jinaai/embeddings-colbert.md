@@ -1,28 +1,30 @@
 ---
-title: Multimodal Embeddings
-sidebar_position: 25
+title: ColBERT Embeddings
+sidebar_position: 23
 image: og/docs/integrations/provider_integrations_jinaai.jpg
 # tags: ['model providers', 'jinaai', 'embeddings']
 ---
 
-# Jina AI Multimodal Embeddings with Weaviate
-
-:::info Added in `1.25.26`, `1.26.11` and `v1.27.5`
+:::info Added in `v1.29`
 :::
+
+# Jina AI ColBERT Embeddings with Weaviate
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
+import GoConnect from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/1-connect/main.go';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
 
 Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Jina AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Jina AI ColBERT embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Jina AI API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings. [Multimodal search operations](#vector-near-media-search) are also supported.
+At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
 ![Embedding integration illustration](../_includes/integration_jinaai_embedding.png)
 
@@ -30,7 +32,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Jina AI multimodal vectorizer integration (`multi2vec-jinaai`) module.
+Your Weaviate instance must be configured with the Jina AI ColBERT vectorizer integration (`text2colbert-jinaai`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -76,18 +78,27 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoConnect}
+      startMarker="// START JinaAIInstantiation"
+      endMarker="// END JinaAIInstantiation"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Jina AI embedding model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) as follows to use a Jina AI ColBERT embedding model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicMMVectorizerJinaAI"
-      endMarker="# END BasicMMVectorizerJinaAI"
+      startMarker="# START BasicColBERTVectorizerJinaAI"
+      endMarker="# END BasicColBERTVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -95,9 +106,18 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicMMVectorizerJinaAI"
-      endMarker="// END BasicMMVectorizerJinaAI"
+      startMarker="// START BasicColBERTVectorizerJinaAI"
+      endMarker="// END BasicColBERTVectorizerJinaAI"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BasicColBERTVectorizerJinaAI"
+      endMarker="// END BasicColBERTVectorizerJinaAI"
+      language="goraw"
     />
   </TabItem>
 
@@ -111,8 +131,8 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START MMVectorizerJinaCustomModel"
-      endMarker="# END MMVectorizerJinaCustomModel"
+      startMarker="# START ColBERTVectorizerJinaCustomModel"
+      endMarker="# END ColBERTVectorizerJinaCustomModel"
       language="py"
     />
   </TabItem>
@@ -120,9 +140,18 @@ You can specify one of the [available models](#available-models) for the vectori
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START MMVectorizerJinaCustomModel"
-      endMarker="// END MMVectorizerJinaCustomModel"
+      startMarker="// START ColBERTVectorizerJinaCustomModel"
+      endMarker="// END ColBERTVectorizerJinaCustomModel"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ColBERTVectorizerJinaCustomModel"
+      endMarker="// END ColBERTVectorizerJinaCustomModel"
+      language="goraw"
     />
   </TabItem>
 
@@ -143,12 +172,14 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 The following examples show how to configure Jina AI-specific options.
 
+Note that `dimensions` is not applicable for the `jina-colbert-v1` model.
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullMMVectorizerJinaAI"
-      endMarker="# END FullMMVectorizerJinaAI"
+      startMarker="# START FullColBERTVectorizerJinaAI"
+      endMarker="# END FullColBERTVectorizerJinaAI"
       language="py"
     />
   </TabItem>
@@ -156,19 +187,22 @@ The following examples show how to configure Jina AI-specific options.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullMMVectorizerJinaAI"
-      endMarker="// END FullMMVectorizerJinaAI"
+      startMarker="// START FullColBERTVectorizerJinaAI"
+      endMarker="// END FullColBERTVectorizerJinaAI"
       language="ts"
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullColBERTVectorizerJinaAI"
+      endMarker="// END FullColBERTVectorizerJinaAI"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
-
-### Vectorizer parameters
-
-- `model`: The model name.
-- `dimensions`: The number of dimensions for the model.
-  - Note that [not all models](#available-models) support this parameter.
 
 ## Data import
 
@@ -179,8 +213,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START MMBatchImportExample"
-      endMarker="# END MMBatchImportExample"
+      startMarker="# START BatchImportExample"
+      endMarker="# END BatchImportExample"
       language="py"
     />
   </TabItem>
@@ -188,9 +222,18 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START MMBatchImportExample"
-      endMarker="// END MMBatchImportExample"
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START BatchImportExample"
+      endMarker="// END BatchImportExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -232,6 +275,15 @@ The query below returns the `n` most similar objects from the database, set by `
     />
   </TabItem>
 
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START NearTextExample"
+      endMarker="// END NearTextExample"
+      language="goraw"
+    />
+  </TabItem>
+
 </Tabs>
 
 ### Hybrid search
@@ -264,33 +316,12 @@ The query below returns the `n` best scoring objects from the database, set by `
     />
   </TabItem>
 
-</Tabs>
-
-### Vector (near media) search
-
-When you perform a media search such as a [near image search](../../search/similarity.md#search-with-image), Weaviate converts the query into an embedding using the specified model and returns the most similar objects from the database.
-
-To perform a near media search such as near image search, convert the media query into a base64 string and pass it to the search query.
-
-The query below returns the `n` most similar objects to the input image from the database, set by `limit`.
-
-<Tabs groupId="languages">
-
- <TabItem value="py" label="Python API v4">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START NearImageExample"
-      endMarker="# END NearImageExample"
-      language="py"
-    />
-  </TabItem>
-
- <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START NearImageExample"
-      endMarker="// END NearImageExample"
-      language="ts"
+      text={GoCode}
+      startMarker="// START HybridExample"
+      endMarker="// END HybridExample"
+      language="goraw"
     />
   </TabItem>
 
@@ -300,19 +331,19 @@ The query below returns the `n` most similar objects to the input image from the
 
 ### Available models
 
-- `jina-clip-v2`
-    - This model is a multilingual, multimodal model using [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147).
-    - It will accept a `dimensions` parameter, which can be any integer between (and including) 64 and 1024. The default value is 1024.
-- `jina-clip-v1`
-    - This model will always return a 768-dimensional embedding.
+- `jina-colbert-v2`
+    - By default, Weaviate uses `128` dimensions
+- `jina-colbert-v1`
+
+Note that `dimensions` is not applicable for the `jina-colbert-v1` model.
 
 ## Further resources
 
 ### Other integrations
 
-- [Jina AI text embedding models + Weaviate](./embeddings.md).
-- [Jina AI ColBERT embedding models + Weaviate](./embeddings-colbert.md).
-- [Jina AI reranker models + Weaviate](./reranker.md).
+- [Jina AI embedding models + Weaviate](./embeddings.md)
+- [Jina AI multimodal embedding models + Weaviate](./embeddings-multimodal.md)
+- [Jina AI reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 
