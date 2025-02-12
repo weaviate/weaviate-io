@@ -87,25 +87,18 @@ RBAC access will be available in WCD in a future release.
 
 ## Role-Based Access Control (RBAC)
 
-:::caution RBAC technical preview
-Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-<br/>
-
-We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
-:::
-
 Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to define [roles](./roles.md) and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
 Weaviate comes with a set of predefined roles. These roles are:
 
-- `admin`: The admin role has full access to all resources in Weaviate.
+- `root`: The root role has full access to all resources in Weaviate.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
-They are assigned to users based on the Weaviate configuration file. Once a user is assigned a predefined role, their permissions are set accordingly. These roles cannot be modified, and these users cannot have additional roles assigned to them.
+The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
 For more information on roles and permissions, see [this page](./roles.md).
 
-:::tip At least one admin user required
+:::tip At least one root user required
 When using RBAC, you must specify at least one user with the build-in admin role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
 :::
 
@@ -135,8 +128,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
 
       # Authorization configuration
       # Enable RBAC
@@ -145,18 +138,22 @@ services:
       # Provide pre-configured roles to users
       # This assumes that the relevant user has been authenticated and identified
       #
-      # You MUST define at least one admin user
-      AUTHORIZATION_ADMIN_USERS: 'user-a'
-      AUTHORIZATION_VIEWER_USERS: 'user-b'
+      # You MUST define at least one root user
+      AUTHORIZATION_RBAC_ROOT_USERS: 'user-a'
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `user-a` as a user with built-in admin permissions
-- Configures `user-b` as a user with built-in viewer permissions
-- Configures `user-c` as a user with no built-in permissions
+- Configures `user-a` as a user with built-in root/admin permissions
+- Configures `user-b` as a user with no built-in permissions
 
-The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-b` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+
+:::caution Changes in environment veriables
+As of Weaviate version `v1.29` these environment veriables have changed:
+- `AUTHORIZATION_VIEWER_USERS` and `AUTHORIZATION_ADMIN_USERS` were removed
+- `AUTHORIZATION_ADMIN_USERS` has been replaced with `AUTHORIZATION_RBAC_ROOT_USERS`
+:::
 
 ### RBAC: Kubernetes
 
@@ -172,11 +169,9 @@ authentication:
     allowed_keys:
       - user-a-key
       - user-b-key
-      - user-c-key
     users:
       - user-a
       - user-b
-      - user-c
 
 # Authorization configuration
 authorization:
@@ -189,17 +184,14 @@ authorization:
     # You MUST define at least one admin user
     admins:
     - user-a
-    viewers:
-    - user-b
 ```
 
 This configuration:
 - Enables RBAC
 - Configures `user-a` as a user with built-in admin permissions
-- Configures `user-b` as a user with built-in viewer permissions
-- Configures `user-c` as a user with no built-in permissions
+- Configures `user-b` as a user with no built-in permissions
 
-The `user-c` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The `user-b` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
 
 ## Admin list
 

@@ -118,7 +118,6 @@ Role-based access control (RBAC) is added `v1.28` as a **technical preview**. Th
 | --- | --- | --- | --- |
 | `AUTHORIZATION_RBAC_ENABLED` | Enable RBAC authorization scheme (mutually exclusive with `AUTHORIZATION_ADMINLIST_ENABLED`). Introduced in `v1.28.3`. Previously called `AUTHORIZATION_ENABLE_RBAC` | `boolean` | `true` |
 | `AUTHORIZATION_ADMIN_USERS` | Users with the built-in administrator role when RBAC scheme used. At least one admin user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
-| `AUTHORIZATION_VIEWER_USERS` | Users with the built-in viewer role when RBAC scheme used. | `string - comma-separated list` | `viewer-user,another-viewer-user` |
 
 ## Multi-node instances
 

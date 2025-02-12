@@ -10,20 +10,17 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 
-:::caution RBAC technical preview
-Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-<br/>
-
-We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
+:::info Available from `v1.29`
+Role-based access control (RBAC) was added in Weaviate version `v1.29`.
 :::
 
 Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the [authenticated](./authentication.md) user identity.
 
-If role-based access control (RBAC) is enabled, access can be further restricted based the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
+If role-based access control (RBAC) is enabled, access can be further restricted based on the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
 Roles and permissions can be managed through Weaviate API (e.g. via REST API directly, or through a client library).
 
-Refer to the client library examples below, or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
+Refer to the client library examples below or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
 
 ## Roles
 
@@ -31,12 +28,12 @@ Refer to the client library examples below, or [the REST API documentation](../a
 
 Weaviate comes with a set of predefined roles. These roles are:
 
-- `admin`: The admin role has full access to all resources in Weaviate.
+- `root`: The root role has full access to all resources in Weaviate.
 - `viewer`: The viewer role has read-only access to all resources in Weaviate.
 
-`admin` and `viewer` roles can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
+The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
-All roles can also be assigned through the Weaviate API, including the predefined roles. The predefined roles cannot be modified, but they can be assigned or revoked from users.
+All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned to or revoked from users.
 
 Refer to the [authorization](./authorization.md) page for more information on how to assign predefined roles to users.
 
@@ -62,26 +59,26 @@ Permissions in Weaviate define what actions users can perform on specific resour
 
 Permissions can be defined for the following resources:
 
-1. **Role Management**
+1. [**Role Management**](#role-management)
     - Read roles
     - Manage roles
 
-1. **Collections** (collection definitions only, data object permissions are separate)
+1. [**Collections**](#role-management-collections) (collection definitions only, data object permissions are separate)
     - Create, read, update, and delete collection definitions
 
-1. **Tenants** ([available from `v1.28.3`](#collection-and-tenant-permissions))
+1. [**Tenants**](#role-management-tenants)
     - Create, read, update, and delete tenants
 
-1. **Data Objects**
+1. [**Data Objects**](#role-management-data)
     - Read, write, update, and delete objects
 
-1. **Backup**
+1. [**Backup**](#role-management-backup)
     - Manage backups
 
-1. **Cluster Data Access**
+1. [**Cluster Data Access**](#role-management-clusters)
     - Read cluster metadata
 
-1. **Node Data Access**
+1. [**Node Data Access**](#role-management-nodes)
     - Read node metadata at a specified verbosity level
 
 :::caution Role Management Permissions
@@ -98,25 +95,13 @@ For example, if a user has two roles:
 
 The user will have read access to Collection X because Role B grants the permission, while Role A's `False` value simply indicates no permission is set rather than blocking access.
 
-:::info Permissions and `aggregate` queries
-
-In `v1.28`, aggregate queries require the user to have the `read_config` permission on all collections (i.e. with a `"*"` collection name filter).
-<br/>
-
-This is due to the implementation of the `aggregate` queries under-the-hood, which uses GraphQL rather than gRPC. This will be improved in future versions of Weaviate.
-:::
-
 #### Wildcards in permissions
 
 Many permissions require a collection name filter, to specify which collections the permission applies to.
 
-In thi case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
+In this case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
 
 ### Collection and tenant permissions
-
-:::caution Breaking change introduced in `v1.28.3`
-This change was introduced in `v1.28.3` during the technical preview phase. In `v1.28.0` - `v1.28.2`, a collection level permission would cascade to confer permissions the equivalent tenant-level operations. This behavior was changed in `v1.28.3` to require explicit tenant-level permissions for tenant operations, for operations such as creating a tenant, updating tenant status, and so on.
-:::
 
 A collection permission is independent of tenant permissions.
 
@@ -251,7 +236,7 @@ This confers permissions to manage collections starting with `TargetCollection_`
 
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 
-## Role management
+## RBAC role management
 
 Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
 
@@ -335,20 +320,19 @@ This example creates a role called "devrel" without any permissions assigned to 
 
 </Tabs> -->
 
-### Create new role with permissions
+### Create new roles with permissions
+
+#### Create a role with `Role Management` permissions {#role-management}
 
 This example creates a role called "devrel" with permissions to:
-
-- Read all collections starting with "Test_".
-- Delete or create the collection "Test_DevRel"
+- Manage all roles starting with "TargetRole_".
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={RolePyCode}
-      startMarker="# START AddRoleAtCreate"
-      endMarker="# END AddRoleAtCreate"
+      startMarker="# START AddManageRolesPermission"
+      endMarker="# END AddManageRolesPermission"
       language="py"
     />
   </TabItem>
@@ -376,7 +360,246 @@ This example creates a role called "devrel" with permissions to:
 ```
 
   </TabItem>
+</Tabs>
 
+#### Create a role with `Collections` permissions {#role-management-collections}
+
+This example creates a role called "devrel" with permissions to:
+- Read all collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddCollectionsPermission"
+      endMarker="# END AddCollectionsPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Tenant` permissions {#role-management-tenants}
+
+This example creates a role called "devrel" with permissions to:
+- Create tenants in collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddTenantPermission"
+      endMarker="# END AddTenantPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Data Objects` permissions {#role-management-data}
+
+This example creates a role called "devrel" with permissions to:
+- Read data from collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddDataObjectPermission"
+      endMarker="# END AddDataObjectPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Backup` permissions {#role-management-backups}
+
+This example creates a role called "devrel" with permissions to:
+- Manage backups for collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddBackupPermission"
+      endMarker="# END AddBackupPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Cluster Data Access` permissions {#role-management-clusters}
+
+This example creates a role called "devrel" with permissions to:
+- Read cluster metadata.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddClusterPermission"
+      endMarker="# END AddClusterPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+#### Create a role with `Node Data Access` permissions {#role-management-nodes}
+
+This example creates a role called "devrel" with permissions to:
+- Read node metadata at the specified verbosity level for collections starting with "TargetCollection_".
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={RolePyCode}
+      startMarker="# START AddNodesPermission"
+      endMarker="# END AddNodesPermission"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
 </Tabs>
 
 ### Grant additional permissions
@@ -475,7 +698,7 @@ This example removes from the "devrel" role permissions to:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom "devrel" role to "user-c".
+This example assigns the custom "devrel" role and predefined "viewer" role to "user-b".
 
 <Tabs groupId="languages">
 
@@ -758,7 +981,7 @@ View all roles in the system and their permissions.
 
 ### Delete a role
 
-Deleting a role will remove it from the system, and revoke the associated permissions from all users had this role.
+Deleting a role will remove it from the system, and revoke the associated permissions from all users who had this role.
 
 <Tabs groupId="languages">
 
@@ -801,7 +1024,7 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 You can revoke one or more roles from a specific user.
 
-This examples revokes "role-1" and "role-2" from the user "user-c".
+This example revokes the "devrel" role from the user "user-b".
 
 <Tabs groupId="languages">
 
