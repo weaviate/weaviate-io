@@ -793,6 +793,27 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerNVIDIA
+// Coming soon
+// END BasicVectorizerNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerNVIDIACustomModel
+// Coming soon
+// END VectorizerNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerNVIDIA
+// Coming soon
+// END FullVectorizerNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerOctoAI
 await client.collections.create({
   name: 'DemoCollection',
