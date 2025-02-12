@@ -629,6 +629,68 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerNVIDIACustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+            model="nvidia/nv-embed-v1"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerNVIDIACustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+            model="nvidia/nv-embed-v1"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOctoAI
 from weaviate.classes.config import Configure
 
