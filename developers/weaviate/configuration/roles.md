@@ -10,11 +10,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 
-:::caution RBAC technical preview
-Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-<br/>
-
-We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
+:::info Available from `v1.29`
+Role-based access control (RBAC) was added in Weaviate version `v1.29`.
 :::
 
 Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the [authenticated](./authentication.md) user identity.
@@ -23,7 +20,7 @@ If role-based access control (RBAC) is enabled, access can be further restricted
 
 Roles and permissions can be managed through Weaviate API (e.g. via REST API directly, or through a client library).
 
-Refer to the client library examples below, or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
+Refer to the client library examples below or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
 
 ## Roles
 
@@ -36,7 +33,7 @@ Weaviate comes with a set of predefined roles. These roles are:
 
 The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
-All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned or revoked from users.
+All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned to or revoked from users.
 
 Refer to the [authorization](./authorization.md) page for more information on how to assign predefined roles to users.
 
@@ -69,7 +66,7 @@ Permissions can be defined for the following resources:
 1. **Collections** (collection definitions only, data object permissions are separate)
     - Create, read, update, and delete collection definitions
 
-1. **Tenants** ([available from `v1.28.3`](#collection-and-tenant-permissions))
+1. **Tenants**
     - Create, read, update, and delete tenants
 
 1. **Data Objects**
@@ -110,13 +107,9 @@ This is due to the implementation of the `aggregate` queries under-the-hood, whi
 
 Many permissions require a collection name filter, to specify which collections the permission applies to.
 
-In thi case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
+In this case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test_*"` as the collection filter would apply that permission to all collections that start with `Test_`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
 
 ### Collection and tenant permissions
-
-:::caution Breaking change introduced in `v1.28.3`
-This change was introduced in `v1.28.3` during the technical preview phase. In `v1.28.0` - `v1.28.2`, a collection level permission would cascade to confer permissions the equivalent tenant-level operations. This behavior was changed in `v1.28.3` to require explicit tenant-level permissions for tenant operations, for operations such as creating a tenant, updating tenant status, and so on.
-:::
 
 A collection permission is independent of tenant permissions.
 
@@ -475,7 +468,7 @@ This example removes from the "devrel" role permissions to:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom "devrel" role and predefnied "viewer" role to "user-b".
+This example assigns the custom "devrel" role and predefined "viewer" role to "user-b".
 
 <Tabs groupId="languages">
 
@@ -758,7 +751,7 @@ View all roles in the system and their permissions.
 
 ### Delete a role
 
-Deleting a role will remove it from the system, and revoke the associated permissions from all users had this role.
+Deleting a role will remove it from the system, and revoke the associated permissions from all users who had this role.
 
 <Tabs groupId="languages">
 
@@ -801,7 +794,7 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 You can revoke one or more roles from a specific user.
 
-This examples revokes the "devrel" role from the user "user-b".
+This example revokes the "devrel" role from the user "user-b".
 
 <Tabs groupId="languages">
 
