@@ -475,7 +475,7 @@ This example removes from the "devrel" role permissions to:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom "devrel" role to "user-c".
+This example assigns the custom "devrel" role and predefnied "viewer" role to "user-b".
 
 <Tabs groupId="languages">
 
@@ -801,7 +801,7 @@ Deleting a role will remove it from the system, and revoke the associated permis
 
 You can revoke one or more roles from a specific user.
 
-This examples revokes "role-1" and "role-2" from the user "user-c".
+This examples revokes the "devrel" role from the user "user-b".
 
 <Tabs groupId="languages">
 

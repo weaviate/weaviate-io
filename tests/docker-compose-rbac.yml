@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.28.3
+    image: semitechnologies/weaviate:preview-feat-rbac-add-best-effort-authorization-773f28b
     ports:
     - 8580:8080
     - 50551:50051

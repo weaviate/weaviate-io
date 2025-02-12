@@ -16,7 +16,7 @@ admin_client = weaviate.connect_to_local(
 # END AdminClient
 
 custom_user_client = weaviate.connect_to_local(
-    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-c-key")
+    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-b-key")
 )
 
 admin_client.roles.delete("devrel")
@@ -65,8 +65,9 @@ admin_client.roles.add_permissions(permissions=permissions, role_name="devrel")
 from weaviate.classes.rbac import Permissions
 
 permissions = [
-    Permissions.roles(role="devrel", read=True, manage=True),
-    Permissions.roles(role="devrel-*", read=True, manage=False)
+    Permissions.data(collection="Test_DevRel", read=True, create=True, update=True, delete=True),
+    #Permissions.roles(role="devrel", read=True, manage=True),
+    #Permissions.roles(role="devrel-*", read=True, manage=False)
 ]
 
 admin_client.roles.create(role_name="devrel-admin", permissions=permissions)
@@ -85,16 +86,17 @@ admin_client.roles.add_permissions(permissions=permissions, role_name="devrel-ad
 
 
 # START AssignRole
-admin_client.roles.assign_to_user(role_names="devrel", user="user-c")
+admin_client.users.assign_roles(user_id="user-b", role_names=["devrel", "viewer"])
 # END AssignRole
-assert "devrel" in admin_client.roles.by_user(user="user-c")
+assert "devrel" in admin_client.users.get_assigned_roles("user-b")
+assert "viewer" in admin_client.users.get_assigned_roles("user-b")
 
 # START ListCurrentUserRoles
 print(admin_client.users.get_my_user())
 # END ListCurrentUserRoles
 
 # START ListUserRoles
-user_roles = admin_client.roles.by_user(user="user-c")
+user_roles = admin_client.users.get_assigned_roles("user-b")
 
 for role in user_roles:
     print(role)
@@ -102,20 +104,24 @@ for role in user_roles:
 assert any(permission.collection == "Test_DevRel" for permission in user_roles["devrel"].collections_permissions)
 
 # START CheckRoleExists
-print(admin_client.roles.exists(role_name="role-name"))  # Returns True or False
+print(admin_client.roles.exists(role_name="devrel"))  # Returns True or False
 # END CheckRoleExists
 
 # START InspectRole
-print(admin_client.roles.by_name(role_name="devrel"))
+devrel_role = admin_client.roles.get(role_name="devrel")
+
+print(devrel_role)
+print(devrel_role.collections_permissions)
+print(devrel_role.data_permissions)
 # END InspectRole
 
 # START AssignedUsers
-assigned_users = admin_client.roles.assigned_users(role_name="devrel")
+assigned_users = admin_client.roles.get_assigned_user_ids(role_name="devrel")
 
 for user in assigned_users:
     print(user)
 # END AssignedUsers
-assert "user-c" in assigned_users
+assert "user-b" in assigned_users
 
 # START ListAllRoles
 all_roles = admin_client.roles.list_all()
@@ -143,9 +149,9 @@ admin_client.roles.remove_permissions(
 # END RemovePermissions
 
 # START RevokeRoles
-admin_client.roles.revoke_from_user(role_names=["devrel"], user="user-c")
+admin_client.users.revoke_roles(user_id="user-b", role_names="devrel")
 # END RevokeRoles
-assert "devrel" not in admin_client.roles.by_user(user="user-c")
+assert "devrel" not in admin_client.users.get_assigned_roles("user-b")
 
 # START DeleteRole
 admin_client.roles.delete(role_name="devrel")
