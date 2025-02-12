@@ -1,7 +1,7 @@
 ---
 title: Generative AI
 sidebar_position: 51
-image: ../_includes/integration_nvidia_rag.png
+image: og/docs/integrations/provider_integrations_nvidia.jpg
 # tags: ['model providers', 'nvidia', 'generative', 'rag']
 ---
 
@@ -15,9 +15,9 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integrations with NVIDIA NIM API allows you to access a variety of generative models directly from Weaviate.
+Weaviate's integrations with NVIDIA NIM API allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use generative AI models on NVIDIA. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model using your NVIDIA NIM API Key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with NVIDIA. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model using your NVIDIA NIM API Key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the generative model on NVIDIA to generate outputs.
 
@@ -46,11 +46,11 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 ### API credentials
 
-You must provide a valid API key to Weaviate for this integration. [Select a model](https://build.nvidia.com/models) and click on the `Get API Key` button.
+You must provide a valid API key to Weaviate for this integration. Go to [NVIDIA](https://build.nvidia.com/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `NVIDIA_TOKEN` environment variable that is available to Weaviate.
+- Set the `NVIDIA_APIKEY` environment variable that is available to Weaviate.
 - Provide the token at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -104,6 +104,33 @@ import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
 
 </Tabs>
 
+### Select a model
+
+You can specify one of the [available models](#available-models) for Weaviate to use, as shown in the following configuration example:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeNVIDIACustomModel"
+      endMarker="# END GenerativeNVIDIACustomModel"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GenerativeNVIDIACustomModel"
+      endMarker="// END GenerativeNVIDIACustomModel"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The [default model](#available-models) is used if no model is specified.
+
 ### Generative parameters
 
 Configure the following generative parameters to customize the model behavior.
@@ -137,7 +164,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_nvidia_rag.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_nvidia_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -169,7 +196,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_nvidia_rag.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_nvidia_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -201,12 +228,17 @@ In other words, when you have `n` search results, the generative model generates
 
 ### Available models
 
-* `meta/llama-3.2-3b-instruct` (default)
-* `meta/llama-3.3-70b-instruct`
-
 You can use any generative model [on NVIDIA NIM APIs](https://build.nvidia.com/models) with Weaviate.
 
+The default model is `nvidia/llama-3.1-nemotron-51b-instruct`.
+
 ## Further resources
+
+### Other integrations
+
+- [NVIDIA text embedding models + Weaviate](./embeddings.md).
+- [NVIDIA multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
+- [NVIDIA reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
