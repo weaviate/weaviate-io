@@ -99,7 +99,7 @@ The `root` role can be assigned through the Weaviate configuration file. A prede
 For more information on roles and permissions, see [this page](./roles.md).
 
 :::tip At least one root user required
-When using RBAC, you must specify at least one user with the build-in admin role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
+When using RBAC, you must specify at least one user with the build-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
 :::
 
 ### Discussions: RBAC and performance

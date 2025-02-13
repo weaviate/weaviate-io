@@ -175,6 +175,7 @@ permissions = admin_client.roles.get(role_name="devrel")
 assert permissions.nodes_permissions
 """Should this be valid?
 permissions = admin_client.roles.get(role_name="devrel")
+print(permissions)
 assert any(
     permission.collection == "TargetCollection_*"
     for permission in permissions.nodes_permissions

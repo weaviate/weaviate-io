@@ -28,10 +28,10 @@ Refer to the client library examples below or [the REST API documentation](../ap
 
 Weaviate comes with a set of predefined roles. These roles are:
 
-- `root`: The root role has full access to all resources in Weaviate.
-- `viewer`: The viewer role has read-only access to all resources in Weaviate.
+- `root`: The root role has **full access** to all resources in Weaviate.
+- `viewer`: The viewer role has **read-only access** to all resources in Weaviate.
 
-The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
+The `root` role can be assigned through the Weaviate configuration file using the [`AUTHORIZATION_RBAC_ROOT_USERS`](/developers/weaviate/config-refs/env-vars#rbac-authorization) environment variable. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
 All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned to or revoked from users.
 
@@ -41,11 +41,13 @@ Refer to the [authorization](./authorization.md) page for more information on ho
 
 Any authenticated user that is not assigned a predefined role has no roles or permissions by default.
 
-These users' permissions can be modified through Weaviate by those with the appropriate permissions. This allows for the creation of custom roles, which can be assigned to users as needed.
+These users' permissions can be modified through Weaviate by those with the appropriate permissions for **managing roles**. This allows for the creation of custom roles, which can be assigned to users as needed.
 
-### Managing roles
+Role management requires appropriate `role` resource permissions through a predefined `root` role or a role with [`manage_roles` permission](#role-management).
 
-Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
+:::caution Role Management Permissions
+Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
+:::
 
 ## Permissions
 
@@ -80,10 +82,6 @@ Permissions can be defined for the following resources:
 
 1. [**Node Data Access**](#role-management-nodes)
     - Read node metadata at a specified verbosity level
-
-:::caution Role Management Permissions
-Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
-:::
 
 ### Permission behavior
 
@@ -238,7 +236,7 @@ import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac
 
 ## RBAC role management
 
-Role management requires appropriate `role` resource permissions through a predefined `admin` role or a role with `manage_roles` permission.
+Role management requires appropriate `role` resource permissions through a predefined `root` role or a role with `manage_roles` permission.
 
 For more information see the [Authentication](./authentication.md) and [Authorization](./authorization.md) pages.
 
