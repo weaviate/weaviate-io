@@ -70,22 +70,35 @@ Jump to the section that interests you, or follow along with both.
 "Late interaction" refers the similarity comparisons between objects in a multi-vector embedding, such as ColBERT or ColPali.
 <br/>
 
-In a single-vector approach, two embeddings have the same dimensionality (e.g. 768). So, their similarity is calculated directly, e.g. by calculating their dot product, or cosine distance.
+In a single-vector approach, two embeddings have the same dimensionality (e.g. 768). So, their similarity is calculated directly, e.g. by calculating their dot product, or cosine distance. In this case, the only interaction occurs when the two "flattened" vectors are compared.
 <br/>
 
-On the other hand, each multi-vector embedding is composed of multiple, typically smaller, vectors. Each of these vectors represent a portion of the document, such as a token.
+Another approach is a "early interaction" search, as seen in some "cross-encoder" models. In this approach, the query and the object are used throughout the embedding generation and comparison process. This can lead to more accurate results, but can be computationally expensive. This approach is often used for "reranker" models where the dataset is small.
 <br/>
 
-For example, one object's embedding may have a shape of (30, 64), meaning it has 30 vectors, each with 64 dimensions. But another object's embedding may have a shape of (20, 64), meaning it has 20 vectors, each with 64 dimensions.
+Late interaction is a middle ground between these two approaches, using multi-vector embeddings.
 <br/>
 
-Late interaction takes advantage of this structure. A late interaction search:
+Each multi-vector embedding is composed of multiple vectors, where a vector represents a portion of the object, such as a token. For example, one object's embedding may have a shape of (30, 64), meaning it has 30 vectors, each with 64 dimensions. But another object's embedding may have a shape of (20, 64), meaning it has 20 vectors, each with 64 dimensions.
+<br/>
 
+Late interaction takes advantage of this structure.
+
+![ColBERT late interaction visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction visualization")
+
+<small>Late interaction visualization. <a href="https://arxiv.org/abs/2004.12832">Source: Omar Khattab, Matei Zaharia</a></small>
+
+<br/><br/>
+
+A late interaction search:
 1. Compares each query vector against each object vector
 1. Combines these fine-grained comparisons to produce a final similarity score
 <br/>
 
 This approach often leads to better search results, as it can capture more nuanced relationships between objects.
+<br/>
+
+Read more about late interaction in the [ColBERT paper](https://arxiv.org/abs/2004.12832).
 :::
 
 ## ColBERT model integration
