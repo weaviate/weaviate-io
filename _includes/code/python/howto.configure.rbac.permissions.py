@@ -7,7 +7,7 @@ from weaviate.classes.rbac import Permissions
 # END-ANY
 from weaviate.classes.init import Auth
 
-admin_client = weaviate.connect_to_local(
+client = weaviate.connect_to_local(
     # Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
     port=8580,
     grpc_port=50551,
@@ -27,15 +27,15 @@ def reset_user(user: str, client: WeaviateClient):
 # =================================================================
 
 # Clean slate
-reset_user("user-b", client=admin_client)
-admin_client.roles.delete("rw_role")  # delete if exists
+reset_user("user-b", client=client)
+client.roles.delete("rw_role")  # delete if exists
 
 # START ReadWritePermissionDefinition
-# Define permissions (example confers read+write rights to collections starting with "TargetCollection_")
-admin_permissions = [
+# Define permissions (example confers read+write rights to collections starting with "TargetCollection")
+permissions = [
     # Collection level permissions
     Permissions.collections(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create_collection=True,  # Allow creating new collections
         read_config=True,  # Allow reading collection info/metadata
         update_config=True,  # Allow updating collection configuration, i.e. update schema properties, when inserting data with new properties
@@ -43,29 +43,29 @@ admin_permissions = [
     ),
     # Collection data level permissions
     Permissions.data(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create=True,  # Allow data inserts
         read=True,  # Allow query and fetch operations
         update=True,  # Allow data updates
         delete=False,  # Allow data deletes
     ),
-    Permissions.backup(collection="TargetCollection_*", manage=True),
-    Permissions.nodes(collection="TargetCollection_*", read=True),
+    Permissions.backup(collection="TargetCollection*", manage=True),
+    Permissions.Nodes.verbose(collection="TargetCollection*", read=True),
     Permissions.cluster(read=True),
 ]
 
 # Create a new role and assign it to a user
-admin_client.roles.create(role_name="rw_role", permissions=admin_permissions)
-admin_client.users.assign_roles(user_id="user-b", role_names=["rw_role"])
+client.roles.create(role_name="rw_role", permissions=permissions)
+client.users.assign_roles(user_id="user-b", role_names=["rw_role"])
 # END ReadWritePermissionDefinition
 
 # ===== TEST ===== basic checks to see if the role was created
-user_permissions = admin_client.users.get_assigned_roles("user-b")
+user_permissions = client.users.get_assigned_roles("user-b")
 
 assert "rw_role" in user_permissions.keys()
 assert (
     user_permissions["rw_role"].collections_permissions[0].collection
-    == "TargetCollection_*"
+    == "TargetCollection*"
 )
 assert user_permissions["rw_role"].name == "rw_role"
 
@@ -74,21 +74,21 @@ assert user_permissions["rw_role"].name == "rw_role"
 # =================================================================
 
 # Clean slate
-admin_client.roles.delete("viewer_role")  # delete if exists
+client.roles.delete("viewer_role")  # delete if exists
 
 # START ViewerPermissionDefinition
-# Define permissions (example confers viewer rights to collections starting with "TargetCollection_")
-viewer_permissions = [
+# Define permissions (example confers viewer rights to collections starting with "TargetCollection")
+permissions = [
     Permissions.collections(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         read_config=True,
     ),
-    Permissions.data(collection="TargetCollection_*", read=True),
+    Permissions.data(collection="TargetCollection*", read=True),
 ]
 
 # Create a new role and assign it to a user
-admin_client.roles.create(role_name="viewer_role", permissions=viewer_permissions)
-admin_client.users.assign_roles(user_id="user-b", role_names="viewer_role")
+client.roles.create(role_name="viewer_role", permissions=permissions)
+client.users.assign_roles(user_id="user-b", role_names="viewer_role")
 # END ViewerPermissionDefinition
 
 # =================================================================
@@ -96,21 +96,21 @@ admin_client.users.assign_roles(user_id="user-b", role_names="viewer_role")
 # =================================================================
 
 # Clean slate
-admin_client.roles.delete("tenant_manager")
+client.roles.delete("tenant_manager")
 
 # START MTPermissionsExample
 permissions = [
     Permissions.collections(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create_collection=True,
         read_config=True,
         update_config=True,
         delete_collection=True,
     ),
     # Without the below permission, the user would not
-    # be able to create tenants in collections starting with "TargetCollection_"
+    # be able to create tenants in collections starting with "TargetCollection"
     Permissions.tenants(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create=True,
         read=True,
         update=True,
@@ -119,18 +119,18 @@ permissions = [
 ]
 
 # Create a new role and assign it to a user
-admin_client.roles.create(role_name="tenant_manager", permissions=permissions)
-admin_client.users.assign_roles(user_id="user-b", role_names="tenant_manager")
+client.roles.create(role_name="tenant_manager", permissions=permissions)
+client.users.assign_roles(user_id="user-b", role_names="tenant_manager")
 # END MTPermissionsExample
 
 # ===== TEST ===== basic checks to see if the role was created
-user_permissions = admin_client.users.get_assigned_roles("user-b")
+user_permissions = client.users.get_assigned_roles("user-b")
 
 assert "viewer_role" in user_permissions.keys()
 assert (
     user_permissions["viewer_role"].collections_permissions[0].collection
-    == "TargetCollection_*"
+    == "TargetCollection*"
 )
 assert user_permissions["viewer_role"].name == "viewer_role"
 
-admin_client.close()
+client.close()

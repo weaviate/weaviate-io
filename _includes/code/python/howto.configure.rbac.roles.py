@@ -5,7 +5,7 @@ import weaviate
 from weaviate.classes.init import Auth
 
 # Connect to Weaviate as root user
-admin_client = weaviate.connect_to_local(
+client = weaviate.connect_to_local(
     # END AdminClient
     # Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
     port=8580,
@@ -15,15 +15,18 @@ admin_client = weaviate.connect_to_local(
 )
 # END AdminClient
 
+# TODO: Remove if not used
 custom_user_client = weaviate.connect_to_local(
     port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-b-key")
 )
 
-admin_client.roles.delete("devrel")
-admin_client.roles.delete("devrel-admin")
+all_roles = client.roles.list_all()
+for role_name, _ in all_roles.items():
+    if role_name not in ["viewer", "root", "admin"]:
+        client.roles.delete(role_name=role_name)
 
 # # START CreateRole
-# admin_client.roles.create(role_name="devrel")
+# client.roles.create(role_name="testRole")
 # # END CreateRole
 
 # START AddManageRolesPermission
@@ -31,7 +34,7 @@ from weaviate.classes.rbac import Permissions, RoleScope
 
 permissions = [
     Permissions.roles(
-        role="TargetRole_*",  # Applies to all roles starting with "TargetRole_"
+        role="testRole*",  # Applies to all roles starting with "testRole"
         create=True,  # Allow creating roles
         read=True,  # Allow reading roles
         update=True,  # Allow updating roles
@@ -41,19 +44,19 @@ permissions = [
     )
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddManageRolesPermission
 
-assert "devrel" in admin_client.roles.list_all().keys()
+assert "testRole" in client.roles.list_all().keys()
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddCollectionsPermission
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create_collection=True,  # Allow creating new collections
         read_config=True,  # Allow reading collection info/metadata
         update_config=True,  # Allow updating collection configuration, i.e. update schema properties, when inserting data with new properties
@@ -61,29 +64,29 @@ permissions = [
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddCollectionsPermission
-permissions = admin_client.roles.get(role_name="devrel")
+permissions = client.roles.get(role_name="testRole")
 assert any(
-    permission.collection == "TargetCollection_*"
+    permission.collection == "TargetCollection*"
     for permission in permissions.collections_permissions
 )
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddTenantPermission
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create_collection=True,
         read_config=True,
         update_config=True,
         delete_collection=True,
     ),
     Permissions.tenants(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
         update=True,  # Allow updating tenants
@@ -91,22 +94,22 @@ permissions = [
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddTenantPermission
-permissions = admin_client.roles.get(role_name="devrel")
+permissions = client.roles.get(role_name="testRole")
 assert any(
-    permission.collection == "TargetCollection_*"
+    permission.collection == "TargetCollection*"
     for permission in permissions.collections_permissions
 )
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddDataObjectPermission
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.data(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         create=True,  # Allow data inserts
         read=True,  # Allow query and fetch operations
         update=True,  # Allow data updates
@@ -114,35 +117,35 @@ permissions = [
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddDataObjectPermission
-permissions = admin_client.roles.get(role_name="devrel")
+permissions = client.roles.get(role_name="testRole")
 assert any(
-    permission.collection == "TargetCollection_*"
+    permission.collection == "TargetCollection*"
     for permission in permissions.data_permissions
 )
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddBackupPermission
 from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.backup(
-        collection="TargetCollection_*",
+        collection="TargetCollection*",
         manage=True,  # Allow managing backups
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddBackupPermission
-permissions = admin_client.roles.get(role_name="devrel")
+permissions = client.roles.get(role_name="testRole")
 assert any(
-    permission.collection == "TargetCollection_*"
+    permission.collection == "TargetCollection*"
     for permission in permissions.backups_permissions
 )
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddClusterPermission
 from weaviate.classes.rbac import Permissions
@@ -151,98 +154,102 @@ permissions = [
     Permissions.cluster(read=True),  # Allow reading cluster data
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 # END AddClusterPermission
-permissions = admin_client.roles.get(role_name="devrel")
+permissions = client.roles.get(role_name="testRole")
 assert permissions.cluster_permissions
 
-admin_client.roles.delete("devrel")
+client.roles.delete("testRole")
 
 # START AddNodesPermission
 from weaviate.classes.rbac import Permissions
 
-permissions = [
-    Permissions.nodes(
-        collection="TargetCollection_*",
+verbose_permissions = [
+    Permissions.Nodes.verbose(
+        collection="TargetCollection*",
         read=True,  # Allow reading node metadata
-        verbosity="minimal",  # Verbosity level ["minimal", "verbose"]
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+# The minimal nodes permission applies for all collections
+minimal_permissions = [
+    Permissions.Nodes.minimal(
+        read=True,  # Allow reading node metadata
+    ),
+]
+
+client.roles.create(role_name="testRole", permissions=verbose_permissions)
 # END AddNodesPermission
-permissions = admin_client.roles.get(role_name="devrel")
-assert permissions.nodes_permissions
-"""Should this be valid?
-permissions = admin_client.roles.get(role_name="devrel")
-print(permissions)
+
+permissions = client.roles.get(role_name="testRole")
+print("ivan ", permissions)
 assert any(
-    permission.collection == "TargetCollection_*"
+    permission.collection == "TargetCollection*"
     for permission in permissions.nodes_permissions
 )
-"""
 
-admin_client.roles.delete("devrel")
+
+client.roles.delete("testRole")
 
 permissions = [
     Permissions.collections(
-        collection="Test_DevRel",
+        collection="TargetCollection*",
         read_config=True,
     ),
 ]
 
-admin_client.roles.create(role_name="devrel", permissions=permissions)
+client.roles.create(role_name="testRole", permissions=permissions)
 
 # START AddRoles
 from weaviate.classes.rbac import Permissions
 
 permissions = [
-    Permissions.data(collection="Test_DevRel", read=True, create=True),
-    Permissions.data(collection="Test_*", read=True, create=False),
+    Permissions.data(collection="TargetCollection*", read=True, create=True),
+    Permissions.data(collection="TargetCollection*", read=True, create=False),
 ]
 
-admin_client.roles.add_permissions(permissions=permissions, role_name="devrel")
+client.roles.add_permissions(permissions=permissions, role_name="testRole")
 # END AddRoles
 
 # START AssignRole
-admin_client.users.assign_roles(user_id="user-b", role_names=["devrel", "viewer"])
+client.users.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
 # END AssignRole
-assert "devrel" in admin_client.users.get_assigned_roles("user-b")
-assert "viewer" in admin_client.users.get_assigned_roles("user-b")
+assert "testRole" in client.users.get_assigned_roles("user-b")
+assert "viewer" in client.users.get_assigned_roles("user-b")
 
 # START ListCurrentUserRoles
-print(admin_client.users.get_my_user())
+print(client.users.get_my_user())
 # END ListCurrentUserRoles
 
 # START ListUserRoles
-user_roles = admin_client.users.get_assigned_roles("user-b")
+user_roles = client.users.get_assigned_roles("user-b")
 
 for role in user_roles:
     print(role)
 # END ListUserRoles
 assert any(
-    permission.collection == "Test_DevRel"
-    for permission in user_roles["devrel"].collections_permissions
+    permission.collection == "TargetCollection*"
+    for permission in user_roles["testRole"].collections_permissions
 )
 assert any(
-    permission.collection == "Test_DevRel"
-    for permission in user_roles["devrel"].data_permissions
+    permission.collection == "TargetCollection*"
+    for permission in user_roles["testRole"].data_permissions
 )
 
 # START CheckRoleExists
-print(admin_client.roles.exists(role_name="devrel"))  # Returns True or False
+print(client.roles.exists(role_name="testRole"))  # Returns True or False
 # END CheckRoleExists
 
 # START InspectRole
-devrel_role = admin_client.roles.get(role_name="devrel")
+test_role = client.roles.get(role_name="testRole")
 
-print(devrel_role)
-print(devrel_role.collections_permissions)
-print(devrel_role.data_permissions)
+print(test_role)
+print(test_role.collections_permissions)
+print(test_role.data_permissions)
 # END InspectRole
 
 # START AssignedUsers
-assigned_users = admin_client.roles.get_assigned_user_ids(role_name="devrel")
+assigned_users = client.roles.get_assigned_user_ids(role_name="testRole")
 
 for user in assigned_users:
     print(user)
@@ -250,7 +257,7 @@ for user in assigned_users:
 assert "user-b" in assigned_users
 
 # START ListAllRoles
-all_roles = admin_client.roles.list_all()
+all_roles = client.roles.list_all()
 
 for role_name, role in all_roles.items():
     print(role_name, role)
@@ -261,25 +268,25 @@ from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-        collection="Test_DevRel",
+        collection="TargetCollection*",
         read_config=True,
         create_collection=True,
         delete_collection=True,
     ),
-    Permissions.data(collection="Test_*", read=True, create=False),
+    Permissions.data(collection="TargetCollection*", read=True, create=False),
 ]
 
-admin_client.roles.remove_permissions(role_name="devrel", permissions=permissions)
+client.roles.remove_permissions(role_name="testRole", permissions=permissions)
 # END RemovePermissions
 
 # START RevokeRoles
-admin_client.users.revoke_roles(user_id="user-b", role_names="devrel")
+client.users.revoke_roles(user_id="user-b", role_names="testRole")
 # END RevokeRoles
-assert "devrel" not in admin_client.users.get_assigned_roles("user-b")
+assert "testRole" not in client.users.get_assigned_roles("user-b")
 
 # START DeleteRole
-admin_client.roles.delete(role_name="devrel")
+client.roles.delete(role_name="testRole")
 # END DeleteRole
 
-admin_client.close()
+client.close()
 custom_user_client.close()
