@@ -94,7 +94,7 @@ So, in reality, the LLM is making our AI agent application take a step outside o
 
 ### Observe Tool Responses
 
-If all goes well, by this point your AI agent has run a tool. Remember that this tool could be _anything_. For example, our `technical_documentation_search` tool could in itself be a [RAG application (retrieval augmented generation)](https://www.notion.so/Phase-3-Assessment-3f326a243e2a4a8d8946ad2305fa8d70?pvs=21) that in itself uses yet another LLM to generate responses to queries. The point is, at the end of the day we’ve probably run the tool with the query “Using Ollama” and the response is “You can use Ollama by enabling the text2vec-ollama or generative-ollama modules, both for embedding models and generative modules”, or something along those lines. But that’s not the end of it, because the original LLM that makes up the core of our AI agent doesn’t know the response yet.
+If all goes well, by this point your AI agent has run a tool. Remember that this tool could be _anything_. For example, our `technical_documentation_search` tool could in itself be a [RAG application (retrieval augmented generation)](/blog/introduction-to-rag) that in itself uses yet another LLM to generate responses to queries. The point is, at the end of the day we’ve probably run the tool with the query “Using Ollama” and the response is “You can use Ollama by enabling the text2vec-ollama or generative-ollama modules, both for embedding models and generative modules”, or something along those lines. But that’s not the end of it, because the original LLM that makes up the core of our AI agent doesn’t know the response yet.
 
 When a tool runs, the results of that tool are then returned back to the agent’s LLM. This is usually provided as a chat message where the role is set to “function call”. So our LLM knows that the response it’s seeing is not from the user, but a result of the tool it decided to run. The LLM then observes the results of the tool (or tools) to provide the user with the final answer.
 
@@ -112,7 +112,7 @@ When we say ‘Agentic AI’ however, we’re usually to a system that is design
 
 Building an AI agent requires integrating many components and tools to create a system capable of autonomous or semi-autonomous decision-making, interaction, and task execution. While advanced agents can be highly complex, even the simplest ones need a few essential elements. Below are some resources that can help you get started with building your own AI agents:
 
-### **1. Language Model Providers:**
+### 1. Language Model Providers:
 
 The foundation of an AI agent is an LLM, which powers its entire reasoning. It allows the agent to understand different inputs and plan its actions effectively. It is also essential to look for an LLM that has built-in function-calling support so that we can connect it to external tools and APIs. Popular LLM providers include:
 
@@ -144,7 +144,7 @@ There are several frameworks available that simplify the development of AI agent
 -   [**Haystack](https://haystack.deepset.ai/):** End-to-end framework that allows you to build AI applications like agents, powered by LLMs.
 -   [**OpenAI Swarm:](https://github.com/openai/swarm)** An educational framework exploring ergonomic, lightweight multi-agent orchestration.
 
-### **4. Tools and APIs:**
+### 4. Tools and APIs:
 
 An agent is only as powerful as the tools it can access. By connecting to various APIs and tools, the agent can interact with its environment and perform tasks such as web browsing, data retrieval, database queries, data extraction & analysis, code execution, etc.
 
@@ -172,15 +172,15 @@ Multi-modality refers to the ability to make use of more than one modality, i.e.
 
 ### The role of vector databases
 
-Another interesting topic, especially for us at Weaviate, is the potential for the role of [vector databases](https://weaviate.io/blog/what-is-a-vector-database) in AI to expand. So far, we’ve mostly been seeing vector databases used as knowledge sources which an agent can have access to. However, it’s not difficult to imagine a future in which we’re making use of vector databases, as well as other types of databases, as memory resources for our agent interactions.
+Another interesting topic, especially for us at Weaviate, is the potential for the role of [vector databases](/blog/what-is-a-vector-database) in AI to expand. So far, we’ve mostly been seeing vector databases used as knowledge sources which an agent can have access to. However, it’s not difficult to imagine a future in which we’re making use of vector databases, as well as other types of databases, as memory resources for our agent interactions.
 
-# **Examples and Use Cases of AI agents**
+## Examples and Use Cases of AI agents
 
 AI agents are reshaping the way we work and this change is already visible across multiple industries. They shine brightest when we need a perfect blend of conversation with action. By automating repetitive tasks they not only increase the work efficiency but also improve the overall user experience. Here are some real-world examples of AI agents in action:
 
-### **AI Research Agent**
+### AI Research Agent
 
-AI research agents, or research assistants simplify the process of analyzing large amounts of data, spotting trend, and generating hypotheses. Today, we can already see people in academia or professionals at work using ChatGPT as a companion to help them gather information, to help them structure their thoughts and provide the first step in many tasks. In a way, ChatGPT in its bare form is in itself a research assistant agent. These types agents are also sometimes referred to as [“Agentic RAG”](https://www.notion.so/Phase-3-Assessment-3f326a243e2a4a8d8946ad2305fa8d70?pvs=21), where an AI agent has access to multiple RAG tools, each accessing different knowledge bases.
+AI research agents, or research assistants simplify the process of analyzing large amounts of data, spotting trend, and generating hypotheses. Today, we can already see people in academia or professionals at work using ChatGPT as a companion to help them gather information, to help them structure their thoughts and provide the first step in many tasks. In a way, ChatGPT in its bare form is in itself a research assistant agent. These types agents are also sometimes referred to as [“Agentic RAG”](/blog/what-is-agentic-rag), where an AI agent has access to multiple RAG tools, each accessing different knowledge bases.
 
 ### Customer Service Agent
 
