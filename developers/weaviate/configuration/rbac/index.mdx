@@ -15,13 +15,11 @@ import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.per
 Role-based access control (RBAC) was added in Weaviate version `v1.29`.
 :::
 
-Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the [authenticated](./authentication.md) user identity.
+Weaviate provides differentiated access through [authorization](/developers/weaviate/configuration/authorization) levels, based on the [authenticated](/developers/weaviate/configuration/authentication) user identity.
 
 If role-based access control (RBAC) is enabled, access can be further restricted based on the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
-Roles and permissions can be managed through Weaviate API (e.g. via REST API directly, or through a client library).
-
-Refer to the client library examples below or [the REST API documentation](../api/rest.md) for concrete examples on how to manage roles and permissions.
+Roles and permissions can be managed through the Weaviate **[REST API](/developers/weaviate/api/rest#tag/authz)** directly, or through a **[client library](/developers/weaviate/configuration/rbac/manage-roles-users)** programmatically.
 
 ## Roles
 
@@ -62,27 +60,105 @@ Permissions in Weaviate define what actions users can perform on specific resour
 
 Permissions can be defined for the following resources:
 
-1. [**Role Management**](#role-management)
-    - Read roles
-    - Manage roles
+import Link from '@docusaurus/Link';
 
-1. [**Collections**](#role-management-collections) (collection definitions only, data object permissions are separate)
-    - Create, read, update, and delete collection definitions
+<table>
+  <colgroup>
+    <col style={{ width: '30%' }} />
+    <col style={{ width: '40%' }} />
+    <col style={{ width: '30%' }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Resource type</th>
+      <th>Access levels</th>
+      <th>Optional resource‑specific constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><strong><Link to="#role-management">Role Management</Link></strong></td>
+      <td>Read roles</td>
+      <td rowspan="2">
+        <p>Scope:</p>
+        <ul>
+          <li><strong>all</strong>: Allow role management with all permissions</li>
+          <li><strong>match</strong>: Only allow role management with the current user's permission level</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Manage roles</td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <strong><Link to="#role-management-collections">Collections</Link></strong><br />
+      </td>
+      <td>Create collections</td>
+      <td rowspan="4"></td>
+    </tr>
+    <tr>
+      <td>Read collection definitions</td>
+    </tr>
+    <tr>
+      <td>Update collection definitions</td>
+    </tr>
+    <tr>
+      <td>Delete collections</td>
+    </tr>
+    <tr>
+      <td rowspan="4"><strong><Link to="#role-management-tenants">Tenants</Link></strong></td>
+      <td>Create tenants</td>
+      <td rowspan="4"></td>
+    </tr>
+    <tr>
+      <td>Read tenant info</td>
+    </tr>
+    <tr>
+      <td>Update tenants</td>
+    </tr>
+    <tr>
+      <td>Delete tenants</td>
+    </tr>
+    <tr>
+      <td rowspan="4"><strong><Link to="#role-management-data">Data Objects</Link></strong></td>
+      <td>Read objects</td>
+      <td rowspan="4"></td>
+    </tr>
+    <tr>
+      <td>Create objects</td>
+    </tr>
+    <tr>
+      <td>Update objects</td>
+    </tr>
+    <tr>
+      <td>Delete objects</td>
+    </tr>
+    <tr>
+      <td><strong><Link to="#role-management-backup">Backup</Link></strong></td>
+      <td>Manage backups</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong><Link to="#role-management-clusters">Cluster Data Access</Link></strong></td>
+      <td>Read cluster metadata</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong><Link to="#role-management-nodes">Node Data Access</Link></strong></td>
+      <td>Read node metadata</td>
+      <td>
+        <p>Verbosity level:</p>
+        <ul>
+          <li><strong>minimal</strong>: Minimal read permission for all collections.</li>
+          <li><strong>verbose</strong>: Verbose read permission for specified collections.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-1. [**Tenants**](#role-management-tenants)
-    - Create, read, update, and delete tenants
 
-1. [**Data Objects**](#role-management-data)
-    - Read, write, update, and delete objects
-
-1. [**Backup**](#role-management-backup)
-    - Manage backups
-
-1. [**Cluster Data Access**](#role-management-clusters)
-    - Read cluster metadata
-
-1. [**Node Data Access**](#role-management-nodes)
-    - Read node metadata at a specified verbosity level
 
 ### Permission behavior
 
@@ -108,14 +184,15 @@ To have permissions to operate on a tenant that belongs to a collection, the use
 
 For example, to create a tenant in a collection called `Test_Collection`, the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called `Test_Collection`.
 
-## Example permission sets
+## Examples
 
-### Read and write permissions
+### Example: Read and write permissions
 
-This grants read and write permissions for collections starting with `TargetCollection_`, and read permissions to nodes and cluster metadata.
+#### Create a new permission
+
+This grants read and write permissions for collections starting with `TargetCollection`, and read permissions to nodes and cluster metadata.
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
@@ -124,7 +201,6 @@ This grants read and write permissions for collections starting with `TargetColl
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
@@ -132,7 +208,6 @@ This grants read and write permissions for collections starting with `TargetColl
 ```
 
   </TabItem>
-
   <TabItem value="go" label="Go">
 
 ```go
@@ -140,7 +215,6 @@ This grants read and write permissions for collections starting with `TargetColl
 ```
 
   </TabItem>
-
   <TabItem value="java" label="Java">
 
 ```java
@@ -148,15 +222,49 @@ This grants read and write permissions for collections starting with `TargetColl
 ```
 
   </TabItem>
-
 </Tabs>
 
-### Viewer permissions
-
-This grants viewer permissions for collections starting with `TargetCollection_`.
+#### Assign the permission to a user
 
 <Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadWritePermissionAssignment"
+      endMarker="# END ReadWritePermissionAssignment"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
 
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Example: Viewer permissions
+
+#### Create a new permission
+
+This grants viewer permissions for collections starting with `TargetCollection`.
+
+<Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
@@ -165,7 +273,6 @@ This grants viewer permissions for collections starting with `TargetCollection_`
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
@@ -173,7 +280,6 @@ This grants viewer permissions for collections starting with `TargetCollection_`
 ```
 
   </TabItem>
-
   <TabItem value="go" label="Go">
 
 ```go
@@ -181,7 +287,6 @@ This grants viewer permissions for collections starting with `TargetCollection_`
 ```
 
   </TabItem>
-
   <TabItem value="java" label="Java">
 
 ```java
@@ -189,15 +294,49 @@ This grants viewer permissions for collections starting with `TargetCollection_`
 ```
 
   </TabItem>
-
 </Tabs>
 
-### Example tenant permissions
-
-This grants permissions to manage collections starting with `TargetCollection_`, and to create, read, and update tenants in the same collection.
+#### Assign the permission to a user
 
 <Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ViewerPermissionAssignment"
+      endMarker="# END ViewerPermissionAssignment"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
 
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Example: Tenant permissions
+
+#### Create a new permission
+
+This grants permissions to manage collections starting with `TargetCollection`, and to create, read, and update tenants in the same collection.
+
+<Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
@@ -206,7 +345,6 @@ This grants permissions to manage collections starting with `TargetCollection_`,
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
@@ -214,7 +352,6 @@ This grants permissions to manage collections starting with `TargetCollection_`,
 ```
 
   </TabItem>
-
   <TabItem value="go" label="Go">
 
 ```go
@@ -222,7 +359,6 @@ This grants permissions to manage collections starting with `TargetCollection_`,
 ```
 
   </TabItem>
-
   <TabItem value="java" label="Java">
 
 ```java
@@ -230,5 +366,38 @@ This grants permissions to manage collections starting with `TargetCollection_`,
 ```
 
   </TabItem>
+</Tabs>
 
+#### Assign the permission to a user
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MTPermissionsAssignment"
+      endMarker="# END MTPermissionsAssignment"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
 </Tabs>

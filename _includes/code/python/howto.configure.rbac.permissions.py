@@ -1,10 +1,5 @@
 import weaviate
 from weaviate import WeaviateClient
-
-# START-ANY
-from weaviate.classes.rbac import Permissions
-
-# END-ANY
 from weaviate.classes.init import Auth
 
 client = weaviate.connect_to_local(
@@ -31,6 +26,8 @@ reset_user("user-b", client=client)
 client.roles.delete("rw_role")  # delete if exists
 
 # START ReadWritePermissionDefinition
+from weaviate.classes.rbac import Permissions
+
 # Define permissions (example confers read+write rights to collections starting with "TargetCollection")
 permissions = [
     # Collection level permissions
@@ -56,8 +53,10 @@ permissions = [
 
 # Create a new role and assign it to a user
 client.roles.create(role_name="rw_role", permissions=permissions)
-client.users.assign_roles(user_id="user-b", role_names=["rw_role"])
 # END ReadWritePermissionDefinition
+# START ReadWritePermissionAssignment
+client.users.assign_roles(user_id="user-b", role_names=["rw_role"])
+# END ReadWritePermissionAssignment
 
 # ===== TEST ===== basic checks to see if the role was created
 user_permissions = client.users.get_assigned_roles("user-b")
@@ -77,6 +76,8 @@ assert user_permissions["rw_role"].name == "rw_role"
 client.roles.delete("viewer_role")  # delete if exists
 
 # START ViewerPermissionDefinition
+from weaviate.classes.rbac import Permissions
+
 # Define permissions (example confers viewer rights to collections starting with "TargetCollection")
 permissions = [
     Permissions.collections(
@@ -88,8 +89,10 @@ permissions = [
 
 # Create a new role and assign it to a user
 client.roles.create(role_name="viewer_role", permissions=permissions)
-client.users.assign_roles(user_id="user-b", role_names="viewer_role")
 # END ViewerPermissionDefinition
+# START ViewerPermissionAssignment
+client.users.assign_roles(user_id="user-b", role_names="viewer_role")
+# END ViewerPermissionAssignment
 
 # =================================================================
 # =============== EXAMPLE: VIEWER PERMISSIONS
@@ -99,6 +102,8 @@ client.users.assign_roles(user_id="user-b", role_names="viewer_role")
 client.roles.delete("tenant_manager")
 
 # START MTPermissionsExample
+from weaviate.classes.rbac import Permissions
+
 permissions = [
     Permissions.collections(
         collection="TargetCollection*",
@@ -120,8 +125,10 @@ permissions = [
 
 # Create a new role and assign it to a user
 client.roles.create(role_name="tenant_manager", permissions=permissions)
-client.users.assign_roles(user_id="user-b", role_names="tenant_manager")
 # END MTPermissionsExample
+# START MTPermissionsAssignment
+client.users.assign_roles(user_id="user-b", role_names="tenant_manager")
+# END MTPermissionsAssignment
 
 # ===== TEST ===== basic checks to see if the role was created
 user_permissions = client.users.get_assigned_roles("user-b")
