@@ -1,6 +1,6 @@
 ---
-title: Multi-value vectors (ColBERT, ColPali, etc.)
-description: Learn how to use multi-value vectors in Weaviate.
+title: Multi-vector representations (ColBERT, ColPali, etc.)
+description: Learn how to use multi-vector representations in Weaviate.
 sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['import']
