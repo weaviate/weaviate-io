@@ -166,12 +166,12 @@ In this workflow, the user has the flexibility to use any vectorizer model and p
 
 If using your own model, we recommend explicitly setting the vectorizer as `none` in the vectorizer configuration, such that you do not accidentally generate incompatible vectors with Weaviate.
 
-### Multiple object vectors
+### Multiple vector embeddings
 
 :::info Added in `v1.24`
 :::
 
-A collections can be configured to allow each object to be represented my multiple vectors.
+A collections can be configured to allow each object to be represented by more than one vector embedding.
 
 Each such vector works as its distinct vector space that is independent of each other, referred to as a "named vector".
 

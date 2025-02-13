@@ -1,5 +1,5 @@
 ---
-title: Multiple vectors
+title: Multiple vector embeddings
 sidebar_position: 20
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
@@ -19,7 +19,7 @@ To work with named vectors, adjust your queries to specify a target vector for [
 
 ## Syntax
 
-Single vector collections are valid and continue to use the original collection syntax. However, if you configure multiple vectors, you must use the new, named vector syntax to query your collections.
+Single vector collections are valid and continue to use the original collection syntax. However, if you configure multiple vector embeddings, you must use the new, named vector syntax to query your collections.
 
 ### Collection definition
 

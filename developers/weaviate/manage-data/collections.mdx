@@ -226,7 +226,7 @@ Collection level settings override default values and general configuration para
 :::info Added in `v1.24`
 :::
 
-You can define multiple [named vectors](../concepts/data.md#multiple-vectors-named-vectors) per collection. This allows each object to be represented by multiple vectors, each with its own vector index.
+You can define multiple [named vectors](../concepts/data.md#multiple-vectors-named-vectors) per collection. This allows each object to be represented by multiple vector embeddings, each with its own vector index.
 
 As such, each named vector configuration can include its own vectorizer and vector index settings.
 
@@ -287,7 +287,7 @@ Available starting in `v1.29.0`.
 The multi-value vector feature is experimental and may change in future versions. Use with caution.
 :::
 
-Multi-vector representations, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional tensor. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
+Multi-vector representations, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
