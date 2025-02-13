@@ -11,7 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 
 :::caution RBAC technical preview
-Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+Role-based access control (RBAC) is added in `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
 <br/>
 
 We appreciate [your feedback](https://forum.weaviate.io/) on this feature.

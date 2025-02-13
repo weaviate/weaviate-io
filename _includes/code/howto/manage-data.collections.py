@@ -405,7 +405,7 @@ client.collections.delete("Article")
 
 
 # ======================================================
-# ===== MULTI-VECTOR REPRESENTATIONS (ColBERT, ColPali)
+# ===== MULTI-VECTOR EMBEDDINGS (ColBERT, ColPali)
 # ======================================================
 
 # Clean slate

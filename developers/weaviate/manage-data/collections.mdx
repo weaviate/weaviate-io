@@ -278,16 +278,16 @@ As such, each named vector configuration can include its own vectorizer and vect
 
 </Tabs>
 
-## Define multi-vector representations (e.g. ColBERT, ColPali)
+## Define multi-vector embeddings (e.g. ColBERT, ColPali)
 
-:::caution Experimental feature
-Available starting in `v1.29.0`.
+:::caution Multi-vector embeddings technical preview
+Multi-vector support is added in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
 <br/>
 
-The multi-value vector feature is experimental and may change in future versions. Use with caution.
+We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
 :::
 
-Multi-vector representations, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
+Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

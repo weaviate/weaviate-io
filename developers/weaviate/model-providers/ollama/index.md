@@ -19,7 +19,7 @@ Weaviate integrates with compatible Ollama models by accessing the locally hoste
 
 ![Embedding integration illustration](../_includes/integration_ollama_embedding.png)
 
-Ollama's embedding models transform text data into high-dimensional vector representations, capturing meaning and context.
+Ollama's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with Ollama's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

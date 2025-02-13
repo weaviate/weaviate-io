@@ -59,7 +59,7 @@ The `Article` class specifies its `hasParagraphs` property as the only reference
 
 It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/img2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
 
-In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
+In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector embedding of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
 
 Although this example uses text2vec-contextionary to generate vectors for the `Paragraph` class, ref2vec-centroid's behavior remains identical for user-provided vectors. In such a case, ref2vec-centroid's output will still be calculated as an average of the reference vectors; the only difference being the provenance of the reference vectors.
 
