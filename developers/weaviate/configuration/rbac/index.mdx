@@ -62,7 +62,7 @@ Permissions can be defined for the following resources:
 
 import Link from '@docusaurus/Link';
 
-<table>
+<table class="rbac-table">
   <colgroup>
     <col style={{ width: '30%' }} />
     <col style={{ width: '40%' }} />
@@ -77,94 +77,167 @@ import Link from '@docusaurus/Link';
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2"><strong><Link to="#role-management">Role Management</Link></strong></td>
-      <td>Read roles</td>
-      <td rowspan="2">
-        <p>Scope:</p>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions">
+          <strong>Role Management</strong>
+        </Link>
+      </td>
+      <td class="access-cell">
+        <div class="access-level">Read roles</div>
+        <div class="access-level">Manage roles</div>
+      </td>
+      <td>
+        <p>Role names:</p>
         <ul>
-          <li><strong>all</strong>: Allow role management with all permissions</li>
-          <li><strong>match</strong>: Only allow role management with the current user's permission level</li>
+          <li>
+            <code>string or regex</code>: specifies which roles can be managed
+          </li>
+        </ul>
+        <p>Role scope:</p>
+        <ul>
+          <li>
+            <code>all</code>: Allow role management with all permissions
+          </li>
+          <li>
+            <code>match</code>: Only allow role management with the current
+            user's permission level
+          </li>
         </ul>
       </td>
     </tr>
     <tr>
-      <td>Manage roles</td>
-    </tr>
-    <tr>
-      <td rowspan="4">
-        <strong><Link to="#role-management-collections">Collections</Link></strong><br />
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#collections-permissions">
+          <strong>Collections</strong>
+        </Link>
+        <br />
+        <small>
+          (collection definitions only, data object permissions are separate)
+        </small>
       </td>
-      <td>Create collections</td>
-      <td rowspan="4"></td>
+      <td class="access-cell">
+        <div class="access-level">Create collections</div>
+        <div class="access-level">Read collection definitions</div>
+        <div class="access-level">Update collection definitions</div>
+        <div class="access-level">Delete collections</div>
+      </td>
+      <td>
+        <p>Collection names:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections can be
+            managed
+          </li>
+        </ul>
+      </td>
     </tr>
     <tr>
-      <td>Read collection definitions</td>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#tenants-permissions">
+          <strong>Tenants</strong>
+        </Link>
+      </td>
+      <td>
+        <div class="access-level">Create tenants</div>
+        <div class="access-level">Read tenant info</div>
+        <div class="access-level">Update tenants</div>
+        <div class="access-level">Delete tenants</div>
+      </td>
+      <td>
+        <p>Tenant names:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which tenants can be managed
+          </li>
+        </ul>
+      </td>
     </tr>
     <tr>
-      <td>Update collection definitions</td>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#data-permissions">
+         <strong>Data Objects</strong>
+        </Link>
+      </td>
+      <td>
+        <div class="access-level">Create objects</div>
+        <div class="access-level">Read objects</div>
+        <div class="access-level">Update objects</div>
+        <div class="access-level">Delete objects</div>
+      </td>
+      <td>
+        <p>Collection names:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections' objects
+            can be managed
+          </li>
+        </ul>
+      </td>
     </tr>
     <tr>
-      <td>Delete collections</td>
-    </tr>
-    <tr>
-      <td rowspan="4"><strong><Link to="#role-management-tenants">Tenants</Link></strong></td>
-      <td>Create tenants</td>
-      <td rowspan="4"></td>
-    </tr>
-    <tr>
-      <td>Read tenant info</td>
-    </tr>
-    <tr>
-      <td>Update tenants</td>
-    </tr>
-    <tr>
-      <td>Delete tenants</td>
-    </tr>
-    <tr>
-      <td rowspan="4"><strong><Link to="#role-management-data">Data Objects</Link></strong></td>
-      <td>Read objects</td>
-      <td rowspan="4"></td>
-    </tr>
-    <tr>
-      <td>Create objects</td>
-    </tr>
-    <tr>
-      <td>Update objects</td>
-    </tr>
-    <tr>
-      <td>Delete objects</td>
-    </tr>
-    <tr>
-      <td><strong><Link to="#role-management-backup">Backup</Link></strong></td>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#backup-permissions">
+          <strong>Backup</strong>
+        </Link>
+      </td>
       <td>Manage backups</td>
-      <td></td>
+      <td>
+        <p>Collection names:</p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections' backups
+            can be managed
+          </li>
+        </ul>
+      </td>
     </tr>
     <tr>
-      <td><strong><Link to="#role-management-clusters">Cluster Data Access</Link></strong></td>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#clusters-permissions">
+          <strong>Cluster Data Access</strong>
+        </Link>
+      </td>
       <td>Read cluster metadata</td>
       <td></td>
     </tr>
     <tr>
-      <td><strong><Link to="#role-management-nodes">Node Data Access</Link></strong></td>
-      <td>Read node metadata</td>
+      <td>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#nodes-permissions">
+          <strong>Node Data Access</strong>
+        </Link>
+      </td>
+      <td>Read node metadata at a specified verbosity level</td>
       <td>
         <p>Verbosity level:</p>
         <ul>
-          <li><strong>minimal</strong>: Minimal read permission for all collections.</li>
-          <li><strong>verbose</strong>: Verbose read permission for specified collections.</li>
+          <li>
+            <code>minimal</code>: Minimal read permission for all collections.
+          </li>
+          <li>
+            <code>verbose</code>: Verbose read permission for specified
+            collections.
+          </li>
+        </ul>
+        <p>
+          Collection names (only for <code>verbose</code>):
+        </p>
+        <ul>
+          <li>
+            <code>string or regex</code>: specifies which collections can be
+            managed
+          </li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-
-
 ### Permission behavior
 
-When defining permissions, setting a permission to `False` indicates that the permission is *not set*, rather than explicitly denying access. This means that if a user has multiple roles, and one role grants a permission while another sets it to `False`, the user will still have that permission through the role that grants it.
+When defining permissions, setting a permission to `False` indicates that the permission is _not set_, rather than explicitly denying access. This means that if a user has multiple roles, and one role grants a permission while another sets it to `False`, the user will still have that permission through the role that grants it.
 
 For example, if a user has two roles:
+
 - Role A sets `read` to `False` for Collection X
 - Role B sets `read` to `True` for Collection X
 

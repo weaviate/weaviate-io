@@ -1051,3 +1051,17 @@ ul.dropdown__menu {
     width: 100% !important;
   }
 }
+
+// RBAC table styling
+
+.rbac-table tbody tr:hover {
+  background-color: #ececec !important;
+}
+
+.rbac-table a:hover {
+  text-decoration: underline;
+}
+
+.access-level {
+  margin: 1.5rem 0;
+}
