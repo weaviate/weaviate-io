@@ -973,7 +973,7 @@ func main() {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
 						"model":      "arctic-embed-m-v1.5",
-						"dimensions": 256, // Or 756
+						"dimensions": 256, // Or 768
 						"base_url":   "<custom_weaviate_url>",
 					},
 				},

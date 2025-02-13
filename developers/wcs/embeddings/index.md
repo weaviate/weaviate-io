@@ -4,6 +4,10 @@ sidebar_position: 0
 image: og/wcs/user_guides.jpg
 ---
 
+:::tip Quickstart
+Follow the **[Quickstart guide](/developers/wcs/embeddings/quickstart)** to get started with Weaviate Embeddings.
+:::
+
 Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service.
 
 Weaviate Embeddings integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
@@ -79,17 +83,7 @@ This means you can perform semantic, vector and hybrid searches without the need
 
 Weaviate Embeddings is fully integrated with Weaviate Cloud, so you can manage your data and embeddings in one place.
 
-:::info Weaviate Embeddings is in technical preview
-Weaviate Embeddings is in technical preview. This means that the service is still in development and may have limited functionality.
-<br/>
-
-During the technical preview, you can use Weaviate Embeddings for free. However, the service may be subject to change.
-<br/>
-
-To try out Weaviate Embeddings, please [contact us](https://events.weaviate.io/embeddings-preview) to request access.
-:::
-
-### Key Features
+## Key Features
 
 Weaviate Embeddings offers a fully managed service for embedding generation that is integrated with Weaviate Cloud instances.
 
@@ -97,10 +91,10 @@ Weaviate Embeddings offers a fully managed service for embedding generation that
 - **Unified billing**: Your billing and usage can be managed in one place through Weaviate Cloud.
 - **Model selection**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
 
-### Availability
+## Availability
 
 Weaviate Embeddings is a part of Weaviate Cloud, and available for Weaviate Cloud instances. It is currently not available for open-source Weaviate users.
 
-## Additional Resources
+## Additional resources
 
 - [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)

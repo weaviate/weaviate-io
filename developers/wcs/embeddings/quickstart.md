@@ -18,7 +18,7 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 
-<span class="badge badge--secondary">Expected time: 30 minutes</span> <span class="badge badge--secondary">Prerequisites: None</span>
+<span class="badge badge--secondary">Expected time: 30 minutes</span>
 <br/><br/>
 
 :::info What you will learn
@@ -32,9 +32,8 @@ This quickstart shows you how to combine Weaviate Cloud and the **Weaviate Embed
 ```mermaid
 flowchart LR
     %% Define nodes with white backgrounds and darker borders
-    A1["Create Weaviate\nSandbox"] --> A2["Install client\nlibrary"]
-    A2 --> A3["Connect to\nWeaviate"]
-    A3 --> B1["Define collection\n(with an inference API)"]
+    A1["Install client\nlibrary"] --> A2["Connect to\nWeaviate Cloud"]
+    A2 --> B1["Configure the vectorizer"]
     B1 --> B2["Batch import\nobjects"]
     B2 --> C1["Semantic search\n(nearText)"]
     C1 --> C2["RAG\n(Generate)"]
@@ -43,7 +42,6 @@ flowchart LR
     subgraph sg1 ["1. Setup"]
         A1
         A2
-        A3
     end
 
     subgraph sg2 ["2. Populate"]
@@ -59,7 +57,6 @@ flowchart LR
     %% Style nodes with white background and darker borders
     style A1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style A2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style A3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
@@ -72,23 +69,30 @@ flowchart LR
 ```
 
 Notes:
-
 - The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
 :::
 
 ## Prerequisites
 
-To use Weaviate Embeddings, you need a Weaviate Cloud account, and a Weaviate Cloud Serverless instance. If you do not have an account, you can sign up for free at the [Weaviate Cloud console](https://console.weaviate.cloud/).
+To use Weaviate Embeddings, you will need:
 
-To use Weaviate Embeddings, you need:
-
-- A Weaviate Cloud instance running at least Weaviate `1.27.6`
+- A **[Weaviate Cloud instance](/developers/wcs/create-instance)** running at least Weaviate `1.27.6`
 - A Weaviate client library that supports Weaviate Embeddings:
-    - Python client version `4.9.5` or higher
-    - JavaScript/TypeScript client version `3.2.5` or higher
-    - Go/Java clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+    - **Python** client version `4.9.5` or higher
+    - **JavaScript/TypeScript** client version `3.2.5` or higher
+    - **Go/Java** clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
 
-## Step 1: Connect to Weaviate Cloud
+## Step 1: Set up Weaviate
+
+### 1.1 Install a client library
+
+We recommend using a [client library](/developers/weaviate/client-libraries) to work with Weaviate. Follow the instructions below to install one of the official client libraries, available in [Python](/developers/weaviate/client-libraries/python), [JavaScript/TypeScript](/developers/weaviate/client-libraries/typescript), [Go](/developers/weaviate/client-libraries/go), and [Java](/developers/weaviate/client-libraries/java).
+
+import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
+
+<CodeClientInstall />
+
+### 1.2 Connect to Weaviate Cloud
 
 Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for Weaviate Embeddings.
 
@@ -132,9 +136,11 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
 
 </Tabs>
 
-## Step 2: Configure the vectorizer
+## Step 2: Populate the database
 
-You can specify one of the [available models](/developers/wcs/embeddings/configuration) for the vectorizer to use, as shown in the following configuration example.
+### 2.1 Define a collection
+
+Now we can define a collection that will store our data. When creating a collection, you need to specify one of the [available models](/developers/wcs/embeddings/configuration) for the vectorizer to use. This model will be used to create vector embeddings from your data. 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -175,9 +181,9 @@ You can specify one of the [available models](/developers/wcs/embeddings/configu
 
 </Tabs>
 
-For more information about the available model options visit the [Configure models](/developers/wcs/embeddings/configuration) page.
+For more information about the available model options visit the [Configure models](/developers/wcs/embeddings/configuration) guide.
 
-## Step 3: Populate the database
+### 2.2 Import objects
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
@@ -221,11 +227,11 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 
 </Tabs>
 
-## Step 4: Queries
+## Step 3: Query your data
 
 Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified model.
 
-### 4.1 Vector (near text) search
+### 3.1 Vector (near text) search
 
 When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and returns the most similar objects from the database.
 
@@ -271,7 +277,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 </Tabs>
 
-### 4.2 Hybrid search
+### 3.2 Hybrid search
 
 :::info What is a hybrid search?
 A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.

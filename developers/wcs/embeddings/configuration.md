@@ -14,9 +14,9 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 
-On this page you can find a list of pre-trained models designed specifically for enterprise retrieval tasks in English. Additional models and features will be added in the future, so please check back regularly for updates.
+On this page, you can find a list of pre-trained models designed specifically for enterprise retrieval tasks in English. Additional models and features will be added in the future, so please check back regularly for updates.
 
-## Models
+## Available models
 
 The following models are available for use with Weaviate Embeddings:
 

@@ -4,7 +4,7 @@ sidebar_position: 3
 image: og/wcs/user_guides.jpg
 ---
 
-Weaviate Embeddings in enabled by default at the organization level.
+Weaviate Embeddings is enabled by default at the organization level and is available to all Weaviate Cloud users. 
 
 ## Pricing and Billing
 
