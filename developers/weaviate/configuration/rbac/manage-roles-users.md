@@ -8,18 +8,24 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
-import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
+import PyCode from '!!raw-loader!/\_includes/code/python/howto.configure.rbac.permissions.py';
+import RolePyCode from '!!raw-loader!/\_includes/code/python/howto.configure.rbac.roles.py';
 
+In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
-## Requirements for managing roles
+Use the following steps to set up RBAC:
+1. Connect to Weaviate with a user possesing **["roles management"](#requirements)** permissions
+1. Grant permissions to a **[new role](#create-new-roles-with-permissions)** or an **[existing role](#grant-additional-permissions)**
+1. **[Assign the role to a user](#assign-a-role-to-a-user)**
+
+## Requirements for managing roles {#requirements}
 
 Role management requires appropriate `role` resource permissions that can be obtained through:
+
 - A predefined **`root`** role when [configuring RBAC](/developers/weaviate/configuration/rbac/configuration).
 - A role with [**`Role Management`**](#role-management-permissions) permissions granted.
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={RolePyCode}
@@ -28,7 +34,6 @@ Role management requires appropriate `role` resource permissions that can be obt
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
@@ -36,7 +41,6 @@ Role management requires appropriate `role` resource permissions that can be obt
 ```
 
   </TabItem>
-
   <TabItem value="go" label="Go">
 
 ```go
@@ -44,7 +48,6 @@ Role management requires appropriate `role` resource permissions that can be obt
 ```
 
   </TabItem>
-
   <TabItem value="java" label="Java">
 
 ```java
@@ -52,13 +55,14 @@ Role management requires appropriate `role` resource permissions that can be obt
 ```
 
   </TabItem>
-
 </Tabs>
 
 ## Role management
+
 ### Create new roles with permissions
 
 These permissions can be assigned to roles:
+
 1. [**Role Management**](#role-management-permissions)
 
 1. [**Collections**](#collections-permissions) (collection definitions only, data object permissions are separate)
@@ -76,6 +80,7 @@ These permissions can be assigned to roles:
 #### Create a role with `Role Management` permissions {#role-management-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Manage all roles starting with `testRole*`.
 
 <Tabs groupId="languages">
@@ -116,6 +121,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Collections` permissions {#collections-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Create, read, update and delete all collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
@@ -156,6 +162,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Tenant` permissions {#tenants-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Create, read, update and delete tenants in collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
@@ -196,6 +203,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Data Objects` permissions {#data-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Create, read, update and delete data from collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
@@ -236,6 +244,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Backup` permissions {#backups-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Manage backups for collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
@@ -276,6 +285,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Cluster Data Access` permissions {#clusters-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Read cluster metadata.
 
 <Tabs groupId="languages">
@@ -316,6 +326,7 @@ This example creates a role called `testRole` with permissions to:
 #### Create a role with `Node Data Access` permissions {#nodes-permissions}
 
 This example creates a role called `testRole` with permissions to:
+
 - Read node metadata at the specified verbosity level for collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
@@ -445,7 +456,6 @@ This example removes from the `testRole` role permissions to:
 
 </Tabs>
 
-
 ### Check if a role exists
 
 <Tabs groupId="languages">
@@ -569,7 +579,7 @@ View all roles in the system and their permissions.
 
 ### List users with a role
 
-List all users who have the role `testRole`. 
+List all users who have the role `testRole`.
 
 <Tabs groupId="languages">
 
@@ -826,6 +836,6 @@ Retrieve the role and permission information for any user.
 
 ## Questions and feedback
 
-import DocsFeedback from '/_includes/docs-feedback.mdx';
+import DocsFeedback from '/\_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
