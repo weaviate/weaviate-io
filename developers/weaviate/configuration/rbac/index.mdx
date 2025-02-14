@@ -15,9 +15,82 @@ Role-based access control (RBAC) was added in Weaviate version `v1.29`.
 <!--TODO[g-despot]: Explain relationship between roles, permissions and users-->
 Weaviate provides differentiated access through [authorization](/developers/weaviate/configuration/authorization) levels based on the [authenticated](/developers/weaviate/configuration/authentication) user identity.
 
-If role-based access control (RBAC) is enabled, access can be further restricted based on the roles of users. In Weaviate, RBAC allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles.
+If **role-based access control (RBAC)** is enabled, access can be further restricted based on the roles of users. 
+The diagram below illustrates the RBAC model in Weaviate, where access is governed by defining roles and assigning them specific permissions. These permissions determine which actions users can perform on designated resource types. 
 
-Roles and permissions can be managed through the Weaviate **[REST API](/developers/weaviate/api/rest#tag/authz)** directly or through a **[client library](/developers/weaviate/configuration/rbac/manage-roles-users)** programmatically.
+The main components are:
+
+- **Users**:  
+  Individual users (e.g., `user-a` and `user-b`) are assigned to specific roles.
+
+- **Roles**:  
+  Each role encapsulates a set of permissions. This abstraction lets you manage what actions a group of users can perform.
+
+- **Permissions**:  
+  Permissions are comprised of three parts:
+  - **Actions**: Operations like create, read, update, delete, and manage.
+  - **Resources**: Specific targets for these actions, such as collections and backups.
+  - **Optional constraints**: Resource-specific constraints such as filtering by collection names.
+
+```mermaid
+graph LR
+  %% Users Subgraph
+  subgraph Users
+    UA["user-a"]
+    UB["user-b"]
+  end
+
+  %% Roles Subgraph
+  subgraph Roles
+    RWR["readWriteRole"]
+    BM["backupManager"]
+  end
+
+  %% Permissions Group (contains Actions and Resources) with extra newline for spacing
+  subgraph Permissions["Permissions\n\n"]
+    %% Actions Subgraph
+    subgraph Actions
+      C["create"]
+      R["read"]
+      U["update"]
+      D["delete"]
+      M["manage"]
+    end
+
+    %% Resources Subgraph
+    subgraph Resources
+      COL["collections"]
+      BAC["backups"]
+    end
+  end
+
+  %% Connections for user-a
+  UA --> RWR
+  RWR --> C
+  RWR --> R
+  RWR --> U
+  RWR --> D
+
+  %% Connections for user-b
+  UB --> BM
+  BM --> M
+
+  %% Connections from actions to resources
+  C --> COL
+  R --> COL
+  U --> COL
+  D --> COL
+  M --> BAC
+
+%% Styling with soothing, Weaviate-compatible colors and slightly darker borders
+style Users fill:#AEDFF7,stroke:#90C7E5,stroke-width:1px
+style Roles fill:#C8E6C9,stroke:#A5D6A7,stroke-width:1px
+style Actions fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
+style Resources fill:#CFD8DC,stroke:#AAB4BA,stroke-width:1px
+style Permissions fill:#E0F7FA,stroke:#B2EBF2,stroke-width:1px
+```
+
+This RBAC system ensures that users only have the access necessary for their roles, enhancing both security and manageability within Weaviate. Roles and permissions can be managed through the Weaviate **[REST API](/developers/weaviate/api/rest#tag/authz)** directly or through a **[client library](/developers/weaviate/configuration/rbac/manage-roles-users)** programmatically.
 
 ## Roles
 
@@ -28,7 +101,7 @@ Weaviate comes with a set of predefined roles. These roles are:
 - `root`: The root role has **full access** to all resources in Weaviate.
 - `viewer`: The viewer role has **read-only access** to all resources in Weaviate.
 
-The `root` role can be assigned through the Weaviate configuration file using the [`AUTHORIZATION_RBAC_ROOT_USERS`](/developers/weaviate/config-refs/env-vars#rbac-authorization) environment variable. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
+The `root` role can be assigned to a user through the Weaviate configuration file using the [`AUTHORIZATION_RBAC_ROOT_USERS`](/developers/weaviate/config-refs/env-vars#rbac-authorization) environment variable. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
 All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned to or revoked from users.
 
