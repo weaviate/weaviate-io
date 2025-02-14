@@ -1,6 +1,6 @@
 ---
 title: Weaviate configurations
-sidebar_position: 10
+sidebar_position: 1
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
