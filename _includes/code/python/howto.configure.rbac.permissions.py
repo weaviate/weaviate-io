@@ -51,10 +51,11 @@ permissions = [
     Permissions.cluster(read=True),
 ]
 
-# Create a new role and assign it to a user
+# Create a new role
 client.roles.create(role_name="rw_role", permissions=permissions)
 # END ReadWritePermissionDefinition
 # START ReadWritePermissionAssignment
+# Assign the role to a user
 client.users.assign_roles(user_id="user-b", role_names=["rw_role"])
 # END ReadWritePermissionAssignment
 
@@ -87,10 +88,11 @@ permissions = [
     Permissions.data(collection="TargetCollection*", read=True),
 ]
 
-# Create a new role and assign it to a user
+# Create a new role
 client.roles.create(role_name="viewer_role", permissions=permissions)
 # END ViewerPermissionDefinition
 # START ViewerPermissionAssignment
+# Assign the role to a user
 client.users.assign_roles(user_id="user-b", role_names="viewer_role")
 # END ViewerPermissionAssignment
 
@@ -123,10 +125,11 @@ permissions = [
     ),
 ]
 
-# Create a new role and assign it to a user
+# Create a new role
 client.roles.create(role_name="tenant_manager", permissions=permissions)
 # END MTPermissionsExample
 # START MTPermissionsAssignment
+# Assign the role to a user
 client.users.assign_roles(user_id="user-b", role_names="tenant_manager")
 # END MTPermissionsAssignment
 

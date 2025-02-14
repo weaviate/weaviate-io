@@ -56,7 +56,7 @@ from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.collections(
-        collection="TargetCollection*",
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         create_collection=True,  # Allow creating new collections
         read_config=True,  # Allow reading collection info/metadata
         update_config=True,  # Allow updating collection configuration, i.e. update schema properties, when inserting data with new properties
@@ -86,7 +86,7 @@ permissions = [
         delete_collection=True,
     ),
     Permissions.tenants(
-        collection="TargetCollection*",
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
         update=True,  # Allow updating tenants
@@ -109,7 +109,7 @@ from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.data(
-        collection="TargetCollection*",
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         create=True,  # Allow data inserts
         read=True,  # Allow query and fetch operations
         update=True,  # Allow data updates
@@ -132,7 +132,7 @@ from weaviate.classes.rbac import Permissions
 
 permissions = [
     Permissions.backup(
-        collection="TargetCollection*",
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         manage=True,  # Allow managing backups
     ),
 ]
@@ -166,19 +166,20 @@ from weaviate.classes.rbac import Permissions
 
 verbose_permissions = [
     Permissions.Nodes.verbose(
-        collection="TargetCollection*",
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         read=True,  # Allow reading node metadata
     ),
 ]
 
-# The minimal nodes permission applies for all collections
+# The `minimal` verbosity level applies to all collections unlike
+# the `verbose` level where you specify the collection name filter
 minimal_permissions = [
     Permissions.Nodes.minimal(
         read=True,  # Allow reading node metadata
     ),
 ]
 
-client.roles.create(role_name="testRole", permissions=verbose_permissions)
+client.roles.create(role_name="testRole", permissions=verbose_permissions)  # or `minimal_permissions`
 # END AddNodesPermission
 
 permissions = client.roles.get(role_name="testRole")

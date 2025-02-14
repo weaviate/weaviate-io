@@ -36,7 +36,7 @@ The `root` role can be assigned through the Weaviate configuration file using th
 
 All roles can also be assigned through the Weaviate API, including the predefined role. The predefined roles cannot be modified, but they can be assigned to or revoked from users.
 
-Refer to the [authorization](./authorization.md) page for more information on how to assign predefined roles to users.
+Refer to the [RBAC: Configuration](/developers/weaviate/configuration/rbac/configuration) page for more information on how to assign predefined roles to users.
 
 ### Custom roles
 
@@ -44,7 +44,7 @@ Any authenticated user that is not assigned a predefined role has no roles or pe
 
 These users' permissions can be modified through Weaviate by those with the appropriate permissions for **managing roles**. This allows for the creation of custom roles, which can be assigned to users as needed.
 
-Role management requires appropriate `role` resource permissions through a predefined `root` role or a role with [`manage_roles` permission](#role-management).
+Role management can be performed with a [predefined `root` role](/developers/weaviate/configuration/rbac/configuration) or a custom role with [`manage_roles` permissions](/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions).
 
 :::caution Role Management Permissions
 Be careful when assigning permissions to roles that manage roles. These permissions can be used to escalate privileges by assigning additional roles to users. Only assign these permissions to trusted users.
@@ -60,7 +60,7 @@ Permissions in Weaviate define what actions users can perform on specific resour
 
 ### Available permissions
 
-Permissions can be defined for the following resources:
+Permissions can be defined with the following resources, access levels and optional constraints:
 
 <table class="rbac-table">
   <colgroup>
@@ -88,7 +88,7 @@ Permissions can be defined for the following resources:
       </td>
       <td class="constraints-cell">
         <div class="constraints-level">
-          <p>Role names:</p>
+          <p>Role name filter:</p>
           <ul>
             <li>
               <code>string or regex</code>: specifies which roles can be managed
@@ -126,7 +126,7 @@ Permissions can be defined for the following resources:
         <div class="access-level">Delete collections</div>
       </td>
       <td>
-        <p>Collection names:</p>
+        <p>Collection name filter:</p>
         <ul>
           <li>
             <code>string or regex</code>: specifies which collections can be
@@ -148,7 +148,7 @@ Permissions can be defined for the following resources:
         <div class="access-level">Delete tenants</div>
       </td>
       <td>
-        <p>Tenant names:</p>
+        <p>Tenant name filter:</p>
         <ul>
           <li>
             <code>string or regex</code>: specifies which tenants can be managed
@@ -169,7 +169,7 @@ Permissions can be defined for the following resources:
         <div class="access-level">Delete objects</div>
       </td>
       <td>
-        <p>Collection names:</p>
+        <p>Collection name filter:</p>
         <ul>
           <li>
             <code>string or regex</code>: specifies which collections' objects
@@ -180,13 +180,13 @@ Permissions can be defined for the following resources:
     </tr>
     <tr>
       <td>
-        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#backup-permissions">
-          <strong>Backup</strong>
+        <Link to="/developers/weaviate/configuration/rbac/manage-roles-users#backups-permissions">
+          <strong>Backups</strong>
         </Link>
       </td>
       <td>Manage backups</td>
       <td>
-        <p>Collection names:</p>
+        <p>Collection name filter:</p>
         <ul>
           <li>
             <code>string or regex</code>: specifies which collections' backups
@@ -226,7 +226,7 @@ Permissions can be defined for the following resources:
         </div>
         <div class="constraints-level">
           <p>
-            Collection names (only for <code>verbose</code>):
+            Collection name filter (only for <code>verbose</code>):
           </p>
           <ul>
             <li>
@@ -251,11 +251,11 @@ For example, if a user has two roles:
 
 The user will have read access to Collection X because Role B grants the permission, while Role A's `False` value simply indicates no permission is set rather than blocking access.
 
-#### Wildcards in permissions
+### Name filters in permissions
 
-Many permissions require a collection name filter, to specify which collections the permission applies to.
+Some permissions require a collection name filter to specify which collections the permission applies to.
 
-In this case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test*"` as the collection filter would apply that permission to all collections that start with `Test`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
+In this case, `"*"` acts as a multi-character wildcard. As an example, setting a permission with `"Test*"` as the collection name filter would apply that permission to all collections that start with `Test`. Or, setting a permission with `"*"` as the collection filter would apply that permission to all available collections.
 
 ### Collection and tenant permissions
 
@@ -266,6 +266,8 @@ To have permissions to operate on a tenant that belongs to a collection, the use
 For example, to create a tenant in a collection called `TestCollection`, the user must have permission to "create" tenants in that collection. This is separate from the permission to create a collection called `TestCollection`.
 
 ## Examples
+
+Follow these general steps to configure RBAC:
 
 ```mermaid
 flowchart LR
@@ -302,7 +304,9 @@ flowchart LR
 
 ### Example: Read and write permissions
 
-#### Connect to Weaviate
+#### Step 1: Connect to Weaviate
+
+Ensure you are connected to Weaviate with a user possessing sufficient permissions to manage roles. You can achieve this by either using the predefined `root` role during [Weaviate configuration](/developers/weaviate/configuration/rbac/configuration) or by granting a user the  [`manage_roles` permission](/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -336,7 +340,7 @@ flowchart LR
   </TabItem>
 </Tabs>
 
-#### Create a new permission
+#### Step 2: Create a new permission
 
 This grants read and write permissions for collections starting with `TargetCollection`, and read permissions to nodes and cluster metadata.
 
@@ -372,7 +376,7 @@ This grants read and write permissions for collections starting with `TargetColl
   </TabItem>
 </Tabs>
 
-#### Assign the role to a user
+#### Step 3: Assign the role to a user
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -408,7 +412,9 @@ This grants read and write permissions for collections starting with `TargetColl
 
 ### Example: Viewer permissions
 
-#### Connect to Weaviate
+#### Step 1: Connect to Weaviate
+
+Ensure you are connected to Weaviate with a user possessing sufficient permissions to manage roles. You can achieve this by either using the predefined `root` role during [Weaviate configuration](/developers/weaviate/configuration/rbac/configuration) or by granting a user the  [`manage_roles` permission](/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -442,7 +448,7 @@ This grants read and write permissions for collections starting with `TargetColl
   </TabItem>
 </Tabs>
 
-#### Create a new permission
+#### Step 2: Create a new permission
 
 This grants viewer permissions for collections starting with `TargetCollection`.
 
@@ -478,7 +484,7 @@ This grants viewer permissions for collections starting with `TargetCollection`.
   </TabItem>
 </Tabs>
 
-#### Assign the role to a user
+#### Step 3: Assign the role to a user
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -514,7 +520,9 @@ This grants viewer permissions for collections starting with `TargetCollection`.
 
 ### Example: Tenant permissions
 
-#### Connect to Weaviate
+#### Step 1: Connect to Weaviate
+
+Ensure you are connected to Weaviate with a user possessing sufficient permissions to manage roles. You can achieve this by either using the predefined `root` role during [Weaviate configuration](/developers/weaviate/configuration/rbac/configuration) or by granting a user the  [`manage_roles` permission](/developers/weaviate/configuration/rbac/manage-roles-users#role-management-permissions).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -548,7 +556,7 @@ This grants viewer permissions for collections starting with `TargetCollection`.
   </TabItem>
 </Tabs>
 
-#### Create a new permission
+#### Step 2: Create a new permission
 
 This grants permissions to manage collections starting with `TargetCollection`, and to create, read, and update tenants in the same collection.
 
@@ -584,7 +592,7 @@ This grants permissions to manage collections starting with `TargetCollection`, 
   </TabItem>
 </Tabs>
 
-#### Assign the role to a user
+#### Step 3: Assign the role to a user
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

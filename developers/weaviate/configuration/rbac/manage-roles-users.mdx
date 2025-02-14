@@ -1,5 +1,6 @@
 ---
-title: Manage roles & users
+title: Manage roles and users
+sidebar_label: Manage roles & users
 sidebar_position: 1
 image: og/docs/configuration.jpg
 # tags: ['rbac', 'roles', 'configuration', 'authorization']
@@ -21,7 +22,7 @@ Follow these general steps to configure RBAC:
     <i className="fa-solid fa-key icon-list" style={{ marginRight: '0.5rem' }}></i>
     <b>Step 1.</b> Connect to Weaviate with a user possessing{' '}
     <b>
-      <Link to="#requirements">roles management permissions</Link>
+      <Link to="#requirements">role management permissions</Link>
     </b>.
   </li>
   <li>
@@ -97,7 +98,7 @@ Permissions for these resource types can be assigned to roles:
 
 1. [**Data Objects**](#data-permissions)
 
-1. [**Backup**](#backup-permissions)
+1. [**Backup**](#backups-permissions)
 
 1. [**Cluster Data Access**](#clusters-permissions)
 
@@ -255,7 +256,7 @@ This example creates a role called `testRole` with permissions to:
   </TabItem>
 </Tabs>
 
-#### Create a role with `Backup` permissions {#backups-permissions}
+#### Create a role with `Backups` permissions {#backups-permissions}
 
 This example creates a role called `testRole` with permissions to:
 
@@ -373,7 +374,7 @@ This example creates a role called `testRole` with permissions to:
 
 Additional permissions can be granted to a role at any time. The role must already exist.
 
-This example grants additional permissions to the `testRole` role to:
+This example grants additional permissions to the role `testRole` to:
 
 - **Read data** in all collections that start with `TargetCollection`.
 - **Create new data** in collections that start with`TargetCollection`.
@@ -452,6 +453,8 @@ This example removes from the `testRole` role permissions to:
 </Tabs>
 
 ### Check if a role exists
+
+Check if the role `testRole` exists:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
