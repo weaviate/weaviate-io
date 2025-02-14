@@ -11,13 +11,14 @@ For more details on how replication is designed and built in Weaviate, see [Repl
 
 ## How to configure
 
-import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+import RaftRFChangeWarning from '/\_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
 Replication is disabled by default. It can be enabled per collection in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset.
 
 To enable replication, you can set one or both of the following:
+
 - `REPLICATION_MINIMUM_FACTOR` environment variable for the entire Weaviate instance, or
 - `replicationFactor` parameter for a collection.
 
@@ -29,7 +30,7 @@ If you set the [replication factor for a collection](#replication-factor-for-a-c
 
 ### Replication factor for a collection
 
-import SchemaReplication from '/_includes/code/schema.things.create.replication.mdx';
+import SchemaReplication from '/\_includes/code/schema.things.create.replication.mdx';
 
 <SchemaReplication/>
 
@@ -47,7 +48,7 @@ Starting in v1.26, Weaviate adds [async replication](../concepts/replication-arc
 
 Repair-on-read is automatic. To activate async replication, set `asyncEnabled` to true in the `replicationConfig` section of your collection definition.
 
-import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/replication-consistency.mdx';
+import ReplicationConfigWithAsyncRepair from '/\_includes/code/configuration/replication-consistency.mdx';
 
 <ReplicationConfigWithAsyncRepair />
 
@@ -59,37 +60,40 @@ Async replication support has been added in `v1.26`while the [environment variab
 
 Async replication ensures that data stored in multiple nodes (shards) remains eventually consistent. Follow these steps to set up and fine-tune async replication in Weaviate using [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
 
-<!-- TODO[g-despot]: Add new environment variables -->
-
 #### Step 1: Configure logging
 
 - **Set the frequency of the logger:** `ASYNC_REPLICATION_LOGGING_FREQUENCY`  
-   Define how often the async replication background process will log events. 
+  Define how often the async replication background process will log events.
 
 #### Step 2: Configure periodic data comparison
 
 - **Set the frequency of comparisons:** `ASYNC_REPLICATION_FREQUENCY`  
-   Define how often each node compares its local data with other nodes. 
+  Define how often each node compares its local data with other nodes.
 - **Set comparison timeout:** `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`  
-   Optionally configure a timeout for how long to wait with comparison when a node is unresponsive.
+  Optionally configure a timeout for how long to wait during comparison when a node is unresponsive.
 - **Monitor node availability:** `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`  
-   Trigger comparisons whenever there’s a change in node availability.
+  Trigger comparisons whenever there’s a change in node availability.
 - **Configure hash tree height:** `ASYNC_REPLICATION_HASHTREE_HEIGHT`  
-   Specify the size of the hash tree. This structure helps narrow down data differences by comparing hash digests at multiple levels instead of scanning entire datasets.
-
+  Specify the size of the hash tree, which helps narrow down data differences by comparing hash digests at multiple levels instead of scanning entire datasets.
+- **Batch size for digest comparison:** `ASYNC_REPLICATION_DIFF_BATCH_SIZE`  
+  Define the number of objects whose digest (e.g., last update time) is compared between nodes before propagating actual objects.
 
 #### Step 3: Set up data synchronization
 
 Once differences between nodes are detected, Weaviate propagates outdated or missing data. Configure synchronization as follows:
 
 - **Set the frequency of propagation:** `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`  
-   After synchronization is completed on a node, temporarily change the data comparison frequency to the set value.
+  After synchronization is completed on a node, temporarily adjust the data comparison frequency to the set value.
 - **Set propagation timeout:** `ASYNC_REPLICATION_PROPAGATION_TIMEOUT`  
-   Optionally configure a timeout for how long to wait with propagation when a node is unresponsive.
-- **Batch size for data propagation:** `ASYNC_REPLICATION_BATCH_SIZE`  
-   Define the number of objects that are sent in each synchronization batch.
+  Optionally configure a timeout for how long to wait during propagation when a node is unresponsive.
+- **Set propagation delay:** `ASYNC_REPLICATION_PROPAGATION_DELAY`  
+  Define a delay period to allow asynchronous write operations to reach all nodes before propagating new or updated objects.
+- **Batch size for data propagation:** `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE`  
+  Define the number of objects that are sent in each synchronization batch during the propagation phase.
 - **Set propagation limits:** `ASYNC_REPLICATION_PROPAGATION_LIMIT`  
-   Enforce an object limit per propagation iteration.
+  Enforce a limit on the number of out-of-sync objects to be propagated per replication iteration.
+- **Set propagation concurrency:** `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY`  
+  Specify the number of concurrent workers that can send batches of objects to other nodes, allowing multiple propagation batches to be sent simultaneously.
 
 :::tip
 Tweak these settings based on your cluster size and network latency to achieve optimal performance. Smaller batch sizes and shorter timeouts may be beneficial for high-traffic clusters, while larger clusters might require more conservative settings.
@@ -110,15 +114,16 @@ curl "http://localhost:8080/v1/objects/{ClassName}/{id}?consistency_level=ONE"
 In v1.17, only [read queries that get data by ID](../manage-data/read.mdx#get-an-object-by-id) had a tunable consistency level. All other object-specific REST endpoints (read or write) used the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` (default) or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
 :::
 
-import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
+import QueryReplication from '/\_includes/code/replication.get.object.by.id.mdx';
 
 <QueryReplication/>
 
 ## Related pages
+
 - [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
 
 ## Questions and feedback
 
-import DocsFeedback from '/_includes/docs-feedback.mdx';
+import DocsFeedback from '/\_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

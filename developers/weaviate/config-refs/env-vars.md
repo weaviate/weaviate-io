@@ -126,13 +126,13 @@ For more information on authentication and authorization, see the [Authenticatio
 | `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
 | `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `5` | `string - number` | `20` |
 | `ASYNC_REPLICATION_LOGGING_FREQUENCY` | Frequency of how often the background process logs any events in seconds. Default: `5` | `string - number` | `7` |
-| `ASYNC_REPLICATION_DIFF_BATCH_SIZE` | The maximum size of the batch propagated. Default: `1000`, Min: `1`, Max: `10000` |`string - number`  | `2000` |
+| `ASYNC_REPLICATION_DIFF_BATCH_SIZE` | Specifies the batch size for comparing digest information between nodes. Default: `1000`, Min: `1`, Max: `10000` |`string - number`  | `2000` |
 | `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT` | Defines the time limit a node has to provide a comparison response in seconds. Default: `10` | `string - number` | `30` |
 | `ASYNC_REPLICATION_PROPAGATION_TIMEOUT` | Defines the time limit a node has to provide a propagation response in seconds. Default: `30` | `string - number` | `60` |
-| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | The maximum number of objects propagated per iteration. Default: `10000`, Min: `1`, Max: `1000000` | `string - number` | `5000` |
-| `ASYNC_REPLICATION_PROPAGATION_DELAY` | TODO[g-despot] Default: `30` | `string - number` | `5000` |
-| `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY` | TODO[g-despot] Default: `5`, Min: `1`, Max: `20` | `string - number` | `10` |
-| `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE` | TODO[g-despot] Default: `100`, Min: `1`, Max: `1000` |`string - number`  | `200` |
+| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | Limits the number of out-of-sync objects that can be propagated in one asynchronous replication iteration. Default: `10000`, Min: `1`, Max: `1000000` | `string - number` | `5000` |
+| `ASYNC_REPLICATION_PROPAGATION_DELAY` | Sets a delay period to allow asynchronous write operations to reach all nodes in a shard/tenant before propagating new or updated objects. Default: `30` | `string - number` | `40` |
+| `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY` | Defines the number of workers which will concurrently propagate a batch of objects. Default: `5`, Min: `1`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE` | Sets the maximum number of objects to propagate in a single batch. Default: `100`, Min: `1`, Max: `1000` |`string - number`  | `200` |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
 | `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
