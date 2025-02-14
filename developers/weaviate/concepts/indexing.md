@@ -45,6 +45,16 @@ As always, we recommend upgrading to the latest version of Weaviate to benefit f
 
 </details>
 
+### Block-max WAND algorithm
+
+:::caution Block-max WAND technical preview
+Block-max WAND algorithm is available in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+:::
+
+The block-max WAND algorithm is a variant of the WAND algorithm that is used to speed up BM25 and hybrid searches ([academic paper](http://engineering.nyu.edu/~suel/papers/bmw.pdf)). It organizes the inverted index in blocks to enable skipping over blocks that are not relevant to the query. This can significantly reduce the number of documents that need to be scored, improving search performance.
+
+Block-max WAND can be enabled in Weaviate by setting the [environment variables](../config-refs/env-vars.md#general) `USE_BLOCKMAX_WAND` and `USE_INVERTED_SEARCHABLE` to `true`. This will enable the indexing and searching of inverted indexes using the block-max WAND algorithm. Once enabled, all BM25 and hybrid searches will use block-max WAND algorithm for searches, potentially improving search performance.
+
 ### Configure the inverted index
 
 There are three inverted index types in Weaviate:
