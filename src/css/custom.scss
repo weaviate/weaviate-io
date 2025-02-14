@@ -1079,3 +1079,18 @@ ul.dropdown__menu {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
 }
+
+.step-list {
+  list-style: none;
+  padding-left: 2em; /* space for the icon */
+
+  .icon-list {
+    display: inline-block;
+    width: 1.2em; /* adjust as needed */
+    text-align: left;
+  }
+}
+
+.step-list li {
+  position: relative;
+}

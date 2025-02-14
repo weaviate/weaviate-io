@@ -1,11 +1,12 @@
 ---
-title: Configuration
+title: Configure RBAC
+sidebar_label: Configuration
 sidebar_position: 1
 image: og/docs/configuration.jpg
 # tags: ['rbac', 'roles', 'configuration', 'authorization']
 ---
 
-Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to define [roles](./roles.md) and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
+Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to **[define roles and assign permissions](/developers/weaviate/configuration/rbac/manage-roles-users)** to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 
 Weaviate comes with a set of predefined roles. These roles are:
 
@@ -14,13 +15,11 @@ Weaviate comes with a set of predefined roles. These roles are:
 
 The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
-For more information on roles and permissions, see [this page](./roles.md).
-
 :::tip At least one root user required
-When using RBAC, you must specify at least one user with the build-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
+If RBAC is enabled, you must specify at least one user with the build-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
 :::
 
-## RBAC: Docker
+## Docker <i class="fa-brands fa-docker"></i> {#docker}
 
 RBAC authorization can be configured using environment variables. In Docker Compose, set them in the configuration file (`docker-compose.yml`) such as in the following example:
 
@@ -53,7 +52,7 @@ This configuration:
 - Configures `user-a` as a user with built-in root/admin permissions
 - Configures `user-b` as a user with no built-in permissions
 
-The `user-b` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
 
 :::caution Changes in environment veriables
 As of Weaviate version `v1.29` these environment veriables have changed:
@@ -61,7 +60,7 @@ As of Weaviate version `v1.29` these environment veriables have changed:
 - `AUTHORIZATION_ADMIN_USERS` has been replaced with `AUTHORIZATION_RBAC_ROOT_USERS`
 :::
 
-## RBAC: Kubernetes
+## Kubernetes <i class="fa fa-cubes"></i> {#kubernetes}
 
 For Kubernetes deployments using Helm, API key authentication can be configured in the `values.yaml` file under the `authorization` section. Here's an example configuration:
 
@@ -97,7 +96,7 @@ This configuration:
 - Configures `user-a` as a user with built-in admin permissions
 - Configures `user-b` as a user with no built-in permissions
 
-The `user-b` can now be assigned custom roles and permissions using the [RBAC Roles API](./roles.md).
+The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
 
 ## RBAC and performance
 
@@ -110,3 +109,14 @@ We did not observe additional performance penalities for using custom roles over
 Here are some tips to optimize performance when using RBAC:
 - Monitor object creation performance
 - Use a high availability (i.e. 3+ nodes) setup to distribute the load
+
+## Additional resources
+
+- [RBAC: Overview](/developers/weaviate/configuration/rbac)
+- [RBAC: Manage roles & users](/developers/weaviate/configuration/rbac/manage-roles-users)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
