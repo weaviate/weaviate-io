@@ -60,8 +60,8 @@ default hostname has changed and a single node cluster believes there are suppos
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
 | `USE_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use. <br/> (The same as `ENABLE_TOKENIZER_GSE`. We recommend using `ENABLE_TOKENIZER_GSE` for consistency in naming with other optional tokenizers.) | `boolean` | `true` |
-| `USE_INVERTED_SEARCHABLE` | (Experimental) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is experimental and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Start with a fresh index.</li></ul> | `boolean` | `true` |
-| `USE_BLOCKMAX_WAND` | (Experimental) Use BlockMax WAND algorithm for BM25 and hybrid searches. Recommend enabling together with `USE_INVERTED_SEARCHABLE` to get the full performance benefits. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>BlockMax WAND scores on single and multiple property search may be different due to different IDF and property length normalization</li></ul> | `boolean` | `true` |
+| `USE_INVERTED_SEARCHABLE` | (Preview) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is in preview and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Start with a fresh index.</li></ul> | `boolean` | `true` |
+| `USE_BLOCKMAX_WAND` | (Preview) Use BlockMax WAND algorithm for BM25 and hybrid searches. Recommend enabling together with `USE_INVERTED_SEARCHABLE` to get the full performance benefits. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>BlockMax WAND scores on single and multiple property search may be different due to different IDF and property length normalization</li></ul> | `boolean` | `true` |
 
 ## Module-specific
 
@@ -120,6 +120,19 @@ For more information on authentication and authorization, see the [Authenticatio
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
+| `ASYNC_REPLICATION_DISABLED` | Disable async replication. Default: `false` | `boolean` | `false` |
+| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hash tree used for data comparison between nodes. If the height is `0` each node will store just one digest per shard. Default: `16`, Min: `0`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_FREQUENCY` |  Frequency of periodic data comparison between nodes in seconds. Default: `30` | `string - number` | `60` |
+| `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
+| `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `5` | `string - number` | `20` |
+| `ASYNC_REPLICATION_LOGGING_FREQUENCY` | Frequency of how often the background process logs any events in seconds. Default: `5` | `string - number` | `7` |
+| `ASYNC_REPLICATION_DIFF_BATCH_SIZE` | The maximum size of the batch propagated. Default: `1000`, Min: `1`, Max: `10000` |`string - number`  | `2000` |
+| `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT` | Defines the time limit a node has to provide a comparison response in seconds. Default: `10` | `string - number` | `30` |
+| `ASYNC_REPLICATION_PROPAGATION_TIMEOUT` | Defines the time limit a node has to provide a propagation response in seconds. Default: `30` | `string - number` | `60` |
+| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | The maximum number of objects propagated per iteration. Default: `10000`, Min: `1`, Max: `1000000` | `string - number` | `5000` |
+| `ASYNC_REPLICATION_PROPAGATION_DELAY` | TODO[g-despot] Default: `30` | `string - number` | `5000` |
+| `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY` | TODO[g-despot] Default: `5`, Min: `1`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE` | TODO[g-despot] Default: `100`, Min: `1`, Max: `1000` |`string - number`  | `200` |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
 | `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
