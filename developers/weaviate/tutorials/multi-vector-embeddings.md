@@ -11,13 +11,16 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/multi-vector-embeddings.py';
 
-In this section, we will explore how to use multi-vector embeddings in Weaviate. Multi-vector embeddings, such as ColBERT, ColPali or ColQwen, represent one object, or a query, using multiple vectors. This allows for more nuanced searches through what is called late interaction.
+In this section, we will explore how to use multi-vector embeddings in Weaviate. Multi-vector embeddings (implemented through models like ColBERT, ColPali, or ColQwen) represent each object or query using multiple vectors instead of a single vector. This approach enables more precise searching through "late interaction" - a technique that matches individual parts of texts rather than comparing them as whole units.
 
 :::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
+Multi-vector support is added in `v1.29` as a **technical preview**.
 <br/>
 
-We appreciate [your feedback](https://forum.weaviate.io/) on this feature.
+This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
+<br/>
+
+**We do not recommend using this feature in production environments at this time.**
 :::
 
 ## Prerequisites
@@ -67,13 +70,13 @@ Jump to the section that interests you, or follow along with both.
 
 :::info In depth: Understanding "late interaction"
 
-"Late interaction" refers the similarity comparisons between objects in a multi-vector embedding, such as ColBERT or ColPali.
+Late interaction is an approach for computing similarity between texts that preserves fine-grained meaning by comparing individual parts of the text (like words or phrases). Models like ColBERT use this technique to achieve more precise text matching than traditional single-vector methods.
 <br/>
 
-In a single-vector approach, two embeddings have the same dimensionality (e.g. 768). So, their similarity is calculated directly, e.g. by calculating their dot product, or cosine distance. In this case, the only interaction occurs when the two "flattened" vectors are compared.
+In a single-vector approach, two embeddings have the same dimensionality (e.g. 768). So, their similarity is calculated directly, e.g. by calculating their dot product, or cosine distance. In this case, the only interaction occurs when the two vectors are compared.
 <br/>
 
-Another approach is a "early interaction" search, as seen in some "cross-encoder" models. In this approach, the query and the object are used throughout the embedding generation and comparison process. This can lead to more accurate results, but can be computationally expensive. This approach is often used for "reranker" models where the dataset is small.
+Another approach is a "early interaction" search, as seen in some "cross-encoder" models. In this approach, the query and the object are used throughout the embedding generation and comparison process. While this can lead to more accurate results, the challenge is that embeddings cannot be pre-calculated, before the query is known. So, this approach is often used for "reranker" models where the dataset is small.
 <br/>
 
 Late interaction is a middle ground between these two approaches, using multi-vector embeddings.
@@ -82,17 +85,20 @@ Late interaction is a middle ground between these two approaches, using multi-ve
 Each multi-vector embedding is composed of multiple vectors, where a vector represents a portion of the object, such as a token. For example, one object's embedding may have a shape of (30, 64), meaning it has 30 vectors, each with 64 dimensions. But another object's embedding may have a shape of (20, 64), meaning it has 20 vectors, each with 64 dimensions.
 <br/>
 
-Late interaction takes advantage of this structure.
+Late interaction takes advantage of this structure by finding the best match for each query token among all tokens in the target text (using MaxSim operation). For example, when searching for 'data science', each token-level vector is compared with the most relevant part of a document, rather than trying to match the vector for the entire phrase at once. The final similarity score combines these individual best matches. This token-level matching helps capture nuanced relationships and word order, making it especially effective for longer texts.
+<br/>
 
-![ColBERT late interaction visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction visualization")
+The following visualization shows how late interaction works in a ColBERT model, in comparison to a single-vector model.
 
-<small>Late interaction visualization. <a href="https://arxiv.org/abs/2004.12832">Source: Omar Khattab, Matei Zaharia</a></small>
+![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction vs single-vector visualization")
+
+<small>Late interaction visualization.</small>
 
 <br/><br/>
 
 A late interaction search:
 1. Compares each query vector against each object vector
-1. Combines these fine-grained comparisons to produce a final similarity score
+1. Combines these token-level comparisons to produce a final similarity score
 <br/>
 
 This approach often leads to better search results, as it can capture more nuanced relationships between objects.
@@ -100,6 +106,14 @@ This approach often leads to better search results, as it can capture more nuanc
 
 Read more about late interaction in the [ColBERT paper](https://arxiv.org/abs/2004.12832).
 :::
+
+### When to use multi-vector embeddings
+
+Multi-vector embeddings are particularly useful for search tasks where word order and exact phrase matching are important. This is due to multi-vector embeddings preserving token-level information and enabling late interaction.
+
+The tradeoff is between search quality and resources. Multi-vector embeddings tend to be larger than single-vector embeddings, requiring more memory for the vector index. Additionally, the search process is more computationally intensive, as each token in the query must be compared to each token in the object.
+
+The inference time and/or cost for embedding generation may also be higher, as multi-vector embeddings require more compute to generate.
 
 ## ColBERT model integration
 
