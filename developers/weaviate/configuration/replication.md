@@ -37,7 +37,7 @@ In this example, there are three replicas. If you set the replication factor bef
 
 The replication factor can be modified after you add data to a collection. If you modify the replication factor afterwards, new data is copied across the new and pre-existing replica nodes.
 
-The example data schema has a [write consistency](../concepts/replication-architecture/consistency.md#tunable-write-consistency) level of `ALL`. When you upload or update a schema, the changes are sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgement from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
+The example data schema has a [write consistency](../concepts/replication-architecture/consistency.md#tunable-write-consistency) level of `ALL`. When you upload or update a schema, the changes are sent to `ALL` nodes (via a coordinator node). The coordinator node waits for a successful acknowledgment from `ALL` nodes before sending a success message back to the client. This ensures a highly consistent schema in your distributed Weaviate setup.
 
 ## Data consistency
 
@@ -51,39 +51,51 @@ import ReplicationConfigWithAsyncRepair from '/_includes/code/configuration/repl
 
 <ReplicationConfigWithAsyncRepair />
 
-### Configuring async replication
+### Configure async replication settings {#async-replication-settings}
 
 :::info Added in `v1.29`
 Async replication support has been added in `v1.26`while the [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances) for configuring async replication (`ASYNC_*`) have been introduced in `v1.29`.
 :::
 
-Async replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same shard. When a collection is partitioned into multiple shards, each shard is replicated across several nodes (as defined by the replication factor `REPLICATION_MINIMUM_FACTOR`). Async replication guarantees that all nodes holding the same shard remain in sync by periodically comparing and propagating data.
+Async replication ensures that data stored in multiple nodes (shards) remains eventually consistent. Follow these steps to set up and fine-tune async replication in Weaviate using [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
 
-#### 1. Periodic data comparison
+#### Step 1: Configure logging
 
-Each node runs a background process that periodically compares its locally stored data with other nodes holding the same shard. This comparison is triggered either:
-- at **regular intervals** (`ASYNC_REPLICATION_FREQUENCY`) or
-- when a **change in the availability of a node** is detected (`ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`).
+- **Set the frequency of the logger:** `ASYNC_REPLICATION_LOGGING_FREQUENCY`  
+   Define how often the async replication background process will log events. 
 
-If a node is unresponsive, Weaviate applies a timeout (`ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`) to avoid delays in the replication process.
+#### Step 2: Configure periodic data comparison
 
-Weaviate uses a **hashtree** data structure to efficiently detect differences. Instead of checking entire datasets, it compares hash digests at multiple levels, narrowing down differences to specific objects. The size of this hashtree can be defined via `ASYNC_REPLICATION_HASHTREE_HEIGHT`.
+- **Set the frequency of comparisons:** `ASYNC_REPLICATION_FREQUENCY`  
+   Define how often each node compares its local data with other nodes. 
+- **Set comparison timeout:** `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`  
+   Optionally configure a timeout for how long to wait with comparison when a node is unresponsive.
+- **Monitor node availability:** `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`  
+   Trigger comparisons whenever there’s a change in node availability.
+- **Configure hash tree height:** `ASYNC_REPLICATION_HASHTREE_HEIGHT`  
+   Specify the size of the hash tree. This structure helps narrow down data differences by comparing hash digests at multiple levels instead of scanning entire datasets.
 
-#### 2. Data synchronization
 
-When differences are detected, the outdated or missing data is propagated to the affected nodes. This process:
-- Sends data in batches of a defined size (`ASYNC_REPLICATION_BATCH_SIZE`).
-- Enforces an object limit for each propagation iteration (`ASYNC_REPLICATION_PROPAGATION_LIMIT`).
-- Enforces a time limit for the propagation (`ASYNC_REPLICATION_PROPAGATION_TIMEOUT`).
-- Sets a different data comparison frequency right after completing synchronization on a node (`ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`).
+#### Step 3: Set up data synchronization
 
-:::tip Replication settings
-You can find a complete list of the environment variables related to async replication on the page [Reference: Environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
+Once differences between nodes are detected, Weaviate propagates outdated or missing data. Configure synchronization as follows:
+
+- **Set the frequency of propagation:** `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`  
+   After synchronization is completed on a node, temporarily change the data comparison frequency to the set value.
+- **Set propagation timeout:** `ASYNC_REPLICATION_PROPAGATION_TIMEOUT`  
+   Optionally configure a timeout for how long to wait with propagation when a node is unresponsive.
+- **Batch size for data propagation:** `ASYNC_REPLICATION_BATCH_SIZE`  
+   Define the number of objects that are sent in each synchronization batch.
+- **Set propagation limits:** `ASYNC_REPLICATION_PROPAGATION_LIMIT`  
+   Enforce an object limit per propagation iteration.
+
+:::tip
+Tweak these settings based on your cluster size and network latency to achieve optimal performance. Smaller batch sizes and shorter timeouts may be beneficial for high-traffic clusters, while larger clusters might require more conservative settings.
 :::
 
 ## How to use: Queries
 
-When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgement to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
+When you add (write) or query (read) data, one or more replica nodes in the cluster will respond to the request. How many nodes need to send a successful response and acknowledgment to the coordinator node depends on the `consistency_level`. Available [consistency levels](../concepts/replication-architecture/consistency.md) are `ONE`, `QUORUM` (replication_factor / 2 + 1) and `ALL`.
 
 The `consistency_level` can be specified at query time:
 
