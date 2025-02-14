@@ -13,21 +13,26 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
 
-In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles. On this page you will find examples on how to manage roles and users with Weaviate client libraries.
+In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles. On this page, you will find examples of how to manage roles and users with Weaviate client libraries.
 
 Follow these general steps to configure RBAC:
 
 <!-- TODO: Potentially replace with a React component -->
+
 <ol className="step-list">
   <li>
     <i className="fa-solid fa-key icon-list" style={{ marginRight: '0.5rem' }}></i>
     <b>Step 1.</b> Connect to Weaviate with a user possessing{' '}
     <b>
       <Link to="#requirements">role management permissions</Link>
-    </b>.
+    </b>
+    .
   </li>
   <li>
-    <i className="fa-solid fa-user-shield icon-list" style={{ marginRight: '0.5rem' }}></i>
+    <i
+      className="fa-solid fa-user-shield icon-list"
+      style={{ marginRight: '0.5rem' }}
+    ></i>
     <b>Step 2.</b> Grant permissions to a{' '}
     <b>
       <Link to="#create-new-roles-with-permissions">new role</Link>
@@ -35,16 +40,21 @@ Follow these general steps to configure RBAC:
     or an{' '}
     <b>
       <Link to="#grant-additional-permissions">existing role</Link>
-    </b>.
+    </b>
+    .
   </li>
   <li>
-    <i className="fa-solid fa-user-edit icon-list" style={{ marginRight: '0.5rem' }}></i>
-    <b>Step 3.</b> <b>
+    <i
+      className="fa-solid fa-user-edit icon-list"
+      style={{ marginRight: '0.5rem' }}
+    ></i>
+    <b>Step 3.</b>{' '}
+    <b>
       <Link to="#assign-a-role-to-a-user">Assign the role to a user</Link>
-    </b>.
+    </b>
+    .
   </li>
 </ol>
-
 
 ## Requirements for managing roles <i class="fa-solid fa-key"></i> {#requirements}
 
@@ -414,9 +424,9 @@ This example grants additional permissions to the role `testRole` to:
 
 ### Remove permissions from a role
 
-Permissions can be removed from a role at any time. Removing all permissions from a role will not delete the role itself.
+Permissions can be revoked from a role at any time. Removing all permissions from a role will not delete the role itself.
 
-This example removes from the `testRole` role permissions to:
+This example removes the following permissions from the role `testRole`:
 
 - Read the data from collections that start with `TargetCollection`
 - Create and delete collections that start with `TargetCollection`
@@ -673,11 +683,11 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
   </TabItem>
 </Tabs>
 
-### Revoke a role from a user
+### Remove a role from a user
 
 You can revoke one or more roles from a specific user.
 
-This example revokes the `testRole` role from the user `user-b`.
+This example removes the role `testRole` from the user `user-b`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -792,4 +802,4 @@ Retrieve the role and permission information for any user.
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsFeedback/>
+<DocsFeedback />

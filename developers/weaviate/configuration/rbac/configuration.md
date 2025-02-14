@@ -6,7 +6,7 @@ image: og/docs/configuration.jpg
 # tags: ['rbac', 'roles', 'configuration', 'authorization']
 ---
 
-Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to **[define roles and assign permissions](/developers/weaviate/configuration/rbac/manage-roles-users)** to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
+Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to **[define roles and assign permissions](/developers/weaviate/configuration/rbac/manage-roles-users)** to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles.
 
 Weaviate comes with a set of predefined roles. These roles are:
 
@@ -16,7 +16,7 @@ Weaviate comes with a set of predefined roles. These roles are:
 The `root` role can be assigned through the Weaviate configuration file. A predefined role cannot be modified. The user can, however, be assigned additional roles through the Weaviate API.
 
 :::tip At least one root user required
-If RBAC is enabled, you must specify at least one user with the build-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
+If RBAC is enabled, you must specify at least one user with the built-in root role. This user will have full permissions to perform all actions in Weaviate. Otherwise, Weaviate will not start.
 :::
 
 ## Docker <i class="fa-brands fa-docker"></i> {#docker}
@@ -54,8 +54,8 @@ This configuration:
 
 The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
 
-:::caution Changes in environment veriables
-As of Weaviate version `v1.29` these environment veriables have changed:
+:::caution Changes in environment variables
+As of Weaviate version `v1.29` these environment variables have changed:
 - `AUTHORIZATION_VIEWER_USERS` and `AUTHORIZATION_ADMIN_USERS` were removed
 - `AUTHORIZATION_ADMIN_USERS` has been replaced with `AUTHORIZATION_RBAC_ROOT_USERS`
 :::
@@ -102,9 +102,9 @@ The user `user-b` can now be assigned custom roles and permissions using the [RE
 
 RBAC is a powerful feature that allows you to define fine-grained access control policies. However, it can also have an impact on performance as each operation must be checked against the user's permissions.
 
-The exact performance impact will depend on your set up and use case. In our internal testing, the most significant performance impact was seen for object creation operations.
+The exact performance impact will depend on your setup and use case. In our internal testing, the most significant performance impact was seen for object creation operations.
 
-We did not observe additional performance penalities for using custom roles over the built-in roles.
+We did not observe additional performance penalties for using custom roles over the built-in roles.
 
 Here are some tips to optimize performance when using RBAC:
 - Monitor object creation performance
