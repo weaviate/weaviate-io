@@ -110,15 +110,11 @@ For more information on authentication and authorization, see the [Authenticatio
 
 ### RBAC Authorization
 
-:::caution RBAC technical preview
-Role-based access control (RBAC) is added `v1.28` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
-:::
-
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `AUTHORIZATION_RBAC_ENABLED` | Enable RBAC authorization scheme (mutually exclusive with `AUTHORIZATION_ADMINLIST_ENABLED`). Introduced in `v1.28.3`. Previously called `AUTHORIZATION_ENABLE_RBAC` | `boolean` | `true` |
-| `AUTHORIZATION_ADMIN_USERS` | Users with the built-in administrator role when RBAC scheme used. At least one admin user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
-| `AUTHORIZATION_VIEWER_USERS` | Users with the built-in viewer role when RBAC scheme used. | `string - comma-separated list` | `viewer-user,another-viewer-user` |
+| `AUTHORIZATION_RBAC_ENABLED` | Enable RBAC authorization scheme (mutually exclusive with `AUTHORIZATION_ADMINLIST_ENABLED`). | `boolean` | `true` |
+| `AUTHORIZATION_RBAC_ROOT_USERS` | Users with the built-in administrator role when RBAC scheme used. At least one root user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
+| `AUTHORIZATION_ROOT_GROUPS` | Assign root groups for OIDC at startup time | `string - comma-separated list` | `admin,developers` |
 
 ## Multi-node instances
 

@@ -67,6 +67,16 @@ image: og/docs/more-resources.jpg
 
 </details>
 
+#### Q: How to enable RBAC in Weaviate?
+
+<details>
+  <summary>Answer</summary>
+
+> Role-based access control (RBAC) can be enabled when configuring Weaviate via the `AUTHORIZATION_RBAC_ENABLED` environment variable.
+> For more info visit the [RBAC: Configuration](/developers/weaviate/configuration/rbac/configuration) guide.
+
+</details>
+
 ## Schema and data structure
 
 #### Q: Are there any 'best practices' or guidelines to consider when designing a schema?
