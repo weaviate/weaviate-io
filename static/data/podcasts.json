@@ -1,5 +1,13 @@
 [
   {
+    "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
+    "description": "Welcome to the 114th episode of the Weaviate Podcast featuring Amanpreet Singh, Co-Founder and CTO of Contextual AI!",
+    "youtube": "TQKDU2mhKEI",
+    "date": "25-02-13",
+    "cover_image": "/img/podcasts/podcast-114.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Cartesia AI with Karan Goel - Weaviate Podcast #113",
     "description": "Thank you so much for watching the 113th episode of the Weaviate Podcast with Karan Goel from Cartesia AI! Cartesia AI is leading the AI world in text-to-speech models!",
     "youtube": "_J8D0TMz330",
