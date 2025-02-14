@@ -170,6 +170,63 @@ Async replication supplements the repair-on-read mechanism. If a node becomes in
 
 To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about all the available async replication settings. 
 
+#### Memory consumption of async replication
+
+Async replication uses a hash tree to compare and synchronize data between nodes. The memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows async replication to compare data more precisely.
+
+The trade-offs can be summarized like this:
+  - **Higher** `H`: More memory per shard/tenant but potentially more performant comparisons (finer granularity).  
+  - **Lower** `H`: Less memory usage but coarser data comparisons.
+
+
+Use the following formulas and examples as a quick reference:
+
+##### Memory calculation
+
+- **Total number of nodes in the hash tree:**  
+  For a hash tree with height `H`, the total number of nodes is:  
+  ```
+  Number of nodes = 2^(H+1) - 1
+  ```
+
+- **Total memory required (per shard/tenant on each node):**  
+  Each node uses approximately **8 bytes** of memory.
+  ```
+  Memory Required = (2^(H+1) - 1) * 8 bytes
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Total Nodes = 2^(16+1) - 1 = 2^17 - 1 = 131072 - 1 = 131071`
+  - `Memory Required ≈ 131071 * 8 bytes ≈ 1,048,568 bytes (~1 MB)`
+
+- Hash tree with height `6`:
+  - `Total Nodes = 2^(6+1) - 1 = 2^7 - 1 = 128 - 1 = 127`
+  - `Memory Required ≈ 127 * 8 bytes ≈ 1,016 bytes (~1 KB)`
+
+##### Performance Consideration: Number of Leaves
+
+The objects in a shard or tenant are distributed among the leaves of the hash tree. 
+A larger hash tree allows for more granular and efficient comparisons, which can improve replication performance.
+
+- **Number of Leaves in the hash tree:**  
+  ```
+  Number of leaves = 2^H
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Number of Leaves = 2^16 = 65,536`
+
+- Hash tree with height `6`:
+  - `Number of Leaves = 2^6 = 64`
+
+:::note Default settings
+The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your node’s available resources and performance requirements.
+:::
+
 ### Deletion resolution strategies
 
 :::info Added in `v1.28`

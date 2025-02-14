@@ -59,6 +59,8 @@ Async replication support has been added in `v1.26`while the [environment variab
 
 Async replication ensures that data stored in multiple nodes (shards) remains eventually consistent. Follow these steps to set up and fine-tune async replication in Weaviate using [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
 
+<!-- TODO[g-despot]: Add new environment variables -->
+
 #### Step 1: Configure logging
 
 - **Set the frequency of the logger:** `ASYNC_REPLICATION_LOGGING_FREQUENCY`  
