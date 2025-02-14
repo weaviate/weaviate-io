@@ -1,15 +1,13 @@
 ---
 title: Generative AI
-description: OpenAI Generative Model Provider
-sidebar_position: 50
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'generative', 'rag']
+sidebar_position: 51
+image: og/docs/integrations/provider_integrations_nvidia.jpg
+# tags: ['model providers', 'nvidia', 'generative', 'rag']
 ---
 
-# OpenAI Generative AI with Weaviate
+# NVIDIA Generative AI with Weaviate
 
-:::info Looking for Azure OpenAI integration docs?
-For Azure OpenAI integration docs, see [this page instead](../openai-azure/generative.md).
+:::info Added in `v1.28.5`, `v1.29.0`
 :::
 
 import Tabs from '@theme/Tabs';
@@ -20,19 +18,19 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integrations with NVIDIA NIM API allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a generative AI model with OpenAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with NVIDIA. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model using your NVIDIA NIM API Key.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the generative model on NVIDIA to generate outputs.
 
-![RAG integration illustration](../_includes/integration_openai_rag.png)
+![RAG integration illustration](../_includes/integration_nvidia_rag.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI generative AI integration (`generative-openai`) module.
+Your Weaviate instance must be configured with the NVIDIA generative (`generative-nvidia`) module.
 
 <details>
   <summary>For Weaviate Cloud (WCD) users</summary>
@@ -49,24 +47,22 @@ This integration is enabled by default on Weaviate Cloud (WCD) serverless instan
 
 </details>
 
-<!-- Docs note: the `OPENAI_ORGANIZATION` environment variable is not documented, as it is not the recommended way to provide the OpenAI organization parameter. -->
-
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide a valid API key to Weaviate for this integration. Go to [NVIDIA](https://build.nvidia.com/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `OPENAI_APIKEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+- Set the `NVIDIA_APIKEY` environment variable that is available to Weaviate.
+- Provide the token at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START NVIDIAInstantiation"
+      endMarker="# END NVIDIAInstantiation"
       language="py"
     />
   </TabItem>
@@ -74,8 +70,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START NVIDIAInstantiation"
+      endMarker="// END NVIDIAInstantiation"
       language="ts"
     />
   </TabItem>
@@ -88,14 +84,14 @@ import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
 
 <MutableGenerativeConfig />
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an OpenAI generative AI model:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-generative-model-integration) as follows to use an NVIDIA generative AI model:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeOpenAI"
-      endMarker="# END BasicGenerativeOpenAI"
+      startMarker="# START BasicGenerativeNVIDIA"
+      endMarker="# END BasicGenerativeNVIDIA"
       language="py"
     />
   </TabItem>
@@ -103,8 +99,8 @@ import MutableGenerativeConfig from '/_includes/mutable-generative-config.md';
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeOpenAI"
-      endMarker="// END BasicGenerativeOpenAI"
+      startMarker="// START BasicGenerativeNVIDIA"
+      endMarker="// END BasicGenerativeNVIDIA"
       language="ts"
     />
   </TabItem>
@@ -119,8 +115,8 @@ You can specify one of the [available models](#available-models) for Weaviate to
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START GenerativeOpenAICustomModel"
-      endMarker="# END GenerativeOpenAICustomModel"
+      startMarker="# START GenerativeNVIDIACustomModel"
+      endMarker="# END GenerativeNVIDIACustomModel"
       language="py"
     />
   </TabItem>
@@ -128,8 +124,8 @@ You can specify one of the [available models](#available-models) for Weaviate to
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START GenerativeOpenAICustomModel"
-      endMarker="// END GenerativeOpenAICustomModel"
+      startMarker="// START GenerativeNVIDIACustomModel"
+      endMarker="// END GenerativeNVIDIACustomModel"
       language="ts"
     />
   </TabItem>
@@ -146,8 +142,8 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullGenerativeOpenAI"
-      endMarker="# END FullGenerativeOpenAI"
+      startMarker="# START FullGenerativeNVIDIA"
+      endMarker="# END FullGenerativeNVIDIA"
       language="py"
     />
   </TabItem>
@@ -155,15 +151,15 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullGenerativeOpenAI"
-      endMarker="// END FullGenerativeOpenAI"
+      startMarker="// START FullGenerativeNVIDIA"
+      endMarker="// END FullGenerativeNVIDIA"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
+For further details on model parameters, see the [NVIDIA API documentation](https://docs.api.nvidia.com/nim/reference/llm-apis).
 
 ## Retrieval augmented generation
 
@@ -171,7 +167,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_openai_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_nvidia_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -203,7 +199,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_openai_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_nvidia_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -235,30 +231,17 @@ In other words, when you have `n` search results, the generative model generates
 
 ### Available models
 
-* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
-* [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4o](https://platform.openai.com/docs/models#gpt-4o)
-* [gpt-4o-mini](https://platform.openai.com/docs/models#gpt-4o-mini) (Added in v1.26.7)
+You can use any generative model [on NVIDIA NIM APIs](https://build.nvidia.com/models) with Weaviate.
 
-<details>
-  <summary>Older models</summary>
-
-The following models are available, but not recommended:
-
-* [davinci 002](https://platform.openai.com/docs/models/overview)
-* [davinci 003](https://platform.openai.com/docs/models/overview)
-
-</details>
+The default model is `nvidia/llama-3.1-nemotron-51b-instruct`.
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI embedding models + Weaviate](./embeddings.md).
+- [NVIDIA text embedding models + Weaviate](./embeddings.md).
+- [NVIDIA multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
+- [NVIDIA reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 
@@ -269,9 +252,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
-
-## Questions and feedback
+- [NVIDIA NIM API Documentation](https://docs.api.nvidia.com/nim/reference/llm-apis)
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

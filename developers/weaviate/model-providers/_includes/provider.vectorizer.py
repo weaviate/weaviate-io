@@ -692,6 +692,161 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START VectorizerNVIDIACustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+            model="nvidia/nv-embed-v1"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END VectorizerNVIDIACustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_nvidia(
+            name="title_vector",
+            source_properties=["title"],
+            model="nvidia/nv-embed-v1"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicMMVectorizerNVIDIA
+from weaviate.classes.config import Configure, DataType, Multi2VecField, Property
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_nvidia(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START MMVectorizerNVIDIACustomModel
+from weaviate.classes.config import Configure, DataType, Multi2VecField, Property
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_nvidia(
+            name="title_vector",
+            model="nvidia/nvclip",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END MMVectorizerNVIDIACustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerNVIDIA
+from weaviate.classes.config import Configure, DataType, Multi2VecField, Property
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_nvidia(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # Further options
+            # model="nvidia/nvclip",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOctoAI
 from weaviate.classes.config import Configure
 

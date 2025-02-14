@@ -717,6 +717,88 @@ func main() {
 		}
 	}
 
+	// START BasicVectorizerNVIDIA
+	// highlight-start
+	// Define the collection
+	basicNVIDIAVectorizerDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(basicNVIDIAVectorizerDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END BasicVectorizerNVIDIA
+
+	// START VectorizerNVIDIACustomModel
+	// highlight-start
+	// Define the collection
+	nvidiaVectorizerWithModelDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						"model":            "nvidia/nv-embed-v1",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(nvidiaVectorizerWithModelDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END VectorizerNVIDIACustomModel
+
+	// START FullVectorizerNVIDIA
+	// highlight-start
+	// Define the collection
+	nvidiaVectorizerFullDef := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-nvidia": map[string]interface{}{
+						"sourceProperties": []string{"title"},
+						// "model":            "nvidia/nv-embed-v1",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(nvidiaVectorizerFullDef).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END FullVectorizerNVIDIA
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
 	// START BasicVectorizerOpenAI
 	// highlight-start
 	// Define the collection

@@ -36,6 +36,9 @@ const jinaaiApiKey = process.env.JINAAI_APIKEY || '';  // Replace with your infe
 // START MistralInstantiation
 const mistralApiKey = process.env.MISTRAL_APIKEY || '';  // Replace with your inference API key
 // END MistralInstantiation
+// START NVIDIAInstantiation
+const nvidiaApiKey = process.env.NVIDIA_APIKEY || '';  // Replace with your inference API key
+// END NVIDIAInstantiation
 // START OctoAIInstantiation
 const octoaiApiKey = process.env.OCTOAI_APIKEY || '';  // Replace with your inference API key
 // END OctoAIInstantiation
@@ -95,6 +98,9 @@ const client = await weaviate.connectToWeaviateCloud(
       // START MistralInstantiation
       'X-Mistral-Api-Key': mistralApiKey,
       // END MistralInstantiation
+      // START NVIDIAInstantiation
+      'X-NVIDIA-Api-Key': nvidiaApiKey,
+      // END NVIDIAInstantiation
       // START OctoAIInstantiation
       'X-OctoAI-Api-Key': octoaiApiKey,
       // END OctoAIInstantiation

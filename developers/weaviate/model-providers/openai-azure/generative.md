@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Azure OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Azure OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Azure OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Azure OpenAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Azure OpenAI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Azure OpenAI generative model to generate outputs.
 

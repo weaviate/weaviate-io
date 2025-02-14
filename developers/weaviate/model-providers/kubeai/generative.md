@@ -18,7 +18,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OpenAI-style APIs allows you to access KubeAI models' directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use KubeAI, and Weaviate will perform retrieval augmented generation (RAG) using the specified model.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with KubeAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the KubeAI generative model to generate outputs.
 

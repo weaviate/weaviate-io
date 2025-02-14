@@ -389,6 +389,27 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicGenerativeNVIDIA
+// Coming soon
+// END BasicGenerativeNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativeNVIDIACustomModel
+// Coming soon
+// END GenerativeNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeNVIDIA
+// Coming soon
+// END FullGenerativeNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeOctoAI
 await client.collections.create({
   name: 'DemoCollection',

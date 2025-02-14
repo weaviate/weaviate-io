@@ -55,6 +55,10 @@ jinaai_key = os.getenv("JINAAI_APIKEY")
 # Recommended: save sensitive data as environment variables
 mistral_key = os.getenv("MISTRAL_APIKEY")
 # END MistralInstantiation
+# START NVIDIAInstantiation
+# Recommended: save sensitive data as environment variables
+nvidia_key = os.getenv("NVIDIA_APIKEY")
+# END NVIDIAInstantiation
 # START OctoAIInstantiation
 # Recommended: save sensitive data as environment variables
 octoai_key = os.getenv("OCTOAI_APIKEY")
@@ -116,6 +120,9 @@ headers = {
 # START MistralInstantiation
     "X-Mistral-Api-Key": mistral_key,
 # END MistralInstantiation
+# START NVIDIAInstantiation
+    "X-NVIDIA-Api-Key": nvidia_key,
+# END NVIDIAInstantiation
 # START OctoAIInstantiation
     "X-OctoAI-Api-Key": octoai_key,
 # END OctoAIInstantiation
