@@ -8,7 +8,7 @@ image: og/docs/integrations/provider_integrations_nvidia.jpg
 
 # NVIDIA Reranker Models with Weaviate
 
-:::info Added in `v1.29.0`
+:::info Added in `v1.28.5`, `v1.29.0`
 :::
 
 import Tabs from '@theme/Tabs';

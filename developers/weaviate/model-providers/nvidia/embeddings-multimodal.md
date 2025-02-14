@@ -8,7 +8,7 @@ image: og/docs/integrations/provider_integrations_nvidia.jpg
 
 # NVIDIA Multimodal Embeddings with Weaviate
 
-:::info Added in `1.29`
+:::info Added in `v1.28.5`, `v1.29.0`
 :::
 
 import Tabs from '@theme/Tabs';
