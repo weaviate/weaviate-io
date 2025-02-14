@@ -61,12 +61,12 @@ This allows for more nuanced comparisons between objects, and therefore improved
 
 Weaviate `1.29` introduces support for multi-vector embeddings, allowing you to store and search for objects using multi-vector embeddings. Let's see how this works in practice.
 
-<!-- This tutorial shows two workflows, one using a [ColBERT model integration](#colbert-model-integration) (with JinaAI's model) and another with [user-generated embeddings](#user-generated-embeddings).
+This tutorial shows two workflows, one using a [ColBERT model integration](#colbert-model-integration) (with JinaAI's model) and another with [user-provided embeddings](#user-provided-embeddings).
 
 Jump to the section that interests you, or follow along with both.
 
 - [ColBERT model integration](#colbert-model-integration)
-- [User-generated embeddings](#user-generated-embeddings) -->
+- [User-provided embeddings](#user-provided-embeddings)
 
 :::info In depth: Understanding "late interaction"
 
@@ -115,11 +115,11 @@ The tradeoff is between search quality and resources. Multi-vector embeddings te
 
 The inference time and/or cost for embedding generation may also be higher, as multi-vector embeddings require more compute to generate.
 
-## ColBERT model integration
+## 1. ColBERT model integration
 
 In this section, we will use Weaviate's model integration with JinaAI's ColBERT model to generate multi-vector embeddings for text data.
 
-### Step 0: Connect to Weaviate
+### 1.1: Connect to Weaviate
 
 First, connect to your Weaviate instance using your preferred client library. In this example, we assume you are connecting to a local Weaviate instance. For other types of instances, replace the connection details as needed ([connection examples](../connections/index.mdx)).
 
@@ -136,7 +136,7 @@ First, connect to your Weaviate instance using your preferred client library. In
 
 </Tabs>
 
-### Step 1: Collection configuration
+### 1.2: Collection configuration
 
 Here, we define a collection called `"DemoCollection"`. It has a named vector configured with the `jina-colbert-v2` ColBERT model integration.
 
@@ -153,7 +153,7 @@ Here, we define a collection called `"DemoCollection"`. It has a named vector co
 
 </Tabs>
 
-### Step 2: Import data
+### 1.3: Import data
 
 Now, we can import the data. For this example, we will import a few arbitrary text objects.
 
@@ -174,7 +174,7 @@ Recall that we configured the model integration (for `text2colbert-jinaai`) abov
 
 </Tabs>
 
-#### Confirm embedding shape
+#### 1.3.1 Confirm embedding shape
 
 Let's retrieve an object and inspect the shape of its embeddings.
 
@@ -203,11 +203,11 @@ This embedding's shape is (22, 128)
 
 Note this in contrast to a single vector, which would be a list of floats.
 
-### Step 3: Perform queries
+### 1.4: Perform queries
 
-Now that we have imported the data, we can perform searches using the multi-vector embeddings. Let's see how to perform semantic, hybrid, and vector searches.
+Now that we have imported the data, we can perform searches using the multi-vector embeddings. Let's see how to perform semantic, vector, and hybrid searches.
 
-#### 3.1 Near text search
+#### 1.4.1 Near text search
 
 Performing a near text, or semantic, search with a ColBERT embedding model integration is the same as with any other embedding model integration. The difference in embeddings' dimensionality is not visible to the user.
 
@@ -224,7 +224,7 @@ Performing a near text, or semantic, search with a ColBERT embedding model integ
 
 </Tabs>
 
-#### 3.2 Hybrid search (simple)
+#### 1.4.2 Hybrid search (simple)
 
 Similarly to the near text search, a hybrid search with a ColBERT embedding model integration is performed in the same way as with other embedding model integrations.
 
@@ -241,7 +241,7 @@ Similarly to the near text search, a hybrid search with a ColBERT embedding mode
 
 </Tabs>
 
-#### 3.3 Vector search
+#### 1.4.3 Vector search
 
 When performing a manual vector search, the user must specify the query embedding. In this example, to search the `multi_vector` index, the query vector must be a corresponding multi-vector.
 
@@ -278,7 +278,7 @@ Since we use JinaAI's `jina-colbert-v2` model in the integration, we obtain the 
 
 </Tabs>
 
-#### 3.4 Hybrid search (manual vector)
+#### 1.4.4 Hybrid search (manual vector)
 
 In all other searches where a vector embedding is to be specifically provided, it must be a multi-vector embedding, as with the manual vector search shown above.
 
@@ -295,15 +295,157 @@ In all other searches where a vector embedding is to be specifically provided, i
 
 </Tabs>
 
-<!-- ## User-generated embeddings -->
+## 2. User-provided embeddings
+
+In this section, we will use user-provided embeddings to populate Weaviate. This is useful when you want to use a different model than one that Weaviate integrates with.
+
+:::tip Using a model integration with user-provided embeddings
+Note that if you are using a model integration, you can still provide user-provided embeddings. If an embedding is provided with an object, it will be used instead of the model integration.
+<br/>
+
+This allows you to use any pre-existing embeddings you may have, while benefiting from the convenience of a model integration for other objects.
+:::
+
+### Step 0: Connect to Weaviate
+
+First, connect to your Weaviate instance using your preferred client library. In this example, we assume you are connecting to a local Weaviate instance. For other types of instances, replace the connection details as needed ([connection examples](../connections/index.mdx)).
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+### 2.2: Collection configuration
+
+Here, we define a collection called `"DemoCollection"`. Note that we do not use a model integration, as we will provide the embeddings manually.
+
+The collection configuration explicitly enables the `multi-vector` index option. This is necessary to handle the multi-vector embeddings.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UserEmbeddingCollectionConfig"
+      endMarker="# END UserEmbeddingCollectionConfig"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+### 2.3: Import data
+
+Now, we can import the data. For this example, we will import a few arbitrary text objects.
+
+Note that in this example, each object is sent to Weaviate along with the corresponding multi-vector embedding. In the example, we obtain Jina AI's ColBERT embeddings, but it could be any multi-vector embeddings.
+
+<details>
+  <summary>Obtain the embedding manually</summary>
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ObtainColBERTEmbedding"
+      endMarker="# END ObtainColBERTEmbedding"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UserEmbeddingImport"
+      endMarker="# END UserEmbeddingImport"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+### 2.4: Perform queries
+
+Now that we have imported the data, we can perform searches using the multi-vector embeddings. Let's see how to perform vector, and hybrid searches.
+
+Note that `near text` search is not possible with user-provided embeddings. In this configuration, Weaviate is unable to convert a text query into a compatible embedding, without knowing the model used to generate the embeddings.
+
+#### 1.4.1 Vector search
+
+You can perform a manual vector search, by specifying the query embedding. In this example, we convert the query into a vector using the same (JinaAI's `jina-colbert-v2`) model used to generate the object embeddings.
+
+This ensures that the query embedding is compatible with the object embeddings.
+
+<details>
+  <summary>Obtain the embedding manually</summary>
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ObtainColBERTEmbedding"
+      endMarker="# END ObtainColBERTEmbedding"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+</details>
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ColBERTVector"
+      endMarker="# END ColBERTVector"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+#### 2.4.2 Hybrid search (manual vector)
+
+To perform a hybrid search with user-provided embeddings, provide the query vector along with the hybrid query.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ColBERTHybrid"
+      endMarker="# END ColBERTHybrid"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Summary
 
-In this tutorial, we learned how to use multi-vector embeddings in Weaviate.
+This tutorial showed how to use multi-vector embeddings in Weaviate.
 
-We used the ColBERT model integration to generate multi-vector embeddings for text data, and performed semantic, hybrid, and vector searches.
+Weaviate allows you to use multi-vector embeddings from `v1.29`, with either the ColBERT model integration, or by providing your own embeddings.
 
-For the most part, using Weaviate with multi-vector embeddings is similar to using Weaviate with single-vector embeddings. The main difference is in the shape of the embeddings, in occasions where the user must provide the embeddings manually.
+Note that when using multi-vector embeddings, the vector index may need to be manually configured to handle the multi-vector embeddings. This is because the shape of the embeddings is different from single-vector embeddings. This is automatically done when using a model integration such as ColBERT, but must be done manually when providing embeddings.
+
+Once the data has been ingested, you can perform semantic, hybrid, and vector searches as usual. The main difference is in the shape of the embeddings, which must be taken into account when providing embeddings manually.
 
 ## Further resources
 
