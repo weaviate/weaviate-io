@@ -25,12 +25,12 @@ This means that the feature is still under development and may change in future 
 
 ## Prerequisites
 
-Before you start this tutorial, you should:
+Before starting this tutorial, ensure you have the following:
 
-- Set up an instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally).
-- Install your preferred Weaviate client library.
-- A API key for Jina AI.
-    - A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
+- An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally).
+- Your preferred Weaviate client library installed.
+- An API key for Jina AI"
+- A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
 
 :::tip See the Quickstart guide
 For information on how to set up Weaviate and install the client library, see the [cloud](../quickstart/index.md) or [local](../quickstart/local.md) Quickstart guide.
