@@ -137,6 +137,8 @@ export default function KnowledgeBase({ searchQuery }) {
         'Different types of embeddings used in vector databases, such as text embeddings, image embeddings, and multimodal embeddings.',
       'Chunking Techniques':
         'Techniques for breaking down large data into smaller, more manageable chunks for processing and storage.',
+      'Advanced RAG Techniques':
+        'Techniques for improving the performance and capabilities of the RAG model, such as training on custom datasets, fine-tuning, and optimizing for specific tasks.',
     };
 
     const totalCards = categoryCards.length;
@@ -304,6 +306,17 @@ export default function KnowledgeBase({ searchQuery }) {
                   />
                   <label htmlFor="filterCT">Chunking Techniques</label>
                 </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="filterART"
+                    name="cardFilter"
+                    value="ART"
+                    checked={selectedCard === 'ART'}
+                    onChange={() => handleCardFilter('ART')}
+                  />
+                  <label htmlFor="filterCT">Advanced RAG Techniques</label>
+                </div>
               </div>
             </div>
             <div className={styles.filterLine}></div>
@@ -435,6 +448,17 @@ export default function KnowledgeBase({ searchQuery }) {
                 />
                 <label htmlFor="filterCT">Chunking Techniques</label>
               </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterART"
+                  name="cardFilter"
+                  value="ART"
+                  checked={selectedCard === 'ART'}
+                  onChange={() => handleCardFilter('ART')}
+                />
+                <label htmlFor="filterART">Advanced RAG Techniques</label>
+              </div>
             </div>
           </div>
           <div className={styles.filterLine}></div>
@@ -448,6 +472,7 @@ export default function KnowledgeBase({ searchQuery }) {
             {renderCards('Information Retrieval/Search')}
             {renderCards('Embedding Types')}
             {renderCards('Chunking Techniques')}
+            {renderCards('Advanced RAG Techniques')}
           </main>
         </div>
       </div>
