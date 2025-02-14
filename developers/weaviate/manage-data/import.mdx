@@ -45,9 +45,9 @@ The following example adds objects to the `MyCollection` collection.
 
 ### Error handling
 
-During a batch import, any failed objects or references will be stored and can be obtained through `batch.failed_objects` and `batch.failed_references`. 
+During a batch import, any failed objects or references will be stored and can be obtained through `batch.failed_objects` and `batch.failed_references`.
 Additionally, a running count of failed objects and references is maintained and can be accessed through `batch.number_errors` within the context manager.
-This counter can be used to stop the import process in order to investigate the failed objects or references. 
+This counter can be used to stop the import process in order to investigate the failed objects or references.
 
 Find out more about error handling on the Python client [reference page](/developers/weaviate/client-libraries/python#error-handling).
 
@@ -302,7 +302,7 @@ Use the `vector` property to specify a vector for each object.
 :::info Added in `v1.24`
 :::
 
-When you create an object, you can specify named vectors (if [configured in your collection](./collections.mdx#define-multiple-named-vectors)).
+When you create an object, you can specify named vectors (if [configured in your collection](./collections.mdx#define-named-vectors)).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
