@@ -73,6 +73,16 @@ Jump to the section that interests you, or follow along with both.
 Late interaction is an approach for computing similarity between texts that preserves fine-grained meaning by comparing individual parts of the text (like words or phrases). Models like ColBERT use this technique to achieve more precise text matching than traditional single-vector methods.
 <br/>
 
+The following visualization shows how late interaction works in a ColBERT model, in comparison to a single-vector model.
+
+![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction vs single-vector visualization")
+
+<small>Figure: Late interaction vs single-vector comparison</small>
+<br/><br/>
+
+<details>
+  <summary>More about late interaction</summary>
+
 In a single-vector approach, two embeddings have the same dimensionality (e.g. 768). So, their similarity is calculated directly, e.g. by calculating their dot product, or cosine distance. In this case, the only interaction occurs when the two vectors are compared.
 <br/>
 
@@ -88,23 +98,13 @@ Each multi-vector embedding is composed of multiple vectors, where a vector repr
 Late interaction takes advantage of this structure by finding the best match for each query token among all tokens in the target text (using MaxSim operation). For example, when searching for 'data science', each token-level vector is compared with the most relevant part of a document, rather than trying to match the vector for the entire phrase at once. The final similarity score combines these individual best matches. This token-level matching helps capture nuanced relationships and word order, making it especially effective for longer texts.
 <br/>
 
-The following visualization shows how late interaction works in a ColBERT model, in comparison to a single-vector model.
-
-![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction vs single-vector visualization")
-
-<small>Late interaction visualization.</small>
-
-<br/><br/>
-
 A late interaction search:
 1. Compares each query vector against each object vector
 1. Combines these token-level comparisons to produce a final similarity score
 <br/>
 
 This approach often leads to better search results, as it can capture more nuanced relationships between objects.
-<br/>
-
-Read more about late interaction in the [ColBERT paper](https://arxiv.org/abs/2004.12832).
+</details>
 :::
 
 ### When to use multi-vector embeddings
@@ -196,6 +196,9 @@ Inspecting the results, each embedding is composed of a list of lists (of floats
 ```text
 Embedding data type: <class 'list'>
 Embedding first element type: <class 'list'>
+This embedding's shape is (22, 128)
+This embedding's shape is (25, 128)
+This embedding's shape is (22, 128)
 ```
 
 Note this in contrast to a single vector, which would be a list of floats.
