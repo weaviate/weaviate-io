@@ -199,8 +199,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerWeaviate"
-      endMarker="# END FullVectorizerWeaviate"
+      startMarker="# START SnowflakeArcticEmbedMV15"
+      endMarker="# END SnowflakeArcticEmbedMV15"
       language="py"
     />
   </TabItem>
@@ -208,8 +208,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="ts"
     />
   </TabItem>
@@ -217,8 +217,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="goraw"
     />
   </TabItem>
@@ -226,8 +226,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="java"
     />
   </TabItem>

@@ -963,16 +963,24 @@ func main() {
 	// highlight-end
 	// END VectorizerWeaviateCustomModel
 
-	// START FullVectorizerWeaviate
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedMV15
 	// highlight-start
 	// Define the collection
-	weaviateVectorizerFullDef := &models.Class{
+	weaviateVectorizerArcticEmbedMV15 := &models.Class{
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model":      "arctic-embed-m-v1.5",
+						"model":      "Snowflake/snowflake-arctic-embed-m-v1.5",
 						"dimensions": 256, // Or 768
 						"base_url":   "<custom_weaviate_url>",
 					},
@@ -982,12 +990,46 @@ func main() {
 	}
 
 	// add the collection
-	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerFullDef).Do(ctx)
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedMV15).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// highlight-end
-	// END FullVectorizerWeaviate
+	// END SnowflakeArcticEmbedMV15
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedLV20
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerArcticEmbedLV20 := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model":      "Snowflake/snowflake-arctic-embed-l-v2.0",
+						"dimensions": 256, // Or 768
+						"base_url":   "<custom_weaviate_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedLV20).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END SnowflakeArcticEmbedLV20
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{

@@ -27,7 +27,7 @@ This quickstart shows you how to combine Weaviate Cloud and the **Weaviate Embed
 
 1. Set up a Weaviate Cloud instance. (10 minutes)
 2. Add and vectorize your data using Weaviate Embeddings. (10 minutes)
-3. Perform a semantic search and retrieval augmented generation (RAG). (10 minutes)
+3. Perform a semantic (vector) search and hybrid search. (10 minutes)
 
 ```mermaid
 flowchart LR
@@ -146,8 +146,8 @@ Now we can define a collection that will store our data. When creating a collect
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerWeaviate"
-      endMarker="# END FullVectorizerWeaviate"
+      startMarker="# START SnowflakeArcticEmbedMV15"
+      endMarker="# END SnowflakeArcticEmbedMV15"
       language="py"
     />
   </TabItem>
@@ -155,8 +155,8 @@ Now we can define a collection that will store our data. When creating a collect
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="ts"
     />
   </TabItem>
@@ -164,8 +164,8 @@ Now we can define a collection that will store our data. When creating a collect
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="goraw"
     />
   </TabItem>
@@ -173,8 +173,8 @@ Now we can define a collection that will store our data. When creating a collect
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="java"
     />
   </TabItem>
