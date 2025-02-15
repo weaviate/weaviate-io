@@ -6,7 +6,7 @@ image: og/wcs/user_guides.jpg
 
 Weaviate Embeddings is enabled by default at the organization level and is available to all Weaviate Cloud users. 
 
-## Pricing and Billing
+## Billing
 
 During the technical preview, Weaviate Embeddings is free to use.
 
@@ -33,3 +33,16 @@ We may expand the service to other regions in the future.
 ## Authentication
 
 Authentication is managed through your existing Weaviate Cloud API key.
+
+## Additional resources
+
+- [Weaviate Embeddings: Overview](/developers/wcs/embeddings)
+- [Weaviate Embeddings: Quickstart](/developers/wcs/embeddings/quickstart)
+- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/configuration)
+- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

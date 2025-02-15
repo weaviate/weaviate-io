@@ -1,5 +1,6 @@
 ---
-title: Configure the model
+title: Choose a model
+sidebar_label: Choose a model
 sidebar_position: 2
 image: og/wcs/user_guides.jpg
 ---
@@ -19,8 +20,10 @@ On this page, you can find a list of pre-trained models designed specifically fo
 ## Available models
 
 The following models are available for use with Weaviate Embeddings:
+- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](#snowflake-arctic-embed-m-v1.5)**
+- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](#snowflake-arctic-embed-l-v2.0)**
 
-### `arctic-embed-m-v1.5` (default)
+### `Snowflake/snowflake-arctic-embed-m-v1.5` (default) {#snowflake-arctic-embed-m-v1.5}
 
 - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
 - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
@@ -32,7 +35,7 @@ The following models are available for use with Weaviate Embeddings:
 Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
 :::
 
-## Parameters
+#### Parameters
 
 - `model` (optional): The name of the model to use for embedding generation.
 - `dimensions` (optional): The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
@@ -44,8 +47,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerWeaviate"
-      endMarker="# END FullVectorizerWeaviate"
+      startMarker="# START SnowflakeArcticEmbedMV15"
+      endMarker="# END SnowflakeArcticEmbedMV15"
       language="py"
     />
   </TabItem>
@@ -78,3 +81,75 @@ The following examples show how to configure Weaviate Embeddings-specific option
   </TabItem>
 
 </Tabs>
+
+### `Snowflake/snowflake-arctic-embed-l-v2.0` {#snowflake-arctic-embed-l-v2.0}
+
+- A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
+- Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
+- Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
+- Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
+- Allowable `dimensions`: 768 (default), 256
+
+:::info Input truncation
+Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
+:::
+
+#### Parameters
+
+- `model` (optional): The name of the model to use for embedding generation.
+- `dimensions` (optional): The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
+- `base_url` (optional): The base URL for the Weaviate Embeddings service. (Not required in most cases.)
+
+The following examples show how to configure Weaviate Embeddings-specific options.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SnowflakeArcticEmbedLV20"
+      endMarker="# END SnowflakeArcticEmbedLV20"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS API v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
+      language="goraw"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FullVectorizerWeaviate"
+      endMarker="// END FullVectorizerWeaviate"
+      language="java"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Additional resources
+
+- [Weaviate Embeddings: Overview](/developers/wcs/embeddings)
+- [Weaviate Embeddings: Quickstart](/developers/wcs/embeddings/quickstart)
+- [Weaviate Embeddings: Administration](/developers/wcs/embeddings/administration)
+- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

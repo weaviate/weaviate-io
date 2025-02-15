@@ -36,7 +36,7 @@ flowchart LR
     A2 --> B1["Configure the vectorizer"]
     B1 --> B2["Batch import\nobjects"]
     B2 --> C1["Semantic search\n(nearText)"]
-    C1 --> C2["RAG\n(Generate)"]
+    C1 --> C2["Hybrid search"]
 
     %% Group nodes in subgraphs with brand colors
     subgraph sg1 ["1. Setup"]
@@ -328,7 +328,13 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ## Additional resources
 
-Refer to the [Model Provider Integrations page](/developers/weaviate/model-providers/weaviate/embeddings) for further examples, on:
-- [How to use custom parameters](/developers/weaviate/model-providers/weaviate/embeddings#vectorizer-parameters)
-- [Import data](/developers/weaviate/model-providers/weaviate/embeddings#data-import)
-- [Perform searches](/developers/weaviate/model-providers/weaviate/embeddings#searches)
+- [Weaviate Embeddings: Overview](/developers/wcs/embeddings)
+- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/configuration)
+- [Weaviate Embeddings: Administration](/developers/wcs/embeddings/administration)
+- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
