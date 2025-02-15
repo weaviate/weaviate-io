@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/wcs/user_guides.jpg
 ---
 
-Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service.
-
-Weaviate Embeddings integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
+Weaviate Embeddings provides secure, scalable embedding generation as a fully managed service. It integrates with Weaviate Cloud instances to generate, store, and search embeddings without managing infrastructure.
 
 ```mermaid
 %%{init: {
@@ -77,7 +75,7 @@ With Weaviate Embeddings, you can generate embeddings for your data and queries 
 
 This means you can perform [keyword](/developers/weaviate/search/bm25), [vector](/developers/weaviate/search/similarity) and [hybrid searches](/developers/weaviate/search/hybrid) without the need to externally generate vector embeddings, or manage additional model providers.
 
-Weaviate Embeddings is fully integrated with Weaviate Cloud, so you can manage your data and embeddings in one place.
+Weaviate Embeddings is fully integrated with Weaviate Cloud, so you can manage your data and embeddings in one place. Weaviate Embeddings is available for Weaviate Cloud instances and is currently not available when running a local instance.
 
 :::tip Quickstart
 Follow the **[Quickstart guide](/developers/wcs/embeddings/quickstart)** to get started with Weaviate Embeddings.
@@ -91,9 +89,12 @@ Weaviate Embeddings offers a fully managed service for embedding generation that
 - **[Single authentication](/developers/wcs/connect)**: Your Weaviate Cloud credentials are used for authorization and access to Weaviate Embeddings.
 - **[Unified billing](/developers/wcs/embeddings/administration#billing)**: Your billing and usage can be managed in one place through Weaviate Cloud.
 
-## Availability
+## Available models
 
-Weaviate Embeddings is a part of Weaviate Cloud, and available for Weaviate Cloud instances. It is currently not available when running a local instance.
+The following models are available for use with Weaviate Embeddings:
+
+- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](/developers/wcs/embeddings/configuration#snowflake-arctic-embed-m-v1.5)**
+- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](/developers/wcs/embeddings/configuration#snowflake-arctic-embed-l-v2.0)**
 
 ## Additional resources
 

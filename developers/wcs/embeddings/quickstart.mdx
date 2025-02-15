@@ -17,9 +17,9 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddings.java';
 import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
-
 <span class="badge badge--secondary">Expected time: 30 minutes</span>
-<br/><br/>
+<br />
+<br />
 
 :::info What you will learn
 
@@ -69,7 +69,9 @@ flowchart LR
 ```
 
 Notes:
+
 - The code examples here are self-contained. You can copy and paste them into your own environment to try them out.
+
 :::
 
 ## Prerequisites
@@ -78,9 +80,9 @@ To use Weaviate Embeddings, you will need:
 
 - A **[Weaviate Cloud instance](/developers/wcs/create-instance)** running at least Weaviate `1.27.6`
 - A Weaviate client library that supports Weaviate Embeddings:
-    - **Python** client version `4.9.5` or higher
-    - **JavaScript/TypeScript** client version `3.2.5` or higher
-    - **Go/Java** clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+  - **Python** client version `4.9.5` or higher
+  - **JavaScript/TypeScript** client version `3.2.5` or higher
+  - **Go/Java** clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
 
 ## Step 1: Set up Weaviate
 
@@ -97,8 +99,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for Weaviate Embeddings.
 
 <Tabs groupId="languages">
-
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyConnect}
       startMarker="# START WeaviateInstantiation"
@@ -106,8 +107,7 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
       language="py"
     />
   </TabItem>
-
- <TabItem value="js" label="JS/TS API v3">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START WeaviateInstantiation"
@@ -115,7 +115,6 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
       language="ts"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoConnect}
@@ -124,7 +123,6 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
       language="goraw"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaConnect}
@@ -133,14 +131,13 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
       language="javaraw"
     />
   </TabItem>
-
 </Tabs>
 
 ## Step 2: Populate the database
 
 ### 2.1 Define a collection
 
-Now we can define a collection that will store our data. When creating a collection, you need to specify one of the [available models](/developers/wcs/embeddings/configuration) for the vectorizer to use. This model will be used to create vector embeddings from your data. 
+Now we can define a collection that will store our data. When creating a collection, you need to specify one of the [available models](/developers/wcs/embeddings/configuration) for the vectorizer to use. This model will be used to create vector embeddings from your data.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -151,7 +148,6 @@ Now we can define a collection that will store our data. When creating a collect
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
@@ -160,7 +156,6 @@ Now we can define a collection that will store our data. When creating a collect
       language="ts"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -169,7 +164,6 @@ Now we can define a collection that will store our data. When creating a collect
       language="goraw"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -178,17 +172,15 @@ Now we can define a collection that will store our data. When creating a collect
       language="java"
     />
   </TabItem>
-
 </Tabs>
 
-For more information about the available model options visit the [Configure models](/developers/wcs/embeddings/configuration) guide.
+For more information about the available model options visit the [Choose a model](/developers/wcs/embeddings/configuration) page.
 
 ### 2.2 Import objects
 
 After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
@@ -197,7 +189,6 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
@@ -206,7 +197,6 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       language="ts"
     />
   </TabItem>
-
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -215,7 +205,6 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       language="goraw"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaImportQueries}
@@ -224,7 +213,6 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
       language="java"
     />
   </TabItem>
-
 </Tabs>
 
 ## Step 3: Query your data
@@ -238,7 +226,6 @@ When you perform a [vector search](../../search/similarity.md#search-with-text),
 The query below returns the `n` most similar objects from the database, set by `limit`.
 
 <Tabs groupId="languages">
-
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
@@ -247,7 +234,6 @@ The query below returns the `n` most similar objects from the database, set by `
       language="py"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
@@ -256,8 +242,7 @@ The query below returns the `n` most similar objects from the database, set by `
       language="ts"
     />
   </TabItem>
-
- <TabItem value="go" label="Go">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
       startMarker="// START NearTextExample"
@@ -265,7 +250,6 @@ The query below returns the `n` most similar objects from the database, set by `
       language="goraw"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaImportQueries}
@@ -274,7 +258,6 @@ The query below returns the `n` most similar objects from the database, set by `
       language="java"
     />
   </TabItem>
-
 </Tabs>
 
 ### 3.2 Hybrid search
@@ -288,8 +271,7 @@ When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts th
 The query below returns the `n` best scoring objects from the database, set by `limit`.
 
 <Tabs groupId="languages">
-
- <TabItem value="py" label="Python API v4">
+  <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START HybridExample"
@@ -297,8 +279,7 @@ The query below returns the `n` best scoring objects from the database, set by `
       language="py"
     />
   </TabItem>
-
- <TabItem value="js" label="JS/TS API v3">
+  <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START HybridExample"
@@ -306,8 +287,7 @@ The query below returns the `n` best scoring objects from the database, set by `
       language="ts"
     />
   </TabItem>
-
- <TabItem value="go" label="Go">
+  <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
       startMarker="// START HybridExample"
@@ -315,7 +295,6 @@ The query below returns the `n` best scoring objects from the database, set by `
       language="goraw"
     />
   </TabItem>
-
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaImportQueries}
@@ -326,12 +305,41 @@ The query below returns the `n` best scoring objects from the database, set by `
   </TabItem>
 </Tabs>
 
-## Additional resources
+## Next steps
 
-- [Weaviate Embeddings: Overview](/developers/wcs/embeddings)
-- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/configuration)
-- [Weaviate Embeddings: Administration](/developers/wcs/embeddings/administration)
-- [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
+import NextSteps from '/src/components/NextSteps';
+
+export const cardsData = [
+  {
+    title: (
+      <span>
+        <i className="fa fa-list-alt" aria-hidden="true"></i> Choose a model
+      </span>
+    ),
+    description: 'Check out which additional models are available through Weaviate Embeddings.',
+    link: '/developers/wcs/embeddings/configuration',
+  },
+  {
+    title: (
+      <span>
+        <i className="fa fa-search" aria-hidden="true"></i> Explore hybrid search
+      </span>
+    ),
+    description: 'Discover how hybrid search combines keyword matching and semantic search.',
+    link: '/developers/weaviate/search/hybrid',
+  },
+  {
+    title: (
+      <span>
+        <i className="fa fa-user-friends" aria-hidden="true"></i> Join the community
+      </span>
+    ),
+    description: 'Connect with other developers and contribute to our forums.',
+    link: '/community',
+  },
+];
+
+<NextSteps cards={cardsData} />
 
 ## Support
 

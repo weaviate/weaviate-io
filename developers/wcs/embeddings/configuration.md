@@ -15,7 +15,7 @@ import JavaCode from '!!raw-loader!/\_includes/code/howto/java/src/test/java/io/
 import JavaCode2 from '!!raw-loader!/\_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddingsArcticEmbedLV20.java';
 import JavaImportQueries from '!!raw-loader!/\_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
-On this page, you can find a list of pre-trained models designed specifically for enterprise retrieval tasks in English. Additional models and features will be added in the future, so please check back regularly for updates.
+On this page, you can find a list of pre-trained models designed specifically for enterprise retrieval tasks in English and other languages. Additional models and features will be added in the future, so please check back regularly for updates.
 
 ## Available models
 
@@ -23,6 +23,8 @@ The following models are available for use with Weaviate Embeddings:
 
 - **[`Snowflake/snowflake-arctic-embed-m-v1.5`](#snowflake-arctic-embed-m-v1.5)**
 - **[`Snowflake/snowflake-arctic-embed-l-v2.0`](#snowflake-arctic-embed-l-v2.0)**
+
+---
 
 ### `Snowflake/snowflake-arctic-embed-m-v1.5` (default) {#snowflake-arctic-embed-m-v1.5}
 
@@ -82,6 +84,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   </TabItem>
 
 </Tabs>
+
+---
 
 ### `Snowflake/snowflake-arctic-embed-l-v2.0` {#snowflake-arctic-embed-l-v2.0}
 

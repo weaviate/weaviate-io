@@ -32,7 +32,7 @@ We may expand the service to other regions in the future.
 
 ## Authentication
 
-Authentication is managed through your existing Weaviate Cloud API key.
+Authentication is managed through your existing [Weaviate Cloud API key](/developers/wcs/connect).
 
 ## Additional resources
 
