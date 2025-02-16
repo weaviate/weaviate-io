@@ -55,44 +55,46 @@ import ReplicationConfigWithAsyncRepair from '/\_includes/code/configuration/rep
 ### Configure async replication settings {#async-replication-settings}
 
 :::info Added in `v1.29`
-Async replication support has been added in `v1.26`while the [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances) for configuring async replication (`ASYNC_*`) have been introduced in `v1.29`.
+The [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances) for configuring async replication (`ASYNC_*`) have been introduced in `v1.29`.
 :::
 
-Async replication ensures that data stored in multiple nodes (shards) remains eventually consistent. Follow these steps to set up and fine-tune async replication in Weaviate using [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances).
+Async replication helps achieve consistency for data replicated across multiple nodes.
 
-#### Step 1: Configure logging
+Update the following [environment variables](/developers/weaviate/config-refs/env-vars#multi-node-instances) to configure async replication for your particular use case.
 
-- **Set the frequency of the logger:** `ASYNC_REPLICATION_LOGGING_FREQUENCY`  
+#### Logging
+
+- **Set the frequency of the logger:** `ASYNC_REPLICATION_LOGGING_FREQUENCY`
   Define how often the async replication background process will log events.
 
-#### Step 2: Configure periodic data comparison
+#### Data comparison
 
-- **Set the frequency of comparisons:** `ASYNC_REPLICATION_FREQUENCY`  
+- **Set the frequency of comparisons:** `ASYNC_REPLICATION_FREQUENCY`
   Define how often each node compares its local data with other nodes.
-- **Set comparison timeout:** `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`  
+- **Set comparison timeout:** `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT`
   Optionally configure a timeout for how long to wait during comparison when a node is unresponsive.
-- **Monitor node availability:** `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`  
+- **Monitor node availability:** `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY`
   Trigger comparisons whenever there’s a change in node availability.
-- **Configure hash tree height:** `ASYNC_REPLICATION_HASHTREE_HEIGHT`  
-  Specify the size of the hash tree, which helps narrow down data differences by comparing hash digests at multiple levels instead of scanning entire datasets.
-- **Batch size for digest comparison:** `ASYNC_REPLICATION_DIFF_BATCH_SIZE`  
+- **Configure hash tree height:** `ASYNC_REPLICATION_HASHTREE_HEIGHT`
+  Specify the size of the hash tree, which helps narrow down data differences by comparing hash digests at multiple levels instead of scanning entire datasets. See [this page](../concepts/replication-architecture/consistency.md#memory-and-performance-considerations-for-async-replication) for more information on the memory and performance considerations for async replication.
+- **Batch size for digest comparison:** `ASYNC_REPLICATION_DIFF_BATCH_SIZE`
   Define the number of objects whose digest (e.g., last update time) is compared between nodes before propagating actual objects.
 
-#### Step 3: Set up data synchronization
+#### Data synchronization
 
 Once differences between nodes are detected, Weaviate propagates outdated or missing data. Configure synchronization as follows:
 
-- **Set the frequency of propagation:** `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`  
+- **Set the frequency of propagation:** `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING`
   After synchronization is completed on a node, temporarily adjust the data comparison frequency to the set value.
-- **Set propagation timeout:** `ASYNC_REPLICATION_PROPAGATION_TIMEOUT`  
+- **Set propagation timeout:** `ASYNC_REPLICATION_PROPAGATION_TIMEOUT`
   Optionally configure a timeout for how long to wait during propagation when a node is unresponsive.
-- **Set propagation delay:** `ASYNC_REPLICATION_PROPAGATION_DELAY`  
+- **Set propagation delay:** `ASYNC_REPLICATION_PROPAGATION_DELAY`
   Define a delay period to allow asynchronous write operations to reach all nodes before propagating new or updated objects.
-- **Batch size for data propagation:** `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE`  
+- **Batch size for data propagation:** `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE`
   Define the number of objects that are sent in each synchronization batch during the propagation phase.
-- **Set propagation limits:** `ASYNC_REPLICATION_PROPAGATION_LIMIT`  
+- **Set propagation limits:** `ASYNC_REPLICATION_PROPAGATION_LIMIT`
   Enforce a limit on the number of out-of-sync objects to be propagated per replication iteration.
-- **Set propagation concurrency:** `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY`  
+- **Set propagation concurrency:** `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY`
   Specify the number of concurrent workers that can send batches of objects to other nodes, allowing multiple propagation batches to be sent simultaneously.
 
 :::tip

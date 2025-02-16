@@ -9,7 +9,7 @@ image: og/docs/configuration.jpg
 Authentication and authorization are closely related concepts, and sometimes abbreviated as `AuthN` and `AuthZ`. Authentication (`AuthN`) is the process of verifying the identity of a user, while authorization (`AuthZ`) is the process of determining what permissions the user has.
 :::
 
-Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the user's [authentication](./authentication.md) status. A user can be granted admin permission, read-only permission, or no permission at all. From `v1.28.0`, Weaviate also supports [Role-Based Access Control (RBAC)](/developers/weaviate/configuration/rbac) for more fine-grained control over user permissions.
+Weaviate provides differentiated access through [authorization](./authorization.md) levels, based on the user's [authentication](./authentication.md) status. A user can be granted admin permission, read-only permission, or no permission at all. From `v1.29.0`, Weaviate also supports [Role-Based Access Control (RBAC)](/developers/weaviate/configuration/rbac) for more fine-grained control over user permissions.
 
 The following diagram illustrates the flow of a user request through the authentication and authorization process:
 
@@ -86,6 +86,10 @@ RBAC access will be available in WCD in a future release.
 :::
 
 ## Role-Based Access Control (RBAC)
+
+:::info Available from `v1.29`
+Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
+:::
 
 Role-based access control (RBAC) is a method of restricting access to resources based on the roles of users. In Weaviate, RBAC allows you to define **roles** and assign **permissions** to those roles. Users can then be assigned to roles, and inherit the permissions associated with those roles.
 

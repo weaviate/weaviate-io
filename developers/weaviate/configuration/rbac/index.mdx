@@ -9,23 +9,23 @@ image: og/docs/configuration.jpg
 import Link from '@docusaurus/Link';
 
 :::info Available from `v1.29`
-Role-based access control (RBAC) was added in Weaviate version `v1.29`.
+Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
 :::
 
 Weaviate provides differentiated access through [authorization](/developers/weaviate/configuration/authorization) levels based on the [authenticated](/developers/weaviate/configuration/authentication) user identity.
 
-If **role-based access control (RBAC)** is enabled, access can be further restricted based on the roles of users. 
-The diagram below illustrates the RBAC model in Weaviate, where access is governed by defining roles and assigning them specific permissions. These permissions determine which actions users can perform on designated resource types. 
+If **role-based access control (RBAC)** is enabled, access can be further restricted based on the roles of users.
+The diagram below illustrates the RBAC model in Weaviate, where access is governed by defining roles and assigning them specific permissions. These permissions determine which actions users can perform on designated resource types.
 
 The main components are:
 
-- **Users**:  
+- **Users**:
   Individual users (e.g., `user-a` and `user-b`) are assigned to specific roles.
 
-- **Roles**:  
+- **Roles**:
   Each role encapsulates a set of permissions. This abstraction lets you manage what actions a group of users can perform.
 
-- **Permissions**:  
+- **Permissions**:
   Permissions are comprised of three parts:
   - **Actions**: Operations like create, read, update, delete, and manage.
   - **Resources**: Specific targets for these actions, such as collections and backups.
