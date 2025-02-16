@@ -160,7 +160,7 @@ Weaviate uses [async replication](#async-replication), [deletion resolution](#de
 :::info Added in `v1.26`
 :::
 
-Async replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same shard. When a collection is partitioned into multiple shards, each shard is replicated across several nodes (as defined by the replication factor `REPLICATION_MINIMUM_FACTOR`). Async replication guarantees that all nodes holding the same shard remain in sync by periodically comparing and propagating data.
+Async replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same data. When each shard is replicated across multiple nodes, async replication guarantees that all nodes holding copies of the same data remain in sync by periodically comparing and propagating data.
 
 It uses a Merkle tree (hash tree) algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
@@ -168,29 +168,38 @@ Repair-on-read works well with one or two isolated repairs. Async replication is
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about all the available async replication settings. 
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about all the available async replication settings.
 
-#### Memory consumption of async replication
+#### Memory and performance considerations for async replication
 
-Async replication uses a hash tree to compare and synchronize data between nodes. The memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows async replication to compare data more precisely.
+:::info Added in `v1.29`
+:::
+
+Async replication uses a hash tree to compare and synchronize data between the database cluster nodes. The memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows async replication to compare data more precisely.
 
 The trade-offs can be summarized like this:
-  - **Higher** `H`: More memory per shard/tenant but potentially more performant comparisons (finer granularity).  
+  - **Higher** `H`: More memory per shard/tenant but potentially more performant comparisons (finer granularity).
   - **Lower** `H`: Less memory usage but coarser data comparisons.
 
+:::tip Memory management for multi-tenancy
+Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 5,000 tenants with a hash tree height of 16 will require an extra ~5GB of memory per node).
+<br/>
+
+To reduce memory consumption, set the hash tree height to a lower value. Keep in mind that this will result in a trade-off in precision of the data comparisons.
+:::
 
 Use the following formulas and examples as a quick reference:
 
 ##### Memory calculation
 
-- **Total number of nodes in the hash tree:**  
-  For a hash tree with height `H`, the total number of nodes is:  
+- **Total number of nodes in the hash tree:**
+  For a hash tree with height `H`, the total number of tree nodes is:
   ```
-  Number of nodes = 2^(H+1) - 1
+  Number of hash tree nodes = 2^(H+1) - 1
   ```
 
-- **Total memory required (per shard/tenant on each node):**  
-  Each node uses approximately **8 bytes** of memory.
+- **Total memory required (per shard/tenant on each node):**
+  Each hash tree node uses approximately **8 bytes** of memory.
   ```
   Memory Required = (2^(H+1) - 1) * 8 bytes
   ```
@@ -198,19 +207,19 @@ Use the following formulas and examples as a quick reference:
 ##### Examples
 
 - Hash tree with height `16`:
-  - `Total Nodes = 2^(16+1) - 1 = 2^17 - 1 = 131072 - 1 = 131071`
-  - `Memory Required ≈ 131071 * 8 bytes ≈ 1,048,568 bytes (~1 MB)`
+  - `Total hash tree nodes = 2^(16+1) - 1 = 2^17 - 1 = 131072 - 1 = 131071`
+  - `Memory required ≈ 131071 * 8 bytes ≈ 1,048,568 bytes (~1 MB)`
 
 - Hash tree with height `6`:
-  - `Total Nodes = 2^(6+1) - 1 = 2^7 - 1 = 128 - 1 = 127`
-  - `Memory Required ≈ 127 * 8 bytes ≈ 1,016 bytes (~1 KB)`
+  - `Total hash tree nodes = 2^(6+1) - 1 = 2^7 - 1 = 128 - 1 = 127`
+  - `Memory required ≈ 127 * 8 bytes ≈ 1,016 bytes (~1 KB)`
 
 ##### Performance Consideration: Number of Leaves
 
-The objects in a shard or tenant are distributed among the leaves of the hash tree. 
+The objects in a shard (e.g. tenant) are distributed among the leaves of the hash tree.
 A larger hash tree allows for more granular and efficient comparisons, which can improve replication performance.
 
-- **Number of Leaves in the hash tree:**  
+- **Number of Leaves in the hash tree:**
   ```
   Number of leaves = 2^H
   ```
@@ -224,7 +233,7 @@ A larger hash tree allows for more granular and efficient comparisons, which can
   - `Number of Leaves = 2^6 = 64`
 
 :::note Default settings
-The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your node’s available resources and performance requirements.
+The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your cluster node’s available resources and performance requirements.
 :::
 
 ### Deletion resolution strategies
