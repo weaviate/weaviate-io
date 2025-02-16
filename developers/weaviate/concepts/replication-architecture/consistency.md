@@ -168,7 +168,7 @@ Repair-on-read works well with one or two isolated repairs. Async replication is
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about all the available async replication settings.
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about the available async replication settings.
 
 #### Memory and performance considerations for async replication
 
