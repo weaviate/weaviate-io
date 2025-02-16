@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.29.0-rc.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.29.0-rc.2
     ports:
     - 8580:8080
     - 50551:50051
@@ -24,9 +24,8 @@ services:
       # AuthN and AuthZ settings
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
       AUTHORIZATION_RBAC_ENABLED: 'true'
-      AUTHORIZATION_ADMIN_USERS: 'user-a'
-      AUTHORIZATION_VIEWER_USERS: 'user-b'
+      AUTHORIZATION_RBAC_ROOT_USERS: 'user-a'
 ...
