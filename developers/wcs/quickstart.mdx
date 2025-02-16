@@ -5,77 +5,135 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This Quickstart guide shows you how to get started with Weaviate Cloud (WCD).
 
-## Create a WCD account
+## Step 1: Set up Weaviate Cloud
 
-1. Go the [WCD homepage](https://console.weaviate.cloud).
-1. Click, "Register here".
+### 1.1 Create a Weaviate Cloud account
 
-![Create an account](./img/wcs-landing-page-register.jpg)
+import Register from '/developers/wcs/img/weaviate-cloud-register.png';
 
-3. Provide an email address and password.
-1. After you confirm your email address, return to the login page.
-1. Log in to the WCD console.
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        <a href="https://console.weaviate.cloud">Open Weaviate Cloud.</a>.
+      </li>
+      <li>
+        Click on <code>Sign up</code>.
+      </li>
+      <li>Provide an email address and password.</li>
+      <li>
+        After you confirm your email address, open the{' '}
+        <a href="https://console.weaviate.cloud">login page</a>.
+      </li>
+      <li>Log in to Weaviate Cloud.</li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={Register} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Fill in the info and register a new Weaviate Cloud account.
+      </div>
+    </div>
+  </div>
+</div>
 
-## Create a Weaviate Cluster
+### 1.2 Create a cluster
 
-When you log into the WCD web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. WCD has short-term, sandbox clusters and permanent, serverless clusters.
+When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. Weaviate Cloud provides **short-term sandboxes** clusters and **permanent serverless clusters**.
 
-To create a cluster, click the 'Create cluster' button on the WCD Dashboard page.
+import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
+import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
+import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-cluster.png';
 
-![Create a cluster](./img/wcs-console-no-clusters.jpg)
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        To <b>create a cluster</b>, click the <code>Create cluster</code> button
+        on the Weaviate Cloud homepage.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateCluster} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Click on this button to create a cluster.
+      </div>
+    </div>
+  </div>
+</div>
 
-Follow the steps to create a cluster:
+Weaviate offers the following cluster options:
 
-- [Sandbox clusters](#sandbox-clusters)
-- [Serverless clusters](#serverless-clusters).
+- **Sandbox clusters**: free short-term cluster for development purposes.
+- **Serverless clusters**: permanent production ready environment.
 
-### Sandbox clusters
+<Tabs groupId="cluster">
+  <TabItem value="sandbox" label="Sandbox">
+    <div class="row">
+      <div class="col col--6">
+        <ol>
+          <li>Select the <code>Sandbox</code> tab.</li>
+          <li>Choose a name for your cluster.</li>
+          <li>Select a cloud region from the dropdown.</li>
+          <li>Click the <code>Create</code> button.</li>
+        </ol>
+      </div>
+      <div class="col col--6">
+        <div class="card">
+          <div class="card__image">
+            <img src={SandboxCluster} alt="Create a cluster" />
+          </div>
+          <div class="card__body">
+            Choose a name and a cloud region to create a cluster.
+          </div>
+        </div>
+      </div>
+    </div>
+  </TabItem>
+  <TabItem value="serverless" label="Serverless">
+    <div class="row">
+      <div class="col col--6">
+        <ol>
+          <li>Select the <code>Serverless</code> tab.</li>
+          <li>Choose a name for your cluster.</li>
+          <li>Select a cloud region from the dropdown.</li>
+          <li>Click the <code>Create</code> button.</li>
+        </ol>
+      </div>
+      <div class="col col--6">
+        <div class="card">
+          <div class="card__image">
+            <img src={ServerlessCluster} alt="Create a cluster" />
+          </div>
+          <div class="card__body">
+            Choose a name and a cloud region to create a cluster.
+          </div>
+        </div>
+      </div>
+    </div>
+  </TabItem>
+</Tabs>
 
-To create a sandbox cluster, follow these steps:
-
-import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
-
-<CreateSandboxCluster />
+It takes a minute or two to create the new cluster. When the cluster is ready, WCD displays a check mark (`✔️`) next to the cluster name.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
-<SandBoxExpiry/>
+<SandBoxExpiry />
 
-### Serverless clusters
-
-Serverless clusters require billing details. WCD prompts you to add billing details if you have not already added them.
-
-To create a serverless cluster, follow these steps:
-
-import CreateServerlessCluster from '/_includes/wcs/create-cluster-managed.mdx'
-
-<CreateServerlessCluster />
-
-## Explore the Details panel
-
-The Details panel lists cluster metrics, authorization details, and other useful information. To access your cluster, you need the cluster URL and authentication details.
-
-To get the cluster URL and authentication details, follow these steps:
-
-1. Click the `Details` button to open the Details panel.
-
-![Details button](./img/wcs-details-icon.jpg)
-
-2. To get the API keys, click the `API keys` button.
-
-![Details expanded](./img/wcs-console-details-api-key.jpg)
-
-3. Copy the API key for the `Admin` user to a safe place.
-
-![API key](./img/wcs-console-api-keys-expanded.jpg)
-
-4. The cluster URL begins with the cluster name. Copy it to a safe place.
-
-![Cluster URL](./img/wcs-details-cluster-url.jpg)
-
-## Install a client library
+## Step 2: Connect to your cluster
+### 2.1 Install a client library
 
 The WCD console includes a query interface, but most most WCD interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Chose one that makes sense for your project.
 
@@ -85,7 +143,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-## Connect to your WCD instance
+### 2.2 Connect to your Weaviate Cloud instance instance
 
 These code samples demonstrate how to connect a Weaviate client to your WCD cluster.
 
@@ -98,11 +156,12 @@ To connect to your cluster, follow these steps for your language:
 
 import WCDClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
 
-<WCDClientIsReady/>
+<WCDClientIsReady />
 
 If you are connected, the server returns `True`.
 
-## Define a collection
+## Step 3: Populate your database
+### 3.1 Define a collection
 
 Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schemas are highly configurable, but some properties cannot be changed after you create the collection. For best results, define a collection schema before you import your data.
 
@@ -112,17 +171,17 @@ To create a schema for the `Question` collection, follow these steps in your cli
 1. Add the collection definition code after the client creation code.
 1. Run the code.
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx';
 
 <CodeAutoschemaMinimumSchema />
 
 The collection has these properties:
 
-  - Collection name: `Question`
-  - Vectorizer module: `text2vec-openai`
-  - Generative module: `generative-openai`
+- Collection name: `Question`
+- Vectorizer module: `text2vec-openai`
+- Generative module: `generative-openai`
 
-## Load data
+### 3.2 Load the data
 
 This example code downloads a small data set and uploads it to your WCD instance. The example assumes your collection [has a schema](#define-a-collection) already defined.
 
@@ -132,23 +191,23 @@ To upload the data, follow these steps in your client code:
 1. Add the batch import code after the client creation code.
 1. Run the code.
 
-import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
+import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx';
 
 <CodeAutoschemaImport />
 
-## Query your data
+## Step 4: Query your data
 
 Weaviate supports a variety of [search methods](/developers/weaviate/search). A `near_text` search vectorizes the search string and returns objects that have vectors that are most similar to it. This example performs a `nearText` search on the `Question` [data collection](#load-data).
 
 To search for objects in the `Question` collection that have vectors that are similar to the vector for `biology`, run this example code:
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx';
 
 <CodeAutoschemaNeartext />
 
 The results are similar to this:
 
-import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx'
+import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx';
 
 <BiologyQuestionsJson />
 
