@@ -149,7 +149,7 @@ Weaviate integrates with ::model provider integrations::
 
 #### Which fields to vectorize
 
-Identify fields that contribute most to semantic understanding. Consider combining multiple fields into a single vector representation. Evaluate the impact of vectorizing structured vs. unstructured data
+Identify fields that contribute most to semantic understanding. Consider combining multiple fields into a single vector embedding. Evaluate the impact of vectorizing structured vs. unstructured data
 
 #### ANN index settings
 

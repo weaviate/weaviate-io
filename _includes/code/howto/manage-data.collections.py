@@ -405,7 +405,7 @@ client.collections.delete("Article")
 
 
 # ======================================================
-# ===== MULTI-VALUE VECTORS (ColBERT, ColPali)
+# ===== MULTI-VECTOR EMBEDDINGS (ColBERT, ColPali)
 # ======================================================
 
 # Clean slate
@@ -423,7 +423,7 @@ client.collections.create(
             source_properties=["text"],
         ),
         # highlight-end
-        # Example 2 - User-provided multi-value vectors
+        # Example 2 - User-provided multi-vectorn representations
         # Must explicitly enable multi-vector support for the HNSW index
         # highlight-start
         Configure.NamedVectors.none(

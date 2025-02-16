@@ -221,12 +221,12 @@ Collection level settings override default values and general configuration para
 </Tabs>
 
 
-## Define multiple named vectors
+## Define named vectors
 
 :::info Added in `v1.24`
 :::
 
-You can define multiple [named vectors](../concepts/data.md#multiple-vectors-named-vectors) per collection. This allows each object to be represented by multiple vectors, each with its own vector index.
+You can define multiple [named vectors](../concepts/data.md#multiple-vector-embeddings-named-vectors) per collection. This allows each object to be represented by multiple vector embeddings, each with its own vector index.
 
 As such, each named vector configuration can include its own vectorizer and vector index settings.
 
@@ -278,16 +278,19 @@ As such, each named vector configuration can include its own vectorizer and vect
 
 </Tabs>
 
-## Define multi-value vectors (e.g. ColBERT, ColPali)
+## Define multi-vector embeddings (e.g. ColBERT, ColPali)
 
-:::caution Experimental feature
-Available starting in `v1.29.0`.
+:::caution Multi-vector embeddings technical preview
+Multi-vector support is added in `v1.29` as a **technical preview**.
 <br/>
 
-The multi-value vector feature is experimental and may change in future versions. Use with caution.
+This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
+<br/>
+
+**We do not recommend using this feature in production environments at this time.**
 :::
 
-Multi-value vectors, also known as tensors, represent a single object with multiple vectors. Multi-value vectors are currently only available for HNSW indexes for named vectors. To use multi-value vectors, enable it for the appropriate named vector.
+Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -864,7 +867,7 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
-Configure replication settings, such as [async replication](../concepts/replication-architecture/consistency.md#async-replication) and [deletion resolution strategy](../concepts/replication-architecture/consistency.md#deletion-resolution-strategies).
+Configure replication settings, such as [async replication](/developers/weaviate/configuration/replication#async-replication-settings) and [deletion resolution strategy](../concepts/replication-architecture/consistency.md#deletion-resolution-strategies).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

@@ -14,7 +14,7 @@ import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
 import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
-Weaviate is a vector database. [Vector databases](/blog/what-is-a-vector-database) store data objects and vectors that represent those objects. The vector representation is also called an "embedding."
+Weaviate is a vector database. [Vector databases](/blog/what-is-a-vector-database) store data objects and vectors that represent those objects. The vector embedding is also called an "embedding."
 
 When you import data, you can pass pre-existing vectors or generate new ones. "Bring your own vectors" means you supply the vector embeddings when you upload your data. The embeddings you provide can be custom vectors or vectors that are pre-generated using a [model provider](/developers/weaviate/model-providers).
 
@@ -115,7 +115,7 @@ import ConnectToWeaviate from '/_includes/code/quickstart/connect.partial.mdx'
 
 ## Collection definition
 
-Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector representation. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the data properties for the collection.
+Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector embedding. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the data properties for the collection.
 
 The data property definitions are called a schema. Vectorizers are defined at the collection level. Additional details, such as the specific model or behavior, are sometimes defined at the property level.
 
@@ -151,7 +151,7 @@ Be careful not to mislabel vectors as properties when you specify the elements o
 
 ## Query
 
-In order to query your stored vectors, Weaviate needs a vector representation of the query.
+In order to query your stored vectors, Weaviate needs a vector embedding of the query.
 
 - If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding.
 - If the collection doesn't specify a vectorizer, provide a query vector when you search.

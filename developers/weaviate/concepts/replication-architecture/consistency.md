@@ -5,13 +5,13 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-Replication factor in Weaviate determines how many copies of shards (also called replicas) will be stored across a Weaviate cluster.
+The replication factor in Weaviate determines how many copies of shards (also called replicas) will be stored across a Weaviate cluster.
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-factor.png" alt="Replication factor" width="80%"/></p>
 
 When the replication factor is > 1, consistency models balance the system's reliability, scalability, and/or performance requirements.
 
-Weaviate uses multiple consistency models. One for its cluster metadata, and another for its data objects.
+Weaviate uses multiple consistency models. One for its cluster metadata and another for its data objects.
 
 ### Consistency models in Weaviate
 
@@ -63,7 +63,7 @@ As a result, data objects in Weaviate are eventually consistent. Eventual consis
 
 Weaviate uses eventual consistency to improve availability. Read and write consistency are tunable, so you can tradeoff between availability and consistency to match your application needs.
 
-*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
+*The animation below is an example of how a write or a read is performed with Weaviate with a replication factor of 3 and 8 nodes. The blue node acts as the coordinator node. The consistency level is set to `QUORUM`, so the coordinator node only waits for two out of three responses before sending the result back to the client.*
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-quorum-animation.gif" alt="Write consistency QUORUM" width="75%"/></p>
 
@@ -75,10 +75,10 @@ Adding or changing data objects are **write** operations.
 Write operations are tunable starting with Weaviate v1.18, to `ONE`, `QUORUM` (default) or `ALL`. In v1.17, write operations are always set to `ALL` (highest consistency).
 :::
 
-The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgements from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
-* **ONE** - a write must receive an acknowledgement from at least one replica node. This is the fastest (most available), but least consistent option.
-* **QUORUM** - a write must receive an acknowledgement from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
-* **ALL** - a write must receive an acknowledgement from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
+The main reason for introducing configurable write consistency in v1.18 is because that is also when automatic repairs are introduced. A write will always be written to n (replication factor) nodes, regardless of the chosen consistency level. The coordinator node however waits for acknowledgments from `ONE`, `QUORUM` or `ALL` nodes before it returns. To guarantee that a write is applied everywhere without the availability of repairs on read requests, write consistency is set to `ALL` for now. Possible settings in v1.18+ are:
+* **ONE** - a write must receive an acknowledgment from at least one replica node. This is the fastest (most available), but least consistent option.
+* **QUORUM** - a write must receive an acknowledgment from at least `QUORUM` replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
+* **ALL** - a write must receive an acknowledgment from all replica nodes. This is the most consistent, but 'slowest' (least available) option.
 
 
 *Figure below: a replicated Weaviate setup with write consistency of ONE. There are 8 nodes in total out of which 3 replicas.*
@@ -160,13 +160,81 @@ Weaviate uses [async replication](#async-replication), [deletion resolution](#de
 :::info Added in `v1.26`
 :::
 
-Async replication runs in the background. It uses a Merkle tree algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
+Async replication is a background synchronization process in Weaviate that ensures eventual consistency across nodes storing the same data. When each shard is replicated across multiple nodes, async replication guarantees that all nodes holding copies of the same data remain in sync by periodically comparing and propagating data.
+
+It uses a Merkle tree (hash tree) algorithm to monitor and compare the state of nodes within a cluster. If the algorithm identifies an inconsistency, it resyncs the data on the inconsistent node.
 
 Repair-on-read works well with one or two isolated repairs. Async replication is effective in situations where there are many inconsistencies. For example, if an offline node misses a series of updates, async replication quickly restores consistency when the node returns to service.
 
 Async replication supplements the repair-on-read mechanism. If a node becomes inconsistent between sync checks, the repair-on-read mechanism catches the problem at read time.
 
-To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings).
+To activate async replication, set `asyncEnabled` to true in the [`replicationConfig` section of your collection definition](../../manage-data/collections.mdx#replication-settings). Visit the [How-to: Replication](/developers/weaviate/configuration/replication#async-replication-settings) page to learn more about the available async replication settings.
+
+#### Memory and performance considerations for async replication
+
+:::info Added in `v1.29`
+:::
+
+Async replication uses a hash tree to compare and synchronize data between the database cluster nodes. The memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows async replication to compare data more precisely.
+
+The trade-offs can be summarized like this:
+  - **Higher** `H`: More memory per shard/tenant but potentially more performant comparisons (finer granularity).
+  - **Lower** `H`: Less memory usage but coarser data comparisons.
+
+:::tip Memory management for multi-tenancy
+Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 5,000 tenants with a hash tree height of 16 will require an extra ~5GB of memory per node).
+<br/>
+
+To reduce memory consumption, set the hash tree height to a lower value. Keep in mind that this will result in a trade-off in precision of the data comparisons.
+:::
+
+Use the following formulas and examples as a quick reference:
+
+##### Memory calculation
+
+- **Total number of nodes in the hash tree:**
+  For a hash tree with height `H`, the total number of tree nodes is:
+  ```
+  Number of hash tree nodes = 2^(H+1) - 1
+  ```
+
+- **Total memory required (per shard/tenant on each node):**
+  Each hash tree node uses approximately **8 bytes** of memory.
+  ```
+  Memory Required = (2^(H+1) - 1) * 8 bytes
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Total hash tree nodes = 2^(16+1) - 1 = 2^17 - 1 = 131072 - 1 = 131071`
+  - `Memory required ≈ 131071 * 8 bytes ≈ 1,048,568 bytes (~1 MB)`
+
+- Hash tree with height `6`:
+  - `Total hash tree nodes = 2^(6+1) - 1 = 2^7 - 1 = 128 - 1 = 127`
+  - `Memory required ≈ 127 * 8 bytes ≈ 1,016 bytes (~1 KB)`
+
+##### Performance Consideration: Number of Leaves
+
+The objects in a shard (e.g. tenant) are distributed among the leaves of the hash tree.
+A larger hash tree allows for more granular and efficient comparisons, which can improve replication performance.
+
+- **Number of Leaves in the hash tree:**
+  ```
+  Number of leaves = 2^H
+  ```
+
+##### Examples
+
+- Hash tree with height `16`:
+  - `Number of Leaves = 2^16 = 65,536`
+
+- Hash tree with height `6`:
+  - `Number of Leaves = 2^6 = 64`
+
+:::note Default settings
+The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your cluster node’s available resources and performance requirements.
+:::
 
 ### Deletion resolution strategies
 

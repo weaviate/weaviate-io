@@ -22,7 +22,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ![Embedding integration illustration](../_includes/integration_openai_embedding.png)
 
-OpenAI's embedding models transform text data into high-dimensional vector representations, capturing meaning and context.
+OpenAI's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with OpenAI's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
