@@ -92,6 +92,38 @@ client.collections.create(
 # Clean up
 client.collections.delete("DemoCollection")
 
+# START RerankerNVIDIABasic
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.nvidia()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END RerankerNVIDIABasic
+
+# Clean up
+client.collections.delete("DemoCollection")
+
+# START RerankerNVIDIACustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.nvidia(
+        model="nvidia/llama-3.2-nv-rerankqa-1b-v2"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END RerankerNVIDIACustomModel
+
+# Clean up
+client.collections.delete("DemoCollection")
+
 # START RerankerVoyageAI
 client.collections.create(
     "DemoCollection",

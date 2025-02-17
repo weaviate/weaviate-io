@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integrations with FriendliAI APIs allow you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use generative AI models on FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli token.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with FriendliAI. Weaviate will perform Retrieval Augmented Generation (RAG) using the specified model and your Friendli token.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the FriendliAI generative model to generate outputs.
 

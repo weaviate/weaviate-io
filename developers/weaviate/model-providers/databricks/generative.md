@@ -20,7 +20,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Databricks' APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Databricks' generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified endpoint and your Databricks token.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Databricks. Weaviate will perform retrieval augmented generation (RAG) using the specified endpoint and your Databricks token.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Databricks generative model to generate outputs.
 

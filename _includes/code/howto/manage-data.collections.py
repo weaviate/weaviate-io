@@ -404,6 +404,49 @@ assert config.generative_config.generative == "generative-cohere"
 client.collections.delete("Article")
 
 
+# ======================================================
+# ===== MULTI-VECTOR EMBEDDINGS (ColBERT, ColPali)
+# ======================================================
+
+# Clean slate
+client.collections.delete("DemoCollection")
+
+# START MultiValueVectorCollection
+from weaviate.classes.config import Configure, Property, DataType
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        # Example 1 - Use a model integration
+        # The factory function will automatically enable multi-vector support for the HNSW index
+        # highlight-start
+        Configure.NamedVectors.text2colbert_jinaai(
+            name="jina_colbert",
+            source_properties=["text"],
+        ),
+        # highlight-end
+        # Example 2 - User-provided multi-vector representations
+        # Must explicitly enable multi-vector support for the HNSW index
+        # highlight-start
+        Configure.NamedVectors.none(
+        # highlight-end
+            name="custom_multi_vector",
+            vector_index_config=Configure.VectorIndex.dynamic(
+                hnsw=Configure.VectorIndex.hnsw(
+                    # highlight-start
+                    multi_vector=Configure.VectorIndex.MultiVector.multi_vector()
+                    # highlight-end
+                )
+            ),
+        ),
+    ],
+    properties=[
+        Property(name="text", data_type=DataType.TEXT)
+    ]
+    # Additional parameters not shown
+)
+# END MultiValueVectorCollection
+
 # ===========================
 # ===== MODULE SETTINGS =====
 # ===========================
