@@ -217,7 +217,7 @@ Use the following formulas and examples as a quick reference:
 ##### Performance Consideration: Number of Leaves
 
 The objects in a shard (e.g. tenant) are distributed among the leaves of the hash tree.
-A larger hash tree means each less data for each leaf to hash, leading to faster comparisons and faster replication.
+A larger hash tree means less data for each leaf to hash, leading to faster comparisons and faster replication.
 
 - **Number of Leaves in the hash tree:**
   ```
