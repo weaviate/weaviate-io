@@ -29,8 +29,8 @@ Before starting this tutorial, ensure you have the following:
 
 - An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally).
 - Your preferred Weaviate client library installed.
-- An API key for Jina AI"
-- A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
+- An API key for Jina AI
+    - A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
 
 :::tip See the Quickstart guide
 For information on how to set up Weaviate and install the client library, see the [cloud](../quickstart/index.md) or [local](../quickstart/local.md) Quickstart guide.
@@ -57,11 +57,13 @@ A multi-vector embedding, on the other hand, represents the same object using a 
 
 The core idea behind this representation is that the meaning of different parts of the text can be captured by different vectors. For example, the first vector might represent the token `"A"`, the second vector might represent the token `"very"`, and so on.
 
-This allows for more nuanced comparisons between objects, and therefore improved retrieval of similar objects.
+![Single vs Multi-vector embedding comparison visualization](./_includes/single_multi_vector_comparison.png "Single vs Multi-vector embedding comparison visualization")
 
-Weaviate `1.29` introduces support for multi-vector embeddings, allowing you to store and search for objects using multi-vector embeddings. Let's see how this works in practice.
+Multi-vector representations allow for more nuanced comparisons between objects, and therefore improved retrieval of similar objects.
 
-This tutorial shows two workflows, one using a [ColBERT model integration](#option-1-colbert-model-integration) (with JinaAI's model) and another with [user-provided embeddings](#option-2-user-provided-embeddings).
+Weaviate `1.29` introduces support for multi-vector embeddings, allowing you to store and search for objects using multi-vector embeddings.
+
+This tutorial will show you how to use multi-vector embeddings in Weaviate, using either a [ColBERT model integration](#option-1-colbert-model-integration) (with JinaAI's model) or [user-provided embeddings](#option-2-user-provided-embeddings).
 
 Jump to the section that interests you, or follow along with both.
 
@@ -110,11 +112,15 @@ This approach often leads to better search results, as it can capture more nuanc
 
 ### When to use multi-vector embeddings
 
-Multi-vector embeddings are particularly useful for search tasks where word order and exact phrase matching are important. This is due to multi-vector embeddings preserving token-level information and enabling late interaction.
+Multi-vector embeddings are particularly useful for search tasks where word order and exact phrase matching are important. This is due to multi-vector embeddings preserving token-level information and enabling late interaction. However, multi-vector embeddings will typically require more resources than single-vector embeddings.
 
-The tradeoff is between search quality and resources. Multi-vector embeddings tend to be larger than single-vector embeddings, requiring more memory for the vector index. Additionally, the search process is more computationally intensive, as each token in the query must be compared to each token in the object.
+Although each vector in a multi-vector embedding is smaller than a single-vector embedding, the total size of the multi-vector embedding typically larger, as each embedding contains many vectors. As an example, single-vector embedding of 1536 dimensions is (1536 * 4 bytes) = 6 kB, while a multi-vector embedding of 64 vectors of 96 dimensions is (64 * 96 * 4 bytes) = 25 kB - over 4 times larger.
+
+Multi-vector embeddings therefore require more memory to store and more compute to search.
 
 The inference time and/or cost for embedding generation may also be higher, as multi-vector embeddings require more compute to generate.
+
+Therefore, multi-vector embeddings are best suited for tasks where the benefits of late interaction are important, and the additional resources required are acceptable.
 
 ## Option 1: ColBERT model integration
 
