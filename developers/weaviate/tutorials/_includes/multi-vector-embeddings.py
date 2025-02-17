@@ -6,7 +6,7 @@ import weaviate
 # START ColBERTCollectionConfig  # START UserEmbeddingCollectionConfig
 from weaviate.classes.config import Configure, Property, DataType
 from weaviate.util import generate_uuid5
-import json
+
 # END ColBERTCollectionConfig  # END UserEmbeddingCollectionConfig
 
 # START ConnectToWeaviate
