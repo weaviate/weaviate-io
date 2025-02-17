@@ -654,10 +654,25 @@
     "team": "delivery"
   },
   {
+    "name": "Scott Askinosie",
+    "title": "Technical Trainer",
+    "photo": "Scott-Askinosie.jpg",
+    "team": "developer-relations",
+    "linkedin": "scott-askinosie",
+    "twitter": "scottaskinosie"
+  },
+  {
     "name": "Sebastian Neira Farriol",
     "title": "Client-Focused SRE",
     "photo": "Sebastian-Farriol.jpg",
     "team": "delivery"
+  },
+  {
+    "name": "Sean Forde",
+    "title": "Business Development Representative",
+    "photo": "Sean-Forde.jpg",
+    "team": "sales",
+    "linkedin": "seanf0rde"
   },
   {
     "name": "Sean Romberg",
