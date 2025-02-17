@@ -182,7 +182,7 @@ The trade-offs can be summarized like this:
   - **Lower** `H`: Lower memory usage, slower replication.
 
 :::tip Memory management for multi-tenancy
-Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 1,000 tenants with a hash tree height of 16 will require an extra ~1GB of memory per node, while a height of 20 will require ~17GB per node).
+Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 1,000 tenants with a hash tree height of 16 will require an extra ~2 GB of memory per node, while a height of 20 will require ~34 GB per node).
 <br/>
 
 To reduce memory consumption, reduce the hash tree height. Keep in mind that this will result in slower hashing and potentially slower replication.
@@ -199,20 +199,20 @@ Use the following formulas and examples as a quick reference:
   ```
 
 - **Total memory required (per shard/tenant on each node):**
-  Each hash tree node uses approximately **8 bytes** of memory.
+  Each hash tree node uses approximately **16 bytes** of memory.
   ```
-  Memory Required ≈ 2^(H+1) * 8 bytes
+  Memory Required ≈ 2^(H+1) * 16 bytes
   ```
 
 ##### Examples
 
 - Hash tree with height `16`:
   - `Total hash tree nodes ≈ 2^(16+1) = 131,072`
-  - `Memory required ≈ 131072 * 8 bytes ≈ 1,048,576 bytes (~1 MB)`
+  - `Memory required ≈ 131072 * 16 bytes ≈ 2,097,152 bytes (~2 MB)`
 
 - Hash tree with height `20`:
   - `Total hash tree nodes ≈ 2^(20+1) = 2,097,152`
-  - `Memory required ≈ 2,097,152 * 8 bytes ≈ 16,777,216 bytes (~17 MB)`
+  - `Memory required ≈ 2,097,152 * 16 bytes ≈ 33,554,432 bytes (~33 MB)`
 
 ##### Performance Consideration: Number of Leaves
 
