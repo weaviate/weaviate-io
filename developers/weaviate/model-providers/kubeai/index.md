@@ -13,11 +13,11 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with KubeAI
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_kubeai_embedding.png)
 
-KubeAI's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+KubeAI's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with KubeAI's embedding endpoint](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

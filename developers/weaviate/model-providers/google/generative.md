@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a Google generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Google. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google generative model to generate outputs.
 

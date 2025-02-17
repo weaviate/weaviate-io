@@ -140,7 +140,7 @@ Once the container is running and exposed, you can send REST requests to it dire
 curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}'
 ```
 
-If the container is running and configured correctly, you should receive a response with the vector representation of the input text.
+If the container is running and configured correctly, you should receive a response with the vector embedding of the input text.
 
 ### External resources
 

@@ -13,15 +13,16 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with Cohere
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
-Cohere's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+Cohere's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with Cohere's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
 [Cohere embedding integration page](./embeddings.md)
+[Cohere multimodal embedding integration page](./embeddings-multimodal.md)
 
 ### Generative AI models for RAG
 

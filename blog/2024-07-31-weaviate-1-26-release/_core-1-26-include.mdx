@@ -71,9 +71,9 @@ When `ENABLE_API_BASED_MODULES` is `true`, the GraphQL [`Explore`](/developers/w
 
 ## Multi target vector search
 
-Weaviate 1.24 introduces objects with multiple vectors. Each vector may come from a different vectorizer, or be derived using different source properties. This release introduces multi target vector search. Starting in 1.26, you can make a single query that combines results from across multiple target vectors.
+Weaviate 1.24 introduced objects with multiple vector embeddings. Each vector may come from a different vectorizer, or be derived using different source properties. This release introduces multi target vector search. Starting in 1.26, you can make a single query that combines results from across multiple target vectors.
 
-When you search multiple vectors, add a list of target vectors to the query instead of a single, named vector. Weaviate automatically combines the results from all of the target search vectors. The mechanism is conceptually similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
+When you perform a multi-target vector search, add a list of target vectors to the query instead of a single, named vector. Weaviate automatically combines the results from all of the target search vectors. The mechanism is conceptually similar to the [hybrid fusion](/blog/hybrid-search-fusion-algorithms) algorithm in [hybrid search](/developers/weaviate/search/hybrid).
 
 This allows you to tune your multi vector search to balance the target vectors in a way that reflects your application needs.
 

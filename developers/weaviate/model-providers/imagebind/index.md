@@ -15,11 +15,11 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Weaviate integrates with the ImageBind model by spinning it up in a container. This allows users to host their own model and use them with Weaviate.
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_imagebind_embedding.png)
 
-The ImageBind embedding model transforms multi-modal data into high-dimensional vector representations, capturing semantic meaning and context.
+The ImageBind embedding model transforms multi-modal data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with ImageBind's embedding models](./embeddings-multimodal.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

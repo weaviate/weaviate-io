@@ -12,7 +12,7 @@ import { courseData } from '/src/components/Academy/courseData.js'
 
 Sometimes, you might wish to provide multiple ways to represent the same data. For example, you might want to represent an article using its body, its title, or both.
 
-Named vectors enable this capability. With named vectors, you can store multiple vectors per one object, then search for the object using any of the vector spaces. This provides a great deal of flexibility in how you can represent and search for your data.
+Named vectors enable this capability. With named vectors, you can store multiple vector embeddings per one object, then search for the object using any of the vector spaces. This provides a great deal of flexibility in how you can represent and search for your data.
 
 This course will teach you how to use named vectors through the lens of multimodality. It will show you how to use named vectors to represent and search for movies, using their text properties such as the title or the summary, or their visual properties such as the poster.
 

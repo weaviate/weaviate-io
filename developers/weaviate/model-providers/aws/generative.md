@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a AWS generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your AWS API credentials.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with AWS. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your AWS API credentials.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the AWS generative model to generate outputs.
 

@@ -19,11 +19,11 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with Weaviate Embeddings
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_wes_embedding.png)
 
-Weaviate Embeddings' embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+Weaviate Embeddings' models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate Cloud integrates with Weaviate Embeddings' embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

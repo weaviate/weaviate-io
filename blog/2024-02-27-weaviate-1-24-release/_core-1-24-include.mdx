@@ -4,7 +4,7 @@ Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.24](./img/hero.png)
 
-- [**Named vectors.**](/blog/weaviate-1-24-release#named-vectors) A single object can have multiple vectors. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+- [**Named vectors.**](/blog/weaviate-1-24-release#named-vectors) A single object can have more than one vector embeddings. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 - [**HNSW and binary quantization (BQ)**](/blog/weaviate-1-24-release#hnsw-and-binary-quantization) HNSW indexes and BQ combine for serious compression and blazing speed.
 - [**Simplified Docker configuration.**](/blog/weaviate-1-24-release#simplified-docker-configuration) A new Docker image that needs no configuration.
 - [**Backend improvements.**](/blog/weaviate-1-24-release#backend-improvements) Numerous improvements to make updates, imports, and deletions faster.
@@ -16,13 +16,13 @@ Here are the release ⭐️*highlights*⭐️!
 
 Named vectors make your collections richer and more versatile.
 
-Starting in 1.24, collections can have multiple named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+Starting in 1.24, an object can have more than one vector embedding. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
 In earlier versions, objects in your collections are limited to one vector. Now, you can vectorize meta data like titles and descriptions so that it is available for vector search. You can group things that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata. A single object in a collection can have multiple named vectors.
 
-You don't have to use multiple vectors in your collections, but if you do, adjust your queries to specify which vector you want to use.
+You don't have to use named vectors in your collections, but if you do, adjust your queries to specify which vector you want to use.
 
-For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/multi-vector).
+For details, see [Multiple vector embeddings](/developers/weaviate/config-refs/schema/multi-vector).
 
 ## HNSW and binary quantization
 
