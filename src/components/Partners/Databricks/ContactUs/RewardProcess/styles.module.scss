@@ -1,0 +1,258 @@
+.title {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 30rem;
+  height: 25rem;
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .cardHeaderLeft {
+    margin: auto;
+  }
+
+  .cardHeaderRight {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  }
+
+  .iconHeader {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .cardTextColor {
+    color: #02fe0c;
+    height: 5rem;
+
+    @media screen and (max-width: 600px) {
+      margin-left: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 1.3rem;
+  }
+}
+
+.contentDiv {
+  height: 100%;
+  margin-top: 0.5rem;
+}
+
+.textCardContent {
+  line-height: 1.6rem;
+  font-size: 17px;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 0;
+
+  .cardFooterDiv {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    p {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 1rem 0 0 0;
+  }
+}
+
+.img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // background-color: red;
+}
+
+.startImg {
+  background-image: url('../../../../../static/img/company/careers/star-dark.png');
+  width: 2rem;
+  height: 2rem;
+
+  margin-right: 0.5rem;
+}
+
+.clockSmallImg {
+  background-image: url('../../../../../static/img/company/careers/clock-small-dark.png');
+  width: 2rem;
+  height: 2rem;
+
+  margin-right: 0.5rem;
+}
+
+.chatImg {
+  background-image: url('../../../../../static/img/company/careers/chat-dark.png');
+  width: 5rem;
+  height: 5rem;
+
+  @media screen and (max-width: 600px) {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.facesImg {
+  background-image: url('../../../../../static/img/company/careers/faces-dark.png');
+  width: 5rem;
+  height: 5rem;
+}
+
+.checkImg {
+  background-image: url('../../../../../static/img/company/careers/check-dark.png');
+  width: 5rem;
+  height: 5rem;
+}
+
+.heartImg {
+  background-image: url('../../../../../static/img/company/careers/heart-dark.png');
+  width: 5rem;
+  height: 5rem;
+}
+
+[data-theme='light'] {
+  .title {
+    p {
+      color: #1c1468;
+    }
+
+    h2 {
+      color: #1c1468;
+    }
+  }
+
+  .card {
+    background-color: #fff;
+  }
+
+  .cardTextColor {
+    color: #00c342;
+
+    h3 {
+      color: rgba(46, 49, 143);
+    }
+  }
+
+  .startImg {
+    background-image: url('../../../../../static/img/company/careers/star-light.png');
+  }
+
+  .clockSmallImg {
+    background-image: url('../../../../../static/img/company/careers/clock-small-light.png');
+  }
+
+  .chatImg {
+    background-image: url('../../../../../static/img/company/careers/chat-light.png');
+  }
+
+  .facesImg {
+    background-image: url('../../../../../static/img/company/careers/faces-light.png');
+  }
+
+  .checkImg {
+    background-image: url('../../../../../static/img/company/careers/check-light.png');
+  }
+
+  .heartImg {
+    background-image: url('../../../../../static/img/company/careers/heart-light.png');
+  }
+}
+
+.buttons {
+  margin: 4rem 0rem 0rem;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    border: 1px solid #130c49;
+    color: #130c49;
+    transition: all 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+  }
+}
