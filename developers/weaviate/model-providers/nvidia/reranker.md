@@ -21,7 +21,7 @@ import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
 Weaviate's integration with NVIDIA's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-the-reranker) to use a NVIDIA reranker model, and Weaviate will use the specified model and your NVIDIA NIM API key to rerank search results.
+[Configure a Weaviate collection](#configure-the-reranker) to use an NVIDIA reranker model, and Weaviate will use the specified model and your NVIDIA NIM API key to rerank search results.
 
 This two-step process involves Weaviate first performing a search and then reranking the results using the specified model.
 
@@ -85,7 +85,7 @@ import MutableRerankerConfig from '/_includes/mutable-reranker-config.md';
 
 <MutableRerankerConfig />
 
-Configure a Weaviate collection to use a NVIDIA reranker model as follows:
+Configure a Weaviate collection to use an NVIDIA reranker model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

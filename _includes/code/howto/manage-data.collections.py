@@ -412,6 +412,8 @@ client.collections.delete("Article")
 client.collections.delete("DemoCollection")
 
 # START MultiValueVectorCollection
+from weaviate.classes.config import Configure, Property, DataType
+
 client.collections.create(
     "DemoCollection",
     vectorizer_config=[
@@ -423,7 +425,7 @@ client.collections.create(
             source_properties=["text"],
         ),
         # highlight-end
-        # Example 2 - User-provided multi-vectorn representations
+        # Example 2 - User-provided multi-vector representations
         # Must explicitly enable multi-vector support for the HNSW index
         # highlight-start
         Configure.NamedVectors.none(
