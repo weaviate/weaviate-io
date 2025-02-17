@@ -18,7 +18,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with OpenAI
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_openai_embedding.png)
 

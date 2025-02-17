@@ -19,7 +19,7 @@ Amazon SageMaker is a fully managed service where you can build, train and deplo
 
 ## Integrations with AWS
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_aws_embedding.png)
 

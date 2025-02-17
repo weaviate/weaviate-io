@@ -15,7 +15,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Weaviate integrates with compatible Ollama models by accessing the locally hosted Ollama API.
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_ollama_embedding.png)
 

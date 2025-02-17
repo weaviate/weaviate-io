@@ -20,7 +20,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with OctoAI
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_octoai_embedding.png)
 

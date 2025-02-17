@@ -15,7 +15,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Weaviate integrates with compatible Hugging Face Transformers models by spinning them up in containers. This allows users to host their own models and use them with Weaviate.
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_transformers_embedding.png)
 

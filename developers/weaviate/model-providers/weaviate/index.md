@@ -19,7 +19,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 ## Integrations with Weaviate Embeddings
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_wes_embedding.png)
 

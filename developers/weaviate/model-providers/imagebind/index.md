@@ -15,7 +15,7 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Weaviate integrates with the ImageBind model by spinning it up in a container. This allows users to host their own model and use them with Weaviate.
 
-### Embedding models for AI search
+### Embedding models for vector search
 
 ![Embedding integration illustration](../_includes/integration_imagebind_embedding.png)
 
