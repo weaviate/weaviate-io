@@ -83,6 +83,10 @@ In this scenario, all new data added to Weaviate will use BlockMax WAND for BM25
 
 In this scenario, all new data added since enabling BlockMax WAND will use the new search algorithm. However, the `"OldMovies"` collection will continue to use the default WAND algorithm.
 
+:::note Scoring changes with BlockMax WAND
+Due to the nature of the BlockMax WAND algorithm, the scoring of BM25 and hybrid searches may differ slightly from the default WAND algorithm. Additionally BlockMax WAND scores on single and multiple property search may be different due to different IDF and property length normalization calculations. This is expected behavior and is not a bug.
+:::
+
 ### Configure the inverted index
 
 There are three inverted index types in Weaviate:
