@@ -1287,7 +1287,7 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START FullVectorizerWeaviate
+// START SnowflakeArcticEmbedMV15
 await client.collections.create({
   name: 'DemoCollection',
   properties: [
@@ -1301,8 +1301,8 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecWeaviate({
         name: 'title_vector',
         sourceProperties: ['title'],
+        model: 'Snowflake/snowflake-arctic-embed-m-v1.5',
         // // Further options
-        // model: 'arctic-embed-m-v1.5',
         // dimensions: 256,
         // baseUrl: '<custom_weaviate_embeddings_url>',
       },
@@ -1311,7 +1311,36 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END FullVectorizerWeaviate
+// END SnowflakeArcticEmbedMV15
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START SnowflakeArcticEmbedLV20
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        model: 'Snowflake/snowflake-arctic-embed-l-v2.0',
+        // // Further options
+        // dimensions: 256,
+        // baseUrl: '<custom_weaviate_embeddings_url>',
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END SnowflakeArcticEmbedLV20
 
 // Clean up
 await client.collections.delete('DemoCollection');

@@ -1065,7 +1065,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_weaviate(
             name="title_vector",
             source_properties=["title"],
-            model="arctic-embed-m-v1.5"
+            model="Snowflake/snowflake-arctic-embed-m-v1.5"
         )
     ],
     # highlight-end
@@ -1076,7 +1076,7 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
-# START FullVectorizerWeaviate
+# START SnowflakeArcticEmbedMV15
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -1086,8 +1086,8 @@ client.collections.create(
         Configure.NamedVectors.text2vec_weaviate(
             name="title_vector",
             source_properties=["title"],
+            model="Snowflake/snowflake-arctic-embed-m-v1.5",
             # Further options
-            # model="arctic-embed-m-v1.5",
             # dimensions=256
             # base_url="<custom_weaviate_embeddings_url>",
         )
@@ -1095,7 +1095,31 @@ client.collections.create(
     # highlight-end
     # Additional parameters not shown
 )
-# END FullVectorizerWeaviate
+# END SnowflakeArcticEmbedMV15
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START SnowflakeArcticEmbedLV20
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_weaviate(
+            name="title_vector",
+            source_properties=["title"],
+            model="Snowflake/snowflake-arctic-embed-l-v2.0",
+            # Further options
+            # dimensions=256
+            # base_url="<custom_weaviate_embeddings_url>",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END SnowflakeArcticEmbedLV20
 
 # clean up
 client.collections.delete("DemoCollection")
@@ -1373,18 +1397,24 @@ collection = client.collections.get("DemoCollection")
 
 with collection.batch.dynamic() as batch:
     for src_obj in source_objects:
-        weaviate_obj = {
-            "title": src_obj["title"],
-            "description": src_obj["description"],
-        }
-
         # highlight-start
         # The model provider integration will automatically vectorize the object
         batch.add_object(
-            properties=weaviate_obj,
+            properties={
+                "title": src_obj["title"],
+                "description": src_obj["description"],
+            },
             # vector=vector  # Optionally provide a pre-obtained vector
         )
         # highlight-end
+        if batch.number_errors > 10:
+            print("Batch import stopped due to excessive errors.")
+            break
+
+failed_objects = collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
 # END BatchImportExample
 
 # START NearImageExample

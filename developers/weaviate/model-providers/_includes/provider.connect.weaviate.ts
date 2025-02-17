@@ -1,13 +1,14 @@
 // START WeaviateInstantiation
 import weaviate from 'weaviate-client'
 
-// END WeaviateInstantiation
+// Best practice: store your credentials in environment variables
+const wcdUrl = process.env.WEAVIATE_URL as string;        // Weaviate URL: "REST Endpoint" in Weaviate Cloud console
+const wcdApiKey = process.env.WEAVIATE_API_KEY as string; // Weaviate API key: "ADMIN" API key in Weaviate Cloud console
 
-// START WeaviateInstantiation
 const client = await weaviate.connectToWeaviateCloud(
-  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
+  wcdUrl,  
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),
+    authCredentials: new weaviate.ApiKey(wcdApiKey),  
   }
 )
 
