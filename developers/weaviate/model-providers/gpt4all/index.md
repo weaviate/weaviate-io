@@ -15,11 +15,11 @@ These integrations empower developers to build sophisticated AI-driven applicati
 
 Weaviate integrates with compatible GPT4All models by accessing the locally hosted GPT4All API.
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_gpt4all_embedding.png)
 
-GPT4All's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+GPT4All's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with GPT4All's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 

@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an Mistral generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Mistral API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with Mistral. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Mistral API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Mistral generative model to generate outputs.
 

@@ -165,7 +165,7 @@ For example:
   </TabItem>
 </Tabs>
 
-## Multiple vectors (named vectors)
+## Multiple vector embeddings (named vectors)
 
 import MultiVectorCompress from '/_includes/multi-vector-compress.mdx';
 

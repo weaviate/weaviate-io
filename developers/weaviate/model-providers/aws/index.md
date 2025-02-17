@@ -19,11 +19,11 @@ Amazon SageMaker is a fully managed service where you can build, train and deplo
 
 ## Integrations with AWS
 
-### Embedding models for semantic search
+### Embedding models for AI search
 
 ![Embedding integration illustration](../_includes/integration_aws_embedding.png)
 
-AWS's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
+AWS's embedding models transform text data into vector embeddings, capturing meaning and context.
 
 [Weaviate integrates with AWS's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
