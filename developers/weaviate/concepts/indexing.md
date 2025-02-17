@@ -53,7 +53,35 @@ BlockMax WAND algorithm is available in `v1.29` as a **technical preview**. This
 
 The BlockMax WAND algorithm is a variant of the WAND algorithm that is used to speed up BM25 and hybrid searches ([academic paper](http://engineering.nyu.edu/~suel/papers/bmw.pdf)). It organizes the inverted index in blocks to enable skipping over blocks that are not relevant to the query. This can significantly reduce the number of documents that need to be scored, improving search performance.
 
-BlockMax WAND can be enabled in Weaviate by setting the [environment variables](../config-refs/env-vars.md#general) `USE_BLOCKMAX_WAND` and `USE_INVERTED_SEARCHABLE` to `true`. This will enable the indexing and searching of inverted indexes using the BlockMax WAND algorithm. Once enabled, all BM25 and hybrid searches will use BlockMax WAND algorithm for searches, potentially improving search performance.
+If you are experiencing slow BM25 (or hybrid) searches, try enabling BlockMax WAND to see if it improves performance.
+
+**To use BlockMax WAND in Weaviate `v1.29`, it must be enabled prior to collection creation.** As of this version, Weaviate will not migrate existing collections to use BlockMax WAND.
+
+Enable BlockMax WAND by setting the [environment variables](../config-refs/env-vars.md#general) `USE_BLOCKMAX_WAND` and `USE_INVERTED_SEARCHABLE` to `true`.
+
+Once enabled, all BM25 and hybrid searches will use BlockMax WAND algorithm for searches, potentially improving search performance.
+
+Even if BlockMax WAND is enabled, any existing collections will continue to use the default (pre-BlockMax WAND) disk structure and search algorithm. To take advantage of BlockMax WAND, you must create new collections after enabling the feature.
+
+Future versions of Weaviate may enable an ability to migrate existing collections to use BlockMax WAND, and potentially make it the default search algorithm.
+
+#### Example - Scenario 1
+
+1. Set `USE_BLOCKMAX_WAND` and `USE_INVERTED_SEARCHABLE` to `true` in the environment variables.
+1. Start Weaviate for the first time.
+1. Ingest data & use Weaviate as usual.
+
+In this scenario, all new data added to Weaviate will use BlockMax WAND for BM25 and hybrid searches.
+
+#### Example - Scenario 2
+
+1. Run Weaviate without BlockMax WAND enabled.
+1. Add data to collection `"OldMovies"`.
+1. Enable BlockMax WAND by setting the environment variables.
+1. Restart Weaviate.
+1. Create a new collection `"NewMovies"`.
+
+In this scenario, all new data added since enabling BlockMax WAND will use the new search algorithm. However, the `"OldMovies"` collection will continue to use the default WAND algorithm.
 
 ### Configure the inverted index
 
