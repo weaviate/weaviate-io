@@ -132,6 +132,8 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry />
 
+<hr/>
+
 ## Step 2: Connect to your cluster
 ### 2.1 Install a client library
 
@@ -143,73 +145,263 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 2.2 Connect to your Weaviate Cloud instance instance
+### 2.2 Connect to your Weaviate Cloud instancess 
 
-These code samples demonstrate how to connect a Weaviate client to your WCD cluster.
+Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
 
-To connect to your cluster, follow these steps for your language:
+import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
 
-1. Copy the sample client code to a file.
-1. Find your WCD cluster URL and API key in the WCD Console.
-1. Create environment variables, or edit the sample code, to pass the URL and API keys to your client.
-1. Run the client code.
+import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
 
-import WCDClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
+<div class="row">
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL"/>
+        </div>
+        <div class="card__body">
+          Grab the <code>REST Endpoint</code> URL.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col--6">
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterAdminKey} alt="Get the admin API key"/>
+        </div>
+        <div class="card__body">
+          Grab the <code>Admin</code> API key.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<WCDClientIsReady />
+<br/>
 
-If you are connected, the server returns `True`.
+:::info REST vs gRPC endpoints
+Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
+:::
+
+Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
+
+The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
+
+import ConnectIsReady from '/_includes/code/quickstart/quickstart.is_ready.mdx'
+
+<ConnectIsReady />
+
+If you did not see any errors, you are ready to proceed. We will replace the simple cluster status check with more meaningful operations in the next steps.
+
+<hr/>
 
 ## Step 3: Populate your database
 ### 3.1 Define a collection
 
-Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schemas are highly configurable, but some properties cannot be changed after you create the collection. For best results, define a collection schema before you import your data.
+The following example creates a *collection* called `Question` with:
+  - Cohere [embedding model integration](../model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
+  - Cohere [generative AI integrations](../model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
-To create a schema for the `Question` collection, follow these steps in your client code:
+import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
-1. Create a [client connection](#connect-to-your-wcs-instance).
-1. Add the collection definition code after the client creation code.
-1. Run the code.
+<CreateCollection />
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx';
+Run this code to create the collection to which you can add data.
 
-<CodeAutoschemaMinimumSchema />
+:::info What models are being used?
+You can optionally specify the model in the collection definition. As we did not specify models in the collection definition above, these integrations will use the Weaviate-defined default models.
+<br/>
 
-The collection has these properties:
-
-- Collection name: `Question`
-- Vectorizer module: `text2vec-openai`
-- Generative module: `generative-openai`
+See the [model providers integration](../model-providers/index.md) section for more information.
+:::
 
 ### 3.2 Load the data
 
-This example code downloads a small data set and uploads it to your WCD instance. The example assumes your collection [has a schema](#define-a-collection) already defined.
+We can now add data to our collection.
 
-To upload the data, follow these steps in your client code:
+The following example:
+- Loads objects, and
+- Adds objects to the target collection (`Question`) using a batch process.
 
-1. Create a [client connection](#connect-to-your-wcs-instance).
-1. Add the batch import code after the client creation code.
-1. Run the code.
+:::tip Batch imports
+([Batch imports](../manage-data/import.mdx)) are the most efficient way to add large amounts of data, as it sends multiple objects in a single request. See the [How-to: Batch import](../manage-data/import.mdx) guide for more information.
+:::
 
-import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx';
+import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.mdx'
 
-<CodeAutoschemaImport />
+<ImportObjects />
+
+Run this code to add the demo data.
+
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
+:::
+
+<hr/>
 
 ## Step 4: Query your data
 
-Weaviate supports a variety of [search methods](/developers/weaviate/search). A `near_text` search vectorizes the search string and returns objects that have vectors that are most similar to it. This example performs a `nearText` search on the `Question` [data collection](#load-data).
+Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
-To search for objects in the `Question` collection that have vectors that are similar to the vector for `biology`, run this example code:
+### 3.1 Semantic search
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx';
+Semantic search finds results based on meaning. This is called `nearText` in Weaviate.
 
-<CodeAutoschemaNeartext />
+The following example searches for 2 objects whose meaning is most similar to that of `biology`.
 
-The results are similar to this:
+import QueryNearText from '/_includes/code/quickstart/quickstart.query.neartext.mdx'
 
-import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx';
+<QueryNearText />
 
-<BiologyQuestionsJson />
+Run this code to perform the query. Our query found entries for `DNA` and `species`.
+
+<details>
+  <summary>Example full response in JSON format</summary>
+
+```json
+{
+  {
+    "answer": "DNA",
+    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance",
+    "category": "SCIENCE"
+  },
+  {
+    "answer": "species",
+    "question": "2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification",
+    "category": "SCIENCE"
+  }
+}
+```
+
+</details>
+
+If you inspect the full response, you will see that the word `biology` does not appear anywhere.
+
+Even so, Weaviate was able to return biology-related entries. This is made possible by *vector embeddings* that capture meaning. Under the hood, semantic search is powered by vectors, or vector embeddings.
+
+Here is a diagram showing the workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    Query["🔍 Search:\n'biology'"]
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Results"]
+        R1["Most similar\ndocuments"]
+    end
+
+    Query --> VS1
+    VS3 --> R1
+
+    %% Style nodes with white background and darker borders
+    style Query fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
+
+:::info Where did the vectors come from?
+Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+
+As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
+:::
+
+:::tip More search types available
+
+Weaviate is capable of many types of searches. See, for example, our how-to guides on [similarity searches](../search/similarity.md), [keyword searches](../search/bm25.md), [hybrid searches](../search/hybrid.md), and [filtered searches](../search/filters.md).
+
+:::
+
+### 3.2 Retrieval augmented generation
+
+Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
+
+RAG works by prompting a large language model (LLM) with a combination of a *user query* and *data retrieved from a database*.
+
+This diagram shows the RAG workflow in Weaviate.
+
+```mermaid
+flowchart LR
+    subgraph sg0 ["Weaviate Query"]
+        direction TB
+        Search["🔍 Search: \n'biology'"]
+        Prompt["✍️ Prompt: \n'Write a\ntweet...'"]
+    end
+
+    subgraph sg1 ["Vector Search"]
+        direction LR
+        VS1["Convert query\nto vector"] --> VS2["Find similar\nvectors"]
+        VS2 --> VS3["Return top\nmatches"]
+    end
+
+    subgraph sg2 ["Generation"]
+        direction LR
+        G1["Send\n(results + prompt)\nto LLM"]
+        G1 --> G2["Generate\nresponse"]
+    end
+
+    subgraph sg3 ["Results"]
+        direction TB
+        R1["Most similar\ndocuments"]
+        R2["Generated\ncontent"]
+    end
+
+    Search --> VS1
+    VS3 --> R1
+    Prompt --> G1
+    VS3 --> G1
+    G2 --> R2
+
+    %% Style nodes with white background and darker borders
+    style Search fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style Prompt fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style VS3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style G2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style R2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+
+    %% Style subgraphs with brand colors
+    style sg0 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+    style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
+    style sg2 fill:#ffffff,stroke:#7AD6EB,stroke-width:2px,color:#130C49
+    style sg3 fill:#ffffff,stroke:#130C49,stroke-width:2px,color:#130C49
+```
+
+The following example combines the same search (for `biology`) with a prompt to generate a tweet.
+
+import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
+
+<QueryRAG />
+
+Run this code to perform the query. Here is one possible response (your response will likely be different).
+
+```text
+🧬 In 1953 Watson & Crick built a model of the molecular structure of DNA, the gene-carrying substance! 🧬🔬
+
+🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
+```
+
+The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
+
+The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
+
+<hr/>
 
 ## Next steps
 
