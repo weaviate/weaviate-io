@@ -90,8 +90,8 @@ authorization:
     # Provide pre-configured roles to users
     # This assumes that the relevant user has been authenticated and identified
     #
-    # You MUST define at least one admin user
-    admins:
+    # You MUST define at least one root user
+    root_users:
     - user-a
 ```
 
