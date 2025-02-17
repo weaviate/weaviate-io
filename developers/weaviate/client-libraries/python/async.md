@@ -27,7 +27,7 @@ The async client is already included in the `weaviate-client` package. Follow th
 
 ## Instantiation
 
-An async client `WeaviateAsyncClient` object can be instantiated [using a helper function](#instantiation-helper-functions), or by [explicitly creating an instance of the class](#direct-instantiation).
+An async client `WeaviateAsyncClient` object can be instantiated [using a helper function](#instantiation-helper-functions), or by [explicitly creating an instance of the class](#explicit-instantiation).
 
 ### Instantiation helper functions
 
