@@ -121,7 +121,7 @@ For more information on authentication and authorization, see the [Authenticatio
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `ASYNC_REPLICATION_DISABLED` | Disable async replication. Default: `false` | `boolean` | `false` |
-| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hash tree used for data comparison between nodes. If the height is `0` each node will store just one digest per shard. Default: `16`, Min: `0`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hash tree used for data comparison between nodes. If the height is `0` each node will store just one digest per shard. Default: `16`, Min: `0`, Max: `20`<br/> [Read more about potentially increased memory consumption.](/developers/weaviate/concepts/replication-architecture/consistency#memory-and-performance-considerations-for-async-replication) | `string - number` | `10` |
 | `ASYNC_REPLICATION_FREQUENCY` |  Frequency of periodic data comparison between nodes in seconds. Default: `30` | `string - number` | `60` |
 | `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
 | `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `5` | `string - number` | `20` |
