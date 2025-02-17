@@ -175,17 +175,17 @@ To activate async replication, set `asyncEnabled` to true in the [`replicationCo
 :::info Added in `v1.29`
 :::
 
-Async replication uses a hash tree to compare and synchronize data between the database cluster nodes. The memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows async replication to compare data more precisely.
+Async replication uses a hash tree to compare and synchronize data between the database cluster nodes, based on objects' latest update time. The additional memory required for this process is determined by the height of the hash tree (`H`). A higher hash tree uses more memory but allows faster hashing, reducing the time required to detect and repair inconsistencies.
 
 The trade-offs can be summarized like this:
-  - **Higher** `H`: More memory per shard/tenant but potentially more performant comparisons (finer granularity).
-  - **Lower** `H`: Less memory usage but coarser data comparisons.
+  - **Higher** `H`: Higher memory usage, faster replication.
+  - **Lower** `H`: Lower memory usage, slower replication.
 
 :::tip Memory management for multi-tenancy
-Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 5,000 tenants with a hash tree height of 16 will require an extra ~5GB of memory per node).
+Each tenant is backed by a shard. Therefore, when there is a high number of tenants, the memory consumption of async replication can be significant. (e.g. 1,000 tenants with a hash tree height of 16 will require an extra ~1GB of memory per node, while a height of 20 will require ~17GB per node).
 <br/>
 
-To reduce memory consumption, set the hash tree height to a lower value. Keep in mind that this will result in a trade-off in precision of the data comparisons.
+To reduce memory consumption, reduce the hash tree height. Keep in mind that this will result in slower hashing and potentially slower replication.
 :::
 
 Use the following formulas and examples as a quick reference:
@@ -193,31 +193,31 @@ Use the following formulas and examples as a quick reference:
 ##### Memory calculation
 
 - **Total number of nodes in the hash tree:**
-  For a hash tree with height `H`, the total number of tree nodes is:
+  For a hash tree with height `H`, the total number of nodes is:
   ```
-  Number of hash tree nodes = 2^(H+1) - 1
+  Number of hash tree nodes = 2^(H+1) - 1 ≈ 2^(H+1)
   ```
 
 - **Total memory required (per shard/tenant on each node):**
   Each hash tree node uses approximately **8 bytes** of memory.
   ```
-  Memory Required = (2^(H+1) - 1) * 8 bytes
+  Memory Required ≈ 2^(H+1) * 8 bytes
   ```
 
 ##### Examples
 
 - Hash tree with height `16`:
-  - `Total hash tree nodes = 2^(16+1) - 1 = 2^17 - 1 = 131072 - 1 = 131071`
-  - `Memory required ≈ 131071 * 8 bytes ≈ 1,048,568 bytes (~1 MB)`
+  - `Total hash tree nodes ≈ 2^(16+1) = 131,072`
+  - `Memory required ≈ 131072 * 8 bytes ≈ 1,048,576 bytes (~1 MB)`
 
-- Hash tree with height `6`:
-  - `Total hash tree nodes = 2^(6+1) - 1 = 2^7 - 1 = 128 - 1 = 127`
-  - `Memory required ≈ 127 * 8 bytes ≈ 1,016 bytes (~1 KB)`
+- Hash tree with height `20`:
+  - `Total hash tree nodes ≈ 2^(20+1) = 2,097,152`
+  - `Memory required ≈ 2,097,152 * 8 bytes ≈ 16,777,216 bytes (~17 MB)`
 
 ##### Performance Consideration: Number of Leaves
 
 The objects in a shard (e.g. tenant) are distributed among the leaves of the hash tree.
-A larger hash tree allows for more granular and efficient comparisons, which can improve replication performance.
+A larger hash tree means less data for each leaf to hash, leading to faster comparisons and faster replication.
 
 - **Number of Leaves in the hash tree:**
   ```
@@ -229,8 +229,8 @@ A larger hash tree allows for more granular and efficient comparisons, which can
 - Hash tree with height `16`:
   - `Number of Leaves = 2^16 = 65,536`
 
-- Hash tree with height `6`:
-  - `Number of Leaves = 2^6 = 64`
+- Hash tree with height `20`:
+  - `Number of Leaves = 2^20 = 1,048,576`
 
 :::note Default settings
 The default hash tree height of `16` is chosen to balance memory consumption with replication performance. Adjust this value based on your cluster node’s available resources and performance requirements.
