@@ -307,7 +307,7 @@ The default model is `nvidia/nvclip`.
 
 - [NVIDIA text embedding models + Weaviate](./embeddings.md).
 - [NVIDIA generative models + Weaviate](./generative.md).
-- [NVIDIA reranker models + Weaviate](./reranker.md).
+<!-- - [NVIDIA reranker models + Weaviate](./reranker.md). -->
 
 ### Code examples
 

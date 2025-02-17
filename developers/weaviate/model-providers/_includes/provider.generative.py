@@ -465,7 +465,7 @@ client.collections.create(
         api_endpoint="https://integrate.api.nvidia.com/v1",
         model="meta/llama-3.3-70b-instruct",
         temperature=0.7,
-        maxTokens=1024
+        max_tokens=1024
     )
     # highlight-end
     # Additional parameters not shown
