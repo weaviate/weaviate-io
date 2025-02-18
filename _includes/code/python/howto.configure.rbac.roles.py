@@ -89,7 +89,7 @@ permissions = [
         collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
-        update=True,  # Allow updating tenants
+        update=True,  # Allow updating tenant states
         delete=True,  # Allow deleting tenants
     ),
 ]
