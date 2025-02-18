@@ -111,7 +111,7 @@
     "name": "Query Agent",
     "category": "Weaviate Agents",
     "description": "Query your data in Weaviate using simple human language.",
-    "image": "embeddings-icon.svg",
+    "image": "query-agent.svg",
     "overviewImage1": "weaviate-embedding-image.svg",
     "longDescription": "Weaviate’s Query Agent allows users within your organization to use a natural language prompt to query your database.",
     "rating": 4.5,
@@ -120,7 +120,7 @@
     "updated": "Febuary 25, 2025",
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
-    "url": "/workbench/embeddings",
+    "url": "/workbench/query-agent",
     "released": "yes"
   },
   {
@@ -128,7 +128,7 @@
     "name": "Transformation Agent",
     "category": "Weaviate Agents",
     "description": "Automatically improve your dataset with a single prompt.",
-    "image": "apps-gfl-icon.svg",
+    "image": "transformation-agent.svg",
     "overviewImage1": "weaviate-embedding-image.svg",
     "longDescription": "Weaviate’s Transformation Agent lets you manipulate your data using simple prompts.",
     "rating": 4.5,
@@ -137,7 +137,7 @@
     "updated": "Febuary 25, 2025",
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
-    "url": "/workbench/embeddings",
+    "url": "/workbench/transformation-agent",
     "released": "yes"
   },
   {
@@ -145,7 +145,7 @@
     "name": "Personalization Agent",
     "category": "Weaviate Agents",
     "description": "Dynamically personalize experiences based on user behavior.",
-    "image": "apps-gfl-icon.svg",
+    "image": "personalization-agent.svg",
     "overviewImage1": "weaviate-embedding-image.svg",
     "longDescription": "Weaviate’s Personalization Agent learns user behavior and can personalize any experience.",
     "rating": 4.5,
@@ -154,7 +154,7 @@
     "updated": "Febuary 25, 2025",
     "size": "2.09MB",
     "languages": ["English", "Spanish", "French", "German"],
-    "url": "/workbench/embeddings",
+    "url": "/workbench/personalization-agent",
     "released": "yes"
   }
 ]
