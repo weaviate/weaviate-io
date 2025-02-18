@@ -21,8 +21,8 @@ export default function Resources() {
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
               <div className={styles.textBox}>
-                <h3>Documentation</h3>
-                <p>Databricks + Weaviate</p>
+                <h3>Docs</h3>
+                <p>Weaviate Model Providers: Databricks</p>
               </div>
             </div>
           </Link>
@@ -31,8 +31,8 @@ export default function Resources() {
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
               <div className={styles.textBox}>
-                <h3>Integrations</h3>
-                <p>Databricks and Weaviate</p>
+                <h3>Docs</h3>
+                <p>Weaviate Data Platform Integrations: Databricks</p>
               </div>
             </div>
           </Link>
@@ -40,8 +40,8 @@ export default function Resources() {
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} `}></div>
               <div className={styles.textBox}>
-                <h3>Recipes</h3>
-                <p>GitHub Repository</p>
+                <h3>GitHub</h3>
+                <p>Recipe: Databricks Spark connector</p>
               </div>
             </div>
           </Link>

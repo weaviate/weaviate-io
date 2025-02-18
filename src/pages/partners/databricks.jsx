@@ -21,7 +21,6 @@ export default function PartnersPage() {
         <Integration />
 
         <Resources />
-        <Footer />
       </Layout>
       <ThemeSwitch />
     </div>
