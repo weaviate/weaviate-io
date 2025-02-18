@@ -227,7 +227,7 @@
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/aws_header.svg');
+  background-image: url('/img/site/weaviate-databricks.svg');
 }
 
 .buttons {
@@ -279,9 +279,9 @@
 
 [data-theme='light'] {
   .img {
-    background-image: url('/img/site/aws_header.svg');
-    height: 140%;
+    background-image: url('/img/site/weaviate-databricks.svg');
+    height: 100%;
 
-    margin-top: -100px;
+    margin-top: -50px;
   }
 }
