@@ -114,7 +114,8 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     reranker_config=Configure.Reranker.nvidia(
-        model="nvidia/llama-3.2-nv-rerankqa-1b-v2"
+        model="nvidia/llama-3.2-nv-rerankqa-1b-v2",
+        base_url="https://integrate.api.nvidia.com/v1",
     )
     # highlight-end
     # Additional parameters not shown
