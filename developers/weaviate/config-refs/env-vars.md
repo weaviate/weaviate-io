@@ -112,8 +112,7 @@ For more information on authentication and authorization, see the [Authenticatio
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `AUTHORIZATION_RBAC_ENABLED` | Enable RBAC authorization scheme (mutually exclusive with `AUTHORIZATION_ADMINLIST_ENABLED`). | `boolean` | `true` |
-| `AUTHORIZATION_RBAC_ROOT_USERS` | Users with the built-in administrator role when RBAC scheme used. At least one root user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
-| `AUTHORIZATION_ROOT_GROUPS` | Assign root groups for OIDC at startup time | `string - comma-separated list` | `admin,developers` |
+| `AUTHORIZATION_RBAC_ROOT_USERS` | Users with the built-in root/administrator role when RBAC scheme used. At least one root user must be defined with RBAC. | `string - comma-separated list` | `admin-user,another-admin-user` |
 
 ## Multi-node instances
 
