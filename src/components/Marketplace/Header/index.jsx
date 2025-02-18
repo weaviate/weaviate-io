@@ -10,7 +10,7 @@ export default function HomepageHeader() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <h1>Workbench</h1>
+            <h1>Products</h1>
             <p>
               Accelerate AI-native application development with GUI-based tools
               and apps to make building and scaling easier.

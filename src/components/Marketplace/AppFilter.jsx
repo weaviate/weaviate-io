@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
+  'Weaviate Agents':
+    'Explore, improve, and augment your data with the power of prompts.',
   'Cloud Tools':
     'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
   'AI-Native Services': 'Simplify the development of end-to-end AI solutions.',
@@ -97,6 +99,14 @@ export default function AppFilter() {
                   }
                 >
                   AI-Native Services
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('Weaviate Agents')}
+                  className={
+                    selectedCategory === 'Weaviate Agents' ? styles.active : ''
+                  }
+                >
+                  Weaviate Agents
                 </li>
               </ul>
             </>
