@@ -5,6 +5,7 @@ import PricingEnterprise from './enterprise';
 import PricingSandBox from './sandbox';
 import PricingStandard from './standard';
 import Marketplace from '../Marketplace';
+import Embeddings from '../Embeddings';
 import PriceList from './priceList';
 import Sandbox from '../CalculatorContainer/sandbox';
 import styles from './styles.module.scss';
@@ -19,8 +20,9 @@ export default function PricingPlan() {
             <PricingEnterprise />
             <PricingBusinessCritical />
           </div>
-          <Marketplace />
+          <Embeddings />
           <PricingSandBox />
+          <Marketplace />
         </div>
         <PriceList />
       </div>

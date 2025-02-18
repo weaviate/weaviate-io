@@ -40,7 +40,7 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.longDescription}</p>
-                  {app.released === 'no' ? (
+                  {app.released === 'yes' ? (
                     <Link to="https://console.weaviate.cloud/">
                       <button className={styles.installButton}>
                         Open in Weaviate Cloud
@@ -93,7 +93,11 @@ export default function QueryPage() {
                         pay-as-you-go pricing.
                       </li>
                     </ul>
-                    <strong>Details and Pricing</strong>
+                  </div>
+
+                  <div className={styles.additionalInfo}>
+                    <h3>Additional Details and Pricing</h3>
+
                     <p>
                       Weaviate Embeddings is now available in Preview with the{' '}
                       <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
@@ -104,16 +108,6 @@ export default function QueryPage() {
                     <p>
                       When generally available, pricing will start at $0.04 per
                       million tokens.
-                    </p>
-                  </div>
-
-                  <div className={styles.additionalInfo}>
-                    <h3>Additional details</h3>
-                    <p>
-                      Availability:{' '}
-                      <Link to="https://events.weaviate.io/embeddings-preview">
-                        <strong>Preview</strong>
-                      </Link>
                     </p>
                   </div>
                 </div>
