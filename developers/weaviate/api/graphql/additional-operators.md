@@ -130,9 +130,6 @@ Pagination is not a cursor-based implementation. This has the following implicat
 
 ## Autocut
 
-:::info Added in `v1.20`
-:::
-
 The autocut function limits results based on discontinuities in the result set. Specifically, autocut looks for discontinuities, or jumps, in result metrics such as vector distance or search score.
 
 To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
@@ -282,10 +279,6 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 </details>
 
 ## Sorting
-
-:::info
-Added in `v1.13.0`.
-:::
 
 You can sort results by any primitive property, such as `text`, `number`, or `int`. 
 
