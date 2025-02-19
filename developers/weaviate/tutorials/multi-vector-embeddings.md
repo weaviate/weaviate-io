@@ -57,7 +57,8 @@ A multi-vector embedding, on the other hand, represents the same object using a 
 
 The core idea behind this representation is that the meaning of different parts of the text can be captured by different vectors. For example, the first vector might represent the token `"A"`, the second vector might represent the token `"very"`, and so on.
 
-![Single vs Multi-vector embedding comparison visualization](./_includes/single_multi_vector_comparison.png "Single vs Multi-vector embedding comparison visualization")
+![Single vs Multi-vector embedding comparison visualization](./_includes/single_multi_vector_comparison_light.png#gh-light-mode-only "Single vs Multi-vector embedding comparison visualization")
+![Single vs Multi-vector embedding comparison visualization](./_includes/single_multi_vector_comparison_dark.png#gh-dark-mode-only "Single vs Multi-vector embedding comparison visualization")
 
 Multi-vector representations allow for more nuanced comparisons between objects, and therefore improved retrieval of similar objects.
 
@@ -77,7 +78,8 @@ Late interaction is an approach for computing similarity between texts that pres
 
 The following visualization shows how late interaction works in a ColBERT model, in comparison to a single-vector model.
 
-![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction.png "ColBERT late interaction vs single-vector visualization")
+![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction_light.png#gh-light-mode-only "ColBERT late interaction vs single-vector visualization")
+![ColBERT late interaction vs single-vector visualization](./_includes/colbert_late_interaction_dark.png#gh-dark-mode-only "ColBERT late interaction vs single-vector visualization")
 
 <small>Figure: Late interaction vs single-vector comparison</small>
 <br/><br/>
