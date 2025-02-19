@@ -32,13 +32,13 @@ We may expand the service to other regions in the future.
 
 ## Authentication
 
-Authentication is managed through your existing [Weaviate Cloud API key](/developers/wcs/connect).
+Authentication is managed through your existing [Weaviate Cloud API key](/developers/wcs/manage-clusters/connect).
 
 ## Additional resources
 
 - [Weaviate Embeddings: Overview](/developers/wcs/embeddings)
 - [Weaviate Embeddings: Quickstart](/developers/wcs/embeddings/quickstart)
-- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/configuration)
+- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/models)
 - [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
 
 ## Support

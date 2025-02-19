@@ -85,21 +85,21 @@ Follow the **[Quickstart guide](/developers/wcs/embeddings/quickstart)** to get 
 
 Weaviate Embeddings offers a fully managed service for embedding generation that is integrated with Weaviate Cloud instances.
 
-- **[Model selection](/developers/wcs/embeddings/configuration)**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
-- **[Single authentication](/developers/wcs/connect)**: Your Weaviate Cloud credentials are used for authorization and access to Weaviate Embeddings.
+- **[Model selection](/developers/wcs/embeddings/models)**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
+- **[Single authentication](/developers/wcs/manage-clusters/connect)**: Your Weaviate Cloud credentials are used for authorization and access to Weaviate Embeddings.
 - **[Unified billing](/developers/wcs/embeddings/administration#billing)**: Your billing and usage can be managed in one place through Weaviate Cloud.
 
 ## Available models
 
 The following models are available for use with Weaviate Embeddings:
 
-- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](/developers/wcs/embeddings/configuration#snowflake-arctic-embed-m-v1.5)**
-- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](/developers/wcs/embeddings/configuration#snowflake-arctic-embed-l-v2.0)**
+- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](/developers/wcs/embeddings/models#snowflake-arctic-embed-m-v1.5)**
+- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](/developers/wcs/embeddings/models#snowflake-arctic-embed-l-v2.0)**
 
 ## Additional resources
 
 - [Weaviate Embeddings: Quickstart](/developers/wcs/embeddings/quickstart)
-- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/configuration)
+- [Weaviate Embeddings: Choose a model](/developers/wcs/embeddings/models)
 - [Weaviate Embeddings: Administration](/developers/wcs/embeddings/administration)
 - [Model provider integrations: Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings)
 

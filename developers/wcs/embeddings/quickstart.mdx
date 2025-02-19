@@ -137,7 +137,7 @@ Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud crede
 
 ### 2.1 Define a collection
 
-Now we can define a collection that will store our data. When creating a collection, you need to specify one of the [available models](/developers/wcs/embeddings/configuration) for the vectorizer to use. This model will be used to create vector embeddings from your data.
+Now we can define a collection that will store our data. When creating a collection, you need to specify one of the [available models](/developers/wcs/embeddings/models) for the vectorizer to use. This model will be used to create vector embeddings from your data.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -174,11 +174,11 @@ Now we can define a collection that will store our data. When creating a collect
   </TabItem>
 </Tabs>
 
-For more information about the available model options visit the [Choose a model](/developers/wcs/embeddings/configuration) page.
+For more information about the available model options visit the [Choose a model](/developers/wcs/embeddings/models) page.
 
 ### 2.2 Import objects
 
-After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
+After configuring the vectorizer, [import data](/developers/weaviate/manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -221,7 +221,7 @@ Once the vectorizer is configured, Weaviate will perform vector and hybrid searc
 
 ### 3.1 Vector (near text) search
 
-When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and returns the most similar objects from the database.
+When you perform a [vector search](/developers/weaviate/search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and returns the most similar objects from the database.
 
 The query below returns the `n` most similar objects from the database, set by `limit`.
 
@@ -263,10 +263,10 @@ The query below returns the `n` most similar objects from the database, set by `
 ### 3.2 Hybrid search
 
 :::info What is a hybrid search?
-A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
+A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](/developers/weaviate/search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
 :::
 
-When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
+When you perform a [hybrid search](/developers/weaviate/search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
 
 The query below returns the `n` best scoring objects from the database, set by `limit`.
 
@@ -317,7 +317,7 @@ export const cardsData = [
       </span>
     ),
     description: 'Check out which additional models are available through Weaviate Embeddings.',
-    link: '/developers/wcs/embeddings/configuration',
+    link: '/developers/wcs/embeddings/models',
   },
   {
     title: (
