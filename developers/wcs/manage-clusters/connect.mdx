@@ -4,7 +4,6 @@ sidebar_position: 1
 image: og/wcs/user_guides.jpg
 ---
 
-import APIKeyInHeader from '/developers/wcs/img/wcs-auth-header.jpg';
 import CompareURLs from '/developers/wcs/img/wcs-console-url-check.jpg';
 
 There are multiple ways to connect to [Weaviate Cloud (WCD)](https://console.weaviate.cloud/):
@@ -69,9 +68,25 @@ To connect to the console, follow these steps:
 
 The built in [Query app](/developers/wcs/tools/query-tool) connects directly to clusters in your WCD organization without any additional authentication.
 
-To connect the Query tool to a Weaviate instance that is not part of your WCD organization, provide an API key for the remote instance. Add the API key to the connection `Headers` at the bottom of the Query tool tab.
+import APIKeyInHeader from '/developers/wcs/img/wcs-auth-header.jpg';
 
-<img src={APIKeyInHeader} width="75%" alt="API key in header" />
+<div class="row">
+  <div class="col col--6">
+    <p>
+      To connect the Query tool to a Weaviate instance that is not part of your WCD organization, provide an API key for the remote instance. <br/><br/>Add the API key to the connection <code>Headers</code> at the bottom of the Query tool tab.
+    </p>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={APIKeyInHeader} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Copy the appropriate API key for your cluster.
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Troubleshooting
 

@@ -33,10 +33,9 @@ This quickstart shows you how to combine Weaviate Cloud and the **Weaviate Embed
 flowchart LR
     %% Define nodes with white backgrounds and darker borders
     A1["Install client\nlibrary"] --> A2["Connect to\nWeaviate Cloud"]
-    A2 --> B1["Configure the vectorizer"]
-    B1 --> B2["Batch import\nobjects"]
-    B2 --> C1["Semantic search\n(nearText)"]
-    C1 --> C2["Hybrid search"]
+    A2 --> B1["Configure the \nvectorizer"]
+    B1 --> B2["Import\nobjects"]
+    B2 --> C1["Semantic (vector)\n search\n"]
 
     %% Group nodes in subgraphs with brand colors
     subgraph sg1 ["1. Setup"]
@@ -51,7 +50,6 @@ flowchart LR
 
     subgraph sg3 ["3. Query"]
         C1
-        C2
     end
 
     %% Style nodes with white background and darker borders
@@ -60,7 +58,6 @@ flowchart LR
     style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
-    style C2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
 
     %% Style subgraphs with brand colors
     style sg1 fill:#ffffff,stroke:#61BD73,stroke-width:2px,color:#130C49
