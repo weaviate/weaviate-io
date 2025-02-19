@@ -78,7 +78,7 @@ This means you can perform [keyword](/developers/weaviate/search/bm25), [vector]
 Weaviate Embeddings is fully integrated with Weaviate Cloud, so you can manage your data and embeddings in one place. Weaviate Embeddings is available for Weaviate Cloud instances and is currently not available when running a local instance.
 
 :::tip Quickstart
-Follow the **[Quickstart guide](/developers/wcs/embeddings/quickstart)** to get started with Weaviate Embeddings.
+Follow the **[quickstart guide](/developers/wcs/embeddings/quickstart)** to get started with Weaviate Embeddings.
 :::
 
 ## Key Features
