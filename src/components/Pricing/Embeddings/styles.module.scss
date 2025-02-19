@@ -275,7 +275,8 @@
 
 .tableFooter {
   width: 100%;
-  height: 6.875rem;
+  min-height: 9.875rem;
+  height: auto;
   flex-shrink: 0;
   border-radius: 0.9375rem;
   background: #fff;
@@ -283,6 +284,8 @@
   padding: 30px;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 
   @media screen and (max-width: 1300px) {
     width: 100%;
@@ -291,13 +294,8 @@
 
   @media screen and (max-width: 1200px) {
     height: auto;
-    flex-wrap: wrap;
-  }
-
-  @media screen and (max-width: 645px) {
     flex-direction: column;
-    align-items: center;
-    margin: 20px 0px;
+    align-items: flex-start;
   }
 
   .iconSection {
@@ -335,40 +333,78 @@
         font-size: 1rem;
       }
     }
+  }
 
-    .buttonGradient {
-      border-radius: 0.3125rem;
-      outline: 1px solid #130c49;
-      background: rgb(15, 0, 50);
-      transition: all 1s ease-out;
-      color: #fff;
-      width: 11.375rem;
-      height: 2.625rem;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.25rem;
-      cursor: pointer;
-      text-decoration: none;
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    transition: all 1s ease-out;
+    color: #fff;
+    width: 11.375rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
     }
   }
 
-  .cellIcon {
-    background-size: cover;
-    width: 3.00038rem;
+  .tableFooterIcon {
+    background-size: contain;
+    background-image: url('/img/site/embeddings-pricing-icon.svg');
+    width: 3rem;
     height: 3rem;
     flex-shrink: 0;
   }
 
-  .azureIcon {
-    background-image: url('/img/site/azure-pricing-icon.png');
+  .hrIcon {
+    display: block;
+    width: 0.03125rem;
+    height: 6.875rem;
+    background: #00a88b;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
   }
-  .awsIcon {
-    background-image: url('/img/site/aws-pricing-icon.svg');
+}
+
+.tfSection {
+  display: flex;
+  flex-direction: column;
+  width: 21rem;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.40625rem */
   }
-  .googleIcon {
-    background-image: url('/img/site/google-pricing-icon.svg');
+}
+
+.tfHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .tableFooterText {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -377,6 +413,34 @@
     font-size: 22px;
   }
 }
+
+.tokenSection {
+  display: flex;
+  flex-direction: column;
+  width: 31rem;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
+}
+
+.tokenLine {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.225rem */
+    text-transform: uppercase;
+  }
+}
+
 .longCard {
   width: 82%;
   margin: auto;

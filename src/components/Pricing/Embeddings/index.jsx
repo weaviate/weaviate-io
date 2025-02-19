@@ -9,26 +9,36 @@ export default function Embeddings() {
       <div className={styles.soc2Container}>
         <div className={styles.box}>
           <div className={styles.tableFooter}>
-            <div className={styles.tableFooterText}>
-              Embedding Models Available
+            <div className={styles.tfSection}>
+              <div className={styles.tfHeader}>
+                <div className={styles.tableFooterIcon}></div>
+                <div className={styles.tableFooterText}>
+                  Weaviate Embedding Models
+                </div>
+              </div>
+              <p>Access various embedding models hosted in Weaviate Cloud.</p>
             </div>
             <div className={styles.iconSection}>
-              <div className={`${styles.cellIcon} ${styles.azureIcon}`}></div>
-              <Link to="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/weaviatebv1686614539420.weaviate_1?tab=overview">
-                Microsoft Azure
-              </Link>
-              <div className={`${styles.cellIcon} ${styles.awsIcon}`}></div>
-              <Link to="https://aws.amazon.com/marketplace/pp/prodview-ng2dfhb4yjoic?sr=0-3&ref_=beagle&applicationId=AWSMPContessa&utm_source=website&utm_medium=button&utm_campaign=AWSMarketplace">
-                Amazon Web Services
-              </Link>
-
-              <Link
-                className={styles.buttonGradient}
-                to="/workbench/embeddings"
-              >
-                Learn More
-              </Link>
+              <div className={styles.hrIcon}></div>
+              <div className={styles.tokenSection}>
+                <div className={styles.tokenLine}>
+                  <p>Snowflake arctic-embed-m-v1.5.0</p>
+                  <p>
+                    <strong>$0.025 / 1M tokens</strong>
+                  </p>
+                </div>
+                <div className={styles.tokenLine}>
+                  <p>Snowflake arctic-embed-m-v1.5.0</p>
+                  <p>
+                    {' '}
+                    <strong>$0.025 / 1M tokens</strong>
+                  </p>
+                </div>
+              </div>
             </div>
+            <Link className={styles.buttonGradient} to="/workbench/embeddings">
+              Learn More
+            </Link>
           </div>
         </div>
       </div>
