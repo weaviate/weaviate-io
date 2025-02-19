@@ -6,25 +6,32 @@ sidebar_position: 3
 
 [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) provides a web interface and an API endpoint that provide information about your Weaviate instance.
 
-## Web interface
+## Status through Weaviate Cloud console
 
-When you log into the WCD web console, the Dashboard tab lists your clusters. Each cluster has a `Details` button. Click the `Details` button to see the following information:
+When you log into the Weaviate Cloud console, the left sidebar lists your clusters. When you click on a cluster, you can see the following fields in the `Cluster details` section at the top of the page:
 
-- Cluster URL
-- Weaviate core version
-- Authentication details
-- Active modules
-- Cluster creation time
-- Hosting provider
-- Storage Metrics
-- Billing information
+- `Dimensions stored`
+- `Dimensions queried`
+- `Object count`
+- `Running costs`
 
-The `Details` view also has an `Advanced configuration` button. Click on `Advanced configuration` to configure, or to check the status of, these additional settings:
+The following fields are part of the `Information` section:
 
-- Auto schema generation
-- Async indexing
-- CORS origins
+- `Name`
+- `REST Endpoint`
+- `gRPC Endpoint`
+- `Weaviate Database version`
+- `Cloud region`
+- `Created at`
+- `Type`: Serverless or Sandbox
+- `Service Level Agreement`
+- `High Availability`
 
+Serverless clusters also have an `Advanced configuration` section to configure or to check the status of these additional settings:
+
+- `Enable auto schema generation`
+- `Enable async indexing`
+- `Allow all CORS origins`
 
 ## API Endpoint
 
@@ -38,14 +45,31 @@ import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
 Each Weaviate instance has a set of enabled modules. This list will vary depending on the instance, due to the Weaviate version and WCD policies.
 
-To see the list of enabled modules on a WCD instance, go to the WCD console, click on `Clusters`, select the cluster you want to check, and scroll to the `modules active` section.
+To see the list of enabled modules on a WCD instance:
 
 import ClusterStatusModules from '/developers/wcs/img/cluster-status.modules.png';
 
-<figure align="center">
-    <img src={ClusterStatusModules} alt="See the list of available modules" />
-    <em>Available modules on your WCD instance</em>
-</figure>
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>Open the Weaviate Cloud console.</li>
+      <li>
+        Click on <code>Clusters</code> and select the cluster you want to check.
+      </li>
+      <li>
+        Scroll to the <code>modules active</code> section.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={ClusterStatusModules} alt="Create a cluster" />
+      </div>
+      <div class="card__body">Available modules on your cluster.</div>
+    </div>
+  </div>
+</div>
 
 ## Support
 

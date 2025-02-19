@@ -4,28 +4,71 @@ sidebar_position: 2
 image: og/wcs/user_guides.jpg
 ---
 
-import TwoClusterTypes from '/_includes/wcs/two-cluster-types.mdx';
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) provides two instance types.
 
-<TwoClusterTypes />
+ - **Sandbox clusters**: Sandbox clusters are small, free clusters designed for learning and experimentation. Sandbox clusters are not scalable and expire after 14 days.
+ - **Serverless clusters**: Serverless clusters are robust, paid clusters designed for production use.
 
 ## Create a cluster
 
-To create a cluster, click the 'Create cluster' button on the WCD Dashboard page.
+When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. 
 
-![Create a cluster](../img/wcs-console-no-clusters.jpg)
+import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
+import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
+import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-cluster.png';
 
-Follow the steps to create a cluster:
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        To <b>create a cluster</b>, click the <code>Create cluster</code> button
+        on the Weaviate Cloud homepage.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateCluster} alt="Create a cluster" />
+      </div>
+      <div class="card__body">Click on this button to create a cluster.</div>
+    </div>
+  </div>
+</div>
 
-- [Sandbox clusters](#sandbox-clusters)
-- [Serverless clusters](#serverless-clusters).
+Weaviate offers the following cluster options:
+
+- **[Sandbox clusters](#sandbox-clusters)**: free short-term cluster for development purposes.
+- **[Serverless clusters](#serverless-clusters)**: permanent production ready environment.
 
 ### Sandbox clusters
 
 To create a sandbox cluster, follow these steps:
 
-import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
-
-<CreateSandboxCluster />
+<div class="row">
+    <div class="col col--6">
+    <ol>
+        <li>
+        Select the <code>Sandbox</code> tab.
+        </li>
+        <li>Choose a name for your cluster.</li>
+        <li>Select a cloud region from the dropdown.</li>
+        <li>
+        Click the <code>Create</code> button.
+        </li>
+    </ol>
+    </div>
+    <div class="col col--6">
+    <div class="card">
+        <div class="card__image">
+        <img src={SandboxCluster} alt="Create a cluster" />
+        </div>
+        <div class="card__body">
+        Choose a name and a cloud region to create a cluster.
+        </div>
+    </div>
+    </div>
+</div>
 
 ### Serverless clusters
 
@@ -33,19 +76,37 @@ Serverless clusters require billing details. WCD prompts you to add billing deta
 
 To create a serverless cluster, follow these steps:
 
-import CreateServerlessCluster from '/_includes/wcs/create-cluster-managed.mdx'
-
-<CreateServerlessCluster />
+<div class="row">
+    <div class="col col--6">
+    <ol>
+        <li>
+        Select the <code>Serverless</code> tab.
+        </li>
+        <li>Choose a name for your cluster.</li>
+        <li>Select a cloud region from the dropdown.</li>
+        <li>
+        Click the <code>Create</code> button.
+        </li>
+    </ol>
+    </div>
+    <div class="col col--6">
+    <div class="card">
+        <div class="card__image">
+        <img src={ServerlessCluster} alt="Create a cluster" />
+        </div>
+        <div class="card__body">
+        Choose a name and a cloud region to create a cluster.
+        </div>
+    </div>
+    </div>
+</div>
 
 ## Authentication
 
-By default, API keys are enabled for all WCD clusters. Serverless clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
+By default, API keys are enabled for all Weaviate Cloud clusters. Both Serverless and Sandbox clusters have an administrator key and a read-only key.
 
-When you develop your client application, use an API key to connect your client to the cluster. For more details, see [authentication](/developers/weaviate/configuration/authentication).
-
-To get API keys, click the `API keys` button.
-
-![Details expanded](../img/wcs-console-details-api-key.jpg)
+When you develop your client application, use an API key to connect your client to the cluster. For more details on where to find the API keys, check out this guide:
+- **[Manage clusters: Connect to Weaviate Cloud](/developers/wcs/manage-clusters/connect)**.
 
 ## Weaviate core version
 
@@ -53,10 +114,12 @@ When you provision a new cluster, WCD uses the current version of Weaviate core 
 
 WCD does not automatically update existing clusters when a new version of Weaviate core is released.
 
-For more details on WCD versioning, see [Cluster server version](/developers/wcs/platform/version).
+For more details on Weaviate Cloud versioning, see:
+- - **[Account management: Server version](/developers/wcs/platform/version)**.
 
 ## Number of clusters
 
+<!-- TODO[g-despot]: Check if this is true.-->
 By default, an organization can have up to six serverless clusters and two sandbox clusters at the same time. To change these limits, [contact support](mailto:support@weaviate.io).
 
 ## Support
