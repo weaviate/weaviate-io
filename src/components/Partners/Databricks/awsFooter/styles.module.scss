@@ -1,0 +1,81 @@
+.boxGrid {
+  --auto-grid-min-size: 22rem;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  grid-gap: 2rem;
+  p {
+    font-size: 1rem;
+  }
+}
+
+.intro {
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: 860px) {
+    text-align: left;
+    padding: 0rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  div {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #130c49;
+    transition: all 1s ease-out;
+  }
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+[data-theme='light'] {
+  .buttonOutline {
+    color: rgba(46, 49, 143);
+  }
+}
+
+.partnerBG {
+  background: #61bd73;
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid rgb(15, 0, 50);
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+
+.buttonGradient:hover {
+  background-color: #61bd73;
+  color: rgb(19 12 73);
+}
