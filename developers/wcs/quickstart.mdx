@@ -281,7 +281,7 @@ If you did not see any errors, you are ready to proceed. We will replace the sim
 
 The following example creates a _collection_ called `Question` with:
 
-- Cohere [embedding model integration](/developers/weaviate/model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
+- The [Weaviate Embeddings model integration](/developers/weaviate/model-providers/weaviate/embeddings.md) to create vectors during ingestion & queries.
 - Cohere [generative AI integrations](/developers/weaviate/model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
 import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx';
@@ -316,10 +316,6 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 <ImportObjects />
 
 Run this code to add the demo data.
-
-:::info Cohere API key in the header
-Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
-:::
 
 <hr />
 
@@ -395,7 +391,7 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
-Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the [Weaviate Embeddings](/developers/wcs/embeddings) service to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -469,6 +465,10 @@ The following example combines the same search (for `biology`) with a prompt to 
 import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx';
 
 <QueryRAG />
+
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to access the Cohere generative AI model and perform retrieval augmented generation (RAG).
+:::
 
 Run this code to perform the query. Here is one possible response (your response will likely be different).
 
