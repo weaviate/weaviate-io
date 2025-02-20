@@ -59,7 +59,7 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 - [Text Embeddings](./embeddings.md)
 - [Multimodal Embeddings](./embeddings-multimodal.md)
 - [Generative AI](./generative.md)
-- [Reranker](./reranker.md)
+<!-- - [Reranker](./reranker.md) -->
 
 ## Questions and feedback
 
