@@ -185,10 +185,6 @@ const siteRedirects = {
             to: '/developers/wcs/manage-clusters/upgrade',
             from: '/developers/wcs/upgrade',
         },
-        {
-            to: '/developers/wcs/manage-clusters/sandbox',
-            from: '/developers/wcs/sandbox',
-        },
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
