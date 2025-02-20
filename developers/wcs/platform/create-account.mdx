@@ -12,23 +12,42 @@ Weaviate Cloud (WCD) has an interactive console. Create a user account, then log
 
 Follow these steps to create a new WCD account.
 
-1. Go the [WCD homepage](https://console.weaviate.cloud).
-1. Click, "Register here".
+import Register from '/developers/wcs/img/weaviate-cloud-register.png';
 
-<img src={LandingRegister} width="75%" alt="Create an account"/>
-
-3. Provide an email address and password.
-1. Click `Create an account`.
-1. Check your email account for a verification email.
-1. Click the link to verify your email address.
-
-After you verify your email, you can log into the WCD Console.
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        <a href="https://console.weaviate.cloud">Open Weaviate Cloud</a>.
+      </li>
+      <li>
+        Click on <code>Sign up</code>.
+      </li>
+      <li>Provide an email address and password.</li>
+      <li>
+        After you confirm your email address, open the{' '}
+        <a href="https://console.weaviate.cloud">login page</a>.
+      </li>
+      <li>Log in to Weaviate Cloud.</li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={Register} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Fill in the info and register a new Weaviate Cloud account.
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Configure billing information
 
-Sandbox instances are free, short term instances that expire after 14 days. If you are using a Sandbox instance to try Weaviate, you don't have to set up billing.
+Sandbox instances are free, short-term instances that expire after 14 days. If you are using a Sandbox instance to try out Weaviate, you don't have to set up billing.
 
-Serverless clusters are persistent instances that are suitable for production, development, and testing. Serverless clusters are paid instances. The cost of each instance depends on the instance type and the support level you choose. You must configure billing before you can create a serverless instance.
+Serverless clusters are persistent instances that are suitable for production, development, and testing. Serverless clusters are paid instances. The cost of each instance depends on the instance type and the support level you choose. You must configure billing before you can create a Serverless instance. Follow [this guide](/developers/wcs/platform/billing) to set up a billing account. 
 
 ## Support
 
