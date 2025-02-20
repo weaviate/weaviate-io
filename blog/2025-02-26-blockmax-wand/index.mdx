@@ -1,6 +1,6 @@
 ---
 title: 'BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search'
-slug: ai-agents
+slug: blockmax-wand
 authors: [amourao]
 date: 2025-02-26
 tags: ['search', 'concepts', 'engineering']
@@ -80,14 +80,22 @@ While WAND works well and is already able to greatly reduce the number of docume
 * Divides posting lists into blocks with local max impact  
 * Skips and avoids decoding doc ids in blocks
 
-| ![WAND](./img/wand_block.png) | ![BlockMax WAND](./img/blockmax_block.png) |
-| :---- | :---- |
-| WAND | BlockMax WAND |
 
-| A block is a mini posting list (list of doc ids and TFs) with extra metadata: Max doc id: highest doc id that shows up in the block Max impact: max TF of a document within the block (norm TF equals TF/prop length) | ![BlockMax WAND Block example](./img/block_example.png) |
+| WAND | BlockMax WAND |
 | :---- | :---- |
+| ![WAND](./img/wand_block.png) | ![BlockMax WAND](./img/blockmax_block.png) |
 
 BMW is a type of *meta*\-WAND, where we perform document skips at block level using max impact (shallow advances), and use the combination of max doc ids from blocks to even avoid loading whole blocks from disk.
+
+
+
+A block is a mini posting list (list of doc ids and TFs) with extra metadata: Max doc id: highest doc id that shows up in the block Max impact: max TF of a document within the block (norm TF equals TF/prop length)
+
+![BlockMax WAND Block example](./img/block_example.png)
+
+
+Comparing document skipping efficiency of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). Exhaustive search would always need to examine 100% of the document query terms with at least one query term.
+
 
 | Dataset | avg. % of doc query terms scored  |  |
 | :---- | ----- | ----: |
@@ -96,7 +104,6 @@ BMW is a type of *meta*\-WAND, where we perform document skips at block level us
 | Fever (5.4M docs) | 20.8% | 8.4% |
 | Climate Fever (5.4M docs) | 29.3% | 12.2% |
 
-Comparing document skipping efficiency of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). Exhaustive search would always need to examine 100% of the document query terms with at least one query term.
 
 The experimental results show that BlockMax WAND is able to further halve the number of documents inspected from the already remarkable 15-30% number of terms scored to 5-15%
 
@@ -106,11 +113,11 @@ In the examples we’ve seen so far, we have two components that we need to scor
 
 Term frequencies are usually in the 1-100 range, with no hard ceiling. Let’s assume they may grow all the way to 2^32. Storing them as-is would take 32 bits \* number of documents with for each term.
 
-Consider this set of four term frequencies: 12, 3, 100, 1\. The largest number on this posting list is 100, which can be represented in binary as floor(log2(100))+1 \= 7 bits, instead of the full 32 bits. What if we just store the values as 7 bits instead of 32 bits , keeping an extra 6 bits (enough to store all possible bit counts) to store the per value bit count. This process can be described as a type of [variable-length coding](https://en.wikipedia.org/wiki/Variable-length_code) we’ll call varenc.
+Consider this set of four term frequencies: 12, 3, 100, 1\. The largest number on this posting list is 100, which can be represented in binary as floor(log2(100))+1 = 7 bits, instead of the full 32 bits. What if we just store the values as 7 bits instead of 32 bits , keeping an extra 6 bits (enough to store all possible bit counts) to store the per value bit count. This process can be described as a type of [variable-length coding](https://en.wikipedia.org/wiki/Variable-length_code) we’ll call varenc.
 
 | 32 bit term freqs | Compressed data |
 | :---- | :---- |
-| 12, 3, 100, 1 (4 \* 32 bits \= 128 bits) | (7), 12, 3, 1, 3  (6 \+ 4 \* 7 bits \= 79 bits) |
+| 12, 3, 100, 1 (4 \* 32 bits = 128 bits) | (7), 12, 3, 1, 3  (6 \+ 4 \* 7 bits = 79 bits) |
 
 Even with the extra 6 bits to store the bit count, we are still able to reduce the number of bits needed from 128 to 79 bits. The compression gains translate directly to larger lists, but one needs to be mindful, as a single high value will increase the bit count 
 
@@ -118,20 +125,20 @@ What if we apply the same logic to doc ids? Internal Doc ids are implemented as 
    
 Doc ids are monotonically increasing; so they are in the same order of magnitude of the size of your data.  
 Consider the following set of doc ids from a million scale index: 1000000, 1000003, 1000004, 1000007\.   
-Using the logic from before, floor(log2(1000000))+1 \= 20, meaning that we’ll need 20 bits to store the ids. Following the previous process, 6+4\*20 \= 86 bits.
+Using the logic from before, floor(log2(1000000))+1 = 20, meaning that we’ll need 20 bits to store the ids. Following the previous process, 6+4\*20 = 86 bits.
 
-Better than the full 4\*64 \= 256 bits needed to store them uncompressed, but there are some properties we can take advantage of to improve compression efficiency.  
+Better than the full 4\*64 = 256 bits needed to store them uncompressed, but there are some properties we can take advantage of to improve compression efficiency.  
 Doc ids are always stored in ascending order for WAND and BlockMax WAND to work. This property means that we can use [delta encoding](https://en.wikipedia.org/wiki/Delta_encoding) and store the differences between consecutive ids, instead of the ids themselves.
 
 | Raw data (64 bit doc ids) | Delta encoding |
 | :---- | :---- |
-| 1000000, 1000003, 1000004, 1000007 | 1000000, (1000003-1000000), (1000004-1000003), (1000007-1000004) \= 1000000, 3, 1, 3 |
+| 1000000, 1000003, 1000004, 1000007 | 1000000, (1000003-1000000), (1000004-1000003), (1000007-1000004) = 1000000, 3, 1, 3 |
 
 1000000, 3, 1, 3 looks more compressible, but the first value of the list will still be larger than the differences. So, we store the first value uncompressed as 64 bit, and compress only the diffs values with the same process as before.
 
 | Delta encoded | Compressed data |
 | :---- | :---- |
-| 1000000, 3, 1, 3 (64 \* 4 \= 256 bits) | **1000000**, (*2\)*,  3, 1, 3  \- 1000000: encode fully as 64 bits  \- encode number of bits needed to represent: 6 bits \- remaining values: encode as floor(log2(3))+1 \= 2 bits 64 \+ 6 \+ 2\*3 \= 76 bits |
+| 1000000, 3, 1, 3 (64 \* 4 = 256 bits) | **1000000**, (*2\)*,  3, 1, 3  \- 1000000: encode fully as 64 bits  \- encode number of bits needed to represent: 6 bits \- remaining values: encode as floor(log2(3))+1 = 2 bits 64 \+ 6 \+ 2\*3 = 76 bits |
 
 Even with the extra 6 bits to store the bit count and encoding the full value of the first value, we are still able to reduce the number of bits needed from 256 to 76 bits, which is better than doing without delta encoding at 86 bits.  
 Larger lists will have a better compression ratio, as the proportion of the bits needed to store the first value is already taken into account, and we’ll only need to store the compressed deltas.
@@ -146,11 +153,10 @@ At Weaviate, this is done for blocks of 128 documents:
 
 Combined with a new way of representing deleted documents and more efficient property length storage, we are able to reduce the size of the inverted indices on disk by **between** **50 and 90%** (2-10x smaller files), depending on the data distribution (longer properties with fewer unique terms will compress better).
 
-| Dataset | Size of searchable properties (MB) |  |
-| :---- | ----- | ----: |
-|  | WAND | BlockMax WAND |
-| MS Marco (8.6M docs) | 10531 | 941 |
-| Fever/Climate Fever (5.4M docs) | 9326 | 1175 |
+| Dataset | WAND | BlockMax WAND |
+|:--------|------:|--------------:|
+| MS Marco (8.6M docs) | 10531 MB | 941 MB |
+| Fever/Climate Fever (5.4M docs) | 9326 MB | 1175 MB |
 
 Comparing the size of \_searchable folders of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). 
 
@@ -161,14 +167,13 @@ These auxiliary structures and compression techniques mean that we cannot use Bl
 The compression ratios and reduced number of documents scored look impressive, but how does it translate into performance?   
 Our experiments show that average p50 (median) query time was reduced to 10-20% of the original query time. 
 
-| Dataset | Avg p50 query time (ms) |  |
-| :---- | ----- | ----: |
-|  | WAND | BlockMax WAND |
-| MS Marco (8.6M docs) | 136 | 27 |
-| Fever (5.4M docs) | 517 | 33 |
-| Climate Fever (5.4M docs) | 712 | 87 |
+| Dataset | WAND | BlockMax WAND |
+|:--------|------:|--------------:|
+| MS Marco (8.6M docs) | 136 ms | 27 ms |
+| Fever (5.4M docs) | 517 ms | 33 ms |
+| Climate Fever (5.4M docs) | 712 ms | 87 ms |
 
-Average p50 query time for Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir) using the test queries. Experiments performed on a Apple M3 Max 36 GB. Similar gains observed on x86-64 cloud machines
+Average p50 query time in ms for Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir) using the test queries. Experiments performed on a Apple M3 Max 36 GB. Similar gains observed on x86-64 cloud machines
 
 On internal tests with 100M documents, we were able to increase from 1 to 50 QPS, while maintaining a p50 between 100-200 ms and p99 at 1000 ms. 
 
