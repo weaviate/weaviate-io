@@ -1449,6 +1449,36 @@
   margin: 30px 0px;
 }
 
+.highlightedCategory {
+  background: #130c49;
+  color: #fff;
+
+  margin: 0px;
+  max-width: var(--ifm-container-width-xl);
+
+  h2 {
+    color: #61bb73;
+  }
+
+  a {
+    color: #130c49;
+  }
+
+  .categoryDescriptions {
+    color: #fff;
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 2rem;
+  }
+  @media screen and (max-width: 1100px) {
+    padding: 2rem;
+  }
+}
+
+.highlightedContain {
+  background: #130c49;
+}
+
 .categoryDescriptions {
   color: rgba(12, 20, 40, 0.7);
   font-size: 1rem;

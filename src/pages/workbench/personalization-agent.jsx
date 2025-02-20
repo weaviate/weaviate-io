@@ -40,7 +40,7 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  {app.released === 'no' ? (
+                  {app.released === 'yes' ? (
                     <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
                         Preview Early Access
@@ -92,7 +92,6 @@ export default function QueryPage() {
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Additional details</h3>
                     <h3>Additional details</h3>
                     <p>
                       Availability: <strong>Private beta</strong>

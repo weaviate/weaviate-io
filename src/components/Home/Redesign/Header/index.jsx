@@ -91,36 +91,21 @@ export default function HomepageHeader() {
                 <Link to="/rag">Learn more</Link>
               </div>
             </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={` ${styles.homeIcon} ${styles.genIcon}`}></div>
-                <h2>
-                  Generative<br></br>Feedback Loops
-                </h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>
-                  Make your dataset smarter by enriching it with AI-generated
-                  answers. Improve personalization and spend less time on manual
-                  data cleaning.
-                </p>
-                <Link to="/gen-feedback-loops">Learn more</Link>
-              </div>
-            </div>
+
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
                 <div
                   className={` ${styles.homeIcon} ${styles.infraIcon}`}
                 ></div>
-                <h2>Cost-performance optimization</h2>
+                <h2>Agentic Workflows</h2>
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Tailor AI infrastructure patterns to your use case. Improve
-                  memory footprint and resource efficiency without compromising
-                  performance.
+                  Explore, improve, and augment your data with the power of
+                  prompts. Deliver better AI outcomes, accelerate insights, and
+                  simplify application development with AI-ready data.
                 </p>
-                <Link to="/cost-performance-optimization">Learn more</Link>
+                <Link to="/agentic-ai">Learn more</Link>
               </div>
             </div>
           </div>

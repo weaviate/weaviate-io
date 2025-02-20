@@ -97,7 +97,6 @@ export default function QueryPage() {
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
-                    <h3>Additional details</h3>
                     <p>
                       Availability: <strong>Private beta</strong>
                     </p>

@@ -47,8 +47,15 @@ export default function AppFilter() {
     );
     if (appsInCategory.length === 0) return null;
 
+    const isHighlighted = category === 'Weaviate Agents';
+
     return (
-      <div key={category} className={styles.categorySection}>
+      <div
+        key={category}
+        className={`${styles.categorySection} ${
+          isHighlighted ? styles.highlightedCategory : ''
+        }`}
+      >
         <h2>{category}</h2>
         <p className={styles.categoryDescriptions}>
           {categoryDescriptions[category]}
@@ -63,82 +70,97 @@ export default function AppFilter() {
   };
 
   return (
-    <div className="container">
-      <div className={styles.appContainer}>
-        <div className={styles.sidebar}>
-          {location.pathname === '/workbench' ? (
-            <>
-              <input
-                type="text"
-                placeholder="Search apps..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className={styles.searchInput}
-              />
-              <ul className={styles.categoryList}>
-                <li
-                  onClick={() => handleCategoryChange('All')}
-                  className={selectedCategory === 'All' ? styles.active : ''}
-                >
-                  All Categories
-                </li>
-                <li
-                  onClick={() => handleCategoryChange('Cloud Tools')}
-                  className={
-                    selectedCategory === 'Cloud Tools' ? styles.active : ''
-                  }
-                >
-                  Cloud Tools
-                </li>
-                <li
-                  onClick={() => handleCategoryChange('AI-Native Services')}
-                  className={
-                    selectedCategory === 'AI-Native Services'
-                      ? styles.active
-                      : ''
-                  }
-                >
-                  AI-Native Services
-                </li>
-                <li
-                  onClick={() => handleCategoryChange('Weaviate Agents')}
-                  className={
-                    selectedCategory === 'Weaviate Agents' ? styles.active : ''
-                  }
-                >
-                  Weaviate Agents
-                </li>
-              </ul>
-            </>
-          ) : (
-            <Link to="/marketplace" className={styles.backButton}>
-              Back to Marketplace
-            </Link>
-          )}
+    <>
+      {/* RENDER HIGHLIGHTED CATEGORY HERE - Outside of the "container" */}
+      {selectedCategory === 'All' && (
+        <div className={styles.highlightedContain}>
+          <div className="container">
+            {renderCardsByCategory('Weaviate Agents')}
+          </div>
         </div>
-        <div className={styles.mainContent}>
-          {selectedCategory === 'All' ? (
-            <>
-              {Object.keys(categoryDescriptions).map(
-                (category) =>
-                  category !== 'All' && renderCardsByCategory(category)
-              )}
-            </>
-          ) : (
-            <>
-              <h2>{selectedCategory}</h2>
-              <p className={styles.categoryDescriptions}>
-                {categoryDescriptions[selectedCategory]}
-              </p>
-              <div className={styles.cardContainer}>
-                {filteredApps.map((app) => (
-                  <AppCard key={app.id} app={app} />
-                ))}
-              </div>
-            </>
-          )}
+      )}
+
+      <div className="container">
+        <div className={styles.appContainer}>
+          <div className={styles.sidebar}>
+            {location.pathname === '/workbench' ? (
+              <>
+                <input
+                  type="text"
+                  placeholder="Search apps..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className={styles.searchInput}
+                />
+                <ul className={styles.categoryList}>
+                  <li
+                    onClick={() => handleCategoryChange('All')}
+                    className={selectedCategory === 'All' ? styles.active : ''}
+                  >
+                    All Categories
+                  </li>
+                  <li
+                    onClick={() => handleCategoryChange('Cloud Tools')}
+                    className={
+                      selectedCategory === 'Cloud Tools' ? styles.active : ''
+                    }
+                  >
+                    Cloud Tools
+                  </li>
+                  <li
+                    onClick={() => handleCategoryChange('AI-Native Services')}
+                    className={
+                      selectedCategory === 'AI-Native Services'
+                        ? styles.active
+                        : ''
+                    }
+                  >
+                    AI-Native Services
+                  </li>
+                  <li
+                    onClick={() => handleCategoryChange('Weaviate Agents')}
+                    className={
+                      selectedCategory === 'Weaviate Agents'
+                        ? styles.active
+                        : ''
+                    }
+                  >
+                    Weaviate Agents
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <Link to="/marketplace" className={styles.backButton}>
+                Back to Marketplace
+              </Link>
+            )}
+          </div>
+          <div className={styles.mainContent}>
+            {selectedCategory === 'All' ? (
+              <>
+                {Object.keys(categoryDescriptions)
+                  .filter(
+                    (category) =>
+                      category !== 'All' && category !== 'Weaviate Agents'
+                  )
+                  .map((category) => renderCardsByCategory(category))}
+              </>
+            ) : (
+              <>
+                <h2>{selectedCategory}</h2>
+                <p className={styles.categoryDescriptions}>
+                  {categoryDescriptions[selectedCategory]}
+                </p>
+                <div className={styles.cardContainer}>
+                  {filteredApps.map((app) => (
+                    <AppCard key={app.id} app={app} />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
