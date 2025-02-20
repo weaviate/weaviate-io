@@ -14,37 +14,16 @@ To estimate costs for different combinations of usage levels and SLAs, see the [
 
 Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing. To create a Stripe account, follow these steps:
 
-<ol>
-  <li>Open the organization dropdown menu.</li>
-  <li>
-    Click on the <code>Organization settings</code> button.
-  </li>
-</ol>
+import EditOrganization from '/_includes/wcs/weaviate-cloud-edit-organization.mdx'
 
-import OrganizationSettings from '/developers/wcs/img/weaviate-cloud-organization-settings.png';
-
-<div class="row">
-  <div class="card">
-    <div class="card__image">
-      <img src={OrganizationSettings} alt="Explorer Tool" />
-    </div>
-    <div class="card__body">
-      <p>
-        Open the organization dropdown menu (<span class="callout">1</span>) and
-        click on <code>Organization settings</code> (
-        <span class="callout">2</span>).
-      </p>
-    </div>
-  </div>
-</div>
-<br />
+<EditOrganization/>
 
 import BillingSection from '/developers/wcs/img/weaviate-cloud-billing-section.png';
 
-<ol start="3">
+<ol start="4">
   <li>
-    Under the <code>Billing</code> section, click on the 
-    <code>Add payment method</code> button.
+    Under the <code>Billing</code> section, click on the{' '}
+    <code>Add payment method</code> button (<span class="callout">3</span>).
   </li>
   <li>Fill in the needed personal information.</li>
   <li>Create your Stripe account.</li>
@@ -53,13 +32,10 @@ import BillingSection from '/developers/wcs/img/weaviate-cloud-billing-section.p
 <div class="row">
   <div class="card">
     <div class="card__image">
-      <img src={BillingSection} alt="Explorer Tool" />
+      <img src={BillingSection} alt="Add payment method to Weaviate Cloud" />
     </div>
     <div class="card__body">
-      <p>
-        Click on the <code>Add payment method</code> (
-        <span class="callout">3</span>) button.
-      </p>
+      <p>Add payment method to Weaviate Cloud.</p>
     </div>
   </div>
 </div>

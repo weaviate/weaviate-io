@@ -18,35 +18,97 @@ The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-t
 
 Use the tool to precisely tune a new collection. Specify a vectorizer and an embedding model. Configure collection properties for faster searches and more accurate results.
 
-## Select a cluster
+## Open a collection {#collection-details}
 
 The collections tool is available for collections that are hosted in Weaviate Cloud.
 
-To begin, select the `Collections` tool from the left hand menu.
+import CollectionDetails from '/developers/wcs/img/weaviate-cloud-collection-details.png';
 
-After you select the collection tool, the `Clusters` panel lists the clusters that are available. Select a cluster from the list to create a new collection or to see the collections that are already in the cluster.
+<ol>
+  <li>
+    To begin, select the <code>Collections</code> tool from the left sidebar (
+    <span class="callout">1</span>).
+  </li>
+  <li>
+    The <code>Clusters</code> panel lists the clusters that are available.
+  </li>
+  <li>
+    Select a cluster from the list to create a new collection or to see the
+    collections that are already in the cluster (<span class="callout">2</span>
+    ).
+  </li>
+  <li>
+    Click on the <code>Details</code> button (<span class="callout">3</span>).
+  </li>
+</ol>
 
-If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow the steps to [create a new cluster](/developers/wcs/create-instance).
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img src={CollectionDetails} alt="Open a collection in Weaviate Cloud" />
+    </div>
+    <div class="card__body">
+      <p>Open a collection in Weaviate Cloud.</p>
+    </div>
+  </div>
+</div>
+<br />
 
-<center><img src={WCDEdPick} width="75%" alt="Select cluster"/></center>
+If you don't see any available clusters, select the `Clusters` option from the left hand menu and follow the steps to [create a new cluster](/developers/wcs/manage-clusters/create).
 
 ## Create a collection
 
 The `Create collection` button opens the collection editor. Click the button to create a new collection.
 
-<center><img src={WCDEdColl} width="35%" alt="Create collection"/></center>
+import CreateCollection from '/developers/wcs/img/weaviate-cloud-create-collection.png';
+
+<ol>
+  <li>
+    To begin, select the <code>Collections</code> tool from the left sidebar (
+    <span class="callout">1</span>).
+  </li>
+  <li>
+    The <code>Clusters</code> panel lists the clusters that are available.
+  </li>
+  <li>
+    Select a cluster from the list to create a new collection or to see the
+    collections that are already in the cluster (<span class="callout">2</span>
+    ).
+  </li>
+  <li>
+    Click on the <code>Create collection</code> button (
+    <span class="callout">3</span>).
+  </li>
+</ol>
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={CreateCollection}
+        alt="Create a new collection in Weaviate Cloud"
+      />
+    </div>
+    <div class="card__body">
+      <p>Create a new collection in Weaviate Cloud.</p>
+    </div>
+  </div>
+</div>
+<br />
 
 ### Edit the General section
 
 Use the `General` section for collection wide settings.
 
-<center><img src={WCDEdGen} width="75%" alt="General edit section"/></center>
+<center>
+  <img src={WCDEdGen} width="75%" alt="General edit section" />
+</center>
 
 #### Name the collection.
 
 The collection name must begin with a capital letter.
 
-The name can only contain letters, numbers, and the under-score (_) character. Spaces are not allowed.
+The name can only contain letters, numbers, and the under-score (\_) character. Spaces are not allowed.
 
 #### Select multi-tenancy
 
@@ -70,9 +132,11 @@ Enter property names into the properties editor.
 
 The property names must begin with a lowercase letter.
 
-The names can only contain letters, numbers, and the under-score (_) character. Spaces are not allowed.
+The names can only contain letters, numbers, and the under-score (\_) character. Spaces are not allowed.
 
-<center><img src={WCDEdProp} width="75%" alt="Properties edit section"/></center>
+<center>
+  <img src={WCDEdProp} width="75%" alt="Properties edit section" />
+</center>
 
 #### Configure additional details
 
@@ -80,7 +144,13 @@ Some property types can be fine tuned. When additional configuration is possible
 
 To update these additional settings, click on the gear wheel then select the configuration options in the pop-up window.
 
-<center><img src={WCDEdExProp} width="50%" alt="Properties additional details edit section"/></center>
+<center>
+  <img
+    src={WCDEdExProp}
+    width="50%"
+    alt="Properties additional details edit section"
+  />
+</center>
 
 #### Configure nested properties
 
@@ -90,7 +160,9 @@ The `Object` property type can have nested sub-properties. To add nested propert
 - Set the type to `Object`. The editor displays an `Edit` button.
 - Click the `Edit`button.
 
-<center><img src={WCDEdObj} width="75%" alt="Nested object properties edit section"/></center>
+<center>
+  <img src={WCDEdObj} width="75%" alt="Nested object properties edit section" />
+</center>
 
 When you finish adding nested properties, click the collection name to return to the collection editor.
 
@@ -100,13 +172,13 @@ To delete a property, click the trashcan icon.
 
 ## Modify a collection
 
-To modify a collection, click the `Collection` option, then select the cluster that hosts the collection that you want to modify. Click the pencil icon that is located near the collection name to open the collection for editing.
-
-<center><img src={WCDEdDelColl} width="100%" alt="Select to edit or delete"/></center>
+To modify a collection, first [select the collection](#collection-details) you want to edit.
 
 To add a new top-level property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
 
-<center><img src={WCDEdSelect} width="100%" alt="Select to edit or delete"/></center>
+<center>
+  <img src={WCDEdSelect} width="100%" alt="Select to edit or delete" />
+</center>
 
 Fields that cannot be updated are shown in gray.
 
@@ -114,13 +186,45 @@ Fields that cannot be updated are shown in gray.
 
 Once a collection is deleted it cannot be restored. The collection schema and all of the collection objects are deleted from the cluster. This operation cannot be undone.
 
-To delete a collection, click the `Collection` option in the left-hand menu, then select the cluster that hosts the collection that you want to delete. Click the trash can icon that is located near the collection name to delete the collection.
+To delete a collection:
 
-<center><img src={WCDEdDelColl} width="100%" alt="Select to edit or delete"/></center>
+import DeleteCollection from '/developers/wcs/img/weaviate-cloud-delete-collection.png';
+
+<ol>
+  <li>
+    To begin, select the <code>Collections</code> tool from the left sidebar (
+    <span class="callout">1</span>).
+  </li>
+  <li>
+    The <code>Clusters</code> panel lists the clusters that are available.
+  </li>
+  <li>
+    Select a cluster from the list to create a new collection or to see the
+    collections that are already in the cluster (<span class="callout">2</span>
+    ).
+  </li>
+  <li>
+    Click on the trashcan icon to delete the collection (<span class="callout">3</span>).
+  </li>
+</ol>
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img src={DeleteCollection} alt="Delete a collecion in Weaviate Cloud" />
+    </div>
+    <div class="card__body">
+      <p>Delete a collection in Weaviate Cloud.</p>
+    </div>
+  </div>
+</div>
+<br />
 
 Enter the collection name in the text box to confirm, then press `Delete` to remove the collection.
 
-<center><img src={WCDEdDelConf} width="75%" alt="Confirm delete"/></center>
+<center>
+  <img src={WCDEdDelConf} width="75%" alt="Confirm delete" />
+</center>
 
 ## Additional considerations
 
