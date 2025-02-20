@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 :::info What you will learn
 
-This quickstart shows you how to combine Weaviate Cloud and Cohere to:
+This quickstart shows you how to combine Weaviate Cloud and [Weaviate Embeddings](/developers/wcs/embeddings) to:
 
 1. Set up a Weaviate instance. (10 minutes)
 1. Add and vectorize your data. (10 minutes)
@@ -76,7 +76,7 @@ Notes:
 
 ## Prerequisites
 
-You will need accounts a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
+In order to perform Retrieval Augmented Generation (RAG) in [`Step 4.2`](#42-retrieval-augmented-generation), you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
 <hr/>
 
@@ -117,7 +117,7 @@ import Register from '/developers/wcs/img/weaviate-cloud-register.png';
 
 ### 1.2 Create a cluster
 
-When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. Weaviate Cloud provides **short-term Sandbox** clusters and **permanent Serverless clusters**.
+When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
 
 import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
 import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
@@ -327,7 +327,7 @@ Note that this code includes an additional header for the Cohere API key. Weavia
 
 Weaviate provides a wide range of query tools to help you find the right data. We will try a few searches here.
 
-### 3.1 Semantic search
+### 4.1 Semantic search
 
 Semantic search finds results based on meaning. This is called `nearText` in Weaviate.
 
@@ -406,7 +406,7 @@ Weaviate is capable of many types of searches. See, for example, our how-to guid
 
 :::
 
-### 3.2 Retrieval augmented generation
+### 4.2 Retrieval augmented generation
 
 Retrieval augmented generation (RAG), also called generative search, combines the power of generative AI models such as large language models (LLMs) with the up-to-date truthfulness of a database.
 
