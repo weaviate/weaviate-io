@@ -10,7 +10,7 @@ description: "How Weaviate achieved 10x Faster Keyword Search and 90% index comp
 ![BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](./img/hero.png)
 
 
-Keyword search is an integral part of Weaviate’s [hybrid search](https://weaviate.io/blog/hybrid-search-explained), designed to [best of both](https://weaviate.io/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
+Keyword search is an integral part of Weaviate’s [hybrid search](https://weaviate.io/blog/hybrid-search-explained), designed to return [best of both](https://weaviate.io/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
 
 In this blog post, you will learn how we improved Weaviate’s inverted index, how to avoid scoring all documents that have the query terms, how we compress the inverted index and more about the improvements from using BlockMax WAND in Weaviate.
 
@@ -76,7 +76,6 @@ WAND is what powers keyword search at Weaviate. The following section will show 
 
 While WAND works well and is already able to greatly reduce the number of documents that we need to inspect, it still has some limitations: it relies on a single global value of IDF for all documents in a term, which relies on the assumption that there may be a single document that just has that term.  
 [BlockMax WAND (BMW)](https://dl.acm.org/doi/10.1145/2009916.2010048) is WAND on steroids:
-
 * Divides posting lists into blocks with local max impact  
 * Skips and avoids decoding doc ids in blocks
 
@@ -87,23 +86,18 @@ While WAND works well and is already able to greatly reduce the number of docume
 
 BMW is a type of *meta*\-WAND, where we perform document skips at block level using max impact (shallow advances), and use the combination of max doc ids from blocks to even avoid loading whole blocks from disk.
 
-
+![BlockMax WAND Block example](./img/block_example.png)
 
 A block is a mini posting list (list of doc ids and TFs) with extra metadata: Max doc id: highest doc id that shows up in the block Max impact: max TF of a document within the block (norm TF equals TF/prop length)
 
-![BlockMax WAND Block example](./img/block_example.png)
 
-
-Comparing document skipping efficiency of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). Exhaustive search would always need to examine 100% of the document query terms with at least one query term.
-
-
-| Dataset | avg. % of doc query terms scored  |  |
+| Dataset | WAND | BlockMax WAND |
 | :---- | ----- | ----: |
-|  | WAND | BlockMax WAND |
 | MS Marco (8.6M docs) | 15.1% | 6.7% |
 | Fever (5.4M docs) | 20.8% | 8.4% |
 | Climate Fever (5.4M docs) | 29.3% | 12.2% |
 
+Comparing avg. % of doc query terms scored Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). Exhaustive search would always need to examine 100% of the document query terms with at least one query term.
 
 The experimental results show that BlockMax WAND is able to further halve the number of documents inspected from the already remarkable 15-30% number of terms scored to 5-15%
 
