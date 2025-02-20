@@ -4,14 +4,10 @@ sidebar_position: 15
 image: og/wcs/user_guides.jpg
 ---
 
-import WCDEdColl from '/developers/wcs/img/wcd-create-collection-button.jpg';
-import WCDEdPick from '/developers/wcs/img/wcd-pick-cluster.jpg';
 import WCDEdGen from '/developers/wcs/img/wcd-coll-ed-general.jpg';
 import WCDEdProp from '/developers/wcs/img/wcd-coll-ed-props.jpg';
 import WCDEdExProp from '/developers/wcs/img/wcd-coll-ed-extra-props.jpg';
 import WCDEdSelect from '/developers/wcs/img/wcd-coll-select-mod.jpg';
-import WCDEdDelConf from '/developers/wcs/img/wcd-coll-conf-delete.jpg';
-import WCDEdDelColl from '/developers/wcs/img/wcd-coll-delete.jpg';
 import WCDEdObj from '/developers/wcs/img/wcd-coll-ed-objs.jpg';
 
 The Weaviate Cloud (WCD) Collections tool makes it easy for developers and non-technical users to create, manage, and delete collections.
@@ -98,19 +94,35 @@ import CreateCollection from '/developers/wcs/img/weaviate-cloud-create-collecti
 
 ### Edit the General section
 
-Use the `General` section for collection wide settings.
+<div class="row">
+  <div class="col col--6">
+    <p>
+      Use the <code>General</code> section for collection-wide settings:
+    </p>
+    <ol>
+      <li>Name the collection</li>
+      <li>Enable multi-tenancy</li>
+      <li>Set a default vectorizer</li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDEdGen} alt="General collection settings" />
+      </div>
+      <div class="card__body">General collection settings.</div>
+    </div>
+  </div>
+</div>
+<br />
 
-<center>
-  <img src={WCDEdGen} width="75%" alt="General edit section" />
-</center>
-
-#### Name the collection.
+#### Name the collection
 
 The collection name must begin with a capital letter.
 
-The name can only contain letters, numbers, and the under-score (\_) character. Spaces are not allowed.
+The name can only contain letters, numbers, and the underscore (\_) character. Spaces are not allowed.
 
-#### Select multi-tenancy
+#### Enable multi-tenancy
 
 [Multi-tenant collections](/developers/weaviate/manage-data/multi-tenancy) are useful if you have multiple users or need data isolation. By default, collections are single tenant. Set the `Multi-tenancy` toggle to enable multi-tenancy.
 
@@ -130,61 +142,117 @@ Use the `Properties` section to fine-tune individual properties in your collecti
 
 Enter property names into the properties editor.
 
-The property names must begin with a lowercase letter.
-
-The names can only contain letters, numbers, and the under-score (\_) character. Spaces are not allowed.
-
-<center>
-  <img src={WCDEdProp} width="75%" alt="Properties edit section" />
-</center>
+<div class="row">
+  <div class="col col--4">
+    <p>The property names must begin with a lowercase letter.</p>
+    <br />
+    <p>
+      The names can only contain letters, numbers, and the underscore (\_)
+      character. Spaces are not allowed.
+    </p>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDEdProp} alt="Properties edit section" />
+      </div>
+      <div class="card__body">Properties edit section.</div>
+    </div>
+  </div>
+</div>
+<br />
 
 #### Configure additional details
 
-Some property types can be fine tuned. When additional configuration is possible, the editor shows a gear wheel next to the `Filterable` toggle.
+Some property types can be fine-tuned. When additional configuration is possible, the editor shows a gear wheel next to the `Filterable` toggle.
 
-To update these additional settings, click on the gear wheel then select the configuration options in the pop-up window.
-
-<center>
-  <img
-    src={WCDEdExProp}
-    width="50%"
-    alt="Properties additional details edit section"
-  />
-</center>
+<div class="row">
+  <div class="col col--6">
+    <p>
+      To update these additional settings, click on the gear wheel, then select
+      the configuration options in the pop-up window.
+    </p>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WCDEdExProp}
+          alt="Properties additional details edit section"
+        />
+      </div>
+      <div class="card__body">Properties additional details edit section.</div>
+    </div>
+  </div>
+</div>
+<br />
 
 #### Configure nested properties
 
 The `Object` property type can have nested sub-properties. To add nested properties, follow these steps:
 
-- Name the property.
-- Set the type to `Object`. The editor displays an `Edit` button.
-- Click the `Edit`button.
-
-<center>
-  <img src={WCDEdObj} width="75%" alt="Nested object properties edit section" />
-</center>
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>Name the property.</li>
+      <li>
+        Set the type to <code>Object</code>. The editor displays an{' '}
+        <code>Edit</code> button.
+      </li>
+      <li>
+        Click the <code>Edit</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDEdObj} alt="Properties additional details edit section" />
+      </div>
+      <div class="card__body">Properties additional details edit section.</div>
+    </div>
+  </div>
+</div>
+<br />
 
 When you finish adding nested properties, click the collection name to return to the collection editor.
 
 #### Delete a property
 
-To delete a property, click the trashcan icon.
+To delete a property, click the trashcan icon next to it.
 
 ## Modify a collection
 
 To modify a collection, first [select the collection](#collection-details) you want to edit.
 
-To add a new top-level property to the collection, enter the name and type in the editor. Update additional configuration details if the property type supports them.
-
-<center>
-  <img src={WCDEdSelect} width="100%" alt="Select to edit or delete" />
-</center>
-
-Fields that cannot be updated are shown in gray.
+<div class="row">
+  <div class="col col--4">
+    <p>
+      To add a new top-level property to the collection, enter the name and type
+      in the editor. Update additional configuration details if the property
+      type supports them.
+    </p>
+    <br />
+    <p>
+      To add a new top-level property to the collection, enter the name and type
+      in the editor. Update additional configuration details if the property
+      type supports them.
+    </p>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={WCDEdSelect} alt="Modify a collection in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Modify a collection in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
+<br />
 
 ## Delete a collection
 
-Once a collection is deleted it cannot be restored. The collection schema and all of the collection objects are deleted from the cluster. This operation cannot be undone.
+Once a collection is deleted, it cannot be restored. The collection schema and all of the collection objects are deleted from the cluster. This operation cannot be undone.
 
 To delete a collection:
 
@@ -204,14 +272,15 @@ import DeleteCollection from '/developers/wcs/img/weaviate-cloud-delete-collecti
     ).
   </li>
   <li>
-    Click on the trashcan icon to delete the collection (<span class="callout">3</span>).
+    Click on the trashcan icon to delete the collection (
+    <span class="callout">3</span>).
   </li>
 </ol>
 
 <div class="row">
   <div class="card">
     <div class="card__image">
-      <img src={DeleteCollection} alt="Delete a collecion in Weaviate Cloud" />
+      <img src={DeleteCollection} alt="Delete a collection in Weaviate Cloud" />
     </div>
     <div class="card__body">
       <p>Delete a collection in Weaviate Cloud.</p>
@@ -220,20 +289,36 @@ import DeleteCollection from '/developers/wcs/img/weaviate-cloud-delete-collecti
 </div>
 <br />
 
-Enter the collection name in the text box to confirm, then press `Delete` to remove the collection.
+import DeleteCollectionConfirm from '/developers/wcs/img/weaviate-cloud-delete-collection-confirm.png';
 
-<center>
-  <img src={WCDEdDelConf} width="75%" alt="Confirm delete" />
-</center>
+<div class="row">
+  <div class="col col--6">
+    <ol start="5">
+      <li>
+        Enter the collection name in the text box to confirm, then press{' '}
+        <code>Delete</code> to remove the collection.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteCollectionConfirm} alt="Confirm collection deletion" />
+      </div>
+      <div class="card__body">Confirm collection deletion.</div>
+    </div>
+  </div>
+</div>
+<br />
 
 ## Additional considerations
 
-Weaviate collection schemas are highly configurable and can be tuned in many ways. Some schema elements are modifiable after you create the collection, but many properties cannot be modified. For additional details, see [Collection schema](/developers/weaviate/config-refs/schema).
+Weaviate collection schemas are highly configurable and can be tuned in many ways. Some schema elements are modifiable after you create the collection, but many properties cannot be modified. For additional details, see [Collection definition](/developers/weaviate/config-refs/schema).
 
 ## More resources
 
-- [Collection schema](/developers/weaviate/config-refs/schema)
-- [Starter guide: collection schemas](/developers/weaviate/starter-guides/schema)
+- [Reference: Collection definition](/developers/weaviate/config-refs/schema)
+- [Starter guide: Collection definitions (schemas)](/developers/weaviate/starter-guides/schema)
 
 ## Support
 
