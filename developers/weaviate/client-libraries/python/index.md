@@ -280,6 +280,10 @@ To create an older, `v3` style `Client` object, use the `weaviate.Client` class.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
+### Using Custom SSL Certificates
+
+The Python client doesn't directly support passing SSL certificates. If you need to work with self-signed certificates (e.g. for enterprise environments), you can add the certificate to the underlying libraries such as `certifi` that the Weaviate client library uses.
+
 ## Initial connection checks
 
 When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
