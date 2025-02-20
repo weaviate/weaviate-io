@@ -99,15 +99,11 @@ export default function QueryPage() {
                     <h3>Additional Details and Pricing</h3>
 
                     <p>
-                      Weaviate Embeddings is now available in Preview with the{' '}
-                      <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
-                        <strong>Snowflake arctic-embed-m-v1.5</strong>
-                      </Link>{' '}
-                      text embedding model.
-                    </p>
-                    <p>
-                      When generally available, pricing will start at $0.04 per
-                      million tokens.
+                      Snowflake arctic-embed 1.5 = <strong>$0.025</strong> per
+                      1M tokens
+                      <br></br>
+                      Snowflake arctic-embed 2.0 = <strong>$0.040</strong> per
+                      1M tokens
                     </p>
                   </div>
                 </div>
