@@ -11,7 +11,7 @@ Accounts in Weaviate Cloud (WCD) are based on organizations. There is an organiz
 
 ## User accounts
 
-User accounts are identified by email addresses. Each user account has it's own default [organization](#organizations).
+User accounts are identified by email addresses. Each user account has its own default [organization](#organizations).
 
 - To create a user account, follow [these steps](/developers/wcs/platform/create-account).
 - To delete a user account, [contact support](mailto:support@weaviate.io).
@@ -27,30 +27,35 @@ Organizations group user accounts together. Every user in the organization has t
 
 Be cautious when you add users to your organization, especially in production. Each user in an organization has full access to the modify the organization and its clusters.
 
-## Edit organization settings {#edit-organization-settings}
+## Manage organizations {#manage-organizations}
 
-User editable configuration settings are on the organization settings page:
-
-<ol>
-  <li>Open the organization dropdown menu.</li>
-  <li>
-    Click on the <code>Organization settings</code> button.
-  </li>
-</ol>
+User-editable configuration settings are on the **Organization settings** page:
 
 import OrganizationSettings from '/developers/wcs/img/weaviate-cloud-organization-settings.png';
 
 <div class="row">
-  <div class="card">
-    <div class="card__image">
-      <img src={OrganizationSettings} alt="Explorer Tool" />
-    </div>
-    <div class="card__body">
-      <p>
-        Open the organization dropdown menu (<span class="callout">1</span>) and
-        click on <code>Organization settings</code> (
-        <span class="callout">2</span>).
-      </p>
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+      </li>
+      <li>
+         Open the organization dropdown menu (<span class="callout">1</span>).
+      </li>
+      <li>
+        Click on <code>Organization settings</code> (<span class="callout">2</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={OrganizationSettings} alt="Edit an organization in Weaviate Cloud" />
+      </div>
+      <div class="card__body">
+        Edit an organization in Weaviate Cloud.
+      </div>
     </div>
   </div>
 </div>
@@ -60,29 +65,34 @@ import OrganizationSettings from '/developers/wcs/img/weaviate-cloud-organizatio
 
 To create a new organization, follow these steps:
 
-<ol>
-  <li>Open the organization dropdown menu.</li>
-  <li>
-    Click on the <code>Add new organization</code> button.
-  </li>
-  <li>
-    Enter the organization name ad click on the <code>Create</code> button.
-  </li>
-</ol>
-
 import AddOrganization from '/developers/wcs/img/weaviate-cloud-add-organization.png';
 
 <div class="row">
-  <div class="card">
-    <div class="card__image">
-      <img src={AddOrganization} alt="Explorer Tool" />
-    </div>
-    <div class="card__body">
-      <p>
-        Open the organization dropdown menu (<span class="callout">1</span>) and
-        click on <code>Organization settings</code> (
-        <span class="callout">2</span>).
-      </p>
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+      </li>
+      <li>
+         Open the organization dropdown menu (<span class="callout">1</span>).
+      </li>
+      <li>
+        Click on <code>Add new organization</code> (<span class="callout">2</span>).
+      </li>
+      <li>
+    Enter the organization name ad click on the <code>Create</code> button.
+  </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={AddOrganization} alt="Add a new organization in Weaviate Cloud" />
+      </div>
+      <div class="card__body">
+        Add a new organization in Weaviate Cloud.
+      </div>
     </div>
   </div>
 </div>
@@ -92,7 +102,7 @@ Weaviate Cloud automatically switches the console view to the new organization.
 
 ### Switch organizations
 
-To switch between organizations, select an organization name in the organization pulldown menu in the Weaviate Cloud console.
+To switch between organizations, select an organization name in the organization dropdown menu in the upper left corner of the Weaviate Cloud console.
 
 ### Edit an organization name
 
@@ -102,7 +112,7 @@ To edit an organization name, follow these steps:
   <div class="col col--6">
     <ol>
       <li>
-        Open the <a href="#edit-organization-settings">Organization settings</a>{' '}
+        Open the <a href="#manage-organizations">Organization settings</a>{' '}
         page.
       </li>
       <li>
@@ -139,24 +149,55 @@ To edit an organization name, follow these steps:
 
 ### Delete an organization
 
-To delete an organization, [contact support](mailto:support@weaviate.io).
+import DeleteOrganization from '/developers/wcs/img/weaviate-cloud-delete-organization.png';
 
-## Manage users
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+      </li>
+      <li>
+         Open the organization dropdown menu (<span class="callout">1</span>).
+      </li>
+      <li>
+        Click on <code>Organization settings</code> (<span class="callout">2</span>).
+      </li>
+      <li>
+        Click on the <code>Delete</code> button (<span class="callout">3</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DeleteOrganization} alt="Delete an organization in Weaviate Cloud" />
+      </div>
+      <div class="card__body">
+        Delete an organization in Weaviate Cloud.
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+:::caution
+You cannot delete an organization if it has remaining clusters. First, delete all the clusters.
+:::
+
+## Manage user accounts
 
 Any member of an organization can add or remove a user. A new user has to have a Weaviate Cloud account.
 
 ### Add a user
 
-A Weaviate Cloud user can be a member of more than one organization. Once a user creates an account in Weaviate Cloud, you can add that user to your organization.
+A Weaviate Cloud user can be a member of more than one organization. Even if a user doesn't have an account in Weaviate Cloud, you can add that user to your organization, and they can create the account afterward.
 
 To add a user, follow these steps:
 
-1. Ask the user for Weaviate Cloud account details.
-
-   - If the user has an account, note the email address.
-   - If the user does not have an account, [create a new account](/developers/wcs/platform/create-account).
-
-2. Open the [organization settings](#edit-organization-settings) panel.
+1. Ask the user for the email address used in their Weaviate Cloud account.
+2. Open the [Organization settings](#manage-organizations) page.
 3. Enter the user's email address in the `Users` section. Click `Add user`.
 
 Weaviate Cloud sends an email to the user when the user is added to the organization.
@@ -165,7 +206,7 @@ Weaviate Cloud sends an email to the user when the user is added to the organiza
 
 To remove a user, follow these steps:
 
-1. Open the [organization settings](#edit-organization-settings) panel.
+1. Open the [Organization settings](#manage-organizations) page.
 1. Find the user's email address in the `Users` section.
 1. Click the trashcan icon to delete the user.
 1. Click `Confirm`.

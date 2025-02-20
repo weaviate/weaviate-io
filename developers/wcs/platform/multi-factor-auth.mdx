@@ -11,18 +11,74 @@ Multi-factor authentication (MFA) increases the security of browser logins. MFA 
 
 ## Enable multi-factor authentication
 
-To enable MFA, follow these steps.
+To enable MFA, follow these steps:
 
-1. Use your browser to connect to the Weaviate Cloud console.
-1. Click on your account profile. Select Account settings.
-3. Click the 'Manage Two-Factor Authentication' button.
-1. Enter your password to re-authenticate to Weaviate Cloud.
-1. Open your authenticator application and scan the QR code.
-1. Enter the code from your application in Weaviate Cloud.
+import EnableMFA from '/developers/wcs/img/weaviate-cloud-enable-mfa.png';
+import MFA from '/developers/wcs/img/weaviate-cloud-mfa.png';
+
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+      </li>
+      <li>
+        Click on the <code>Account</code> dropdown menu in the lower left corner
+        of the console (<span class="callout">1</span>). 
+      </li>
+      <li>
+        Select <code>Account settings</code> (<span class="callout">2</span>).
+      </li>
+      <li>
+        Click on <code>Enable MFA</code> button (<span class="callout">3</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={EnableMFA} alt="Multi-factor authentication page" />
+      </div>
+      <div class="card__body">
+        Open the Multi-factor authentication page and find the{' '}
+        <code>Enable MFA</code> button.
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col col--6">
+    <ol start="3">
+      <li>
+        Open your authenticator application and scan the QR code.
+      </li>
+      <li>
+        Enter the code from your application in Weaviate Cloud (<span class="callout">4</span>).
+      </li>
+      <li>
+        Choose a name for your MFA device (<span class="callout">5</span>).
+      </li>
+      <li>
+        Click on the <code>Submit</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={MFA} alt="Enable MFA" />
+      </div>
+      <div class="card__body">
+        Set up Multi-factor authentication.
+      </div>
+    </div>
+  </div>
+</div>
 
 After you configure MFA, Weaviate Cloud prompts you to supply the one-time authentication code each time you log in.
 
-<img src={MFAOneTime} width="75%" alt="Enter MFA code"/>
 
 ## Disable MFA
 
@@ -30,7 +86,7 @@ To disable MFA, [contact support](mailto:support@weaviate.io).
 
 ## MFA and applications
 
-If you use a JavaScript or TypeScript client to connect a browser hosted application to Weaviate, do not enable MFA for that client's account.
+If you use a JavaScript/TypeScript client to connect a browser hosted application to Weaviate, do not enable MFA for that client's account.
 
 There is no way to pass the the one-time authentication code to the application, so the application cannot connect to Weaviate Cloud.
 
@@ -44,4 +100,4 @@ import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
 import CustomScriptLoader from '/src/components/scriptSwitch';
 
-<CustomScriptLoader/>
+<CustomScriptLoader />

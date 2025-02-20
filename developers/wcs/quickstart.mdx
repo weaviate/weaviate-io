@@ -76,7 +76,7 @@ Notes:
 
 ## Prerequisites
 
-You will need accounts a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another, preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
+You will need accounts a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
 <hr/>
 
@@ -117,7 +117,7 @@ import Register from '/developers/wcs/img/weaviate-cloud-register.png';
 
 ### 1.2 Create a cluster
 
-When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. Weaviate Cloud provides **short-term sandboxes** clusters and **permanent serverless clusters**.
+When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. Weaviate Cloud provides **short-term Sandbox** clusters and **permanent Serverless clusters**.
 
 import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
 import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
@@ -145,7 +145,7 @@ import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-clu
 Weaviate offers the following cluster options:
 
 - **Sandbox clusters**: free short-term cluster for development purposes.
-- **Serverless clusters**: permanent production ready environment.
+- **Serverless clusters**: permanent production-ready environment.
 
 <Tabs groupId="cluster">
   <TabItem value="sandbox" label="Sandbox">
@@ -202,7 +202,7 @@ Weaviate offers the following cluster options:
   </TabItem>
 </Tabs>
 
-It takes a minute or two to create the new cluster. When the cluster is ready, there will be a check mark (`✔️`) next to the cluster name.
+It takes a minute or two to create the new cluster. When the cluster is ready, there will be a checkmark (`✔️`) next to the cluster name.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
@@ -214,7 +214,7 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 ### 2.1 Install a client library
 
-The Weaviate Cloud console includes a query interface, but most most interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Chose one that makes sense for your project.
+The Weaviate Cloud console includes a query interface, but most interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Choose one that makes sense for your project.
 
 To install a client, follow these steps for your language:
 
@@ -222,9 +222,9 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 2.2 Connect to your Weaviate Cloud instancess
+### 2.2 Connect to your Weaviate Cloud instance
 
-Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the Weaviate Cloud console as shown below.
+Now, you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the Weaviate Cloud console as shown below.
 
 import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
 
@@ -263,7 +263,7 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
 Weaviate supports both REST and gRPC protocols. For Weaviate Cloud deployments, you only need to provide the REST endpoint URL - the client will automatically configure gRPC.
 :::
 
-Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance, and work with Weaviate.
+Once you have the **REST Endpoint URL** and the **Admin API key**, you can connect to the Sandbox instance and work with Weaviate.
 
 The example below shows how to connect to Weaviate and perform a basic operation, like checking the cluster status.
 
@@ -478,7 +478,7 @@ Run this code to perform the query. Here is one possible response (your response
 🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
 ```
 
-The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
+The response should be new, yet familiar. This is because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
 
 The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
@@ -494,12 +494,12 @@ export const cardsData = [
   {
     title: (
       <span>
-        <i className="fa fa-server" aria-hidden="true"></i> Serverless cluster
+        <i className="fa fa-server" aria-hidden="true"></i> Serverless Cloud
       </span>
     ),
     description: (
       <span>
-        If you need a production-ready and persistent cluster, check out <b>Weaviate Serverless</b>.
+        If you need a production-ready and persistent cluster, check out <b>Serverless Cloud</b>.
       </span>
     ),
     link: '/developers/wcs/create-instance#serverless-clusters',
@@ -507,7 +507,7 @@ export const cardsData = [
   {
     title: (
       <span>
-        <i className="fa fa-book" aria-hidden="true"></i> Weaviate Docs
+        <i className="fa fa-book" aria-hidden="true"></i> Weaviate Core: Documentation
       </span>
     ),
     description:
@@ -520,7 +520,7 @@ export const cardsData = [
         <i className="fa fa-user-friends" aria-hidden="true"></i> Join the community
       </span>
     ),
-    description: 'Connect with other developers and contribute to our forums.',
+    description: 'Connect with other developers and contribute to our forum and Slack discussions.',
     link: '/community',
   },
 ];
