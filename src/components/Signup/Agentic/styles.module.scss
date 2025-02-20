@@ -1,0 +1,484 @@
+.demoContainer {
+  margin: auto;
+  background: #131144;
+  background-size: cover;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 900px) {
+    background-size: cover;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-position-x: left;
+    height: auto;
+  }
+}
+
+.demoTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  img {
+    margin-bottom: 10px;
+  }
+
+  .demoLogo {
+    width: 10.43744rem;
+    height: 1.43244rem;
+    flex-shrink: 0;
+    background-image: url('/img/site/weaviate-logo-light-alpha.svg');
+    background-size: cover;
+  }
+}
+
+.contentContainer {
+  max-width: 1060px;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
+
+.contentSideA {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+  @media screen and (max-width: 1100px) {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  p {
+    font-size: 15px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+  }
+
+  span {
+    color: #ffffff;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .reportImage {
+    background: url('/img/site/agentic-ebook-cover.jpg');
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 34rem;
+    width: 100%;
+
+    @media screen and (max-width: 900px) {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 44rem;
+      width: 100%;
+      margin: 20px auto;
+    }
+
+    @media screen and (max-width: 700px) {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 24rem;
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+}
+
+.contentSideB {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h1 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 3.5rem */
+  }
+
+  p {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 18px;
+
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .button {
+    border-radius: 0.3125rem;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  span {
+    color: #ecf4f8;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    text-transform: uppercase;
+  }
+
+  .subTitle {
+    color: #ecf4f8;
+    font-family: 'Plus Jakarta Sans';
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 2.1rem */
+  }
+}
+
+.signUpBox {
+  margin: auto;
+  flex-shrink: 0;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+  }
+}
+
+.contentBottom {
+  display: flex;
+  gap: 35px;
+  width: 100%;
+  flex-direction: row-reverse;
+  max-width: 1060px;
+  margin: 30px auto;
+  padding: 2rem;
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .smallText {
+    font-size: 1rem;
+  }
+
+  h3 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 2rem */
+  }
+
+  span {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+
+  .quoteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 1.25rem;
+    background: #f7f9fd;
+    max-width: 25.6875rem;
+    width: 100%;
+
+    height: 30rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0px 3px 5px rgba(79, 150, 172, 0.1));
+    padding: 2rem;
+
+    @media screen and (max-width: 1100px) {
+      max-width: 100%;
+    }
+  }
+
+  .quote {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+  }
+
+  ul,
+  li {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%; /* 2rem */
+  }
+}
+
+.investorButton {
+  margin-top: 25px;
+}
+
+.demoSideB h2 {
+  font-size: 1.5rem;
+}
+
+.demoSideA p,
+.demoSideB p,
+.typeQuote p,
+.typeQuote span {
+  font-size: 0.9rem;
+}
+
+.typeIcon .homeIcon,
+.typeIcon .ragIcon,
+.typeIcon .genIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.signUpBox {
+  width: 28rem;
+  height: auto;
+}
+
+.typeQuote .image {
+  width: 5rem;
+  height: 5rem; /* Smaller starting quote image size */
+}
+
+/* Increase Font and Image Size as Screen Size Decreases */
+
+@media screen and (max-width: 1100px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    font-size: 1.75rem;
+  }
+
+  .demoSideA p,
+  .demoSideB p {
+    font-size: 1rem;
+  }
+
+  .typeIcon .homeIcon,
+  .typeIcon .ragIcon,
+  .typeIcon .genIcon {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .signUpBox {
+    width: 100%;
+    height: auto;
+  }
+
+  .typeQuote .image {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .demoSideA h1,
+  .demoSideB h2 {
+    br {
+      display: none;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0px;
+
+  .footerLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    a {
+      color: #ffffff;
+    }
+  }
+
+  .footerIcon {
+    background: #262262;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.ebookForm {
+  color: #b5d2dc;
+  background: #130c49;
+  padding: 20px 0px;
+
+  input[type='text'],
+  input[type='email'] {
+    display: flex;
+    color: #b5d2dc;
+    width: 100% !important;
+    height: 2.93694rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+    background: #272361;
+    border-radius: 0.5rem;
+    border-style: none;
+  }
+
+  input[type='textarea'] {
+    background: #272361;
+    height: 40px;
+    max-height: 200px !important;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  input[type='submit'] {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.3125rem;
+
+    background: #61bd73;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  ::marker {
+    display: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li,
+  span,
+  label {
+    list-style: none;
+    color: #b5d2dc;
+    font-size: 14px !important;
+    text-align: left;
+    font-style: normal;
+    text-transform: capitalize;
+    font-family: Inter;
+
+    p {
+      margin-left: 24px;
+      font-style: normal;
+      color: #6e84a3;
+      font-family: Inter;
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%; /* 1.38619rem */
+    }
+  }
+
+  fieldset {
+    @media screen and (max-width: 895px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.formWrapper {
+  max-height: 670px;
+  overflow-y: auto;
+  width: 100%;
+}
