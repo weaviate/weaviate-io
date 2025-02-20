@@ -74,8 +74,8 @@ Notes:
 ## Prerequisites
 
 To use Weaviate Embeddings, you will need:
-
-- A **[Weaviate Cloud instance](/developers/wcs/create-instance)** running at least Weaviate `1.27.6`
+<!-- TODO[g-despot]: Update prerequisites with correct client versions -->
+- A **[Weaviate Cloud instance](/developers/wcs/create-instance)** running at least Weaviate `1.29`
 - A Weaviate client library that supports Weaviate Embeddings:
   - **Python** client version `4.9.5` or higher
   - **JavaScript/TypeScript** client version `3.2.5` or higher
@@ -214,9 +214,9 @@ After configuring the vectorizer, [import data](/developers/weaviate/manage-data
 
 ## Step 3: Query your data
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified model.
+Once the vectorizer is configured, Weaviate will perform vector search operations using the specified model.
 
-### 3.1 Vector (near text) search
+### Vector (near text) search
 
 When you perform a [vector search](/developers/weaviate/search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and returns the most similar objects from the database.
 
@@ -252,51 +252,6 @@ The query below returns the `n` most similar objects from the database, set by `
       text={JavaImportQueries}
       startMarker="// START NearTextExample"
       endMarker="// END NearTextExample"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
-
-### 3.2 Hybrid search
-
-:::info What is a hybrid search?
-A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](/developers/weaviate/search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
-:::
-
-When you perform a [hybrid search](/developers/weaviate/search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
-
-The query below returns the `n` best scoring objects from the database, set by `limit`.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START HybridExample"
-      endMarker="# END HybridExample"
-      language="py"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START HybridExample"
-      endMarker="// END HybridExample"
-      language="ts"
-    />
-  </TabItem>
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START HybridExample"
-      endMarker="// END HybridExample"
-      language="goraw"
-    />
-  </TabItem>
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaImportQueries}
-      startMarker="// START HybridExample"
-      endMarker="// END HybridExample"
       language="java"
     />
   </TabItem>

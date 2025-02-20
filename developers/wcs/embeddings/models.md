@@ -17,16 +17,29 @@ import JavaImportQueries from '!!raw-loader!/\_includes/code/howto/java/src/test
 
 On this page, you can find a list of pre-trained models designed specifically for enterprise retrieval tasks in English and other languages. Additional models and features will be added in the future, so please check back regularly for updates.
 
-## Available models
+## How to choose the right model?
 
-The following models are available for use with Weaviate Embeddings:
+Here are some simple recommendations on when you should use a specific model:
+- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](#snowflake-arctic-embed-m-v1.5)**  
+  Best for datasets that are **primarily in English** with text lengths typically **under 512 tokens**.
+- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](#snowflake-arctic-embed-l-v2.0)**  
+  Ideal for datasets that include **multiple languages** or require **longer context (up to 8192 tokens)**. This model is optimized for robust performance on both English and multilingual retrieval tasks.
 
-- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](#snowflake-arctic-embed-m-v1.5)**
-- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](#snowflake-arctic-embed-l-v2.0)**
+Below, you can find a complete list of all available models.
 
 ---
 
-### `Snowflake/snowflake-arctic-embed-m-v1.5` (default) {#snowflake-arctic-embed-m-v1.5}
+## Available models
+
+<!-- TODO[g-despot]: Uncomment section when more models are added
+The following models are available for use with Weaviate Embeddings:
+
+- **[`Snowflake/snowflake-arctic-embed-m-v1.5`](#snowflake-arctic-embed-m-v1.5)**
+- **[`Snowflake/snowflake-arctic-embed-l-v2.0`](#snowflake-arctic-embed-l-v2.0)** (default)
+
+---
+-->
+### `Snowflake/snowflake-arctic-embed-m-v1.5` {#snowflake-arctic-embed-m-v1.5}
 
 - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
 - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
@@ -87,7 +100,7 @@ The following examples show how to configure Weaviate Embeddings-specific option
 
 ---
 
-### `Snowflake/snowflake-arctic-embed-l-v2.0` {#snowflake-arctic-embed-l-v2.0}
+### `Snowflake/snowflake-arctic-embed-l-v2.0` (default) {#snowflake-arctic-embed-l-v2.0}
 
 - A 568M parameter, 1024-dimensional model for multilingual enterprise retrieval tasks.
 - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
