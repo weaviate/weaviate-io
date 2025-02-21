@@ -743,7 +743,8 @@ client.collections.create(
         Configure.NamedVectors.text2vec_nvidia(
             name="title_vector",
             source_properties=["title"],
-            model="nvidia/nv-embed-v1"
+            model="nvidia/nv-embed-v1",
+            base_url="https://integrate.api.nvidia.com/v1",
         )
     ],
     # highlight-end
