@@ -21,22 +21,24 @@ Keyword search works by comparing the terms in your queries to the terms in your
 Keyword search requires us to first define what words we want to search. A big part of this process is [tokenization](https://weaviate.io/developers/academy/py/tokenization/basics). It splits the input documents into [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Token) (i.e. terms, numbers or anything else one would consider important to be searched individually).  
 In this simple example, consider a dataset made of three documents with a single property, title, composed of a single sentence and a *whitespace* tokenizer that lowercases the terms and splits them by whitespace. 
 
-| Doc Id | Document title | Tokenization result |
+| Doc Id | Document Title | Tokenizated Title |
 | :---- | :---- | :---- |
 | 1 | A Web Developers Guide to Hybrid Search | \[“a”, “web”, “developers”, “guide”, “to”, “hybrid”, “search”\] |
 | 2 | Unlocking the Power of Hybrid Search | \[“unlocking”, “the”, “power”, “of”, “hybrid”, “search”\] |
 | 3 | Vector Library versus Vector Database | \[“vector”, “library”, “versus”, “vector”, “database”\] |
 
 Now we have turned documents into a [bag-of-words](https://en.wikipedia.org/wiki/Bag-of-words_model) model, where we can find for individual query terms in the sentences. But having to go through all documents to find the ones that have query terms isn’t effective.   
-This is where the *inverted* part of the [inverted index](https://en.wikipedia.org/wiki/Inverted_index) comes from: instead of going document \-\> term, create an index that does from term \-\> documents. It works like the indexes at the end of books, but instead of mapping terms to book pages, we map terms to documents.
+This is where the *inverted* part of the [inverted index](https://en.wikipedia.org/wiki/Inverted_index) comes from: instead of going document \-\> term, create an index that does from term \-\> documents. It works like the indexes at the end of books, but instead of mapping terms to book pages, we map terms to documents using posting lists.
+A posting list is a list of "postings", which contain the information needed to score documents: doc id (to identify which documents have the term), [term frequency (TF)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), which represents the number of times the term is part of the property. For example, TF(“vector”) for doc 3 is 2, as it shows up twice.
 
-| hybrid | (Doc 1, TF: 1); (Doc 2, TF 1\) |
+| Term | Posting List |
 | :---- | :---- |
+| hybrid | (Doc 1, TF: 1); (Doc 2, TF 1\) |
 | search | (Doc 1, TF: 1); (Doc 2, TF 1\) |
 | vector | (Doc 3, TF: 2\) |
-| … |  |
+| … | … |
 
-In the inverted index, we need to store: doc id (to identify which documents have the term), [term frequency (TF)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), which represents the number of times the term is part of the property. For example, TF(“vector”) for doc 3 is 2, as it shows up twice.
+
 
 Thus, if you want to search for “Hybrid search or Vector search”, we get the terms \[“hybrid”, “search” , “or”, “vector”\] and inspect the matching entries in the inverted index.
 
@@ -111,7 +113,8 @@ Consider this set of four term frequencies: 12, 3, 100, 1\. The largest number o
 
 | 32 bit term freqs | Compressed data |
 | :---- | :---- |
-| 12, 3, 100, 1 (4 \* 32 bits = 128 bits) | (7), 12, 3, 1, 3  (6 \+ 4 \* 7 bits = 79 bits) |
+| 12, 3, 100, 1 | (7), 12, 3, 1, 3 |
+| (4 \* 32 bits = 128 bits) | (6 \+ 4 \* 7 bits = 79 bits) |
 
 Even with the extra 6 bits to store the bit count, we are still able to reduce the number of bits needed from 128 to 79 bits. The compression gains translate directly to larger lists, but one needs to be mindful, as a single high value will increase the bit count 
 
@@ -132,7 +135,8 @@ Doc ids are always stored in ascending order for WAND and BlockMax WAND to work.
 
 | Delta encoded | Compressed data |
 | :---- | :---- |
-| 1000000, 3, 1, 3 (64 \* 4 = 256 bits) | **1000000**, (*2\)*,  3, 1, 3  \- 1000000: encode fully as 64 bits  \- encode number of bits needed to represent: 6 bits \- remaining values: encode as floor(log2(3))+1 = 2 bits 64 \+ 6 \+ 2\*3 = 76 bits |
+| 1000000, 3, 1, 3 | **1000000**, (*2\)*,  3, 1, 3 |
+| (64 \* 4 = 256 bits) | \- 1000000: encode fully as 64 bits  \- encode number of bits needed to represent: 6 bits \- remaining values: encode as floor(log2(3))+1 = 2 bits 64 \+ 6 \+ 2\*3 = 76 bits | 
 
 Even with the extra 6 bits to store the bit count and encoding the full value of the first value, we are still able to reduce the number of bits needed from 256 to 76 bits, which is better than doing without delta encoding at 86 bits.  
 Larger lists will have a better compression ratio, as the proportion of the bits needed to store the first value is already taken into account, and we’ll only need to store the compressed deltas.
