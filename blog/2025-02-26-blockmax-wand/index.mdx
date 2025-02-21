@@ -27,8 +27,12 @@ In this simple example, consider a dataset made of three documents with a single
 | 2 | Unlocking the Power of Hybrid Search | \[“unlocking”, “the”, “power”, “of”, “hybrid”, “search”\] |
 | 3 | Vector Library versus Vector Database | \[“vector”, “library”, “versus”, “vector”, “database”\] |
 
+**Table**: Example dataset with tokenized titles.
+
 Now we have turned documents into a [bag-of-words](https://en.wikipedia.org/wiki/Bag-of-words_model) model, where we can find for individual query terms in the sentences. But having to go through all documents to find the ones that have query terms isn’t effective.   
+
 This is where the *inverted* part of the [inverted index](https://en.wikipedia.org/wiki/Inverted_index) comes from: instead of going document \-\> term, create an index that does from term \-\> documents. It works like the indexes at the end of books, but instead of mapping terms to book pages, we map terms to documents using posting lists.
+
 A posting list is a list of "postings", which contain the information needed to score documents: doc id (to identify which documents have the term), [term frequency (TF)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), which represents the number of times the term is part of the property. For example, TF(“vector”) for doc 3 is 2, as it shows up twice.
 
 | Term | Posting List |
@@ -36,16 +40,18 @@ A posting list is a list of "postings", which contain the information needed to 
 | hybrid | (Doc 1, TF: 1); (Doc 2, TF 1\) |
 | search | (Doc 1, TF: 1); (Doc 2, TF 1\) |
 | vector | (Doc 3, TF: 2\) |
-| … | … |
 
+**Table**: Posting lists for terms hybrid, search and vector in the example dataset.
 
-
-Thus, if you want to search for “Hybrid search or Vector search”, we get the terms \[“hybrid”, “search” , “or”, “vector”\] and inspect the matching entries in the inverted index.
+When a user searches for a query, we tokenize the query in the same way we tokenized the documents.
+Thus, if you want to search for `“Hybrid search or Vector search”`, we get the terms `[“hybrid”, “search”, “or”, “vector”]`.
+Inspecting the posting lists for each term, we can see that documents 1, 2 and 3 have at least one of the query terms.
+But we still need to score them to see which ones are the most relevant to the query.
 
 ## TF-IDF and BM25
 
 In keyword search, not all terms are equally important.   
-*vector*, *hybrid*, *search*, *database* are more descriptive of the contents of the documents than words like *a*, *to*, *of*, *power*, and thus, should have be scored higher,
+*vector*, *hybrid*, *search*, *database* are more descriptive of the contents of the documents than words like *a*, *to*, *of*, *power*, and thus, should be scored higher.
 
 [IDF (Inverse Document Frequency)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a measure of this importance, based on the amount of documents a term shows up compared to the total number of documents. Higher values mean rarer words that will contribute more to the score of a document. Combined with the TF, it becomes the cornerstone of keyword search, [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
 
@@ -83,8 +89,8 @@ While WAND works well and is already able to greatly reduce the number of docume
 
 
 | WAND | BlockMax WAND |
-| :---- | :---- |
-| ![WAND](./img/wand_block.png) | ![BlockMax WAND](./img/blockmax_block.png) |
+| :----: | :----: |
+| ![WAND](./img/wand_block.jpg) | ![BlockMax WAND](./img/blockmax_block.jpg) |
 
 BMW is a type of *meta*\-WAND, where we perform document skips at block level using max impact (shallow advances), and use the combination of max doc ids from blocks to even avoid loading whole blocks from disk.
 
@@ -94,27 +100,30 @@ A block is a mini posting list (list of doc ids and TFs) with extra metadata: Ma
 
 
 | Dataset | WAND | BlockMax WAND |
-| :---- | ----- | ----: |
+| :---- | -----: | ----: |
 | MS Marco (8.6M docs) | 15.1% | 6.7% |
 | Fever (5.4M docs) | 20.8% | 8.4% |
 | Climate Fever (5.4M docs) | 29.3% | 12.2% |
 
-Comparing avg. % of doc query terms scored Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). Exhaustive search would always need to examine 100% of the document query terms with at least one query term.
+**Table**:  Average % of doc query terms scored Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). 
+Exhaustive search always needs to examine 100% of the document query terms with at least one query term.
 
-The experimental results show that BlockMax WAND is able to further halve the number of documents inspected from the already remarkable 15-30% number of terms scored to 5-15%
+The experimental results show that BlockMax WAND is able to further halve the number of documents inspected from the already remarkable 15-30% number of terms scored to 5-15%.
 
-## Varenc doc id and term frequency compression
+## Varenc Doc ID and Term Frequency Compression
 
-In the examples we’ve seen so far, we have two components that we need to score a document for each term, term frequency and doc ids. This is a lot of information to load from disk into memory for each query. Can we compress this information?
+In the examples we’ve seen so far, we have two components that we need to score a document for each term: term frequency and doc IDs. This is a lot of information to load from disk into memory for each query. Can we compress this information?
 
-Term frequencies are usually in the 1-100 range, with no hard ceiling. Let’s assume they may grow all the way to 2^32. Storing them as-is would take 32 bits \* number of documents with for each term.
+Term frequencies are usually in the 1-100 range, with no hard ceiling. Let’s assume they may grow all the way to 2^32. Storing them as-is would take 32 bits \* number of documents for each term.
 
-Consider this set of four term frequencies: 12, 3, 100, 1\. The largest number on this posting list is 100, which can be represented in binary as floor(log2(100))+1 = 7 bits, instead of the full 32 bits. What if we just store the values as 7 bits instead of 32 bits , keeping an extra 6 bits (enough to store all possible bit counts) to store the per value bit count. This process can be described as a type of [variable-length coding](https://en.wikipedia.org/wiki/Variable-length_code) we’ll call varenc.
+Consider this set of four term frequencies: 12, 3, 100, 1\. The largest number on this posting list is 100, which can be represented in binary as floor(log2(100))+1 = 7 bits, instead of the full 32 bits. What if we just store the values as 7 bits instead of 32 bits, keeping an extra 6 bits (enough to store all possible bit counts) to store the per value bit count? This process can be described as a type of [variable-length coding](https://en.wikipedia.org/wiki/Variable-length_code) we’ll call varenc.
 
 | 32 bit term freqs | Compressed data |
 | :---- | :---- |
 | 12, 3, 100, 1 | (7), 12, 3, 1, 3 |
 | (4 \* 32 bits = 128 bits) | (6 \+ 4 \* 7 bits = 79 bits) |
+
+**Table**: Example of term frequency compression.
 
 Even with the extra 6 bits to store the bit count, we are still able to reduce the number of bits needed from 128 to 79 bits. The compression gains translate directly to larger lists, but one needs to be mindful, as a single high value will increase the bit count 
 
@@ -131,12 +140,16 @@ Doc ids are always stored in ascending order for WAND and BlockMax WAND to work.
 | :---- | :---- |
 | 1000000, 1000003, 1000004, 1000007 | 1000000, (1000003-1000000), (1000004-1000003), (1000007-1000004) = 1000000, 3, 1, 3 |
 
+**Table**: Example of doc id delta encoding.
+
 1000000, 3, 1, 3 looks more compressible, but the first value of the list will still be larger than the differences. So, we store the first value uncompressed as 64 bit, and compress only the diffs values with the same process as before.
 
 | Delta encoded | Compressed data |
 | :---- | :---- |
 | 1000000, 3, 1, 3 | **1000000**, (*2\)*,  3, 1, 3 |
-| (64 \* 4 = 256 bits) | <ul><li>1000000 encode fully: 64 bits</li><li>2: number of bits needed to represent deltas: 6 bits</li><li>remaining values: encode as floor(log2(3))+1 = 2 bits</li><li> 64 \+ 6 \+ 2\*3 = 76 bits</li></ul> | 
+| <ul><li>Encode all as 64 bit</li><li>64 \* 4 = 256 bits</li></ul> | <ul><li>64 bits: encode 1000000 fully</li><li>6 bits: number of bits needed to represent deltas (2 in this example)</li><li>2 bits: delta encoded values</li><li> 64 \+ 6 \+ 2\*3 = 76 bits</li></ul> | 
+
+**Table**: Example of doc id compression.
 
 Even with the extra 6 bits to store the bit count and encoding the full value of the first value, we are still able to reduce the number of bits needed from 256 to 76 bits, which is better than doing without delta encoding at 86 bits.  
 Larger lists will have a better compression ratio, as the proportion of the bits needed to store the first value is already taken into account, and we’ll only need to store the compressed deltas.
@@ -156,7 +169,7 @@ Combined with a new way of representing deleted documents and more efficient pro
 | MS Marco (8.6M docs) | 10531 MB | 941 MB |
 | Fever/Climate Fever (5.4M docs) | 9326 MB | 1175 MB |
 
-Comparing the size of \_searchable folders of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). 
+**Table**: Comparing the size of `searchable` folders of Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir). 
 
 These auxiliary structures and compression techniques mean that we cannot use BlockMax WAND to its full potential without changing the way data is represented. Thus, as of version 1.29, Weaviate only supports BlockMax WAND search for new collections and with the proper env vars enabled. We are working on a way to transparently migrate existing databases.
 
@@ -171,7 +184,7 @@ Our experiments show that average p50 (median) query time was reduced to 10-20% 
 | Fever (5.4M docs) | 517 ms | 33 ms |
 | Climate Fever (5.4M docs) | 712 ms | 87 ms |
 
-Average p50 query time in ms for Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir) using the test queries. Experiments performed on a Apple M3 Max 36 GB. Similar gains observed on x86-64 cloud machines
+**Table**: Average p50 query time in ms for Weaviate 1.29.0 on standard [beir datasets](https://github.com/beir-cellar/beir) using the test queries. Experiments performed on a Apple M3 Max 36 GB. Similar gains observed on x86-64 cloud machines
 
 On internal tests with 100M documents, we were able to increase from 1 to 50 QPS, while maintaining a p50 between 100-200 ms and p99 at 1000 ms. 
 
