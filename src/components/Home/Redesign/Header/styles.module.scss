@@ -373,6 +373,20 @@
     color: #fff;
   }
 
+  .buttonDark {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #332e75;
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.638rem */
+    width: 13.1875rem;
+  }
+
   .buttonOutline {
     color: #130c49;
     border-radius: 0.375rem;
@@ -389,6 +403,11 @@
     border-radius: 0.375rem;
     background: #fff;
   }
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .bottomBars {
@@ -1093,7 +1112,7 @@
   gap: 25px;
 
   h2 {
-    color: #fff;
+    color: #61bd73;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.75rem;
     font-weight: 600;
@@ -1125,7 +1144,7 @@
 }
 
 .serviceImage {
-  background-image: url('/img/site/vision-circle.png');
+  background-image: url('/img/site/weaviate-vision-circle-updated.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;

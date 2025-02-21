@@ -32,7 +32,9 @@ export default function Details() {
                 Enable real-time ingestion and querying of multimodal data, at
                 scale. Help AI agents quickly adapt to new information and
                 provide context for future interactions.<br></br>
-                <Link to="">Learn more</Link>
+                <Link to="/developers/weaviate/concepts/search/hybrid-search">
+                  Learn more
+                </Link>
               </p>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default function Details() {
                 Accelerate AI data readiness for more reliable AI agents. Spend
                 less time querying, organizing, and enriching data with
                 pre-buiit agents trained on Weaviate APIs.<br></br>
-                <Link to="">Learn more</Link>
+                <Link to="/workbench/#weaviate-agents">Learn more</Link>
               </p>
             </div>
           </div>
@@ -60,7 +62,7 @@ export default function Details() {
                 Meet enterprise requirements for security and compliance more
                 easily with flexible deployment, native multi- tenancy, and
                 strict access controls.<br></br>
-                <Link to="">Learn more</Link>
+                <Link to="/security">Learn more</Link>
               </p>
             </div>
           </div>
@@ -74,7 +76,7 @@ export default function Details() {
                 Weaviate works with popular LLMs and agent tools like LangGraph,
                 LlamaIndex, and Crew AI making it easier to build and deploy
                 agentic workflows.<br></br>
-                <Link to="">Learn more</Link>
+                <Link to="/product/integrations">Learn more</Link>
               </p>
             </div>
           </div>

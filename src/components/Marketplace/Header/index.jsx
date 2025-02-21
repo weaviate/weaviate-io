@@ -23,6 +23,17 @@ export default function HomepageHeader() {
                 Open Weaviate Cloud
               </Link>
             </div>
+            <div className={styles.agentsContainer}>
+              <div className={styles.agent}></div>
+              <div className={styles.agentText}>
+                <h3>Introducing Weaviate Agents</h3>
+                <p>Simplifying Agentic Workflows with the power of Weaviate</p>
+              </div>
+
+              <Link className={styles.buttonGradient} to="#weaviate-agents">
+                Explore Agents
+              </Link>
+            </div>
           </div>
         </div>
       </div>

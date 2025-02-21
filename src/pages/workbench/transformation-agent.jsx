@@ -40,10 +40,10 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  {app.released === 'yes' ? (
+                  {app.released === 'no' ? (
                     <Link to="https://events.weaviate.io/early-access">
                       <button className={styles.installButton}>
-                        Preview Early Access
+                        Sign up for updates
                       </button>
                     </Link>
                   ) : (
@@ -96,11 +96,12 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Private beta</strong>
+                      Availability: <strong>Coming Soon</strong>
                     </p>
+
                     <p>
-                      <Link to="https://events.weaviate.io/early-access">
-                        Request beta access
+                      <Link to="/developers/wcs/tools/explorer-tool">
+                        Read Docs
                       </Link>
                     </p>
                   </div>

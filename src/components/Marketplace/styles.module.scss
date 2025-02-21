@@ -1446,7 +1446,10 @@
 }
 
 .categorySection {
-  margin: 30px 0px;
+  margin: 40px 0px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .highlightedCategory {
@@ -1486,6 +1489,10 @@
   font-weight: 400;
   line-height: 157.33%; /* 1.57331rem */
   margin-bottom: 10px;
+
+  a {
+    color: rgba(12, 20, 40, 0.7);
+  }
 }
 
 .breadCrumbs {

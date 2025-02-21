@@ -23,8 +23,8 @@ export default function Header() {
               >
                 Start for Free
               </Link>
-              <Link className={styles.buttonOutline} to="/platform">
-                Learn More
+              <Link className={styles.buttonOutline} to="/contact">
+                Contact Us
               </Link>
             </div>
           </div>

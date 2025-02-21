@@ -40,7 +40,7 @@
 
   .insideBox {
     border-radius: 0.9375rem 0.9375rem 0rem 0rem;
-    background: #1b1464;
+    background: #130c48;
 
     height: 11rem;
     background-image: url('/img/site/insight_image_01.png');
@@ -75,6 +75,7 @@
     p {
       color: #130c49;
       height: 66px;
+      text-decoration: underline;
     }
   }
 }

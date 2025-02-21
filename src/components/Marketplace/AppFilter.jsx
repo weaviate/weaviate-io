@@ -6,11 +6,22 @@ import styles from './styles.module.scss';
 
 const categoryDescriptions = {
   All: 'Browse all available apps.',
+  'Vector Database': (
+    <>
+      Weaviate’s{' '}
+      <u>
+        <a href="">open-source datbase</a>
+      </u>{' '}
+      can be self-hosted or run as a managed service in Weaviate Cloud to reduce
+      operational overhead.
+    </>
+  ),
   'Weaviate Agents':
-    'Explore, improve, and augment your data with the power of prompts.',
-  'Cloud Tools':
-    'Improve developer experience and accessibility for non-technical users. Available only in Weaviate Cloud.',
-  'AI-Native Services': 'Simplify the development of end-to-end AI solutions.',
+    'Pre-built agentic workflows that dynamically interact with your data in Weaviate to perform sync, async, and multi-step tasks.',
+  'Embeddings and Integrations':
+    'Services and integrations to simplify end-to-end AI-native application development.',
+  'Cloud Console Tools':
+    'Tools that improve developer experience and accessibility within Weaviate Cloud console.',
 };
 
 export default function AppFilter() {
@@ -47,16 +58,13 @@ export default function AppFilter() {
     );
     if (appsInCategory.length === 0) return null;
 
-    const isHighlighted = category === 'Weaviate Agents';
-
     return (
       <div
         key={category}
-        className={`${styles.categorySection} ${
-          isHighlighted ? styles.highlightedCategory : ''
-        }`}
+        id={category === 'Weaviate Agents' ? 'weaviate-agents' : ''}
+        className={styles.categorySection}
       >
-        <h2>{category}</h2>
+        <h2>{category === 'Weaviate Agents' ? 'Agents' : category}</h2>
         <p className={styles.categoryDescriptions}>
           {categoryDescriptions[category]}
         </p>
@@ -70,97 +78,82 @@ export default function AppFilter() {
   };
 
   return (
-    <>
-      {/* RENDER HIGHLIGHTED CATEGORY HERE - Outside of the "container" */}
-      {selectedCategory === 'All' && (
-        <div className={styles.highlightedContain}>
-          <div className="container">
-            {renderCardsByCategory('Weaviate Agents')}
-          </div>
+    <div className="container">
+      <div className={styles.appContainer}>
+        <div className={styles.sidebar}>
+          {location.pathname === '/workbench' ? (
+            <>
+              <input
+                type="text"
+                placeholder="Search apps..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className={styles.searchInput}
+              />
+              <ul className={styles.categoryList}>
+                <li
+                  onClick={() => handleCategoryChange('All')}
+                  className={selectedCategory === 'All' ? styles.active : ''}
+                >
+                  All Categories
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('Cloud Tools')}
+                  className={
+                    selectedCategory === 'Cloud Tools' ? styles.active : ''
+                  }
+                >
+                  Cloud Tools
+                </li>
+                <li
+                  onClick={() => handleCategoryChange('AI-Native Services')}
+                  className={
+                    selectedCategory === 'AI-Native Services'
+                      ? styles.active
+                      : ''
+                  }
+                >
+                  AI-Native Services
+                </li>
+              </ul>
+            </>
+          ) : (
+            <Link to="/marketplace" className={styles.backButton}>
+              Back to Marketplace
+            </Link>
+          )}
         </div>
-      )}
+        <div className={styles.mainContent}>
+          {selectedCategory === 'All' ? (
+            <>
+              {Object.keys(categoryDescriptions).map(
+                (category) =>
+                  category !== 'All' && renderCardsByCategory(category)
+              )}
+            </>
+          ) : (
+            <>
+              <h2>
+                {selectedCategory === 'Weaviate Agents'
+                  ? 'Agents'
+                  : selectedCategory}
+              </h2>
 
-      <div className="container">
-        <div className={styles.appContainer}>
-          <div className={styles.sidebar}>
-            {location.pathname === '/workbench' ? (
-              <>
-                <input
-                  type="text"
-                  placeholder="Search apps..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  className={styles.searchInput}
-                />
-                <ul className={styles.categoryList}>
-                  <li
-                    onClick={() => handleCategoryChange('All')}
-                    className={selectedCategory === 'All' ? styles.active : ''}
-                  >
-                    All Categories
-                  </li>
-                  <li
-                    onClick={() => handleCategoryChange('Cloud Tools')}
-                    className={
-                      selectedCategory === 'Cloud Tools' ? styles.active : ''
-                    }
-                  >
-                    Cloud Tools
-                  </li>
-                  <li
-                    onClick={() => handleCategoryChange('AI-Native Services')}
-                    className={
-                      selectedCategory === 'AI-Native Services'
-                        ? styles.active
-                        : ''
-                    }
-                  >
-                    AI-Native Services
-                  </li>
-                  <li
-                    onClick={() => handleCategoryChange('Weaviate Agents')}
-                    className={
-                      selectedCategory === 'Weaviate Agents'
-                        ? styles.active
-                        : ''
-                    }
-                  >
-                    Weaviate Agents
-                  </li>
-                </ul>
-              </>
-            ) : (
-              <Link to="/marketplace" className={styles.backButton}>
-                Back to Marketplace
-              </Link>
-            )}
-          </div>
-          <div className={styles.mainContent}>
-            {selectedCategory === 'All' ? (
-              <>
-                {Object.keys(categoryDescriptions)
-                  .filter(
-                    (category) =>
-                      category !== 'All' && category !== 'Weaviate Agents'
-                  )
-                  .map((category) => renderCardsByCategory(category))}
-              </>
-            ) : (
-              <>
-                <h2>{selectedCategory}</h2>
-                <p className={styles.categoryDescriptions}>
-                  {categoryDescriptions[selectedCategory]}
-                </p>
-                <div className={styles.cardContainer}>
-                  {filteredApps.map((app) => (
-                    <AppCard key={app.id} app={app} />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+              <p className={styles.categoryDescriptions}>
+                {selectedCategory === 'Weaviate Agents'
+                  ? 'Agents'
+                  : categoryDescriptions[selectedCategory]}
+              </p>
+
+              <div className={styles.cardContainer}>
+                {filteredApps.map((app) => (
+                  <AppCard key={app.id} app={app} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
