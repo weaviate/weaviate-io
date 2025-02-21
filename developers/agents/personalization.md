@@ -76,15 +76,9 @@ There are two major components to the Personalization Agent's recommendations, t
 
 ![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search.png "Weaviate Personalization Agent - Searches")
 
+#### (Re-)Ranking
+
 ![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank.png "Weaviate Personalization Agent - (re)rank")
-
-
-
-
-
-
-
-
 
 ## Usage
 
@@ -106,13 +100,24 @@ Provide the following to the Personalization Agent:
 <TabItem value="py_agents" label="Python[agents]">
     <FilteredTextBlock
         text={PyCode}
-        startMarker="# START InstantiateTransformationAgent"
-        endMarker="# END InstantiateTransformationAgent"
+        startMarker="# START InstantiatePersonalizationAgent"
+        endMarker="# END InstantiatePersonalizationAgent"
         language="py"
     />
 </TabItem>
 
 </Tabs>
+
+### Obtain personalized recommendations
+
+#### Inspect response
+
+### Update user profiles
+
+#### Update user metadata
+
+#### Update user interactions
+
 
 ## Questions and feedback
 
