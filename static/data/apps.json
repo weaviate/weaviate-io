@@ -148,7 +148,7 @@
     "category": "Weaviate Agents",
     "description": "Dynamically personalize experiences based on user behavior.",
     "image": "personalization-agent.svg",
-    "overviewImage1": "transformation-agent-screenshot.svg",
+    "overviewImage1": "personalization-agent-screenshot.svg",
     "longDescription": "Weaviate’s Personalization Agent learns user behavior and can personalize any experience.",
     "rating": 4.5,
     "price": "Free",
