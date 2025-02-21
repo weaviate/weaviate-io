@@ -6,10 +6,7 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'wes', 'weaviate embeddings']
 ---
 
-:::info Access to Weaviate Embeddings during technical preview
-Weaviate Embeddings is currently in free technical preview.
-
-To try out Weaviate Embeddings at this time, please [contact us](https://events.weaviate.io/embeddings-preview) to request access.
+:::info Added in `1.27.10`, `1.28.3`, `1.29.0`
 :::
 
 # Weaviate Embeddings
@@ -37,14 +34,9 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 
 ## Requirements
 
-To use Weaviate Embeddings, you need:
+import Requirements from '/_includes/weaviate-embeddings-requirements.mdx';
 
-- A Weaviate Cloud instance running at least Weaviate `1.27.6`
-- To have [enabled "Weaviate Embeddings"](/developers/wcs/embeddings/index.md#administration) in your Weaviate Cloud organisation
-- A Weaviate client library that supports Weaviate Embeddings:
-    - Python client version `4.9.5` or higher
-    - JavaScript/TypeScript client version `3.2.5` or higher
-    - Go/Java clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+<Requirements />
 
 ### Weaviate configuration
 
@@ -199,8 +191,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="py" label="Python API v4">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerWeaviate"
-      endMarker="# END FullVectorizerWeaviate"
+      startMarker="# START SnowflakeArcticEmbedMV15"
+      endMarker="# END SnowflakeArcticEmbedMV15"
       language="py"
     />
   </TabItem>
@@ -208,8 +200,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="js" label="JS/TS API v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="ts"
     />
   </TabItem>
@@ -217,8 +209,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="goraw"
     />
   </TabItem>
@@ -226,8 +218,8 @@ The following examples show how to configure Weaviate Embeddings-specific option
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
+      startMarker="// START SnowflakeArcticEmbedMV15"
+      endMarker="// END SnowflakeArcticEmbedMV15"
       language="java"
     />
   </TabItem>

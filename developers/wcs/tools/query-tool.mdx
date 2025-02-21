@@ -4,56 +4,111 @@ sidebar_position: 60
 image: og/wcs/user_guides.jpg
 ---
 
-The Weaviate Cloud (WCD) query tool is a browser-based GraphQL IDE. Use the query tool to work interactively with your WCD clusters.
+The Weaviate Cloud (WCD) query tool is a browser-based GraphQL IDE. Use the query tool to work interactively with your Weaviate Cloud clusters.
 
-import WCDQueryApp from '/developers/wcs/img/wcs-console-example-query.png';
+import QueryToolPreview from '/developers/wcs/img/weaviate-cloud-query-tool-preview.png';
 
-<center><img src={WCDQueryApp} width="50%" alt="WCD query tool"/></center>
-
-[GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) is built into the query tool. GraphiQL provides many features that make GraphQL easier to use interactively:
-
-- Syntax highlighting
-- Intelligent type ahead
-- Automatic completion for queries and variables
-- Real-time error highlighting and reporting for queries and variables
+<div class="row">
+  <div class="col col--6">
+    <p>
+      <a href="https://github.com/graphql/graphiql/tree/main/packages/graphiql">
+        GraphiQL
+      </a>{' '}
+      is built into the query tool. GraphiQL provides many features that make
+      GraphQL easier to use interactively:
+    </p>
+    <br />
+    <ol>
+      <li>Syntax highlighting</li>
+      <li>Intelligent type ahead</li>
+      <li>Automatic completion for queries and variables</li>
+      <li>
+        Real-time error highlighting and reporting for queries and variables
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={QueryToolPreview} alt="Query tool in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Query tool in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
 
 ## Open the query tool
 
-To open the query tool, connect to your [WCD Dashboard](https://console.weaviate.cloud).
+To open the query tool for a cluster:
 
-In the left-hand menu, click the query tool icon.
+import QueryTool from '/developers/wcs/img/weaviate-cloud-query-tool.png';
 
-import WCDQueryConsoleLocation from '/developers/wcs/img/wcs-query-console-location.jpg';
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+      </li>
+      <li>
+        Click on the <code>Query</code> button and choose a cluster from the list.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={QueryTool} alt="Query tool in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Query tool in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
 
-<center><img src={WCDQueryConsoleLocation} width="25%" alt="WCD query tool location"/></center>
+## Query tool console
 
-### Connect to a WCD cluster
+The query tool has the following components:
 
-To select a cluster, click the `Query` button and chose a cluster from the list.
+import QueryToolConsole from '/developers/wcs/img/weaviate-cloud-query-tool-console.png';
 
-import WCDConnectedInstances from '/developers/wcs/img/wcs-connected-instances.jpg';
-
-<center><img src={WCDConnectedInstances} width="100%" alt="Connected instances"/></center>
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        An editor for writing GraphQL queries (<span class="callout">1</span>).
+      </li>
+      <li>
+        A button for executing the query (<span class="callout">2</span>).
+      </li>
+      <li>
+        A panel containing the response (<span class="callout">3</span>).
+      </li>
+      <li>
+        A panel for{' '}
+        <a href="#pass-inference-keys">passing variables and headers</a> (
+        <span class="callout">4</span>).
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={QueryToolConsole} alt="Query tool in Weaviate Cloud" />
+      </div>
+      <div class="card__body">Query tool in Weaviate Cloud.</div>
+    </div>
+  </div>
+</div>
 
 ### Authentication
 
-The query tool connects to WCD sandboxes and serverless clusters without any additional authentication details.
+The query tool connects to Weaviate Cloud sandboxes and serverless clusters without any additional authentication details.
 
-### Pass inference keys
+### Pass inference keys {#pass-inference-keys}
 
-To pass API keys for inference modules, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers.
+To pass API keys for inference modules, use request headers. The `Headers` tab is at the bottom of the query screen. Add the service inference key to the query headers.
 
-In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
-
-import WCDInferenceApiKey from '/developers/wcs/img/wcs-console-inference-key.png';
-
-<center><img src={WCDInferenceApiKey} width="100%" alt="How to add an API inference key to a WCD console query"/></center>
-
-The header can pass multiple keys.
-
-import WCDManyInferenceApiKeys from '/developers/wcs/img/wcs-console-many-inference-keys.png';
-
-<center><img src={WCDManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCD console query"/></center>
+In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key. The header can also pass multiple keys.
 
 ## More resources
 

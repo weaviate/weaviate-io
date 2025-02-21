@@ -65,9 +65,9 @@ curl -X POST \
 -H "Authorization: Bearer $WCD_API_KEY" \
 -d '{
   "class": "Question",
-  "vectorizer": "text2vec-cohere",
+  "vectorizer": "text2vec-weaviate",
   "moduleConfig": {
-    "text2vec-cohere": {},
+    "text2vec-weaviate": {},
     "generative-cohere": {}
   }
 }' \

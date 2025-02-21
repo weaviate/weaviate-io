@@ -1,0 +1,185 @@
+---
+title: Create a cluster
+sidebar_position: 2
+image: og/wcs/user_guides.jpg
+---
+
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) provides two instance types.
+
+- **Sandbox clusters**: Sandbox clusters are small, free clusters designed for learning and experimentation. Sandbox clusters are not scalable and expire after 14 days.
+- **Serverless clusters**: Serverless clusters are robust, paid clusters designed for production use.
+
+## Create a cluster
+
+When you log into the Weaviate Cloud web console, the `Clusters` panel lists your clusters (<span class="callout">1</span>). There are no clusters when you log in to a new account.
+
+To create a cluster: 
+
+import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-new-cluster.png';
+import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
+import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-cluster.png';
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Click the plus icon ➕ in the <code>Clusters</code> panel (<span class="callout">2</span>).
+      </li>
+      <li>
+        Click on <code>Create cluster</code>.
+      </li>
+      <li>
+        A new panel will open where you can choose between cluster options.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={CreateCluster} alt="Create a cluster" />
+      </div>
+      <div class="card__body">Click on this button to create a cluster.</div>
+    </div>
+  </div>
+</div>
+
+Weaviate offers the following cluster options:
+
+- **[Sandbox clusters](#sandbox-clusters)**: free short-term cluster for development purposes.
+- **[Serverless clusters](#serverless-clusters)**: permanent production-ready environment.
+
+### Sandbox clusters
+
+To create a sandbox cluster, follow these steps:
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Select the <code>Sandbox</code> tab.
+      </li>
+      <li>Choose a name for your cluster.</li>
+      <li>Select a cloud region from the dropdown.</li>
+      <li>
+        Click the <code>Create</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={SandboxCluster} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Choose a name and a cloud region to create a cluster.
+      </div>
+    </div>
+  </div>
+</div>
+
+### Serverless clusters
+
+Serverless clusters require billing details. Weaviate Cloud prompts you to add billing details if you have not already added them.
+
+To create a serverless cluster, follow these steps:
+
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Select the <code>Serverless</code> tab.
+      </li>
+      <li>Choose a name for your cluster.</li>
+      <li>Select a cloud region from the dropdown.</li>
+      <li>
+        Set the{' '}
+        <code>
+          <a href="#advanced-configuration">Advanced configuration</a>
+        </code>{' '}
+        settings.
+      </li>
+      <li>
+        Click the <code>Create</code> button.
+      </li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={ServerlessCluster} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Choose a name and a cloud region to create a cluster.
+      </div>
+    </div>
+  </div>
+</div>
+
+#### Advanced configuration
+
+import AdvancedConfiguration from '/developers/wcs/img/weaviate-cloud-advanced-configuration.png';
+
+The following advanced configuration settings are available:
+
+<div class="row">
+  <div class="col col--6">
+    <ul>
+      <li>
+        <code><a href="/developers/weaviate/configuration/rbac">Enable RBAC</a></code>
+      </li>
+      <li>
+        <code><a href="/developers/weaviate/config-refs/schema#auto-schema">Enable auto schema generation</a></code>
+      </li>
+      <li>
+        <code><a href="/developers/weaviate/concepts/vector-index#asynchronous-indexing">Enable async indexing</a></code>
+      </li>
+      <li>
+        <code><a href="/developers/weaviate/configuration/replication#async-replication-settings">Enable async replication</a></code>
+      </li>
+      <li>
+        <code>Allow all CORS origins</code>
+      </li>
+    </ul>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={AdvancedConfiguration}
+          alt=" Set the Advanced configuration settings"
+        />
+      </div>
+      <div class="card__body">Set the Advanced configuration settings.</div>
+    </div>
+  </div>
+</div>
+
+## Authentication
+
+By default, API keys are enabled for all Weaviate Cloud clusters. Both Serverless and Sandbox clusters have an administrator key and a read-only key.
+
+When you develop your client application, use an API key to connect your client to the cluster. For more details on where to find the API keys, check out this guide:
+
+- **[Manage clusters: Connect to Weaviate Cloud](/developers/wcs/manage-clusters/connect)**.
+
+## Weaviate core version
+
+When you provision a new cluster, Weaviate Cloud uses the current version of Weaviate core to set up the new cluster. You can also choose from a limited number of older versions. There may be a short delay between the release of a new Weaviate core version and its availability in Weaviate Cloud.
+
+Weaviate Cloud does not automatically update existing clusters when a new version of Weaviate core is released.
+
+For more details on Weaviate Cloud versioning, see:
+
+- **[Account management: Server version](/developers/wcs/platform/version)**.
+
+## Number of clusters
+
+<!-- TODO[g-despot]: Check if this is true.-->
+
+By default, an organization can have up to six serverless clusters and two sandbox clusters at the same time. To change these limits, [contact support](mailto:support@weaviate.io).
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

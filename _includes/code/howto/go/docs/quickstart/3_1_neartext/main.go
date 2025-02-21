@@ -2,7 +2,6 @@
 // Set these environment variables
 // WCD_HOSTNAME			your Weaviate instance hostname
 // WCD_API_KEY  		your Weaviate instance API key
-// COHERE_APIKEY   		your Cohere API key
 
 package main
 
@@ -21,11 +20,6 @@ func main() {
 		Host:       os.Getenv("WCD_HOSTNAME"),
 		Scheme:     "https",
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WCD_API_KEY")},
-		// highlight-start
-		Headers: map[string]string{
-			"X-Cohere-Api-Key": os.Getenv("COHERE_APIKEY"),
-		},
-		// highlight-end
 	}
 
 	client, err := weaviate.NewClient(cfg)

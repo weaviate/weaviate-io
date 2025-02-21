@@ -1,10 +1,33 @@
-import WCDPanelAPIKeys from '/developers/wcs/img/wcs-api-keys-panel.jpg';
-
 To retrieve your API keys, follow these steps:
 
-1. Open the WCD console and find the details panel for your cluster.
+import Register from '/developers/wcs/img/weaviate-cloud-api-keys.png';
 
-<img src={WCDPanelAPIKeys} width="80%" alt="API key button"/>
-
-2. Click the `API keys` button.
-1. Copy the key and store it in a safe location.
+<div class="row">
+  <div class="col col--6">
+    <ol>
+      <li>
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a> and{' '}
+        <a href="/developers/wcs/manage-clusters/status#select-your-cluster">
+          select your cluster
+        </a>
+        .
+      </li>
+      <li>
+        On the <code>Cluster details</code> page, find the <code>API keys</code>{' '}
+        section.
+      </li>
+      <li>Copy the needed key and store it in a safe location.</li>
+    </ol>
+  </div>
+  <div class="col col--6">
+    <div class="card">
+      <div class="card__image">
+        <img src={Register} alt="Create a cluster" />
+      </div>
+      <div class="card__body">
+        Copy the appropriate API key for your cluster.
+      </div>
+    </div>
+  </div>
+</div>
