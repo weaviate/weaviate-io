@@ -10,7 +10,7 @@ description: "How Weaviate achieved 10x Faster Keyword Search and 90% index comp
 ![BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](./img/hero.png)
 
 
-Keyword search is an integral part of Weaviate’s [hybrid search](https://weaviate.io/blog/hybrid-search-explained), designed to return [best of both](https://weaviate.io/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
+Keyword search is an integral part of Weaviate’s [hybrid search](/blog/hybrid-search-explained), designed to return [best of both](/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
 
 In this blog post, you will learn how we improved Weaviate’s inverted index, how to avoid scoring all documents that have the query terms, how we compress the inverted index and more about the improvements from using BlockMax WAND in Weaviate.
 
@@ -18,7 +18,7 @@ In this blog post, you will learn how we improved Weaviate’s inverted index, h
 
 Keyword search works by comparing the terms in your queries to the terms in your database documents, giving higher scores to rarer terms and terms that show up more often in your documents.
 
-Keyword search requires us to first define what words we want to search. A big part of this process is [tokenization](https://weaviate.io/developers/academy/py/tokenization/basics). It splits the input documents into [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Token) (i.e. terms, numbers or anything else one would consider important to be searched individually).  
+Keyword search requires us to first define what words we want to search. A big part of this process is [tokenization](/developers/academy/py/tokenization/basics). It splits the input documents into [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Token) (i.e. terms, numbers or anything else one would consider important to be searched individually).  
 In this simple example, consider a dataset made of three documents with a single property, title, composed of a single sentence and a *whitespace* tokenizer that lowercases the terms and splits them by whitespace. 
 
 | Doc Id | Document Title | Tokenizated Title |
@@ -55,11 +55,11 @@ In keyword search, not all terms are equally important.
 
 [IDF (Inverse Document Frequency)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a measure of this importance, based on the amount of documents a term shows up compared to the total number of documents. Higher values mean rarer words that will contribute more to the score of a document. Combined with the TF, it becomes the cornerstone of keyword search, [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
 
-[BM25](https://weaviate.io/blog/hybrid-search-explained#bm25) further refines TF-IDF by applying property length and frequency saturation normalization
+[BM25](/blog/hybrid-search-explained#bm25) further refines TF-IDF by applying property length and frequency saturation normalization
 
 ## Exhaustive Search 
 
-The exhaustive way of computing the [BM25](https://weaviate.io/blog/hybrid-search-explained#bm25) scores we use at Weaviate would be to check all the documents that have at least one of the query terms and score them. 
+The exhaustive way of computing the [BM25](/blog/hybrid-search-explained#bm25) scores we use at Weaviate would be to check all the documents that have at least one of the query terms and score them. 
 
 But this is quite resource intensive; most searches are  for the top 10-100 results, and even with pagination, at most, only \-100 documents end up being shown to the user for each search. This means that if 100 000 documents have at least one of the query terms (very normal for queries with common words in databases with 1 million documents), this is 0.1% of the documents, many of which are completely irrelevant to the query, wasting a lot of CPU and I/O resources.
 
@@ -205,7 +205,7 @@ Key improvements include:
 
 These optimizations make keyword searches in Weaviate faster and more resource-efficient.
 
-BlockMax WAND is in preview as of version 1.29. [Instructions on how to enable it are available here.](https://weaviate.io/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+BlockMax WAND is in preview as of version 1.29. [Instructions on how to enable it are available here.](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
 
 import WhatsNext from '/_includes/what-next.mdx'
 
