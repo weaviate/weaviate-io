@@ -1,3 +1,9 @@
+# START-ANY
+# [!NOTE!] This Weaviate Agent is not available just yet.
+# These snippets are placeholders only, and may change when it is released.
+
+# END-ANY
+
 # START InstantiateQueryAgent
 import os
 import weaviate
@@ -12,8 +18,13 @@ from weaviate.agents.query import QueryAgentResponse
 
 # START InstantiateQueryAgent
 
-# Provide your required API key(s), e.g. for the configured vectorizer(s)
-headers = {"X-Cohere-API-Key": os.environ.get("COHERE_API_KEY")}
+headers = {
+# END InstantiateQueryAgent
+    "X-Cohere-API-Key": os.environ.get("COHERE_API_KEY"),
+# START InstantiateQueryAgent
+    # Provide your required API key(s), e.g. Cohere, OpenAI, etc. for the configured vectorizer(s)
+    "X-INFERENCE-PROVIDER-API-KEY": os.environ.get("YOUR_INFERENCE_PROVIDER_KEY", ""),
+}
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.environ.get("WCD_URL"),

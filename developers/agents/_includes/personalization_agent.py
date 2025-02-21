@@ -1,19 +1,36 @@
+# START-ANY
+# [!NOTE!] This Weaviate Agent is not available just yet.
+# These snippets are placeholders only, and may change when it is released.
+
+# END-ANY
+
 # START InstantiatePersonalizationAgent
 import os
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.agents.personalization import PersonalizationAgent
-
 # END InstantiatePersonalizationAgent
-# START InspectResponseShort  # START InspectResponseFull
-from weaviate.agents.query import QueryAgentResponse
-
-# END InspectResponseShort  # END InspectResponseFull
+# START AddUserProperties
+from weaviate.classes.agents import UserProperty
+from weaviate.classes.config import DataType
+# END AddUserProperties
+# START AddUserEntry
+from weaviate.classes.agents import UserEntry
+# END AddUserEntry
+# START AddUserInteractions
+from weaviate.classes.agents import UserInteraction
+# END AddUserInteractions
 
 # START InstantiatePersonalizationAgent
 
 # Provide your required API key(s), e.g. for the configured vectorizer(s)
-headers = {"X-Cohere-API-Key": os.environ.get("COHERE_API_KEY")}
+headers = {
+# END InstantiatePersonalizationAgent
+    "X-Cohere-API-Key": os.environ.get("COHERE_API_KEY", ""),
+# START InstantiatePersonalizationAgent
+    # Provide your required API key(s), e.g. Cohere, OpenAI, etc. for the configured vectorizer(s)
+    "X-INFERENCE-PROVIDER-API-KEY": os.environ.get("YOUR_INFERENCE_PROVIDER_KEY", ""),
+}
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=os.environ.get("WCD_URL"),
@@ -22,93 +39,94 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 # Instantiate a new agent object, and specify the collections to query
-ta = PersonalizationAgent(
-    client=client, collections=["ecommerce", "financial_contracts", "weather"]
+# The Personalization Agent will automatically also connect to the user data collection
+pa = PersonalizationAgent(
+    client=client, collections=["ecommerce"]
 )
 # END InstantiatePersonalizationAgent
 
 # START BasicQuery
 # Perform a query
-response = qa.run(
-    "I like vintage clothes and and nice shoes. Recommend some of each below $60."
+response = pa.recommndations.item.from_user(
+    user_id="cpierse_123"
 )
 
 # Print the response
-print(f"{response.final_answer}\n")
+for i in response.recommendations.items:
+    print(i)
 # END BasicQuery
 
-# START FollowUpQuery
-# Perform a follow-up query
-following_response = qa.run(
-    "I like the vintage clothes options, can you do the same again but above $200?",
-    context=response,
+# START QueryParameters
+# Perform a query
+response = pa.recommndations.item.from_user(
+    user_id="charlesp_123", limit=10, top_n_interactions=100
 )
 
 # Print the response
-print(f"{following_response.final_answer}\n")
-# END FollowUpQuery
+for i in response.recommendations.items:
+    print(i["product_id"])
+    print(i["category"])
+    print(i["title"])
+# END QueryParameters
 
+# START AddUserProperties
 
-# START InspectResponseShort
-print("\n=== Query Agent Response ===")
-print(f"Original Query: {response.original_query}\n")
+# Add user properties
+response = pa.users.add_properties(
+    properties=[
+        UserProperty(name="age", data_type=DataType.INT),
+        UserProperty(name="hobbies", data_type=DataType.TEXT),
+        UserProperty(name="location", data_type=DataType.TEXT),
+    ]
+)
+# END AddUserProperties
 
-print("🔍 Final Answer Found:")
-print(f"{response.final_answer}\n")
+user_data_list = []
+# START AddUserEntry
 
-print("🔍 Searches Executed:")
-for collection_searches in response.searches:
-    for result in collection_searches:
-        print(f"- {result}\n")
+# Add new users to the user data collection
+# Here, `user_data_list` is a list of dictionaries, each containing the user data
+response = pa.users.add_users(
+    users=[
+        UserEntry(
+            name=user_data["name"],
+            user_id=user_data["user_id"],
+            properties={
+                "age": user_data["age"],
+                "hobbies": user_data["hobbies"],
+                "location": user_data["location"]
+            }
+        ) for user_data in [user_data_list]
+    ]
+)
+# END AddUserEntry
 
-print("📊 Aggregation Results:")
-for collection_aggs in response.aggregations:
-    for agg in collection_aggs:
-        print(f"- {agg}\n")
-# END InspectResponseShort
+# START AddUserInteractions
 
-# START InspectResponseFull
-print("\n=== Query Agent Response ===")
-print(f"Original Query: {response.original_query}\n")
-
-if response.has_search_answer:
-    print("🔍 Search Answer Found:")
-    print(f"{response.search_answer}\n")
-
-    print("Searches Executed:")
-    for collection_searches in response.searches:
-        for result in collection_searches:
-            print(f"- {result}\n")
-else:
-    print("🔍 No Searches Run \n")
-
-if response.has_aggregation_answer:
-    print("📊 Aggregation Answer Found:")
-    print(f"{response.aggregation_answer}\n")
-
-    print("Aggregations Run:")
-    for collection_aggs in response.aggregations:
-        for agg in collection_aggs:
-                print(f"- {agg}\n")
-else:
-    print("📊 No Aggregations Run")
-
-if response.missing_information:
-    if response.is_partial_answer:
-        print("⚠️ Answer is Partial - Missing Information:")
-    else:
-        print("⚠️ Missing Information:")
-    for missing in response.missing_information:
-        print(f"- {missing}")
-    print("Searches Executed:")
-    for collection_searches in response.searches:
-        for result in collection_searches:
-            print(f"- {result}\n")
-
-    print("Aggregation Results:")
-    for collection_aggs in response.aggregations:
-        for agg in collection_aggs:
-            print(f"- {agg}\n")
-# END InspectResponseFull
+# Add new interactions to the user data collection
+response = pa.users.add_interaction(
+    interactions=[
+        UserInteraction(
+            user_id="charlesp_123",
+            item_id="product_581",
+            interaction_property_name="view",
+            weight=1.0
+        ),
+        UserInteraction(
+            user_id="charlesp_123",
+            item_id="product_75",
+            interaction_property_name="like",
+            weight=1.0
+        ),
+        UserInteraction(
+            user_id="bob_321",
+            item_id="product_812",
+            interaction_property_name="purchase",
+            weight=1.0
+        ),
+    ],
+    remove_previous_interactions=False
+)
+# END AddUserInteractions
 
 client.close()

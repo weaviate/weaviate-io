@@ -74,11 +74,37 @@ There are two major components to the Personalization Agent's recommendations, t
 
 #### Searches
 
+The Personalization Agent performs searches in Weaviate to retrieve the most relevant recommendations for the user from the specified collections.
+
+A high-level view of the search process is shown below:
+
 ![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search.png "Weaviate Personalization Agent - Searches")
+
+The diagram depicts that the search process may be based on a number of factors:
+
+- The user's profile and preferences, fetched from the user data collection.
+- The user's previous interactions, fetched from the user data collection.
+- The recommendation context, such as the type of recommendations requested or any other relevant information.
+- Additional search strategies, as determined by the Personalization Agent.
+
+The Personalization Agent may perform multiple searches in Weaviate to retrieve the most relevant recommendations, before combining and ranking them.
 
 #### (Re-)Ranking
 
+The Personalization Agent uses multiple factors to rank the recommendations it retrieves from Weaviate, so that the final result set is tailored to the user's preferences.
+
+A high-level view of the (re)ranking process is shown below:
+
 ![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank.png "Weaviate Personalization Agent - (re)rank")
+
+The rankings may be based on a number of factors:
+
+- The user's profile and preferences, fetched from the user data collection.
+- The user's previous interactions, fetched from the user data collection.
+- The recommendation context, such as the type of recommendations requested or any other relevant information.
+- Additional ranking strategies, as determined by the Personalization Agent.
+
+This process ranks the combined result set as a whole, before serving them back in the response.
 
 ## Usage
 
@@ -96,28 +122,101 @@ Provide the following to the Personalization Agent:
 - A list of the collections that the Personalization Agent may use to produce recommendations.
 
 <Tabs groupId="languages">
-
-<TabItem value="py_agents" label="Python[agents]">
-    <FilteredTextBlock
-        text={PyCode}
-        startMarker="# START InstantiatePersonalizationAgent"
-        endMarker="# END InstantiatePersonalizationAgent"
-        language="py"
-    />
-</TabItem>
-
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START InstantiatePersonalizationAgent"
+            endMarker="# END InstantiatePersonalizationAgent"
+            language="py"
+        />
+    </TabItem>
 </Tabs>
 
 ### Obtain personalized recommendations
 
-#### Inspect response
+In the simplest form, provide a user profile to the Personalization Agent. The Personalization Agent will process the user profile, perform the necessary searches in Weaviate, and return the personalized recommendations.
 
-### Update user profiles
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START BasicQuery"
+            endMarker="# END BasicQuery"
+            language="py"
+        />
+    </TabItem>
 
-#### Update user metadata
+</Tabs>
+
+#### Query with parameters
+
+Additional parameters can be provided to the Personalization Agent to further tune the recommendations.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START QueryParameters"
+            endMarker="# END QueryParameters"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Update user data
+
+The Personalization Agent relies on each individual user's profile to provide personalized recommendations.
+
+The API includes ways to provide this information when creating the agent. Additionally, you can update the user data collection with new information over time, so that the Personalization Agent can learn from the latest available data.
+
+#### Add user properties
+
+Fields for user properties can be added to the user data collection at any time.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START AddUserProperties"
+            endMarker="# END AddUserProperties"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+#### Add users
+
+New users can be added to the user data collection at any time.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START AddUserEntry"
+            endMarker="# END AddUserEntry"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
 
 #### Update user interactions
 
+Additional interactions can be added one at a time, or in bulk.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START AddUserInteractions"
+            endMarker="# END AddUserInteractions"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
 
 ## Questions and feedback
 

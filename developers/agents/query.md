@@ -65,15 +65,14 @@ Provide the following to the Query Agent:
 - A list of the collections that the Query Agent may use to answer queries.
 
 <Tabs groupId="languages">
-
-<TabItem value="py_agents" label="Python[agents]">
-    <FilteredTextBlock
-        text={PyCode}
-        startMarker="# START InstantiateQueryAgent"
-        endMarker="# END InstantiateQueryAgent"
-        language="py"
-    />
-</TabItem>
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START InstantiateQueryAgent"
+            endMarker="# END InstantiateQueryAgent"
+            language="py"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -88,15 +87,14 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
 :::
 
 <Tabs groupId="languages">
-
-<TabItem value="py_agents" label="Python[agents]">
-    <FilteredTextBlock
-        text={PyCode}
-        startMarker="# START BasicQuery"
-        endMarker="# END BasicQuery"
-        language="py"
-    />
-</TabItem>
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START BasicQuery"
+            endMarker="# END BasicQuery"
+            language="py"
+        />
+    </TabItem>
 
 </Tabs>
 
@@ -111,6 +109,7 @@ The Query Agent can even handle follow-up queries, using the previous response a
             language="py"
         />
     </TabItem>
+
 </Tabs>
 
 ### Inspect responses
@@ -134,6 +133,7 @@ This format may be useful for a quick overview of the response.
             language="py"
         />
     </TabItem>
+
 </Tabs>
 
 #### Detailed response
@@ -149,6 +149,7 @@ This format goes into further depth, including the Query Agent's feedback on whe
             language="py"
         />
     </TabItem>
+
 </Tabs>
 
 
