@@ -16,11 +16,8 @@ export default function HomepageHeader() {
               and apps to make building and scaling easier.
             </p>
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud"
-              >
-                Open Weaviate Cloud
+              <Link className={styles.buttonGradient} to="#contact-sales">
+                Contact Sales
               </Link>
             </div>
             <div className={styles.agentsContainer}>
