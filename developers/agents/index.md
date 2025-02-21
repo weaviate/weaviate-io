@@ -11,9 +11,9 @@ Weaviate Agents are pre-built agentic workflows that are available out-of-the-bo
 TODO - insert hero images here, with links to the respective agent pages.
 :::
 
-- The [Query](./query.md) Agent provides an answer to your natural language questions, by querying your stored data.
-- The [Transformation](./transformation.md) Agent enhances your data by manipulating it based on your instructions.
-- The [Personalization](./personalization.md) Agent customizes outputs based on persona-specific information, which can even be learned over time.
+- The [Query Agent](./query.md) provides an answer to your natural language questions, by querying your stored data.
+- The [Transformation Agent](./transformation.md) enhances your data by manipulating it based on your instructions.
+- The [Personalization Agent](./personalization.md) customizes outputs based on persona-specific information, which can even be learned over time.
 
 ## How Weaviate Agents work
 
