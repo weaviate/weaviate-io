@@ -66,27 +66,6 @@ name_update_op = Operations.update_property(
 
 # START StartTransformationOperations
 
-async def transform_data():
-    ta = TransformationAgent(
-        client=client,
-        collection="ecommerce",
-        operations=[
-            is_premium_product_op,
-            product_descriptors_op,
-            name_update_op,
-        ],
-    )
-
-    # Note this is an async function
-    operation_workflow_ids = await ta.update_all()
-
-    print(operation_workflow_ids)  # Use this to track the status of the operations
-
-    return operation_workflow_ids
-# END StartTransformationOperations
-
-# START StartTransformationOperations
-
 ta = TransformationAgent(
     client=client,
     collection="ecommerce",
