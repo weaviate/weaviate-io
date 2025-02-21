@@ -1062,9 +1062,10 @@
 }
 
 .overviewImage img {
-  width: 25.625rem;
-  height: 16.625rem;
-  flex-shrink: 0;
+  width: 31.375rem;
+  height: auto;
+  max-height: 15.625rem;
+  background-size: contain;
 }
 
 @media (max-width: 1024px) {
@@ -1086,7 +1087,7 @@
   }
 
   .overviewImage img {
-    width: 18rem;
+    width: 90%;
     height: 12rem;
   }
 }
