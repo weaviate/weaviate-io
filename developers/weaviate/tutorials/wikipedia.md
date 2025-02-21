@@ -152,7 +152,7 @@ Now that we have the articles imported, let's run some queries!
 
 ### nearText
 
-The [`nearText` filter](../api/graphql/search-operators.md#neartext) lets us search for objects close (in vector space) to the vector representation of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
+The [`nearText` filter](../api/graphql/search-operators.md#neartext) lets us search for objects close (in vector space) to the vector embedding of one or more concepts. For example, the vector for the query "modern art in Europe" would be close to the vector for the article [Documenta](https://simple.wikipedia.org/wiki/Documenta), which describes
 > "one of the most important exhibitions of modern art in the world... [taking] place in Kassel, Germany".
 
 import NearText from '/_includes/code/tutorials.wikipedia.nearText.mdx';

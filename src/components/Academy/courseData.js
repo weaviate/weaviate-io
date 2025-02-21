@@ -82,7 +82,7 @@ export const courseData = {
     learningOutcomes: [
       "Describe use cases for named vectors",
       "Create a collection with named vectors",
-      "Add objects with multiple vectors per object",
+      "Add objects with multiple vector embeddings per object",
       "Perform searches on named vectors",
     ],
     note: "Python client (v4); project-based"

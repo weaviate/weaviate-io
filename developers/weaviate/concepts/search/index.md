@@ -198,7 +198,7 @@ See the [keyword search](./keyword-search.md) page for more details on how keywo
 
 #### Vector Search
 
-Similarity-based search using vector embeddings. This method compares vector representations of the query against those of the stored objects to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
+Similarity-based search using vector embeddings. This method compares vector embeddings of the query against those of the stored objects to find the closest matches, based on a predefined [distance metric](../../config-refs/distances.md).
 
 In Weaviate, you can perform vector searches in multiple ways. You can search for similar objects based on [a text input](../../search/similarity.md#search-with-text), [a vector input](../../search/similarity.md#search-with-a-vector), or [an exist object](../../search/similarity.md#search-with-an-existing-object). You can even search for similar objects with other modalities such as [with images](../../search/image.md).
 
