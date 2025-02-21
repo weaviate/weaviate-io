@@ -26,7 +26,7 @@ The developer would simply provide a prompt, or question, in natural language, a
 You do not need to know the below technical details to use the Query Agent. The Query Agent simply returns an answer to the user's query.
 <br/>
 
-The below details are provided for the curious minds who want to know more about the inner workings of the Query Agent.
+The below details are provided for the curious minds who want to know more about the inner workings of the Agent.
 :::
 
 The Query Agent is provided as a service on Weaviate Cloud.
@@ -43,7 +43,7 @@ The Query Agent works as follows at a high level (the actual implementation may 
 - Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)
 - Receive the results from Weaviate, and use appropriate foundation models to analyse the results (Step 6)
 
-Then, the Query Agents returns the answer to the user, as well as the underlying search results from Weaviate.
+Then, the Query Agent returns the answer to the user, as well as intermediate outputs, such as the underlying search results from Weaviate.
 
 Note that the term `Query Agent` refers to the entire system. The Query Agent may comprise multiple subsystems, such as microservices and/or agents under the hood, each responsible for a specific task.
 

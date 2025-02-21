@@ -1,16 +1,16 @@
-# START InstantiateQueryAgent
+# START InstantiatePersonalizationAgent
 import os
 import weaviate
 from weaviate.classes.init import Auth
-from weaviate.agents.query import QueryAgent
+from weaviate.agents.personalization import PersonalizationAgent
 
-# END InstantiateQueryAgent
+# END InstantiatePersonalizationAgent
 # START InspectResponseShort  # START InspectResponseFull
 from weaviate.agents.query import QueryAgentResponse
 
 # END InspectResponseShort  # END InspectResponseFull
 
-# START InstantiateQueryAgent
+# START InstantiatePersonalizationAgent
 
 # Provide your required API key(s), e.g. for the configured vectorizer(s)
 headers = {"X-Cohere-API-Key": os.environ.get("COHERE_API_KEY")}
@@ -22,10 +22,10 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 
 # Instantiate a new agent object, and specify the collections to query
-qa = QueryAgent(
+ta = PersonalizationAgent(
     client=client, collections=["ecommerce", "financial_contracts", "weather"]
 )
-# END InstantiateQueryAgent
+# END InstantiatePersonalizationAgent
 
 # START BasicQuery
 # Perform a query
