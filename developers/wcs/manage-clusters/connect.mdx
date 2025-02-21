@@ -119,35 +119,27 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python Client v4">
-
-{' '}
-
-<FilteredTextBlock
-  text={PyCodeSupp}
-  startMarker="# START ConnectWithLongTimeOut"
-  endMarker="# END ConnectWithLongTimeOut"
-  language="py"
-/>
-
-</TabItem>
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeSupp}
+      startMarker="# START ConnectWithLongTimeOut"
+      endMarker="# END ConnectWithLongTimeOut"
+      language="py"
+    />
+  </TabItem>
 </Tabs>
 
 Alternatively, leave the default timeout values, but skip the initial connection checks.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python Client v4">
-
-{' '}
-
-<FilteredTextBlock
-  text={PyCodeSupp}
-  startMarker="# START ConnectWithSkipChecks"
-  endMarker="# END ConnectWithSkipChecks"
-  language="py"
-/>
-
-</TabItem>
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeSupp}
+      startMarker="# START ConnectWithSkipChecks"
+      endMarker="# END ConnectWithSkipChecks"
+      language="py"
+    />
+  </TabItem>
 </Tabs>
 
 ### gRPC health check error

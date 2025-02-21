@@ -8,9 +8,9 @@ image: og/docs/quickstart-tutorial.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 <span class="badge badge--secondary">Expected time: 30 minutes</span>
-<br/><br/>
+<br />
+<br />
 
 :::info What you will learn
 
@@ -78,7 +78,7 @@ Notes:
 
 In order to perform Retrieval Augmented Generation (RAG) in [`Step 4.2`](#42-retrieval-augmented-generation), you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
-<hr/>
+<hr />
 
 ## Step 1: Set up Weaviate Cloud
 
@@ -90,7 +90,8 @@ import Register from '/developers/wcs/img/weaviate-cloud-register.png';
   <div class="col col--6">
     <ol>
       <li>
-        <a href="https://console.weaviate.cloud">Open Weaviate Cloud</a>.
+        Open the{' '}
+        <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
       </li>
       <li>
         Click on <code>Sign up</code>.
@@ -117,7 +118,7 @@ import Register from '/developers/wcs/img/weaviate-cloud-register.png';
 
 ### 1.2 Create a cluster
 
-When you log into the Weaviate Cloud web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
+When you log into the Weaviate Cloud web console, the `Clusters` panel lists your clusters (<span class="callout">1</span>). There are no clusters when you log in to a new account.
 
 import CreateCluster from '/developers/wcs/img/weaviate-cloud-create-cluster.png';
 import SandboxCluster from '/developers/wcs/img/weaviate-cloud-sandbox-cluster.png';
@@ -128,7 +129,7 @@ import ServerlessCluster from '/developers/wcs/img/weaviate-cloud-serverless-clu
     <ol>
       <li>
         To <b>create a cluster</b>, click the <code>Create cluster</code> button
-        on the Weaviate Cloud homepage.
+        on the Weaviate Cloud homepage (<span class="callout">2</span>).
       </li>
     </ol>
   </div>
@@ -499,7 +500,8 @@ export const cardsData = [
     ),
     description: (
       <span>
-        If you need a production-ready and persistent cluster, check out <b>Serverless Cloud</b>.
+        If you need a production-ready and persistent cluster, check out{' '}
+        <b>Serverless Cloud</b>.
       </span>
     ),
     link: '/developers/wcs/create-instance#serverless-clusters',
@@ -520,7 +522,8 @@ export const cardsData = [
         <i className="fa fa-user-friends" aria-hidden="true"></i> Join the community
       </span>
     ),
-    description: 'Connect with other developers and contribute to our forum and Slack discussions.',
+    description:
+      'Connect with other developers and contribute to our forum and Slack discussions.',
     link: '/community',
   },
 ];
