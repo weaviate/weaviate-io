@@ -96,6 +96,12 @@ The following models are available for use with Weaviate Embeddings:
 - **[`Snowflake/snowflake-arctic-embed-m-v1.5`](/developers/wcs/embeddings/models#snowflake-arctic-embed-m-v1.5)**
 - **[`Snowflake/snowflake-arctic-embed-l-v2.0`](/developers/wcs/embeddings/models#snowflake-arctic-embed-l-v2.0)**
 
+## Requirements
+
+import Requirements from '/_includes/weaviate-embeddings-requirements.mdx';
+
+<Requirements />
+
 ## Additional resources
 
 - [Weaviate Embeddings: Quickstart](/developers/wcs/embeddings/quickstart)
