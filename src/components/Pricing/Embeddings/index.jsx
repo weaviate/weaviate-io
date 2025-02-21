@@ -13,7 +13,7 @@ export default function Embeddings() {
               <div className={styles.tfHeader}>
                 <div className={styles.tableFooterIcon}></div>
                 <div className={styles.tableFooterText}>
-                  Weaviate Embedding Models
+                  Weaviate Embeddings
                 </div>
               </div>
               <p>Access various embedding models hosted in Weaviate Cloud.</p>
@@ -22,16 +22,17 @@ export default function Embeddings() {
               <div className={styles.hrIcon}></div>
               <div className={styles.tokenSection}>
                 <div className={styles.tokenLine}>
-                  <p>Snowflake arctic-embed-m-v1.5.0</p>
+                  <p>Snowflake arctic-embed-m-v1.5</p>
+                  {'  '}
                   <p>
                     <strong>$0.025 / 1M tokens</strong>
                   </p>
                 </div>
                 <div className={styles.tokenLine}>
-                  <p>Snowflake arctic-embed-m-v1.5.0</p>
+                  <p>Snowflake arctic-embed-m-v2.0</p>
+                  {'  '}
                   <p>
-                    {' '}
-                    <strong>$0.025 / 1M tokens</strong>
+                    <strong>$0.040 / 1M tokens</strong>
                   </p>
                 </div>
               </div>

@@ -1,16 +1,5 @@
 [
   {
-    "name": "Microsoft Azure",
-    "image": "/img/site/azure-logo-partners.svg",
-    "link": "/developers/weaviate/model-providers/openai-azure",
-    "description": "Deploy Weaviate on the Azure Marketplace and access models from OpenAI via the Microsoft Azure API.",
-    "tags": ["Cloud Hyperscalers", "Model Providers", "Module"],
-    "maintainedBy": "Internal",
-    "programmingLanguage": "",
-    "weaviateFeatures": "",
-    "featured": true
-  },
-  {
     "name": "Google Cloud Platform",
     "image": "/img/site/gcp-icon-partners.svg",
     "link": "/developers/integrations/cloud-hyperscalers/google",
@@ -27,6 +16,17 @@
     "link": "/developers/integrations/cloud-hyperscalers/aws",
     "description": "Deploy Weaviate on the AWS Marketplace and use the SageMaker and Bedrock API to access a variety of models.",
     "tags": ["Cloud Hyperscalers", "Model Providers", "Module", "Popular"],
+    "maintainedBy": "Internal",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": true
+  },
+  {
+    "name": "Microsoft Azure",
+    "image": "/img/site/azure-logo-partners.svg",
+    "link": "/developers/weaviate/model-providers/openai-azure",
+    "description": "Deploy Weaviate on the Azure Marketplace and access models from OpenAI via the Microsoft Azure API.",
+    "tags": ["Cloud Hyperscalers", "Model Providers", "Module"],
     "maintainedBy": "Internal",
     "programmingLanguage": "",
     "weaviateFeatures": "",

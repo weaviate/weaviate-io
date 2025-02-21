@@ -340,7 +340,7 @@ const config = {
             image: 'og/default.jpg',
              announcementBar: {
                id: 'announcement-bar-decemeber-2024',
-                content:`<a href="/workbench/embeddings"> 🚀 New: Embeddings are now available in Weaviate Workbench! </a>`,
+                content:`<a href="/workbench/embeddings"> 🚀 New: Embeddings are now available in Weaviate Cloud! </a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
