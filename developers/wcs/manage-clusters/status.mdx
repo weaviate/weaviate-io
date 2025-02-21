@@ -4,11 +4,44 @@ sidebar_position: 3
 # image: og/wcs/user_guides.jpg
 ---
 
-[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) exposes a web interface and an API endpoint that provide information about your Weaviate instance.
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) exposes two ways of checking the cluster status:
+- A **[web interface](#cluster-details)** in the Weaviate Cloud console.
+- An **[API endpoint](#api-endpoint)** that provides information about your Weaviate instance.
 
-## Status through Weaviate Cloud console
+## Cluster status in Weaviate Cloud console {#cluster-details}
 
-When you log into the Weaviate Cloud console, the left sidebar lists your clusters. When you click on a cluster, you can see the following fields in the `Cluster details` section at the top of the page:
+When you log into the Weaviate Cloud console, the left sidebar lists your clusters. When you click on a cluster,
+
+import ClusterDetails from '/developers/wcs/img/weaviate-cloud-cluster-details.png';
+
+<ol>
+  <li>
+    Open the <a href="https://console.weaviate.cloud">Weaviate Cloud console</a>.
+  </li>
+  <li>
+    Open the <code>Clusters</code> list from the left sidebar (
+    <span class="callout">1</span>).
+  </li>
+  <li>
+    Select the cluster you want to inspect(
+    <span class="callout">2</span>).
+  </li>
+  <li>The cluster details panel will open to the right.</li>
+</ol>
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img src={ClusterDetails} alt="View cluster status in Weaviate Cloud" />
+    </div>
+    <div class="card__body">
+      <p>View cluster status in Weaviate Cloud.</p>
+    </div>
+  </div>
+</div>
+<br />
+
+You can see the following cluster statistics at the top of the page:
 
 - `Dimensions stored`
 - `Dimensions queried`
@@ -27,7 +60,7 @@ The following fields are part of the `Information` section:
 - `Service Level Agreement`
 - `High Availability`
 
-Serverless clusters also have an `Advanced configuration` section to configure or to check the status of these additional settings:
+Serverless clusters also have an `Advanced configuration` section to configure or check the status of these additional settings:
 
 - `Enable RBAC`
 - `Enable auto schema generation`
@@ -35,7 +68,7 @@ Serverless clusters also have an `Advanced configuration` section to configure o
 - `Enable async replication`
 - `Allow all CORS origins`
 
-## API Endpoint
+## API Endpoint {#api-endpoint}
 
 To get cluster details programmatically, use the [`nodes`](/developers/weaviate/config-refs/nodes.md) REST endpoint.
 
