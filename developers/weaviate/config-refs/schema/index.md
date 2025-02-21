@@ -153,7 +153,7 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 ### Maximum allowed number of collections
 
 <!-- TODO[g-despot]: Link to multi-tenancy guide when released and remove hardcoded number -->
-To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection incurs overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
+To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
 
 - **Default limit**: `1000` collections.
 - **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
