@@ -14,20 +14,26 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-The Weaviate Transformation Agent is a pre-built agentic workflow for augmenting and transforming data using the associated Weaviate Cloud instance.
+<!-- The Weaviate Transformation Agent is a pre-built agentic workflow for augmenting and transforming data using the associated Weaviate Cloud instance. -->
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data with the help of Large Language Models.
 
-The Transformation Agent can be used to either append new properties or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate.
+<!-- The Transformation Agent can be used to either append new properties or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate. -->
+The Transformation Agent can be used to append new properties and/or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate collections.
 
+<!-- TODO: this sentence feels redundant. Can we remove it? And maybe incorporate "improve the quality of your data"  -->
 This workflow will help you to easily build upon your existing data. It can be used to augment your data with new properties, or update and improve the quality of your existing properties.
 
 Then the resulting data is stored in Weaviate, ready for further use in your applications.
 
-The resulting workflow looks as follows:
+<!-- TODO: do we need the below sentence? -->
+<!-- The resulting workflow looks as follows: -->
 
+<!-- TODO: can we remove (3)(6) -->
 ![Weaviate Transformation Agent overview](./_includes/transformation_agent_overview.png "Weaviate Transformation Agent overview")
 
 ## Architecture
 
+<!-- TODO: can we trim or remove this tip? -->
 :::tip Details for the curious
 You do not need to know the below technical details to use the Personalization Agent. The Personalization Agent simply returns a set of personalized recommendations.
 <br/>
@@ -45,9 +51,14 @@ The Transformation Agent can be called upon to perform one or more transformatio
 
 The Transformation Agent can thus be used to enhance the data at import time, or to update properties on existing objects.
 
-A high-level view of the Transformation Agent is shown below:
+<!-- TODO: thoughts? -->
+## Transformation Agent in steps
 
-![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture.png "Weaviate Transformation Agent at a high level")
+<!-- TODO: can we skip this sentence? -->
+<!-- A high-level view of the Transformation Agent is shown below: -->
+
+<!-- TODO: This feels like we shared this image twice by mistake -->
+<!-- ![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture.png "Weaviate Transformation Agent at a high level") -->
 
 Let's dive into a little more detail about the Transformation Agent, using a few example workflows:
 
@@ -98,7 +109,7 @@ To use the Transformation Agent, you must provide the following:
 
 ### Prerequisites
 
-The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent connects to an Weaviate Cloud instance, and a supported version of the client library.
+The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Weaviate
 
@@ -146,6 +157,8 @@ Properties of various types can be added to the data, based on one or more exist
 
 Existing properties can be updated based on the context of one or more existing properties. See the following example operations:
 
+<!-- TODO: the code example is missing ;) -->
+
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
         <FilteredTextBlock
@@ -158,7 +171,35 @@ Existing properties can be updated based on the context of one or more existing 
 
 </Tabs>
 
-### Start transformation operations
+<!-- TODO: we should add an example of transform at insert -->
+### Transform at insert
+
+Once the transformation operations are defined, you can create a Transformation Agent, and use it to transform new data at insert. This way the data will only get vectorized once, after the transformation.
+
+```python
+# [!NOTE!] This Weaviate Agent is not available just yet.
+# These snippets are placeholders only, and may change when it is released.
+
+from weaviate.agents.transformation import TransformationAgent
+
+ta = TransformationAgent(
+    client=client,
+    collection="ecommerce",
+    operations=[
+        is_premium_product_op,
+        product_descriptors_op,
+        name_update_op,
+    ],
+)
+
+ta.data.insert_many([
+    { "name": "Foo", "description": "...", "reviews": ["...", "..."] "price": 25, "rating": 3 },
+    { "name": "Bar", "description": "...", "reviews": ["...", "..."] "price": 50, "rating": 4 },
+])
+```
+<!-- TODO: what do you think of this title -->
+<!-- ### Start transformation operations -->
+### Transform collection data
 
 Once the transformation operations are defined, you can start the transformation operations. The Transformation Agent will return a job ID when the operations are started.
 
@@ -176,7 +217,8 @@ Once the transformation operations are defined, you can start the transformation
 
 ### Monitor job status
 
-A job ID is returned when the transformation operations are initiated. This job ID can be used to monitor the status of the job, and retrieve the results when the job is complete.
+<!-- A job ID is returned when the transformation operations are initiated. This job ID can be used to monitor the status of the job, and retrieve the results when the job is complete. -->
+You can use the job ID to monitor the status of the job, and retrieve the results when the job is complete.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
