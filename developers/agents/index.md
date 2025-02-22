@@ -9,13 +9,15 @@ image: og/docs/agents.jpg
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-Weaviate Agents are pre-built agentic workflows that are available out-of-the-box for Weaviate Cloud users. Weaviate Agents interact with your data in Weaviate to simplify data engineering and AI development workflows.
+<!-- Weaviate Agents are pre-built agentic workflows that are available out-of-the-box for Weaviate Cloud users. Weaviate Agents interact with your data in Weaviate to simplify data engineering and AI development workflows. -->
+Weaviate Agents are pre-built agentic workflows - designed for specific tasks – that are available out-of-the-box for Weaviate Cloud users. Weaviate Agents interact with your data in Weaviate Cloud to simplify data engineering and AI development workflows.
 
 ## How Weaviate Agents work
 
 Weaviate Agents have been pre-trained on Weaviate’s APIs, making them experts in performing Weaviate-specific data tasks.
 
-All you need to do is provide inputs to use the pre-built workflow, and the particular Agent will perform the required task using your data.
+<!-- All you need to do is provide inputs to use the pre-built workflow, and the particular Agent will perform the required task using your data. -->
+All you need to do is provide inputs, and the particular Agent will perform the required task using your data.
 
 :::info Weaviate Agents is not an agent framework
 Weaviate Agents is not a framework for building agents. It is a set of pre-built agentic workflows for Weaviate.
