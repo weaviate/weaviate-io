@@ -14,6 +14,9 @@ Keyword search is an integral part of Weaviate’s [hybrid search](/blog/hybrid-
 
 In this blog post, you will learn how we improved Weaviate’s inverted index, how to avoid scoring all documents that have the query terms, how we compress the inverted index and more about the improvements from using BlockMax WAND in Weaviate.
 
+BlockMax WAND is in **preview** as of version 1.29. [Instructions on how to enable it are available here.](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+
+
 ## Inverted Index and tokenization
 
 Keyword search works by comparing the terms in your queries to the terms in your database documents, giving higher scores to rarer terms and terms that show up more often in your documents.
@@ -110,6 +113,22 @@ Exhaustive search always needs to examine 100% of the document query terms with 
 
 The experimental results show that BlockMax WAND is able to further halve the number of documents inspected from the already remarkable 15-30% number of terms scored to 5-15%.
 
+But how does BlockMax WAND work in practice?
+
+## BlockMax WAND Demo
+
+Words are abstract and it can be hard to understand exactly what is happening at each step of the process.
+So, we've created a **demo** to show you exactly how BlockMax WAND works in practice!
+- **Input your documents, queries, and search parameters** and see exactly how Exhaustive search, WAND, and BlockMax WAND work in practice.
+- **Get the metrics on the number of documents and blocks scored**, and see the improvements of BlockMax WAND vs. WAND and Exhaustive search.
+- **Share your dataset and queries** with others to show the improvements!
+
+Without further ado, let's see BlockMax WAND in action!
+
+<iframe src="https://andremourao.com/wand/" width="100%" height="800px" />
+
+
+
 ## Varenc Doc ID and Term Frequency Compression
 
 In the examples we’ve seen so far, we have two components that we need to score a document for each term: term frequency and doc IDs. This is a lot of information to load from disk into memory for each query. Can we compress this information?
@@ -188,11 +207,6 @@ Our experiments show that average p50 (median) query time was reduced to 10-20% 
 
 On internal tests with 100M documents, we were able to increase from 1 to 50 QPS, while maintaining a p50 between 100-200 ms and p99 at 1000 ms. 
 
-
-## Demo
-
-TODO [Demo comparing exhaustive search, WAND and BlockMax WAND is available here](https://andremourao.com/wand/).
-
 ## Summary
 
 BlockMax WAND significantly improves Weaviate's document scoring speed by optimizing the inverted index and using advanced compression techniques. It reduces the number of documents inspected during keyword searches, leading to faster query times and reduced disk space usage.
@@ -203,10 +217,12 @@ Key improvements include:
 * **varenc Compression:** Compresses term frequencies and doc IDs, reducing storage requirements by 50-90%. Delta encoding further enhances doc ID compression.  
 * **Performance Gains:** Reduces p50 query times to 10-20% of the original, and significantly increases Queries Per Second (QPS).
 
+This is the first set of steps towards making Weaviate's hybrid search billion scale ready. Stay tuned for more improvements in the future!
 These optimizations make keyword searches in Weaviate faster and more resource-efficient.
 
-BlockMax WAND is in preview as of version 1.29. [Instructions on how to enable it are available here.](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+BlockMax WAND is in **preview** as of version 1.29. [Instructions on how to enable it are available here.](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
 
 import WhatsNext from '/_includes/what-next.mdx'
 
 <WhatsNext />
+
