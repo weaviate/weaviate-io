@@ -118,19 +118,6 @@ For more information on authentication and authorization, see the [Authenticatio
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `ASYNC_REPLICATION_DISABLED` | Disable async replication. Default: `false` | `boolean` | `false` |
-| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hash tree used for data comparison between nodes. If the height is `0` each node will store just one digest per shard. Default: `16`, Min: `0`, Max: `20`<br/> [Read more about potentially increased memory consumption.](/developers/weaviate/concepts/replication-architecture/consistency#memory-and-performance-considerations-for-async-replication) | `string - number` | `10` |
-| `ASYNC_REPLICATION_FREQUENCY` |  Frequency of periodic data comparison between nodes in seconds. Default: `30` | `string - number` | `60` |
-| `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
-| `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `5` | `string - number` | `20` |
-| `ASYNC_REPLICATION_LOGGING_FREQUENCY` | Frequency of how often the background process logs any events in seconds. Default: `5` | `string - number` | `7` |
-| `ASYNC_REPLICATION_DIFF_BATCH_SIZE` | Specifies the batch size for comparing digest information between nodes. Default: `1000`, Min: `1`, Max: `10000` |`string - number`  | `2000` |
-| `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT` | Defines the time limit a node has to provide a comparison response in seconds. Default: `10` | `string - number` | `30` |
-| `ASYNC_REPLICATION_PROPAGATION_TIMEOUT` | Defines the time limit a node has to provide a propagation response in seconds. Default: `30` | `string - number` | `60` |
-| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | Limits the number of out-of-sync objects that can be propagated in one asynchronous replication iteration. Default: `10000`, Min: `1`, Max: `1000000` | `string - number` | `5000` |
-| `ASYNC_REPLICATION_PROPAGATION_DELAY` | Sets a delay period to allow asynchronous write operations to reach all nodes in a shard/tenant before propagating new or updated objects. Default: `30` | `string - number` | `40` |
-| `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY` | Defines the number of workers which will concurrently propagate a batch of objects. Default: `5`, Min: `1`, Max: `20` | `string - number` | `10` |
-| `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE` | Sets the maximum number of objects to propagate in a single batch. Default: `100`, Min: `1`, Max: `1000` |`string - number`  | `200` |
 | `CLUSTER_DATA_BIND_PORT` | Port for exchanging data. | `string - number` | `7103` |
 | `CLUSTER_GOSSIP_BIND_PORT` | Port for exchanging network state information. | `string - number` | `7102` |
 | `CLUSTER_HOSTNAME` | Hostname of a node. Always set this value if the default OS hostname might change over time. | `string` | `node1` |
@@ -145,6 +132,29 @@ For more information on authentication and authorization, see the [Authenticatio
 | `RAFT_JOIN` | Manually set Raft voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of Raft voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If `true`, voter nodes only handle the schema. They do not accept any data. | `boolean` | `false` |
 | `REPLICATION_MINIMUM_FACTOR` | The minimum replication factor for all collections in the cluster. | `string - number` | `3` |
+
+### Async replication
+
+:::info Added in `v1.29`
+The environment variables for configuring async replication have been introduced in `v1.29`.  
+To learn more about their usage, visit the **[replication how-to guide](/developers/weaviate/configuration/replication#async-replication-settings)**.
+:::
+
+| Variable | Description | Type | Example Value |
+| --- | --- | --- | --- |
+| `ASYNC_REPLICATION_DISABLED` | Disable async replication. Default: `false` | `boolean` | `false` |
+| `ASYNC_REPLICATION_HASHTREE_HEIGHT` | Height of the hash tree used for data comparison between nodes. If the height is `0` each node will store just one digest per shard. Default: `16`, Min: `0`, Max: `20`<br/> [Read more about potentially increased memory consumption.](/developers/weaviate/concepts/replication-architecture/consistency#memory-and-performance-considerations-for-async-replication) | `string - number` | `10` |
+| `ASYNC_REPLICATION_FREQUENCY` |  Frequency of periodic data comparison between nodes in seconds. Default: `30` | `string - number` | `60` |
+| `ASYNC_REPLICATION_FREQUENCY_WHILE_PROPAGATING` | Frequency of data comparison between nodes after a node has been synced in milliseconds. Default: `10` | `string - number` | `20` |
+| `ASYNC_REPLICATION_ALIVE_NODES_CHECKING_FREQUENCY` | Frequency of how often the background process checks for changes in the availability of nodes in seconds. Default: `5` | `string - number` | `20` |
+| `ASYNC_REPLICATION_LOGGING_FREQUENCY` | Frequency of how often the background process logs any events in seconds. Default: `5` | `string - number` | `7` |
+| `ASYNC_REPLICATION_DIFF_BATCH_SIZE` | Specifies the batch size for comparing digest information between nodes. Default: `1000`, Min: `1`, Max: `10000` |`string - number`  | `2000` |
+| `ASYNC_REPLICATION_DIFF_PER_NODE_TIMEOUT` | Defines the time limit a node has to provide a comparison response in seconds. Default: `10` | `string - number` | `30` |
+| `ASYNC_REPLICATION_PROPAGATION_TIMEOUT` | Defines the time limit a node has to provide a propagation response in seconds. Default: `30` | `string - number` | `60` |
+| `ASYNC_REPLICATION_PROPAGATION_LIMIT` | Limits the number of out-of-sync objects that can be propagated in one asynchronous replication iteration. Default: `10000`, Min: `1`, Max: `1000000` | `string - number` | `5000` |
+| `ASYNC_REPLICATION_PROPAGATION_DELAY` | Sets a delay period to allow asynchronous write operations to reach all nodes in a shard/tenant before propagating new or updated objects. Default: `30` | `string - number` | `40` |
+| `ASYNC_REPLICATION_PROPAGATION_CONCURRENCY` | Defines the number of workers which will concurrently propagate a batch of objects. Default: `5`, Min: `1`, Max: `20` | `string - number` | `10` |
+| `ASYNC_REPLICATION_PROPAGATION_BATCH_SIZE` | Sets the maximum number of objects to propagate in a single batch. Default: `100`, Min: `1`, Max: `1000` |`string - number`  | `200` |
 
 <!-- Docs notes:
 Undocumented environment variables - for internal use only:
