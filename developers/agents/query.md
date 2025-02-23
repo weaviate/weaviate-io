@@ -39,8 +39,8 @@ The context may also include previous conversation history, and any other releva
 The Query Agent follows these high-level steps (the actual implementation may vary):
 
 - Use appropriate foundation models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
-- Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-4)
-- Receive the results from Weaviate, and use appropriate foundation models to generate the final respond to the user prompt/query.
+- Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)
+- Receive the results from Weaviate, and use appropriate foundation models to generate the final respond to the user prompt/query. (Step 6)
 
 Then, the Query Agent returns the answer to the user, as well as intermediate outputs, such as the underlying search results from Weaviate.
 

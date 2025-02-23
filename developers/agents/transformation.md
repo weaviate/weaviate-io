@@ -14,21 +14,12 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-<!-- The Weaviate Transformation Agent is a pre-built agentic service for augmenting and transforming data using the associated Weaviate Cloud instance. -->
-The Weaviate Transformation Agent is an agentic service designed to augment and transform data with the help of Large Language Models.
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models.
 
-<!-- The Transformation Agent can be used to either append new properties or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate. -->
-The Transformation Agent can be used to append new properties and/or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate collections.
+The Transformation Agent can be used to append new properties and/or update existing properties of data, for new or existing objects in Weaviate.
 
-<!-- TODO: this sentence feels redundant. Can we remove it? And maybe incorporate "improve the quality of your data"  -->
-This workflow will help you to easily build upon your existing data. It can be used to augment your data with new properties, or update and improve the quality of your existing properties.
+This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
 
-Then the resulting data is stored in Weaviate, ready for further use in your applications.
-
-<!-- TODO: do we need the below sentence? -->
-<!-- The resulting workflow looks as follows: -->
-
-<!-- TODO: can we remove (3)(6) -->
 ![Weaviate Transformation Agent overview](./_includes/transformation_agent_overview.png "Weaviate Transformation Agent overview")
 
 ## Architecture
