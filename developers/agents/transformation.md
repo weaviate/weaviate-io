@@ -42,14 +42,9 @@ The Transformation Agent can be called upon to perform one or more transformatio
 
 The Transformation Agent can thus be used to enhance the data at import time, or to update properties on existing objects.
 
-<!-- TODO: thoughts? -->
-## Transformation Agent in steps
+## Transformation Agent: visualized workflow
 
-<!-- TODO: can we skip this sentence? -->
-<!-- A high-level view of the Transformation Agent is shown below: -->
-
-<!-- TODO: This feels like we shared this image twice by mistake -->
-<!-- ![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture.png "Weaviate Transformation Agent at a high level") -->
+![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture.png "Weaviate Transformation Agent at a high level")
 
 Let's dive into a little more detail about the Transformation Agent, using a few example workflows:
 
@@ -148,58 +143,50 @@ Properties of various types can be added to the data, based on one or more exist
 
 Existing properties can be updated based on the context of one or more existing properties. See the following example operations:
 
-<!-- TODO: the code example is missing ;) -->
-
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START QueryParameters"
-            endMarker="# END QueryParameters"
+            startMarker="# START DefineOperationsUpdate"
+            endMarker="# END DefineOperationsUpdate"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-<!-- TODO: we should add an example of transform at insert -->
 ### Transform at insert
 
-Once the transformation operations are defined, you can create a Transformation Agent, and use it to transform new data at insert. This way the data will only get vectorized once, after the transformation.
+Once the transformation operations are defined, you can create a Transformation Agent, and use it to transform new data at insert.
 
-```python
-# [!NOTE!] This Weaviate Agent is not available just yet.
-# These snippets are placeholders only, and may change when it is released.
+The vectorization will only occur after the transformation operations are completed and the data is inserted into Weaviate.
 
-from weaviate.agents.transformation import TransformationAgent
-
-ta = TransformationAgent(
-    client=client,
-    collection="ecommerce",
-    operations=[
-        is_premium_product_op,
-        product_descriptors_op,
-        name_update_op,
-    ],
-)
-
-ta.data.insert_many([
-    { "name": "Foo", "description": "...", "reviews": ["...", "..."] "price": 25, "rating": 3 },
-    { "name": "Bar", "description": "...", "reviews": ["...", "..."] "price": 50, "rating": 4 },
-])
-```
-<!-- TODO: what do you think of this title -->
-<!-- ### Start transformation operations -->
-### Transform collection data
-
-Once the transformation operations are defined, you can start the transformation operations. The Transformation Agent will return a job ID when the operations are started.
+The Transformation Agent will return a job ID when the operations are started.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START StartTransformationOperations"
-            endMarker="# END StartTransformationOperations"
+            startMarker="# START TransformAtInsert"
+            endMarker="# END TransformAtInsert"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Transform collection data
+
+You can also use the Transformation Agent to transform data in an existing collection. The Transformation Agent will update the specified objects in the collection with the new properties. The objects will be re-vectorized as needed.
+
+The Transformation Agent will return a job ID when the operations are started.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START TransformExisting"
+            endMarker="# END TransformExisting"
             language="py"
         />
     </TabItem>
@@ -208,8 +195,7 @@ Once the transformation operations are defined, you can start the transformation
 
 ### Monitor job status
 
-<!-- A job ID is returned when the transformation operations are initiated. This job ID can be used to monitor the status of the job, and retrieve the results when the job is complete. -->
-You can use the job ID to monitor the status of the job, and retrieve the results when the job is complete.
+You can use the job ID to monitor the status of the job, and retrieve a response when the job is complete.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
