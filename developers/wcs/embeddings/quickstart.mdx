@@ -32,8 +32,9 @@ This quickstart shows you how to combine Weaviate Cloud and the **Weaviate Embed
 ```mermaid
 flowchart LR
     %% Define nodes with white backgrounds and darker borders
-    A1["Install client\nlibrary"] --> A2["Connect to\nWeaviate Cloud"]
-    A2 --> B1["Configure the \nvectorizer"]
+    A1["Create a new \ncluster"] --> A2["Install client\nlibrary"]
+    A2 --> A3["Connect to\nWeaviate Cloud"]
+    A3 --> B1["Configure the \nvectorizer"]
     B1 --> B2["Import\nobjects"]
     B2 --> C1["Semantic (vector)\n search\n"]
 
@@ -41,6 +42,7 @@ flowchart LR
     subgraph sg1 ["1. Setup"]
         A1
         A2
+        A3
     end
 
     subgraph sg2 ["2. Populate"]
@@ -55,6 +57,7 @@ flowchart LR
     %% Style nodes with white background and darker borders
     style A1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style A2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
+    style A3 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style B2 fill:#ffffff,stroke:#B9C8DF,color:#130C49
     style C1 fill:#ffffff,stroke:#B9C8DF,color:#130C49
@@ -75,7 +78,7 @@ Notes:
 
 To use Weaviate Embeddings, you will need:
 <!-- TODO[g-despot]: Update prerequisites with correct client versions -->
-- A **[Weaviate Cloud Sandbox](/developers/wcs/manage-clusters/create)** running at least Weaviate `1.28.5`
+- A Weaviate Cloud Sandbox running at least Weaviate `1.28.5`
 - A Weaviate client library that supports Weaviate Embeddings:
   - **Python** client version `4.9.5` or higher
   - **JavaScript/TypeScript** client version `3.2.5` or higher
@@ -83,7 +86,11 @@ To use Weaviate Embeddings, you will need:
 
 ## Step 1: Set up Weaviate
 
-### 1.1 Install a client library
+### 1.1 Create a new cluster
+
+To create a free **Sandbox** cluster in Weaviate Cloud, follow **[these instructions](/developers/wcs/manage-clusters/create#create-a-cluster)**.
+
+### 1.2 Install a client library
 
 We recommend using a [client library](/developers/weaviate/client-libraries) to work with Weaviate. Follow the instructions below to install one of the official client libraries, available in [Python](/developers/weaviate/client-libraries/python), [JavaScript/TypeScript](/developers/weaviate/client-libraries/typescript), [Go](/developers/weaviate/client-libraries/go), and [Java](/developers/weaviate/client-libraries/java).
 
@@ -91,7 +98,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 1.2 Connect to Weaviate Cloud
+### 1.3 Connect to Weaviate Cloud
 
 Weaviate Embeddings is integrated with Weaviate Cloud. Your Weaviate Cloud credentials will be used to authorize your Weaviate Cloud instance's access for Weaviate Embeddings.
 
