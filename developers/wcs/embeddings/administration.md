@@ -4,6 +4,8 @@ sidebar_position: 3
 image: og/wcs/user_guides.jpg
 ---
 
+import Link from '@docusaurus/Link';
+
 Weaviate Embeddings is enabled by default at the organization level and is available to all Weaviate Cloud users. 
 
 ## Authentication
@@ -13,13 +15,35 @@ No additional authentication is specifically needed, and the Weaviate Embeddings
 
 ## Disable Weaviate Embeddings
 
-To disable the Weaviate Embeddings service for your whole organization, follow these steps:
+Weaviate Embeddings is **enabled by default** at the organization level. To disable the Weaviate Embeddings service for your whole organization, follow these steps:
 
-1. Open the [Weaviate Cloud console](https://console.weaviate.cloud/).
-1. Select the `Embedding` service from the left sidebar.
-1. Use the toggle button to disable the service.
+import DisableWeaviateEmbeddings from '/developers/wcs/img/weaviate-cloud-disable-embeddings.png';
 
-<!-- TODO[g-despot] Add a screenshot -->
+<div class="row">
+  <div class="col col--4">
+    <ol>
+      <li>
+        Open the <Link to="https://console.weaviate.cloud/">Weaviate Cloud console</Link>.
+      </li>
+      <li>
+       Click on <code>Weaviate Embeddings</code> in the left sidebar (<span class="callout">1</span>). 
+      </li>
+      <li>
+       Use the toggle button <code>Enabled</code> to either disable or enable the service. (<span class="callout">2</span>). 
+      </li>
+    </ol>
+  </div>
+  <div class="col col--8">
+    <div class="card">
+      <div class="card__image">
+        <img src={DisableWeaviateEmbeddings} alt="Disable Weaviate Embeddings globally" />
+      </div>
+      <div class="card__body">Disable Weaviate Embeddings globally.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TODO[g-despot] Update screenshot if necessary -->
 
 ## Pricing and billing
 
