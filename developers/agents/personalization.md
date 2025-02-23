@@ -26,20 +26,13 @@ The developer would simply provide a user profile, and the Personalization Agent
 
 ## Architecture
 
-:::tip Details for the curious
-You do not need to know the below technical details to use the Personalization Agent. The Personalization Agent simply returns a set of personalized recommendations.
-<br/>
-
-The below details are provided for the curious minds who want to know more about the inner workings of the Agent.
-:::
-
 The Personalization Agent is provided as a service on Weaviate Cloud.
 
 When a user-specific recommendations request is made, the Personalization Agent analyses the user profile and any other known context to autonomously carry out the searches itself. The context may include data about the previous user interactions, information about the user themselves, and any other relevant information.
 
 The Personalization Agent uses the contextual information to not only retrieve the most relevant recommendations, but also to rank them for the user.
 
-## Personalization Agent under the hood
+## Personalization Agent: visualized workflow
 
 ![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture.png "Weaviate Personalization Agent at a high level")
 
