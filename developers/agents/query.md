@@ -14,34 +14,33 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-The Weaviate Query Agent is a pre-built agentic workflow for answering natural language queries using data from the associated Weaviate Cloud instance.
+The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud.
 
-The developer would simply provide a prompt, or question, in natural language, and the Query Agent takes care of all intervening steps to provide an answer. The resulting workflow for the developer looks as follows:
+The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
 
 ![Weaviate Query Agent from a user perspective](./_includes/query_agent_usage.png "Weaviate Query Agent from a user perspective")
 
 ## Architecture
 
-:::tip Details for the curious
-You do not need to know the below technical details to use the Query Agent. The Query Agent simply returns an answer to the user's query.
-<br/>
-
-The below details are provided for the curious minds who want to know more about the inner workings of the Agent.
-:::
-
 The Query Agent is provided as a service on Weaviate Cloud.
 
-When a user provides a query, the query agent analyses it and any other known context to autonomously carry out the searches itself. The context may include what is known about the available Weaviate collections, previous conversation history, and any other relevant information.
+When a user provides a prompt/query, the query agent analyses it and any other known context to autonomously carry out the searches itself.
 
-A high-level view of the Query Agent is shown below:
+:::tip Query Agent context
+The Query agent analyses collection and property descriptions to better understand how to construct relevant queries.<br/>
+
+The context may also include previous conversation history, and any other relevant information.
+:::
+
+## Query Agent: visualized workflow
 
 ![Weaviate Query Agent at a high level](./_includes/query_agent_architecture.png "Weaviate Query Agent at a high level")
 
-The Query Agent works as follows at a high level (the actual implementation may vary):
+The Query Agent follows these high-level steps (the actual implementation may vary):
 
 - Use appropriate foundation models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
 - Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)
-- Receive the results from Weaviate, and use appropriate foundation models to analyse the results (Step 6)
+- Receive the results from Weaviate, and use appropriate foundation models to generate the final respond to the user prompt/query. (Step 6)
 
 Then, the Query Agent returns the answer to the user, as well as intermediate outputs, such as the underlying search results from Weaviate.
 
@@ -55,7 +54,7 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ### Prerequisites
 
-The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent connects to an Weaviate Cloud instance, and a supported version of the client library.
+The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Query Agent
 
@@ -116,9 +115,7 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 The above examples display the final answers only. The response from the Query Agent will contain additional information, such as the various search results and aggregations.
 
-You can inspect these to verify the answer, or as the basis for further analysis.
-
-Note that the response includes various components used for the answer. The examples below show multiple ways to inspect the response.
+You can inspect these to verify the answer, or as the basis for further analysis. The examples below show multiple ways to inspect the response.
 
 #### Summarized elements
 

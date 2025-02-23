@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-The Weaviate Personalization Agent is a pre-built agentic workflow for returning personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
+The Weaviate Personalization Agent is an agentic service designed to return personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
 
 :::tip User vs Developer
 The Personalization Agent is all about providing personalized recommendations tailored to a particular person. In this context, that person will be referred to as the `user`. The developer is the person who is using the Personalization Agent to provide these recommendations.
@@ -26,20 +26,13 @@ The developer would simply provide a user profile, and the Personalization Agent
 
 ## Architecture
 
-:::tip Details for the curious
-You do not need to know the below technical details to use the Personalization Agent. The Personalization Agent simply returns a set of personalized recommendations.
-<br/>
-
-The below details are provided for the curious minds who want to know more about the inner workings of the Agent.
-:::
-
 The Personalization Agent is provided as a service on Weaviate Cloud.
 
 When a user-specific recommendations request is made, the Personalization Agent analyses the user profile and any other known context to autonomously carry out the searches itself. The context may include data about the previous user interactions, information about the user themselves, and any other relevant information.
 
 The Personalization Agent uses the contextual information to not only retrieve the most relevant recommendations, but also to rank them for the user.
 
-A high-level view of the Personalization Agent is shown below:
+## Personalization Agent: visualized workflow
 
 ![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture.png "Weaviate Personalization Agent at a high level")
 
@@ -60,8 +53,6 @@ Let's dive into a little more detail about the Personalization Agent.
 
 The Personalization Agent uses user profiles to provide personalized recommendations. This information is stored in a collection in your Weaviate instance under a specific name. The user profile may include the user's preferences and previous interactions, such as their likes and dislikes.
 
-A high-level view of the user data collection is shown below:
-
 ![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users.png "Weaviate Personalization Agent - User Data Collection")
 
 As shown here, the user data collection can be updated over time. It can be updated with information about new users, or with new information about existing users.
@@ -75,8 +66,6 @@ There are two major components to the Personalization Agent's recommendations, t
 #### Searches
 
 The Personalization Agent performs searches in Weaviate to retrieve the most relevant recommendations for the user from the specified collections.
-
-A high-level view of the search process is shown below:
 
 ![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search.png "Weaviate Personalization Agent - Searches")
 
@@ -92,8 +81,6 @@ The Personalization Agent may perform multiple searches in Weaviate to retrieve 
 #### (Re-)Ranking
 
 The Personalization Agent uses multiple factors to rank the recommendations it retrieves from Weaviate, so that the final result set is tailored to the user's preferences.
-
-A high-level view of the (re)ranking process is shown below:
 
 ![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank.png "Weaviate Personalization Agent - (re)rank")
 
@@ -112,7 +99,7 @@ This process ranks the combined result set as a whole, before serving them back 
 
 ### Prerequisites
 
-The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent connects to an Weaviate Cloud instance, and a supported version of the client library.
+The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Personalization Agent
 

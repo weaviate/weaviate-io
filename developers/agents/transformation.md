@@ -14,20 +14,17 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-The Weaviate Transformation Agent is a pre-built agentic workflow for augmenting and transforming data using the associated Weaviate Cloud instance.
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models.
 
-The Transformation Agent can be used to either append new properties or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate.
+The Transformation Agent can be used to append new properties and/or update existing properties of data, for new or existing objects in Weaviate.
 
-This workflow will help you to easily build upon your existing data. It can be used to augment your data with new properties, or update and improve the quality of your existing properties.
-
-Then the resulting data is stored in Weaviate, ready for further use in your applications.
-
-The resulting workflow looks as follows:
+This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
 
 ![Weaviate Transformation Agent overview](./_includes/transformation_agent_overview.png "Weaviate Transformation Agent overview")
 
 ## Architecture
 
+<!-- TODO: can we trim or remove this tip? -->
 :::tip Details for the curious
 You do not need to know the below technical details to use the Personalization Agent. The Personalization Agent simply returns a set of personalized recommendations.
 <br/>
@@ -45,7 +42,7 @@ The Transformation Agent can be called upon to perform one or more transformatio
 
 The Transformation Agent can thus be used to enhance the data at import time, or to update properties on existing objects.
 
-A high-level view of the Transformation Agent is shown below:
+## Transformation Agent: visualized workflow
 
 ![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture.png "Weaviate Transformation Agent at a high level")
 
@@ -98,7 +95,7 @@ To use the Transformation Agent, you must provide the following:
 
 ### Prerequisites
 
-The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent connects to an Weaviate Cloud instance, and a supported version of the client library.
+The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Weaviate
 
@@ -150,24 +147,46 @@ Existing properties can be updated based on the context of one or more existing 
     <TabItem value="py_agents" label="Python[agents]">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START QueryParameters"
-            endMarker="# END QueryParameters"
+            startMarker="# START DefineOperationsUpdate"
+            endMarker="# END DefineOperationsUpdate"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-### Start transformation operations
+### Transform at insert
 
-Once the transformation operations are defined, you can start the transformation operations. The Transformation Agent will return a job ID when the operations are started.
+Once the transformation operations are defined, you can create a Transformation Agent, and use it to transform new data at insert.
+
+The vectorization will only occur after the transformation operations are completed and the data is inserted into Weaviate.
+
+The Transformation Agent will return a job ID when the operations are started.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START StartTransformationOperations"
-            endMarker="# END StartTransformationOperations"
+            startMarker="# START TransformAtInsert"
+            endMarker="# END TransformAtInsert"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+### Transform collection data
+
+You can also use the Transformation Agent to transform data in an existing collection. The Transformation Agent will update the specified objects in the collection with the new properties. The objects will be re-vectorized as needed.
+
+The Transformation Agent will return a job ID when the operations are started.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START TransformExisting"
+            endMarker="# END TransformExisting"
             language="py"
         />
     </TabItem>
@@ -176,7 +195,7 @@ Once the transformation operations are defined, you can start the transformation
 
 ### Monitor job status
 
-A job ID is returned when the transformation operations are initiated. This job ID can be used to monitor the status of the job, and retrieve the results when the job is complete.
+You can use the job ID to monitor the status of the job, and retrieve a response when the job is complete.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
