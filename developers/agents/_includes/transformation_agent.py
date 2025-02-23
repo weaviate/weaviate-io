@@ -13,9 +13,9 @@ from weaviate.classes.init import Auth
 from weaviate.agents.transformation import Operations
 from weaviate.classes.config import DataType
 # END DefineOperationsAppend  # END DefineOperationsUpdate
-# START StartTransformationOperations
+# START TransformAtInsert  # START TransformExisting
 from weaviate.agents.transformation import TransformationAgent
-# END StartTransformationOperations
+# END TransformAtInsert  # END TransformExisting
 
 # START ConnectToWeaviate
 
@@ -64,7 +64,30 @@ name_update_op = Operations.update_property(
 )
 # END DefineOperationsUpdate
 
-# START StartTransformationOperations
+# START TransformAtInsert
+
+ta = TransformationAgent(
+    client=client,
+    collection="ecommerce",
+    operations=[
+        is_premium_product_op,
+        product_descriptors_op,
+        name_update_op,
+    ],
+)
+
+ta.update_and_insert([
+    { "name": "Foo", "description": "...", "reviews": ["...", "..."] "price": 25, "rating": 3 },
+    { "name": "Bar", "description": "...", "reviews": ["...", "..."] "price": 50, "rating": 4 },
+])
+
+# Note this is an async function
+operation_workflow_ids = await ta.update_all()
+
+print(operation_workflow_ids)  # Use this to track the status of the operations
+# END TransformAtInsert
+
+# START TransformExisting
 
 ta = TransformationAgent(
     client=client,
@@ -80,7 +103,7 @@ ta = TransformationAgent(
 operation_workflow_ids = await ta.update_all()
 
 print(operation_workflow_ids)  # Use this to track the status of the operations
-# END StartTransformationOperations
+# END TransformExisting
 
 # START MonitorJobStatus
 print(ta.fetch_operation_status(operation_workflow_ids))
