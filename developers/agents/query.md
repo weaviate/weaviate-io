@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-<!-- The Weaviate Query Agent is a pre-built agentic workflow for answering natural language queries using data from the associated Weaviate Cloud instance. -->
+<!-- The Weaviate Query Agent is a pre-built agentic service for answering natural language queries using data from the associated Weaviate Cloud instance. -->
 The Weaviate Query Agent is an agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud.
 
 <!-- The developer would simply provide a prompt, or question, in natural language, and the Query Agent takes care of all intervening steps to provide an answer. -->

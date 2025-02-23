@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-<!-- The Weaviate Personalization Agent is a pre-built agentic workflow for returning personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations. -->
+<!-- The Weaviate Personalization Agent is a pre-built agentic service for returning personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations. -->
 The Weaviate Personalization Agent is an agentic service designed to return personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
 
 :::tip User vs Developer

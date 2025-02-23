@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 ![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon")
 
-<!-- The Weaviate Transformation Agent is a pre-built agentic workflow for augmenting and transforming data using the associated Weaviate Cloud instance. -->
+<!-- The Weaviate Transformation Agent is a pre-built agentic service for augmenting and transforming data using the associated Weaviate Cloud instance. -->
 The Weaviate Transformation Agent is an agentic service designed to augment and transform data with the help of Large Language Models.
 
 <!-- The Transformation Agent can be used to either append new properties or update existing properties of data, whether it is being imported into Weaviate, or already exists in Weaviate. -->
