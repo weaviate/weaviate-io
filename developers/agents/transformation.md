@@ -24,14 +24,6 @@ This can help you to improve the quality of your objects in your Weaviate collec
 
 ## Architecture
 
-<!-- TODO: can we trim or remove this tip? -->
-:::tip Details for the curious
-You do not need to know the below technical details to use the Personalization Agent. The Personalization Agent simply returns a set of personalized recommendations.
-<br/>
-
-The below details are provided for the curious minds who want to know more about the inner workings of the Agent.
-:::
-
 The Transformation Agent is provided as a service on Weaviate Cloud.
 
 The Transformation Agent can be called upon to perform one or more transformation operations at a time. Each operation is performed:
