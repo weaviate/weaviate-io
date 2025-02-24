@@ -25,7 +25,8 @@ Weaviate Agents is not a framework for building agents. It is a set of pre-built
 
 The [Query Agent](./query.md) provides an answer to your natural language questions, by querying your stored data.
 
-[![Click to read more about the Query Agent](./_includes/query_agent_usage.png "Click to read more about the Query Agent")](./query.md)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_light.png#gh-light-mode-only "Click to read more about the Query Agent")](./query.md)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Click to read more about the Query Agent")](./query.md)
 
 [Read more about the Query Agent](./query.md)
 
