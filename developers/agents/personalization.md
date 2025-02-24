@@ -12,7 +12,14 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 # Weaviate Personalization Agent
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 The Weaviate Personalization Agent is an agentic service designed to return personalized recommendations tailored to each user. The Personalization Agent uses data from the associated Weaviate Cloud instance to provide these recommendations.
 
@@ -22,7 +29,8 @@ The Personalization Agent is all about providing personalized recommendations ta
 
 The developer would simply provide a user profile, and the Personalization Agent takes care of all intervening steps to provide a set of personalized recommendations from Weaviate. The resulting workflow for the developer looks as follows:
 
-![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview.png "Weaviate Personalization Agent from a developer perspective")
+![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Weaviate Personalization Agent from a developer perspective")
+![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Weaviate Personalization Agent from a developer perspective")
 
 ## Architecture
 
@@ -34,7 +42,8 @@ The Personalization Agent uses the contextual information to not only retrieve t
 
 ## Personalization Agent: visualized workflow
 
-![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture.png "Weaviate Personalization Agent at a high level")
+![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture_light.png#gh-light-mode-only "Weaviate Personalization Agent at a high level")
+![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Personalization Agent at a high level")
 
 The Personalization Agent works as follows at a high level:
 
@@ -53,7 +62,8 @@ Let's dive into a little more detail about the Personalization Agent.
 
 The Personalization Agent uses user profiles to provide personalized recommendations. This information is stored in a collection in your Weaviate instance under a specific name. The user profile may include the user's preferences and previous interactions, such as their likes and dislikes.
 
-![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users.png "Weaviate Personalization Agent - User Data Collection")
+![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users_light.png#gh-light-mode-only "Weaviate Personalization Agent - User Data Collection")
+![Weaviate Personalization Agent - User Data Collection](./_includes/personalization_agent_users_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - User Data Collection")
 
 As shown here, the user data collection can be updated over time. It can be updated with information about new users, or with new information about existing users.
 
@@ -67,7 +77,8 @@ There are two major components to the Personalization Agent's recommendations, t
 
 The Personalization Agent performs searches in Weaviate to retrieve the most relevant recommendations for the user from the specified collections.
 
-![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search.png "Weaviate Personalization Agent - Searches")
+![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search_light.png#gh-light-mode-only "Weaviate Personalization Agent - Searches")
+![Weaviate Personalization Agent - Searches](./_includes/personalization_agent_search_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - Searches")
 
 The diagram depicts that the search process may be based on a number of factors:
 
@@ -82,7 +93,8 @@ The Personalization Agent may perform multiple searches in Weaviate to retrieve 
 
 The Personalization Agent uses multiple factors to rank the recommendations it retrieves from Weaviate, so that the final result set is tailored to the user's preferences.
 
-![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank.png "Weaviate Personalization Agent - (re)rank")
+![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank_light.png#gh-light-mode-only "Weaviate Personalization Agent - (re)rank")
+![Weaviate Personalization Agent - (re)rank](./_includes/personalization_agent_rank_dark.png#gh-dark-mode-only "Weaviate Personalization Agent - (re)rank")
 
 The rankings may be based on a number of factors:
 
@@ -95,7 +107,14 @@ This process ranks the combined result set as a whole, before serving them back 
 
 ## Usage
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 ### Prerequisites
 
