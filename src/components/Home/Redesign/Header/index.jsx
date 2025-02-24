@@ -42,7 +42,7 @@ export default function HomepageHeader() {
                 </h1>
                 <h2>
                   Bring intuitive AI-native applications to life with the open
-                  source vector database developers love.
+                  source vector database developers love
                 </h2>
               </div>
 
