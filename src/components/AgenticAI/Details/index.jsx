@@ -48,7 +48,7 @@ export default function Details() {
                 Accelerate AI data readiness for more reliable AI agents. Spend
                 less time querying, organizing, and enriching data with
                 pre-built agents trained on Weaviate APIs.<br></br>
-                <Link to="/workbench/#weaviate-agents">Learn more</Link>
+                <Link to="/product/#weaviate-agents">Learn more</Link>
               </p>
             </div>
           </div>
