@@ -73,7 +73,7 @@ Notes:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-### Prerequisites
+### Requirements
 
 In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. 
 
@@ -87,27 +87,7 @@ If you have another preferred [model provider](/developers/weaviate/model-provid
 
 Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-<!-- ### Create a WCD account -->
-
-<!-- import WCDRegister from '/developers/weaviate/quickstart/img/wcd_register.png';
-
-<div class="row">
-  <div class="col col--4">
-    <div class="card">
-      <div class="card__image">
-        <img src={WCDRegister} alt="Sign up with WCD"/>
-      </div>
-      <div class="card__body">
-        <ol>
-          <li>Go the <a href="https://console.weaviate.cloud">WCD homepage</a>.</li>
-          <li>Click "Register here".</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-<br/> -->
-
+<!-- TODO[g-despot] Update with new screenshots -->
 import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
 import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
 
@@ -160,9 +140,9 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
 - Note that Weaviate Cloud adds a random suffix to sandbox cluster names to ensure uniqueness.
 :::
 
-<!-- import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
 
-<SandBoxExpiry/> -->
+<LatestWeaviateVersion />
 
 ### 1.2 Install a client library
 

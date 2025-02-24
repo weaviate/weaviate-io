@@ -24,7 +24,7 @@ Weaviate Embeddings offers a fully managed service for embedding generation that
 
 - **[Model selection](/developers/wcs/embeddings/models)**: Choose from our hand-picked selection of embedding models to generate embeddings that suit your use case.
 - **[Single authentication](/developers/wcs/manage-clusters/connect)**: Your Weaviate Cloud credentials are used for authorization and access to Weaviate Embeddings.
-- **[Unified billing](/developers/wcs/embeddings/administration#billing)**: Your billing and usage can be managed in one place through Weaviate Cloud.
+- **[Unified billing](/developers/wcs/embeddings/administration#pricing-and-billing)**: Your billing and usage can be managed in one place through Weaviate Cloud.
 
 ## Available models
 
