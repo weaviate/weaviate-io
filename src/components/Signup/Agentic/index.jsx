@@ -34,10 +34,12 @@ export default function Introduction() {
             </div>
             <div className={styles.contentSideB}>
               <span>GUIDE</span>
-              <h1 classname={styles.headerTag}>Agentic Architectures</h1>
+              <h1 classname={styles.headerTag}>
+                Agentic Architectures for Retrieval-intensive Applications
+              </h1>
               <span className={styles.subTitle}>
-                A guide on different techniques to improve the performance of
-                your Retrieval-Augmented Generation applications.
+                A comprehensive guide to mastering fundamentals, patterns, and
+                examples of agentic architectures.
               </span>
               <div className={styles.signUp}>
                 <div className={styles.signUpBox}>
@@ -54,13 +56,15 @@ export default function Introduction() {
         <div>
           <h3>About the guide</h3>
           <p>
-            The landscape of artificial intelligence (AI) is undergoing a
-            profound transformation with the emergence of AI agents. As we move
-            beyond traditional programming paradigms, AI agents represent a new
-            frontier in how we can create more sophisticated, autonomous, and
-            capable AI systems. This e-book serves as your comprehensive guide
-            to understanding agentic architectures, especially for retrieval
-            intensive applications
+            This e-book is your comprehensive guide to understanding agentic
+            architectures, especially for retrieval-intensive applications. It
+            discusses the fundamentals of agentic architectures including its
+            components, the different between single-agent and multi-agent
+            architectures, and atomic patterns of agentic architectures. Then,
+            it walks through various examples of agentic architectures for
+            retrieval-intensive applications, discussing the underlying
+            considerations for each. This e-book provides a solid foundation for
+            your journey into agentic architectures.
           </p>
           <br></br>
           <ul>

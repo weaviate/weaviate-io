@@ -11,15 +11,20 @@ export default function signUpPage() {
   return (
     <>
       <Head>
-        <title>Agentic Architectures</title>
+        <title>
+          Agentic Architectures for Retrieval-intensive Applications
+        </title>
         <meta
           name="description"
-          content="A guide on different techniques to improve the performance of your Retrieval-Augmented Generation applications."
+          content="A comprehensive guide to mastering fundamentals, patterns, and examples of agentic architectures."
         />
-        <meta property="og:title" content="Agentic Architectures" />
+        <meta
+          property="og:title"
+          content="Agentic Architectures for Retrieval-intensive Applications"
+        />
         <meta
           property="og:description"
-          content="A guide on different techniques to improve the performance of your Retrieval-Augmented Generation applications."
+          content="A comprehensive guide to mastering fundamentals, patterns, and examples of agentic architectures."
         />
         <meta name="robots" content="index, follow" />
       </Head>
