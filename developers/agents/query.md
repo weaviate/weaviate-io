@@ -135,7 +135,7 @@ This format may be useful for a quick overview of the response.
 
 #### Detailed response
 
-This format goes into further depth, including the Query Agent's feedback on whether some desired information was found or not.
+This example explores the response object in further detail. It includes the answer, as well as the Query Agent's feedback on whether some desired information was found or not.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
