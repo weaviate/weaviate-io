@@ -12,7 +12,14 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 # Weaviate Transformation Agent
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models.
 
@@ -75,7 +82,14 @@ As a result, the specified objects in Weaviate are updated, with the new version
 
 ## Usage
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 Transformation operations are asynchronous, and the Transformation Agent will return a job ID to the user. The user can then use this job ID to check the status of the job, and retrieve the results when the job is complete.
 

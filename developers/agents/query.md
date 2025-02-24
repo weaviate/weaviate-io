@@ -12,7 +12,14 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 
 # Weaviate Query Agent
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud.
 
@@ -50,7 +57,14 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ## Usage
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+
+To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 ### Prerequisites
 
