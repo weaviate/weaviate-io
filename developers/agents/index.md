@@ -47,7 +47,8 @@ The [Transformation Agent](./transformation.md) enhances your data by manipulati
 
 The [Personalization Agent](./personalization.md) customizes outputs based on persona-specific information, which can even be learned over time.
 
-[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview.png "Click to read more about the Personalization Agent")](./personalization.md)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Click to read more about the Personalization Agent")](./personalization.md)
+[![Click to read more about the Personalization Agent](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Personalization Agent")](./personalization.md)
 
 [Read more about the Personalization Agent](./personalization.md)
 
