@@ -7,7 +7,11 @@ image: og/docs/agents.jpg
 
 # Weaviate Agents - Introduction
 
-![Weaviate Agents - Coming soon](./_includes/agents_coming_soon.png "Weaviate Agents - Coming soon. Weaviate agents are not quite available yet. Please note that the API / code examples shown here are indicative, and may change when the agents / client libraries launch.")
+:::caution
+
+Weaviate Agents are not yet available, but they will be soon. To be notified when agents are released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 Weaviate Agents are pre-built agentic services designed for specific tasks. They are available out-of-the-box for Weaviate Cloud users to interact with their data in Weaviate Cloud to simplify data engineering and AI development workflows.
 
@@ -34,7 +38,8 @@ The [Query Agent](./query.md) provides an answer to your natural language questi
 
 The [Transformation Agent](./transformation.md) enhances your data by manipulating it based on your instructions.
 
-[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview.png "Click to read more about the Transformation Agent")](./transformation.md)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Click to read more about the Transformation Agent")](./transformation.md)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Transformation Agent")](./transformation.md)
 
 [Read more about the Transformation Agent](./transformation.md)
 
