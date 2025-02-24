@@ -16,11 +16,25 @@
 .detailedOptionsCard:hover {
   border-color: #aaa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #f9f9f9;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+  .detailedOptionsCard {
+    background-color: var(--site-background);
+  }
+
+  .detailedOptionsCard a {
+    color: var(--site-font-main-color) !important;
+  }
+
+  .detailedOptionsCard:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .detailedOptionsCardHeader {
-  padding: 16px 16px 8px 16px; /* top, right, bottom, left */
+  padding: 16px 16px 8px 16px;
 }
 
 .detailedOptionsCardHeader h4 {
@@ -29,7 +43,7 @@
 }
 
 .detailedOptionsCardBody {
-  padding: 8px 16px 16px 16px; /* top, right, bottom, left */
+  padding: 8px 16px 16px 16px;
 }
 
 .detailedOptionsCard:hover .detailedOptionsCardHeader h4 {
