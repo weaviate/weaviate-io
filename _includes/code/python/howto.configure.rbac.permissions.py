@@ -117,11 +117,11 @@ permissions = [
     # Without the below permission, the user would not
     # be able to create tenants in collections starting with "TargetCollection"
     Permissions.tenants(
-        collection="TargetCollection*",
-        create=True,
-        read=True,
-        update=True,
-        delete=False,
+        collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
+        create=True,  # Allow creating new tenants
+        read=True,  # Allow reading tenant info/metadata
+        update=True,  # Allow updating tenant states
+        delete=False,  # Dont't allow deleting tenants
     ),
 ]
 

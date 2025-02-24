@@ -199,7 +199,9 @@ This example creates a role called `testRole` with permissions to:
 
 This example creates a role called `testRole` with permissions to:
 
-- Create, read, update and delete tenants in collections starting with `TargetCollection`.
+- Create and delete tenants in collections starting with `TargetCollection`.
+- Read tenant metadata (like tenant names and status) in collections starting with `TargetCollection`.
+- Update tenant status in collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
