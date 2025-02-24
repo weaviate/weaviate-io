@@ -16,14 +16,14 @@ export default function AppCard({ app }) {
       <div className={styles.bottomCard}>
         {app.released === 'no' && (
           <>
+            {app.url && <Link to={app.url}>Learn More</Link>}
             {app.earlyAccess ? (
               <div className={styles.comingSoon}>Request Early Access</div>
-            ) : app.privateBeta ? (
+            ) : app.comingSoon ? (
               <div className={styles.comingSoon}>Private Beta</div>
             ) : (
               <div className={styles.tba}>Coming Soon</div>
             )}
-            {app.url && <Link to={app.url}>Learn More</Link>}
           </>
         )}
         {app.released === 'yes' && app.url && (

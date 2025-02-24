@@ -7,15 +7,15 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query');
+  const app = appData.find((app) => app.name === 'Embeddings');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query | Weaviate Workbench"
-        description="Work interactively with Weaviate Cloud clusters using GraphQL."
+        title="Embeddings | Weaviate Workbench"
+        description="Build personalized, multi-modal recommendations with simple interface."
       >
         <MetaSEO />
         <div className="container">
@@ -39,18 +39,22 @@ export default function QueryPage() {
                 <img src={'/img/site/' + app.image} alt={app.name} />
                 <div>
                   <h1>{app.name}</h1>
-                  <p>{app.description}</p>
+                  <p>{app.longDescription}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <div className={styles.comingSoon}>Coming Soon</div>
-                    ) : (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
                           Open in Weaviate Cloud
                         </button>
                       </Link>
+                    ) : (
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <button className={styles.installButton}>
+                          Request Preview Access
+                        </button>
+                      </Link>
                     )}
-                    <Link to="/developers/wcs/tools/query-tool">
+                    <Link to="/developers/wcs/embeddings">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -60,6 +64,7 @@ export default function QueryPage() {
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
                     <img
+                      className={`${styles.smallScreen} ${styles.embeddings}`}
                       src={'/img/site/' + app.overviewImage1}
                       alt={app.name}
                     />
@@ -71,28 +76,51 @@ export default function QueryPage() {
                 <div className={styles.tabBottomContent}>
                   <div>
                     <h3>Overview</h3>
-
                     <p>
-                      The Query tool in Weaviate Cloud enables users to query
-                      data using GraphQL, making it easier to interact with data
-                      within your clusters.The Query tool enables the following
-                      functionality:
+                      Weaviate Embeddings is a service in Weaviate Cloud that
+                      simplifies the creation and management of vector
+                      embeddings. With Weaviate Embeddings, developers can
+                      access to various embedding models without needing to send
+                      data to an external provider.
                     </p>
                     <ul>
-                      <li>Syntax highlighting</li>
-                      <li>Intelligent type ahead</li>
-                      <li>Automatic completion for queries and variables</li>
                       <li>
-                        Real-time error highlighting and reporting for queries
-                        and variables
+                        <strong>Fast, flexible development:</strong> Simply
+                        operations with one less API and vendor to manage.
+                        Choose between class-leading OSS and proprietary models.
+                      </li>
+                      <li>
+                        <strong>Freedom from rate limits:</strong> Bring models
+                        closer to your data to reduce latency. Enable limitless
+                        embeddings per second without artificial constraints.
+                      </li>
+                      <li>
+                        <strong>GPU-powered and cost-efficient:</strong>{' '}
+                        Maximize performance while managing costs with simple,
+                        pay-as-you-go pricing.
                       </li>
                     </ul>
+                    <strong>Details and Pricing</strong>
+                    <p>
+                      Weaviate Embeddings is now available in Preview with the{' '}
+                      <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
+                        <strong>Snowflake arctic-embed-m-v1.5</strong>
+                      </Link>{' '}
+                      text embedding model.
+                    </p>
+                    <p>
+                      When generally available, pricing will start at $0.04 per
+                      million tokens.
+                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Available Now</strong>
+                      Availability:{' '}
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <strong>Preview</strong>
+                      </Link>
                     </p>
                   </div>
                 </div>

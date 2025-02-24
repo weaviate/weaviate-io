@@ -7,15 +7,15 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query');
+  const app = appData.find((app) => app.name === 'Personalization Agent');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query | Weaviate Workbench"
-        description="Work interactively with Weaviate Cloud clusters using GraphQL."
+        title="Personalization Agent | Weaviate Workbench"
+        description="Dynamically personalize experiences based on user behavior."
       >
         <MetaSEO />
         <div className="container">
@@ -42,7 +42,11 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <div className={styles.comingSoon}>Coming Soon</div>
+                      <Link to="https://events.weaviate.io/weaviate-agents">
+                        <button className={styles.installButton}>
+                          Sign up for updates
+                        </button>
+                      </Link>
                     ) : (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
@@ -50,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/wcs/tools/query-tool">
+                    <Link to="/developers/agents/personalization">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -73,18 +77,24 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      The Query tool in Weaviate Cloud enables users to query
-                      data using GraphQL, making it easier to interact with data
-                      within your clusters.The Query tool enables the following
-                      functionality:
+                      Weaviate’s <strong>Personalization Agent</strong>learns
+                      user behavior and can personalize any experience. 
                     </p>
                     <ul>
-                      <li>Syntax highlighting</li>
-                      <li>Intelligent type ahead</li>
-                      <li>Automatic completion for queries and variables</li>
                       <li>
-                        Real-time error highlighting and reporting for queries
-                        and variables
+                        <strong>Deliver tailored results in real-time:</strong>{' '}
+                        Automatically curate search results based on each user’s
+                        interactions.
+                      </li>
+                      <li>
+                        <strong>Understand each recommendation:</strong> As user
+                        experiences adapt, your team gets natural language
+                        explanations for each recommendation.
+                      </li>
+                      <li>
+                        <strong>Simplify development:</strong> Go beyond static,
+                        rules-based recommendations and get smart, LLM-based
+                        personalization out of the box.
                       </li>
                     </ul>
                   </div>
@@ -92,7 +102,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Available Now</strong>
+                      Availability: <strong>Coming Soon</strong>
                     </p>
                   </div>
                 </div>

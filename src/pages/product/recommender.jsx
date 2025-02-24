@@ -7,15 +7,15 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query');
+  const app = appData.find((app) => app.name === 'Recommender Service');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query | Weaviate Workbench"
-        description="Work interactively with Weaviate Cloud clusters using GraphQL."
+        title="Recommender Service| Weaviate Workbench"
+        description="Build personalized, multi-modal recommendations with simple interface."
       >
         <MetaSEO />
         <div className="container">
@@ -40,27 +40,30 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
-                      <div className={styles.comingSoon}>Coming Soon</div>
-                    ) : (
-                      <Link to="https://console.weaviate.cloud/">
-                        <button className={styles.installButton}>
-                          Open in Weaviate Cloud
-                        </button>
-                      </Link>
-                    )}
-                    <Link to="/developers/wcs/tools/query-tool">
-                      <button className={styles.docButton}>
-                        Read the Docs
+                  {app.released === 'no' ? (
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Beta Access
                       </button>
                     </Link>
-                  </div>
+                  ) : (
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Beta Access
+                      </button>
+                    </Link>
+                  )}
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
                     <img
+                      className={styles.smallScreen}
                       src={'/img/site/' + app.overviewImage1}
+                      alt={app.name}
+                    />
+                    <img
+                      className={styles.smallScreen}
+                      src={'/img/site/' + app.overviewImage2}
                       alt={app.name}
                     />
                   </div>
@@ -73,26 +76,49 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      The Query tool in Weaviate Cloud enables users to query
-                      data using GraphQL, making it easier to interact with data
-                      within your clusters.The Query tool enables the following
-                      functionality:
+                      Our Recommender service simplifies the development of
+                      recommendation systems for a variety of use cases. It
+                      offers a fully managed, low-code interface that enables
+                      real-time recommendations that adapt dynamically to user
+                      events. Additionally, it offers users configurable
+                      endpoints for custom item-to-item, item-to-user, and
+                      user-to-user recommendation scenarios. Teams with limited
+                      machine-learning expertise can build highly personalised,
+                      scalable recommenders for AI-driven customer experiences.
                     </p>
                     <ul>
-                      <li>Syntax highlighting</li>
-                      <li>Intelligent type ahead</li>
-                      <li>Automatic completion for queries and variables</li>
                       <li>
-                        Real-time error highlighting and reporting for queries
-                        and variables
+                        Simple client interface for managing and creating custom
+                        recommendations
+                      </li>
+                      <li>
+                        Multi-modal representations of item-level data objects.
+                      </li>
+                      <li>
+                        Personalized user recommendation and search based on
+                        past events and interactions
+                      </li>
+                      <li>
+                        Configurable endpoints for different recommendation
+                        scenarios
                       </li>
                     </ul>
+                    <strong>Private Beta</strong>
+                    <p>
+                      We’re actively looking for customers to join our private
+                      beta. If you’re interested, please let us know.{' '}
+                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Available Now</strong>
+                      Availability: <strong>Private beta</strong>
+                    </p>
+                    <p>
+                      <Link to="https://events.weaviate.io/early-access">
+                        Request beta access
+                      </Link>
                     </p>
                   </div>
                 </div>

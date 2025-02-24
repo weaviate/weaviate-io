@@ -7,15 +7,15 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query');
+  const app = appData.find((app) => app.name === 'Transformation Agent');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query | Weaviate Workbench"
-        description="Work interactively with Weaviate Cloud clusters using GraphQL."
+        title="Transformation Agent | Weaviate Workbench"
+        description="Automatically improve your dataset with a single prompt."
       >
         <MetaSEO />
         <div className="container">
@@ -42,7 +42,11 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <div className={styles.comingSoon}>Coming Soon</div>
+                      <Link to="https://events.weaviate.io/weaviate-agents">
+                        <button className={styles.installButton}>
+                          Sign up for updates
+                        </button>
+                      </Link>
                     ) : (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
@@ -50,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/wcs/tools/query-tool">
+                    <Link to="/developers/agents/transformation">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -73,18 +77,27 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      The Query tool in Weaviate Cloud enables users to query
-                      data using GraphQL, making it easier to interact with data
-                      within your clusters.The Query tool enables the following
-                      functionality:
+                      Weaviate’s <strong>Transformation Agent</strong> lets you
+                      manipulate your data using simple prompts. Based on the
+                      instructions you give it, it uses a pre-trained LLM to
+                      automate CRUD operations to update data, create new
+                      properties, add new data, and more.
                     </p>
                     <ul>
-                      <li>Syntax highlighting</li>
-                      <li>Intelligent type ahead</li>
-                      <li>Automatic completion for queries and variables</li>
                       <li>
-                        Real-time error highlighting and reporting for queries
-                        and variables
+                        <strong>Have confidence in your data:</strong> Clean and
+                        tag raw data, reduce inconsistencies, and make data more
+                        reliable.
+                      </li>
+                      <li>
+                        <strong>Make your data richer:</strong> Generate and
+                        enrich metadata, infer missing values, and improve
+                        completeness.
+                      </li>
+                      <li>
+                        <strong>Reduce manual data preparation:</strong> Instead
+                        of manually writing rules, automatically categorize,
+                        label, and preprocess data to save time and effort.
                       </li>
                     </ul>
                   </div>
@@ -92,7 +105,10 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Available Now</strong>
+                      Availability:{' '}
+                      <strong>
+                        <u>Coming Soon</u>
+                      </strong>
                     </p>
                   </div>
                 </div>
