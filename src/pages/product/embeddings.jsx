@@ -7,20 +7,20 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query Agent');
+  const app = appData.find((app) => app.name === 'Embeddings');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
-        description="Query your data in Weaviate using simple human language."
+        title="Embeddings | Weaviate Workbench"
+        description="Build personalized, multi-modal recommendations with simple interface."
       >
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -39,22 +39,22 @@ export default function QueryPage() {
                 <img src={'/img/site/' + app.image} alt={app.name} />
                 <div>
                   <h1>{app.name}</h1>
-                  <p>{app.description}</p>
+                  <p>{app.longDescription}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <Link to="https://events.weaviate.io/weaviate-agents">
-                        <button className={styles.installButton}>
-                          Sign up for updates
-                        </button>
-                      </Link>
-                    ) : (
                       <Link to="https://console.weaviate.cloud/">
                         <button className={styles.installButton}>
                           Open in Weaviate Cloud
                         </button>
                       </Link>
+                    ) : (
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <button className={styles.installButton}>
+                          Request Preview Access
+                        </button>
+                      </Link>
                     )}
-                    <Link to="/developers/agents/query">
+                    <Link to="/developers/wcs/embeddings">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -64,6 +64,7 @@ export default function QueryPage() {
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
                     <img
+                      className={`${styles.smallScreen} ${styles.embeddings}`}
                       src={'/img/site/' + app.overviewImage1}
                       alt={app.name}
                     />
@@ -75,40 +76,51 @@ export default function QueryPage() {
                 <div className={styles.tabBottomContent}>
                   <div>
                     <h3>Overview</h3>
-
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Weaviate Embeddings is a service in Weaviate Cloud that
+                      simplifies the creation and management of vector
+                      embeddings. With Weaviate Embeddings, developers can
+                      access to various embedding models without needing to send
+                      data to an external provider.
                     </p>
                     <ul>
                       <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        <strong>Fast, flexible development:</strong> Simply
+                        operations with one less API and vendor to manage.
+                        Choose between class-leading OSS and proprietary models.
                       </li>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
+                        <strong>Freedom from rate limits:</strong> Bring models
+                        closer to your data to reduce latency. Enable limitless
+                        embeddings per second without artificial constraints.
                       </li>
                       <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
+                        <strong>GPU-powered and cost-efficient:</strong>{' '}
+                        Maximize performance while managing costs with simple,
+                        pay-as-you-go pricing.
                       </li>
                     </ul>
+                    <strong>Details and Pricing</strong>
+                    <p>
+                      Weaviate Embeddings is now available in Preview with the{' '}
+                      <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
+                        <strong>Snowflake arctic-embed-m-v1.5</strong>
+                      </Link>{' '}
+                      text embedding model.
+                    </p>
+                    <p>
+                      When generally available, pricing will start at $0.04 per
+                      million tokens.
+                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
                       Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <strong>Preview</strong>
+                      </Link>
                     </p>
                   </div>
                 </div>

@@ -12,23 +12,12 @@ export default function HomepageHeader() {
           <div className={styles.box}>
             <h1>Products</h1>
             <p>
-              Accelerate AI-native application development with GUI-based tools
-              and apps to make building and scaling easier.
+              Our AI-native vector database ecosystem was designed to simplify
+              development for AI builders
             </p>
             <div className={styles.buttons}>
               <Link className={styles.buttonGradient} to="#contact-sales">
                 Contact Sales
-              </Link>
-            </div>
-            <div className={styles.agentsContainer}>
-              <div className={styles.agent}></div>
-              <div className={styles.agentText}>
-                <h3>Introducing Weaviate Agents</h3>
-                <p>Simplifying Agentic Workflows with the power of Weaviate</p>
-              </div>
-
-              <Link className={styles.buttonGradient} to="#weaviate-agents">
-                Explore Agents
               </Link>
             </div>
           </div>

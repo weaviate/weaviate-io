@@ -96,7 +96,7 @@ export default function HomepageHeader() {
                 <div
                   className={` ${styles.homeIcon} ${styles.infraIcon}`}
                 ></div>
-                <h2>Agentic Workflows</h2>
+                <h2>Agentic AI</h2>
               </div>
               <div className={styles.typeText}>
                 <p>
@@ -122,7 +122,7 @@ export default function HomepageHeader() {
                 >
                   Get Started
                 </Link>
-                <Link className={styles.buttonDark} to="/platform">
+                <Link className={styles.buttonDark} to="/workbench">
                   Products Overview
                 </Link>
               </div>

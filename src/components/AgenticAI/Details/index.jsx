@@ -9,14 +9,14 @@ export default function Details() {
     <div className={styles.bgCol}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Power your agentic workflows with Weaviate</h2>
+          <h2>Power enterprise intelligence with agentic workflows</h2>
           <p>
             Agentic AI isn’t just a trend—it’s the next evolutionary step in AI,
             where systems don’t just inform but act. Enterprises that embrace
             this shift will see significant benefits by automating
             labor-intensive processes, enhancing operational efficiency, and
             driving ROI from their AI initiatives. As use cases move from static
-            insights to semi- or fully-autonomous agentic workflows, AI-native
+            insights to semi or fully-autonomous agentic workflows, AI-native
             infrastructure like Weaviate becomes more critical than ever in
             handling their complexity.
           </p>
@@ -25,13 +25,13 @@ export default function Details() {
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={styles.icon01}></div>
-              <h2>Real-time search and memory</h2>
+              <h2>High -performance search and memory</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Enable real-time ingestion and querying of multimodal data, at
-                scale. Help AI agents quickly adapt to new information and
-                provide context for future interactions.<br></br>
+                Help AI agents quickly adapt to new information and provide
+                context for future interactions with real-time ingestion and
+                querying of multimodal data, at scale.<br></br>
                 <Link to="/developers/weaviate/concepts/search/hybrid-search">
                   Learn more
                 </Link>
@@ -41,13 +41,13 @@ export default function Details() {
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.icon01} ${styles.icon02}`}></div>
-              <h2>Built-in Agents for data transformation</h2>
+              <h2>Built-in agents for data transformation</h2>
             </div>
             <div className={styles.typeText}>
               <p>
                 Accelerate AI data readiness for more reliable AI agents. Spend
                 less time querying, organizing, and enriching data with
-                pre-buiit agents trained on Weaviate APIs.<br></br>
+                pre-built agents trained on Weaviate APIs.<br></br>
                 <Link to="/workbench/#weaviate-agents">Learn more</Link>
               </p>
             </div>
@@ -55,7 +55,7 @@ export default function Details() {
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.icon01} ${styles.icon03}`}></div>
-              <h2>Enterprise security and compliance </h2>
+              <h2>Enterprise security and compliance</h2>
             </div>
             <div className={styles.typeText}>
               <p>
@@ -69,13 +69,13 @@ export default function Details() {
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.icon01} ${styles.icon04}`}></div>
-              <h2>Integration with popular agent frameworks </h2>
+              <h2>Integration with popular agent frameworks</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Weaviate works with popular LLMs and agent tools like LangGraph,
-                LlamaIndex, and Crew AI making it easier to build and deploy
-                agentic workflows.<br></br>
+                Seamlessly connect with popular LLMs and agent tools like
+                LangChain, LlamaIndex, and Crew AI, simplifying the process of
+                building and deploy agentic AI.<br></br>
                 <Link to="/product/integrations">Learn more</Link>
               </p>
             </div>

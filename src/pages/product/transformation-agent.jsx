@@ -7,20 +7,20 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query Agent');
+  const app = appData.find((app) => app.name === 'Transformation Agent');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
-        description="Query your data in Weaviate using simple human language."
+        title="Transformation Agent | Weaviate Workbench"
+        description="Automatically improve your dataset with a single prompt."
       >
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -54,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/agents/query">
+                    <Link to="/developers/agents/transformation">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -77,27 +77,27 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Weaviate’s <strong>Transformation Agent</strong> lets you
+                      manipulate your data using simple prompts. Based on the
+                      instructions you give it, it uses a pre-trained LLM to
+                      automate CRUD operations to update data, create new
+                      properties, add new data, and more.
                     </p>
                     <ul>
                       <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        <strong>Have confidence in your data:</strong> Clean and
+                        tag raw data, reduce inconsistencies, and make data more
+                        reliable.
                       </li>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
+                        <strong>Make your data richer:</strong> Generate and
+                        enrich metadata, infer missing values, and improve
+                        completeness.
                       </li>
                       <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
+                        <strong>Reduce manual data preparation:</strong> Instead
+                        of manually writing rules, automatically categorize,
+                        label, and preprocess data to save time and effort.
                       </li>
                     </ul>
                   </div>

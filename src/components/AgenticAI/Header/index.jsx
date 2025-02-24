@@ -11,10 +11,12 @@ export default function Header() {
         <div className={styles.grid}>
           <div className={styles.box}>
             <span>AGENTIC WORKFLOWS</span>
-            <h1>Give AI agents the real-time context they need.</h1>
+            <h1>
+              Empower AI agents with the context and adaptability they need.
+            </h1>
             <p>
-              Build and scale reliable AI agents and agentic workflows with
-              contextual knowledge that informs actions.
+              Build and scale intelligent, context-aware AI agents that can make
+              decisions and adapt on the fly.
             </p>
             <div className={styles.buttons}>
               <Link

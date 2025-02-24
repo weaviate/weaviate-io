@@ -42,7 +42,7 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <Link to="https://events.weaviate.io/early-access">
+                      <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
                           Sign up for updates
                         </button>
@@ -54,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="https://events.weaviate.io/early-access">
+                    <Link to="/developers/agents/transformation">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -77,25 +77,27 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s Transformation Agent lets you manipulate your
-                      data using simple prompts. Based on the instructions you
-                      give it, it uses a pre-trained LLM to automate CRUD
-                      operations to update data, create new properties, add new
-                      data, and more.
+                      Weaviate’s <strong>Transformation Agent</strong> lets you
+                      manipulate your data using simple prompts. Based on the
+                      instructions you give it, it uses a pre-trained LLM to
+                      automate CRUD operations to update data, create new
+                      properties, add new data, and more.
                     </p>
                     <ul>
                       <li>
-                        Have confidence in your data: Clean and tag raw data,
-                        reduce inconsistencies, and make data more reliable.
+                        <strong>Have confidence in your data:</strong> Clean and
+                        tag raw data, reduce inconsistencies, and make data more
+                        reliable.
                       </li>
                       <li>
-                        Make your data richer: Generate and enrich metadata,
-                        infer missing values, and improve completeness.
+                        <strong>Make your data richer:</strong> Generate and
+                        enrich metadata, infer missing values, and improve
+                        completeness.
                       </li>
                       <li>
-                        Reduce manual data preparation: Instead of manually
-                        writing rules, automatically categorize, label, and
-                        preprocess data to save time and effort.
+                        <strong>Reduce manual data preparation:</strong> Instead
+                        of manually writing rules, automatically categorize,
+                        label, and preprocess data to save time and effort.
                       </li>
                     </ul>
                   </div>
@@ -103,7 +105,10 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability: <strong>Coming Soon</strong>
+                      Availability:{' '}
+                      <strong>
+                        <u>Coming Soon</u>
+                      </strong>
                     </p>
                   </div>
                 </div>

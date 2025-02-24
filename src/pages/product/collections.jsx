@@ -7,20 +7,20 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query Agent');
+  const app = appData.find((app) => app.name === 'Collections');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
-        description="Query your data in Weaviate using simple human language."
+        title="Collections | Weaviate Workbench"
+        description="Create an manage collections through a graphical user interface (GUI)."
       >
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -40,26 +40,15 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
-                      <Link to="https://events.weaviate.io/weaviate-agents">
-                        <button className={styles.installButton}>
-                          Sign up for updates
-                        </button>
-                      </Link>
-                    ) : (
-                      <Link to="https://console.weaviate.cloud/">
-                        <button className={styles.installButton}>
-                          Open in Weaviate Cloud
-                        </button>
-                      </Link>
-                    )}
-                    <Link to="/developers/agents/query">
-                      <button className={styles.docButton}>
-                        Read the Docs
+                  {app.released === 'no' ? (
+                    <div className={styles.comingSoon}>Coming Soon</div>
+                  ) : (
+                    <Link to="https://console.weaviate.cloud/">
+                      <button className={styles.installButton}>
+                        Open in Weaviate Cloud
                       </button>
                     </Link>
-                  </div>
+                  )}
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
@@ -75,40 +64,28 @@ export default function QueryPage() {
                 <div className={styles.tabBottomContent}>
                   <div>
                     <h3>Overview</h3>
-
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Weaviate Cloud introduces the Collections tool. The
+                      Collections tool makes it easy for developers and
+                      non-technical users to create, manage, and delete
+                      collections.
+                    </p>{' '}
+                    <p>
+                      Use the tool to precisely tune a new collection. Specify a
+                      vectorizer and an embedding model. Configure collection
+                      properties for faster searches and more accurate results.{' '}
                     </p>
-                    <ul>
-                      <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
-                      </li>
-                      <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
-                      </li>
-                      <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
-                      </li>
-                    </ul>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      Availability: <strong>Available Now</strong>
+                    </p>
+                    <p>
+                      <Link to="/developers/wcs/tools/collections-tool">
+                        Read Docs
+                      </Link>
                     </p>
                   </div>
                 </div>

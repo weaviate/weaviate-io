@@ -42,7 +42,7 @@ export default function QueryPage() {
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
                     {app.released === 'no' ? (
-                      <Link to="https://events.weaviate.io/early-access">
+                      <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
                           Sign up for updates
                         </button>
@@ -54,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="https://events.weaviate.io/early-access">
+                    <Link to="/developers/agents/personalization">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -77,23 +77,24 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s Personalization Agent learns user behavior and
-                      can personalize any experience. 
+                      Weaviate’s <strong>Personalization Agent</strong>learns
+                      user behavior and can personalize any experience. 
                     </p>
                     <ul>
                       <li>
-                        Deliver tailored results in real-time: Automatically
-                        curate search results based on each user’s interactions.
+                        <strong>Deliver tailored results in real-time:</strong>{' '}
+                        Automatically curate search results based on each user’s
+                        interactions.
                       </li>
                       <li>
-                        Understand each recommendation: As user experiences
-                        adapt, your team gets natural language explanations for
-                        each recommendation.
+                        <strong>Understand each recommendation:</strong> As user
+                        experiences adapt, your team gets natural language
+                        explanations for each recommendation.
                       </li>
                       <li>
-                        Simplify development: Go beyond static, rules-based
-                        recommendations and get smart, LLM-based personalization
-                        out of the box. 
+                        <strong>Simplify development:</strong> Go beyond static,
+                        rules-based recommendations and get smart, LLM-based
+                        personalization out of the box.
                       </li>
                     </ul>
                   </div>

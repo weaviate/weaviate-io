@@ -10,7 +10,9 @@ const categoryDescriptions = {
     <>
       Weaviate’s{' '}
       <u>
-        <a href="/platform">open source vector database</a>
+        <strong>
+          <a href="/platform">open source vector database</a>
+        </strong>
       </u>{' '}
       can be self-hosted or run as a managed service in Weaviate Cloud to reduce
       operational overhead.

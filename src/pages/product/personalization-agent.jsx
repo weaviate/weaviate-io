@@ -7,20 +7,20 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query Agent');
+  const app = appData.find((app) => app.name === 'Personalization Agent');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
-        description="Query your data in Weaviate using simple human language."
+        title="Personalization Agent | Weaviate Workbench"
+        description="Dynamically personalize experiences based on user behavior."
       >
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -54,7 +54,7 @@ export default function QueryPage() {
                         </button>
                       </Link>
                     )}
-                    <Link to="/developers/agents/query">
+                    <Link to="/developers/agents/personalization">
                       <button className={styles.docButton}>
                         Read the Docs
                       </button>
@@ -77,27 +77,24 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Weaviate’s <strong>Personalization Agent</strong>learns
+                      user behavior and can personalize any experience. 
                     </p>
                     <ul>
                       <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        <strong>Deliver tailored results in real-time:</strong>{' '}
+                        Automatically curate search results based on each user’s
+                        interactions.
                       </li>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
+                        <strong>Understand each recommendation:</strong> As user
+                        experiences adapt, your team gets natural language
+                        explanations for each recommendation.
                       </li>
                       <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
+                        <strong>Simplify development:</strong> Go beyond static,
+                        rules-based recommendations and get smart, LLM-based
+                        personalization out of the box.
                       </li>
                     </ul>
                   </div>
@@ -105,10 +102,7 @@ export default function QueryPage() {
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      Availability: <strong>Coming Soon</strong>
                     </p>
                   </div>
                 </div>

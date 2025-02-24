@@ -7,20 +7,20 @@ import styles from '/src/components/Marketplace/styles.module.scss';
 import AppCard from '/src/components/Marketplace/card';
 
 export default function QueryPage() {
-  const app = appData.find((app) => app.name === 'Query Agent');
+  const app = appData.find((app) => app.name === 'Recommender Service');
 
   if (!app) return <div>App not found</div>;
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Query Agent | Weaviate Workbench"
-        description="Query your data in Weaviate using simple human language."
+        title="Recommender Service| Weaviate Workbench"
+        description="Build personalized, multi-modal recommendations with simple interface."
       >
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -40,31 +40,30 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
-                      <Link to="https://events.weaviate.io/weaviate-agents">
-                        <button className={styles.installButton}>
-                          Sign up for updates
-                        </button>
-                      </Link>
-                    ) : (
-                      <Link to="https://console.weaviate.cloud/">
-                        <button className={styles.installButton}>
-                          Open in Weaviate Cloud
-                        </button>
-                      </Link>
-                    )}
-                    <Link to="/developers/agents/query">
-                      <button className={styles.docButton}>
-                        Read the Docs
+                  {app.released === 'no' ? (
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Beta Access
                       </button>
                     </Link>
-                  </div>
+                  ) : (
+                    <Link to="https://events.weaviate.io/early-access">
+                      <button className={styles.installButton}>
+                        Request Beta Access
+                      </button>
+                    </Link>
+                  )}
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
                     <img
+                      className={styles.smallScreen}
                       src={'/img/site/' + app.overviewImage1}
+                      alt={app.name}
+                    />
+                    <img
+                      className={styles.smallScreen}
+                      src={'/img/site/' + app.overviewImage2}
                       alt={app.name}
                     />
                   </div>
@@ -77,38 +76,49 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Our Recommender service simplifies the development of
+                      recommendation systems for a variety of use cases. It
+                      offers a fully managed, low-code interface that enables
+                      real-time recommendations that adapt dynamically to user
+                      events. Additionally, it offers users configurable
+                      endpoints for custom item-to-item, item-to-user, and
+                      user-to-user recommendation scenarios. Teams with limited
+                      machine-learning expertise can build highly personalised,
+                      scalable recommenders for AI-driven customer experiences.
                     </p>
                     <ul>
                       <li>
-                        <strong>Get insights faster:</strong> Identify risks,
-                        opportunities, and threats in your data more easily.
+                        Simple client interface for managing and creating custom
+                        recommendations
                       </li>
                       <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
+                        Multi-modal representations of item-level data objects.
                       </li>
                       <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
+                        Personalized user recommendation and search based on
+                        past events and interactions
+                      </li>
+                      <li>
+                        Configurable endpoints for different recommendation
+                        scenarios
                       </li>
                     </ul>
+                    <strong>Private Beta</strong>
+                    <p>
+                      We’re actively looking for customers to join our private
+                      beta. If you’re interested, please let us know.{' '}
+                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional details</h3>
                     <p>
-                      Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      Availability: <strong>Private beta</strong>
+                    </p>
+                    <p>
+                      <Link to="https://events.weaviate.io/early-access">
+                        Request beta access
+                      </Link>
                     </p>
                   </div>
                 </div>
