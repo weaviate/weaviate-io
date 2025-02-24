@@ -12,7 +12,7 @@ export default function Header() {
           <div className={styles.box}>
             <span>AGENTIC WORKFLOWS</span>
             <h1>
-              Empower AI agents with the context and adaptability they need.
+              Empower AI agents with the context and adaptability they need
             </h1>
             <p>
               Build and scale intelligent, context-aware AI agents that can make

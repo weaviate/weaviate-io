@@ -20,7 +20,7 @@ export default function QueryPage() {
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
@@ -40,19 +40,26 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
-                  {app.released === 'no' ? (
-                    <Link to="https://events.weaviate.io/early-access">
-                      <button className={styles.installButton}>
-                        Request Early Access
+                  <div className={styles.installButtons}>
+                    {app.released === 'no' ? (
+                      <Link to="https://events.weaviate.io/early-access">
+                        <button className={styles.installButton}>
+                          Request Early Access
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link to="https://console.weaviate.cloud/">
+                        <button className={styles.installButton}>
+                          Open in Weaviate Cloud
+                        </button>
+                      </Link>
+                    )}
+                    <Link to="/developers/wcs/tools/explorer-tool">
+                      <button className={styles.docButton}>
+                        Read the Docs
                       </button>
                     </Link>
-                  ) : (
-                    <Link to="https://console.weaviate.cloud/">
-                      <button className={styles.installButton}>
-                        Open in Weaviate Cloud
-                      </button>
-                    </Link>
-                  )}
+                  </div>
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
@@ -81,11 +88,6 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availability: <strong>Available Now</strong>
-                    </p>
-                    <p>
-                      <Link to="/developers/wcs/tools/explorer-tool">
-                        Read Docs
-                      </Link>
                     </p>
                   </div>
                 </div>
