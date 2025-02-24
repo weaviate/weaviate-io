@@ -54,7 +54,7 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ### Prerequisites
 
-The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
+The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Query Agent
 

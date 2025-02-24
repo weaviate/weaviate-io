@@ -99,7 +99,7 @@ This process ranks the combined result set as a whole, before serving them back 
 
 ### Prerequisites
 
-The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
+The Personalization Agent is tightly integrated with Weaviate Cloud. As a result, the Personalization Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Personalization Agent
 

@@ -87,7 +87,7 @@ To use the Transformation Agent, you must provide the following:
 
 ### Prerequisites
 
-The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent connects to a Weaviate Cloud instance, and a supported version of the client library.
+The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
 
 ### Connect to Weaviate
 
