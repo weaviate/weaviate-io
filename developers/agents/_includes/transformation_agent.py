@@ -1,6 +1,6 @@
 # START-ANY
-# [!NOTE!] This Weaviate Agent is not available just yet.
-# These snippets are placeholders only, and may change when it is released.
+# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is not available just yet.
+# These snippets are indicative. The syntax may change when this Agent is released.
 
 # END-ANY
 
