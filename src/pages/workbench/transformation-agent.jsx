@@ -20,7 +20,7 @@ export default function QueryPage() {
         <MetaSEO />
         <div className="container">
           <div className={styles.breadCrumbs}>
-            <Link to="/workbench">
+            <Link to="/product">
               <div className={styles.home} />
             </Link>
             <div className={styles.arrow} />
@@ -30,7 +30,7 @@ export default function QueryPage() {
           </div>
           <div className={styles.appContainer}>
             <div className={`${styles.sidebar} ${styles.mini}`}>
-              <Link to="/workbench" className={styles.backButton}>
+              <Link to="/product" className={styles.backButton}>
                 Workbench
               </Link>
             </div>
