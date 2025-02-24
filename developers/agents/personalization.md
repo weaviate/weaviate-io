@@ -36,7 +36,7 @@ The Personalization Agent uses the contextual information to not only retrieve t
 
 ![Weaviate Personalization Agent at a high level](./_includes/personalization_agent_architecture.png "Weaviate Personalization Agent at a high level")
 
-The Personalization Agent works as follows at a high level (the actual implementation may vary):
+The Personalization Agent works as follows at a high level:
 
 - Create a Weaviate-managed user collection, which will store each user's profiles & previous interactions for each user.
 - When a request for personalized recommendations is made, the Personalization Agent fetches the user data, and analyze it to determine patterns and preferences.

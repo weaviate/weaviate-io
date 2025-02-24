@@ -36,7 +36,7 @@ The context may also include previous conversation history, and any other releva
 
 ![Weaviate Query Agent at a high level](./_includes/query_agent_architecture.png "Weaviate Query Agent at a high level")
 
-The Query Agent follows these high-level steps (the actual implementation may vary):
+The Query Agent follows these high-level steps:
 
 - Use appropriate foundation models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
 - Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)

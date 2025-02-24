@@ -48,7 +48,7 @@ The figure below shows the workflow:
 
 ![Weaviate Transformation Agent: Enhance data at import time](./_includes/transformation_agent_new_append.png "Weaviate Transformation Agent: Enhance data at import time")
 
-The Transformation Agent works as follows at a high level (the actual implementation may vary):
+The Transformation Agent works as follows at a high level:
 
 - The Transformation Agent works with a foundation model to create the new property, based on the instructions provided and the context of the specified existing properties (steps 1-2).
 - Insert the transformed objects to Weaviate. Weaviate vectorizes the data as needed using the specified vectorizer integration. (Steps 3-5)
@@ -64,7 +64,7 @@ The figure below shows the workflow:
 
 ![Weaviate Transformation Agent: Update properties on existing objects](./_includes/transformation_agent_existing_update.png "Weaviate Transformation Agent: Update properties on existing objects")
 
-The Transformation Agent works as follows at a high level (the actual implementation may vary):
+The Transformation Agent works as follows at a high level:
 
 - The Transformation Agent retrieves the existing objects from Weaviate, based on the specified criteria (steps 1-2).
 - The Transformation Agent works with a foundation model to create new versions of the property, based on the instructions provided and the context of the specified existing properties (steps 3-4).
