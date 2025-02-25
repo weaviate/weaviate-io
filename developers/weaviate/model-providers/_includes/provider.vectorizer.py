@@ -1283,7 +1283,7 @@ client.collections.create(
         Configure.NamedVectors.text2vec_weaviate(
             name="title_vector",
             source_properties=["title"],
-            model="Snowflake/snowflake-arctic-embed-m-v1.5"
+            model="Snowflake/snowflake-arctic-embed-l-v2.0"
         )
     ],
     # highlight-end

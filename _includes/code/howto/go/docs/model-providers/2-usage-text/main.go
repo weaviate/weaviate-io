@@ -1129,7 +1129,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model": "arctic-embed-m-v1.5",
+						"model": "arctic-embed-l-v2.0",
 					},
 				},
 			},
@@ -1197,7 +1197,7 @@ func main() {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
 						"model":      "Snowflake/snowflake-arctic-embed-l-v2.0",
-						"dimensions": 256, // Or 768
+						"dimensions": 1024, // Or 256
 						// "base_url":   "<custom_weaviate_url>",
 					},
 				},

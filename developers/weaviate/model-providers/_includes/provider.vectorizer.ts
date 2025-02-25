@@ -1339,7 +1339,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecWeaviate({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'arctic-embed-m-v1.5',
+      model: 'Snowflake/snowflake-arctic-embed-l-v2.0',
     }),
   ],
   // highlight-end

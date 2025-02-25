@@ -34,7 +34,7 @@ public class UsageWeaviateTextEmbeddings {
     // END BasicVectorizerWeaviate  // START VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedLV20
     text2vecWeaviateSettings.put("model", new String[]{"Snowflake/snowflake-arctic-embed-l-v2.0"});
     // END BasicVectorizerWeaviate  // END VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedLV20
-    text2vecWeaviateSettings.put("dimensions", new Integer[]{768});  // 768, 256
+    text2vecWeaviateSettings.put("dimensions", new Integer[]{1024});  // 1024, 256
     text2vecWeaviateSettings.put("base_url", new String[]{"<custom_weaviate_url>"});
     // START BasicVectorizerWeaviate // START VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedLV20
     text2vecWeaviate.put("text2vec-weaviate", text2vecWeaviateSettings);
