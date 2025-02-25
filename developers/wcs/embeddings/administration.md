@@ -65,7 +65,7 @@ The rate limit for Sandbox clusters is `2000` requests per cluster.
 
 :::info
 If you use a [batch import](/developers/weaviate/manage-data/import) to vectorize your data, the maximum size is `200` objects per batch. 
-This means that you can generate up to `400 000` embeddings (`2000 (requests) * 200 (objects per request)`) within your free Sandbox cluster.
+This means that you can generate up to a maximum of `400 000` embeddings (`2000 (requests) * 200 (objects per request)`) within your free Sandbox cluster.
 :::
 
 <!-- TODO[g-despot] Refine this section -->
