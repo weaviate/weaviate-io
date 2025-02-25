@@ -340,7 +340,7 @@ const config = {
             image: 'og/default.jpg',
              announcementBar: {
                id: 'announcement-bar-decemeber-2024',
-                content:`<a href="/workbench/embeddings">Weaviate Embeddings: Now Generally Available – Read Our Announcement Blog</a>`,
+                content:`<a href="/blog">Weaviate Embeddings: Now Generally Available – Read Our Announcement Blog</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,

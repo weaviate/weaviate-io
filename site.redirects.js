@@ -752,6 +752,15 @@ const siteRedirects = {
             to: "/learn/knowledgecards",
             from: "/learn/knowledgecards/knowledgeheader"
         },
+          // Recommender Component Changes
+          {
+            to: "/product/personalization-agent",
+            from: "/workbench/recommender"
+        },
+        {
+           to: "/product/personalization-agent",
+            from: "/product/recommender"
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

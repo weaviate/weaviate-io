@@ -37,7 +37,7 @@ export default function Embeddings() {
                 </div>
               </div>
             </div>
-            <Link className={styles.buttonGradient} to="/workbench/embeddings">
+            <Link className={styles.buttonGradient} to="/product/embeddings">
               Learn More
             </Link>
           </div>

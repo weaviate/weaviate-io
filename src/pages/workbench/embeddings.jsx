@@ -40,19 +40,26 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.longDescription}</p>
-                  {app.released === 'yes' ? (
-                    <Link to="https://console.weaviate.cloud/">
-                      <button className={styles.installButton}>
-                        Open in Weaviate Cloud
+                  <div className={styles.installButtons}>
+                    {app.released === 'yes' ? (
+                      <Link to="https://console.weaviate.cloud/">
+                        <button className={styles.installButton}>
+                          Open in Weaviate Cloud
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <button className={styles.installButton}>
+                          Request Preview Access
+                        </button>
+                      </Link>
+                    )}
+                    <Link to="/developers/wcs/embeddings">
+                      <button className={styles.docButton}>
+                        Read the Docs
                       </button>
                     </Link>
-                  ) : (
-                    <Link to="https://events.weaviate.io/embeddings-preview">
-                      <button className={styles.installButton}>
-                        Request Preview Access
-                      </button>
-                    </Link>
-                  )}
+                  </div>
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
@@ -97,13 +104,10 @@ export default function QueryPage() {
 
                   <div className={styles.additionalInfo}>
                     <h3>Additional Details and Pricing</h3>
-
                     <p>
                       Snowflake arctic-embed 1.5 = <strong>$0.025</strong> per
-                      1M tokens
-                      <br></br>
-                      Snowflake arctic-embed 2.0 = <strong>$0.040</strong> per
-                      1M tokens
+                      1M tokens<br></br>Snowflake arctic-embed 2.0 ={' '}
+                      <strong>$0.040</strong> per 1M tokens
                     </p>
                   </div>
                 </div>
