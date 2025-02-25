@@ -185,50 +185,9 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Weaviate Embeddings-specific options.
+import WeaviateEmbeddingsVectorizerParameters from '/_includes/weaviate-embeddings-vectorizer-parameters.mdx';
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START SnowflakeArcticEmbedMV15"
-      endMarker="# END SnowflakeArcticEmbedMV15"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START SnowflakeArcticEmbedMV15"
-      endMarker="// END SnowflakeArcticEmbedMV15"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START SnowflakeArcticEmbedMV15"
-      endMarker="// END SnowflakeArcticEmbedMV15"
-      language="goraw"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START SnowflakeArcticEmbedMV15"
-      endMarker="// END SnowflakeArcticEmbedMV15"
-      language="java"
-    />
-  </TabItem>
-
-</Tabs>
-
-- `model`: The name of the model to use for embedding generation.
-- `dimensions`: The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
-- `base_url`: The base URL for the Weaviate Embeddings service. (Not required in most cases.)
+<WeaviateEmbeddingsVectorizerParameters />
 
 ## Data import
 
@@ -383,18 +342,9 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
-- `arctic-embed-m-v1.5` (default)
-    - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
-    - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
-    - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
-    - Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
-    - Allowable `dimensions`: 768 (default), 256
+import WeaviateEmbeddingsModels from '/_includes/weaviate-embeddings-models.mdx';
 
-Additional models will be added in the future.
-
-:::info Input truncation
-Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
-:::
+<WeaviateEmbeddingsModels />
 
 ## Further resources
 
