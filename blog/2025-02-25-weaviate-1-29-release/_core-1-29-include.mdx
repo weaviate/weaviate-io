@@ -69,6 +69,8 @@ The BlockMax WAND algorithm continues to evolve in Weaviate `1.29` with further 
 
 It organizes the inverted index in blocks to enable skipping over blocks that are not relevant to the query. This can significantly reduce the number of documents that need to be scored, improving search performance.
 
+In our internal testing, we have seen up to a 10x speedup in keyword searches due to BlockMax WAND.
+
 If you are experiencing slow BM25 (or hybrid) searches, try enabling BlockMax WAND to see if it improves performance.
 
 To read more about BlockMax WAND, and to try it out, refer to the [Indexing page](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm).
