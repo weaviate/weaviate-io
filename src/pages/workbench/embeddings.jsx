@@ -40,19 +40,26 @@ export default function QueryPage() {
                 <div>
                   <h1>{app.name}</h1>
                   <p>{app.longDescription}</p>
-                  {app.released === 'no' ? (
-                    <Link to="https://console.weaviate.cloud/">
-                      <button className={styles.installButton}>
-                        Open in Weaviate Cloud
+                  <div className={styles.installButtons}>
+                    {app.released === 'yes' ? (
+                      <Link to="https://console.weaviate.cloud/">
+                        <button className={styles.installButton}>
+                          Open in Weaviate Cloud
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link to="https://events.weaviate.io/embeddings-preview">
+                        <button className={styles.installButton}>
+                          Request Preview Access
+                        </button>
+                      </Link>
+                    )}
+                    <Link to="/developers/wcs/embeddings">
+                      <button className={styles.docButton}>
+                        Read the Docs
                       </button>
                     </Link>
-                  ) : (
-                    <Link to="https://events.weaviate.io/embeddings-preview">
-                      <button className={styles.installButton}>
-                        Request Preview Access
-                      </button>
-                    </Link>
-                  )}
+                  </div>
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.overviewImage}>
@@ -93,27 +100,14 @@ export default function QueryPage() {
                         pay-as-you-go pricing.
                       </li>
                     </ul>
-                    <strong>Details and Pricing</strong>
-                    <p>
-                      Weaviate Embeddings is now available in Preview with the{' '}
-                      <Link to="https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/">
-                        <strong>Snowflake arctic-embed-m-v1.5</strong>
-                      </Link>{' '}
-                      text embedding model.
-                    </p>
-                    <p>
-                      When generally available, pricing will start at $0.04 per
-                      million tokens.
-                    </p>
                   </div>
 
                   <div className={styles.additionalInfo}>
-                    <h3>Additional details</h3>
+                    <h3>Additional Details and Pricing</h3>
                     <p>
-                      Availability:{' '}
-                      <Link to="https://events.weaviate.io/embeddings-preview">
-                        <strong>Preview</strong>
-                      </Link>
+                      Snowflake arctic-embed 1.5 = <strong>$0.025</strong> per
+                      1M tokens<br></br>Snowflake arctic-embed 2.0 ={' '}
+                      <strong>$0.040</strong> per 1M tokens
                     </p>
                   </div>
                 </div>

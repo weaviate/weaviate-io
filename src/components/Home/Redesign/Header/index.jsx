@@ -122,7 +122,7 @@ export default function HomepageHeader() {
                 >
                   Get Started
                 </Link>
-                <Link className={styles.buttonDark} to="/workbench">
+                <Link className={styles.buttonDark} to="/product">
                   Products Overview
                 </Link>
               </div>

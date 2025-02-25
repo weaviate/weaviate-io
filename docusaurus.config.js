@@ -340,7 +340,7 @@ const config = {
             image: 'og/default.jpg',
              announcementBar: {
                id: 'announcement-bar-decemeber-2024',
-                content:`<a target="_blank" rel="noopener noreferrer" href="/reports/gigaom-sonar-report-for-vector-databases">Ready to level up your AI tech stack? Read GigaOm's Sonar Report for Vector Databases</a>`,
+                content:`<a href="/blog/accelerate-enterprise-ai">Weaviate Embeddings: Now Generally Available – Read Our Announcement Blog</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,

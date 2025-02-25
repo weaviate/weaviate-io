@@ -90,7 +90,7 @@ export default function PricingStandard() {
           <ul>
             <li>Get started with a free trial in minutes</li>
             <li>Various SLA tiers to meet your needs</li>
-            <li>Weaviate Embeddings available starting at $0.04/M tokens</li>
+            <li>Weaviate Embeddings available</li>
           </ul>
           <Link className={styles.buttonView} onClick={openModal}>
             View pricing
