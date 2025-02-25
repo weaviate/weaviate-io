@@ -6,7 +6,10 @@ image: og/wcs/user_guides.jpg
 
 import Link from '@docusaurus/Link';
 
+
+:::info
 Weaviate Embeddings is enabled by default at the organization level and is available to all Weaviate Cloud users. 
+:::
 
 ## Authentication
 
@@ -50,7 +53,7 @@ import DisableWeaviateEmbeddings from '/developers/wcs/img/weaviate-cloud-disabl
 <!-- TODO[g-despot] Update link -->
 If you would like to learn about the pricing model, you can visit the Weaviate Embeddings [pricing page](/). 
 The pricing works on a per-token basis. This means that you will only be billed for the tokens that are successfully consumed. 
-In other words, only requests that received valid responses from the API are considered.
+In other words, only requests that result in valid responses from the API are considered.
 
 More info about billing in Weaviate Cloud can be found on [this page](/developers/wcs/platform/billing).
 
@@ -58,7 +61,7 @@ More info about billing in Weaviate Cloud can be found on [this page](/developer
 
 <!-- TODO[g-despot] Don't hardcode these values here if possible -->
 Weaviate Embeddings only imposes rate limits on requests for Sandbox clusters. 
-The rate limit for Sandbox clusters is `2000` requests in total. 
+The rate limit for Sandbox clusters is `2000` requests per cluster. 
 
 :::info
 If you use a [batch import](/developers/weaviate/manage-data/import) to vectorize your data, the maximum size is `200` objects per batch. 
@@ -80,7 +83,6 @@ We do not store or use your data for any other purpose, including training or mo
 Weaviate Embeddings makes use of infrastructure located in the United States. Note that by using Weaviate Embeddings, you are agreeing to have your data transferred to the United States for processing.
 
 We may expand the service to other regions in the future.
-
 
 ## Additional resources
 

@@ -54,7 +54,7 @@ Currently, input exceeding the model's context windows is truncated from the rig
 #### Parameters
 
 - `model` (optional): The name of the model to use for embedding generation.
-- `dimensions` (optional): The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
+- `dimensions` (optional): The number of dimensions to use for the generated embeddings. 
 - `base_url` (optional): The base URL for the Weaviate Embeddings service. (Not required in most cases.)
 
 The following examples show how to configure Weaviate Embeddings-specific options.
@@ -106,7 +106,7 @@ The following examples show how to configure Weaviate Embeddings-specific option
 - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
 - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
 - Read more at the [Snowflake blog](https://huggingface.co/Snowflake/snowflake-arctic-embed-l-v2.0), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-l-v2.0)
-- Allowable `dimensions`: 768 (default), 256
+- Allowable `dimensions`: 1024 (default), 256
 
 :::info Input truncation
 Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
@@ -114,7 +114,7 @@ Currently, input exceeding the model's context windows is truncated from the rig
 
 #### Parameters
 
-- `dimensions` (optional): The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
+- `dimensions` (optional): The number of dimensions to use for the generated embeddings. 
 - `base_url` (optional): The base URL for the Weaviate Embeddings service. (Not required in most cases.)
 
 The following examples show how to configure Weaviate Embeddings-specific options.
