@@ -77,7 +77,7 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Personalization Agent</strong>learns
+                      Weaviate’s <strong>Personalization Agent</strong> learns
                       user behavior and can personalize any experience. 
                     </p>
                     <ul>
