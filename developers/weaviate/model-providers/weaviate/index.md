@@ -5,10 +5,8 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'weaviate embeddings']
 ---
 
-:::info Access to Weaviate Embeddings during technical preview
-Weaviate Embeddings is currently in free technical preview for Weaviate Cloud Serverless users.
-
-To try out Weaviate Embeddings at this time, please [contact us](https://events.weaviate.io/embeddings-preview) to request access.
+:::info Access to Weaviate Embeddings
+Weaviate Embeddings is a paid service available through Weaviate Cloud. You can try it out for free by using a Sandbox cluster.
 :::
 
 <!-- Note: for images, use https://docs.google.com/presentation/d/15opIcJuaIjEEcs_1Zm8B6pccox2p7_MHSjCnRv4dPfU/edit?usp=sharing -->

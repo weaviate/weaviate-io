@@ -1129,7 +1129,7 @@ func main() {
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model": "arctic-embed-m-v1.5",
+						"model": "arctic-embed-l-v2.0",
 					},
 				},
 			},
@@ -1144,17 +1144,25 @@ func main() {
 	// highlight-end
 	// END VectorizerWeaviateCustomModel
 
-	// START FullVectorizerWeaviate
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedMV15
 	// highlight-start
 	// Define the collection
-	weaviateVectorizerFullDef := &models.Class{
+	weaviateVectorizerArcticEmbedMV15 := &models.Class{
 		Class: "DemoCollection",
 		VectorConfig: map[string]models.VectorConfig{
 			"title_vector": {
 				Vectorizer: map[string]interface{}{
 					"text2vec-weaviate": map[string]interface{}{
-						"model":      "arctic-embed-m-v1.5",
-						"dimensions": 256, // Or 756
+						"model":      "Snowflake/snowflake-arctic-embed-m-v1.5",
+						"dimensions": 256, // Or 768
 						"base_url":   "<custom_weaviate_url>",
 					},
 				},
@@ -1163,23 +1171,55 @@ func main() {
 	}
 
 	// add the collection
-	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerFullDef).Do(ctx)
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedMV15).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	// highlight-end
-	// END FullVectorizerWeaviate
+	// END SnowflakeArcticEmbedMV15
+
+	// Clean slate: Delete the collection
+	if err := client.Schema().ClassDeleter().WithClassName("DemoCollection").Do(context.Background()); err != nil {
+		// Weaviate will return a 400 if the class does not exist, so this is allowed, only return an error if it's not a 400
+		if status, ok := err.(*fault.WeaviateClientError); ok && status.StatusCode != http.StatusBadRequest {
+			panic(err)
+		}
+	}
+
+	// START SnowflakeArcticEmbedLV20
+	// highlight-start
+	// Define the collection
+	weaviateVectorizerArcticEmbedLV20 := &models.Class{
+		Class: "DemoCollection",
+		VectorConfig: map[string]models.VectorConfig{
+			"title_vector": {
+				VectorIndexType: `hnsw`,
+				Vectorizer: map[string]interface{}{
+					"text2vec-weaviate": map[string]interface{}{
+						"model":      "Snowflake/snowflake-arctic-embed-l-v2.0",
+						"dimensions": 1024, // Or 256
+						// "base_url":   "<custom_weaviate_url>",
+					},
+				},
+			},
+		},
+	}
+
+	// add the collection
+	err = client.Schema().ClassCreator().WithClass(weaviateVectorizerArcticEmbedLV20).Do(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// highlight-end
+	// END SnowflakeArcticEmbedLV20
 
 	// START BatchImportExample
 	var sourceObjects = []map[string]string{
-		// Objects not shown
-		// END BatchImportExample
-		{"title": "The Shawshank Redemption", "description": "Prison drama about hope"},
-		{"title": "The Godfather", "description": "Mafia family epic"},
-		{"title": "The Dark Knight", "description": "Batman vs Joker thriller"},
-		{"title": "Jingle All the Way", "description": "Holiday shopping adventure"},
-		{"title": "A Christmas Carol", "description": "Ghost story of redemption"},
-		// START BatchImportExample
+		{"title": "The Shawshank Redemption", "description": "A wrongfully imprisoned man forms an inspiring friendship while finding hope and redemption in the darkest of places."},
+		{"title": "The Godfather", "description": "A powerful mafia family struggles to balance loyalty, power, and betrayal in this iconic crime saga."},
+		{"title": "The Dark Knight", "description": "Batman faces his greatest challenge as he battles the chaos unleashed by the Joker in Gotham City."},
+		{"title": "Jingle All the Way", "description": "A desperate father goes to hilarious lengths to secure the season's hottest toy for his son on Christmas Eve."},
+		{"title": "A Christmas Carol", "description": "A miserly old man is transformed after being visited by three ghosts on Christmas Eve in this timeless tale of redemption."},
 	}
 
 	// highlight-start
@@ -1188,10 +1228,8 @@ func main() {
 	for i := range sourceObjects {
 		objects = append(objects, map[string]interface{}{
 			// Populate the object with the data
-			// END BatchImportExample
 			"title":       sourceObjects[i]["title"],
 			"description": sourceObjects[i]["description"],
-			// START BatchImportExample
 		})
 	}
 
