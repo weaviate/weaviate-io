@@ -10,17 +10,14 @@ export default function HomepageHeader() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <h1>Workbench</h1>
+            <h1>Products</h1>
             <p>
-              Accelerate AI-native application development with GUI-based tools
-              and apps to make building and scaling easier.
+              Our AI-native vector database ecosystem was designed to simplify
+              development for AI builders
             </p>
             <div className={styles.buttons}>
-              <Link
-                className={styles.buttonGradient}
-                to="https://console.weaviate.cloud"
-              >
-                Open Weaviate Cloud
+              <Link className={styles.buttonGradient} to="#contact-sales">
+                Contact Sales
               </Link>
             </div>
           </div>

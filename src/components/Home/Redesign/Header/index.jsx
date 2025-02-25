@@ -41,9 +41,8 @@ export default function HomepageHeader() {
                   <br></br> software
                 </h1>
                 <h2>
-                  Bring intuitive AI-native applications to life with less
-                  hallucination, data leakage, and vendor lock-in with the open
-                  source vector database developers love.
+                  Bring intuitive AI-native applications to life with the open
+                  source vector database developers love
                 </h2>
               </div>
 
@@ -68,9 +67,9 @@ export default function HomepageHeader() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Improve search experiences by merging vector search with
-                  keyword search techniques. Deliver contextual, precise results
-                  across all of your data in any modality, with less effort.
+                  Improve search experiences by merging vector and keyword
+                  techniques. Deliver contextual, precise results across all of
+                  your data, with less effort.
                 </p>
                 <Link to="/hybrid-search">Learn more</Link>
               </div>
@@ -84,64 +83,47 @@ export default function HomepageHeader() {
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Build trustworthy generative AI applications with your own
-                  data using RAG. Use your favorite LLMs while keeping privacy
-                  and security top-of-mind.
+                  Build trustworthy generative AI applications using your own
+                  data. Surface relevant and accurate answers using your
+                  favorite LLMs.
                 </p>
                 <Link to="/rag">Learn more</Link>
               </div>
             </div>
-            <div className={styles.typeBox}>
-              <div className={styles.typeIcon}>
-                <div className={` ${styles.homeIcon} ${styles.genIcon}`}></div>
-                <h2>
-                  Generative<br></br>Feedback Loops
-                </h2>
-              </div>
-              <div className={styles.typeText}>
-                <p>
-                  Make your dataset smarter by enriching it with AI-generated
-                  answers. Improve personalization and spend less time on manual
-                  data cleaning.
-                </p>
-                <Link to="/gen-feedback-loops">Learn more</Link>
-              </div>
-            </div>
+
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>
                 <div
                   className={` ${styles.homeIcon} ${styles.infraIcon}`}
                 ></div>
-                <h2>Cost-performance optimization</h2>
+                <h2>Agentic AI</h2>
               </div>
               <div className={styles.typeText}>
                 <p>
-                  Tailor AI infrastructure patterns to your use case. Improve
-                  memory footprint and resource efficiency without compromising
-                  performance.
+                  Fuel enterprise intelligence with agentic workflows. Build
+                  scalable, context-aware AI agents that can learn and adapt on
+                  the fly.
                 </p>
-                <Link to="/cost-performance-optimization">Learn more</Link>
+                <Link to="/agentic-ai">Learn more</Link>
               </div>
             </div>
           </div>
           <div className={styles.serviceBox}>
             <div className={styles.serviceText}>
-              <h2>Empower every developer to build AI-native applications</h2>
+              <h2>
+                More than just a vector database—a launchpad for AI innovation
+              </h2>
               <span>With flexible, reliable, open source foundations.</span>
-              <p>
-                At the core of the Weaviate ecosystem is our open source vector
-                database. Our surrounding services, tools, and offerings are
-                meant to further enable teams of all sizes on their AI journey.
-              </p>
-              <div className={styles.buttons}>
+
+              <div className={`${styles.buttons} ${styles.vertical}`}>
                 <Link
                   className={styles.buttonGradient}
                   to="https://console.weaviate.cloud"
                 >
-                  Start Free
+                  Get Started
                 </Link>
-                <Link className={styles.buttonOutline} to="/platform">
-                  Learn More
+                <Link className={styles.buttonDark} to="/workbench">
+                  Products Overview
                 </Link>
               </div>
             </div>

@@ -1062,9 +1062,10 @@
 }
 
 .overviewImage img {
-  width: 25.625rem;
-  height: 16.625rem;
-  flex-shrink: 0;
+  width: 31.375rem;
+  height: auto;
+  max-height: 15.625rem;
+  background-size: contain;
 }
 
 @media (max-width: 1024px) {
@@ -1086,7 +1087,7 @@
   }
 
   .overviewImage img {
-    width: 18rem;
+    width: 90%;
     height: 12rem;
   }
 }
@@ -1133,17 +1134,44 @@
   }
 }
 
+.installButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
 .installButton {
   border: none;
   border-radius: 4px;
   cursor: pointer;
   border-radius: 0.3125rem;
   background: #130c49;
-  width: 12.6875rem;
+  width: 11.6875rem;
   height: 2.1875rem;
   color: #fff;
   text-align: center;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 157.33%; /* 1.37663rem */
+}
 
+.docButton {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+
+  border: 1px solid #130c49;
+  background: #f7f9fd;
+  width: 8.6875rem;
+  height: 2.1875rem;
+  color: #130c49;
+  text-align: center;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 600;
@@ -1361,7 +1389,7 @@
   }
 
   a {
-    color: #61bd73;
+    color: #130c49;
     text-align: center;
     font-family: Inter;
     font-size: 0.875rem;
@@ -1446,7 +1474,40 @@
 }
 
 .categorySection {
-  margin: 30px 0px;
+  margin: 40px 0px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.highlightedCategory {
+  background: #130c49;
+  color: #fff;
+
+  margin: 0px;
+  max-width: var(--ifm-container-width-xl);
+
+  h2 {
+    color: #61bb73;
+  }
+
+  a {
+    color: #130c49;
+  }
+
+  .categoryDescriptions {
+    color: #fff;
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 2rem;
+  }
+  @media screen and (max-width: 1100px) {
+    padding: 2rem;
+  }
+}
+
+.highlightedContain {
+  background: #130c49;
 }
 
 .categoryDescriptions {
@@ -1456,6 +1517,10 @@
   font-weight: 400;
   line-height: 157.33%; /* 1.57331rem */
   margin-bottom: 10px;
+
+  a {
+    color: rgba(12, 20, 40, 0.7);
+  }
 }
 
 .breadCrumbs {
