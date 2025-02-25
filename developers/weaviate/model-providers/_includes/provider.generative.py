@@ -462,7 +462,7 @@ client.collections.create(
     "DemoCollection",
     # highlight-start
     generative_config=Configure.Generative.nvidia(
-        api_endpoint="https://integrate.api.nvidia.com/v1",
+        base_url="https://integrate.api.nvidia.com/v1",
         model="meta/llama-3.3-70b-instruct",
         temperature=0.7,
         max_tokens=1024
