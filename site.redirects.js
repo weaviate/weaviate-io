@@ -777,6 +777,13 @@ const siteRedirects = {
            to: "/product/personalization-agent",
             from: "/product/recommender"
         },
+
+          // GFL > Agentic AI Changes
+         
+        {
+           to: "/agentic-ai",
+            from: "/gen-feedback-loops"
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
