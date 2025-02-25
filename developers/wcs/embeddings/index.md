@@ -43,10 +43,10 @@ The following models are available for use with Weaviate Embeddings:
 In order to use Weaviate Embeddings you only need a [connection to your Weaviate Cloud cluster](/developers/wcs/manage-clusters/connect). 
 No additional authentication is specifically needed, and the Weaviate Embeddings service is enabled by default for all clusters. You can use the service no matter if you connect with a [client library](/developers/weaviate/client-libraries) or, for example, via [OIDC](/developers/weaviate/configuration/authentication#oidc).
 
-## Rate limits
+## Usage limits
 
 <!-- TODO[g-despot] Don't hardcode these values here if possible -->
-Weaviate Embeddings only imposes rate limits on requests for free Sandbox clusters. 
+Weaviate Embeddings only imposes usage limits on requests for free Sandbox clusters. 
 The rate limit for Sandbox clusters is `2000` requests per cluster. 
 
 :::info
