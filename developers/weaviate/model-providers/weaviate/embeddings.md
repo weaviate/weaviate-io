@@ -355,7 +355,7 @@ Once the integrations are configured at the collection, the data management and 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
-### Further resources
+### References
 
 - Weaviate Embeddings [Documentation](/developers/wcs/embeddings)
 
