@@ -1,7 +1,7 @@
 ---
 title: 'BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search'
 slug: blockmax-wand
-authors: [amourao]
+authors: [amourao, jp]
 date: 2025-02-26
 tags: ['search', 'concepts', 'engineering']
 image: ./img/hero.png
@@ -10,9 +10,10 @@ description: "How Weaviate achieved 10x Faster Keyword Search and 90% index comp
 ![BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](./img/hero.png)
 
 
-Keyword search is an integral part of Weaviate’s [hybrid search](/blog/hybrid-search-explained), designed to return [best of both](/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
-As the text corpora size becomes larger and larger, keyword searches can take long times to execute compared to vector searches.
+Keyword search is an integral part of Weaviate’s [hybrid search](/blog/hybrid-search-explained), designed to return [best of both](/blog/hybrid-search-fusion-algorithms) vector and keyword search.
+Hybrid search as a tool for [RAG](/blog/introduction-to-rag) and [Agentic AI](/blog/ai-agents) increases the breadth and depth of information that can be retrieved from a dataset, but it comes with its own challenges.
 
+As the text corpora size becomes larger and larger, keyword searches can take long times to execute compared to vector searches.
 In this blog post, you will learn how we improved Weaviate’s inverted index, how we avoid scoring all documents that have the query terms, how we compress the inverted index, and more about the improvements from using BlockMax WAND in Weaviate.
 
 :::caution 🚧 Technical Preview
