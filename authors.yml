@@ -9,7 +9,8 @@ alea:
   image_url: /img/people/icon/alea.jpg
 alvin:
   name: Alvin Richards
-  title: Head of Product
+  title: VP of Product
+  url: mailto:alvin@weaviate.io
   image_url: /img/people/icon/alvin.jpg
 ara:
   name: Ara Gonzalez
@@ -101,6 +102,11 @@ mary:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
   image_url: /img/people/icon/mary.jpg
+nenand:
+  name: Nenad Malić
+  title: Product Marketing Manager
+  url: mailto:nenad@weaviate.io
+  image_url: /img/people/icon/nenand.jpeg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead

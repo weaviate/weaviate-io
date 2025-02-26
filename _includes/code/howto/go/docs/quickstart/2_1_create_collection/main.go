@@ -32,9 +32,9 @@ func main() {
 	// Define the collection
 	classObj := &models.Class{
 		Class:      "Question",
-		Vectorizer: "text2vec-cohere",
+		Vectorizer: "text2vec-weaviate",
 		ModuleConfig: map[string]interface{}{
-			"text2vec-cohere":   map[string]interface{}{},
+			"text2vec-weaviate": map[string]interface{}{},
 			"generative-cohere": map[string]interface{}{},
 		},
 	}

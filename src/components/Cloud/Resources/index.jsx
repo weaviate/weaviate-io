@@ -40,7 +40,7 @@ export default function Resources() {
               </p>
             </div>
           </Link>
-          <Link to="/workbench">
+          <Link to="/product">
             <div className={styles.resourceBox}>
               <div
                 className={`${styles.resourceIcon} ${styles.resource1}`}

@@ -6,10 +6,7 @@ image: og/docs/integrations/provider_integrations_wes.jpg
 # tags: ['model providers', 'weaviate', 'wes', 'weaviate embeddings']
 ---
 
-:::info Access to Weaviate Embeddings during technical preview
-Weaviate Embeddings is currently in free technical preview.
-
-To try out Weaviate Embeddings at this time, please [contact us](https://events.weaviate.io/embeddings-preview) to request access.
+:::info Added in `1.27.10`, `1.28.3`, `1.29.0`
 :::
 
 # Weaviate Embeddings
@@ -24,7 +21,7 @@ import JavaConnect from '!!raw-loader!/_includes/code/howto/java/src/test/java/i
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/model-providers/2-usage-text/main.go';
-import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddings.java';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/UsageWeaviateTextEmbeddingsArcticEmbedLV20.java';
 import JavaImportQueries from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/model_providers/ImportAndQueries.java';
 
 Weaviate Embeddings' models can be accessed directly from a Weaviate Cloud instance.
@@ -37,14 +34,9 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 
 ## Requirements
 
-To use Weaviate Embeddings, you need:
+import Requirements from '/_includes/weaviate-embeddings-requirements.mdx';
 
-- A Weaviate Cloud instance running at least Weaviate `1.27.6`
-- To have [enabled "Weaviate Embeddings"](/developers/wcs/embeddings/index.md#administration) in your Weaviate Cloud organisation
-- A Weaviate client library that supports Weaviate Embeddings:
-    - Python client version `4.9.5` or higher
-    - JavaScript/TypeScript client version `3.2.5` or higher
-    - Go/Java clients are not yet officially supported; you must pass the `X-Weaviate-Api-Key` and `X-Weaviate-Cluster-Url` headers manually upon instantiation as shown below.
+<Requirements />
 
 ### Weaviate configuration
 
@@ -193,50 +185,9 @@ import VectorizationBehavior from '/_includes/vectorization.behavior.mdx';
 
 ### Vectorizer parameters
 
-The following examples show how to configure Weaviate Embeddings-specific options.
+import WeaviateEmbeddingsVectorizerParameters from '/_includes/weaviate-embeddings-vectorizer-parameters.mdx';
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python API v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START FullVectorizerWeaviate"
-      endMarker="# END FullVectorizerWeaviate"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS API v3">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
-      language="goraw"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START FullVectorizerWeaviate"
-      endMarker="// END FullVectorizerWeaviate"
-      language="java"
-    />
-  </TabItem>
-
-</Tabs>
-
-- `model`: The name of the model to use for embedding generation.
-- `dimensions`: The number of dimensions to use for the generated embeddings. Only available for models that support Matryoshka Representation Learning.
-- `base_url`: The base URL for the Weaviate Embeddings service. (Not required in most cases.)
+<WeaviateEmbeddingsVectorizerParameters />
 
 ## Data import
 
@@ -391,18 +342,9 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Available models
 
-- `arctic-embed-m-v1.5` (default)
-    - A 109M parameter, 768-dimensional model for enterprise retrieval tasks in English.
-    - Trained with Matryoshka Representation Learning to allow vector truncation with minimal loss.
-    - Quantization-friendly: Using scalar quantization and 256 dimensions provides 99% of unquantized, full-precision performance.
-    - Read more at the [Snowflake blog](https://www.snowflake.com/engineering-blog/arctic-embed-m-v1-5-enterprise-retrieval/), and the Hugging Face [model card](https://huggingface.co/Snowflake/snowflake-arctic-embed-m-v1.5)
-    - Allowable `dimensions`: 768 (default), 256
+import WeaviateEmbeddingsModels from '/_includes/weaviate-embeddings-models.mdx';
 
-Additional models will be added in the future.
-
-:::info Input truncation
-Currently, input exceeding the model's context windows is truncated from the right (i.e. the end of the input).
-:::
+<WeaviateEmbeddingsModels />
 
 ## Further resources
 
@@ -413,7 +355,7 @@ Once the integrations are configured at the collection, the data management and 
 - The [how-to: manage data](../../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
 - The [how-to: search](../../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
-### Further resources
+### References
 
 - Weaviate Embeddings [Documentation](/developers/wcs/embeddings)
 

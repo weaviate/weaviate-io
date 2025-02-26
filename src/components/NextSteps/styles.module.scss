@@ -1,0 +1,51 @@
+.nextStepsCard {
+  border: 0.5px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  overflow: hidden;
+}
+
+.nextStepsCard a {
+  color: black !important;
+  text-decoration: none;
+  display: block;
+}
+
+.nextStepsCard:hover {
+  border-color: #aaa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+  .nextStepsCard {
+    background-color: var(--site-background);
+  }
+
+  .nextStepsCard a {
+    color: var(--site-font-main-color) !important;
+  }
+
+  .nextStepsCard:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.nextStepsCardHeader {
+  padding: 16px 16px 8px 16px; /* top, right, bottom, left */
+}
+
+.nextStepsCardHeader h4 {
+  margin: 0;
+  transition: text-decoration 0.3s;
+}
+
+.nextStepsCardBody {
+  padding: 8px 16px 16px 16px; /* top, right, bottom, left */
+}
+
+.nextStepsCard:hover .nextStepsCardHeader h4 {
+  text-decoration: underline;
+}

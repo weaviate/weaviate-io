@@ -1042,3 +1042,85 @@
   height: 30.8125rem;
   flex-shrink: 0;
 }
+
+.agentsContainer {
+  width: 53.75rem;
+  height: 7.0625rem;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #130c49;
+  box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: -100px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: auto;
+    gap: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    background: #130c49;
+    box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: -80px;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #61bd73;
+    text-align: center;
+    align-items: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    color: #130c49;
+    line-height: 163.8%;
+    width: 10.5625rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.agent {
+  background-image: url('/img/site/products-weaviate-agents-icon.svg');
+  background-size: cover;
+  width: 4.234rem;
+  height: 4.73619rem;
+  flex-shrink: 0;
+}
+
+.agentText {
+  h3 {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.1rem */
+  }
+
+  p {
+    color: #f7f9fd;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.4rem */
+    width: 100%;
+  }
+}
