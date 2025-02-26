@@ -1,10 +1,10 @@
 ---
-title: LLM Frameworks
+title: LLM and Agent Frameworks
 sidebar_position: 4
 image: og/integrations/home.jpg
 ---
 
-These Large Language Model (LLM) frameworks have tools to help developers build applications with generative models.
+These Large Language Model (LLM) and Agent frameworks have tools to help developers build agentic applications with generative models.
 
 Learn how Weaviate integrates with these solutions:
 * [Composio](/developers/integrations/llm-frameworks/composio/)
