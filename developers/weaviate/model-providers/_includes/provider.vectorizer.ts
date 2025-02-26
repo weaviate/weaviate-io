@@ -597,7 +597,7 @@ await client.collections.create({
   vectorizers: [
     weaviate.configure.vectorizer.text2VecJinaAI({
       name: 'title_vector',
-      sourceProperties: ['title'],    
+      sourceProperties: ['title'],
       // model: 'jina-embeddings-v3-small-en'
       // dimensions: 512,  // e.g. 1024, 256, 64  Support for this parameter is coming soon (Only applicable for some models)
     },
@@ -711,7 +711,7 @@ await client.collections.create({
       }],
       // Further options
       // model:"jina-clip-v2",
-        
+
     },
     ),
   ],
@@ -719,6 +719,27 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullMMVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicColBERTVectorizerJinaAI
+// Coming soon
+// END BasicColBERTVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START ColBERTVectorizerJinaCustomModel
+// Coming soon
+// END ColBERTVectorizerJinaCustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullColBERTVectorizerJinaAI
+// Coming soon
+// END FullColBERTVectorizerJinaAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -768,6 +789,48 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });// END FullVectorizerMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerNVIDIA
+// Coming soon
+// END BasicVectorizerNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START VectorizerNVIDIACustomModel
+// Coming soon
+// END VectorizerNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerNVIDIA
+// Coming soon
+// END FullVectorizerNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicMMVectorizerNVIDIA
+// Coming soon
+// END BasicMMVectorizerNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START MMVectorizerNVIDIACustomModel
+// Coming soon
+// END MMVectorizerNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullMMVectorizerNVIDIA
+// Coming soon
+// END FullMMVectorizerNVIDIA
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -1276,7 +1339,7 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecWeaviate({
       name: 'title_vector',
       sourceProperties: ['title'],
-      model: 'arctic-embed-m-v1.5',
+      model: 'Snowflake/snowflake-arctic-embed-l-v2.0',
     }),
   ],
   // highlight-end
@@ -1287,7 +1350,7 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START FullVectorizerWeaviate
+// START SnowflakeArcticEmbedMV15
 await client.collections.create({
   name: 'DemoCollection',
   properties: [
@@ -1301,8 +1364,8 @@ await client.collections.create({
     weaviate.configure.vectorizer.text2VecWeaviate({
         name: 'title_vector',
         sourceProperties: ['title'],
+        model: 'Snowflake/snowflake-arctic-embed-m-v1.5',
         // // Further options
-        // model: 'arctic-embed-m-v1.5',
         // dimensions: 256,
         // baseUrl: '<custom_weaviate_embeddings_url>',
       },
@@ -1311,7 +1374,36 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END FullVectorizerWeaviate
+// END SnowflakeArcticEmbedMV15
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START SnowflakeArcticEmbedLV20
+await client.collections.create({
+  name: 'DemoCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: 'text' as const,
+    },
+  ],
+  // highlight-start
+  vectorizers: [
+    weaviate.configure.vectorizer.text2VecWeaviate({
+        name: 'title_vector',
+        sourceProperties: ['title'],
+        model: 'Snowflake/snowflake-arctic-embed-l-v2.0',
+        // // Further options
+        // dimensions: 256,
+        // baseUrl: '<custom_weaviate_embeddings_url>',
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END SnowflakeArcticEmbedLV20
 
 // Clean up
 await client.collections.delete('DemoCollection');
@@ -1602,16 +1694,16 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// Clean up
-await client.collections.delete('DemoCollection');
-
+// START BatchImportExample
 let srcObjects = [
-  { title: "The Shawshank Redemption", description: "" },
-  { title: "The Godfather", description: "" },
-  { title: "The Dark Knight", description: "" },
-  { title: "Jingle All the Way", description: "" },
-  { title: "A Christmas Carol", description: "" },
+  { title: "The Shawshank Redemption", description: "A wrongfully imprisoned man forms an inspiring friendship while finding hope and redemption in the darkest of places." },
+  { title: "The Godfather", description: "A powerful mafia family struggles to balance loyalty, power, and betrayal in this iconic crime saga." },
+  { title: "The Dark Knight", description: "Batman faces his greatest challenge as he battles the chaos unleashed by the Joker in Gotham City." },
+  { title: "Jingle All the Way", description: "A desperate father goes to hilarious lengths to secure the season's hottest toy for his son on Christmas Eve." },
+  { title: "A Christmas Carol", description: "A miserly old man is transformed after being visited by three ghosts on Christmas Eve in this timeless tale of redemption." }
 ];
+
+// END BatchImportExample
 
 // START BatchImportExample  // START NearTextExample  // START HybridExample  // START MMBatchImportExample
 const collectionName = 'DemoCollection'
@@ -1623,7 +1715,7 @@ const myCollection = client.collections.get(collectionName)
 let dataObjects = []
 
 for (let srcObject of srcObjects) {
-  dataObject.push({
+  dataObjects.push({
     title: srcObject.title,
     description: srcObject.description,
   });

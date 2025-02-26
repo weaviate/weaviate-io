@@ -25,7 +25,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OctoAI's APIs allows you to access open source and their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an OctoAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OctoAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with OctoAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OctoAI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OctoAI generative model to generate outputs.
 

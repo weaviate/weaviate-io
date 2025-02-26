@@ -82,7 +82,7 @@ export const courseData = {
     learningOutcomes: [
       "Describe use cases for named vectors",
       "Create a collection with named vectors",
-      "Add objects with multiple vectors per object",
+      "Add objects with multiple vector embeddings per object",
       "Perform searches on named vectors",
     ],
     note: "Python client (v4); project-based"
@@ -358,7 +358,7 @@ export const courseData = {
       "Use Weaviate Cloud to create an instance of Weaviate",
       "Use appropriate query types and syntax to retrieve desired objects",
       "Outline what vector search is and how it works",
-      "Demonstrate how to efficiently populate an Weaviate instance with data",
+      "Demonstrate how to efficiently populate a Weaviate instance with data",
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
     ],
     note: "Python client (v3)"

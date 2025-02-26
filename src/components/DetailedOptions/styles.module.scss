@@ -1,0 +1,51 @@
+.detailedOptionsCard {
+  border: 0.5px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  overflow: hidden;
+}
+
+.detailedOptionsCard a {
+  color: black !important;
+  text-decoration: none;
+  display: block;
+}
+
+.detailedOptionsCard:hover {
+  border-color: #aaa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] {
+  .detailedOptionsCard {
+    background-color: var(--site-background);
+  }
+
+  .detailedOptionsCard a {
+    color: var(--site-font-main-color) !important;
+  }
+
+  .detailedOptionsCard:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.detailedOptionsCardHeader {
+  padding: 16px 16px 8px 16px;
+}
+
+.detailedOptionsCardHeader h4 {
+  margin: 0;
+  transition: text-decoration 0.3s;
+}
+
+.detailedOptionsCardBody {
+  padding: 8px 16px 16px 16px;
+}
+
+.detailedOptionsCard:hover .detailedOptionsCardHeader h4 {
+  text-decoration: underline;
+}

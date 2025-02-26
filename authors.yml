@@ -9,13 +9,19 @@ alea:
   image_url: /img/people/icon/alea.jpg
 alvin:
   name: Alvin Richards
-  title: Head of Product
+  title: VP of Product
+  url: mailto:alvin@weaviate.io
   image_url: /img/people/icon/alvin.jpg
 ara:
   name: Ara Gonzalez
   title: People Operations Manager
   url: https://linkedin.com/in/aranzazugonzalez
   image_url: /img/people/icon/ara.jpg
+ben:
+  name: Ben Sabrin
+  title: VP of Sales
+  url: https://www.linkedin.com/in/bsabrin/
+  image_url: /img/people/icon/ben.jpeg
 bob:
   name: Bob van Luijt
   title: CEO
@@ -96,11 +102,21 @@ mary:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/mary-newhauser-02273551/
   image_url: /img/people/icon/mary.jpg
+nenand:
+  name: Nenad Malić
+  title: Product Marketing Manager
+  url: mailto:nenad@weaviate.io
+  image_url: /img/people/icon/nenand.jpeg
 pete:
   name: Peter Schramm
   title: WCD Tech Lead
   url: https://github.com/glockenbeat
   image_url: /img/people/icon/pete.jpg
+prajjwal:
+  name: Prajjwal Yadav
+  title: Developer Advocate Intern
+  url: https://www.linkedin.com/in/prajjwalyd
+  image_url: /img/people/icon/prajjwal.jpg
 sebastian:
   name: Sebastian Witalec
   title: Head of DevRel
@@ -136,6 +152,11 @@ tommy:
   title: Polyglot Engineer
   url: https://github.com/tsmith023
   image_url: /img/people/icon/tommy.jpg
+tuana:
+  name: Tuana Çelik
+  title: Developer Relations Engineer
+  url: https://linkedin.com/in/tuanacelik
+  image_url: /img/people/icon/tuana.jpg
 jerry:
   name: Jerry Liu
   title: Co-Founder/CEO LlamaIndex

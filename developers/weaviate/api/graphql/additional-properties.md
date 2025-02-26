@@ -74,7 +74,7 @@ Use the `id` field to fetch the object [UUID](https://en.wikipedia.org/wiki/Univ
 
 ### vector
 
-Use the `vector` field to fetch the vector representation of the data object
+Use the `vector` field to fetch the vector embedding of the data object
 
 ### generate
 

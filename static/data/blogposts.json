@@ -190,5 +190,37 @@
       "title": "Product Researcher",
       "date": "September 21, 2023"
     }
+  ],
+  "agentic": [
+    {
+      "link": "/blog/what-is-agentic-rag",
+      "type": "Blog",
+      "backgroundImage": "/img/site/agentic-blog-top.jpg",
+      "tagline": "What is Agentic RAG",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "November 21, 2023"
+    },
+    {
+      "link": "https://arxiv.org/abs/2502.00032",
+      "type": "Paper",
+      "backgroundImage": "/img/site/db-blog-top.jpg",
+      "tagline": "Querying Databases with Function Calling",
+      "photo": "connor.jpg",
+      "name": "Connor Shorten",
+      "title": "Product Researcher",
+      "date": "September 21, 2023"
+    },
+    {
+      "link": "/blog/inngest-ai-workflows",
+      "type": "Blog",
+      "backgroundImage": "/img/site/build-blog-top.jpg",
+      "tagline": "Building Agentic Workflows",
+      "photo": "connor.jpg",
+      "name": "Connor Shorten",
+      "title": "Product Researcher",
+      "date": "May 5, 2023"
+    }
   ]
 }

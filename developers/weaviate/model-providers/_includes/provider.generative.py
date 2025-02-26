@@ -425,6 +425,56 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.nvidia()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START GenerativeNVIDIACustomModel
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.nvidia(
+        model="nvidia/llama-3.1-nemotron-70b-instruct"
+    )
+    # Additional parameters not shown
+)
+# END GenerativeNVIDIACustomModel
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeNVIDIA
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.nvidia(
+        base_url="https://integrate.api.nvidia.com/v1",
+        model="meta/llama-3.3-70b-instruct",
+        temperature=0.7,
+        max_tokens=1024
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeNVIDIA
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeOctoAI
 from weaviate.classes.config import Configure
 

@@ -132,15 +132,7 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-### Avoid creating too many collections
-
-Creating a separate collection for each tenant may seem like a straightforward approach to data isolation, but it can lead to scalability issues as the number of collections grows. Each collection requires its own schema, index, and storage, increasing memory usage, operational complexity, and query inefficiencies. 
-
-Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants with logical separation using metadata. This approach improves resource efficiency, query performance, and scalability while simplifying collection definition management.
-
-For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
-
-### Multiple vectors (named vectors)
+### Multiple vector embeddings (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -157,6 +149,22 @@ To avoid this, you can either:
 - Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
+
+### Collections count limit {#collections-count-limit}
+
+To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
+
+- **Default limit**: `100` collections.
+- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
+
+:::note 
+This change does not affect existing clusters that have already exceeded the default limit. However, it will prevent adding new collections if the limit has been reached.
+:::
+
+:::tip
+Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants with logical separation using metadata. This approach improves resource efficiency, query performance, and scalability while simplifying collection definition management.
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
+:::
 
 ## Available parameters
 

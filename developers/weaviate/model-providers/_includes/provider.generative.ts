@@ -389,6 +389,27 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicGenerativeNVIDIA
+// Coming soon
+// END BasicGenerativeNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START GenerativeNVIDIACustomModel
+// Coming soon
+// END GenerativeNVIDIACustomModel
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeNVIDIA
+// Coming soon
+// END FullGenerativeNVIDIA
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeOctoAI
 await client.collections.create({
   name: 'DemoCollection',
@@ -443,12 +464,12 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END GenerativeOpenAICustomModel
+// END BasicGenerativeOpenAI
 
 // Clean up
 await client.collections.delete('DemoCollection');
 
-// START BasicGenerativeOpenAI
+// START GenerativeOpenAICustomModel
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start

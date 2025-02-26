@@ -38,11 +38,11 @@ const siteRedirects = {
             from: '/developers/wcs/guides/console',
         },
         {
-            to: '/developers/wcs/create-instance',
+            to: '/developers/wcs/manage-clusters/create',
             from: '/developers/wcs/guides/create-instance',
         },
         {
-            to: '/developers/wcs/connect',
+            to: '/developers/wcs/manage-clusters/connect',
             from: '/developers/wcs/guides/authentication',
         },
         // Client library redirects
@@ -162,12 +162,28 @@ const siteRedirects = {
             from: '/developers/wcs/platform/ssconsole',
         },
         {
-            to: '/developers/wcs/cluster-status',
+            to: '/developers/wcs/manage-clusters/status',
             from: '/developers/wcs/platform/cluster-status',
         },
         {
             to: '/developers/wcs/tools/query-tool',
             from: '/developers/wcs/console',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/status',
+            from: '/developers/wcs/cluster-status',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/connect',
+            from: '/developers/wcs/conect',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/create',
+            from: '/developers/wcs/create-instance',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/upgrade',
+            from: '/developers/wcs/upgrade',
         },
         // Tutorial redirects
         {
@@ -751,6 +767,22 @@ const siteRedirects = {
         {
             to: "/learn/knowledgecards",
             from: "/learn/knowledgecards/knowledgeheader"
+        },
+          // Recommender Component Changes
+          {
+            to: "/product/personalization-agent",
+            from: "/workbench/recommender"
+        },
+        {
+           to: "/product/personalization-agent",
+            from: "/product/recommender"
+        },
+
+          // GFL > Agentic AI Changes
+         
+        {
+           to: "/agentic-ai",
+            from: "/gen-feedback-loops"
         },
     ],
     createRedirects(existingPath) {

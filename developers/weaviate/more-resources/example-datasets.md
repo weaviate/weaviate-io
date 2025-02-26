@@ -113,7 +113,6 @@ Usage with Docker on **local with** Docker Compose;
 
 _Note: run this from the same directory where the Docker Compose files are located_
 
-{% raw %}
 ```bash
 # This gets the Weaviate container name and because the docker uses only lowercase we need to do it too (Can be found manually if 'tr' does not work for you)
 export WEAVIATE_ID=$(echo ${PWD##*/}_weaviate_1 | tr "[:upper:]" "[:lower:]")
@@ -128,8 +127,6 @@ export BATCH_SIZE=<YOUR_CHOICE_OF_BATCH_SIZE>
 # Run docker
 docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -e cache_dir-$CACHE_DIR -e batch_size=$BATCH_SIZE  semitechnologies/weaviate-demo-newspublications:latest
 ```
-{% endraw %}
-
 
 ## Questions and feedback
 

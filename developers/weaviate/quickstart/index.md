@@ -73,11 +73,11 @@ Notes:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-### Prerequisites
+### Requirements
 
-You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/). We will use free tiers (Weaviate Sandbox and Cohere trial API key) of both services.
+In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. 
 
-If you have another, preferred [model provider](../model-providers/index.md), you can use that instead of Cohere.
+If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
 <hr/>
 
@@ -85,29 +85,9 @@ If you have another, preferred [model provider](../model-providers/index.md), yo
 
 ### 1.1 Create a Weaviate database
 
-Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox instance.
+Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-<!-- ### Create a WCD account -->
-
-<!-- import WCDRegister from '/developers/weaviate/quickstart/img/wcd_register.png';
-
-<div class="row">
-  <div class="col col--4">
-    <div class="card">
-      <div class="card__image">
-        <img src={WCDRegister} alt="Sign up with WCD"/>
-      </div>
-      <div class="card__body">
-        <ol>
-          <li>Go the <a href="https://console.weaviate.cloud">WCD homepage</a>.</li>
-          <li>Click "Register here".</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-<br/> -->
-
+<!-- TODO[g-despot] Update with new screenshots -->
 import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
 import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
 
@@ -156,13 +136,13 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
 
 :::note
 - Cluster provisioning typically takes 1-3 minutes.
-- When the cluster is ready, WCD displays a check mark (`✔️`) next to the cluster name.
-- Note that WCD adds a random suffix to sandbox cluster names to ensure uniqueness.
+- When the cluster is ready, Weaviate Cloud displays a checkmark (`✔️`) next to the cluster name.
+- Note that Weaviate Cloud adds a random suffix to sandbox cluster names to ensure uniqueness.
 :::
 
-<!-- import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
 
-<SandBoxExpiry/> -->
+<LatestWeaviateVersion />
 
 ### 1.2 Install a client library
 
@@ -172,7 +152,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 1.3: Connect to Weaviate
+### 1.3 Connect to Weaviate
 
 Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
 
@@ -227,7 +207,7 @@ If you did not see any errors, you are ready to proceed. We will replace the sim
 
 ## Step 2: Populate the database
 
-Now, we can populate our database by first defining a collection then adding data.
+Now, we can populate our database by first defining a collection and then adding data.
 
 ### 2.1 Define a collection
 
@@ -236,8 +216,8 @@ A collection is a set of objects that share the same data structure, like a tabl
 :::
 
 The following example creates a *collection* called `Question` with:
-  - Cohere [embedding model integration](../model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
-  - Cohere [generative AI integrations](../model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
+  - The [Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings.md) service for creating vectors during ingestion & queries.
+  - Cohere [generative AI integrations](/developers/weaviate/model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
 import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
@@ -299,10 +279,6 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 <ImportObjects />
 
 Run this code to add the demo data.
-
-:::info Cohere API key in the header
-Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
-:::
 
 <hr/>
 
@@ -378,7 +354,7 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
-Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the **Weaviate Embeddings** service to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -453,6 +429,10 @@ import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
 
 <QueryRAG />
 
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to access the Cohere generative AI model and perform retrieval augmented generation (RAG).
+:::
+
 Run this code to perform the query. Here is one possible response (your response will likely be different).
 
 ```text
@@ -461,7 +441,7 @@ Run this code to perform the query. Here is one possible response (your response
 🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
 ```
 
-The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
+The response should be new, yet familiar. This is because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
 
 The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
@@ -551,7 +531,7 @@ We provide answers to some common questions, or potential issues below.
 <details>
   <summary>See answer</summary>
 
-In this example, we use the `Cohere` inference API. But you can use others.
+In this example, we use the `Weaviate Embeddings` and `Cohere` inference API. But you can use others.
 
 If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
 - Ensure that the Weaviate module is available in the Weaviate instance you are using,
@@ -598,7 +578,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-cohere"
+            "vectorizer": "text2vec-weaviate"
         }
     ]
 }

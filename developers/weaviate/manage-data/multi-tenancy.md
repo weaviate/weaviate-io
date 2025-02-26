@@ -26,6 +26,9 @@ Multi-tenancy provides data isolation. Each tenant is stored on a separate shard
 
 - Multi-tenancy added in `v1.20`
 - Tenant activity status setting added in `v1.21`
+- Auto-tenant creation for batch imports added in `v1.25.0`
+- Auto-tenant creation for single object insertions added in `v1.25.2`
+- Auto-tenant activation added in `v1.25.2`
 
 </details>
 

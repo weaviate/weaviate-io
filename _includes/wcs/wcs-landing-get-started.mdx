@@ -1,5 +1,41 @@
-Get started with WCD:
+To get started, visit the following resources:
 
-- [WCD home page](https://console.weaviate.cloud/)
-- [WCD quickstart guide](/developers/wcs/quickstart)
-- [WCD pricing page](/pricing#)
+import NextSteps from '/src/components/NextSteps';
+
+export const cardsData = [
+  {
+    title: (
+      <span>
+        <i className="fa fa-desktop" aria-hidden="true"></i> Weaviate Cloud: Console
+      </span>
+    ),
+    description: (
+      <span>
+        Go directly to the Weaviate Cloud console and create your first cluster.
+      </span>
+    ),
+    link: 'https://console.weaviate.cloud/',
+  },
+  {
+    title: (
+      <span>
+        <i className="fa fa-book" aria-hidden="true"></i> Weaviate Cloud: Quickstart
+      </span>
+    ),
+    description:
+      'Follow the step-by-step quickstart guide to set up your first Weaviate Cloud project.',
+    link: '/developers/wcs/quickstart',
+  },
+  {
+    title: (
+      <span>
+        <i className="fa fa-credit-card" aria-hidden="true"></i> Weaviate Cloud:
+        Pricing
+      </span>
+    ),
+    description: 'Check out the available pricing plans for Weaviate Cloud.',
+    link: '/pricing',
+  },
+];
+
+<NextSteps cards={cardsData} />

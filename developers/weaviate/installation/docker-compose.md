@@ -112,11 +112,10 @@ services:
       CLUSTER_HOSTNAME: 'node1'
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key,user-c-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b,user-c'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
+      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
       AUTHORIZATION_ENABLE_RBAC: 'true'
-      AUTHORIZATION_ADMIN_USERS: 'user-a'
-      AUTHORIZATION_VIEWER_USERS: 'user-b'
+      AUTHORIZATION_RBAC_ROOT_USERS: 'user-a'
 volumes:
   weaviate_data:
 ...
@@ -124,9 +123,9 @@ volumes:
 
 This setup enables API-key based [authentication](../configuration/authentication.md) and role-based access control [authorization](../configuration/authorization.md).
 
-It defines the users `user-a`, `user-b` and `user-c` and corresponding keys `user-a-key`, `user-b-key` and `user-c-key` which serve as authentication credentials for connecting to your Weaviate instance.
+It defines the users `user-a` and `user-b` and corresponding keys `user-a-key` and `user-b-key` which serve as authentication credentials for connecting to your Weaviate instance.
 
-The user `user-a` is granted admin access rights while `user-b` is granted read-only access using the **Role-based access control (RBAC)** method. A custom role can be assigned to the user `user-c` by following the [authorization and RBAC guide](../configuration/authorization.md).
+The user `user-a` is granted admin access rights using the **Role-based access control (RBAC)** method. A custom role can be assigned to the user `user-b` by following the [authorization and RBAC guide](../configuration/authorization.md).
 
   </TabItem>
 </Tabs>

@@ -33,6 +33,7 @@ export default function Root({ children }) {
         script.setAttribute("data-button-border-radius", "8px");
         script.setAttribute("data-modal-title-color", "#130c49!important");
         script.setAttribute("data-modal-open-by-default", "false");
+        script.setAttribute("data-modal-open-on-command-k","true");
         script.setAttribute(
           "data-modal-disclaimer",
           "This is a custom LLM for Weaviate with access to all developer docs, WCS Cloud docs, academy lessons, contributor guides, GitHub issues, and forum questions."

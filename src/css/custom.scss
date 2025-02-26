@@ -1040,3 +1040,57 @@ ul.dropdown__menu {
 .support-page li {
   font-size: 1.2rem;
 }
+
+// Cookiebot styling
+
+.CybotCookiebotDialogBodyButton {
+  width: 150px !important;
+  border-radius: 0.3125rem !important;
+
+  @media screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+// RBAC table styling
+
+.rbac-table tbody tr:hover {
+  background-color: #ececec !important;
+}
+
+.rbac-table a:hover {
+  text-decoration: underline;
+}
+
+.access-level {
+  margin: 1.5rem 0;
+}
+.access-level:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.constraints-level {
+  margin: 1.5rem 0;
+}
+.constraints-level:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.step-list {
+  list-style: none;
+  padding-left: 2em; /* space for the icon */
+
+  .icon-list {
+    display: inline-block;
+    width: 1.2em; /* adjust as needed */
+    text-align: left;
+  }
+}
+
+.step-list li {
+  position: relative;
+}

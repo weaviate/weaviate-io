@@ -29,17 +29,17 @@ public class CreateCollection {
 
     // START CreateCollection
     // highlight-start
-    Map<String, Object> text2vecCohereSettings = new HashMap<>();
+    Map<String, Object> text2vecWeaviateSettings = new HashMap<>();
     Map<String, Object> generativeCohereSettings = new HashMap<>();
 
     Map<String, Object> moduleConfig = new HashMap<>();
-    moduleConfig.put("text2vec-cohere", text2vecCohereSettings);
+    moduleConfig.put("text2vec-weaviate", text2vecWeaviateSettings);
     moduleConfig.put("generative-cohere", generativeCohereSettings);
 
     // Create the collection "Question"
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-cohere")
+      .vectorizer("text2vec-weaviate")
       .moduleConfig(moduleConfig)
       .build();
     // highlight-end
