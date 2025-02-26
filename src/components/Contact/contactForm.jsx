@@ -13,6 +13,7 @@ export default function ContactForm() {
 
     const script = document.createElement('script');
     script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.setAttribute('data-cookieconsent', 'ignore'); // Prevents Cookiebot from blocking
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
@@ -24,6 +25,10 @@ export default function ContactForm() {
         });
       }
     });
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
