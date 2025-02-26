@@ -152,7 +152,6 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### Collections count limit {#collections-count-limit}
 
-<!-- TODO[g-despot]: Link to multi-tenancy guide when released and remove hardcoded number -->
 To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
 
 - **Default limit**: `100` collections.
@@ -160,6 +159,11 @@ To ensure optimal performance, Weaviate **limits the number of collections per i
 
 :::note 
 This change does not affect existing clusters that have already exceeded the default limit. However, it will prevent adding new collections if the limit has been reached.
+:::
+
+:::tip
+Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants with logical separation using metadata. This approach improves resource efficiency, query performance, and scalability while simplifying collection definition management.
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
 :::
 
 ## Available parameters
