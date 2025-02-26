@@ -784,6 +784,10 @@ const siteRedirects = {
            to: "/agentic-ai",
             from: "/gen-feedback-loops"
         },
+        {
+            to: '/developers/weaviate/config-refs/schema#collections-count-limit',
+            from: '/collections-count-limit',
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
