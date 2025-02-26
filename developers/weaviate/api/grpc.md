@@ -8,7 +8,7 @@ image: og/docs/api.jpg
 
 Starting with Weaviate `v1.19.0`, a gRPC interface has been progressively added to Weaviate. gRPC is a high-performance, open-source universal RPC framework that is contract-based and can be used in any environment. It is based on HTTP/2 and Protocol Buffers, and is therefore very fast and efficient.
 
-As of Weaviate `v1.23.7`, the gRPC interface is considered stable. The [Python (`v4` version)](/developers/weaviate/client-libraries/python) and [TypeScript](/developers/weaviate/client-libraries/typescript/typescript-v3) client libraries support gRPC, and the other client libraries will follow.
+As of Weaviate `v1.23.7`, the gRPC interface is considered stable. The [Python (`v4` version)](/developers/weaviate/client-libraries/python) and [TypeScript (`v3` version)](/developers/weaviate/client-libraries/typescript/typescript-v3) client libraries support gRPC, and the other client libraries will follow.
 
 ## Protocol Buffer (Protobuf) definitions
 
@@ -49,7 +49,7 @@ services:
 
 ### Client-side
 
-You can use the gRPC interface through the [Python (`v4` version)](/developers/weaviate/client-libraries/python) and [TypeScript](/developers/weaviate/client-libraries/typescript/typescript-v3) client libraries. Other client libraries will also introduce gRPC support in the near future.
+You can use the gRPC interface through the [Python (`v4` version)](/developers/weaviate/client-libraries/python) and [TypeScript (`v3` version)](/developers/weaviate/client-libraries/typescript/typescript-v3) client libraries. Other client libraries will also introduce gRPC support in the near future.
 
 Alternatively, you can use other tools, such as the `grpcurl` command-line tool, to interact with the gRPC API. Some options include:
 
