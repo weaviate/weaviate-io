@@ -11,9 +11,9 @@ description: "How Weaviate achieved 10x Faster Keyword Search and 90% index comp
 
 
 Keyword search is an integral part of Weaviate’s [hybrid search](/blog/hybrid-search-explained), designed to return [best of both](/blog/hybrid-search-fusion-algorithms) vector and keyword search. 
-As the text corpora size becomes larger and larger, keyword searches can take long times to execute. An [inverted index](https://en.wikipedia.org/wiki/Inverted_index) is a critical data structure for speeding up keyword searches. 
+As the text corpora size becomes larger and larger, keyword searches can take long times to execute compared to vector searches.
 
-In this blog post, you will learn how we improved Weaviate’s inverted index, how to avoid scoring all documents that have the query terms, how we compress the inverted index and more about the improvements from using BlockMax WAND in Weaviate.
+In this blog post, you will learn how we improved Weaviate’s inverted index, how we avoid scoring all documents that have the query terms, how we compress the inverted index, and more about the improvements from using BlockMax WAND in Weaviate.
 
 :::caution 🚧 Technical Preview
 BlockMax WAND algorithm is available in `v1.29` as a **technical preview**. This means that the feature is still under development and may change in future releases, including potential breaking changes. **We do not recommend using this feature in production environments at this time.**
@@ -62,9 +62,7 @@ But we still need to score them to see which ones are the most relevant to the q
 
 ## tf-idf and BM25
 
-Keyword search is based on the intuition that some terms are more important than others.
-*vector*, *hybrid*, *search*, *database* are more descriptive of the contents of the documents than words like *a*, *to*, *of*, *power*, and thus, should be scored higher.
-
+Not all terms are created equal. In our examples, words like "hybrid," "vector," and "database" are more informative than "a," "to," or "the." To rank results meaningfully, we need to score documents based on:
 [idf (Inverse Document Frequency)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) is a measure of this importance, based on the number of documents a term appears in compared to the total number of documents. Higher values mean rarer terms that will contribute more to the score of a document. Combined with the tf, it becomes the cornerstone of keyword search, [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
 
 [BM25](/blog/hybrid-search-explained#bm25) further refines tf-idf by applying property length and frequency saturation normalization.
@@ -217,6 +215,18 @@ Our experiments show that average p50 (median) query time was reduced to 10-20% 
 **Table**: Average p50 query time in ms for Weaviate `v1.29.0` on standard [beir datasets](https://github.com/beir-cellar/beir) using the test queries without stopword removal. Experiments performed on a Apple M3 Max 36 GB. Similar gains observed on x86-64 cloud machines
 
 On internal tests with 100M documents, we were able to increase from 1 to 50 QPS, while maintaining a p50 between 100-200 ms and p99 at 1000 ms. 
+
+ ## Glossary of Terms
+
+* **Inverted Index:** [Data structure mapping terms to documents](https://en.wikipedia.org/wiki/Inverted_index)
+* **Posting List:** [List of documents containing a specific term with metadata like frequency](https://en.wikipedia.org/wiki/Inverted_index#Inverted_file)
+* **Term Frequency (tf):** [How often a term appears in a document](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+* **Inverse Document Frequency (idf):** [Measure of term rarity across the document collection](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+* **BM25:** [Scoring algorithm that enhances tf-idf with document length normalization](https://en.wikipedia.org/wiki/Okapi_BM25)
+* **WAND:** [Algorithm that optimizes top-k retrieval using upper bound score estimates](https://dl.acm.org/doi/abs/10.1145/956863.956944)
+* **BlockMax WAND:** [Enhanced WAND that organizes posting lists into blocks for more efficient scoring](https://dl.acm.org/doi/10.1145/2009916.2010048)
+* **Delta Encoding:** [Storing differences between consecutive values rather than absolute values](https://en.wikipedia.org/wiki/Delta_encoding)
+* **Variable-length Encoding:** [Using only the minimum number of bits needed to represent a value](https://en.wikipedia.org/wiki/Variable-length_code)
 
 ## Summary
 
