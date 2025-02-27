@@ -22,27 +22,40 @@ One option is creating a dedicated collection for each merchant to store their p
 
 ## Structuring the data in a vector database
 
+import MultiTenanyVsMultipleCollections from '/developers/weaviate/starter-guides/img/weaviate-multi-tenancy-vs-multiple-collections.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={MultiTenanyVsMultipleCollections}
+        alt='Multi-tenancy vs "One collection per tenant" architecture'
+      />
+    </div>
+  </div>
+</div>
+<br />
+
 When designing a vector database collection definition (data schema), you must decide between **multi-tenancy** (storing data for multiple tenants in a single collection) or creating **separate collections for each tenant** (the "One collection per tenant" strategy). Each approach has its own advantages and trade-offs, especially in terms of performance, scalability, and management.
 
 This guide aims to clarify these concepts and highlight the implications of each approach, focusing on the benefits and drawbacks:
 
-- **["One collection per tenant" strategy](#one-collection-per-tenant-strategy)**
-- **[Multi-tenancy strategy](#multi-tenancy-strategy)**
+- **["One collection per tenant" architecture](#one-collection-per-tenant-architecture)**
+- **[Multi-tenancy architecture](#multi-tenancy-architecture)**
 
-### "One collection per tenant" strategy
+### "One collection per tenant" architecture
 
-In this approach, each tenant is assigned a dedicated collection to ensure the separation of data between them. Before the implementation of multi-tenancy in Weaviate this was the best approach for managing data for multiple tenants.
+In this approach, **each tenant is assigned a dedicated collection** to ensure the separation of data between them. Before the implementation of multi-tenancy in Weaviate this was the best approach for managing data for multiple tenants.
 
 import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/weaviate-multiple-collections-example.png';
 
 <div class="row">
   <div class="col col--4">
     <p>
-      When a "book store" registers on our platform, the application
-      automatically creates the collection <code>BookStoreProducts</code> for
-      that merchant's products. This would also allow them to customize the
-      collection and add properties that are specific to their e-commerce
-      platform, like author, title, genre, etc.
+      When a "book store" registers on our platform, we create the collection{' '}
+      <code>BookStoreProducts</code> for that merchant's products. This allows
+      them to customize the collection and add properties that are specific to
+      their e-commerce platform, like author, title, genre, etc.
       <br />
       <br />
       Creating a new collection per merchant (<code>ShoeStoreProducts</code>, <code>
@@ -57,10 +70,12 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
       <div class="card__image">
         <img
           src={MultipleCollectionsExample}
-          alt="Multiple collections architecture example"
+          alt='"One collection per tenant" architecture example'
         />
       </div>
-      <div class="card__body">Multiple collections architecture example</div>
+      <div class="card__body">
+        "One collection per tenant" architecture example.
+      </div>
     </div>
   </div>
 </div>
@@ -83,9 +98,9 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
 If you are creating more than 10 collections, take a moment to consider if multi-tenancy might be utilized.
 :::
 
-### Multi-tenancy strategy
+### Multi-tenancy architecture
 
-Multi-tenancy refers to the practice of using a single collection to store data for multiple tenants. Each tenant’s data is logically isolated through the use of metadata fields like tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store similarly structured data for multiple projects.
+Multi-tenancy refers to the practice of using a single collection to store data for multiple tenants. Each tenant’s data is logically isolated through the use of metadata fields like tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers or when you want to store similarly structured data for multiple projects.
 
 import MultiTenancyExample from '/developers/weaviate/starter-guides/img/weaviate-multi-tenancy-example.png';
 
@@ -123,7 +138,7 @@ Use multi-tenancy when you need to support a large number of tenants and priorit
 
 - **Efficient resource utilization:** A single collection reduces indexing overhead and simplifies schema management.
 - **Easier schema management:** Schema updates apply universally to all merchants. For example, adding a new property to all products is now much easier.
-- **Optimized query performance:** Queries can leverage the tenant name to retrieve only the relevat products. You also don't have to keep track of what collections are associated with what merchants.
+- **Optimized query performance:** Queries can leverage the tenant name to retrieve only the relevant products. You also don't have to keep track of what collections are associated with what merchants.
 - **Scalability**: Indexes can be optimized with a single collection in mind rather than being fragmented across multiple collections. Each tenant has a dedicated, high-performance vector index which results in faster query speeds. Instead of searching a shared index space, each tenant responds as if it were the only user on the cluster.
 - **Data isolation**: Each tenant’s data is completely segregated, simplifying access control and compliance requirements. This also means that data deletion is much easier and faster.
 

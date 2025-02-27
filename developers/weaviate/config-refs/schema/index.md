@@ -162,8 +162,8 @@ This change does not affect existing clusters that have already exceeded the def
 :::
 
 :::tip
-Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants with logical separation using metadata. This approach improves resource efficiency, query performance, and scalability while simplifying collection definition management.
-For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
+**Instead of raising the collections count limit, consider rethinking your architecture**.  
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
 :::
 
 ## Available parameters
