@@ -153,7 +153,7 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 ### Collections count limit {#collections-count-limit}
 
 :::info
-Added in `v1.25.33`, `v1.26.17`, `1.27.14`, `1.28.8`, `1.29.1`
+Added in `v1.25.34`, `v1.26.18`, `1.27.15`, `1.28.9`, `1.29.2`
 :::
 
 To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
