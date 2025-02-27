@@ -87,7 +87,7 @@
   }
 
   .reportImage {
-    background: url('/img/site/agentic-ebook-cover.jpg');
+    background: url('/img/site/agentic-ebook-cover.svg');
 
     background-size: contain;
     background-position: center;
@@ -129,7 +129,7 @@
   h1 {
     color: #61bd73;
     font-family: 'Plus Jakarta Sans';
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 3.5rem */
@@ -447,6 +447,10 @@
     padding-left: 0;
   }
 
+  legend {
+    font-size: 14px !important;
+    margin-bottom: 10px;
+  }
   li,
   span,
   label {

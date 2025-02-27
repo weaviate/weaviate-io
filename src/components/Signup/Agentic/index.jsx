@@ -8,12 +8,13 @@ export default function Introduction() {
     // Load the external HubSpot form script
     const script = document.createElement('script');
     script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.setAttribute('data-cookieconsent', 'ignore');
     script.async = true;
     script.onload = () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
           portalId: '8738733',
-          formId: '93643aca-5ec0-4043-a2cd-9cdead9d1239',
+          formId: '3f8c7819-49ae-49c7-b1a3-074520aff07c',
           target: '#hs-form',
         });
       }
