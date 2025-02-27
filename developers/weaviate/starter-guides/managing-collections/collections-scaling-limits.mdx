@@ -6,16 +6,20 @@ image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
 
+:::info
+Added in `v1.25.33`, `v1.26.17`, `1.27.14`, `1.28.8`, `1.29.1`
+:::
+
 :::caution You hit the collections count limit?
-If you see an error that the collection count limit has been reached, it means the overhead from maintaining many separate collections is affecting performance. This limit exists to control indexing, storage, and management complexity.<br /><br />
+If you see an error that the collection count limit has been reached, it means you **can't create any more collections** because the number of collections is affecting performance. This limit exists to control indexing, storage, and management complexity.<br /><br />
 **Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable.
 :::
 
-This guide offers an overview of the available architectural choices of using **multi-tenancy** or defining a **dedicated collection** for each tenant.
+This guide offers an overview of the available architectural choices of using **multi-tenancy** or defining a **dedicated collection** for each subset of data.
 
-Consider a scenario where you are developing a SaaS platform for product recommendations, allowing tenants (merchants) to import and vectorize their product data. The users of this platform require the ability to efficiently perform vector searches to generate personalized recommendations for users on their respective e-commerce platforms.
+Consider a scenario where you are developing a SaaS platform for product recommendations, allowing users (merchants) to import and vectorize their product data. The users of this platform require the ability to efficiently perform vector searches to generate personalized recommendations for users on their respective e-commerce platforms.
 
-One option is creating a dedicated collection for each tenant to store their product data. However, as the number of tenants grows, so does the number of collections, potentially leading to performance bottlenecks and increased operational complexity. This leads us to an important question: **How many collections is too many?**
+One option is creating a dedicated collection for each user to store their product data. However, as the number of users grows, so does the number of collections, potentially leading to performance bottlenecks and increased operational complexity. This leads us to an important question: **How many collections is too many?**
 
 ## Structuring data in a vector database
 
@@ -26,23 +30,23 @@ import MultiTenanyVsMultipleCollections from '/developers/weaviate/starter-guide
     <div class="card__image">
       <img
         src={MultiTenanyVsMultipleCollections}
-        alt='Multi-tenancy vs "One collection per tenant" architecture'
+        alt='Multi-tenancy vs "One collection per user" architecture'
       />
     </div>
   </div>
 </div>
 <br />
 
-When designing a vector database collection definition (data schema), you must decide between **multi-tenancy** (storing data for multiple tenants in a single collection) or creating **separate collections for each tenant** (the "One collection per tenant" strategy). Each approach has its own advantages and trade-offs, especially in terms of performance, scalability, and management.
+When designing a vector database collection definition (data schema), you must decide between **multi-tenancy** (storing data for multiple tenants in a single collection) or creating **separate collections for each data subset** (the "One collection per user" strategy). Each approach has its own advantages and trade-offs, especially in terms of performance, scalability, and management.
 
 This guide aims to clarify these concepts and highlight the implications of each approach, focusing on the benefits and drawbacks:
 
-- **["One collection per tenant" architecture](#one-collection-per-tenant-architecture)**
+- **["One collection per user" architecture](#one-collection-per-tenant-architecture)**
 - **[Multi-tenancy architecture](#multi-tenancy-architecture)**
 
-### "One collection per tenant" architecture
+### "One collection per user" architecture
 
-In this approach, **each tenant is assigned a dedicated collection** to ensure the separation of data between them. Before the implementation of multi-tenancy in Weaviate this was the best approach for managing data for multiple tenants.
+In this approach, **each user is assigned a dedicated collection** to ensure the separation of data between them. Before the implementation of multi-tenancy in Weaviate this was the best approach for managing data for multiple users.
 
 import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/weaviate-multiple-collections-example.png';
 
@@ -50,12 +54,12 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
   <div class="col col--4">
     <p>
       When a "book store" registers on our platform, we create the collection{' '}
-      <code>BookStoreProducts</code> for that tenant's products. This allows
+      <code>BookStoreProducts</code> for that user's products. This allows
       them to customize the collection and add properties that are specific to
       their e-commerce platform, like author, title, genre, etc.
       <br />
       <br />
-      Creating a new collection per tenant (<code>ShoeStoreProducts</code>, <code>
+      Creating a new collection per user (<code>ShoeStoreProducts</code>, <code>
         GameStoreProduct
       </code>, etc.) might seem like a simple and effective way to maintain data
       isolation. However, as the platform scales, this approach quickly encounters
@@ -67,11 +71,11 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
       <div class="card__image">
         <img
           src={MultipleCollectionsExample}
-          alt='"One collection per tenant" architecture example'
+          alt='"One collection per user" architecture example'
         />
       </div>
       <div class="card__body">
-        "One collection per tenant" architecture example.
+        "One collection per user" architecture example.
       </div>
     </div>
   </div>
@@ -81,8 +85,8 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
 #### Advantages
 
 - **Customizability**: Collection definition changes or optimizations can be tailored to individual collections without affecting others.
-- **Simpler queries**: Queries do not require tenant-specific filters, as each collection inherently belongs to a single tenant.
-- **Data isolation**: Eeach tenant’s data is completely separated through the use of dedicated collections.
+- **Simpler queries**: Queries do not require user-specific filters, as each collection inherently belongs to a single user.
+- **Data isolation**: Each user's data is completely separated through the use of dedicated collections.
 
 #### Challenges
 
@@ -96,7 +100,7 @@ If you are creating more than `20` collections, take a moment to consider if mul
 
 ### Multi-tenancy architecture
 
-Multi-tenancy refers to the practice of using a single collection to store data for multiple tenants. Each tenant’s data is logically isolated through the use of metadata fields like tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers or when you want to store similarly structured data for multiple projects.
+Multi-tenancy refers to the practice of using a single collection to store data for multiple users (tenants). Each tenant’s data is logically isolated through the use of tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers or when you want to store similarly structured data for multiple projects.
 
 import MultiTenancyExample from '/developers/weaviate/starter-guides/img/weaviate-multi-tenancy-example.png';
 
@@ -134,7 +138,7 @@ Use multi-tenancy when you need to support a large number of tenants and priorit
 
 - **Easier collection definition management:** Definition updates apply universally to all tenants. For example, adding a new property to all products is now much easier.
 - **Optimized query performance:** Queries can leverage the tenant name to retrieve only the relevant products. You also don't have to keep track of what collections are associated with what tenants.
-- **Index scalability**: Indexes can be optimized for a single collection rather than fragmented across multiple collections. Each tenant has a dedicated, high-performance vector index which results in faster query speeds. Instead of searching a shared index space, each tenant responds as if it were the only user on the cluster.
+- **Index scalability**: Indexes can be optimized for a single collection rather than fragmented across multiple collections. Each tenant has a dedicated, high-performance vector index, which results in faster query speeds. Instead of searching a shared index space, each tenant responds as if it were the only user on the cluster.
 - **Data isolation**: Each tenant’s data is completely segregated. This also means that data deletion is much easier and faster.
 
 #### Challenges

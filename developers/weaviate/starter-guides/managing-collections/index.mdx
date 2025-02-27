@@ -1,6 +1,6 @@
 ---
 title: Collection definitions (schemas)
-description: Begin with schema setup in Weaviate to structure your data effectively.
+description: Begin with collection definition setup in Weaviate to structure your data effectively.
 sidebar_position: 0
 image: og/docs/tutorials.jpg
 # tags: ['basics']
@@ -14,15 +14,15 @@ This tutorial will guide you through the process of defining a schema for your d
 - Install your preferred Weaviate client library.
 :::
 
-## Schema: An Introduction
+## Collection definition: An Introduction
 
-The database schema defines how data is stored, organized and retrieved in Weaviate.
+The collection definition specifies how data is stored, organized and retrieved in Weaviate.
 
-Define a collection before importing data. Weaviate cannot import data if the collection is undefined. If [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the schema as possible since manual definition gives you the most control.
+If [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the data schema as possible since manual definition gives you the most control.
 
 Let's begin with a simple example before diving into the details.
 
-### Basic schema creation
+### Basic collection creation
 
 This example creates a collection called `Question`. The collection has three properties, `answer`, `question`, and `category`. The definition specifies the `text2vec-openai` vectorizer and the `generative-cohere` module for RAG.
 
@@ -33,7 +33,7 @@ import CodeCreateSchema from '/_includes/code/tutorial.schema.create.mdx';
 The returned configuration looks similar to this:
 
 <details>
-  <summary>See the returned schema</summary>
+  <summary>See the returned collection definition</summary>
 
 ```json
 {
@@ -140,17 +140,17 @@ The returned configuration looks similar to this:
 
 </details>
 
-Although we only specified the collection name and properties, the returned schema includes much more information.
+Although we only specified the collection name and properties, the returned definition includes much more information.
 
-This is because Weaviate infers the schema based on the data and defaults. Each of these options can be specified manually at collection creation time.
+This is because Weaviate infers the definition based on the data schema and default settings. Each of these options can be specified manually at collection creation time.
 
-:::info FAQ: Are schemas mutable?
-Yes, to an extent. There are no restrictions against adding new collections, or properties. However, not all settings are mutable within existing collections. For example, you can not change the vectorizer or the generative module. You can read more about this in the [schema reference](/developers/weaviate/config-refs/schema#mutability).
+:::info FAQ: Are collection definitions mutable?
+Yes, to an extent. There are no restrictions against adding new collections or properties. However, not all settings are mutable within existing collections. For example, you can not change the vectorizer or the generative module. You can read more about this in the [collection definition reference](/developers/weaviate/config-refs/schema#mutability).
 :::
 
-## Schemas in detail
+## Collection definitions in detail
 
-Conceptually, it may be useful to think of each Weaviate instance comprising of multiple collections, each of which is a set of objects that share a common structure.
+Conceptually, it may be useful to think of each Weaviate instance as consisting of multiple collections, each of which is a set of objects that share a common structure.
 
 For example, you might have a movie database with `Movie` and `Actor` collections, each with their own properties. Or you might have a news database with `Article`, `Author` and `Publication` collections.
 
@@ -167,9 +167,9 @@ And depending on your needs, you might want to change any number of these.
 
 ### Properties
 
-Each property has a number of settings that can be configured, such as the `dataType`, `tokenization`, and `vectorizePropertyName`. You can read more about these in the [schema reference](/developers/weaviate/config-refs/schema#properties).
+Each property has a number of settings that can be configured, such as the `dataType`, `tokenization`, and `vectorizePropertyName`. You can read more about these in the [collection definition reference](/developers/weaviate/config-refs/schema#properties).
 
-So for example, you might specify a schema like the one below, with additional options for the `question` and `answer` properties:
+So for example, you might specify a collection definition like the one below, with additional options for the `question` and `answer` properties:
 
 import SchemaWithPropertyOptions from '/_includes/code/tutorial.schema.properties.options.mdx';
 
@@ -243,12 +243,11 @@ Collection names always start with a capital letter. Properties always begin wit
 
 ### Related resources
 
-The following resources include more detailed information on schema settings and how to use them:
+The following resources include more detailed information on collection definition settings and how to use them:
 
-- [Schema - Reference: Configuration](/developers/weaviate/config-refs/schema): A reference of all available schema settings.
+- [Reference: Configuration - Collection definition](/developers/weaviate/config-refs/schema): A reference of all available collection definition settings.
 - [Collections - How-to: manage data](/developers/weaviate/manage-data/collections): Code examples for creating and managing collections, including how to configure various settings using client libraries.
-- [Schema - Reference: REST](/developers/weaviate/api/rest#tag/schema): A reference of all available schema settings for the REST API.
-
+- [Reference: REST - Schema](/developers/weaviate/api/rest#tag/schema): A reference of all available collection definition settings for the REST API.
 
 ## Questions and feedback
 
