@@ -7,10 +7,7 @@ image: og/docs/more-resources.jpg
 ---
 
 :::caution You hit the collections count limit?
-If you see an error that the collection count limit has been reached, it means the overhead from maintaining many separate collections is affecting performance. This limit exists to control indexing, storage, and management complexity.
-
-<br />
-
+If you see an error that the collection count limit has been reached, it means the overhead from maintaining many separate collections is affecting performance. This limit exists to control indexing, storage, and management complexity.<br /><br />
 **Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable.
 :::
 
@@ -93,7 +90,7 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
 - **Operational complexity:** Collection definition changes must be applied individually to each collection. Every collection must be updated separately and this takes a lot of time and computational effort.
 - **Query performance:** Retrieving data across multiple collections can be inefficient, especially when performing global analytics (e.g., searching throughout multiple collections).
 
-:::tip 
+:::tip
 If you are creating more than `20` collections, take a moment to consider if multi-tenancy might be utilized.
 :::
 

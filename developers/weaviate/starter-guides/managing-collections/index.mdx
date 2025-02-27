@@ -1,16 +1,15 @@
 ---
-title: Schema (collection definitions)
+title: Collection definitions (schemas)
 description: Begin with schema setup in Weaviate to structure your data effectively.
 sidebar_position: 0
 image: og/docs/tutorials.jpg
-slug: /weaviate/starter-guides/schema
 # tags: ['basics']
 ---
 
 This tutorial will guide you through the process of defining a schema for your data, including commonly used settings and key considerations.
 
 :::info Prerequisites
-- (Recommended) Complete the [Quickstart tutorial](../quickstart/index.md).
+- (Recommended) Complete the [Quickstart tutorial](/developers/weaviate/quickstart).
 - A Weaviate instance with an administrator API key.
 - Install your preferred Weaviate client library.
 :::
@@ -19,7 +18,7 @@ This tutorial will guide you through the process of defining a schema for your d
 
 The database schema defines how data is stored, organized and retrieved in Weaviate.
 
-Define a collection before importing data. Weaviate cannot import data if the collection is undefined. If [auto-schema](../config-refs/schema/index.md#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the schema as possible since manual definition gives you the most control.
+Define a collection before importing data. Weaviate cannot import data if the collection is undefined. If [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate can infer missing elements and add them to the collection definition. However, it is a best practice to manually define as much of the schema as possible since manual definition gives you the most control.
 
 Let's begin with a simple example before diving into the details.
 
@@ -146,7 +145,7 @@ Although we only specified the collection name and properties, the returned sche
 This is because Weaviate infers the schema based on the data and defaults. Each of these options can be specified manually at collection creation time.
 
 :::info FAQ: Are schemas mutable?
-Yes, to an extent. There are no restrictions against adding new collections, or properties. However, not all settings are mutable within existing collections. For example, you can not change the vectorizer or the generative module. You can read more about this in the [schema reference](../config-refs/schema/index.md#mutability).
+Yes, to an extent. There are no restrictions against adding new collections, or properties. However, not all settings are mutable within existing collections. For example, you can not change the vectorizer or the generative module. You can read more about this in the [schema reference](/developers/weaviate/config-refs/schema#mutability).
 :::
 
 ## Schemas in detail
@@ -168,7 +167,7 @@ And depending on your needs, you might want to change any number of these.
 
 ### Properties
 
-Each property has a number of settings that can be configured, such as the `dataType`, `tokenization`, and `vectorizePropertyName`. You can read more about these in the [schema reference](../config-refs/schema/index.md#properties).
+Each property has a number of settings that can be configured, such as the `dataType`, `tokenization`, and `vectorizePropertyName`. You can read more about these in the [schema reference](/developers/weaviate/config-refs/schema#properties).
 
 So for example, you might specify a schema like the one below, with additional options for the `question` and `answer` properties:
 
@@ -188,7 +187,7 @@ Cross-references can be very useful for creating relationships between objects. 
 
 However, cross-references can be costly in terms of performance. Use them sparingly. Additionally, cross-reference properties do not affect the object's vector. So if you want the related properties to be considered in a vector search, they should be included in the object's vectorized properties.
 
-You can find examples of how to define and use cross-references [here](../manage-data/cross-references.mdx).
+You can find examples of how to define and use cross-references [here](/developers/weaviate/manage-data/cross-references).
 
 ### Vectorizer and generative modules
 
@@ -196,7 +195,7 @@ Each collection can be configured with a vectorizer and a generative module. The
 
 These settings are currently immutable once the collection is created. Accordingly, you should choose the vectorizer and generative module carefully.
 
-If you are not sure where to start, modules that integrate with popular API-based model providers such as Cohere or OpenAI are good starting points. You can find a [list of available model integrations here](../model-providers/index.md).
+If you are not sure where to start, modules that integrate with popular API-based model providers such as Cohere or OpenAI are good starting points. You can find a [list of available model integrations here](/developers/weaviate/model-providers).
 
 ### Multi-tenancy settings
 
@@ -214,9 +213,9 @@ import SchemaWithMT from '/_includes/code/tutorial.schema.multi-tenancy.mdx';
 
 ### Index settings
 
-Weaviate uses two types of indexes: [vector indexes](../concepts/vector-index.md) and [inverted indexes](../concepts/indexing.md#inverted-indexes). Vector indexes are used to store and organize vectors for fast vector similarity-based searches. Inverted indexes are used to store data for fast filtering and keyword searches.
+Weaviate uses two types of indexes: [vector indexes](/developers/weaviate/concepts/vector-index) and [inverted indexes](/developers/weaviate/concepts/indexing#inverted-indexes). Vector indexes are used to store and organize vectors for fast vector similarity-based searches. Inverted indexes are used to store data for fast filtering and keyword searches.
 
-The default vector index type is [HNSW](../concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index). The other options are [flat](../concepts/vector-index.md#flat-index), which is suitable for small collections, such as those in a multi-tenancy collection, or [dynamic](../concepts/vector-index.md#dynamic-index), which starts as a flat index before switching to an HNSW index if its size grows beyond a predetermined threshold.
+The default vector index type is [HNSW](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index). The other options are [flat](/developers/weaviate/concepts/vector-index#flat-index), which is suitable for small collections, such as those in a multi-tenancy collection, or [dynamic](/developers/weaviate/concepts/vector-index#dynamic-index), which starts as a flat index before switching to an HNSW index if its size grows beyond a predetermined threshold.
 
 import SchemaWithIndexSettings from '/_includes/code/tutorial.schema.index-settings.mdx';
 
@@ -230,24 +229,24 @@ Replication settings determine how many copies of the data are stored. For examp
 
 This goes hand-in-hand with consistency settings, which determine how many replicas must respond before an operation is considered successful.
 
-We recommend that you read the [concepts page on replication](../concepts/replication-architecture/index.md) for information on how replication works in Weaviate. To specify a replication factor, follow [this how-to](../manage-data/collections.mdx#replication-settings).
+We recommend that you read the [concepts page on replication](/developers/weaviate/concepts/replication-architecture) for information on how replication works in Weaviate. To specify a replication factor, follow [this how-to](/developers/weaviate/manage-data/collections#replication-settings).
 
 #### Sharding
 
-Sharding settings determine how each collection is sharded and distributed across nodes. This is not a setting that is typically changed, but you can use it to control how many shards are created in a cluster, and how many virtual shards are created per physical shard ([read more here](../config-refs/schema/index.md#shardingconfig)).
+Sharding settings determine how each collection is sharded and distributed across nodes. This is not a setting that is typically changed, but you can use it to control how many shards are created in a cluster, and how many virtual shards are created per physical shard ([read more here](/developers/weaviate/config-refs/schema#shardingconfig)).
 
 ## Notes
 
 ### Collection & property names
 
-Collection names always start with a capital letter. Properties always begin with a small letter. You can use `PascalCase` class names, and property names allow underscores. Read more [here](../config-refs/schema/index.md).
+Collection names always start with a capital letter. Properties always begin with a small letter. You can use `PascalCase` class names, and property names allow underscores. Read more [here](/developers/weaviate/config-refs/schema).
 
 ### Related resources
 
 The following resources include more detailed information on schema settings and how to use them:
 
-- [Schema - Reference: Configuration](../config-refs/schema/index.md): A reference of all available schema settings.
-- [Collections - How-to: manage data](../manage-data/collections.mdx): Code examples for creating and managing collections, including how to configure various settings using client libraries.
+- [Schema - Reference: Configuration](/developers/weaviate/config-refs/schema): A reference of all available schema settings.
+- [Collections - How-to: manage data](/developers/weaviate/manage-data/collections): Code examples for creating and managing collections, including how to configure various settings using client libraries.
 - [Schema - Reference: REST](/developers/weaviate/api/rest#tag/schema): A reference of all available schema settings for the REST API.
 
 

@@ -466,7 +466,7 @@
       "text": "Sharding is splitting a database into smaller, faster, more easily managed parts called shards...",
       "longText": "Sharding is splitting a database into smaller, faster, more easily managed parts called shards. Each shard is a self-contained unit with a subset of data, allowing for distribution across servers or data centers for improved performance and scalability.",
       "link": "/developers/weaviate/quickstart",
-      "doclink": "https://weaviate.io/developers/weaviate/starter-guides/schema#sharding",
+      "doclink": "https://weaviate.io/developers/weaviate/starter-guides/managing-collections#sharding",
       "docTitle": "Sharding",
       "doclink2": "https://weaviate.io/developers/weaviate/concepts/replication-architecture#replication-vs-sharding",
       "docTitle2": "Replication vs Sharding",
