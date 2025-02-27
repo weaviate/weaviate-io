@@ -16,6 +16,8 @@ All other values are interpreted as `false`.
 ## General
 
 <!-- TODO[g-despot] Link to multi-tenancy guide when released for MAXIMUM_ALLOWED_COLLECTIONS_COUNT -->
+import Link from '@docusaurus/Link';
+
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `ASYNC_INDEXING` | (Experimental, added in `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
@@ -62,8 +64,8 @@ All other values are interpreted as `false`.
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
 | `USE_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use. <br/> (The same as `ENABLE_TOKENIZER_GSE`. We recommend using `ENABLE_TOKENIZER_GSE` for consistency in naming with other optional tokenizers.) | `boolean` | `true` |
-| `USE_INVERTED_SEARCHABLE` | (Preview) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is in preview and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Will only affect newly created collections. </li></ul> <a href="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</a> | `boolean` | `true` |
-| `USE_BLOCKMAX_WAND` | (Preview) Use BlockMax WAND algorithm for BM25 and hybrid searches. Enable it together with `USE_INVERTED_SEARCHABLE` to get the performance benefits. Added in `v1.28`. (Default: `false`) <br/><a href="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</a> | `boolean` | `true` |
+| `USE_INVERTED_SEARCHABLE` | (Preview) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is in preview and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Will only affect newly created collections. </li></ul> <Link to="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</Link> | `boolean` | `true` |
+| `USE_BLOCKMAX_WAND` | (Preview) Use BlockMax WAND algorithm for BM25 and hybrid searches. Enable it together with `USE_INVERTED_SEARCHABLE` to get the performance benefits. Added in `v1.28`. (Default: `false`) <br/><Link to="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</Link> | `boolean` | `true` |
 
 ## Module-specific
 

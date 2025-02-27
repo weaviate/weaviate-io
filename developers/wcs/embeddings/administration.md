@@ -45,7 +45,6 @@ import DisableWeaviateEmbeddings from '/developers/wcs/img/weaviate-cloud-disabl
 
 ## Pricing and billing
 
-<!-- TODO[g-despot] Update link -->
 If you would like to learn about the pricing model, you can visit the Weaviate Embeddings [product page](https://weaviate.io/product/embeddings). 
 The pricing works on a per-token basis. This means that you will only be billed for the tokens that are successfully consumed. 
 In other words, only requests that result in valid responses from the API are considered.
