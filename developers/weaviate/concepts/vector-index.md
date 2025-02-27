@@ -246,7 +246,7 @@ To avoid indexing a collection, set `"skip"` to `"true"`. By default, collection
 
 ### What ANN algorithms exist?
 
-There are different ANN algorithms, you can find a nice overview of them on <a href="http://ann-benchmarks.com/" data-proofer-ignore>this website</a>.
+There are different ANN algorithms, you can find a nice overview of them on [this website](http://ann-benchmarks.com/).
 
 ### Are there indicative benchmarks for Weaviate's ANN performance?
 
