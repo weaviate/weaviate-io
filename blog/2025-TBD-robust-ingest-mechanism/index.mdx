@@ -1,0 +1,157 @@
+---
+title: Robust Data Ingestion - Handling Ingestion Errors Gracefully in Weaviate SDKs
+slug: robust-data-ingestion
+authors: [chad]
+date: 2025-02-15
+tags: []
+image: ./img/hero.png
+description: "Learn how to handle ingestion errors gracefully with Weaviate SDKs. "
+---
+![AI-native infrastructure](./img/hero.png)
+
+## Introduction 
+
+When ingesting data into Weaviate, one of the most common issues we see users encounter is timeouts due to external embedding services being overloaded or rate-limited. Since Weaviate often calls out to these services to generate vector embeddings, any slowdown on their end can cause ingestion failures.
+
+Fortunately, Weaviate’s Python SDK provides robust batch ingestion APIs that allow you to gracefully handle these failures by retrying failed objects indefinitely until they are successfully indexed.
+
+In this post, we’ll walk through how to use Weaviate’s batch ingestion APIs effectively, ensuring that your data ingestion is reliable even under challenging conditions.
+
+## Why Ingestion Failures Happen
+
+When using a vector database like Weaviate, embeddings play a crucial role in how data is stored and queried. Many users rely on external services like OpenAI, Cohere, or Hugging Face to generate embeddings at ingestion time. If these services are overloaded or rate-limited, Weaviate's indexer may hit a timeout before receiving the embeddings, causing the ingestion process to fail.
+
+If you're working with a large dataset, these failures can add up, leading to incomplete indexing and an inconsistent database state. To avoid this, you need a retry mechanism that ensures every object is successfully ingested, even if external dependencies are temporarily unavailable.
+
+Additionally, users typically don’t want to manually throttle their ingestion processes to account for potential slowdowns in external services. Instead, they want to push data ingestion as hard as possible to maximize throughput and fully utilize the available infrastructure. By allowing the ingestion process to run at full capacity and handling failures dynamically, you can achieve optimal efficiency without unnecessary bottlenecks.
+
+## Using the Weaviate Python SDK for Reliable Ingestion
+
+The Weaviate Python SDK provides a batch ingestion API that makes it easy to handle errors. The key functions and objects involved are:
+
+- `batch.dynamic()`: Creates a new batch object using the dynamic batching strategy which automatically sends batches to Weaviate for indexing when it reaches a certain size.
+- `batch.add_object()`: Adds objects to the batch queue.
+- `batch.flush()`: Sends all remaining objects in the batch to Weaviate for indexing.
+- `batch.failed_objects`: A list of objects that failed to be indexed.
+
+NOTE: You must call the `batch.flush()` method for the failed_objects list to be populated.
+
+Below is an excerpt of the sample code that ingests the Amazon product dataset into Weaviate. For the full code, see the relevant [GitHub recipes repository](https://github.com/weaviate/recipes/tree/main/weaviate-features/batch/ingest-retry). 
+
+The `create_product_collection` function assumes that Weaviate and Ollama are running locally in docker containers, and that you have already created a `WeaviateClient` object, however, the `import_products` function retry logic is generic and can be used with any underlying Weaviate embedding service module. It will do the initial import, and then enters an infinite retry loop to handle any failures, until all objects are successfully indexed. 
+
+```python
+OLLAMA_EMBEDDING_MODEL_ID = "mxbai-embed-large:latest"
+OLLAMA_GENERATIVE_MODEL_ID = "llama3.2:latest"
+OLLAMA_URL = "http://host.docker.internal:11434"
+
+PRODUCT_COLLECTION_NAME = "product"
+
+def create_product_collection(client):
+    if not client.collections.exists(PRODUCT_COLLECTION_NAME):
+        print("Creating product collection")
+
+    print("Creating product collection")
+    client.collections.create(
+        name=PRODUCT_COLLECTION_NAME,
+        properties=[
+            wc.Property(name="category", data_type=wc.DataType.TEXT_ARRAY, index_filterable=True, index_searchable=True),
+            wc.Property(name="tech1", data_type=wc.DataType.TEXT, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="tech2", data_type=wc.DataType.TEXT, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="description", data_type=wc.DataType.TEXT_ARRAY, index_filterable=True, index_searchable=True),
+            wc.Property(name="fit", data_type=wc.DataType.TEXT, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="title", data_type=wc.DataType.TEXT, index_filterable=True, index_searchable=True),
+            wc.Property(name="also_buy", data_type=wc.DataType.TEXT_ARRAY, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="image", data_type=wc.DataType.TEXT_ARRAY, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="brand", data_type=wc.DataType.TEXT, index_filterable=True, index_searchable=True),
+            wc.Property(name="feature", data_type=wc.DataType.TEXT_ARRAY, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="rank", data_type=wc.DataType.TEXT_ARRAY, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="also_view", data_type=wc.DataType.TEXT_ARRAY, skip_vectorization=True, index_filterable=False, index_searchable=False),
+            wc.Property(name="main_cat", data_type=wc.DataType.TEXT, index_filterable=True, index_searchable=True),
+            wc.Property(name="date", data_type=wc.DataType.TEXT, skip_vectorization=True, index_filterable=True, index_searchable=True),
+            wc.Property(name="price", data_type=wc.DataType.TEXT, skip_vectorization=True, index_filterable=True, index_searchable=True),
+            wc.Property(name="asin", data_type=wc.DataType.TEXT, index_filterable=True, index_searchable=True),
+        ],
+        vectorizer_config=wc.Configure.Vectorizer.text2vec_ollama(
+            api_endpoint=OLLAMA_URL,
+            model=OLLAMA_EMBEDDING_MODEL_ID,
+        ),
+        generative_config=wc.Configure.Generative.ollama(
+            api_endpoint=OLLAMA_URL,
+            model=OLLAMA_GENERATIVE_MODEL_ID
+        )
+    )
+
+def import_products(products, local_json_path):
+    counter = 0
+    INTERVAL = 100
+
+    with products.batch.dynamic() as batch:
+        print(f"Opening {local_json_path}")
+        with open(local_json_path, "rb") as f:
+            objects = ijson.items(f, '', multiple_values=True)
+            for obj in objects:
+                product_obj = process_product(obj)
+                #print(json.dumps(product_obj, indent=2))
+                batch.add_object(
+                    properties=product_obj,
+                    uuid=generate_uuid5(obj["asin"])
+                )
+
+                counter += 1
+                if counter % INTERVAL == 0:
+                    print(f"{local_json_path}: Imported {counter} products...")
+        print(f"{local_json_path}: Flushing batch")
+        batch.flush()
+        print(f"{local_json_path}: Batch flushed")
+
+    # The failed_objects are not available until after flush is called
+    old_failed_obj_count = len(products.batch.failed_objects)
+    new_failed_obj_count = 0
+    while True:
+        if len(products.batch.failed_objects) == 0:
+            print(f"{local_json_path}: All products imported successfully")
+            break
+
+        print(f"{local_json_path}: Retrying {len(products.batch.failed_objects)} failed objects...")
+        retry_counter = 0
+
+        current_failed_object_count = len(products.batch.failed_objects)
+        failed_objects = products.batch.failed_objects
+        with products.batch.dynamic() as batch:
+            print(f"{local_json_path}: Inside retry loop are {len(failed_objects)} failed objects...")
+
+            for failed in failed_objects:
+                try:
+                    print(f"{local_json_path}: Failed with error \"{failed.message}\": {failed.object_.uuid}")
+                    #print(f"{local_json_path}: "
+                    #    + json.dumps(failed.object_.properties, indent=2))
+                    if new_failed_obj_count == old_failed_obj_count:
+                        print(f"{local_json_path}: Debugging stuck object: "
+                                + json.dumps(failed.object_.properties, indent=2))
+                    batch.add_object(
+                        properties=failed.object_.properties,
+                        uuid=failed.object_.uuid
+                    )
+                except Exception as e:
+                    print(f"{local_json_path}: Exception while retrying: {e}")
+                    print(f"{local_json_path}: Failed Object: {failed}")
+                    break
+
+                retry_counter += 1
+                if retry_counter % INTERVAL == 0:
+                    print(f"{local_json_path}: Retried {retry_counter} products...")
+            batch.flush()
+        old_failed_obj_count = current_failed_object_count
+        new_failed_obj_count = len(products.batch.failed_objects)
+```
+
+## Conclusion
+
+Ingestion failures due to timeouts from external embedding services are an unavoidable reality when working with vector databases. However, by using Weaviate’s batch ingestion APIs and implementing a robust retry mechanism, you can ensure your data is reliably indexed without missing any objects.
+
+By following this approach - and leveraging the code in our recipes repo - you can make your Weaviate ingestion process resilient and efficient.
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
