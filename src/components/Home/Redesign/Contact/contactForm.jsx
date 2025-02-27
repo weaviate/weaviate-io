@@ -1,17 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 export default function ContactForm() {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.setAttribute('data-cookieconsent', 'ignore');
+
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
-      // @TS-ignore
       if (window.hbspt) {
-        // @TS-ignore
         window.hbspt.forms.create({
           portalId: '8738733',
           formId: 'c722587c-7ef8-414b-a64e-e33a71bcf02c',
@@ -19,7 +18,12 @@ export default function ContactForm() {
         });
       }
     });
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
+
   return (
     <div className={styles.contactBackground} id="contact-us">
       <div className="container">
