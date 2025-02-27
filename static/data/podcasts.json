@@ -1,6 +1,14 @@
 [
   {
     "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
+    "description": "Welcome to the 115th episode of the Weaviate Podcast featuring Shirley Wu from Stanford University!",
+    "youtube": "4ZRhSuBHyNo",
+    "date": "25-02-19",
+    "cover_image": "/img/podcasts/podcast-115.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
     "description": "Welcome to the 114th episode of the Weaviate Podcast featuring Amanpreet Singh, Co-Founder and CTO of Contextual AI!",
     "youtube": "TQKDU2mhKEI",
     "date": "25-02-13",
