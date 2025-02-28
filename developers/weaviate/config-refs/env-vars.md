@@ -15,6 +15,8 @@ All other values are interpreted as `false`.
 
 ## General
 
+import Link from '@docusaurus/Link';
+
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `ASYNC_INDEXING` | (Experimental, added in `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `boolean` | `false` |
@@ -36,6 +38,7 @@ All other values are interpreted as `false`.
 | `GO_PROFILING_DISABLE` | If `true`, disables Go profiling. Default: `false`. | `boolean` | `false` |
 | `GO_PROFILING_PORT` | Sets the port for the Go profiler. Default: `6060` | `integer` | `6060` |
 | `GRPC_MAX_MESSAGE_SIZE` | Maximum gRPC message size in bytes. (Added in `v1.27.1`) Default: 10MB | `string - number` | `2000000000` |
+| `GRPC_PORT` | The port on which Weaviate's gRPC server listens for incoming requests. Default: `50051` | `string - number` | `50052` |
 | `LIMIT_RESOURCES` | If `true`, Weaviate will automatically attempt to auto-detect and limit the amount of resources (memory & threads) it uses to (0.8 * total memory) and (number of cores-1). It will override any `GOMEMLIMIT` values, however it will respect `GOMAXPROCS` values. | `boolean` | `false` |
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>Default: Outputs log data to json. e.g.: `{"action":"startup","level":"debug","msg":"finished initializing modules","time":"2023-04-12T05:07:43Z"}` <br/>`text`: Outputs log data to a string. e.g. `time="2023-04-12T04:54:23Z" level=debug msg="finished initializing modules" action=startup` | `string` |  |
 | `LOG_LEVEL` | Sets the Weaviate logging level. Default: `info`<br/><br/>`panic`: Panic entries only. (new in `v1.24`) <br/>`fatal`: Fatal entries only. (new in `v1.24`)  <br/> `error`: Error entries only. (new in `v1.24`) <br/>`warning`: Warning entries only. (new in `v1.24`) <br/>`info`: General operational entries. <br/> `debug`: Very verbose logging. <br/>`trace`: Even finer-grained informational events than `debug`. | `string` | |
@@ -59,8 +62,8 @@ All other values are interpreted as `false`.
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
 | `USE_GSE` | Enable the [`GSE` tokenizer](../config-refs/schema/index.md#gse-and-trigram-tokenization-methods) for use. <br/> (The same as `ENABLE_TOKENIZER_GSE`. We recommend using `ENABLE_TOKENIZER_GSE` for consistency in naming with other optional tokenizers.) | `boolean` | `true` |
-| `USE_INVERTED_SEARCHABLE` | (Preview) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is in preview and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Will only affect newly created collections. </li></ul> <a href="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</a> | `boolean` | `true` |
-| `USE_BLOCKMAX_WAND` | (Preview) Use BlockMax WAND algorithm for BM25 and hybrid searches. Enable it together with `USE_INVERTED_SEARCHABLE` to get the performance benefits. Added in `v1.28`. (Default: `false`) <br/><a href="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</a> | `boolean` | `true` |
+| `USE_INVERTED_SEARCHABLE` | (Preview) Store searchable properties using a more efficient in-disk format, designed for the BlockMax WAND algorithm. Set as `true` together with `USE_BLOCKMAX_WAND` to enable BlockMax WAND at query time. Added in `v1.28`. (Default: `false`) <br/><br/><ul><li>This format is in preview and may be subject to breaking changes in future versions. Expect to need to re-index your data again if you enable this feature.</li> <li>Migrations are not supported with this feature enabled. Will only affect newly created collections. </li></ul> <Link to="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</Link> | `boolean` | `true` |
+| `USE_BLOCKMAX_WAND` | (Preview) Use BlockMax WAND algorithm for BM25 and hybrid searches. Enable it together with `USE_INVERTED_SEARCHABLE` to get the performance benefits. Added in `v1.28`. (Default: `false`) <br/><Link to="/developers/weaviate/concepts/indexing#blockmax-wand-algorithm">Read more</Link> | `boolean` | `true` |
 
 ## Module-specific
 

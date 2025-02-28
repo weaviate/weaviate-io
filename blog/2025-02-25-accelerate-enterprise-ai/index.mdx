@@ -31,7 +31,7 @@ Weaviate has proven billion-scale vector search with low latency, it now deliver
 
 By organizing parts of the keyword index with pre-computed statistics, it can skip irrelevant documents and compress data far more effectively. For enterprises handling billions of records, this translates to dramatically lower latency and significantly reduced storage requirements—**elevenfold compression in some tests[^2]**. Whether you’re searching across product catalogs, customer communications, or internal knowledge bases, the new algorithm helps your teams find relevant insights faster **without extra hardware or infrastructure overhead**.
 
-Best of all, once a user opts in, these performance gains work behind the scenes–applying only to data ingested after enabling–so there’s no need for developers to revamp existing applications. With **BlockMax WAND** in the **Weaviate 1.29** release, users gain a robust, future-proof search solution that scales to enterprise needs.
+Best of all, once a user opts in, these performance gains work behind the scenes–applying only to data ingested after enabling–so there’s no need for developers to revamp existing applications. With **BlockMax WAND** in the **Weaviate 1.29** release, users gain a robust, future-proof search solution that scales to enterprise needs. For further insights into BlockMax WAND, explore our blog, "[BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](/blog/blockmax-wand).”
 
 ## Weaviate Embeddings: Now Generally Available
 
@@ -65,17 +65,17 @@ In addition, Weaviate 1.29 introduces robust **NVIDIA integrations** – includi
 
 Complementing these innovations, our new **asynchronous replication** feature seamlessly synchronizes data across nodes, further bolstering system reliability and performance in large-scale deployments.
 
-Together, these enhancements further elevate Weaviate’s position as a leading enterprise-grade vector database. For a deeper dive into the technical details, check out the [Weaviate 1.29 Release Highlights blog](/blog/weaviate-1-29-release).
+Together, these enhancements further elevate Weaviate’s position as a leading enterprise-grade vector database. For a deeper dive into the technical details, check out the [Weaviate 1.29 Release Highlights](/blog/weaviate-1-29-release) blog.
 
 ## What’s Next
 
 That wraps up our look at the **new additions to Weaviate Cloud and the 1.29 release**—but the excitement doesn’t stop here. [Mark your calendars for **March 5**](https://link.mail.beehiiv.com/ss/c/u001.7ph1bOQkPnwamO4cv9f9A8jeYYCfFv91aBjGm1l9ezWQ7PVH1EkZELJKK7fxa04bAOWbwJ2WYaaD136yiCTURqFbSQBejldEJqvIuDUo_6B-tD8pmJCXebuYJUx0NpviZQxynvPP4vitQpuZ-FAOu-PKwROV8cNcnbceaxbz3yeDwP7eJ970d5IHv583qMine1EFPLJmWl2sido3qgWBFTMhCOUEyAYu4cGxr9A2HCc3T9hBBRkgPiIYpFO7yTd7RvVKZlMIxCGrcG3E8tCgaQ/4dz/v3dtMN9ZSJaBYAUu0KBytA/h20/h001.TrgKKrLVHWSDrE7WMueG26GAoMG46biDXDrp0keR2fU), where our experts will deliver a deep dive into new features like **multi-valued vectors**, **RBAC**, and more. If you can’t make the live session, don’t worry—we’ll share a recording so you won’t miss a thing.
 
-In the meantime, if you’re eager to get hands-on, check out the [**Quickstart tutorial**](developers/wcs/embeddings#get-started), or explore [**Weaviate Cloud with a free trial**](https://console.weaviate.cloud/)—and experience for yourself how Weaviate can supercharge your AI applications. We’re excited to see what you build\!
+In the meantime, if you’re eager to get hands-on, check out the [**Quickstart tutorial**](/developers/wcs/embeddings#get-started), or explore [**Weaviate Cloud with a free trial**](https://console.weaviate.cloud/)—and experience for yourself how Weaviate can supercharge your AI applications. We’re excited to see what you build\!
 
-[^1]:  Weaviate internal tests (Fever dataset–5.4M documents): reduced search time from 517ms to 33ms. Results to be published on Feb 26.
+[^1]:  [BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](/blog/blockmax-wand) (Fever dataset–5.4M documents): reduced search time from 517ms to 33ms. 
 
-[^2]:  Weaviate internal tests (MS Marco dataset–8.6M documents): from 10.53 GB to 0.92 GB, 77% fewer documents scored, 79% fewer blocks decompressed. Results to be published on Feb 26.
+[^2]:  [BlockMax WAND: How Weaviate Achieved 10x Faster Keyword Search](/blog/blockmax-wand) (MS Marco dataset–8.6M documents): from 10.53 GB to 0.92 GB, 77% fewer documents scored, 79% fewer blocks decompressed.
 
 import WhatsNext from '/_includes/what-next.mdx'
 

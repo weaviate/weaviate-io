@@ -8,6 +8,7 @@ export default function Introduction() {
     // Load the external HubSpot form script
     const script = document.createElement('script');
     script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.setAttribute('data-cookieconsent', 'ignore');
     script.async = true;
     script.onload = () => {
       if (window.hbspt) {
