@@ -9,17 +9,37 @@ image: og/docs/tutorials.jpg
 
 In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](developers/agents/query.md)**. This agent will have access to a number of Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
-We've prepared a few open datasets that you can use to explore the Query Agent.  
+import WeaviateAgentsECommerceFlowchart from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-flowchart.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsECommerceFlowchart}
+        alt="Weaviate Query Agent flowchart"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+The Query Agent works like this:
+1. **Give the Query Agent a task** in the form of a question or instructions.
+2. The Query Agent uses an appropriate **foundation model** (e.g. large language model) to analyze the task and determine the exact queries to perform. 
+3. The Query Agent **sends the queries to Weaviate**. Weaviate vectorizes the queries as needed using the specified vectorizer integration (we will use Weaviate Embeddings).
+4. The Query Agent **receives the results from Weaviate** and uses appropriate foundation models to generate the final response to the user prompt/query. 
+
+We've prepared a few public datasets that you can use to explore the Query Agent.  
 They are available on HuggingFace:
 
-- [**E-commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews etc.
-- [**Brands:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands) A dataset that lists clothing brands and information about them such as their parent brand, child brands, average customer rating etc.
+- [**E-commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews, etc.
+- [**Brands:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands) A dataset that lists clothing brands and information about them, such as their parent brand, child brands, average customer rating, etc.
 
 Now let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting to it with the Python client.
 
 ## Prerequisites
 
-To use the Weaviate Query Agent and Weaviate Embedding service, you need to have a [Weaviate Cloud](https://weaviate.io/deployment/serverless) account.
+To use the Weaviate Query Agent and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
 
 ## Step 1: Set up Weaviate
 
@@ -29,7 +49,7 @@ To use the Weaviate Query Agent and Weaviate Embedding service, you need to have
 1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
 
 :::tip
-In this tutorial we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer so you do not have to provide any extra keys for external embedding providers.
+In this tutorial, we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers.
 
 Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.
 :::
@@ -50,7 +70,7 @@ You will also need `datasets`, a lightweight library providing access to the pub
 
 ### 1.3 Connect to your instance
 
-Now you can finally connect to you Weaviate Cloud instance with the parameters from the first step:
+Now you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
 
 ```python
 import os
