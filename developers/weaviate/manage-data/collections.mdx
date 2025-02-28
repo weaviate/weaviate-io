@@ -85,6 +85,16 @@ import InitialCaps from '/_includes/schemas/initial-capitalization.md'
   </TabItem>
 </Tabs>
 
+:::tip Avoid creating too many collections
+Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants. 
+
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
+:::
+
+import CollectionsCountLimit from '/_includes/collections-count-limit.mdx'
+
+<CollectionsCountLimit />
+
 ## Create a collection and define properties
 
 Properties are the data fields in your collection. Each property has a name and a data type.
@@ -1489,7 +1499,7 @@ import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.upd
 ### Background knowledge
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
-- [Tutorial: Schema](../starter-guides/schema.md)
+- [Tutorial: Schema](/developers/weaviate/starter-guides/managing-collections)
 
 ## Questions and feedback
 

@@ -1,7 +1,7 @@
 ---
 title: Retrieval augmented generation (RAG)
 description: Get started with generative search in Weaviate for personalized data retrieval.
-sidebar_position: 50
+sidebar_position: 3
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---

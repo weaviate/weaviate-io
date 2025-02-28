@@ -105,7 +105,7 @@ export default function GetStarted() {
                 <li>
                   <Link
                     className={`${styles.external} ${styles.bold}`}
-                    to="/developers/weaviate/starter-guides/schema"
+                    to="/developers/weaviate/starter-guides/managing-collections"
                   >
                     Collection definitions & data schema
                   </Link>{' '}

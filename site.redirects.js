@@ -110,7 +110,7 @@ const siteRedirects = {
         
         // Quickstart redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/quickstart/schema',
         },
         {
@@ -132,7 +132,7 @@ const siteRedirects = {
         
         // Old Quickstart redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/current/quickstart/schema',
         },
         {
@@ -187,7 +187,7 @@ const siteRedirects = {
         },
         // Tutorial redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/current/tutorials/how-to-create-a-schema',
         },
         {
@@ -220,7 +220,7 @@ const siteRedirects = {
         
         // Tutorial refresh 2024
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/tutorials/schema',
         },
         {
@@ -813,6 +813,18 @@ const siteRedirects = {
         {
             to: '/developers/integrations/llm-agent-frameworks/semantic-kernel',
             from: '/developers/integrations/llm-frameworks/semantic-kernel',
+        },
+
+        // Restructured starter guides
+        {
+            to: '/developers/weaviate/starter-guides/managing-collections',
+            from: '/developers/weaviate/starter-guides/schema',
+        },
+
+        // Redirects for Weaviate Core error messages
+        {
+            to: '/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits',
+            from: '/collections-count-limit',
         }
     ],
     createRedirects(existingPath) {
