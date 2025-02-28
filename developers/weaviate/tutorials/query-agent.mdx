@@ -14,21 +14,30 @@ To get started, we've prepared a few open datasets, available on Hugging Face. T
 - [**E-commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews etc.
 - [**Brands:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands) A dataset that lists clothing brands and information about them such as their parent brand, child brands, average customer rating etc.
 
-## Step 1: Setting Up Weaviate & Importing Data
+## Step 1: Set up
+
+### 1.1 Create a Weaviate Cloud cluster
 
 To use the Weaviate Query Agent, first, create a [Weaviate Cloud](https://weaviate.io/deployment/serverless) account👇
-1. [Create a free Sandbox cluster to get started](https://weaviate.io/developers/wcs/manage-clusters/create#sandbox-clusters)
+
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
 2. Go to 'Embedding' and enable it, by default, this will make it so that we use `Snowflake/snowflake-arctic-embed-l-v2.0` as the embedding model
 3. Take note of the `WEAVIATE_URL` and `WEAVIATE_API_KEY` to connect to your cluster below
 
 :::tip
-We recommend using [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) so you do not have to provide any extra keys for external embedding providers.
+In this tutorial we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer so you do not have to provide any extra keys for external embedding providers.
 :::
+
+### 1.2 Install the Python client
+
+In order to install the Weaviate Python client together with the `agents` component:
 
 ```
 !pip install git+https://github.com/weaviate/weaviate-python-client.git@weaviate-agents-integration#egg=weaviate-client[agents]
 !pip install datasets
 ```
+
+### 1.3 Connect to your instance
 
 ```python
 import os
@@ -48,7 +57,20 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 ```
 
-### Prepare the Collections
+## Step 2: Prepare the Collections
+
+import WeaviateAgentsEcommerceDataset from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-dataset.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img src={WeaviateAgentsEcommerceDataset} alt="Open a collection in Weaviate Cloud" />
+    </div>
+  </div>
+</div>
+<br />
+
+### 2.1 Define the Collections
 
 In the following code blocks, we are pulling our demo datasets from Hugging Face and writing them to new collections in our Weaviate Serverless cluster.
 
@@ -85,6 +107,10 @@ client.collections.create(
     )
 ```
 
+### 2.2 Populate the database
+
+Now we can import the data into our Weaviate Cloud instance:
+
 ```python
 from datasets import load_dataset
 from datetime import datetime, timezone
@@ -104,9 +130,10 @@ with ecommerce_collection.batch.dynamic() as batch:
       batch.add_object(properties=item["properties"])
 ```
 
-## Step 2: Set Up the Query Agent
+## Step 3: Set Up the Query Agent
 
 When setting up the query agent, we have to provide it a few things:
+
 - The `client`
 - The `collection` which we want the agent to have access to.
 - (Optionally) A `system_prompt` that describes how our agent should behave
@@ -122,15 +149,16 @@ agent = QueryAgent(
 )
 ```
 
-## Step 3: Run the Query Agent
+## Step 4: Run the Query Agent
 
 When we run the agent, it will first make a few decisions, depending on the query:
 
 1. The agent will decide which collection or collections to look up an answer in.
-2. The agent will also decide whether to perform a regular ***search query***, what ***filters*** to use, whether to do an ***aggregation query***, or all of them together!
+2. The agent will also decide whether to perform a regular **_search query_**, what **_filters_** to use, whether to do an **_aggregation query_**, or all of them together!
 3. It will then provide a reponse within **`QueryAgentResponse`**.
 
-### 3.1 Ask a Question
+### 4.1 Ask a Question
+
 **Let's start with a simple question: "I like the vintage clothes, can you list me some options that are less than $200?"**
 
 We can then also inspect how the agent responded, what kind of searches it performed on which collections, whether it has identified if the final answer is missing information or not, as well as the final answer 👇
@@ -142,7 +170,7 @@ response = agent.run("I like the vintage clothes, can you list me some options t
 print_query_agent_response(response)
 ```
 
-### 3.2 Ask a follow up question
+### 4.2 Ask a follow up question
 
 The agent can also be provided with additional context. For example, we can provide the previous response as context and get a `new_response`
 
@@ -156,7 +184,7 @@ response = agent.run("What is the the name of the brand that lists the most shoe
 print_query_agent_response(response)
 ```
 
-### 3.3 Search over multiple collections
+### 4.3 Search over multiple collections
 
 In some cases, we need to combine the results of searches across multiple collections. From the result above, we can see that "Loom & Aura" lists the most shoes.
 
@@ -169,7 +197,7 @@ response = agent.run("Does the brand 'Loom & Aura' have a parent brand or child 
 print_query_agent_response(response)
 ```
 
-### 3.4 Changing the System Prompt
+### 4.4 Changing the System Prompt
 
 In some cases, you may want to define a custom `system_prompt` for your agent. This can help you provide the agent with some default instructions as to how to behave. For example, let's create an agent that will always answer the query in the users language.
 
@@ -184,7 +212,7 @@ multi_lingual_agent = QueryAgent(
 For example, this time lets ask something that is about weather!
 TODO
 
-### 3.5 Try More Questions
+### 4.5 Try More Questions
 
 - For example Let's try to find out more about the brans "Eko & Stitch"
 
@@ -193,3 +221,7 @@ response = agent.run("Does Eko & Stitch have a branch in the UK? Or if not, does
 
 print(response.final_answer)
 ```
+
+## Summary
+
+## Further resources
