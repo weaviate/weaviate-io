@@ -7,74 +7,101 @@ image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
 
-In this tutorial, we will be building a simple e-commerce assistant agent with the [Weaviate Query Agent](https://weaviate.io/developers/agents). This agent will have access to a number of Weaviate collection, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
+In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](developers/agents/query.md)**. This agent will have access to a number of Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
-To get started, we've prepared a few open datasets, available on Hugging Face. The first step will be walking through how to populate your Weaviate Cloud collections.
+We've prepared a few open datasets that you can use to explore the Query Agent.  
+They are available on HuggingFace:
 
 - [**E-commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews etc.
 - [**Brands:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands) A dataset that lists clothing brands and information about them such as their parent brand, child brands, average customer rating etc.
 
-## Step 1: Set up
+Now let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting to it with the Python client.
+
+## Prerequisites
+
+To use the Weaviate Query Agent and Weaviate Embedding service, you need to have a [Weaviate Cloud](https://weaviate.io/deployment/serverless) account.
+
+## Step 1: Set up Weaviate
 
 ### 1.1 Create a Weaviate Cloud cluster
 
-To use the Weaviate Query Agent, first, create a [Weaviate Cloud](https://weaviate.io/deployment/serverless) account👇
-
 1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
-2. Go to 'Embedding' and enable it, by default, this will make it so that we use `Snowflake/snowflake-arctic-embed-l-v2.0` as the embedding model
-3. Take note of the `WEAVIATE_URL` and `WEAVIATE_API_KEY` to connect to your cluster below
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
 
 :::tip
 In this tutorial we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer so you do not have to provide any extra keys for external embedding providers.
+
+Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.
 :::
 
-### 1.2 Install the Python client
+### 1.2 Install the Python libraries
 
-In order to install the Weaviate Python client together with the `agents` component:
+In order to install the Weaviate Python client together with the `agents` component run:
 
 ```
 !pip install git+https://github.com/weaviate/weaviate-python-client.git@weaviate-agents-integration#egg=weaviate-client[agents]
+```
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+```
 !pip install datasets
 ```
 
 ### 1.3 Connect to your instance
 
+Now you can finally connect to you Weaviate Cloud instance with the parameters from the first step:
+
 ```python
 import os
-from getpass import getpass
-
-if "WEAVIATE_API_KEY" not in os.environ:
-  os.environ["WEAVIATE_API_KEY"] = getpass("Weaviate API Key")
-if "WEAVIATE_URL" not in os.environ:
-  os.environ["WEAVIATE_URL"] = getpass("Weaviate URL")
-
 import weaviate
 from weaviate.auth import Auth
 
+# Best practice: store your credentials in environment variables
+weaviate_url = os.environ["WEAVIATE_URL"]
+weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+
 client = weaviate.connect_to_weaviate_cloud(
-        cluster_url=os.environ.get("WEAVIATE_URL"),
-        auth_credentials=Auth.api_key(os.environ.get("WEAVIATE_API_KEY")),
+        cluster_url=weaviate_url,
+        auth_credentials=Auth.api_key(weaviate_api_key),
 )
+
+print(client.is_ready())  # Should print: `True`
+
+# Your work goes here!
+
+client.close()  # Free up resources
 ```
 
+After running this snipet, you should see the message `True` printed out which means that your have successfully connected to your instance.
+
 ## Step 2: Prepare the Collections
+
+Before we can start importing the data into Weaviate, we need to **define the collections** which means setting up the data schema and choosing the vectorizer/embedding service.
+
+### 2.1 Define the Collections
+
+Below you can see what the objects in the datasets `eCommerce` and `Brands` look like. 
 
 import WeaviateAgentsEcommerceDataset from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-dataset.png';
 
 <div class="row">
   <div class="card">
     <div class="card__image">
-      <img src={WeaviateAgentsEcommerceDataset} alt="Open a collection in Weaviate Cloud" />
+      <img
+        src={WeaviateAgentsEcommerceDataset}
+        alt="The eCommerce and Brands datasets"
+      />
     </div>
   </div>
 </div>
 <br />
 
-### 2.1 Define the Collections
-
 In the following code blocks, we are pulling our demo datasets from Hugging Face and writing them to new collections in our Weaviate Serverless cluster.
 
-> ❗️ The `QueryAgent` uses the descriptions of collections and properties to decide which ones to use when solving queries, and to access more information about properties. You can experiment with changing these descriptions, providing more detail, and more. It's good practice to provide property descriptions too. For example, below we make sure that the `QueryAgent` knows that prices are all in USD, which is information that would otherwise be unavailable.
+:::tip
+The `QueryAgent` uses the descriptions of collections and properties to decide which ones to use when solving queries, and to access more information about properties. You can experiment with changing these descriptions, providing more detail, and more. It's good practice to provide property descriptions too. For example, below we make sure that the `QueryAgent` knows that prices are all in USD, which is information that would otherwise be unavailable.
+:::
 
 ```python
 from weaviate.classes.config import Configure, Property, DataType
@@ -128,18 +155,23 @@ with brands_collection.batch.dynamic() as batch:
 with ecommerce_collection.batch.dynamic() as batch:
   for item in ecommerce_dataset:
       batch.add_object(properties=item["properties"])
+
+print(f"Size of the eCommerce dataset: {len(ecommerce_collection)}")
+print(f"Size of the Brands dataset: {len(brands_collection)}")
 ```
 
-## Step 3: Set Up the Query Agent
+By calling `len()` on our collections we can check that import has successfully concluded and see what the size of our collections is. 
 
-When setting up the query agent, we have to provide it a few things:
+## Step 3: Set up the Query Agent
+
+When setting up the query agent, we have to provide a few things:
 
 - The `client`
 - The `collection` which we want the agent to have access to.
 - (Optionally) A `system_prompt` that describes how our agent should behave
 - (Optionally) Timeout - which for now defaults to 60s.
 
-Let's start with a simple agent. Here, we're creating an `agent` that has access to our `brands`, `ecommerce` & `financial_contracts` datasets.
+Let's start with a simple agent. Here, we're creating an `agent` that has access to our `brands` and `ecommerce` datasets.
 
 ```python
 from weaviate.agents.query import QueryAgent
@@ -149,6 +181,8 @@ agent = QueryAgent(
 )
 ```
 
+And that's about it! Now you can start using the Query Agent. 
+
 ## Step 4: Run the Query Agent
 
 When we run the agent, it will first make a few decisions, depending on the query:
@@ -157,7 +191,7 @@ When we run the agent, it will first make a few decisions, depending on the quer
 2. The agent will also decide whether to perform a regular **_search query_**, what **_filters_** to use, whether to do an **_aggregation query_**, or all of them together!
 3. It will then provide a reponse within **`QueryAgentResponse`**.
 
-### 4.1 Ask a Question
+### 4.1 Ask a question
 
 **Let's start with a simple question: "I like the vintage clothes, can you list me some options that are less than $200?"**
 
@@ -174,8 +208,10 @@ print_query_agent_response(response)
 
 The agent can also be provided with additional context. For example, we can provide the previous response as context and get a `new_response`
 
+```python
 new_response = agent.run("What about some nice shoes, same budget as before?", context=response)
 print_query_agent_response(new_response)
+```
 
 Now let's try a question that sholud require an aggregation. Let's see which brand lists the most shoes.
 
@@ -197,7 +233,7 @@ response = agent.run("Does the brand 'Loom & Aura' have a parent brand or child 
 print_query_agent_response(response)
 ```
 
-### 4.4 Changing the System Prompt
+### 4.4 Changing the system prompt
 
 In some cases, you may want to define a custom `system_prompt` for your agent. This can help you provide the agent with some default instructions as to how to behave. For example, let's create an agent that will always answer the query in the users language.
 
@@ -212,7 +248,7 @@ multi_lingual_agent = QueryAgent(
 For example, this time lets ask something that is about weather!
 TODO
 
-### 4.5 Try More Questions
+### 4.5 Try more Questions
 
 - For example Let's try to find out more about the brans "Eko & Stitch"
 
