@@ -173,7 +173,7 @@ const response = await jeopardy.aggregate.hybrid("animals in space", {
     returnMetrics: jeopardy.metrics.aggregate("points").number(["sum"])
 })
 
-console.log("", response.properties['points'].sum)
+console.log(response.properties['points'].sum)
 // END HybridExample
 
   // Test
