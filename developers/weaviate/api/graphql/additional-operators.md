@@ -284,7 +284,7 @@ You can sort results by any primitive property, such as `text`, `number`, or `in
 
 ### Sorting considerations
 
-Sorting can be applied when fetching objects, but it's **unavailable when using search operators**. 
+Sorting can be applied when fetching objects, but it's **unavailable when using search operators**. Search operators don’t support sorting because they automatically prioritize results according to factors such as [`certainty` or `distance`](./search-operators.md#vector-search-operators), which reflect the relevance of each result.
 
 Weaviate's sorting implementation does not lead to massive memory spikes. Weaviate does not load all object properties into memory; only the property values being sorted are kept in memory.
 
