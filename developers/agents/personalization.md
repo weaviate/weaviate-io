@@ -128,7 +128,7 @@ Provide the following to the Personalization Agent:
 - A list of the collections that the Personalization Agent may use to produce recommendations.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START InstantiatePersonalizationAgent"
@@ -143,7 +143,7 @@ Provide the following to the Personalization Agent:
 In the simplest form, provide a user profile to the Personalization Agent. The Personalization Agent will process the user profile, perform the necessary searches in Weaviate, and return the personalized recommendations.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START BasicQuery"
@@ -159,7 +159,7 @@ In the simplest form, provide a user profile to the Personalization Agent. The P
 Additional parameters can be provided to the Personalization Agent to further tune the recommendations.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START QueryParameters"
@@ -181,7 +181,7 @@ The API includes ways to provide this information when creating the agent. Addit
 Fields for user properties can be added to the user data collection at any time.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START AddUserProperties"
@@ -197,7 +197,7 @@ Fields for user properties can be added to the user data collection at any time.
 New users can be added to the user data collection at any time.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START AddUserEntry"
@@ -213,7 +213,7 @@ New users can be added to the user data collection at any time.
 Additional interactions can be added one at a time, or in bulk.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START AddUserInteractions"

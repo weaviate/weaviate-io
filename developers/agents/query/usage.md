@@ -1,6 +1,6 @@
 ---
 title: Usage
-sidebar_position: 10
+sidebar_position: 30
 image: og/docs/agents.jpg
 # tags: ['agents', 'getting started', 'query agent']
 ---
@@ -28,60 +28,52 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
-## Architecture
+This page describes how to use the Query Agent to answer natural language queries, using your data stored in Weaviate Cloud.
 
-The Query Agent is provided as a service on Weaviate Cloud.
+## Prerequisites
 
-When a user provides a prompt/query, the query agent analyses it and any other known context to autonomously carry out the searches itself.
+### Weaviate instance
 
-:::tip Query Agent context
-The Query agent analyses collection and property descriptions to better understand how to construct relevant queries.<br/>
+The Query Agent is available exclusively for use with a Weaviate Cloud instance.
 
-The context may also include previous conversation history, and any other relevant information.
+Refer to the [Weaviate Cloud documentation](/developers/wcs/index.mdx) for more information on how to set up a Weaviate Cloud instance.
+
+You can try the Query Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
+
+### Client library
+
+You must install the Weaviate client library with the optional `agents` extras to use the Query Agent. Install the client library using the following command:
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
+```shell
+pip install weaviate-client[agents]
+```
+
+</TabItem>
+
+</Tabs>
+
+:::note Supported languages
+At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
 :::
 
-## Query Agent: visualized workflow
+## How to use the Query Agent
 
-![Weaviate Query Agent at a high level](../_includes/query_agent_architecture_light.png#gh-light-mode-only "Weaviate Query Agent at a high level")
-![Weaviate Query Agent at a high level](../_includes/query_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Query Agent at a high level")
+The Query Agent is stateless agentic service. To use it, follow these steps:
 
-The Query Agent follows these high-level steps:
+1. Instantiate the Query Agent.
+    - Pass a Weaviate client object, and a list of collections that the Query Agent may use to answer queries.
+1. Provide a query to the Query Agent.
 
-- Use appropriate foundation models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
-- Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)
-- Receive the results from Weaviate, and use appropriate foundation models to generate the final respond to the user prompt/query. (Step 6)
-
-Then, the Query Agent returns the answer to the user, as well as intermediate outputs, such as the underlying search results from Weaviate.
-
-Note that the term `Query Agent` refers to the entire system. The Query Agent may comprise multiple subsystems, such as microservices and/or agents under the hood, each responsible for a specific task.
-
-![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
-![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
-
-## Usage
-
-:::caution Technical Preview
-
-![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
-![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
-
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
-
-:::
-
-### Prerequisites
-
-The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
-
-### Connect to Query Agent
-
-Provide the following to the Query Agent:
+### Instantiate the Query Agent
 
 - Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
 - A list of the collections that the Query Agent may use to answer queries.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START InstantiateQueryAgent"
@@ -103,7 +95,7 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
 :::
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START BasicQuery"
@@ -114,10 +106,12 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
 
 </Tabs>
 
+### Follow-up queries
+
 The Query Agent can even handle follow-up queries, using the previous response as additional context.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START FollowUpQuery"
@@ -128,44 +122,67 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 </Tabs>
 
-### Inspect responses
+## Inspect responses
 
-The above examples display the final answers only. The response from the Query Agent will contain additional information, such as the various search results and aggregations.
+The response from the Query Agent will contain the final answer, as well as additional supporting information.
 
-You can inspect these to verify the answer, or as the basis for further analysis. The examples below show multiple ways to inspect the response.
+The supporting information may include searches or aggregations carried out, what information may have been missing, and how many LLM tokens were used by the Agent.
 
-#### Summarized elements
+### Helper function
 
-This format may be useful for a quick overview of the response.
+Try the provided helper function (e.g. `print_query_agent_response`) to display the response in a readable format.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START InspectResponseShort"
-            endMarker="# END InspectResponseShort"
+            startMarker="# START BasicQuery"
+            endMarker="# END BasicQuery"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-#### Detailed response
+This will print the response and a summary of the supporting information found by the Query Agent.
 
-This example explores the response object in further detail. It includes the answer, as well as the Query Agent's feedback on whether some desired information was found or not.
+### Inspection example
+
+This example outputs:
+
+- The original user query
+- The answer provided by the Query Agent
+- Searches & aggregations (if any) conducted by the Query Agent
+- Any missing information
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START InspectResponseFull"
-            endMarker="# END InspectResponseFull"
+            startMarker="# START InspectResponseExample"
+            endMarker="# END InspectResponseExample"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
+## Advanced options
+
+### Agent instantiation
+
+The Query Agent can be instantiated with additional options, such as:
+
+- `system_prompt`: A custom system prompt to replace the default system prompt provided by the Weaviate team.
+- `timeout`: The maximum time the Query Agent will spend on a single query, in seconds (server-side default: 60).
+
+### Collection selection
+
+Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryAgent` object to add or remove collections from the Query Agent's list of collections.
+
+### Queries
+
+Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
 ## Questions and feedback
 

@@ -71,7 +71,7 @@ The Query Agent is available exclusively for use with a Weaviate Cloud instance,
 Pass an instance of the Weaviate client to the Query Agent, and the Query Agent will extract the necessary information from the client to perform the query.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START InstantiateQueryAgent"
@@ -85,7 +85,7 @@ Pass an instance of the Weaviate client to the Query Agent, and the Query Agent 
 Then, provide a natural language query input. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START BasicQuery"
@@ -99,7 +99,7 @@ Then, provide a natural language query input. The Query Agent will process the q
 The Query Agent can even handle follow-up queries, using the previous response as additional context.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START FollowUpQuery"
