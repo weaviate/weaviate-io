@@ -1,6 +1,6 @@
 # START-ANY
-# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is not available just yet.
-# These snippets are indicative. The syntax may change when this Agent is released.
+# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is available as a technical preview.
+# The Agent, and the syntax may change in a later release.
 
 # END-ANY
 
@@ -11,10 +11,10 @@ from weaviate.classes.init import Auth
 from weaviate.agents.query import QueryAgent
 
 # END InstantiateQueryAgent
-# START InspectResponseShort  # START InspectResponseFull
-from weaviate.agents.query import QueryAgentResponse
 
-# END InspectResponseShort  # END InspectResponseFull
+# START BasicQuery  # START FollowUpQuery
+from weaviate.agents.utils import print_query_agent_response
+# END BasicQuery  # END FollowUpQuery
 
 # START InstantiateQueryAgent
 
@@ -45,7 +45,7 @@ response = qa.run(
 )
 
 # Print the response
-print(f"{response.final_answer}\n")
+print_query_agent_response(response)
 # END BasicQuery
 
 # START FollowUpQuery
@@ -56,7 +56,7 @@ following_response = qa.run(
 )
 
 # Print the response
-print(f"{following_response.final_answer}\n")
+print_query_agent_response(response)
 # END FollowUpQuery
 
 
@@ -81,17 +81,6 @@ for collection_aggs in response.aggregations:
 # START InspectResponseFull
 print("\n=== Query Agent Response ===")
 print(f"Original Query: {response.original_query}\n")
-
-if response.has_search_answer:
-    print("🔍 Search Answer Found:")
-    print(f"{response.search_answer}\n")
-
-    print("Searches Executed:")
-    for collection_searches in response.searches:
-        for result in collection_searches:
-            print(f"- {result}\n")
-else:
-    print("🔍 No Searches Run \n")
 
 if response.has_aggregation_answer:
     print("📊 Aggregation Answer Found:")
