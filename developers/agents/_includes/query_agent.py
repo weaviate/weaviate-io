@@ -1,6 +1,6 @@
 # START-ANY
 # [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is available as a technical preview.
-# The Agent, and the syntax may change in a later release.
+# The Agent and the syntax may change in a later release.
 
 # END-ANY
 

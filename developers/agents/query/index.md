@@ -12,12 +12,12 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 
 # Weaviate Query Agent
 
-:::caution
+:::caution Technical Preview
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
 :::
 
@@ -25,8 +25,8 @@ The Weaviate Query Agent is a pre-built agentic service designed to answer natur
 
 The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
 
-![Weaviate Query Agent from a user perspective](./_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
-![Weaviate Query Agent from a user perspective](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
+![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
+![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
 ## Architecture
 
@@ -42,8 +42,8 @@ The context may also include previous conversation history, and any other releva
 
 ## Query Agent: visualized workflow
 
-![Weaviate Query Agent at a high level](./_includes/query_agent_architecture_light.png#gh-light-mode-only "Weaviate Query Agent at a high level")
-![Weaviate Query Agent at a high level](./_includes/query_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Query Agent at a high level")
+![Weaviate Query Agent at a high level](../_includes/query_agent_architecture_light.png#gh-light-mode-only "Weaviate Query Agent at a high level")
+![Weaviate Query Agent at a high level](../_includes/query_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Query Agent at a high level")
 
 The Query Agent follows these high-level steps:
 
@@ -55,17 +55,17 @@ Then, the Query Agent returns the answer to the user, as well as intermediate ou
 
 Note that the term `Query Agent` refers to the entire system. The Query Agent may comprise multiple subsystems, such as microservices and/or agents under the hood, each responsible for a specific task.
 
-![Weaviate Query Agent comprises multiple agents](./_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
-![Weaviate Query Agent comprises multiple agents](./_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
+![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
+![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
 
 ## Usage
 
-:::caution
+:::caution Technical Preview
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
 :::
 
