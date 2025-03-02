@@ -149,7 +149,7 @@ Try the provided helper function (e.g. `print_query_agent_response`) to display 
 This will print the response and a summary of the supporting information found by the Query Agent.
 
 <details>
-  <summary>Example response</summary>
+  <summary>Example output</summary>
 
 ```text
 ╭──────────────────────────────────────────────────────── 🔍 Original Query ─────────────────────────────────────────────────────────╮
