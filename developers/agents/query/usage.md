@@ -269,7 +269,7 @@ Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryA
 
 Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
 
-## Limitations
+## Limitations & Troubleshooting
 
 :::caution Technical Preview
 
@@ -289,6 +289,14 @@ The Query Agent is currently not able to access collections with multi-tenancy e
 The Query Agent makes use of each collection's `description` metadata in deciding what collection to query.
 
 We are investigating an ability to specify a custom collection description at runtime.
+
+### Execution times
+
+The Query Agent performs multiple operations to translate a natural language query into Weaviate queries, and to process the response.
+
+This typicallly requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
+
+As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
 
 ## Questions and feedback
 
