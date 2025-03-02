@@ -61,13 +61,7 @@ At this time, the Query Agent is available only for Python. Support for other la
 
 ## How to use the Query Agent
 
-The Query Agent is stateless agentic service. To use it, follow these steps:
-
-1. Instantiate the Query Agent.
-    - Pass a Weaviate client object, and a list of collections that the Query Agent may use to answer queries.
-1. Provide a query to the Query Agent.
-
-### Instantiate the Query Agent
+### 1. Instantiate the Query Agent
 
 - Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
 - A list of the collections that the Query Agent may use to answer queries.
@@ -84,7 +78,15 @@ The Query Agent is stateless agentic service. To use it, follow these steps:
 
 </Tabs>
 
-### Queries
+:::info What does the Query Agent have access to?
+
+The Query Agent derives its access credentials from the Weaviate client object passed to it. This can be further restricted by the collection names provided to the Query Agent.
+
+For example, if the associated Weaviate credentials' user has access to only a subset of collections, the Query Agent will only be able to access those collections.
+
+:::
+
+### 2. Perform queries
 
 Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
 
@@ -106,7 +108,7 @@ The Query Agent will formulate its strategy based on your query. So, aim to be u
 
 </Tabs>
 
-### Follow-up queries
+#### 2.1. Follow-up queries
 
 The Query Agent can even handle follow-up queries, using the previous response as additional context.
 
@@ -183,6 +185,27 @@ Use `.add_collection` or `.remove_collection` methods on an instantiated `QueryA
 ### Queries
 
 Use `.view_properties` to define the properties that the Query Agent can look at when answering queries.
+
+## Limitations
+
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
+
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
+
+### Multi-tenant collections
+
+The Query Agent is currently not able to access collections with multi-tenancy enabled. This will be added im the future.
+
+### Custom collection descriptions
+
+The Query Agent makes use of each collection's `description` metadata in deciding what collection to query.
+
+We are investigating an ability to specify a custom collection description at runtime.
 
 ## Questions and feedback
 
