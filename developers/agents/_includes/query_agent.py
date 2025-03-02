@@ -1,19 +1,13 @@
-# START-ANY
-# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is available as a technical preview.
-# The Agent and the syntax may change in a later release.
-
-# END-ANY
-
 # START InstantiateQueryAgent
 import os
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.agents.query import QueryAgent
-
 # END InstantiateQueryAgent
 
 # START BasicQuery  # START FollowUpQuery
 from weaviate.agents.utils import print_query_agent_response
+
 # END BasicQuery  # END FollowUpQuery
 
 # START InstantiateQueryAgent

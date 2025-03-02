@@ -1,5 +1,5 @@
 ---
-title: Query Agent
+title: Usage
 sidebar_position: 10
 image: og/docs/agents.jpg
 # tags: ['agents', 'getting started', 'query agent']
@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent.py';
 
-# Weaviate Query Agent: Overview
+# Weaviate Query Agent: Usage
 
 :::caution Technical Preview
 
@@ -60,15 +60,25 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ## Usage
 
-Here is an overview of how to use the Query Agent. For more detailed information, refer to th[Query Agent: Usage](./usage.md) page.
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
+
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
 
 ### Prerequisites
 
-The Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
+The Query Agent is tightly integrated with Weaviate Cloud. As a result, the Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
 
-### Example Usage
+### Connect to Query Agent
 
-Pass an instance of the Weaviate client to the Query Agent, and the Query Agent will extract the necessary information from the client to perform the query.
+Provide the following to the Query Agent:
+
+- Your Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Query Agent.
+- A list of the collections that the Query Agent may use to answer queries.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
@@ -82,7 +92,15 @@ Pass an instance of the Weaviate client to the Query Agent, and the Query Agent 
 
 </Tabs>
 
-Then, provide a natural language query input. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
+### Queries
+
+Provide a natural language query to the Query Agent. The Query Agent will process the query, perform the necessary searches in Weaviate, and return the answer.
+
+This is a synchronous operation. The Query Agent will return the answer to the user as soon as it is available.
+
+:::tip Consider your query carefully
+The Query Agent will formulate its strategy based on your query. So, aim to be unambiguous, complete, yet concise in your query as much as possible.
+:::
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python[agents]">
@@ -110,9 +128,44 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 </Tabs>
 
-### Further Documentation
+### Inspect responses
 
-For more detailed information on how to use the Query Agent, refer to the [Query Agent: Usage](./usage.md) page.
+The above examples display the final answers only. The response from the Query Agent will contain additional information, such as the various search results and aggregations.
+
+You can inspect these to verify the answer, or as the basis for further analysis. The examples below show multiple ways to inspect the response.
+
+#### Summarized elements
+
+This format may be useful for a quick overview of the response.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START InspectResponseShort"
+            endMarker="# END InspectResponseShort"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
+#### Detailed response
+
+This example explores the response object in further detail. It includes the answer, as well as the Query Agent's feedback on whether some desired information was found or not.
+
+<Tabs groupId="languages">
+    <TabItem value="py_agents" label="Python[agents]">
+        <FilteredTextBlock
+            text={PyCode}
+            startMarker="# START InspectResponseFull"
+            endMarker="# END InspectResponseFull"
+            language="py"
+        />
+    </TabItem>
+
+</Tabs>
+
 
 ## Questions and feedback
 
