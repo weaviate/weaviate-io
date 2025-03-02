@@ -112,7 +112,7 @@ The Transformation Agent is tightly integrated with Weaviate Cloud. As a result,
 You must connect to the Weaviate Cloud instance to use the Transformation Agent. Connect to the Weaviate Cloud instance using the Weaviate client library.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START ConnectToWeaviate"
@@ -138,7 +138,7 @@ Here are a few examples of transformation operations:
 Properties of various types can be added to the data, based on one or more existing properties. See the following example operations:
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START DefineOperationsAppend"
@@ -154,7 +154,7 @@ Properties of various types can be added to the data, based on one or more exist
 Existing properties can be updated based on the context of one or more existing properties. See the following example operations:
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START DefineOperationsUpdate"
@@ -174,7 +174,7 @@ The vectorization will only occur after the transformation operations are comple
 The Transformation Agent will return a job ID when the operations are started.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START TransformAtInsert"
@@ -192,7 +192,7 @@ You can also use the Transformation Agent to transform data in an existing colle
 The Transformation Agent will return a job ID when the operations are started.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START TransformExisting"
@@ -208,7 +208,7 @@ The Transformation Agent will return a job ID when the operations are started.
 You can use the job ID to monitor the status of the job, and retrieve a response when the job is complete.
 
 <Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python[agents]">
+    <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
             startMarker="# START MonitorJobStatus"

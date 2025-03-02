@@ -9,7 +9,7 @@ image: og/docs/agents.jpg
 
 :::caution
 
-Weaviate Agents are not yet available, but they will be soon. To be notified when agents are released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+Not all Weaviate Agents are yet available. To be notified as agents are released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
 :::
 
@@ -27,12 +27,12 @@ Weaviate Agents is not a framework for building agents. It is a set of pre-built
 
 ## Query Agent
 
-The [Query Agent](./query.md) provides an answer to your natural language questions, by querying your stored data.
+The [Query Agent](./query/index.md) provides an answer to your natural language questions, by querying your stored data.
 
-[![Click to read more about the Query Agent](./_includes/query_agent_usage_light.png#gh-light-mode-only "Click to read more about the Query Agent")](./query.md)
-[![Click to read more about the Query Agent](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Click to read more about the Query Agent")](./query.md)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_light.png#gh-light-mode-only "Click to read more about the Query Agent")](./query/index.md)
+[![Click to read more about the Query Agent](./_includes/query_agent_usage_dark.png#gh-dark-mode-only "Click to read more about the Query Agent")](./query/index.md)
 
-[Read more about the Query Agent](./query.md)
+[Read more about the Query Agent](./query/index.md)
 
 ## Transformation Agent
 
