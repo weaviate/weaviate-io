@@ -200,19 +200,20 @@ In some cases, you may want to define a custom `system_prompt` for your agent. T
   </TabItem>
 </Tabs>
 
+We will use this custom agent `multi_lingual_agent` in [step 4.5](#use-system-prompt-agent).
+
 ## Step 4: Run the Query Agent
 
 When we run the agent, it will first make a few decisions depending on the query:
 
 1. The agent will decide which collection (or multiple collections) to look up an answer in.
-2. The agent will also decide whether to perform a regular **_search query_**, what **_filters_** to use, whether to do an **_aggregation query_**, or all of them together!
+2. The agent will also decide whether to perform a regular **_search query_**, what **_filters_** to use, whether to do an **_aggregation query_**, or all of them together.
 3. It will then provide a response within **`QueryAgentResponse`**.
 
 ### 4.1 Ask a question
 
-**Let's start with a simple question: "I like the vintage clothes, can you list me some options that are less than $200?"**
-
-We can then also inspect how the agent responded, what kind of searches it performed on which collections, whether it has identified if the final answer is missing information or not, as well as the final answer 👇
+Let's start with a simple question: 
+- "I like vintage clothes, can you list me some options that are less than $200?"
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -224,6 +225,15 @@ We can then also inspect how the agent responded, what kind of searches it perfo
     />
   </TabItem>
 </Tabs>
+
+By using the function `print_query_agent_response` to display the `QueryAgentResponse`, we can also inspect the following information:
+- 🔍 Original Query
+- 📝 Final Answer
+- 🔭 Searches Executed
+- 📊 Aggregations Run
+- ⚠️ Missing Information
+- 📊 Usage Statistics
+- Total Time Taken
 
 <details>
   <summary>The response is:</summary>
@@ -437,7 +447,7 @@ Now, let's try a question that requires an aggregation. Let's see which brand li
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📝 Final Answer ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │                                                                                                                                                                                                                                                   │
-│ Unfortunately, the search and aggregation results did not provide information regarding which brand lists the most shoes. Without specific data or examples from the search results, this question cannot be answered at this time.               │
+│ The brand that lists the most shoes is Loom & Aura, with a total count of 118 shoes across various styles such as Cottagecore, Fairycore, Goblincore, Light Academia, and Dark Academia.                                                          │
 │                                                                                                                                                                                                                                                   │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -450,15 +460,10 @@ Now, let's try a question that requires an aggregation. Let's see which brand li
 │ AggregationResultWithCollection(                                                                                                                                                                                                                  │
 │     search_query=None,                                                                                                                                                                                                                            │
 │     groupby_property='brand',                                                                                                                                                                                                                     │
-│     aggregations=[IntegerPropertyAggregation(property_name='collection', metrics=<NumericMetrics.COUNT: 'COUNT'>)],                                                                                                                               │
-│     filters=[TextPropertyFilter(property_name='collection', operator=<ComparisonOperator.EQUALS: '='>, value='shoes')],                                                                                                                           │
-│     collection='Ecommerce'                                                                                                                                                                                                                        │
+│     aggregations=[TextPropertyAggregation(property_name='collection', metrics=<TextMetrics.TOP_OCCURRENCES: 'TOP_OCCURRENCES'>, top_occurrences_limit=1)],                                                                                        │
+│     filters=[],                                                                                                                                                                                                                                   │
+│     collection='ECommerce'                                                                                                                                                                                                                        │
 │ )                                                                                                                                                                                                                                                 │
-│                                                                                                                                                                                                                                                   │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭───────────────────────────────────────────────────────────────────────────────────────────────────────────── ⚠️ Missing Information: ──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                                                                                                                                                                                   │
-│ - Brand with the most shoes listed.                                                                                                                                                                                                               │
 │                                                                                                                                                                                                                                                   │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
@@ -466,12 +471,12 @@ Now, let's try a question that requires an aggregation. Let's see which brand li
    📊 Usage Statistics
 ┌────────────────┬──────┐
 │ LLM Requests:  │ 3    │
-│ Input Tokens:  │ 3475 │
-│ Output Tokens: │ 185  │
-│ Total Tokens:  │ 3660 │
+│ Input Tokens:  │ 5794 │
+│ Output Tokens: │ 238  │
+│ Total Tokens:  │ 6032 │
 └────────────────┴──────┘
 
-Total Time Taken: 5.51s
+Total Time Taken: 7.52s
 ```
 
 </details>
@@ -551,7 +556,7 @@ Total Time Taken: 16.12s
 
 </details>
 
-### 4.5 Use a system prompt
+### 4.5 Use a system prompt {#use-system-prompt-agent}
 
 We are going to use the custom agent from [step 3.2](#system-prompt-agent) with the system prompt that says:
 
