@@ -6,8 +6,7 @@ from weaviate.auth import Auth
 # Best practice: store your credentials in environment variables
 weaviate_url = os.environ["WEAVIATE_URL"]
 weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
-print(weaviate_url)
-print(weaviate_api_key)
+
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=weaviate_url,
     auth_credentials=Auth.api_key(weaviate_api_key),
@@ -132,8 +131,9 @@ multi_lingual_agent = QueryAgent(
 from weaviate.agents.utils import print_query_agent_response
 
 response = agent.run(
-    "I like the vintage clothes, can you list me some options that are less than $200?"
+    "I like vintage clothes, can you list me some options that are less than $200?"
 )
+
 print_query_agent_response(response)
 # END AskQuestions
 
@@ -141,11 +141,13 @@ print_query_agent_response(response)
 new_response = agent.run(
     "What about some nice shoes, same budget as before?", context=response
 )
+
 print_query_agent_response(new_response)
 # END FollowUpAskQuestions
 
 # START Aggregation
 response = agent.run("What is the the name of the brand that lists the most shoes?")
+
 print_query_agent_response(response)
 # END Aggregation
 
