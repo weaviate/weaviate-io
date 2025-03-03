@@ -31,12 +31,14 @@ client.collections.delete("ECommerce")
 # START DefineCollections
 from weaviate.classes.config import Configure, Property, DataType
 
+# Using `auto-schema` to infer the data schema during import
 client.collections.create(
     "Brands",
     description="A dataset that lists information about clothing brands, their parent companies, average rating and more.",
     vectorizer_config=Configure.Vectorizer.text2vec_weaviate(),
 )
 
+# Explicitly defining the data schema
 client.collections.create(
     "ECommerce",
     description="A dataset that lists clothing items, their brands, prices, and more.",
@@ -125,8 +127,8 @@ agent = QueryAgent(
 multi_lingual_agent = QueryAgent(
     client=client,
     collections=["ECommerce", "Brands"],
-    system_prompt="You are a helpful assistant that always generated the final response in the users language."
-    " You may have to translate the user query to perform searches. But you must always respond to the user in their own language.",
+    system_prompt="You are a helpful assistant that always generates the final response in the user's language."
+    "You may have to translate the user query to perform searches. But you must always respond to the user in their own language.",
 )
 # END CustomizedQueryAgent
 
@@ -164,9 +166,7 @@ print_query_agent_response(response)
 # END SearchOverMultipleCollections
 
 # START MoreQuestions
-response = agent.run(
-    "Does Eko & Stitch have a branch in the UK? Or if not, does it have parent or child company in the UK?"
-)
+response = multi_lingual_agent.run('"Eko & Stitch"は英国に支店または関連会社がありますか？')
 
 print(response.final_answer)
 # END MoreQuestions
