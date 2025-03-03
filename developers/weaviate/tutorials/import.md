@@ -1,7 +1,7 @@
 ---
 title: Imports in detail
 description: Understand data import techniques in Weaviate for efficient data integration.
-sidebar_position: 30
+sidebar_position: 4
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
