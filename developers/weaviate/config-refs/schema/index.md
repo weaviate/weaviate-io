@@ -149,7 +149,7 @@ To avoid this, you can either:
 - Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
-
+<!--
 ### Collections count limit {#collections-count-limit}
 
 :::info
@@ -169,7 +169,7 @@ This change does not affect existing clusters that have already exceeded the def
 **Instead of raising the collections count limit, consider rethinking your architecture**.  
 For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
 :::
-
+-->
 ## Available parameters
 
 ### `class`
