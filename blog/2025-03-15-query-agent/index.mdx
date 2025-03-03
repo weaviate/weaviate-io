@@ -35,7 +35,7 @@ In addition to access to multiple collections, the Weaviate Query Agent also has
 
 In essence, we’ve released a multi-agent system that can route queries to one or the other and synthesise a final answer for the user.
 
-![Query Agent][./img/query-agent.png]
+![Query Agent](img/query-agent.png)
 
 ### Routing to Search vs Aggregations
 
@@ -81,7 +81,7 @@ We’ll use these datasets to create an ‘e-commerce assistant’ agent
 ```python
 from weaviate.agents.query import QueryAgent
 
-agent = QueryAgent(client=your_client, collections=["ecommerce", "Brands"])
+agent = QueryAgent(client=your_client, collections=["Ecommerce", "Brands"])
 
 ```
 
@@ -145,7 +145,7 @@ In addition to deciding which of your collections the `QueryAgent` has access to
 
 ```python
 multi_lingual_agent = QueryAgent(
-    client=client, collections=["ecommerce", "Brands"],
+    client=client, collections=["Ecommerce", "Brands"],
     system_prompt="You are a helpful assistant that always generated the final response in the users language."
     " You may have to translate the user query to perform searches. But you must always respond to the user in their own language."
 )
