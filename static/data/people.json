@@ -49,6 +49,12 @@
     "team": "marketing"
   },
   {
+    "name": "Alec Berry",
+    "title": "Enterprise Account Executive",
+    "photo": "Alec-Berry.jpg",
+    "team": "sales"
+  },
+  {
     "name": "Alvin Richards",
     "title": "VP of Product",
     "photo": "Alvin.jpg",
@@ -197,6 +203,12 @@
     "photo": "Damien.jpg",
     "linkedin": "gasparinadamien",
     "team": "sales"
+  },
+  {
+    "name": "Daniel Janicek",
+    "title": "QA Engineer",
+    "photo": "Daniel-Janicek.jpg",
+    "team": "database"
   },
   {
     "name": "Daniel Phiri",
@@ -533,6 +545,14 @@
     "team": "marketing"
   },
   {
+    "name": "Michelangelo Partipilo",
+    "title": "Software Engineer",
+    "photo": "Michelangelo-Partipilo.jpg",
+    "linkedin": "mpartipilo",
+    "twitter": "mpartipilom",
+    "team": "database"
+  },
+  {
     "name": "Mike Hoppe",
     "title": "Client-Focused SRE",
     "photo": "Mike-Hoppe.jpg",
@@ -639,6 +659,12 @@
     "photo": "ryan.jpg",
     "linkedin": "ryantcolbert",
     "team": "sales"
+  },
+  {
+    "name": "Salvatore Campagna",
+    "title": "Software Engineer",
+    "photo": "Salvatore-Campagna.jpg",
+    "team": "database"
   },
   {
     "name": "Scott Alexander",
@@ -778,6 +804,13 @@
     "linkedin": "wera-kr",
     "github": "Weroiko",
     "team": "wcd"
+  },
+  {
+    "name": "Willem Bens",
+    "title": "System Integrator Partner Manager",
+    "photo": "Willem-Bens.jpg",
+    "linkedin": "Willem-bens",
+    "team": "partnerships"
   },
   {
     "name": "Chrétien Minke",
