@@ -1,7 +1,7 @@
 ---
 title: Multi-vector embeddings (ColBERT, ColPali, etc.)
 description: Learn how to use multi-vector embeddings in Weaviate.
-sidebar_position: 20
+sidebar_position: 2
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---

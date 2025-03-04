@@ -1,0 +1,609 @@
+---
+title: Build an E-Commerce assistant with Query Agents
+sidebar_label: E-Commerce assistant with Query Agents
+description: Learn how to build a simple e-commerce assistant agent with the Weaviate Query Agent.
+sidebar_position: 1
+image: og/docs/tutorials.jpg
+# tags: ['basics']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/query-agents-ecommerce.py';
+
+In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](./index.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
+
+We've prepared a few public datasets that you can use to explore the Query Agent.  
+They are available on HuggingFace:
+
+- [**E-Commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews, etc.
+- [**Brands:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands) A dataset that lists clothing brands and information about them, such as their parent brand, child brands, average customer rating, etc.
+
+## Introduction: What are Query Agents?
+
+The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
+
+import WeaviateAgentsECommerceFlowchart from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-flowchart.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsECommerceFlowchart}
+        alt="Weaviate Query Agent flowchart"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+The Query Agent:
+
+1. **Receives a task** in the form of a question or instructions.
+2. **Uses an appropriate foundation model** (e.g. large language model) to analyze the task and determine the exact queries to perform.
+3. **Sends the queries to Weaviate** which vectorizes the queries as needed using the specified vectorizer integration (we will use Weaviate Embeddings).
+4. **Receives the results from Weaviate** and uses appropriate foundation models to generate the final response to the user prompt/query.
+
+<hr />
+
+## Prerequisites
+
+To use the Weaviate Query Agent and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+
+## Step 1: Set up Weaviate
+
+Now, let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting it to the Python client.
+
+### 1.1 Create a Weaviate Cloud cluster
+
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+
+:::tip
+In this tutorial, we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
+:::
+
+### 1.2 Install the Python libraries
+
+In order to install the Weaviate Python client together with the `agents` component, run:
+
+```
+pip install "weaviate-client[agents]"
+```
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+```
+pip install datasets
+```
+
+### 1.3 Connect to your instance
+
+Now, you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After running this snippet, you should see the message `True` printed out, which means that you have successfully connected to your instance.
+
+## Step 2: Prepare the Collections
+
+In the following code blocks, we are pulling our demo datasets from Hugging Face and writing them to new collections in our Weaviate Sandbox cluster. Before we can start importing the data into Weaviate, we need to **define the collections**, which means setting up the data schema and choosing the vectorizer/embedding service.
+
+### 2.1 Define the Collections
+
+Below you can see what the objects in the datasets `E-Commerce` and `Brands` look like.
+
+import WeaviateAgentsEcommerceDataset from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-dataset.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsEcommerceDataset}
+        alt="The E-Commerce and Brands datasets"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+For the collection `Brands`, we are going to use the [`auto-schema`](../../weaviate/config-refs/schema/index.md#auto-schema) option which creates properties automatically based on the imported data.
+However, this is not the best way of importing the data.
+
+The Query Agent uses the **descriptions of collections and properties** to decide which ones to use when solving queries. You can experiment by changing these descriptions and providing more details.
+This is why it's recommended to manually define the data schema and add the property descriptions.
+
+For example, below we make sure that the Query Agent knows that prices are all in USD, which is information that would otherwise be unavailable.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DefineCollections"
+      endMarker="# END DefineCollections"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### 2.2 Populate the database
+
+Now, we can import the pre-vectorized data ([E-Commerce](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) and [Brands](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-brands)) into our Weaviate Cloud instance:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PopulateDatabase"
+      endMarker="# END PopulateDatabase"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+By calling `len()` on our collections, we can check that the import has successfully concluded and see what the size of our collections is.
+
+```
+Size of the E-Commerce dataset: 448
+Size of the Brands dataset: 104
+```
+
+## Step 3: Set up the Query Agent
+
+### 3.1 Basic Query Agent
+
+When setting up the query agent, we have to provide a few things:
+
+- The `client`
+- The `collection` which we want the agent to have access to.
+- (Optionally) A `system_prompt` that describes how our agent should behave
+- (Optionally) Timeout - which for now defaults to 60s.
+
+Let's start with a simple agent. Here, we're creating an `agent` that has access to our `Brands` and `ECommerce` datasets.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicQueryAgent"
+      endMarker="# END BasicQueryAgent"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+And that's about it! Now, you can start using the Query Agent.
+
+### 3.2 Customized Query Agent (with system prompt) {#system-prompt-agent}
+
+In some cases, you may want to define a custom `system_prompt` for your agent. This can help you provide the agent with some default instructions for how to behave. For example, let's create an agent that will always answer the query in the user's language.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CustomizedQueryAgent"
+      endMarker="# END CustomizedQueryAgent"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+We will use this custom agent `multi_lingual_agent` in [step 4.5](#use-system-prompt-agent).
+
+## Step 4: Run the Query Agent
+
+When we run the agent, it will first make a few decisions depending on the query:
+
+1. The agent will decide which collection (or multiple collections) to look up an answer in.
+2. The agent will also decide whether to perform a regular **_search query_**, what **_filters_** to use, whether to do an **_aggregation query_**, or all of them together.
+3. It will then provide a response within **`QueryAgentResponse`**.
+
+### 4.1 Ask a question
+
+Let's start with a simple question: 
+- "I like vintage clothes, can you list me some options that are less than $200?"
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AskQuestions"
+      endMarker="# END AskQuestions"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+By using the function `print_query_agent_response` to display the `QueryAgentResponse`, we can also inspect the following information:
+- 🔍 Original Query
+- 📝 Final Answer
+- 🔭 Searches Executed
+- 📊 Aggregations Run
+- ⚠️ Missing Information
+- 📊 Usage Statistics
+- Total Time Taken
+
+<details>
+  <summary>The response is:</summary>
+
+```
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔍 Original Query ────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ I like vintage clothes, can you list me some options that are less than $200?                                                                                                                                                                     │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📝 Final Answer ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ Here are some vintage clothing options available for less than $200:                                                                                                                                                                              │
+│                                                                                                                                                                                                                                                   │
+│ 1. **Vintage Philosopher Midi Dress** - $125                                                                                                                                                                                                      │
+│    - Brand: Echo & Stitch                                                                                                                                                                                                                         │
+│    - Colors: Deep green velvet with antique gold button detailing                                                                                                                                                                                 │
+│    - Description: This vintage-inspired midi dress is perfect for those who love classic styles with its tailored fit and pleated skirt.                                                                                                          │
+│                                                                                                                                                                                                                                                   │
+│ 2. **Vintage Gale Pleated Dress** - $120                                                                                                                                                                                                          │
+│    - Brand: Solemn Chic                                                                                                                                                                                                                           │
+│    - Colors: Burgundy                                                                                                                                                                                                                             │
+│    - Description: Capturing the essence of Dark Academia, this dress features deep pleats with a scholarly silhouette.                                                                                                                            │
+│                                                                                                                                                                                                                                                   │
+│ 3. **Retro Groove Flared Pants** - $59                                                                                                                                                                                                            │
+│    - Brand: Vivid Verse                                                                                                                                                                                                                           │
+│    - Colors: Electric Blue                                                                                                                                                                                                                        │
+│    - Description: Inspired by early 2000s fashion, these vibrant flared pants bring a playful vibe to any outfit.                                                                                                                                 │
+│                                                                                                                                                                                                                                                   │
+│ 4. **RetroFuturist Tee** - $29.98                                                                                                                                                                                                                 │
+│    - Brand: Vivid Verse                                                                                                                                                                                                                           │
+│    - Colors: Blue, Silver                                                                                                                                                                                                                         │
+│    - Description: A graphic tee that combines early 2000s pop culture with a futuristic flair.                                                                                                                                                    │
+│                                                                                                                                                                                                                                                   │
+│ 5. **TechGlam Graphic Tee** - $29.98                                                                                                                                                                                                              │
+│    - Brand: Vivid Verse                                                                                                                                                                                                                           │
+│    - Colors: Blue, Silver                                                                                                                                                                                                                         │
+│    - Description: This tee features futuristic visuals and pop culture references from the early 2000s.                                                                                                                                           │
+│                                                                                                                                                                                                                                                   │
+│ 6. **Vintage Scholar Tote** - $90                                                                                                                                                                                                                 │
+│    - Brand: Echo & Stitch                                                                                                                                                                                                                         │
+│    - Colors: Deep Green and Brown leather accents                                                                                                                                                                                                 │
+│    - Description: Combining functionality and elegance, this tote is ideal for carrying scholarly essentials.                                                                                                                                     │
+│                                                                                                                                                                                                                                                   │
+│ 7. **Victorian Velvet Jumpsuit** - $120                                                                                                                                                                                                           │
+│    - Brand: Solemn Chic                                                                                                                                                                                                                           │
+│    - Colors: Black, Burgundy                                                                                                                                                                                                                      │
+│    - Description: Evocative of vintage romance and academic elegance, perfect for intellectual settings.                                                                                                                                          │
+│                                                                                                                                                                                                                                                   │
+│ 8. **Vintage Scholar Turtleneck** - $55                                                                                                                                                                                                           │
+│    - Brand: Echo & Stitch                                                                                                                                                                                                                         │
+│    - Colors: Black, Grey                                                                                                                                                                                                                          │
+│    - Description: A turtleneck that brings a Dark Academia aesthetic to any wardrobe.                                                                                                                                                             │
+│                                                                                                                                                                                                                                                   │
+│ These items capture various aspects of vintage fashion and are budget-friendly options for under $200.                                                                                                                                            │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔭 Searches Executed 1/1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ QueryResultWithCollection(queries=['vintage clothes'], filters=[[IntegerPropertyFilter(property_name='price', operator=<ComparisonOperator.LESS_THAN: '<'>, value=200.0)]], filter_operators='AND', collection='Ecommerce')                       │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ 📊 No Aggregations Run                                                                                                                                                                                                                            │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📚 Sources ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│  - object_id='d97e3418-2b53-471d-bc6e-4ec2429e0e8d' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='a40fe71c-a37f-4ab4-a41c-b1e5493a408c' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='a6c28245-7795-4a91-9a9c-668a033dda8a' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='834b4125-672d-4cff-a71c-6db504716d74' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='111c65a5-2c09-4739-b585-e84ea1f78194' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='281b550a-4308-4512-bb47-58938c1bc2e6' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='54dbedea-b07d-4234-95e6-55a4298c1fda' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='e6f64102-a9db-43f3-acc6-8c5bcb8cf5dd' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='e3f0f18c-0867-4801-9963-2c37867c56a5' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='e1ce340f-aaa2-4923-872e-ed705448facc' collection='Ecommerce'                                                                                                                                                                        │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+   📊 Usage Statistics
+┌────────────────┬──────┐
+│ LLM Requests:  │ 3    │
+│ Input Tokens:  │ 7685 │
+│ Output Tokens: │ 603  │
+│ Total Tokens:  │ 8288 │
+└────────────────┴──────┘
+
+Total Time Taken: 14.46s
+```
+
+</details>
+
+### 4.2 Ask a follow-up question
+
+The agent can also be provided with additional context. For example, we can provide the previous response as context and get a `new_response`
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FollowUpAskQuestions"
+      endMarker="# END FollowUpAskQuestions"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>The response is:</summary>
+
+```
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔍 Original Query ────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ What about some nice shoes, same budget as before?                                                                                                                                                                                                │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📝 Final Answer ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ Here are some great vintage-style shoes priced under $200 from various collections that blend style with nostalgia:                                                                                                                               │
+│                                                                                                                                                                                                                                                   │
+│ 1. **Vintage Noir Loafers** ($125): These dress shoes, part of the Dark Academia collection, come in black and grey, offering a timeless look with subtle modern twists. They have received positive reviews for style and comfort, once broken   │
+│ in (Source: 1).                                                                                                                                                                                                                                   │
+│                                                                                                                                                                                                                                                   │
+│ 2. **Vintage Ivy Loafers** ($120): Another classic from the Dark Academia line, these deep burgundy loafers combine elegance with comfort, as appreciated by users in their reviews (Source: 2).                                                  │
+│                                                                                                                                                                                                                                                   │
+│ 3. **Glide Platforms** ($90): For a more playful option, these high-shine pink platform sneakers offer a nod to the Y2K era, receiving praise for their comfort and unique look (Source: 3).                                                      │
+│                                                                                                                                                                                                                                                   │
+│ 4. **Celestial Step Platform Sneakers** ($90): With a dreamy sky blue color, these Y2K-inspired sneakers provide comfort and a touch of whimsy (Source: 4).                                                                                       │
+│                                                                                                                                                                                                                                                   │
+│ 5. **Garden Stroll Loafers** ($90): From the Cottagecore collection, these cream loafers feature delicate floral motifs for a chic, countryside-inspired look (Source: 5).                                                                        │
+│                                                                                                                                                                                                                                                   │
+│ 6. **Bramble Brogues** ($120): In dusky green, these suede brogues add pastoral elegance to any outfit, admired for their craftsmanship (Source: 7).                                                                                              │
+│                                                                                                                                                                                                                                                   │
+│ 7. **Garden Fête Heels** ($125): These cottagecore heels feature floral embroidery for a touch of elegance perfect for garden parties (Source: 10).                                                                                               │
+│                                                                                                                                                                                                                                                   │
+│ 8. **Garden Gala T-Straps** ($125): Elegant cream and sage T-strap heels featuring floral embellishments, perfect for a whimsical yet classy touch (Source: 18).                                                                                  │
+│                                                                                                                                                                                                                                                   │
+│ All these options fall under the $200 budget, offering a variety of styles from classic and elegant to colorful and playful, accommodating different fashion tastes and preferences.                                                              │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔭 Searches Executed 1/1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ QueryResultWithCollection(queries=['vintage shoes'], filters=[[IntegerPropertyFilter(property_name='price', operator=<ComparisonOperator.LESS_THAN: '<'>, value=200.0)]], filter_operators='AND', collection='Ecommerce')                         │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────── 📊 Aggregations Run 1/1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ AggregationResultWithCollection(                                                                                                                                                                                                                  │
+│     search_query=None,                                                                                                                                                                                                                            │
+│     groupby_property=None,                                                                                                                                                                                                                        │
+│     aggregations=[IntegerPropertyAggregation(property_name='price', metrics=<NumericMetrics.MEAN: 'MEAN'>)],                                                                                                                                      │
+│     filters=[TextPropertyFilter(property_name='subcategory', operator=<ComparisonOperator.LIKE: 'LIKE'>, value='vintage')],                                                                                                                       │
+│     collection='Ecommerce'                                                                                                                                                                                                                        │
+│ )                                                                                                                                                                                                                                                 │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📚 Sources ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│  - object_id='92efe1bb-77ee-4002-8618-4c9d7c3972c2' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='f51001bf-c0c6-47d5-b165-4e7ce878900e' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='9ba9ed81-c917-4e13-8058-d6ad81896ef3' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='41f324c2-a8e8-4cde-87d0-42661435a32c' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='d8d8e59e-d935-4a6f-9df1-bc2477452b11' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='505238e0-9993-4838-89fc-513c8f53d9f8' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='4a1321dc-d3f5-405d-8b21-e656c448ccfd' collection='Ecommerce'                                                                                                                                                                        │
+│  - object_id='b59f7700-2633-43d6-807e-72dda35d545c' collection='Ecommerce'                                                                                                                                                                        │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+   📊 Usage Statistics
+┌────────────────┬───────┐
+│ LLM Requests:  │ 5     │
+│ Input Tokens:  │ 15998 │
+│ Output Tokens: │ 906   │
+│ Total Tokens:  │ 16904 │
+└────────────────┴───────┘
+
+Total Time Taken: 22.77s
+```
+
+</details>
+
+### 4.3 Perform an aggregation
+
+Now, let's try a question that requires an aggregation. Let's see which brand lists the most shoes.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Aggregation"
+      endMarker="# END Aggregation"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>The response is:</summary>
+
+```
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔍 Original Query ────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ What is the the name of the brand that lists the most shoes?                                                                                                                                                                                      │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📝 Final Answer ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ The brand that lists the most shoes is Loom & Aura, with a total count of 118 shoes across various styles such as Cottagecore, Fairycore, Goblincore, Light Academia, and Dark Academia.                                                          │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ 🔭 No Searches Run                                                                                                                                                                                                                                │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────── 📊 Aggregations Run 1/1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ AggregationResultWithCollection(                                                                                                                                                                                                                  │
+│     search_query=None,                                                                                                                                                                                                                            │
+│     groupby_property='brand',                                                                                                                                                                                                                     │
+│     aggregations=[TextPropertyAggregation(property_name='collection', metrics=<TextMetrics.TOP_OCCURRENCES: 'TOP_OCCURRENCES'>, top_occurrences_limit=1)],                                                                                        │
+│     filters=[],                                                                                                                                                                                                                                   │
+│     collection='ECommerce'                                                                                                                                                                                                                        │
+│ )                                                                                                                                                                                                                                                 │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+   📊 Usage Statistics
+┌────────────────┬──────┐
+│ LLM Requests:  │ 3    │
+│ Input Tokens:  │ 5794 │
+│ Output Tokens: │ 238  │
+│ Total Tokens:  │ 6032 │
+└────────────────┴──────┘
+
+Total Time Taken: 7.52s
+```
+
+</details>
+
+### 4.4 Search over multiple collections
+
+In some cases, we need to combine the results of searches across multiple collections. From the result above, we can see that "Loom & Aura" lists the most shoes.
+
+Let's imagine a scenario where the user would now want to find out more about this company, _as well_ as the items that they sell.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SearchOverMultipleCollections"
+      endMarker="# END SearchOverMultipleCollections"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>The response is:</summary>
+
+```
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔍 Original Query ────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ Does the brand 'Loom & Aura' have a parent brand or child brands and what countries do they operate from? Also, what's the average price of a shoe from 'Loom & Aura'?                                                                            │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📝 Final Answer ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ The brand "Loom & Aura" operates as a parent brand with several child brands, including "Loom & Aura Active," "Loom & Aura Kids," "Nova Nest," "Vivid Verse," "Loom Luxe," "Saffrom Sage," "Stellar Stitch," "Nova Nectar," "Canvas Core," and    │
+│ "Loom Lure." "Loom & Aura" itself is based in Italy and operates in multiple countries where its child brands are located, such as the USA, Japan, South Korea, Spain, the UK, and France.                                                        │
+│                                                                                                                                                                                                                                                   │
+│ The average price of a shoe from "Loom & Aura" is approximately $87.11, based on the aggregation of available data on shoe prices.                                                                                                                │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔭 Searches Executed 1/2 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ QueryResultWithCollection(queries=['Loom parent brand and child brands', 'Aura parent brand and child brands'], filters=[[], []], filter_operators='AND', collection='Brands')                                                                    │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────── 🔭 Searches Executed 2/2 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ QueryResultWithCollection(queries=['countries where Loom & Aura operates'], filters=[[TextPropertyFilter(property_name='name', operator=<ComparisonOperator.EQUALS: '='>, value='Loom & Aura')]], filter_operators='AND', collection='Brands')    │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────── 📊 Aggregations Run 1/1 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│ AggregationResultWithCollection(                                                                                                                                                                                                                  │
+│     search_query='',                                                                                                                                                                                                                              │
+│     groupby_property=None,                                                                                                                                                                                                                        │
+│     aggregations=[IntegerPropertyAggregation(property_name='price', metrics=<NumericMetrics.MEAN: 'MEAN'>)],                                                                                                                                      │
+│     filters=[TextPropertyFilter(property_name='brand', operator=<ComparisonOperator.EQUALS: '='>, value='Loom')],                                                                                                                                 │
+│     collection='Ecommerce'                                                                                                                                                                                                                        │
+│ )                                                                                                                                                                                                                                                 │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 📚 Sources ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                                                                   │
+│  - object_id='cb022de3-36ac-4ab9-94c6-cddbbebbb035' collection='Brands'                                                                                                                                                                           │
+│                                                                                                                                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+   📊 Usage Statistics
+┌────────────────┬───────┐
+│ LLM Requests:  │ 5     │
+│ Input Tokens:  │ 11158 │
+│ Output Tokens: │ 608   │
+│ Total Tokens:  │ 11766 │
+└────────────────┴───────┘
+
+Total Time Taken: 16.12s
+```
+
+</details>
+
+### 4.5 Use a system prompt {#use-system-prompt-agent}
+
+We are going to use the custom agent from [step 3.2](#system-prompt-agent) with the system prompt that says:
+
+```
+"You are a helpful assistant that always generates the final response in the user's language."
+"You may have to translate the user query to perform searches. But you must always respond to the user in their own language."
+```
+
+For example, try to ask if the brand "Eko & Stitch" has a branch or associated company in the UK but using Japanese instead of English:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MoreQuestions"
+      endMarker="# END MoreQuestions"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>The response is:</summary>
+
+```
+Eko & Stitchは、英国に拠点があります。1974年に設立され、品質の高いクラフトマンシップとタイムレスなエレガンスで知られています。関連ブランドとして「Eko & Stitch Active」と「Eko & Stitch Kids」があります。また、Eko & Stitchの親会社はNova Nestです。
+```
+
+Or translated to English:
+```
+Eko & Stitch is based in the UK. It was established in 1974 and is known for its high-quality craftsmanship and timeless elegance. It has associated brands, "Eko & Stitch Active" and "Eko & Stitch Kids." Additionally, the parent company of Eko & Stitch is Nova Nest.
+```
+
+</details>
+
+## Summary
+
+This guide shows you how to build an end-to-end e-commerce assistant using Weaviate's agentic services — from setting up your Weaviate Cloud instance and importing datasets to configuring a Query Agent that intelligently handles natural language queries.
+
+The Query Agent automatically interprets queries to decide whether to run standard searches, filters, or aggregations. It connects to multiple collections and selects the right source based on your query. The agent can also use previous interactions to provide more relevant follow-up answers and you can define system prompts to ensure the agent always responds in the user’s preferred language or style.
+
+## Further resources
+
+- [Weaviate Agents - Query Agent](./index.md)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback />
