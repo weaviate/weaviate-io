@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/query-agents-ecommerce.py';
 
-In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](../../agents/query.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
+In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](./index.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
 We've prepared a few public datasets that you can use to explore the Query Agent.  
 They are available on HuggingFace:
@@ -62,7 +62,7 @@ Now, let's get started by setting up a Weaviate Cloud instance that we will use 
 
 :::tip
 In this tutorial, we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
-If you want to use another vectorizer, check out the list of supported [model providers](../model-providers/index.md).
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
 :::
 
 ### 1.2 Install the Python libraries
@@ -118,7 +118,7 @@ import WeaviateAgentsEcommerceDataset from '/developers/weaviate/tutorials/img/w
 </div>
 <br />
 
-For the collection `Brands`, we are going to use the [`auto-schema`](../config-refs/schema/index.md#auto-schema) option which creates properties automatically based on the imported data.
+For the collection `Brands`, we are going to use the [`auto-schema`](../../weaviate/config-refs/schema/index.md#auto-schema) option which creates properties automatically based on the imported data.
 However, this is not the best way of importing the data.
 
 The Query Agent uses the **descriptions of collections and properties** to decide which ones to use when solving queries. You can experiment by changing these descriptions and providing more details.
@@ -600,7 +600,7 @@ The Query Agent automatically interprets queries to decide whether to run standa
 
 ## Further resources
 
-- [Weaviate Agents - Query Agent](../../agents/query.md)
+- [Weaviate Agents - Query Agent](./index.md)
 
 ## Questions and feedback
 
