@@ -1,8 +1,8 @@
 ---
 title: Build an E-Commerce assistant with Query Agents
-sidebar_label: E-Commerce assistant with Query Agents
+sidebar_label: "Tutorial: E-Commerce assistant"
 description: Learn how to build a simple e-commerce assistant agent with the Weaviate Query Agent.
-sidebar_position: 1
+sidebar_position: 40
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
@@ -10,7 +10,7 @@ image: og/docs/tutorials.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/query-agents-ecommerce.py';
+import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent_tutorial_ecommerce.py';
 
 In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](./index.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
@@ -24,7 +24,7 @@ They are available on HuggingFace:
 
 The Weaviate Query Agent is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
 
-import WeaviateAgentsECommerceFlowchart from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-flowchart.png';
+import WeaviateAgentsECommerceFlowchart from '/developers/agents/_includes/query_agent_tutorial_ecommerce_flowchart.png';
 
 <div class="row">
   <div class="card">
@@ -104,7 +104,7 @@ In the following code blocks, we are pulling our demo datasets from Hugging Face
 
 Below you can see what the objects in the datasets `E-Commerce` and `Brands` look like.
 
-import WeaviateAgentsEcommerceDataset from '/developers/weaviate/tutorials/img/weaviate-agents-ecommerce-dataset.png';
+import WeaviateAgentsEcommerceDataset from '/developers/agents/_includes/query_agent_tutorial_ecommerce_dataset.png';
 
 <div class="row">
   <div class="card">
