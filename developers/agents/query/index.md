@@ -60,7 +60,7 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ## Usage
 
-Here is an overview of how to use the Query Agent. For more detailed information, refer to th[Query Agent: Usage](./usage.md) page.
+Here is an overview of how to use the Query Agent. For more detailed information, refer to the [Query Agent: Usage](./usage.md) page.
 
 ### Prerequisites
 
