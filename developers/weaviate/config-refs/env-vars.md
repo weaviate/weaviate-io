@@ -15,6 +15,7 @@ All other values are interpreted as `false`.
 
 ## General
 
+<!-- TODO[g-despot] Link to multi-tenancy guide when released for MAXIMUM_ALLOWED_COLLECTIONS_COUNT -->
 import Link from '@docusaurus/Link';
 
 | Variable | Description | Type | Example Value |
@@ -42,6 +43,7 @@ import Link from '@docusaurus/Link';
 | `LIMIT_RESOURCES` | If `true`, Weaviate will automatically attempt to auto-detect and limit the amount of resources (memory & threads) it uses to (0.8 * total memory) and (number of cores-1). It will override any `GOMEMLIMIT` values, however it will respect `GOMAXPROCS` values. | `boolean` | `false` |
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>Default: Outputs log data to json. e.g.: `{"action":"startup","level":"debug","msg":"finished initializing modules","time":"2023-04-12T05:07:43Z"}` <br/>`text`: Outputs log data to a string. e.g. `time="2023-04-12T04:54:23Z" level=debug msg="finished initializing modules" action=startup` | `string` |  |
 | `LOG_LEVEL` | Sets the Weaviate logging level. Default: `info`<br/><br/>`panic`: Panic entries only. (new in `v1.24`) <br/>`fatal`: Fatal entries only. (new in `v1.24`)  <br/> `error`: Error entries only. (new in `v1.24`) <br/>`warning`: Warning entries only. (new in `v1.24`) <br/>`info`: General operational entries. <br/> `debug`: Very verbose logging. <br/>`trace`: Even finer-grained informational events than `debug`. | `string` | |
+| `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` | Maximum allowed number of collections. A value of `-1` removes the limit. (default: `100`) <br/><br/>Instead of raising the collections count limit, consider [rethinking your architecture](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).<br/>Added in `v1.25.33`, `v1.26.17`, `1.27.14`, `1.28.8`, `1.29.1`| `string - number` | `20` | 
 | `MEMORY_READONLY_PERCENTAGE` | If memory usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. (Default: `80`) | `string - number` | `75` |
 | `MEMORY_WARNING_PERCENTAGE` | If memory usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. (Default: `0` - i.e. no limit) | `string - number` | `85` |
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |

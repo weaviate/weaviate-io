@@ -10,7 +10,7 @@ export default function Header() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.box}>
-            <span>AGENTIC WORKFLOWS</span>
+            <span>Agentic AI</span>
             <h1>
               Empower AI agents with the context and adaptability they need
             </h1>

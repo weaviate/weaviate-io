@@ -277,7 +277,7 @@ Schemas fulfill several roles:
 1. Schemas define cross-references that link collections, even collections that use different embeddings.
 1. Schemas let you configure module behavior, ANN index settings, reverse indexes, and other features on a collection level.
 
-For details on configuring your schema, see the [schema tutorial](../starter-guides/schema.md) or [schema configuration](../manage-data/collections.mdx).
+For details on configuring your schema, see the [schema tutorial](/developers/weaviate/starter-guides/managing-collections) or [schema configuration](../manage-data/collections.mdx).
 
 ## Multi-tenancy
 

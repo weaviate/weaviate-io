@@ -1,5 +1,21 @@
 [
   {
+    "title": "Agent Experience with Matt Biilmann, Sebastian Witalec, and Charles Pierse - Weaviate Podcast #116",
+    "description": "Welcome to the 116th episode of the Weaviate Podcast featuring Matt Biilmann, Co-Founder and CEO of Netlify, as well as Sebastian Witalec and Charles Pierse from Weaviate to discuss Agent Experience!",
+    "youtube": "MAE3I8O_w84",
+    "date": "25-02-27",
+    "cover_image": "/img/podcasts/podcast-116.jpg",
+    "is_use_case": false
+  },
+  {
+    "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
+    "description": "Welcome to the 115th episode of the Weaviate Podcast featuring Shirley Wu from Stanford University!",
+    "youtube": "4ZRhSuBHyNo",
+    "date": "25-02-19",
+    "cover_image": "/img/podcasts/podcast-115.jpg",
+    "is_use_case": false
+  },
+  {
     "title": "Contextual AI with Amanpreet Singh - Weaviate Podcast #114",
     "description": "Welcome to the 114th episode of the Weaviate Podcast featuring Amanpreet Singh, Co-Founder and CTO of Contextual AI!",
     "youtube": "TQKDU2mhKEI",
