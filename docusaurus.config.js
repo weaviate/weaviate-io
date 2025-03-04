@@ -339,7 +339,7 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-decemeber-2024',
+               id: 'announcement-bar-december-2024',
                 content:`<a href="/blog/accelerate-enterprise-ai">Weaviate Embeddings: Now Generally Available – Read Our Announcement Blog</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',

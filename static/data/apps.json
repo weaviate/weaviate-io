@@ -122,7 +122,7 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/query-agent",
     "released": "no",
-    "comingsoon": "yes"
+    "privatePreview": "yes"
   },
   {
     "id": "8",

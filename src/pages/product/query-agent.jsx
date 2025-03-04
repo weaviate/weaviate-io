@@ -41,16 +41,16 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
+                    {app.released === 'yes' ? (
                       <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
                           Sign up for updates
                         </button>
                       </Link>
                     ) : (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/developers/agents/query/usage">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Public Preview
                         </button>
                       </Link>
                     )}
@@ -77,27 +77,28 @@ export default function QueryPage() {
                     <h3>Overview</h3>
 
                     <p>
-                      Weaviate’s <strong>Query Agent</strong> allows users
-                      within your organization to use a natural language prompt
-                      to query your database. The Agent will determine the data
-                      sources to use and all the searches and aggregations that
-                      are needed to answer the prompt. All the user needs to do
-                      is ask a question or set of questions. 
+                      Weaviate’s <strong>Query Agent</strong> allows users to
+                      query any Weaviate collection that you give it access to.
+                      Developers within your organization can configure a Query
+                      Agent with the data collections it has access to, as well
+                      as the search and aggregations needed to answer any given
+                      query. All the end-user has to do is ask a question, and
+                      the Query Agent will take care of the rest.
                     </p>
                     <ul>
                       <li>
+                        <strong>Spend less time on syntax:</strong> Ask
+                        questions of your data using natural language, and let
+                        Weaviate handle the rest.
+                      </li>
+                      <li>
+                        <strong>Deliver better results with less work:</strong>{' '}
+                        Serve accurate, contextual results to user queries
+                        without the hassle of building custom pipelines.
+                      </li>
+                      <li>
                         <strong>Get insights faster:</strong> Identify risks,
                         opportunities, and threats in your data more easily.
-                      </li>
-                      <li>
-                        <strong>Spend less time on syntax:</strong> Ask
-                        questions of your data using  natural language prompts,
-                        and let Weaviate handle the rest. 
-                      </li>
-                      <li>
-                        <strong>Democratize data access:</strong> Enable more
-                        teams within your organization to run queries without
-                        waiting on a technical resource. 
                       </li>
                     </ul>
                   </div>
@@ -106,9 +107,11 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      <Link to="/developers/agents/query/usage">
+                        <strong>
+                          <u>Public Preview in Weaviate Cloud</u>
+                        </strong>
+                      </Link>
                     </p>
                   </div>
                 </div>
