@@ -16,7 +16,7 @@ import Header from '/src/components/Subprocessors/Header';
 
 <div className ="subprocessors">
 
-**Last Updated: February, 2025**
+**Last Updated: March, 2025**
 
 The following subprocessors are authorized by the Data Controller to process Personal Data:
 
