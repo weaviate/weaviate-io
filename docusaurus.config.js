@@ -339,8 +339,8 @@ const config = {
         ({
             image: 'og/default.jpg',
              announcementBar: {
-               id: 'announcement-bar-march-2025',
-                content:`<a href="/blog/weaviate-agents">Product Update: Meet Weaviate Agents — Read the Blog</a>`,
+               id: 'announcement-bar-december-2024',
+                content:`<a href="/blog/accelerate-enterprise-ai">Weaviate Embeddings: Now Generally Available – Read Our Announcement Blog</a>`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
