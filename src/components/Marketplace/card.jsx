@@ -22,7 +22,7 @@ export default function AppCard({ app }) {
             ) : app.comingSoon ? (
               <div className={styles.comingSoon}>Private Beta</div>
             ) : app.privatePreview ? (
-              <div className={styles.comingSoon}>Private Preview</div>
+              <div className={styles.comingSoon}>Public Preview</div>
             ) : (
               <div className={styles.tba}>Coming Soon</div>
             )}
