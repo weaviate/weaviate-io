@@ -347,7 +347,7 @@ The default model is `nvidia/nv-embed-v1`.
 
 - [NVIDIA multimodal embedding embeddings models + Weaviate](./embeddings-multimodal.md)
 - [NVIDIA generative models + Weaviate](./generative.md)
-<!-- - [NVIDIA reranker models + Weaviate](./reranker.md) -->
+- [NVIDIA reranker models + Weaviate](./reranker.md)
 
 ### Code examples
 
