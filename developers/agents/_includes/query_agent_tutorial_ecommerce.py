@@ -139,8 +139,18 @@ response = agent.run(
     "I like vintage clothes, can you list me some options that are less than $200?"
 )
 
-print_query_agent_response(response)
+print(response)
 # END AskQuestions
+
+# START FinalAnswerAskQuestions
+# Only print the final answer of the response
+print(response.final_answer)
+# END FinalAnswerAskQuestions
+
+# START PrintQueryAgentResponseAskQuestions
+# Print the whole response in a user-friendly format
+print_query_agent_response(response)
+# END PrintQueryAgentResponseAskQuestions
 
 # START FollowUpAskQuestions
 new_response = agent.run(
