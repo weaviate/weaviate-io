@@ -17,21 +17,21 @@ Agents, completely on their own, can’t do much. They need to be given roles, g
 
 Understanding agentic workflows allows you to understand how and why AI agents operate as they do. To help you get there, we’ll go through the key components of AI agents, give you a concise definition of agentic workflows, explain what makes a workflow agentic, elaborate on key recurring patterns in agentic workflows, detail real-world examples and use cases, and give an honest overview of the benefits and challenges to using agentic workflows.
 
-# What are AI agents?
+## What are AI agents?
 
 **AI agents** are systems that combine LLMs for reasoning and decision-making with tools for real-world interaction, enabling them to complete complex tasks with limited human involvement. Agents are assigned specific roles and given varying degrees of autonomy to accomplish their end goal. They are also equipped with memory, allowing them to learn from past experiences and enhance their performance over time.
 
-For a more in-depth explanation of AI agents, their history, and tools for building them, check out our recent blog post, [Agents Simplified: What we mean in the context of AI](https://weaviate.io/blog/ai-agents).
+For a more in-depth explanation of AI agents, their history, and tools for building them, check out our recent blog post, [Agents Simplified: What we mean in the context of AI](/blog/ai-agents).
 
 To better understand how AI agents fit into agentic workflows, we’ll explore the core components of AI agents.
 
-## Components of AI Agents
+### Components of AI Agents
 
 Although AI agents are designed for semi-autonomous decision-making, they rely on a larger framework of components to function properly. This framework consists of LLMs that enable the agent to reason effectively, tools that help the agent complete its tasks, and memory that allows the agent to learn from past experiences and improve responses over time.
 
 ![components-of-ai-agents.jpg](./img/components-of-ai-agents.jpg)
 
-### Reasoning
+#### Reasoning
 
 Part of what make AI agents so effective is their capacity for iterative reasoning, essentially allowing the agent to actively “think” throughout the entire problem-solving process. The reasoning capabilities of an AI agent stem from its underlying LLM and serve two primary functions: planning and reflecting.
 
@@ -39,7 +39,7 @@ In the **planning** phase, the agent performs **task decomposition**, the proces
 
 Agents also reason through **reflecting** on the outcomes of their actions. This allows them to evaluate and iteratively adjust their plan of action based on results and data pulled from external sources.
 
-### Tools
+#### Tools
 
 LLMs possess static, parametric knowledge, meaning their understanding is confined to the information encoded during training. To expand their capabilities beyond their original dataset, agents can leverage external **tools**, like web search engines, APIs, databases, and computational frameworks. This means that the agent has access to real-time external data to guide its decision-making and accomplish tasks that require it interact with other applications.
 
@@ -56,13 +56,13 @@ When the LLM selects a tool to help achieve a task, it engages in a behavior cal
 
 The choice of which tool to use can be predetermined by the end user or be left to the agent. Letting the agent dynamically select tools can be helpful for solving more complex tasks but can add unnecessary complexity for simpler workflows, when predefined tools would be more efficient.
 
-### Memory
+#### Memory
 
 Learning from past experiences and remembering the context in which actions take place are part of what set agentic workflows apart from purely LLM-driven workflows. **Memory** is a key component that enables the capture and storage of context and feedback across multiple user interactions and sessions. Agents have two main types of memory: short-term memory and long-term memory.
 
 **Short-term memory** stores more immediate information like conversation history, which helps the agent determine which steps to take next to complete its overall goal. **Long-term memory** stores information and knowledge accumulated over time, throughout multiple sessions, allowing for personalization of the agent and improved performance over time.
 
-# What are Agentic Workflows?
+## What are Agentic Workflows?
 
 In general, a **workflow** is a series of connected steps designed to achieve a specific task or goal. The simplest types of workflows are deterministic, meaning they follow a predefined sequence of steps and are unable to adapt to new information or changing conditions. For example, an automated expense approval workflow could look like this: “if expense is tagged as ‘Food and Meals’ and is less than $30, automatically approve.”
 
@@ -72,7 +72,7 @@ An **agentic workflow** is a series of connected steps *dynamically executed by 
 
 ![types-of-workflows.jpg](./img/types-of-workflows.jpg)
 
-## What makes a workflow agentic?
+### What makes a workflow agentic?
 
 An AI workflow becomes agentic when one or more agents guide and shape the progression of tasks. Adding agents to an existing non-agentic workflow creates a hybrid approach that combines the reliability and predictability of structured workflows with the intelligence and adaptability of LLMs. Agentic workflows are defined by their ability to:
 
@@ -82,7 +82,7 @@ An AI workflow becomes agentic when one or more agents guide and shape the progr
 
 As you can see, we need to differentiate between three types of workflows: traditional non-AI workflows, non-agentic AI workflows, and agentic workflows. The difference between a traditional, rule-based workflow and an AI workflow is the use of predefined steps vs. the use of AI models to accomplish a task. Second, the difference between non-agentic and agentic AI workflows is the use of static AI models vs. dynamic AI agents. This makes the agentic workflow more adaptive an dynamic than a non-agentic workflow.
 
-## The difference between agentic architectures and workflows
+### The difference between agentic architectures and workflows
 
 With any emerging technology, comes a flood of new terminology. While some may use the terms “agentic architectures” and “agentic workflows” interchangeably, they actually have an important distinction. 
 
@@ -96,11 +96,11 @@ Explore the most powerful agentic architectures, visually illustrated for instan
 
 :::
 
-# Patterns in Agentic Workflows
+## Patterns in Agentic Workflows
 
 Recall that an agentic workflow is the structured series of steps taken to complete a specific task, also known as a final target. So when we talk about agentic workflows, we talk about specific patterns of behavior that enable agents to achieve their final target. The core components of AI agents, as we mentioned earlier, play a key role in agentic workflow patterns. The capacity for agents to reason facilitates both the planning and reflection patterns, while their ability to use tools to interact with their environment underlies the tool use pattern.
 
-## Planning Pattern
+### Planning Pattern
 
 The planning design pattern allows agents to autonomously break down more complex tasks into  series of smaller and simpler tasks, a process known as **task decomposition**. Task decomposition leads to better results because it reduces the cognitive load on the LLM, improves reasoning, and minimizes hallucinations and other inaccuracies.
 
@@ -110,9 +110,9 @@ While planning can help agents better tackle more complex tasks, it can also lea
 
 ![planning-pattern.jpg](./img/planning-pattern.jpg)
 
-## Tool Use Pattern
+### Tool Use Pattern
 
-A significant constraint of generative LLMs is their reliance on pre-existing training data, meaning they cannot retrieve real-time information or verify facts beyond what they have previously learned. As a result, they may generate non-factual responses or “guess” when they don’t know the answer. [Retrieval Augmented Generation (RAG)](https://weaviate.io/blog/introduction-to-rag) helps mitigate this limitation by providing the LLM with relevant, real-time external data, enabling more accurate and contextually grounded responses.
+A significant constraint of generative LLMs is their reliance on pre-existing training data, meaning they cannot retrieve real-time information or verify facts beyond what they have previously learned. As a result, they may generate non-factual responses or “guess” when they don’t know the answer. [Retrieval Augmented Generation (RAG)](/blog/introduction-to-rag) helps mitigate this limitation by providing the LLM with relevant, real-time external data, enabling more accurate and contextually grounded responses.
 
 Tool use, however, goes beyond naive RAG by allowing the LLM to *dynamically interact* with the real world, as opposed to simply retrieving data from it. In agentic workflows, the **tool use** pattern expands the capabilities of agents by allowing them to interact with external resources and applications, real-time data, or other computational resources.
 
@@ -120,7 +120,7 @@ Common tools include APIs, information retrieval (e.g. vector search), web brows
 
 ![tool-use-pattern.jpg](./img/tool-use-pattern.jpg)
 
-## Reflection Pattern
+### Reflection Pattern
 
 Reflection is a powerful agentic design pattern that is relatively simple to implement and can lead to significant gains in improvement for agentic workflows. The **reflection pattern** is a self-feedback mechanism in which an agent iteratively evaluates the quality of its outputs or decisions before finalizing a response or taking further action. These critiques are then used to refine the agent's approach, correct errors, and improve future responses or decisions.
 
@@ -130,7 +130,7 @@ The power of reflection lies in the agent’s ability to critique its own output
 
 ![reflection-pattern.jpg](./img/reflection-pattern.jpg)
 
-# Agentic Workflows Use Cases
+## Agentic Workflows Use Cases
 
 Atomic design patterns, like planning and tool use, can be combined in creative ways to effectively leverage agentic AI for a variety of tasks across diverse domains. In addition to combining design patterns, AI agents can be provided with different combinations of tools and even be granted the ability to dynamically select tools as needed. They can also be integrated with human feedback loops and given varying levels of autonomy and decision-making powers. 
 
@@ -138,7 +138,7 @@ These diverse configurations allow agentic workflows to be tailored for a wide r
 
 ### Agentic RAG
 
-[Retrieval-Augmented Generation (RAG)](https://weaviate.io/blog/introduction-to-rag) is a framework that augments the knowledge of a LLM by providing it with relevant data retrieved from an external data source. [Agentic RAG](https://weaviate.io/blog/what-is-agentic-rag) incorporates one or more agents into the RAG pipeline. 
+[Retrieval-Augmented Generation (RAG)](/blog/introduction-to-rag) is a framework that augments the knowledge of a LLM by providing it with relevant data retrieved from an external data source. [Agentic RAG](/blog/what-is-agentic-rag) incorporates one or more agents into the RAG pipeline. 
 
 During the planning phase, an agent can break down complex queries into smaller subqueries through query decomposition or determine whether it needs to ask the user for additional information to complete the request.
 
@@ -166,13 +166,13 @@ Agentic coding assistants can generate, refactor, refine, and debug code with mi
 
 What makes a coding assistant agentic is its ability to interact with its environment by executing generated code and iteratively refine it based on execution results, errors, or feedback. These assistants can also be enabled with permissions to make changes to an existing code base by creating commits and PRs, like Anthropic’s [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview), an important step in automating the software development process. Agentic coding assistants can also be used to suggest terminal commands and other code changes and additions and wait for explicit human approval before execution, like Cursor’s [Agent](https://docs.cursor.com/agent), allowing humans to be fully in control of the agent. Additionally, and importantly, agentic coding assistants can learn from their mistakes by encoding them in long-term memory, allowing them to grow smarter over time.
 
-# Agentic Workflow Examples
+## Agentic Workflow Examples
 
 Now that we’ve outlined some use cases for agentic workflows, we’ll take a more detailed look at the individual steps of the workflows of two real-world agents: [Claygent](https://www.clay.com/claygent) and [ServiceNow AI Agents](https://www.servicenow.com/products/ai-agents.html). Each workflow uses its own unique combination of patterns and tools, gives its agents varying degrees of autonomy and decision-making capabilities, and relies on different levels of human feedback and involvement.
 
 ### Claygent (Clay)
 
-Lead research and data enrichment can be a tedious task for growth and sales teams. [Clay](https://www.notion.so/Embedding-service-Model-Cards-Snowflake-2-0-1-5-18a70562ccd680e9afcaf3a11471e1f5?pvs=21), a data enrichment and outreach automation company, streamlines this process with [Claygent](https://www.clay.com/claygent)—an AI-powered research agent that continuously scans the web and internal databases to deliver real-time, actionable insights.
+Lead research and data enrichment can be a tedious task for growth and sales teams. [Clay](https://www.clay.com/), a data enrichment and outreach automation company, streamlines this process with [Claygent](https://www.clay.com/claygent)—an AI-powered research agent that continuously scans the web and internal databases to deliver real-time, actionable insights.
 
 Say you want to use Claygent to enrich a LinkedIn profile based on a list of names and email addresses and then send a personalized introduction message. First, you specify the fields of data you’re looking for (e.g. work experience, education, skills), which is injected into a pre-configured prompt template. The agent’s LLM processes the query, uses a web scraping tool to scour the web for a LinkedIn URL, and extracts the desired data from the LinkedIn profile. This data can then be sent to another LLM that you can instruct to summarize or analyze the enriched data however you want. The same LLM (or a different one) can then be used to create a personalized outreach message for each profile.
 
@@ -188,15 +188,15 @@ ServiceNow AI Agents represent an innovative but more cautious approach to deplo
 
 :::note
 
-Want to build your own agentic workflow? Check out [Building Agentic Workflows with Inngest](https://weaviate.io/blog/inngest-ai-workflows), where we show how to create an agentic dinner planner.
+Want to build your own agentic workflow? Check out [Building Agentic Workflows with Inngest](/blog/inngest-ai-workflows), where we show how to create an agentic dinner planner.
 
 :::
 
-# Benefits and Limitations of Agentic Workflows
+## Benefits and Limitations of Agentic Workflows
 
 AI agents have rapidly moved beyond the machine learning community and into the mainstream. Given all the excitement, anticipation, and expectations around agentic AI, it can be difficult to separate hype from reality and understand its true capabilities and limitations. In this section, we give you a balanced view of the benefits, challenges, and limitations of agentic workflows.
 
-## Benefits of Agentic Workflows
+### Benefits of Agentic Workflows
 
 Agentic workflows go beyond traditional automation by enabling AI agents to plan, adapt, and improve over time. Unlike deterministic workflows, which follow fixed rules, agentic workflows can dynamically respond to complexity, refine their approach through feedback, and scale to handle more advanced tasks. This adaptability makes them particularly valuable in scenarios where flexibility, learning, and decision-making are essential. 
 
@@ -213,7 +213,7 @@ Agentic workflows can automate repetitive tasks with high accuracy (if built rig
 
 Keep in mind that AI agents are still an emerging technology, and that this list of benefits is likely to expand as researchers and users discover novel ways of incorporating agents into workflows. 
 
-## Challenges and Limitations of Agentic Workflows
+### Challenges and Limitations of Agentic Workflows
 
 Despite their benefits and innovative features, AI agents also come with a number of challenges and limitations. Because of their probabilistic nature, AI agents inherently add complexity to workflows. And just because agents *can* be used to automate processes, doesn’t mean that they *should* be used. Here are a few of the most notable challenges and limitations of agentic workflows:
 
@@ -237,9 +237,9 @@ Given these limitations, we recommend taking time to reflect on whether using an
 - Does the workflow involve uncertainty, changing conditions, or multi-step reasoning that an agent could handle more effectively?
 - What are the risks associated with giving the agent autonomy, and can they be mitigated?
 
-# Summary
+## Summary
 
-Agentic workflows are powerful tools to help automate the completion of complex tasks that require decision-making and reasoning. In this article, we reviewed the core components of AI agents, including, memory, tools, and reasoning capabilities and how they contribute to agentic workflows. We also discussed common workflow patterns, like planning, tool use, and reflection that can be used in isolation or combination to create dynamic workflows. Furthermore, we outlined two particularly effective use cases, [agentic RAG](https://weaviate.io/blog/what-is-agentic-rag) and agentic research agents, and described the workflows behind two agents already on the market, Clay’s Claygent and ServiceNow’s AI Agents. Finally, we touched on the benefits of agentic workflows as well as their limitations and challenges. 
+Agentic workflows are powerful tools to help automate the completion of complex tasks that require decision-making and reasoning. In this article, we reviewed the core components of AI agents, including, memory, tools, and reasoning capabilities and how they contribute to agentic workflows. We also discussed common workflow patterns, like planning, tool use, and reflection that can be used in isolation or combination to create dynamic workflows. Furthermore, we outlined two particularly effective use cases, [agentic RAG](/blog/what-is-agentic-rag) and agentic research agents, and described the workflows behind two agents already on the market, Clay’s Claygent and ServiceNow’s AI Agents. Finally, we touched on the benefits of agentic workflows as well as their limitations and challenges. 
 
 The technology behind AI agents is continuously evolving, as is our understanding of them. This article is intended to give you a basic understanding how AI agents function in workflows but is by no means an exhaustive exploration of the topic. 
 
@@ -255,7 +255,7 @@ For a more detailed view and explanation of specific agentic architectures, down
 
 🎬 [Advanced AI Agents with RAG](https://www.youtube.com/watch?v=UoowC-hsaf0&list=PLTL2JUbrY6tVmVxY12e6vRDmY-maAXzR1&ab_channel=Weaviate%E2%80%A2VectorDatabase) (YouTube)
 
-📝 [What is Agentic RAG](https://weaviate.io/blog/what-is-agentic-rag)
+📝 [What is Agentic RAG](/blog/what-is-agentic-rag)
 
 📝 [Agentic Design Patterns Part 2, Reflection](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-2-reflection/?ref=dl-staging-website.ghost.io) (Blog post)
 
