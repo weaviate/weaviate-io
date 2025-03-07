@@ -60,11 +60,11 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 
 ## Usage
 
-Here is an overview of how to use the Query Agent. For more detailed information, refer to the [Query Agent: Usage](./usage.md) page.
+Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 
 ### Prerequisites
 
-The Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
+This Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
 
 ### Example Usage
 
@@ -112,7 +112,7 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 ### Further Documentation
 
-For more detailed information on how to use the Query Agent, refer to the [Query Agent: Usage](./usage.md) page.
+For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
 
 ## Questions and feedback
 

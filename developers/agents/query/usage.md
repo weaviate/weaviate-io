@@ -42,6 +42,10 @@ You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud]
 
 ### Client library
 
+:::note Supported languages
+At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
+:::
+
 You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
 
 Install the client library using the following command:
@@ -53,21 +57,17 @@ Install the client library using the following command:
 pip install -U weaviate-client[agents]
 ```
 
-:::tip Force `pip` to install the latest version
-In some cases, `pip` may not bump `weaviate-agents` to the latest version, as it is an optional dependency. In this case, additionally run the following command to ensure you have the latest version:
+#### Troubleshooting: Force `pip` to install the latest version
+
+For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally run:
 
 ```shell
 pip install -U weaviate-agents
 ```
-:::
 
 </TabItem>
 
 </Tabs>
-
-:::note Supported languages
-At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
-:::
 
 ## How to use the Query Agent
 
