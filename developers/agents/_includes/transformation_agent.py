@@ -33,8 +33,8 @@ client = weaviate.connect_to_weaviate_cloud(
 )
 # END ConnectToWeaviate
 
-# To re-run cell you may have to delete collections
-# client.collections.delete("ArxivPapers")
+client.collections.delete("ArxivPapers")
+
 client.collections.create(
     "ArxivPapers",
     description="A dataset that lists research paper titles and abstracts",

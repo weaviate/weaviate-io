@@ -34,22 +34,32 @@ This page describes how to use the Query Agent to answer natural language querie
 
 ### Weaviate instance
 
-The Query Agent is available exclusively for use with a Weaviate Cloud instance.
+This Agent is available exclusively for use with a Weaviate Cloud instance.
 
 Refer to the [Weaviate Cloud documentation](/developers/wcs/index.mdx) for more information on how to set up a Weaviate Cloud instance.
 
-You can try the Query Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
+You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
 
 ### Client library
 
-You must install the Weaviate client library with the optional `agents` extras to use the Query Agent. Install the client library using the following command:
+You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
+
+Install the client library using the following command:
 
 <Tabs groupId="languages">
 <TabItem value="py_agents" label="Python">
 
 ```shell
-pip install weaviate-client[agents]
+pip install -U weaviate-client[agents]
 ```
+
+:::tip Force `pip` to install the latest version
+In some cases, `pip` may not bump `weaviate-agents` to the latest version, as it is an optional dependency. In this case, additionally run the following command to ensure you have the latest version:
+
+```shell
+pip install -U weaviate-agents
+```
+:::
 
 </TabItem>
 
@@ -294,7 +304,7 @@ We are investigating an ability to specify a custom collection description at ru
 
 The Query Agent performs multiple operations to translate a natural language query into Weaviate queries, and to process the response.
 
-This typicallly requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
+This typically requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
 
 As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
 

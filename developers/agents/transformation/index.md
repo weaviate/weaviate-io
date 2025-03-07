@@ -14,8 +14,8 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
@@ -27,8 +27,8 @@ The Transformation Agent can be used to append new properties and/or update exis
 
 This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
 
-![Weaviate Transformation Agent overview](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
-![Weaviate Transformation Agent overview](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
+![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
+![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
 
 ## Architecture
 
@@ -44,8 +44,8 @@ The Transformation Agent can thus be used to enhance the data at import time, or
 
 ## Transformation Agent: visualized workflow
 
-![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture_light.png#gh-light-mode-only "Weaviate Transformation Agent at a high level")
-![Weaviate Transformation Agent at a high level](./_includes/transformation_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Transformation Agent at a high level")
+![Weaviate Transformation Agent at a high level](../_includes/transformation_agent_architecture_light.png#gh-light-mode-only "Weaviate Transformation Agent at a high level")
+![Weaviate Transformation Agent at a high level](../_includes/transformation_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Transformation Agent at a high level")
 
 Let's dive into a little more detail about the Transformation Agent, using a few example workflows:
 
@@ -55,8 +55,8 @@ In this example, the Transformation Agent is used to add new properties to data 
 
 The figure below shows the workflow:
 
-![Weaviate Transformation Agent: Enhance data at import time](./_includes/transformation_agent_new_append_light.png#gh-light-mode-only "Weaviate Transformation Agent: Enhance data at import time")
-![Weaviate Transformation Agent: Enhance data at import time](./_includes/transformation_agent_new_append_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Enhance data at import time")
+![Weaviate Transformation Agent: Enhance data at import time](../_includes/transformation_agent_new_append_light.png#gh-light-mode-only "Weaviate Transformation Agent: Enhance data at import time")
+![Weaviate Transformation Agent: Enhance data at import time](../_includes/transformation_agent_new_append_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Enhance data at import time")
 
 The Transformation Agent works as follows at a high level:
 
@@ -72,8 +72,8 @@ In this example, the Transformation Agent is used to update existing properties 
 
 The figure below shows the workflow:
 
-![Weaviate Transformation Agent: Update properties on existing objects](./_includes/transformation_agent_existing_update_light.png#gh-light-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
-![Weaviate Transformation Agent: Update properties on existing objects](./_includes/transformation_agent_existing_update_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
+![Weaviate Transformation Agent: Update properties on existing objects](../_includes/transformation_agent_existing_update_light.png#gh-light-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
+![Weaviate Transformation Agent: Update properties on existing objects](../_includes/transformation_agent_existing_update_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
 
 The Transformation Agent works as follows at a high level:
 
@@ -88,8 +88,8 @@ As a result, the specified objects in Weaviate are updated, with the new version
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
