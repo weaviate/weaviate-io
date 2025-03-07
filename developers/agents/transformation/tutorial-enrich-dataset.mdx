@@ -12,19 +12,87 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_agent_tutorial_enrich_dataset.py';
 
-In this recipe, we will build a simple Weaviate [`TransformationAgent`](https://weaviate.io/developers/agents/transformation). We will build an agent that has access to a collection containing a bunch or research papers, their abstracts and titles. We will then use the agent to create additional properties for eaach of our objects in the collection.
+In this tutorials, we will build a simple Weaviate [`TransformationAgent`](https://weaviate.io/developers/agents/transformation). We will build an agent that has access to a collection containing a bunch or research papers, their abstracts and titles. We will then use the agent to create additional properties for eaach of our objects in the collection.
 
-The `TransformationAgent` is able to access a Weaviate collection of your chosing, and perform operations on the objects within it. However, each operation for the agent can be defined in natural language. The agent will then use an LLM to complete the instructions in the operation.
-
-To get started, we've prepared an open datasets, available on Hugging Face. The first step will be walking through how to populate your Weaviate Cloud collections.
+We've prepared a public dataset that you can use to explore the Transformation Agent and it's available on Hugging Face:
 
 - [**ArxivPapers:**](https://huggingface.co/datasets/weaviate/agents/viewer/transformation-agent-papers) A dataset that lists titles and abstracts of research papers.
 
-If you'd like to try out building more agents with different datasets, check out the list of demo datasets we have available on [Hugging Face Weaviate agents dataset](https://huggingface.co/datasets/weaviate/agents)
+## Introduction: What are Transformation Agents?
 
-import SetUpWeaviate from '../_includes/_tutorial_set_up_weaviate_for_agents.mdx';
+The `TransformationAgent` is able to access a Weaviate collection of your chosing, and perform operations on the objects within it. However, each operation for the agent can be defined in natural language. The agent will then use an LLM to complete the instructions in the operation.
 
-<SetUpWeaviate />
+import WeaviateAgentsArxivFlowchart from '/developers/agents/_includes/transformation_agent_tutorial_arxiv_flowchart.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsArxivFlowchart}
+        alt="Weaviate Query Agent flowchart"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+The Transformation Agent:
+
+1. **Receives a task** to create new properties or update existing ones.
+2. **Retrieves the needed data from Weaviate**, which will be updated or used to create the new properties.
+3. **Uses an appropriate foundation model** (e.g. large language model) to perform the transformation of the data.
+4. **Stores the transformed data in Weaviate** by creating new propoerties or updating existing ones.
+
+<hr />
+
+## Prerequisites
+
+To use the Weaviate Agents and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+
+## Step 1: Set up Weaviate
+
+Now, let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting it to the Python client.
+
+### 1.1 Create a Weaviate Cloud cluster
+
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+
+:::tip
+In this tutorial, we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
+:::
+
+### 1.2 Install the Python libraries
+
+In order to install the Weaviate Python client together with the `agents` component, run:
+
+```
+pip install "weaviate-client[agents]"
+```
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+```
+pip install datasets
+```
+
+### 1.3 Connect to your instance
+
+Now, you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After running this snippet, you should see the message `True` printed out, which means that you have successfully connected to your instance.
 
 ## Step 2: Prepare the Collections
 
@@ -36,19 +104,21 @@ import WeaviateAgentsArxivDataset from '/developers/agents/_includes/weaviate-ag
 
 <div class="row">
   <div class="col col--3">
-  <br />
+    <br />
     <p>
-      On this image, you can see what the objects in the dataset <code>ArxivPapers</code> look like.
+      On this image, you can see what the objects in the dataset{' '}
+      <code>ArxivPapers</code> look like.
     </p>
   </div>
   <div class="col col--9">
     <div class="card">
       <div class="card__image">
-        <img src={WeaviateAgentsArxivDataset} alt="The arXiv.org paper dataset" />
+        <img
+          src={WeaviateAgentsArxivDataset}
+          alt="The arXiv.org paper dataset"
+        />
       </div>
-      <div class="card__body">
-        The arXiv.org paper dataset
-      </div>
+      <div class="card__body">The arXiv.org paper dataset</div>
     </div>
   </div>
 </div>
