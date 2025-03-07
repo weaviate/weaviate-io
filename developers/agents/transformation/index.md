@@ -94,28 +94,27 @@ This Agent is available exclusively for use with a Weaviate Cloud instance, and 
 
 ### Example Usage
 
-Pass an instance of the Weaviate client to the Transformation Agent, and the Transformation Agent will extract the necessary information from the client to perform the query.
+To use the Transformation Agent, instantiate it with the following inputs:
+
+- An instance of the Weaviate client, connected to a Weaviate Cloud instance.
+- Either new objects to be added to Weaviate, or existing objects to be updated.
+- A list of the transformation operations to be performed.
+
+And then start the update(s). Transformation operations are asynchronous, and the Transformation Agent will return a job ID. You then use this job ID to check the status of the job.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START InstantiateTransformationAgent"
-            endMarker="# END InstantiateTransformationAgent"
+            startMarker="# START SimpleTransformationAgentExample"
+            endMarker="# END SimpleTransformationAgentExample"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-Then, provide the following inputs:
-
-- Either new objects to be added to Weaviate, or existing objects to be updated.
-- A list of the transformation operations to be performed.
-
-You can then start the update(s). Transformation operations are asynchronous, and the Transformation Agent will return a job ID. You then use this job ID to check the status of the job.
-
-The transformed attributes will be immediately available on each object as the transformation progresses.
+The transformed attributes will become available on each object as the transformation progresses.
 
 ### Further Documentation
 

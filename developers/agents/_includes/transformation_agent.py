@@ -1,27 +1,26 @@
-# START-ANY
-# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is not available just yet.
-# These snippets are indicative. The syntax may change when this Agent is released.
-
-# END-ANY
-
-# START ConnectToWeaviate
+# START SimpleTransformationAgentExample
 import os
 import weaviate
 from weaviate.classes.init import Auth
-# END ConnectToWeaviate
+from weaviate.agents.transformation import TransformationAgent
+from weaviate.agents.classes import Operations
+# END SimpleTransformationAgentExample
+
 # START DefineOperationsAppend  # START DefineOperationsUpdate
 from weaviate.classes.config import Configure, Property, DataType
 # END DefineOperationsAppend  # END DefineOperationsUpdate
+
 # START TransformAtInsert  # START TransformExisting
-from weaviate.agents.transformation import TransformationAgent
 # END TransformAtInsert  # END TransformExisting
 
-# START ConnectToWeaviate
+from datasets import load_dataset
+
+# START SimpleTransformationAgentExample
 
 headers = {
-# END ConnectToWeaviate
+# END SimpleTransformationAgentExample
     "X-Cohere-API-Key": os.environ.get("COHERE_API_KEY"),
-# START ConnectToWeaviate
+# START SimpleTransformationAgentExample
     # Provide your required API key(s), e.g. Cohere, OpenAI, etc. for the configured vectorizer(s)
     "X-INFERENCE-PROVIDER-API-KEY": os.environ.get("YOUR_INFERENCE_PROVIDER_KEY", ""),
 }
@@ -31,7 +30,7 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(os.environ.get("WCD_API_KEY")),
     headers=headers,
 )
-# END ConnectToWeaviate
+# END SimpleTransformationAgentExample
 
 client.collections.delete("ArxivPapers")
 
@@ -40,8 +39,6 @@ client.collections.create(
     description="A dataset that lists research paper titles and abstracts",
     vectorizer_config=Configure.Vectorizer.text2vec_weaviate()
 )
-
-from datasets import load_dataset
 
 dataset = load_dataset("weaviate/agents", "transformation-agent-papers", split="train", streaming=True)
 
@@ -52,9 +49,8 @@ with papers_collection.batch.fixed_size(batch_size=100) as batch:
       if i < 10:
         batch.add_object(properties=item["properties"])
 
-from weaviate.agents.classes import Operations
-from weaviate.collections.classes.config import DataType
 
+# START SimpleTransformationAgentExample
 add_topics = Operations.append_property(
     property_name="topics",
     data_type=DataType.TEXT_ARRAY,
@@ -63,6 +59,20 @@ add_topics = Operations.append_property(
     Topics should be distinct from eachother. Provide a maximum of 5 topics.
     Group similar topics under one topic tag.""",
 )
+
+agent = TransformationAgent(
+    client=client,
+    collection="ArxivPapers",
+    operations=[
+        add_topics
+    ],
+)
+
+responses = agent.update_all()
+
+for transformation_response in responses:
+    agent.get_status(workflow_id=transformation_response.workflow_id)
+# END SimpleTransformationAgentExample
 
 add_french_abstract = Operations.append_property(
       property_name="french_abstract",
@@ -86,8 +96,6 @@ is_survey_paper = Operations.append_property(
     instruction="""Determine if the paper is a "survey".
     A paper is considered survey it's a surveys existing techniques, and not if it presents novel techniques""",
 )
-
-from weaviate.agents.transformation import TransformationAgent
 
 agent = TransformationAgent(
     client=client,
