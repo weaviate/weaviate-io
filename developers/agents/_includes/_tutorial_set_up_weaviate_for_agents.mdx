@@ -1,0 +1,53 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent_tutorial_ecommerce.py';
+
+## Prerequisites
+
+To use the Weaviate Agents and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+
+## Step 1: Set up Weaviate
+
+Now, let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting it to the Python client.
+
+### 1.1 Create a Weaviate Cloud cluster
+
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+
+:::tip
+In this tutorial, we are using the [Weaviate Embeddings](https://weaviate.io/developers/weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
+:::
+
+### 1.2 Install the Python libraries
+
+In order to install the Weaviate Python client together with the `agents` component, run:
+
+```
+pip install "weaviate-client[agents]"
+```
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+```
+pip install datasets
+```
+
+### 1.3 Connect to your instance
+
+Now, you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After running this snippet, you should see the message `True` printed out, which means that you have successfully connected to your instance.
