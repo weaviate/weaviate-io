@@ -25,4 +25,4 @@ Learn how to [create a vector store](https://python.langchain.com/v0.2/docs/inte
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-| Gmail Agent | Integrate Composio's Gmail tool with Weaviate to create an agent that will respond to new messages. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/function-calling/composio/agent.ipynb) |
+| Gmail Agent | Integrate Composio's Gmail tool with Weaviate to create an agent that will respond to new messages. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/function-calling/composio/agent.ipynb) |
