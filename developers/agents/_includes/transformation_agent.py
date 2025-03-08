@@ -77,6 +77,8 @@ for operation in response:  # The response is a list of TransformationResponse o
     print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
 # END SimpleTransformationAgentExample
 
+assert len(response) == 1
+
 # START DefineOperationsAppend
 add_french_abstract = Operations.append_property(
     property_name="french_abstract",
@@ -134,5 +136,7 @@ print(response)  # The response contains information about the operations, inclu
 for operation in response:  # The response is a list of TransformationResponse objects
     print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
 # # END MonitorJobStatus
+
+assert len(response) == 4
 
 client.close()
