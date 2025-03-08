@@ -30,6 +30,10 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 
 This page describes how to use the Query Agent to answer natural language queries, using your data stored in Weaviate Cloud.
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Prerequisites
 
 ### Weaviate instance

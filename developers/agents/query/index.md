@@ -28,6 +28,10 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Architecture
 
 The Query Agent is provided as a service on Weaviate Cloud.

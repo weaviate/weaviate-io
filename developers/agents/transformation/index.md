@@ -19,6 +19,10 @@ This can help you to improve the quality of your objects in your Weaviate collec
 ![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
 ![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Architecture
 
 The Transformation Agent is provided as a service on Weaviate Cloud. It updates existing Weaviate objects by either appending new properties or updating existing properties.

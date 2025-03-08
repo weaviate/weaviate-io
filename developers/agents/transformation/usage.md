@@ -31,6 +31,10 @@ This can help you to improve the quality of your objects in your Weaviate collec
 
 This page describes how to use the Weaviate Transformation Agent to transform and augment your data in Weaviate.
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Prerequisites
 
 ### Weaviate instance
