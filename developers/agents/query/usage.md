@@ -63,7 +63,7 @@ pip install -U weaviate-client[agents]
 
 #### Troubleshooting: Force `pip` to install the latest version
 
-For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally try:
+For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally try to explicitly upgrade the `weaviate-agents` package:
 
 ```shell
 pip install -U weaviate-agents
