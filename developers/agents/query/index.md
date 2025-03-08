@@ -58,7 +58,7 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
 
-## Usage
+## Basic Usage
 
 Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 

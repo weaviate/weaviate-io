@@ -4,10 +4,12 @@ import weaviate
 from weaviate.classes.init import Auth
 from weaviate.agents.transformation import TransformationAgent
 from weaviate.agents.classes import Operations
+
 # END SimpleTransformationAgentExample
 
 # START DefineOperationsAppend  # START DefineOperationsUpdate
 from weaviate.classes.config import Configure, Property, DataType
+
 # END DefineOperationsAppend  # END DefineOperationsUpdate
 
 # START TransformAtInsert  # START TransformExisting
@@ -18,9 +20,9 @@ from datasets import load_dataset
 # START SimpleTransformationAgentExample
 
 headers = {
-# END SimpleTransformationAgentExample
+    # END SimpleTransformationAgentExample
     "X-Cohere-API-Key": os.environ.get("COHERE_API_KEY"),
-# START SimpleTransformationAgentExample
+    # START SimpleTransformationAgentExample
     # Provide your required API key(s), e.g. Cohere, OpenAI, etc. for the configured vectorizer(s)
     "X-INFERENCE-PROVIDER-API-KEY": os.environ.get("YOUR_INFERENCE_PROVIDER_KEY", ""),
 }
@@ -30,6 +32,7 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(os.environ.get("WCD_API_KEY")),
     headers=headers,
 )
+
 # END SimpleTransformationAgentExample
 
 client.collections.delete("ArxivPapers")
@@ -37,17 +40,19 @@ client.collections.delete("ArxivPapers")
 client.collections.create(
     "ArxivPapers",
     description="A dataset that lists research paper titles and abstracts",
-    vectorizer_config=Configure.Vectorizer.text2vec_weaviate()
+    vectorizer_config=Configure.Vectorizer.text2vec_weaviate(),
 )
 
-dataset = load_dataset("weaviate/agents", "transformation-agent-papers", split="train", streaming=True)
+dataset = load_dataset(
+    "weaviate/agents", "transformation-agent-papers", split="train", streaming=True
+)
 
 papers_collection = client.collections.get("ArxivPapers")
 
 with papers_collection.batch.fixed_size(batch_size=100) as batch:
     for i, item in enumerate(dataset):
-      if i < 10:
-        batch.add_object(properties=item["properties"])
+        if i < 10:
+            batch.add_object(properties=item["properties"])
 
 
 # START SimpleTransformationAgentExample
@@ -63,22 +68,20 @@ add_topics = Operations.append_property(
 agent = TransformationAgent(
     client=client,
     collection="ArxivPapers",
-    operations=[
-        add_topics
-    ],
+    operations=[add_topics],
 )
 
-responses = agent.update_all()
+response = agent.update_all()
 
-for transformation_response in responses:
-    agent.get_status(workflow_id=transformation_response.workflow_id)
+for operation in response:  # The response is a list of TransformationResponse objects
+    agent.get_status(workflow_id=operation.workflow_id)  # Use the workflow_id to check the status of each operation
 # END SimpleTransformationAgentExample
 
 add_french_abstract = Operations.append_property(
-      property_name="french_abstract",
-      data_type=DataType.TEXT,
-      view_properties=["abstract"],
-      instruction="Translate the abstract to French",
+    property_name="french_abstract",
+    data_type=DataType.TEXT,
+    view_properties=["abstract"],
+    instruction="Translate the abstract to French",
 )
 
 add_nlp_relevance = Operations.append_property(

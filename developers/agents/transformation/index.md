@@ -84,7 +84,7 @@ The Transformation Agent works as follows at a high level:
 
 As a result, the specified objects in Weaviate are updated, with the new versions of the specified properties. For clarity, this would not change the number of objects in Weaviate, but would update the properties of the specified objects.
 
-## Usage
+## Basic Usage
 
 Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 
