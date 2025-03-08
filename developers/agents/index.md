@@ -40,12 +40,12 @@ The [Query Agent](./query/index.md) provides an answer to your natural language 
 
 ## Transformation Agent
 
-The [Transformation Agent](./transformation.md) enhances your data by manipulating it based on your instructions.
+The [Transformation Agent](./transformation/index.md) enhances your data by manipulating it based on your instructions.
 
-[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Click to read more about the Transformation Agent")](./transformation.md)
-[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Transformation Agent")](./transformation.md)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_light.png#gh-light-mode-only "Click to read more about the Transformation Agent")](./transformation/index.md)
+[![Click to read more about the Transformation Agent](./_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Click to read more about the Transformation Agent")](./transformation/index.md)
 
-[Read more about the Transformation Agent](./transformation.md)
+[Read more about the Transformation Agent](./transformation/index.md)
 
 ## Personalization Agent
 
