@@ -14,8 +14,8 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
@@ -31,6 +31,10 @@ The developer would simply provide a user profile, and the Personalization Agent
 
 ![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_light.png#gh-light-mode-only "Weaviate Personalization Agent from a developer perspective")
 ![Weaviate Personalization Agent from a developer perspective](./_includes/personalization_agent_overview_dark.png#gh-dark-mode-only "Weaviate Personalization Agent from a developer perspective")
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
 
 ## Architecture
 
@@ -109,8 +113,8 @@ This process ranks the combined result set as a whole, before serving them back 
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 

@@ -30,34 +30,54 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 
 This page describes how to use the Query Agent to answer natural language queries, using your data stored in Weaviate Cloud.
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Prerequisites
 
 ### Weaviate instance
 
-The Query Agent is available exclusively for use with a Weaviate Cloud instance.
+This Agent is available exclusively for use with a Weaviate Cloud instance.
 
 Refer to the [Weaviate Cloud documentation](/developers/wcs/index.mdx) for more information on how to set up a Weaviate Cloud instance.
 
-You can try the Query Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
+You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud](https://console.weaviate.cloud/).
 
 ### Client library
 
-You must install the Weaviate client library with the optional `agents` extras to use the Query Agent. Install the client library using the following command:
+:::note Supported languages
+At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
+:::
+
+You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
+
+Install the client library using the following command:
 
 <Tabs groupId="languages">
 <TabItem value="py_agents" label="Python">
 
 ```shell
-pip install weaviate-client[agents]
+pip install -U weaviate-client[agents]
+```
+
+#### Troubleshooting: Force `pip` to install the latest version
+
+For existing installations, even `pip install -U "weaviate-client[agents]"` may not upgrade `weaviate-agents` to the [latest version](https://pypi.org/project/weaviate-agents/). If this occurs, additionally try to explicitly upgrade the `weaviate-agents` package:
+
+```shell
+pip install -U weaviate-agents
+```
+
+Or install a [specific version](https://github.com/weaviate/weaviate-agents-python-client/tags):
+
+```shell
+pip install -U weaviate-agents==||site.weaviate_agents_version||
 ```
 
 </TabItem>
 
 </Tabs>
-
-:::note Supported languages
-At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
-:::
 
 ## How to use the Query Agent
 
@@ -294,7 +314,7 @@ We are investigating an ability to specify a custom collection description at ru
 
 The Query Agent performs multiple operations to translate a natural language query into Weaviate queries, and to process the response.
 
-This typicallly requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
+This typically requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
 
 As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
 
