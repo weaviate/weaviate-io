@@ -48,7 +48,7 @@ You can try this Weaviate Agent with a free Sandbox instance on [Weaviate Cloud]
 ### Client library
 
 :::note Supported languages
-At this time, the Query Agent is available only for Python. Support for other languages will be added in the future.
+At this time, this Agent is available only for Python. Support for other languages will be added in the future.
 :::
 
 You can install the Weaviate client library with the optional `agents` extras to use Weaviate Agents. This will install the `weaviate-agents` package along with the `weaviate-client` package.
