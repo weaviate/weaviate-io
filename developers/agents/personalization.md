@@ -14,8 +14,8 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/personalization_ag
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 
@@ -109,8 +109,8 @@ This process ranks the combined result set as a whole, before serving them back 
 
 :::caution
 
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quite ready yet.")
+![This Weaviate Agent isn't quite ready yet.](./_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quite ready yet.")
 
 To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
 

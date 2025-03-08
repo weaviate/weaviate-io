@@ -1,23 +1,23 @@
-# START SimpleTransformationAgentExample
+# START SimpleTransformationAgentExample  # START ConnectToWeaviate
 import os
 import weaviate
 from weaviate.classes.init import Auth
+# START SimpleTransformationAgentExample  # START StartTransformationOperations  # END ConnectToWeaviate
 from weaviate.agents.transformation import TransformationAgent
+# START SimpleTransformationAgentExample  # END StartTransformationOperations
 from weaviate.agents.classes import Operations
 
 # END SimpleTransformationAgentExample
 
 # START DefineOperationsAppend  # START DefineOperationsUpdate
-from weaviate.classes.config import Configure, Property, DataType
+from weaviate.agents.classes import Operations
 
 # END DefineOperationsAppend  # END DefineOperationsUpdate
 
-# START TransformAtInsert  # START TransformExisting
-# END TransformAtInsert  # END TransformExisting
-
+from weaviate.classes.config import Configure, Property, DataType
 from datasets import load_dataset
 
-# START SimpleTransformationAgentExample
+# START SimpleTransformationAgentExample  # START ConnectToWeaviate
 
 headers = {
     # END SimpleTransformationAgentExample
@@ -33,7 +33,7 @@ client = weaviate.connect_to_weaviate_cloud(
     headers=headers,
 )
 
-# END SimpleTransformationAgentExample
+# END SimpleTransformationAgentExample  # END ConnectToWeaviate
 
 client.collections.delete("ArxivPapers")
 
@@ -74,9 +74,10 @@ agent = TransformationAgent(
 response = agent.update_all()
 
 for operation in response:  # The response is a list of TransformationResponse objects
-    agent.get_status(workflow_id=operation.workflow_id)  # Use the workflow_id to check the status of each operation
+    print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
 # END SimpleTransformationAgentExample
 
+# START DefineOperationsAppend
 add_french_abstract = Operations.append_property(
     property_name="french_abstract",
     data_type=DataType.TEXT,
@@ -99,97 +100,39 @@ is_survey_paper = Operations.append_property(
     instruction="""Determine if the paper is a "survey".
     A paper is considered survey it's a surveys existing techniques, and not if it presents novel techniques""",
 )
+# END DefineOperationsAppend
+
+# START DefineOperationsUpdate
+update_topics = Operations.update_property(
+    property_name="topics",
+    view_properties=["abstract", "title"],
+    instruction="""Create a list of topic tags based on the title and abstract.
+    Topics should be distinct from eachother. Provide a maximum of 3 topics.
+    Group similar topics under one topic tag.""",
+)
+# END DefineOperationsUpdate
+
+# START StartTransformationOperations
 
 agent = TransformationAgent(
     client=client,
     collection="ArxivPapers",
     operations=[
-        add_topics,
         add_french_abstract,
         add_nlp_relevance,
         is_survey_paper,
+        update_topics,
     ],
 )
 
-workflow_ids = agent.update_all()
+response = agent.update_all()
 
-print(workflow_ids)
-
-agent.get_status(workflow_id=workflow_ids[0].workflow_id)
-
-# # START DefineOperationsAppend
-
-# is_premium_product_op = Operations.append_property(
-#     property_name="is_premium_product",
-#     data_type=DataType.BOOL,
-#     view_properties=["reviews", "price", "rating", "description"],
-#     instruction="""Determine if the product is a premium product,
-#     a product is considered premium if it has a high rating (4 or above),
-#     a high price (above 60), and positive reviews""",
-# )
-
-# product_descriptors_op = Operations.append_property(
-#     property_name="product_descriptors",
-#     data_type=DataType.TEXT_ARRAY,
-#     view_properties=["description"],
-#     instruction="""Extract the product descriptors from the description.
-#     Descriptors are a list of words that describe the product succinctly for SEO optimization""",
-# )
-# # END DefineOperationsAppend
-
-# # START DefineOperationsUpdate
-
-# name_update_op = Operations.update_property(
-#     property_name="name",
-#     view_properties=["name", "description", "category", "brand", "colour"],
-#     instruction="""Update the name to ensure it contains more details about the products colour and brand, and category.
-#     The name should be a single sentence that describes the product""",
-# )
-# # END DefineOperationsUpdate
-
-# # START TransformAtInsert
-
-# ta = TransformationAgent(
-#     client=client,
-#     collection="ecommerce",
-#     operations=[
-#         is_premium_product_op,
-#         product_descriptors_op,
-#         name_update_op,
-#     ],
-# )
-
-# ta.update_and_insert([
-#     { "name": "Foo", "description": "...", "reviews": ["...", "..."] "price": 25, "rating": 3 },
-#     { "name": "Bar", "description": "...", "reviews": ["...", "..."] "price": 50, "rating": 4 },
-# ])
-
-# # Note this is an async function
-# operation_workflow_ids = await ta.update_all()
-
-# print(operation_workflow_ids)  # Use this to track the status of the operations
-# # END TransformAtInsert
-
-# # START TransformExisting
-
-# ta = TransformationAgent(
-#     client=client,
-#     collection="ecommerce",
-#     operations=[
-#         is_premium_product_op,
-#         product_descriptors_op,
-#         name_update_op,
-#     ],
-# )
-
-# # Note this is an async function
-# operation_workflow_ids = await ta.update_all()
-
-# print(operation_workflow_ids)  # Use this to track the status of the operations
-# # END TransformExisting
+print(response)  # The response contains information about the operations, including the workflow_id
+# END StartTransformationOperations
 
 # # START MonitorJobStatus
-# print(ta.fetch_operation_status(operation_workflow_ids))
+for operation in response:  # The response is a list of TransformationResponse objects
+    print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
 # # END MonitorJobStatus
 
 client.close()
