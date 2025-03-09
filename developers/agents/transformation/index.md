@@ -14,10 +14,10 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
 
-This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
+![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_light.png#gh-light-mode-only "Weaviate Transformation Agent example - append")
+![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_dark.png#gh-dark-mode-only "Weaviate Transformation Agent example - append")
 
-![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
-![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
+This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
 
 :::info Changelog and feedback
 The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
@@ -26,6 +26,10 @@ The official changelog for Weaviate Agents can be [found here](https://weaviatea
 ## Architecture
 
 The Transformation Agent is provided as a service on Weaviate Cloud. It updates existing Weaviate objects by either appending new properties or updating existing properties.
+
+
+![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
+![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
 
 Provide a set of instructions to the Transformation Agent, such as the collection to update and existing properties to review and the instructions. The Transformation Agent will then perform the specified operations on the specified objects in Weaviate.
 
