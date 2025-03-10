@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 # Weaviate Transformation Agent
 
-The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data using generative models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
 
 ![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_light.png#gh-light-mode-only "Weaviate Transformation Agent example - append")
 ![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_dark.png#gh-dark-mode-only "Weaviate Transformation Agent example - append")
@@ -42,7 +42,7 @@ This would not change the number of objects in Weaviate, but would update the pr
 To transform existing objects, the Transformation Agent follows the workflows shown below.
 
 - The Transformation Agent retrieves the existing objects from Weaviate, based on the specified criteria (steps 1-2).
-- The Transformation Agent works with a foundation model to create the property value, based on the instructions provided and the context of the specified existing properties (steps 3-4).
+- The Transformation Agent works with a generative model to create the property value, based on the instructions provided and the context of the specified existing properties (steps 3-4).
 - Update the transformed objects in Weaviate. Weaviate vectorizes the data as needed using the specified vectorizer integration. (Steps 5-7)
 - Receive the job status from Weaviate, which is returned to the user (Step 8).
 

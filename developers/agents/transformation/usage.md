@@ -22,7 +22,7 @@ To be notified with news on this agent, [**sign up here for updates**](https://e
 
 :::
 
-The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data using generative models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
 
 This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
 
