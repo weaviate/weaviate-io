@@ -54,7 +54,7 @@ The Personalization Agent works as follows at a high level:
 - Create a Weaviate-managed user collection, which will store each user's profiles & previous interactions for each user.
 - When a request for personalized recommendations is made, the Personalization Agent fetches the user data, and analyze it to determine patterns and preferences.
 - Perform initial searches in Weaviate based on the analysis to retrieve the most relevant recommendations.
-- Use appropriate foundation models to determine any additional search strategies, and to re-rank fetched data as required.
+- Use appropriate generative models to determine any additional search strategies, and to re-rank fetched data as required.
 - Perform additional searches in Weaviate as needed to retrieve the final set of recommendations.
 - Combine and rank the recommendations based on the user's profile and preferences.
 

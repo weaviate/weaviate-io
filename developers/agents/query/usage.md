@@ -314,7 +314,7 @@ We are investigating an ability to specify a custom collection description at ru
 
 The Query Agent performs multiple operations to translate a natural language query into Weaviate queries, and to process the response.
 
-This typically requires multiple calls to foundation models (e.g. LLMs) and multiple queries to Weaviate.
+This typically requires multiple calls to generative models (e.g. LLMs) and multiple queries to Weaviate.
 
 As a result, each Query Agent run may take some time to complete. Depending on the query complexity, it may not be uncommon to see execution times of ~10 seconds.
 
