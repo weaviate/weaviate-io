@@ -24,98 +24,113 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(weaviate_api_key),
 )
 
-client.collections.delete_all()
-client.collections.delete("Brands")
-client.collections.delete("ECommerce")
+client.collections.delete("ArxivPapers")
 
 # START DefineCollections
-from weaviate.classes.config import Configure, Property, DataType
+from weaviate.classes.config import Configure, DataType
 
 client.collections.create(
     "ArxivPapers",
     description="A dataset that lists research paper titles and abstracts",
-    vectorizer_config=Configure.Vectorizer.text2vec_weaviate()
+    vectorizer_config=Configure.Vectorizer.text2vec_weaviate(),
 )
 # END DefineCollections
 
 # START PopulateDatabase
 from datasets import load_dataset
 
-dataset = load_dataset("weaviate/agents", "transformation-agent-papers", split="train", streaming=True)
+dataset = load_dataset(
+    "weaviate/agents", "transformation-agent-papers", split="train", streaming=True
+)
 
 papers_collection = client.collections.get("ArxivPapers")
 
 with papers_collection.batch.dynamic() as batch:
     for i, item in enumerate(dataset):
-      if i < 200:
-        batch.add_object(properties=item["properties"])
+        if i < 200:
+            batch.add_object(properties=item["properties"])
+
+failed_objects = papers_collection.batch.failed_objects
+if failed_objects:
+    print(f"Number of failed imports: {len(failed_objects)}")
+    print(f"First failed object: {failed_objects[0]}")
+
+print(f"Size of the ArxivPapers dataset: {len(papers_collection)}")
 # END PopulateDatabase
 
-# START BasicQueryAgent
-from weaviate.agents.query import QueryAgent
+# START AddListOfTopics
+from weaviate.agents.classes import Operations
+from weaviate.collections.classes.config import DataType
 
-agent = QueryAgent(
+add_topics = Operations.append_property(
+    property_name="topics",
+    data_type=DataType.TEXT_ARRAY,
+    view_properties=["abstract", "title"],
+    instruction="""Create a list of topic tags based on the title and abstract.
+    Topics should be distinct from each other. Provide a maximum of 5 topics.
+    Group similar topics under one topic tag.""",
+)
+# END AddListOfTopics
+
+# START AddFrenchAbstract
+add_french_abstract = Operations.append_property(
+    property_name="french_abstract",
+    data_type=DataType.TEXT,
+    view_properties=["abstract"],
+    instruction="Translate the abstract to French",
+)
+# END AddFrenchAbstract
+
+# START AddNlpRelevance
+add_nlp_relevance = Operations.append_property(
+    property_name="nlp_relevance",
+    data_type=DataType.INT,
+    view_properties=["abstract"],
+    instruction="""Give a score from 0-10 based on how relevant the abstract is to Natural Language Processing.
+    The scale is from 0 (not relevant at all) to 10 (very relevant)""",
+)
+# END AddNlpRelevance
+
+# START IsSurveyPaper
+add_is_survey_paper = Operations.append_property(
+    property_name="is_survey_paper",
+    data_type=DataType.BOOL,
+    view_properties=["abstract"],
+    instruction="""Determine if the paper is a "survey".
+    A paper is considered a survey if it surveys existing techniques and not if it presents novel techniques""",
+)
+# END IsSurveyPaper
+
+# START UpdateProperty
+name_update_op = Operations.update_property(
+    property_name="title",
+    view_properties=["title", "is_survey_paper"],
+    instruction="""Update the title of the paper so it starts with [SURVEY] if is_survey_paper is true 
+    for that paper""",
+)
+# END UpdateProperty
+
+# START CreateTransformationAgent
+from weaviate.agents.transformation import TransformationAgent
+
+agent = TransformationAgent(
     client=client,
-    collections=["ECommerce", "Brands"],
+    collection="ArxivPapers",
+    operations=[
+        add_topics,
+        add_french_abstract,
+        add_nlp_relevance,
+        add_is_survey_paper,
+    ],
 )
-# END BasicQueryAgent
+# END CreateTransformationAgent
 
-# START CustomizedQueryAgent
-multi_lingual_agent = QueryAgent(
-    client=client,
-    collections=["ECommerce", "Brands"],
-    system_prompt="You are a helpful assistant that always generates the final response in the user's language."
-    "You may have to translate the user query to perform searches. But you must always respond to the user in their own language.",
-)
-# END CustomizedQueryAgent
+# START ExecutingTransformations
+workflow_ids = agent.update_all()
+# END ExecutingTransformations
 
-# START AskQuestions
-from weaviate.agents.utils import print_query_agent_response
-
-response = agent.run(
-    "I like vintage clothes, can you list me some options that are less than $200?"
-)
-
-print(response)
-# END AskQuestions
-
-# START FinalAnswerAskQuestions
-# Only print the final answer of the response
-print(response.final_answer)
-# END FinalAnswerAskQuestions
-
-# START PrintQueryAgentResponseAskQuestions
-# Print the whole response in a user-friendly format
-print_query_agent_response(response)
-# END PrintQueryAgentResponseAskQuestions
-
-# START FollowUpAskQuestions
-new_response = agent.run(
-    "What about some nice shoes, same budget as before?", context=response
-)
-
-print_query_agent_response(new_response)
-# END FollowUpAskQuestions
-
-# START Aggregation
-response = agent.run("What is the the name of the brand that lists the most shoes?")
-
-print_query_agent_response(response)
-# END Aggregation
-
-# START SearchOverMultipleCollections
-response = agent.run(
-    "Does the brand 'Loom & Aura' have a parent brand or child brands and what countries do they operate from? "
-    "Also, what's the average price of a shoe from 'Loom & Aura'?"
-)
-
-print_query_agent_response(response)
-# END SearchOverMultipleCollections
-
-# START MoreQuestions
-response = multi_lingual_agent.run('"Eko & Stitch"は英国に支店または関連会社がありますか？')
-
-print(response.final_answer)
-# END MoreQuestions
+# START GetStatus
+agent.get_status(workflow_id=workflow_ids[0].workflow_id)
+# END GetStatus
 
 client.close()  # Free up resources
