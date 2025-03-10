@@ -6,7 +6,7 @@ image: og/docs/howto.jpg
 # tags: ['best practices', 'how-to']
 ---
 
-# Best practices for using Weaviate
+# Best practices & tips
 
 This page covers what we consider general best practices for using Weaviate. They are based on our experience and the feedback we have received from our users.
 
@@ -18,7 +18,7 @@ We will update this page over time as Weaviate evolves and we learn more about h
 
 ### Use multi-tenancy for data subsets
 
-If your use cases involves multiple subsets of data which:
+If your use cases involves multiple subsets of data which meet all of the following criteria:
 
 - Have the same data structure (i.e. data schema)
 - Can share the same settings (e.g. vector index, inverted index, vectorizer models, etc.)
@@ -28,8 +28,6 @@ Then consider enabling multi-tenancy, and assigning each subset of data to a sep
 
 <p align="center"><img src="/img/docs/system/collections_with_without_mt.png" alt="Replication Factor" width="100%"/></p>
 
-Then consider enabling multi-tenancy, and assigning each subset of data to a separate tenant. This will reduce the resource overhead on Weaviate, and allow you to scale more effectively.
-
 :::tip Further resources
 - [How-to: Perform multi-tenancy operations](manage-data/multi-tenancy.md)
 - [How to: Manage tenant states](manage-data/tenant-states.mdx)
@@ -38,14 +36,14 @@ Then consider enabling multi-tenancy, and assigning each subset of data to a sep
 
 ### Use the right vector index type
 
-For many cases, the default, HNSW index type is a good starting point. However, in some cases, using `flat` indexes, or `dynamic` indexes may be more appropriate.
+For many cases, the default, `hnsw` index type is a good starting point. However, in some cases, using `flat` indexes, or `dynamic` indexes may be more appropriate.
 
 - `flat` indexes are useful when you know that each collection will only ever contain a small number of vectors (e.g. fewer than 100,000).
     - They use very little memory, but can be slow for large datasets.
-- `dynamic` indexes start with a `flat` index, and automatically switch to an HNSW index when the number of vectors in the collection exceeds a certain threshold.
+- `dynamic` indexes start with a `flat` index, and automatically switch to an `hnsw` index when the number of vectors in the collection exceeds a certain threshold.
     - They are a good compromise between memory usage and query performance.
 
-Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they can automatically switch to HNSW indexes when the number of vectors in a tenant exceeds a certain threshold.
+Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they can automatically switch to `hnsw` indexes when the number of vectors in a tenant exceeds a certain threshold.
 
 :::tip Further resources
 - [How-to: Set the vector index type](manage-data/collections.mdx#set-vector-index-type)
@@ -54,7 +52,7 @@ Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they
 
 ### Consider vector quantization
 
-As the size of your dataset grows, the (HNSW) vector index can lead to high memory requirements and thus significant costs.
+As the size of your dataset grows, the accompanying vector indexes can lead to high memory requirements and thus significant costs. Especially if the `hnsw` index type is used.
 
 If you have a large number of vectors, consider using vector quantization to reduce the memory footprint of the vector index. This will reduce the required memory, and allow you to scale more effectively at lower costs.
 
@@ -79,7 +77,7 @@ Set `DISK_USE_WARNING_PERCENTAGE` and `DISK_USE_READONLY_PERCENTAGE` to adjust t
 
 ### Memory requirements - rules of thumb
 
-When running Weaviate, memory a common bottleneck. As a rule of thumb, you can expect to need:
+When running Weaviate, its memory footprint is a common bottleneck. As a rule of thumb, you can expect to need:
 
 - 6GB of memory for 1 million, 1024-dimensional vectors
 - 1.5GB of memory for 1 million, 256-dimensional vectors
