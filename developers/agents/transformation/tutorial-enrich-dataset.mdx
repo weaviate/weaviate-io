@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_agent_tutorial_enrich_dataset.py';
 
-In this tutorial, we will build a simple Weaviate **[`TransformationAgent`](./index.md)**. We will build an agent that has access to a collection containing a bunch of research papers, their abstracts, and titles. We will then use the agent to create additional properties for each of our objects in the collection.
+In this tutorial, we will use the **[`TransformationAgent`](./index.md)** to enrich data stored in Weaviate. We will build an agent that has access to a collection containing a bunch of research papers, their abstracts, and titles. We will then use the agent to create additional properties for each of our objects in the collection.
 
 We've prepared a public dataset that you can use to explore the Transformation Agent, and it's available on Hugging Face:
 
@@ -67,15 +67,31 @@ If you want to use another vectorizer, check out the list of supported [model pr
 
 In order to install the Weaviate Python client together with the `agents` component, run:
 
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
 ```
 pip install "weaviate-client[agents]"
 ```
 
+</TabItem>
+</Tabs>
+
 You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
 
 ```
 pip install datasets
 ```
+
+</TabItem>
+</Tabs>
+
+import ForcePipInstall from '../_includes/_force_pip_install.mdx';
+
+<ForcePipInstall />
 
 ### 1.3 Connect to your instance
 
@@ -100,7 +116,7 @@ In the following code blocks, we are pulling our demo datasets from Hugging Face
 
 ### 2.1 Define the Collections
 
-import WeaviateAgentsArxivDataset from '/developers/agents/_includes/weaviate-agents-arxiv-dataset.png';
+import WeaviateAgentsArxivDataset from '/developers/agents/_includes/transformation_agent_tutorial_arxiv_dataset.png';
 
 <div class="row">
   <div class="col col--3">
@@ -155,7 +171,7 @@ Now, we can import the pre-vectorized data [ArxivPapers](https://huggingface.co/
 By calling `len()` on our collections, we can check that the import has successfully concluded and see what the size of our collections is.
 
 ```
-Size of the ArxivPapers dataset: 448
+Size of the ArxivPapers dataset: 200
 ```
 
 ### 2.3 Inspect the collection in the Explorer tool
@@ -173,21 +189,21 @@ The star of the show for the `TransformationAgent` are the operations.
 
 We can now define the transformation operations that we want to perform on our collection. An operation can be:
 
-- Appending a new property
-- Updating an existing property
+- **[Appending a new property](#31-append-new-properties)**
+- **[Updating an existing property](#32-update-an-existing-property)**
 
 ### 3.1 Append new properties
 
 To append a new property, we define an operation with:
 
 - **`instruction`**: This is where you can describe, in natural language, what you want this new property to be.
-- **`property_name`**: The name you want the property to have
-- **`data_type`**: The specific datatype the property should be. E.g.: `DataType.TEXT`, `DataType.TEXT_ARRAY`, `DataType.BOOL`, `DataType.INT` etc.
+- **`property_name`**: The name you want the property to have.
+- **`data_type`**: The specific datatype the property should be (`DataType.TEXT`, `DataType.TEXT_ARRAY`, `DataType.BOOL`, `DataType.INT`, etc.)
 - **`view_properties`**: Sometimes, you may want to create properties that are based on information provided in other properties and this is where you can list out which properties the instruction should access.
 
 #### 3.1.1 Create a list of topics
 
-First, let's append a new property called "topics", which should be a `TEXT_ARRAY`. Based on the "abstract" and "title", let's ask for the LLM to extract a list of topic tags. We can be specific here. Let's ask for no more than 5.
+First, let's append a new property called `topics`, which should be a `TEXT_ARRAY`. Based on the `abstract` and `title`, let's ask for the LLM to extract a list of topic tags. Let's ask for no more than 5.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -202,7 +218,7 @@ First, let's append a new property called "topics", which should be a `TEXT_ARRA
 
 #### 3.1.2 Add a French translation
 
-Next, let's add a new "french_abstract" property, which is simply a translation of the "abstract"
+Next, let's add a new `french_abstract` property, which is simply a translation of the `abstract` property:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -232,7 +248,7 @@ This time, we can add a property that is an `INT`. Here, we ask the LLM to give 
 
 #### 3.1.4 Determine if it's a survey paper
 
-Finally, let's ask for a `BOOL` property, which indicates whether the paper is a survey or not. I.e., we'll ask the LLM to determine if the paper presents novel techniques or if it's a survey of existing ones.
+Finally, let's ask for a `BOOL` property, which indicates whether the paper is a survey or not. The LLM will determine if the paper presents novel techniques or if it's a survey of existing ones.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -247,7 +263,7 @@ Finally, let's ask for a `BOOL` property, which indicates whether the paper is a
 
 ### 3.2 Update an existing property
 
-Now let's update an existing property using the newly created `is_survey_paper` property. If the paper is a survey, the agent should append the tag `[SURVEY]` at the beginning of the title:
+Now, let's update an existing property using the newly created `is_survey_paper` property. If the paper is a survey, the agent should append the tag `[SURVEY]` at the beginning of the title:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -264,7 +280,7 @@ Now let's update an existing property using the newly created `is_survey_paper` 
 
 Once we have defined all of our operations, we can initialize the `TransformationAgent`.
 
-When initializing the agent, we have to decide which `collection` it may have access to. In this case, we want it to have access to the "ArxivPapers" collection we previously created.
+When initializing the agent, we have to let it know which collection to modify. In this case, we want it to have access to the "ArxivPapers" collection we previously created.
 
 Next, we need to provide a list of `operations` that the agent should run. Here, we provide all the operations we defined above.
 
@@ -294,9 +310,43 @@ By calling `update_all()`, we get the agent to spin up individual workflows for 
   </TabItem>
 </Tabs>
 
+import WeaviateAgentsExplorerTool from '/developers/agents/_includes/transformation_agent_tutorial_explorer_tool.png';
+
+<div class="row">
+  <div class="col col--3">
+    <p>
+      Now, you can open the{' '}
+      <a href="https://console.weaviate.cloud/apps/explorer">Explorer tool</a>{' '}
+      to check the results of the transformation.
+    </p>
+  </div>
+  <div class="col col--9">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WeaviateAgentsExplorerTool}
+          alt="Explorer tool in Weaviate Cloud"
+        />
+      </div>
+      <div class="card__body">Explorer tool in Weaviate Cloud</div>
+    </div>
+  </div>
+</div>
+<br />
+
+The output is:
+
+```
+[TransformationResponse(operation_name='topics', workflow_id='TransformationWorkflow-7006854bd90f949b59bb8d88c816bdd6'), 
+TransformationResponse(operation_name='french_abstract', workflow_id='TransformationWorkflow-7a025ef11ef8e681adb0c273755d0a2a'), 
+TransformationResponse(operation_name='nlp_relevance', workflow_id='TransformationWorkflow-e6db777629ae7b38ca2f8f64df35c305'), 
+TransformationResponse(operation_name='is_survey_paper', workflow_id='TransformationWorkflow-e70d29827271f462f2a911ec29c6cb0c'), 
+TransformationResponse(operation_name='title', workflow_id='TransformationWorkflow-6b2ff75370e1f80ff537037fde02cb26')]
+```
+
 ### 4.2 Inspect the operation workflows
 
-To inspect the status of our operations, we can take a look at the `workflow_ids` and get their status with `agent.get_status(workflow_id)`
+To inspect the status of the asynchronous transformation operations, we can use the `agent.get_status(workflow_id)` function:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -308,6 +358,16 @@ To inspect the status of our operations, we can take a look at the `workflow_ids
     />
   </TabItem>
 </Tabs>
+
+The output is:
+
+```
+{'workflow_id': 'TransformationWorkflow-f408a4a0211940525c0e2d45cf46a6c2', 'status': {'batch_count': 1, 'end_time': None, 'start_time': '2025-03-10 13:17:31', 'state': 'running', 'total_duration': None, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-c4d1574fc363b97986dd2829fbc9733b', 'status': {'batch_count': 1, 'end_time': None, 'start_time': '2025-03-10 13:17:32', 'state': 'running', 'total_duration': None, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-5b6681c4024cb84f1ab057b58e673f2d', 'status': {'batch_count': 1, 'end_time': '2025-03-10 13:17:43', 'start_time': '2025-03-10 13:17:32', 'state': 'completed', 'total_duration': 10.597776, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-513fff6e89944e7becca5c42cc07a9f7', 'status': {'state': 'unknown', 'batch_count': -1, 'total_items': -1, 'total_duration': None, 'start_time': None, 'end_time': None}}
+{'workflow_id': 'TransformationWorkflow-b10fadcfcc212f64acb0b2ddd1daf3a3', 'status': {'batch_count': 1, 'end_time': '2025-03-10 13:17:49', 'start_time': '2025-03-10 13:17:33', 'state': 'completed', 'total_duration': 15.604925, 'total_items': 200}}
+```
 
 ## Summary
 

@@ -1,5 +1,6 @@
 # START ConnectToWeaviate
 import os
+import time
 import weaviate
 from weaviate.auth import Auth
 
@@ -27,7 +28,7 @@ client = weaviate.connect_to_weaviate_cloud(
 client.collections.delete("ArxivPapers")
 
 # START DefineCollections
-from weaviate.classes.config import Configure, DataType
+from weaviate.classes.config import Configure
 
 client.collections.create(
     "ArxivPapers",
@@ -77,7 +78,7 @@ add_french_abstract = Operations.append_property(
     property_name="french_abstract",
     data_type=DataType.TEXT,
     view_properties=["abstract"],
-    instruction="Translate the abstract to French",
+    instruction="Translate the abstract to French.",
 )
 # END AddFrenchAbstract
 
@@ -87,7 +88,7 @@ add_nlp_relevance = Operations.append_property(
     data_type=DataType.INT,
     view_properties=["abstract"],
     instruction="""Give a score from 0-10 based on how relevant the abstract is to Natural Language Processing.
-    The scale is from 0 (not relevant at all) to 10 (very relevant)""",
+    The scale is from 0 (not relevant at all) to 10 (very relevant).""",
 )
 # END AddNlpRelevance
 
@@ -97,16 +98,15 @@ add_is_survey_paper = Operations.append_property(
     data_type=DataType.BOOL,
     view_properties=["abstract"],
     instruction="""Determine if the paper is a "survey".
-    A paper is considered a survey if it surveys existing techniques and not if it presents novel techniques""",
+    A paper is considered a survey if it surveys existing techniques and not if it presents novel techniques.""",
 )
 # END IsSurveyPaper
 
 # START UpdateProperty
-name_update_op = Operations.update_property(
+update_title = Operations.update_property(
     property_name="title",
-    view_properties=["title", "is_survey_paper"],
-    instruction="""Update the title of the paper so it starts with [SURVEY] if is_survey_paper is true 
-    for that paper""",
+    view_properties=["abstract"],
+    instruction="""Make the title start with the label MACHINE_LEARNING if the abstract mentions machine learning techniques.""",
 )
 # END UpdateProperty
 
@@ -121,16 +121,21 @@ agent = TransformationAgent(
         add_french_abstract,
         add_nlp_relevance,
         add_is_survey_paper,
+        update_title,
     ],
 )
 # END CreateTransformationAgent
 
 # START ExecutingTransformations
-workflow_ids = agent.update_all()
+response = agent.update_all()
+print(response)
 # END ExecutingTransformations
 
+time.sleep(5)
+
 # START GetStatus
-agent.get_status(workflow_id=workflow_ids[0].workflow_id)
+for operation in response:
+    print(agent.get_status(workflow_id=operation.workflow_id))
 # END GetStatus
 
 client.close()  # Free up resources
