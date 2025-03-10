@@ -18,9 +18,9 @@ The resources are broken into two categories:
 
 | Topic | Description | Resource | 
 | --- | --- | --- |
-|  RAG Chatbot with Semantic Kernel | Implements a simple workflow of retrieve-then-generate. Use a semantic kernel for prompt engineering, orchestrating OpenAI API calls, and integrating Weaviate. Use Weavate as a knowledge base to retrieve semantically relevant context. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/semantic-kernel/dotnet/Chatbot_RAG_Weaviate.ipynb) |
-| Retrieval Augmented Generation using Weaviate and SK | Implements a simple workflow of retrieve-then-generate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/semantic-kernel/RetrievalAugmentedGeneration_Weaviate.ipynb) |
-| Weaviate Persistent Memory | This notebook shows how to replace `VolatileMemoryStore` memory storage with a `WeaviateMemoryStore` persistent memory. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/semantic-kernel/weaviate-persistent-memory.ipynb) | 
+|  RAG Chatbot with Semantic Kernel | Implements a simple workflow of retrieve-then-generate. Use a semantic kernel for prompt engineering, orchestrating OpenAI API calls, and integrating Weaviate. Use Weavate as a knowledge base to retrieve semantically relevant context. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/dotnet/Chatbot_RAG_Weaviate.ipynb) |
+| Retrieval Augmented Generation using Weaviate and SK | Implements a simple workflow of retrieve-then-generate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/RetrievalAugmentedGeneration_Weaviate.ipynb) |
+| Weaviate Persistent Memory | This notebook shows how to replace `VolatileMemoryStore` memory storage with a `WeaviateMemoryStore` persistent memory. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/semantic-kernel/weaviate-persistent-memory.ipynb) | 
 
 
 ### Read and Listen 
