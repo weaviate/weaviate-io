@@ -82,7 +82,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             property="og:description"
-            content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources. An alpha value of 0 gives full weight to the sparse vector (BM25), 1 gives full weight to the dense vector, and 0.5 gives equal weight to both."
+            content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources."
           />
           <meta property="og:site_name" content="Weaviate Knowledge Cards" />
           <meta property="og:locale" content="en_US" />
@@ -101,7 +101,7 @@ const KnowledgeBasePage = () => {
           />
           <meta
             name="twitter:description"
-            content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources. An alpha value of 0 gives full weight to the sparse vector (BM25), 1 gives full weight to the dense vector, and 0.5 gives equal weight to both."
+            content="ReAct prompting combines CoT with agents, creating a system where the model can generate thoughts and delegate actions to agents that interact with external data sources."
           />
           <meta
             name="twitter:image"
