@@ -24,7 +24,6 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(weaviate_api_key),
 )
 
-client.collections.delete_all()
 client.collections.delete("Brands")
 client.collections.delete("ECommerce")
 

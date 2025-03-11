@@ -12,6 +12,15 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent_tutorial_ecommerce.py';
 
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
+
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
+
 In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](./index.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
 We've prepared a few public datasets that you can use to explore the Query Agent.
@@ -49,7 +58,7 @@ The Query Agent:
 
 ## Prerequisites
 
-To use the Weaviate Query Agent and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+To use the Weaviate Agents and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
 
 ## Step 1: Set up Weaviate
 
@@ -69,15 +78,31 @@ If you want to use another vectorizer, check out the list of supported [model pr
 
 In order to install the Weaviate Python client together with the `agents` component, run:
 
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
 ```
 pip install "weaviate-client[agents]"
 ```
 
+</TabItem>
+</Tabs>
+
 You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
 
 ```
 pip install datasets
 ```
+
+</TabItem>
+</Tabs>
+
+import ForcePipInstall from '../_includes/_force_pip_install.mdx';
+
+<ForcePipInstall />
 
 ### 1.3 Connect to your instance
 

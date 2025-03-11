@@ -1,0 +1,401 @@
+---
+title: Enrich your dataset with a Transformation Agent
+sidebar_label: 'Tutorial: Enrich your dataset'
+description: Learn how to create additional properties in your dataset with the Weaviate Transformation Agent.
+sidebar_position: 40
+image: og/docs/tutorials.jpg
+# tags: ['basics']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_agent_tutorial_enrich_dataset.py';
+
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
+
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
+
+In this tutorial, we will use the **[Transformation Agent](./index.md)** to enrich data stored in Weaviate. We will build an agent that has access to a collection containing a bunch of research papers, their abstracts, and titles. We will then use the agent to create additional properties for each of our objects in the collection.
+
+We've prepared a public dataset that you can use to explore the Transformation Agent, and it's available on Hugging Face:
+
+- [**ArxivPapers:**](https://huggingface.co/datasets/weaviate/agents/viewer/transformation-agent-papers) A dataset that lists titles and abstracts of research papers.
+
+## Introduction: What are Transformation Agents?
+
+The Transformation Agent is able to access a Weaviate collection of your choosing and perform operations on the objects within it. However, each operation for the agent can be defined in natural language. The agent will then use an LLM to complete the instructions in the operation.
+
+import WeaviateAgentsArxivFlowchart from '/developers/agents/_includes/transformation_agent_tutorial_arxiv_flowchart.png';
+
+<div class="row">
+  <div class="card">
+    <div class="card__image">
+      <img
+        src={WeaviateAgentsArxivFlowchart}
+        alt="Weaviate Query Agent flowchart"
+      />
+    </div>
+  </div>
+</div>
+<br />
+
+The Transformation Agent:
+
+1. **Receives a task** to create new properties or update existing ones.
+2. **Retrieves the needed data from Weaviate**, which will be updated or used to create the new properties.
+3. **Uses an appropriate foundation model** (e.g. large language model) to perform the transformation of the data.
+4. **Stores the transformed data in Weaviate** by creating new properties or updating existing ones.
+
+<hr />
+
+## Prerequisites
+
+To use the Weaviate Agents and Weaviate Embedding service, you need to have a **[Weaviate Cloud](https://console.weaviate.cloud)** account.
+
+## Step 1: Set up Weaviate
+
+Now, let's get started by setting up a Weaviate Cloud instance that we will use for this tutorial and connecting it to the Python client.
+
+### 1.1 Create a Weaviate Cloud cluster
+
+1. Create a [free Sandbox cluster](/developers/wcs/manage-clusters/create#sandbox-clusters) in Weaviate Cloud.
+1. Take note of the `REST Endpoint` and `Admin` API key to connect to your cluster. (for more info, check out the [quickstart](/developers/wcs/quickstart#22-connect-to-your-weaviate-cloud-instance))
+
+:::tip
+In this tutorial, we are using the [Weaviate Embeddings](../../weaviate/model-providers/weaviate) service as the vectorizer, so you do not have to provide any extra keys for external embedding providers. Weaviate Embeddings uses the `Snowflake/snowflake-arctic-embed-l-v2.0` as the default embedding model.<br/><br/>
+If you want to use another vectorizer, check out the list of supported [model providers](../../weaviate/model-providers/index.md).
+:::
+
+### 1.2 Install the Python libraries
+
+In order to install the Weaviate Python client together with the `agents` component, run:
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
+```
+pip install "weaviate-client[agents]"
+```
+
+</TabItem>
+</Tabs>
+
+You will also need `datasets`, a lightweight library providing access to the publicly hosted datasets on HuggingFace.
+
+<Tabs groupId="languages">
+<TabItem value="py_agents" label="Python">
+
+```
+pip install datasets
+```
+
+</TabItem>
+</Tabs>
+
+import ForcePipInstall from '../_includes/_force_pip_install.mdx';
+
+<ForcePipInstall />
+
+### 1.3 Connect to your instance
+
+Now, you can finally connect to your Weaviate Cloud instance with the parameters from the first step:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ConnectToWeaviate"
+      endMarker="# END ConnectToWeaviate"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+After running this snippet, you should see the message `True` printed out, which means that you have successfully connected to your instance.
+
+## Step 2: Prepare the Collections
+
+In the following code blocks, we are pulling our demo datasets from Hugging Face and writing them to new collections in our Weaviate Sandbox cluster. Before we can start importing the data into Weaviate, we need to **define the collections**, which means setting up the data schema and choosing the vectorizer/embedding service.
+
+### 2.1 Define the Collections
+
+import WeaviateAgentsArxivDataset from '/developers/agents/_includes/transformation_agent_tutorial_arxiv_dataset.png';
+
+<div class="row">
+  <div class="col col--3">
+    <br />
+    <p>
+      In this image, you can see what the objects in the dataset{' '}
+      <code>ArxivPapers</code> look like.
+    </p>
+  </div>
+  <div class="col col--9">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WeaviateAgentsArxivDataset}
+          alt="The arXiv.org paper dataset"
+        />
+      </div>
+      <div class="card__body">The arXiv.org paper dataset</div>
+    </div>
+  </div>
+</div>
+<br />
+
+For the collection `ArxivPapers`, we are going to use the [`auto-schema`](../../weaviate/config-refs/schema/index.md#auto-schema) option, which creates properties automatically based on the imported data.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DefineCollections"
+      endMarker="# END DefineCollections"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### 2.2 Populate the database
+
+Now, we can import the pre-vectorized data [ArxivPapers](https://huggingface.co/datasets/weaviate/agents/viewer/transformation-agent-papers) into our Weaviate Cloud instance:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PopulateDatabase"
+      endMarker="# END PopulateDatabase"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+By calling `len()` on our collections, we can check that the import has successfully concluded and see what the size of our collections is.
+
+```
+Size of the ArxivPapers dataset: 200
+```
+
+### 2.3 Inspect the collection in the Explorer tool
+
+The Transformation Agent will modify the collection as we go along. This is a good time to take a look at the contents of your "ArxivPapers" collection. If all goes well, you should be seeing 2 properties listed for each object:
+
+- `title`: the title of the paper.
+- `abstract`: the abstract of the paper.
+
+As well as the `vectors` for each object.
+
+## Step 3: Set up the Transformation Agent
+
+The star of the show for the Transformation Agent are the "operations".
+
+We can now define the transformation operations that we want to perform on our collection. An operation can be:
+
+- **[Appending a new property](#31-append-new-properties)**
+- **[Updating an existing property](#32-update-an-existing-property)**
+
+### 3.1 Append new properties
+
+To append a new property, we define an operation with:
+
+- **`instruction`**: This is where you can describe, in natural language, what you want this new property to be.
+- **`property_name`**: The name you want the property to have.
+- **`data_type`**: The specific datatype the property should be (`DataType.TEXT`, `DataType.TEXT_ARRAY`, `DataType.BOOL`, `DataType.INT`, etc.)
+- **`view_properties`**: Sometimes, you may want to create properties that are based on information provided in other properties and this is where you can list out which properties the instruction should access.
+
+#### 3.1.1 Create a list of topics
+
+First, let's append a new property called `topics`, which should be a `TEXT_ARRAY`. Based on the `abstract`, let's ask for the LLM to extract a list of topic tags. Let's ask for no more than 5.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddListOfTopics"
+      endMarker="# END AddListOfTopics"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### 3.1.2 Add a French translation
+
+Next, let's add a new `french_abstract` property, which is simply a translation of the `abstract` property:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddFrenchAbstract"
+      endMarker="# END AddFrenchAbstract"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### 3.1.3 Add NLP Relevance Score
+
+This time, we can add a property that is an `INT`. Here, we ask the LLM to give a score from `0` to `10` based on how relevant the paper is to Natural Language Processing.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddNlpRelevance"
+      endMarker="# END AddNlpRelevance"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### 3.1.4 Determine if it's a survey paper
+
+Finally, let's ask for a `BOOL` property, which indicates whether the paper is a survey or not. The LLM will determine if the paper presents novel techniques or if it's a survey of existing ones.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START IsSurveyPaper"
+      endMarker="# END IsSurveyPaper"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### 3.2 Update an existing property
+
+:::caution
+
+Don't perform updates on properties that are part of other agent operations. This will result in unpredictable behavior.
+
+:::
+
+Now, let's update the `title` property as we haven't used it in any previous operations:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateProperty"
+      endMarker="# END UpdateProperty"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+## Step 4: Create and run the Transformation Agent
+
+Once we have defined all of our operations, we can initialize the `TransformationAgent`.
+
+When initializing the agent, we have to let it know which collection to modify. In this case, we want it to have access to the "ArxivPapers" collection we previously created.
+
+Next, we need to provide a list of `operations` that the agent should run. Here, we provide all the operations we defined above.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateTransformationAgent"
+      endMarker="# END CreateTransformationAgent"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### 4.1 Running the transformations
+
+By calling `update_all()`, we get the agent to spin up individual workflows for each operation. Each operation will then run on each object in our collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ExecutingTransformations"
+      endMarker="# END ExecutingTransformations"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+import WeaviateAgentsExplorerTool from '/developers/agents/_includes/transformation_agent_tutorial_explorer_tool.png';
+
+<div class="row">
+  <div class="col col--3">
+    <p>
+      Now, you can open the{' '}
+      <a href="https://console.weaviate.cloud/apps/explorer">Explorer tool</a>{' '}
+      to check the results of the transformation.
+    </p>
+  </div>
+  <div class="col col--9">
+    <div class="card">
+      <div class="card__image">
+        <img
+          src={WeaviateAgentsExplorerTool}
+          alt="Explorer tool in Weaviate Cloud"
+        />
+      </div>
+      <div class="card__body">Explorer tool in Weaviate Cloud</div>
+    </div>
+  </div>
+</div>
+<br />
+
+The output is:
+
+```
+[TransformationResponse(operation_name='topics', workflow_id='TransformationWorkflow-7006854bd90f949b59bb8d88c816bdd6'), 
+TransformationResponse(operation_name='french_abstract', workflow_id='TransformationWorkflow-7a025ef11ef8e681adb0c273755d0a2a'), 
+TransformationResponse(operation_name='nlp_relevance', workflow_id='TransformationWorkflow-e6db777629ae7b38ca2f8f64df35c305'), 
+TransformationResponse(operation_name='is_survey_paper', workflow_id='TransformationWorkflow-e70d29827271f462f2a911ec29c6cb0c'), 
+TransformationResponse(operation_name='title', workflow_id='TransformationWorkflow-6b2ff75370e1f80ff537037fde02cb26')]
+```
+
+### 4.2 Inspect the operation workflows
+
+To inspect the status of the asynchronous transformation operations, we can use the `agent.get_status(workflow_id)` function:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GetStatus"
+      endMarker="# END GetStatus"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+The output is:
+
+```
+{'workflow_id': 'TransformationWorkflow-f408a4a0211940525c0e2d45cf46a6c2', 'status': {'batch_count': 1, 'end_time': None, 'start_time': '2025-03-10 13:17:31', 'state': 'running', 'total_duration': None, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-c4d1574fc363b97986dd2829fbc9733b', 'status': {'batch_count': 1, 'end_time': None, 'start_time': '2025-03-10 13:17:32', 'state': 'running', 'total_duration': None, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-5b6681c4024cb84f1ab057b58e673f2d', 'status': {'batch_count': 1, 'end_time': '2025-03-10 13:17:43', 'start_time': '2025-03-10 13:17:32', 'state': 'completed', 'total_duration': 10.597776, 'total_items': 200}}
+{'workflow_id': 'TransformationWorkflow-513fff6e89944e7becca5c42cc07a9f7', 'status': {'state': 'unknown', 'batch_count': -1, 'total_items': -1, 'total_duration': None, 'start_time': None, 'end_time': None}}
+{'workflow_id': 'TransformationWorkflow-b10fadcfcc212f64acb0b2ddd1daf3a3', 'status': {'batch_count': 1, 'end_time': '2025-03-10 13:17:49', 'start_time': '2025-03-10 13:17:33', 'state': 'completed', 'total_duration': 15.604925, 'total_items': 200}}
+```
+
+## Summary
+
+This guide shows you how to build an end-to-end Transformation Agent using Weaviate's agentic services — from setting up your Weaviate Cloud instance and importing a research papers dataset to configuring a Transformation Agent that intelligently enriches your data.
+
+The Transformation Agent automatically interprets natural language instructions to create or update properties in your dataset. It processes your collection by appending new properties like topic tags, translations and relevance scores, ensuring your data is enhanced and ready for further analysis.
+
+## Further resources
+
+- [Weaviate Agents - Transformation Agent](./index.md)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback />
