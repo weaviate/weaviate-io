@@ -66,8 +66,8 @@ from weaviate.collections.classes.config import DataType
 add_topics = Operations.append_property(
     property_name="topics",
     data_type=DataType.TEXT_ARRAY,
-    view_properties=["abstract", "title"],
-    instruction="""Create a list of topic tags based on the title and abstract.
+    view_properties=["abstract"],
+    instruction="""Create a list of topic tags based on the abstract.
     Topics should be distinct from each other. Provide a maximum of 5 topics.
     Group similar topics under one topic tag.""",
 )

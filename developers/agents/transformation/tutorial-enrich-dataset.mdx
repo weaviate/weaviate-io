@@ -1,5 +1,5 @@
 ---
-title: Build a Weaivate Transformation Agent
+title: Enrich your dataset with a Transformation Agent
 sidebar_label: 'Tutorial: Enrich your dataset'
 description: Learn how to create additional properties in your dataset with the Weaviate Transformation Agent.
 sidebar_position: 40
@@ -12,7 +12,16 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_agent_tutorial_enrich_dataset.py';
 
-In this tutorial, we will use the **[`TransformationAgent`](./index.md)** to enrich data stored in Weaviate. We will build an agent that has access to a collection containing a bunch of research papers, their abstracts, and titles. We will then use the agent to create additional properties for each of our objects in the collection.
+:::caution Technical Preview
+
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
+![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
+
+To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+
+:::
+
+In this tutorial, we will use the **[Transformation Agent](./index.md)** to enrich data stored in Weaviate. We will build an agent that has access to a collection containing a bunch of research papers, their abstracts, and titles. We will then use the agent to create additional properties for each of our objects in the collection.
 
 We've prepared a public dataset that you can use to explore the Transformation Agent, and it's available on Hugging Face:
 
@@ -20,7 +29,7 @@ We've prepared a public dataset that you can use to explore the Transformation A
 
 ## Introduction: What are Transformation Agents?
 
-The `TransformationAgent` is able to access a Weaviate collection of your choosing and perform operations on the objects within it. However, each operation for the agent can be defined in natural language. The agent will then use an LLM to complete the instructions in the operation.
+The Transformation Agent is able to access a Weaviate collection of your choosing and perform operations on the objects within it. However, each operation for the agent can be defined in natural language. The agent will then use an LLM to complete the instructions in the operation.
 
 import WeaviateAgentsArxivFlowchart from '/developers/agents/_includes/transformation_agent_tutorial_arxiv_flowchart.png';
 
@@ -176,7 +185,7 @@ Size of the ArxivPapers dataset: 200
 
 ### 2.3 Inspect the collection in the Explorer tool
 
-The `TransformationAgent` will modify the collection as we go along. This is a good time to take a look at the contents of your "ArxivPapers" collection. If all goes well, you should be seeing 2 properties listed for each object:
+The Transformation Agent will modify the collection as we go along. This is a good time to take a look at the contents of your "ArxivPapers" collection. If all goes well, you should be seeing 2 properties listed for each object:
 
 - `title`: the title of the paper.
 - `abstract`: the abstract of the paper.
@@ -185,7 +194,7 @@ As well as the `vectors` for each object.
 
 ## Step 3: Set up the Transformation Agent
 
-The star of the show for the `TransformationAgent` are the operations.
+The star of the show for the Transformation Agent are the "operations".
 
 We can now define the transformation operations that we want to perform on our collection. An operation can be:
 
@@ -203,7 +212,7 @@ To append a new property, we define an operation with:
 
 #### 3.1.1 Create a list of topics
 
-First, let's append a new property called `topics`, which should be a `TEXT_ARRAY`. Based on the `abstract` and `title`, let's ask for the LLM to extract a list of topic tags. Let's ask for no more than 5.
+First, let's append a new property called `topics`, which should be a `TEXT_ARRAY`. Based on the `abstract`, let's ask for the LLM to extract a list of topic tags. Let's ask for no more than 5.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -263,7 +272,13 @@ Finally, let's ask for a `BOOL` property, which indicates whether the paper is a
 
 ### 3.2 Update an existing property
 
-Now, let's update an existing property using the newly created `is_survey_paper` property. If the paper is a survey, the agent should append the tag `[SURVEY]` at the beginning of the title:
+:::caution
+
+Don't perform updates on properties that are part of other agent operations. This will result in unpredictable behavior.
+
+:::
+
+Now, let's update the `title` property as we haven't used it in any previous operations:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
