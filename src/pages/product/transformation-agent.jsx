@@ -14,7 +14,7 @@ export default function QueryPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Transformation Agent | Weaviate Workbench"
+        title="Transformation Agent | Weaviate Products"
         description="Automatically improve your dataset with a single prompt."
       >
         <MetaSEO />
@@ -41,16 +41,16 @@ export default function QueryPage() {
                   <h1>{app.name}</h1>
                   <p>{app.description}</p>
                   <div className={styles.installButtons}>
-                    {app.released === 'no' ? (
+                    {app.released === 'yes' ? (
                       <Link to="https://events.weaviate.io/weaviate-agents">
                         <button className={styles.installButton}>
                           Sign up for updates
                         </button>
                       </Link>
                     ) : (
-                      <Link to="https://console.weaviate.cloud/">
+                      <Link to="/developers/agents/transformation/usage">
                         <button className={styles.installButton}>
-                          Open in Weaviate Cloud
+                          Public Preview
                         </button>
                       </Link>
                     )}
@@ -80,24 +80,23 @@ export default function QueryPage() {
                       Weaviate’s <strong>Transformation Agent</strong> lets you
                       manipulate your data using simple prompts. Based on the
                       instructions you give it, it uses a pre-trained LLM to
-                      automate CRUD operations to update data, create new
-                      properties, add new data, and more.
+                      automatically update data, create new properties, add new
+                      data, and more.
                     </p>
                     <ul>
                       <li>
-                        <strong>Have confidence in your data:</strong> Clean and
-                        tag raw data, reduce inconsistencies, and make data more
-                        reliable.
+                        <strong>Simplify data engineering tasks:</strong>{' '}
+                        Transform your dataset with the power of prompts and
+                        pre-trained LLMs.
                       </li>
                       <li>
-                        <strong>Make your data richer:</strong> Generate and
-                        enrich metadata, infer missing values, and improve
-                        completeness.
+                        <strong>Improve the quality of your data:</strong> Clean
+                        and organize your dataset to make it more reliable.
                       </li>
                       <li>
-                        <strong>Reduce manual data preparation:</strong> Instead
-                        of manually writing rules, automatically categorize,
-                        label, and preprocess data to save time and effort.
+                        <strong>Augment your dataset:</strong> Translate,
+                        classify, or create new content based on existing
+                        objects.
                       </li>
                     </ul>
                   </div>
@@ -106,9 +105,11 @@ export default function QueryPage() {
                     <h3>Additional details</h3>
                     <p>
                       Availability:{' '}
-                      <strong>
-                        <u>Coming Soon</u>
-                      </strong>
+                      <Link to="/developers/agents/transformation/usage">
+                        <strong>
+                          <u>Public Preview in Weaviate Cloud</u>
+                        </strong>
+                      </Link>
                     </p>
                   </div>
                 </div>

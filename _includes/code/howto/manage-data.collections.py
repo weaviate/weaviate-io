@@ -431,12 +431,10 @@ client.collections.create(
         Configure.NamedVectors.none(
         # highlight-end
             name="custom_multi_vector",
-            vector_index_config=Configure.VectorIndex.dynamic(
-                hnsw=Configure.VectorIndex.hnsw(
-                    # highlight-start
-                    multi_vector=Configure.VectorIndex.MultiVector.multi_vector()
-                    # highlight-end
-                )
+            vector_index_config=Configure.VectorIndex.hnsw(
+                # highlight-start
+                multi_vector=Configure.VectorIndex.MultiVector.multi_vector()
+                # highlight-end
             ),
         ),
     ],

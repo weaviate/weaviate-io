@@ -22,6 +22,16 @@ export default function HomepageHeader() {
             </div>
           </div>
         </div>
+        <div className={styles.agentsContainer}>
+          <div className={styles.agent}></div>
+          <div className={styles.agentText}>
+            <h3>Introducing Weaviate Agents</h3>
+            <p>Query, improve, and augment your data with agentic workflows</p>
+          </div>
+          <Link to="#weaviate-agents" className={styles.buttonGradient}>
+            Explore Agents
+          </Link>
+        </div>
       </div>
     </header>
   );

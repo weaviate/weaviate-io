@@ -30,13 +30,13 @@
 }
 
 .headerHome {
-  background: url('/img/site/workbench-header-bg.png') #dce8ee;
+  background: url('/img/site/workbench-header-bg.jpg') #dce8ee;
   background-size: cover;
   background-position-x: right;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 600px) {
-    background: url('/img/site/workbench-header-bg.png') #dce8ee;
+    background: url('/img/site/workbench-header-bg.jpg') #dce8ee;
     background-size: cover;
     background-position-x: right;
     background-repeat: no-repeat;
@@ -113,7 +113,6 @@
 
   @media screen and (max-width: 1050px) {
     grid-template-columns: 1fr;
-    margin: 0px 10px;
   }
   @media screen and (max-width: 850px) {
     flex-direction: column;
@@ -1053,7 +1052,7 @@
   box-shadow: 0px 3px 5px 0px rgba(79, 150, 172, 0.1);
   align-items: center;
   justify-content: space-around;
-  margin-bottom: -100px;
+  margin: 30px 0px -100px 0px;
 
   @media screen and (max-width: 900px) {
     width: 100%;

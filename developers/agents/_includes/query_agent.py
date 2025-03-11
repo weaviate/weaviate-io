@@ -1,20 +1,9 @@
-# START-ANY
-# [🚧 UNDER CONSTRUCTION 🚧] This Weaviate Agent is not available just yet.
-# These snippets are indicative. The syntax may change when this Agent is released.
-
-# END-ANY
-
 # START InstantiateQueryAgent
 import os
 import weaviate
 from weaviate.classes.init import Auth
 from weaviate.agents.query import QueryAgent
-
 # END InstantiateQueryAgent
-# START InspectResponseShort  # START InspectResponseFull
-from weaviate.agents.query import QueryAgentResponse
-
-# END InspectResponseShort  # END InspectResponseFull
 
 # START InstantiateQueryAgent
 
@@ -45,7 +34,7 @@ response = qa.run(
 )
 
 # Print the response
-print(f"{response.final_answer}\n")
+response.display()
 # END BasicQuery
 
 # START FollowUpQuery
@@ -56,11 +45,11 @@ following_response = qa.run(
 )
 
 # Print the response
-print(f"{following_response.final_answer}\n")
+response.display()
 # END FollowUpQuery
 
 
-# START InspectResponseShort
+# START InspectResponseExample
 print("\n=== Query Agent Response ===")
 print(f"Original Query: {response.original_query}\n")
 
@@ -72,37 +61,11 @@ for collection_searches in response.searches:
     for result in collection_searches:
         print(f"- {result}\n")
 
-print("📊 Aggregation Results:")
-for collection_aggs in response.aggregations:
-    for agg in collection_aggs:
-        print(f"- {agg}\n")
-# END InspectResponseShort
-
-# START InspectResponseFull
-print("\n=== Query Agent Response ===")
-print(f"Original Query: {response.original_query}\n")
-
-if response.has_search_answer:
-    print("🔍 Search Answer Found:")
-    print(f"{response.search_answer}\n")
-
-    print("Searches Executed:")
-    for collection_searches in response.searches:
-        for result in collection_searches:
-            print(f"- {result}\n")
-else:
-    print("🔍 No Searches Run \n")
-
 if response.has_aggregation_answer:
-    print("📊 Aggregation Answer Found:")
-    print(f"{response.aggregation_answer}\n")
-
-    print("Aggregations Run:")
+    print("📊 Aggregation Results:")
     for collection_aggs in response.aggregations:
         for agg in collection_aggs:
-                print(f"- {agg}\n")
-else:
-    print("📊 No Aggregations Run")
+            print(f"- {agg}\n")
 
 if response.missing_information:
     if response.is_partial_answer:
@@ -111,15 +74,8 @@ if response.missing_information:
         print("⚠️ Missing Information:")
     for missing in response.missing_information:
         print(f"- {missing}")
-    print("Searches Executed:")
-    for collection_searches in response.searches:
-        for result in collection_searches:
-            print(f"- {result}\n")
+# END InspectResponseExample
 
-    print("Aggregation Results:")
-    for collection_aggs in response.aggregations:
-        for agg in collection_aggs:
-            print(f"- {agg}\n")
-# END InspectResponseFull
+assert response.final_answer != "" and response.final_answer is not None
 
 client.close()

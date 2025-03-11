@@ -34,18 +34,15 @@ Generative AI models on NVIDIA can generate human-like text based on given promp
 
 [NVIDIA generative AI integration page](./generative.md)
 
-<!-- ### Reranker models
-
+### Reranker models
 
 ![Reranker integration illustration](../_includes/integration_nvidia_reranker.png)
 
-NVIDIA's reranker models are designed to improve the relevance and ranking of search results. -->
+NVIDIA's reranker models are designed to improve the relevance and ranking of search results.
 
-<!-- TODO - Add link back to reranker.md; removed because the link checker still sees it as a broken link -->
+[The Weaviate reranker integration](./reranker.md) allows users to easily refine their search results by leveraging NVIDIA's reranker models.
 
-<!-- [The Weaviate reranker integration](./) allows users to easily refine their search results by leveraging NVIDIA's reranker models. -->
-
-<!-- [NVIDIA reranker integration page](./) -->
+[NVIDIA reranker integration page](./reranker.md)
 
 ## Summary
 

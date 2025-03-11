@@ -17,7 +17,7 @@ export default function MarketplacePage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Weaviate Workbench"
+        title="Weaviate Products"
         description="Accelerate AI-native application development with GUI-based tools and apps to make building and scaling easier."
       >
         <MetaSEO />

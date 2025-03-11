@@ -66,6 +66,12 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>Navigating the AI Database Landscape: Guidance from the Field</p>
+            <Link to="https://events.weaviate.io/gigaom-webinar-2025">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

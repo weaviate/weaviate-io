@@ -122,7 +122,8 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/query-agent",
     "released": "no",
-    "comingsoon": "yes"
+    "privatePreview": "yes",
+    "ppLink": "/developers/agents/query/usage"
   },
   {
     "id": "8",
@@ -140,7 +141,8 @@
     "languages": ["English", "Spanish", "French", "German"],
     "url": "/product/transformation-agent",
     "released": "no",
-    "comingsoon": "yes"
+    "privatePreview": "yes",
+    "ppLink": "/developers/agents/transformation/usage"
   },
   {
     "id": "9",
