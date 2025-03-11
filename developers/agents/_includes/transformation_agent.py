@@ -1,3 +1,11 @@
+# START-ANY
+# [🚧 CAUTION 🚧] DO NOT USE ON PRODUCTION DATA.
+# The Transformation Agent will modify your data in place.
+# While the Transformation Agent is in technical preview,
+# it is recommended to only use it on test data.
+
+# END-ANY
+
 # START SimpleTransformationAgentExample  # START ConnectToWeaviate
 import os
 import weaviate

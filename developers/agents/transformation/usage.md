@@ -18,8 +18,12 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
+:::
+
+:::warning Do not use in production
+The Weaviate Transformation Agent is designed to modify data in Weaviate in place. **While the Agent is in technical preview, do not use it in a production environment.** The Agent may not work as expected, and the data in your Weaviate instance may be affected in unexpected ways.
 :::
 
 The Weaviate Transformation Agent is an agentic service designed to augment and transform data using generative models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
@@ -185,18 +189,32 @@ You can use the workflow ID to monitor the status of each transformation operati
 
 </Tabs>
 
-<!-- ## Limitations & Troubleshooting -->
+## Limitations & Troubleshooting
 
-<!-- :::caution Technical Preview
+:::caution Technical Preview
 
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_light.png#gh-light-mode-only "This Weaviate Agent is in technical preview.")
 ![This Weaviate Agent is in technical preview.](../_includes/agents_tech_preview_dark.png#gh-dark-mode-only "This Weaviate Agent is in technical preview.")
 
-To be notified with news on this agent, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
+[Sign up here](https://events.weaviate.io/weaviate-agents) for notifications on Weaviate Agents, or visit [this page](https://weaviateagents.featurebase.app/) to see the latest updates and provide feedback.
 
-::: -->
+:::
+
+### Race condition on multiple operations
+
+When multiple transformation operations are initiated on the same collection, it is possible for a race condition to occur, overwriting the results of one operation with the results of another.
+
+This can be avoided by ensuring that only one operation is performed on a collection at a time. If you need to perform multiple operations on the same collection, ensure that the operations are performed sequentially.
+
+You can do this by using the workflow ID of the previous operation to monitor its status before starting the next operation.
+
+This will be addressed in future versions of the Transformation Agent.
 
 ## Questions and feedback
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
