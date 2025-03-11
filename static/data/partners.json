@@ -145,7 +145,7 @@
   {
     "name": "Composio",
     "image": "/img/site/composio_logo.png",
-    "link": "/developers/integrations/llm-frameworks/composio",
+    "link": "/developers/integrations/llm-agent-frameworks/composio",
     "description": "Manage and integrate tools with language models and AI agents. ",
     "tags": ["LLM Framework", "Integration"],
     "maintainedBy": "External",
@@ -156,7 +156,7 @@
   {
     "name": "Semantic Kernel",
     "image": "/img/site/sk_logo.png",
-    "link": "/developers/integrations/llm-frameworks/semantic-kernel",
+    "link": "/developers/integrations/llm-agent-frameworks/semantic-kernel",
     "description": "Framework by Microsoft for building large language model (LLM) applications.",
     "tags": ["LLM Framework", "Integration"],
     "maintainedBy": "External",
@@ -167,7 +167,7 @@
   {
     "name": "Deepset",
     "image": "/img/site/deepset_logo.svg",
-    "link": "/developers/integrations/llm-frameworks/haystack",
+    "link": "/developers/integrations/llm-agent-frameworks/haystack",
     "description": "Build with Haystack for a simple way to build LLM applications.",
     "tags": ["LLM Framework", "Integration"],
     "maintainedBy": "External",
@@ -178,7 +178,7 @@
   {
     "name": "LlamaIndex",
     "image": "/img/site/llamaindex_logo.svg",
-    "link": "/developers/integrations/llm-frameworks/llamaindex",
+    "link": "/developers/integrations/llm-agent-frameworks/llamaindex",
     "description": "Framework for building large language model (LLM) applications and ingesting data.",
     "tags": ["LLM Framework", "Integration", "Popular"],
     "maintainedBy": "External",
@@ -189,7 +189,7 @@
   {
     "name": "LangChain",
     "image": "/img/site/langchain_logo.png",
-    "link": "/developers/integrations/llm-frameworks/langchain",
+    "link": "/developers/integrations/llm-agent-frameworks/langchain",
     "description": "Framework for building large language models (LLM) applications.",
     "tags": ["LLM Framework", "Integration", "Popular"],
     "maintainedBy": "Internal",
@@ -200,7 +200,7 @@
   {
     "name": "DSPy",
     "image": "/img/site/dspy_logo.png",
-    "link": "/developers/integrations/llm-frameworks/dspy",
+    "link": "/developers/integrations/llm-agent-frameworks/dspy",
     "description": "Framework for programming language model applications. ",
     "tags": ["LLM Framework", "Integration", "Popular"],
     "maintainedBy": "Internal",

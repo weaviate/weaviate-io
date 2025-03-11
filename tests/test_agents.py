@@ -7,7 +7,8 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./developers/agents/_includes/query_agent.py"
+        "./developers/agents/_includes/query_agent.py",
+        "./developers/agents/_includes/transformation_agent.py"
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):

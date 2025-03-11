@@ -12,212 +12,91 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/transformation_age
 
 # Weaviate Transformation Agent
 
-:::caution
+The Weaviate Transformation Agent is an agentic service designed to augment and transform data using generative models. Use the Transformation Agent to append new properties and/or update existing properties of data on existing objects in Weaviate.
 
-![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
-
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
-
-:::
-
-The Weaviate Transformation Agent is an agentic service designed to augment and transform data using foundation models.
-
-The Transformation Agent can be used to append new properties and/or update existing properties of data, for new or existing objects in Weaviate.
+![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_light.png#gh-light-mode-only "Weaviate Transformation Agent example - append")
+![Weaviate Transformation Agent example - append](../_includes/transformation_agent_append_example_dark.png#gh-dark-mode-only "Weaviate Transformation Agent example - append")
 
 This can help you to improve the quality of your objects in your Weaviate collections, ready for further use in your applications.
+
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
+## Architecture
+
+The Transformation Agent is provided as a service on Weaviate Cloud. It updates existing Weaviate objects by either appending new properties or updating existing properties.
+
 
 ![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_light.png#gh-light-mode-only "Weaviate Transformation Agent overview")
 ![Weaviate Transformation Agent overview](../_includes/transformation_agent_overview_dark.png#gh-dark-mode-only "Weaviate Transformation Agent overview")
 
-## Architecture
+Provide a set of instructions to the Transformation Agent, such as the collection to update and existing properties to review and the instructions. The Transformation Agent will then perform the specified operations on the specified objects in Weaviate.
 
-The Transformation Agent is provided as a service on Weaviate Cloud.
-
-The Transformation Agent can be called upon to perform one or more transformation operations at a time. Each operation is performed:
-
-- On new data being imported into Weaviate, or on existing data in Weaviate.
-- To create a new property, or update an existing property.
-- Based on the context of one or more existing properties and a specified set of instructions.
-
-The Transformation Agent can thus be used to enhance the data at import time, or to update properties on existing objects.
+:::note Total object count unaffected
+This would not change the number of objects in Weaviate, but would update the properties of the specified objects.
+:::
 
 ## Transformation Agent: visualized workflow
 
-![Weaviate Transformation Agent at a high level](../_includes/transformation_agent_architecture_light.png#gh-light-mode-only "Weaviate Transformation Agent at a high level")
-![Weaviate Transformation Agent at a high level](../_includes/transformation_agent_architecture_dark.png#gh-dark-mode-only "Weaviate Transformation Agent at a high level")
+To transform existing objects, the Transformation Agent follows the workflows shown below.
 
-Let's dive into a little more detail about the Transformation Agent, using a few example workflows:
-
-### Add new properties to data at import time
-
-In this example, the Transformation Agent is used to add new properties to data at import time. The Transformation Agent is provided with a set of instructions for creating new properties, and the set of new objects to be added to Weaviate.
-
-The figure below shows the workflow:
-
-![Weaviate Transformation Agent: Enhance data at import time](../_includes/transformation_agent_new_append_light.png#gh-light-mode-only "Weaviate Transformation Agent: Enhance data at import time")
-![Weaviate Transformation Agent: Enhance data at import time](../_includes/transformation_agent_new_append_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Enhance data at import time")
-
-The Transformation Agent works as follows at a high level:
-
-- The Transformation Agent works with a foundation model to create the new property, based on the instructions provided and the context of the specified existing properties (steps 1-2).
-- Insert the transformed objects to Weaviate. Weaviate vectorizes the data as needed using the specified vectorizer integration. (Steps 3-5)
-- Receive the job status from Weaviate, which is returned to the user (Step 6).
-
-As a result, Weaviate is populated with transformed versions of the input data provided by the user.
+- The Transformation Agent retrieves the existing objects from Weaviate, based on the specified criteria (steps 1-2).
+- The Transformation Agent works with a generative model to create the property value, based on the instructions provided and the context of the specified existing properties (steps 3-4).
+- Update the transformed objects in Weaviate. Weaviate vectorizes the data as needed using the specified vectorizer integration. (Steps 5-7)
+- Receive the job status from Weaviate, which is returned to the user (Step 8).
 
 ### Update properties on existing objects
 
-In this example, the Transformation Agent is used to update existing properties on objects that already exist in Weaviate. The Transformation Agent is provided with a set of instructions for how to update the existing properties, and which of the existing objects to update.
-
-The figure below shows the workflow:
+When updating properties on existing objects, the Transformation Agent replaces the existing property values with the new values. The workflow for this operation is shown below.
 
 ![Weaviate Transformation Agent: Update properties on existing objects](../_includes/transformation_agent_existing_update_light.png#gh-light-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
 ![Weaviate Transformation Agent: Update properties on existing objects](../_includes/transformation_agent_existing_update_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Update properties on existing objects")
 
-The Transformation Agent works as follows at a high level:
+### Append new properties to existing objects
 
-- The Transformation Agent retrieves the existing objects from Weaviate, based on the specified criteria (steps 1-2).
-- The Transformation Agent works with a foundation model to create new versions of the property, based on the instructions provided and the context of the specified existing properties (steps 3-4).
-- Update the transformed objects in Weaviate. Weaviate vectorizes the data as needed using the specified vectorizer integration. (Steps 5-7)
-- Receive the job status from Weaviate, which is returned to the user (Step 8).
+When appending properties to existing objects, the Transformation Agent adds the new values to the objects as new properties. The workflow for this operation is shown below.
 
-As a result, the specified objects in Weaviate are updated, with the new versions of the specified properties. For clarity, this would not change the number of objects in Weaviate, but would update the properties of the specified objects.
+![Weaviate Transformation Agent: Append news properties to existing objects](../_includes/transformation_agent_existing_append_light.png#gh-light-mode-only "Weaviate Transformation Agent: Append news properties to existing objects")
+![Weaviate Transformation Agent: Append news properties to existing objects](../_includes/transformation_agent_existing_append_dark.png#gh-dark-mode-only "Weaviate Transformation Agent: Append news properties to existing objects")
 
-## Usage
+## Basic Usage
 
-:::caution
-
-![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_light.png#gh-light-mode-only "This Weaviate Agent isn't quit ready yet.")
-![This Weaviate Agent isn't quit ready yet.](../_includes/agents_coming_soon_dark.png#gh-dark-mode-only "This Weaviate Agent isn't quit ready yet.")
-
-To be notified when this agent is released, [**sign up here for updates**](https://events.weaviate.io/weaviate-agents).
-
-:::
-
-Transformation operations are asynchronous, and the Transformation Agent will return a job ID to the user. The user can then use this job ID to check the status of the job, and retrieve the results when the job is complete.
-
-To use the Transformation Agent, you must provide the following:
-
-- The Weaviate Cloud instance details (e.g. the `WeaviateClient` object in Python) to the Transformation Agent.
-- Either new objects to be added to Weaviate, or existing objects to be updated.
-- A list of the transformation operations to be performed.
+Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 
 ### Prerequisites
 
-The Transformation Agent is tightly integrated with Weaviate Cloud. As a result, the Transformation Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the client library.
+This Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
 
-### Connect to Weaviate
+### Example Usage
 
-You must connect to the Weaviate Cloud instance to use the Transformation Agent. Connect to the Weaviate Cloud instance using the Weaviate client library.
+To use the Transformation Agent, instantiate it with the following inputs:
 
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START ConnectToWeaviate"
-            endMarker="# END ConnectToWeaviate"
-            language="py"
-        />
-    </TabItem>
-</Tabs>
+- An instance of the Weaviate client (e.g. the `WeaviateClient` object in Python), connected to a Weaviate Cloud instance.
+- Name of the target collection to be transformed.
+- A list of the transformation operations to be performed.
 
-### Define transformation operations
+And then start the operations.
 
-A transformation operation requires:
-
-- Type
-- Targets (e.g. objects to be updated, or new objects to be added)
-- Instructions
-- Context (e.g. existing properties to be used as context)
-
-Here are a few examples of transformation operations:
-
-#### Append new properties to data
-
-Properties of various types can be added to the data, based on one or more existing properties. See the following example operations:
+Transformation operations are asynchronous. Each operation will return a workflow ID to the user. The user can then use this ID to check its status.
 
 <Tabs groupId="languages">
     <TabItem value="py_agents" label="Python">
         <FilteredTextBlock
             text={PyCode}
-            startMarker="# START DefineOperationsAppend"
-            endMarker="# END DefineOperationsAppend"
+            startMarker="# START SimpleTransformationAgentExample"
+            endMarker="# END SimpleTransformationAgentExample"
             language="py"
         />
     </TabItem>
 
 </Tabs>
 
-#### Update existing properties
+The transformed attributes will become available on each object as the transformation progresses.
 
-Existing properties can be updated based on the context of one or more existing properties. See the following example operations:
+### Further Documentation
 
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START DefineOperationsUpdate"
-            endMarker="# END DefineOperationsUpdate"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-### Transform at insert
-
-Once the transformation operations are defined, you can create a Transformation Agent, and use it to transform new data at insert.
-
-The vectorization will only occur after the transformation operations are completed and the data is inserted into Weaviate.
-
-The Transformation Agent will return a job ID when the operations are started.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START TransformAtInsert"
-            endMarker="# END TransformAtInsert"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-### Transform collection data
-
-You can also use the Transformation Agent to transform data in an existing collection. The Transformation Agent will update the specified objects in the collection with the new properties. The objects will be re-vectorized as needed.
-
-The Transformation Agent will return a job ID when the operations are started.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START TransformExisting"
-            endMarker="# END TransformExisting"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
-
-### Monitor job status
-
-You can use the job ID to monitor the status of the job, and retrieve a response when the job is complete.
-
-<Tabs groupId="languages">
-    <TabItem value="py_agents" label="Python">
-        <FilteredTextBlock
-            text={PyCode}
-            startMarker="# START MonitorJobStatus"
-            endMarker="# END MonitorJobStatus"
-            language="py"
-        />
-    </TabItem>
-
-</Tabs>
+For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
 
 ## Questions and feedback
 

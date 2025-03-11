@@ -24,9 +24,10 @@ The resources are broken into two categories:
 
 | Topic | Description | Resource |
 | --- | --- | --- |
-| LangChain LCEL | A notebook that defines a language program with LangChain LCEL, compiles it with DSPy, and converts it back to LangChain LCEL. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/LCEL/RAG-with-LangChain-LCEL-and-DSPy.ipynb) |
-| LangChain and Multi-Tenancy | Build a multi-language RAG by multiple PDFs per tenant with Langchain, OpenAI, and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/loading-data/langchain-simple-pdf-multitenant.ipynb) |
-| Multi-Language RAG | Simple notebook showing you how to build a RAG application using LangChain and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/langchain/loading-data/langchain-simple-pdf.ipynb) |
+| LangChain LCEL | A notebook that defines a language program with LangChain LCEL, compiles it with DSPy, and converts it back to LangChain LCEL. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/LCEL/RAG-with-LangChain-LCEL-and-DSPy.ipynb) |
+| LangChain and Multi-Tenancy | Build a multi-language RAG by multiple PDFs per tenant with Langchain, OpenAI, and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/loading-data/langchain-simple-pdf-multitenant.ipynb) |
+| Multi-Language RAG | Simple notebook showing you how to build a RAG application using LangChain and Weaviate. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/loading-data/langchain-simple-pdf.ipynb) |
+| LangChain and Weaviate Query Agent | Use the Weaviate Query Agent as a tool with LangChain. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/langchain/agents/langchain-weaviate-query-agent.ipynb) |
 
 
 ### Read and Listen

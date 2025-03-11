@@ -23,7 +23,7 @@ In Weaviate, a RAG query consists of two parts: *a search query*, and a *prompt 
     How to configure RAG
   </summary>
 
-To use RAG, a collection must be configured to use a [generative model integration](../model-providers/index.md).
+To use RAG, [a collection must be configured](../manage-data/collections.mdx#specify-a-generative-model-integration) to use a [generative model integration](../model-providers/index.md).
 
 See the relevant model provider documentation for more details.
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.scss';
 
 export default function AppCard({ app }) {
@@ -22,7 +22,9 @@ export default function AppCard({ app }) {
             ) : app.comingSoon ? (
               <div className={styles.comingSoon}>Private Beta</div>
             ) : app.privatePreview ? (
-              <div className={styles.comingSoon}>Public Preview</div>
+              <Link to={app.ppLink}>
+                <div className={styles.comingSoon}>Public Preview</div>
+              </Link>
             ) : (
               <div className={styles.tba}>Coming Soon</div>
             )}

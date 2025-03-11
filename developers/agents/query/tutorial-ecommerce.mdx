@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/developers/agents/_includes/query_agent_tutori
 
 In this tutorial, we will be building a simple e-commerce assistant agent with the **[Weaviate Query Agent](./index.md)**. This agent will have access to multiple Weaviate collections, and will be capable of answering complex queries about brands and clothing items, accessing information from each collection.
 
-We've prepared a few public datasets that you can use to explore the Query Agent.  
+We've prepared a few public datasets that you can use to explore the Query Agent.
 They are available on HuggingFace:
 
 - [**E-Commerce:**](https://huggingface.co/datasets/weaviate/agents/viewer/query-agent-ecommerce) A dataset that lists clothing items, prices, brands, reviews, etc.
@@ -41,9 +41,9 @@ import WeaviateAgentsECommerceFlowchart from '/developers/agents/_includes/query
 The Query Agent:
 
 1. **Receives a task** in the form of a question or instructions.
-2. **Uses an appropriate foundation model** (e.g. large language model) to analyze the task and determine the exact queries to perform.
+2. **Uses an appropriate generative model** (e.g. large language model) to analyze the task and determine the exact queries to perform.
 3. **Sends the queries to Weaviate**, which vectorizes the queries as needed using the specified vectorizer integration (we will use Weaviate Embeddings).
-4. **Receives the results from Weaviate** and uses appropriate foundation models to generate the final response to the user prompt/query.
+4. **Receives the results from Weaviate** and uses appropriate generative models to generate the final response to the user prompt/query.
 
 <hr />
 

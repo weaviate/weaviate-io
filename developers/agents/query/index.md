@@ -28,6 +28,10 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
+:::info Changelog and feedback
+The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
+:::
+
 ## Architecture
 
 The Query Agent is provided as a service on Weaviate Cloud.
@@ -47,9 +51,9 @@ The context may also include previous conversation history, and any other releva
 
 The Query Agent follows these high-level steps:
 
-- Use appropriate foundation models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
+- Use appropriate generative models (e.g. large language models) to analyze the task & the required queries. Determine the exact queries to perform. (Steps 1 & 2)
 - Send queries to Weaviate. Weaviate vectorizes the queries as needed using the specified vectorizer integration. (Steps 3-5)
-- Receive the results from Weaviate, and use appropriate foundation models to generate the final respond to the user prompt/query. (Step 6)
+- Receive the results from Weaviate, and use appropriate generative models to generate the final respond to the user prompt/query. (Step 6)
 
 Then, the Query Agent returns the answer to the user, as well as intermediate outputs, such as the underlying search results from Weaviate.
 
@@ -58,13 +62,13 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
 
-## Usage
+## Basic Usage
 
-Here is an overview of how to use the Query Agent. For more detailed information, refer to the [Query Agent: Usage](./usage.md) page.
+Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
 
 ### Prerequisites
 
-The Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
+This Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
 
 ### Example Usage
 
@@ -112,7 +116,7 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 ### Further Documentation
 
-For more detailed information on how to use the Query Agent, refer to the [Query Agent: Usage](./usage.md) page.
+For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
 
 ## Questions and feedback
 
