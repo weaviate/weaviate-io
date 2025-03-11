@@ -206,6 +206,10 @@ When multiple transformation operations are initiated on the same collection, it
 
 This can be avoided by ensuring that only one operation is performed on a collection at a time. If you need to perform multiple operations on the same collection, ensure that the operations are performed sequentially.
 
+You can do this by using the workflow ID of the previous operation to monitor its status before starting the next operation.
+
+This will be addressed in future versions of the Transformation Agent.
+
 ## Questions and feedback
 
 :::info Changelog and feedback
