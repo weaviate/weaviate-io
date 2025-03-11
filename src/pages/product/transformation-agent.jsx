@@ -14,7 +14,7 @@ export default function QueryPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Transformation Agent | Weaviate Workbench"
+        title="Transformation Agent | Weaviate Products"
         description="Automatically improve your dataset with a single prompt."
       >
         <MetaSEO />
