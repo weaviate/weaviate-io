@@ -28,10 +28,6 @@ The user simply provides a prompt/question in natural language, and the Query Ag
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_light.png#gh-light-mode-only "Weaviate Query Agent from a user perspective")
 ![Weaviate Query Agent from a user perspective](../_includes/query_agent_usage_dark.png#gh-dark-mode-only "Weaviate Query Agent from a user perspective")
 
-:::info Changelog and feedback
-The official changelog for Weaviate Agents can be [found here](https://weaviateagents.featurebase.app/changelog). If you have feedback, such as feature requests, bug reports or questions, please [submit them here](https://weaviateagents.featurebase.app/), where you will be able to see the status of your feedback and vote on others' feedback.
-:::
-
 ## Architecture
 
 The Query Agent is provided as a service on Weaviate Cloud.
@@ -62,13 +58,13 @@ Note that the term `Query Agent` refers to the entire system. The Query Agent ma
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_light.png#gh-light-mode-only "Weaviate Query Agent comprises multiple agents")
 ![Weaviate Query Agent comprises multiple agents](../_includes/query_agent_info_dark.png#gh-dark-mode-only "Weaviate Query Agent comprises multiple agents")
 
-## Basic Usage
+## Usage
 
-Here is an overview of how to use the this Weaviate Agent. For more detailed information, refer to the [Usage](./usage.md) page.
+Here is an overview of how to use the Query Agent. For more detailed information, refer to the [Query Agent: Usage](./usage.md) page.
 
 ### Prerequisites
 
-This Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
+The Query Agent is available exclusively for use with a Weaviate Cloud instance, and a supported version of the Weaviate client library.
 
 ### Example Usage
 
@@ -116,7 +112,7 @@ The Query Agent can even handle follow-up queries, using the previous response a
 
 ### Further Documentation
 
-For more detailed information on how to use this Agent, refer to the [Usage](./usage.md) page.
+For more detailed information on how to use the Query Agent, refer to the [Query Agent: Usage](./usage.md) page.
 
 ## Questions and feedback
 

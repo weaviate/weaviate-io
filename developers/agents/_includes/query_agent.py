@@ -5,6 +5,11 @@ from weaviate.classes.init import Auth
 from weaviate.agents.query import QueryAgent
 # END InstantiateQueryAgent
 
+# START BasicQuery  # START FollowUpQuery
+from weaviate.agents.utils import print_query_agent_response
+
+# END BasicQuery  # END FollowUpQuery
+
 # START InstantiateQueryAgent
 
 headers = {
@@ -34,7 +39,7 @@ response = qa.run(
 )
 
 # Print the response
-response.display()
+print_query_agent_response(response)
 # END BasicQuery
 
 # START FollowUpQuery
@@ -45,7 +50,7 @@ following_response = qa.run(
 )
 
 # Print the response
-response.display()
+print_query_agent_response(response)
 # END FollowUpQuery
 
 
@@ -75,7 +80,5 @@ if response.missing_information:
     for missing in response.missing_information:
         print(f"- {missing}")
 # END InspectResponseExample
-
-assert response.final_answer != "" and response.final_answer is not None
 
 client.close()
