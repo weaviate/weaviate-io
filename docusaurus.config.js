@@ -481,11 +481,25 @@ const config = {
                         position: 'right',
                     },
                     {
+                    
+                        html: ` <i class="fa-regular fa-user iconHide" style="color:#2c3854;"></i> Login</span>`,
+                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256',
+                        position: 'right',
+                    
+                },
+                    {
                         label: 'Try Now',
                         className: 'tryNow',
-                        to: 'https://console.weaviate.cloud',
+                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs-frontend&scope=openid%20profile&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&response_type=code',
                         position: 'right',
                     },
+                  {
+                        label: 'Contact',
+                        className: 'loginButton',
+                        to: '/contact',
+                        position: 'right',
+                    }, 
+                    
                     {
                         type: 'search',
                         position: 'right',
