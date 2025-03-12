@@ -114,10 +114,12 @@ Here are some tips to optimize performance when using RBAC:
 - Monitor object creation performance
 - Use a high availability (i.e. 3+ nodes) setup to distribute the load
 
-## Additional resources
+## Further resources
 
-- [RBAC: Overview](/developers/weaviate/configuration/rbac)
-- [RBAC: Manage roles & users](/developers/weaviate/configuration/rbac/manage-roles-users)
+- [RBAC: Overview](./index.mdx)
+- [RBAC: Manage roles](./manage-roles.mdx)
+- [RBAC: Manage users](./manage-users.mdx)
+- [RBAC: Tutorial](../../tutorials/rbac.mdx)
 
 ## Questions and feedback
 
