@@ -76,7 +76,7 @@ For example, consider a model that has one million 384-dimensional vectors of ty
 
 The rule of thumb says to double the memory requirement. The total memory requirement for one million 384-dimensional vectors of type `float32` is: `2 * 1e6 * 1536 B = 3 GB`.
 
-For a more accurate calculation, include a factor for the `maxConnections` setting instead of multiplying the base requirement by two.
+For a more accurate calculation, include a factor for the [`maxConnections`](../config-refs/schema/vector-index.md) setting instead of multiplying the base requirement by two.
 
 For example, if `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + (64 * 10)) = 2.2 GB`.
 
@@ -106,7 +106,7 @@ The following tactics can help to reduce Weaviate's memory usage:
 
 - **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
-- **Reduce the number of `maxConnections` in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
+- **Reduce the number of [`maxConnections`](../config-refs/schema/vector-index.md) in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
 
 Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect, increase one or both of the `efConstruction` and `ef` parameters.
 
