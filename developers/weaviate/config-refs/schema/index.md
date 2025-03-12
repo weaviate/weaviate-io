@@ -149,16 +149,15 @@ To avoid this, you can either:
 - Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
-<!--
+
 ### Collections count limit {#collections-count-limit}
 
-:::info
-Added in `v1.25.34`, `v1.26.18`, `1.27.15`, `1.28.9`, `1.29.2`
+:::info Added in **`v1.30.0`**
 :::
 
 To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
 
-- **Default limit**: `100` collections.
+- **Default limit**: `1000` collections.
 - **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
 
 :::note 
@@ -169,7 +168,7 @@ This change does not affect existing clusters that have already exceeded the def
 **Instead of raising the collections count limit, consider rethinking your architecture**.  
 For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
 :::
--->
+
 ## Available parameters
 
 ### `class`
