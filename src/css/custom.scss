@@ -360,11 +360,9 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  transition: background-color 1s ease-out, border-color 1s ease-out,
-    color 1s ease-out;
 
   &:hover {
-    color: #130c49;
+    color: #ffffff !important;
   }
 
   @media screen and (max-width: 1250px) {
@@ -379,11 +377,60 @@
     background-color: unset;
     color: #2b3854;
     margin: 0px;
+
+    &:hover {
+      color: #00c342 !important;
+    }
   }
 
   @media screen and (max-width: 996px) {
     display: none;
     color: #606770;
+    height: 2rem;
+    &:hover {
+      color: #606770 !important;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .tryNow {
+    background: #61bd73;
+    color: #130c49;
+
+    @media screen and (min-width: 1250px) {
+      &:hover {
+        color: #130c49 !important;
+      }
+    }
+    @media screen and (max-width: 1250px) {
+      margin: 0px;
+      margin-right: 10px;
+      width: unset;
+    }
+
+    @media screen and (max-width: 1150px) {
+      display: block;
+      border: unset;
+      background-color: unset;
+      color: #ffffff;
+      margin: 0px;
+
+      &:hover {
+        color: #00c342 !important;
+      }
+    }
+
+    @media screen and (max-width: 996px) {
+      display: none;
+      color: #ffffff;
+      height: 2rem;
+
+      &:hover {
+        color: #ffffff !important;
+        background: var(--ifm-menu-color-background-hover) !important;
+      }
+    }
   }
 }
 
@@ -501,7 +548,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    color: #130c49;
+    color: #130c49 !important;
   }
 
   @media screen and (max-width: 1250px) {
@@ -514,11 +561,52 @@
     border: unset;
     background-color: unset;
     color: #2b3854;
+
+    &:hover {
+      color: #00c342 !important;
+    }
   }
 
   @media screen and (max-width: 996px) {
     display: none;
     color: #606770;
+    height: 2rem;
+    &:hover {
+      color: #606770 !important;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .loginButton {
+    @media screen and (max-width: 1250px) {
+      margin: 0px;
+      margin-right: 10px;
+      width: unset;
+    }
+
+    @media screen and (max-width: 1150px) {
+      display: block;
+      border: unset;
+      background-color: unset;
+      color: #ffffff;
+      margin: 0px;
+
+      &:hover {
+        color: #00c342 !important;
+      }
+    }
+
+    @media screen and (max-width: 996px) {
+      display: none;
+      color: #ffffff;
+      height: 2rem;
+      background: var(--ifm-menu-color-background-hover) !important;
+
+      &:hover {
+        color: #ffffff !important;
+      }
+    }
   }
 }
 
@@ -1165,7 +1253,7 @@ ul.dropdown__menu {
 }
 
 .iconHide {
-  @media screen and (max-width: 980px) {
+  @media screen and (max-width: 995px) {
     display: none !important;
   }
 }
