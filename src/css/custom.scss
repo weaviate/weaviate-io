@@ -499,7 +499,7 @@
   transition: all 0.3s ease;
   font-weight: 600;
   &:hover {
-    color: #130c49;
+    color: #130c49 !important;
   }
 
   @media screen and (max-width: 1300px) {
