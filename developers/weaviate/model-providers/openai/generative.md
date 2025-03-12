@@ -22,7 +22,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a generative AI model with OpenAI. Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
 
@@ -164,6 +164,18 @@ Configure the following generative parameters to customize the model behavior.
 </Tabs>
 
 For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
+
+## Runtime parameters
+
+You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
+
+- `X-OpenAI-Api-Key`: The OpenAI API key.
+- `X-OpenAI-Baseurl`: The base URL to use (e.g. a proxy) instead of the default OpenAI URL.
+- `X-OpenAI-Organization`: The OpenAI organization ID.
+
+Any additional headers provided at runtime will override the existing Weaviate configuration.
+
+Provide the headers as shown in the [API credentials examples](#api-credentials) above.
 
 ## Retrieval augmented generation
 

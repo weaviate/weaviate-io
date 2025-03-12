@@ -17,7 +17,7 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 Here, you can learn how to:
 
 <!-- - [Select the right vectorizer]  (./_select-vectorizer.md): Identify the right vectorizer based on your data type (text, image, etc.) and application goals (text clustering, Q&A, text to image comparison, image comparison). -->
-- [Define a schema](../starter-guides/schema.md)
+- [Define a schema](/developers/weaviate/starter-guides/managing-collections)
 - [Import data](./import.md)
 - [Query data](./query.md)
 - [Add modules with Weaviate](./modules.md)

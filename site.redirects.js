@@ -38,11 +38,11 @@ const siteRedirects = {
             from: '/developers/wcs/guides/console',
         },
         {
-            to: '/developers/wcs/create-instance',
+            to: '/developers/wcs/manage-clusters/create',
             from: '/developers/wcs/guides/create-instance',
         },
         {
-            to: '/developers/wcs/connect',
+            to: '/developers/wcs/manage-clusters/connect',
             from: '/developers/wcs/guides/authentication',
         },
         // Client library redirects
@@ -104,13 +104,13 @@ const siteRedirects = {
             from: '/developers/weaviate/current/more-resources/deprecation-messages',
         },
         {
-            to: '/developers/integrations/llm-frameworks/dspy',
+            to: '/developers/integrations/llm-agent-frameworks/dspy',
             from: '/developers/weaviate/more-resources/dspy',
         },
         
         // Quickstart redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/quickstart/schema',
         },
         {
@@ -132,7 +132,7 @@ const siteRedirects = {
         
         // Old Quickstart redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/current/quickstart/schema',
         },
         {
@@ -162,16 +162,32 @@ const siteRedirects = {
             from: '/developers/wcs/platform/ssconsole',
         },
         {
-            to: '/developers/wcs/cluster-status',
+            to: '/developers/wcs/manage-clusters/status',
             from: '/developers/wcs/platform/cluster-status',
         },
         {
             to: '/developers/wcs/tools/query-tool',
             from: '/developers/wcs/console',
         },
+        {
+            to: '/developers/wcs/manage-clusters/status',
+            from: '/developers/wcs/cluster-status',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/connect',
+            from: '/developers/wcs/conect',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/create',
+            from: '/developers/wcs/create-instance',
+        },
+        {
+            to: '/developers/wcs/manage-clusters/upgrade',
+            from: '/developers/wcs/upgrade',
+        },
         // Tutorial redirects
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/current/tutorials/how-to-create-a-schema',
         },
         {
@@ -204,7 +220,7 @@ const siteRedirects = {
         
         // Tutorial refresh 2024
         {
-            to: '/developers/weaviate/starter-guides/schema',
+            to: '/developers/weaviate/starter-guides/managing-collections',
             from: '/developers/weaviate/tutorials/schema',
         },
         {
@@ -752,6 +768,64 @@ const siteRedirects = {
             to: "/learn/knowledgecards",
             from: "/learn/knowledgecards/knowledgeheader"
         },
+          // Recommender Component Changes
+          {
+            to: "/product/personalization-agent",
+            from: "/workbench/recommender"
+        },
+        {
+           to: "/product/personalization-agent",
+            from: "/product/recommender"
+        },
+
+          // GFL > Agentic AI Changes
+         
+        {
+           to: "/agentic-ai",
+            from: "/gen-feedback-loops"
+        },
+
+        // Integration Docs
+        {
+            to: '/developers/integrations/llm-agent-frameworks',
+            from: '/developers/integrations/llm-frameworks',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/composio',
+            from: '/developers/integrations/llm-frameworks/composio',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/dspy',
+            from: '/developers/integrations/llm-frameworks/dspy',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/haystack',
+            from: '/developers/integrations/llm-frameworks/haystack',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/langchain',
+            from: '/developers/integrations/llm-frameworks/langchain',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/llamaindex',
+            from: '/developers/integrations/llm-frameworks/llamaindex',
+        },
+        {
+            to: '/developers/integrations/llm-agent-frameworks/semantic-kernel',
+            from: '/developers/integrations/llm-frameworks/semantic-kernel',
+        },
+
+        // Restructured starter guides
+        {
+            to: '/developers/weaviate/starter-guides/managing-collections',
+            from: '/developers/weaviate/starter-guides/schema',
+        },
+
+        // Redirects for Weaviate Core error messages
+        {
+            to: '/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits',
+            from: '/collections-count-limit',
+        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

@@ -14,11 +14,11 @@ Language models have revolutionized the way we interact with and utilize artific
 
 Crafting the perfect prompt, also known as Prompt Engineering, is generally more of an art than a science. AI developers typically have unique styles of prompting large language models (LLMs) through trial-and-error experiences. With the inception of DSPy, prompting is returning to its roots in Machine Learning, allowing us to better control generative AI systems.
 
-To achieve this, DSPy introduces two new concepts: a programming model and a collection of optimizers or compilers. The DSPy programming model lets you define each component that makes a language model request, such as an initial task description and input and output fields. You can then connect these components to build complex pipelines. For example, if you’d like to convert questions into blog posts, the simplest pipeline consists of two components: 1. Question to Blog Outline, and 2. Outline to Paragraphs. The `Question2BlogOutline` takes in two inputs, question and contexts, and outputs a comma-separated list of topics. The `Topic2Paragraph` takes the topic and contexts as input, and outputs the paragraph. We then piece these components (or signatures) together in the program (see this [notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/2.Writing-Blog-Posts-with-DSPy.ipynb) for the full example). This lets you interface this program with the DSPy compilers.
+To achieve this, DSPy introduces two new concepts: a programming model and a collection of optimizers or compilers. The DSPy programming model lets you define each component that makes a language model request, such as an initial task description and input and output fields. You can then connect these components to build complex pipelines. For example, if you’d like to convert questions into blog posts, the simplest pipeline consists of two components: 1. Question to Blog Outline, and 2. Outline to Paragraphs. The `Question2BlogOutline` takes in two inputs, question and contexts, and outputs a comma-separated list of topics. The `Topic2Paragraph` takes the topic and contexts as input, and outputs the paragraph. We then piece these components (or signatures) together in the program (see this [notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/2.Writing-Blog-Posts-with-DSPy.ipynb) for the full example). This lets you interface this program with the DSPy compilers.
 
 Compilers enter the picture to give your LLMs “the prompts they deserve.” This blog post will help you gain a deep understanding of the current state of Prompt Engineering and how DSPy’s BootstrapFewShot, COPRO, and MIPRO optimizers can help you.
 
-You can follow along with the demo notebook [here](https://github.com/weaviate/recipes/blob/main/integrations/llm-frameworks/dspy/5.Advanced-Optimizers.ipynb)! The notebook uses tools from Weaviate, Cohere, OpenAI, Arize, and Weights & Biases.
+You can follow along with the demo notebook [here](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/5.Advanced-Optimizers.ipynb)! The notebook uses tools from Weaviate, Cohere, OpenAI, Arize, and Weights & Biases.
 
 ## Examples and Instructions
 The role of optimization in machine learning systems has been dramatically transformed with the introduction of LLMs. LLMs no longer **require** gradient descent training to increase their performance for a specific task. Instead, we can tweak the language of the prompt which is presented to the LLM. There are 2 main aspects of the prompt to tweak, instructions and examples.
@@ -50,7 +50,7 @@ Answer:
 Contexts: Weaviate 1.24 is here!
 Here are the release highlights!
 
-- Named vectors: A single object can have multiple vectors. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+- Named vectors: A single object can have multiple vector embeddings. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 - HNSW and binary quantization (BQ): HNSW indexes and BQ combine for serious compression and blazing speed.
 - Simplified Docker configuration: A new Docker image that needs no configuration.
 - Backend improvements: Numerous improvements to make updates, imports, and deletions faster.
@@ -102,7 +102,7 @@ As a primer to the DSPy programming model if you are unfamiliar, we have a 1-lay
 ```python
 class GenerateAnswer(dspy.Signature):
     """Assess the context and answer the question."""
-    
+
     context = dspy.InputField()
     question = dspy.InputField()
     answer = dspy.OutputField()
@@ -110,10 +110,10 @@ class GenerateAnswer(dspy.Signature):
 class RAG(dspy.Module):
     def __init__(self, passages_per_hop=3, max_hops=2):
         super().__init__()
-        
+
         self.retrieve = dspy.Retrieve(k=passages_per_hop)
         self.generate_answer = dspy.ChainOfThought(GenerateAnswer)
-    
+
     def forward(self, question):
         context = self.retrieve(question).passages
         with dspy.context(lm=command_r):
@@ -137,7 +137,7 @@ queries = []
 for row in dataset:
     gold_answers.append(row["gold_answer"])
     queries.append(row["query"])
-    
+
 data = []
 
 for i in range(len(gold_answers)):
@@ -152,7 +152,7 @@ Additionally, we will need the LLM metric that assesses the generated answer, as
 ```python
 class TypedEvaluator(dspy.Signature):
     """Evaluate the quality of a system's answer to a question according to a given criterion."""
-    
+
     criterion: str = dspy.InputField(desc="The evaluation criterion.")
     question: str = dspy.InputField(desc="The question asked to the system.")
     ground_truth_answer: str = dspy.InputField(desc="An expert written Ground Truth Answer to the question.")
@@ -193,7 +193,7 @@ In [PR #849](https://github.com/stanfordnlp/dspy/pull/849), we introduced Weight
 ### Adding Random Search or Optuna to BootstrapFewShot
 `BootstrapFewShot` will stop searching for examples once it finds the `K` desired number of examples for the prompt; however, these may not be the optimal `K`.
 
-One solution to this is to use DSPy’s `BootstrapFewShotWithRandomSearch` or `BootstrapFewShotWithOptuna`. Instead of generating the desired K and stopping, these optimizers will generate `num_candidate` examples and use either random search or bayesian optimization, respectively, to find the optimal set of `K` examples to use in the prompt. 
+One solution to this is to use DSPy’s `BootstrapFewShotWithRandomSearch` or `BootstrapFewShotWithOptuna`. Instead of generating the desired K and stopping, these optimizers will generate `num_candidate` examples and use either random search or bayesian optimization, respectively, to find the optimal set of `K` examples to use in the prompt.
 
 Random search and Bayesian optimization are two common techniques for hyperparameter tuning. Random search is used to explore the space of possible example combinations by randomly selecting `K` examples from the generated `num_candidate` examples and evaluating their performance, ultimately finding the optimal set of examples for the prompt. `BootstrapFewShotWithOptuna` employs Bayesian optimization, which builds a probabilistic model of the relationship between the selected examples and the prompt's performance, guiding the search for the optimal set of `K` examples by balancing exploration and exploitation based on the model's predictions.
 
@@ -312,7 +312,7 @@ print(response.generated)
 ## Beyond Prompting: Gradient Descent and DSPy
 In this blog post, we covered how we can optimize the prompt that we feed to the language model. However, there is one additional way that we can boost our RAG performance – fine tuning with gradient descent. DSPy offers a level of abstraction around both methods of optimization. [Here](https://twitter.com/lateinteraction/status/1777082868357070972) are more thoughts on this from Omar Khattab.
 
-## Conclusion 
+## Conclusion
 In conclusion, this article presents the DSPy optimizers and advice on when to use which depending on whether you need instruction tuning, few-shot examples, gradient descent or combinations of the three. Which optimization strategy you need generally depends on the size of the LLM, for example, GPT-4 and Claude Opus are much larger models than Cohere’s Command R, which is similarly much larger than Mistral or Llama2 7B. This article provides a deep dive into how each of the optimizers work, BootstrapFewShot, COPRO, and MIPRO. Hopefully this has helped your understanding of DSPy’s optimizers!
 
 

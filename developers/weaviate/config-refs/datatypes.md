@@ -29,7 +29,7 @@ Further details on each data type are provided below.
 Use this type for any text data.
 
 - Properties with the `text` type is used for vectorization and keyword search unless specified otherwise [in the property settings](../manage-data/collections.mdx#property-level-settings).
-- If using [named vectors](../concepts/data.md#multiple-vectors-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-multiple-named-vectors).
+- If using [named vectors](../concepts/data.md#multiple-vector-embeddings-named-vectors), the property vectorization is defined in the [named vector definition](../manage-data/collections.mdx#define-named-vectors).
 - Text properties are tokenized prior to being indexed for keyword/BM25 searches. See [collection definition: tokenization](../config-refs/schema/index.md#property-tokenization) for more information.
 
 <details>

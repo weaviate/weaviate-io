@@ -20,22 +20,14 @@ import java.util.Map;
 // Set these environment variables
 // WCD_HOSTNAME     Your Weaviate instance hostname
 // WCD_API_KEY      Your Weaviate instance API key
-// COHERE_APIKEY    Your Cohere API key
 
 public class Import {
   public static void main(String[] args) throws Exception {
 
     String host = System.getenv("WCD_HOSTNAME");
     String apiKey = System.getenv("WCD_API_KEY");
-    String cohereKey = System.getenv("COHERE_APIKEY");
 
-    // highlight-start
-    Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Cohere-Api-Key", cohereKey);
-    } };
-
-    Config config = new Config("https", host, headers);
-    // highlight-end
+    Config config = new Config("https", host);
     WeaviateClient client = WeaviateAuthClient.apiKey(config, apiKey);
 
     // Get JSON data

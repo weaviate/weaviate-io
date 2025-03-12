@@ -85,6 +85,16 @@ import InitialCaps from '/_includes/schemas/initial-capitalization.md'
   </TabItem>
 </Tabs>
 
+:::tip Avoid creating too many collections
+Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection stores data for multiple tenants. 
+
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
+:::
+<!--
+import CollectionsCountLimit from '/_includes/collections-count-limit.mdx'
+
+<CollectionsCountLimit />
+-->
 ## Create a collection and define properties
 
 Properties are the data fields in your collection. Each property has a name and a data type.
@@ -221,12 +231,12 @@ Collection level settings override default values and general configuration para
 </Tabs>
 
 
-## Define multiple named vectors
+## Define named vectors
 
 :::info Added in `v1.24`
 :::
 
-You can define multiple [named vectors](../concepts/data.md#multiple-vectors-named-vectors) per collection. This allows each object to be represented by multiple vectors, each with its own vector index.
+You can define multiple [named vectors](../concepts/data.md#multiple-vector-embeddings-named-vectors) per collection. This allows each object to be represented by multiple vector embeddings, each with its own vector index.
 
 As such, each named vector configuration can include its own vectorizer and vector index settings.
 
@@ -276,6 +286,31 @@ As such, each named vector configuration can include its own vectorizer and vect
     />
   </TabItem>
 
+</Tabs>
+
+## Define multi-vector embeddings (e.g. ColBERT, ColPali)
+
+:::caution Multi-vector embeddings technical preview
+Multi-vector support is added in `v1.29` as a **technical preview**.
+<br/>
+
+This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
+<br/>
+
+**We do not recommend using this feature in production environments at this time.**
+:::
+
+Multi-vector embeddings, also known as multi-vectors, represent a single object with multiple vectors, i.e. a 2-dimensional matrix. Multi-vectors are currently only available for HNSW indexes for named vectors. To use multi-vectors, enable it for the appropriate named vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MultiValueVectorCollection"
+      endMarker="# END MultiValueVectorCollection"
+      language="py"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify vectorizer settings
@@ -842,7 +877,7 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
 <RaftRFChangeWarning/>
 
-Configure replication settings, such as [async replication](../concepts/replication-architecture/consistency.md#async-replication) and [deletion resolution strategy](../concepts/replication-architecture/consistency.md#deletion-resolution-strategies).
+Configure replication settings, such as [async replication](/developers/weaviate/configuration/replication#async-replication-settings) and [deletion resolution strategy](../concepts/replication-architecture/consistency.md#deletion-resolution-strategies).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -1464,7 +1499,7 @@ import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.upd
 ### Background knowledge
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
-- [Tutorial: Schema](../starter-guides/schema.md)
+- [Tutorial: Schema](/developers/weaviate/starter-guides/managing-collections)
 
 ## Questions and feedback
 

@@ -26,17 +26,17 @@ public class UsageWeaviateTextEmbeddings {
 
     client.schema().classDeleter().withClassName("DemoCollection").run();
 
-    // START BasicVectorizerWeaviate  // START VectorizerWeaviateCustomModel  // START FullVectorizerWeaviate
+    // START BasicVectorizerWeaviate  // START VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedMV15
     Map<String, Object> text2vecWeaviate = new HashMap<>();
     Map<String, Object> text2vecWeaviateSettings = new HashMap<>();
 
     text2vecWeaviateSettings.put("properties", new String[]{"title"});
-    // END BasicVectorizerWeaviate  // START VectorizerWeaviateCustomModel  // START FullVectorizerWeaviate
-    text2vecWeaviateSettings.put("model", new String[]{"arctic-embed-m-v1.5"});
-    // END BasicVectorizerWeaviate  // END VectorizerWeaviateCustomModel  // START FullVectorizerWeaviate
+    // END BasicVectorizerWeaviate  // START VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedMV15
+    text2vecWeaviateSettings.put("model", new String[]{"Snowflake/snowflake-arctic-embed-m-v1.5"});
+    // END BasicVectorizerWeaviate  // END VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedMV15
     text2vecWeaviateSettings.put("dimensions", new Integer[]{768});  // 768, 256
     text2vecWeaviateSettings.put("base_url", new String[]{"<custom_weaviate_url>"});
-    // START BasicVectorizerWeaviate // START VectorizerWeaviateCustomModel  // START FullVectorizerWeaviate
+    // START BasicVectorizerWeaviate // START VectorizerWeaviateCustomModel  // START SnowflakeArcticEmbedMV15
     text2vecWeaviate.put("text2vec-weaviate", text2vecWeaviateSettings);
 
     // Define the vector configurations
@@ -53,6 +53,6 @@ public class UsageWeaviateTextEmbeddings {
       .build();
 
     Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
-    // END BasicVectorizerWeaviate  // END VectorizerWeaviateCustomModel  // END FullVectorizerWeaviate
+    // END BasicVectorizerWeaviate  // END VectorizerWeaviateCustomModel  // END SnowflakeArcticEmbedMV15
   }
 }

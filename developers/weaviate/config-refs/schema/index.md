@@ -132,7 +132,7 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-### Multiple vectors (named vectors)
+### Multiple vector embeddings (named vectors)
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -149,7 +149,27 @@ To avoid this, you can either:
 - Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
+<!--
+### Collections count limit {#collections-count-limit}
 
+:::info
+Added in `v1.25.34`, `v1.26.18`, `1.27.15`, `1.28.9`, `1.29.2`
+:::
+
+To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. By setting a default limit, we help maintain performance and reduce operational complexity.
+
+- **Default limit**: `100` collections.
+- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
+
+:::note 
+This change does not affect existing clusters that have already exceeded the default limit. However, it will prevent adding new collections if the limit has been reached.
+:::
+
+:::tip
+**Instead of raising the collections count limit, consider rethinking your architecture**.  
+For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
+:::
+-->
 ## Available parameters
 
 ### `class`
@@ -652,7 +672,7 @@ client.schema.create_class(collection_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](../../starter-guides/schema.md)
+- [Tutorial: Schema](/developers/weaviate/starter-guides/managing-collections)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
 - [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)

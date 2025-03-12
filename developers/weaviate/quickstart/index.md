@@ -73,11 +73,11 @@ Notes:
 
 <!-- Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate. -->
 
-### Prerequisites
+### Requirements
 
-You will need accounts with [Weaviate Cloud](https://console.weaviate.cloud) and [Cohere](https://dashboard.cohere.com/). We will use free tiers (Weaviate Sandbox and Cohere trial API key) of both services.
+In order to perform Retrieval Augmented Generation (RAG) in the last step, you will need a [Cohere](https://dashboard.cohere.com/) account. You can use a free Cohere trial API key. 
 
-If you have another, preferred [model provider](../model-providers/index.md), you can use that instead of Cohere.
+If you have another preferred [model provider](/developers/weaviate/model-providers), you can use that instead of Cohere.
 
 <hr/>
 
@@ -85,36 +85,17 @@ If you have another, preferred [model provider](../model-providers/index.md), yo
 
 ### 1.1 Create a Weaviate database
 
-Go the [WCD homepage](https://console.weaviate.cloud) and create a free Sandbox instance.
+Go to the [Weaviate Cloud console](https://console.weaviate.cloud) and create a free Sandbox instance.
 
-<!-- ### Create a WCD account -->
-
-<!-- import WCDRegister from '/developers/weaviate/quickstart/img/wcd_register.png';
-
-<div class="row">
-  <div class="col col--4">
-    <div class="card">
-      <div class="card__image">
-        <img src={WCDRegister} alt="Sign up with WCD"/>
-      </div>
-      <div class="card__body">
-        <ol>
-          <li>Go the <a href="https://console.weaviate.cloud">WCD homepage</a>.</li>
-          <li>Click "Register here".</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-<br/> -->
-
+<!-- TODO[g-despot] Update with new screenshots -->
+import Link from '@docusaurus/Link';
 import CreateCluster from '/developers/weaviate/quickstart/img/create_cluster.png';
 import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.png';
 
 <div class="row">
   <div class="col col--4">
     <ol>
-      <li><a href="https://console.weaviate.cloud">Log onto WCD</a>.</li>
+      <li><Link to="https://console.weaviate.cloud">Log onto WCD</Link>.</li>
       <li>Click on <code>Clusters</code> on the sidebar.</li>
       <li>In the following pane, click <code>Create cluster</code>.</li>
     </ol>
@@ -156,13 +137,13 @@ import CreateSandbox from '/developers/weaviate/quickstart/img/create_sandbox.pn
 
 :::note
 - Cluster provisioning typically takes 1-3 minutes.
-- When the cluster is ready, WCD displays a check mark (`✔️`) next to the cluster name.
-- Note that WCD adds a random suffix to sandbox cluster names to ensure uniqueness.
+- When the cluster is ready, Weaviate Cloud displays a checkmark (`✔️`) next to the cluster name.
+- Note that Weaviate Cloud adds a random suffix to sandbox cluster names to ensure uniqueness.
 :::
 
-<!-- import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+import LatestWeaviateVersion from '/_includes/latest-weaviate-version.mdx';
 
-<SandBoxExpiry/> -->
+<LatestWeaviateVersion />
 
 ### 1.2 Install a client library
 
@@ -172,7 +153,7 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
-### 1.3: Connect to Weaviate
+### 1.3 Connect to Weaviate
 
 Now you can connect to your Weaviate instance. Get the instance **REST Endpoint URL** and the **Administrator API Key** from the WCD console as shown below.
 
@@ -227,7 +208,7 @@ If you did not see any errors, you are ready to proceed. We will replace the sim
 
 ## Step 2: Populate the database
 
-Now, we can populate our database by first defining a collection then adding data.
+Now, we can populate our database by first defining a collection and then adding data.
 
 ### 2.1 Define a collection
 
@@ -236,8 +217,8 @@ A collection is a set of objects that share the same data structure, like a tabl
 :::
 
 The following example creates a *collection* called `Question` with:
-  - Cohere [embedding model integration](../model-providers/cohere/embeddings.md) to create vectors during ingestion & queries.
-  - Cohere [generative AI integrations](../model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
+  - The [Weaviate Embeddings](/developers/weaviate/model-providers/weaviate/embeddings.md) service for creating vectors during ingestion & queries.
+  - Cohere [generative AI integrations](/developers/weaviate/model-providers/cohere/generative.md) for retrieval augmented generation (RAG).
 
 import CreateCollection from '/_includes/code/quickstart/quickstart.create_collection.mdx'
 
@@ -264,7 +245,7 @@ Weaviate is very flexible. If you prefer a different model provider integration,
         <h4>Prefer a different model provider?</h4>
       </div>
       <div class="card__body">
-        See <a href="#can-i-use-different-integrations">this section</a> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
+        See <Link to="#can-i-use-different-integrations">this section</Link> for information on how to user another provider, such as AWS, Cohere, Google, and many more.
       </div>
     </div>
   </div>
@@ -274,7 +255,7 @@ Weaviate is very flexible. If you prefer a different model provider integration,
         <h4>Want to specify object vectors?</h4>
       </div>
       <div class="card__body">
-        If you prefer to add vectors yourself along with the object data, see <a href="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</a>.
+        If you prefer to add vectors yourself along with the object data, see <Link to="/developers/weaviate/starter-guides/custom-vectors">Starter Guide: Bring Your Own Vectors</Link>.
       </div>
     </div>
   </div>
@@ -299,10 +280,6 @@ import ImportObjects from '/_includes/code/quickstart/quickstart.import_objects.
 <ImportObjects />
 
 Run this code to add the demo data.
-
-:::info Cohere API key in the header
-Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to generate vector embeddings for the data objects as they are being added.
-:::
 
 <hr/>
 
@@ -378,7 +355,7 @@ flowchart LR
 ```
 
 :::info Where did the vectors come from?
-Weaviate used the Cohere API key to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
+Weaviate used the **Weaviate Embeddings** service to generate a vector embedding for each object during import. During the query, Weaviate similarly converted the query (`biology`) into a vector.
 
 As we mentioned above, this is optional. See [Starter Guide: Bring Your Own Vectors](/developers/weaviate/starter-guides/custom-vectors.mdx) if you would prefer to provide your own vectors.
 :::
@@ -453,6 +430,10 @@ import QueryRAG from '/_includes/code/quickstart/quickstart.query.rag.mdx'
 
 <QueryRAG />
 
+:::info Cohere API key in the header
+Note that this code includes an additional header for the Cohere API key. Weaviate uses this key to access the Cohere generative AI model and perform retrieval augmented generation (RAG).
+:::
+
 Run this code to perform the query. Here is one possible response (your response will likely be different).
 
 ```text
@@ -461,7 +442,7 @@ Run this code to perform the query. Here is one possible response (your response
 🦢 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new species! 🦢🌿 #ScienceFacts #DNA #SpeciesClassification
 ```
 
-The response should be new, yet familiar. This because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
+The response should be new, yet familiar. This is because you have seen the entries above for `DNA` and `species` in the [semantic search](#semantic-search) section.
 
 The power of RAG comes from the ability to transform your own data. Weaviate helps you in this journey by making it easy to perform a combined search & generation in just a few lines of code.
 
@@ -494,7 +475,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="/developers/weaviate/search">how to perform searches</a>, such as <a href="/developers/weaviate/search/bm25">keyword</a>, <a href="/developers/weaviate/search/similarity">similarity</a>, <a href="/developers/weaviate/search/hybrid">hybrid</a>, <a href="/developers/weaviate/search/image">image</a>, <a href="/developers/weaviate/search/filters">filtered</a> and <a href="/developers/weaviate/search/rerank">reranked</a> searches.
+            See <Link to="/developers/weaviate/search">how to perform searches</Link>, such as <Link to="/developers/weaviate/search/bm25">keyword</Link>, <Link to="/developers/weaviate/search/similarity">similarity</Link>, <Link to="/developers/weaviate/search/hybrid">hybrid</Link>, <Link to="/developers/weaviate/search/image">image</Link>, <Link to="/developers/weaviate/search/filters">filtered</Link> and <Link to="/developers/weaviate/search/rerank">reranked</Link> searches.
           </p>
         </div>
       </div>
@@ -506,7 +487,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            See <a href="/developers/weaviate/manage-data">how to manage data</a>, such as <a href="/developers/weaviate/manage-data/collections">manage collections</a>, <a href="/developers/weaviate/manage-data/create">create objects</a>, <a href="/developers/weaviate/manage-data/import">batch import data</a> and <a href="/developers/weaviate/manage-data/multi-tenancy">use multi-tenancy</a>.
+            See <Link to="/developers/weaviate/manage-data">how to manage data</Link>, such as <Link to="/developers/weaviate/manage-data/collections">manage collections</Link>, <Link to="/developers/weaviate/manage-data/create">create objects</Link>, <Link to="/developers/weaviate/manage-data/import">batch import data</Link> and <Link to="/developers/weaviate/manage-data/multi-tenancy">use multi-tenancy</Link>.
           </p>
         </div>
       </div>
@@ -518,7 +499,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-            Check out the <a href="/developers/weaviate/starter-guides/generative">Starter guide: retrieval augmented generation</a>, and the <a href="/developers/academy">Weaviate Academy</a> unit on <a href="/developers/academy/py/standalone/chunking">chunking</a>.
+            Check out the <Link to="/developers/weaviate/starter-guides/generative">Starter guide: retrieval augmented generation</Link>, and the <Link to="/developers/academy">Weaviate Academy</Link> unit on <Link to="/developers/academy/py/standalone/chunking">chunking</Link>.
           </p>
         </div>
       </div>
@@ -530,7 +511,7 @@ Try these additional resources to learn more about Weaviate:
         </div>
         <div class="card__body">
           <p>
-          We hold in-person and online <a href="/community/events">workshops, office hours and events</a> for different experience levels. Join us!
+          We hold in-person and online <Link to="/community/events">workshops, office hours and events</Link> for different experience levels. Join us!
           </p>
         </div>
       </div>
@@ -551,7 +532,7 @@ We provide answers to some common questions, or potential issues below.
 <details>
   <summary>See answer</summary>
 
-In this example, we use the `Cohere` inference API. But you can use others.
+In this example, we use the `Weaviate Embeddings` and `Cohere` inference API. But you can use others.
 
 If you do want to change the embeddings, or the generative AI integrations, you can. You will need to:
 - Ensure that the Weaviate module is available in the Weaviate instance you are using,
@@ -598,7 +579,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-cohere"
+            "vectorizer": "text2vec-weaviate"
         }
     ]
 }

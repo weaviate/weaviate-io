@@ -211,6 +211,21 @@ spec:
 
 For more, general information on running EFS with Fargate, we recommend reading [this AWS blog](https://aws.amazon.com/blogs/containers/running-stateful-workloads-with-amazon-eks-on-aws-fargate-using-amazon-efs/).
 
+### Using Azure file CSI with Weaviate
+The provisioner `file.csi.azure.com` is **not supported** and will lead to file corruptions. Instead, make sure the storage class defined in values.yaml is from provisioner `disk.csi.azure.com`, for example:
+
+```yaml
+storage:
+  size: 32Gi
+  storageClassName: managed
+```
+
+you can get the list of available storage classes in your cluster with:
+
+```
+kubectl get storageclasses
+```
+
 ## Troubleshooting
 
 - If you see `No private IP address found, and explicit IP not provided`, set the pod subnet to be in an valid ip address range of the following:

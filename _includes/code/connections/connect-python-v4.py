@@ -81,6 +81,7 @@ client.close()
 # START CustomConnect  # START TimeoutCustom
 import weaviate, os
 from weaviate.classes.init import Auth
+from weaviate.config import AdditionalConfig, Timeout
 
 # Best practice: store your credentials in environment variables
 http_host = os.environ["WCD_HTTP_HOST"]
