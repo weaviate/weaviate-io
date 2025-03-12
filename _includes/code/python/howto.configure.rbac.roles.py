@@ -212,31 +212,6 @@ permissions = [
 client.roles.add_permissions(permissions=permissions, role_name="testRole")
 # END AddRoles
 
-# START AssignRole
-client.users.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
-# END AssignRole
-assert "testRole" in client.users.get_assigned_roles("user-b")
-assert "viewer" in client.users.get_assigned_roles("user-b")
-
-# START ListCurrentUserRoles
-print(client.users.get_my_user())
-# END ListCurrentUserRoles
-
-# START ListUserRoles
-user_roles = client.users.get_assigned_roles("user-b")
-
-for role in user_roles:
-    print(role)
-# END ListUserRoles
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].collections_permissions
-)
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].data_permissions
-)
-
 # START CheckRoleExists
 print(client.roles.exists(role_name="testRole"))  # Returns True or False
 # END CheckRoleExists
@@ -279,11 +254,6 @@ permissions = [
 
 client.roles.remove_permissions(role_name="testRole", permissions=permissions)
 # END RemovePermissions
-
-# START RevokeRoles
-client.users.revoke_roles(user_id="user-b", role_names="testRole")
-# END RevokeRoles
-assert "testRole" not in client.users.get_assigned_roles("user-b")
 
 # START DeleteRole
 client.roles.delete(role_name="testRole")
