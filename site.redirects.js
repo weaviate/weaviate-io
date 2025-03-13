@@ -825,6 +825,12 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits',
             from: '/collections-count-limit',
+        },
+
+        // Redirects for dynamic user support
+        {
+            to: '/developers/weaviate/configuration/rbac/manage-roles',
+            from: '/developers/weaviate/configuration/rbac/manage-roles-users',
         }
     ],
     createRedirects(existingPath) {
