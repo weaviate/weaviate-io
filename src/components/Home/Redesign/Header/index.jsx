@@ -133,6 +133,9 @@ export default function HomepageHeader() {
                 src="/img/site/weaviate-vision-circle-updated.svg?format=svg"
                 alt="Weaviate Vision"
                 className={styles.serviceImage}
+                width="500"
+                height="500"
+                preserveAspectRatio="xMidYMid meet"
               />
             </div>
           </div>
