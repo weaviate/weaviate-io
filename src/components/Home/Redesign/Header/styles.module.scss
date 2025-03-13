@@ -1154,8 +1154,6 @@
   height: auto;
   max-width: 500px;
   display: block;
-  image-rendering: crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
 
   @media screen and (max-width: 550px) {
     margin: 10px 0px;
