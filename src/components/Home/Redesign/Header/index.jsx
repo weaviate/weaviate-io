@@ -128,7 +128,13 @@ export default function HomepageHeader() {
               </div>
             </div>
 
-            <div className={styles.serviceImage}></div>
+            <div className={styles.serviceImageContainer}>
+              <img
+                src="/img/site/weaviate-vision-circle-updated.svg"
+                alt="Weaviate Vision"
+                className={styles.serviceImage}
+              />
+            </div>
           </div>
 
           <div className={styles.tempBox}>
