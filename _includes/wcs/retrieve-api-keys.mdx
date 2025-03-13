@@ -1,5 +1,5 @@
-Weaviate Cloud instances use API keys and the REST endpoint URL to authenticate.
-To retrieve your connection information, follow these steps:
+When connecting to a Weaviate Cloud cluster, you need an API key and the REST endpoint URL for authentication. 
+To retrieve your connection details, follow these steps:
 
 import Link from '@docusaurus/Link';
 import Register from '/developers/wcs/img/weaviate-cloud-api-keys.png';
@@ -52,5 +52,7 @@ import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admi
     </div>
   </div>
 </div>
-
 <br />
+
+:::note REST Endpoint vs gRPC Endpoint
+When using an official Weaviate [client library](/developers/weaviate/client-libraries), you need to authenticate using the `REST Endpoint`. The client will infer the gRPC endpoint automatically and use the more performant gRPC protocol when available.
