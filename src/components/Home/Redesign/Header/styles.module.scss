@@ -1147,7 +1147,7 @@
   background-image: url('/img/site/weaviate-vision-circle-updated.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position-x: center;
+  background-position: center;
   width: 35.125rem;
   height: 31rem;
   flex-shrink: 0;
@@ -1159,26 +1159,28 @@
 
   @media screen and (max-width: 1180px) {
     width: 51%;
-
     height: 443px;
     margin: 40px 0px;
   }
 
   @media screen and (max-width: 868px) {
     width: 100%;
-    height: 328px;
+    height: auto;
+    min-height: 500px;
     margin-top: 55px;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
-    height: 328px;
+    height: auto;
+    min-height: 280px;
     margin: 40px 0px;
   }
 
   @media screen and (max-width: 400px) {
     width: 100%;
-    height: 292px;
+    height: auto;
+    min-height: 280px;
     margin: 40px 0px;
   }
 }
