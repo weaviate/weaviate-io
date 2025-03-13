@@ -1,34 +1,56 @@
-To retrieve your API keys, follow these steps:
+Weaviate Cloud instances use API keys and the REST endpoint URL to authenticate.
+To retrieve your connection information, follow these steps:
 
 import Link from '@docusaurus/Link';
 import Register from '/developers/wcs/img/weaviate-cloud-api-keys.png';
 
 <div class="row">
+  <ol>
+    <li>
+      Open the{' '}
+      <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link>{' '}
+      and{' '}
+      <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
+        select your cluster
+      </Link>
+      .
+    </li>
+    <li>
+      On the <code>Cluster details</code> page, find the <code>Admin</code> API
+      key and <code>REST Endpoint</code> URL.
+    </li>
+    <li>Copy the needed key and URL and store them in a safe location.</li>
+  </ol>
+</div>
+
+import WCDClusterURL from '/developers/weaviate/quickstart/img/cluster_url.png';
+import WCDClusterAdminKey from '/developers/weaviate/quickstart/img/cluster_admin_key.png';
+
+<div class="row">
   <div class="col col--6">
-    <ol>
-      <li>
-        Open the{' '}
-        <Link to="https://console.weaviate.cloud">Weaviate Cloud console</Link> and{' '}
-        <Link to="/developers/wcs/manage-clusters/status#select-your-cluster">
-          select your cluster
-        </Link>
-        .
-      </li>
-      <li>
-        On the <code>Cluster details</code> page, find the <code>API keys</code>{' '}
-        section.
-      </li>
-      <li>Copy the needed key and store it in a safe location.</li>
-    </ol>
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterURL} alt="Get the (REST) endpoint URL" />
+        </div>
+        <div class="card__body">
+          Grab the <code>REST Endpoint</code> URL.
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col col--6">
-    <div class="card">
-      <div class="card__image">
-        <img src={Register} alt="Create a cluster" />
-      </div>
-      <div class="card__body">
-        Copy the appropriate API key for your cluster.
+    <div class="card-demo">
+      <div class="card">
+        <div class="card__image">
+          <img src={WCDClusterAdminKey} alt="Get the admin API key" />
+        </div>
+        <div class="card__body">
+          Grab the <code>Admin</code> API key.
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<br />

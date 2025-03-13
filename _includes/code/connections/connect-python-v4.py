@@ -128,12 +128,10 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(weaviate_api_key),
 )
 
-print(client.is_ready())
+print(client.is_ready())  # Should print: `True`
+
+client.close()  # Free up resources
 # END APIKeyWCD
-
-assert client.is_ready()
-
-client.close()
 
 ################################
 ### Local connection no auth ###
