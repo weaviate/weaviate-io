@@ -51,6 +51,9 @@ const azureApiKey = process.env.AZURE_APIKEY || '';  // Replace with your infere
 // START VoyageAIInstantiation
 const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your inference API key
 // END VoyageAIInstantiation
+// START Xainstantiation
+const xaiApiKey = process.env.XAI_APIKEY || '';  // Replace with your inference API key
+// END XaiInstantiation
 
 // START-ANY
 
@@ -113,6 +116,9 @@ const client = await weaviate.connectToWeaviateCloud(
       // START VoyageAIInstantiation
       'X-VoyageAI-Api-Key': voyageaiApiKey,
       // END VoyageAIInstantiation
+      // START XaiInstantiation
+      'X-Xai-Api-Key': xaiApiKey,
+      // END XaiInstantiation
       // START-ANY
     }
     // highlight-end
