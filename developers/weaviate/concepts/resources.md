@@ -142,6 +142,12 @@ Weaviate Core itself does not make use of GPUs. However, some of the models that
 
 Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can also be used with some performance penalties.
 
+## Filesystem
+
+Avoid using `NFS` or `NFS-like` filesystem for Weaviate persistent volume path `PERSISTENCE_DATA_PATH`.
+`NFS` might impact the performance and the reliability of Weaviate.
+
+`Ext4` or `XFS` with SAN storage, e.g. `EBS`, are generaly used for Weaviate and provide good performances.
 
 ## Questions and feedback
 
