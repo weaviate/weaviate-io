@@ -130,7 +130,7 @@ export default function HomepageHeader() {
 
             <div className={styles.serviceImageContainer}>
               <img
-                src="/img/site/weaviate-vision-circle-updated.svg"
+                src="/img/site/weaviate-vision-circle-updated.svg?format=svg"
                 alt="Weaviate Vision"
                 className={styles.serviceImage}
               />

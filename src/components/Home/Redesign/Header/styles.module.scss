@@ -1152,18 +1152,9 @@
 .serviceImage {
   width: 100%;
   height: auto;
-  max-width: 500px; /* Adjust as needed */
-
-  @media screen and (max-width: 868px) {
-    width: 100%;
-    height: auto;
-    min-height: 500px;
-  }
+  max-width: 500px;
 
   @media screen and (max-width: 550px) {
-    width: 100%;
-    height: auto;
-    min-height: 280px;
     margin: 10px 0px;
   }
 }
