@@ -1143,45 +1143,20 @@
   }
 }
 
+.serviceImageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .serviceImage {
-  background-image: url('/img/site/weaviate-vision-circle-updated.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 35.125rem;
-  height: 31rem;
-  flex-shrink: 0;
-
-  @media screen and (max-width: 1200px) {
-    width: 48%;
-    height: 420px;
-  }
-
-  @media screen and (max-width: 1180px) {
-    width: 51%;
-    height: 443px;
-    margin: 40px 0px;
-  }
-
-  @media screen and (max-width: 868px) {
-    width: 100%;
-    height: auto;
-    min-height: 500px;
-    margin-top: 55px;
-  }
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  display: block;
 
   @media screen and (max-width: 550px) {
-    width: 100%;
-    height: auto;
-    min-height: 280px;
-    margin: 40px 0px;
-  }
-
-  @media screen and (max-width: 400px) {
-    width: 100%;
-    height: auto;
-    min-height: 280px;
-    margin: 40px 0px;
+    margin: 10px 0px;
   }
 }
 
