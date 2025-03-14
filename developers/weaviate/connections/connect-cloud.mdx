@@ -19,16 +19,19 @@ import GoCode from '!!raw-loader!/_includes/code/connections/connect.go';
 
 Follow these steps to connect to a Weaviate Cloud (WCD) instance.
 
-## Retrieve your API key and Weaviate URL
+## Retrieve your API key and REST endpoint
 
 import RetrieveAPIKeys from '/_includes/wcs/retrieve-api-keys.mdx';
 
-<RetrieveAPIKeys/>
+<RetrieveAPIKeys />
 
 ## Connection example
 
 <!-- TODO[g-despot] Refactor into an import and reuse in Cloud docs to avoid duplication -->
-To connect, use the `REST Endpoint` URL and the `Admin` API key stored as [environment variables](#environment-variables):
+
+To connect, use the `REST Endpoint` and the `Admin` API key stored as [environment variables](#environment-variables):
+
+import HostnameWarning from '/_includes/wcs/hostname-warning.mdx';
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -70,6 +73,7 @@ To connect, use the `REST Endpoint` URL and the `Admin` API key stored as [envir
      endMarker="// END APIKeyWCD"
      language="py"
    />
+<HostnameWarning />
 </TabItem>
 <TabItem value="java" label="Java">
    <FilteredTextBlock
@@ -78,6 +82,7 @@ To connect, use the `REST Endpoint` URL and the `Admin` API key stored as [envir
      endMarker="// END APIKeyWCD"
      language="py"
    />
+<HostnameWarning />
 </TabItem>
 <TabItem value="shell" label="cURL">
    <FilteredTextBlock
@@ -94,82 +99,82 @@ To connect, use the `REST Endpoint` URL and the `Admin` API key stored as [envir
 If you use API-based models for vectorization or RAG, you must provide an API key for the service. To add third party API keys, follow these examples:
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python Client v4">
-   <FilteredTextBlock
-     text={PyCodeV4}
-     startMarker="# START ThirdPartyAPIKeys"
-     endMarker="# END ThirdPartyAPIKeys"
-     language="py"
-   />
-</TabItem>
-<TabItem value="py3" label="Python Client v3">
-   <FilteredTextBlock
-     text={PyCodeV3}
-     startMarker="# START ThirdPartyAPIKeys"
-     endMarker="# END ThirdPartyAPIKeys"
-     language="pyv3"
-   />
-</TabItem>
-<TabItem value="ts3" label="JS/TS Client v3">
-   <FilteredTextBlock
-     text={TsCodeV3}
-     startMarker="// START ThirdPartyAPIKeys"
-     endMarker="// END ThirdPartyAPIKeys"
-     language="js"
-   />
-</TabItem>
-<TabItem value="ts2" label="JS/TS Client v2">
-   <FilteredTextBlock
-     text={TsCodeV2}
-     startMarker="// START ThirdPartyAPIKeys"
-     endMarker="// END ThirdPartyAPIKeys"
-     language="tsv2"
-   />
-</TabItem>
-<TabItem value="go" label="Go">
-   <FilteredTextBlock
-     text={GoCode}
-     startMarker="// START ThirdPartyAPIKeys"
-     endMarker="// END ThirdPartyAPIKeys"
-     language="py"
-   />
-</TabItem>
-<TabItem value="java" label="Java">
-   <FilteredTextBlock
-     text={JavaCode}
-     startMarker="// START ThirdPartyAPIKeys"
-     endMarker="// END ThirdPartyAPIKeys"
-     language="java"
-   />
-</TabItem>
-<TabItem value="shell" label="cURL">
-   <FilteredTextBlock
-     text={ShellCode}
-     startMarker="# START ThirdPartyAPIKeys"
-     endMarker="# END ThirdPartyAPIKeys"
-     language="shell"
-   />
-</TabItem>
+  <TabItem value="py4" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCodeV4}
+      startMarker="# START ThirdPartyAPIKeys"
+      endMarker="# END ThirdPartyAPIKeys"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python Client v3">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ThirdPartyAPIKeys"
+      endMarker="# END ThirdPartyAPIKeys"
+      language="pyv3"
+    />
+  </TabItem>
+  <TabItem value="ts3" label="JS/TS Client v3">
+    <FilteredTextBlock
+      text={TsCodeV3}
+      startMarker="// START ThirdPartyAPIKeys"
+      endMarker="// END ThirdPartyAPIKeys"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="ts2" label="JS/TS Client v2">
+    <FilteredTextBlock
+      text={TsCodeV2}
+      startMarker="// START ThirdPartyAPIKeys"
+      endMarker="// END ThirdPartyAPIKeys"
+      language="tsv2"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ThirdPartyAPIKeys"
+      endMarker="// END ThirdPartyAPIKeys"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ThirdPartyAPIKeys"
+      endMarker="// END ThirdPartyAPIKeys"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="shell" label="cURL">
+    <FilteredTextBlock
+      text={ShellCode}
+      startMarker="# START ThirdPartyAPIKeys"
+      endMarker="# END ThirdPartyAPIKeys"
+      language="shell"
+    />
+  </TabItem>
 </Tabs>
 
 ## Environment variables
 
 import EnvVarsHowto from '/_includes/environment-variables.mdx';
 
-<EnvVarsHowto/>
+<EnvVarsHowto />
 
 ## gRPC timeouts
 
 import GRPCTimeoutIntro from '/_includes/connect/timeouts-intro.mdx';
 
-<GRPCTimeoutIntro/>
+<GRPCTimeoutIntro />
 
 import GRPCTimeouts from '/_includes/code/connections/timeouts-cloud.mdx';
 
-<GRPCTimeouts/>
+<GRPCTimeouts />
 
 ## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsFeedback/>
+<DocsFeedback />
