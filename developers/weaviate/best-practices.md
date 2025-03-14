@@ -14,6 +14,28 @@ This page covers what we consider general best practices for using Weaviate. The
 We will update this page over time as Weaviate evolves and we learn more about how our users are using it. Please check back regularly for updates.
 :::
 
+## Upgrades & maintenance
+
+### Keep Weaviate and client libraries up-to-date
+
+Weaviate is a fast-evolving product, where we are constantly adding new features, improving performance, and fixing bugs. We recommend keeping Weaviate and the client libraries you use up-to-date to benefit from the latest features and improvements.
+
+To keep up-to-date with the latest releases, you can:
+
+- Subscribe to the [Weaviate newsletter](https://newsletter.weaviate.io/)
+- [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/managing-subscriptions-for-activity-on-github/viewing-your-subscriptions#reviewing-repositories-that-youre-watching) the relevant Weaviate GitHub repositories. They are:
+    - [Weaviate](https://github.com/weaviate/weaviate)
+    - [Weaviate Python client](https://github.com/weaviate/weaviate-python-client)
+    - [Weaviate TS/JS client](https://github.com/weaviate/typescript-client)
+    - [Weaviate Go client](https://github.com/weaviate/weaviate-go-client)
+    - [Weaviate Java client](https://github.com/weaviate/java-client)
+
+:::info How often are new versions released?
+Generally, a new minor version of Weaviate is released every 2-3 months, and new patch versions are regularly released.
+:::
+
+<!-- ### Plan for upgrades -->
+
 ## Resource management
 
 ### Use multi-tenancy for data subsets
@@ -114,15 +136,23 @@ This ensures all shards are fully loaded before Weaviate reports itself as ready
 Only disable lazy shard loading for single-tenant collections. For multi-tenant deployments, keeping lazy loading enabled is recommended as it can significantly speed up the startup time.
 :::
 
-<!-- ## Data structures
+## Data structures
 
-### Do you really need cross-references?
+### Cross-references vs flattened properties
 
-### Choose the right property data type
+When designing your data schema, consider whether to use cross-references or flattened properties. If you come from a relational database background, you may be tempted to normalize your data and use cross-references.
 
-## Optimize queries
+However, in Weaviate, cross-references can have multiple drawbacks:
 
-### Index the right properties -->
+- They are not vectorized, which means that this information is not incorporated as a part of the vector representation of the object.
+- They can be slow to query, as they require additional queries to fetch the referenced object.
+-
+
+<!-- ### Choose the right property data type -->
+
+<!-- ## Optimize queries -->
+
+<!-- ### Index the right properties -->
 
 ## Data operations
 
@@ -211,6 +241,20 @@ When the tenant is likely to be used again (e.g. when a user logs in), it can be
 ### Consider using a reranker
 
 ### Effective hybrid search strategies -->
+
+## Application design and integration
+
+### Use the relevant Async Client as relevant
+
+When using Weaviate in an asynchronous environment, consider using the asynchronous client API. This can significantly improve the performance of your application, especially when making multiple queries in parallel.
+
+#### Python
+
+The Weaviate Python client `4.7.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](./client-libraries/python/async.md).
+
+#### Java
+
+The Weaviate Java client `5.0.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](https://javadoc.io/doc/io.weaviate/client/latest/io/weaviate/client/v1/async/WeaviateAsyncClient.html).
 
 ## Questions and feedback
 
