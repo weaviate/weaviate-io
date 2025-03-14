@@ -98,6 +98,22 @@ We add some overhead for the index structure, and additional overheads, which br
 - [Concepts: Resource planning](concepts/resources.md)
 :::
 
+### Configure shard loading behavior to balance system & data availability
+
+When Weaviate starts, it loads data from all shards in your deployment. By default, lazy shard loading enables faster startup by loading shards in the background while allowing immediate queries to already-loaded shards.
+
+However, for single-tenant collections under high loads, lazy loading can cause import operations to slow down or partially fail. In these scenarios, consider [disabling lazy loading](./concepts/storage.md#lazy-shard-loading), by setting the following environment variable:
+
+```
+DISABLE_LAZY_LOAD_SHARDS: "true"
+```
+
+This ensures all shards are fully loaded before Weaviate reports itself as ready.
+
+:::caution Important
+Only disable lazy shard loading for single-tenant collections. For multi-tenant deployments, keeping lazy loading enabled is recommended as it can significantly speed up the startup time.
+:::
+
 <!-- ## Data structures
 
 ### Do you really need cross-references?
@@ -147,8 +163,9 @@ client.collections.create(
 This will ensure that only objects with the correct schema are ingested into Weaviate, and the user will be notified if they try to ingest an object with a malformed schema.
 
 :::tip Further resources
-- Concepts: [Data schema](./concepts/data.md#data-schema)
-
+- [Concepts: Data schema](./concepts/data.md#data-schema)
+- [References: Collection definition - Auto-schema](./config-refs/schema/index.md#auto-schema)
+:::
 
 ### Accelerate data ingestion with batch imports
 
