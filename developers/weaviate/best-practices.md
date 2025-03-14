@@ -31,7 +31,7 @@ To keep up-to-date with the latest releases, you can:
     - [Weaviate Java client](https://github.com/weaviate/java-client)
 
 :::info How often are new versions released?
-Generally, a new minor version of Weaviate is released every 2-3 months, and new patch versions are regularly released.
+Generally, a new minor version of Weaviate is released every 6-10 weeks, and new patch versions are regularly released.
 :::
 
 <!-- ### Plan for upgrades -->
