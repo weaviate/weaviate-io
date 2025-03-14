@@ -6,8 +6,8 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL      your Weaviate instance URL
-// WEAVIATE_API_KEY  your Weaviate instance API key
+// WEAVIATE_HOSTNAME    Your Weaviate instance hostname
+// WEAVIATE_API_KEY  	Your Weaviate instance API key
 
 package main
 
@@ -23,7 +23,7 @@ import (
 // Create the client
 func CreateClient() {
 	cfg := weaviate.Config{
-		Host:       os.Getenv("WEAVIATE_URL"),
+		Host:       os.Getenv("WEAVIATE_HOSTNAME"),
 		Scheme:     "https",
 		AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
 		Headers:    nil,
@@ -249,7 +249,7 @@ import (
 // Create the client
 func CreateClient() {
 cfg := weaviate.Config{
-    Host: os.Getenv("WEAVIATE_URL"),   // URL only, no scheme prefix
+    Host: os.Getenv("WEAVIATE_HOSTNAME"),   // URL only, no scheme prefix
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: os.Getenv("WEAVIATE_API_KEY")},
     Headers: map[string]string{
