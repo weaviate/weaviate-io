@@ -34,7 +34,7 @@ Then consider enabling multi-tenancy, and assigning each subset of data to a sep
 - [Concepts: Multi-tenancy](concepts/data.md#multi-tenancy)
 :::
 
-### Use the right vector index type
+### Set a vector index type to suit your data scale
 
 For many cases, the default, `hnsw` index type is a good starting point. However, in some cases, using `flat` indexes, or `dynamic` indexes may be more appropriate.
 
@@ -50,7 +50,7 @@ Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they
 - [Concepts: Vector indexes](concepts/vector-index.md)
 :::
 
-### Consider vector quantization
+### Reduce memory footprint with vector quantization
 
 As the size of your dataset grows, the accompanying vector indexes can lead to high memory requirements and thus significant costs. Especially if the `hnsw` index type is used.
 
@@ -63,7 +63,7 @@ For HNSW indexes, we suggest enabling product quantization (PQ) as a starting po
 - [Concepts: Vector quantization](concepts/vector-quantization.md)
 :::
 
-### Adjust readonly/warning thresholds
+### Customize system thresholds to prevent downtime
 
 Weaviate is configured to emit warnings, or to even go into read-only mode when certain thresholds (in percentage) are exceeded for memory or disk usage.
 
@@ -75,7 +75,7 @@ Set `DISK_USE_WARNING_PERCENTAGE` and `DISK_USE_READONLY_PERCENTAGE` to adjust t
 - [References: Environment variables](config-refs/env-vars.md#general)
 :::
 
-### Memory requirements - rules of thumb
+### Plan memory allocation
 
 When running Weaviate, its memory footprint is a common bottleneck. As a rule of thumb, you can expect to need:
 
@@ -100,8 +100,6 @@ We add some overhead for the index structure, and additional overheads, which br
 
 <!-- ## Data structures
 
-### Disable Auto-schema in production
-
 ### Do you really need cross-references?
 
 ### Choose the right property data type
@@ -112,7 +110,47 @@ We add some overhead for the index structure, and additional overheads, which br
 
 ## Data operations
 
-### Use batch imports
+### Explicitly define your data schema
+
+Weaviate includes a convenient ["auto-schema" functionality](./config-refs/schema/index.md#auto-schema) that can automatically infer the schema of your data.
+
+However, for production use cases, we recommend explicitly defining your schema, and disabling the auto-schema functionality (set `AUTOSCHEMA_ENABLED: 'false'`). This will ensure that your data is correctly interpreted by Weaviate, and that malformed data is not ingested into the system, rather than to potentially create unexpected properties.
+
+As an example, consider importing the following two objects:
+
+```json
+[
+    {"title": "The Bourne Identity", "category": "Action"},
+    {"title": "The Bourne Supremacy", "cattegory": "Action"},
+    {"title": "The Bourne Ultimatum", "category": 2007},
+]
+```
+
+In this case, the second and third objects are malformed. The second has a typo in the property name `cattegory`, and the third has a category that is a number, rather than a string.
+
+If you have auto-schema enabled, Weaviate will create a property `cattegory` in the collection, which can lead to unexpected behavior when querying the data. And the third object could lead to the creation of a property `category` with a data type of `INT`, which is not what you intended.
+
+Instead, disable auto-schema, and define the schema explicitly:
+
+```python
+from weaviate.classes.config import Property, DataType
+
+client.collections.create(
+    name="WikiArticle",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT)
+        Property(name="category", data_type=DataType.TEXT)
+    ],
+)
+```
+
+This will ensure that only objects with the correct schema are ingested into Weaviate, and the user will be notified if they try to ingest an object with a malformed schema.
+
+:::tip Further resources
+- Concepts: [Data schema](./concepts/data.md#data-schema)
+
+
+### Accelerate data ingestion with batch imports
 
 When importing any significant amount of data (i.e. more than 10 objects), use batch imports. This will significantly improve your import speed for two reasons:
 
@@ -134,7 +172,7 @@ with collection.batch.dynamic() as batch:
 - [How-to: Batch import data](manage-data/import.mdx)
 :::
 
-### Offload unused tenants to cold storage
+### Minimize costs by offloading inactive tenants
 
 If you are using multi-tenancy, and have tenants that are not being queried frequently, consider offloading them to cold (cloud) storage.
 
