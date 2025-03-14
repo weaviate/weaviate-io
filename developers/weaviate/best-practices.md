@@ -14,6 +14,28 @@ This page covers what we consider general best practices for using Weaviate. The
 We will update this page over time as Weaviate evolves and we learn more about how our users are using it. Please check back regularly for updates.
 :::
 
+## Upgrades & maintenance
+
+### Keep Weaviate and client libraries up-to-date
+
+Weaviate is a fast-evolving product, where we are constantly adding new features, improving performance, and fixing bugs. We recommend keeping Weaviate and the client libraries you use up-to-date to benefit from the latest features and improvements.
+
+To keep up-to-date with the latest releases, you can:
+
+- Subscribe to the [Weaviate newsletter](https://newsletter.weaviate.io/)
+- [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/managing-subscriptions-for-activity-on-github/viewing-your-subscriptions#reviewing-repositories-that-youre-watching) the relevant Weaviate GitHub repositories. They are:
+    - [Weaviate](https://github.com/weaviate/weaviate)
+    - [Weaviate Python client](https://github.com/weaviate/weaviate-python-client)
+    - [Weaviate TS/JS client](https://github.com/weaviate/typescript-client)
+    - [Weaviate Go client](https://github.com/weaviate/weaviate-go-client)
+    - [Weaviate Java client](https://github.com/weaviate/java-client)
+
+:::info How often are new versions released?
+Generally, a new minor version of Weaviate is released every 6-10 weeks, and new patch versions are regularly released.
+:::
+
+<!-- ### Plan for upgrades -->
+
 ## Resource management
 
 ### Use multi-tenancy for data subsets
@@ -55,6 +77,9 @@ Typically, multi-tenant setups can benefit from using `dynamic` indexes, as they
 As the size of your dataset grows, the accompanying vector indexes can lead to high memory requirements and thus significant costs. Especially if the `hnsw` index type is used.
 
 If you have a large number of vectors, consider using vector quantization to reduce the memory footprint of the vector index. This will reduce the required memory, and allow you to scale more effectively at lower costs.
+
+![Overview of quantization schemes](./../../_includes/images/concepts/quantization_overview_light.png#gh-light-mode-only "Overview of quantization schemes")
+![Overview of quantization schemes](./../../_includes/images/concepts/quantization_overview_dark.png#gh-dark-mode-only "Overview of quantization schemes")
 
 For HNSW indexes, we suggest enabling product quantization (PQ) as a starting point. It provides a good set of default trade-offs between memory usage and query performance, as well as tunable parameters to optimize for your specific use case.
 
@@ -114,15 +139,24 @@ This ensures all shards are fully loaded before Weaviate reports itself as ready
 Only disable lazy shard loading for single-tenant collections. For multi-tenant deployments, keeping lazy loading enabled is recommended as it can significantly speed up the startup time.
 :::
 
-<!-- ## Data structures
+## Data structures
 
-### Do you really need cross-references?
+### Cross-references vs flattened properties
 
-### Choose the right property data type
+When designing your data schema, consider whether to use cross-references or flattened properties. If you come from a relational database background, you may be tempted to normalize your data and use cross-references.
 
-## Optimize queries
+However, in Weaviate, cross-references can have multiple drawbacks:
 
-### Index the right properties -->
+- They are not vectorized, which means that this information is not incorporated as a part of the vector representation of the object.
+- They can be slow to query, as they require additional queries to fetch the referenced object. Weaviate is not designed for graph-like queries or joins.
+
+Instead, consider directly embedding the information in each object as another property. This will ensure that the information is vectorized, and can be queried more efficiently.
+
+<!-- ### Choose the right property data type -->
+
+<!-- ## Optimize queries -->
+
+<!-- ### Index the right properties -->
 
 ## Data operations
 
@@ -199,6 +233,10 @@ Offloaded tenants are stored in a cloud storage bucket, and can be reloaded into
 
 When the tenant is likely to be used again (e.g. when a user logs in), it can be reloaded into Weaviate, and will be available for querying again.
 
+:::info Available in open-source Weaviate only
+At the moment, offloading tenants is only available in the open-source version of Weaviate. We plan to make this feature available in Weaviate Cloud.
+:::
+
 :::tip Further resources
 - [Starter guide: Managing resources](starter-guides/managing-resources/index.md)
 - [How-to: Manage tenant states](manage-data/tenant-states.mdx)
@@ -211,6 +249,20 @@ When the tenant is likely to be used again (e.g. when a user logs in), it can be
 ### Consider using a reranker
 
 ### Effective hybrid search strategies -->
+
+## Application design and integration
+
+### Use the relevant Async Client as relevant
+
+When using Weaviate in an asynchronous environment, consider using the asynchronous client API. This can significantly improve the performance of your application, especially when making multiple queries in parallel.
+
+#### Python
+
+The Weaviate Python client `4.7.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](./client-libraries/python/async.md).
+
+#### Java
+
+The Weaviate Java client `5.0.0` and higher includes an [asynchronous client API (`WeaviateAsyncClient`)](https://javadoc.io/doc/io.weaviate/client/latest/io/weaviate/client/v1/async/WeaviateAsyncClient.html).
 
 ## Questions and feedback
 
