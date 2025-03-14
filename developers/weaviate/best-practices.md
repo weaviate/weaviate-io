@@ -148,8 +148,9 @@ When designing your data schema, consider whether to use cross-references or fla
 However, in Weaviate, cross-references can have multiple drawbacks:
 
 - They are not vectorized, which means that this information is not incorporated as a part of the vector representation of the object.
-- They can be slow to query, as they require additional queries to fetch the referenced object.
--
+- They can be slow to query, as they require additional queries to fetch the referenced object. Weaviate is not designed for graph-like queries or joins.
+
+Instead, consider directly embedding the information in each object as another property. This will ensure that the information is vectorized, and can be queried more efficiently.
 
 <!-- ### Choose the right property data type -->
 
