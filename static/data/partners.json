@@ -416,5 +416,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "DeepEval",
+    "image": "/img/site/deepeval-logo.png",
+    "link": "/developers/integrations/operations/deepeval",
+    "description": "Evaluate your generative AI applications with DeepEval's open-source LLM framework.",
+    "tags": ["Operations", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
