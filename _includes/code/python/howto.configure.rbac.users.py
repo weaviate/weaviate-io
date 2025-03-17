@@ -20,7 +20,7 @@ client.users.db.create(user_id="user-c")
 # END CreateUser
 
 # START RotateApiKey
-apiKeyNew = client.users.db.rotate_key(user_id="user-b")
+apiKeyNew = client.users.db.rotate_key(user_id="user-c")
 # END RotateApiKey
 
 # START DeleteUser

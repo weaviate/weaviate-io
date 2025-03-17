@@ -21,46 +21,9 @@ In Weaviate, Role-based access control (RBAC) allows you to define roles and ass
 
 On this page, you will find examples of how to **manage roles and permissions** with Weaviate client libraries.
 
-Follow these general steps to configure RBAC:
+import ConfigureRbac from '/_includes/configuration/configure_rbac.mdx';
 
-<!-- TODO: Potentially replace with a React component -->
-
-<ol className="step-list">
-  <li>
-    <i className="fa-solid fa-key icon-list" style={{ marginRight: '0.5rem' }}></i>
-    <b>Step 1.</b> Connect to Weaviate with a user possessing{' '}
-    <b>
-      <Link to="#requirements">role management permissions</Link>
-    </b>
-    .
-  </li>
-  <li>
-    <i
-      className="fa-solid fa-user-shield icon-list"
-      style={{ marginRight: '0.5rem' }}
-    ></i>
-    <b>Step 2.</b> Grant permissions to a{' '}
-    <b>
-      <Link to="#create-new-roles-with-permissions">new role</Link>
-    </b>{' '}
-    or an{' '}
-    <b>
-      <Link to="#grant-additional-permissions">existing role</Link>
-    </b>
-    .
-  </li>
-  <li>
-    <i
-      className="fa-solid fa-user-edit icon-list"
-      style={{ marginRight: '0.5rem' }}
-    ></i>
-    <b>Step 3.</b>{' '}
-    <b>
-      <Link to="./manage-users">Assign the role to a user</Link>
-    </b>
-    .
-  </li>
-</ol>
+<ConfigureRbac />
 
 ## Requirements for managing roles <i class="fa-solid fa-key"></i> {#requirements}
 
