@@ -205,8 +205,7 @@ client.roles.create(role_name="testRole", permissions=permissions)
 from weaviate.classes.rbac import Permissions
 
 permissions = [
-    Permissions.data(collection="TargetCollection*", read=True, create=True),
-    Permissions.data(collection="TargetCollection*", read=True, create=False),
+    Permissions.data(collection="TargetCollection*", create=True),
 ]
 
 client.roles.add_permissions(permissions=permissions, role_name="testRole")
