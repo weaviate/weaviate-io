@@ -291,10 +291,8 @@ As such, each named vector configuration can include its own vectorizer and vect
 ## Define multi-vector embeddings (e.g. ColBERT, ColPali)
 
 :::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**.
-<br/>
-
-This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
+Multi-vector support is added in `v1.29` as a **technical preview**.  
+This means that the feature is still under development and may change in future releases, including potential breaking changes. 
 <br/>
 
 **We do not recommend using this feature in production environments at this time.**
@@ -312,6 +310,10 @@ Multi-vector embeddings, also known as multi-vectors, represent a single object 
     />
   </TabItem>
 </Tabs>
+
+:::tip Use quantization to compress your vectors
+Multi-vector embeddings use up more memory than one-dimensional vector embeddings. You can use [vector quantization](../configuration/compression/index.md) to compress them and reduce memory usage.
+:::
 
 ## Specify vectorizer settings
 
