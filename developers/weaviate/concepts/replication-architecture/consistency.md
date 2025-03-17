@@ -269,11 +269,13 @@ The default hash tree height of `16` is chosen to balance memory consumption wit
 
 When an object is present on some replicas but not others, this can be because a creation has not yet been propagated to all replicas, or because a deletion has not yet been propagated to all replicas. It is important to distinguish between these two cases.
 
-Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, you can set one of the following deletion resolution strategies:
+Deletion resolution works alongside async replication and repair-on-read to ensure consistent handling of deleted objects across the cluster. For each collection, [you can set one of the following](../../manage-data/collections.mdx#replication-settings) deletion resolution strategies:
 
 - `NoAutomatedResolution`
 - `DeleteOnConflict`
 - `TimeBasedResolution`
+
+Deletion resolution strategies are mutable. [Read more about how to update collection definitions](../../manage-data/collections.mdx#update-a-collection-definition).
 
 #### `NoAutomatedResolution`
 

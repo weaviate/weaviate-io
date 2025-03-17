@@ -86,7 +86,7 @@ import InitialCaps from '/_includes/schemas/initial-capitalization.md'
 </Tabs>
 
 :::tip Avoid creating too many collections
-Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection is subdivided into multiple tenants. 
+Using too many collections can lead to scalability issues like high memory usage and degraded query performance. Instead, consider [using multi-tenancy](/developers/weaviate/manage-data/multi-tenancy), where a single collection is subdivided into multiple tenants.
 
 For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits).
 :::
@@ -895,8 +895,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START AsyncRepair"
-      endMarker="# END AsyncRepair"
+      startMarker="# START AllReplicationSettings"
+      endMarker="# END AllReplicationSettings"
       language="pyv3"
     />
   </TabItem>
@@ -904,8 +904,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START AsyncRepair"
-      endMarker="// END AsyncRepair"
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
       language="ts"
     />
   </TabItem>
@@ -913,8 +913,8 @@ Configure replication settings, such as [async replication](/developers/weaviate
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
-      startMarker="// START AsyncRepair"
-      endMarker="// END AsyncRepair"
+      startMarker="// START AllReplicationSettings"
+      endMarker="// END AllReplicationSettings"
       language="tsv2"
     />
   </TabItem>
@@ -937,7 +937,8 @@ curl \
     ],
     "replicationConfig": {
       "factor": 3,
-      "asyncEnabled": true
+      "asyncEnabled": true,
+      "deletionStrategy": "TimeBasedResolution"
     }
 }' \
 http://localhost:8080/v1/schema

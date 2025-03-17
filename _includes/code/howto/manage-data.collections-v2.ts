@@ -654,6 +654,30 @@ result = await client.schema
 // TODO NEEDS TEST
 
 
+// =======================
+// ===== All replication settings =====
+// =======================
+
+// START AllReplicationSettings
+const classWithAllReplicationSettings = {
+  class: 'Article',
+  // highlight-start
+  replicationConfig: {
+    factor: 3,
+    asyncEnabled: true,
+    deletionStrategy: 'TimeBasedResolution'
+  },
+  // highlight-end
+ };
+
+ // Add the class to the schema
+ result = await client.schema
+  .classCreator()
+  .withClass(classWithAllReplicationSettings)
+  .do();
+ // END AllReplicationSettings
+
+
 // ====================
 // ===== SHARDING =====
 // ====================
