@@ -211,6 +211,13 @@
     "team": "database"
   },
   {
+    "name": "Dan Jones",
+    "title": "Machine Learning Engineer",
+    "photo": "Dan-Jones.jpg",
+    "linkedin": "daniel-jones-9a8a3b185",
+    "team": "weaviate-labs"
+  },
+  {
     "name": "Daniel Phiri",
     "title": "Developer Advocate",
     "photo": "daniel.jpg",
@@ -286,13 +293,6 @@
     "team": "delivery"
   },
   {
-    "name": "Emma O'Keefe",
-    "title": "Director of Business Data Strategy & Enablement",
-    "photo": "emma.jpg",
-    "linkedin": "emma-o-keefe-03777b80",
-    "team": "finance"
-  },
-  {
     "name": "Edward Schmuhl",
     "title": "Machine Learning Engineer",
     "photo": "edward.jpg",
@@ -306,6 +306,26 @@
     "title": "Enterprise Account Executive",
     "photo": "Elisa-Seay.jpg",
     "team": "sales"
+  },
+  {
+    "name": "Emma Dikmessalim",
+    "title": "People Operations Specialist",
+    "photo": "Emma-Dikmessalim.jpg",
+    "linkedin": "emmadikmessalim",
+    "team": "people-and-culture"
+  },
+  {
+    "name": "Emma O'Keefe",
+    "title": "Director of Business Data Strategy & Enablement",
+    "photo": "emma.jpg",
+    "linkedin": "emma-o-keefe-03777b80",
+    "team": "finance"
+  },
+  {
+    "name": "Eoin O'Reilly",
+    "title": "BI Data Engineer",
+    "photo": "Eoin.jpg",
+    "team": "finance"
   },
   {
     "name": "Eric Caleb",
