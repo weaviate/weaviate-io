@@ -122,6 +122,7 @@ The following consistency levels are applicable to most read operations:
 
 - Starting with `v1.18`, consistency levels are applicable to REST endpoint operations.
 - Starting with `v1.19`, consistency levels are applicable to GraphQL `Get` requests.
+- All gRPC based read and write operations support tunable consistency levels.
 
 * **ONE** - a read response must be returned by at least one replica. This is the fastest (most available), but least consistent option.
 * **QUORUM** - a response must be returned by `QUORUM` amount of replica nodes. `QUORUM` is calculated as _n / 2 + 1_, where _n_ is the number of replicas (replication factor). For example, using a replication factor of 6, the quorum is 4, which means the cluster can tolerate 2 replicas down.
@@ -149,6 +150,16 @@ Depending on the desired tradeoff between consistency and speed, below are three
 * `QUORUM` / `QUORUM` => balanced write and read latency
 * `ONE` / `ALL` => fast write and slow read (optimized for write)
 * `ALL` / `ONE` => slow write and fast read (optimized for read)
+
+### Tunable consistency and queries
+
+Note that tunable consistency levels for read operations do not affect consistency of the list of objects returned by a query. In other words, the list of object UUIDs returned by a query depends only on the coordinator node's (and any other required shards') local index, and is independent of the read consistency level.
+
+This is due to the fact that each query is performed by the coordinator node and any other shards required to answer the query. Even if the read consistency level is set to `ALL`, it does not mean that multiple replicas will be queried and the results merged together.
+
+Where the read consistency level is applied is in retrieving the identified objects from the replicas. For example, if the read consistency level is set to `ALL`, the coordinator node will wait for all replicas to return the identified objects. And if the read consistency level is set to `ONE`, the coordinator node may simply return the objects from itself.
+
+In other words, the read consistency level only affects which versions of the objects are retrieved, but it does not lead to a more (or less) consistent query result.
 
 ### Tenant states and data objects
 
