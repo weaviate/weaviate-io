@@ -806,7 +806,7 @@ for _ in range(5):
 
 
 # START UpdateCollection
-from weaviate.classes.config import Reconfigure, VectorFilterStrategy
+from weaviate.classes.config import Reconfigure, VectorFilterStrategy, ReplicationDeletionStrategy
 
 articles = client.collections.get("Article")
 
@@ -817,6 +817,9 @@ articles.config.update(
     ),
     vector_index_config=Reconfigure.VectorIndex.hnsw(
         filter_strategy=VectorFilterStrategy.ACORN  # Available from Weaviate v1.27.0
+    ),
+    replication_config=Reconfigure.replication(
+        deletion_strategy=ReplicationDeletionStrategy.TIME_BASED_RESOLUTION  # Available from Weaviate v1.28.0
     )
 )
 # END UpdateCollection
