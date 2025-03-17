@@ -16,8 +16,42 @@ client = weaviate.connect_to_weaviate_cloud(
     auth_credentials=Auth.api_key(wcd_api_key),
     headers={
         "X-OpenAI-Api-Key": openai_api_key,
-    }
+    },
 )
+
+# ==============================
+# ===== Dynamic RAG syntax =====
+# ==============================
+
+# START DynamicRag
+from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.query import MetadataQuery
+
+reviews = client.collections.get("WineReviewNV")
+response = reviews.generate.near_text(
+    query="a sweet German white wine",
+    target_vector="title_country",  # Specify the target vector for named vector collections
+    single_prompt="Translate this into German: {review_body}",
+    grouped_task="Summarize these review",
+    # highlight-start
+    generative_provider=GenerativeConfig.openai(
+        temperature=0.1,
+    ),
+    # highlight-end
+)
+
+print(response.generated)
+for o in response.objects:
+    print(o.properties)
+    print(o.generated)
+# END DynamicRag
+
+# Test results
+assert response.objects[0].collection == "WineReviewNV"
+assert len(response.objects) == 2
+assert "title" in response.objects[0].properties.keys()
+assert response.objects[0].metadata.distance is not None
+# End test
 
 # ===============================================
 # ===== QUERY WITH TARGET VECTOR & nearText =====
@@ -35,7 +69,7 @@ response = reviews.generate.near_text(
     single_prompt="Translate this into German: {review_body}",
     grouped_task="Summarize these review",
     # highlight-end
-    return_metadata=MetadataQuery(distance=True)
+    return_metadata=MetadataQuery(distance=True),
 )
 
 print(response.generated)
@@ -63,11 +97,11 @@ prompt = "Convert the following into a question for twitter. Include emojis for 
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
 response = jeopardy.generate.near_text(
-# highlight-end
+    # highlight-end
     query="World history",
     limit=2,
     # highlight-start
-    single_prompt=prompt
+    single_prompt=prompt,
     # highlight-end
 )
 
@@ -90,14 +124,14 @@ assert len(response.objects[0].generated) > 0
 
 # SingleGenerativePropertiesPython
 # highlight-start
-prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
+prompt = (
+    "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
+)
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
-    query="World history",
-    limit=2,
-    single_prompt=prompt
+    query="World history", limit=2, single_prompt=prompt
 )
 
 # print source properties and generated responses
@@ -126,7 +160,7 @@ response = jeopardy.generate.near_text(
     query="Cute animals",
     limit=3,
     # highlight-start
-    grouped_task=task
+    grouped_task=task,
     # highlight-end
 )
 
@@ -138,6 +172,44 @@ print(response.generated)
 assert response.objects[0].collection == "JeopardyQuestion"
 assert len(response.generated) > 0
 # End test
+
+# GenerativeParametersGrouped
+from weaviate.collections.classes.generative import GenerativeParameters
+
+# highlight-start
+grouped_task = GenerativeParameters.grouped_task(
+    prompt="What do these animals have in common, if anything?",
+    metadata=True,
+)
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.generate.near_text(
+    query="Cute animals",
+    limit=3,
+    # highlight-start
+    grouped_task=grouped_task,
+    # highlight-end
+)
+
+# print the generated response
+print(response.generated)
+# END GenerativeParametersGrouped
+
+# Test results
+assert response.objects[0].collection == "JeopardyQuestion"
+assert len(response.generated) > 0
+# End test
+
+)
+from weaviate.classes.query import MetadataQuery
+
+# highlight-start
+single_prompt = GenerativeParameters.single_prompt(
+    prompt="Translate this into German: {review_body}",
+    metadata=True,
+    debug=True,
+)
 
 
 # ======================================================
@@ -153,7 +225,7 @@ response = jeopardy.generate.near_text(
     limit=3,
     grouped_task=task,
     # highlight-start
-    grouped_properties=["answer", "question"]
+    grouped_properties=["answer", "question"],
     # highlight-end
 )
 
