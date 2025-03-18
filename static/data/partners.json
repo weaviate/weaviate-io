@@ -427,5 +427,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Box",
+    "image": "/img/site/box-logo.png",
+    "link": "/developers/integrations/data-platforms/box",
+    "description": "Connect data in Box to Weaviate for advanced search and generative AI applications.",
+    "tags": ["Data Platforms", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
