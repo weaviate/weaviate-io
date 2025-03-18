@@ -52,6 +52,7 @@ import weaviate
 from weaviate.classes.init import AdditionalConfig
 
 # Set environment variables for SSL certificates
+# Set it here or in your shell (e.g. .bashrc or .zshrc file)
 os.environ["GRPC_DEFAULT_SSL_ROOTS_FILE_PATH"] = "/path/to/your/cert.crt"
 os.environ["SSL_CERT_FILE"] = "/path/to/your/cert.crt"
 
