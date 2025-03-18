@@ -200,6 +200,12 @@ You can use the workflow ID to monitor the status of each transformation operati
 
 :::
 
+### Usage limits
+
+At this stage, there is a limit of 10,000 Transformation Agent operations per day per Weaviate Cloud instance.
+
+This limit may change in future versions of the Transformation Agent.
+
 ### Race condition on multiple operations
 
 When multiple transformation operations are initiated on the same collection, it is possible for a race condition to occur, overwriting the results of one operation with the results of another.

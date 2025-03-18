@@ -227,8 +227,8 @@
   }
 
   a {
-    width: 11.1875rem;
-    height: 3.125rem;
+    width: 14.875rem;
+    height: 2.75rem;
 
     display: flex;
     align-items: center;
@@ -249,7 +249,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 163.8%; /* 1.638rem */
-    width: 13.1875rem;
   }
 
   .buttonOutline {
@@ -903,12 +902,13 @@
   padding: 20px;
   height: 33.75rem;
   flex-shrink: 0;
-  border-radius: 0.625rem;
-  background: #130c49;
+  border-radius: 1.25rem;
+  background: #131144;
+
   margin: 36px auto;
   display: flex;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 950px) {
     height: auto;
   }
 }
@@ -925,9 +925,8 @@
   }
 
   h2 {
-    color: #fff;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 2.5rem;
+    color: #61bb73;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 3rem */
@@ -937,13 +936,13 @@
   }
 
   span {
-    color: #61bb73;
+    color: #ecf4f8;
+    text-transform: uppercase;
     font-family: Inter;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 1.875rem */
-    text-transform: uppercase;
   }
 
   p {
@@ -976,14 +975,15 @@
 }
 
 .serviceImage {
-  background-image: url('/img/site/verba-details.png');
+  background-image: url('/img/site/RAG-ebook-cover.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 20.0625rem;
-  height: 19.4375rem;
-  border-radius: 0.625rem;
-  flex: 1;
+  width: 15.6875rem;
+  height: 23.5rem;
+  aspect-ratio: 251 / 376;
+  background-position: center;
   margin: auto;
+  flex: 1;
 
   @media screen and (max-width: 800px) {
     display: none;

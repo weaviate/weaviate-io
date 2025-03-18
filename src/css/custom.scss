@@ -1170,6 +1170,13 @@ ul.dropdown__menu {
   display: none !important;
 }
 
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
+  .dropdown--right .dropdown__menu {
+    left: inherit;
+    right: -140px;
+  }
+}
+
 @media screen and (max-width: 996px) {
   .dropDownContainer2 .holder {
     display: none;

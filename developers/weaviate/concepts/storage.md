@@ -63,7 +63,11 @@ When Weaviate starts, it loads data from all of the shards in your deployment. T
 
 Lazy shard loading allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results sooner. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
 
-To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your system configuration file.
+To enable lazy shard loading, set the `DISABLE_LAZY_LOAD_SHARDS` environment variable to `false` in your system configuration file.
+
+:::caution Disable lazy shard loading for single-tenant collections
+For single-tenant collections, lazy loading can cause import operations to slow down or partially fail. In these scenarios, we recommend disabling lazy shard loading.
+:::
 
 ## Persistence and Crash Recovery
 
