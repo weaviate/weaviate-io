@@ -284,6 +284,15 @@ To create a `v3` style client, refer to the [`v3` client documentation](./python
 
 The Python client doesn't directly support passing SSL certificates. If you need to work with self-signed certificates (e.g. for enterprise environments), you can add the certificate to the underlying libraries such as `certifi` that the Weaviate client library uses.
 
+Set the environment variables `GRPC_DEFAULT_SSL_ROOTS_FILE_PATH` and `SSL_CERT_FILE` to the path of the certificate file. At instantiation, also set `additional_config=AdditionalConfig(trust_env=True)` to ensure that the client library uses the environment variables.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START CustomSSLExample"
+  endMarker="# END CustomSSLExample"
+  language="py"
+/>
+
 ## Initial connection checks
 
 When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
