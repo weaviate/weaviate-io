@@ -145,6 +145,40 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert len(response.objects[0].generated) > 0
 # End test
 
+# =====================================================
+# ===== SINGLE GENERATIVE EXAMPLE WITH PARAMETERS =====
+# =====================================================
+
+# SingleGenerativeParametersPython
+# highlight-start
+from weaviate.collections.classes.generative import GenerativeParameters
+
+prompt = GenerativeParameters.single_prompt(
+    prompt="Convert this quiz question: {question} and answer: {answer} into a trivia tweet.",
+    metadata=True,
+    debug=True,
+)
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.generate.near_text(
+    query="World history", 
+    limit=2, 
+    # highlight-start
+    single_prompt=prompt,
+    # highlight-end
+)
+
+# print source properties and generated responses
+for o in response.objects:
+    print(o.properties)
+    print(o.generated)
+# END SingleGenerativeParametersPython
+
+# Test results
+assert response.objects[0].collection == "JeopardyQuestion"
+assert len(response.objects[0].generated) > 0
+# End test
 
 # ======================================
 # ===== GROUPED GENERATIVE EXAMPLE =====
@@ -173,7 +207,11 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert len(response.generated) > 0
 # End test
 
-# GenerativeParametersGrouped
+# =====================================================
+# ===== GROUPED GENERATIVE EXAMPLE WITH PARAMETERS =====
+# =====================================================
+
+# START GroupedGenerativeParametersPython
 from weaviate.collections.classes.generative import GenerativeParameters
 
 # highlight-start
@@ -194,7 +232,7 @@ response = jeopardy.generate.near_text(
 
 # print the generated response
 print(response.generated)
-# END GenerativeParametersGrouped
+# END GroupedGenerativeParametersPython
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"

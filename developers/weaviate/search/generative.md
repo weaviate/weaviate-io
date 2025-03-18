@@ -20,6 +20,9 @@ In Weaviate, a RAG query consists of two parts: *a search query*, and a *prompt 
 
 ## Configure a generative model provider
 
+:::info Added in `v1.30`
+:::
+
 To use RAG, [a collection must be configured](../manage-data/collections.mdx#specify-a-generative-model-integration) to use a [generative model integration](../model-providers/index.md) or you can spcify the generative model in the search operation directly:
 
 <Tabs groupId="languages">
@@ -185,6 +188,47 @@ The output is like this:
 
 </details>
 
+### Additional parameters
+
+:::info Added in `v1.30`
+:::
+
+You can use *generative parameters* to specify additional options when performing a single prompt search:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativeParametersPython"
+      endMarker="# END SingleGenerativeParametersPython"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- TODO[g-despot]: Add response before publishing -->
+
 ## Grouped task search
 
 Grouped task search returns one response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
@@ -245,42 +289,6 @@ Grouped task search returns one response that includes all of the query results.
   </TabItem>
 </Tabs>
 
-### Generative parameters
-
-You can use `GenerativeParameters` to specify additional options when performing grouped tasks:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# GenerativeParametersGrouped"
-      endMarker="# END GenerativeParametersGrouped"
-      language="py"
-    />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
-  </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-    <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
 <details>
   <summary>Example response</summary>
 
@@ -295,7 +303,7 @@ The output is like this:
 
 </details>
 
-## Set grouped task prompt properties
+### Set grouped task prompt properties
 
 :::info Added in `v1.18.3`
 :::
@@ -371,6 +379,47 @@ The output is like this:
 />
 
 </details>
+
+### Additional parameters
+
+:::info Added in `v1.30`
+:::
+
+You can use *generative parameters* to specify additional options when performing grouped tasks:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GroupedGenerativeParametersPython"
+      endMarker="# END GroupedGenerativeParametersPython"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- TODO[g-despot]: Add response before publishing -->
 
 ## Related pages
 
