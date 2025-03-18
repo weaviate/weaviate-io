@@ -282,9 +282,11 @@ To create a `v3` style client, refer to the [`v3` client documentation](./python
 
 ### Using Custom SSL Certificates
 
+The Python client doesn't directly support passing SSL certificates. If you need to work with self-signed certificates (e.g. for enterprise environments), you have two options:
+
 #### Option 1: Add the certificate to the underlying libraries
 
-The Python client doesn't directly support passing SSL certificates. If you need to work with self-signed certificates (e.g. for enterprise environments), you can add the certificate to the underlying libraries such as `certifi` that the Weaviate client library uses.
+You can add the custom SSL certificates to the underlying libraries such as `certifi` that the Weaviate client library uses.
 
 #### Option 2: Set the environment variables
 
