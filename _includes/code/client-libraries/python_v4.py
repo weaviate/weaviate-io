@@ -41,6 +41,7 @@ try:
 finally:
     client.close()
 
+
 # Setup for CustomSSLExample
 weaviate_host = "localhost"
 weaviate_grpc_host = "localhost"
