@@ -152,13 +152,13 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 
 ### Collections count limit {#collections-count-limit}
 
-:::info Added in **`v1.30.0`**
+:::info Added in **`v1.30`**
 :::
 
 To ensure optimal performance, Weaviate **limits the number of collections per instance**. Each collection adds overhead in terms of indexing, definition management, and storage. This limit aims to ensure Weaviate remains performant.
 
 - **Default limit**: `1000` collections.
-- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable to adjust the collection count limit.
+- **Modify the limit**: Use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars.md) environment variable to adjust the collection count limit.
 
 :::note 
 If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.
@@ -166,7 +166,7 @@ If your instance already exceeds the limit, Weaviate will not allow the creation
 
 :::tip
 **Instead of raising the collections count limit, consider rethinking your architecture**.  
-For more details, see [Starter Guides: Scaling limits with collections](/developers/weaviate/starter-guides/managing-collections/collections-scaling-limits). 
+For more details, see [Starter Guides: Scaling limits with collections](../../starter-guides/managing-collections/collections-scaling-limits.mdx). 
 :::
 
 ## Available parameters

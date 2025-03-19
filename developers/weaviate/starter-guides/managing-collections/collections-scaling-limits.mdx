@@ -6,12 +6,12 @@ image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
 
-:::info Added in **`v1.30.0`**
+:::info Added in **`v1.30`**
 :::
 
 :::caution You hit the collections count limit?
 If you see an error that the collection count limit has been reached, it means you **can't create any more collections**. This limit aims to ensure Weaviate remains performant. If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.<br /><br />
-**Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](/developers/weaviate/config-refs/env-vars) environment variable.
+**Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars.md) environment variable.
 :::
 
 This guide offers an overview of the available architectural choices of using **multi-tenancy** or defining a **dedicated collection** for each subset of data.
@@ -142,14 +142,14 @@ Use multi-tenancy when you need to support a large number of tenants and priorit
 
 #### Challenges
 
-- **Access control complexity**: [Fine-grained access control](/developers/weaviate/configuration/authorization) must be implemented to ensure data isolation between tenants.
+- **Access control complexity**: [Fine-grained access control](../../configuration/authorization.md) must be implemented to ensure data isolation between tenants.
 
 :::tip Reduce storage costs
-You can change the [state of a tenant](/developers/weaviate/starter-guides/managing-resources/tenant-states) into `inactive` (stored locally on disk) or `offloaded` (stored on cloud storage) in order to save resources.
+You can change the [state of a tenant](../managing-resources/tenant-states.mdx) into `inactive` (stored locally on disk) or `offloaded` (stored on cloud storage) in order to save resources.
 
 <br />
 
-Find out more about managing multi-tenancy in [How to: Multi-tenancy operations](/developers/weaviate/manage-data/multi-tenancy).
+Find out more about managing multi-tenancy in [How to: Multi-tenancy operations](../../manage-data/multi-tenancy.md).
 :::
 
 ## Conclusion
@@ -162,8 +162,8 @@ Although dedicated collections can offer enhanced data isolation and flexibility
 
 To find out more about multi-tenancy, visit the following pages:
 
-- [How-to: Multi-tenancy operations](/developers/weaviate/manage-data/multi-tenancy)
-- [How-to: Manage tenant states](/developers/weaviate/manage-data/tenant-states)
+- [How-to: Multi-tenancy operations](../../manage-data/multi-tenancy.md)
+- [How-to: Manage tenant states](../../manage-data/tenant-states.mdx)
 
 ## Questions and feedback
 
