@@ -1,0 +1,416 @@
+---
+title: Manage users
+sidebar_label: Manage users
+sidebar_position: 1
+image: og/docs/configuration.jpg
+# tags: ['rbac', 'roles', 'configuration', 'authorization']
+---
+
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
+import UserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.users.py';
+import OidcUserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.oidc.users.py';
+
+:::info Added in `v1.29` and `v1.30`
+Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.  
+Dynamic user management is available from version `v1.30`.
+:::
+
+In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles.
+
+On this page, you will find examples of how to programatically **manage users** and their associated roles with Weaviate client libraries.
+
+import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
+
+<ConfigureRbac />
+
+## Dynamic user management <i class="fas fa-user-edit"></i> {#user-management}
+
+### Create a user
+
+This example creates a user called `user-c`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START CreateUser"
+    endMarker="# END CreateUser"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Delete a user
+
+This example deletes a user called `user-c`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START DeleteUser"
+    endMarker="# END DeleteUser"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### List all users
+
+This example shows how to get a list of all the users in Weaviate:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START ListAllUsers"
+    endMarker="# END ListAllUsers"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Rotate user API key
+
+This example updates (rotates) the API key for `user-c`:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START RotateApiKey"
+    endMarker="# END RotateApiKey"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## User permissions management <i class="fas fa-user-lock"></i> {#user-permissions-management}
+
+### Assign a role to a user
+
+A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
+
+This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START AssignRole"
+    endMarker="# END AssignRole"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Remove a role from a user
+
+You can revoke one or more roles from a specific user.
+
+This example removes the role `testRole` from the user `user-b`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START RevokeRoles"
+    endMarker="# END RevokeRoles"
+    language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Get a user's roles and permissions
+
+Retrieve the role and permission information for any user.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START ListUserRoles"
+    endMarker="# END ListUserRoles"
+    language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## OIDC: User permissions management <i class="fas fa-user-lock"></i> {#oidc-user-permissions-management}
+
+When using [OIDC](../../config-refs/oidc.md), an identity provider authenticates the user and issues tokens, which are then validated by Weaviate. These users can be assigned roles with custom permissions using RBAC.
+
+### Assign a role to an OIDC user
+
+An OIDC user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
+
+This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={OidcUserPyCode}
+    startMarker="# START AssignOidcUserRole"
+    endMarker="# END AssignOidcUserRole"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Remove a role from an OIDC user
+
+You can revoke one or more roles from a specific OIDC user.
+
+This example removes the role `testRole` from the user `user-b`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={OidcUserPyCode}
+    startMarker="# START RevokeOidcUserRoles"
+    endMarker="# END RevokeOidcUserRoles"
+    language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Get an OIDC user's roles and permissions
+
+Retrieve the role and permission information for an OIDC user.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={OidcUserPyCode}
+    startMarker="# START ListOidcUserRoles"
+    endMarker="# END ListOidcUserRoles"
+    language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## Further resources
+
+- [RBAC: Overview](./index.mdx)
+- [RBAC: Configuration](./configuration.md)
+- [RBAC: Manage roles](./manage-roles.mdx)
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback />

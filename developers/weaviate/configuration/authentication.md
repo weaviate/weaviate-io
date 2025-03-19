@@ -111,6 +111,10 @@ This configuration:
 
 These users can now be assigned permissions based on the authorization settings.
 
+import DynamicUserManagement from '/_includes/configuration/dynamic-user-management.mdx';
+
+<DynamicUserManagement />
+
 ### API keys: Kubernetes
 
 For Kubernetes deployments using Helm, API key authentication can be configured in the `values.yaml` file under the `authentication` section. Here's an example configuration:
@@ -173,6 +177,12 @@ that it was indeed signed by the configured token issuer. If the signature is
 correct, all contents of the token are trusted, which authenticates the user based on the information in the token.
 
 </details>
+
+:::tip TIP: OIDC and RBAC
+
+The [user mmanagement API](./rbac/manage-users.mdx#oidc-user-permissions-management) allows you to assign cuton roles and permissions to OIDC users via [Role-Based Access Control (RBAC)](./rbac/index.mdx).
+
+:::
 
 ### OIDC: Docker
 
