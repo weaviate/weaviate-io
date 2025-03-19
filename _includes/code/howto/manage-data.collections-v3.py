@@ -531,7 +531,7 @@ class_obj = {
     # highlight-start
     "replicationConfig": {
         "factor": 3,
-        "aysnc_enabled": True
+        "asyncEnabled": True,
     },
     # highlight-end
 }
@@ -542,10 +542,38 @@ client.schema.create_class(class_obj)
 # Test
 result = client.schema.get(class_name)
 assert result["replicationConfig"]["factor"] == 3
+assert result["replicationConfig"]["asyncEnabled"] is True
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+# =======================
+# ===== ALL REPLICATION SETTINGS ====
+# =======================
+
+# START AllReplicationSettings
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "replicationConfig": {
+        "factor": 3,
+        "asyncEnabled": True,
+        "deletionStrategy": "TimeBasedResolution"  # Available from Weaviate v1.28.0
+    },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END AllReplicationSettings
+
+# Test
+result = client.schema.get(class_name)
+assert result["replicationConfig"]["factor"] == 3
+assert result["replicationConfig"]["asyncEnabled"] is True
+assert result["replicationConfig"]["deletionStrategy"] == "TimeBasedResolution"
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
 
 # ====================
 # ===== SHARDING =====
@@ -719,6 +747,9 @@ collection_def_changes = {
     },
     "vectorIndexConfig": {
         "filterStrategy": "acorn"  #  Available from Weaviate v1.27.0
+    },
+    "replicationConfig": {
+        "deletionStrategy": "TimeBasedResolution"  # Available from Weaviate v1.28.0
     }
 }
 

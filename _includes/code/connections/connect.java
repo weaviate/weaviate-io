@@ -6,8 +6,8 @@
 
 // START APIKeyWCD
 // Set these environment variables
-// WEAVIATE_URL      your Weaviate instance URL
-// WEAVIATE_API_KEY  your Weaviate instance API key
+// WEAVIATE_HOSTNAME        Your Weaviate instance hostname
+// WEAVIATE_API_KEY         Your Weaviate instance API key
 
 package your.application;
 
@@ -21,7 +21,7 @@ public class App
     {
 
     String scheme = "https";
-    String host = System.getenv("WEAVIATE_URL");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
     String apiKey = System.getenv("WEAVIATE_API_KEY");
 
     Config config = new Config(scheme, host);
@@ -32,9 +32,9 @@ public class App
 
 // START ThirdPartyAPIKeys
 // Set these environment variables
-// WEAVIATE_URL      your Weaviate instance URL
-// WEAVIATE_API_KEY  your Weaviate instance API key
-// COHERE_API_KEY    your Cohere API key
+// WEAVIATE_HOSTNAME        Your Weaviate instance hostname
+// WEAVIATE_API_KEY         Your Weaviate instance API key
+// COHERE_API_KEY           Your Cohere API key
 
 package your.application;
 
@@ -50,7 +50,7 @@ public class App
     {
 
     String scheme = "https";
-    String host = System.getenv("WEAVIATE_URL");
+    String host = System.getenv("WEAVIATE_HOSTNAME");
     String apiKey = System.getenv("WEAVIATE_API_KEY");
     String cohereKey = System.getenv("COHERE_API_KEY");
 
