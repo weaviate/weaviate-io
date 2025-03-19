@@ -20,7 +20,7 @@ export default function PartnersHeader() {
         <div className="container">
           <div className={styles.grid}>
             <p className={styles.title}>
-              Company <span>Partners</span>
+              Weaviate <span>Partners</span>
             </p>
             <p className={styles.text}>
               Grow with Weaviate! We bring together cutting-edge AI technologies
@@ -36,7 +36,12 @@ export default function PartnersHeader() {
               </Link>
               <Link
                 className={styles.buttonOutline}
-                onClick={() => handleTabClick('deal')}
+                to="#request-form?tab=deal"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace('#request-form?tab=deal');
+                  handleTabClick('deal');
+                }}
               >
                 Register a Deal
               </Link>
