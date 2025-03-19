@@ -15,18 +15,6 @@ client = weaviate.connect_to_local(
 )
 # END AdminClient
 
-# START CreateUser
-client.users.db.create(user_id="user-c")
-# END CreateUser
-
-# START RotateApiKey
-apiKeyNew = client.users.db.rotate_key(user_id="user-c")
-# END RotateApiKey
-
-# START DeleteUser
-client.users.db.delete(user_id="user-c")
-# END DeleteUser
-
 from weaviate.classes.rbac import Permissions
 
 permissions = [
@@ -36,22 +24,18 @@ permissions = [
 
 client.roles.add_permissions(permissions=permissions, role_name="testRole")
 
-# START AssignRole
-client.users.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
-# END AssignRole
-assert "testRole" in client.users.db.get_assigned_roles("user-b")
-assert "viewer" in client.users.db.get_assigned_roles("user-b")
+# START AssignOidcUserRole
+client.users.oidc.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
+# END AssignOidcUserRole
+assert "testRole" in client.users.oidc.get_assigned_roles("user-b")
+assert "viewer" in client.users.oidc.get_assigned_roles("user-b")
 
-# START ListAllUsers
-print(client.users.db.list_all())
-# END ListAllUsers
-
-# START ListUserRoles
-user_roles = client.users.db.get_assigned_roles("user-b")
+# START ListOidcUserRoles
+user_roles = client.users.oidc.get_assigned_roles("user-b")
 
 for role in user_roles:
     print(role)
-# END ListUserRoles
+# END ListOidcUserRoles
 assert any(
     permission.collection == "TargetCollection*"
     for permission in user_roles["testRole"].collections_permissions
@@ -61,10 +45,10 @@ assert any(
     for permission in user_roles["testRole"].data_permissions
 )
 
-# START RevokeRoles
-client.users.revoke_roles(user_id="user-b", role_names="testRole")
-# END RevokeRoles
-assert "testRole" not in client.users.db.get_assigned_roles("user-b")
+# START RevokeOidcUserRoles
+client.users.oidc.revoke_roles(user_id="user-b", role_names="testRole")
+# END RevokeOidcUserRoles
+assert "testRole" not in client.users.oidc.get_assigned_roles("user-b")
 
 
 client.close()

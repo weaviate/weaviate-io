@@ -12,6 +12,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
 import UserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.users.py';
+import OidcUserPyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.oidc.users.py';
 
 :::info Added in `v1.29` and `v1.30`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.  
@@ -22,7 +23,7 @@ In Weaviate, Role-based access control (RBAC) allows you to define roles and ass
 
 On this page, you will find examples of how to programatically **manage users** and their associated roles with Weaviate client libraries.
 
-import ConfigureRbac from '/_includes/configuration/configure_rbac.mdx';
+import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
 
 <ConfigureRbac />
 
@@ -250,19 +251,19 @@ This example removes the role `testRole` from the user `user-b`.
   </TabItem>
 </Tabs>
 
-### Get the current user's roles and permissions
+### Get a user's roles and permissions
 
-Retrieve the role and permission information for the currently authenticated user.
+Retrieve the role and permission information for any user.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={UserPyCode}
-    startMarker="# START ListCurrentUserRoles"
-    endMarker="# END ListCurrentUserRoles"
+    startMarker="# START ListUserRoles"
+    endMarker="# END ListUserRoles"
     language="py"
-  />
-</TabItem>
+    />
+  </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
 
 ```ts
@@ -286,16 +287,96 @@ Retrieve the role and permission information for the currently authenticated use
   </TabItem>
 </Tabs>
 
-### Get a user's roles and permissions
+## OIDC: User permissions management <i class="fas fa-user-lock"></i> {#oidc-user-permissions-management}
 
-Retrieve the role and permission information for any user.
+When using [OIDC](../../config-refs/oidc.md), an identity provider authenticates the user and issues tokens, which are then validated by Weaviate. These users can be assigned roles with custom permissions using RBAC.
+
+### Assign a role to an OIDC user
+
+An OIDC user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
+
+This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={OidcUserPyCode}
+    startMarker="# START AssignOidcUserRole"
+    endMarker="# END AssignOidcUserRole"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Remove a role from an OIDC user
+
+You can revoke one or more roles from a specific OIDC user.
+
+This example removes the role `testRole` from the user `user-b`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
-    text={UserPyCode}
-    startMarker="# START ListUserRoles"
-    endMarker="# END ListUserRoles"
+    text={OidcUserPyCode}
+    startMarker="# START RevokeOidcUserRoles"
+    endMarker="# END RevokeOidcUserRoles"
+    language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+### Get an OIDC user's roles and permissions
+
+Retrieve the role and permission information for an OIDC user.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={OidcUserPyCode}
+    startMarker="# START ListOidcUserRoles"
+    endMarker="# END ListOidcUserRoles"
     language="py"
     />
   </TabItem>

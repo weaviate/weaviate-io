@@ -58,6 +58,10 @@ This configuration:
 
 The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
 
+import DynamicUserManagement from '/_includes/configuration/dynamic-user-management.mdx';
+
+<DynamicUserManagement />
+
 :::caution Changes in environment variables
 As of Weaviate version `v1.29` these environment variables have changed:
 - `AUTHORIZATION_VIEWER_USERS` and `AUTHORIZATION_ADMIN_USERS` were removed
