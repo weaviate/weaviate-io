@@ -277,17 +277,13 @@ You can combine a vector search (e.g. `nearObject`, `nearVector`, `nearText`, `n
 
 ### Limiting the search space
 
-Vector searches compare objects by similarity. Thus they do not exclude any objects.
+Vector searches rank objects by similarity, but do not exclude any objects. Thus, for a search operator to impact aggregation, you must limit the search space by setting either `objectLimit` or `certainty` for the query:
 
-As a result, for a search operator to have an impact on an aggregation, you must limit the search space with an `objectLimit` or `certainty`.
+* `objectLimit`, e.g. `objectLimit: 100` tells Weaviate to aggregate _the first 100 objects_ retrived by the vector search query. *This is useful when you know up front how many results you want to serve, for example in a recommendation scenario, where you want to produce 100 recommendations.*
 
-You can achieve such a restriction of the search space in two different ways:
+* `certainty`, e.g. `certainty: 0.7` tells Weaviate to aggregate all vector search results _with certainty score of 0.7 or higher_. This list has no fixed length, it depends on how many objects were good matches. *This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.*
 
-* `objectLimit`, e.g. `objectLimit: 100` specifies Weaviate to retrieve the top 100 objects related to a vector search query, then aggregate them. *This is useful when you know up front how many results you want to serve, for example in a recommendation scenario, where you want to produce 100 recommendations.*
-
-* `certainty`, e.g. `certainty: 0.7` specifies Weaviate to retrieve all possible matches that have a certainty of 0.7 or higher. This list has no fixed length, it depends on how many objects were good matches. *This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.*
-
-If neither an `objectLimit`, nor a `certainty` is set the query will error.
+The aggregation query will fail if neither `objectLimit` nor `certainty` is set.
 
 ### Examples
 
