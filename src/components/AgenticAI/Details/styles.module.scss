@@ -227,8 +227,9 @@
   }
 
   a {
-    width: 11.1875rem;
-    height: 3.125rem;
+    width: 14.875rem;
+    height: 2.75rem;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
@@ -249,7 +250,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 163.8%; /* 1.638rem */
-    width: 13.1875rem;
   }
 
   .buttonOutline {
@@ -909,7 +909,7 @@
   margin: 36px auto;
   display: flex;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 950px) {
     height: auto;
   }
 }
@@ -926,10 +926,8 @@
   }
 
   h2 {
-    color: #fff;
-    font-family: 'Plus Jakarta Sans';
-    text-decoration: underline;
-    font-size: 2.5rem;
+    color: #61bb73;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 3rem */
@@ -939,16 +937,13 @@
   }
 
   span {
-    color: #61bb73;
-    text-decoration: underline;
-    font-family: 'Plus Jakarta Sans';
-    font-size: 2.5rem;
+    color: #ecf4f8;
+    text-transform: uppercase;
+    font-family: Inter;
+    font-size: 1.25rem;
     font-style: normal;
-    font-weight: 700;
-    line-height: 120%; /* 3rem */
-    @media screen and (max-width: 800px) {
-      font-size: 2rem;
-    }
+    font-weight: 400;
+    line-height: 150%; /* 1.875rem */
   }
 
   p {
@@ -981,14 +976,15 @@
 }
 
 .serviceImage {
-  background-image: url('/img/site/agentic-blog-diagram.svg');
+  background-image: url('/img/site/agentic-ai-ebook-cover.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 20.0625rem;
-  height: 19.4375rem;
-  border-radius: 0.625rem;
-  flex: 1;
+  width: 15.6875rem;
+  height: 23.5rem;
+  aspect-ratio: 251 / 376;
+  background-position: center;
   margin: auto;
+  flex: 1;
 
   @media screen and (max-width: 800px) {
     display: none;

@@ -9,7 +9,7 @@ Weaviate Embeddings is a managed embedding inference service for Weaviate Cloud 
 ![Weaviate Embeddings flowchart](../img/weaviate-embeddings-flowchart.png "Weaviate Embeddings flowchart")
 
 :::info
-Weaviate Embeddings is a paid service and only available for use with Weaviate Cloud instances.  
+Weaviate Embeddings is a paid service and only available for use with Weaviate Cloud instances.
 You can try it out **for free by using a Sandbox cluster**.
 :::
 
@@ -40,18 +40,18 @@ The following models are available for use with Weaviate Embeddings:
 
 ## Authentication
 
-In order to use Weaviate Embeddings you only need a [connection to your Weaviate Cloud cluster](/developers/wcs/manage-clusters/connect). 
+In order to use Weaviate Embeddings you only need a [connection to your Weaviate Cloud cluster](/developers/wcs/manage-clusters/connect).
 No additional authentication is specifically needed, and the Weaviate Embeddings service is enabled by default for all clusters. You can use the service no matter if you connect with a [client library](/developers/weaviate/client-libraries) or, for example, via [OIDC](/developers/weaviate/configuration/authentication#oidc).
 
 ## Usage limits
 
 <!-- TODO[g-despot] Don't hardcode these values here if possible -->
-Weaviate Embeddings only imposes usage limits on requests for free Sandbox clusters. 
-The rate limit for Sandbox clusters is `2000` requests per cluster. 
+Weaviate Embeddings only imposes usage limits on requests for free Sandbox clusters.
+The rate limit for Sandbox clusters is `2000` requests per cluster per day.
 
 :::info
-If you use a [batch import](/developers/weaviate/manage-data/import) to vectorize your data, the maximum size is `200` objects per batch. 
-This means that you can generate up to a maximum of `400 000` embeddings (`2000 (requests) * 200 (objects per request)`) within your free Sandbox cluster.
+If you use a [batch import](/developers/weaviate/manage-data/import) to vectorize your data, the maximum size is `200` objects per batch.
+This means that you can generate up to a maximum of `400 000` embeddings (`2000 (requests) * 200 (objects per request)`) within your free Sandbox cluster per day.
 :::
 
 ## Requirements

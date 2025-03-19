@@ -10,7 +10,7 @@ const availableFilters = [
       'Model Providers',
       'Data Platforms',
       'Compute Infrastructure',
-      'LLM Framework',
+      'LLM and Agent Frameworks',
       'Operations',
     ],
   },

@@ -83,32 +83,22 @@ export default function Details() {
         </div>
         <div className={styles.serviceBox}>
           <div className={styles.serviceText}>
-            {/*  <div className={styles.serviceIcon}></div> */}
-            <Link to="/blog/ai-agents">
-              <h2>
-                Agents Simplified: <br></br>
-                <span>What we mean in the context of AI</span>
-              </h2>
-            </Link>
+            <span>Guide</span>
+
+            <h2>Agentic Architectures for Retrieval-intensive Applications</h2>
+
             <p>
-              In this article, let’s boil down what we mean when we say ‘Agents’
-              in the context of large language models (LLMs) and artificial
-              intelligence (AI).
+              A comprehensive guide to mastering fundamentals, patterns, and
+              examples of agentic architectures.
             </p>
-            {/*   <div className={styles.buttons}>
+            <div className={styles.buttons}>
               <Link
                 className={styles.buttonGradient}
-                to="https://verba.weaviate.io/"
+                to="/ebooks/agentic-architectures"
               >
-                Give it a spin
+                Download Free eBook PDF
               </Link>
-              <Link
-                className={styles.buttonOutline}
-                to="/blog/verba-open-source-rag-app"
-              >
-                Learn More
-              </Link>
-            </div> */}
+            </div>
           </div>
 
           <div className={styles.serviceImage}></div>

@@ -61,26 +61,20 @@ export default function Details() {
         </div>
         <div className={styles.serviceBox}>
           <div className={styles.serviceText}>
-            {/*  <div className={styles.serviceIcon}></div> */}
+            <span>Guide</span>
 
-            <h2>Verba: building an open source modular RAG</h2>
+            <h2>Advanced RAG Techniques</h2>
 
             <p>
-              Simplifying RAG adoption - personalize, customize, and optimize
-              with ease
+              A guide to help improve the performance of your
+              Retrieval-Augmented Generation applications.
             </p>
             <div className={styles.buttons}>
               <Link
                 className={styles.buttonGradient}
-                to="https://verba.weaviate.io/"
+                to="/ebooks/advanced-rag-techniques"
               >
-                Give it a spin
-              </Link>
-              <Link
-                className={styles.buttonOutline}
-                to="/blog/verba-open-source-rag-app"
-              >
-                Learn More
+                Download Free eBook PDF
               </Link>
             </div>
           </div>
