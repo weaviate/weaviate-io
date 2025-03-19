@@ -51,6 +51,29 @@ import GRPCTimeouts from '/_includes/code/connections/timeouts-custom.mdx';
 
 <GRPCTimeouts/>
 
+## Third party API keys
+
+Integrations that use external APIs often need API keys. To add third party API keys, follow these examples:
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python Client v4">
+   <FilteredTextBlock
+     text={PyCodeV4}
+     startMarker="# START ConnectWithApiKeyExample"
+     endMarker="# END ConnectWithApiKeyExample"
+     language="py"
+   />
+</TabItem>
+<TabItem value="ts3" label="JS/TS Client v3">
+   <FilteredTextBlock
+     text={TsCodeV3}
+     startMarker="// START ConnectWithApiKeyExample"
+     endMarker="// END ConnectWithApiKeyExample"
+     language="js"
+   />
+</TabItem>
+</Tabs>
+
 ## OIDC authentication
 
 import OIDCConnect from '/_includes/connect/oidc-connect-ref.mdx';
