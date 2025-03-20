@@ -278,5 +278,44 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert len(response.generated) > 0
 # End test
 
+# ==========================================
+# ===== GENERATIVE EXAMPLE WITH IMAGES =====
+# ==========================================
+
+# START WorkingWithImages
+import base64
+import requests
+from weaviate.collections.classes.generative import GenerativeParameters
+
+src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
+base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
+
+prompt = GenerativeParameters.single_prompt(
+    # highlight-start
+    prompt="Does the movie have anything to do with the provided image",
+    images=base64_image,         # base64 encoded strings of the image bytes
+    image_properties="poster",   # Properties containing images in Weaviate
+    # highlight-end
+)
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.generate.near_text(
+    query="Movies about nature and space", 
+    limit=5, 
+    # highlight-start
+    single_prompt=prompt,
+    # highlight-end
+)
+
+# print source properties and generated responses
+for o in response.objects:
+    print(o.properties)
+    print(o.generated)
+# END WorkingWithImages
+
+# Test results
+assert response.objects[0].collection == "JeopardyQuestion"
+assert len(response.objects[0].generated) > 0
+# End test
 
 client.close()

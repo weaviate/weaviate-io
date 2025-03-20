@@ -421,6 +421,42 @@ You can use *generative parameters* to specify additional options when performin
 
 <!-- TODO[g-despot]: Add response before publishing -->
 
+## Working with images
+
+You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImages"
+      endMarker="# END WorkingWithImages"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
