@@ -18,16 +18,45 @@ Retrieval Augmented Generation (RAG) combines information retrieval with generat
 
 In Weaviate, a RAG query consists of two parts: *a search query*, and a *prompt for the model*. Weaviate first performs the search, then passes both the search results and your prompt to a generative AI model before returning the generated response.
 
-<details>
-  <summary>
-    How to configure RAG
-  </summary>
+## Configure a generative model provider
 
-To use RAG, [a collection must be configured](../manage-data/collections.mdx#specify-a-generative-model-integration) to use a [generative model integration](../model-providers/index.md).
+:::info Added in `v1.30`
+:::
 
-See the relevant model provider documentation for more details.
+To use RAG, [a collection must be configured](../manage-data/collections.mdx#specify-a-generative-model-integration) to use a [generative model integration](../model-providers/index.md) or you can spcify the generative model in the search operation directly:
 
-</details>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DynamicRag"
+      endMarker="# END DynamicRag"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```ts
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```ts
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
 
 ## Named vectors
 
@@ -159,6 +188,47 @@ The output is like this:
 
 </details>
 
+### Additional parameters
+
+:::info Added in `v1.30`
+:::
+
+You can use *generative parameters* to specify additional options when performing a single prompt search:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativeParametersPython"
+      endMarker="# END SingleGenerativeParametersPython"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- TODO[g-despot]: Add response before publishing -->
+
 ## Grouped task search
 
 Grouped task search returns one response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
@@ -233,7 +303,7 @@ The output is like this:
 
 </details>
 
-## Set grouped task prompt properties
+### Set grouped task prompt properties
 
 :::info Added in `v1.18.3`
 :::
@@ -309,6 +379,83 @@ The output is like this:
 />
 
 </details>
+
+### Additional parameters
+
+:::info Added in `v1.30`
+:::
+
+You can use *generative parameters* to specify additional options when performing grouped tasks:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GroupedGenerativeParametersPython"
+      endMarker="# END GroupedGenerativeParametersPython"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+<!-- TODO[g-despot]: Add response before publishing -->
+
+## Working with images
+
+You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImages"
+      endMarker="# END WorkingWithImages"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+    <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
 
 ## Related pages
 
