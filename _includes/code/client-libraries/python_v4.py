@@ -42,6 +42,33 @@ finally:
     client.close()
 
 
+# Setup for CustomSSLExample
+weaviate_host = "localhost"
+weaviate_grpc_host = "localhost"
+
+# START CustomSSLExample
+import os
+import weaviate
+from weaviate.classes.init import AdditionalConfig
+
+# Set environment variables for SSL certificates
+# Set it here or in your shell (e.g. .bashrc or .zshrc file)
+os.environ["GRPC_DEFAULT_SSL_ROOTS_FILE_PATH"] = "/path/to/your/cert.crt"
+os.environ["SSL_CERT_FILE"] = "/path/to/your/cert.crt"
+
+# Then connect to Weaviate
+client = weaviate.connect_to_custom(
+    http_host=weaviate_host,  # Replace with your Weaviate host
+    http_port=443,
+    http_secure=True,
+    grpc_host=weaviate_grpc_host,  # Replace with your Weaviate gRPC host
+    grpc_port=50051,
+    grpc_secure=True,
+    additional_config=AdditionalConfig(trust_env=True)  # Required for custom SSL certificates
+)
+# END CustomSSLExample
+
+
 # LocalInstantiationSkipChecks
 import weaviate
 

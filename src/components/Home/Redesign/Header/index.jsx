@@ -128,7 +128,15 @@ export default function HomepageHeader() {
               </div>
             </div>
 
-            <div className={styles.serviceImage}></div>
+            <div className={styles.serviceImageContainer}>
+              <img
+                src="/img/site/weaviate-vision-circle-updated.png"
+                alt="Weaviate Vision"
+                className={styles.serviceImage}
+                width="500"
+                height="500"
+              />
+            </div>
           </div>
 
           <div className={styles.tempBox}>
@@ -175,12 +183,11 @@ export default function HomepageHeader() {
                 <div
                   className={`${styles.customerLogo} ${styles.redhatLogo}`}
                 />
+
                 <div
-                  className={`${styles.customerLogo} ${styles.mulinyLogo}`}
+                  className={`${styles.customerLogo} ${styles.superhumanLogo}`}
                 />
-                <div
-                  className={`${styles.customerLogo} ${styles.shippoLogo}`}
-                />
+                <div className={`${styles.customerLogo} ${styles.ltkLogo}`} />
               </div>
             </div>
 

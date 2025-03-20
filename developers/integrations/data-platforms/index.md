@@ -10,6 +10,7 @@ Learn about how Weaviate integrates with these solutions:
 * [Airbyte](/developers/integrations/data-platforms/airbyte/)
 * [Aryn](/developers/integrations/data-platforms/aryn/)
 * [Astronomer](/developers/integrations/data-platforms/astronomer/)
+* [Box](/developers/integrations/data-platforms/box/)
 * [Confluent Cloud](/developers/integrations/data-platforms/confluent-cloud)
 * [Context Data](/developers/integrations/data-platforms/context-data/)
 * [Databricks](/developers/integrations/data-platforms/databricks/)
