@@ -75,7 +75,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Paper Reviews',
-                blogDescription: 'Papers',
+                blogDescription: 'Explore research papers and documentation supporting Weaviate.',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Paper Reviews',
