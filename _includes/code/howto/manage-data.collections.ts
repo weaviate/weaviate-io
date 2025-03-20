@@ -587,6 +587,33 @@ await client.collections.create({
 // Test
 // TODO NEEDS TEST assert.equal(result.replicationConfig.factor, 3);
 
+// =======================
+// ===== All replication settings
+// =======================
+
+/*
+// START AllReplicationSettings
+import { configure } from 'weaviate-client';
+
+// END AllReplicationSettings
+*/
+
+// START AllReplicationSettings
+await client.collections.create({
+  name: 'Article',
+  // highlight-start
+  replication: configure.replication({
+    factor: 3,
+    asyncEnabled: true,
+    deletionStrategy: 'TimeBasedResolution'  // Available from Weaviate v1.28.0
+  }),
+  // highlight-end
+ })
+ // END AllReplicationSettings
+
+ // Test
+ // TODO NEEDS TEST assert.equal(result.replicationConfig.factor, 3);
+
 // ====================
 // ===== SHARDING =====
 // ====================

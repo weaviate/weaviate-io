@@ -72,6 +72,12 @@ export default function OnDemand() {
               {'Watch now >'}
             </Link>
           </div>
+          <div className={styles.marketBox}>
+            <p>Beyond the Hype: How AI Agents can Transform Your Business</p>
+            <Link to="https://events.weaviate.io/agents-stackai-webinar-2025">
+              {'Watch now >'}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
