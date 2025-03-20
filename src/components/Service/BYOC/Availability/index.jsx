@@ -17,21 +17,6 @@ export default function availability() {
                 <span className={styles.aws} />
               </Link>
             </div>
-            <div className={styles.techBox}>
-              <Link to="/partners/gcp">
-                <span className={styles.gcp} />
-              </Link>
-            </div>
-            <div className={styles.techBox}>
-              <Link to="">
-                <span className={styles.azure} />
-              </Link>
-            </div>
-            <div className={styles.techBox}>
-              <Link to="/partners/snowflake">
-                <span className={styles.snowflake} />
-              </Link>
-            </div>
           </div>
         </div>
       </div>
