@@ -52,4 +52,4 @@ Below you can find a list of the environment variables that can be changed at ru
 | `AUTOSCHEMA_ENABLED`                |
 | `MAXIMUM_ALLOWED_COLLECTIONS_COUNT` |
 
-For more details about the variables, check out the [Environment variable](./index.md) page.
+For more details about the variables, check out the [Environment variables](./index.md) page.
