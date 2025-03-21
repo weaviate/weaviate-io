@@ -577,6 +577,8 @@
   display: flex;
   z-index: 240;
   position: fixed;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 25px;
   left: 0;
   top: 0;
@@ -696,7 +698,7 @@
     }
 
     @media screen and (max-width: 400px) {
-      width: 113.6%;
+      width: 114.6%;
     }
   }
   .cardText {
@@ -760,6 +762,7 @@
 
     @media screen and (max-width: 500px) {
       width: 100%;
+      max-width: 280px;
     }
 
     @media screen and (max-width: 400px) {
@@ -835,14 +838,6 @@
     gap: 20px;
     justify-content: center;
     width: 100%;
-
-    @media screen and (max-width: 500px) {
-      width: 95%;
-    }
-
-    @media screen and (max-width: 400px) {
-      width: 100%;
-    }
   }
 
   .nextText {
@@ -866,7 +861,7 @@
       height: 2.84969rem;
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 450px) {
       width: 8.47769rem;
       height: 2.84969rem;
     }
