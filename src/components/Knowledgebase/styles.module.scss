@@ -762,11 +762,15 @@
 
     @media screen and (max-width: 500px) {
       width: 100%;
-      max-width: 280px;
+    }
+
+    @media screen and (max-width: 430px) {
+      height: 150px;
+      max-width: 320px;
     }
 
     @media screen and (max-width: 400px) {
-      height: 150px;
+      max-width: 240px;
     }
   }
 
