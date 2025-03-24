@@ -79,7 +79,7 @@
   {
     "name": "Confluent",
     "image": "/img/site/confluent_logo.svg",
-    "link": "/developers/integrations/data-platforms/confluent-cloud",
+    "link": "/developers/integrations/data-platforms/confluent",
     "description": "Fully managed Apache Kafka service for real-time streaming. ",
     "tags": ["Data Platforms", "Integration"],
     "maintainedBy": "Internal",
