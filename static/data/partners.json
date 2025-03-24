@@ -449,5 +449,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Dynamiq",
+    "image": "/img/site/dynamiq.png",
+    "link": "/developers/integrations/llm-agent-frameworks/dynamiq",
+    "description": "Operating platform for agentic AI applications",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]
