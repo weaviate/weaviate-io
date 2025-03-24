@@ -460,5 +460,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "CrewAI",
+    "image": "/img/site/crewai.png",
+    "link": "/developers/integrations/llm-agent-frameworks/crewai",
+    "description": "LLM and Agent Framework for building multi-agent applications",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]

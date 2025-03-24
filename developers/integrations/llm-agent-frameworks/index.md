@@ -8,6 +8,7 @@ These Large Language Model (LLM) and Agent frameworks have tools to help develop
 
 Learn how Weaviate integrates with these solutions:
 * [Composio](/developers/integrations/llm-agent-frameworks/composio/)
+* [CrewAI](/developers/integrations/llm-agent-frameworks/crewai/)
 * [DSPy](/developers/integrations/llm-agent-frameworks/dspy/)
 * [Dynamiq](/developers/integrations/llm-agent-frameworks/dynamiq/)
 * [Haystack](/developers/integrations/llm-agent-frameworks/haystack/)
