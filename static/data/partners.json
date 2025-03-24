@@ -482,5 +482,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Boomi",
+    "image": "/img/site/boomi.png",
+    "link": "/developers/integrations/data-platforms/boomi",
+    "description": "Perform operations such as data ingestion and retrieval directly from Boomi's low-code environment",
+    "tags": ["Data Platforms", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]

@@ -4,13 +4,19 @@ sidebar_position: 4
 image: og/integrations/home.jpg
 ---
 
-Boomi
+[Boomi](https://boomi.com/) is an integration platform as a service, API management, master data management and data preparation solution.
 
-## Box and Weaviate
-By connecting Box with Weaviate, you can transform your stored files into a powerful semantic search system or enable Retrieval Augmented Generation (RAG). This setup allows for advanced retrieval and AI-driven content generation based on your Box documents.
+## Boomi and Weaviate
+Weaviate is integrated into Boomi's platform through Boomi's REST Client Connector. This integration allows users to perform operations such as data ingestion and retrieval within Weaviate directly from Boomi's low-code environment.
 
-## Hands on Learning
+
+## Our Resources 
+[**Hands on Learning**](#hands-on-learning): Build your technical understanding with end-to-end tutorials.
+
+### Hands on Learning
 
 | Topic | Description | Resource |
 | --- | --- | --- |
-| Weaviate + Box RAG Demo | Learn how to embed the content stored in Box into Weaviate and then use the Query Agent to search through the documents. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/data-platforms/box/weaviate_box.ipynb) |
+| Start Connecting with Weaviate | A replication of Weaviate's Quickstart tutorial on the Boomi platform using the REST Client connector. | [Article](https://community.boomi.com/s/article/Start-Connecting-with-Weaviate) [Tutorial](https://discover.boomi.com/solutions/start-connecting-with-weaviate) | 
+
+
