@@ -471,5 +471,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Agno",
+    "image": "/img/site/agno.png",
+    "link": "/developers/integrations/llm-agent-frameworks/agno",
+    "description": "A lightweight library for building Multimodal Agents ",
+    "tags": ["LLM and Agent Frameworks", "Integration"],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]

@@ -1,10 +1,10 @@
 ---
-title: Box
-sidebar_position: 5
+title: Boomi
+sidebar_position: 4
 image: og/integrations/home.jpg
 ---
 
-[Box](https://www.box.com/home) is a cloud-based content management platform that enables organizations to securely store, share, and collaborate on files.
+Boomi
 
 ## Box and Weaviate
 By connecting Box with Weaviate, you can transform your stored files into a powerful semantic search system or enable Retrieval Augmented Generation (RAG). This setup allows for advanced retrieval and AI-driven content generation based on your Box documents.
