@@ -814,6 +814,10 @@ const siteRedirects = {
             to: '/developers/integrations/llm-agent-frameworks/semantic-kernel',
             from: '/developers/integrations/llm-frameworks/semantic-kernel',
         },
+        {
+            to: '/developers/integrations/data-platforms/confluent',
+            from: '/developers/integrations/data-platforms/confluent-cloud',
+        },
 
         // Restructured starter guides
         {
