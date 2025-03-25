@@ -1,10 +1,10 @@
 ---
-title: Confluent Cloud
-sidebar_position: 1
+title: Confluent
+sidebar_position: 6
 image: og/integrations/home.jpg
 ---
 
-Confluent Cloud is a fully managed Apache Kafka service that offers real-time data streaming, seamless integration across major cloud providers, high performance, and robust security features.
+Confluent is a fully managed Apache Kafka service that offers real-time data streaming, seamless integration across major cloud providers, high performance, and robust security features.
 
 Learn more at [Confluent Cloud](https://www.confluent.io/confluent-cloud/).
 

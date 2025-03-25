@@ -1,6 +1,6 @@
 ---
 title: Concepts
-description: Concepts in Weaviate
+description: Explore foundational concepts behind Weaviate's vector search capabilities.
 sidebar_position: 0
 image: og/docs/concepts.jpg
 # tags: ['getting started']
