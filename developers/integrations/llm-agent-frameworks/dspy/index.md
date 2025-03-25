@@ -47,7 +47,7 @@ The resources are broken into two categories:
 | Advanced Optimizers in DSPy | Dive into optimizing DSPy programs with various techniques. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/5.Advanced-Optimizers.ipynb) |
 | Llama 3 RAG Demo with DSPy Optimization, Ollama, and Weaviate | Integrating Llama3 with DSPy and optimizing prompts with MIPRO. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/llms/Llama3.ipynb), [Video](https://youtu.be/1h3_h8t3L14?si=G4d-aY5Ynpv8ckea)|
 | BigQuery and Weaviate orchestrated with DSPy | Build an end-to-end RAG pipeline that uses BigQuery and Weaviate using DSPy. | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/cloud-hyperscalers/google/bigquery/BigQuery-Weaviate-DSPy-RAG.ipynb)|
-| DSPy and Weaviate Query Agent | Use the Query Agent as a Tool with DSPy | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/agents/simple-query-agent-tool.ipynb) |
+| DSPy and Weaviate Query Agent | Use the Query Agent as a Tool with DSPy | [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/llm-agent-frameworks/dspy/Query-Agent-as-a-Tool.ipynb) |
 
 
 ### Read and Listen
