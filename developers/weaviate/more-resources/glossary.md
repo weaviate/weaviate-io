@@ -1,6 +1,7 @@
 ---
 title: Glossary
 sidebar_position: 4
+description: Access a glossary of terms for better understanding Weaviate concepts.
 image: og/docs/more-resources.jpg
 # tags: ['glossary', 'terminology']
 ---

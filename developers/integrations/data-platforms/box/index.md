@@ -1,6 +1,6 @@
 ---
 title: Box
-sidebar_position: 1
+sidebar_position: 5
 image: og/integrations/home.jpg
 ---
 

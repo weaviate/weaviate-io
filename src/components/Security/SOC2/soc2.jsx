@@ -24,11 +24,7 @@ export default function Soc2(props) {
                   {' '}
                   Access our trust portal to review our compliance documentation
                   and white papers describing our practices to keep your data
-                  safe{' '}
-                  <Link to="https://events.weaviate.io/trust-portal">
-                    {' '}
-                    here.
-                  </Link>
+                  safe <Link to="https://trust.weaviate.io"> here.</Link>
                 </p>
               </p>
             </div>
