@@ -9,7 +9,7 @@ image: og/docs/more-resources.jpg
 :::info Added in **`v1.30`**
 :::
 
-:::caution You hit the collections count limit?
+:::caution Have you hit the collections count limit?
 If you see an error that the collection count limit has been reached, it means you **can't create any more collections**. This limit aims to ensure Weaviate remains performant. If your instance already exceeds the limit, Weaviate will not allow the creation of any new collections. Existing collections will not be deleted.<br /><br />
 **Instead of simply raising the limit, consider rethinking your architecture**. If you really need to change the limit, use the [`MAXIMUM_ALLOWED_COLLECTIONS_COUNT`](../../config-refs/env-vars.md) environment variable.
 :::
@@ -84,14 +84,12 @@ import MultipleCollectionsExample from '/developers/weaviate/starter-guides/img/
 #### Advantages
 
 - **Customizability**: Collection definition changes or optimizations can be tailored to individual collections without affecting others.
-- **Simpler queries**: Queries do not require dataset-specific filters, as each collection inherently belongs to a single dataset.
 - **Data isolation**: Datasets are completely separated through the use of dedicated collections.
 
 #### Challenges
 
-- **Resource overhead:** Each collection requires its own definition, indexes, and storage, leading to increased memory and disk usage. Managing thousands or even millions of collections becomes nearly impossible.
+- **Resource overhead:** Each collection requires its own definition, indexes, and storage, leading to increased memory and disk usage. Managing managing millions or even thousands of collections becomes nearly impossible.
 - **Operational complexity:** Collection definition changes must be applied individually to each collection. Every collection must be updated separately and this takes a lot of time and computational effort.
-- **Query performance:** Retrieving data across multiple collections can be inefficient, especially when performing global analytics (e.g., searching throughout multiple collections).
 
 :::tip
 If you are creating more than `20` collections, take a moment to consider if multi-tenancy might be utilized.
@@ -99,7 +97,7 @@ If you are creating more than `20` collections, take a moment to consider if mul
 
 ### Multi-tenancy architecture
 
-Multi-tenancy refers to the practice of using a single collection to multiple datasets (tenants). Each tenant’s data is logically isolated through the use of tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers or when you want to store similarly structured data for multiple projects.
+Multi-tenancy refers to the practice of dividing a single collection to multiple datasets (tenants). Each tenant’s data is logically isolated through the use of tenant names. Multi-tenancy is especially useful when you want to store data for multiple customers or when you want to store similarly structured data for multiple projects.
 
 import MultiTenancyExample from '/developers/weaviate/starter-guides/img/weaviate-multi-tenancy-example.png';
 
@@ -136,13 +134,13 @@ import MultiTenancyExample from '/developers/weaviate/starter-guides/img/weaviat
 Use multi-tenancy when you need to support a large number of tenants and prioritize resource efficiency and scalability.
 
 - **Easier collection definition management:** Definition updates apply universally to all tenants. For example, adding a new property to all products is now much easier.
-- **Optimized query performance:** Queries can leverage the tenant name to retrieve only the relevant products. You also don't have to keep track of what collections are associated with what tenants.
 - **Index scalability**: Indexes can be optimized for a single collection rather than fragmented across multiple collections. Each tenant has a dedicated, high-performance vector index, which results in faster query speeds. Instead of searching a shared index space, each tenant responds as if it were the only user on the cluster.
 - **Data isolation**: Each tenant’s data is completely segregated. This also means that data deletion is much easier and faster.
 
 #### Challenges
 
 - **Access control complexity**: [Fine-grained access control](../../configuration/authorization.md) must be implemented to ensure data isolation between tenants.
+- **Uniform collection definition**: All tenants must share the same collection schema and configuration.
 
 :::tip Reduce storage costs
 You can change the [state of a tenant](../managing-resources/tenant-states.mdx) into `inactive` (stored locally on disk) or `offloaded` (stored on cloud storage) in order to save resources.
