@@ -79,10 +79,9 @@ agent = TransformationAgent(
     operations=[add_topics],
 )
 
-response = agent.update_all()
+response = agent.update_all()  # The response is a TransformationResponse object
 
-for operation in response:  # The response is a list of TransformationResponse objects
-    print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
+agent.get_status(workflow_id=response.workflow_id)  # Use the workflow_id to check the status of each workflow
 # END SimpleTransformationAgentExample
 
 assert len(response) == 1
@@ -137,12 +136,11 @@ agent = TransformationAgent(
 
 response = agent.update_all()
 
-print(response)  # The response contains information about the operations, including the workflow_id
+print(response)  # The response is a TransformationResponse object, including the workflow_id
 # END StartTransformationOperations
 
 # # START MonitorJobStatus
-for operation in response:  # The response is a list of TransformationResponse objects
-    print(agent.get_status(workflow_id=operation.workflow_id))  # Use the workflow_id to check the status of each operation
+print(agent.get_status(workflow_id=response.workflow_id))  # Use the workflow_id to check the status of each operation
 # # END MonitorJobStatus
 
 assert len(response) == 4

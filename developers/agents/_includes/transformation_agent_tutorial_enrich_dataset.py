@@ -134,8 +134,7 @@ print(response)
 time.sleep(5)
 
 # START GetStatus
-for operation in response:
-    print(agent.get_status(workflow_id=operation.workflow_id))
+print(agent.get_status(workflow_id=response.workflow_id))
 # END GetStatus
 
 client.close()  # Free up resources
