@@ -1,6 +1,6 @@
 ---
 title: Modules
-description: Modules in Weaviate
+description: Explore modular add-ons to expand Weaviate's functionality and versatility.
 sidebar_position: 15
 image: og/docs/concepts.jpg
 # tags: ['modules']

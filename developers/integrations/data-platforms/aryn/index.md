@@ -1,6 +1,6 @@
 ---
 title: Aryn
-sidebar_position: 1
+sidebar_position: 2
 image: og/integrations/home.jpg
 ---
 
