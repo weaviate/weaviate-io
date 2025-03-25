@@ -4,28 +4,28 @@ import weaviate, { WeaviateClient } from 'weaviate-client'
 
 // Connect to Weaviate as root user
 const client: WeaviateClient = await weaviate.connectToLocal({
-// END AdminClient
-// Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
+    // END AdminClient
+    // Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
     port: 8580,
-    grpcPort: 50551, 
-// START AdminClient
+    grpcPort: 50551,
+    // START AdminClient
     authCredentials: new weaviate.ApiKey("user-a-key")
-  })
+})
 // END AdminClient
 
 // TODO: Remove if not used
 const customUserClient: WeaviateClient = await weaviate.connectToLocal({
     port: 8580,
-    grpcPort: 50551, 
+    grpcPort: 50551,
     authCredentials: new weaviate.ApiKey("user-b-key")
-  })
+})
 
 const allRolesCheck = await client.roles.listAll()
 
 for await (const [key, value] of Object.entries(allRolesCheck)) {
-if (!["viewer", "root", "admin"].includes(key)) {
-    await client.roles.delete(key)
-}
+    if (!["viewer", "root", "admin"].includes(key)) {
+        await client.roles.delete(key)
+    }
 }
 
 // Todo: This will be added in upcoming release
@@ -37,6 +37,7 @@ await client.roles.create("testRole")
 const { permissions } = weaviate
 // END AddClusterPermission // END AddManageRolesPermission // END AddCollectionsPermission // END AddTenantPermission // END AddDataObjectPermission // END AddBackupPermission // END AddNodesPermission // END AddRoles // END RemovePermissions
 
+// todo add scope when tommy adds it
 // START AddManageRolesPermission
 
 const rolePermission = permissions.roles({
@@ -45,9 +46,6 @@ const rolePermission = permissions.roles({
     read: true,
     update: true,
     delete: true,
-    // scope: MATCH
-    // scope=RoleScope.MATCH,  // Only allow role management with the current user's permission level
-    // scope=RoleScope.ALL   // Allow role management with all permissions
 })
 
 await client.roles.create("testRole", rolePermission)
@@ -66,17 +64,19 @@ const collectionPermissions = [
         read_config: true,  // Allow reading collection info/metadata
         update_config: true,  // Allow updating collection configuration, i.e. update schema properties, when inserting data with new properties
         delete_collection: true,  // Allow deleting collections
-   } ),
+    }),
 ]
 
 await client.roles.create("testRole", collectionPermissions)
 
 // END AddCollectionsPermission
-const getCollectionPermissions = client.roles.byName("testRole")
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in permissions.collections_permissions
-// )
+const getCollectionPermissions = await client.roles.byName("testRole")
+
+if (getCollectionPermissions) {
+    assert.equal((getCollectionPermissions.dataPermissions.some(
+        permission => permission.collection == "TargetCollection*"
+    )), true)
+}
 
 await client.roles.delete("testRole")
 
@@ -101,11 +101,13 @@ const AddTenantPermissions = [
 
 await client.roles.create("testRole", AddTenantPermissions)
 // END AddTenantPermission
-const getTenantCollection = client.roles.byName("testRole")
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in permissions.collections_permissions
-// )
+const getTenantCollection = await client.roles.byName("testRole")
+
+if (getTenantCollection) {
+    assert.equal((getTenantCollection.dataPermissions.some(
+        permission => permission.collection == "TargetCollection*"
+    )), true)
+}
 
 client.roles.delete("testRole")
 
@@ -113,7 +115,7 @@ client.roles.delete("testRole")
 
 const dataPermissions = [
     permissions.data({
-        collection:"TargetCollection*",  // Applies to all collections starting with "TargetCollection"
+        collection: "TargetCollection*",  // Applies to all collections starting with "TargetCollection"
         create: true,  // Allow data inserts
         read: true,  // Allow query and fetch operations
         update: true,  // Allow data updates
@@ -124,11 +126,13 @@ const dataPermissions = [
 await client.roles.create("testRole", dataPermissions)
 
 // END AddDataObjectPermission
-const getDataPermissions = client.roles.byName("testRole")
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in permissions.data_permissions
-// )
+const getDataPermissions = await client.roles.byName("testRole")
+
+if (getDataPermissions) {
+    assert.equal((getDataPermissions.dataPermissions.some(
+        permission => permission.collection == "TargetCollection*"
+    )), true)
+}
 
 await client.roles.delete("testRole")
 
@@ -144,11 +148,13 @@ const backupsPermissions = [
 await client.roles.create("testRole", backupsPermissions)
 // END AddBackupPermission
 
-const getBackupsPermissions = client.roles.byName("testRole")
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in permissions.backups_permissions
-// )
+const getBackupsPermissions = await client.roles.byName("testRole")
+
+if (getBackupsPermissions) {
+    assert.equal((getBackupsPermissions.dataPermissions.some(
+        permission => permission.collection == "TargetCollection*"
+    )), true)
+}
 
 await client.roles.delete("testRole")
 
@@ -157,13 +163,13 @@ await client.roles.delete("testRole")
 const clusterPermissions = [
     permissions.cluster({
         read: true // Allow reading cluster data
-    }),  
+    }),
 ]
 
 await client.roles.create("testRole", clusterPermissions)
 // END AddClusterPermission
 
-const getClusterPermissions = client.roles.byName("testRole")
+const getClusterPermissions = await client.roles.byName("testRole")
 // assert permissions.cluster_permissions
 
 await client.roles.delete("testRole")
@@ -182,17 +188,19 @@ const verboseNodePermissions = [
 const minimalNodePermissions = [
     permissions.nodes.minimal({
         read: true,  // Allow reading node metadata
-   } ),
+    }),
 ]
 
 await client.roles.create("testRole", verboseNodePermissions)  // or `minimalNodePermissions`
 // END AddNodesPermission
 
-const getNodePermissions = client.roles.byName("testRole")
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in permissions.nodes_permissions
-// )
+const getNodePermissions = await client.roles.byName("testRole")
+
+if (getNodePermissions) {
+    assert.equal((getNodePermissions.dataPermissions.some(
+        permission => permission.collection == "TargetCollection*"
+    )), true)
+}
 
 
 await client.roles.delete("testRole")
@@ -211,13 +219,13 @@ await client.roles.create("testRole", dummyPermission)
 
 const additionalDataPermissions = [
     permissions.data({
-        collection: "TargetCollection*", 
-        read: true, 
+        collection: "TargetCollection*",
+        read: true,
         create: true
     }),
     permissions.data({
-        collection: "TargetCollection*", 
-        read: true, 
+        collection: "TargetCollection*",
+        read: true,
         create: false
     }),
 ]
@@ -226,10 +234,15 @@ client.roles.addPermissions("testRole", additionalDataPermissions)
 // END AddRoles
 
 // START AssignRole
-await client.users.assignRoles(["testRole", "viewer"], "user-b",)
+await client.users.assignRoles(["testRole", "viewer"], "user-b")
 // END AssignRole
-// assert "testRole" in await client.users.getAssignedRoles("user-b")
-// assert "viewer" in await client.users.getAssignedRoles("user-b")
+assert.equal((Object.keys(await client.users.getAssignedRoles("user-b")).some(
+    role => role == "viewer*"
+)), true)
+
+assert.equal((Object.keys(await client.users.getAssignedRoles("user-b")).some(
+    role => role == "testRole"
+)), true)
 
 // START ListCurrentUserRoles
 console.log(await client.users.getMyUser())
@@ -240,16 +253,16 @@ const userRoles = await client.users.getAssignedRoles("user-b")
 
 for (const [role, value] of Object.entries(userRoles)) {
     console.log(role)
-  }
+}
 // END ListUserRoles
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in user_roles["testRole"].collections_permissions
-// )
-// assert any(
-//     permission.collection == "TargetCollection*"
-//     for permission in user_roles["testRole"].data_permissions
-// )
+
+assert.equal((userRoles["testRole"].collectionsPermissions.some(
+    permission => permission.collection == "TargetCollection*"
+)), true)
+
+assert.equal((userRoles["testRole"].dataPermissions.some(
+    permission => permission.collection == "TargetCollection*"
+)), true)
 
 // START CheckRoleExists
 console.log(await client.roles.exists("testRole"))  // Returns true or false
@@ -270,14 +283,16 @@ for (const users of assignedUsers) {
     console.log(users)
 }
 // END AssignedUsers
-// assert "user-b" in assigned_users
+assert.equal(assignedUsers.some(
+    role => role == "viewer*"
+), true)
 
 // START ListAllRoles
 const allRoles = await client.roles.listAll()
 
 for (const [key, value] of Object.entries(allRoles)) {
     console.log(key)
-  }
+}
 // END ListAllRoles
 
 // START RemovePermissions
@@ -290,9 +305,10 @@ const permissionsToRemove = [
         delete_collection: true,
     }),
     permissions.data({
-        collection: "TargetCollection*", 
-        read: true, 
-        create: false}),
+        collection: "TargetCollection*",
+        read: true,
+        create: false
+    }),
 ]
 
 await client.roles.removePermissions("testRole", permissionsToRemove)
@@ -301,7 +317,9 @@ await client.roles.removePermissions("testRole", permissionsToRemove)
 // START RevokeRoles
 await client.users.revokeRoles("user-b", "testRole")
 // END RevokeRoles
-// assert "testRole" not in client.users.get_assigned_roles("user-b")
+assert.equal((Object.keys(await client.users.getAssignedRoles("user-b")).some(
+    role => role == "testRole"
+)), false)
 
 // START DeleteRole
 await client.roles.delete("testRole")

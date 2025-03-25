@@ -1,7 +1,6 @@
 import weaviate, { WeaviateClient } from 'weaviate-client'
 import assert from 'assert'
 
-
 const client: WeaviateClient = await weaviate.connectToLocal({
     // Use custom port defined in tests/docker-compose-rbac.yml (without showing the user)
         port: 8580,
@@ -70,12 +69,9 @@ await client.users.assignRoles(["rw_role"], "user-b",)
 // ===== TEST ===== basic checks to see if the role was created
 const userPermissions = await client.users.getAssignedRoles("user-b")
 
-// assert.equal("rw_role", user_permissions.keys())
-// assert (
-//     user_permissions["rw_role"].collections_permissions[0].collection
-//     == "TargetCollection*"
-// )
-// assert user_permissions["rw_role"].name == "rw_role"
+assert.equal("rw_role", Object.keys(userPermissions))
+assert.equal(userPermissions["rw_role"].collectionsPermissions[0].collection, "TargetCollection*")
+assert.equal(userPermissions["rw_role"].name, "rw_role")
 
 // =================================================================
 // =============== EXAMPLE: VIEWER PERMISSIONS
