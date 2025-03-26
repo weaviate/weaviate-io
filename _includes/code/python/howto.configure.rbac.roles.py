@@ -11,14 +11,9 @@ client = weaviate.connect_to_local(
     port=8580,
     grpc_port=50551,
     # START AdminClient
-    auth_credentials=Auth.api_key("user-a-key"),
+    auth_credentials=Auth.api_key("root-user-key"),
 )
 # END AdminClient
-
-# TODO: Remove if not used
-custom_user_client = weaviate.connect_to_local(
-    port=8580, grpc_port=50551, auth_credentials=Auth.api_key("user-b-key")
-)
 
 all_roles = client.roles.list_all()
 for role_name, _ in all_roles.items():
@@ -223,13 +218,15 @@ print(test_role.collections_permissions)
 print(test_role.data_permissions)
 # END InspectRole
 
+client.users.db.create(user_id="custom-user")
+client.users.db.assign_roles(user_id="custom-user", role_names=["testRole"])
 # START AssignedUsers
 assigned_users = client.roles.get_assigned_user_ids(role_name="testRole")
 
 for user in assigned_users:
     print(user)
 # END AssignedUsers
-assert "user-b" in assigned_users
+assert "custom-user" in assigned_users
 
 # START ListAllRoles
 all_roles = client.roles.list_all()
@@ -259,4 +256,3 @@ client.roles.delete(role_name="testRole")
 # END DeleteRole
 
 client.close()
-custom_user_client.close()

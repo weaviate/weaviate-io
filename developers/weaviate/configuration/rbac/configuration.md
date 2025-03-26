@@ -6,7 +6,7 @@ image: og/docs/configuration.jpg
 # tags: ['rbac', 'roles', 'configuration', 'authorization']
 ---
 
-:::info Available from `v1.29`
+:::info Added in `v1.29`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
 :::
 
@@ -37,8 +37,8 @@ services:
       # OIDC access can also be used with RBAC
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'root-user-key'
+      AUTHENTICATION_APIKEY_USERS: 'root-user'
 
       # Authorization configuration
       # Enable RBAC
@@ -46,17 +46,18 @@ services:
 
       # Provide pre-configured roles to users
       # This assumes that the relevant user has been authenticated and identified
-      #
+
       # You MUST define at least one root user
-      AUTHORIZATION_RBAC_ROOT_USERS: 'user-a'
+      AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
+      # Enable the runtime user management
+      AUTHENTICATION_DYNAMIC_USERS_ENABLED: 'true'
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `user-a` as a user with built-in root/admin permissions
-- Configures `user-b` as a user with no built-in permissions
+- Configures `root-user` as a user with built-in admin permissions
 
-The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
+You can connect to your instance with the root user in order to [create new users](./manage-users.mdx) which can be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](./manage-roles.mdx).
 
 import DynamicUserManagement from '/_includes/configuration/dynamic-user-management.mdx';
 
@@ -80,11 +81,9 @@ authentication:
   apikey:
     enabled: true
     allowed_keys:
-      - user-a-key
-      - user-b-key
+      - root-user-key
     users:
-      - user-a
-      - user-b
+      - root-user
 
 # Authorization configuration
 authorization:
@@ -96,15 +95,14 @@ authorization:
     #
     # You MUST define at least one root user
     root_users:
-    - user-a
+    - root-user
 ```
 
 This configuration:
 - Enables RBAC
-- Configures `user-a` as a user with built-in admin permissions
-- Configures `user-b` as a user with no built-in permissions
+- Configures `root-user` as a user with built-in admin permissions
 
-The user `user-b` can now be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](/developers/weaviate/configuration/rbac/manage-roles-users).
+You can connect to your instance with the root user in order to [create new users](./manage-users.mdx) which can be assigned custom roles and permissions using the [REST API](/developers/weaviate/api/rest#tag/authz) or [programmatically using a client library](./manage-roles.mdx).
 
 ## RBAC and performance
 

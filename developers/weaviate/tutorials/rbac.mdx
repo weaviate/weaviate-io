@@ -22,9 +22,9 @@ In the steps that follow, we’ll cover:
 - **Step 1: Connecting to Weaviate**  
   Ensure you're authenticated with a user who has the necessary role management permissions.
 - **Step 2: Creating custom roles**  
-  Define roles with precise permissions tailored for various access levels, such as read/write, viewer, or tenant management.
-- **Step 3: Assigning roles to users**  
-  Apply these roles to users, effectively controlling their access across different resources.
+  Define roles with specific permissions, such as read, write, tenant management, etc.
+- **Step 3: Assigning roles to new users**  
+  Apply these roles to a new user, limiting their access across different resources.
 
 ```mermaid
 flowchart LR
@@ -43,7 +43,7 @@ flowchart LR
         B2
     end
 
-    subgraph sg3 ["3. Assign the role to a user"]
+    subgraph sg3 ["3. Assign the role to a new user"]
         C1
     end
 
@@ -107,11 +107,12 @@ services:
       ENABLE_API_BASED_MODULES: 'true'
       CLUSTER_HOSTNAME: 'node1'
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      AUTHENTICATION_DYNAMIC_USERS_ENABLED: 'true'
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'user-a-key,user-b-key'
-      AUTHENTICATION_APIKEY_USERS: 'user-a,user-b'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'root-user-key'
+      AUTHENTICATION_APIKEY_USERS: 'root-user'
       AUTHORIZATION_ENABLE_RBAC: 'true'
-      AUTHORIZATION_RBAC_ROOT_USERS: 'user-a'
+      AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
 volumes:
   weaviate_data:
 ...
@@ -119,10 +120,9 @@ volumes:
 
 The environment variables in this configuration:
 - Enable RBAC.
-- Configure `user-a` as a user with built-in root/admin permissions.
-- Configure `user-b` as a user with no built-in permissions.
+- Configure `root-user` as a user with built-in root/admin permissions.
 
-We will connect to Weaviate with `user-a`, and once we create a new role, we will assign it to `user-b`.
+We will connect to Weaviate with `root-user`, and once we create a new role, we will also create a new user (`custom-user`) and assign the role to it.
 
 ## Read and write permissions
 
@@ -198,7 +198,43 @@ This grants read and write permissions for collections starting with `TargetColl
   </TabItem>
 </Tabs>
 
-### Step 3: Assign the role to a user
+### Step 3: Assign the role to a new user
+
+First, let's create the new user `custom-user`: 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateUserB"
+      endMarker="# END CreateUserB"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+Now, you can assign the role `rw_role` to `custom-user`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
