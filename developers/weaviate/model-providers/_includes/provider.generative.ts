@@ -592,6 +592,44 @@ await client.collections.create({
 });
 // END FullGenerativeOllama
 
+// START BasicGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativexAI
+
+// START GenerativexAICustomModel
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    model: 'grok-2-latest'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END GenerativexAICustomModel
+
+// START FullGenerativexAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.xai({
+    // // These parameters are optional
+    // baseUrlProperty: 'https://api.x.ai/v1',
+    // model: 'grok-2-latest',
+    // maxTokensProperty: 512,
+    // temperatureProperty: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativexAI
+
 // Clean up
 await client.collections.delete('DemoCollection');
 
