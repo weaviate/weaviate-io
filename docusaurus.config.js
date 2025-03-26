@@ -161,8 +161,10 @@ const config = {
                               id: 'Cookiebot',
                               src: 'https://consent.cookiebot.com/uc.js',
                               'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
-                              'data-blockingmode': 'auto',
-                              type: 'text/javascript'
+                              'data-blockingmode': 'manual',
+                              type: 'text/javascript',
+                              async: true
+                              
                             },
                         },
                         // Add emailpig
