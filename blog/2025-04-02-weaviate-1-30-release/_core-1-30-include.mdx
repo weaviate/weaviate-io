@@ -1,0 +1,94 @@
+Weaviate `v1.30` brings a host of new features and improvements. It introduces API-based RBAC user management, runtime generative provider / RAG configurations, multi-vector (ColBERT-like) embedding quantization. Weaviate `v1.30` also brings BlockMax WAND and multi-vector embeddings to general availability (GA), indicating their readiness for production use. Additionally, there are several other enhancements (xAI model integration, runtime config management, collection count and tokenizer concurrency limits) to improve the overall Weaviate experience.
+
+Here are the release ⭐️*highlights*⭐️!
+
+![Weaviate 1.30 is released](./img/hero.png)
+
+- [BlockMax WAND in GA](#blockmax-wand-in-ga)
+- [HNSW snapshotting for faster restarts](#hnsw-snapshotting-for-faster-restarts)
+- [Multi-vector embeddings - GA & quantization](#multi-vector-embeddings)
+- [API-based RBAC user management](#api-based-rbac-user-management)
+- [Generative (RAG) capability improvements](#generative-capability-improvements)
+- [xAI model integration](#xai-model-integration)
+- [Other enhancements](#other-enhancements)
+
+## BlockMax WAND in GA
+
+BlockMax WAND [significantly speeds up keyword and hybrid searches](/developers/weaviate/concepts/indexing.md#blockmax-wand-algorithm) in Weaviate. Originally introduced as a technical preview in `1.28`, it is now generally available in `v1.30`.
+
+TO CONFIRM W/ ENGINEERING
+From `v1.30` onwards, BlockMax...
+- Is it the default option?
+- How to configure it
+- How to migrate existing data / whether it is possible
+
+## HNSW snapshotting for faster restarts
+
+This feature allows Weaviate to take *snapshots* of the HNSW index, which can speed up restarts. This is especially useful for large datasets, where the HNSW index and the associated vectors can take a long time to load.
+
+For those of you using Weaviate in production, this features can help reduce downtime of your nodes, and the length of time it takes to restart Weaviate or perform rolling updates.
+
+## Multi-vector embeddings
+
+ColBERT or ColPali-like [multi-vector embeddings](/developers/weaviate/tutorials/multi-vector-embeddings.md) are now generally available in Weaviate for production use, and with vector quantization support.
+
+This means that you can now use multi-vector embeddings in your Weaviate instances to improve the quality of search results, especially for long texts or complex queries.
+
+At the same time, vector quantization such as product quantization, scalar quantization, or binary quantization can be applied. Vector quantization reduces the memory footprint of the embeddings while maintaining search quality.
+
+## API-based RBAC user management
+
+Role-based access control (RBAC) in Weaviate `v1.30` now supports API-based user management. This means that you can now manage roles and permissions from its client libraries, or using the REST API, as long as you have the necessary permissions.
+
+This should make administration of Weaviate instances easier. It means managing RBAC users no longer requires direct access to the Weaviate instance, and can be done programmatically without restarting the instance.
+
+You can now create or delete users, as well as to rotate their API keys, all from the client library or REST API.
+
+## Generative capability improvements
+
+Weaviate's retrieval-augmented generation (RAG) capabilities are now easier to use and more powerful, with runtime options for model providers, and the ability to add images to the input.
+
+From `v1.30`, you can specify at query time which model provider (e.g. Cohere, Google,OpenAI, etc.) to use for generative capabilities, as well as a specific model and other types. This means that you can have a default provider & model for your Weaviate collection, and also override at query time for specific requests.
+
+Additionally, you can now add images to the input of the generative model as context. This can help you to get more out of modern vision language models from providers such as Anthropic, Google, and OpenAI, for example.
+
+## xAI model integration
+
+Weaviate's suite of [model integrations](/developers/weaviate/model-providers/) now includes support for xAI's generative AI models.
+
+## Other enhancements
+
+### Runtime config management
+
+Some system configuration options can now be set and changed at runtime, where they were previously only available at startup.
+
+Weaviate will now periodically look for the presence of a configuration file to read settings for enabling async replication and autoschema, as well as the maximum number of collections that can be created.
+
+This means that you can now change these settings without restarting Weaviate, which can be useful for managing Weaviate instances in production.
+
+### Collection count limits
+
+There is now a default limit on the number of collections that can be created in each Weaviate instance. This has two benefits.
+
+One, it prevents a user from creating too many collections, which can slow down the system. Two, it acts as a trigger to consider whether the architecture of the system is correct, and whether a multi-tenant approach might be more appropriate.
+
+### Tokenizer concurrency limits
+
+Weaviate's non-English tokenizers now have a concurrency limit to prevent them from consuming too many resources. By default, the limit is set to Go's CPU core count (`GOMAXPROCS`) - but you can adjust this limit to suit your needs.
+
+- [Runtime config management](#runtime-config-management)
+- [Collection count limits](#collection-count-limits)
+- [Tokenizer concurrency limits](#tokenizer-concurrency-limits)
+
+
+## Summary
+
+Ready to Get Started?
+
+Enjoy the new features and improvements in Weaviate `1.29`. The release is available open-source as always [on GitHub](https://github.com/weaviate/weaviate/releases/tag/v1.28.0), and will be available for new Sandboxes on [Weaviate Cloud](https://console.weaviate.cloud/) very shortly.
+
+For those of you upgrading a self-hosted version, please check the [migration guide](/developers/weaviate/more-resources/migration#general-upgrade-instructions) for detailed instructions.
+
+It will be available for Serverless clusters on Weaviate Cloud soon as well.
+
+Thanks for reading, see you next time 👋!
