@@ -7,7 +7,7 @@ Here are the release ⭐️*highlights*⭐️!
 - [BlockMax WAND in GA](#blockmax-wand-in-ga)
 - [HNSW snapshotting for faster restarts](#hnsw-snapshotting-for-faster-restarts)
 - [Multi-vector embeddings - GA & quantization](#multi-vector-embeddings)
-- [API-based RBAC user management](#api-based-rbac-user-management)
+- [API-based user management](#api-based-user-management)
 - [Generative (RAG) capability improvements](#generative-capability-improvements)
 - [xAI model integration](#xai-model-integration)
 - [Other enhancements](#other-enhancements)
@@ -38,11 +38,13 @@ At the same time, vector quantization such as product quantization, scalar quant
 
 ## API-based user management
 
-User management is a whole lot more flexible from `v1.30`, Weaviate now supports API-based management of users. This means that you can now manage roles and permissions with Weaviate client libraries, or using the REST API, as long as you have the necessary permissions.
+User management is a whole lot more flexible from `v1.30`. Weaviate now supports API-based user management, which we are calling "dynamic" users.
 
-This should make administration of Weaviate instances easier. It means managing RBAC users no longer requires direct access to the Weaviate instance, and can be done programmatically without restarting the instance.
+Administrators can now create and delete users dynamically, using the Weaviate client libraries, or the REST API. Even better, changes to the set of dynamic users will take effect without restarting the Weaviate instance.
 
-You can now create or delete users, as well as to rotate their API keys, all from the client library or REST API.
+For dynamic users, their API key can now even be rotated without restarting Weaviate.
+
+This is a big improvement, as access can be granted or revoked in real-time, and without the need for downtime. It can be combined with role-based access control (RBAC) to provide a powerful and flexible access control system.
 
 ## Generative capability improvements
 
