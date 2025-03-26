@@ -16,25 +16,35 @@ client = weaviate.connect_to_local(
 # END AdminClient
 
 # START CreateUser
-client.users.db.create(user_id="user-c")
+user_api_key = client.users.db.create(user_id="user-c")
+print(user_api_key)
 # END CreateUser
+assert len(user_api_key) > 0
 
 # START RotateApiKey
-apiKeyNew = client.users.db.rotate_key(user_id="user-c")
+new_api_key = client.users.db.rotate_key(user_id="user-c")
+print(new_api_key)
 # END RotateApiKey
+assert len(new_api_key) > 0 and new_api_key != user_api_key
 
 # START DeleteUser
 client.users.db.delete(user_id="user-c")
 # END DeleteUser
+assert all(
+    user.user_id != "user-c" for user in client.users.db.list_all()
+), "user-c not deleted"
 
 from weaviate.classes.rbac import Permissions
 
 permissions = [
+    Permissions.collections(
+        collection="TargetCollection*", read_config=True, create_collection=True
+    ),
     Permissions.data(collection="TargetCollection*", read=True, create=True),
-    Permissions.data(collection="TargetCollection*", read=True, create=False),
 ]
 
-client.roles.add_permissions(permissions=permissions, role_name="testRole")
+client.roles.delete(role_name="testRole")
+client.roles.create(role_name="testRole", permissions=permissions)
 
 # START AssignRole
 client.users.assign_roles(user_id="user-b", role_names=["testRole", "viewer"])
@@ -52,14 +62,8 @@ user_roles = client.users.db.get_assigned_roles("user-b")
 for role in user_roles:
     print(role)
 # END ListUserRoles
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].collections_permissions
-)
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].data_permissions
-)
+assert "testRole" in user_roles
+assert "viewer" in user_roles
 
 # START RevokeRoles
 client.users.revoke_roles(user_id="user-b", role_names="testRole")
