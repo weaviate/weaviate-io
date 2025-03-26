@@ -32,6 +32,7 @@ const config = {
     projectName: 'weaviate-io', // Usually your repo name.
     customFields: {
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+        teamtailorApiKey: process.env.TEAMTAILOR_API_KEY
       },
     plugins: [
         [
