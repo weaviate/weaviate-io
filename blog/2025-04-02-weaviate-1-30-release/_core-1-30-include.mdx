@@ -36,9 +36,9 @@ This means that you can now use multi-vector embeddings in your Weaviate instanc
 
 At the same time, vector quantization such as product quantization, scalar quantization, or binary quantization can be applied. Vector quantization reduces the memory footprint of the embeddings while maintaining search quality.
 
-## API-based RBAC user management
+## API-based user management
 
-Role-based access control (RBAC) in Weaviate `v1.30` now supports API-based user management. This means that you can now manage roles and permissions from its client libraries, or using the REST API, as long as you have the necessary permissions.
+User management is a whole lot more flexible from `v1.30`, Weaviate now supports API-based management of users. This means that you can now manage roles and permissions with Weaviate client libraries, or using the REST API, as long as you have the necessary permissions.
 
 This should make administration of Weaviate instances easier. It means managing RBAC users no longer requires direct access to the Weaviate instance, and can be done programmatically without restarting the instance.
 
