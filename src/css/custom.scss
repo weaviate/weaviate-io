@@ -1168,22 +1168,33 @@ ul.dropdown__menu {
 
 .mobileNav {
   display: none !important;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+@media screen and (max-width: 996px) {
+  .mobileNav {
+    display: block !important;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    position: relative;
+    pointer-events: auto;
+  }
+
+  .dropDownContainer2 .holder {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1400px) and (min-width: 1000px) {
   .dropdown--right .dropdown__menu {
     left: inherit;
     right: -140px;
-  }
-}
-
-@media screen and (max-width: 996px) {
-  .dropDownContainer2 .holder {
-    display: none;
-  }
-
-  .mobileNav {
-    display: block !important;
   }
 }
 
