@@ -276,6 +276,12 @@ If both of `AZURE_STORAGE_CONNECTION_STRING` and `AZURE_STORAGE_ACCOUNT` are pro
 At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` must be present.
 :::
 
+#### Azure Blocksize and Concurrency
+| Environment variable | Required | Default | Description |
+| --- | --- | --- | --- |
+| `AZURE_BLOCK_SIZE` | no |  int64(40 x 1024 x 1024) | Configure block size upload parameter |
+| `AZURE_CONCURRENCY` | no |  11 | Configure upload concurrency parameter |
+
 
 ### Filesystem
 
