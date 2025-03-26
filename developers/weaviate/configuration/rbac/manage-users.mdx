@@ -21,7 +21,7 @@ User management is available from version `v1.30`.
 
 In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles.
 
-On this page, you will find examples of how to programatically **manage users** and their associated roles with Weaviate client libraries.
+On this page, you will find examples of how to programmatically **manage users** and their associated roles with Weaviate client libraries.
 
 import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
 
@@ -31,7 +31,7 @@ import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
 
 ### Create a user
 
-This example creates a user called `user-c`:
+This example creates a user called `custom-user`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -67,7 +67,7 @@ This example creates a user called `user-c`:
 
 ### Delete a user
 
-This example deletes a user called `user-c`:
+This example deletes a user called `custom-user`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -103,7 +103,7 @@ This example deletes a user called `user-c`:
 
 ### List all users
 
-This example shows how to get a list of all the users in Weaviate:
+This example shows how to get a list of all the users in Weaviate.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -139,7 +139,7 @@ This example shows how to get a list of all the users in Weaviate:
 
 ### Rotate user API key
 
-This example updates (rotates) the API key for `user-c`:
+This example updates (rotates) the API key for `custom-user`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -179,7 +179,7 @@ This example updates (rotates) the API key for `user-c`:
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
+This example assigns the custom `testRole` role and predefined `viewer` role to `custom-user`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -217,7 +217,7 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
 
 You can revoke one or more roles from a specific user.
 
-This example removes the role `testRole` from the user `user-b`.
+This example removes the role `testRole` from the user `custom-user`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -295,7 +295,7 @@ When using [OIDC](../../config-refs/oidc.md), an identity provider authenticates
 
 An OIDC user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
-This example assigns the custom `testRole` role and predefined `viewer` role to `user-b`.
+This example assigns the custom `testRole` role and predefined `viewer` role to `custom-user`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -333,7 +333,7 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
 
 You can revoke one or more roles from a specific OIDC user.
 
-This example removes the role `testRole` from the user `user-b`.
+This example removes the role `testRole` from the user `custom-user`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">

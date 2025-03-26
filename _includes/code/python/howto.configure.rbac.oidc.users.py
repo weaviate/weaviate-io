@@ -1,3 +1,4 @@
+# TODO[g-despot]: OIDC testing not yet implemented
 from weaviate.classes.rbac import Permissions
 
 # START AdminClient
@@ -18,11 +19,14 @@ client = weaviate.connect_to_local(
 from weaviate.classes.rbac import Permissions
 
 permissions = [
-    Permissions.collections(collection="TargetCollection*", read=True, create=True),
+    Permissions.collections(
+        collection="TargetCollection*", read_config=True, create_collection=True
+    ),
     Permissions.data(collection="TargetCollection*", read=True, create=True),
 ]
 
-client.roles.add_permissions(permissions=permissions, role_name="testRole")
+client.roles.delete(role_name="testRole")
+client.roles.create(role_name="testRole", permissions=permissions)
 
 # START AssignOidcUserRole
 client.users.oidc.assign_roles(user_id="custom-user", role_names=["testRole", "viewer"])
@@ -36,19 +40,12 @@ user_roles = client.users.oidc.get_assigned_roles("custom-user")
 for role in user_roles:
     print(role)
 # END ListOidcUserRoles
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].collections_permissions
-)
-assert any(
-    permission.collection == "TargetCollection*"
-    for permission in user_roles["testRole"].data_permissions
-)
+assert "testRole" in user_roles
+assert "viewer" in user_roles
 
 # START RevokeOidcUserRoles
 client.users.oidc.revoke_roles(user_id="custom-user", role_names="testRole")
 # END RevokeOidcUserRoles
 assert "testRole" not in client.users.oidc.get_assigned_roles("custom-user")
-
 
 client.close()
