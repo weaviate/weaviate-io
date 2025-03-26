@@ -282,7 +282,9 @@ At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` mus
 | `AZURE_BLOCK_SIZE` | no |  int64(40 x 1024 x 1024) | Configure block size upload parameter |
 | `AZURE_CONCURRENCY` | no |  11 | Configure upload concurrency parameter |
 
-
+:::note
+You can also use `X-Azure-Block-Size` and `X-Azure-Concurrency` as a client header parameter
+:::
 ### Filesystem
 
 - Works with Google Cloud Storage
