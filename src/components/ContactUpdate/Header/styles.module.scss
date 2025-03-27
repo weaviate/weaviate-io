@@ -1,0 +1,306 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 0px;
+  }
+
+  span {
+    color: #130c49;
+    font-family: Inter;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 2.1rem */
+  }
+
+  h1 {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: bolder;
+    line-height: 140%;
+    margin-bottom: 1rem;
+    width: 70%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+
+    p {
+      color: #ffffff;
+      width: 80%;
+      @media screen and (max-width: 1000px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.right {
+  @media screen and (max-width: 970px) {
+    display: none;
+  }
+  .image {
+    background: url('/img/site/case-study-header-image-01.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 36.6875rem;
+    height: 26.6875rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    background-position: right;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 1200px) {
+      width: 30.6875rem;
+      height: 26.6875rem;
+    }
+
+    @media screen and (max-width: 1100px) {
+      width: 26.6875rem;
+      height: 26.6875rem;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      min-width: 29rem;
+      height: 26.6875rem;
+      background-position: unset;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .buttonDark {
+    color: #f7f9fd;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 11.3125rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    background: #130c49;
+  }
+
+  .buttonLight {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 157.33%; /* 1.57331rem */
+    display: flex;
+    width: 10.625rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #f7f9fd;
+  }
+}
+
+.headerSecurity {
+  background: #130c49;
+  background-image: url('/img/site/case-study-bg-image-01.png');
+  background-size: cover;
+}
+
+.topText {
+  color: #130c49;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin: 10px 0px;
+}
+.bottomBar {
+  background: #130c49;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.logoWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 40px;
+  animation: scroll 100s linear infinite;
+  width: calc(200% + 40px);
+
+  @media (min-width: 1800px) {
+    animation: none;
+  }
+}
+
+.logo {
+  background-image: url('/img/site/lightlogos/stackoverflow.svg');
+  background-size: cover;
+  background-position: center;
+  width: 4.05294rem;
+  height: 1.2745rem;
+  flex-shrink: 0;
+}
+
+.logo1 {
+  background-image: url('/img/site/lightlogos/instabase.svg');
+  width: 7.00806rem;
+  height: 0.73581rem;
+}
+
+.logo2 {
+  background-image: url('/img/site/lightlogos/redhat.svg');
+  width: 5.41038rem;
+  height: 1.25881rem;
+}
+
+.logo3 {
+  background-image: url('/img/site/lightlogos/mutiny.svg');
+  width: 2.70644rem;
+  height: 1.30169rem;
+}
+
+.logo4 {
+  background-image: url('/img/site/lightlogos/shippo.svg');
+  width: 4.04431rem;
+  height: 1.02769rem;
+}
+
+.logo5 {
+  background-image: url('/img/site/lightlogos/redbull.svg');
+  width: 6.5175rem;
+  height: 1.03213rem;
+}
+
+.logo6 {
+  background-image: url('/img/site/lightlogos/writesonic.svg');
+  width: 5.296rem;
+  height: 1.33944rem;
+}
+
+.logo7 {
+  background-image: url('/img/site/lightlogos/netapp.svg');
+  width: 5.27531rem;
+  height: 0.927rem;
+}
+
+.logo8 {
+  background-image: url('/img/site/lightlogos/amd.svg');
+  width: 4.27531rem;
+  height: 0.927rem;
+}
+
+.logo9 {
+  background-image: url('/img/site/lightlogos/cisco.svg');
+  width: 3.27531rem;
+  height: 1.927rem;
+}
+
+.logo10 {
+  background-image: url('/img/site/lightlogos/morningstar.svg');
+  width: 4.27531rem;
+  height: 0.927rem;
+}
+
+.logo11 {
+  background-image: url('/img/site/lightlogos/stack.svg');
+  width: 4.27531rem;
+  height: 0.927rem;
+}
+
+.logo12 {
+  background-image: url('/img/site/lightlogos/factset.svg');
+  width: 5.27531rem;
+  height: 0.927rem;
+}
+
+.logo13 {
+  background-image: url('/img/site/lightlogos/rakuten.svg');
+}
+
+.logo14 {
+  background-image: url('/img/site/lightlogos/bunq.svg');
+  width: 4.27531rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1600px) {
+  .bottomBar {
+    justify-content: unset;
+  }
+
+  .logoWrapper:hover {
+    animation-play-state: paused;
+  }
+
+  .bottomBar::before,
+  .bottomBar::after {
+    content: '';
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(to right, #130c49, transparent);
+  }
+
+  .bottomBar::after {
+    right: 0;
+    transform: rotate(180deg);
+  }
+}
