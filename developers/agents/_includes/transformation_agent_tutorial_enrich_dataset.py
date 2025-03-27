@@ -106,7 +106,7 @@ add_is_survey_paper = Operations.append_property(
 update_title = Operations.update_property(
     property_name="title",
     view_properties=["abstract"],
-    instruction="""Make the title start with the label MACHINE_LEARNING if the abstract mentions machine learning techniques.""",
+    instruction="""Insert the label MACHINE_LEARNING before the original title if the abstract mentions machine learning techniques.""",
 )
 # END UpdateProperty
 
