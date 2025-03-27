@@ -558,6 +558,29 @@ export const unitData = {
     "owner": "jp",
     "reviewer": "jp"
   },
+  "ai_models_deep_dive": {
+    title: "AI models: A gentle deep dive",
+    body: "A practical introduction to AI models for software engineers or AI builders.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/ai_models_deep_dive",
+    badgeType: "theory",
+    learningGoals: [
+      "What AI models are and what they do",
+      "Overview of model architecture & training",
+      "Common types of models (generative and embedding)",
+      "Examples of models and use cases",
+      "Example usage of AI models with code examples",
+      "How to access AI models",
+    ],
+    learningOutcomes: [
+      "Explain the core concepts of AI model architecture and training",
+      "Describe multiple model types and their appropriate use cases",
+      "Implement basic code for accessing models via inference providers and local inference",
+      "Interpret model cards or specifications",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
