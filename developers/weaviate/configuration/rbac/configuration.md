@@ -50,7 +50,7 @@ services:
       # You MUST define at least one root user
       AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
       # Enable the runtime user management
-      AUTHENTICATION_DYNAMIC_USERS_ENABLED: 'true'
+      AUTHENTICATION_DB_USERS_ENABLED: 'true'
 ```
 
 This configuration:

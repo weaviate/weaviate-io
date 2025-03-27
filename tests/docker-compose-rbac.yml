@@ -8,7 +8,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.31.0-dev-2946b8c-amd64
+    image: cr.weaviate.io/semitechnologies/weaviate:1.30.0-rc.0-0776e8a
     ports:
     - 8580:8080
     - 50551:50051
@@ -23,9 +23,9 @@ services:
       CLUSTER_HOSTNAME: 'node1'
       # AuthN and AuthZ settings
       AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'root-user-key,user-a-key'
-      AUTHENTICATION_APIKEY_USERS: 'root-user,user-a'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'root-user-key'
+      AUTHENTICATION_APIKEY_USERS: 'root-user'
       AUTHORIZATION_RBAC_ENABLED: 'true'
       AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
-      AUTHENTICATION_DYNAMIC_USERS_ENABLED: 'true'
+      AUTHENTICATION_DB_USERS_ENABLED: 'true'
 ...

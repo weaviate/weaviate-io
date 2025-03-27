@@ -15,6 +15,8 @@ client = weaviate.connect_to_local(
 )
 # END AdminClient
 
+user_api_key = client.users.db.delete(user_id="custom-user")
+
 # START CreateUser
 user_api_key = client.users.db.create(user_id="custom-user")
 print(user_api_key)

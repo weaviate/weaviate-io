@@ -65,6 +65,15 @@ This example creates a user called `custom-user`.
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Example results</summary>
+
+```text
+RXF1dU1VcWM1Q3hvVndYT0F1OTBOTDZLZWx0ME5kbWVJRVdPL25EVW12QT1fMXlDUEhUNjhSMlNtazdHcV92MjAw
+```
+
+</details>
+
 ### Delete a user
 
 This example deletes a user called `custom-user`.
@@ -137,6 +146,28 @@ This example shows how to get a list of all the users in Weaviate.
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Example results</summary>
+
+```text
+[
+  UserDB(user_id='custom-user', role_names=['viewer', 'testRole'], user_type=<UserTypes.DB_DYNAMIC: 'db_user'>, active=True), 
+  UserDB(user_id='root-user', role_names=['root'], user_type=<UserTypes.DB_STATIC: 'db_env_user'>, active=True)
+]
+```
+
+</details>
+
+:::info User types in Weaviate
+<!-- NOTE: left out AUTHORIZATION_ADMINLIST_USERS to dissuade usage -->
+<!-- TODO[g-despot]: Check if DB_DYNAMIC is renamed -->
+Under the hood, Weaviate differentiates three types of users:
+- `DB_DYNAMIC`: Database users that can be fully managed through the API.
+- `DB_STATIC`: Database users that are defined through the `AUTHENTICATION_APIKEY_USERS` environment variable and can only be updated through this variable and by restarting the Weaviate instance.
+- `OIDC`: Users that can only be created/deleted through the external OIDC service.
+
+:::
+
 ### Rotate user API key
 
 This example updates (rotates) the API key for `custom-user`.
@@ -172,6 +203,15 @@ This example updates (rotates) the API key for `custom-user`.
 
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>Example results</summary>
+
+```text
+SSs3WGVFbUxMVFhlOEsxVVMrQVBzM1VhQTJIM2xXWngwY01HaXFYVnM1az1fMXlDUEhUNjhSMlNtazdHcV92MjAw
+```
+
+</details>
 
 ## User permissions management <i class="fas fa-user-lock"></i> {#user-permissions-management}
 
@@ -251,9 +291,9 @@ This example removes the role `testRole` from the user `custom-user`.
   </TabItem>
 </Tabs>
 
-### Get a user's roles and permissions
+### Get a user's roles
 
-Retrieve the role and permission information for any user.
+Retrieve the role information for any user.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -286,6 +326,16 @@ Retrieve the role and permission information for any user.
 
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>Example results</summary>
+
+```text
+testRole
+viewer
+```
+
+</details>
 
 ## OIDC: User permissions management <i class="fas fa-user-lock"></i> {#oidc-user-permissions-management}
 
@@ -367,9 +417,9 @@ This example removes the role `testRole` from the user `custom-user`.
   </TabItem>
 </Tabs>
 
-### Get an OIDC user's roles and permissions
+### Get an OIDC user's roles
 
-Retrieve the role and permission information for an OIDC user.
+Retrieve the role information for an OIDC user.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -402,6 +452,16 @@ Retrieve the role and permission information for an OIDC user.
 
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>Example results</summary>
+
+```text
+testRole
+viewer
+```
+
+</details>
 
 ## Further resources
 
