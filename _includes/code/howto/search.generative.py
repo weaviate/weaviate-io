@@ -10,12 +10,14 @@ import os
 wcd_url = os.environ["WCD_DEMO_URL"]
 wcd_api_key = os.environ["WCD_DEMO_RO_KEY"]
 openai_api_key = os.environ["OPENAI_APIKEY"]
+anthropic_api_key = os.environ["ANTHROPIC_APIKEY"]
 
 client = weaviate.connect_to_weaviate_cloud(
     cluster_url=wcd_url,
     auth_credentials=Auth.api_key(wcd_api_key),
     headers={
         "X-OpenAI-Api-Key": openai_api_key,
+        "X-Anthropic-Api-Key": anthropic_api_key
     },
 )
 
@@ -40,10 +42,10 @@ response = reviews.generate.near_text(
     # highlight-end
 )
 
-print(response.generated)
+print(response.generative.text)
 for o in response.objects:
     print(o.properties)
-    print(o.generated)
+    print(o.generative.text)
 # END DynamicRag
 
 # Test results
@@ -70,10 +72,10 @@ response = reviews.generate.near_text(
     return_metadata=MetadataQuery(distance=True),
 )
 
-print(response.generated)
+print(response.generative.text)
 for o in response.objects:
     print(o.properties)
-    print(o.generated)
+    print(o.generative.text)
 # END NamedVectorNearTextPython
 
 # Test results
@@ -106,13 +108,13 @@ response = jeopardy.generate.near_text(
 for o in response.objects:
     print(o.properties["question"])
     # highlight-start
-    print(o.generated)
+    print(o.generative.text)
     # highlight-end
 # END SingleGenerativePython
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
+assert len(response.objects[0].generative.text) > 0
 # End test
 
 
@@ -135,12 +137,12 @@ response = jeopardy.generate.near_text(
 # print source properties and generated responses
 for o in response.objects:
     print(o.properties)
-    print(o.generated)
+    print(o.generative.text)
 # END SingleGenerativePropertiesPython
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
+assert len(response.objects[0].generative.text) > 0
 # End test
 
 # =====================================================
@@ -177,7 +179,7 @@ for o in response.objects:
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
+assert len(response.objects[0].generative.text) > 0
 # End test
 
 # ======================================
@@ -199,12 +201,12 @@ response = jeopardy.generate.near_text(
 )
 
 # print the generated response
-print(response.generated)
+print(response.generative.text)
 # END GroupedGenerativePython
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.generated) > 0
+assert len(response.generative.text) > 0
 # End test
 
 # =====================================================
@@ -231,12 +233,12 @@ response = jeopardy.generate.near_text(
 )
 
 # print the generated response
-print(response.generated)
+print(response.generative.text)
 # END GroupedGenerativeParametersPython
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.generated) > 0
+assert len(response.generative.text) > 0
 # End test
 
 # ======================================================
@@ -258,13 +260,15 @@ response = jeopardy.generate.near_text(
 
 # print the generated response
 # highlight-start
-print(response.generated)
+for o in response.objects:
+    print(o.properties)
+print(response.generative.text)
 # highlight-end
 # END GroupedGenerativeProperties Python
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.generated) > 0
+assert len(response.generative.text) > 0
 # End test
 
 # ==========================================
@@ -276,14 +280,14 @@ import base64
 import requests
 from weaviate.collections.classes.generative import GenerativeParameters
 
-src_img_path = "https://en.wikipedia.org/wiki/Wallaby#/media/File:Red_necked_wallaby444.jpg"
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Red_necked_wallaby444.jpg/360px-Red_necked_wallaby444.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
 
-prompt = GenerativeParameters.single_prompt(
+prompt = GenerativeParameters.grouped_task(
     # highlight-start
-    prompt="Is this the animal from the provided image?",
-    images=[base64_image],         # base64 encoded strings of the image bytes
-    # image_properties=["img"],   # Properties containing images in Weaviate
+    prompt="Are any questions about the animal from the provided image?",
+    images=[base64_image],      # A list of base64 encoded strings of the image bytes
+    # image_properties=["img"], # Properties containing images in Weaviate
     # highlight-end
 )
 
@@ -292,20 +296,21 @@ response = jeopardy.generate.near_text(
     query="Questions about animals", 
     limit=5, 
     # highlight-start
-    single_prompt=prompt,
+    grouped_task=prompt,
+    grouped_properties=["answer", "question"],
     # highlight-end
-    generative_provider=GenerativeConfig.openai(),
+    generative_provider=GenerativeConfig.anthropic(
+        max_tokens=100
+    ),
 )
 
 # print source properties and generated responses
-for o in response.objects:
-    print(o.properties)
-    print(o.generated)
+print(response.generative.text)
 # END WorkingWithImages
 
 # Test results
 assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
+assert len(response.generative.text) > 0
 # End test
 
 client.close()

@@ -460,6 +460,17 @@ The following fields are available for generative search with images:
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Example response</summary>
+
+```
+I apologize, but none of the questions provided are related to the animal shown in the image. The image displays a kangaroo standing in a grassy area with trees in the background. The kangaroo has brown fur, large ears, and a muscular tail visible behind it. It appears to be an adult kangaroo in its natural habitat.
+
+If you'd like to ask questions about the kangaroo or discuss the image further, I'd be happy to do so
+```
+
+</details>
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/connections/index.mdx)
