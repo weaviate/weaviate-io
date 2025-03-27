@@ -102,6 +102,7 @@ For more information on authentication and authorization, see the [Authenticatio
 | `AUTHENTICATION_APIKEY_ALLOWED_KEYS` | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
 | `AUTHENTICATION_APIKEY_ENABLED` | Enable API key-based authentication | `boolean` | `false` |
 | `AUTHENTICATION_APIKEY_USERS` | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |
+| `AUTHENTICATION_DB_USERS_ENABLED` | Allow runtime [user management](../configuration/rbac/manage-users.mdx). Default: `false` | `boolean` | `true` |
 | `AUTHENTICATION_OIDC_CLIENT_ID` | OIDC Client ID | `string` | `my-client-id` |
 | `AUTHENTICATION_OIDC_ENABLED` | Enable OIDC-based authentication | `boolean` | `false` |
 | `AUTHENTICATION_OIDC_GROUPS_CLAIM` | OIDC Groups Claim | `string` | `groups` |
