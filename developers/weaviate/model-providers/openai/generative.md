@@ -165,7 +165,29 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
 
-## Runtime parameters
+## Select generative model at runtime
+
+Aside from setting the model provider on the collection level, you can also select it at runtime.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionOpenAI"
+      endMarker="# END RuntimeModelSelectionOpenAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## Header parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 
@@ -241,6 +263,29 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesOpenAI"
+      endMarker="# END WorkingWithImagesOpenAI"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
 </Tabs>
 
 ## References

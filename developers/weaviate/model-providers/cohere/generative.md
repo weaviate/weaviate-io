@@ -160,7 +160,29 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Cohere API documentation](https://docs.cohere.com/reference/chat).
 
-## Runtime parameters
+## Select generative model at runtime
+
+Aside from setting the model provider on the collection level, you can also select it at runtime.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionCohere"
+      endMarker="# END RuntimeModelSelectionCohere"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+## Header parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

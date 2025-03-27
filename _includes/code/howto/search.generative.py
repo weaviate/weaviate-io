@@ -152,7 +152,7 @@ assert len(response.objects[0].generative.text) > 0
 
 # SingleGenerativeParametersPython
 # highlight-start
-from weaviate.collections.classes.generative import GenerativeParameters
+from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
 
 prompt = GenerativeParameters.single_prompt(
     prompt="Convert this quiz question: {question} and answer: {answer} into a trivia tweet.",
@@ -216,7 +216,7 @@ assert len(response.generative.text) > 0
 # =====================================================
 
 # START GroupedGenerativeParametersPython
-from weaviate.collections.classes.generative import GenerativeParameters
+from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
 
 # highlight-start
 grouped_task = GenerativeParameters.grouped_task(
@@ -282,7 +282,7 @@ assert len(response.generative.text) > 0
 # START WorkingWithImages
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeParameters
+from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/500px-Koala_climbing_tree.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')

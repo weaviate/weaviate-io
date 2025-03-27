@@ -153,6 +153,28 @@ You can [specify](#generative-parameters) one of the [available models](#availab
 
 For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 
+## Select generative model at runtime
+
+Aside from setting the model provider on the collection level, you can also select it at runtime.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RuntimeModelSelectionAWS"
+      endMarker="# END RuntimeModelSelectionAWS"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
 ## Retrieval augmented generation
 
 After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
@@ -217,6 +239,29 @@ In other words, when you have `n` search results, the generative model generates
     />
   </TabItem>
 
+</Tabs>
+
+### RAG with images
+
+You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python API v4">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START WorkingWithImagesAWS"
+      endMarker="# END WorkingWithImagesAWS"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js" label="JS/TS API v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
 </Tabs>
 
 ## References
