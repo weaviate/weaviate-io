@@ -1,6 +1,6 @@
 ---
 title: Astronomer
-sidebar_position: 1
+sidebar_position: 3
 ---
 [Astronomer’s Astro](https://www.astronomer.io/) is a fully managed platform built on top of Apache Airflow. It simplifies the management of Airflow at scale and data ingestion into Weaviate.
 

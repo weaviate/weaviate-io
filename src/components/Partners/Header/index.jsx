@@ -1,10 +1,19 @@
 import React from 'react';
-import { ButtonContainer } from '../../../theme/Buttons';
 import styles from './styles.module.scss';
-import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 
 export default function PartnersHeader() {
+  const handleTabClick = (tab) => {
+    window.history.pushState(null, '', `#request-form?tab=${tab}`);
+
+    document.getElementById('request-form').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+    window.dispatchEvent(new Event('popstate'));
+  };
+
   return (
     <header>
       <div className={styles.partnersHead}>
@@ -19,8 +28,22 @@ export default function PartnersHeader() {
               organizations worldwide.
             </p>
             <div className={styles.buttons}>
-              <Link className={styles.buttonOutline} to="#request-form">
+              <Link
+                className={styles.buttonOutline}
+                onClick={() => handleTabClick('partner')}
+              >
                 Become a Partner
+              </Link>
+              <Link
+                className={styles.buttonOutline}
+                to="#request-form?tab=deal"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace('#request-form?tab=deal');
+                  handleTabClick('deal');
+                }}
+              >
+                Register a Deal
               </Link>
             </div>
           </div>
