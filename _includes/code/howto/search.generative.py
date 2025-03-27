@@ -32,7 +32,8 @@ from weaviate.classes.query import MetadataQuery
 reviews = client.collections.get("WineReviewNV")
 response = reviews.generate.near_text(
     query="a sweet German white wine",
-    target_vector="title_country",  # Specify the target vector for named vector collections
+    limit=2,
+    target_vector="title_country",
     single_prompt="Translate this into German: {review_body}",
     grouped_task="Summarize these review",
     # highlight-start
@@ -42,10 +43,10 @@ response = reviews.generate.near_text(
     # highlight-end
 )
 
-print(response.generative.text)
 for o in response.objects:
-    print(o.properties)
-    print(o.generative.text)
+    print(f"Properties: {o.properties}")
+    print(f"Single prompt result: {o.generative.text}")
+print(f"Grouped task result: {response.generative.text}")
 # END DynamicRag
 
 # Test results
@@ -72,10 +73,10 @@ response = reviews.generate.near_text(
     return_metadata=MetadataQuery(distance=True),
 )
 
-print(response.generative.text)
 for o in response.objects:
-    print(o.properties)
-    print(o.generative.text)
+    print(f"Properties: {o.properties}")
+    print(f"Single prompt result: {o.generative.text}")
+print(f"Grouped task result: {response.generative.text}")
 # END NamedVectorNearTextPython
 
 # Test results
@@ -106,9 +107,9 @@ response = jeopardy.generate.near_text(
 )
 
 for o in response.objects:
-    print(o.properties["question"])
+    print(f"Property 'question': {o.properties['question']}")
     # highlight-start
-    print(o.generative.text)
+    print(f"Single prompt result: {o.generative.text}")
     # highlight-end
 # END SingleGenerativePython
 
@@ -136,8 +137,8 @@ response = jeopardy.generate.near_text(
 
 # print source properties and generated responses
 for o in response.objects:
-    print(o.properties)
-    print(o.generative.text)
+    print(f"Properties: {o.properties}")
+    print(f"Single prompt result: {o.generative.text}")
 # END SingleGenerativePropertiesPython
 
 # Test results
@@ -167,14 +168,15 @@ response = jeopardy.generate.near_text(
     # highlight-start
     single_prompt=prompt,
     # highlight-end
+    generative_provider=GenerativeConfig.openai()
 )
 
 # print source properties and generated responses
 for o in response.objects:
-    print(o.properties)
-    print(o.generative.text)
-    print(o.generative.debug)
-    print(o.generative.metadata)
+    print(f"Properties: {o.properties}")
+    print(f"Single prompt result: {o.generative.text}")
+    print(f"Debug: {o.generative.debug}")
+    print(f"Metadata: {o.generative.metadata}")
 # END SingleGenerativeParametersPython
 
 # Test results
@@ -201,7 +203,7 @@ response = jeopardy.generate.near_text(
 )
 
 # print the generated response
-print(response.generative.text)
+print(f"Grouped task result: {response.generative.text}")
 # END GroupedGenerativePython
 
 # Test results
@@ -230,10 +232,12 @@ response = jeopardy.generate.near_text(
     # highlight-start
     grouped_task=grouped_task,
     # highlight-end
+    generative_provider=GenerativeConfig.openai()
 )
 
 # print the generated response
-print(response.generative.text)
+print(f"Grouped task result: {response.generative.text}")
+print(f"Metadata: {o.generative.metadata}")
 # END GroupedGenerativeParametersPython
 
 # Test results
@@ -261,8 +265,8 @@ response = jeopardy.generate.near_text(
 # print the generated response
 # highlight-start
 for o in response.objects:
-    print(o.properties)
-print(response.generative.text)
+    print(f"Properties: {o.properties}")
+print(f"Grouped task result: {response.generative.text}")
 # highlight-end
 # END GroupedGenerativeProperties Python
 
@@ -280,12 +284,12 @@ import base64
 import requests
 from weaviate.collections.classes.generative import GenerativeParameters
 
-src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Red_necked_wallaby444.jpg/360px-Red_necked_wallaby444.jpg"
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/500px-Koala_climbing_tree.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
 
 prompt = GenerativeParameters.grouped_task(
     # highlight-start
-    prompt="Are any questions about the animal from the provided image?",
+    prompt="Formulate a Jeopardy!-style question about this image",
     images=[base64_image],      # A list of base64 encoded strings of the image bytes
     # image_properties=["img"], # Properties containing images in Weaviate
     # highlight-end
@@ -293,19 +297,21 @@ prompt = GenerativeParameters.grouped_task(
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
-    query="Questions about animals", 
-    limit=5, 
+    query="Australian animals", 
+    limit=3, 
     # highlight-start
     grouped_task=prompt,
-    grouped_properties=["answer", "question"],
     # highlight-end
+    grouped_properties=["answer", "question"],
     generative_provider=GenerativeConfig.anthropic(
-        max_tokens=100
+        max_tokens=1000
     ),
 )
 
-# print source properties and generated responses
-print(response.generative.text)
+# Print the source property and the generated response
+for o in response.objects:
+    print(f"Properties: {o.properties}")
+print(f"Grouped task result: {response.generative.text}")
 # END WorkingWithImages
 
 # Test results

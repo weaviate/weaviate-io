@@ -58,6 +58,30 @@ To use RAG, [a collection must be configured](../manage-data/collections.mdx#spe
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Example response</summary>
+
+```
+Properties: {'country': 'Austria', 'title': 'Gebeshuber 2013 Frizzante Rosé Pinot Noir (Österreichischer Perlwein)', 'review_body': "With notions of cherry and cinnamon on the nose and just slight fizz, this is a refreshing, fruit-driven sparkling rosé that's full of strawberry and cherry notes—it might just be the very definition of easy summer wine. It ends dry, yet refreshing.", 'points': 85, 'price': 21.0}
+
+Single prompt result: Mit Noten von Kirsche und Zimt in der Nase und nur leicht prickelnd, ist dies ein erfrischender, fruchtiger sprudelnder Rosé, der voller Erdbeer- und Kirschnoten steckt - es könnte genau die Definition von leichtem Sommerwein sein. Er endet trocken, aber erfrischend.
+
+Properties: {'price': 27.0, 'points': 89, 'review_body': 'Beautifully perfumed, with acidity, white fruits and a mineral context. The wine is layered with citrus and lime, hints of fresh pineapple acidity. Screw cap.', 'title': 'Stadt Krems 2009 Steinterrassen Riesling (Kremstal)', 'country': 'Austria'}
+
+Single prompt result: Wunderschön parfümiert, mit Säure, weißen Früchten und einem mineralischen Kontext. Der Wein ist mit Zitrus- und Limettennoten durchzogen, mit Anklängen von frischer Ananas-Säure. Schraubverschluss.
+
+Grouped task result: The first review is for the Gebeshuber 2013 Frizzante Rosé Pinot Noir from Austria, describing it as a refreshing and fruit-driven sparkling rosé with cherry and cinnamon notes. It is said to be the perfect easy summer wine, ending dry yet refreshing.
+
+The second review is for the Stadt Krems 2009 Steinterrassen Riesling from Austria, noting its beautiful perfume, acidity, white fruits, and mineral context. The wine is described as layered with citrus and lime flavors, with hints of fresh pineapple acidity. It is sealed with a screw cap.
+```
+
+</details>
+
+:::tip
+
+For more information on the available modeld and their additional options, see the [model providers section](../model-providers/index.md).
+
+:::
 ## Named vectors
 
 :::info Added in `v1.24`
@@ -111,6 +135,25 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+```
+Properties: {'country': 'Austria', 'title': 'Gebeshuber 2013 Frizzante Rosé Pinot Noir (Österreichischer Perlwein)', 'review_body': "With notions of cherry and cinnamon on the nose and just slight fizz, this is a refreshing, fruit-driven sparkling rosé that's full of strawberry and cherry notes—it might just be the very definition of easy summer wine. It ends dry, yet refreshing.", 'points': 85, 'price': 21.0}
+
+Single prompt result: Mit Noten von Kirsche und Zimt in der Nase und nur leicht prickelnd, ist dies ein erfrischender, fruchtiger sprudelnder Rosé, der voller Erdbeer- und Kirschnoten steckt - es könnte genau die Definition von leichtem Sommerwein sein. Er endet trocken, aber erfrischend.
+
+Properties: {'price': 27.0, 'points': 89, 'review_body': 'Beautifully perfumed, with acidity, white fruits and a mineral context. The wine is layered with citrus and lime, hints of fresh pineapple acidity. Screw cap.', 'title': 'Stadt Krems 2009 Steinterrassen Riesling (Kremstal)', 'country': 'Austria'}
+
+Single prompt result: Wunderschön parfümiert, mit Säure, weißen Früchten und einem mineralischen Kontext. Der Wein ist mit Zitrus- und Limettennoten durchzogen, mit Anklängen von frischer Ananas-Säure. Schraubverschluss.
+
+Grouped task result: The first review is for the Gebeshuber 2013 Frizzante Rosé Pinot Noir from Austria, describing it as a refreshing and fruit-driven sparkling rosé with cherry and cinnamon notes. It is said to be the perfect easy summer wine, ending dry yet refreshing.
+
+The second review is for the Stadt Krems 2009 Steinterrassen Riesling from Austria, noting its beautiful perfume, acidity, white fruits, and mineral context. The wine is described as layered with citrus and lime flavors, with hints of fresh pineapple acidity. It is sealed with a screw cap.
+```
+
+</details>
 
 ## Single prompt search
 
@@ -177,14 +220,13 @@ The properties you use in the prompt do not have to be among the properties you 
 <details>
   <summary>Example response</summary>
 
-The output is like this:
+```
+Property 'question': Including, in 19th century, one quarter of world's land & people, the sun never set on it
+Single prompt result: Did you know that in the 19th century, one quarter of the world's land and people were part of an empire where the sun never set? ☀️🌍 #historybuffs #funfact
 
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# SingleGenerativeProperties Expected Results"
-  endMarker="# END SingleGenerativeProperties Expected Results"
-  language="json"
-/>
+Property 'question': From Menes to the Ptolemys, this country had more kings than any other in ancient history
+Single prompt result: Which country in ancient history had more kings than any other, from Menes to the Ptolemys? 👑🏛️ #historybuffs #ancientkings
+```
 
 </details>
 
@@ -227,7 +269,36 @@ You can use *generative parameters* to specify additional options when performin
   </TabItem>
 </Tabs>
 
-<!-- TODO[g-despot]: Add response before publishing -->
+<details>
+  <summary>Example response</summary>
+
+```
+Properties: {'points': 400, 'answer': 'the British Empire', 'air_date': datetime.datetime(1984, 12, 10, 0, 0, tzinfo=datetime.timezone.utc), 'question': "Including, in 19th century, one quarter of world's land & people, the sun never set on it", 'round': 'Double Jeopardy!'}
+
+Single prompt result: Did you know that in the 19th century, the sun never set on the British Empire, which included one quarter of the world's land and people? #triviatuesday #britishempire
+
+Debug: full_prompt: "Convert this quiz question: Including, in 19th century, one quarter of world\'s land & people, the sun never set on it and answer: the British Empire into a trivia tweet."
+
+Metadata: usage {
+  prompt_tokens: 46
+  completion_tokens: 43
+  total_tokens: 89
+}
+
+Properties: {'points': 400, 'answer': 'Egypt', 'air_date': datetime.datetime(1989, 9, 5, 0, 0, tzinfo=datetime.timezone.utc), 'question': 'From Menes to the Ptolemys, this country had more kings than any other in ancient history', 'round': 'Double Jeopardy!'}
+
+Single prompt result: Did you know that Egypt had more kings than any other country in ancient history, from Menes to the Ptolemys? #triviathursday #ancienthistory
+
+Debug: full_prompt: "Convert this quiz question: From Menes to the Ptolemys, this country had more kings than any other in ancient history and answer: Egypt into a trivia tweet."
+
+Metadata: usage {
+  prompt_tokens: 42
+  completion_tokens: 36
+  total_tokens: 78
+}
+```
+
+</details>
 
 ## Grouped task search
 
@@ -292,21 +363,13 @@ Grouped task search returns one response that includes all of the query results.
 <details>
   <summary>Example response</summary>
 
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# GroupedGenerative Expected Results"
-  endMarker="# END GroupedGenerative Expected Results"
-  language="json"
-/>
+```
+Grouped task result: All of these animals are mammals.
+```
 
 </details>
 
 ### Set grouped task prompt properties
-
-:::info Added in `v1.18.3`
-:::
 
 Define object `properties` to use in the prompt. This limits the information in the prompt and reduces prompt length.
 
@@ -369,14 +432,9 @@ Define object `properties` to use in the prompt. This limits the information in 
 <details>
   <summary>Example response</summary>
 
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# GroupedGenerativeProperties Expected Results"
-  endMarker="# END GroupedGenerativeProperties Expected Results"
-  language="json"
-/>
+```
+Grouped task result: The commonality among these animals is that they are all native to Australia.
+```
 
 </details>
 
@@ -419,7 +477,19 @@ You can use *generative parameters* to specify additional options when performin
   </TabItem>
 </Tabs>
 
-<!-- TODO[g-despot]: Add response before publishing -->
+<details>
+  <summary>Example response</summary>
+
+```
+Grouped task result: They are all animals.
+Metadata: usage {
+  prompt_tokens: 42
+  completion_tokens: 36
+  total_tokens: 78
+}
+```
+
+</details>
 
 ## Working with images
 
@@ -464,9 +534,17 @@ The following fields are available for generative search with images:
   <summary>Example response</summary>
 
 ```
-I apologize, but none of the questions provided are related to the animal shown in the image. The image displays a kangaroo standing in a grassy area with trees in the background. The kangaroo has brown fur, large ears, and a muscular tail visible behind it. It appears to be an adult kangaroo in its natural habitat.
+Properties: {'points': 800, 'answer': 'sheep', 'air_date': datetime.datetime(2007, 12, 13, 0, 0, tzinfo=datetime.timezone.utc), 'question': 'Australians call this animal a jumbuck or a monkey', 'round': 'Jeopardy!'}
+Properties: {'points': 100, 'answer': 'Australia', 'air_date': datetime.datetime(2000, 3, 10, 0, 0, tzinfo=datetime.timezone.utc), 'question': 'An island named for the animal seen <a href="http://www.j-archive.com/media/2000-03-10_J_01.jpg" target="_blank">here</a> belongs to this country [kangaroo]', 'round': 'Jeopardy!'}
+Properties: {'points': 300, 'air_date': datetime.datetime(1996, 7, 18, 0, 0, tzinfo=datetime.timezone.utc), 'answer': 'Kangaroo', 'question': 'Found chiefly in Australia, the wallaby is a smaller type of this marsupial', 'round': 'Jeopardy!'}
 
-If you'd like to ask questions about the kangaroo or discuss the image further, I'd be happy to do so
+Grouped task result: I'll formulate a Jeopardy!-style question based on the image of the koala:
+
+Answer: This Australian marsupial, often mistakenly called a bear, spends most of its time in eucalyptus trees.
+
+Question: What is a koala?
+
+This question fits the Jeopardy! format and relates directly to the koala shown in the image, highlighting its Australian origin, marsupial classification, and association with eucalyptus trees. It also addresses the common misconception of calling koalas "koala bears" when they are not actually bears.
 ```
 
 </details>
