@@ -170,7 +170,7 @@ The following examples show how to configure VoyageAI-specific options.
 For further details on model parameters, see the [VoyageAI API documentation](https://docs.voyageai.com/reference/multimodal-embeddings-api).
 
 
-## Runtime parameters
+## Header parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 

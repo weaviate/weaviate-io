@@ -133,7 +133,7 @@ You can specify one of the [available models](#available-models) for Weaviate to
 
 The [default model](#available-models) is used if no model is specified.
 
-## Runtime parameters
+## Header parameters
 
 You can provide the API key as well as some optional parameters at runtime through additional headers in the request. The following headers are available:
 
