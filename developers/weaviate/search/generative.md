@@ -424,6 +424,9 @@ You can use *generative parameters* to specify additional options when performin
 ## Working with images
 
 You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+The following fields are available for generative search with images:
+- `images`: A base64 encoded string of the image bytes.
+- `image_properties`: Names of the properties in Weaviate that store images for additional context.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

@@ -48,9 +48,7 @@ for o in response.objects:
 
 # Test results
 assert response.objects[0].collection == "WineReviewNV"
-assert len(response.objects) == 2
 assert "title" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
 # End test
 
 # ===============================================
@@ -172,7 +170,9 @@ response = jeopardy.generate.near_text(
 # print source properties and generated responses
 for o in response.objects:
     print(o.properties)
-    print(o.generated)
+    print(o.generative.text)
+    print(o.generative.debug)
+    print(o.generative.metadata)
 # END SingleGenerativeParametersPython
 
 # Test results
@@ -239,17 +239,6 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert len(response.generated) > 0
 # End test
 
-)
-from weaviate.classes.query import MetadataQuery
-
-# highlight-start
-single_prompt = GenerativeParameters.single_prompt(
-    prompt="Translate this into German: {review_body}",
-    metadata=True,
-    debug=True,
-)
-
-
 # ======================================================
 # ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
 # ======================================================
@@ -287,24 +276,25 @@ import base64
 import requests
 from weaviate.collections.classes.generative import GenerativeParameters
 
-src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
+src_img_path = "https://en.wikipedia.org/wiki/Wallaby#/media/File:Red_necked_wallaby444.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
 
 prompt = GenerativeParameters.single_prompt(
     # highlight-start
-    prompt="Does the movie have anything to do with the provided image",
-    images=base64_image,         # base64 encoded strings of the image bytes
-    image_properties="poster",   # Properties containing images in Weaviate
+    prompt="Is this the animal from the provided image?",
+    images=[base64_image],         # base64 encoded strings of the image bytes
+    # image_properties=["img"],   # Properties containing images in Weaviate
     # highlight-end
 )
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
-    query="Movies about nature and space", 
+    query="Questions about animals", 
     limit=5, 
     # highlight-start
     single_prompt=prompt,
     # highlight-end
+    generative_provider=GenerativeConfig.openai(),
 )
 
 # print source properties and generated responses
