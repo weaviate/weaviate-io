@@ -569,14 +569,13 @@ export const unitData = {
       "Overview of model architecture & training",
       "Common types of models (generative and embedding)",
       "Examples of models and use cases",
-      "Example usage of AI models with code examples",
-      "How to access AI models",
+      "How to access AI models (with code example)",
     ],
     learningOutcomes: [
       "Explain the core concepts of AI model architecture and training",
       "Describe multiple model types and their appropriate use cases",
-      "Implement basic code for accessing models via inference providers and local inference",
-      "Interpret model cards or specifications",
+      "Implement basic code for accessing models",
+      "Interpret key details of model cards or specifications",
     ],
     owner: "jp",
     reviewer: "jp"
