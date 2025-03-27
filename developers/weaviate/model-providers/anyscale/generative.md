@@ -159,7 +159,7 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Anyscale Endpoints API documentation](https://docs.endpoints.anyscale.com/).
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 

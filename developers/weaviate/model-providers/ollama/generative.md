@@ -119,7 +119,7 @@ import APIEndpoint from '/developers/weaviate/model-providers/_includes/ollama/a
 
 The [default model](#available-models) is used if no model is specified.
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 

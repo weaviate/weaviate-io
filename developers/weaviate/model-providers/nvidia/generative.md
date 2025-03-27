@@ -161,7 +161,7 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [NVIDIA API documentation](https://docs.api.nvidia.com/nim/reference/llm-apis).
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 

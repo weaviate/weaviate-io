@@ -153,7 +153,7 @@ You can [specify](#generative-parameters) one of the [available models](#availab
 
 For further details on model parameters, see the [relevant AWS documentation](#further-resources).
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 

@@ -134,7 +134,7 @@ Configure the following generative parameters to customize the model behavior.
 
 For further details on model parameters, see the [Databricks documentation](https://docs.databricks.com/en/machine-learning/foundation-models/api-reference.html#chat-task).
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 

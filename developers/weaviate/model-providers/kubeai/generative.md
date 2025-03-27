@@ -109,7 +109,7 @@ Any model that is supported by vLLM or Ollama can be used with KubeAI.
 
 Refer to the [KubeAI docs on model management](https://www.kubeai.org/how-to/manage-models/) for more information on available models and how to configure them.
 
-## Select generative model at runtime
+## Select a model at runtime
 
 Aside from setting the model provider on the collection level, you can also select it at runtime.
 
