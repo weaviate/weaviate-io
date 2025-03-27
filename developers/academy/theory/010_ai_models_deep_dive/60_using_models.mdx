@@ -1,0 +1,500 @@
+---
+title: Using AI models
+description: A very brief introduction to how AI models are trained
+---
+
+import ThemedImage from '@theme/ThemedImage';
+
+Up until this point of the module, we have been largely discussing theoretical aspects of AI models. Hopefully, this has helped you to develop, or solidify, a foundational understanding of these models.
+
+But we have not forgotten that AI models are more than just impressive scientific advancements. They are tools for us to use so that we can be more productive. Let’s now take that understanding and start to translate it to practical usage.
+
+In this section, we begin to show examples of AI model usage. Once a model is built, the step of using, or running, a model to produce outputs is also called “performing inference”.
+
+## <i class="fa-solid fa-chalkboard-user"></i> Inference: The basics
+
+import NNInference from './_img/nn_explained_80_inference.png';
+import NNInferenceDark from './_img/nn_explained_80_inference_dark.png';
+
+<ThemedImage
+  alt="Neural Network Node Calculations"
+  sources={{
+    light: NNInference,
+    dark: NNInferenceDark,
+  }}
+  width="450"
+/>
+
+The available model inference options can be quite extensive, from the inference modality to the model provider and model itself. As a result, the permutations of possible decisions can easily be overwhelming.
+
+So, this section is designed to give you an organized overview of popular choices.
+
+First we will cover different ways or modes of using these models - whether to use an inference provider, or perform local inference. Then, within each mode, we will show some examples of performing inference through popular providers or software libraries.
+
+This should remove some of the intimidation and mystique from the range of options, and set the ground work for our later discussions on model evaluation and selection.
+
+:::note this section does not use Weaviate.**
+
+You may already know that Weaviate integrates with model providers to make inference easier. In this section, however, we will access the model ourselves. This will help you to understand what is going on under-the-hood when Weaviate performs inference on your behalf later on.
+
+:::
+
+## <i class="fa-solid fa-chalkboard-user"></i> Inference via service providers
+
+The lowest-friction method for accessing modern AI models is to use a web API provided by an inference service provider.
+
+Thanks to the explosion of popularity for certain types of AI models, there are innumerate inference providers (and APIs) available that almost anyone can sign up and use.
+
+Popular inference providers include Anthropic, AWS, Cohere, Google, Microsoft, OpenAI, and many, many more.
+
+Not all models are available at all inference providers. Some inference providers also develop their own, proprietary models, while others specialize in simply providing an inference service.
+
+Let’s take a look at examples of performing inference through Cohere.
+
+:::info Will this cost me anything?
+
+At the time of writing, Cohere offered API access that were free of charge, with caveats / limitations. Please review the provider’s latest terms and conditions for details. We note that if you do use paid services, the volume of inference performed for these sections are very small, and costs will be relatively small (under US$1).
+
+### <i class="fa-solid fa-chalkboard-user"></i> Preparation
+
+For this section, we will use Cohere. [Cohere](https://cohere.com/) develops a range of generative, embedding and re-ranker models. Cohere’s models are available through other inference services, as well as Cohere itself. Here, we will use the Cohere API directly.
+
+:::info
+At the time of writing, Cohere offered a trial key which is available free of charge.
+:::
+
+To use the Cohere API, [sign up for an account](https://cohere.com/), and then navigate to their dashboard. There, you should be able to navigate to a section for `API keys`, where you can manage your API keys.
+
+Create a trial key, which should be sufficient for this usage. Set the API key as an environment variable, with the name `COHERE_API_KEY`.
+
+Install the Cohere SDK with your preferred environment with your preferred package manager. For example:
+
+```bash
+pip install cohere
+```
+
+### <i class="fa-solid fa-code"></i> Embedding model usage
+
+The following snippet will convert a series of text snippets (`source_texts`) into embeddings:
+
+```python
+import cohere
+import os
+
+cohere_api_key = os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(api_key=cohere_api_key)
+
+source_texts = [
+    "You're a wizard, Harry.",
+    "Space, the final frontier.",
+    "I'm going to make him an offer he can't refuse.",
+]
+
+response = co.embed(
+    texts=source_texts,
+    model="embed-english-light-v3.0",
+    input_type="search_document",
+    embedding_types=["float"],
+)
+
+source_embeddings = []
+for e in response.embeddings.float_:
+    print(len(e))                   # This will be the length of the embedding vector
+    print(e[:5])                    # This will print the first 10 elements of the embedding vector
+    source_embeddings.append(e)     # Save the embedding for later use
+```
+
+Note that for saving source texts to search though later on, we specify the input type `search_document` here.
+
+This should output something like this (note the exact numbers may vary):
+
+```
+384
+[0.024459839, 0.039001465, -0.013053894, 0.016342163, -0.049926758]
+384
+[-0.0051002502, 0.017578125, -0.0256958, 0.023513794, 0.018493652]
+384
+[-0.076660156, 0.04244995, -0.07366943, 0.0019054413, -0.007736206]
+```
+
+Printing for each vector its length (dimensionality) and the first few dimensions.
+
+Then, to find the piece of text that best matches a query (let’s say: `intergalactic voyage`), we would first embed the query text:
+
+```python
+# Get the query embedding:
+query_text = "Intergalactic voyage"
+
+response = co.embed(
+    texts=[query_text],
+    model="embed-english-light-v3.0",
+    input_type="search_query",
+    embedding_types=["float"],
+)
+
+query_embedding = response.embeddings.float_[0]
+
+print(len(query_embedding))
+print(query_embedding[:5])
+```
+
+This should produce:
+
+```
+384
+[-0.007019043, -0.097839355, 0.023117065, 0.0049324036, 0.047027588]
+```
+
+Indicating that our query vector is the same dimensionality as the document vector, and that each dimension has a similar format.
+
+To perform a vector search:
+
+```python
+# Find the most similar source text to the query:
+import numpy as np
+
+# Calculate the dot product between the query embedding and each source embedding
+dot_products = [np.dot(query_embedding, e) for e in source_embeddings]
+
+# Find the index of the maximum dot product
+most_similar_index = np.argmax(dot_products)
+
+# Get the most similar source text
+most_similar_text = source_texts[most_similar_index]
+
+print(f"The most similar text to '{query_text}' is:")
+print(most_similar_text)
+```
+
+This should produce the output:
+
+```
+The most similar text to 'Intergalactic voyage' is:
+Space, the final frontier.
+```
+
+Hopefully, you will agree that this makes good intuitive sense. If you are curious, try varying the source texts, and/or the query texts.
+
+The embedding model does its best to capture meaning, but it isn’t perfect. A particular embedding model will work better with particular domains or languages.
+
+### <i class="fa-solid fa-code"></i> Generative model usage
+
+Now, let’s use one of Cohere’s large language models. We will ask it to explain how a large language model works:
+
+```python
+import cohere
+import os
+
+cohere_api_key = os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(api_key=cohere_api_key)
+
+messages = [
+    {
+        "role": "user",
+        "content": "Hi there. Please explain how language models work, in just a sentence or two.",
+    }
+]
+
+response = co.chat(
+    model="command-r-plus",
+    messages=messages,
+)
+
+print(response.message.content[0].text)
+
+```
+
+The response may look something like this (note the exact output may vary):
+
+```
+Language models are artificial intelligence systems that generate and understand human language by analyzing vast amounts of text data and learning patterns, structures, and context to create responses or translations. These models use machine learning algorithms to create statistical representations of language, enabling them to produce human-like text output.
+```
+
+If you’ve seen a web interface such as Claude AI or ChatGPT, you would be familiar with multi-turn conversations.
+
+In an API, you can achieve the same result by simply providing the preceding conversations to the LLM:
+
+```python
+import cohere
+import os
+
+cohere_api_key = os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(api_key=cohere_api_key)
+
+messages = [
+    {
+        "role": "user",
+        "content": "Hi there. Please explain how language models work, in just a sentence or two.",
+    }
+]
+
+# Initial response from the model
+response = co.chat(
+    model="command-r-plus",
+    messages=messages,
+)
+
+# Append the initial response to the messages
+messages.append(
+    {
+        "role": "assistant",
+        "content": response.message.content[0].text,
+    }
+)
+
+# Provide a follow-up prompt
+messages.append(
+    {
+        "role": "user",
+        "content": "Ah, I see. Now, can you write that in a Haiku?",
+    }
+)
+
+response = co.chat(
+    model="command-r-plus",
+    messages=messages,
+)
+
+# This response will take both the initial and follow-up prompts into account
+print(response.message.content[0].text)
+```
+
+The response may look like this:
+
+```
+Language models, oh
+Patterns and words, they dance
+New text, probabilities.
+```
+
+Notice that because the entire message history was included, the language model correctly responded, using the message history as context.
+
+This is quite similar to what happens in applications such as Claude AI or ChatGPT. As you type in your answers, the entire message history is being used to perform model inference.
+
+You’ve now seen how model inference works using Cohere’s web-based APIs. In this pattern, the models are hosted online and run remotely. Next, we’ll take a look at an example where we run these models locally.
+
+## <i class="fa-solid fa-chalkboard-user"></i> Local inference
+
+In many cases, it may be desirable or even required to perform AI model inference using a local (or on-premise) model.
+
+This may be brought on be a variety of reasons. You may wish (or need) to keep the data local (e.g. compliance or security), or have a custom-trained proprietary model. Or, the economics may be preferable for local inference over commercial inference APIs.
+
+While there are arguably fewer options for local inference than those offered by inference providers, the range of choices is still quite wide. There are huge number of publicly available models as well as software libraries to make the process easier. As well as general deep learning libraries such as PyTorch or TensorFlow, libraries such as Hugging Face Transformers, Ollama and ONNX Runtime make it easier to perform local inference. In the case of Ollama and ONNX Runtime, at reasonable speeds without any hardware (GPU / TPU) acceleration.
+
+Let’s take a look at examples of performing inference through Ollama.
+
+:::info Model licenses
+
+Just like any other product, AI models often come with a particular license that details what you can and cannot do.
+
+When it comes to publicly available models, keep in mind that not all of them allow commercial usage. Consult each model’s license to evaluate for yourself whether it is suitable for your use case.
+
+:::
+
+### <i class="fa-solid fa-chalkboard-user"></i> Preparation
+
+For this section, we will use Ollama.
+[Ollama](https://ollama.com/) is a an open-source framework for running and deploying AI models locally. It provides an easy way to download, set up, and interact with a variety of open-source models like Llama, Mistral, and Snowflake embedding models. Ollama offers both a command-line interface and a REST API, as well as programming language-specific SDKs.
+
+:::info System requirements
+
+We will be performing local inference in this section. Even though we will use relatively small models, these AI models require somewhat significant system resources. We recommend using a modern computer, with at least 16 GB of RAM.
+
+A GPU is not required.
+
+:::
+
+To use Ollama, go to the site and follow the download and installation instructions.
+
+Then, pull the required models. We will use the 1 billion parameter Gemma3 generative model, and the 110 million parameter Snowflake Arctic embedding model.
+
+Once you have Ollama installed, pull the models with:
+
+```bash
+ollama pull gemma3:1b
+ollama pull snowflake-arctic-embed:110m
+```
+
+Now, check that the models are loaded by running:
+
+```bash
+ollama list
+```
+
+The resulting output should include the `gemma3:1b` and `snowflake-arctic-embed:110m` models.
+
+Install the Ollama Python library with your preferred environment with your preferred package manager. For example:
+
+```bash
+pip install ollama
+```
+
+### <i class="fa-solid fa-code"></i> Embedding model usage
+
+The following snippet will convert a series of text snippets (`source_texts`) into embeddings:
+
+```python
+import ollama
+
+source_texts = [
+    "You're a wizard, Harry.",
+    "Space, the final frontier.",
+    "I'm going to make him an offer he can't refuse.",
+]
+
+response = ollama.embed(model='snowflake-arctic-embed:110m', input=source_texts)
+
+source_embeddings = []
+for e in response.embeddings:
+    print(len(e))                   # This will be the length of the embedding vector
+    print(e[:5])                    # This will print the first 10 elements of the embedding vector
+    source_embeddings.append(e)     # Save the embedding for later use
+```
+
+This should output something like this (note the exact numbers may vary):
+
+```
+768
+[-0.030614788, 0.01759585, -0.001181114, 0.025152, 0.005875709]
+768
+[-0.039889574, 0.05197108, 0.036466435, 0.012909834, 0.012069418]
+768
+[-0.04942698, 0.05466185, -0.007884168, -0.00252788, -0.0025294009]
+```
+
+Printing for each vector its length (dimensionality) and the first few dimensions. (Note the number of dimensions here are different to the Cohere example, as the two models vary in their *dimensionality*.)
+
+Let’s follow the same steps. First, we find the piece of text that best matches a query (let’s say: `intergalactic voyage`), we would first embed the query text:
+
+```python
+# Get the query embedding:
+query_text = "Intergalactic voyage"
+
+response = ollama.embed(model='snowflake-arctic-embed:110m', input=query_text)
+
+query_embedding = response.embeddings[0]
+
+print(len(query_embedding))
+print(query_embedding[:5])
+```
+
+Producing a result such as:
+
+```
+768
+[-0.043455746, 0.05260946, 0.025877617, -0.017234074, 0.027434561]
+```
+
+Again, here our query vector is the same dimensionality as the document vector, and that each dimension has a similar format.
+
+To perform a vector search:
+
+```python
+# Find the most similar source text to the query:
+import numpy as np
+
+# Calculate the dot product between the query embedding and each source embedding
+dot_products = [np.dot(query_embedding, e) for e in source_embeddings]
+
+# Find the index of the maximum dot product
+most_similar_index = np.argmax(dot_products)
+
+# Get the most similar source text
+most_similar_text = source_texts[most_similar_index]
+
+print(f"The most similar text to '{query_text}' is:")
+print(most_similar_text)
+```
+
+Note the snippet to compare embeddings is identical to that used in the Cohere example. This should produce the output:
+
+```
+The most similar text to 'Intergalactic voyage' is:
+Space, the final frontier.
+```
+
+Happily for us, the Snowflake model also identified the same space-related passage as the closest one out of the candidates.
+
+### <i class="fa-solid fa-code"></i> Generative model usage
+
+Now, let’s move to try using a large language model with Ollama, using the `gemma3:1b` model. We will once again ask to explain how a large language model works:
+
+```python
+from ollama import chat
+from ollama import ChatResponse
+
+messages = [
+    {
+        "role": "user",
+        "content": "Hi there. Please explain how language models work, in just a sentence or two.",
+    }
+]
+
+response: ChatResponse = chat(model='gemma3:1b', messages=messages)
+
+print(response.message.content)
+```
+
+The response may look something like this (note the exact output may vary):
+
+```
+Language models, like me, are trained on massive amounts of text data to predict the next word in a sequence, essentially learning patterns and relationships within language to generate text that seems coherent and relevant.
+```
+
+As before, we can perform a multi-turn conversation:
+
+```python
+from ollama import chat
+from ollama import ChatResponse
+
+messages = [
+    {
+        "role": "user",
+        "content": "Hi there. Please explain how language models work, in just a sentence or two.",
+    }
+]
+
+# Initial response from the model
+response: ChatResponse = chat(model='gemma3:1b', messages=messages)
+
+# Append the initial response to the messages
+messages.append(
+    {
+        "role": "assistant",
+        "content": response.message.content,
+    }
+)
+
+# Provide a follow-up prompt
+messages.append(
+    {
+        "role": "user",
+        "content": "Ah, I see. Now, can you write that in a Haiku?",
+    }
+)
+
+response: ChatResponse = chat(model='gemma3:1b', messages=messages)
+
+# This response will take both the initial and follow-up prompts into account
+print(response.message.content)
+```
+
+The response (for me) looked like this:
+
+```
+Words flow, patterns bloom,
+Digital mind learns to speak,
+Meaning takes new form.
+```
+
+Although the specific response and syntax were different, the general workflow and principles were the same between using an inference provider and a local model.
+
+So the question is - how do you go about making these choices?
+
+As alluded to earlier, this is an important, but huge topic, which we will tackle later. But we will tackle some of the factors in the next section to get you started. We’ll look at how to broadly choose between an inference provider and a local model, as well as how to read model cards.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
