@@ -16,20 +16,22 @@ export default function StudyHeader() {
             </h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
-                <Link
-                  to="/case-studies/morningstar"
-                  className={styles.buttonDark}
-                >
-                  Read the story
-                </Link>
-                <Link to="#contact-sales" className={styles.buttonLight}>
-                  Contact sales
+                <Link to="#contact" className={styles.buttonLight}>
+                  Contact
                 </Link>
               </div>
             </div>
           </div>
           <div className={styles.right}>
-            <div className={styles.image}></div>
+            <iframe
+              width="720"
+              height="400"
+              src="https://www.youtube.com/embed/NObCyVszHdo"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; controls"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>

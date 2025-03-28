@@ -11,6 +11,7 @@ import WhatYouCanDo from '/src/components/ContactUpdate/WhatYouCanDoUpdate/index
 import FAQ from '/src/components/ContactUpdate/FAQ/index.jsx';
 import Testimonials from '/src/components/ContactUpdate/Testimonials';
 import ContactFrom from '/src/components/ContactUpdate/contactForm.jsx';
+import Footer from '/src/components/ContactUpdate/Footer';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import CTA from '/src/components/Home/Redesign/CTA';
 
@@ -34,7 +35,7 @@ export default function ContactPage() {
       <FAQ />
       <Testimonials />
       <ContactFrom />
-      <CTA />
+      <Footer />
 
       <ThemeSwitch />
     </div>

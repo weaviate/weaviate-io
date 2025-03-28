@@ -35,6 +35,8 @@ export default function Main() {
             <div className={styles.buttons}>
               <Link
                 to="/case-studies/neople"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.arrowButton}
               ></Link>
             </div>
@@ -47,6 +49,8 @@ export default function Main() {
             <div className={styles.buttons}>
               <Link
                 to="/blog/moonsift-story"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.arrowButton}
               ></Link>
             </div>
@@ -59,6 +63,8 @@ export default function Main() {
             <div className={styles.buttons}>
               <Link
                 to="/blog/unbody-weaviate"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.arrowButton}
               ></Link>
             </div>

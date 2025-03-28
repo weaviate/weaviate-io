@@ -29,7 +29,7 @@ export default function StickyHeader() {
           onClick={() => history.push('/')}
         />
         <button
-          onClick={() => history.push('#contact-sales')}
+          onClick={() => history.push('#contact')}
           className={styles['cta-button']}
         >
           Contact

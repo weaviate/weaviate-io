@@ -32,7 +32,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className={styles.contactBackground} id="contact-sales">
+    <div className={styles.contactBackground} id="contact">
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>
