@@ -13,21 +13,11 @@ import PyCode from '!!raw-loader!/developers/weaviate/tutorials/_includes/multi-
 
 In this section, we will explore how to use multi-vector embeddings in Weaviate. Multi-vector embeddings (implemented through models like ColBERT, ColPali, or ColQwen) represent each object or query using multiple vectors instead of a single vector. This approach enables more precise searching through "late interaction" - a technique that matches individual parts of texts rather than comparing them as whole units.
 
-:::caution Multi-vector embeddings technical preview
-Multi-vector support is added in `v1.29` as a **technical preview**.
-<br/>
-
-This means that the feature is still under development and may change in future releases, including potential breaking changes. Currently, quantization is not supported for multi-vector embeddings.
-<br/>
-
-**We do not recommend using this feature in production environments at this time.**
-:::
-
 ## Prerequisites
 
 Before starting this tutorial, ensure you have the following:
 
-- An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally).
+- An instance of Weaviate (e.g. on [Weaviate Cloud](https://console.weaviate.cloud), or locally), version `v1.29` or newer.
 - Your preferred Weaviate client library installed.
 - An API key for Jina AI
     - A free, "toy" key can be obtained from [Jina AI](https://jina.ai/).
