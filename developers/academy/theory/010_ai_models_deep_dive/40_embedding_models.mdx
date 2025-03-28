@@ -17,13 +17,13 @@ Let's take a look at what embedding models are, and why they are so important.
 
 ## <i class="fa-solid fa-chalkboard-user"></i> How embedding models work
 
-Embedding models seek to capture a “meaning” of the input provided to it, so that it can be used later for tasks such as classification, clustering, or most commonly, information retrieval.
+An embedding model seeks to capture a “meaning” of the input provided to it. The output embedding can then be used later for tasks such as classification, clustering, or most commonly, information retrieval.
 
 Commonly used embedding models include Cohere’s `embed-multilingual-v3.0`, OpenAI’s `text-embedding-3-large` and Snowflake’s `snowflake-arctic-embed-l-v2.0`.
 
 These names tend to be more generic and descriptive. Combined with their less glamorous status, these models may not be as well-known.
 
-But they are no less interesting than generative models, and often share many similarities with them. For example, both of them take a text input and convert it to a numerical format with a tokenizer. One key difference is that where a generative model outputs a token at a time, an embedding models output a fixed length (or shape) of numbers.
+But they are no less interesting than generative models, and often share many similarities with them. For example, both of them take a text input and convert it to a numerical format with a tokenizer. One key difference is that where a generative model outputs a token at a time, an embedding model outputs a fixed length (or shape) of numbers.
 
 import NNEmbeddingModels from './_img/nn_explained_50_embedding_models.png';
 import NNEmbeddingModelsDark from './_img/nn_explained_50_embedding_models_dark.png';
@@ -43,7 +43,7 @@ The concept of numerically representing a meaning may be foreign at first. Let's
 
 An analog for this approach can be found in how we represent colors as numbers - whether it be the RGB, CMYK or HSL system.
 
-Each system can represent any color as a series of numbers. Take the official web color definition of “red” as an example. In RGB it is `[255, 0, 0]`, in CMYK it is `[0, 100, 100, 0]`, and in HSL is `[0, 100%, 50%]`.
+Each system can represent any color as a series of numbers. Take the official web color definition of “red” as an example. In RGB it is `[255, 0, 0]`, in CMYK it is `[0, 100, 100, 0]`, and in HSL it is `[0, 100%, 50%]`.
 
 In other words, each system is a standardized method of representing a color as a set of numbers.
 
@@ -59,7 +59,7 @@ How is this useful? As it turns out, for a variety of tasks.
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Why use embedding models?
 
-Earlier, we likened embedding models to numerical systems like RGB that can encode color. The key benefit of embedding models is similar to that for color encoding systems; they enable meaningful comparisons of the source object.
+Earlier, we likened embedding models to numerical systems like RGB that can encode color. The key benefit of embedding models is similar to that of color encoding systems; they enable meaningful comparisons of the source object.
 
 Going back to RGB colors, “crimson” is `[220, 20, 60]`. You can see that it is quite similar to red’s RGB value of `[255, 0, 0]`, and very different to, say, the RGB value of “aqua”, which is `[0, 255, 255]`.
 

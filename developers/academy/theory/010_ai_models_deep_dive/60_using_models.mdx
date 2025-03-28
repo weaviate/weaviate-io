@@ -1,6 +1,6 @@
 ---
 title: Using AI models
-description: A very brief introduction to how AI models are trained
+description: Examples of using AI models for inference
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -33,7 +33,7 @@ First we will cover different ways or modes of using these models - whether to u
 
 This should remove some of the intimidation and mystique from the range of options, and set the ground work for our later discussions on model evaluation and selection.
 
-:::note this section does not use Weaviate.**
+:::note this section does not use Weaviate.
 
 You may already know that Weaviate integrates with model providers to make inference easier. In this section, however, we will access the model ourselves. This will help you to understand what is going on under-the-hood when Weaviate performs inference on your behalf later on.
 
@@ -43,7 +43,7 @@ You may already know that Weaviate integrates with model providers to make infer
 
 The lowest-friction method for accessing modern AI models is to use a web API provided by an inference service provider.
 
-Thanks to the explosion of popularity for certain types of AI models, there are innumerate inference providers (and APIs) available that almost anyone can sign up and use.
+Thanks to the explosion of popularity for certain types of AI models, there are numerous inference providers (and APIs) available that almost anyone can sign up and use.
 
 Popular inference providers include Anthropic, AWS, Cohere, Google, Microsoft, OpenAI, and many, many more.
 
@@ -100,7 +100,7 @@ response = co.embed(
 source_embeddings = []
 for e in response.embeddings.float_:
     print(len(e))                   # This will be the length of the embedding vector
-    print(e[:5])                    # This will print the first 10 elements of the embedding vector
+    print(e[:5])                    # This will print the first 5 elements of the embedding vector
     source_embeddings.append(e)     # Save the embedding for later use
 ```
 
@@ -277,7 +277,7 @@ You’ve now seen how model inference works using Cohere’s web-based APIs. In 
 
 In many cases, it may be desirable or even required to perform AI model inference using a local (or on-premise) model.
 
-This may be brought on be a variety of reasons. You may wish (or need) to keep the data local (e.g. compliance or security), or have a custom-trained proprietary model. Or, the economics may be preferable for local inference over commercial inference APIs.
+This may be brought on by a variety of reasons. You may wish (or need) to keep the data local (e.g. compliance or security), or have a custom-trained proprietary model. Or, the economics may be preferable for local inference over commercial inference APIs.
 
 While there are arguably fewer options for local inference than those offered by inference providers, the range of choices is still quite wide. There are huge number of publicly available models as well as software libraries to make the process easier. As well as general deep learning libraries such as PyTorch or TensorFlow, libraries such as Hugging Face Transformers, Ollama and ONNX Runtime make it easier to perform local inference. In the case of Ollama and ONNX Runtime, at reasonable speeds without any hardware (GPU / TPU) acceleration.
 
@@ -347,7 +347,7 @@ response = ollama.embed(model='snowflake-arctic-embed:110m', input=source_texts)
 source_embeddings = []
 for e in response.embeddings:
     print(len(e))                   # This will be the length of the embedding vector
-    print(e[:5])                    # This will print the first 10 elements of the embedding vector
+    print(e[:5])                    # This will print the first 5 elements of the embedding vector
     source_embeddings.append(e)     # Save the embedding for later use
 ```
 
