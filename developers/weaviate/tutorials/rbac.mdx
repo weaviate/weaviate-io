@@ -380,7 +380,10 @@ Ensure you are connected to Weaviate with a user possessing sufficient permissio
 
 ### Step 2: Create new role with custom permissions
 
-This grants permissions to manage collections starting with `TargetCollection`, and to create, read, and update tenants in the same collection.
+This grants permissions to:
+- Completely manage collections starting with `TargetCollection`:
+- Completely manage tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
+- Create, read, update and delete data for tenants starting with `TargetTenant` in collections starting with `TargetCollection`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

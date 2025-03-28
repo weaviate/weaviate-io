@@ -87,6 +87,7 @@ permissions = [
     ),
     Permissions.tenants(
         collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
+        tenant="TargetTenant*", # Applies to all tenants starting with "TargetTenant"
         create=True,  # Allow creating new tenants
         read=True,  # Allow reading tenant info/metadata
         update=True,  # Allow updating tenant states
@@ -110,6 +111,7 @@ from weaviate.classes.rbac import Permissions
 permissions = [
     Permissions.data(
         collection="TargetCollection*",  # Applies to all collections starting with "TargetCollection"
+        tenant="TargetTenant*", # Applies to all tenants starting with "TargetTenant"
         create=True,  # Allow data inserts
         read=True,  # Allow query and fetch operations
         update=True,  # Allow data updates
