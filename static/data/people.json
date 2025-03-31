@@ -160,14 +160,6 @@
     "team": "people-and-culture"
   },
   {
-    "name": "Charles Harr",
-    "title": "Software Engineer",
-    "photo": "charles.jpg",
-    "linkedin": "ceharr",
-    "github": "harrlight00",
-    "team": "wcd"
-  },
-  {
     "name": "Charles Pierse",
     "title": "Director of Innovation Labs",
     "photo": "charles-pierse.jpg",
@@ -219,7 +211,7 @@
   },
   {
     "name": "Daniel Phiri",
-    "title": "Developer Advocate",
+    "title": "Developer Experience and Education Engineer",
     "photo": "daniel.jpg",
     "team": "developer-relations",
     "linkedin": "malgamves",
@@ -426,6 +418,15 @@
     "team": "database"
   },
   {
+    "name": "Jerónimo Irazábal",
+    "title": "Software Engineer",
+    "photo": "Jeronimo.jpg",
+    "linkedin": "jeronimoirazabal",
+    "twitter": "jeroiraz",
+    "github": "jeroiraz",
+    "team": "database"
+  },
+  {
     "name": "Jessie de Groot",
     "title": "VP of People & Culture",
     "photo": "jessie.jpg",
@@ -531,7 +532,7 @@
   },
   {
     "name": "Marion Nehring",
-    "title": "Community Manager",
+    "title": "Developer Experience Program Manager",
     "photo": "marion.jpg",
     "linkedin": "marionnehring",
     "team": "developer-relations"
@@ -674,6 +675,13 @@
     "team": "applied-research"
   },
   {
+    "name": "Rohan Thomas",
+    "title": "Commercial Account Executive",
+    "photo": "rohan.jpg",
+    "linkedin": "rohan-mathews-thomas",
+    "team": "sales"
+  },
+  {
     "name": "Ryan Colbert",
     "title": "Enterprise Account Executive",
     "photo": "ryan.jpg",
@@ -796,6 +804,12 @@
     "linkedin": "tobias-christiani-0055"
   },
   {
+    "name": "Tony Le",
+    "title": "Business Development Director",
+    "photo": "tony.jpg",
+    "team": "partnerships"
+  },
+  {
     "name": "Tuana Celik",
     "title": "Developer Relations Engineer",
     "photo": "Tuana.jpg",
@@ -825,6 +839,13 @@
     "photo": "Willem-Bens.jpg",
     "linkedin": "Willem-bens",
     "team": "partnerships"
+  },
+  {
+    "name": "Yaru Lin",
+    "title": "Product Manager",
+    "photo": "yaru-lin.jpg",
+    "linkedin": "linyaru",
+    "team": "product"
   },
   {
     "name": "Chrétien Minke",
@@ -869,13 +890,6 @@
     "team": "board-advisors"
   },
   {
-    "name": "Rohan Thomas",
-    "title": "Commercial Account Executive",
-    "photo": "rohan.jpg",
-    "linkedin": "rohan-mathews-thomas",
-    "team": "sales"
-  },
-  {
     "name": "Sam Ramji",
     "title": "Advisor",
     "photo": "sam-ramji.jpg",
@@ -904,20 +918,5 @@
     "linkedin": "zackkass",
     "twitter": "iamthezack",
     "team": "board-advisors"
-  },
-  {
-    "name": "Jerónimo Irazábal",
-    "title": "Software Engineer",
-    "photo": "Jeronimo.jpg",
-    "linkedin": "jeronimoirazabal",
-    "twitter": "jeroiraz",
-    "github": "jeroiraz",
-    "team": "database"
-  },
-  {
-    "name": "Tony Le",
-    "title": "Business Development Director",
-    "photo": "tony.jpg",
-    "team": "partnerships"
   }
 ]

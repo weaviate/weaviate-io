@@ -32,6 +32,7 @@ const config = {
     projectName: 'weaviate-io', // Usually your repo name.
     customFields: {
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+        teamtailorApiKey: process.env.TEAMTAILOR_API_KEY
       },
     plugins: [
         [
@@ -75,7 +76,7 @@ const config = {
             '@docusaurus/plugin-content-blog',
             {
                 blogTitle: 'Paper Reviews',
-                blogDescription: 'Papers',
+                blogDescription: 'Explore research papers and documentation supporting Weaviate.',
                 blogSidebarCount: 0,
                 postsPerPage: 6,
                 blogSidebarTitle: 'Weaviate Paper Reviews',
@@ -161,8 +162,10 @@ const config = {
                               id: 'Cookiebot',
                               src: 'https://consent.cookiebot.com/uc.js',
                               'data-cbid': '4397b0f9-0b32-41f5-b24a-9370be245e85',
-                              'data-blockingmode': 'auto',
-                              type: 'text/javascript'
+                              'data-blockingmode': 'manual',
+                              type: 'text/javascript',
+                              async: true
+                              
                             },
                         },
                         // Add emailpig
@@ -367,7 +370,7 @@ const config = {
                         items: [
                             {
                                 type: 'html',
-                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/product/embeddings">Embeddings</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li><li><a class="dropdown__link" href="/product">All Products</a></li><li class="dropDownLabel">Weaviate Agents</li><li><li><a class="dropdown__link" href="/product/query-agent">Query Agent</a></li><li><a class="dropdown__link" href="/product/transformation-agent">Transformation Agent</a></li><li><a class="dropdown__link" href="/product/personalization-agent">Personalization Agent</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="menu__list mobileNav"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/product/embeddings">Embeddings</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="menu__list-item"><a class="menu__link" href="/product">All Products</a></li><li class="dropDownLabel mobDrop">Weaviate Agents</li><li class="menu__list-item"><a class="menu__link" href="/product/query-agent">Query Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/transformation-agent">Transformation Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/personalization-agent">Personalization Agent</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
+                                value : '<div class="holder"><ul class="holdRightnoBorder"><li class="dropDownLabel">Overview</li><li><a class="dropdown__link" href="/platform">Vector Database</a></li><li><a class="dropdown__link" href="/product/embeddings">Embeddings</a></li><li><a class="dropdown__link" href="/product/integrations">Integrations</a></li><li><a class="dropdown__link" href="/product">All Products</a></li><li class="dropDownLabel">Weaviate Agents</li><li><a class="dropdown__link" href="/product/query-agent">Query Agent</a></li><li><a class="dropdown__link" href="/product/transformation-agent">Transformation Agent</a></li><li><a class="dropdown__link" href="/product/personalization-agent">Personalization Agent</a></li></ul><div class="divider"></div><ul class="holdRightnoBorder"><li class="dropDownLabel" >Deployment</li><li><a class="dropdown__link" href="/deployment/serverless">Serverless Cloud</a></li><li><a class="dropdown__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li><a class="dropdown__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/deployment/enablement">Enablement</a></li></ul></div><ul class="mobileNav menu__list" style="display: none;"><li class="dropDownLabel mobDrop">Overview</li><li class="menu__list-item"><a class="menu__link" href="/platform">Vector Database</a></li><li class="menu__list-item"><a class="menu__link" href="/product/embeddings">Embeddings</a></li><li class="menu__list-item"><a class="menu__link" href="/product/integrations">Integrations</a></li><li class="menu__list-item"><a class="menu__link" href="/product">All Products</a></li><li class="dropDownLabel mobDrop">Weaviate Agents</li><li class="menu__list-item"><a class="menu__link" href="/product/query-agent">Query Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/transformation-agent">Transformation Agent</a></li><li class="menu__list-item"><a class="menu__link" href="/product/personalization-agent">Personalization Agent</a></li><li class="dropDownLabel mobDrop">Deployment</li><li class="menu__list-item"><a class="menu__link" href="/deployment/serverless">Serverless Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enterprise-cloud">Enterprise Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/byoc">Bring Your Own Cloud</a></li><li class="menu__list-item"><a class="menu__link" href="/deployment/enablement">Enablement</a></li></ul>',
                                className: 'dropDownContainer2',
                             },
                         ]
@@ -480,17 +483,11 @@ const config = {
                         to: 'https://github.com/weaviate/weaviate',
                         position: 'right',
                     },
-                    {
-                    
-                        html: ` <i class="fa-regular fa-user iconHide" style="color:#2c3854;"></i> Login</span>`,
-                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256',
-                        position: 'right',
-                    
-                },
+                   
                     {
                         label: 'Try Now',
                         className: 'tryNow',
-                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/registrations?client_id=wcs-frontend&scope=openid%20profile&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&response_type=code',
+                        to: 'https://auth.wcs.api.weaviate.io/auth/realms/SeMI/protocol/openid-connect/auth?client_id=wcs-frontend&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fconsole.weaviate.cloud%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=P3BeeUEpGZNBXSXHycDajZNjrHT_HliA14qrtGovlk8&code_challenge=VZLcWPLzlwCsrvkYzjY3yC9XwUN3KzJqvzXAlzdNYTo&code_challenge_method=S256',
                         position: 'right',
                     },
                   {
