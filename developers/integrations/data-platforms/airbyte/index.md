@@ -7,6 +7,10 @@ sidebar_position: 1
 
 ## Airbyte and Weaviate
 
+::::caution
+The Weaviate integration on Airbyte uses the `v3` Python client and is only compatible with Weaviate Database versions `<1.24`. To help track requests to update the integration, please open a [GitHub issue on Airbyte's repository](https://github.com/airbytehq/airbyte/issues?q=is%3Aissue%20state%3Aopen).
+:::
+
 Weaviate is a supported [destination connector](https://airbyte.com/connectors/weaviate) in Airbyte. You can set up a source connector to extract data and import it into Weaviate using Airbyte. 
 
 ## Our Resources 
