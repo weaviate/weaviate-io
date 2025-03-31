@@ -1,13 +1,12 @@
-Weaviate `v1.30` brings a host of new features and improvements. It introduces API-based user management, runtime RAG configurations, multi-vector (ColBERT-like) embedding quantization.
+Weaviate `v1.30` includes a host of new features and improvements. It introduces API-based database user management, runtime RAG configurations, multi-vector (ColBERT-like) embedding quantization.
 
-It also brings BlockMax WAND and multi-vector embeddings to general availability (GA), indicating their readiness for production use - and more.
+It also brings BlockMax WAND and multi-vector embeddings to general availability (GA), indicating their readiness for production use. There are other enhancements, including xAI model integrations and runtime configuration management, and more.
 
 Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.30 is released](./img/hero.png)
 
 - [BlockMax WAND in GA](#blockmax-wand-in-ga)
-- [HNSW snapshotting for faster restarts](#hnsw-snapshotting-for-faster-restarts)
 - [Multi-vector embeddings - GA & quantization](#multi-vector-embeddings)
 - [API-based user management](#api-based-user-management)
 - [Generative (RAG) capability improvements](#generative-capability-improvements)
@@ -16,37 +15,69 @@ Here are the release ⭐️*highlights*⭐️!
 
 ## BlockMax WAND in GA
 
-BlockMax WAND [significantly speeds up keyword and hybrid searches](/developers/weaviate/concepts/indexing.md#blockmax-wand-algorithm) in Weaviate. Originally introduced as a technical preview in `1.28`, it is now generally available in `v1.30`.
+BlockMax WAND [significantly speeds up keyword and hybrid searches](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm) in Weaviate. Originally introduced as a technical preview in `1.28`, it is now generally available in `v1.30`. In fact, it is now the default indexing algorithm for all new Weaviate instances from this version onwards.
 
-TO CONFIRM W/ ENGINEERING
-From `v1.30` onwards, BlockMax...
-- Is it the default option?
-- How to configure it
-- How to migrate existing data / whether it is possible
+At a high level, BlockMax WAND is an algorithm that optimizes the scoring of documents in a search index for lexical (keyword) queries. This can be especially useful for large datasets, for example large e-commerce catalogs or a library of complex (legal/medical/domain-specific) documents.
 
-## HNSW snapshotting for faster restarts
+It does this by pre-computing statistics for blocks of documents in the index, allowing it to quickly skip over blocks that are unlikely to contain relevant documents. We have seen up to a 10x speedup in keyword searches due to BlockMax WAND.
 
-This feature allows Weaviate to take *snapshots* of the HNSW index, which can speed up restarts. This is especially useful for large datasets, where the HNSW index and the associated vectors can take a long time to load.
+Existing instances' data can be migrated to use BlockMax WAND by following [this guide](TODO - add blockmax wand migration guide). This is a one-time operation, and once completed, the instance will use BlockMax WAND for all future searches.
 
-For those of you using Weaviate in production, this features can help reduce downtime of your nodes, and the length of time it takes to restart Weaviate or perform rolling updates.
+If you are going to create a new Weaviate instance, you do not need to do anything - BlockMax WAND will be used by default.
+
+Enjoy the speedup! 🚀🚀🚀
+
+:::info Related resources
+- [BlockMax WAND blog](/blog/blockmax-wand/)
+- [Concepts: Indexing - BlockMax WAND](/developers/weaviate/concepts/indexing#blockmax-wand-algorithm)
+- [Migration Guide: BlockMax WAND](TODO - add guide link)
+:::
 
 ## Multi-vector embeddings
 
-ColBERT or ColPali-like [multi-vector embeddings](/developers/weaviate/tutorials/multi-vector-embeddings.md) are now generally available in Weaviate for production use, and with vector quantization support.
+ColBERT or ColPali-like [multi-vector embeddings](/developers/weaviate/tutorials/multi-vector-embeddings) are now generally available in Weaviate for production use. Here is an illustration showing the difference between single-vector and multi-vector embeddings.
 
-This means that you can now use multi-vector embeddings in your Weaviate instances to improve the quality of search results, especially for long texts or complex queries.
+![Single vs Multi-vector embedding comparison visualization](./img/single_multi_vector_comparison_light.png#gh-light-mode-only "Single vs Multi-vector embedding comparison visualization")
+![Single vs Multi-vector embedding comparison visualization](./img/single_multi_vector_comparison_dark.png#gh-dark-mode-only "Single vs Multi-vector embedding comparison visualization")
 
-At the same time, vector quantization such as product quantization, scalar quantization, or binary quantization can be applied. Vector quantization reduces the memory footprint of the embeddings while maintaining search quality.
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
-## API-based user management
+<ThemedImage
+  alt="DBPedia OpenAI Benchmark results"
+  sources={{
+    light: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-light.svg'),
+    dark: useBaseUrl('/img/benchmark/dbpedia-openai-1000k-angular-dark.svg'),
+  }}
+/>
 
-User management is a whole lot more flexible from `v1.30`. Weaviate now supports API-based user management, which we are calling "dynamic" users.
+Multi-vector embeddings allow you to store and query multi-vector embeddings such as those from ColBERT, ColPali and ColQwen models. This approach enables more precise searching through "late interaction" - a technique that matches individual parts of texts rather than comparing them as whole units.
 
-Administrators can now create and delete users dynamically, using the Weaviate client libraries, or the REST API. Even better, changes to the set of dynamic users will take effect without restarting the Weaviate instance.
+This was introduced in `v1.29` as a technical preview, and is now generally available in `v1.30`. This means that the feature is considered stable and ready for production use.
 
-For dynamic users, their API key can now even be rotated without restarting Weaviate.
+In addition to this, we are very pleased to announce that multi-vector embeddings can now be quantized in Weaviate for reduced memory footprint.
 
-This is a big improvement, as access can be granted or revoked in real-time, and without the need for downtime. It can be combined with role-based access control (RBAC) to provide a powerful and flexible access control system.
+![Vector quantization now available fo multi-vector embeddings](./img/multi_vector_quantization_light.png#gh-light-mode-only "Vector quantization now available fo multi-vector embeddings")
+![Vector quantization now available fo multi-vector embeddings](./img/multi_vector_quantization_dark.png#gh-dark-mode-only "Vector quantization now available fo multi-vector embeddings")
+
+Quantization is a technique that reduces the size of the vectors by approximating them with lower precision representations. Multi-vector embeddings are typically larger than single-vector embeddings. So quantization may be even more important than for single-vector embeddings.
+
+We know this would be a welcome feature for those of you looking to go to production with multi-vector embeddings. Quantization is available for all multi-vector embeddings, regardless of what model it came from.
+
+:::info Related resources
+- [Multi-vector embeddings tutorial](/developers/weaviate/tutorials/multi-vector-embeddings)
+- [How-to Configure: Vector Quantization](/developers/weaviate/configuration/compression)
+:::
+
+## API-based database user management
+
+User management is a whole lot more flexible from `v1.30`. Weaviate now supports API-based management of database users in addition to environment variable-based database users, and OIDC users.
+
+Administrators can now create and delete database users using the Weaviate client libraries, or the REST API. Even better, changes to the set of API-based database users will take effect without restarting the Weaviate instance.
+
+You can create, delete, and even rotate these database users' API keys without restarting Weaviate. This is a big improvement over the previous method of managing database users, which required restarting Weaviate to apply changes.
+
+Individual users' access can be granted, revoked or made secure again in real-time without the need for downtime. It can be combined with role-based access control (RBAC) to provide a powerful and flexible access control system.
 
 ## Generative capability improvements
 
