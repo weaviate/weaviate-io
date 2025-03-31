@@ -1,16 +1,22 @@
 ---
 title: Environment variables
-sidebar_position: 40
+sidebar_position: 0
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
 
-To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, set these environment variables
+To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, you can set these environment variables.
 
-:::tip Boolean environment variables
+:::info Boolean environment variables
 For Boolean environment variables, `"on"`, `"enabled"`, `"1"`, and `"true"` are interpreted as `true`.
 
 All other values are interpreted as `false`.
+:::
+
+:::tip Runtime configuration updates
+
+Weaviate supports runtime configuration management. Check out how to [configure it and the available environment variables](./runtime-config.md).
+
 :::
 
 ## General
@@ -59,6 +65,7 @@ import Link from '@docusaurus/Link';
 | `QUERY_SLOW_LOG_ENABLED` | Log slow queries for debugging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `boolean` | `False` |
 | `QUERY_SLOW_LOG_THRESHOLD` | Set a threshold time for slow query logging. Requires a restart to update. <br/> (New in 1.24.16, 1.25.3) | `string` | `2s` <br/> Values are times: `3h`, `2s`, `100ms` |
 | `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/filtering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
+| `TOKENIZER_CONCURRENCY_COUNT` | Limit the combined number of GSE and Kagome tokenizers running at the same time. Default: `GOMAXPROCS` | `string - number` | `NUMBER_OF_CPU_CORES` |
 | `TOMBSTONE_DELETION_CONCURRENCY` | The maximum number of cores to use for tombstone deletion. Set this to limit the number of cores used for cleanup. Default: Half of the available cores. (New in `v1.24.0`) | `string - int` | `4` |
 | `TOMBSTONE_DELETION_MAX_PER_CYCLE` | Maximum number of tombstones to delete per cleanup cycle. Set this to limit cleanup cycles, as they are resource-intensive. As an example, set a maximum of 10000000 (10M) for a cluster with 300 million-object shards. Default: none | `string - int` (New in `v1.24.15` / `v1.25.2`) | `10000000` |
 | `TOMBSTONE_DELETION_MIN_PER_CYCLE` | Minimum number of tombstones to delete per cleanup cycle. Set this to prevent triggering unnecessary cleanup cycles below a threshold. As an example, set a minimum of 1000000 (1M) for a cluster with 300 million-object shards. Default: 0 (New in `v1.24.15`, `v1.25.2`) | `string - int` | `100000` |
