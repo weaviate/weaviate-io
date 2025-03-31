@@ -21,15 +21,73 @@ User management is available from version `v1.30`.
 
 In Weaviate, Role-based access control (RBAC) allows you to define roles and assign permissions to those roles. Users can then be assigned to roles and inherit the permissions associated with those roles.
 
+Weaviate differentiates multiple types of users. **Database users** are fully managed by the Weaviate instance, while **OIDC** users are managed by an external identity provider. Both types can be used together with RBAC. 
+
 On this page, you will find examples of how to programmatically **manage users** and their associated roles with Weaviate client libraries.
 
-import ConfigureRbac from '/_includes/configuration/configure-rbac.mdx';
+:::note User types in Weaviate
 
-<ConfigureRbac />
+<!-- NOTE: left out AUTHORIZATION_ADMINLIST_USERS to dissuade usage -->
+
+Under the hood, Weaviate differentiates three types of users:
+
+- `db_user`: Database users that can be fully managed through the API.
+- `db_env_user`: Database users that are defined through the `AUTHENTICATION_APIKEY_USERS` environment variable and can only be updated through this variable and by restarting the Weaviate instance.
+- `oidc`: Users that can only be created/deleted through the external OIDC service.
+
+:::
 
 ## User management <i class="fas fa-user-edit"></i> {#user-management}
 
-### Create a user
+### List all users
+
+This example shows how to get a list of all the users (`db_user`, `db_env_user` and `oidc`) in Weaviate.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python Client v4">
+  <FilteredTextBlock
+    text={UserPyCode}
+    startMarker="# START ListAllUsers"
+    endMarker="# END ListAllUsers"
+    language="py"
+  />
+  </TabItem>
+  <TabItem value="js" label="JS/TS Client v3">
+
+```ts
+// TS support coming soon
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+// Go support coming soon
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+// Java support coming soon
+```
+
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example results</summary>
+
+```text
+[
+  UserDB(user_id='custom-user', role_names=['viewer', 'testRole'], user_type=<UserTypes.DB_DYNAMIC: 'db_user'>, active=True),
+  UserDB(user_id='root-user', role_names=['root'], user_type=<UserTypes.DB_STATIC: 'db_env_user'>, active=True)
+]
+```
+
+</details>
+
+### Create a database user {#create-a-user}
 
 This example creates a user called `custom-user`.
 
@@ -74,7 +132,7 @@ RXF1dU1VcWM1Q3hvVndYT0F1OTBOTDZLZWx0ME5kbWVJRVdPL25EVW12QT1fMXlDUEhUNjhSMlNtazdH
 
 </details>
 
-### Delete a user
+### Delete a database user
 
 This example deletes a user called `custom-user`.
 
@@ -110,65 +168,7 @@ This example deletes a user called `custom-user`.
   </TabItem>
 </Tabs>
 
-### List all users
-
-This example shows how to get a list of all the users in Weaviate.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python Client v4">
-  <FilteredTextBlock
-    text={UserPyCode}
-    startMarker="# START ListAllUsers"
-    endMarker="# END ListAllUsers"
-    language="py"
-  />
-  </TabItem>
-  <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
-  </TabItem>
-  <TabItem value="go" label="Go">
-
-```go
-// Go support coming soon
-```
-
-  </TabItem>
-  <TabItem value="java" label="Java">
-
-```java
-// Java support coming soon
-```
-
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example results</summary>
-
-```text
-[
-  UserDB(user_id='custom-user', role_names=['viewer', 'testRole'], user_type=<UserTypes.DB_DYNAMIC: 'db_user'>, active=True), 
-  UserDB(user_id='root-user', role_names=['root'], user_type=<UserTypes.DB_STATIC: 'db_env_user'>, active=True)
-]
-```
-
-</details>
-
-:::info User types in Weaviate
-<!-- NOTE: left out AUTHORIZATION_ADMINLIST_USERS to dissuade usage -->
-<!-- TODO[g-despot]: Check if DB_DYNAMIC is renamed -->
-Under the hood, Weaviate differentiates three types of users:
-- `DB_DYNAMIC`: Database users that can be fully managed through the API.
-- `DB_STATIC`: Database users that are defined through the `AUTHENTICATION_APIKEY_USERS` environment variable and can only be updated through this variable and by restarting the Weaviate instance.
-- `OIDC`: Users that can only be created/deleted through the external OIDC service.
-
-:::
-
-### Rotate user API key
+### Rotate database user API key {#rotate-user-api-key}
 
 This example updates (rotates) the API key for `custom-user`.
 
@@ -213,9 +213,9 @@ SSs3WGVFbUxMVFhlOEsxVVMrQVBzM1VhQTJIM2xXWngwY01HaXFYVnM1az1fMXlDUEhUNjhSMlNtazdH
 
 </details>
 
-## User permissions management <i class="fas fa-user-lock"></i> {#user-permissions-management}
+## Database users: Permissions management <i class="fas fa-user-lock"></i> {#user-permissions-management}
 
-### Assign a role to a user
+### Assign a role to a database user
 
 A custom user can have any number of roles assigned to them (including none). The role can be a predefined role (e.g. `viewer`) or a custom role.
 
@@ -253,7 +253,7 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
   </TabItem>
 </Tabs>
 
-### Remove a role from a user
+### Remove a role from a database user
 
 You can revoke one or more roles from a specific user.
 
@@ -291,7 +291,7 @@ This example removes the role `testRole` from the user `custom-user`.
   </TabItem>
 </Tabs>
 
-### Get a user's roles
+### Get a database user's roles
 
 Retrieve the role information for any user.
 
@@ -337,7 +337,7 @@ viewer
 
 </details>
 
-## OIDC: User permissions management <i class="fas fa-user-lock"></i> {#oidc-user-permissions-management}
+## OIDC users: Permissions management <i class="fas fa-user-lock"></i> {#oidc-user-permissions-management}
 
 When using [OIDC](../../config-refs/oidc.md), an identity provider authenticates the user and issues tokens, which are then validated by Weaviate. These users can be assigned roles with custom permissions using RBAC.
 
