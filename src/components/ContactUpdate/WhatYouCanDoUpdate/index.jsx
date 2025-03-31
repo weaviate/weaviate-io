@@ -1,10 +1,42 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import * as Tabs from '@radix-ui/react-tabs';
 
 export default function WhatYouCanDo() {
+  const [activeTab, setActiveTab] = useState('tab1');
+
+  const tabs = [
+    {
+      value: 'tab1',
+      header: 'AI-native, developer-friendly',
+      image: styles.codeImg1,
+      para: 'Empower developers to build and scale modern AI applications more easily.',
+      headerStyle: styles.tabHeader01,
+    },
+    {
+      value: 'tab2',
+      header: 'Cloud, model, and deployment agnostic',
+      image: styles.codeImg2,
+      para: 'Run anywhere and integrate with your existing and future tech stack.',
+      headerStyle: styles.tabHeader02,
+    },
+    {
+      value: 'tab3',
+      header: 'Flexible cost-performance optimization',
+      image: styles.codeImg3,
+      para: 'Drive efficienct resource management, tailored to the needs of your use case.',
+      headerStyle: styles.tabHeader03,
+    },
+    {
+      value: 'tab4',
+      header: 'Robust developer community and enablement resources',
+      image: styles.codeImg4,
+      para: 'Stay ahead of the curve with learning resources for developers of all levels.',
+      headerStyle: styles.tabHeader04,
+    },
+  ];
+
   return (
     <div className={styles.bgContainer}>
       <div className="container">
@@ -18,124 +50,66 @@ export default function WhatYouCanDo() {
         </div>
 
         <div className={styles.module}>
-          <Tabs.Root className={styles.tabs} defaultValue="tab1">
+          <Tabs.Root
+            className={styles.tabs}
+            value={activeTab}
+            onValueChange={setActiveTab}
+          >
             <div className={styles.left}>
               <Tabs.List
                 className={styles.tabsList}
                 aria-label="What you can do with Weaviate"
               >
-                <Tabs.Trigger
-                  className={styles.tabsTrigger}
-                  value="tab1"
-                  disabled={false}
-                >
-                  <h3 className={styles.tabHeader01}>
-                    AI-native, developer-friendly
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg1}`} />
-                  <p>
-                    Empower developers to build and scale modern AI applications
-                    more easily.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
-
-                <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
-                  <h3 className={styles.tabHeader02}>
-                    Cloud, model, and deployment agnostic
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg2}`} />
-                  <p>
-                    Run anywhere and integrate with your existing and future
-                    tech stack.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
-                <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                  <h3 className={styles.tabHeader03}>
-                    Flexible cost-performance optimization
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg3}`} />
-                  <p>
-                    Drive efficienct resource management, tailored to the needs
-                    of your use case.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
-                <Tabs.Trigger className={styles.tabsTrigger} value="tab4">
-                  <h3 className={styles.tabHeader04}>
-                    <span>
-                      Robust developer community and enablement resources
-                    </span>
-                  </h3>
-                  <div className={`${styles.cImage} ${styles.codeImg4}`} />
-                  <p>
-                    Stay ahead of the curve with learning resources for
-                    developers of all levels.
-                  </p>
-                  <div className={styles.accordianBar}></div>
-                </Tabs.Trigger>
+                {tabs.map((tab, index) => (
+                  <Tabs.Trigger
+                    key={tab.value}
+                    className={styles.tabsTrigger}
+                    value={tab.value}
+                  >
+                    <h3 className={tab.headerStyle}>
+                      {tab.header}
+                      <span className={styles.toggleIcon}>
+                        {activeTab === tab.value ? '–' : '+'}
+                      </span>
+                    </h3>
+                    <div className={`${styles.cImage} ${tab.image}`} />
+                    <p>{tab.para}</p>
+                    <div className={styles.accordianBar}></div>
+                  </Tabs.Trigger>
+                ))}
               </Tabs.List>
             </div>
-            <div className={styles.right}>
-              <Tabs.Content className={styles.tabsContent} value="tab1">
-                <div className={styles.codeContainer}>
-                  <p className={styles.tabsText}>
-                    Perform lightning-fast pure vector similarity<br></br>search
-                    over raw vectors or data objects,<br></br> even with
-                    filters.
-                  </p>
-                  {/*  <div className={styles.codeBlockTitleSmall} />
-                <div className={styles.lineBarSmall} />
-                <CodeSnippet
-                  code={codeExample}
-                  buttonText="Vector Search"
-                  buttonClass={styles.copyButton}
-                  outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                /> */}
-                  <div className={`${styles.codeImage} ${styles.code1}`} />
-                </div>
-              </Tabs.Content>
-              <Tabs.Content className={styles.tabsContent} value="tab2">
-                <div className={styles.codeContainer}>
-                  <p className={styles.tabsText}>
-                    Combine keyword-based search with vector search techniques
-                    for state-of-the-art results.
-                  </p>
-                  <div className={`${styles.codeImage} ${styles.code2}`} />
-                </div>
-              </Tabs.Content>
-              <Tabs.Content className={styles.tabsContent} value="tab3">
-                <div className={styles.codeContainer}>
-                  <p className={styles.tabsText}>
-                    Use any generative model in combination with your data, for
-                    example to do Q&A over your dataset.
-                  </p>
 
-                  <div className={`${styles.codeImage} ${styles.code3}`} />
-                </div>
-              </Tabs.Content>
-              <Tabs.Content className={styles.tabsContent} value="tab4">
-                <div className={styles.codeContainer}>
-                  <p className={styles.tabsText}>
-                    Use any generative model in combination with your data, for
-                    example to do Q&A over your dataset.
-                  </p>
-                  <div className={`${styles.codeImage} ${styles.code4}`} />
-                </div>
-              </Tabs.Content>
-              <Tabs.Content className={styles.tabsContent} value="tab5">
-                <div className={styles.codeContainer}>
-                  <p className={styles.tabsText}>
-                    Use any generative model in combination with your data, for
-                    example to do Q&A over your dataset.
-                  </p>
-                  <div className={`${styles.codeImage} ${styles.code5}`} />
-                </div>
-              </Tabs.Content>
+            <div className={styles.right}>
+              {tabs.map((tab, index) => (
+                <Tabs.Content
+                  key={tab.value}
+                  className={styles.tabsContent}
+                  value={tab.value}
+                >
+                  <div className={styles.codeContainer}>
+                    <p className={styles.tabsText}>
+                      {tab.value === 'tab1' &&
+                        'Perform lightning-fast pure vector similarity search over raw vectors or data objects, even with filters.'}
+                      {tab.value === 'tab2' &&
+                        'Combine keyword-based search with vector search techniques for state-of-the-art results.'}
+                      {tab.value === 'tab3' &&
+                        'Use any generative model in combination with your data, for example to do Q&A over your dataset.'}
+                      {tab.value === 'tab4' &&
+                        'Use any generative model in combination with your data, for example to do Q&A over your dataset.'}
+                    </p>
+                    <div
+                      className={`${styles.codeImage} ${
+                        styles[`code${index + 1}`]
+                      }`}
+                    />
+                  </div>
+                </Tabs.Content>
+              ))}
             </div>
           </Tabs.Root>
         </div>
+
         <div className={styles.priceBox}>
           <div className={`${styles.title} ${styles.supportTitle}`}>
             <div className={styles.titleBox}>

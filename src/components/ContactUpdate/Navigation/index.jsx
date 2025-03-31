@@ -32,7 +32,7 @@ export default function StickyHeader() {
           onClick={() => history.push('#contact')}
           className={styles['cta-button']}
         >
-          Contact
+          Contact Sales
         </button>
       </div>
     </header>

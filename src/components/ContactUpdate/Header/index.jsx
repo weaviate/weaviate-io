@@ -9,15 +9,12 @@ export default function StudyHeader() {
       <div className="container">
         <div className={styles.box}>
           <div className={styles.left}>
-            <span>Case Study</span>
-            <h1>
-              How Morningstar built a trustworthy, AI-driven financial data
-              platform
-            </h1>
+            <span>Contact</span>
+            <h1>Contact Weaviate to continue your AI journey</h1>
             <div className={styles.headerBox}>
               <div className={styles.buttons}>
                 <Link to="#contact" className={styles.buttonLight}>
-                  Contact
+                  Contact Sales
                 </Link>
               </div>
             </div>
