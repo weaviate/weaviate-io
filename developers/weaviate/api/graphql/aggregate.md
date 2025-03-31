@@ -277,11 +277,11 @@ You can combine a vector search (e.g. `nearObject`, `nearVector`, `nearText`, `n
 
 ### Limiting the search space
 
-Vector searches rank objects by similarity, but do not exclude any objects. Thus, for a search operator to impact aggregation, you must limit the search space by setting either `objectLimit` or `certainty` for the query:
+Vector searches rank objects by similarity but do not exclude any objects. Thus, for a search operator to impact aggregation, you must limit the search space by setting either `objectLimit` or `certainty` for the query:
 
-* `objectLimit`, e.g. `objectLimit: 100` tells Weaviate to aggregate _the first 100 objects_ retrived by the vector search query. *This is useful when you know up front how many results you want to serve, for example in a recommendation scenario, where you want to produce 100 recommendations.*
+* `objectLimit`, e.g. `objectLimit: 100` tells Weaviate to aggregate the first 100 objects retrieved by the vector search query. This is useful when you know upfront how many results you want to serve, for example, in a recommendation scenario where you want to produce 100 recommendations.
 
-* `certainty`, e.g. `certainty: 0.7` tells Weaviate to aggregate all vector search results _with certainty score of 0.7 or higher_. This list has no fixed length, it depends on how many objects were good matches. *This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.*
+* `certainty`, e.g. `certainty: 0.7` tells Weaviate to aggregate all vector search results with a certainty score of 0.7 or higher. This list has no fixed length, it depends on how many objects are good matches. This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.
 
 The aggregation query will fail if neither `objectLimit` nor `certainty` is set.
 
