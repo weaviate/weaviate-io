@@ -604,6 +604,11 @@ The `kagome_kr` tokenizer is not loaded by default to save resources. To use it,
 - `"결정하겠다"`:
   - `["결정", "하", "겠", "다"]`
 
+### Limit the number of `gse` and `Kagome` tokenizers
+
+The `gse` and `Kagome` tokenizers can be resource intensive and affect Weaviate's performance.
+You can limit the combined number of `gse` and `Kagome` tokenizers running at the same time using the [`TOKENIZER_CONCURRENCY_COUNT` environment variable](../env-vars.md). 
+
 ### Inverted index types
 
 :::info `indexInverted` is deprecated
