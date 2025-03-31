@@ -1,16 +1,22 @@
 ---
 title: Environment variables
-sidebar_position: 40
+sidebar_position: 0
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
 
-To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, set these environment variables
+To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, you can set these environment variables.
 
-:::tip Boolean environment variables
+:::info Boolean environment variables
 For Boolean environment variables, `"on"`, `"enabled"`, `"1"`, and `"true"` are interpreted as `true`.
 
 All other values are interpreted as `false`.
+:::
+
+:::tip Runtime configuration updates
+
+Weaviate supports runtime configuration management. Check out how to [configure it and the available environment variables](./runtime-config.md).
+
 :::
 
 ## General
