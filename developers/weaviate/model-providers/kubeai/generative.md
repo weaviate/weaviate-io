@@ -111,7 +111,7 @@ Refer to the [KubeAI docs on model management](https://www.kubeai.org/how-to/man
 
 ## Select a model at runtime
 
-Aside from setting the model provider on the collection level, you can also select it at runtime.
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

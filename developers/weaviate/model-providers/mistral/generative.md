@@ -162,7 +162,7 @@ For further details on model parameters, see the [Mistral API documentation](htt
 
 ## Select a model at runtime
 
-Aside from setting the model provider on the collection level, you can also select it at runtime.
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">

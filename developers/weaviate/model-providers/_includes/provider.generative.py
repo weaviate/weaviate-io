@@ -105,7 +105,7 @@ import_data()
 
 # START RuntimeModelSelectionAnthropic
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -131,7 +131,7 @@ response = collection.generate.near_text(
 # START WorkingWithImagesAnthropic
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
@@ -219,7 +219,7 @@ import_data()
 
 # START RuntimeModelSelectionAnyscale
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -280,7 +280,7 @@ import_data()
 
 # START RuntimeModelSelectionAWS
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -301,7 +301,7 @@ response = collection.generate.near_text(
 # START WorkingWithImagesAWS
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
@@ -396,7 +396,7 @@ import_data()
 
 # START RuntimeModelSelectionCohere
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -463,7 +463,7 @@ import_data()
 
 # START RuntimeModelSelectionDatabricks
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -537,7 +537,7 @@ import_data()
 
 # START RuntimeModelSelectionFriendliAI
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -635,7 +635,7 @@ import_data()
 
 # START RuntimeModelSelectionGoogle
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -661,7 +661,7 @@ response = collection.generate.near_text(
 # START WorkingWithImagesGoogle
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
@@ -749,7 +749,7 @@ import_data()
 
 # START RuntimeModelSelectionMistral
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -825,7 +825,7 @@ import_data()
 
 # START RuntimeModelSelectionNVIDIA
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -953,7 +953,7 @@ import_data()
 
 # START RuntimeModelSelectionOpenAI
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -979,7 +979,7 @@ response = collection.generate.near_text(
 # START WorkingWithImagesOpenAI
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')
@@ -1059,7 +1059,7 @@ import_data()
 
 # START RuntimeModelSelectionKubeAI
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -1114,7 +1114,7 @@ import_data()
 
 # START RuntimeModelSelectionAzureOpenAI
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -1177,7 +1177,7 @@ import_data()
 
 # START RuntimeModelSelectionOllama
 from weaviate.classes.config import Configure
-from weaviate.collections.classes.generative import GenerativeConfig
+from weaviate.classes.generate import GenerativeConfig
 
 collection = client.collections.get("DemoCollection")
 response = collection.generate.near_text(
@@ -1197,7 +1197,7 @@ response = collection.generate.near_text(
 # START WorkingWithImagesOllama
 import base64
 import requests
-from weaviate.collections.classes.generative import GenerativeConfig, GenerativeParameters
+from weaviate.classes.generate import GenerativeConfig, GenerativeParameters
 
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winter_forest_silver.jpg/960px-Winter_forest_silver.jpg"
 base64_image = base64.b64encode(requests.get(src_img_path).content).decode('utf-8')

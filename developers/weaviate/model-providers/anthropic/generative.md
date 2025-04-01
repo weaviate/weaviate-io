@@ -161,7 +161,7 @@ For further details on model parameters, see the [Anthropic API documentation](h
 
 ## Select a model at runtime
 
-Aside from setting the model provider on the collection level, you can also select it at runtime.
+Aside from setting the default model provider when creating the collection, you can also override it at query time.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python API v4">
@@ -260,7 +260,7 @@ In other words, when you have `n` search results, the generative model generates
 
 ### RAG with images
 
-You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
 
 <Tabs groupId="languages">
 

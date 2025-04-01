@@ -23,7 +23,9 @@ In Weaviate, a RAG query consists of two parts: *a search query*, and a *prompt 
 :::info Added in `v1.30`
 :::
 
-To use RAG, [a collection must be configured](../manage-data/collections.mdx#specify-a-generative-model-integration) to use a [generative model integration](../model-providers/index.md) or you can spcify the generative model in the search operation directly:
+To use RAG with a [generative model integration](../model-providers/index.md):
+- [set a default configuration for the collection](../manage-data/collections.mdx#specify-a-generative-model-integration) and/or
+- provide the settings as a part of the query:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">
@@ -493,7 +495,7 @@ Metadata: usage {
 
 ## Working with images
 
-You can also use images when querying Weaviate and perform retrieval augmented generation in both single prompts and grouped tasks. 
+You can also supply images as a part of the input when performing retrieval augmented generation in both single prompts and grouped tasks. 
 The following fields are available for generative search with images:
 - `images`: A base64 encoded string of the image bytes.
 - `image_properties`: Names of the properties in Weaviate that store images for additional context.
@@ -543,8 +545,6 @@ Grouped task result: I'll formulate a Jeopardy!-style question based on the imag
 Answer: This Australian marsupial, often mistakenly called a bear, spends most of its time in eucalyptus trees.
 
 Question: What is a koala?
-
-This question fits the Jeopardy! format and relates directly to the koala shown in the image, highlighting its Australian origin, marsupial classification, and association with eucalyptus trees. It also addresses the common misconception of calling koalas "koala bears" when they are not actually bears.
 ```
 
 </details>
