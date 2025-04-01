@@ -1,5 +1,6 @@
-:::info Added in v1.24.0
-Collections support multiple named vectors.
+:::info Added in `v1.30`
 :::
 
-Collections can have multiple [named vectors](/developers/weaviate/config-refs/schema/multi-vector). The vectors in a collection can have their own configurations, and compression must be enabled independently for each vector. Every vector is independent and can use [PQ](/developers/weaviate/configuration/compression/pq-compression), [BQ](/developers/weaviate/configuration/compression/bq-compression), [SQ](/developers/weaviate/configuration/compression/sq-compression), or no compression.
+Multi-vector embeddings (implemented through models like ColBERT, ColPali, or ColQwen) represent each object or query using multiple vectors instead of a single vector. Just like with single vectors, multi-vectors support [PQ](/developers/weaviate/configuration/compression/pq-compression), [BQ](/developers/weaviate/configuration/compression/bq-compression), [SQ](/developers/weaviate/configuration/compression/sq-compression), or no compression.
+
+During the initial search phase, compressed vectors are used for efficiency. However, when computing the `MaxSim` operation, uncompressed vectors are utilized to ensure more precise similarity calculations. This approach balances the benefits of compression for search efficiency with the accuracy of uncompressed vectors during final scoring.
