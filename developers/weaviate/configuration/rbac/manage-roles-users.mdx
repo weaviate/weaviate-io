@@ -11,7 +11,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.permissions.py';
+import TSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.permissions.ts';
 import RolePyCode from '!!raw-loader!/_includes/code/python/howto.configure.rbac.roles.py';
+import RoleTSCode from '!!raw-loader!/_includes/code/typescript/howto.configure.rbac.roles.ts';
 
 :::info Available from `v1.29`
 Role-based access control (RBAC) is generally available in Weaviate from version `v1.29`.
@@ -77,11 +79,12 @@ Role management requires appropriate `role` resource permissions that can be obt
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+      text={RoleTSCode}
+      startMarker="// START AdminClient"
+      endMarker="// END AdminClient"
+      language="ts"
+    />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -135,11 +138,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddManageRolesPermission"
+          endMarker="// END AddManageRolesPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -173,11 +177,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddCollectionsPermission"
+          endMarker="// END AddCollectionsPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -213,11 +218,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddTenantPermission"
+          endMarker="// END AddTenantPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -252,11 +258,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddDataObjectPermission"
+          endMarker="// END AddDataObjectPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -290,11 +297,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddBackupPermission"
+          endMarker="// END AddBackupPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -328,11 +336,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddClusterPermission"
+          endMarker="// END AddClusterPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -366,11 +375,12 @@ This example creates a role called `testRole` with permissions to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddNodesPermission"
+          endMarker="// END AddNodesPermission"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -406,11 +416,12 @@ This example grants additional permissions to the role `testRole` to:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START AddRoles"
+          endMarker="// END AddRoles"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -447,11 +458,12 @@ This example removes the following permissions from the role `testRole`:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START RemovePermissions"
+        endMarker="// END RemovePermissions"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -483,11 +495,12 @@ Check if the role `testRole` exists:
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START CheckRoleExists"
+          endMarker="// END CheckRoleExists"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -519,11 +532,12 @@ View the permissions assigned to a role.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START InspectRole"
+          endMarker="// END InspectRole"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -555,11 +569,12 @@ View all roles in the system and their permissions.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+    <FilteredTextBlock
+          text={RoleTSCode}
+          startMarker="// START ListAllRoles"
+          endMarker="// END ListAllRoles"
+          language="ts"
+        />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -591,11 +606,12 @@ List all users who have the role `testRole`.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START AssignedUsers"
+        endMarker="// END AssignedUsers"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -627,11 +643,12 @@ Deleting a role will remove it from the system, and revoke the associated permis
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START DeleteRole"
+        endMarker="// END DeleteRole"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -667,11 +684,12 @@ This example assigns the custom `testRole` role and predefined `viewer` role to 
   />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START AssignRole"
+        endMarker="// END AssignRole"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -705,11 +723,12 @@ This example removes the role `testRole` from the user `user-b`.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START RevokeRoles"
+        endMarker="// END RevokeRoles"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -741,11 +760,12 @@ Retrieve the role and permission information for the currently authenticated use
   />
 </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START ListCurrentUserRoles"
+        endMarker="// END ListCurrentUserRoles"
+        language="ts"
+      />
   </TabItem>
   <TabItem value="go" label="Go">
 
@@ -777,12 +797,13 @@ Retrieve the role and permission information for any user.
     />
   </TabItem>
   <TabItem value="js" label="JS/TS Client v3">
-
-```ts
-// TS support coming soon
-```
-
-  </TabItem>
+  <FilteredTextBlock
+        text={RoleTSCode}
+        startMarker="// START ListUserRoles"
+        endMarker="// END ListUserRoles"
+        language="ts"
+      />
+    </TabItem>
   <TabItem value="go" label="Go">
 
 ```go
