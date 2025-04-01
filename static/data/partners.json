@@ -493,5 +493,16 @@
     "programmingLanguage": "",
     "weaviateFeatures": "",
     "featured": false
+  },
+  {
+    "name": "Snowflake",
+    "image": "/img/site/snowflake.png",
+    "link": "/developers/weaviate/installation/spcs-integration",
+    "description": "Leverage generative AI capabilities within the boundaries of your Snowflake data environment",
+    "tags": [],
+    "maintainedBy": "External",
+    "programmingLanguage": "",
+    "weaviateFeatures": "",
+    "featured": false
   }
 ]

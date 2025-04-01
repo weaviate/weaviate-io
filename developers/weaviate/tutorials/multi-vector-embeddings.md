@@ -106,7 +106,7 @@ This approach often leads to better search results, as it can capture more nuanc
 
 Multi-vector embeddings are particularly useful for search tasks where word order and exact phrase matching are important. This is due to multi-vector embeddings preserving token-level information and enabling late interaction. However, multi-vector embeddings will typically require more resources than single-vector embeddings.
 
-Although each vector in a multi-vector embedding is smaller than a single-vector embedding, the total size of the multi-vector embedding typically larger, as each embedding contains many vectors. As an example, single-vector embedding of 1536 dimensions is (1536 * 4 bytes) = 6 kB, while a multi-vector embedding of 64 vectors of 96 dimensions is (64 * 96 * 4 bytes) = 25 kB - over 4 times larger.
+Although each vector in a multi-vector embedding is smaller than a single-vector embedding, the total size of the multi-vector embedding typically larger, as each embedding contains many vectors. As an example, single-vector embedding of 1536 dimensions is (1536 \* 4 bytes) = 6 kB, while a multi-vector embedding of 64 vectors of 96 dimensions is (64 \* 96 \* 4 bytes) = 25 kB - over 4 times larger.
 
 Multi-vector embeddings therefore require more memory to store and more compute to search.
 
