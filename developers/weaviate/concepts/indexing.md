@@ -55,7 +55,9 @@ The BlockMax WAND algorithm is a variant of the WAND algorithm that is used to s
 If you are experiencing slow BM25 (or hybrid) searches and use a Weaviate version prior to `v1.30`, try migrating to a newer version that uses the BlockMax WAND algorithm to see if it improves performance. If you need to migrate existing data from a previous version of Weaviate, follow the [v1.30 migration guide](../more-resources/migration/weaviate-1-30.md).
 
 :::note Scoring changes with BlockMax WAND
+
 Due to the nature of the BlockMax WAND algorithm, the scoring of BM25 and hybrid searches may differ slightly from the default WAND algorithm. Additionally BlockMax WAND scores on single and multiple property search may be different due to different IDF and property length normalization calculations. This is expected behavior and is not a bug.
+
 :::
 
 ### Configure the inverted index
