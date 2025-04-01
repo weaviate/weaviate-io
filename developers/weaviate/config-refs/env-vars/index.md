@@ -78,6 +78,8 @@ import Link from '@docusaurus/Link';
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
 | `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
+| `AZURE_BLOCK_SIZE` | The block size for Azure Blob Storage for backups. Default: `41943040` (40MB) | `int - bytes` | `10000000` |
+| `AZURE_CONCURRENCY` | The maximum number of parts that will be concurrently uploaded/downloaded during backup operations. Default: `1` | `int` | `3` |
 | `CLIP_INFERENCE_API` | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | `CONTEXTIONARY_URL` | Service-Discovery for the contextionary container | `string - URL` | `http://contextionary` |
 | `IMAGE_INFERENCE_API` | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
