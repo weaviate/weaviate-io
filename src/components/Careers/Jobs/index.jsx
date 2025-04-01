@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import fetch, { Headers } from 'node-fetch';
-
-const headers = new Headers();
-headers.append(
-  'Authorization',
-  'Token token=gFRyDB4BidMCbV888Q6lE1W8ubQvQYvGxNW8Ruas'
-);
-headers.append('X-Api-Version', '20210218');
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Jobs() {
+  const { siteConfig } = useDocusaurusContext();
+  const apiKey = siteConfig.customFields.teamtailorApiKey;
+
+  const headers = new Headers();
+  headers.append('Authorization', `Token token=${apiKey}`);
+  headers.append('X-Api-Version', '20210218');
+
   const [rawJobs, setRawJobs] = useState([]);
   const [tailorJobs, setTailorJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

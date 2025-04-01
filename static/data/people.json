@@ -55,6 +55,13 @@
     "team": "sales"
   },
   {
+    "name": "Alexandre El Khoury",
+    "title": "Full Stack Engineer",
+    "photo": "Alexandre-El-Khoury.jpg",
+    "linkedin": "alexandre-el-khoury",
+    "team": "wcd"
+  },
+  {
     "name": "Alvin Richards",
     "title": "VP of Product",
     "photo": "Alvin.jpg",
@@ -211,7 +218,7 @@
   },
   {
     "name": "Daniel Phiri",
-    "title": "Developer Advocate",
+    "title": "Developer Experience and Education Engineer",
     "photo": "daniel.jpg",
     "team": "developer-relations",
     "linkedin": "malgamves",
@@ -374,6 +381,12 @@
     "team": "sales"
   },
   {
+    "name": "Hamdi Hmimy",
+    "title": "Enterprise Solution Engineer",
+    "photo": "Hamdi-Hmimy.jpg",
+    "team": "delivery"
+  },
+  {
     "name": "Ian Gregson",
     "title": "Full Stack Engineer",
     "photo": "ian.jpg",
@@ -409,6 +422,12 @@
     "twitter": "_jphwang",
     "github": "databyjp",
     "team": "developer-relations"
+  },
+  {
+    "name": "Jenny Morris",
+    "title": "Customer Solution Engineer",
+    "photo": "Jenny-Morris.jpg",
+    "team": "delivery"
   },
   {
     "name": "Jeremy Price",
@@ -532,7 +551,7 @@
   },
   {
     "name": "Marion Nehring",
-    "title": "Community Manager",
+    "title": "Developer Experience Program Manager",
     "photo": "marion.jpg",
     "linkedin": "marionnehring",
     "team": "developer-relations"

@@ -16,9 +16,13 @@ By default, Weaviate nodes in a cluster use a gossip-like protocol through [Hash
 
 Weaviate is optimized to run on Kubernetes, especially when operating as a cluster. The [Weaviate Helm chart](/developers/weaviate/installation/kubernetes.md#weaviate-helm-chart) makes use of a `StatefulSet` and a headless `Service` that automatically configures node discovery.
 
-### FQDN for node discovery
+<details>
+  <summary>FQDN for node discovery</summary>
 
-:::info Added in `v1.25.15`
+:::caution Added in `v1.25.15` and removed in `v1.30`
+
+This was an experimental feature. Use with caution.
+
 :::
 
 There can be a situation where IP-address based node discovery is not optimal. In such cases, you can set `RAFT_ENABLE_FQDN_RESOLVER` and `RAFT_FQDN_RESOLVER_TLD` [environment variables](../../config-refs/env-vars.md#multi-node-instances) to enable [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) based node discovery.
@@ -42,6 +46,8 @@ It can also be useful when using services (for example, Kubernetes) where the IP
 `RAFT_FQDN_RESOLVER_TLD` is a string that is appended in the format `[node-id].[tld]` when resolving a node-id to an IP address, where `[tld]` is the top-level domain.
 
 To use this feature, set `RAFT_ENABLE_FQDN_RESOLVER` to `true`.
+
+</details>
 
 ## Metadata replication: Raft
 

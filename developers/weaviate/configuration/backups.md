@@ -276,6 +276,16 @@ If both of `AZURE_STORAGE_CONNECTION_STRING` and `AZURE_STORAGE_ACCOUNT` are pro
 At least one of `AZURE_STORAGE_CONNECTION_STRING` or `AZURE_STORAGE_ACCOUNT` must be present.
 :::
 
+#### Azure block size and Concurrency
+
+| Environment variable | Required | Default | Description |
+| --- | --- | --- | --- |
+| `AZURE_BLOCK_SIZE` | no | `41943040` (40MB) | The Azure block size (in bytes) |
+| `AZURE_CONCURRENCY` | no | `1` | Upload concurrency |
+
+:::note
+You can also use `X-Azure-Block-Size` and `X-Azure-Concurrency` as a client header parameter. If provided, they will override any environment variables.
+:::
 
 ### Filesystem
 
